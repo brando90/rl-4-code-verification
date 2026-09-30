@@ -1,0 +1,117 @@
+# TLDR: executable source of truth for experiment 01 (rl-env-scaling template shape); nulls stay null until the design is frozen and the [verify] items in README.md are checked.
+
+experiment_name: 260930_predict_rl_env_utility_veribench_qwen35_snap
+status: design_draft  # design_draft | frozen | running | done
+frozen_on: null       # MM-DD-YYYY; set together with the HF revision hashes below
+
+models:
+  # Requested: "2B or 7B SOTA open weights" (Brando, 09-30-2026). Newest Qwen dense small family as of 09-30-2026.
+  # Fallback if the trainer cannot load Qwen3.5 (vision encoder in the dense checkpoints): Qwen/Qwen3-1.7B, -4B, -8B (the paper's family).
+  fit_scales:
+    - {name: Qwen/Qwen3.5-2B, revision: null, thinking: false}
+    - {name: Qwen/Qwen3.5-4B, revision: null, thinking: false}
+  heldout_scale:
+    - {name: Qwen/Qwen3.5-9B, revision: null, thinking: false}   # untouched until the rho-H model is frozen
+  warm_start: released_post_trained_checkpoint   # not Base+SFT: SFT on VB gold would contaminate the panel
+
+algorithm:
+  name: grpo_nemo_rl_0_6_0_contract   # or verl with identical settings; record which
+  group_size: 8
+  advantage: leave_one_out_unnormalized
+  loss: token_level
+  clip_ratio: 0.2
+  kl_coeff: 0.0
+  overlong_filtering: true          # capped responses stay in the baseline, zero loss weight
+  dynamic_sampling: false
+  lr: 2.0e-6
+  weight_decay: 0.01
+  precision: bf16
+  max_steps: 128
+  prompts_per_step: 4
+  checkpoint_steps: [16, 32, 48, 64, 96, 128]
+  seeds_per_cell: 2
+
+rollout:
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 20
+  max_response_tokens: 12288
+  max_total_tokens: 16384           # [verify] longest agent-spec v7 prompt + Python source fits in 4096 tokens
+  harness: single_turn_no_tools
+
+environments:
+  family: veribench_v1_python_to_lean
+  task_universe: 896                # re-derive: find veribench_dataset/py_src -name '*.py' ! -path '*__pycache__*' | wc -l
+  instruction_version: "VeriBench agent-spec v7 (2026-09-29 kernel-checked proof policy)"
+  task_pack_generator: experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/scripts/make_task_pack.sh
+  heldout_panel:
+    size: 150
+    split_quotas: {easy: 10, cs: 6, humaneval: 14, realcode: 8, security: 62, industry_real: 20, industry_synthetic: 30}
+    selection: sha256_of_task_id     # frozen before any RL; hash-disjoint from the pool
+    manifest: manifests/heldout_panel_150.jsonl
+  training_pool:
+    size: 746
+    manifest: manifests/training_pool_746.jsonl
+  probes:
+    construction: 3                  # independent G=8 probes (paper Stage A-C)
+    confirmation: 1                  # untouched G=8 probe (paper Stage D) -> rho, H
+    samples_per_prompt: 32
+  cells:
+    size: 96
+    design: 2x2_group_signal_x_admission_cost   # HH, HL, LH, LL per scale under that scale's own pi0
+    mixed_band: "0 < K < 8"
+    nonmixed_band: "K in {0, 8}"
+    high_admission: ">= 3 non-capped responses"
+    low_admission: "<= 4 non-capped responses"
+    balance: {mean_success_spread_pp: 3, prompt_length: true, split: true, verifier_validity: true}
+    zero_signal_relabel_threshold: 48   # fewer than 48 K=8 prompts -> LH/LL become Z* cells (H3 only)
+  uniform_mixture_stress_test: {enabled: false, prompts_per_cell: 24, scale: Qwen/Qwen3.5-9B}
+
+reward:
+  phase1: ic_tests_binary            # compiles under Lean v4.22.0 + Mathlib and states >= 1 example
+  phase2_arms:
+    A: ic_tests_binary
+    B: "0.5*IC_tests + 0.5*IC_tests*IC_proofs_nv"   # IC_proofs_nv: non-vacuous stated theorems only (veribench tests/test_reference_specs_nonvacuous.py VACUOUS patterns)
+    C: "arm B + one compiler-feedback turn (first 40 diagnostic lines), reward on the final file"
+  verifier:
+    lean_toolchain: leanprover/lean4:v4.22.0
+    compile_timeout_s: 300
+    ic_proofs_checker: scripts/scsc/kernel_axioms.py   # copied byte-identically from veribench, never edited
+    allowed_axioms: [propext, Classical.choice, Quot.sound]
+    infrastructure_error_is_not_zero_reward: true
+
+eval:
+  primary: heldout_ic_tests_pass_at_1_minus_warm_start   # U(E,N,C), eq. 1 of the paper
+  budget_points: [0.25, 0.5, 0.75, 1.0]                   # fractions of the largest jointly supported generated-token budget
+  native_pass_k_at_endpoints: 4
+  endpoint_fsc:
+    judge: experiment_100_validated_fsc_judge_via_valkyrie_custom_agent
+    votes: 3
+    aggregation: median
+    policies: 25                                           # warm start + 4 cells x 2 seeds x 3 scales
+  canonical_scorer: scripts/scsc/run_real_eval.py          # for any leaderboard-comparable table
+  report_columns: [IC_tests, IC_proofs, FSC, SCSC, n]
+
+utility_model:                        # eq. 7 of the paper
+  form: "U = b0 + bN*xN + bC*s(C) + brho*s(C)*z(log rho) + bH*s(C)*z(H)"
+  s_C: "C / (C + C0)"
+  C0: median_generated_token_budget_of_fit_scales
+  fit_on: [Qwen/Qwen3.5-2B, Qwen/Qwen3.5-4B]
+  freeze_file: results/frozen_forecast_9b.json            # committed before any 9B trajectory is inspected
+  loso_refit_after_scoring: true
+
+budgets:
+  b200_gpu_hours_estimate: {phase0: 30, phase1: 232, endpoint_eval: 30, phase2: 60, total: 352}
+  judge_calls_estimate: 11250
+  vals_side_cost_estimate_usd: 750
+
+hosts:
+  primary: skampere3      # Koyejo-lab-owned B200 host; GPU count [verify] with nvidia-smi
+  others_owned: [skampere1, skampere2]
+  access_only_infolab: [hyperturing1, hyperturing2, mercury1, mercury2, ampere1, ampere2]   # not owned by Koyejo lab
+  work_root: /lfs/$(hostname)/0/brando9/rl4cv_expt01
+  one_trainer_per_host: true
+
+logging:
+  results_markdown: results/
+  wandb: on_explicit_request_only

@@ -121,6 +121,8 @@ Predictions and levers, all testable:
 
 ## 8. A clean experiment for this repo (proposal)
 
+Drafted in full as [`experiments/01_predict_rl_env_utility_veribench_qwen35_snap/`](../experiments/01_predict_rl_env_utility_veribench_qwen35_snap/README.md) (09-30-2026): the arms below become its Phase 2, on top of a Phase 1 that replicates the ρ–H utility prediction from *Which Environments Should LLMs Learn From?* on VeriBench.
+
 - Base model, fixed task subset (e.g. 100 VBV2 tasks spanning base pass@64 ∈ {0, (0, 0.1], (0.1, 0.5], > 0.5}).
 - Arms, same trainer and token budget: (A) binary reward = full SCSC success; (B) `IC_proofs` partial credit; (C) B + one round of compiler feedback in the rollout; (D) C + curriculum ordered by current-policy `q_mixed`.
 - Measure pass@1 and pass@64 per bucket before and after.
