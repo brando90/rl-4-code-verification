@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as _dt
+from dataclasses import dataclass
 import json
 import sys
 from pathlib import Path
@@ -43,6 +44,90 @@ def done_cells(out_path: Path) -> set[tuple[str, int]]:
     return done
 
 
+@dataclass
+class Completion:
+    text: str
+    prompt_tokens: int
+    generated_tokens: int
+    finish_reason: str
+
+
+class _VllmEngine:
+    def __init__(self, args):
+        from vllm import LLM, SamplingParams  # imported late so the module imports without a GPU stack
+
+        self._SamplingParams = SamplingParams
+        self.args = args
+        self.llm = LLM(
+            model=args.model,
+            revision=args.revision,
+            tensor_parallel_size=args.tensor_parallel_size,
+            gpu_memory_utilization=args.gpu_memory_utilization,
+            max_model_len=args.max_model_len,
+            seed=args.seed,
+            trust_remote_code=False,
+        )
+        self.tokenizer = self.llm.get_tokenizer()
+
+    def generate(self, texts: list[str], seeds: list[int]) -> list[Completion]:
+        a = self.args
+        params = [
+            self._SamplingParams(n=1, temperature=a.temperature, top_p=a.top_p, top_k=a.top_k, max_tokens=a.max_tokens, seed=sd)
+            for sd in seeds
+        ]
+        outs = self.llm.generate(texts, params)
+        return [
+            Completion(o.outputs[0].text, len(o.prompt_token_ids or []), len(o.outputs[0].token_ids), o.outputs[0].finish_reason or "")
+            for o in outs
+        ]
+
+
+class _HfEngine:
+    """Transformers backend for CPU smoke tests: same prompts and sampling knobs, much slower than vLLM."""
+
+    def __init__(self, args):
+        import torch
+        from transformers import AutoModelForCausalLM, AutoTokenizer
+
+        self.torch = torch
+        self.args = args
+        self.tokenizer = AutoTokenizer.from_pretrained(args.model, revision=args.revision)
+        self.tokenizer.padding_side = "left"
+        if self.tokenizer.pad_token is None:
+            self.tokenizer.pad_token = self.tokenizer.eos_token
+        self.model = AutoModelForCausalLM.from_pretrained(args.model, revision=args.revision, torch_dtype=torch.bfloat16)
+        self.model.eval()
+
+    def generate(self, texts: list[str], seeds: list[int]) -> list[Completion]:
+        a, torch = self.args, self.torch
+        torch.manual_seed(seeds[0])
+        enc = self.tokenizer(texts, return_tensors="pt", padding=True)
+        with torch.no_grad():
+            out = self.model.generate(
+                **enc,
+                do_sample=a.temperature > 0,
+                temperature=a.temperature,
+                top_p=a.top_p,
+                top_k=a.top_k,
+                max_new_tokens=a.max_tokens,
+                pad_token_id=self.tokenizer.pad_token_id,
+            )
+        res = []
+        width = enc["input_ids"].shape[1]
+        eos = set(self.model.generation_config.eos_token_id if isinstance(self.model.generation_config.eos_token_id, list) else [self.model.generation_config.eos_token_id])
+        for i in range(len(texts)):
+            gen = out[i, width:].tolist()
+            ended = next((j for j, t in enumerate(gen) if t in eos), None)
+            n = (ended + 1) if ended is not None else len([t for t in gen if t != self.tokenizer.pad_token_id])
+            text = self.tokenizer.decode(gen[:n], skip_special_tokens=True)
+            res.append(Completion(text, int(enc["attention_mask"][i].sum()), n, "stop" if ended is not None else "length"))
+        return res
+
+
+def _load_engine(args):
+    return _HfEngine(args) if args.backend == "hf" else _VllmEngine(args)
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--pack", required=True, type=Path)
@@ -62,7 +147,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--gpu-memory-utilization", type=float, default=0.88)
     ap.add_argument("--addendum", default="vbv1")
     ap.add_argument("--veribench-root", default=None)
-    ap.add_argument("--batch", type=int, default=64, help="prompts submitted to vLLM per batch (rows flush per batch)")
+    ap.add_argument("--batch", type=int, default=64, help="prompts submitted per batch (rows flush per batch)")
+    ap.add_argument("--backend", choices=["vllm", "hf"], default="vllm", help="vllm on GPU hosts; hf (transformers) for CPU smoke tests")
     ap.add_argument("--out", required=True, type=Path)
     args = ap.parse_args(argv)
 
@@ -79,43 +165,22 @@ def main(argv: list[str] | None = None) -> int:
     if not todo:
         return 0
 
-    from vllm import LLM, SamplingParams  # imported late so the module imports without a GPU stack
-
-    llm = LLM(
-        model=args.model,
-        revision=args.revision,
-        tensor_parallel_size=args.tensor_parallel_size,
-        gpu_memory_utilization=args.gpu_memory_utilization,
-        max_model_len=args.max_model_len,
-        seed=args.seed,
-        trust_remote_code=False,
-    )
-    tok = llm.get_tokenizer()
+    engine = _load_engine(args)
+    tok = engine.tokenizer
     chat_kwargs = {} if args.thinking == "model-default" else {"enable_thinking": args.thinking == "on"}
 
     prompts = {t.task_id: build_prompt(t.instruction, addendum=args.addendum, root=root) for t in tasks}
     with args.out.open("a", encoding="utf-8") as fh:
         for start in range(0, len(todo), args.batch):
             chunk = todo[start : start + args.batch]
-            texts, params = [], []
+            texts = []
             for task, k in chunk:
                 p = prompts[task.task_id]
                 texts.append(tok.apply_chat_template(p.messages(), tokenize=False, add_generation_prompt=True, **chat_kwargs))
-                params.append(
-                    SamplingParams(
-                        n=1,
-                        temperature=args.temperature,
-                        top_p=args.top_p,
-                        top_k=args.top_k,
-                        max_tokens=args.max_tokens,
-                        seed=args.seed * 100003 + k,
-                    )
-                )
-            outputs = llm.generate(texts, params)
+            outputs = engine.generate(texts, [args.seed * 100003 + k for _task, k in chunk])
             for (task, k), text, out in zip(chunk, texts, outputs):
-                comp = out.outputs[0]
                 p = prompts[task.task_id]
-                ext = extract_lean(comp.text, p.required_paths, addendum=args.addendum, root=root)
+                ext = extract_lean(out.text, p.required_paths, addendum=args.addendum, root=root)
                 row = {
                     "task_id": task.task_id,
                     "sample_idx": k,
@@ -134,15 +199,16 @@ def main(argv: list[str] | None = None) -> int:
                     "addendum_sha256": p.addendum_sha256,
                     "prompt_sha256": p.prompt_sha256,
                     "system_prompt_sha256": p.system_prompt_sha256,
-                    "prompt_tokens": len(out.prompt_token_ids or []),
-                    "generated_tokens": len(comp.token_ids),
-                    "finish_reason": comp.finish_reason,
-                    "measured": clean_finish(comp.finish_reason),
-                    "truncated": comp.finish_reason == "length",
-                    "admitted": comp.finish_reason != "length",
+                    "backend": args.backend,
+                    "prompt_tokens": out.prompt_tokens,
+                    "generated_tokens": out.generated_tokens,
+                    "finish_reason": out.finish_reason,
+                    "measured": clean_finish(out.finish_reason),
+                    "truncated": out.finish_reason == "length",
+                    "admitted": out.finish_reason != "length",
                     "extraction": ext.method,
                     "lean": ext.lean,
-                    "completion": comp.text,
+                    "completion": out.text,
                     "finished_utc": _now(),
                 }
                 fh.write(json.dumps(row, ensure_ascii=False) + "\n")

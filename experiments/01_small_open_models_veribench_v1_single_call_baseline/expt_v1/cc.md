@@ -38,7 +38,7 @@ Read `~/agents-config/INDEX_RULES.md`, then this repository's `CLAUDE.md` and th
 WORK=/lfs/$(hostname)/0/$USER/rl4cv_e01 && mkdir -p $WORK && cd $WORK
 git clone https://github.com/brando90/rl-4-code-verification.git && cd rl-4-code-verification
 make external                       # fetches veribench (c11b99ba) and the frozen scorer (59059a20d)
-python -m venv .venv && source .venv/bin/activate && pip install -e ".[dev,gen]"
+python -m venv .venv && source .venv/bin/activate && pip install -e ".[dev,gen]"   # vLLM; on a CPU-only box add torch+transformers and pass --backend hf
 VERIBENCH_ROOT=$PWD/external/veribench python -m pytest -q   # all tests must pass
 ```
 
@@ -58,13 +58,14 @@ Record `nvidia-smi`, `vllm --version` and `lean --version` in `expt_v1/results/e
 
 ## 3. Freeze the tasks and the models
 
-1. **Locate experiment 103's gated v6 pack and task-id list.** Experiment 103's deployment record names skampere1: `/lfs/skampere1/0/brando9/veribench_vb103/…/private/packs/vbv1_896` and `private/task_ids_vbv1.txt`. Then:
+1. **Locate experiment 103's gated v6 pack and task-id list** (if it is not on the host, generate the current v7 pack with `python external/veribench/vb_harbor/adapter/adapter.py --output $WORK/pack_v7`, which writes 896 task directories, and record the deviation from experiment 103's v6 prompt in `REPORT.md`). Experiment 103's deployment record names skampere1: `/lfs/skampere1/0/brando9/veribench_vb103/…/private/packs/vbv1_896` and `private/task_ids_vbv1.txt`. Then:
    - check that the id list's SHA-256 equals `5d4e64e4…` (full value in `PROTOCOL.md`);
    - check that every task directory has `instruction.md` stamped `agent-spec v6`;
    - check the count is 896.
 
    Set `PACK` and `TASK_IDS`.
-2. **Locate the grading Lean project** that experiment 103 used (`LAKE_DIR`, with Lean v4.22.0 and Mathlib v4.22.0 built), and confirm `lake env lean` on one gold file exits 0.
+2. **Grading Lean project (`LAKE_DIR`).** Use experiment 103's if it is on the host (Lean v4.22.0, Mathlib v4.22.0 built). Otherwise build one from the pinned scorer in minutes, never by compiling Mathlib from source:
+   `curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none`, then `cd external/veribench_scorer/veribench_dataset/lean_src && lake exe cache get` (validated on 09-30-2026: downloads the prebuilt Mathlib cache and prints "Completed successfully!"), and set `LAKE_DIR` to that directory. Confirm `lake env lean` on one gold file exits 0.
 3. **Resolve models.** Web-search the current small-Qwen lineup (agents-config SOTA-model rule). Then resolve each `models.yaml` id to its current Hugging Face commit (`huggingface_hub.HfApi().model_info(id).sha`) and write `expt_v1/results/model_revisions.json`.
    - Record the search date and any newer small Qwen release you found.
    - Do not silently add it: a new model is a new condition.
