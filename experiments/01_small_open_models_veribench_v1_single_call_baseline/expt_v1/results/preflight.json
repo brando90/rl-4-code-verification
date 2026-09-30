@@ -1,0 +1,63 @@
+{
+  "date": "09-30-2026",
+  "host": "skampere1",
+  "gpu": "3 (A100-SXM4-80GB)",
+  "model_preflight": {
+    "model": "Qwen/Qwen3.5-0.8B",
+    "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "tasks": 5,
+    "task_ids_file": "/lfs/skampere1/0/brando9/rl4cv_e01/preflight_ids.txt",
+    "cells_declared": 5,
+    "cells_generated": 5,
+    "cells_scored": 5,
+    "cells_cut_off_at_length": 3,
+    "cells_no_lean_extracted": 1,
+    "compile_rate_scored": 0.0,
+    "IC_tests": [0.0, 5],
+    "IC_proofs": [0.0, 5],
+    "mean_generated_tokens": 40070.8,
+    "note": "Consistent with README hypothesis (near-0 IC_tests/IC_proofs at or below 14B); not a smoke failure."
+  },
+  "prompt_hashes": {
+    "addendum_vbv1.md": "a7a0fc1b7be6b4ede41fd6b31e1e1dcae3d2fd320a6cddf9b311cf55855a18f5",
+    "system_prompt": "dc051963de1199dd4f77c9f8f96218eb45be331c819b8e76693b063b206143cd",
+    "verified_against": "PROTOCOL.md locked values",
+    "match": true
+  },
+  "scorer_hashes": {
+    "run_real_eval.py": "6e82b3d1cd6d3686aaec3d45f273cd902b03b962c0c2eca48f2c2b4f25f41fa9",
+    "kernel_axioms.py": "5dbbdcae75ba8b22911fcb43ab1fcde45a1475cf92742a39a29ebe41116de287",
+    "score_scsc.py": "b3713c48e0fdb24adec93b77be8785d20e48897ee8d1fd8ce31fdf37101e81d6",
+    "match": true
+  },
+  "extraction_bundle_diff": {
+    "committed_sha256": "c7cbe3e6bffbc2b950e2a42f7d7c1ac859945a361a421b35b3b702aa100cdcf0",
+    "pushed_sha256": "6e1a9b0de0755932b2869d45c5b32ff54c5647069558125b23a42dcd7afedf8f",
+    "identical_for_vbv1": true,
+    "note": "Committed file adds VBV2 multi-file path-policy code (PATH_POLICIES, root, max_files); inert when --addendum vbv1 (root=None, max_files=1), so extract_files/resolve_paths behave identically to experiment 103's pushed bundle for this condition."
+  },
+  "pack": {
+    "path": "/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/packs/vbv1_896",
+    "task_count": 896,
+    "agent_spec_v6_stamped_all": true,
+    "task_ids_sha256_content_no_trailing_newline": "5d4e64e44032631beaed1a8ce98ce8cbae401ccf69d369e22c6ee16e82e2bdc3",
+    "match": true
+  },
+  "lean_grading_project": {
+    "candidate_used": "/lfs/skampere1/0/brando9/rl4cv_e01/rl-4-code-verification/external/veribench_scorer/veribench_dataset/lean_src",
+    "note": "veribench_vb103's candidate (read-only) was NOT built (empty .lake); built our own via lake exe cache get instead, never lake build of Mathlib.",
+    "lake_env_lean_exit_0_on_gold": true
+  },
+  "scorer_controls": {
+    "job_dir": "/lfs/skampere1/0/brando9/rl4cv_e01/out_preflight/controls_job",
+    "tasks": {
+      "easy_set__1_myadd": {"treatment": "gold.lean verbatim", "IC_tests": 1.0, "IC_proofs": 1.0, "expected": "1/1", "pass": true},
+      "cs_set__binary_search": {"treatment": "gold.lean verbatim", "IC_tests": 1.0, "IC_proofs": 1.0, "expected": "1/1", "pass": true},
+      "aerospace_set_real__my_fprime_crc_payload_size": {"treatment": "empty file", "IC_tests": 0.0, "IC_proofs": 0.0, "expected": "0/0", "pass": true},
+      "aerospace_set_real__my_fprime_crc_match": {"treatment": "gold.lean, first named-theorem proof replaced by sorry", "IC_tests": 1.0, "IC_proofs": 0.8333333333333334, "expected": "<1", "pass": true}
+    },
+    "deviation_note": "First attempt used 4 arbitrary probe-subset tasks instead of known-clean ones; one of them (aerospace_set_real__my_fprime_crc_payload_size) legitimately scored IC_proofs=0.667 on its UNMODIFIED gold because the pack's own gold uses native_decide inside a named theorem (witness_thm), which taints it and its dependent correctness_thm under this project's kernel-axiom rule ({propext, Classical.choice, Quot.sound}). Not a scorer bug. Switched the two '1/1' controls to easy_set__1_myadd and cs_set__binary_search, already validated clean in the CPU pilot.",
+    "all_pass": true
+  },
+  "smoke_pass": true
+}
