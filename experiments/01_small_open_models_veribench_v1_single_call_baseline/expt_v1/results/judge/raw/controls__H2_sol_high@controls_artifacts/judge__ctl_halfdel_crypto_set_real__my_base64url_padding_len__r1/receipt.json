@@ -1,0 +1,54 @@
+{
+  "condition": "expt103-judge-transport-v1",
+  "task_id": "judge__ctl_halfdel_crypto_set_real__my_base64url_padding_len__r1",
+  "selector": "openai/gpt-6-sol-high",
+  "judge_config": "H2_sol_high",
+  "benchmark": "veribench-rl4cv-e01-controls",
+  "started": "2026-09-30T20:48:46.679964+00:00",
+  "requests_sent": 1,
+  "status": "measured",
+  "updated": "2026-09-30T20:49:09.591990+00:00",
+  "cell": "ctl-halfdel-crypto_set_real__my_base64url_padding_len__r1",
+  "system_sha256": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+  "user_sha256": "ba39e664b2d7c6f654b81a86ea70721784627fa6dd4b0c659ef51fdaddb2870e",
+  "prompt_sha256": "b04225887259c5a176e334c93206a098977c96c8ce3fe4f58b90c243185f0476",
+  "expected": {
+    "system": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+    "user": "ba39e664b2d7c6f654b81a86ea70721784627fa6dd4b0c659ef51fdaddb2870e",
+    "prompt": "b04225887259c5a176e334c93206a098977c96c8ce3fe4f58b90c243185f0476"
+  },
+  "output_path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+  "provider_endpoint": "gpt-6-sol",
+  "config": {
+    "max_tokens": 32000,
+    "reasoning_effort": "high"
+  },
+  "wire_provider_config": {
+    "verbosity": "medium",
+    "reasoning_context": "all_turns"
+  },
+  "attempt": 1,
+  "wall_seconds": 22.756,
+  "response_sha256": "f38afa3be2229d5c333aa05e3bbde9ae1adfa528a6ee9df472dd75529b89f2ae",
+  "usage": {
+    "in_tokens": 3,
+    "out_tokens": 121,
+    "reasoning_tokens": 318,
+    "cache_read_tokens": 4744,
+    "cache_write_tokens": 2839
+  },
+  "cost_usd": 0.0124423,
+  "finish_reason": {
+    "reason": "stop",
+    "raw": "completed"
+  },
+  "fallback": null,
+  "output_text_sha256": "036d3f8450a9031d6b4538228855f4bcd8f430713f83394d126bf4c204b7458f",
+  "output_text_bytes": 499,
+  "written_file": {
+    "path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+    "bytes": 500,
+    "sha256": "a2d23a8919abff0884dbea37123204e07f72187f965141db8a9d120fe6aa3c6f"
+  },
+  "ended": "2026-09-30T20:49:09.591980+00:00"
+}

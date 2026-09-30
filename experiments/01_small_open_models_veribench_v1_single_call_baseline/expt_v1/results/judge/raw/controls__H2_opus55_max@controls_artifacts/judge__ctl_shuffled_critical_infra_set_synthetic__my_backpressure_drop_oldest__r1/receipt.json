@@ -1,0 +1,55 @@
+{
+  "condition": "expt103-judge-transport-v1",
+  "task_id": "judge__ctl_shuffled_critical_infra_set_synthetic__my_backpressure_drop_oldest__r1",
+  "selector": "anthropic/claude-opus-5-5-no-fallback",
+  "judge_config": "H2_opus55_max",
+  "benchmark": "veribench-rl4cv-e01-controls",
+  "started": "2026-09-30T20:47:59.986277+00:00",
+  "requests_sent": 1,
+  "status": "measured",
+  "updated": "2026-09-30T20:48:11.264674+00:00",
+  "cell": "ctl-shuffled-critical_infra_set_synthetic__my_backpressure_drop_oldest__r1",
+  "system_sha256": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+  "user_sha256": "9584252077cbb538ebcd9e24f6bff1acb48251740df2cdc878f6f684b202cb8f",
+  "prompt_sha256": "22e3961897faf7dab8bd02733a2e4d030958b79b2bec57c7f9b32b503fca73ca",
+  "expected": {
+    "system": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+    "user": "9584252077cbb538ebcd9e24f6bff1acb48251740df2cdc878f6f684b202cb8f",
+    "prompt": "22e3961897faf7dab8bd02733a2e4d030958b79b2bec57c7f9b32b503fca73ca"
+  },
+  "output_path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+  "provider_endpoint": "claude-opus-5-5",
+  "config": {
+    "max_tokens": 32000,
+    "compute_effort": "max"
+  },
+  "wire_provider_config": {
+    "supports_compute_effort": true,
+    "supports_auto_thinking": true,
+    "fallback_models": []
+  },
+  "attempt": 1,
+  "wall_seconds": 11.114,
+  "response_sha256": "3f7975302508269dcf3f9e9f14e8ca3425b2c66ce3bfee2daf7e8dfd2c69a537",
+  "usage": {
+    "in_tokens": 4,
+    "out_tokens": 266,
+    "reasoning_tokens": 389,
+    "cache_read_tokens": 7098,
+    "cache_write_tokens": 4386
+  },
+  "cost_usd": 0.0378852,
+  "finish_reason": {
+    "reason": "stop",
+    "raw": "end_turn"
+  },
+  "fallback": null,
+  "output_text_sha256": "e5ee0f7b5583436e1dd806629fe800ad78189e6b2c5c051bd6e5c73c24243b27",
+  "output_text_bytes": 647,
+  "written_file": {
+    "path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+    "bytes": 648,
+    "sha256": "d0e226dbb803c78fb95e1675fd0dceb466ee64496e3f1647b0c4f0d80f2c33cb"
+  },
+  "ended": "2026-09-30T20:48:11.264665+00:00"
+}

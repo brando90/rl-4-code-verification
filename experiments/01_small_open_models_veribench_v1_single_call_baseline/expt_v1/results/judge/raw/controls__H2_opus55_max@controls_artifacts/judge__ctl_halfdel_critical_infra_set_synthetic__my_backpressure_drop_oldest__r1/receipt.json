@@ -1,0 +1,55 @@
+{
+  "condition": "expt103-judge-transport-v1",
+  "task_id": "judge__ctl_halfdel_critical_infra_set_synthetic__my_backpressure_drop_oldest__r1",
+  "selector": "anthropic/claude-opus-5-5-no-fallback",
+  "judge_config": "H2_opus55_max",
+  "benchmark": "veribench-rl4cv-e01-controls",
+  "started": "2026-09-30T20:49:31.451055+00:00",
+  "requests_sent": 1,
+  "status": "measured",
+  "updated": "2026-09-30T20:50:27.901519+00:00",
+  "cell": "ctl-halfdel-critical_infra_set_synthetic__my_backpressure_drop_oldest__r1",
+  "system_sha256": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+  "user_sha256": "09d80aa95ee1ff158a3f7797f3420c3490072a8d251d8d3b89c7a86ecc05d0d6",
+  "prompt_sha256": "165ed80bbb498930355bbb4bc9272cc07f8bf86e131af35c361e0729454b67ec",
+  "expected": {
+    "system": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+    "user": "09d80aa95ee1ff158a3f7797f3420c3490072a8d251d8d3b89c7a86ecc05d0d6",
+    "prompt": "165ed80bbb498930355bbb4bc9272cc07f8bf86e131af35c361e0729454b67ec"
+  },
+  "output_path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+  "provider_endpoint": "claude-opus-5-5",
+  "config": {
+    "max_tokens": 32000,
+    "compute_effort": "max"
+  },
+  "wire_provider_config": {
+    "supports_compute_effort": true,
+    "supports_auto_thinking": true,
+    "fallback_models": []
+  },
+  "attempt": 1,
+  "wall_seconds": 56.268,
+  "response_sha256": "778999ae9ed6e112bec3103e33a5dca1f40f332eddb3f559dd357021006e5500",
+  "usage": {
+    "in_tokens": 4,
+    "out_tokens": 277,
+    "reasoning_tokens": 4613,
+    "cache_read_tokens": 7098,
+    "cache_write_tokens": 3795
+  },
+  "cost_usd": 0.11963019999999999,
+  "finish_reason": {
+    "reason": "stop",
+    "raw": "end_turn"
+  },
+  "fallback": null,
+  "output_text_sha256": "9a0afffad344c22425b90e67c2c26eb26a7710b373e1032a1d7fa34ab1e8c6ec",
+  "output_text_bytes": 680,
+  "written_file": {
+    "path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+    "bytes": 681,
+    "sha256": "4614e79727353f7c6e7f6b85dc12c4658cd06ac8698c15ebaafc8f450aa591e6"
+  },
+  "ended": "2026-09-30T20:50:27.901510+00:00"
+}

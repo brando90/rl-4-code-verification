@@ -1,0 +1,54 @@
+{
+  "condition": "expt103-judge-transport-v1",
+  "task_id": "judge__ctl_oracle_aerospace_set_real__my_fprime_crc_match__r1",
+  "selector": "openai/gpt-6-sol-high",
+  "judge_config": "H2_sol_high",
+  "benchmark": "veribench-rl4cv-e01-controls",
+  "started": "2026-09-30T20:45:46.565265+00:00",
+  "requests_sent": 1,
+  "status": "measured",
+  "updated": "2026-09-30T20:45:50.554038+00:00",
+  "cell": "ctl-oracle-aerospace_set_real__my_fprime_crc_match__r1",
+  "system_sha256": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+  "user_sha256": "f667d21477518ffb6a76bb394b36234e897786c55c7cef5258dc40f28c303764",
+  "prompt_sha256": "280c2e7eea8580a5fafb35fcf59ba1d9714f7180ca4778fa2cdf02cfa05535ba",
+  "expected": {
+    "system": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+    "user": "f667d21477518ffb6a76bb394b36234e897786c55c7cef5258dc40f28c303764",
+    "prompt": "280c2e7eea8580a5fafb35fcf59ba1d9714f7180ca4778fa2cdf02cfa05535ba"
+  },
+  "output_path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+  "provider_endpoint": "gpt-6-sol",
+  "config": {
+    "max_tokens": 32000,
+    "reasoning_effort": "high"
+  },
+  "wire_provider_config": {
+    "verbosity": "medium",
+    "reasoning_context": "all_turns"
+  },
+  "attempt": 1,
+  "wall_seconds": 3.816,
+  "response_sha256": "2ee8235029700de31d2154af4c481599444c0d1fe3fb6ff25567a92b5319ee50",
+  "usage": {
+    "in_tokens": 3,
+    "out_tokens": 105,
+    "reasoning_tokens": 80,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 6871
+  },
+  "cost_usd": 0.0190335,
+  "finish_reason": {
+    "reason": "stop",
+    "raw": "completed"
+  },
+  "fallback": null,
+  "output_text_sha256": "ac417f69cb6b6e29a88460690eb89f5a5206efe51fdf4a8d3bf8606b8869c1ee",
+  "output_text_bytes": 371,
+  "written_file": {
+    "path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+    "bytes": 372,
+    "sha256": "676a43faf6cd903f2017a299f9a69a0eb9b3cfda525ae22e98202621d2fbfbb6"
+  },
+  "ended": "2026-09-30T20:45:50.554028+00:00"
+}

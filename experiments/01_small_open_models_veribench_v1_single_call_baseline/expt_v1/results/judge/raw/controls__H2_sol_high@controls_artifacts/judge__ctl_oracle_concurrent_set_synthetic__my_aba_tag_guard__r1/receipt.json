@@ -1,0 +1,54 @@
+{
+  "condition": "expt103-judge-transport-v1",
+  "task_id": "judge__ctl_oracle_concurrent_set_synthetic__my_aba_tag_guard__r1",
+  "selector": "openai/gpt-6-sol-high",
+  "judge_config": "H2_sol_high",
+  "benchmark": "veribench-rl4cv-e01-controls",
+  "started": "2026-09-30T20:45:52.374079+00:00",
+  "requests_sent": 1,
+  "status": "measured",
+  "updated": "2026-09-30T20:45:59.823296+00:00",
+  "cell": "ctl-oracle-concurrent_set_synthetic__my_aba_tag_guard__r1",
+  "system_sha256": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+  "user_sha256": "1634fe63c6383f9c61dd0c78a307759b2117e43c994f76a120c5756fa0f0d076",
+  "prompt_sha256": "11d2f5399867c561c25d3b82452466df4c7893ae51f3932840da13889000f11b",
+  "expected": {
+    "system": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+    "user": "1634fe63c6383f9c61dd0c78a307759b2117e43c994f76a120c5756fa0f0d076",
+    "prompt": "11d2f5399867c561c25d3b82452466df4c7893ae51f3932840da13889000f11b"
+  },
+  "output_path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+  "provider_endpoint": "gpt-6-sol",
+  "config": {
+    "max_tokens": 32000,
+    "reasoning_effort": "high"
+  },
+  "wire_provider_config": {
+    "verbosity": "medium",
+    "reasoning_context": "all_turns"
+  },
+  "attempt": 1,
+  "wall_seconds": 6.78,
+  "response_sha256": "46514884f4a29148b315bdc490e3ec4f5d904cb11e755a2d1cdd45170508f7fd",
+  "usage": {
+    "in_tokens": 3,
+    "out_tokens": 113,
+    "reasoning_tokens": 34,
+    "cache_read_tokens": 4744,
+    "cache_write_tokens": 2796
+  },
+  "cost_usd": 0.0094148,
+  "finish_reason": {
+    "reason": "stop",
+    "raw": "completed"
+  },
+  "fallback": null,
+  "output_text_sha256": "25c8d0fbf242f5ba1fdb3a91e6b006550556c20900404ef544ed57b5584566cf",
+  "output_text_bytes": 386,
+  "written_file": {
+    "path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+    "bytes": 387,
+    "sha256": "819e91b7b28fc012b57baeade0f2b495248b7c021796e665fde0432780928830"
+  },
+  "ended": "2026-09-30T20:45:59.823286+00:00"
+}

@@ -1,0 +1,54 @@
+{
+  "condition": "expt103-judge-transport-v1",
+  "task_id": "judge__ctl_shuffled_aerospace_set_real__my_fprime_crc_match__r1",
+  "selector": "openai/gpt-6-sol-high",
+  "judge_config": "H2_sol_high",
+  "benchmark": "veribench-rl4cv-e01-controls",
+  "started": "2026-09-30T20:47:12.031317+00:00",
+  "requests_sent": 1,
+  "status": "measured",
+  "updated": "2026-09-30T20:47:28.868449+00:00",
+  "cell": "ctl-shuffled-aerospace_set_real__my_fprime_crc_match__r1",
+  "system_sha256": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+  "user_sha256": "9984dd36caa365c28c9551c3a1ced958a87e664c656f2d1a219945b0ec7f2523",
+  "prompt_sha256": "a0b6026c53f0efca1abadc52116b43500d83d23e51559e754ad76e982c52791a",
+  "expected": {
+    "system": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+    "user": "9984dd36caa365c28c9551c3a1ced958a87e664c656f2d1a219945b0ec7f2523",
+    "prompt": "a0b6026c53f0efca1abadc52116b43500d83d23e51559e754ad76e982c52791a"
+  },
+  "output_path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+  "provider_endpoint": "gpt-6-sol",
+  "config": {
+    "max_tokens": 32000,
+    "reasoning_effort": "high"
+  },
+  "wire_provider_config": {
+    "verbosity": "medium",
+    "reasoning_context": "all_turns"
+  },
+  "attempt": 1,
+  "wall_seconds": 16.656,
+  "response_sha256": "f49e014363ec66e6b6d6b9cd569ce0a59a90b7cf2b018e7efb09f31c67f975f6",
+  "usage": {
+    "in_tokens": 3,
+    "out_tokens": 125,
+    "reasoning_tokens": 516,
+    "cache_read_tokens": 4744,
+    "cache_write_tokens": 2307
+  },
+  "cost_usd": 0.0131323,
+  "finish_reason": {
+    "reason": "stop",
+    "raw": "completed"
+  },
+  "fallback": null,
+  "output_text_sha256": "07a8094cbcb33473f25a85451707d80e2284b20c32e93e1a89108c2c2957db7b",
+  "output_text_bytes": 472,
+  "written_file": {
+    "path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+    "bytes": 473,
+    "sha256": "7aed53127eb0f00aaa22f13b4ccf4e03c789871b8d358daa2137ec6b55fc1225"
+  },
+  "ended": "2026-09-30T20:47:28.868437+00:00"
+}

@@ -2,7 +2,13 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/01_small_open_models_veribench_v1_single_call_baseline/results.md>
 
-**TLDR:** The GPU run is in progress on `skampere1` (GPUs 3–7): preflight passed, full G=1 eval and G=8 probe jobs launched 09-30-2026 12:31. D-101 (self-hosted inference) and D-102 (FSC judge route: `vb103_judge` Valkyrie, payer: Vals gateway) are both accepted (09-30-2026); FSC judging now runs per model once that model's kernel scoring finishes.
+**TLDR:** The GPU run is in progress on `skampere1` (GPUs 2–7, one model per device): preflight passed, full G=1 eval and G=8 probe jobs launched 09-30-2026 12:31. D-101 (self-hosted inference) and D-102 (FSC judge route: `vb103_judge` Valkyrie, payer: Vals gateway) are both accepted. The judge's own controls (oracle/vacuous/blank/shuffled/halfdel) passed on a new, isolated Valkyrie benchmark service (port 9700; $4.57 spent of the $400 cap); FSC judging now runs per model once that model's kernel scoring finishes.
+
+## Judge spend (running total against the $400 cap)
+
+| Suite | Members | Cells | Status | Charges (USD) |
+|---|---|---:|---|---:|
+| `rl4cv-e01-controls` | H2_sol_high + H2_opus55_max | 60 × 2 | measured, verdict PASS | 4.57 |
 
 Last updated: 09-30-2026.
 

@@ -1,0 +1,55 @@
+{
+  "condition": "expt103-judge-transport-v1",
+  "task_id": "judge__ctl_shuffled_cs_set__bellman_ford__r1",
+  "selector": "anthropic/claude-opus-5-5-no-fallback",
+  "judge_config": "H2_opus55_max",
+  "benchmark": "veribench-rl4cv-e01-controls",
+  "started": "2026-09-30T20:48:21.073012+00:00",
+  "requests_sent": 1,
+  "status": "measured",
+  "updated": "2026-09-30T20:48:40.982486+00:00",
+  "cell": "ctl-shuffled-cs_set__bellman_ford__r1",
+  "system_sha256": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+  "user_sha256": "a52c6db2176b260158c960256e5d75c7c4ce895db41b4dd6edcdbcedb3ae117f",
+  "prompt_sha256": "6359791735d0dff63e01faa6456b5f0f2c961293d31f8f153c719956f1510195",
+  "expected": {
+    "system": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+    "user": "a52c6db2176b260158c960256e5d75c7c4ce895db41b4dd6edcdbcedb3ae117f",
+    "prompt": "6359791735d0dff63e01faa6456b5f0f2c961293d31f8f153c719956f1510195"
+  },
+  "output_path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+  "provider_endpoint": "claude-opus-5-5",
+  "config": {
+    "max_tokens": 32000,
+    "compute_effort": "max"
+  },
+  "wire_provider_config": {
+    "supports_compute_effort": true,
+    "supports_auto_thinking": true,
+    "fallback_models": []
+  },
+  "attempt": 1,
+  "wall_seconds": 19.793,
+  "response_sha256": "d6a846b3923543863853c9a7722d4a72ee70e9c83040669b901a37bf5b9a9309",
+  "usage": {
+    "in_tokens": 4,
+    "out_tokens": 259,
+    "reasoning_tokens": 450,
+    "cache_read_tokens": 7098,
+    "cache_write_tokens": 23478
+  },
+  "cost_usd": 0.1344252,
+  "finish_reason": {
+    "reason": "stop",
+    "raw": "end_turn"
+  },
+  "fallback": null,
+  "output_text_sha256": "ea04627eab4ef61d968f8cc27c2e9d9906175b1c4c6785db9bd86582d66d7ba0",
+  "output_text_bytes": 603,
+  "written_file": {
+    "path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+    "bytes": 604,
+    "sha256": "89fc8c1e467e0feb544a7dd87fa438b0aa74e3fa1e17f6a6ba23f75e7f3a2b51"
+  },
+  "ended": "2026-09-30T20:48:40.982476+00:00"
+}

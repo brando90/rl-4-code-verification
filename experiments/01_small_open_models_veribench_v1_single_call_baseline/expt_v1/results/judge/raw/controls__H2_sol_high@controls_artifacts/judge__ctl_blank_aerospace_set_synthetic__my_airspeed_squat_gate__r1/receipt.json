@@ -1,0 +1,54 @@
+{
+  "condition": "expt103-judge-transport-v1",
+  "task_id": "judge__ctl_blank_aerospace_set_synthetic__my_airspeed_squat_gate__r1",
+  "selector": "openai/gpt-6-sol-high",
+  "judge_config": "H2_sol_high",
+  "benchmark": "veribench-rl4cv-e01-controls",
+  "started": "2026-09-30T20:49:21.280046+00:00",
+  "requests_sent": 1,
+  "status": "measured",
+  "updated": "2026-09-30T20:49:37.087664+00:00",
+  "cell": "ctl-blank-aerospace_set_synthetic__my_airspeed_squat_gate__r1",
+  "system_sha256": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+  "user_sha256": "8202d51ec223df600a7821292c2ec68e9f16beef8445392e787c92e786fb72b3",
+  "prompt_sha256": "6d8174bee1d42ead04d3997154ccf98841d9feef846bec490d70a49d1e3115d3",
+  "expected": {
+    "system": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+    "user": "8202d51ec223df600a7821292c2ec68e9f16beef8445392e787c92e786fb72b3",
+    "prompt": "6d8174bee1d42ead04d3997154ccf98841d9feef846bec490d70a49d1e3115d3"
+  },
+  "output_path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+  "provider_endpoint": "gpt-6-sol",
+  "config": {
+    "max_tokens": 32000,
+    "reasoning_effort": "high"
+  },
+  "wire_provider_config": {
+    "verbosity": "medium",
+    "reasoning_context": "all_turns"
+  },
+  "attempt": 1,
+  "wall_seconds": 15.172,
+  "response_sha256": "b8bea3d8afd9cd87bfa7021d02d7df1fd509178b1e7dfd6df2371eedaa15971f",
+  "usage": {
+    "in_tokens": 3,
+    "out_tokens": 81,
+    "reasoning_tokens": 101,
+    "cache_read_tokens": 4744,
+    "cache_write_tokens": 1394
+  },
+  "cost_usd": 0.006259799999999999,
+  "finish_reason": {
+    "reason": "stop",
+    "raw": "completed"
+  },
+  "fallback": null,
+  "output_text_sha256": "52e5ac294a989fde505b2cedc7aa3eb19c9aa5f1df5207448585b16d1956852d",
+  "output_text_bytes": 256,
+  "written_file": {
+    "path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+    "bytes": 257,
+    "sha256": "084f43d7bd2d3da825503b470467c02a795e8a57b256ebe2fab507a2f0fb4bfe"
+  },
+  "ended": "2026-09-30T20:49:37.087652+00:00"
+}

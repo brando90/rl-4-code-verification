@@ -1,0 +1,54 @@
+{
+  "condition": "expt103-judge-transport-v1",
+  "task_id": "judge__ctl_blank_crypto_set_real__my_base64url_padding_len__r1",
+  "selector": "openai/gpt-6-sol-high",
+  "judge_config": "H2_sol_high",
+  "benchmark": "veribench-rl4cv-e01-controls",
+  "started": "2026-09-30T20:49:46.564364+00:00",
+  "requests_sent": 1,
+  "status": "measured",
+  "updated": "2026-09-30T20:50:00.759771+00:00",
+  "cell": "ctl-blank-crypto_set_real__my_base64url_padding_len__r1",
+  "system_sha256": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+  "user_sha256": "bac094b1f36cb19f940069108eedcd0db105dd4ed6dd8616de87143ee271b490",
+  "prompt_sha256": "a37ea3dd51194d3fda10c369bd57632168cdc573af0436be5a869e8cbc198e66",
+  "expected": {
+    "system": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+    "user": "bac094b1f36cb19f940069108eedcd0db105dd4ed6dd8616de87143ee271b490",
+    "prompt": "a37ea3dd51194d3fda10c369bd57632168cdc573af0436be5a869e8cbc198e66"
+  },
+  "output_path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+  "provider_endpoint": "gpt-6-sol",
+  "config": {
+    "max_tokens": 32000,
+    "reasoning_effort": "high"
+  },
+  "wire_provider_config": {
+    "verbosity": "medium",
+    "reasoning_context": "all_turns"
+  },
+  "attempt": 1,
+  "wall_seconds": 13.957,
+  "response_sha256": "96b5c768a509e59a630540fe605a81a0da95b14c18e268072583dd2a4fc83242",
+  "usage": {
+    "in_tokens": 3,
+    "out_tokens": 81,
+    "reasoning_tokens": 46,
+    "cache_read_tokens": 4744,
+    "cache_write_tokens": 1797
+  },
+  "cost_usd": 0.0067173,
+  "finish_reason": {
+    "reason": "stop",
+    "raw": "completed"
+  },
+  "fallback": null,
+  "output_text_sha256": "cb2c8d6954caecb454f0de3d1fe73d059223f042a8b6042a510d342635c575a6",
+  "output_text_bytes": 252,
+  "written_file": {
+    "path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+    "bytes": 253,
+    "sha256": "a145a84f671ce2b49a85f9577de04e90021abbdfe025160fd502bb37ceb3b543"
+  },
+  "ended": "2026-09-30T20:50:00.759761+00:00"
+}

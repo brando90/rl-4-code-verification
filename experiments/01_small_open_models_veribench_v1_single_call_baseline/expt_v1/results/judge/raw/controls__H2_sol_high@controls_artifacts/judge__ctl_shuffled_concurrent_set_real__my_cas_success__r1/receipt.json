@@ -1,0 +1,54 @@
+{
+  "condition": "expt103-judge-transport-v1",
+  "task_id": "judge__ctl_shuffled_concurrent_set_real__my_cas_success__r1",
+  "selector": "openai/gpt-6-sol-high",
+  "judge_config": "H2_sol_high",
+  "benchmark": "veribench-rl4cv-e01-controls",
+  "started": "2026-09-30T20:47:32.619232+00:00",
+  "requests_sent": 1,
+  "status": "measured",
+  "updated": "2026-09-30T20:48:26.848585+00:00",
+  "cell": "ctl-shuffled-concurrent_set_real__my_cas_success__r1",
+  "system_sha256": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+  "user_sha256": "62498c08ac0d74321ea6c99bcf6d1e306e75182e5603882cfc9c6890adc64ad3",
+  "prompt_sha256": "e8d20a523fbc18d497e2f39985c4b761ecde3187483029165a01644e3c1c5369",
+  "expected": {
+    "system": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+    "user": "62498c08ac0d74321ea6c99bcf6d1e306e75182e5603882cfc9c6890adc64ad3",
+    "prompt": "e8d20a523fbc18d497e2f39985c4b761ecde3187483029165a01644e3c1c5369"
+  },
+  "output_path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+  "provider_endpoint": "gpt-6-sol",
+  "config": {
+    "max_tokens": 32000,
+    "reasoning_effort": "high"
+  },
+  "wire_provider_config": {
+    "verbosity": "medium",
+    "reasoning_context": "all_turns"
+  },
+  "attempt": 1,
+  "wall_seconds": 53.582,
+  "response_sha256": "15ecb01126095d48f95c84833f942f962f1a36a0ff5df1ab0191ea761bbb6b90",
+  "usage": {
+    "in_tokens": 3,
+    "out_tokens": 130,
+    "reasoning_tokens": 2225,
+    "cache_read_tokens": 4744,
+    "cache_write_tokens": 2483
+  },
+  "cost_usd": 0.0307123,
+  "finish_reason": {
+    "reason": "stop",
+    "raw": "completed"
+  },
+  "fallback": null,
+  "output_text_sha256": "97d81b83fe585a370359926750cad6d315a8e8c01d95374d2dd1f1dda6fbbd97",
+  "output_text_bytes": 508,
+  "written_file": {
+    "path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+    "bytes": 509,
+    "sha256": "430bab881127a888c1ff0db3e9862c0364e0a0ec0725b731efd13943663b8840"
+  },
+  "ended": "2026-09-30T20:48:26.848576+00:00"
+}

@@ -1,0 +1,54 @@
+{
+  "condition": "expt103-judge-transport-v1",
+  "task_id": "judge__ctl_vacuous_critical_infra_set_real__my_envoy_panic_threshold__r1",
+  "selector": "openai/gpt-6-sol-high",
+  "judge_config": "H2_sol_high",
+  "benchmark": "veribench-rl4cv-e01-controls",
+  "started": "2026-09-30T20:46:45.148565+00:00",
+  "requests_sent": 1,
+  "status": "measured",
+  "updated": "2026-09-30T20:47:00.277663+00:00",
+  "cell": "ctl-vacuous-critical_infra_set_real__my_envoy_panic_threshold__r1",
+  "system_sha256": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+  "user_sha256": "c3040aad8b986c68fe94f2a738697b1673d3b63698cbc1a3d73c0059b82f37d2",
+  "prompt_sha256": "7d7539050999882bb6fed7d0a69bbe8dd6bc82142c3bb0a13a797534f726eadd",
+  "expected": {
+    "system": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+    "user": "c3040aad8b986c68fe94f2a738697b1673d3b63698cbc1a3d73c0059b82f37d2",
+    "prompt": "7d7539050999882bb6fed7d0a69bbe8dd6bc82142c3bb0a13a797534f726eadd"
+  },
+  "output_path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+  "provider_endpoint": "gpt-6-sol",
+  "config": {
+    "max_tokens": 32000,
+    "reasoning_effort": "high"
+  },
+  "wire_provider_config": {
+    "verbosity": "medium",
+    "reasoning_context": "all_turns"
+  },
+  "attempt": 1,
+  "wall_seconds": 14.965,
+  "response_sha256": "7254b17d81bbd5040baa84dfe401b35e6621d18cded8c3b3a8478d9581273bc8",
+  "usage": {
+    "in_tokens": 3,
+    "out_tokens": 99,
+    "reasoning_tokens": 96,
+    "cache_read_tokens": 4744,
+    "cache_write_tokens": 1586
+  },
+  "cost_usd": 0.0068698,
+  "finish_reason": {
+    "reason": "stop",
+    "raw": "completed"
+  },
+  "fallback": null,
+  "output_text_sha256": "54a515f5ff41df127d4dd0a7f7a53cea34301b8af1c62b6b30b08e336b672e92",
+  "output_text_bytes": 333,
+  "written_file": {
+    "path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+    "bytes": 334,
+    "sha256": "46fa0bd9574435861a36b393c96feef9ec06f6b0a3ac5687e789fe67de4aa466"
+  },
+  "ended": "2026-09-30T20:47:00.277654+00:00"
+}

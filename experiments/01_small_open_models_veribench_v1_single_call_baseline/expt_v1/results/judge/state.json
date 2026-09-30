@@ -14,8 +14,8 @@
    "part": "controls",
    "suite": "rl4cv-e01-controls",
    "benchmark": "veribench-rl4cv-e01-controls",
-   "admitted_at": "2026-09-30T20:18:00.670940+00:00",
-   "phase": "admission_failed",
+   "admitted_at": "2026-09-30T20:45:13.742971+00:00",
+   "phase": "terminal",
    "command": [
     "run",
     "start",
@@ -46,8 +46,19 @@
     "reasoning_effort",
     "high"
    ],
-   "returncode": 1,
-   "stderr_tail": "Error: Benchmark service 'veribench-rl4cv-e01-controls' is not reachable\n"
+   "run_id": "33ac3200-4168-4331-9fea-f86835725f2b",
+   "run_status": "finished",
+   "task_state_counts": {
+    "BUILDING": 0,
+    "ERROR": 0,
+    "EVALUATING": 0,
+    "FINISHED": 60,
+    "IN_PROGRESS": 0,
+    "PENDING": 0,
+    "STOPPED": 0
+   },
+   "cells_terminal": 60,
+   "polled_at": "2026-09-30T20:52:19.729575+00:00"
   },
   "controls/H2_opus55_max@controls": {
    "config": "H2_opus55_max",
@@ -63,8 +74,8 @@
    "part": "controls",
    "suite": "rl4cv-e01-controls",
    "benchmark": "veribench-rl4cv-e01-controls",
-   "admitted_at": "2026-09-30T20:18:25.703099+00:00",
-   "phase": "admission_failed",
+   "admitted_at": "2026-09-30T20:45:20.604462+00:00",
+   "phase": "terminal",
    "command": [
     "run",
     "start",
@@ -95,10 +106,31 @@
     "compute_effort",
     "max"
    ],
-   "returncode": 1,
-   "stderr_tail": "Error: Benchmark service 'veribench-rl4cv-e01-controls' is not reachable\n"
+   "run_id": "e6a24017-3afb-41ef-b674-09399c10ae53",
+   "run_status": "finished",
+   "task_state_counts": {
+    "BUILDING": 0,
+    "ERROR": 0,
+    "EVALUATING": 0,
+    "FINISHED": 60,
+    "IN_PROGRESS": 0,
+    "PENDING": 0,
+    "STOPPED": 0
+   },
+   "cells_terminal": 60,
+   "polled_at": "2026-09-30T20:52:25.517519+00:00"
   }
  },
  "created": "2026-09-30T20:18:00.670837+00:00",
- "updated": "2026-09-30T20:18:52.818540+00:00"
+ "updated": "2026-09-30T20:52:25.517554+00:00",
+ "retired_admissions": [
+  {
+   "key": "controls/H2_sol_high@controls",
+   "why": "benchmark service now deployed"
+  },
+  {
+   "key": "controls/H2_opus55_max@controls",
+   "why": "benchmark service now deployed"
+  }
+ ]
 }

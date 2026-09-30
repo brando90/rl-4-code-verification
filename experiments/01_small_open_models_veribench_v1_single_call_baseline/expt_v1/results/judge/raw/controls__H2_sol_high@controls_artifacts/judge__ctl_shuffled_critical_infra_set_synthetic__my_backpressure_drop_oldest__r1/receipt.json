@@ -1,0 +1,54 @@
+{
+  "condition": "expt103-judge-transport-v1",
+  "task_id": "judge__ctl_shuffled_critical_infra_set_synthetic__my_backpressure_drop_oldest__r1",
+  "selector": "openai/gpt-6-sol-high",
+  "judge_config": "H2_sol_high",
+  "benchmark": "veribench-rl4cv-e01-controls",
+  "started": "2026-09-30T20:47:34.966790+00:00",
+  "requests_sent": 1,
+  "status": "measured",
+  "updated": "2026-09-30T20:47:47.682405+00:00",
+  "cell": "ctl-shuffled-critical_infra_set_synthetic__my_backpressure_drop_oldest__r1",
+  "system_sha256": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+  "user_sha256": "9584252077cbb538ebcd9e24f6bff1acb48251740df2cdc878f6f684b202cb8f",
+  "prompt_sha256": "22e3961897faf7dab8bd02733a2e4d030958b79b2bec57c7f9b32b503fca73ca",
+  "expected": {
+    "system": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+    "user": "9584252077cbb538ebcd9e24f6bff1acb48251740df2cdc878f6f684b202cb8f",
+    "prompt": "22e3961897faf7dab8bd02733a2e4d030958b79b2bec57c7f9b32b503fca73ca"
+  },
+  "output_path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+  "provider_endpoint": "gpt-6-sol",
+  "config": {
+    "max_tokens": 32000,
+    "reasoning_effort": "high"
+  },
+  "wire_provider_config": {
+    "verbosity": "medium",
+    "reasoning_context": "all_turns"
+  },
+  "attempt": 1,
+  "wall_seconds": 12.592,
+  "response_sha256": "06c09cadbc0e0495489b1746533cfd4dab6d1a431b92a56a46282a3cf0e77114",
+  "usage": {
+    "in_tokens": 3,
+    "out_tokens": 117,
+    "reasoning_tokens": 236,
+    "cache_read_tokens": 4744,
+    "cache_write_tokens": 2801
+  },
+  "cost_usd": 0.011487299999999999,
+  "finish_reason": {
+    "reason": "stop",
+    "raw": "completed"
+  },
+  "fallback": null,
+  "output_text_sha256": "da8c2564c0b922a4e89ae7b97439c1dc6b2b29822e2bfb40833b154bbcb6a3e9",
+  "output_text_bytes": 422,
+  "written_file": {
+    "path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+    "bytes": 423,
+    "sha256": "24c77d0677f7df9998519d680e163703cbe225f5b2893c04050afc171e4e18c7"
+  },
+  "ended": "2026-09-30T20:47:47.682390+00:00"
+}

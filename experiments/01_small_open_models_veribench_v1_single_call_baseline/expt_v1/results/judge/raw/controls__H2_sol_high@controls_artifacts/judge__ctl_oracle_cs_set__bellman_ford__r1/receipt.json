@@ -1,0 +1,54 @@
+{
+  "condition": "expt103-judge-transport-v1",
+  "task_id": "judge__ctl_oracle_cs_set__bellman_ford__r1",
+  "selector": "openai/gpt-6-sol-high",
+  "judge_config": "H2_sol_high",
+  "benchmark": "veribench-rl4cv-e01-controls",
+  "started": "2026-09-30T20:46:18.820643+00:00",
+  "requests_sent": 1,
+  "status": "measured",
+  "updated": "2026-09-30T20:46:26.064469+00:00",
+  "cell": "ctl-oracle-cs_set__bellman_ford__r1",
+  "system_sha256": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+  "user_sha256": "8b0193974ebcf2802e0b78cb9a3acc0388a2b307e05e79a77e933680394def2b",
+  "prompt_sha256": "fe6d5d5ede1fa8705f3d1d0abd5589ac82e0371b0a64f88bbb7326645c5102c3",
+  "expected": {
+    "system": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+    "user": "8b0193974ebcf2802e0b78cb9a3acc0388a2b307e05e79a77e933680394def2b",
+    "prompt": "fe6d5d5ede1fa8705f3d1d0abd5589ac82e0371b0a64f88bbb7326645c5102c3"
+  },
+  "output_path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+  "provider_endpoint": "gpt-6-sol",
+  "config": {
+    "max_tokens": 32000,
+    "reasoning_effort": "high"
+  },
+  "wire_provider_config": {
+    "verbosity": "medium",
+    "reasoning_context": "all_turns"
+  },
+  "attempt": 1,
+  "wall_seconds": 6.505,
+  "response_sha256": "785426e71c42b83821d55dd361a4ed50e145f0a31bdce3fb26bcbb0a77894fc8",
+  "usage": {
+    "in_tokens": 3,
+    "out_tokens": 102,
+    "reasoning_tokens": 56,
+    "cache_read_tokens": 4744,
+    "cache_write_tokens": 25801
+  },
+  "cost_usd": 0.06703730000000001,
+  "finish_reason": {
+    "reason": "stop",
+    "raw": "completed"
+  },
+  "fallback": null,
+  "output_text_sha256": "347ada2d5c0702592796bfb5bb8f5ec934cac904346095330567b2b9cb9a0991",
+  "output_text_bytes": 396,
+  "written_file": {
+    "path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+    "bytes": 397,
+    "sha256": "7bd5558eb13ca6e530e00fd84844e9631aa8a7ff42d82a296c517d7a5390821a"
+  },
+  "ended": "2026-09-30T20:46:26.064457+00:00"
+}

@@ -1,0 +1,54 @@
+{
+  "condition": "expt103-judge-transport-v1",
+  "task_id": "judge__ctl_oracle_concurrent_set_real__my_cas_success__r1",
+  "selector": "openai/gpt-6-sol-high",
+  "judge_config": "H2_sol_high",
+  "benchmark": "veribench-rl4cv-e01-controls",
+  "started": "2026-09-30T20:45:52.364069+00:00",
+  "requests_sent": 1,
+  "status": "measured",
+  "updated": "2026-09-30T20:46:08.634930+00:00",
+  "cell": "ctl-oracle-concurrent_set_real__my_cas_success__r1",
+  "system_sha256": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+  "user_sha256": "8ac270ed268dcbf03fc412f0f85a857b482c8696c138c543af3878e0db5cbf92",
+  "prompt_sha256": "30becbc1a61faeca6af77bda0c29b084d251b93600f3291fc60b21892b26e279",
+  "expected": {
+    "system": "8fe30249ba2d84917248dd93ecb3ab555abf1130fba6fff050417efe3d6e6ffd",
+    "user": "8ac270ed268dcbf03fc412f0f85a857b482c8696c138c543af3878e0db5cbf92",
+    "prompt": "30becbc1a61faeca6af77bda0c29b084d251b93600f3291fc60b21892b26e279"
+  },
+  "output_path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+  "provider_endpoint": "gpt-6-sol",
+  "config": {
+    "max_tokens": 32000,
+    "reasoning_effort": "high"
+  },
+  "wire_provider_config": {
+    "verbosity": "medium",
+    "reasoning_context": "all_turns"
+  },
+  "attempt": 1,
+  "wall_seconds": 15.462,
+  "response_sha256": "49b4e5735e6b79aee99f784cd359473907b4d9ad7aaac7f8935f954ffae2cf35",
+  "usage": {
+    "in_tokens": 3,
+    "out_tokens": 106,
+    "reasoning_tokens": 0,
+    "cache_read_tokens": 4744,
+    "cache_write_tokens": 2248
+  },
+  "cost_usd": 0.0076348,
+  "finish_reason": {
+    "reason": "stop",
+    "raw": "completed"
+  },
+  "fallback": null,
+  "output_text_sha256": "407448f53705980dfb419f1ecdf182f3cb52f42b0d427c062a0fabd10d485b1b",
+  "output_text_bytes": 382,
+  "written_file": {
+    "path": "/home/user/lean_project/Veribench/JudgeVerdict.lean",
+    "bytes": 383,
+    "sha256": "a1f7c94ed61d78539205be8d22b79c89832f5dcbd7060efa4e2dae96dc15b14c"
+  },
+  "ended": "2026-09-30T20:46:08.634918+00:00"
+}
