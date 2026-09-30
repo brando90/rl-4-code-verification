@@ -64,6 +64,20 @@ def _i(x: str | None) -> int | None:
     return None if v is None else int(round(v))
 
 
+# The frozen scorer pinned by experiment 103 (commit 59059a20d) still writes the pre-rename column
+# names; the staged rename maps IC_ap -> IC_tests, IC_pp -> IC_proofs and TC -> FSC.
+LEGACY_FACTOR_KEYS = {"IC_tests": "IC_ap", "IC_proofs": "IC_pp", "FSC": "TC"}
+
+
+def _factor(row: Mapping, name: str) -> float:
+    """A factor value under its current name or the frozen scorer's legacy name (0.0 when absent)."""
+    for key in (name, LEGACY_FACTOR_KEYS.get(name)):
+        if key and key in row:
+            v = _f(row.get(key))
+            return 0.0 if v is None else v
+    return 0.0
+
+
 def read_scorer_per_task(csv_path: str | Path) -> dict[str, dict]:
     """Index the scorer's `<stem>_per_task.csv` by task directory name."""
     with Path(csv_path).open(newline="", encoding="utf-8") as fh:
@@ -76,8 +90,8 @@ def scored_response(row: Mapping, gen_row: Mapping, fsc: float | None = None) ->
     IC_tests and IC_proofs are taken exactly as the scorer computed them; theorem counts come from
     the kernel summary (`kernel_n_theorems`, `kernel_n_honest`) when present.
     """
-    ic_tests = _f(row.get("IC_tests")) or 0.0
-    ic_proofs = _f(row.get("IC_proofs")) or 0.0
+    ic_tests = _factor(row, "IC_tests")
+    ic_proofs = _factor(row, "IC_proofs")
     n_thm = _i(row.get("kernel_n_theorems"))
     if n_thm is None:
         n_thm = _i(row.get("agent_n_thm")) or 0

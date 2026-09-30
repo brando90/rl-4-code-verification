@@ -130,3 +130,16 @@ def test_split_helpers_and_stratified_subset():
     sub = stratified_subset(ids, 3)
     assert len(sub) == 6 and sub == stratified_subset(list(reversed(ids)), 3)
     assert len(stratified_subset(ids, 3, splits=("easy_set",))) == 3
+
+
+def test_scored_response_reads_frozen_scorer_legacy_columns():
+    from rl4cv.veribench.jobs import scored_response
+
+    gen = {"lean": "theorem a : 1 = 1 := rfl", "truncated": False}
+    legacy = {"task": "t", "IC_ap": "1.0", "IC_pp": "0.6666666666666666", "agent_compiles": "True",
+              "agent_n_ex": "14", "agent_n_thm": "6", "kernel_n_theorems": "6", "kernel_n_honest": "4"}
+    s = scored_response(legacy, gen)
+    assert s.ic_tests == 1.0 and s.n_theorems_stated == 6 and s.n_theorems_proved == 4
+    no_kernel = {"task": "t", "IC_ap": "0.0", "IC_pp": "0.0", "agent_compiles": "False", "agent_n_ex": "1", "agent_n_thm": "1"}
+    s2 = scored_response(no_kernel, gen)
+    assert s2.ic_tests == 0.0 and s2.n_theorems_proved == 0

@@ -95,6 +95,7 @@ bash expt_v1/run_model.sh probe <id> <revision> <label> [tp]    # not for the Qw
 ```
 
 - **Stop checks.** `run_model.sh` stops if any declared cell lacks a generation row, which is the one-to-one manifest check.
+- **Reading scores.** The frozen scorer writes legacy column names (`IC_ap`, `IC_pp`, `TC`), which `rl4cv` maps to IC_tests, IC_proofs and FSC. It also pads every pack task that has no output as 0 and prints an 896-task table row, so read the `rl4cv.veribench.summarize` output and never that printed row. Validated on CPU on 09-30-2026: [`results/pipeline_validation_cpu_09-30-2026.json`](results/pipeline_validation_cpu_09-30-2026.json).
 - **Resuming.** Rerunning a stage resumes: generation skips finished cells, and job and score directories are write-once.
 
 ## 6. FSC (only after D-102 is recorded in `docs/DECISIONS.md`)

@@ -1,0 +1,140 @@
+{
+  "_tldr": "CPU pipeline validation for experiment 01 (09-30-2026): the frozen VeriBench scorer passed all four controls, and Qwen3-0.6B compiled 0 of 3 tasks; this is not the locked 5-task preflight.",
+  "host": "Claude Code cloud container, 4 CPUs, 15 GB RAM, no GPU",
+  "deviations_from_PROTOCOL": [
+    "current v7 pack generated with vb_harbor/adapter/adapter.py at veribench c11b99ba (not experiment 103's v6 pack)",
+    "transformers CPU backend (--backend hf, bfloat16), not vLLM",
+    "3 hand-picked tasks, thinking off, max 1536 new tokens, temperature 0.6, top-p 0.95, top-k 20"
+  ],
+  "toolchain": {
+    "lean": "leanprover/lean4:v4.22.0 via elan",
+    "mathlib": "v4.22.0 prebuilt cache via `lake exe cache get` in external/veribench_scorer/veribench_dataset/lean_src",
+    "scorer_commit": "59059a20d40adf3289869e58302169ad78102877",
+    "torch": "2.14.1+cpu",
+    "transformers": "5.18.0"
+  },
+  "scorer_controls": [
+    {
+      "cell": "gold easy_set__1_myadd",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "theorems": 6,
+      "proved": 6,
+      "expected": "1/1",
+      "pass": true
+    },
+    {
+      "cell": "gold cs_set__binary_search",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "theorems": 13,
+      "proved": 13,
+      "expected": "1/1",
+      "pass": true
+    },
+    {
+      "cell": "empty file (easy_set__10_myevensumparity)",
+      "IC_tests": 0.0,
+      "IC_proofs": 0.0,
+      "expected": "0/0",
+      "pass": true
+    },
+    {
+      "cell": "gold easy_set__1_myadd with right_identity_thm proved by sorry",
+      "IC_tests": 1.0,
+      "IC_proofs": 0.6666666666666666,
+      "theorems": 6,
+      "proved": 4,
+      "sorryAx_theorems": 2,
+      "expected": "IC_proofs < 1",
+      "pass": true,
+      "note": "the sorry propagates through a @[simp] lemma, so two theorems lose credit"
+    }
+  ],
+  "model": {
+    "id": "Qwen/Qwen3-0.6B",
+    "revision": "c1899de289a04d12100db370d81485cdf75e47ca"
+  },
+  "cells": [
+    {
+      "task_id": "easy_set__1_myadd",
+      "prompt_tokens": 3580,
+      "generated_tokens": 305,
+      "finish_reason": "stop",
+      "extraction": "single_bare_block",
+      "prompt_sha256": "66752cccca12d49580819e6a40dac84850d31f51b71f08701d0e97aa653c8260",
+      "lean_sha256": "9dec5048b4cf2ea30a9fdea0c9da8c062b8ea0dae0a5683c49dc06aa8f7d2d59",
+      "first_lines": [
+        "import Mathlib",
+        "",
+        "namespace 1_MyAdd",
+        ""
+      ]
+    },
+    {
+      "task_id": "easy_set__10_myevensumparity",
+      "prompt_tokens": 3610,
+      "generated_tokens": 1047,
+      "finish_reason": "stop",
+      "extraction": "single_bare_block",
+      "prompt_sha256": "7a04f0d8c55e078ca382f869e75b3d7b4a1e120128c93030bce1c93ba3ceb923",
+      "lean_sha256": "e162e68f9530a2ca4bc5be6cae286143d8d436ef1c16d4cc80d52396c3edad0a",
+      "first_lines": [
+        "import Mathlib",
+        "",
+        "module 10_MyEvenSumParity",
+        ""
+      ]
+    },
+    {
+      "task_id": "cs_set__binary_search",
+      "prompt_tokens": 4224,
+      "generated_tokens": 754,
+      "finish_reason": "stop",
+      "extraction": "single_bare_block",
+      "prompt_sha256": "20f34a319f97bcdc5c2c4c1ac11c1bd0009ee596eee06a7f43240353db5cfdac",
+      "lean_sha256": "e6ec14a4a3fac58853a06b2eb350ab2d1e1875a111a55ca9eb9d0886c37608b4",
+      "first_lines": [
+        "import Mathlib",
+        "module binary_search",
+        "",
+        "namespace binary_search"
+      ]
+    }
+  ],
+  "scored": [
+    {
+      "task_id": "easy_set__1_myadd",
+      "compiles": false,
+      "IC_tests": 0.0,
+      "IC_proofs": 0.0,
+      "n_examples": 0,
+      "n_theorems_stated": 0,
+      "n_theorems_proved": 0
+    },
+    {
+      "task_id": "easy_set__10_myevensumparity",
+      "compiles": false,
+      "IC_tests": 0.0,
+      "IC_proofs": 0.0,
+      "n_examples": 1,
+      "n_theorems_stated": 1,
+      "n_theorems_proved": 0
+    },
+    {
+      "task_id": "cs_set__binary_search",
+      "compiles": false,
+      "IC_tests": 0.0,
+      "IC_proofs": 0.0,
+      "n_examples": 1,
+      "n_theorems_stated": 1,
+      "n_theorems_proved": 0
+    }
+  ],
+  "wall_clock": "generation 12m20s for 3 cells (about 3 generated tokens/s on CPU in bfloat16); scoring of the 7 cells a few minutes",
+  "gotchas_found": [
+    "the frozen scorer writes legacy column names IC_ap / IC_pp / TC (collector now accepts both)",
+    "the scorer pads every pack task without output as 0 and prints an 896-task table row; read rl4cv summarize output, never that row",
+    "/usr/bin/time is not installed on every host"
+  ]
+}
