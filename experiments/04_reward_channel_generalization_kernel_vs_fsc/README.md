@@ -1,0 +1,41 @@
+# Experiment 04 — reward-channel generalization: kernel reward versus judge-gated FSC reward
+
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/04_reward_channel_generalization_kernel_vs_fsc/README.md>
+
+**TLDR:** On the same prompts and scales, this compares RL with a kernel-only reward against rewards that include compile-gated FSC. It tests whether ρ and H, measured before RL under each reward, predict which reward most improves VeriBench SCSC and FSC. That answers Azalea's question of whether VeriBench's metrics guide reward design, and whether the law survives LLM-judged rewards.
+
+## Goal, hypothesis and decision criterion
+
+- **Motivation.** FSC is where frontier headroom remains ([FACTS §2](../../docs/FACTS_veribench_baselines.md#2-frontier-systems-two-factors-are-nearly-saturated-fsc-carries-the-remaining-signal)). But a judged reward is noisier and more exploitable than the kernel.
+- **Hypothesis (L4).** Per-channel ρ and H rank the channels' held-out SCSC gains with accuracy within 10 points of the kernel channel's own ranking. Compile-gated FSC rewards raise VeriBench FSC more than kernel-only rewards, without lowering IC_proofs.
+- **Decision.**
+  - If L4 holds, judge-gated environments can be selected before RL, which is the key step for non-verifiable domains (Nolera, and the Certification Judge thesis topic).
+  - If it fails, report which part of the measurement breaks: judge noise in ρ, or concentration in H.
+
+## Method
+
+1. **Setup.** Take one family and one cell design from experiment 02 at 1.7B and 4B, with the same prompts for every channel.
+2. **Channels:** `kernel_binary`, `proof_fraction`, `fsc_compiled` and `scsc` (definitions in `src/rl4cv/rewards.py`).
+   - Measure ρ and H under each channel on the same Stage D probe responses. Only the reward changes; the responses are identical.
+3. **Training.** Train 2 seeds per channel per scale with experiment 03's contract.
+   - The judge runs asynchronously, only on responses with IC_tests · IC_proofs > 0 (`rl4cv.rewards.needs_judge`).
+   - Judge controls follow experiment 103: oracle ≥ 4, blank = 0, shuffled ≤ 1, vacuous ≤ 1.
+4. **Reward-hacking audits at every checkpoint:**
+   - share of compiling files with vacuous theorems;
+   - the gap between FSC on compiling and non-compiling files;
+   - a 30-item human spot check at step 128.
+5. **Outcomes.**
+   - VeriBench V1 SCSC, IC_tests, IC_proofs and FSC (full at step 128), plus within-source panel pass@1.
+   - Fit Eq. 7 per channel and pooled, and compare the rankings.
+
+## Dependencies
+
+- Experiments 02 and 03's contract.
+- Decision D-102, the judge route and payer. Cost is judged responses × about $0.40; early training judges few responses because few compile.
+
+## Status
+
+| Step | Status |
+|---|---|
+| Design | Done (09-30-2026) |
+| Everything else | TODO, after experiment 02 |

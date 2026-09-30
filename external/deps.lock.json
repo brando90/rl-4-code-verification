@@ -1,0 +1,21 @@
+{
+  "_tldr": "Exact commits of the external repositories this project reads; change a pin only in a reviewed commit that says why.",
+  "veribench": {
+    "url": "https://github.com/brando90/veribench.git",
+    "commit": "c11b99badfa386fd26810b208eef1eb8dc9f6806",
+    "used_for": "task packs, experiment 103 single-call prompt/addendum/extraction, FSC judge agent (vb103_judge), dataset for contamination screens",
+    "pinned_on": "2026-09-30"
+  },
+  "veribench_scorer": {
+    "url": "https://github.com/brando90/veribench.git",
+    "commit": "59059a20d40adf3289869e58302169ad78102877",
+    "used_for": "experiment 103's frozen scorer: run_real_eval.py sha256 6e82b3d1cd6d..., kernel_axioms.py 5dbbdcae75ba..., score_scsc.py b3713c48e0fd...",
+    "pinned_on": "2026-09-30"
+  },
+  "rl_env_scaling": {
+    "url": "https://github.com/brando90/rl-env-scaling.git",
+    "commit": "c75755c07481c335e87e3ce3455132d6b4892390",
+    "used_for": "the paper's environment-utility code once the fork is synced with upstream madanva/rl-env-scaling; this pin is the 2026-08-12 planning snapshot and has no rho/H code yet",
+    "pinned_on": "2026-09-30"
+  }
+}

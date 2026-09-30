@@ -216,3 +216,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# rl-4-code-verification: pinned external checkouts are fetched by scripts/setup_external.sh, never committed
+external/*/
+# large run artifacts stay on the execution host; commit summaries, not raw generations
+experiments/**/results/raw/
+experiments/**/results/jobs/
+experiments/**/results/scores/
+*.jsonl.gz

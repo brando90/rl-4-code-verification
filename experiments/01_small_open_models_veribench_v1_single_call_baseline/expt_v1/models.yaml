@@ -1,0 +1,40 @@
+# TLDR: The declared model list for experiment 01; each revision must be resolved to a Hugging Face commit and recorded before any generation starts.
+# Before the run, re-check the current small-Qwen lineup (agents-config SOTA rule) and record the search date.
+# A model added or dropped after preflight is a new condition (expt_v2), never an edit here.
+condition: rl4cv-e01-vbv1-single-call-v1
+models:
+  # Newest small Qwen models (released 03-02-2026, Apache-2.0, multimodal; text-only prompts here).
+  - {id: Qwen/Qwen3.5-0.8B, label: qwen3.5-0.8b, revision: null, thinking: "on", tp: 1}
+  - {id: Qwen/Qwen3.5-2B,   label: qwen3.5-2b,   revision: null, thinking: "on", tp: 1}
+  - {id: Qwen/Qwen3.5-4B,   label: qwen3.5-4b,   revision: null, thinking: "on", tp: 1}
+  - {id: Qwen/Qwen3.5-9B,   label: qwen3.5-9b,   revision: null, thinking: "on", tp: 1}
+  # The environment-utility paper's family and scales (post-trained hybrid-thinking releases, 04-2025).
+  - {id: Qwen/Qwen3-1.7B, label: qwen3-1.7b, revision: null, thinking: "on", tp: 1}
+  - {id: Qwen/Qwen3-4B,   label: qwen3-4b,   revision: null, thinking: "on", tp: 1}
+  - {id: Qwen/Qwen3-8B,   label: qwen3-8b,   revision: null, thinking: "on", tp: 1}
+  - {id: Qwen/Qwen3-14B,  label: qwen3-14b,  revision: null, thinking: "on", tp: 1}
+controls:
+  # Route-equivalence control: the same model experiment 103 served through Valkyrie (IC_tests 0.002,
+  # FSC 0.900, 604/896 measured). Reproducing its failure profile locally shows this pipeline is comparable.
+  - {id: Qwen/Qwen3.6-27B, label: qwen3.6-27b-local, revision: null, thinking: "on", tp: 1}
+optional_after_D_105:
+  # The paper's own warm starts pi0(N) (SFT step 512 from Qwen3 Base), the actual RL starting policies.
+  - {id: null, label: paper-warmstart-1.7b}
+  - {id: null, label: paper-warmstart-4b}
+  - {id: null, label: paper-warmstart-8b}
+  - {id: null, label: paper-warmstart-14b}
+evaluation:            # experiment 103's single-call settings for Qwen3.6 on Valkyrie
+  samples: 1
+  max_tokens: 65536
+  temperature: 1.0
+  top_p: 0.95
+  top_k: 20
+  seed: 91
+probe:                 # the paper's RL decoding contract
+  samples: 8
+  per_split: 4         # 4 tasks x 33 VeriBench splits = at most 132 tasks, salt rl4cv-probe-v1
+  max_tokens: 12288
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 20
+  seed: 91
