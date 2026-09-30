@@ -1,4 +1,4 @@
-# Experiment 02 v1 — build screened Lean pools, a frozen held-out panel, Lean warm starts, and policy-relative 2×2 cells with ρ–H measurements
+# Experiment 02A v1 — build screened Lean pools, a frozen held-out panel, Lean warm starts, and policy-relative 2×2 cells with ρ–H measurements
 
 **TLDR:** You will:
 
@@ -8,7 +8,7 @@
 
 **Success:** gate G2, meaning at least one family yields valid cells at all four scales (success spread ≤ 3 points, admission contrast ≥ 15 points, ρ > 0 everywhere).
 
-**Deliverable:** a draft PR "Experiment 02: Lean pools, warm starts and ρ–H cells", containing the Table 5 analogue, the cell manifests with hashes, and the screen reports.
+**Deliverable:** a draft PR "Experiment 02A: Lean pools, warm starts and ρ–H cells", containing the Table 5 analogue, the cell manifests with hashes, and the screen reports.
 
 **Constraints:**
 

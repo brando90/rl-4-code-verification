@@ -1,6 +1,8 @@
-# Experiment 05 — cross-family composition and target alignment (beyond the paper's boundary)
+# Idea — cross-family composition and target alignment (beyond the paper's boundary)
 
-**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/05_cross_family_composition_alignment/README.md>
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/ideas/cross_family_env_mixtures_alignment/README.md>
+
+**Status:** DEFERRED — NOT RUN; paper inclusion UNDECIDED; revisit after experiment 02B ([ideas index](../README.md)). Numbered experiment 05 before D-007
 
 **TLDR:** This extends the model where the paper failed. The paper's frozen uniform mixture was predicted last yet gained +1.4 to +4.6 points. Here we train on single families (`full`, `impl`, `spec`, `proof`, `math`) and their mixtures, add alignment and composition coordinates, and test prospectively whether they predict which mixture most improves VeriBench.
 
@@ -24,4 +26,4 @@
 | Step | Status |
 |---|---|
 | Design | Done (09-30-2026) |
-| Everything else | TODO, after experiments 03 and 04 |
+| Everything else | TODO, after experiments 02B and 02C |

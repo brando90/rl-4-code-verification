@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/docs/DECISIONS.md>
 
-**TLDR:** Decided so far: separate repository; pinned clones instead of submodules; FSC always gated on compilation; forecasts hash-frozen before outcomes; work directly on `main`; self-hosted open-weight inference approved with model substitution allowed; FSC judge route and payer (`vb103_judge` on Valkyrie, Vals gateway). Still open for Brando: GPU compute, the pool source, the paper's code, and who leads.
+**TLDR:** Decided so far: separate repository; pinned clones instead of submodules; FSC always gated on compilation; forecasts hash-frozen before outcomes; work directly on `main`; self-hosted open-weight inference approved with model substitution allowed; FSC judge route and payer (`vb103_judge` on Valkyrie, Vals gateway); experiments restructured to Brando's two goals (D-007). Still open for Brando: GPU compute, the pool source, the paper's code, and who leads.
 
 Format: `D-NNN — title — status — date — owner`, then context, decision and consequences.
 Append new entries; strike through superseded ones and point to the entry that replaces them.
@@ -40,13 +40,19 @@ Append new entries; strike through superseded ones and point to the entry that r
 
 ### D-005 — Same model family and scales as the paper for the law test — proposed — 09-30-2026 — Claude
 
-- **Decision:** The generalization test (experiment 03) uses Qwen3 Base 1.7B, 4B, 8B and 14B, as the paper did, so the domain is the main thing that changes.
+- **Decision:** The generalization test (experiment 02B) uses Qwen3 Base 1.7B, 4B, 8B and 14B, as the paper did, so the domain is the main thing that changes.
 - **Consequences:** Newer small models (Qwen3.5 0.8B–9B) appear in experiment 01 as baselines, not as the law's scale axis.
 
 ### D-006 — Work directly on `main` — accepted — 09-30-2026 — Brando
 
 - **Context:** Brando: "can we start pushing to main? Merge all PRs/branches to main."
 - **Decision:** Agents commit to `main` after `make test` passes and delete merged branches. The bootstrap PR (#1) and the other Claude branch (`claude/admiring-heisenberg-eok3j4`, notes on RL and base-model coverage) were merged into `main` on 09-30-2026.
+
+### D-007 — Experiments restructured to Brando's two goals — accepted — 09-30-2026 — Brando
+
+- **Context:** Brando: "I still see a lot of experiments when in my head we have 2-3 ... 1. doing what varun mentioned if we can create envs using our predictive eqn/law to solve vb's 3 metrics. And 2. resolving the question allen said/asked or I raised to allen (on snap since we need open weight models)".
+- **Decision:** Three experiments. 01 stays the shared baseline. 02 is Varun's question, with the former experiments as phases: old 02 → 02A (pools, warm start, ρ–H probes), old 03 → 02B (prospective 2×2 forecast check, the "if we can" gate), old 04 → 02C (reward channel for FSC), old 06 → 02D (train the forecast-selected recipe and report VeriBench V1). Old 07 → 03, Allen's coverage question. Old 05 → `experiments/ideas/cross_family_env_mixtures_alignment` (deferred, not run). Claude chose the layout and names under agents-config Trigger Rule 57; the change is reversible (`git mv` history).
+- **Consequences:** Only names, links and indexes changed; no hypothesis, protocol or threshold changed. Earlier decision entries, commits, issue comments and experiment 01's own files use the old numbers ([old → new map](../experiments/README.md#old--new-numbering-09-30-2026-d-007)). Experiment 01's folder becomes `01_small_qwen_vbv1_single_call_baseline_g8_signal_probe` after its run finishes.
 
 ### D-101 — Self-hosted open-weight inference — accepted — 09-30-2026 — Brando
 
@@ -55,18 +61,18 @@ Append new entries; strike through superseded ones and point to the entry that r
 
 ### D-102 — FSC judge route and payer — accepted — 09-30-2026 — Brando
 
-- **Context:** FSC in experiments 01–05 needed a judge route and payer; agents may not write direct provider API calls (agents-config Hard Rule 9).
+- **Context:** FSC in experiments 01–05 (old numbering; now 01, 02A–02C and the cross-family mixtures idea, see D-007) needed a judge route and payer; agents may not write direct provider API calls (agents-config Hard Rule 9).
 - **Decision:** Brando: "use the vb103_judge Valkyrie route." Route: experiment 103's `vb103_judge` Valkyrie agent (experiment 100 H2 ensemble: GPT-6 Sol high + Claude Opus 5.5 max, median of 3 each, mean of the 2, divided by 5). Payer: the Vals model gateway, the same account and environment experiment 103 used.
-- **Consequences:** Scope per `PROTOCOL.md`: every scored cell with IC_tests · IC_proofs > 0, plus the 60-file audit per model. Judging runs as a new, separately labelled suite (`rl4cv-e01:<label>`) on its own benchmark instance; experiment 103's existing judge records and runs under `veribench_vb103` are never modified. FSC in experiments 01–05 is unblocked.
+- **Consequences:** Scope per `PROTOCOL.md`: every scored cell with IC_tests · IC_proofs > 0, plus the 60-file audit per model. Judging runs as a new, separately labelled suite (`rl4cv-e01:<label>`) on its own benchmark instance; experiment 103's existing judge records and runs under `veribench_vb103` are never modified. FSC in experiments 01–05 (old numbering, see D-007) is unblocked.
 
 ## Open — needs Brando
 
 | ID | Question | Recommendation | Blocks |
 |---|---|---|---|
-| D-103 | Compute: whose GPUs and how many hours? Paper: about 350 B200 GPU-hours for 32 trajectories. The Lean replication likely needs 1.5–2× that because outputs are longer. | Varun's B200 allocation for experiments 03–05; SNAP for experiment 01 | experiments 03–05 |
-| D-104 | Pool source for the full-file family: FVAPPS-derived, synthetic VeriBench-style, or both. Synthetic references need a frontier-model generation budget. | Start with FVAPPS (it already exists); add synthetic only if FVAPPS fails the quality screen | experiment 02 |
-| D-105 | Access to the paper's exact code, NeMo RL configs and warm-start checkpoints. Upstream `madanva/rl-env-scaling` `main` (= the old pin `c75755c`) holds 91 planning files and no training code; the code is on the upstream branches `controlled-scaling-v2` (`7118b86`, 08-31-2026, 408 files), `progress/experimental-rigor` and `first-iteration`. GitHub's "Sync fork" syncs only `main`, so it would not bring the code over. On 09-30-2026 the fork received `controlled-scaling-v2` and `external/deps.lock.json` was provisionally re-pinned to `7118b86` (Claude, reversible). | Ask Varun which commit (or the submission zip) produced the submitted paper's numbers, which NeMo RL v0.7.0 configs it used, and where the SFT step-512 warm-starts for 1.7B/4B/8B/14B live; re-pin to his answer | experiments 02–05 |
-| D-106 | Lead and mentee assignment (notes A name Ethan Lee as a candidate lead). Brando, 09-30-2026: "I want to start running all of them and tagging Emily (@emxia18)". | Emily (@emxia18) runs the experiments on SNAP starting with 01 via `scripts/cc_prompt_run_experiment_on_snap.md`; lead for 01–02 still open; mentees take pool construction and screens | scheduling |
+| D-103 | Compute: whose GPUs and how many hours? Paper: about 350 B200 GPU-hours for 32 trajectories. The Lean replication likely needs 1.5–2× that because outputs are longer. | Varun's B200 allocation for experiments 02B–02D and 03; SNAP for experiment 01 | experiments 02B–02D and 03 |
+| D-104 | Pool source for the full-file family: FVAPPS-derived, synthetic VeriBench-style, or both. Synthetic references need a frontier-model generation budget. | Start with FVAPPS (it already exists); add synthetic only if FVAPPS fails the quality screen | experiment 02A |
+| D-105 | Access to the paper's exact code, NeMo RL configs and warm-start checkpoints. Upstream `madanva/rl-env-scaling` `main` (= the old pin `c75755c`) holds 91 planning files and no training code; the code is on the upstream branches `controlled-scaling-v2` (`7118b86`, 08-31-2026, 408 files), `progress/experimental-rigor` and `first-iteration`. GitHub's "Sync fork" syncs only `main`, so it would not bring the code over. On 09-30-2026 the fork received `controlled-scaling-v2` and `external/deps.lock.json` was provisionally re-pinned to `7118b86` (Claude, reversible). | Ask Varun which commit (or the submission zip) produced the submitted paper's numbers, which NeMo RL v0.7.0 configs it used, and where the SFT step-512 warm-starts for 1.7B/4B/8B/14B live; re-pin to his answer | experiments 02 (all phases) and 03 |
+| D-106 | Lead and mentee assignment (notes A name Ethan Lee as a candidate lead). Brando, 09-30-2026: "I want to start running all of them and tagging Emily (@emxia18)". | Emily (@emxia18) runs the experiments on SNAP starting with 01 via `scripts/cc_prompt_run_experiment_on_snap.md`; lead for 01 and 02A still open; mentees take pool construction and screens | scheduling |
 | D-107 | VeriBench draft PR brando90/veribench#428 (the idea folder written before D-001). | Close it as superseded by this repository, or keep a one-line pointer in VeriBench's ideas index | housekeeping |
 
 Note on D-105 (09-30-2026):

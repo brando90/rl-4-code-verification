@@ -1,4 +1,4 @@
-# Experiment 03 v1 — run the Lean 2×2 RL grid across four scales with frozen prospective forecasts
+# Experiment 02B v1 — run the Lean 2×2 RL grid across four scales with frozen prospective forecasts
 
 **TLDR:** You will:
 
@@ -8,7 +8,7 @@
 
 **Success:** every trajectory and checkpoint evaluation completes or is explicitly recorded as failed. The 8B, L3 and 14B forecasts are frozen before their outcomes and scored exactly as frozen. The L1, L2, L3 and L5 verdicts are published with their numbers.
 
-**Deliverable:** a draft PR "Experiment 03: Lean 2×2 prospective scale replication — results" with `results.md`, the forecast ledger and the LOSO tables.
+**Deliverable:** a draft PR "Experiment 02B: Lean 2×2 prospective scale replication — results" with `results.md`, the forecast ledger and the LOSO tables.
 
 **Constraints:**
 
@@ -17,7 +17,7 @@
 - Never replace a failed seed by outcome.
 - Launch GPU jobs only after Brando approves the estimate.
 
-Read `~/agents-config/INDEX_RULES.md`, `CLAUDE.md`, `docs/PLAN.md`, experiment 02's `results.md` and cells, and this experiment's `PROTOCOL.md` (write and lock it first if it does not exist, following experiment 01's template).
+Read `~/agents-config/INDEX_RULES.md`, `CLAUDE.md`, `docs/PLAN.md`, experiment 02A's `results.md` and cells, and this experiment's `PROTOCOL.md` (write and lock it first if it does not exist, following experiment 01's template).
 
 ---
 
@@ -26,7 +26,7 @@ Read `~/agents-config/INDEX_RULES.md`, `CLAUDE.md`, `docs/PLAN.md`, experiment 0
 | Setting | Value |
 |---|---|
 | Framework and advantages | NeMo RL v0.6.0 (configs from the paper's archive, D-105); unnormalized leave-one-out advantages; token-level loss; importance correction; symmetric clip 0.2; no KL; dynamic sampling off; overlong filtering on |
-| Decoding | temperature 0.6, top-p 0.95, top-k 20; response cap and total sequence limit from experiment 02 |
+| Decoding | temperature 0.6, top-p 0.95, top-k 20; response cap and total sequence limit from experiment 02A |
 | Optimizer and schedule | AdamW 2×10⁻⁶, weight decay 0.01; 128 steps of 4 prompts × 8 responses; seeds 9001 and 9002 |
 | Checkpoints | 16, 32, 48, 64, 96, 128 (weights only; a failed run restarts from the same warm start with the same seed) |
 | Reward | `kernel_binary` from VeriBench's pinned kernel check, computed outside the rollout sandbox |

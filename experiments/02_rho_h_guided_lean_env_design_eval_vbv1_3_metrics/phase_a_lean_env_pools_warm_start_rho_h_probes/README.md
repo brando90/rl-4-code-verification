@@ -1,24 +1,26 @@
-# Experiment 02 — Lean environment pools, Lean warm start, and ρ–H probes (the Lean analogue of paper Table 5)
+# Experiment 02A — Lean environment pools, Lean warm start, and ρ–H probes (the Lean analogue of paper Table 5)
 
-**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/02_lean_environment_pools_warm_start_rho_h_probes/README.md>
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_a_lean_env_pools_warm_start_rho_h_probes/README.md>
+
+**Part of:** [experiment 02](../README.md) (ρ–H-guided Lean environment design), phase A; numbered experiment 02 before D-007
 
 **TLDR:** This builds contamination-screened Lean task pools and a 1,000-task within-source held-out panel. It also gives Qwen3 Base 1.7B, 4B, 8B and 14B an identical Lean warm start, then runs the paper's four-stage policy-relative probe to build 2×2 cells. The measured ρ, H, success, mixedness and admission per scale, family and reward channel are the Lean version of the paper's Table 5.
 
 ## Goal, hypothesis and decision criterion
 
-- **Uncertainty.** Experiment 03 can only test the law if Lean environments carry measurable, varied usable signal at every scale. That needs mixed groups (success strictly between 0 and G) and an admission contrast.
+- **Uncertainty.** Experiment 02B can only test the law if Lean environments carry measurable, varied usable signal at every scale. That needs mixed groups (success strictly between 0 and G) and an admission contrast.
 - **Hypothesis.** With a Lean warm start, the `full` or `impl` family yields four disjoint 256-prompt cells at each scale, with:
   - matched starting success (fresh-confirmation spread ≤ 3 points);
   - an admission contrast ≥ 15 points;
   - ρ > 0 in every cell.
 - **Decision:**
-  - **Pass (gate G2):** at least one family passes at all four scales. Experiment 03 uses it.
-  - **Fail:** report which stage failed (too few mixed prompts, no admission contrast, unbalanced success) and propose a changed pool, decomposition or warm start as experiment 02 v2.
+  - **Pass (gate G2):** at least one family passes at all four scales. Experiment 02B uses it.
+  - **Fail:** report which stage failed (too few mixed prompts, no admission contrast, unbalanced success) and propose a changed pool, decomposition or warm start as experiment 02A v2.
 
 ## Structure
 
 ```
-02_lean_environment_pools_warm_start_rho_h_probes/
+phase_a_lean_env_pools_warm_start_rho_h_probes/
 ├── README.md
 ├── PROTOCOL.md      ← written and locked before the first probe (template: experiment 01)
 ├── results.md
@@ -29,7 +31,7 @@
 
 ## Method
 
-1. **Pools** ([DATASETS.md](../../docs/DATASETS.md)):
+1. **Pools** ([DATASETS.md](../../../docs/DATASETS.md)):
    - Acquire FVAPPS (curated subset first), the Vericoding Lean subset and VERINA at pinned revisions, and record their licenses.
    - Convert each FVAPPS item to a VeriBench-style task. The instruction is VeriBench's current agent-spec prove-first template plus the Python solution; the reference is the FVAPPS theorem statements, used for FSC.
    - Keep a reference only if it compiles and passes the non-vacuity check.

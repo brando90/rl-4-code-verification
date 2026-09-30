@@ -63,9 +63,9 @@ The verbatim notes are kept alongside; they include candid mentee assessments, s
 
 | Ask in the notes | Where it is addressed |
 |---|---|
-| Laws must generalize beyond math (the crux) | [PLAN §3](../PLAN.md#3-hypotheses-what-counts-as-the-law-generalizes), levels L1–L5; experiment 03 |
-| Find the environment that most improves VeriBench | experiments 03, 05, 06 |
-| Azalea: metrics should guide reward design | experiment 04 (kernel versus judge-gated FSC reward channels) |
-| Unintended effects and regressions | experiment 05's regression panel |
+| Laws must generalize beyond math (the crux) | [PLAN §3](../PLAN.md#3-hypotheses-what-counts-as-the-law-generalizes), levels L1–L5; experiment 02B |
+| Find the environment that most improves VeriBench | experiments 02B and 02D, and the cross-family mixtures idea |
+| Azalea: metrics should guide reward design | experiment 02C (kernel versus judge-gated FSC reward channels) |
+| Unintended effects and regressions | the regression panel of the cross-family mixtures idea and experiment 02D |
 | Structured designs with expected outcomes first | each experiment's `PROTOCOL.md`, locked before spend |
 | Open source and pip-installable | `rl4cv` package (`pip install -e .`) |

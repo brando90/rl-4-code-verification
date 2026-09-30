@@ -6,7 +6,7 @@
 
 Read `~/agents-config/INDEX_RULES.md` and the repository `CLAUDE.md` first. Nothing here changes an experiment's locked `PROTOCOL.md`; if the chosen GPUs cannot honor it (memory, count, time), write the deviation into the experiment's `results.md` → "Open questions for Brando" and stop that item.
 
-**Coordination (09-30-2026).** Two Claude Code sessions worked this repository in parallel. The session that bootstrapped `main` (branch `claude/zen-curie-2k9b3r`) owns experiment 01's code and its CPU pilot; the session that wrote the notes and experiment 07 owns this launcher. There is one launcher: extend this file rather than adding a second one, and check `docs/DECISIONS.md` and the open GitHub issues before creating a tracking issue, so each experiment has exactly one.
+**Coordination (09-30-2026).** Two Claude Code sessions worked this repository in parallel. The session that bootstrapped `main` (branch `claude/zen-curie-2k9b3r`) owns experiment 01's code and its CPU pilot; the session that wrote the notes and experiment 03 (numbered 07 before D-007) owns this launcher. There is one launcher: extend this file rather than adding a second one, and check `docs/DECISIONS.md` and the open GitHub issues before creating a tracking issue, so each experiment has exactly one.
 
 ## 1. Inventory every reachable host
 

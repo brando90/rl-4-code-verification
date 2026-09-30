@@ -2,16 +2,17 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/docs/PLAN.md>
 
-**TLDR:** The crux is whether the ρ–H law carries over from math to Lean 4 code verification, with VeriBench as the target. The ρ–H law predicts an RL environment's held-out gain from two measurements taken before RL, usable signal density ρ and effective coverage H. The work runs in six gated experiments:
+**TLDR:** The crux is whether the ρ–H law carries over from math to Lean 4 code verification, with VeriBench as the target. The ρ–H law predicts an RL environment's held-out gain from two measurements taken before RL, usable signal density ρ and effective coverage H. The work is organized as three experiments around Brando's two goals (D-007):
 
-1. Measure small open models on VeriBench.
-2. Build Lean environment pools and probe ρ and H.
-3. Replicate the paper's prospective 2×2 scale test in Lean.
-4. Test judge-gated FSC reward channels.
-5. Test mixtures and alignment.
-6. Train the best predicted recipe to "solve VeriBench".
+1. **01, shared baseline.** Measure small open models on VeriBench.
+2. **02, Varun's question.** Use the ρ–H equation to design Lean environments and rewards that raise VeriBench's three metrics, in four phases:
+   - 02A: build Lean environment pools and probe ρ and H.
+   - 02B: replicate the paper's prospective 2×2 scale test in Lean (does the frozen equation predict Lean RL gains?).
+   - 02C: test judge-gated FSC reward channels.
+   - 02D: train the best predicted recipe to "solve VeriBench".
+3. **03, Allen's coverage question.** Can RL move Lean prompts the starting policy never solves, under binary versus denser reward?
 
-Each experiment has a pass/fail gate before the next one spends compute.
+Testing mixtures and alignment is a deferred idea. Each experiment and phase has a pass/fail gate before the next one spends compute.
 
 ## 1. The question
 
@@ -48,12 +49,12 @@ The numeric thresholds are locked in each experiment's `PROTOCOL.md` before its 
 
 | Level | Claim | Proposed pass criterion | Tested in |
 |---|---|---|---|
-| L1 Existence | Environment choice changes held-out Lean utility at matched token budget | Best-to-worst cell spread at the largest shared budget exceeds the two-seed endpoint gap at ≥ 2 of 4 scales (paper spreads: 3.7–11.4 points) | 03 |
-| L2 Form transfer (primary) | The Eq. 7 family, refit on Lean at small scales and frozen, predicts untouched larger-scale Lean curves | At the frozen 14B test: RMSE below the budget/scale-only baseline, pairwise rank accuracy ≥ 70% (paper 77.8%), regret ≤ the fixed-label rule; the 8B test is scored and reported whatever its outcome | 03 |
-| L3 Coefficient transfer (exploratory) | The paper's math-fit coefficients, applied to Lean ρ and H, still rank Lean cells | Rank accuracy > 50% with a bootstrap interval that excludes 50% | 03 |
-| L4 Reward-channel transfer | ρ and H measured under a judge-gated reward (`fsc_compiled`, `scsc`) predict utility as well as under the kernel reward | Rank accuracy within 10 points of the kernel channel's | 04 |
-| L5 Target transfer | Cell effects on the within-source panel carry to VeriBench | Correlation of cell effects > 0.5 (paper, OpenR1 against Polaris: 0.991) | 03 |
-| Target | The predicted-best recipe improves VeriBench | SCSC and compile-gated FSC above π0 at every trained scale, all three factors reported with n | 03, 06 |
+| L1 Existence | Environment choice changes held-out Lean utility at matched token budget | Best-to-worst cell spread at the largest shared budget exceeds the two-seed endpoint gap at ≥ 2 of 4 scales (paper spreads: 3.7–11.4 points) | 02B |
+| L2 Form transfer (primary) | The Eq. 7 family, refit on Lean at small scales and frozen, predicts untouched larger-scale Lean curves | At the frozen 14B test: RMSE below the budget/scale-only baseline, pairwise rank accuracy ≥ 70% (paper 77.8%), regret ≤ the fixed-label rule; the 8B test is scored and reported whatever its outcome | 02B |
+| L3 Coefficient transfer (exploratory) | The paper's math-fit coefficients, applied to Lean ρ and H, still rank Lean cells | Rank accuracy > 50% with a bootstrap interval that excludes 50% | 02B |
+| L4 Reward-channel transfer | ρ and H measured under a judge-gated reward (`fsc_compiled`, `scsc`) predict utility as well as under the kernel reward | Rank accuracy within 10 points of the kernel channel's | 02C |
+| L5 Target transfer | Cell effects on the within-source panel carry to VeriBench | Correlation of cell effects > 0.5 (paper, OpenR1 against Polaris: 0.991) | 02B |
+| Target | The predicted-best recipe improves VeriBench | SCSC and compile-gated FSC above π0 at every trained scale, all three factors reported with n | 02B, 02D |
 
 ## 4. Environment families and reward channels
 
@@ -93,18 +94,20 @@ Reward channels (definitions in [`src/rl4cv/rewards.py`](../src/rl4cv/rewards.py
 
 | # | Experiment | Question | Gate to continue | Status |
 |---|---|---|---|---|
-| 01 | [Small open models on VeriBench V1, single call](../experiments/01_small_open_models_veribench_v1_single_call_baseline/README.md) | Where do Qwen3.5 (0.8B–9B) and Qwen3 (1.7B–14B) stand, and is there any group-relative signal (G = 8) on VeriBench itself? | Table published for every model, with the full 896-cell denominator. If `kernel_binary` mixed-group share is < 0.05 for every model ≤ 14B, VeriBench cannot be the training environment at these scales; experiment 02 then needs decomposed families and a Lean warm start. | ready to run once D-101 is decided |
-| 02 | [Lean environment pools, warm start and ρ–H probes](../experiments/02_lean_environment_pools_warm_start_rho_h_probes/README.md) | Can policy-relative 2×2 cells be built in Lean at each scale, and what are their ρ and H? (the Lean analogue of paper Table 5) | At least one family where all four cells have ρ > 0 at every scale, fresh confirmation success spread ≤ 3 points, and admission contrast ≥ 15 points | designed |
-| 03 | [Lean 2×2 prospective scale replication](../experiments/03_lean_2x2_prospective_scale_replication/README.md) | L1, L2, L3 and L5: the crux | Frozen and hashed 8B and 14B forecasts, scored | designed |
-| 04 | [Reward-channel generalization: kernel versus judge-gated FSC](../experiments/04_reward_channel_generalization_kernel_vs_fsc/README.md) | L4, and Azalea's reward-design question | Rank agreement across channels | designed |
-| 05 | [Cross-family composition and alignment](../experiments/05_cross_family_composition_alignment/README.md) | Can adding alignment and composition coordinates fix the paper's mixture failure? | Frozen mixture forecast beats the uniform-portfolio rule | designed |
-| 06 | Solve VeriBench (application) | Train the predicted-best family, reward and mixture at the largest affordable scale | VeriBench SCSC and FSC gains with a regression panel for unintended effects (meeting notes B) | after 03–05 |
-| 07 | [Coverage gating: zero-signal bucket × reward density](../experiments/07_coverage_gating_zero_signal_bucket_reward_density/README.md) | Does outcome RL move prompts the warm start never solves (`q_mixed = 0`), and do per-theorem credit or compiler feedback move them where the binary reward cannot? (the notes' §2 claim, tested) | Frozen pre-RL ρ per arm on `Z`; gate H3-A/B/C verdicts and the `Z` re-probe | designed; after 02 |
+| 01 | [Small open models on VeriBench V1, single call](../experiments/01_small_open_models_veribench_v1_single_call_baseline/README.md) | Where do Qwen3.5 (0.8B–9B) and Qwen3 (1.7B–14B) stand, and is there any group-relative signal (G = 8) on VeriBench itself? | Table published for every model, with the full 896-cell denominator. If `kernel_binary` mixed-group share is < 0.05 for every model ≤ 14B, VeriBench cannot be the training environment at these scales; experiment 02A then needs decomposed families and a Lean warm start. | running on skampere1 (09-30-2026) |
+| 02A | [Lean environment pools, warm start and ρ–H probes](../experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_a_lean_env_pools_warm_start_rho_h_probes/README.md) | Can policy-relative 2×2 cells be built in Lean at each scale, and what are their ρ and H? (the Lean analogue of paper Table 5) | At least one family where all four cells have ρ > 0 at every scale, fresh confirmation success spread ≤ 3 points, and admission contrast ≥ 15 points | designed |
+| 02B | [Lean 2×2 prospective scale replication](../experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_b_prospective_2x2_forecast_check/README.md) | L1, L2, L3 and L5: the crux | Frozen and hashed 8B and 14B forecasts, scored | designed |
+| 02C | [Reward-channel generalization: kernel versus judge-gated FSC](../experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_c_reward_channel_for_fsc_kernel_vs_judge/README.md) | L4, and Azalea's reward-design question | Rank agreement across channels | designed |
+| idea | [Cross-family composition and alignment](../experiments/ideas/cross_family_env_mixtures_alignment/README.md) | Can adding alignment and composition coordinates fix the paper's mixture failure? | Frozen mixture forecast beats the uniform-portfolio rule | deferred idea (not run) |
+| 02D | [Solve VeriBench (application)](../experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_d_train_forecast_selected_env_report_vbv1/README.md) | Train the predicted-best family, reward and mixture at the largest affordable scale | VeriBench SCSC and FSC gains with a regression panel for unintended effects (meeting notes B) | after 02B and 02C (a mixture only if the mixtures idea is revived) |
+| 03 | [Coverage gating: zero-signal bucket × reward density](../experiments/03_rl_on_never_solved_lean_prompts_binary_vs_dense_reward_eval_vbv1/README.md) | Does outcome RL move prompts the warm start never solves (`q_mixed = 0`), and do per-theorem credit or compiler feedback move them where the binary reward cannot? (the notes' §2 claim, tested) | Frozen pre-RL ρ per arm on `Z`; gate H3-A/B/C verdicts and the `Z` re-probe | designed; after 02A |
+
+Renumbered 09-30-2026 (D-007): old 02 → 02A, 03 → 02B, 04 → 02C, 06 → 02D, 05 → idea, 07 → 03. Rows are grouped by goal: 01 is the shared baseline, 02A–02D answer Varun's question, 03 answers Allen's.
 
 ## 7. Compute (order of magnitude; each protocol refines it with measured lengths)
 
 - **01.** A few GPU-hours per model on one 80 GB GPU for 896 tasks at G = 1, plus a 128-task G = 8 probe. Kernel scoring runs at about 3–14 tasks per minute per scorer (experiment 103), so 1–5 CPU-hours per 896-file job. The judge is only needed where IC > 0 (D-102).
-- **02, per scale.**
+- **02A, per scale.**
   - Probe volume, following the paper's Appendix A:
     - Stage A: 4,000 prompts × 8 = 32,000 responses.
     - Stages B and C: up to 2,560 prompts × 8 × 2 = 40,960 responses.
@@ -113,10 +116,10 @@ Reward channels (definitions in [`src/rl4cv/rewards.py`](../src/rl4cv/rewards.py
   - At 6–10k tokens each that is 0.5–0.8B generated tokens.
   - Lean checking at about 25 s per file is about 560 CPU-hours, so it needs a persistent Lean server or a wide CPU pool.
   - The Lean warm start (supervised fine-tuning, SFT) repeats the paper's 512-step recipe at each scale.
-- **03.**
+- **02B.**
   - The paper used about 350 B200 GPU-hours for 32 trajectories. Longer Lean responses suggest 500–700 B200 GPU-hours.
   - Evaluation adds 49 policies per scale × (1,000 + 896) generations and their verification.
-- **04–05.** Each condition is about one scale-pair of 03, at 1.7B and 4B.
+- **02C and the mixtures idea.** Each condition is about one scale-pair of 02B, at 1.7B and 4B.
 
 ## 8. Integrity rules (enforced in [CLAUDE.md](../CLAUDE.md))
 
@@ -136,22 +139,22 @@ Reward channels (definitions in [`src/rl4cv/rewards.py`](../src/rl4cv/rewards.py
 
 | Risk | Mitigation |
 |---|---|
-| No mixed groups at small scale (all-failure groups) | Decomposed families and a Lean warm start (02); report the zero-signal boundary as a finding |
+| No mixed groups at small scale (all-failure groups) | Decomposed families and a Lean warm start (02A); report the zero-signal boundary as a finding |
 | Judge leniency turns FSC into a hackable reward | Compile gate; non-vacuity screen; experiment 103's judge controls (oracle ≥ 4, blank = 0, shuffled ≤ 1, vacuous ≤ 1); endpoint audits |
 | Lean verification throughput | Measure in 01. VeriBench has a PyPantograph interface (`py_src/veribench/tools/lean4_interpreter.py`) as a starting point for a persistent checker. |
 | Long outputs and thinking tokens hit caps | Measure length distributions in 01 and set the cap per protocol. Admission is itself one of the 2×2 axes, so the cap is a treatment, not a nuisance. |
-| Compute availability (experiment 94 waited 48 hours and never got GPUs) | D-103: book the allocation before experiment 03 |
+| Compute availability (experiment 94 waited 48 hours and never got GPUs) | D-103: book the allocation before experiment 02B |
 | Pool reference quality (FVAPPS specs are LLM-written) | Curated subset, reference compile and non-vacuity checks, human spot checks |
-| Scale range is only about one order of magnitude (notes B) | Add a 30B mixture-of-experts run as a stretch goal, after 03 |
+| Scale range is only about one order of magnitude (notes B) | Add a 30B mixture-of-experts run as a stretch goal, after 02B |
 
 ## 10. Order of work (weeks, once D-101 to D-105 are settled)
 
 | Weeks | Work |
 |---|---|
 | 1 | Experiment 01; acquire and screen the pools |
-| 2–3 | Experiment 02 warm start and probes |
-| 4–7 | Experiment 03: 1.7B and 4B, fit, freeze the 8B forecast, run 8B, refit, freeze the 14B forecast, run 14B |
-| 6–8 | Experiment 04 at 1.7B and 4B |
-| 8+ | Experiments 05 and 06 |
+| 2–3 | Experiment 02A warm start and probes |
+| 4–7 | Experiment 02B: 1.7B and 4B, fit, freeze the 8B forecast, run 8B, refit, freeze the 14B forecast, run 14B |
+| 6–8 | Experiment 02C at 1.7B and 4B |
+| 8+ | Experiment 02D (and the mixtures idea, if revived) |
 
 This fits Brando's stated cadence of one experiment per night plus weekend blocks, with mentees running pool construction and screens (notes A).
