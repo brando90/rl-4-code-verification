@@ -34,7 +34,7 @@ phase_b_prospective_2x2_forecast_check/
 
 1. **Inputs.** Experiment 02A's cells (4 × 256 per scale), warm starts, frozen panel, cap and reward channel (`kernel_binary` for the law test; the judge-gated channels belong to experiment 02C).
 2. **RL contract.** Identical to the paper's except for the verifier and any cap change locked in `PROTOCOL.md`:
-   - NeMo RL v0.6.0 with unnormalized leave-one-out advantages, token-level loss, importance correction, symmetric clipping 0.2, no KL, dynamic sampling off and overlong filtering on;
+   - NeMo RL v0.6.0 (version unconfirmed: this v0.6.0 has no recorded source, while upstream's 08-30-2026 NeMo RL audit on `controlled-scaling-v2` names v0.7.0; confirm with Varun, D-105) with unnormalized leave-one-out advantages, token-level loss, importance correction, symmetric clipping 0.2, no KL, dynamic sampling off and overlong filtering on;
    - temperature 0.6, top-p 0.95, top-k 20;
    - AdamW 2×10⁻⁶, 128 steps of 4 prompts × 8 responses, two passes over each cell;
    - checkpoints at 16, 32, 48, 64, 96 and 128;

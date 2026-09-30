@@ -35,7 +35,7 @@
 
 ## Method
 
-1. **Inputs.** Experiment 02A's Stage A–D probes and warm starts at 1.7B and 4B (Qwen3 Base + Lean warm start, D-005), its frozen 1,000-task within-source panel, and experiment 02B's locked RL contract (NeMo RL v0.6.0: G = 8, unnormalized leave-one-out advantage, token-level loss, clip 0.2, no KL, overlong filtering on, dynamic sampling off, temperature 0.6 / top-p 0.95 / top-k 20, 128 steps of 4 × 8, checkpoints 16/32/48/64/96/128).
+1. **Inputs.** Experiment 02A's Stage A–D probes and warm starts at 1.7B and 4B (Qwen3 Base + Lean warm start, D-005), its frozen 1,000-task within-source panel, and experiment 02B's locked RL contract (NeMo RL v0.6.0, version unconfirmed against upstream's v0.7.0 audit, D-105: G = 8, unnormalized leave-one-out advantage, token-level loss, clip 0.2, no KL, overlong filtering on, dynamic sampling off, temperature 0.6 / top-p 0.95 / top-k 20, 128 steps of 4 × 8, checkpoints 16/32/48/64/96/128).
 2. **Environments.**
    - `Z` (zero-signal): pool prompts with `K = 0` under `kernel_binary` in all four `G = 8` probes (32 samples), hash-capped to 256, balanced on family, split and prompt length by `rl4cv.cells`. `ρ_A(Z) = 0` by construction.
    - `N` (rare-signal, optional if compute allows): prompts with 1–2 successes in 32 samples.

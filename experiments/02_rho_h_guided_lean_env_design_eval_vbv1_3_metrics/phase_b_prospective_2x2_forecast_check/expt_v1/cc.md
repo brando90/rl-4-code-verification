@@ -25,7 +25,7 @@ Read `~/agents-config/INDEX_RULES.md`, `CLAUDE.md`, `docs/PLAN.md`, experiment 0
 
 | Setting | Value |
 |---|---|
-| Framework and advantages | NeMo RL v0.6.0 (configs from the paper's archive, D-105); unnormalized leave-one-out advantages; token-level loss; importance correction; symmetric clip 0.2; no KL; dynamic sampling off; overlong filtering on |
+| Framework and advantages | NeMo RL v0.6.0, version unconfirmed (upstream's 08-30-2026 audit names v0.7.0; confirm with Varun, D-105) (configs from the paper's archive, D-105); unnormalized leave-one-out advantages; token-level loss; importance correction; symmetric clip 0.2; no KL; dynamic sampling off; overlong filtering on |
 | Decoding | temperature 0.6, top-p 0.95, top-k 20; response cap and total sequence limit from experiment 02A |
 | Optimizer and schedule | AdamW 2×10⁻⁶, weight decay 0.01; 128 steps of 4 prompts × 8 responses; seeds 9001 and 9002 |
 | Checkpoints | 16, 32, 48, 64, 96, 128 (weights only; a failed run restarts from the same warm start with the same seed) |
