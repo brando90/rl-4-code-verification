@@ -99,6 +99,7 @@ Reward channels (definitions in [`src/rl4cv/rewards.py`](../src/rl4cv/rewards.py
 | 04 | [Reward-channel generalization: kernel versus judge-gated FSC](../experiments/04_reward_channel_generalization_kernel_vs_fsc/README.md) | L4, and Azalea's reward-design question | Rank agreement across channels | designed |
 | 05 | [Cross-family composition and alignment](../experiments/05_cross_family_composition_alignment/README.md) | Can adding alignment and composition coordinates fix the paper's mixture failure? | Frozen mixture forecast beats the uniform-portfolio rule | designed |
 | 06 | Solve VeriBench (application) | Train the predicted-best family, reward and mixture at the largest affordable scale | VeriBench SCSC and FSC gains with a regression panel for unintended effects (meeting notes B) | after 03–05 |
+| 07 | [Coverage gating: zero-signal bucket × reward density](../experiments/07_coverage_gating_zero_signal_bucket_reward_density/README.md) | Does outcome RL move prompts the warm start never solves (`q_mixed = 0`), and do per-theorem credit or compiler feedback move them where the binary reward cannot? (the notes' §2 claim, tested) | Frozen pre-RL ρ per arm on `Z`; gate H3-A/B/C verdicts and the `Z` re-probe | designed; after 02 |
 
 ## 7. Compute (order of magnitude; each protocol refines it with measured lengths)
 

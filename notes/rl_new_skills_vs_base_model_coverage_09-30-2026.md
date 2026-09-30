@@ -121,6 +121,8 @@ Predictions and levers, all testable:
 
 ## 8. A clean experiment for this repo (proposal)
 
+Drafted as [`experiments/07_coverage_gating_zero_signal_bucket_reward_density/`](../experiments/07_coverage_gating_zero_signal_bucket_reward_density/README.md) (09-30-2026), on experiment 02's Lean pools rather than on VeriBench tasks, because the repository rule holds VeriBench out of all training; the arms below are its A/B/C.
+
 - Base model, fixed task subset (e.g. 100 VBV2 tasks spanning base pass@64 ∈ {0, (0, 0.1], (0.1, 0.5], > 0.5}).
 - Arms, same trainer and token budget: (A) binary reward = full SCSC success; (B) `IC_proofs` partial credit; (C) B + one round of compiler feedback in the rollout; (D) C + curriculum ordered by current-policy `q_mixed`.
 - Measure pass@1 and pass@64 per bucket before and after.
