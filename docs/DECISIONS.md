@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/docs/DECISIONS.md>
 
-**TLDR:** Decided so far: separate repository; pinned clones instead of submodules; FSC always gated on compilation; forecasts hash-frozen before outcomes; work directly on `main`; self-hosted open-weight inference approved with model substitution allowed. Still open for Brando: the judge route and payer, GPU compute, the pool source, the paper's code, and who leads.
+**TLDR:** Decided so far: separate repository; pinned clones instead of submodules; FSC always gated on compilation; forecasts hash-frozen before outcomes; work directly on `main`; self-hosted open-weight inference approved with model substitution allowed; FSC judge route and payer (`vb103_judge` on Valkyrie, Vals gateway). Still open for Brando: GPU compute, the pool source, the paper's code, and who leads.
 
 Format: `D-NNN — title — status — date — owner`, then context, decision and consequences.
 Append new entries; strike through superseded ones and point to the entry that replaces them.
@@ -53,11 +53,16 @@ Append new entries; strike through superseded ones and point to the entry that r
 - **Context:** Experiment 01 needed approval for running open-weight models outside Valkyrie.
 - **Decision:** Brando: "just do the experiment, it's fine to change models. I want to do these experiments. Go." Self-hosted inference of open-weight models is authorized for this project, and substituting models is allowed. Every substitution or scale-down is a new, separately labelled condition (`expt_vN`), never an edit to a locked protocol.
 
+### D-102 — FSC judge route and payer — accepted — 09-30-2026 — Brando
+
+- **Context:** FSC in experiments 01–05 needed a judge route and payer; agents may not write direct provider API calls (agents-config Hard Rule 9).
+- **Decision:** Brando: "use the vb103_judge Valkyrie route." Route: experiment 103's `vb103_judge` Valkyrie agent (experiment 100 H2 ensemble: GPT-6 Sol high + Claude Opus 5.5 max, median of 3 each, mean of the 2, divided by 5). Payer: the Vals model gateway, the same account and environment experiment 103 used.
+- **Consequences:** Scope per `PROTOCOL.md`: every scored cell with IC_tests · IC_proofs > 0, plus the 60-file audit per model. Judging runs as a new, separately labelled suite (`rl4cv-e01:<label>`) on its own benchmark instance; experiment 103's existing judge records and runs under `veribench_vb103` are never modified. FSC in experiments 01–05 is unblocked.
+
 ## Open — needs Brando
 
 | ID | Question | Recommendation | Blocks |
 |---|---|---|---|
-| D-102 | Judge route and payer for FSC in this project: experiment 103's `vb103_judge` on Valkyrie (Vals-funded?) or another approved route. Agents may not write direct provider API calls (agents-config Hard Rule 9). | Valkyrie `vb103_judge`, judging only responses with IC_tests · IC_proofs > 0 plus one full-coverage audit sample per model | FSC in experiments 01–05 |
 | D-103 | Compute: whose GPUs and how many hours? Paper: about 350 B200 GPU-hours for 32 trajectories. The Lean replication likely needs 1.5–2× that because outputs are longer. | Varun's B200 allocation for experiments 03–05; SNAP for experiment 01 | experiments 03–05 |
 | D-104 | Pool source for the full-file family: FVAPPS-derived, synthetic VeriBench-style, or both. Synthetic references need a frontier-model generation budget. | Start with FVAPPS (it already exists); add synthetic only if FVAPPS fails the quality screen | experiment 02 |
 | D-105 | Access to the paper's code, NeMo RL configs and warm-start checkpoints. The fork `brando90/rl-env-scaling` is the 08-12 snapshot; upstream `madanva/rl-env-scaling` or the submission zip has them. | Sync the fork with upstream ("Sync fork" on GitHub) and re-pin | experiments 02–05 |

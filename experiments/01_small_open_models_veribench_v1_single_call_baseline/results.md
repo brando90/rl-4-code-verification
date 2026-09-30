@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/01_small_open_models_veribench_v1_single_call_baseline/results.md>
 
-**TLDR:** The pipeline is validated on CPU (scorer controls 4 of 4 pass; Qwen3-0.6B compiled 0 of 3 tasks), but the locked measurement has not started: every value in the tables below is still unmeasured. D-101 (self-hosted inference) was approved on 09-30-2026; FSC still waits on D-102 (judge route and payer).
+**TLDR:** The GPU run is in progress on `skampere1` (GPUs 3–7): preflight passed, full G=1 eval and G=8 probe jobs launched 09-30-2026 12:31. D-101 (self-hosted inference) and D-102 (FSC judge route: `vb103_judge` Valkyrie, payer: Vals gateway) are both accepted (09-30-2026); FSC judging now runs per model once that model's kernel scoring finishes.
 
 Last updated: 09-30-2026.
 

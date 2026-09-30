@@ -16,5 +16,5 @@
 
 ## Open questions for Brando
 
-- **D-102 (FSC judge route/payer)** is still open; FSC is reported as unmeasured for this run, as instructed. No judge calls made.
+- **D-102 (FSC judge route/payer) — decided 09-30-2026:** "use the vb103_judge Valkyrie route" (Brando). Route: `vb103_judge` (experiment 100 H2 ensemble). Payer: Vals model gateway. FSC judging now runs per model once that model's kernel scoring finishes; see `results.md` for judge charges as they land.
 - Confirm the `tp=2` deviation for the 27B route control is acceptable (it is explicitly anticipated in `DISPATCH_e01.md`).

@@ -69,5 +69,5 @@ Locked thresholds and parameters: [PROTOCOL.md](PROTOCOL.md). Live status: [resu
 | Preflight (5 tasks, controls) | TODO | expt_v1/cc.md step 3 |
 | G = 1 evaluation, 8 models + control | TODO | |
 | G = 8 probe, 8 models | TODO | |
-| FSC judging | Blocked | D-102 |
+| FSC judging | Unblocked (D-102) | route: `vb103_judge` Valkyrie, payer: Vals gateway |
 | Results table and gate G1 decision | TODO | results.md |
