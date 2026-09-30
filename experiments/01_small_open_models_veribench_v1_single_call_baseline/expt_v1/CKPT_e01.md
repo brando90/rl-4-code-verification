@@ -27,7 +27,7 @@
   - `rl4cv-e01-gen-gpu4`: qwen3.5-4b → qwen3-4b (eval then probe each)
   - `rl4cv-e01-gen-gpu5`: qwen3-8b → qwen3.5-9b (eval then probe each)
   - `rl4cv-e01-gen-gpu6`: qwen3-14b (eval then probe)
-  - `rl4cv-e01-gen-gpu7`: qwen3.6-27b-local (eval only, route control; probe not run for it per cc.md). Started `tp=1`; watch for OOM — PROTOCOL/dispatch flagged it may need `tp=2`. If it OOMs, kill that job, edit `jobs_gpu7.txt` to `... qwen3.6-27b-local 2`, and relaunch (record the `tp=2` deviation in `REPORT.md`).
+  - `rl4cv-e01-gen-gpu7`: qwen3.6-27b-local — **OOM'd at `tp=1`** at 12:49 (16.32 GiB KV cache needed vs. 15.44 GiB available after ~54 GB bf16 weights). Deviation recorded in `expt_v1/results/REPORT.md`. `jobs_gpu7.txt` updated to `tp=2`; `wait_and_launch_gpu7_tp2.sh` running in the same tmux session, polling every 60s for GPU 6, 5 or 4 to go fully idle (never 0-2), then launches `CUDA_VISIBLE_DEVICES=7,<partner>` tp=2.
   - Driver: `$WORK/run_all_e01.sh <jobs-file> <log>`, one manifest per GPU (`$WORK/jobs_gpu{3,4,5,6,7}.txt`), logs at `$WORK/run_all_e01_gpu{3,4,5,6,7}.log`. Each line is resumable (`run_model.sh` skips finished generation cells; job/score dirs write-once); a failed line is logged and the driver continues to the next job rather than stopping the GPU's whole queue.
   - `OUT=$WORK/out` (shared across all jobs; per-label subdirs).
 - **Next resume command** (if relaunched or a GPU's tmux session died): check `tmux ls` for `rl4cv-e01-gen-gpu{3,4,5,6,7}` and `ps aux | grep rl4cv.veribench.generate` first — never start a second copy of a job still running. To resume a dead GPU queue:
