@@ -65,7 +65,7 @@ Locked thresholds and parameters: [PROTOCOL.md](PROTOCOL.md). Live status: [resu
 | Step | Status | Notes |
 |---|---|---|
 | Design and protocol | Done (09-30-2026) | this folder |
-| D-101 self-hosted inference | Blocked | Brando |
+| D-101 self-hosted inference | Done (09-30-2026) | approved by Brando; model substitution allowed |
 | Preflight (5 tasks, controls) | TODO | expt_v1/cc.md step 3 |
 | G = 1 evaluation, 8 models + control | TODO | |
 | G = 8 probe, 8 models | TODO | |

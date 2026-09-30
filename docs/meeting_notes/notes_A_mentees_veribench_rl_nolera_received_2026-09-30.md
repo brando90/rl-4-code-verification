@@ -6,7 +6,7 @@
 
 **TLDR:** Verbatim meeting notes (Varun and Brando) on mentee structure, VeriBench as an RL environment, the Nolera roadmap and LLM-judge thesis work, as pasted by Brando on 2026-09-30.
 
-**Provenance:** pasted by Brando into a Claude Code session on 2026-09-30; the meeting date was not given.
+**Provenance:** pasted by Brando into a Claude Code session on 2026-09-30. The meeting was on 09-28-2026; its full transcript is [transcript_2026-09-28_mentee_roles_veribench_rl_nolera.md](transcript_2026-09-28_mentee_roles_veribench_rl_nolera.md).
 The text below is unedited.
 Transcription spellings are kept as received: "VariBench" is VeriBench, and "iClear paper" is the ICLR 2027 submission *Which Environments Should LLMs Learn From? Predicting RL Utility Across Scale*.
 Summary and project plan: [README.md](README.md), [../PLAN.md](../PLAN.md).

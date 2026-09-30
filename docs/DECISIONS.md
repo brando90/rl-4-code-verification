@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/docs/DECISIONS.md>
 
-**TLDR:** Decided so far: this is a separate project in its own repository; external repositories are pinned clones, not git submodules; FSC is always gated on compilation; forecasts are hash-frozen before outcomes exist. Brando still has to decide the local-inference authorization, the judge route and payer, the pool source, compute, and who leads.
+**TLDR:** Decided so far: separate repository; pinned clones instead of submodules; FSC always gated on compilation; forecasts hash-frozen before outcomes; work directly on `main`; self-hosted open-weight inference approved with model substitution allowed. Still open for Brando: the judge route and payer, GPU compute, the pool source, the paper's code, and who leads.
 
 Format: `D-NNN — title — status — date — owner`, then context, decision and consequences.
 Append new entries; strike through superseded ones and point to the entry that replaces them.
@@ -43,11 +43,20 @@ Append new entries; strike through superseded ones and point to the entry that r
 - **Decision:** The generalization test (experiment 03) uses Qwen3 Base 1.7B, 4B, 8B and 14B, as the paper did, so the domain is the main thing that changes.
 - **Consequences:** Newer small models (Qwen3.5 0.8B–9B) appear in experiment 01 as baselines, not as the law's scale axis.
 
+### D-006 — Work directly on `main` — accepted — 09-30-2026 — Brando
+
+- **Context:** Brando: "can we start pushing to main? Merge all PRs/branches to main."
+- **Decision:** Agents commit to `main` after `make test` passes and delete merged branches. The bootstrap PR (#1) and the other Claude branch (`claude/admiring-heisenberg-eok3j4`, notes on RL and base-model coverage) were merged into `main` on 09-30-2026.
+
+### D-101 — Self-hosted open-weight inference — accepted — 09-30-2026 — Brando
+
+- **Context:** Experiment 01 needed approval for running open-weight models outside Valkyrie.
+- **Decision:** Brando: "just do the experiment, it's fine to change models. I want to do these experiments. Go." Self-hosted inference of open-weight models is authorized for this project, and substituting models is allowed. Every substitution or scale-down is a new, separately labelled condition (`expt_vN`), never an edit to a locked protocol.
+
 ## Open — needs Brando
 
 | ID | Question | Recommendation | Blocks |
 |---|---|---|---|
-| D-101 | May this project run **self-hosted open-weight inference** (vLLM on SNAP or B200 hosts) for VeriBench generation? VeriBench's current rule routes every VeriBench model call through Valkyrie, and RL rollouts and our own checkpoints cannot go through Valkyrie. | Yes for open-weight policies and our checkpoints, disclosed in each protocol. Valkyrie stays the route for closed models and the judge. | experiments 01–05 |
 | D-102 | Judge route and payer for FSC in this project: experiment 103's `vb103_judge` on Valkyrie (Vals-funded?) or another approved route. Agents may not write direct provider API calls (agents-config Hard Rule 9). | Valkyrie `vb103_judge`, judging only responses with IC_tests · IC_proofs > 0 plus one full-coverage audit sample per model | FSC in experiments 01–05 |
 | D-103 | Compute: whose GPUs and how many hours? Paper: about 350 B200 GPU-hours for 32 trajectories. The Lean replication likely needs 1.5–2× that because outputs are longer. | Varun's B200 allocation for experiments 03–05; SNAP for experiment 01 | experiments 03–05 |
 | D-104 | Pool source for the full-file family: FVAPPS-derived, synthetic VeriBench-style, or both. Synthetic references need a frontier-model generation budget. | Start with FVAPPS (it already exists); add synthetic only if FVAPPS fails the quality screen | experiment 02 |

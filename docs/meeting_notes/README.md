@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/docs/meeting_notes/README.md>
 
-**TLDR:** Two meetings (dates not recorded) set this project's direction:
+**TLDR:** Two meetings set this project's direction (notes A and the full transcript are from 09-28-2026; notes B's date was not recorded):
 
 - Treat VeriBench as an RL target and use the ρ–H law to pick its environments, with Azalea suggesting VeriBench metrics should guide environment and reward design.
 - Show that the law generalizes beyond math, because reviewers will find a math-only paper insufficiently novel.
@@ -11,7 +11,8 @@ The verbatim notes are kept alongside; they include candid mentee assessments, s
 
 | File | Content |
 |---|---|
-| [notes_A_mentees_veribench_rl_nolera_received_2026-09-30.md](notes_A_mentees_veribench_rl_nolera_received_2026-09-30.md) | Verbatim: mentee structure, VeriBench as an RL environment, Nolera, LLM judges |
+| [notes_A_mentees_veribench_rl_nolera_received_2026-09-30.md](notes_A_mentees_veribench_rl_nolera_received_2026-09-30.md) | Verbatim notes of the 09-28-2026 meeting: mentee structure, VeriBench as an RL environment, Nolera, LLM judges |
+| [transcript_2026-09-28_mentee_roles_veribench_rl_nolera.md](transcript_2026-09-28_mentee_roles_veribench_rl_nolera.md) | Full verbatim transcript of that 09-28-2026 meeting (Varun and Brando); original RTF in [assets/](assets/) |
 | [notes_B_project_direction_paper_feedback_received_2026-09-30.md](notes_B_project_direction_paper_feedback_received_2026-09-30.md) | Verbatim: project direction, current runs, paper feedback, generalization debate |
 
 ## Notes A: mentees, VeriBench as an RL environment, Nolera, LLM judges

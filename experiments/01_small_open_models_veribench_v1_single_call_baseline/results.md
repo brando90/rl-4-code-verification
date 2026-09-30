@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/01_small_open_models_veribench_v1_single_call_baseline/results.md>
 
-**TLDR:** Not started. Nothing has been measured yet, and every value below is unmeasured. The experiment is blocked on decision D-101 (self-hosted inference) and, for FSC only, D-102 (judge route and payer).
+**TLDR:** Not started. Nothing has been measured yet, and every value below is unmeasured. D-101 (self-hosted inference) was approved on 09-30-2026; FSC still waits on D-102 (judge route and payer).
 
 Last updated: 09-30-2026.
 

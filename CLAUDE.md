@@ -1,7 +1,7 @@
-# Claude Code: run `git clone https://github.com/brando90/agents-config.git ~/agents-config 2>/dev/null || git -C ~/agents-config pull 2>/dev/null` to bootstrap/update config.
+# Claude Code: run `git clone https://github.com/brando90/agents-config.git ~/agents-config 2>/dev/null || git -C ~/agents-config pull --ff-only 2>/dev/null` to bootstrap/update config.
 # Read `~/agents-config/INDEX_RULES.md` for all agent documentation and routing. Local `~/agents-config/` is the fallback if GitHub is unreachable.
 
-This file gives Claude Code the project rules for **rl-4-code-verification**. `AGENTS.md` carries the same rules for Codex; when a rule changes, edit both files in the same commit and add an entry to `docs/DECISIONS.md`.
+This file holds the project rules for **rl-4-code-verification** for every agent: `AGENTS.md` (Codex and others) redirects here, per agents-config `workflows/repo-init.md`. When a rule changes, edit this file and add an entry to `docs/DECISIONS.md` in the same commit.
 
 **Project:** Test whether the ρ–H environment-utility law from Varun and Brando's ICLR 2027 submission generalizes from math to RL for Lean 4 code verification, and use it to choose the RL environments and rewards that most improve VeriBench.
 
@@ -49,6 +49,7 @@ This file gives Claude Code the project rules for **rl-4-code-verification**. `A
 
 ## Repository conventions
 
+- **Work on `main` (Brando, 09-30-2026).** Commit directly to `main` and push once `make test` passes; no feature branches or pull requests unless Brando asks for one. Stage with explicit pathspecs (never `git add -A`), pull with `--ff-only` or merge before pushing, and never force-push `main`. Delete any branch as soon as it is merged (agents-config Trigger Rule 19).
 - **External repositories are pinned clones, not submodules (D-002).**
   - `external/deps.lock.json` holds exact commits.
   - `scripts/setup_external.sh` fetches them into git-ignored `external/<name>`.
