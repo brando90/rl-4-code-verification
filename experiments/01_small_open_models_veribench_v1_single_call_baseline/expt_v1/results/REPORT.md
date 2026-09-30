@@ -18,3 +18,18 @@
 
 - **D-102 (FSC judge route/payer) — decided 09-30-2026:** "use the vb103_judge Valkyrie route" (Brando). Route: `vb103_judge` (experiment 100 H2 ensemble). Payer: Vals model gateway. FSC judging now runs per model once that model's kernel scoring finishes; see `results.md` for judge charges as they land.
 - Confirm the `tp=2` deviation for the 27B route control is acceptable (it is explicitly anticipated in `DISPATCH_e01.md`).
+
+### Blocker: FSC judge admission needs a new Valkyrie benchmark service (found 09-30-2026, 13:15)
+
+Built (zero spend, verified offline): `expt_v1/judge_rl4cv_e01.py`, adapted from experiment 103's `judge_vbv1.py`/`judge_controller.py`/`judge_pack.py` (imported, not edited — every path resolves under **this repo's own** `external/veribench` checkout, physically separate from `veribench_vb103`, confirmed with `git status` there staying clean throughout). The judge-controls pack is built and round-trip-verified: 12 pack tasks (distinct splits, `n_ref_theorems_ann >= 2`), 60 control cells (`oracle`/`vacuous`/`shuffled`/`halfdel`/`blank`), `verdict: PASS`.
+
+**What's blocking `admit`.** `vb103_judge`'s runs go through a Valkyrie *benchmark service*: a `uvicorn` process + `cloudflared` tunnel bound to one port, deployed by experiment 103's `scripts/deploy_service.py` and registered by name (e.g. `veribench103-judge`, port 8932). `run start --benchmark <name>` fails with "Benchmark service '<name>' is not reachable" unless that exact benchmark has already been deployed. Checked live (read-only, `ss -tlnp` + `pgrep cloudflared`): **40+ of these services are already running on this host**, ports 8923 through at least 8998 — well past the highest port (8962) hardcoded in the pinned `deploy_service.py`, meaning multiple concurrent sessions have been hand-extending this exact registry since it was pinned. The script's own comments document two real port collisions between concurrent workers already ("never kill another worker's process to free a port: move ours instead").
+
+**Why I stopped instead of picking the next free port myself.** This is shared, actively-growing, manually-coordinated infrastructure with a documented history of breaking concurrent workers, on a host other people are using right now. A wrong port or a redeploy of an instance still in use is hard to reverse and has a blast radius beyond this experiment. No Valkyrie spend has occurred (the CLI refuses `run start` locally before any call reaches a model — confirmed 0 in `expt_v1/results/judge/harvests/` and no charge in the failed-admission log).
+
+**What unblocks it (pick one):**
+1. Brando or whoever currently hand-maintains `deploy_service.py`'s `INSTANCES` registry adds `rl4cv-e01-controls` (and one `rl4cv-e01:<label>` per model) with the next free port above the *actually-listening* max (not just the pinned file's max — verify with `ss -tlnp | grep ':89'` / `ss -tlnp | grep ':9[0-9][0-9][0-9]'` at deploy time), then this script's `admit` step runs as-is.
+2. Or Brando explicitly authorizes me to extend the registry myself and deploy the new services (I have everything else ready: the pack, the items, the round-trip-verified manifest).
+3. Or point me to an existing generic/reusable judge-service instance whose served pack can be swapped safely without disturbing any suite's in-flight runs (I did not find one — the closest candidate, `veribench103-judge` on 8932, is `vb103`'s own live instance and repointing it mid-flight would violate "never modify experiment 103's existing judge records or runs").
+
+Until one of these lands, FSC stays unmeasured for experiment 01 (same as before D-102, just for an infrastructure reason now rather than a routing decision). GPU generation and kernel scoring continue unaffected.
