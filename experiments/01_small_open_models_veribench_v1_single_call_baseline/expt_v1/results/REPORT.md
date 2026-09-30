@@ -20,7 +20,15 @@
 - **D-102 (FSC judge route/payer) — decided 09-30-2026:** "use the vb103_judge Valkyrie route" (Brando). Route: `vb103_judge` (experiment 100 H2 ensemble). Payer: Vals model gateway. FSC judging now runs per model once that model's kernel scoring finishes; see `results.md` for judge charges as they land.
 - Confirm the `tp=2` deviation for the 27B route control is acceptable (it is explicitly anticipated in `DISPATCH_e01.md`).
 
-### Blocker: FSC judge admission needs a new Valkyrie benchmark service (found 09-30-2026, 13:15)
+### FSC judge admission — unblocked by master decision (09-30-2026, 13:44)
+
+**Master decision (Trigger Rule 57 + SNAP pre-approval):** option 2 below is authorized — deploy the new Valkyrie judge benchmark services directly, under these guardrails: use only ports 9700-9719 (claimed first at `/lfs/skampere1/0/brando9/valkyrie_port_claims/rl4cv-e01_9700-9719.txt`, master-verified free at 13:40, re-verified with `ss -tlnp` before each bind); register instances only in this project's own adaptation, never in `veribench_vb103`; never touch/restart/repoint any existing service; run judge controls first and require PASS before any measured-cell admission; the $400 cap stands; record ports/PIDs/teardown in `CKPT_e01.md` and tear down before `STATUS_e01 = DONE`.
+
+**What was built:** `expt_v1/deploy_rl4cv_e01_judge_service.py` reuses experiment 103's `deploy_service.py` **unmodified** — imported from this repo's own pinned `external/veribench` checkout, so its `E`/`PRIVATE` module-level paths resolve inside *this* checkout and every deployment artifact (service log/pid, tunnel log/pid, merged `valkyrie.yaml`, deployment receipt) lands there, never under `veribench_vb103`. The only diff from the pinned file is in this new wrapper, which adds instance entries to `deploy_service.INSTANCES` **in memory** at runtime (never writes to the pinned `deploy_service.py`) and re-checks `ss -tlnp` for the target port immediately before calling into it.
+
+**Deployed:** `rl4cv-e01-controls` → benchmark `veribench-rl4cv-e01-controls`, port 9700, service PID 2844733, tunnel PID 2847847. All four health checks passed (local 200 w/ bearer, 401 w/o; tunnel 200 w/ bearer, 401 w/o). Verified with `ss -tlnp` before and after that only port 9700 was added to the 8800-9999 range and that an existing instance's PID (1607271, vb103's own `veribench103-judge` on 8932) was untouched. Controls admitted: `H2_sol_high` run `33ac3200-4168-4331-9fea-f86835725f2b`, `H2_opus55_max` run `e6a24017-3afb-41ef-b674-09399c10ae53`, 60 cells each. Per-model instances (ports 9701+) will be deployed the same way once each model's G=1 scoring lands.
+
+### Original blocker writeup (found 09-30-2026, 13:15, kept for the record)
 
 Built (zero spend, verified offline): `expt_v1/judge_rl4cv_e01.py`, adapted from experiment 103's `judge_vbv1.py`/`judge_controller.py`/`judge_pack.py` (imported, not edited — every path resolves under **this repo's own** `external/veribench` checkout, physically separate from `veribench_vb103`, confirmed with `git status` there staying clean throughout). The judge-controls pack is built and round-trip-verified: 12 pack tasks (distinct splits, `n_ref_theorems_ann >= 2`), 60 control cells (`oracle`/`vacuous`/`shuffled`/`halfdel`/`blank`), `verdict: PASS`.
 
