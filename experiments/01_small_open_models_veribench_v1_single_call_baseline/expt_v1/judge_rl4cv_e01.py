@@ -19,6 +19,8 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
 EXT = REPO / "external" / "veribench"
+PACK = Path("/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/packs/vbv1_896")
+GEN_OUT = Path("/lfs/skampere1/0/brando9/rl4cv_e01/out")           # run_model.sh's $OUT
 E103 = EXT / "experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge"
 X100 = EXT / "experiments/100_karpathy_recipe_tc_judge_search_human_train_val_test"
 PRIVATE = E103 / "private" / "judge" / "rl4cv_e01"           # OUR OWN isolated tree, not vb103's
@@ -38,6 +40,9 @@ import build_inputs                    # noqa: E402
 import judge_run                       # noqa: E402
 import judge_pack                      # noqa: E402
 
+# experiment 103's veribench_valkyrie_service.py: CORE_SPLITS = ("easy_set", "cs_set", "humaneval_set",
+# "realcode_set", "security_set"); PROTOCOL.md's 60-file audit is 12 per core split, 5*12=60.
+CORE_SPLITS = ("easy_set", "cs_set", "humaneval_set", "realcode_set", "security_set")
 CONTROL_KINDS = ["oracle", "vacuous", "shuffled", "halfdel", "blank"]
 CONTROL_EXPECTATIONS = {
     "control_oracle": {"rule": "score_raw >= 4", "min_fraction": 0.90},
@@ -176,23 +181,23 @@ def build_controls(pack_dir: Path, n_tasks: int = 12) -> dict:
 # Build: one model's main cells (IC_tests*IC_proofs>0) + a 60-file stratified audit
 # --------------------------------------------------------------------------------------------------
 
-def build_model_pack(label: str, scored_jsonl: Path, audit_n: int = 60, smoke_items: int = 1) -> dict:
-    import random
+def build_model_pack(label: str, scored_jsonl: Path, per_core_split: int = 12, smoke_items: int = 1) -> dict:
+    import re
+    # NAME is run_model.sh's job name, e.g. "qwen3.5-4b_g1"; scored_<name>.jsonl -> strip the prefix.
+    name = scored_jsonl.stem.removeprefix("scored_")
+    jobs_dir = GEN_OUT / "jobs" / f"{name}_s0"
     rows = [json.loads(l) for l in scored_jsonl.read_text().splitlines() if l.strip()]
     measured = [r for r in rows if r.get("measured")]
-    positives = [r for r in measured if (r.get("factors", {}).get("IC_tests") or 0) *
-                (r.get("factors", {}).get("IC_proofs") or 0) > 0]
+    positives = [r for r in measured if (r.get("IC_tests") or 0) * (r.get("IC_proofs") or 0) > 0]
     by_split: dict[str, list[dict]] = {}
     for r in measured:
         by_split.setdefault(r["task_id"].split("__", 1)[0], []).append(r)
-    rng = random.Random(f"rl4cv-e01-audit:{label}")
-    audit, splits = [], sorted(by_split)
-    per_split = max(1, audit_n // max(1, len(splits)))
-    for split in splits:
-        pool = by_split[split][:]
-        rng.shuffle(pool)
-        audit.extend(pool[:per_split])
-    audit = audit[:audit_n]
+    # PROTOCOL.md's 60-file audit: 12 per core split, outcome-blind hash order (never based on score).
+    audit = []
+    for split in CORE_SPLITS:
+        pool = sorted(by_split.get(split, []),
+                     key=lambda r: sha(f"rl4cv-e01-audit:{label}:{r['task_id']}".encode()))
+        audit.extend(pool[:per_core_split])
     chosen = {r["task_id"]: r for r in positives}
     for r in audit:
         chosen.setdefault(r["task_id"], r)
@@ -200,21 +205,22 @@ def build_model_pack(label: str, scored_jsonl: Path, audit_n: int = 60, smoke_it
     root = PRIVATE / label / "inputs"
     items, skipped = [], {}
     for task_id, r in sorted(chosen.items()):
-        lean = r.get("lean") or ""
-        instruction = r.get("instruction") or ""
-        import re
-        blocks = re.findall(r"```python\n(.*?)```", instruction, re.S) if instruction else []
+        solution_path = jobs_dir / task_id / "verifier" / "solution.lean"
+        gold_src = PACK / task_id / "tests" / "gold.lean"
+        instr_src = PACK / task_id / "instruction.md"
+        if not solution_path.exists() or not gold_src.exists():
+            skipped[task_id] = "missing_solution_or_gold_on_disk"
+            continue
+        lean = solution_path.read_text(encoding="utf-8", errors="replace")
+        instruction = instr_src.read_text(encoding="utf-8", errors="replace")
+        blocks = re.findall(r"```python\n(.*?)```", instruction, re.S)
         python = max(blocks, key=len) if blocks else ""
         directory = root / task_id
         directory.mkdir(parents=True, exist_ok=True)
         (directory / "solution.lean").write_text(lean, encoding="utf-8")
         (directory / "source.py").write_text(python, encoding="utf-8")
         gold_path = directory / "gold.lean"
-        if r.get("gold"):
-            gold_path.write_text(r["gold"], encoding="utf-8")
-        if not gold_path.exists():
-            skipped[task_id] = "no_gold_available"
-            continue
+        gold_path.write_text(gold_src.read_text(encoding="utf-8", errors="replace"), encoding="utf-8")
         n_ref = len(build_inputs.statements(gold_path.read_text(encoding="utf-8", errors="replace")))
         items.append({"item": task_id, "task": task_id, "split": task_id.split("__", 1)[0],
                       "candidate_file": "solution.lean", "gold_file_name": "gold.lean",
