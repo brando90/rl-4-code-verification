@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/01_small_open_models_veribench_v1_single_call_baseline/results.md>
 
-**TLDR:** The GPU run is in progress on `skampere1` (GPUs 2–7, one model per device): preflight passed, full G=1 eval and G=8 probe jobs launched 09-30-2026 12:31. D-101 (self-hosted inference) and D-102 (FSC judge route: `vb103_judge` Valkyrie, payer: Vals gateway) are both accepted. The judge's own controls passed on a new, isolated Valkyrie benchmark service. **All 8 non-control eval models are now fully scored and FSC-judged**; only the Qwen3.6-27B route control remains, still generating. Near-zero IC_tests/IC_proofs throughout, as hypothesized, with one exception: **Qwen3-14B produced the experiment's first fully-compiling, fully-proving cell** (1/896). **Gate G1 already resolves to PASS**: Qwen3-14B's probe reaches a kernel_binary mixed-group share ≥ 0.20 on 6 splits (max 0.333), from 3 of 8 probe-scored models — decisive already since the pass criterion only needs one model/split to clear 0.20. Judge spend: $91.38 of $400.
+**TLDR:** The GPU run is in progress on `skampere1` (GPUs 2–7, one model per device): preflight passed, full G=1 eval and G=8 probe jobs launched 09-30-2026 12:31. D-101 (self-hosted inference) and D-102 (FSC judge route: `vb103_judge` Valkyrie, payer: Vals gateway) are both accepted. The judge's own controls passed on a new, isolated Valkyrie benchmark service. **All 9 eval models (including the Qwen3.6-27B route control) are now fully generated and kernel-scored; the 27B's FSC judge run is the only measurement still in progress.** Near-zero IC_tests/IC_proofs throughout, as hypothesized, with one exception: **Qwen3-14B produced the experiment's first fully-compiling, fully-proving cell** (1/896). **Gate G1 already resolves to PASS**: Qwen3-14B's probe reaches a kernel_binary mixed-group share ≥ 0.20 on 6 splits (max 0.333), from 3 of 8 probe-scored models — decisive already since the pass criterion only needs one model/split to clear 0.20. Judge spend: $91.38 of $400.
 
 ## Judge spend (running total against the $400 cap)
 
@@ -16,8 +16,9 @@
 | `rl4cv-e01:qwen3.5-9b` (audit only, 0 main cells) | H2_sol_high + H2_opus55_max | 60 × 2 | 118/120 measured (2 `unmeasured_infra` on H2_opus55_max) | 15.14 |
 | `rl4cv-e01:qwen3.5-2b` (audit only, 0 main cells; only 51 audit cells — see note) | H2_sol_high + H2_opus55_max | 51 × 2 | 102/102 measured | 8.30 |
 | `rl4cv-e01:qwen3-1.7b` (audit only, 0 main cells) | H2_sol_high + H2_opus55_max | 57 × 2 | 114/114 measured | 9.14 |
+| `rl4cv-e01:qwen3.6-27b-local` (audit only, 0 main cells) | H2_sol_high + H2_opus55_max | 52 × 2 | admitted, in progress | — |
 
-**Running total: $91.38 of $400.** All 8 non-control models' FSC judging is complete; only the 27B control's remains (once its eval scoring lands).
+**Running total: $91.38 of $400** (27B's charges land on harvest). This is the last FSC run the experiment needs.
 
 Last updated: 10-01-2026 01:15.
 
@@ -49,12 +50,14 @@ The denominator is always 896 declared cells per model. Unmeasured cells are lis
 | Qwen3-4B | `1cfa9a72` | 896/896 | 37 | 37 | 0.0% | 0.0 | 0.0 | 0.365* | 0.0 (exact) |
 | Qwen3-8B | `b968826d` | 896/896 | 41 | 41 | 0.22% | 0.0022 | 0.0 | 0.372* | 0.0 (exact) |
 | Qwen3-14B | `40c06982` | 896/896 | 21 | 21 | 0.56% | 0.0056 | 0.0011 | 0.462** | 0.00104 (exact) |
-| Qwen3.6-27B (local route control) | `6a9e13bd` | 384/896 generating | | | | | | | |
+| Qwen3.6-27B (local route control) | `6a9e13bd` | 896/896 | 236 | 0 | 0.22% | 0.0011 | 0.0 | pending§ | 0.0 (exact) |
 | *Reference: Qwen3.6-27B via Valkyrie (experiment 103)* | | *604* | *245 at cap* | | | *0.002* | *0.002* | *0.900* | *0.002* |
 
 \* FSC for Qwen3.5-2B, Qwen3.5-4B, Qwen3.5-9B, Qwen3-1.7B, Qwen3-4B and Qwen3-8B is the **ungated diagnostic mean over the 60-file core-split audit only** (0 cells reach the gated `fsc_compiled` scope per D-003, since all six have 0 cells with IC_tests · IC_proofs > 0). SCSC is exact at 0.0 for all six. Per-task FSC: `expt_v1/results/fsc_qwen3.5-2b.json`, `fsc_qwen3.5-4b.json`, `fsc_qwen3.5-9b.json`, `fsc_qwen3-1.7b.json`, `fsc_qwen3-4b.json`, `fsc_qwen3-8b.json`. Qwen3.5-2B's audit pack has only **51** cells, not 60 — one or more core splits had fewer than 12 tasks eligible for the audit at this model's scored output; `build-model`'s round-trip still returned `verdict: PASS`.
 
 † Qwen3.5-9B's `H2_opus55_max` member hit 2 `unmeasured_infra` cells (58/60 measured); its FSC mean (0.414) is over the 58 cells where both members measured, with the 2 incomplete items listed, not dropped or counted as zero (`expt_v1/results/fsc_qwen3.5-9b.json` → `items_incomplete`).
+
+§ Qwen3.6-27B's judge run (52 audit cells × 2 members, port 9708) was admitted 10-01-2026 08:38 and is still in progress — the last FSC measurement the experiment needs. Its own IC_tests (0.0011, i.e. 1/896) is nonzero like Qwen3-14B's, but that cell's IC_proofs is 0.0, so it still has **0** cells with IC_tests · IC_proofs > 0; SCSC stays exact at 0.0. FSC/the ungated-audit value will be filled in on harvest.
 
 \*\* Qwen3-14B has **one** cell with IC_tests · IC_proofs > 0 — `hardware_set_real__my_interrupt_preempt` (IC_tests 1.0, IC_proofs 1.0, FSC 0.8) — the experiment's first fully-compiling, fully-proving, judge-scored cell among the ≤14B models. Its SCSC = (1.0 · 1.0 · 0.8)^(1/3) ≈ 0.928, which is why the model's overall `SCSC_exact_where_available` (0.00104, exact over all 896 cells now that this one cell's FSC landed) is nonzero while every other model's stays exactly 0.0. The 0.462 FSC column value is still the ungated mean over the 60-item audit plus this one positive cell (61 cells total, 1 `unmeasured_infra`); see `expt_v1/results/fsc_qwen3-14b.json`.
 
