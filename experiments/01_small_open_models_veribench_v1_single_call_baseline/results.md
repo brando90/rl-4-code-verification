@@ -100,4 +100,4 @@ Per README §Decision criterion, the union of Qwen3-14B's 6 splits and Qwen3.5-9
 | Qwen3-14B | kernel_binary | 0.0068 | 0.0469 | 5.98 | 0.0469 | **0.333** (`aerospace_set_real`, 5 others ≥0.20) |
 | Qwen3-14B | proof_fraction | 0.0068 | 0.0469 | 5.98 | 0.0469 | **0.333** (`aerospace_set_real`, 5 others ≥0.20) |
 
-"Overall" columns are group-weighted means across all 128 groups (32 splits × 4 tasks); per-split values and `pass@8` are in `expt_v1/results/summaries/rho_h_<label>_g8_<channel>.{json,md}`. Qwen3.5-9B, Qwen3-1.7B, Qwen3-4B still probing/scoring.
+"Overall" columns are group-weighted means across all 128 groups (32 splits × 4 tasks); per-split values and `pass@8` are in `expt_v1/results/summaries/rho_h_<label>_g8_<channel>.{json,md}`.
