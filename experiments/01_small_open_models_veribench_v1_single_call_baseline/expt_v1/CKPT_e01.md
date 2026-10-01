@@ -4,35 +4,37 @@
 
 **TLDR:** Live checkpoint for the GPU worker running experiment 01 on `skampere1`. Updated at every stage change.
 
-## LIVE STATUS SNAPSHOT — 09-30-2026 18:35 (refreshed for external review)
+## LIVE STATUS SNAPSHOT — 09-30-2026 19:00 (refreshed for external review)
 
-**GPUs.** 0,1 free (never touched, left for other users). 2+7: `qwen3.6-27b-local` eval, `tp=2`. 3: `qwen3.5-0.8b` probe (local). 4: `qwen3-4b` eval (local). 5: `qwen3-1.7b` probe (shared queue). 6: `qwen3-1.7b` eval (shared queue). Confirm live with `nvidia-smi`.
+**GPUs.** 0,1 free (never touched, left for other users). 2+7: `qwen3.6-27b-local` eval, `tp=2`. 3: `qwen3.5-2b` eval (shared queue — GPU 3 finished its local 0.8B jobs at 18:01 and auto-switched). 4: `qwen3-4b` eval (local, batch 1 of 4 at ~98%). 5: `qwen3-1.7b` probe (shared queue). 6: `qwen3-1.7b` eval (shared queue). Confirm live with `nvidia-smi`.
 
 **Per-job status** (9 models × G=1 eval + 8 models × G=8 probe; `qwen3.6-27b-local` has no probe):
 
 | Model | eval (G=1, 896) | probe (G=8, 1024) |
 |---|---|---|
-| qwen3.5-0.8B | gen done, **scoring** (GPU-free, CPU) | gen 768/1024, running (GPU 3) |
+| qwen3.5-0.8B | gen done, scored | gen done (1024/1024), scoring |
 | qwen3-1.7B | gen running (GPU 6, shared-queue claim) | gen running (GPU 5, shared-queue claim) |
-| qwen3.5-2B | **not started** (shared_queue.txt) | **not started** (shared_queue.txt) |
-| qwen3.5-4B | **done**: scored, FSC-judged (audit, n=57, mean 0.328) | gen done, **scoring** (8 samples, in progress) |
-| qwen3-4B | gen 256/896, running (GPU 4, local) | **not started** (local to GPU 4, next after its eval) |
-| qwen3-8B | gen done, **scoring** (running ~2h — slow but alive, check before assuming stuck) | gen done, **scoring** |
+| qwen3.5-2B | gen running (GPU 3, shared-queue claim) | **not started** (shared_queue.txt) |
+| qwen3.5-4B | **done**: scored, FSC-judged (audit, n=57, mean 0.328) | gen done, scoring |
+| qwen3-4B | gen running (GPU 4, local; batch 1/4, ~98%) | **not started** (local to GPU 4, next after its eval) |
+| qwen3-8B | **done**: scored (0 positive cells); FSC **admitted**, not yet harvested | gen done, scoring |
 | qwen3.5-9B | **not started** (shared_queue.txt) | **not started** (shared_queue.txt) |
-| qwen3-14B | gen done, **scoring** (running ~2h — same caveat) | gen done, **scoring** (8 samples, in progress) |
+| qwen3-14B | **done**: scored (**1 positive cell** — the experiment's first); FSC **admitted**, not yet harvested | gen done, scoring |
 | qwen3.6-27B (control) | gen 128/896 running at `BATCH=256` post-rebatch (no probe) | n/a |
 
-**Scoring (CPU queue, `score_worker.sh`, ≤6 concurrent `score_scsc.py`).** Only `qwen3.5-4B` eval has a finished summary so far; `qwen3.5-0.8B` eval, `qwen3.5-4B`/`qwen3-8B`/`qwen3-14B` probes, and `qwen3-8B`/`qwen3-14B` evals are actively scoring. `qwen3-8B` and `qwen3-14B` eval scoring have been running since 15:53 (~2.5h) — long but each still has a live `lake env lean` child per `ps aux`; not yet treated as stuck.
+**Scoring (CPU queue, `score_worker.sh`, ≤6 concurrent `score_scsc.py`).** Finished: `qwen3.5-0.8B`/`qwen3.5-4B`/`qwen3-8B`/`qwen3-14B` eval. Still scoring: `qwen3.5-0.8B`/`qwen3.5-4B`/`qwen3-8B`/`qwen3-14B` probe (8 samples each).
 
-**FSC judging (Valkyrie, port block 9700-9719).** Controls suite: **PASS** (oracle/vacuous/blank/shuffled/halfdel, both members), $4.57. `qwen3.5-4B`: audit-only (0 cells with IC_tests·IC_proofs>0), FSC mean 0.328 (n=57; 3 `unmeasured_infra`), $13.49. **Running total: $18.06 of the $400 cap.** No other model's judge pack built yet (each needs its own eval scoring finished first, then `judge_rl4cv_e01.py build-model` → `deploy_rl4cv_e01_judge_service.py --instance <label>` → `admit`).
+**FSC judging (Valkyrie, port block 9700-9719).** Controls: **PASS**, $4.57. `qwen3.5-4B`: FSC mean 0.328 (n=57, audit-only), $13.49. `qwen3-8B` (port 9702) and `qwen3-14B` (port 9703) admitted (60 and 61 cells × 2 members) — not yet harvested. **Running total so far: $18.06 of $400** (8B/14B charges land on harvest). Remaining models need their eval scoring to finish first.
 
 **What's running where.**
 - tmux `rl4cv-e01-gen-gpu{2,3,4,5,6,7}`: the 6 GPU drivers (2 paired with 7 for the 27B control).
-- tmux `rl4cv-e01-switch-gpu{3,4}`: watchers that switch GPU 3/4 to `shared_queue.txt` once their local job (listed above) finishes. (GPU 5's already switched.)
+- tmux `rl4cv-e01-switch-gpu{3,4}`: GPU 3's already fired (switched at 18:01); GPU 4's still watching.
 - tmux `rl4cv-e01-score-queue`: `score_worker.sh`, the CPU scoring queue.
 - tmux `rl4cv-e01-watchdog`: the dispatch-level watchdog (10 min heartbeat).
-- `claims/`: `eval_qwen3-1.7b`, `probe_qwen3-1.7b` (both in flight; `shared_queue.txt` still has 2b eval+probe and 9b eval+probe unclaimed).
-- Valkyrie services: port 9700 (`rl4cv-e01-controls`), port 9701 (`rl4cv-e01-qwen3.5-4b`). Teardown commands in this file's "Teardown" bullet below.
+- `claims/`: `eval_qwen3-1.7b`, `probe_qwen3-1.7b`, `eval_qwen3.5-2b` (all in flight; `shared_queue.txt` still has `probe qwen3.5-2b` and `eval`/`probe qwen3.5-9b` unclaimed).
+- Valkyrie services: 9700 (`rl4cv-e01-controls`), 9701 (`qwen3.5-4b`), 9702 (`qwen3-8b`), 9703 (`qwen3-14b`). Teardown commands below.
+
+**Next step.** Harvest `qwen3-8b`/`qwen3-14b` judging once terminal; keep draining the shared queue (2B probe, 9B eval+probe) and GPU 4's local probe; build+deploy+admit FSC for each remaining model as its eval scoring lands.
 
 **Next step.** Keep draining `shared_queue.txt` (2B, 9B) and the two local jobs (0.8B probe on GPU 3, 4B probe on GPU 4 after its eval); as each model's eval scoring produces a summary, build and admit its FSC judge pack (controls already validated the route, no need to re-run controls per model). Watch the two long-running (~2.5h) scorer processes for `qwen3-8B`/`qwen3-14B` eval; if either truly stalls (no child `lake`/`lean` process, no CPU time increasing), diagnose before killing. `STATUS_e01` stays `RUNNING`.
 
@@ -84,7 +86,8 @@
     - **Fixed a real schema bug in `judge_rl4cv_e01.py`'s `build_model_pack` before it could write garbage**: it was written against an assumed `scored_*.jsonl` schema (`factors.IC_tests`, plus `lean`/`instruction`/`gold` fields on each row) that doesn't match this project's actual scorer output (`IC_tests`/`IC_proofs` top-level; no candidate text embedded in the row at all — solution.lean lives under `$OUT/jobs/<name>_s0/<task_id>/verifier/solution.lean`, gold/instruction under the pack). Fixed to read from the real job-materialization layout and the pack directly. Also fixed the audit selection: it was spreading picks evenly across all ~33 splits instead of the locked "12 per **core** split" (`CORE_SPLITS = (easy_set, cs_set, humaneval_set, realcode_set, security_set)`, from experiment 103's `veribench_valkyrie_service.py`) — now selects exactly 12 per core split (60 total) in outcome-blind hash order (`sha256("rl4cv-e01-audit:<label>:<task_id>")`, never the score).
     - **Deployed `rl4cv-e01-qwen3.5-4b`**: benchmark `veribench-rl4cv-e01-qwen3-5-4b`, port **9701** (next in the claimed 9700-9719 block), service PID 284032, tunnel PID 289990. All 4 health checks pass; pack round-trip PASS (61 tasks: 60 audit + 1 smoke).
     - **Admitted**: `qwen3.5-4b/H2_sol_high` run `a59f932f-a852-439e-a158-28c9a30fb52e`, `qwen3.5-4b/H2_opus55_max` run `bad29f40-c29d-4140-93b2-3ccf73aaa5ac`, 60 cells each.
-  - **Per-model instances, remaining:** one more port (9702, 9703, ...) per model label once that model's `build-model` pack is built, via the same `deploy_rl4cv_e01_judge_service.py --instance <label>`.
+  - **09-30-2026 18:11-18:12: `qwen3-8b` and `qwen3-14b` finished scoring too.** `qwen3-8b`: 0 positive cells, 60-audit only. `qwen3-14b`: **1 positive cell** (IC_tests·IC_proofs>0 — the experiment's first), 61 cells total (60 audit + 1 positive). Deployed `rl4cv-e01-qwen3-8b` on port **9702** (service PID 3526349, tunnel PID 3528318) and `rl4cv-e01-qwen3-14b` on port **9703** (service PID 3584059, tunnel PID 3588813); both health-checked clean. Admitted: `qwen3-8b/H2_sol_high` run `ac4f4a4e-e681-4021-b7a2-c431c568f9fd`, `qwen3-8b/H2_opus55_max` run `1a9ee57e-e7d4-437b-9023-4a7fbb34ba6f` (60 cells each); `qwen3-14b/H2_sol_high` run `63574d2d-4a42-4cfc-8319-79b251a69666`, `qwen3-14b/H2_opus55_max` run `8573268c-2f6f-4285-825d-b3ff667ee5e2` (61 cells each).
+  - **Per-model instances, remaining:** one more port (9704, ...) per model label once that model's `build-model` pack is built, via the same `deploy_rl4cv_e01_judge_service.py --instance <label>`.
   - **Teardown (run before STATUS_e01 = DONE):** for each deployed instance, `kill <service_pid> <tunnel_pid>` (both `start_new_session=True`, so no process group cleanup needed beyond the two PIDs), then remove `/lfs/skampere1/0/brando9/valkyrie_port_claims/rl4cv-e01_9700-9719.txt`. PIDs recorded above and in `deployment_<instance>.json` under this checkout's `external/veribench/.../103_.../results/`.
 - **Execution-efficiency fixes, 09-30-2026 16:00-16:03 (master decision, Trigger Rule 57, orchestration only — no protocol change).**
   1. **Decoupled generation from CPU scoring.** `run_model.sh` got a `STAGE=gen|score|all` switch (default `all`, unchanged behavior); the score stage never loads a model. GPUs 4/5/6 had sat idle since 14:24/15:53/15:53 because the combined script scored on CPU (hours per 896-file job) before the driver advanced to the next line. Fix: let each in-flight `score_scsc.py` finish undisturbed (killed only the parent `run_all_e01.sh` driver loop — PIDs 702665/702730/702762 — confirming the scorer children, e.g. PID 2827892, stayed alive/reparented), touched `.scoring_<name>` lock files for those three so the new score queue wouldn't double-launch them, then relaunched `STAGE=gen BATCH=256` drivers on GPUs 4/5/6 (the already-100%-generated eval lines skip instantly; probe generation for the same models started immediately). New `$WORK/score_worker.sh` (tmux `rl4cv-e01-score-queue`) scans all `jobs_gpu*.txt` lines, launches `STAGE=score` for any whose `jobs/<name>_s0` directory exists (the real "generation fully done" signal — checked the raw jsonl's mere existence first and it was wrong, see below) but has no `summaries/summary_<name>.json` yet and isn't locked, capped at `MAX_CONCURRENT=6` score_scsc.py processes (host load average ~865 from other users).
