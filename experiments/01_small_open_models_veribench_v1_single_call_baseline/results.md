@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/01_small_open_models_veribench_v1_single_call_baseline/results.md>
 
-**TLDR:** The GPU run is in progress on `skampere1` (GPUs 2–7, one model per device): preflight passed, full G=1 eval and G=8 probe jobs launched 09-30-2026 12:31. D-101 (self-hosted inference) and D-102 (FSC judge route: `vb103_judge` Valkyrie, payer: Vals gateway) are both accepted. The judge's own controls passed on a new, isolated Valkyrie benchmark service; FSC judging runs per model as its kernel scoring finishes. 4 of 9 eval models scored so far (0.8B/4B/8B/14B); near-zero IC_tests/IC_proofs throughout, as hypothesized, with one exception: **Qwen3-14B produced the experiment's first fully-compiling, fully-proving cell** (1/896). Judge spend: $45.90 of $400.
+**TLDR:** The GPU run is in progress on `skampere1` (GPUs 2–7, one model per device): preflight passed, full G=1 eval and G=8 probe jobs launched 09-30-2026 12:31. D-101 (self-hosted inference) and D-102 (FSC judge route: `vb103_judge` Valkyrie, payer: Vals gateway) are both accepted. The judge's own controls passed on a new, isolated Valkyrie benchmark service; FSC judging runs per model as its kernel scoring finishes. 4 of 9 eval models scored so far (0.8B/4B/8B/14B); near-zero IC_tests/IC_proofs throughout, as hypothesized, with one exception: **Qwen3-14B produced the experiment's first fully-compiling, fully-proving cell** (1/896). **Gate G1 already resolves to PASS**: Qwen3-14B's probe reaches a kernel_binary mixed-group share ≥ 0.20 on 6 splits (max 0.333), from 3 of 8 probe-scored models — decisive already since the pass criterion only needs one model/split to clear 0.20. Judge spend: $45.90 of $400.
 
 ## Judge spend (running total against the $400 cap)
 
@@ -61,8 +61,17 @@ The denominator is always 896 declared cells per model. Unmeasured cells are lis
 - **Wall-clock.** One model per free GPU, in parallel across GPUs 3–7 (5 devices), smallest→largest: **≈4–12 hours** for all 9 eval + 8 probe jobs, dominated by the 14B/27B cells and by any cells that hit the token cap (experiment 103 saw 245/896 cells hit the 65,536 cap for Qwen3.6-27B).
 - **Go.** Brando's "run my experiments on snap!" (09-30-2026) plus his earlier "just do the experiment ... Go" cover this GPU run (cc.md §5 "Ask"); posted to issue #3 before launch, launching without further wait per `DISPATCH_e01.md`.
 
-## Signal probe, G = 8, 132 tasks
+## Signal probe, G = 8, 128 tasks (4/split × 32 present splits)
 
-| Model | Channel | Mean reward | pass@8 | Mixed-group share | ρ | H | Gate G1 |
-|---|---|---:|---:|---:|---:|---:|---|
-| (all) | kernel_binary / proof_fraction | unmeasured | | | | | |
+**Gate G1 verdict (PROTOCOL.md § Locked parameters): PASS**, already decisive from 3 of 8 probe-scored models (the "any model, any split ≥ 0.20" criterion is monotonic — remaining models can only add evidence, never retract this). Qwen3-14B's `kernel_binary` mixed-group share (the fraction of its 8-sample groups with non-uniform kernel-binary reward — `rl4cv.experience.q_mixed_empirical`) reaches **≥ 0.20 on 6 of its 32 scored splits**: `aerospace_set_real` 0.333, `concurrent_set_real` 0.25, `finance_set_synthetic` 0.25, `gov_cert_set_synthetic` 0.25, `hardware_set_real` 0.25, `medical_oss_set_real` 0.25 (identical on `proof_fraction`, since the only measured reward difference between the two channels so far is the same single proving cell). Per README §Decision criterion, these 6 splits seed experiment 02's pools. Qwen3.5-0.8B and Qwen3.5-4B show exactly 0.0 mixed-group share on every split (0/128 groups mixed) — consistent with their 0% proof rate.
+
+| Model | Channel | Mean reward | Mixed-group share (overall) | ρ (overall) | H (overall) | Max per-split mixed-group share |
+|---|---|---:|---:|---:|---:|---:|
+| Qwen3.5-0.8B | kernel_binary | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
+| Qwen3.5-0.8B | proof_fraction | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
+| Qwen3.5-4B | kernel_binary | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
+| Qwen3.5-4B | proof_fraction | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
+| Qwen3-14B | kernel_binary | 0.0068 | 0.0469 | 5.98 | 0.0469 | **0.333** (`aerospace_set_real`) |
+| Qwen3-14B | proof_fraction | 0.0068 | 0.0469 | 5.98 | 0.0469 | **0.333** (`aerospace_set_real`) |
+
+"Overall" columns are group-weighted means across all 128 groups (32 splits × 4 tasks); per-split values and `pass@8` are in `expt_v1/results/summaries/rho_h_<label>_g8_<channel>.{json,md}`. Qwen3.5-9B, Qwen3-1.7B, Qwen3-4B, Qwen3-8B still probing/scoring.
