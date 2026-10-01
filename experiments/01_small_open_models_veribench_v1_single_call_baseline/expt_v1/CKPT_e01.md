@@ -4,6 +4,42 @@
 
 **TLDR:** Live checkpoint for the GPU worker running experiment 01 on `skampere1`. Updated at every stage change.
 
+## LIVE STATUS SNAPSHOT — 09-30-2026 18:35 (refreshed for external review)
+
+**GPUs.** 0,1 free (never touched, left for other users). 2+7: `qwen3.6-27b-local` eval, `tp=2`. 3: `qwen3.5-0.8b` probe (local). 4: `qwen3-4b` eval (local). 5: `qwen3-1.7b` probe (shared queue). 6: `qwen3-1.7b` eval (shared queue). Confirm live with `nvidia-smi`.
+
+**Per-job status** (9 models × G=1 eval + 8 models × G=8 probe; `qwen3.6-27b-local` has no probe):
+
+| Model | eval (G=1, 896) | probe (G=8, 1024) |
+|---|---|---|
+| qwen3.5-0.8B | gen done, **scoring** (GPU-free, CPU) | gen 768/1024, running (GPU 3) |
+| qwen3-1.7B | gen running (GPU 6, shared-queue claim) | gen running (GPU 5, shared-queue claim) |
+| qwen3.5-2B | **not started** (shared_queue.txt) | **not started** (shared_queue.txt) |
+| qwen3.5-4B | **done**: scored, FSC-judged (audit, n=57, mean 0.328) | gen done, **scoring** (8 samples, in progress) |
+| qwen3-4B | gen 256/896, running (GPU 4, local) | **not started** (local to GPU 4, next after its eval) |
+| qwen3-8B | gen done, **scoring** (running ~2h — slow but alive, check before assuming stuck) | gen done, **scoring** |
+| qwen3.5-9B | **not started** (shared_queue.txt) | **not started** (shared_queue.txt) |
+| qwen3-14B | gen done, **scoring** (running ~2h — same caveat) | gen done, **scoring** (8 samples, in progress) |
+| qwen3.6-27B (control) | gen 128/896 running at `BATCH=256` post-rebatch (no probe) | n/a |
+
+**Scoring (CPU queue, `score_worker.sh`, ≤6 concurrent `score_scsc.py`).** Only `qwen3.5-4B` eval has a finished summary so far; `qwen3.5-0.8B` eval, `qwen3.5-4B`/`qwen3-8B`/`qwen3-14B` probes, and `qwen3-8B`/`qwen3-14B` evals are actively scoring. `qwen3-8B` and `qwen3-14B` eval scoring have been running since 15:53 (~2.5h) — long but each still has a live `lake env lean` child per `ps aux`; not yet treated as stuck.
+
+**FSC judging (Valkyrie, port block 9700-9719).** Controls suite: **PASS** (oracle/vacuous/blank/shuffled/halfdel, both members), $4.57. `qwen3.5-4B`: audit-only (0 cells with IC_tests·IC_proofs>0), FSC mean 0.328 (n=57; 3 `unmeasured_infra`), $13.49. **Running total: $18.06 of the $400 cap.** No other model's judge pack built yet (each needs its own eval scoring finished first, then `judge_rl4cv_e01.py build-model` → `deploy_rl4cv_e01_judge_service.py --instance <label>` → `admit`).
+
+**What's running where.**
+- tmux `rl4cv-e01-gen-gpu{2,3,4,5,6,7}`: the 6 GPU drivers (2 paired with 7 for the 27B control).
+- tmux `rl4cv-e01-switch-gpu{3,4}`: watchers that switch GPU 3/4 to `shared_queue.txt` once their local job (listed above) finishes. (GPU 5's already switched.)
+- tmux `rl4cv-e01-score-queue`: `score_worker.sh`, the CPU scoring queue.
+- tmux `rl4cv-e01-watchdog`: the dispatch-level watchdog (10 min heartbeat).
+- `claims/`: `eval_qwen3-1.7b`, `probe_qwen3-1.7b` (both in flight; `shared_queue.txt` still has 2b eval+probe and 9b eval+probe unclaimed).
+- Valkyrie services: port 9700 (`rl4cv-e01-controls`), port 9701 (`rl4cv-e01-qwen3.5-4b`). Teardown commands in this file's "Teardown" bullet below.
+
+**Next step.** Keep draining `shared_queue.txt` (2B, 9B) and the two local jobs (0.8B probe on GPU 3, 4B probe on GPU 4 after its eval); as each model's eval scoring produces a summary, build and admit its FSC judge pack (controls already validated the route, no need to re-run controls per model). Watch the two long-running (~2.5h) scorer processes for `qwen3-8B`/`qwen3-14B` eval; if either truly stalls (no child `lake`/`lean` process, no CPU time increasing), diagnose before killing. `STATUS_e01` stays `RUNNING`.
+
+**Live orchestration note.** The scripts below are copied into `expt_v1/orchestration/` for the record (git history, review); **the live, actually-executing copies stay at `$WORK` = `/lfs/skampere1/0/brando9/rl4cv_e01/*.sh` and `*.txt`** (outside the repo, since they're run directly from tmux panes with hardcoded absolute paths) — editing the committed copies does **not** affect the running job.
+
+---
+
 - **Start time:** 09-30-2026 11:49 (dispatch); GPU work started 09-30-2026 12:05.
 - **Host/session:** `skampere1`, tmux `rl4cv-e01-qwen-vbv1-baseline` (worker), `rl4cv-e01-watchdog` (watchdog, restarted 12:15 after fixing an `$USER` unbound-variable bug in `watchdog_e01.sh` line 32).
 - **Work root:** `/lfs/skampere1/0/brando9/rl4cv_e01/rl-4-code-verification` (venv `.venv`, CUDA 12.8 prepended to PATH in `.venv/bin/activate` — CUDA 12.4's `nvcc` lacks `--compress-mode=size`, needed by flashinfer's JIT sampling kernel; without this fix vLLM's engine core crashes on startup).
