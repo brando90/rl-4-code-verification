@@ -4,38 +4,44 @@
 
 **TLDR:** Live checkpoint for the GPU worker running experiment 01 on `skampere1`. Updated at every stage change.
 
-## LIVE STATUS SNAPSHOT — 09-30-2026 20:58 (refreshed for external review)
+## LIVE STATUS SNAPSHOT — 09-30-2026 22:00 (refreshed per master update, ETAs for "done by morning")
 
-**GPUs.** 0,1 free. 2+7: `qwen3.6-27b-local` eval, `tp=2` (still the long pole). 3: `qwen3-1.7b` eval (shared queue). 4: `qwen3.5-9b` probe (shared queue, after finishing its local `qwen3-4b` eval+probe). 5: **idle** — finished `qwen3.5-9b` eval and found `shared_queue.txt` fully claimed (`QUEUE EMPTY`, exited cleanly); this is the correct end state, not a stall — every one of the 8 non-control models is now claimed/assigned somewhere. 6: `qwen3.5-2b` eval (shared queue).
+**Master's 21:52 update, carried out this cycle (Trigger Rule 57, orchestration only):**
+1. **Scoring gap fix (master's own action, verified here):** `score_worker.sh` only reads `jobs_gpu*.txt`, so the shared-queue jobs (`qwen3-1.7b`, `qwen3.5-2b`, `qwen3.5-9b`) were never scored even after generation finished. Master's `score_worker_shared.sh` (identical except it reads `shared_queue.txt`, tmux `rl4cv-e01-score-shared`, started 21:49) is running correctly — confirmed it already launched `qwen3-1.7b_g8`, `qwen3.5-2b_g8`, `qwen3.5-9b_g1`, `qwen3.5-9b_g8`, and picked up `qwen3.5-2b_g1` the moment it finished generating (21:55:27). Did **not** start a second copy or touch the running `score_worker.sh`. Copied `score_worker_shared.sh` into `expt_v1/orchestration/` (diff against `score_worker.sh` confirmed: only the TLDR comment, log path and the one `done < ...` line differ — purely additive). Stale `.scoring_*` locks for `qwen3-14b_g1`/`qwen3.5-4b_g1`/`qwen3-8b_g1` (already summarized) are confirmed harmless.
+2. **27B speed-up, implemented this cycle:** verified GPUs 4+5 free immediately before launch, then started a second `tensor-parallel-size 2` generate (tmux `rl4cv-e01-27b-shard2`) on `CUDA_VISIBLE_DEVICES=4,5` over `task_ids_27b_shard2.txt` (the **last 256** of the 896 task ids, by `tail -256` on the locked `TASK_IDS` file; verified zero overlap with the 128 cells the main job already has). Writes to `out/raw/gen_qwen3.6-27b-local_g1.shard2.jsonl` (a separate file — one writer each). `wait_and_merge_27b_shard2.sh` (tmux `rl4cv-e01-27b-merge-watcher`) is running: waits for the main file to reach 640 rows, kills the main job by GPU-UUID compute-app list (the same orphan-proof method from the earlier incident), waits for the shard to reach 256 rows, appends it into the main file, then reruns `run_model.sh eval` for the 27B with `STAGE=gen` (necessarily still `tp=2` on GPUs 2,7 — `generate.py` always constructs the vLLM engine even with 0 cells left to run, and `tp=1` OOMs on this model's KV-cache sizing, the same wall from the original OOM) so the manifest check passes and jobs materialize for scoring. Committed both scripts plus `task_ids_27b_shard2.txt` to `expt_v1/orchestration/`.
+
+**GPUs right now.** 0,1: another user's processes (not ours, confirmed by UUID, never touched). 2+7: main 27B job, batch [129-384] in progress. 3: **idle** (finished `qwen3.5-2b` eval, queue empty — correct). 4+5: 27B shard2, batch of 256 in progress. 6: `qwen3-1.7b` eval, ~92% through its batch.
 
 **Per-job generation status** (rows done / declared):
 
 | Model | eval (896) | probe (1024) |
 |---|---|---|
-| qwen3.5-0.8B | 896 — done, scored | 1024 — done, scored |
-| qwen3-1.7B | 512, running | 1024 — done, scoring/scored |
-| qwen3.5-2B | 512, running | 1024 — done, scoring/scored |
-| qwen3.5-4B | 896 — done, scored, FSC audit (n=57, mean 0.328) | 1024 — done, scored |
-| qwen3-4B | 896 — done, scored | 1024 — done, scored |
-| qwen3-8B | 896 — done, scored, FSC audit harvested (n=60, mean 0.372) | 1024 — done, scored |
-| qwen3.5-9B | 896 — **just finished** | 768, running |
-| qwen3-14B | 896 — done, scored, FSC harvested (**1 positive cell**, mean 0.462) | 1024 — done, scored |
-| qwen3.6-27B (control) | 128/896, running (`BATCH=256`, ~200-300s/item — slow but alive) | n/a (no probe for control) |
+| qwen3.5-0.8B–qwen3-14B (7 of 8 non-control models) | **all 896 done, all scored** | **all 1024 done**; `qwen3.5-9b` probe only one still generating (768/1024) |
+| qwen3.5-2B | **896 — just finished** (21:55), scoring launched by `score_worker_shared.sh` | 1024 — done |
+| qwen3-1.7B | ~760/896 (batch [513-768] ~92% done) | 1024 — done, scored by `score_worker_shared.sh` |
+| qwen3.6-27B (control, main) | 128/896 generated directly; batch [129-384] in progress (main job) | n/a (no probe for control) |
+| qwen3.6-27B (control, shard2) | up to 256 more rows in parallel on GPUs 4+5 (separate file, merges into main once both conditions in the watcher are met) | — |
 
-**Remaining generation work:** only `qwen3-1.7b` eval (384 rows), `qwen3.5-2b` eval (384 rows), `qwen3.5-9b` probe (256 rows), and the 27B control eval (768 rows, the long pole). Everything else is fully generated; most is already scored.
+**ETAs (best estimate from observed per-item rates; "done by morning" = feasible):**
+- `qwen3-1.7b` eval: **~15-30 min** (92% through its last batch).
+- `qwen3.5-9b` probe: already running, smaller model — **~30-60 min**.
+- `qwen3.5-2b`/`qwen3-1.7b` probe scoring (CPU, `score_worker_shared.sh`): **~10-30 min each**, already in flight.
+- **27B control (the long pole):** main job's current batch [129-384] has been running since 17:06; at the observed ~1-3 min/item average (highly variable, some items take 5+ min) it's roughly 85-90% through that batch now → **~1-2h** to finish batch 2 (reach row 384), then **~3-5h** for batch 3 (reach row 640, where the watcher fires) if it ran alone — **but** the shard2 parallelization on fresh GPUs 4+5 is running concurrently and should finish its 256 cells in a similar **~3-5h** window, so the merge should trigger once main reaches 640 (**ETA ~4-7h from 22:00, i.e. roughly 02:00-05:00**), after which the watcher's final `STAGE=gen` verification call (no generation, just the manifest check + job materialization) adds a few more minutes of vLLM engine startup on GPUs 2,7, then kernel-scoring (896 files, 1-5 CPU-hours per the original estimate) and FSC judging (60-file audit + any positive cells) follow.
+- **Realistic full-completion ETA: by ~06:00-09:00** (27B scored + judged), assuming no further incidents. The per-model table itself (the deliverable) is >90% complete already regardless.
 
-**FSC judging (Valkyrie, port block 9700-9719).** Controls: PASS, $4.57. `qwen3.5-4b` (9701): $13.49. `qwen3-8b` (9702): $13.17. `qwen3-14b` (9703): $14.67 (its one positive cell, FSC 0.8, gives the experiment's first nonzero SCSC ≈0.928 for that cell). **Running total: $45.90 of $400.** Remaining 4 models (1.7b, 2b, 4b, 9b) still need judge packs built once reviewed — `qwen3-4b` is scored and ready; build/deploy/admit it next (port 9704).
+**FSC judging (Valkyrie, port block 9700-9719).** Controls: PASS, $4.57. `qwen3.5-4b` (9701): $13.49. `qwen3-8b` (9702): $13.17. `qwen3-14b` (9703): $14.67 (1 positive cell, SCSC≈0.928). `qwen3-4b` (9704): admitted, not yet harvested. **Running total: ~$45.90-59 of $400** (4b's charges land on harvest). Remaining: `qwen3-1.7b`, `qwen3.5-2b`, `qwen3.5-9b`, and the 27B control, once each one's eval scoring lands.
 
-**Gate G1 verdict (09-30-2026 19:20): PASS.** Qwen3-14B's probe reaches `kernel_binary` mixed-group share ≥0.20 on 6 splits (max 0.333, `aerospace_set_real`), decisive already per PROTOCOL.md's "any model, any split" criterion. Qwen3.5-0.8B/4B/8B show exactly 0.0 everywhere. Full tables in `results.md`; posted to issue #3.
+**Gate G1 verdict (09-30-2026 19:20): PASS**, unaffected by anything above (monotonic criterion, already decisive from `qwen3-14b`'s probe). Full tables in `results.md`; posted to issue #3.
 
 **What's running where.**
-- tmux `rl4cv-e01-gen-gpu{2,3,4,6,7}`: active GPU drivers (`gpu5` exited cleanly, queue empty).
-- tmux `rl4cv-e01-score-queue`: `score_worker.sh`, CPU scoring queue (now mostly drained — only the 27B control still has generation outstanding).
+- tmux `rl4cv-e01-gen-gpu{2,3,4,6,7}`; `3` idle (correct), `4` and `5` now carrying the 27B shard2 instead of generic queue work.
+- tmux `rl4cv-e01-score-queue` (`score_worker.sh`) + `rl4cv-e01-score-shared` (`score_worker_shared.sh`, master's fix) — both running, never duplicated.
+- tmux `rl4cv-e01-27b-shard2` (the parallel generate call) + `rl4cv-e01-27b-merge-watcher` (the merge/verify watcher) — both running.
 - tmux `rl4cv-e01-watchdog`: dispatch-level watchdog (10 min heartbeat).
-- `claims/`: `eval_qwen3-1.7b`, `eval_qwen3.5-2b`, `eval_qwen3.5-9b`, `probe_qwen3-1.7b`, `probe_qwen3.5-2b`, `probe_qwen3.5-9b` — all 6 shared-queue lines claimed; `shared_queue.txt` has nothing left to pull.
-- Valkyrie services: 9700 (controls), 9701 (`qwen3.5-4b`), 9702 (`qwen3-8b`), 9703 (`qwen3-14b`).
+- `claims/`: all 6 shared-queue lines claimed; nothing left to pull from `shared_queue.txt`.
+- Valkyrie services: 9700 (controls), 9701 (`qwen3.5-4b`), 9702 (`qwen3-8b`), 9703 (`qwen3-14b`), 9704 (`qwen3-4b`).
 
-**Next step.** Build+deploy+admit FSC for `qwen3-4b` (ready now, port 9704). Let `qwen3-1.7b`/`qwen3.5-2b` eval and `qwen3.5-9b` probe finish (no action needed, draining naturally); once their eval scoring lands, build their FSC packs too. The 27B control is the critical path to full completion — keep monitoring, do not intervene unless it actually stalls (check for live `lean`/vLLM child processes, not just elapsed time).
+**Next step.** Let everything above drain on its own — no action needed unless something stalls (check for live child processes, not just elapsed time, before concluding a stall). Build/deploy/admit FSC for `qwen3-1.7b`/`qwen3.5-2b`/`qwen3.5-9b` as each finishes eval scoring. Once the merge watcher's final line (`27B SHARD2 WATCHER DONE`) appears in `run_all_e01_gpu7.log`, the 27B is ready for `score_worker.sh` to pick up automatically (its jobs/<name>_s0 dir will exist); then build/deploy (port 9705)/admit its FSC last.
 
 **Next step.** Keep draining `shared_queue.txt` (2B, 9B) and the two local jobs (0.8B probe on GPU 3, 4B probe on GPU 4 after its eval); as each model's eval scoring produces a summary, build and admit its FSC judge pack (controls already validated the route, no need to re-run controls per model). Watch the two long-running (~2.5h) scorer processes for `qwen3-8B`/`qwen3-14B` eval; if either truly stalls (no child `lake`/`lean` process, no CPU time increasing), diagnose before killing. `STATUS_e01` stays `RUNNING`.
 
