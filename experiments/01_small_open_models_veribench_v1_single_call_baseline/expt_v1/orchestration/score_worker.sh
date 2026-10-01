@@ -23,7 +23,7 @@ export STAGE=score
 export CUDA_VISIBLE_DEVICES=""   # scoring never touches a GPU
 
 name_for() { if [ "$1" = eval ]; then echo "${2}_g1"; else echo "${2}_g8"; fi; }
-running() { pgrep -cf "score_scsc.py --job-dir" 2>/dev/null || echo 0; }
+running() { n=$(pgrep -cf "score_scsc.py --job-dir" 2>/dev/null); echo "${n:-0}"; }
 
 log() { echo "$(date '+%m-%d-%Y %H:%M:%S') $*" >> "$LOG"; }
 log "START max_concurrent=$MAX_CONCURRENT"
