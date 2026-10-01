@@ -34,7 +34,9 @@
 - `claims/`: `eval_qwen3-1.7b`, `probe_qwen3-1.7b`, `eval_qwen3.5-2b` (all in flight; `shared_queue.txt` still has `probe qwen3.5-2b` and `eval`/`probe qwen3.5-9b` unclaimed).
 - Valkyrie services: 9700 (`rl4cv-e01-controls`), 9701 (`qwen3.5-4b`), 9702 (`qwen3-8b`), 9703 (`qwen3-14b`). Teardown commands below.
 
-**Next step.** Harvest `qwen3-8b`/`qwen3-14b` judging once terminal; keep draining the shared queue (2B probe, 9B eval+probe) and GPU 4's local probe; build+deploy+admit FSC for each remaining model as its eval scoring lands.
+**09-30-2026 19:20: Gate G1 resolves to PASS.** Qwen3-14B's G=8 probe reaches `kernel_binary` mixed-group share ≥0.20 on 6 splits (`aerospace_set_real` 0.333; `concurrent_set_real`/`finance_set_synthetic`/`gov_cert_set_synthetic`/`hardware_set_real`/`medical_oss_set_real` 0.25 each), from only 3 of 8 probe-scored models — decisive already since PROTOCOL.md's "any model, any split ≥0.20" criterion is monotonic. Qwen3.5-0.8B/4B show exactly 0.0 everywhere. Full tables in `results.md` → "Signal probe"; posted to issue #3.
+
+**Next step.** Keep draining the shared queue (2B probe, 9B eval+probe) and GPU 4's local probe; build+deploy+admit FSC for each remaining model as its eval scoring lands; harvest the remaining 5 models' probes as they finish (the gate verdict won't change, but the full per-model/per-split table is still the deliverable).
 
 **Next step.** Keep draining `shared_queue.txt` (2B, 9B) and the two local jobs (0.8B probe on GPU 3, 4B probe on GPU 4 after its eval); as each model's eval scoring produces a summary, build and admit its FSC judge pack (controls already validated the route, no need to re-run controls per model). Watch the two long-running (~2.5h) scorer processes for `qwen3-8B`/`qwen3-14B` eval; if either truly stalls (no child `lake`/`lean` process, no CPU time increasing), diagnose before killing. `STATUS_e01` stays `RUNNING`.
 
