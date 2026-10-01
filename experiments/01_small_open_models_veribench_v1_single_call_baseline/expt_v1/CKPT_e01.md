@@ -4,39 +4,38 @@
 
 **TLDR:** Live checkpoint for the GPU worker running experiment 01 on `skampere1`. Updated at every stage change.
 
-## LIVE STATUS SNAPSHOT — 09-30-2026 19:00 (refreshed for external review)
+## LIVE STATUS SNAPSHOT — 09-30-2026 20:58 (refreshed for external review)
 
-**GPUs.** 0,1 free (never touched, left for other users). 2+7: `qwen3.6-27b-local` eval, `tp=2`. 3: `qwen3.5-2b` eval (shared queue — GPU 3 finished its local 0.8B jobs at 18:01 and auto-switched). 4: `qwen3-4b` eval (local, batch 1 of 4 at ~98%). 5: `qwen3-1.7b` probe (shared queue). 6: `qwen3-1.7b` eval (shared queue). Confirm live with `nvidia-smi`.
+**GPUs.** 0,1 free. 2+7: `qwen3.6-27b-local` eval, `tp=2` (still the long pole). 3: `qwen3-1.7b` eval (shared queue). 4: `qwen3.5-9b` probe (shared queue, after finishing its local `qwen3-4b` eval+probe). 5: **idle** — finished `qwen3.5-9b` eval and found `shared_queue.txt` fully claimed (`QUEUE EMPTY`, exited cleanly); this is the correct end state, not a stall — every one of the 8 non-control models is now claimed/assigned somewhere. 6: `qwen3.5-2b` eval (shared queue).
 
-**Per-job status** (9 models × G=1 eval + 8 models × G=8 probe; `qwen3.6-27b-local` has no probe):
+**Per-job generation status** (rows done / declared):
 
-| Model | eval (G=1, 896) | probe (G=8, 1024) |
+| Model | eval (896) | probe (1024) |
 |---|---|---|
-| qwen3.5-0.8B | gen done, scored | gen done (1024/1024), scoring |
-| qwen3-1.7B | gen running (GPU 6, shared-queue claim) | gen running (GPU 5, shared-queue claim) |
-| qwen3.5-2B | gen running (GPU 3, shared-queue claim) | **not started** (shared_queue.txt) |
-| qwen3.5-4B | **done**: scored, FSC-judged (audit, n=57, mean 0.328) | gen done, scoring |
-| qwen3-4B | gen running (GPU 4, local; batch 1/4, ~98%) | **not started** (local to GPU 4, next after its eval) |
-| qwen3-8B | **done**: scored (0 positive cells); FSC **admitted**, not yet harvested | gen done, scoring |
-| qwen3.5-9B | **not started** (shared_queue.txt) | **not started** (shared_queue.txt) |
-| qwen3-14B | **done**: scored (**1 positive cell** — the experiment's first); FSC **admitted**, not yet harvested | gen done, scoring |
-| qwen3.6-27B (control) | gen 128/896 running at `BATCH=256` post-rebatch (no probe) | n/a |
+| qwen3.5-0.8B | 896 — done, scored | 1024 — done, scored |
+| qwen3-1.7B | 512, running | 1024 — done, scoring/scored |
+| qwen3.5-2B | 512, running | 1024 — done, scoring/scored |
+| qwen3.5-4B | 896 — done, scored, FSC audit (n=57, mean 0.328) | 1024 — done, scored |
+| qwen3-4B | 896 — done, scored | 1024 — done, scored |
+| qwen3-8B | 896 — done, scored, FSC audit harvested (n=60, mean 0.372) | 1024 — done, scored |
+| qwen3.5-9B | 896 — **just finished** | 768, running |
+| qwen3-14B | 896 — done, scored, FSC harvested (**1 positive cell**, mean 0.462) | 1024 — done, scored |
+| qwen3.6-27B (control) | 128/896, running (`BATCH=256`, ~200-300s/item — slow but alive) | n/a (no probe for control) |
 
-**Scoring (CPU queue, `score_worker.sh`, ≤6 concurrent `score_scsc.py`).** Finished: `qwen3.5-0.8B`/`qwen3.5-4B`/`qwen3-8B`/`qwen3-14B` eval. Still scoring: `qwen3.5-0.8B`/`qwen3.5-4B`/`qwen3-8B`/`qwen3-14B` probe (8 samples each).
+**Remaining generation work:** only `qwen3-1.7b` eval (384 rows), `qwen3.5-2b` eval (384 rows), `qwen3.5-9b` probe (256 rows), and the 27B control eval (768 rows, the long pole). Everything else is fully generated; most is already scored.
 
-**FSC judging (Valkyrie, port block 9700-9719).** Controls: **PASS**, $4.57. `qwen3.5-4B`: FSC mean 0.328 (n=57, audit-only), $13.49. `qwen3-8B` (port 9702) and `qwen3-14B` (port 9703) admitted (60 and 61 cells × 2 members) — not yet harvested. **Running total so far: $18.06 of $400** (8B/14B charges land on harvest). Remaining models need their eval scoring to finish first.
+**FSC judging (Valkyrie, port block 9700-9719).** Controls: PASS, $4.57. `qwen3.5-4b` (9701): $13.49. `qwen3-8b` (9702): $13.17. `qwen3-14b` (9703): $14.67 (its one positive cell, FSC 0.8, gives the experiment's first nonzero SCSC ≈0.928 for that cell). **Running total: $45.90 of $400.** Remaining 4 models (1.7b, 2b, 4b, 9b) still need judge packs built once reviewed — `qwen3-4b` is scored and ready; build/deploy/admit it next (port 9704).
+
+**Gate G1 verdict (09-30-2026 19:20): PASS.** Qwen3-14B's probe reaches `kernel_binary` mixed-group share ≥0.20 on 6 splits (max 0.333, `aerospace_set_real`), decisive already per PROTOCOL.md's "any model, any split" criterion. Qwen3.5-0.8B/4B/8B show exactly 0.0 everywhere. Full tables in `results.md`; posted to issue #3.
 
 **What's running where.**
-- tmux `rl4cv-e01-gen-gpu{2,3,4,5,6,7}`: the 6 GPU drivers (2 paired with 7 for the 27B control).
-- tmux `rl4cv-e01-switch-gpu{3,4}`: GPU 3's already fired (switched at 18:01); GPU 4's still watching.
-- tmux `rl4cv-e01-score-queue`: `score_worker.sh`, the CPU scoring queue.
-- tmux `rl4cv-e01-watchdog`: the dispatch-level watchdog (10 min heartbeat).
-- `claims/`: `eval_qwen3-1.7b`, `probe_qwen3-1.7b`, `eval_qwen3.5-2b` (all in flight; `shared_queue.txt` still has `probe qwen3.5-2b` and `eval`/`probe qwen3.5-9b` unclaimed).
-- Valkyrie services: 9700 (`rl4cv-e01-controls`), 9701 (`qwen3.5-4b`), 9702 (`qwen3-8b`), 9703 (`qwen3-14b`). Teardown commands below.
+- tmux `rl4cv-e01-gen-gpu{2,3,4,6,7}`: active GPU drivers (`gpu5` exited cleanly, queue empty).
+- tmux `rl4cv-e01-score-queue`: `score_worker.sh`, CPU scoring queue (now mostly drained — only the 27B control still has generation outstanding).
+- tmux `rl4cv-e01-watchdog`: dispatch-level watchdog (10 min heartbeat).
+- `claims/`: `eval_qwen3-1.7b`, `eval_qwen3.5-2b`, `eval_qwen3.5-9b`, `probe_qwen3-1.7b`, `probe_qwen3.5-2b`, `probe_qwen3.5-9b` — all 6 shared-queue lines claimed; `shared_queue.txt` has nothing left to pull.
+- Valkyrie services: 9700 (controls), 9701 (`qwen3.5-4b`), 9702 (`qwen3-8b`), 9703 (`qwen3-14b`).
 
-**09-30-2026 19:20: Gate G1 resolves to PASS.** Qwen3-14B's G=8 probe reaches `kernel_binary` mixed-group share ≥0.20 on 6 splits (`aerospace_set_real` 0.333; `concurrent_set_real`/`finance_set_synthetic`/`gov_cert_set_synthetic`/`hardware_set_real`/`medical_oss_set_real` 0.25 each), from only 3 of 8 probe-scored models — decisive already since PROTOCOL.md's "any model, any split ≥0.20" criterion is monotonic. Qwen3.5-0.8B/4B show exactly 0.0 everywhere. Full tables in `results.md` → "Signal probe"; posted to issue #3.
-
-**Next step.** Keep draining the shared queue (2B probe, 9B eval+probe) and GPU 4's local probe; build+deploy+admit FSC for each remaining model as its eval scoring lands; harvest the remaining 5 models' probes as they finish (the gate verdict won't change, but the full per-model/per-split table is still the deliverable).
+**Next step.** Build+deploy+admit FSC for `qwen3-4b` (ready now, port 9704). Let `qwen3-1.7b`/`qwen3.5-2b` eval and `qwen3.5-9b` probe finish (no action needed, draining naturally); once their eval scoring lands, build their FSC packs too. The 27B control is the critical path to full completion — keep monitoring, do not intervene unless it actually stalls (check for live `lean`/vLLM child processes, not just elapsed time).
 
 **Next step.** Keep draining `shared_queue.txt` (2B, 9B) and the two local jobs (0.8B probe on GPU 3, 4B probe on GPU 4 after its eval); as each model's eval scoring produces a summary, build and admit its FSC judge pack (controls already validated the route, no need to re-run controls per model). Watch the two long-running (~2.5h) scorer processes for `qwen3-8B`/`qwen3-14B` eval; if either truly stalls (no child `lake`/`lean` process, no CPU time increasing), diagnose before killing. `STATUS_e01` stays `RUNNING`.
 
