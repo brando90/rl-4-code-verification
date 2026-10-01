@@ -4,7 +4,21 @@
 
 **TLDR:** Live checkpoint for the GPU worker running experiment 01 on `skampere1`. Updated at every stage change.
 
-## EXPERIMENT COMPLETE — 10-01-2026 09:08 (`STATUS_e01 = DONE`)
+## EXPERIMENT COMPLETE (RE-VERIFIED) — 10-01-2026 12:35 (`STATUS_e01 = DONE`)
+
+**Reopened 12:16 by master (Trigger Rule 57, full-set completion rule): the 09:08 "DONE" below missed one model.** Two real gaps, both now fixed and both purely additive (no other model's numbers changed):
+1. **Qwen3.5-0.8B's `results.md` row said "unmeasured"** despite being fully generated and kernel-scored since 09-30-2026 18:28 (an early failed attempt at 640/896 rows had written nothing; the successful rerun's results were never transcribed). Verified against the scored JSONL (896/896, both IC factors 0.0) and filled: revision `2fc06364`, 661 cut off, 95 no-Lean, compile rate 0.45%, SCSC exact 0.0.
+2. **No FSC audit had ever been run for Qwen3.5-0.8B** (9 FSC files existed — controls + 7 other non-control models + 27B — this model was skipped). Re-claimed a port (9700-9719 block), built its pack (37 audit cells, `verdict: PASS`), deployed on port 9709 (all 4 health checks clean), admitted, harvested (74/74 measured, zero infra failures, $3.82), computed FSC (mean 0.0108), tore the one-off service down, removed the claim file. **Final judge spend: $106.37 of $400.**
+3. **The probe table was also stale** — missing Qwen3.5-2B entirely and showing 3 other models as still-running when all 8 were long done. Filled all 8 models × 2 channels from the `rho_h_*` summaries (aggregation validated by exactly reproducing the previously-published Qwen3-14B numbers before trusting it elsewhere). This surfaced a real finding the first pass missed: **Qwen3.5-9B also clears the locked ≥0.20 mixed-group-share threshold** (4 splits, max 0.25), not just Qwen3-14B (6 splits, max 0.333) — Gate G1's PASS verdict is unchanged, but experiment 02's seed pools should use the union of both models' qualifying splits (8 distinct), not Qwen3-14B's alone.
+4. **Four cells' orphaned `lean` children (surviving the scorer's 600s subprocess timeout) ran 5-19h wasting CPU before the master killed them at 12:14; no score changed** (independently verified: all 4 already `status: scored, compiles: False, IC_tests: 0.0`). A real latent gap in the pinned scorer's timeout handling (kills only the direct child, not the process group) — out of scope to patch here, noted for whoever next touches `external/veribench_scorer`.
+
+Full writeup: `REPORT.md` deviation 15 (items 1-3) and 16 (item 4).
+
+**Re-ran the completion gate after the fixes** (10-01-2026 12:35): every one of the 9 eval models shows 896/896 generated + 896/896 scored + an `fsc_<label>.json` present; every one of the 8 probe models shows 1024/1024 generated + a scoring summary + both `rho_h_*_g8_{kernel_binary,proof_fraction}.json` channels present. No `rl4cv.veribench.generate`/`score_scsc.py`/`score_worker.sh` processes remain running. **Every declared cell has a terminal receipt — the gate passes.**
+
+---
+
+## Prior completion pass (superseded in the detail above, kept for history) — 10-01-2026 09:08
 
 **Every declared cell in the experiment's manifest now has a terminal receipt.** Generation: all 9 eval models × 896 tasks + all 8 probe models × 1024 cells (128 tasks × 8 samples), 100% generated. Kernel scoring: all 9 eval models fully scored. FSC judging: controls + all 8 non-control models + the 27B route control, all admitted and harvested — no admitted run left unharvested, no further Valkyrie spend expected.
 
