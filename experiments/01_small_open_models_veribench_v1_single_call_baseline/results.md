@@ -9,8 +9,11 @@
 | Suite | Members | Cells | Status | Charges (USD) |
 |---|---|---:|---|---:|
 | `rl4cv-e01-controls` | H2_sol_high + H2_opus55_max | 60 × 2 | measured, verdict PASS | 4.57 |
+| `rl4cv-e01:qwen3.5-4b` (audit only, 0 main cells) | H2_sol_high + H2_opus55_max | 60 × 2 | 117/120 measured (3 `unmeasured_infra` on H2_opus55_max) | 13.49 |
 
-Last updated: 09-30-2026.
+**Running total: $18.06 of $400.**
+
+Last updated: 09-30-2026 17:41.
 
 ## Pipeline validation on CPU (09-30-2026, not the locked preflight)
 
@@ -34,7 +37,7 @@ The denominator is always 896 declared cells per model. Unmeasured cells are lis
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|
 | Qwen3.5-0.8B | — | unmeasured | | | | | | | |
 | Qwen3.5-2B | — | unmeasured | | | | | | | |
-| Qwen3.5-4B | — | unmeasured | | | | | | | |
+| Qwen3.5-4B | `851bf6e8` | 896/896 | 12 | 3 | 0.45% | 0.0011 | 0.0 | 0.328* | 0.0 (exact) |
 | Qwen3.5-9B | — | unmeasured | | | | | | | |
 | Qwen3-1.7B | — | unmeasured | | | | | | | |
 | Qwen3-4B | — | unmeasured | | | | | | | |
@@ -42,6 +45,8 @@ The denominator is always 896 declared cells per model. Unmeasured cells are lis
 | Qwen3-14B | — | unmeasured | | | | | | | |
 | Qwen3.6-27B (local route control) | — | unmeasured | | | | | | | |
 | *Reference: Qwen3.6-27B via Valkyrie (experiment 103)* | | *604* | *245 at cap* | | | *0.002* | *0.002* | *0.900* | *0.002* |
+
+\* FSC here is the **ungated diagnostic mean over the 60-file core-split audit only** (n=57 measured; 3 `unmeasured_infra`), since Qwen3.5-4B has 0 cells with IC_tests · IC_proofs > 0 (no cells reach the gated `fsc_compiled` scope per D-003). It is never substituted for SCSC, which is exact at 0.0 here because IC_tests · IC_proofs = 0 for every cell. Per-task FSC values: `expt_v1/results/fsc_qwen3.5-4b.json`.
 
 ## Compute estimate (09-30-2026, skampere1, before launch)
 
