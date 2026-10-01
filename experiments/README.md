@@ -6,7 +6,7 @@
 
 | # | Experiment | Goal | State (09-30-2026) | Next action |
 |---|---|---|---|---|
-| 01 | [Small open-weight Qwen models on VeriBench V1, single call, with G=8 signal probe](01_small_open_models_veribench_v1_single_call_baseline/README.md) | Shared baseline for both goals | Running on `skampere1`; protocol locked; D-101 approved | Finish the full declared set and report the gate G1 verdict. After the run, the folder becomes `01_small_qwen_vbv1_single_call_baseline_g8_signal_probe` |
+| 01 | [Small open-weight Qwen models on VeriBench V1, single call, with G=8 signal probe](01_small_open_models_veribench_v1_single_call_baseline/README.md) | Shared baseline for both goals | **Done (10-01-2026 09:08)** on `skampere1`; full declared set generated, scored and FSC-judged; Gate G1 **PASS** | Rename the folder to `01_small_qwen_vbv1_single_call_baseline_g8_signal_probe` (not yet done — deliberate follow-up, touches every cross-reference); then begin phase 02A |
 | 02 | [ρ–H-guided Lean environment design, evaluated on VeriBench V1's three metrics](02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/README.md) | Varun's question | Designed | Phase 02A after gate G1 |
 | 02A | [Lean environment pools, warm start, ρ–H probes](02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_a_lean_env_pools_warm_start_rho_h_probes/README.md) | Build the Lean environments; measure ρ and H | Designed; agent prompt ready | Wait for gate G1; D-103, D-104, D-105 |
 | 02B | [Prospective 2×2 forecast check (the crux)](02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_b_prospective_2x2_forecast_check/README.md) | Does the frozen equation predict Lean RL gains? | Designed; agent prompt ready | Wait for gate G2; D-103 |

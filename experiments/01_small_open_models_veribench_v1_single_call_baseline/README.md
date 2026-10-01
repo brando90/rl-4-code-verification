@@ -66,8 +66,10 @@ Locked thresholds and parameters: [PROTOCOL.md](PROTOCOL.md). Live status: [resu
 |---|---|---|
 | Design and protocol | Done (09-30-2026) | this folder |
 | D-101 self-hosted inference | Done (09-30-2026) | approved by Brando; model substitution allowed |
-| Preflight (5 tasks, controls) | TODO | expt_v1/cc.md step 3 |
-| G = 1 evaluation, 8 models + control | TODO | |
-| G = 8 probe, 8 models | TODO | |
-| FSC judging | Unblocked (D-102) | route: `vb103_judge` Valkyrie, payer: Vals gateway |
-| Results table and gate G1 decision | TODO | results.md |
+| Preflight (5 tasks, controls) | Done (09-30-2026) | expt_v1/cc.md step 3 |
+| G = 1 evaluation, 9 models (8 + 27B control) | Done (10-01-2026 06:45) | all 896/896 cells generated and kernel-scored for every model |
+| G = 8 probe, 8 models | Done (09-30-2026) | all 1024/1024 cells generated and scored for every probe model |
+| FSC judging | Done (10-01-2026 09:08) | route: `vb103_judge` Valkyrie, payer: Vals gateway; all 9 suites (controls + 8 models) admitted and harvested, $102.55 of $400 spent |
+| Results table and gate G1 decision | Done (09-30-2026 19:20 for Gate G1; 10-01-2026 09:08 for the full table) | results.md; Gate G1 **PASS** |
+
+**Experiment complete as of 10-01-2026 09:08** (`STATUS_e01 = DONE`; see `CKPT_e01.md`). Per the index table in `experiments/README.md`, this folder is slated to be renamed `01_small_qwen_vbv1_single_call_baseline_g8_signal_probe` after the run — **not yet done**, since it touches every cross-reference and doc link in this folder; left for Brando or the next agent to execute deliberately rather than as an unprompted structural change here.
