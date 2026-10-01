@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/01_small_open_models_veribench_v1_single_call_baseline/results.md>
 
-**TLDR:** The GPU run is in progress on `skampere1` (GPUs 2–7, one model per device): preflight passed, full G=1 eval and G=8 probe jobs launched 09-30-2026 12:31. D-101 (self-hosted inference) and D-102 (FSC judge route: `vb103_judge` Valkyrie, payer: Vals gateway) are both accepted. The judge's own controls (oracle/vacuous/blank/shuffled/halfdel) passed on a new, isolated Valkyrie benchmark service (port 9700; $4.57 spent of the $400 cap); FSC judging now runs per model once that model's kernel scoring finishes.
+**TLDR:** The GPU run is in progress on `skampere1` (GPUs 2–7, one model per device): preflight passed, full G=1 eval and G=8 probe jobs launched 09-30-2026 12:31. D-101 (self-hosted inference) and D-102 (FSC judge route: `vb103_judge` Valkyrie, payer: Vals gateway) are both accepted. The judge's own controls passed on a new, isolated Valkyrie benchmark service; FSC judging runs per model as its kernel scoring finishes. 4 of 9 eval models scored so far (0.8B/4B/8B/14B); near-zero IC_tests/IC_proofs throughout, as hypothesized, with one exception: **Qwen3-14B produced the experiment's first fully-compiling, fully-proving cell** (1/896). Judge spend: $45.90 of $400.
 
 ## Judge spend (running total against the $400 cap)
 
@@ -10,10 +10,12 @@
 |---|---|---:|---|---:|
 | `rl4cv-e01-controls` | H2_sol_high + H2_opus55_max | 60 × 2 | measured, verdict PASS | 4.57 |
 | `rl4cv-e01:qwen3.5-4b` (audit only, 0 main cells) | H2_sol_high + H2_opus55_max | 60 × 2 | 117/120 measured (3 `unmeasured_infra` on H2_opus55_max) | 13.49 |
+| `rl4cv-e01:qwen3-8b` (audit only, 0 main cells) | H2_sol_high + H2_opus55_max | 60 × 2 | 120/120 measured | 13.17 |
+| `rl4cv-e01:qwen3-14b` (1 main cell + audit) | H2_sol_high + H2_opus55_max | 61 × 2 | 121/122 measured (1 `unmeasured_infra` on H2_opus55_max) | 14.67 |
 
-**Running total: $18.06 of $400.**
+**Running total: $45.90 of $400.**
 
-Last updated: 09-30-2026 17:41.
+Last updated: 09-30-2026 18:45.
 
 ## Pipeline validation on CPU (09-30-2026, not the locked preflight)
 
@@ -41,12 +43,14 @@ The denominator is always 896 declared cells per model. Unmeasured cells are lis
 | Qwen3.5-9B | — | unmeasured | | | | | | | |
 | Qwen3-1.7B | — | unmeasured | | | | | | | |
 | Qwen3-4B | — | unmeasured | | | | | | | |
-| Qwen3-8B | — | unmeasured | | | | | | | |
-| Qwen3-14B | — | unmeasured | | | | | | | |
+| Qwen3-8B | `b968826d` | 896/896 | 41 | 41 | 0.22% | 0.0022 | 0.0 | 0.372* | 0.0 (exact) |
+| Qwen3-14B | `40c06982` | 896/896 | 21 | 21 | 0.56% | 0.0056 | 0.0011 | 0.462** | 0.00104 (exact) |
 | Qwen3.6-27B (local route control) | — | unmeasured | | | | | | | |
 | *Reference: Qwen3.6-27B via Valkyrie (experiment 103)* | | *604* | *245 at cap* | | | *0.002* | *0.002* | *0.900* | *0.002* |
 
-\* FSC here is the **ungated diagnostic mean over the 60-file core-split audit only** (n=57 measured; 3 `unmeasured_infra`), since Qwen3.5-4B has 0 cells with IC_tests · IC_proofs > 0 (no cells reach the gated `fsc_compiled` scope per D-003). It is never substituted for SCSC, which is exact at 0.0 here because IC_tests · IC_proofs = 0 for every cell. Per-task FSC values: `expt_v1/results/fsc_qwen3.5-4b.json`.
+\* FSC for Qwen3.5-4B and Qwen3-8B is the **ungated diagnostic mean over the 60-file core-split audit only** (0 cells reach the gated `fsc_compiled` scope per D-003, since both have 0 cells with IC_tests · IC_proofs > 0). SCSC is exact at 0.0 for both. Per-task FSC: `expt_v1/results/fsc_qwen3.5-4b.json`, `fsc_qwen3-8b.json`.
+
+\*\* Qwen3-14B has **one** cell with IC_tests · IC_proofs > 0 — `hardware_set_real__my_interrupt_preempt` (IC_tests 1.0, IC_proofs 1.0, FSC 0.8) — the experiment's first fully-compiling, fully-proving, judge-scored cell among the ≤14B models. Its SCSC = (1.0 · 1.0 · 0.8)^(1/3) ≈ 0.928, which is why the model's overall `SCSC_exact_where_available` (0.00104, exact over all 896 cells now that this one cell's FSC landed) is nonzero while every other model's stays exactly 0.0. The 0.462 FSC column value is still the ungated mean over the 60-item audit plus this one positive cell (61 cells total, 1 `unmeasured_infra`); see `expt_v1/results/fsc_qwen3-14b.json`.
 
 ## Compute estimate (09-30-2026, skampere1, before launch)
 
