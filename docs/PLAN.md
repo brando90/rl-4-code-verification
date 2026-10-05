@@ -158,3 +158,8 @@ Renumbered 09-30-2026 (D-007): old 02 → 02A, 03 → 02B, 04 → 02C, 06 → 02
 | 8+ | Experiment 02D (and the mixtures idea, if revived) |
 
 This fits Brando's stated cadence of one experiment per night plus weekend blocks, with mentees running pool construction and screens (notes A).
+
+
+## 11. Azalia's actionable-metric thesis extension (10-05-2026)
+
+[04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2](../experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/README.md) adds a controlled test of whether revealing VeriBench's components improves decisions, at equal total cost, beyond aggregate-only and ordinary verifier feedback. It first audits retained data and validates auxiliary fixed-reference success outcomes. Its detailed plan covers inference-time repair, the bridge to environment utility, reward design, independent outcome checks and thesis claim boundaries. The training portion reuses `02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics`; it does not authorize selection on VeriBench or duplicate the existing scale-law program. See decision D-008 and the new experiment's live results for executed versus planned work.

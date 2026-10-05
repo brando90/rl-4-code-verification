@@ -79,3 +79,13 @@ Note on D-105 (09-30-2026):
 
 - Git submodules stay rejected (D-002); the paper's repository is a pinned clone in `external/deps.lock.json`.
 - NeMo RL itself is pinned by package version (v0.7.0, the version named in upstream `docs/research/NEMORL_PAPER1_RL_ARCHITECTURE_AUDIT_20260830.md` on `controlled-scaling-v2`), not vendored into this repository.
+
+
+### D-008 — Operationalize Azalia's suggestion through controlled decisions — accepted design — 10-05-2026 — Codex under Brando's requested experiment
+
+- **Canonical home:** `experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/`.
+- **Decision:** Treat the Smooth Conjunctive Score for Code verification (SCSC) as a downstream outcome in its own right. Test whether the factor vector improves fixed-budget repair/environment/reward choices beyond scalar feedback. Use fixed-reference success as an auxiliary construct check, not a replacement aggregate.
+- **Execution:** Begin with a retrospective, zero-model-call inventory of existing modern score rows and separately labeled historical replay artifacts. New inference/training comparisons require an endpoint harness and a separately frozen full manifest; no benchmark reference edits or new provider charges in this first phase.
+- **Reuse:** Existing `02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_c_reward_channel_for_fsc_kernel_vs_judge` owns reward training; this experiment does not duplicate it. All controller training/tuning, environment choice and checkpoint selection use contamination-screened external data, never VeriBench.
+- **Measurement caveat:** The current VeriBench paper and this repository's summary implementation use different dataset aggregation orders. Preserve historical evidence and resolve the intended reporting convention before new scored interventions. The first audit reports counts only.
+- **Provenance:** Supplied Azalia email, retrieved September thesis decks and the Stanford weekly notes' 09-29-2026 Varun section; exact sources and an unsent clarification draft are colocated in the experiment.

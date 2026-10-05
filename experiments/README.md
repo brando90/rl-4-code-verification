@@ -2,9 +2,11 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/README.md>
 
-**TLDR:** Three experiments follow Brando's two goals ([D-007](../docs/DECISIONS.md), 09-30-2026). Experiment 01 is the shared baseline and is running on SNAP. Experiment 02 is Varun's question: use the pre-RL ρ–H equation to design Lean environments and rewards that raise VeriBench's three metrics, in phases 02A–02D. Experiment 03 is Allen's coverage question: can RL move Lean prompts the starting policy never solves? The cross-family mixtures study is a deferred [idea](ideas/README.md). Brando (09-30-2026) wants the experiments run on SNAP, with Emily (@emxia18) running them: begin with [`scripts/cc_prompt_run_experiment_on_snap.md`](../scripts/cc_prompt_run_experiment_on_snap.md), which inventories the GPUs, picks a B200/H200/H100 host and launches an experiment's `cc.md`. Gates are in [PLAN §6](../docs/PLAN.md#6-experiments-and-gates).
+**TLDR:** Four experiment homes connect the shared baseline, environment selection, initial model coverage, and actionable VeriBench diagnostics. The new [04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2](04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/README.md) turns Azalia’s suggestion into a thesis-oriented plan: validate fixed-reference outcomes, compare component versus aggregate feedback at matched cost, and reuse the existing environment/reward training studies. Its first phase is a zero-model-call artifact audit; the causal comparisons remain planned. Earlier experiment statuses below are retained from their recorded evidence.
 
-| # | Experiment | Goal | State (09-30-2026) | Next action |
+Existing execution route (Brando, 09-30-2026): experiments run on the Stanford Network Analysis Project (SNAP) cluster, with Emily (@emxia18) assigned to the earlier runs. The shared launcher remains [`scripts/cc_prompt_run_experiment_on_snap.md`](../scripts/cc_prompt_run_experiment_on_snap.md); prior gates remain in [PLAN §6](../docs/PLAN.md#6-experiments-and-gates).
+
+| # | Experiment | Goal | Recorded state | Next action |
 |---|---|---|---|---|
 | 01 | [Small open-weight Qwen models on VeriBench V1, single call, with G=8 signal probe](01_small_open_models_veribench_v1_single_call_baseline/README.md) | Shared baseline for both goals | **Done (10-01-2026 09:08)** on `skampere1`; full declared set generated, scored and FSC-judged; Gate G1 **PASS** | Rename the folder to `01_small_qwen_vbv1_single_call_baseline_g8_signal_probe` (not yet done — deliberate follow-up, touches every cross-reference); then begin phase 02A |
 | 02 | [ρ–H-guided Lean environment design, evaluated on VeriBench V1's three metrics](02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/README.md) | Varun's question | Designed | Phase 02A after gate G1 |
@@ -13,6 +15,7 @@
 | 02C | [Reward channel for FSC: kernel versus judge](02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_c_reward_channel_for_fsc_kernel_vs_judge/README.md) | Reward for the third metric (FSC) | Designed | After 02A; D-102 decided |
 | 02D | [Train the forecast-selected recipe, report VeriBench V1](02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_d_train_forecast_selected_env_report_vbv1/README.md) | The application | Stub | After 02B and 02C |
 | 03 | [RL on never-solved Lean prompts: binary versus dense reward](03_rl_on_never_solved_lean_prompts_binary_vs_dense_reward_eval_vbv1/README.md) | Allen's coverage question (open-weight models on SNAP) | Designed; agent prompt ready; PROTOCOL after 02A | After gate G2; needs the feedback reward channel in `rl4cv.rewards`; D-103 (≈ 90 B200 GPU-h) |
+| 04 | [04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2](04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/README.md) | Does the decomposition improve repair or training decisions beyond aggregate feedback? | Plan and remote artifact audit complete (10-05-2026); interventions unmeasured | [p 9/10] Validate auxiliary fixed-reference outcomes before correlation or causal claims |
 | idea | [Cross-family composition and alignment](ideas/cross_family_env_mixtures_alignment/README.md) | Extension | Deferred, not run | Revisit after 02B |
 
 Background for 03: [notes/rl_new_skills_vs_base_model_coverage_09-30-2026.md](../notes/rl_new_skills_vs_base_model_coverage_09-30-2026.md).
