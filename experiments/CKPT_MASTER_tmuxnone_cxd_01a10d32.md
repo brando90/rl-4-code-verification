@@ -1,11 +1,11 @@
-# Execute factor feedback repair and prospective environment preparation
+# Execute factor feedback for verification and repository repair
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/CKPT_MASTER_tmuxnone_cxd_01a10d32.md>
 
-**TLDR:** This coordinator executes `04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2` and the prerequisite preparation in `02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics`. The separate Qwen3 Base run remains owned by its existing worker. Resume from current receipts, not old status prose.
+**TLDR:** This coordinator executes `04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2` and the prerequisite preparation in `02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics`. The repository-repair extension is `06_swebench_lite_factor_feedback_matched_budget`. The separate Qwen3 Base run remains owned by its existing worker. Resume from current receipts, not old status prose.
 
 Created: 10-05-2026 22:33 PDT
-Last updated: 10-05-2026 23:05 PDT
+Last updated: 10-05-2026 23:17 PDT
 
 ## Identity and recovery
 
@@ -42,9 +42,18 @@ Runbook makes bounded implementation decisions without further permission questi
 ## SWE bench extension authorized 10-05-2026
 
 - New canonical home: [06_swebench_lite_factor_feedback_matched_budget](06_swebench_lite_factor_feedback_matched_budget/README.md). User requested execution while asleep. This is parallel work, independent of Qwen and the existing experiment04 owner.
-- Remote root `/lfs/skampere1/0/brando9/rl4cv_e06_swebench`; session `rl4cv-e06-swebench-factor-feedback`; `gpt-5.6-terra` / high coordinator. Launch acknowledgement pending. Worker owns only experiment06 after handoff; parent owns index, decisions and this checkpoint.
+- Remote root `/lfs/skampere1/0/brando9/rl4cv_e06_swebench`; session `rl4cv-e06-swebench-factor-feedback`; `gpt-5.6-terra` / high coordinator. Launched 10-05-2026 23:07 PDT from `d34287851d28966675060ac85d53d1dfa1ca7d77`. Supervisor PID 1609266, coordinator PID 1609348, native thread `01a10fd2-f4de-7352-9c3c-f6bc14882f75`; actual native metadata verifies selected model/effort, approval never and danger-full-access. Worker owns only experiment06 after handoff; parent owns index, decisions and this checkpoint. Structured acknowledgement and first source action remain to verify before calling the handoff complete.
 - Full eight-task validation manifest, shared initial patches, three feedback conditions and two repair steps: at most 56 solver responses plus eight public-check-author responses. Proposed measured solver `claude-sonnet-5` / medium. Public diagnostics are a new proxy, official outcomes stay hidden until final patches freeze.
 - Resource ceiling: no graphics processors, two containers, 18 wall hours, 160 processor-hours. Docker has a separate root filesystem capacity gate. Canonical health passed job-relevant checks; shared distributed storage remains below threshold and receives no large new artifacts.
 - Existing protected Claude setup grant yields OAuth login; entitlement and applicable allowance remain admission checks. Codex weekly allowance observed 59 percent remaining, shared with the existing worker and this master; no purchased credits or new charges.
 - Existing 30-minute heartbeat was extended, verified ACTIVE, to inspect experiment06 receipts and continue all owned bounded stages. No second heartbeat was created. Remote supervision survives laptop disconnect, not node reboot.
 - [p 9/10] Finish source/environment controls, then the full admitted repair matrix. No official benchmark score or diagnostic advantage has yet been measured for this extension.
+
+- Experiment06 delivery: 11 input-file hashes matched in the clean remote clone. Disposable remote supervisor test passed first-failure/one-restart/final-receipt behavior without model calls. Published commit `d34287851d28966675060ac85d53d1dfa1ca7d77`; exact runbook SHA-256 `0a6d4e2c1a8279d84120770275e6f6c17ce2d132aa505780bb10404eafdc420c`.
+- Scientific limits to retain in reports: public benchmark tasks can occur in pretraining; this is a paired diagnostic-information intervention, not proof of contamination-free capability. Bootstrap intervals can degenerate on small boundary-valued panels; report the exact paired test, task outcomes and restricted generalization alongside them.
+
+## Cluster subscription recovery
+
+Both remote Codex coordinators stopped on a provider-wide usage limit after their bounded retries; the 59-percent desktop reading applied to a different account/profile and must not be used for cluster admission. Original runtime/log evidence is preserved. No new credits or charges. The experiment06 handoff had not reached source export or measured calls. Experiment04 has uncommitted preparation/control evidence requiring verification and publication; its summaries are not independently accepted results yet.
+
+Selected one existing authenticated Claude subscription coordinator (`claude-sonnet-5` / high) to recover experiment06 and verify/publish the earlier experiment04/02 findings during waits. The recovery prompt explicitly transfers only those prior owned paths after checking no old writer survives, retains scientific gates and budgets, and keeps Qwen read-only. New runtime `runtime_claude_recovery`, new session `rl4cv-e06-swebench-claude-recovery`; native acknowledgement remains to verify. Its supervisor will watch both owned roots and preserve healthy child jobs. No unmeasured extra worker fanout.

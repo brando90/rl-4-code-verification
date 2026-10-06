@@ -49,7 +49,7 @@ def owned_children(root, ignored):
     return found
 
 
-def supervise(root, prompt, runtime, command, interval=120, max_attempts=2):
+def supervise(root, prompt, runtime, command, interval=120, max_attempts=2, watch_roots=()):
     root, runtime = root.resolve(), runtime.resolve()
     runtime.mkdir(parents=True, exist_ok=True)
     lock = (runtime / 'supervisor.lock').open('a')
@@ -59,9 +59,19 @@ def supervise(root, prompt, runtime, command, interval=120, max_attempts=2):
     run_id = previous.get('run_id', 'rl4cv-e06-swebench-validation-v1-10-05-2026')
     attempts = previous.get('attempts', 0)
     boot_id = Path('/proc/sys/kernel/random/boot_id').read_text().strip()
+    all_roots = [root, *(Path(p).resolve() for p in watch_roots)]
+    def live_children(ignored):
+        children = {}
+        for watched in all_roots:
+            for child in owned_children(watched, ignored):
+                children[child['pid']] = child
+        return list(children.values())
+
     state = {'run_id': run_id, 'boot_id': boot_id, 'supervisor': process_identity(os.getpid()),
              'attempts': attempts, 'max_attempts': max_attempts, 'reboot_auto_resume': False,
-             'root': str(root), 'notification': 'Codex same-thread heartbeat; no email configured'}
+             'root': str(root), 'watched_roots': [str(p) for p in all_roots],
+             'executable': command[0],
+             'notification': 'Codex same-thread heartbeat; no email configured'}
     # Don't restart after an unexpected supervisor loss while the old coordinator/children survive.
     ignored = {os.getpid(), os.getppid()}
     while attempts < max_attempts:
@@ -72,7 +82,7 @@ def supervise(root, prompt, runtime, command, interval=120, max_attempts=2):
                 state.update(phase='receipt_available_requires_master_verification', observed_at=now(), receipt=receipt)
                 save(state_path, state)
                 return 0 if receipt['status'] == 'complete' else 3
-        children = owned_children(root, ignored)
+        children = live_children(ignored)
         if children:
             state.update(phase='adopting_live_owned_processes', observed_at=now(), owned_processes=children)
             save(state_path, state)
@@ -82,14 +92,15 @@ def supervise(root, prompt, runtime, command, interval=120, max_attempts=2):
         state.update(attempts=attempts, phase='starting_coordinator', observed_at=now())
         save(state_path, state)
         env = os.environ.copy()
-        for key in ('OPENAI_API_KEY', 'ANTHROPIC_API_KEY', 'GOOGLE_API_KEY', 'GEMINI_API_KEY'):
+        for key in ('OPENAI_API_KEY', 'ANTHROPIC_API_KEY', 'GOOGLE_API_KEY', 'GEMINI_API_KEY',
+                    'ANTHROPIC_AUTH_TOKEN', 'ANTHROPIC_BASE_URL', 'OPENAI_BASE_URL'):
             env.pop(key, None)
         with prompt.open('rb') as inp, (runtime / f'coordinator_{attempts}.jsonl').open('ab') as log:
             process = subprocess.Popen(command, cwd=root, stdin=inp, stdout=log,
                                        stderr=subprocess.STDOUT, env=env, start_new_session=True)
             state['coordinator'] = process_identity(process.pid)
             while process.poll() is None:
-                state.update(phase='coordinator_running', observed_at=now(), owned_processes=owned_children(root, ignored))
+                state.update(phase='coordinator_running', observed_at=now(), owned_processes=live_children(ignored))
                 save(state_path, state)
                 try:
                     process.wait(timeout=interval)
@@ -98,7 +109,7 @@ def supervise(root, prompt, runtime, command, interval=120, max_attempts=2):
         state.update(phase='coordinator_exited', observed_at=now(), coordinator_exit_code=process.returncode)
         save(state_path, state)
         if attempts == max_attempts and not receipt_path.exists():
-            state.update(phase='needs_attention_attempt_limit', observed_at=now(), owned_processes=owned_children(root, ignored))
+            state.update(phase='needs_attention_attempt_limit', observed_at=now(), owned_processes=live_children(ignored))
             save(state_path, state)
             return 4
         # Validate the final receipt at the top of the loop even on the last attempt.
@@ -118,6 +129,9 @@ def main():
     ap.add_argument('--runtime', required=True, type=Path)
     ap.add_argument('--interval', type=float, default=120)
     ap.add_argument('--self-test', action='store_true')
+    ap.add_argument('--executor', choices=('codex', 'claude'), default='codex')
+    ap.add_argument('--claude-path', type=Path)
+    ap.add_argument('--watch-root', action='append', type=Path, default=[])
     args = ap.parse_args()
     if args.self_test:
         # Real disposable subprocess, simulated first failure, then terminal receipt; no model call.
@@ -131,9 +145,23 @@ def main():
         assert result == 0 and (runtime / 'fake_count').read_text() == '2'
         print('PASS: first failure retained, one restart, terminal simulation receipt; no model calls')
         return
-    command = ['codex', 'exec', '--dangerously-bypass-approvals-and-sandbox', '-m', 'gpt-5.6-terra',
-               '-c', 'model_reasoning_effort="high"', '--json', '-']
-    raise SystemExit(supervise(args.root, args.prompt, args.runtime, command, args.interval))
+    if args.executor == 'claude':
+        if args.claude_path is None or not args.claude_path.is_file():
+            ap.error('--executor claude requires the verified private --claude-path')
+        grant = Path.home() / 'keys' / 'claude_code_oauth_token.txt'
+        # Existing subscription grant stays in the child environment, never arguments or receipts.
+        os.environ['CLAUDE_CODE_OAUTH_TOKEN'] = grant.read_text().strip()
+        os.environ['DISABLE_AUTOUPDATER'] = '1'
+        os.environ['CLAUDE_CONFIG_DIR'] = str(args.runtime.resolve() / 'claude-config')
+        command = [str(args.claude_path.resolve()), '-p', '--dangerously-skip-permissions',
+                   '--model', 'claude-sonnet-5', '--effort', 'high', '--output-format',
+                   'stream-json', '--verbose', '--no-session-persistence',
+                   '--setting-sources', '', '--strict-mcp-config', '--mcp-config', '{"mcpServers":{}}']
+    else:
+        command = ['codex', 'exec', '--dangerously-bypass-approvals-and-sandbox', '-m', 'gpt-5.6-terra',
+                   '-c', 'model_reasoning_effort="high"', '--json', '-']
+    raise SystemExit(supervise(args.root, args.prompt, args.runtime, command, args.interval,
+                              watch_roots=args.watch_root))
 
 
 if __name__ == '__main__':

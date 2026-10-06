@@ -2,8 +2,8 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/06_swebench_lite_factor_feedback_matched_budget/results.md>
 
-**Status:** PREPARING REMOTE HANDOFF
-**Last updated:** 10-05-2026 23:04 PDT
+**Status:** RECOVERING COORDINATOR AFTER SUBSCRIPTION LIMIT
+**Last updated:** 10-05-2026 23:17 PDT
 
 | Stage | State | Evidence |
 |---|---|---|
@@ -14,6 +14,8 @@
 | Official and public diagnostic controls | PENDING | No benchmark outcome measured |
 | 56-cell repair comparison | PENDING ADMISSION | No solver outcome measured |
 | Later test panel and training | NOT STARTED | Separate prospective protocols required |
+
+Both bounded Codex coordinator attempts ended at the cluster account usage limit before dataset export or measured calls. A single existing authenticated Claude subscription coordinator is being verified; raw attempt logs remain in the original runtime. The desktop allowance did not describe this cluster profile. No credits were purchased.
 
 The new diagnostic geometric mean is a proxy. No resolution-rate improvement, cost advantage, or training result has been measured. Runtime receipts will live at `/lfs/skampere1/0/brando9/rl4cv_e06_swebench/runtime`. The experiment has no dependency on completion of Qwen's evaluation.
 
