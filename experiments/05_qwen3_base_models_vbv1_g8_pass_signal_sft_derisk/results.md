@@ -6,15 +6,15 @@
 
 **Status:** RUNNING (started 10-05-2026 18:10)
 
-**Last updated:** 10-05-2026 20:10
+**Last updated:** 10-05-2026 20:23
 
 ## Phases
 
 | Phase | Status | Evidence |
 |---|---|---|
 | Preflight: 5 tasks × 2 samples, Qwen3-1.7B-Base | DONE, PASS (10-05-2026 18:09) | `expt_v1/results/preflight_qwen3-1.7b-base.json` |
-| Generation, 896 × 8 per model (1.7B, 4B, 8B) | 4B-base DONE (20:09:57, exact 7,168-cell manifest); 8B-base generating; 1.7B-base generating, rebalanced across freed GPUs since 19:08 (see Deviations) | per-model shard logs under `/lfs/skampere1/0/brando9/rl4cv_e05/logs/` |
-| Kernel scoring, 24 jobs of 896 files | 4B-base scoring IN PROGRESS (started 20:09:57); others PENDING | `expt_v1/results/summary_<label>_g8.json` |
+| Generation, 896 × 8 per model (1.7B, 4B, 8B) | 4B-base DONE (20:09:57); 8B-base DONE (20:23:02), both exact 7,168-cell manifests; 1.7B-base generating, rebalanced across freed GPUs since 19:08 (see Deviations) | per-model shard logs under `/lfs/skampere1/0/brando9/rl4cv_e05/logs/` |
+| Kernel scoring, 24 jobs of 896 files | 4B-base and 8B-base scoring IN PROGRESS (started 20:09:57, 20:23:02); 1.7B-base PENDING | `expt_v1/results/summary_<label>_g8.json` |
 | Analysis and verdicts | PENDING | `expt_v1/results/analysis_e05.json`, `analysis_e05_table.md`, `per_task_<label>_g8.csv` |
 
 ## Compute estimate (10-05-2026, before launch)
