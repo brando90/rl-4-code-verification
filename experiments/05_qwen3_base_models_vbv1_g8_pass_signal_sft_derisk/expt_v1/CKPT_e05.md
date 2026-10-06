@@ -8,6 +8,9 @@
 
 **LANDED ec202b72fa0653da8cd1092ceeb78eddc1e8cd92 https://github.com/brando90/rl-4-code-verification/pull/4 10-06-2026 00:15**
 
+- **10-06-2026 00:20 — email sent.** Subject `[rl4cv] PR #4 merged: ...`, to `brando.science@gmail.com`, from `brandojazz@gmail.com` via `uutils.emailing.send_email_smtp` (`smtp_pass_file=~/keys/gmail_app_password.txt`), `uutils` imported from the existing checkout at `/lfs/skampere1/0/brando9/ultimate-utils/py_src` on `PYTHONPATH` (no venv needed, no PyPI install). Body: PR URL, the three verdicts, the PR's own 29-file diffstat, and links to `results.md`/`CKPT_e05.md` on `main`. Confirmed sent (function returned without raising; printed `SENT_OK`).
+- **10-06-2026 00:21 — cleanup done.** `nvidia-smi` shows 0 MiB / 0% on all 8 GPUs (no process of ours); tmux session `rl4cv-e05-qwen3-base-g8` closed (`tmux kill-session`); `$WORK/STATUS_e05` = `DONE`. Local branches `e05-qwen3-base-vbv1-g8-sft-derisk` and its backup deleted after confirming the merge landed everything (checked out `main`, `git pull --ff-only`, `make test` passed). **Experiment 05 is fully landed; nothing remains for the worker to do.**
+
 ## Ownership
 
 - **Master:** Claude Code (Opus 5.5) on Brando's laptop, session `https://claude.ai/code/session_019RBgi9yaHeBPu5urmhn8qN`; wrote the design, opened draft PR #4, ran the preflight and launched the run.
