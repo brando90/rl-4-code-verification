@@ -2,64 +2,50 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/CKPT_MASTER_tmuxnone_cxd_01a10d32.md>
 
-**TLDR:** This coordinator executes `04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2` and the prerequisite preparation in `02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics`. The repository-repair extension is `06_swebench_lite_factor_feedback_matched_budget`. The separate Qwen3 Base run remains owned by its existing worker. Resume from current receipts, not old status prose.
+**TLDR:** Execute `06_swebench_lite_factor_feedback_matched_budget` and preserve/finish the already-authorized `04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2` and experiment02 preparation. The current recovery owner uses the distinct existing Vals Codex account; original default-Codex and Claude runtimes are historical. Qwen's evaluation retains its own owner.
 
 Created: 10-05-2026 22:33 PDT
-Last updated: 10-05-2026 23:23 PDT
+Last updated: 10-05-2026 23:29 PDT
 
-## Identity and recovery
+## Identity and current recovery
 
-- Master: Codex desktop thread `01a10d32-a3b2-7d70-a8e9-764e40592ed5`, `/Users/brandomiranda/rl-4-code-verification`, no local tmux. Full access, approval never. Resume: `codex resume 01a10d32-a3b2-7d70-a8e9-764e40592ed5`.
-- Remote owner: one Codex execution worker, selected `gpt-5.6-terra` / high, in `/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification`; session `rl4cv-azalia-external-v3`. Launched 10-05-2026 22:43 Pacific from commit `d222e634e07d7f683fd6930200812c36823f51f9`; supervisor process 1031704 and coordinator process 1031747 observed running. Worker acknowledgement and preflight action verified; actual compilation/result counts remain in the runtime ledger. Native Codex turn metadata independently confirms `gpt-5.6-terra`, high effort, approval never and danger-full-access; the worker corrected an initial acknowledgement that had copied the master defaults. Remote thread: `01a10fbd-7b54-7db2-ac98-8fd4968df562`.
-- Read [runbook](04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v3/cc.md), [dispatch manifest](04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v3/dispatch_manifest.json), and [live ledger](04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v3/results.md).
+- Master: desktop thread `01a10d32-a3b2-7d70-a8e9-764e40592ed5`, `/Users/brandomiranda/rl-4-code-verification`, full access, approval never, no local tmux. Resume `codex resume 01a10d32-a3b2-7d70-a8e9-764e40592ed5`.
+- Current remote session: `rl4cv-e06-swebench-vals-recovery` on `skampere1`, launched 10-05-2026 23:24 PDT. Supervisor PID 1906071, coordinator PID 1906223, native thread `01a10fe2-624c-7620-9785-af29f5aa755e`. Native metadata confirms `gpt-5.6-terra` / high, approval never, danger-full-access. Source revision `1a9c4c818b3dec1d8ad6ddf5660409753c88c270`; all 13 handoff input hashes verified.
+- Current runtime: `/lfs/skampere1/0/brando9/rl4cv_e06_swebench/runtime_vals_recovery`. Read current `supervisor.json`, `ack.json`, `progress.json`, `worker_completion.json`, and `coordinator_*.jsonl`. Worker acknowledgement now confirms the source revision, input hashes, actual profile/model/effort and next action. A real pinned-source retrieval command completed, and source export is in progress. No solver call is admitted yet. The acknowledgement records its writing subprocess; use the independently observed native coordinator/supervisor identity above for liveness.
+- Runbook: [recovery_vals.md](06_swebench_lite_factor_feedback_matched_budget/expt_v1/recovery_vals.md), carrying the real user instructions and scoped ownership. [Dispatch manifest](06_swebench_lite_factor_feedback_matched_budget/expt_v1/dispatch_manifest.json) records all executor attempts and scientific limits.
 
-## Hazards and owned work
+## Hazards and ownership
 
-- The older Qwen3 Base run in `/lfs/skampere1/0/brando9/rl4cv_e05` is a read-only dependency; never duplicate or change it. Branch `e05-qwen3-base-vbv1-g8-sft-derisk` has newer work absent from local main.
-- Shared distributed storage is almost full; all sizeable new outputs use local scratch. Health checks pass for the selected local-scratch toolchain. Small existing global client/auth state remains on the shared installation.
-- Parent prepares local files, then hands versions2/3 of experiment04 and versions2 of experiment02 phases A/B to the sole remote writer. After acknowledgement, avoid local edits there until remote changes are synchronized.
-- Synthetic controls are engineering validation only. Real external references and applicability remain necessary before the repair experiment. No VeriBench training, tuning, warm starts or checkpoint selection.
-- No new benchmark-reference labels or edits. Any reference problem is recorded as unavailable instead of silently corrected.
+- Default cluster Codex account exhausted its allowance after two bounded attempts; reset message named 10-09-2026 2:13 PM, timezone unspecified. The desktop tool's 59 percent remaining was not valid cluster admission evidence. The replacement profile is a verified different existing ChatGPT account, with no provider API key; its applicable remaining quota is unknown. No new credits or credentials copied.
+- Claude 2.1.291 authenticated through the existing protected subscription grant, but both coordinator attempts requested redundant confirmation instead of executing. This was a worker response, not an automatic tool-approval rejection. Logs and native results remain in `runtime_claude_recovery`; do not mistake them for current progress.
+- Current worker owns experiment06 in `/lfs/skampere1/0/brando9/rl4cv_e06_swebench/rl-4-code-verification`, plus the earlier explicitly transferred experiment04 versions2/3 and experiment02 versions2 in `/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification`. Both roots had no surviving owned processes before takeover. Preserve uncommitted prior findings and recheck identities before another restart. Parent owns index, decisions and this checkpoint.
+- Qwen root `/lfs/skampere1/0/brando9/rl4cv_e05` is read-only. Never duplicate or alter its live evaluation, branch or devices.
+- Shared distributed storage is below its health threshold. Large artifacts/caches use local scratch. Docker stores images on `/var/lib/docker`, a separate filesystem; preserve its protocol headroom. Existing small global auth/client state remains shared.
+- Use fresh transport: `ssh -S none -o ControlMaster=no -o ConnectTimeout=8 -o BatchMode=yes skampere1 ...`. The earlier shared Secure Shell multiplexer stalled; only this task's blocked client processes were terminated, not the shared connection or other workers.
 
-## Watches
+## Workers and experiment state
 
-The version3 `supervise.py` writes process/boot identities every 120 seconds and permits one coordinator restart only after owned processes have stopped; child jobs survive coordinator exit. It does not claim scientific success from exit status. Reboot auto-restart is not installed. Same-thread heartbeat `continue-azalia-repair-and-environment-experiments` is ACTIVE every 30 minutes, confirmed by the app tool and its saved configuration. It checks outcomes and dependent stages; it requires the desktop app/host to be available, while the remote worker and supervisor survive laptop disconnection. No collaborator messages or email notifications are authorized by this runbook.
+- [06_swebench_lite_factor_feedback_matched_budget](06_swebench_lite_factor_feedback_matched_budget/README.md): protocol, source comparison, isolated-view preparation and paired analysis implemented. Eight validation tasks, three conditions, two repairs, at most 56 solver plus eight diagnostic-author responses. No measured outcome yet. Zero graphics processors, two containers maximum, 18 wall hours and 160 processor-hours. Exact executable admission must freeze before calls.
+- [04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2](04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/README.md): prior worker launched the complete 24 synthetic checker controls and prepared real-reference applicability artifacts, then lost its coordinator allowance. Inspect actual final receipts; a preliminary summary reports a failed applicability gate, but the parent has not independently validated its counts. No repair/judge calls may proceed through a failed gate. Synthetic controls never replace real accepted references.
+- [02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics](02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/README.md): earlier source/partition/prospective-readiness findings remain to reconcile and publish. Do not fabricate a numeric forecast, use VeriBench for training/tuning/checkpoint choice, or start unadmitted training.
 
-## Decisions and next commands
+## Watches and limits
 
-- [p 10/10] Compile the complete endpoint controls, because invalid acceptance would invalidate all downstream comparisons.
-- [p 9/10] Finish real external source screening and 24-task applicability before repair inference; do not replace inaccessible tasks with easy successes.
-- [p 8/10] After real probes, freeze numeric environment forecasts before training outcomes; exact submitted-paper code/config/warm starts remain unconfirmed until retrieved.
+- One ordinary-code supervisor observes both owned roots every 120 seconds, preserves/adopts healthy children and permits one restart of the current profile. Prior attempts remain counted: two default Codex, two Claude; current Vals Codex at most two. No additional unknown-budget fanout. Test of first failure followed by exactly one restart passed remotely without model calls. Reboot auto-resume is not installed.
+- Same-thread heartbeat `continue-azalia-repair-and-environment-experiments` is ACTIVE every 30 minutes and points to current Vals recovery. It checks real evidence, dependent stages and safe publication, and stays quiet on unchanged state. It requires the local app/host; remote execution survives laptop disconnection. No emails or collaborator messages are authorized.
+- The earlier experiment04 budget remains one graphics processor/six graphics-processor hours and 24 processor-hours with its separate full manifest and judge gates. Recovery never resets model-call/resource usage or changes an admitted solver. The new coding proxy is not VeriBench Smooth Conjunctive Score for Code verification (SCSC). All unavailable outcomes stay null and in the full denominator.
 
-Runbook makes bounded implementation decisions without further permission questions. Large training manifests and capacity must become concrete before admission; current measured pilot ceiling is one graphics processor, six graphics-processor hours and 24 processor hours. All source bytes, runbook and supervisor hashes matched on the remote clone; the transferred FVAPPS source matched SHA-256 `e0874ed37ab4c0a1e727cc2e11fdc9d4add5f34316ddc726b1f3922d60146bc1`. A disposable remote supervisor test verified one failed child followed by exactly one successful restart, with no model calls. Current local verification passed 32 repository tests with two skipped, 10 endpoint unit tests from the prior phase, and 21 experiment06 unit tests. Read current remote `runtime/supervisor.json`, `ack.json`, `progress.json`, `worker_completion.json` and task result ledgers to continue. Verify all final counts, output hashes, tests and main publication before closing the watch.
+## Decisions and next actions
 
-## Landed and transport recovery
+- [p 10/10] Current worker acknowledgement and first pinned-source retrieval are verified. Leave this single owner executing the bounded SWE-bench pipeline, checking real cell receipts at milestones.
+- [p 9/10] During waits, verify/publish the earlier full checker and applicability receipts. Advance repair only if its original gate passes; otherwise preserve the failed gate and concrete next version.
+- [p 8/10] After the eight-task coding validation, prepare the 24-task test protocol; no extra test or training calls are silently admitted.
+- No routine decision is waiting for Brando. A genuine login, unavailable allowance or exhausted budget needs an explicit durable blocker after remaining independent work is done.
 
-- `d222e634e07d7f683fd6930200812c36823f51f9` pushed to main: endpoint harness, source preparation, prospective comparison design, bounded repair runbook, supervisor and manifests.
-- The shared Secure Shell multiplexer stalled during an 11-megabyte input transfer. Only this task's blocked clients were terminated; the shared connection and other workers were preserved. For continued inspection use `ssh -S none -o ControlMaster=no -o ConnectTimeout=8 -o BatchMode=yes skampere1 ...`; the fresh connection and source hash verification succeeded.
-- Large artifacts remain in local scratch. The explicit reboot limitation and desktop heartbeat availability remain; neither is advertised as guaranteed cluster failover.
+## Landed and verified
 
-## SWE bench extension authorized 10-05-2026
-
-- New canonical home: [06_swebench_lite_factor_feedback_matched_budget](06_swebench_lite_factor_feedback_matched_budget/README.md). User requested execution while asleep. This is parallel work, independent of Qwen and the existing experiment04 owner.
-- Remote root `/lfs/skampere1/0/brando9/rl4cv_e06_swebench`; session `rl4cv-e06-swebench-factor-feedback`; `gpt-5.6-terra` / high coordinator. Launched 10-05-2026 23:07 PDT from `d34287851d28966675060ac85d53d1dfa1ca7d77`. Supervisor PID 1609266, coordinator PID 1609348, native thread `01a10fd2-f4de-7352-9c3c-f6bc14882f75`; actual native metadata verifies selected model/effort, approval never and danger-full-access. Worker owns only experiment06 after handoff; parent owns index, decisions and this checkpoint. Structured acknowledgement and first source action remain to verify before calling the handoff complete.
-- Full eight-task validation manifest, shared initial patches, three feedback conditions and two repair steps: at most 56 solver responses plus eight public-check-author responses. Proposed measured solver `claude-sonnet-5` / medium. Public diagnostics are a new proxy, official outcomes stay hidden until final patches freeze.
-- Resource ceiling: no graphics processors, two containers, 18 wall hours, 160 processor-hours. Docker has a separate root filesystem capacity gate. Canonical health passed job-relevant checks; shared distributed storage remains below threshold and receives no large new artifacts.
-- Existing protected Claude setup grant yields OAuth login; entitlement and applicable allowance remain admission checks. Codex weekly allowance observed 59 percent remaining, shared with the existing worker and this master; no purchased credits or new charges.
-- Existing 30-minute heartbeat was extended, verified ACTIVE, to inspect experiment06 receipts and continue all owned bounded stages. No second heartbeat was created. Remote supervision survives laptop disconnect, not node reboot.
-- [p 9/10] Finish source/environment controls, then the full admitted repair matrix. No official benchmark score or diagnostic advantage has yet been measured for this extension.
-
-- Experiment06 delivery: 11 input-file hashes matched in the clean remote clone. Disposable remote supervisor test passed first-failure/one-restart/final-receipt behavior without model calls. Published commit `d34287851d28966675060ac85d53d1dfa1ca7d77`; exact runbook SHA-256 `0a6d4e2c1a8279d84120770275e6f6c17ce2d132aa505780bb10404eafdc420c`.
-- Scientific limits to retain in reports: public benchmark tasks can occur in pretraining; this is a paired diagnostic-information intervention, not proof of contamination-free capability. Bootstrap intervals can degenerate on small boundary-valued panels; report the exact paired test, task outcomes and restricted generalization alongside them.
-
-## Cluster subscription recovery
-
-Both remote Codex coordinators stopped on the default cluster account’s usage limit after their bounded retries; the 59-percent desktop reading applied to a different account/profile and must not be used for cluster admission. Original runtime/log evidence is preserved. No new credits or charges. The experiment06 handoff had not reached source export or measured calls. Experiment04 has uncommitted preparation/control evidence requiring verification and publication; its summaries are not independently accepted results yet.
-
-Selected one existing authenticated Claude subscription coordinator (`claude-sonnet-5` / high) to recover experiment06 and verify/publish the earlier experiment04/02 findings during waits. The recovery prompt explicitly transfers only those prior owned paths after checking no old writer survives, retains scientific gates and budgets, and keeps Qwen read-only. New runtime `runtime_claude_recovery`, new session `rl4cv-e06-swebench-claude-recovery`; native acknowledgement remains to verify. Its supervisor will watch both owned roots and preserve healthy child jobs. No unmeasured extra worker fanout.
-
-### Current fallback after Claude confirmation stall
-
-The Claude replacement authenticated and read files, but both attempts declined execution and requested redundant confirmation despite the actual user authorization; neither wrote an acknowledgement or began benchmark preparation. Their native results/logs are preserved. This was a worker response, not an automatic tool-approval rejection. It did not spend any measured solver calls.
-
-The master verified an existing distinct Vals Codex ChatGPT account in `/lfs/skampere1/0/brando9/.codex-vals`, with no provider API key and successful login status. Selected one bounded `gpt-5.6-terra` / high executor there, with unchanged scientific pins and scopes; no credentials copied or credits purchased. New current runtime `runtime_vals_recovery`, session `rl4cv-e06-swebench-vals-recovery`, runbook experiment06 `expt_v1/recovery_vals.md`; verify acknowledgement plus useful source action before accepting handoff. Original and Claude runtimes are historical, not current liveness. No additional provider fanout is admitted by unknown allowance.
+- `150d61e`: earlier experiment04 planning/audit. `d222e634e07d7f683fd6930200812c36823f51f9`: endpoint harness and bounded external/prospective setup. `f8f0e57`: original handoff/watch records.
+- `d34287851d28966675060ac85d53d1dfa1ca7d77`: new experiment06 protocol, tools and first remote handoff. `87a3e14bb6fc9e9d8d4aa72a10edc8661ff2e510`: preserved quota incident and bounded Claude recovery. `1a9c4c818b3dec1d8ad6ddf5660409753c88c270`: verified distinct Vals profile and current recovery instructions. All pushed main.
+- Latest deterministic checks: 32 repository tests passed, two skipped; 21 experiment06 tests passed; prior endpoint unit suite passed ten tests. Harmless supervisor restart test passed twice on the remote host. Do not present these as measured benchmark success.
+- Earlier transferred source `/lfs/skampere1/0/brando9/rl4cv_azalia_execute/inputs/fvapps_train_3552a173.jsonl` SHA-256 `e0874ed37ab4c0a1e727cc2e11fdc9d4add5f34316ddc726b1f3922d60146bc1` matched on arrival. Scorer/Lean pins and experiment04 history remain in its runbook/receipts.
+- Public benchmark pretraining contamination is unresolved. Small-panel bootstrap intervals can degenerate; report paired task outcomes, exact paired test and restricted generalization. Frozen statistical/aggregate conventions stay unchanged.
