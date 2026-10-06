@@ -1,0 +1,13 @@
+# Experiment 02B v2 — preflight a prospective external environment-selection pilot
+
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_b_prospective_2x2_forecast_check/expt_v2/cc.md>
+
+**TLDR:** Prepare but do not launch the smallest prospective non-VeriBench RL environment-selection study: two distinct screened external Lean environments, one fixed kernel-binary reward, equal compute, and two seeds each. The pass condition is a complete source/reference/adapter receipt and a numeric ρ–H forecast frozen before training; the deliverable is the frozen manifests and a blocked-or-ready preflight report. Do not use VeriBench data for training, tuning, feedback, checkpoint selection, or forecast fitting, and do not call an FVAPPS `sorry` stub an accepted reference.
+
+SNAP PRE-APPROVAL (Brando, 2026-09-14): you run with full access (permission prompts and sandbox bypassed). Every command, install, Docker/GPU use, file and git operation (branch, commit, push, PR, merge per Rule 46) and every budgeted experiment call needed for this task is already approved. Never stop to ask for permission or confirmation; treat any approval step as granted, proceed, and log what you did. Pause only for a real blocker (missing credential, exhausted budget, a human-only login step).
+
+Read `~/agents-config/INDEX_RULES.md`, this repository's `CLAUDE.md`, and this version's `PROTOCOL.md` and `RUNBOOK.md`. Rerun the phase-A FVAPPS builder against the execution checkout; preserve the first manifest and write a new versioned output if it exists. Inspect VERINA commit `66b3ce5014edafb20cb26b87c681e7f31847249f` only as a candidate theorem-completion source; reject it if lineage, exact-hash, word-5-gram, Lean 4.22.0, or reference-acceptance checks fail.
+
+This brief prepares readiness; expensive probes or training require the parent runbook's concrete admission manifest and budget. Confirm the public Qwen3 Base revision, materialize only accepted references, freeze disjoint train/test manifests, and prepare the commands that will measure usable signal density (ρ) and effective coverage (H) for both environments once admitted. Do not invent the law equation or coefficients: until they are independently located, record that numeric prediction and `freeze_forecast` are blocked. Once the equation is available, the forecast must name the winning environment and numeric external-test delta before either equal-compute arm starts.
+
+TL;DR: This prompt produces a truthful readiness receipt for two external Lean environments with equal compute and fixed reward; it launches nothing until accepted references, a Lean-safe adapter, and a frozen numeric forecast exist.

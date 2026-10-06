@@ -1,0 +1,18 @@
+{
+  "run_id": "rl4cv-azalia-external-v3-10-05-2026",
+  "scope": "endpoint controls, real external panel applicability, bounded repair pilot, prospective environment preparation",
+  "master_thread": "01a10d32-a3b2-7d70-a8e9-764e40592ed5",
+  "host": "skampere1",
+  "owned_root": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification",
+  "runtime": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/runtime",
+  "session": "rl4cv-azalia-external-v3",
+  "recovery_owner": "remote Codex coordinator under supervise.py; master heartbeat verifies scientific completion",
+  "executor": {"client": "codex-cli 0.154.0", "model": "gpt-5.6-terra", "effort": "high", "role": "implementation and execution, not measured solver", "permission_flag": "--dangerously-bypass-approvals-and-sandbox", "auth_evidence": "codex login status: Logged in using ChatGPT", "actual_runtime_ack": "runtime/ack.json, pending launch"},
+  "allowance": {"source": "Codex app read-only usage tool, 10-05-2026", "weekly_used_percent": 36, "weekly_remaining_percent": 64, "five_hour_window": null, "authorized_credit_balance": 0, "no_new_charges": true, "shared_consumers": "master and regular implementation workers; allowance is shared", "estimate": "one bounded implementation worker, roughly 20000-60000 tokens; actual allowance cost unknown", "finishing_reserve": "retain at least 25 percent; do not start a new expensive batch at 10 percent", "max_concurrent_remote_coordinators": 1},
+  "recovery": {"max_coordinator_attempts": 2, "poll_seconds": 120, "healthy_children": "adopt, never kill to recover coordinator", "automatic_provider_switch": false, "fallback": "master verifies an eligible supported executor if primary fails; no scientific-model substitution", "reboot_automatic": false, "notification": "same-thread Codex heartbeat; no email or collaborator messages", "receipt_is_not_completion": true},
+  "health": {"checked_on": "10-05-2026", "local_scratch_free_gib": 11058, "job_relevant_checks": "PASS", "shared_dfs_free_gib": 414, "shared_dfs_gate": "FAIL free-percent; large artifacts and runs use local scratch, not shared DFS", "warnings": "unused older CLI binaries; canonical Codex executable selected"},
+  "scientific_bounds": {"external_tasks": 24, "conditions_max": 4, "repair_steps": 2, "initial_calls_max": 24, "repair_calls_max": 192, "solver_output_token_cap": 8192, "total_solver_output_tokens_max": 1769472, "judge_member_calls_max": 1296, "gpu_count_max": 1, "gpu_hours_max": 6, "cpu_hours_max": 24, "model_and_cell_manifest": "must be concretely frozen before measured calls; current file admits implementation and endpoint controls"},
+  "upstream_qwen_evaluation": {"path": "/lfs/skampere1/0/brando9/rl4cv_e05", "ownership": "other worker, read-only dependency", "wait_before_endpoint_or_pool_work": false},
+  "publication": "explicit owned paths on main after deterministic tests; preserve concurrent work; runtime acknowledgement records exact source revision and hashes",
+  "terminal_contract": "worker_completion.json includes stage status, remaining dependencies, full denominators, output hashes and published commit; master verifies evidence before claiming completion"
+}
