@@ -4,7 +4,9 @@
 
 **TLDR:** Resumable state for experiment 05's SNAP run: who owns it, what is running where, and the exact commands to resume or land it.
 
-**Last updated:** 10-05-2026 18:20 (master)
+**Last updated:** 10-06-2026 00:15 (worker)
+
+**LANDED ec202b72fa0653da8cd1092ceeb78eddc1e8cd92 https://github.com/brando90/rl-4-code-verification/pull/4 10-06-2026 00:15**
 
 ## Ownership
 
