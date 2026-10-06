@@ -1,0 +1,115 @@
+{
+  "kernel_check": "kernel_axioms_v4_2026-09-09",
+  "path": "external/verina_66b3ce50/datasets/verina/verina_basic_48/task.lean",
+  "probe_ok": true,
+  "probe_rc": 0,
+  "allow_native_decide": false,
+  "n_stated": 3,
+  "n_phantom": 0,
+  "n_theorems": 3,
+  "n_honest": 3,
+  "n_sorry_ax": 0,
+  "n_native_decide": 0,
+  "n_declared_axiom": 0,
+  "n_unknown": 0,
+  "ic_pp": 1.0,
+  "theorems": [
+    {
+      "name": "check_correct",
+      "short": "check_correct",
+      "line": 53,
+      "column": 8,
+      "offset": 1053,
+      "declaration": "theorem",
+      "prefix": "",
+      "phantom": false,
+      "full_name": "check_correct",
+      "kind": "theorem",
+      "axioms": [
+        "propext"
+      ],
+      "category": "honest",
+      "resolution": "source_position",
+      "regex_sorry": null,
+      "kernel_honest": true
+    },
+    {
+      "name": "check_complete",
+      "short": "check_complete",
+      "line": 88,
+      "column": 8,
+      "offset": 2149,
+      "declaration": "theorem",
+      "prefix": "",
+      "phantom": false,
+      "full_name": "check_complete",
+      "kind": "theorem",
+      "axioms": [
+        "propext"
+      ],
+      "category": "honest",
+      "resolution": "source_position",
+      "regex_sorry": null,
+      "kernel_honest": true
+    },
+    {
+      "name": "isPerfectSquare_spec_satisfied",
+      "short": "isPerfectSquare_spec_satisfied",
+      "line": 138,
+      "column": 8,
+      "offset": 3742,
+      "declaration": "theorem",
+      "prefix": "",
+      "phantom": false,
+      "full_name": "isPerfectSquare_spec_satisfied",
+      "kind": "theorem",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "category": "honest",
+      "resolution": "source_position",
+      "regex_sorry": null,
+      "kernel_honest": true
+    }
+  ],
+  "declared_axioms": [],
+  "extra_theorems": [
+    {
+      "full_name": "_private._stdin.0.isPerfectSquare.check.match_1.eq_1",
+      "axioms": [],
+      "category": "honest"
+    },
+    {
+      "full_name": "_private._stdin.0.isPerfectSquare.check.match_1.eq_2",
+      "axioms": [],
+      "category": "honest"
+    },
+    {
+      "full_name": "isPerfectSquare.check.eq_1",
+      "axioms": [],
+      "category": "honest"
+    },
+    {
+      "full_name": "isPerfectSquare.check.eq_2",
+      "axioms": [],
+      "category": "honest"
+    },
+    {
+      "full_name": "isPerfectSquare.check.eq_def",
+      "axioms": [],
+      "category": "honest"
+    }
+  ],
+  "probe_errors": [],
+  "stderr_tail": "\n",
+  "probe_output_sha256": "ba158380c23a20e0d829842b71fe2d2904955a8db235eda6a5a5fa60d3ca5b4d",
+  "n_legacy_theorems": 3,
+  "compile_rc": 0,
+  "inspect_rc": 0,
+  "source_sha256": "e28a0c37412a3a35b8862b69983aa8b5e890ca1374177a3085ae26b4331923ac",
+  "compiled_module_sha256": "f9742a95e79ae113b3d00af83b7501993d4b0ca85b1cb0a851d27fd27dec387e",
+  "evidence_dir": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v3/results/verina_external24_applicability_2026-10-06T0610Z/evidence/verina_basic_48/vbax_kdxz58b9",
+  "compiled_module": "_stdin"
+}

@@ -1,0 +1,19 @@
+/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/external/verina_66b3ce50/datasets/verina/verina_basic_9/task.lean:25:54: warning: unused variable `h_precond`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/external/verina_66b3ce50/datasets/verina/verina_basic_9/task.lean:37:78: warning: unused variable `h_precond`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/external/verina_66b3ce50/datasets/verina/verina_basic_9/task.lean:76:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  a[i]!
+case mpr.intro.intro.intro.intro
+a b : Array Int
+h_precond : hasCommonElement_precond a b
+i : Nat
+hi : i < a.size
+j : Nat
+hj : j < b.size
+heq : a[i] = b[j]
+heqa : a[i]! = a[i]
+heqb : b[j]! = b[j]
+⊢ a[i] = b[j]

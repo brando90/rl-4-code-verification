@@ -1,0 +1,81 @@
+{
+  "kernel_check": "kernel_axioms_v4_2026-09-09",
+  "path": "external/verina_66b3ce50/datasets/verina/verina_basic_106/task.lean",
+  "probe_ok": true,
+  "probe_rc": 0,
+  "allow_native_decide": false,
+  "n_stated": 1,
+  "n_phantom": 0,
+  "n_theorems": 1,
+  "n_honest": 0,
+  "n_sorry_ax": 1,
+  "n_native_decide": 0,
+  "n_declared_axiom": 0,
+  "n_unknown": 0,
+  "ic_pp": 0.0,
+  "theorems": [
+    {
+      "name": "arraySum_spec_satisfied",
+      "short": "arraySum_spec_satisfied",
+      "line": 57,
+      "column": 8,
+      "offset": 1295,
+      "declaration": "theorem",
+      "prefix": "",
+      "phantom": false,
+      "full_name": "arraySum_spec_satisfied",
+      "kind": "theorem",
+      "axioms": [
+        "Quot.sound",
+        "propext",
+        "sorryAx"
+      ],
+      "category": "sorryAx",
+      "resolution": "source_position",
+      "regex_sorry": null,
+      "kernel_honest": false
+    }
+  ],
+  "declared_axioms": [],
+  "extra_theorems": [
+    {
+      "full_name": "arraySum.loop._unary._proof_1",
+      "axioms": [],
+      "category": "honest"
+    },
+    {
+      "full_name": "arraySum.loop._unary._proof_2",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "category": "honest"
+    },
+    {
+      "full_name": "arraySum.loop._unary.eq_def",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "category": "honest"
+    },
+    {
+      "full_name": "arraySum.loop.eq_def",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "category": "honest"
+    }
+  ],
+  "probe_errors": [],
+  "stderr_tail": "\n",
+  "probe_output_sha256": "4744ead4dce2459601a37af8d3b28a76aa5503de958d1d9255139d1c350f9c81",
+  "n_legacy_theorems": 1,
+  "compile_rc": 0,
+  "inspect_rc": 0,
+  "source_sha256": "a6ac835bae79bccd139e8c05706789e356774d1468216974a4a9b160473c0490",
+  "compiled_module_sha256": "a1984c97e06a5d58f6ac460f0c2b2235d383f1687a942d173d297dac8160fe6c",
+  "evidence_dir": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v3/results/verina_external24_applicability_2026-10-06T0610Z/evidence/verina_basic_106/vbax_yqjzcrmk",
+  "compiled_module": "_stdin"
+}

@@ -1,0 +1,69 @@
+{
+  "kernel_check": "kernel_axioms_v4_2026-09-09",
+  "path": "external/verina_66b3ce50/datasets/verina/verina_basic_104/task.lean",
+  "probe_ok": true,
+  "probe_rc": 0,
+  "allow_native_decide": false,
+  "n_stated": 1,
+  "n_phantom": 0,
+  "n_theorems": 1,
+  "n_honest": 0,
+  "n_sorry_ax": 1,
+  "n_native_decide": 0,
+  "n_declared_axiom": 0,
+  "n_unknown": 0,
+  "ic_pp": 0.0,
+  "theorems": [
+    {
+      "name": "update_map_spec_satisfied",
+      "short": "update_map_spec_satisfied",
+      "line": 81,
+      "column": 8,
+      "offset": 2341,
+      "declaration": "theorem",
+      "prefix": "",
+      "phantom": false,
+      "full_name": "update_map_spec_satisfied",
+      "kind": "theorem",
+      "axioms": [
+        "Quot.sound",
+        "propext",
+        "sorryAx"
+      ],
+      "category": "sorryAx",
+      "resolution": "source_position",
+      "regex_sorry": null,
+      "kernel_honest": false
+    }
+  ],
+  "declared_axioms": [],
+  "extra_theorems": [
+    {
+      "full_name": "Map.mk.inj",
+      "axioms": [],
+      "category": "honest"
+    },
+    {
+      "full_name": "Map.mk.injEq",
+      "axioms": [
+        "propext"
+      ],
+      "category": "honest"
+    },
+    {
+      "full_name": "Map.mk.sizeOf_spec",
+      "axioms": [],
+      "category": "honest"
+    }
+  ],
+  "probe_errors": [],
+  "stderr_tail": "\n",
+  "probe_output_sha256": "774c51ee31a93db3a209282d4d517695d8eda8a8b794114d8ce8a940cad734a6",
+  "n_legacy_theorems": 1,
+  "compile_rc": 0,
+  "inspect_rc": 0,
+  "source_sha256": "2d53b0e9c2dc01f86caa87b720e97868ed2e0ecdd28ffd6a99f88142dcbe8ba2",
+  "compiled_module_sha256": "e89c4169c080a1ce4917d0f5495aeaf833f29e873969e4217800b40b585a4cd8",
+  "evidence_dir": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v3/results/verina_external24_applicability_2026-10-06T0610Z/evidence/verina_basic_104/vbax_ea6rxdci",
+  "compiled_module": "_stdin"
+}

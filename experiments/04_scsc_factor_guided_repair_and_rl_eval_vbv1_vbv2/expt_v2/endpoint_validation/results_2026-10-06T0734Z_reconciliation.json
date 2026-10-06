@@ -1,0 +1,2771 @@
+{
+  "baseline_receipt": {
+    "path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+    "sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd"
+  },
+  "baseline_script_sha256": "96be85868f7ea3b36ffd51f50e3f5cfd184ba1fe13a15697d69c66aa9bdc30fc",
+  "declared_cells": 24,
+  "identical_infrastructure_retry_receipt": {
+    "path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/results.json",
+    "sha256": "54fe3c994016a6e2014a34f2ae2e193f5671d7f351a2aba254b790607479c615"
+  },
+  "interrupted_resume_receipt": {
+    "executed_cells": 4,
+    "note": "Preflight failed before any resumed cell measurement; preserved rather than overwritten.",
+    "path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0732Z_resume4/results.json",
+    "sha256": "a63d06cbaff94e8a214c4817de6ad735aade1c6d7ff5aa5a0d8e054c54d6cae9",
+    "status": "INFRASTRUCTURE_OR_INPUT_FAILURE"
+  },
+  "kernel": {
+    "commit": "59059a20d40adf3289869e58302169ad78102877",
+    "sha256": "5dbbdcae75ba8b22911fcb43ab1fcde45a1475cf92742a39a29ebe41116de287"
+  },
+  "manifest_sha256": "04546bc98599d31fa4bc48e53f66b44af981e651eb6ab1e58f4d3aaf775a0df3",
+  "matching_cells": 24,
+  "measured_cells": 24,
+  "reconciled_cells": 24,
+  "retry_script_sha256": "28b6e1db177668b10c584d3cf583211d31f084b8aa2319d1c6ece51c2d16b857",
+  "rows": [
+    {
+      "cell": "increment_correct",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "700e0853c49eadff6db2a206122406b5cdc8e60e86fed8c7bc204f973fdc5d76",
+        "cell": "increment_correct",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "expected": {
+          "evaluator": "pass",
+          "submitted": "pass",
+          "tests": "pass"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 13.629626389592886,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_correct/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "01a371fda307e53d16d517622d933627a55415b7bbf571cee179a6e6fea5bd02",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "certificates": [
+                  "reference_obligation"
+                ],
+                "elapsed_seconds": 13.15126835461706,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_correct/obligation_exact_0",
+                "reason": "allowed_transitive_axioms",
+                "source_sha256": "d35ea8f8155b4b1bf8ac1caf522b0b842b3cfc1ad66fbd85482c6531f01b9103",
+                "status": "pass",
+                "tactic": "intro n; rfl",
+                "value": true
+              }
+            ],
+            "certificates": [
+              "reference_obligation"
+            ],
+            "elapsed_seconds": 13.15126835461706,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_correct/obligation_exact_0",
+            "name": "exact",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "d35ea8f8155b4b1bf8ac1caf522b0b842b3cfc1ad66fbd85482c6531f01b9103",
+            "status": "pass",
+            "tactic": "intro n; rfl",
+            "value": true
+          }
+        ],
+        "reference_tests_pass": {
+          "certificates": [
+            "reference_test_0",
+            "reference_test_1",
+            "reference_test_2",
+            "reference_test_3"
+          ],
+          "elapsed_seconds": 13.744912778958678,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_correct/tests",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "4d2291b3f02d23141205f3f48789729176d24992f16784612eb8b49754a85868",
+          "status": "pass",
+          "value": true
+        },
+        "reference_verified_success": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "certificates": [
+            "submitted_certificate"
+          ],
+          "elapsed_seconds": 13.253747983835638,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_correct/submitted",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "ada7bd095b06a3bead51f0d967e9e69431e03c301451f750b0ab9520182f5fb4",
+          "specification_kind": "full",
+          "status": "pass",
+          "value": true
+        },
+        "submitted_reference_obligations_proved": {
+          "certificates": [
+            "submitted_certificate"
+          ],
+          "elapsed_seconds": 13.253747983835638,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_correct/submitted",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "ada7bd095b06a3bead51f0d967e9e69431e03c301451f750b0ab9520182f5fb4",
+          "specification_kind": "full",
+          "status": "pass",
+          "value": true
+        },
+        "task": "increment"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "increment_bug",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "1168d3d0650710ad370346f1fa8570707c579cbd986a1d995362d79986643868",
+        "cell": "increment_bug",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "expected": {
+          "evaluator": "fail",
+          "submitted": "unknown",
+          "tests": "fail"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 12.774640913121402,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_bug/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "ef4b25442ecce166c4041ab024094729d286692e3eb0d710e00d18aa020c2747",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "elapsed_seconds": 6.16567850112915,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_bug/obligation_exact_0",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "5f6e3d6ed842d3b096ba3fae1b91c0d7724980d114d2f7af3f4573cc7a0f50e3",
+                "status": "unknown",
+                "tactic": "intro n; rfl",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 6.546689544804394,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_bug/obligation_exact_1",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "9605892130831f1a286035fd0b3988698d68063ac3071a740af5b5fc7d39728d",
+                "status": "unknown",
+                "tactic": "simp [Candidate.impl]",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 6.327326042577624,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_bug/obligation_exact_2",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "d5157d06d056ee4b57511e2dae38ab09a2d5cf7f2f56606f580b6924abd11a64",
+                "status": "unknown",
+                "tactic": "intro n; simp [Candidate.impl]; omega",
+                "value": null
+              }
+            ],
+            "counterexamples": [
+              {
+                "expected": 1,
+                "input": 0
+              }
+            ],
+            "name": "exact",
+            "reason": "checked_counterexample_to_exact_obligation",
+            "status": "fail",
+            "value": false
+          }
+        ],
+        "reference_tests_pass": {
+          "counterexamples": [
+            {
+              "expected": 1,
+              "input": 0
+            }
+          ],
+          "lean_test_attempt": {
+            "elapsed_seconds": 6.298183926381171,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_bug/tests",
+            "reason": "compile_or_probe_failed",
+            "source_sha256": "0845ce5f4934a22cdda882b1e574bb09d589a8ee7be0a9c7f323b02d36a62c62",
+            "status": "unknown",
+            "value": null
+          },
+          "negative_certificate": {
+            "certificates": [
+              "reference_counterexample"
+            ],
+            "elapsed_seconds": 13.018944299779832,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_bug/counterexample",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "1bf09095141279ee867bb78d875a19a8b42e3659f284d46ac171a994a503f2d6",
+            "status": "pass",
+            "value": true
+          },
+          "reason": "checked_finite_counterexample",
+          "status": "fail",
+          "value": false
+        },
+        "reference_verified_success": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "elapsed_seconds": 6.491850017569959,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_bug/submitted",
+          "reason": "compile_or_probe_failed",
+          "source_sha256": "e6636a83acddf6955bab218c7b5a4cdb4a128d8a4862ccddfc598d818f67c52f",
+          "specification_kind": "full",
+          "status": "unknown",
+          "value": null
+        },
+        "submitted_reference_obligations_proved": {
+          "elapsed_seconds": 6.491850017569959,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_bug/submitted",
+          "reason": "compile_or_probe_failed",
+          "source_sha256": "e6636a83acddf6955bab218c7b5a4cdb4a128d8a4862ccddfc598d818f67c52f",
+          "specification_kind": "full",
+          "status": "unknown",
+          "value": null
+        },
+        "task": "increment"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "increment_weak_spec",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "e6b0c7ccd8335186f3236d79af87e1c2b3f711457eeca3dac994864cf03c1ca3",
+        "cell": "increment_weak_spec",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "expected": {
+          "evaluator": "fail",
+          "submitted": "pass",
+          "tests": "fail"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 12.95736003946513,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_weak_spec/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "ef4b25442ecce166c4041ab024094729d286692e3eb0d710e00d18aa020c2747",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "elapsed_seconds": 6.713203465566039,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_weak_spec/obligation_exact_0",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "5f6e3d6ed842d3b096ba3fae1b91c0d7724980d114d2f7af3f4573cc7a0f50e3",
+                "status": "unknown",
+                "tactic": "intro n; rfl",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 6.087777682580054,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_weak_spec/obligation_exact_1",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "9605892130831f1a286035fd0b3988698d68063ac3071a740af5b5fc7d39728d",
+                "status": "unknown",
+                "tactic": "simp [Candidate.impl]",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 6.444701288826764,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_weak_spec/obligation_exact_2",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "d5157d06d056ee4b57511e2dae38ab09a2d5cf7f2f56606f580b6924abd11a64",
+                "status": "unknown",
+                "tactic": "intro n; simp [Candidate.impl]; omega",
+                "value": null
+              }
+            ],
+            "counterexamples": [
+              {
+                "expected": 1,
+                "input": 0
+              }
+            ],
+            "name": "exact",
+            "reason": "checked_counterexample_to_exact_obligation",
+            "status": "fail",
+            "value": false
+          }
+        ],
+        "reference_tests_pass": {
+          "counterexamples": [
+            {
+              "expected": 1,
+              "input": 0
+            }
+          ],
+          "lean_test_attempt": {
+            "elapsed_seconds": 6.3642875319346786,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_weak_spec/tests",
+            "reason": "compile_or_probe_failed",
+            "source_sha256": "0845ce5f4934a22cdda882b1e574bb09d589a8ee7be0a9c7f323b02d36a62c62",
+            "status": "unknown",
+            "value": null
+          },
+          "negative_certificate": {
+            "certificates": [
+              "reference_counterexample"
+            ],
+            "elapsed_seconds": 13.341093296185136,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_weak_spec/counterexample",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "1bf09095141279ee867bb78d875a19a8b42e3659f284d46ac171a994a503f2d6",
+            "status": "pass",
+            "value": true
+          },
+          "reason": "checked_finite_counterexample",
+          "status": "fail",
+          "value": false
+        },
+        "reference_verified_success": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "certificates": [
+            "submitted_certificate"
+          ],
+          "elapsed_seconds": 14.027606145478785,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_weak_spec/submitted",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "678a44deef1ba615a77068860a1a01e8770a1e8139a01cb0c4706bf18392a2e0",
+          "specification_kind": "weak_true",
+          "status": "pass",
+          "value": true
+        },
+        "submitted_reference_obligations_proved": {
+          "reason": "submitted_reference_bridge_unavailable",
+          "status": "unknown",
+          "value": null
+        },
+        "task": "increment"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "increment_vacuous_spec",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "b490628b3994eb2a75796860565e320eb286b12b13463d4cf5280630826d9c0c",
+        "cell": "increment_vacuous_spec",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "expected": {
+          "evaluator": "fail",
+          "submitted": "pass",
+          "tests": "fail"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 13.710781021043658,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_vacuous_spec/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "ef4b25442ecce166c4041ab024094729d286692e3eb0d710e00d18aa020c2747",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "elapsed_seconds": 6.970448094420135,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_vacuous_spec/obligation_exact_0",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "5f6e3d6ed842d3b096ba3fae1b91c0d7724980d114d2f7af3f4573cc7a0f50e3",
+                "status": "unknown",
+                "tactic": "intro n; rfl",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 6.569017648696899,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_vacuous_spec/obligation_exact_1",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "9605892130831f1a286035fd0b3988698d68063ac3071a740af5b5fc7d39728d",
+                "status": "unknown",
+                "tactic": "simp [Candidate.impl]",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 6.9222856080159545,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_vacuous_spec/obligation_exact_2",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "d5157d06d056ee4b57511e2dae38ab09a2d5cf7f2f56606f580b6924abd11a64",
+                "status": "unknown",
+                "tactic": "intro n; simp [Candidate.impl]; omega",
+                "value": null
+              }
+            ],
+            "counterexamples": [
+              {
+                "expected": 1,
+                "input": 0
+              }
+            ],
+            "name": "exact",
+            "reason": "checked_counterexample_to_exact_obligation",
+            "status": "fail",
+            "value": false
+          }
+        ],
+        "reference_tests_pass": {
+          "counterexamples": [
+            {
+              "expected": 1,
+              "input": 0
+            }
+          ],
+          "lean_test_attempt": {
+            "elapsed_seconds": 6.722383396700025,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_vacuous_spec/tests",
+            "reason": "compile_or_probe_failed",
+            "source_sha256": "0845ce5f4934a22cdda882b1e574bb09d589a8ee7be0a9c7f323b02d36a62c62",
+            "status": "unknown",
+            "value": null
+          },
+          "negative_certificate": {
+            "certificates": [
+              "reference_counterexample"
+            ],
+            "elapsed_seconds": 14.284695671871305,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_vacuous_spec/counterexample",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "1bf09095141279ee867bb78d875a19a8b42e3659f284d46ac171a994a503f2d6",
+            "status": "pass",
+            "value": true
+          },
+          "reason": "checked_finite_counterexample",
+          "status": "fail",
+          "value": false
+        },
+        "reference_verified_success": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "certificates": [
+            "submitted_certificate"
+          ],
+          "elapsed_seconds": 13.63998169824481,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_vacuous_spec/submitted",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "9818ced960f1e05872d5605cda7b4815bd67bcd2b2267abb47e0c6452feabc77",
+          "specification_kind": "vacuous",
+          "status": "pass",
+          "value": true
+        },
+        "submitted_reference_obligations_proved": {
+          "reason": "submitted_reference_bridge_unavailable",
+          "status": "unknown",
+          "value": null
+        },
+        "task": "increment"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "increment_sorry",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "8629a03e9556701c47c930e7c49febc147de5ccdf4f0f02174cca22e767a17e9",
+        "cell": "increment_sorry",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "expected": {
+          "evaluator": "pass",
+          "submitted": "fail",
+          "tests": "pass"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 14.195677257142961,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_sorry/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "01a371fda307e53d16d517622d933627a55415b7bbf571cee179a6e6fea5bd02",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "certificates": [
+                  "reference_obligation"
+                ],
+                "elapsed_seconds": 13.979942901059985,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_sorry/obligation_exact_0",
+                "reason": "allowed_transitive_axioms",
+                "source_sha256": "d35ea8f8155b4b1bf8ac1caf522b0b842b3cfc1ad66fbd85482c6531f01b9103",
+                "status": "pass",
+                "tactic": "intro n; rfl",
+                "value": true
+              }
+            ],
+            "certificates": [
+              "reference_obligation"
+            ],
+            "elapsed_seconds": 13.979942901059985,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_sorry/obligation_exact_0",
+            "name": "exact",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "d35ea8f8155b4b1bf8ac1caf522b0b842b3cfc1ad66fbd85482c6531f01b9103",
+            "status": "pass",
+            "tactic": "intro n; rfl",
+            "value": true
+          }
+        ],
+        "reference_tests_pass": {
+          "certificates": [
+            "reference_test_0",
+            "reference_test_1",
+            "reference_test_2",
+            "reference_test_3"
+          ],
+          "elapsed_seconds": 13.42850021738559,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_sorry/tests",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "4d2291b3f02d23141205f3f48789729176d24992f16784612eb8b49754a85868",
+          "status": "pass",
+          "value": true
+        },
+        "reference_verified_success": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "axioms": [
+            "sorryAx"
+          ],
+          "elapsed_seconds": 13.578799339011312,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_sorry/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "45c888443374f7fab324948b2e6f58c42f98c79852aafac0ff06e338611ad362",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "submitted_reference_obligations_proved": {
+          "axioms": [
+            "sorryAx"
+          ],
+          "elapsed_seconds": 13.578799339011312,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_sorry/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "45c888443374f7fab324948b2e6f58c42f98c79852aafac0ff06e338611ad362",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "task": "increment"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "increment_helper_sorry",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "cb94842883f6814dd97bffb06d3a4172159e8f73351ee63b818905639b2cc126",
+        "cell": "increment_helper_sorry",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "expected": {
+          "evaluator": "pass",
+          "submitted": "fail",
+          "tests": "pass"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 13.744998997077346,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_helper_sorry/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "01a371fda307e53d16d517622d933627a55415b7bbf571cee179a6e6fea5bd02",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "certificates": [
+                  "reference_obligation"
+                ],
+                "elapsed_seconds": 13.659247996285558,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_helper_sorry/obligation_exact_0",
+                "reason": "allowed_transitive_axioms",
+                "source_sha256": "d35ea8f8155b4b1bf8ac1caf522b0b842b3cfc1ad66fbd85482c6531f01b9103",
+                "status": "pass",
+                "tactic": "intro n; rfl",
+                "value": true
+              }
+            ],
+            "certificates": [
+              "reference_obligation"
+            ],
+            "elapsed_seconds": 13.659247996285558,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_helper_sorry/obligation_exact_0",
+            "name": "exact",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "d35ea8f8155b4b1bf8ac1caf522b0b842b3cfc1ad66fbd85482c6531f01b9103",
+            "status": "pass",
+            "tactic": "intro n; rfl",
+            "value": true
+          }
+        ],
+        "reference_tests_pass": {
+          "certificates": [
+            "reference_test_0",
+            "reference_test_1",
+            "reference_test_2",
+            "reference_test_3"
+          ],
+          "elapsed_seconds": 14.18921313341707,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_helper_sorry/tests",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "4d2291b3f02d23141205f3f48789729176d24992f16784612eb8b49754a85868",
+          "status": "pass",
+          "value": true
+        },
+        "reference_verified_success": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "axioms": [
+            "sorryAx"
+          ],
+          "elapsed_seconds": 13.604802671819925,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_helper_sorry/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "beb6da6b47cc9f30c1bdd6afd1ddfd61a0065c9af5a260bd578f6ee67d315092",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "submitted_reference_obligations_proved": {
+          "axioms": [
+            "sorryAx"
+          ],
+          "elapsed_seconds": 13.604802671819925,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_helper_sorry/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "beb6da6b47cc9f30c1bdd6afd1ddfd61a0065c9af5a260bd578f6ee67d315092",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "task": "increment"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "increment_axiom",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "e9f9bc463d3d741ea98a8e1e22919427635be7981b6bcb465f52e98716b26eb9",
+        "cell": "increment_axiom",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "expected": {
+          "evaluator": "pass",
+          "submitted": "fail",
+          "tests": "pass"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 14.412258256226778,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_axiom/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "01a371fda307e53d16d517622d933627a55415b7bbf571cee179a6e6fea5bd02",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "certificates": [
+                  "reference_obligation"
+                ],
+                "elapsed_seconds": 14.19725779723376,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_axiom/obligation_exact_0",
+                "reason": "allowed_transitive_axioms",
+                "source_sha256": "d35ea8f8155b4b1bf8ac1caf522b0b842b3cfc1ad66fbd85482c6531f01b9103",
+                "status": "pass",
+                "tactic": "intro n; rfl",
+                "value": true
+              }
+            ],
+            "certificates": [
+              "reference_obligation"
+            ],
+            "elapsed_seconds": 14.19725779723376,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_axiom/obligation_exact_0",
+            "name": "exact",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "d35ea8f8155b4b1bf8ac1caf522b0b842b3cfc1ad66fbd85482c6531f01b9103",
+            "status": "pass",
+            "tactic": "intro n; rfl",
+            "value": true
+          }
+        ],
+        "reference_tests_pass": {
+          "certificates": [
+            "reference_test_0",
+            "reference_test_1",
+            "reference_test_2",
+            "reference_test_3"
+          ],
+          "elapsed_seconds": 14.40108850877732,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_axiom/tests",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "4d2291b3f02d23141205f3f48789729176d24992f16784612eb8b49754a85868",
+          "status": "pass",
+          "value": true
+        },
+        "reference_verified_success": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "axioms": [
+            "submitted_assumption"
+          ],
+          "elapsed_seconds": 13.840143219567835,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_axiom/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "c830fcde36066ab5956c412d81854176807a1399a787c6f922345f4b6c97e1b1",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "submitted_reference_obligations_proved": {
+          "axioms": [
+            "submitted_assumption"
+          ],
+          "elapsed_seconds": 13.840143219567835,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_axiom/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "c830fcde36066ab5956c412d81854176807a1399a787c6f922345f4b6c97e1b1",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "task": "increment"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "increment_native_decide",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "49c2a2c88bd6f13daebafe23a3cc432a0fa4526277ba0f35b69848d339f5ea55",
+        "cell": "increment_native_decide",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "expected": {
+          "evaluator": "pass",
+          "submitted": "fail",
+          "tests": "pass"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 14.39477698970586,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_native_decide/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "01a371fda307e53d16d517622d933627a55415b7bbf571cee179a6e6fea5bd02",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "certificates": [
+                  "reference_obligation"
+                ],
+                "elapsed_seconds": 15.476054860278964,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_native_decide/obligation_exact_0",
+                "reason": "allowed_transitive_axioms",
+                "source_sha256": "d35ea8f8155b4b1bf8ac1caf522b0b842b3cfc1ad66fbd85482c6531f01b9103",
+                "status": "pass",
+                "tactic": "intro n; rfl",
+                "value": true
+              }
+            ],
+            "certificates": [
+              "reference_obligation"
+            ],
+            "elapsed_seconds": 15.476054860278964,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_native_decide/obligation_exact_0",
+            "name": "exact",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "d35ea8f8155b4b1bf8ac1caf522b0b842b3cfc1ad66fbd85482c6531f01b9103",
+            "status": "pass",
+            "tactic": "intro n; rfl",
+            "value": true
+          }
+        ],
+        "reference_tests_pass": {
+          "certificates": [
+            "reference_test_0",
+            "reference_test_1",
+            "reference_test_2",
+            "reference_test_3"
+          ],
+          "elapsed_seconds": 14.292356759309769,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_native_decide/tests",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "4d2291b3f02d23141205f3f48789729176d24992f16784612eb8b49754a85868",
+          "status": "pass",
+          "value": true
+        },
+        "reference_verified_success": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "axioms": [
+            "Lean.ofReduceBool"
+          ],
+          "elapsed_seconds": 14.432171329855919,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/increment_native_decide/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "76547fba42c7b4cf4ed1a8c4996677b7aad23aaaf0a4471ea17ffd5bfb1a51ef",
+          "specification_kind": "sample_zero",
+          "status": "fail",
+          "value": false
+        },
+        "submitted_reference_obligations_proved": {
+          "reason": "submitted_reference_bridge_unavailable",
+          "status": "unknown",
+          "value": null
+        },
+        "task": "increment"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "double_correct",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "62c2c3c5d6e0055664b4f0b80ecf35d51f1d12209050067c5ba56e892fa798bd",
+        "cell": "double_correct",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "expected": {
+          "evaluator": "pass",
+          "submitted": "pass",
+          "tests": "pass"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 17.73866345640272,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_correct/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "1f773f86ea528022b0e16ef0a545eca69eb4e1890a8d2f1ec409addb80435ef7",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "certificates": [
+                  "reference_obligation"
+                ],
+                "elapsed_seconds": 14.905608615837991,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_correct/obligation_exact_0",
+                "reason": "allowed_transitive_axioms",
+                "source_sha256": "09af84f8bc22027e9a62c16f789c67f6e2db0c82231460e1d9352faeda0a126b",
+                "status": "pass",
+                "tactic": "intro n; rfl",
+                "value": true
+              }
+            ],
+            "certificates": [
+              "reference_obligation"
+            ],
+            "elapsed_seconds": 14.905608615837991,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_correct/obligation_exact_0",
+            "name": "exact",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "09af84f8bc22027e9a62c16f789c67f6e2db0c82231460e1d9352faeda0a126b",
+            "status": "pass",
+            "tactic": "intro n; rfl",
+            "value": true
+          }
+        ],
+        "reference_tests_pass": {
+          "certificates": [
+            "reference_test_0",
+            "reference_test_1",
+            "reference_test_2",
+            "reference_test_3"
+          ],
+          "elapsed_seconds": 15.238087991252542,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_correct/tests",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "a7b36673e03b22405af6f904f9cf2f337b0ef3b66f43730f0ed2c388a588a6b2",
+          "status": "pass",
+          "value": true
+        },
+        "reference_verified_success": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "certificates": [
+            "submitted_certificate"
+          ],
+          "elapsed_seconds": 14.254488221369684,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_correct/submitted",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "a34870ab26c2e8288080b58a0ae76b8fb4ed7aa6e1e8f3575359f99e76a80f42",
+          "specification_kind": "full",
+          "status": "pass",
+          "value": true
+        },
+        "submitted_reference_obligations_proved": {
+          "certificates": [
+            "submitted_certificate"
+          ],
+          "elapsed_seconds": 14.254488221369684,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_correct/submitted",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "a34870ab26c2e8288080b58a0ae76b8fb4ed7aa6e1e8f3575359f99e76a80f42",
+          "specification_kind": "full",
+          "status": "pass",
+          "value": true
+        },
+        "task": "double"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "double_bug",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "3c067e9ff4b15c1e2f43a3efdf27d70f9b456e64239c156b40dff69884aef9bd",
+        "cell": "double_bug",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "expected": {
+          "evaluator": "fail",
+          "submitted": "unknown",
+          "tests": "fail"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 14.043319053016603,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_bug/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "ef4b25442ecce166c4041ab024094729d286692e3eb0d710e00d18aa020c2747",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "elapsed_seconds": 6.858975571580231,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_bug/obligation_exact_0",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "87b7c210c20bff498e7e73234b50356e737ab6b68ab6ff5bc7273588a8165f42",
+                "status": "unknown",
+                "tactic": "intro n; rfl",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 6.819711234420538,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_bug/obligation_exact_1",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "bd6f6a9a295206066d20956134d96cce94913f7bb3ce3d228cfdaf0119bd83f8",
+                "status": "unknown",
+                "tactic": "simp [Candidate.impl]",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 6.630587167106569,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_bug/obligation_exact_2",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "b366db3e7f91ff4bd97ba2c146506651d9fccb5afc79ba4d46e10163e7fee50a",
+                "status": "unknown",
+                "tactic": "intro n; simp [Candidate.impl]; omega",
+                "value": null
+              }
+            ],
+            "counterexamples": [
+              {
+                "expected": 2,
+                "input": 1
+              }
+            ],
+            "name": "exact",
+            "reason": "checked_counterexample_to_exact_obligation",
+            "status": "fail",
+            "value": false
+          }
+        ],
+        "reference_tests_pass": {
+          "counterexamples": [
+            {
+              "expected": 2,
+              "input": 1
+            }
+          ],
+          "lean_test_attempt": {
+            "elapsed_seconds": 6.732113181613386,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_bug/tests",
+            "reason": "compile_or_probe_failed",
+            "source_sha256": "326710a922c67154d5a7700dcd6855aea85bdca7c9bc54232033d2cef38bad24",
+            "status": "unknown",
+            "value": null
+          },
+          "negative_certificate": {
+            "certificates": [
+              "reference_counterexample"
+            ],
+            "elapsed_seconds": 14.690605876967311,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_bug/counterexample",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "865033904eaa9e1ea804baeb1e5de26eee91e080117609b1d65a296013da8382",
+            "status": "pass",
+            "value": true
+          },
+          "reason": "checked_finite_counterexample",
+          "status": "fail",
+          "value": false
+        },
+        "reference_verified_success": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "elapsed_seconds": 7.0433394107967615,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_bug/submitted",
+          "reason": "compile_or_probe_failed",
+          "source_sha256": "3e66d50eb70cec90dfd0a469706cc862dee27262139ba3b347e3f66b28f2f140",
+          "specification_kind": "full",
+          "status": "unknown",
+          "value": null
+        },
+        "submitted_reference_obligations_proved": {
+          "elapsed_seconds": 7.0433394107967615,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_bug/submitted",
+          "reason": "compile_or_probe_failed",
+          "source_sha256": "3e66d50eb70cec90dfd0a469706cc862dee27262139ba3b347e3f66b28f2f140",
+          "specification_kind": "full",
+          "status": "unknown",
+          "value": null
+        },
+        "task": "double"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "double_weak_spec",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "501e01138745b124294a1913c22dc2cae9b6a0760a66f2fb6f57815cc31dfb87",
+        "cell": "double_weak_spec",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "expected": {
+          "evaluator": "fail",
+          "submitted": "pass",
+          "tests": "fail"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 13.796271364204586,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_weak_spec/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "ef4b25442ecce166c4041ab024094729d286692e3eb0d710e00d18aa020c2747",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "elapsed_seconds": 6.888018738478422,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_weak_spec/obligation_exact_0",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "87b7c210c20bff498e7e73234b50356e737ab6b68ab6ff5bc7273588a8165f42",
+                "status": "unknown",
+                "tactic": "intro n; rfl",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 7.00646932143718,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_weak_spec/obligation_exact_1",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "bd6f6a9a295206066d20956134d96cce94913f7bb3ce3d228cfdaf0119bd83f8",
+                "status": "unknown",
+                "tactic": "simp [Candidate.impl]",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 6.929119278676808,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_weak_spec/obligation_exact_2",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "b366db3e7f91ff4bd97ba2c146506651d9fccb5afc79ba4d46e10163e7fee50a",
+                "status": "unknown",
+                "tactic": "intro n; simp [Candidate.impl]; omega",
+                "value": null
+              }
+            ],
+            "counterexamples": [
+              {
+                "expected": 2,
+                "input": 1
+              }
+            ],
+            "name": "exact",
+            "reason": "checked_counterexample_to_exact_obligation",
+            "status": "fail",
+            "value": false
+          }
+        ],
+        "reference_tests_pass": {
+          "counterexamples": [
+            {
+              "expected": 2,
+              "input": 1
+            }
+          ],
+          "lean_test_attempt": {
+            "elapsed_seconds": 7.120791424997151,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_weak_spec/tests",
+            "reason": "compile_or_probe_failed",
+            "source_sha256": "326710a922c67154d5a7700dcd6855aea85bdca7c9bc54232033d2cef38bad24",
+            "status": "unknown",
+            "value": null
+          },
+          "negative_certificate": {
+            "certificates": [
+              "reference_counterexample"
+            ],
+            "elapsed_seconds": 14.499848246574402,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_weak_spec/counterexample",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "865033904eaa9e1ea804baeb1e5de26eee91e080117609b1d65a296013da8382",
+            "status": "pass",
+            "value": true
+          },
+          "reason": "checked_finite_counterexample",
+          "status": "fail",
+          "value": false
+        },
+        "reference_verified_success": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "certificates": [
+            "submitted_certificate"
+          ],
+          "elapsed_seconds": 14.100444957613945,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_weak_spec/submitted",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "678a44deef1ba615a77068860a1a01e8770a1e8139a01cb0c4706bf18392a2e0",
+          "specification_kind": "weak_true",
+          "status": "pass",
+          "value": true
+        },
+        "submitted_reference_obligations_proved": {
+          "reason": "submitted_reference_bridge_unavailable",
+          "status": "unknown",
+          "value": null
+        },
+        "task": "double"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "double_vacuous_spec",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "c84e281e2326f4fca477de2de9194190e0be0d7c448198fa0f2dcd97ac632f8a",
+        "cell": "double_vacuous_spec",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "expected": {
+          "evaluator": "fail",
+          "submitted": "pass",
+          "tests": "fail"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 15.246733328327537,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_vacuous_spec/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "ef4b25442ecce166c4041ab024094729d286692e3eb0d710e00d18aa020c2747",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "elapsed_seconds": 7.268029494211078,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_vacuous_spec/obligation_exact_0",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "87b7c210c20bff498e7e73234b50356e737ab6b68ab6ff5bc7273588a8165f42",
+                "status": "unknown",
+                "tactic": "intro n; rfl",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 6.803004363551736,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_vacuous_spec/obligation_exact_1",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "bd6f6a9a295206066d20956134d96cce94913f7bb3ce3d228cfdaf0119bd83f8",
+                "status": "unknown",
+                "tactic": "simp [Candidate.impl]",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 7.1800810769200325,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_vacuous_spec/obligation_exact_2",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "b366db3e7f91ff4bd97ba2c146506651d9fccb5afc79ba4d46e10163e7fee50a",
+                "status": "unknown",
+                "tactic": "intro n; simp [Candidate.impl]; omega",
+                "value": null
+              }
+            ],
+            "counterexamples": [
+              {
+                "expected": 2,
+                "input": 1
+              }
+            ],
+            "name": "exact",
+            "reason": "checked_counterexample_to_exact_obligation",
+            "status": "fail",
+            "value": false
+          }
+        ],
+        "reference_tests_pass": {
+          "counterexamples": [
+            {
+              "expected": 2,
+              "input": 1
+            }
+          ],
+          "lean_test_attempt": {
+            "elapsed_seconds": 6.544064471498132,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_vacuous_spec/tests",
+            "reason": "compile_or_probe_failed",
+            "source_sha256": "326710a922c67154d5a7700dcd6855aea85bdca7c9bc54232033d2cef38bad24",
+            "status": "unknown",
+            "value": null
+          },
+          "negative_certificate": {
+            "certificates": [
+              "reference_counterexample"
+            ],
+            "elapsed_seconds": 14.776593065820634,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_vacuous_spec/counterexample",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "865033904eaa9e1ea804baeb1e5de26eee91e080117609b1d65a296013da8382",
+            "status": "pass",
+            "value": true
+          },
+          "reason": "checked_finite_counterexample",
+          "status": "fail",
+          "value": false
+        },
+        "reference_verified_success": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "certificates": [
+            "submitted_certificate"
+          ],
+          "elapsed_seconds": 14.986071640625596,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_vacuous_spec/submitted",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "9818ced960f1e05872d5605cda7b4815bd67bcd2b2267abb47e0c6452feabc77",
+          "specification_kind": "vacuous",
+          "status": "pass",
+          "value": true
+        },
+        "submitted_reference_obligations_proved": {
+          "reason": "submitted_reference_bridge_unavailable",
+          "status": "unknown",
+          "value": null
+        },
+        "task": "double"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "double_sorry",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "26aef18a4266011517d3b5460892b489d3f0b73975855ff52991e3dca3469a5f",
+        "cell": "double_sorry",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "expected": {
+          "evaluator": "pass",
+          "submitted": "fail",
+          "tests": "pass"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 15.48663391917944,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_sorry/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "1f773f86ea528022b0e16ef0a545eca69eb4e1890a8d2f1ec409addb80435ef7",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "certificates": [
+                  "reference_obligation"
+                ],
+                "elapsed_seconds": 14.70899751689285,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_sorry/obligation_exact_0",
+                "reason": "allowed_transitive_axioms",
+                "source_sha256": "09af84f8bc22027e9a62c16f789c67f6e2db0c82231460e1d9352faeda0a126b",
+                "status": "pass",
+                "tactic": "intro n; rfl",
+                "value": true
+              }
+            ],
+            "certificates": [
+              "reference_obligation"
+            ],
+            "elapsed_seconds": 14.70899751689285,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_sorry/obligation_exact_0",
+            "name": "exact",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "09af84f8bc22027e9a62c16f789c67f6e2db0c82231460e1d9352faeda0a126b",
+            "status": "pass",
+            "tactic": "intro n; rfl",
+            "value": true
+          }
+        ],
+        "reference_tests_pass": {
+          "certificates": [
+            "reference_test_0",
+            "reference_test_1",
+            "reference_test_2",
+            "reference_test_3"
+          ],
+          "elapsed_seconds": 14.335314101539552,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_sorry/tests",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "a7b36673e03b22405af6f904f9cf2f337b0ef3b66f43730f0ed2c388a588a6b2",
+          "status": "pass",
+          "value": true
+        },
+        "reference_verified_success": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "axioms": [
+            "sorryAx"
+          ],
+          "elapsed_seconds": 14.570177043788135,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_sorry/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "9018aeb2663f38b8ced0472605155c1c29a732f7a4fd47e2ef7a0ec308bad940",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "submitted_reference_obligations_proved": {
+          "axioms": [
+            "sorryAx"
+          ],
+          "elapsed_seconds": 14.570177043788135,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_sorry/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "9018aeb2663f38b8ced0472605155c1c29a732f7a4fd47e2ef7a0ec308bad940",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "task": "double"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "double_helper_sorry",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "f0eebf335d2fd5c1089240022ebf36f47d8a795f28188e436da01d1fa4f21fe1",
+        "cell": "double_helper_sorry",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "expected": {
+          "evaluator": "pass",
+          "submitted": "fail",
+          "tests": "pass"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 14.399090026505291,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_helper_sorry/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "1f773f86ea528022b0e16ef0a545eca69eb4e1890a8d2f1ec409addb80435ef7",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "certificates": [
+                  "reference_obligation"
+                ],
+                "elapsed_seconds": 14.442099083214998,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_helper_sorry/obligation_exact_0",
+                "reason": "allowed_transitive_axioms",
+                "source_sha256": "09af84f8bc22027e9a62c16f789c67f6e2db0c82231460e1d9352faeda0a126b",
+                "status": "pass",
+                "tactic": "intro n; rfl",
+                "value": true
+              }
+            ],
+            "certificates": [
+              "reference_obligation"
+            ],
+            "elapsed_seconds": 14.442099083214998,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_helper_sorry/obligation_exact_0",
+            "name": "exact",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "09af84f8bc22027e9a62c16f789c67f6e2db0c82231460e1d9352faeda0a126b",
+            "status": "pass",
+            "tactic": "intro n; rfl",
+            "value": true
+          }
+        ],
+        "reference_tests_pass": {
+          "certificates": [
+            "reference_test_0",
+            "reference_test_1",
+            "reference_test_2",
+            "reference_test_3"
+          ],
+          "elapsed_seconds": 13.570382370613515,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_helper_sorry/tests",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "a7b36673e03b22405af6f904f9cf2f337b0ef3b66f43730f0ed2c388a588a6b2",
+          "status": "pass",
+          "value": true
+        },
+        "reference_verified_success": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "axioms": [
+            "sorryAx"
+          ],
+          "elapsed_seconds": 14.612967253662646,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_helper_sorry/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "08d15e5d740463e3baf44a03c86f520440651c28ec466b3fd859c455dfeaca11",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "submitted_reference_obligations_proved": {
+          "axioms": [
+            "sorryAx"
+          ],
+          "elapsed_seconds": 14.612967253662646,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_helper_sorry/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "08d15e5d740463e3baf44a03c86f520440651c28ec466b3fd859c455dfeaca11",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "task": "double"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "double_axiom",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "ebc56db5b34b05d804894a9e86ea311d532673104bda6e2c8da3c30d98b464df",
+        "cell": "double_axiom",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "expected": {
+          "evaluator": "pass",
+          "submitted": "fail",
+          "tests": "pass"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 14.260410250164568,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_axiom/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "1f773f86ea528022b0e16ef0a545eca69eb4e1890a8d2f1ec409addb80435ef7",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "certificates": [
+                  "reference_obligation"
+                ],
+                "elapsed_seconds": 13.573782685212791,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_axiom/obligation_exact_0",
+                "reason": "allowed_transitive_axioms",
+                "source_sha256": "09af84f8bc22027e9a62c16f789c67f6e2db0c82231460e1d9352faeda0a126b",
+                "status": "pass",
+                "tactic": "intro n; rfl",
+                "value": true
+              }
+            ],
+            "certificates": [
+              "reference_obligation"
+            ],
+            "elapsed_seconds": 13.573782685212791,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_axiom/obligation_exact_0",
+            "name": "exact",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "09af84f8bc22027e9a62c16f789c67f6e2db0c82231460e1d9352faeda0a126b",
+            "status": "pass",
+            "tactic": "intro n; rfl",
+            "value": true
+          }
+        ],
+        "reference_tests_pass": {
+          "certificates": [
+            "reference_test_0",
+            "reference_test_1",
+            "reference_test_2",
+            "reference_test_3"
+          ],
+          "elapsed_seconds": 14.089737629517913,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_axiom/tests",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "a7b36673e03b22405af6f904f9cf2f337b0ef3b66f43730f0ed2c388a588a6b2",
+          "status": "pass",
+          "value": true
+        },
+        "reference_verified_success": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "axioms": [
+            "submitted_assumption"
+          ],
+          "elapsed_seconds": 13.993277141824365,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_axiom/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "a73cc18d3cbc07a0b3ce4345c162633ae709036a103978450088a753ba3a6fed",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "submitted_reference_obligations_proved": {
+          "axioms": [
+            "submitted_assumption"
+          ],
+          "elapsed_seconds": 13.993277141824365,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_axiom/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "a73cc18d3cbc07a0b3ce4345c162633ae709036a103978450088a753ba3a6fed",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "task": "double"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "double_native_decide",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "a301322e62dbb6d76e377f48f8ed959c2b0a9571e1dfacdb6b98cecb5727aa9c",
+        "cell": "double_native_decide",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "expected": {
+          "evaluator": "pass",
+          "submitted": "fail",
+          "tests": "pass"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 13.6595540009439,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_native_decide/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "1f773f86ea528022b0e16ef0a545eca69eb4e1890a8d2f1ec409addb80435ef7",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "certificates": [
+                  "reference_obligation"
+                ],
+                "elapsed_seconds": 13.906242685392499,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_native_decide/obligation_exact_0",
+                "reason": "allowed_transitive_axioms",
+                "source_sha256": "09af84f8bc22027e9a62c16f789c67f6e2db0c82231460e1d9352faeda0a126b",
+                "status": "pass",
+                "tactic": "intro n; rfl",
+                "value": true
+              }
+            ],
+            "certificates": [
+              "reference_obligation"
+            ],
+            "elapsed_seconds": 13.906242685392499,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_native_decide/obligation_exact_0",
+            "name": "exact",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "09af84f8bc22027e9a62c16f789c67f6e2db0c82231460e1d9352faeda0a126b",
+            "status": "pass",
+            "tactic": "intro n; rfl",
+            "value": true
+          }
+        ],
+        "reference_tests_pass": {
+          "certificates": [
+            "reference_test_0",
+            "reference_test_1",
+            "reference_test_2",
+            "reference_test_3"
+          ],
+          "elapsed_seconds": 13.933266144245863,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_native_decide/tests",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "a7b36673e03b22405af6f904f9cf2f337b0ef3b66f43730f0ed2c388a588a6b2",
+          "status": "pass",
+          "value": true
+        },
+        "reference_verified_success": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "axioms": [
+            "Lean.ofReduceBool"
+          ],
+          "elapsed_seconds": 14.045624183490872,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/double_native_decide/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "28f896bb3d40c22884fdc8f517efec286ce3cc58031d3e89ddb4ac8614bf7e30",
+          "specification_kind": "sample_zero",
+          "status": "fail",
+          "value": false
+        },
+        "submitted_reference_obligations_proved": {
+          "reason": "submitted_reference_bridge_unavailable",
+          "status": "unknown",
+          "value": null
+        },
+        "task": "double"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "cap_two_correct",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "58e82063cb11fe98f2e67cd45b3ec8492e05eb3378ec4b78b204c8de0f555106",
+        "cell": "cap_two_correct",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "expected": {
+          "evaluator": "pass",
+          "submitted": "pass",
+          "tests": "pass"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 13.839236933737993,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_correct/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "8fd898f8029c21bb0a355e0159f8f747bf7c69964f0c1cde5866a39cfd5c9bc8",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "certificates": [
+                  "reference_obligation"
+                ],
+                "elapsed_seconds": 14.121853334829211,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_correct/obligation_exact_0",
+                "reason": "allowed_transitive_axioms",
+                "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+                "status": "pass",
+                "tactic": "intro n; rfl",
+                "value": true
+              }
+            ],
+            "certificates": [
+              "reference_obligation"
+            ],
+            "elapsed_seconds": 14.121853334829211,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_correct/obligation_exact_0",
+            "name": "exact",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+            "status": "pass",
+            "tactic": "intro n; rfl",
+            "value": true
+          }
+        ],
+        "reference_tests_pass": {
+          "certificates": [
+            "reference_test_0",
+            "reference_test_1",
+            "reference_test_2",
+            "reference_test_3"
+          ],
+          "elapsed_seconds": 14.368273223750293,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_correct/tests",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "3f9d7a5eaf4f9903d51ba7a6bacb8ba8bcd5d122bdf9dd3c0491d7a512282200",
+          "status": "pass",
+          "value": true
+        },
+        "reference_verified_success": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "certificates": [
+            "submitted_certificate"
+          ],
+          "elapsed_seconds": 14.036272631026804,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_correct/submitted",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "2efc24659cb192b0509faa40674ba2b28eacf343ef64b309710c802f054acd0c",
+          "specification_kind": "full",
+          "status": "pass",
+          "value": true
+        },
+        "submitted_reference_obligations_proved": {
+          "certificates": [
+            "submitted_certificate"
+          ],
+          "elapsed_seconds": 14.036272631026804,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_correct/submitted",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "2efc24659cb192b0509faa40674ba2b28eacf343ef64b309710c802f054acd0c",
+          "specification_kind": "full",
+          "status": "pass",
+          "value": true
+        },
+        "task": "cap_two"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "cap_two_bug",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "68604cd02dcba3217b84e99719268e19b049bf7f8e507e34f10ffff7668c4194",
+        "cell": "cap_two_bug",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "expected": {
+          "evaluator": "fail",
+          "submitted": "unknown",
+          "tests": "fail"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 13.313215198926628,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_bug/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "ef4b25442ecce166c4041ab024094729d286692e3eb0d710e00d18aa020c2747",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "elapsed_seconds": 6.318403749726713,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_bug/obligation_exact_0",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "f8ee8599020b8fc41bdcc369ed4583a3143666a8f15f4158abe1b908f326513d",
+                "status": "unknown",
+                "tactic": "intro n; rfl",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 6.877037084661424,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_bug/obligation_exact_1",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "47505bf7aa7de05a4fbc1c0eec0481db399f5806811b9097553398774d7c4aa7",
+                "status": "unknown",
+                "tactic": "simp [Candidate.impl]",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 6.453846454620361,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_bug/obligation_exact_2",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "a3f41922dcf59ec339c2359d760e27311234e71d21259203e1e403e43b5a6b8b",
+                "status": "unknown",
+                "tactic": "intro n; simp [Candidate.impl]; omega",
+                "value": null
+              }
+            ],
+            "counterexamples": [
+              {
+                "expected": 2,
+                "input": 7
+              }
+            ],
+            "name": "exact",
+            "reason": "checked_counterexample_to_exact_obligation",
+            "status": "fail",
+            "value": false
+          }
+        ],
+        "reference_tests_pass": {
+          "counterexamples": [
+            {
+              "expected": 2,
+              "input": 7
+            }
+          ],
+          "lean_test_attempt": {
+            "elapsed_seconds": 6.290376209653914,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_bug/tests",
+            "reason": "compile_or_probe_failed",
+            "source_sha256": "1faad92ed2946e349fe94b1ee81f739c214622bcbc346f6917918eee242bc34c",
+            "status": "unknown",
+            "value": null
+          },
+          "negative_certificate": {
+            "certificates": [
+              "reference_counterexample"
+            ],
+            "elapsed_seconds": 13.705334377475083,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_bug/counterexample",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "43cca9881a1771a7889b8f501a137095219ac3768fddab928e55f85f760c376b",
+            "status": "pass",
+            "value": true
+          },
+          "reason": "checked_finite_counterexample",
+          "status": "fail",
+          "value": false
+        },
+        "reference_verified_success": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "elapsed_seconds": 6.767622919753194,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_bug/submitted",
+          "reason": "compile_or_probe_failed",
+          "source_sha256": "aa4e5ffe672b406ca609317f6a11943976dfb67ef83e3c83b6245d5319100db4",
+          "specification_kind": "full",
+          "status": "unknown",
+          "value": null
+        },
+        "submitted_reference_obligations_proved": {
+          "elapsed_seconds": 6.767622919753194,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_bug/submitted",
+          "reason": "compile_or_probe_failed",
+          "source_sha256": "aa4e5ffe672b406ca609317f6a11943976dfb67ef83e3c83b6245d5319100db4",
+          "specification_kind": "full",
+          "status": "unknown",
+          "value": null
+        },
+        "task": "cap_two"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "cap_two_weak_spec",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "6cf752a50dd718efb195f2eb165bafdf6a478deb9a1090e0d1805abad1de940d",
+        "cell": "cap_two_weak_spec",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "expected": {
+          "evaluator": "fail",
+          "submitted": "pass",
+          "tests": "fail"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 13.784289019182324,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_weak_spec/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "ef4b25442ecce166c4041ab024094729d286692e3eb0d710e00d18aa020c2747",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "elapsed_seconds": 6.708529096096754,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_weak_spec/obligation_exact_0",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "f8ee8599020b8fc41bdcc369ed4583a3143666a8f15f4158abe1b908f326513d",
+                "status": "unknown",
+                "tactic": "intro n; rfl",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 6.9535899963229895,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_weak_spec/obligation_exact_1",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "47505bf7aa7de05a4fbc1c0eec0481db399f5806811b9097553398774d7c4aa7",
+                "status": "unknown",
+                "tactic": "simp [Candidate.impl]",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 6.707263448275626,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_weak_spec/obligation_exact_2",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "a3f41922dcf59ec339c2359d760e27311234e71d21259203e1e403e43b5a6b8b",
+                "status": "unknown",
+                "tactic": "intro n; simp [Candidate.impl]; omega",
+                "value": null
+              }
+            ],
+            "counterexamples": [
+              {
+                "expected": 2,
+                "input": 7
+              }
+            ],
+            "name": "exact",
+            "reason": "checked_counterexample_to_exact_obligation",
+            "status": "fail",
+            "value": false
+          }
+        ],
+        "reference_tests_pass": {
+          "counterexamples": [
+            {
+              "expected": 2,
+              "input": 7
+            }
+          ],
+          "lean_test_attempt": {
+            "elapsed_seconds": 6.718914870172739,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_weak_spec/tests",
+            "reason": "compile_or_probe_failed",
+            "source_sha256": "1faad92ed2946e349fe94b1ee81f739c214622bcbc346f6917918eee242bc34c",
+            "status": "unknown",
+            "value": null
+          },
+          "negative_certificate": {
+            "certificates": [
+              "reference_counterexample"
+            ],
+            "elapsed_seconds": 13.67051003780216,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_weak_spec/counterexample",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "43cca9881a1771a7889b8f501a137095219ac3768fddab928e55f85f760c376b",
+            "status": "pass",
+            "value": true
+          },
+          "reason": "checked_finite_counterexample",
+          "status": "fail",
+          "value": false
+        },
+        "reference_verified_success": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "certificates": [
+            "submitted_certificate"
+          ],
+          "elapsed_seconds": 14.132647945545614,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_weak_spec/submitted",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "678a44deef1ba615a77068860a1a01e8770a1e8139a01cb0c4706bf18392a2e0",
+          "specification_kind": "weak_true",
+          "status": "pass",
+          "value": true
+        },
+        "submitted_reference_obligations_proved": {
+          "reason": "submitted_reference_bridge_unavailable",
+          "status": "unknown",
+          "value": null
+        },
+        "task": "cap_two"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "cap_two_vacuous_spec",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json",
+      "immutable_row_source_sha256": "2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd",
+      "row": {
+        "candidate_sha256": "9a671fee6dc7f1f6865315b583ae95013c9ee3bc416b1fad8c2a9efdc4a06810",
+        "cell": "cap_two_vacuous_spec",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "expected": {
+          "evaluator": "fail",
+          "submitted": "pass",
+          "tests": "fail"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 13.579104138538241,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_vacuous_spec/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "ef4b25442ecce166c4041ab024094729d286692e3eb0d710e00d18aa020c2747",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "elapsed_seconds": 6.117929343134165,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_vacuous_spec/obligation_exact_0",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "f8ee8599020b8fc41bdcc369ed4583a3143666a8f15f4158abe1b908f326513d",
+                "status": "unknown",
+                "tactic": "intro n; rfl",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 6.439869236201048,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_vacuous_spec/obligation_exact_1",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "47505bf7aa7de05a4fbc1c0eec0481db399f5806811b9097553398774d7c4aa7",
+                "status": "unknown",
+                "tactic": "simp [Candidate.impl]",
+                "value": null
+              },
+              {
+                "elapsed_seconds": 6.2942151837050915,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_vacuous_spec/obligation_exact_2",
+                "reason": "compile_or_probe_failed",
+                "source_sha256": "a3f41922dcf59ec339c2359d760e27311234e71d21259203e1e403e43b5a6b8b",
+                "status": "unknown",
+                "tactic": "intro n; simp [Candidate.impl]; omega",
+                "value": null
+              }
+            ],
+            "counterexamples": [
+              {
+                "expected": 2,
+                "input": 7
+              }
+            ],
+            "name": "exact",
+            "reason": "checked_counterexample_to_exact_obligation",
+            "status": "fail",
+            "value": false
+          }
+        ],
+        "reference_tests_pass": {
+          "counterexamples": [
+            {
+              "expected": 2,
+              "input": 7
+            }
+          ],
+          "lean_test_attempt": {
+            "elapsed_seconds": 6.097176019102335,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_vacuous_spec/tests",
+            "reason": "compile_or_probe_failed",
+            "source_sha256": "1faad92ed2946e349fe94b1ee81f739c214622bcbc346f6917918eee242bc34c",
+            "status": "unknown",
+            "value": null
+          },
+          "negative_certificate": {
+            "certificates": [
+              "reference_counterexample"
+            ],
+            "elapsed_seconds": 12.591990064829588,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_vacuous_spec/counterexample",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "43cca9881a1771a7889b8f501a137095219ac3768fddab928e55f85f760c376b",
+            "status": "pass",
+            "value": true
+          },
+          "reason": "checked_finite_counterexample",
+          "status": "fail",
+          "value": false
+        },
+        "reference_verified_success": {
+          "reason": "observed_component_failure",
+          "status": "fail",
+          "value": false
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "certificates": [
+            "submitted_certificate"
+          ],
+          "elapsed_seconds": 14.135765369981527,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/cap_two_vacuous_spec/submitted",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "9818ced960f1e05872d5605cda7b4815bd67bcd2b2267abb47e0c6452feabc77",
+          "specification_kind": "vacuous",
+          "status": "pass",
+          "value": true
+        },
+        "submitted_reference_obligations_proved": {
+          "reason": "submitted_reference_bridge_unavailable",
+          "status": "unknown",
+          "value": null
+        },
+        "task": "cap_two"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "cap_two_sorry",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/results.json",
+      "immutable_row_source_sha256": "54fe3c994016a6e2014a34f2ae2e193f5671d7f351a2aba254b790607479c615",
+      "row": {
+        "candidate_sha256": "56331f3da62544995b00589f261fd35d7a007db572c4d7b8585a933efac8e842",
+        "cell": "cap_two_sorry",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "expected": {
+          "evaluator": "pass",
+          "submitted": "fail",
+          "tests": "pass"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 21.445683761499822,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_sorry/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "8fd898f8029c21bb0a355e0159f8f747bf7c69964f0c1cde5866a39cfd5c9bc8",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "certificates": [
+                  "reference_obligation"
+                ],
+                "elapsed_seconds": 13.240747204981744,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_sorry/obligation_exact_0",
+                "reason": "allowed_transitive_axioms",
+                "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+                "status": "pass",
+                "tactic": "intro n; rfl",
+                "value": true
+              }
+            ],
+            "certificates": [
+              "reference_obligation"
+            ],
+            "elapsed_seconds": 13.240747204981744,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_sorry/obligation_exact_0",
+            "name": "exact",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+            "status": "pass",
+            "tactic": "intro n; rfl",
+            "value": true
+          }
+        ],
+        "reference_tests_pass": {
+          "certificates": [
+            "reference_test_0",
+            "reference_test_1",
+            "reference_test_2",
+            "reference_test_3"
+          ],
+          "elapsed_seconds": 14.254364313557744,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_sorry/tests",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "3f9d7a5eaf4f9903d51ba7a6bacb8ba8bcd5d122bdf9dd3c0491d7a512282200",
+          "status": "pass",
+          "value": true
+        },
+        "reference_verified_success": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "axioms": [
+            "sorryAx"
+          ],
+          "elapsed_seconds": 13.879372172057629,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_sorry/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "4c7a684fc1e5a6e911bb65b18e800149d7b555ab11b4466679aaf34356b27100",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "submitted_reference_obligations_proved": {
+          "axioms": [
+            "sorryAx"
+          ],
+          "elapsed_seconds": 13.879372172057629,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_sorry/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "4c7a684fc1e5a6e911bb65b18e800149d7b555ab11b4466679aaf34356b27100",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "task": "cap_two"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "cap_two_helper_sorry",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/results.json",
+      "immutable_row_source_sha256": "54fe3c994016a6e2014a34f2ae2e193f5671d7f351a2aba254b790607479c615",
+      "row": {
+        "candidate_sha256": "813f8724a168c828af6dba8ec9ca08fdfe8c49fc217a39b8cac825d9cc752c0a",
+        "cell": "cap_two_helper_sorry",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "expected": {
+          "evaluator": "pass",
+          "submitted": "fail",
+          "tests": "pass"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 12.34889312274754,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_helper_sorry/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "8fd898f8029c21bb0a355e0159f8f747bf7c69964f0c1cde5866a39cfd5c9bc8",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "certificates": [
+                  "reference_obligation"
+                ],
+                "elapsed_seconds": 13.44660017453134,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_helper_sorry/obligation_exact_0",
+                "reason": "allowed_transitive_axioms",
+                "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+                "status": "pass",
+                "tactic": "intro n; rfl",
+                "value": true
+              }
+            ],
+            "certificates": [
+              "reference_obligation"
+            ],
+            "elapsed_seconds": 13.44660017453134,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_helper_sorry/obligation_exact_0",
+            "name": "exact",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+            "status": "pass",
+            "tactic": "intro n; rfl",
+            "value": true
+          }
+        ],
+        "reference_tests_pass": {
+          "certificates": [
+            "reference_test_0",
+            "reference_test_1",
+            "reference_test_2",
+            "reference_test_3"
+          ],
+          "elapsed_seconds": 12.671193373389542,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_helper_sorry/tests",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "3f9d7a5eaf4f9903d51ba7a6bacb8ba8bcd5d122bdf9dd3c0491d7a512282200",
+          "status": "pass",
+          "value": true
+        },
+        "reference_verified_success": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "axioms": [
+            "sorryAx"
+          ],
+          "elapsed_seconds": 13.463108980096877,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_helper_sorry/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "b831711334612ba5443b527f09cc8554f51b7ece4cb5861553dbf8d2040be3c8",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "submitted_reference_obligations_proved": {
+          "axioms": [
+            "sorryAx"
+          ],
+          "elapsed_seconds": 13.463108980096877,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_helper_sorry/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "b831711334612ba5443b527f09cc8554f51b7ece4cb5861553dbf8d2040be3c8",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "task": "cap_two"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "cap_two_axiom",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/results.json",
+      "immutable_row_source_sha256": "54fe3c994016a6e2014a34f2ae2e193f5671d7f351a2aba254b790607479c615",
+      "row": {
+        "candidate_sha256": "790e47ce3462aab50349c692fea96788f4e1459f20f8117dfd464f2180a2ad1e",
+        "cell": "cap_two_axiom",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "expected": {
+          "evaluator": "pass",
+          "submitted": "fail",
+          "tests": "pass"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 12.81499778944999,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_axiom/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "8fd898f8029c21bb0a355e0159f8f747bf7c69964f0c1cde5866a39cfd5c9bc8",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "certificates": [
+                  "reference_obligation"
+                ],
+                "elapsed_seconds": 12.877567225135863,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_axiom/obligation_exact_0",
+                "reason": "allowed_transitive_axioms",
+                "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+                "status": "pass",
+                "tactic": "intro n; rfl",
+                "value": true
+              }
+            ],
+            "certificates": [
+              "reference_obligation"
+            ],
+            "elapsed_seconds": 12.877567225135863,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_axiom/obligation_exact_0",
+            "name": "exact",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+            "status": "pass",
+            "tactic": "intro n; rfl",
+            "value": true
+          }
+        ],
+        "reference_tests_pass": {
+          "certificates": [
+            "reference_test_0",
+            "reference_test_1",
+            "reference_test_2",
+            "reference_test_3"
+          ],
+          "elapsed_seconds": 12.602309364825487,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_axiom/tests",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "3f9d7a5eaf4f9903d51ba7a6bacb8ba8bcd5d122bdf9dd3c0491d7a512282200",
+          "status": "pass",
+          "value": true
+        },
+        "reference_verified_success": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "axioms": [
+            "submitted_assumption"
+          ],
+          "elapsed_seconds": 12.814473911188543,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_axiom/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "e1e2b5bf7a4ba7b1a6b73d654ead1b50e073889ddb433d1ee6cb5be9a5ca003f",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "submitted_reference_obligations_proved": {
+          "axioms": [
+            "submitted_assumption"
+          ],
+          "elapsed_seconds": 12.814473911188543,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_axiom/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "e1e2b5bf7a4ba7b1a6b73d654ead1b50e073889ddb433d1ee6cb5be9a5ca003f",
+          "specification_kind": "full",
+          "status": "fail",
+          "value": false
+        },
+        "task": "cap_two"
+      },
+      "status": "MEASURED"
+    },
+    {
+      "cell": "cap_two_native_decide",
+      "control_matches": true,
+      "immutable_row_source": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/results.json",
+      "immutable_row_source_sha256": "54fe3c994016a6e2014a34f2ae2e193f5671d7f351a2aba254b790607479c615",
+      "row": {
+        "candidate_sha256": "9bba659d779f07daeceb59914fa3b5e50c4172a4db3f2de81f03a216e0a315c4",
+        "cell": "cap_two_native_decide",
+        "control_matches": true,
+        "evaluator_reference_obligations_proved": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "expected": {
+          "evaluator": "pass",
+          "submitted": "fail",
+          "tests": "pass"
+        },
+        "implementation_attempt": {
+          "elapsed_seconds": 12.932864766567945,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_native_decide/implementation",
+          "reason": "certificate_missing",
+          "source_sha256": "8fd898f8029c21bb0a355e0159f8f747bf7c69964f0c1cde5866a39cfd5c9bc8",
+          "status": "unknown",
+          "value": null
+        },
+        "implementation_compiles": true,
+        "obligations": [
+          {
+            "attempts": [
+              {
+                "certificates": [
+                  "reference_obligation"
+                ],
+                "elapsed_seconds": 12.928677720949054,
+                "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_native_decide/obligation_exact_0",
+                "reason": "allowed_transitive_axioms",
+                "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+                "status": "pass",
+                "tactic": "intro n; rfl",
+                "value": true
+              }
+            ],
+            "certificates": [
+              "reference_obligation"
+            ],
+            "elapsed_seconds": 12.928677720949054,
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_native_decide/obligation_exact_0",
+            "name": "exact",
+            "reason": "allowed_transitive_axioms",
+            "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+            "status": "pass",
+            "tactic": "intro n; rfl",
+            "value": true
+          }
+        ],
+        "reference_tests_pass": {
+          "certificates": [
+            "reference_test_0",
+            "reference_test_1",
+            "reference_test_2",
+            "reference_test_3"
+          ],
+          "elapsed_seconds": 13.049897525459528,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_native_decide/tests",
+          "reason": "allowed_transitive_axioms",
+          "source_sha256": "3f9d7a5eaf4f9903d51ba7a6bacb8ba8bcd5d122bdf9dd3c0491d7a512282200",
+          "status": "pass",
+          "value": true
+        },
+        "reference_verified_success": {
+          "reason": "all_required_components_accepted",
+          "status": "pass",
+          "value": true
+        },
+        "scope": "authored_harness_validation_only",
+        "status": "MEASURED",
+        "submitted_certificate_accepted": {
+          "axioms": [
+            "Lean.ofReduceBool"
+          ],
+          "elapsed_seconds": 13.606601651757956,
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_native_decide/submitted",
+          "reason": "forbidden_transitive_axioms",
+          "source_sha256": "689100cc945ed870bc249394b49e6e61815d0a3092d5a5d4ba6eeb0b4f62a5ca",
+          "specification_kind": "sample_zero",
+          "status": "fail",
+          "value": false
+        },
+        "submitted_reference_obligations_proved": {
+          "reason": "submitted_reference_bridge_unavailable",
+          "status": "unknown",
+          "value": null
+        },
+        "task": "cap_two"
+      },
+      "status": "MEASURED"
+    }
+  ],
+  "schema": "e04_endpoint_control_reconciliation_v1",
+  "scope": "authored_harness_validation_only",
+  "toolchain": {
+    "lake_manifest_sha256": "d99caf0bc025deb50cb467cb84af15464d248fde48e72aea336191efde4ceef1",
+    "lean_toolchain": "leanprover/lean4:v4.22.0",
+    "lean_version": "Lean (version 4.22.0, x86_64-unknown-linux-gnu, commit ba2cbbf09d4978f416e0ebd1fceeebc2c4138c05, Release)",
+    "mathlib_commit": "79e94a093aff4a60fb1b1f92d9681e407124c2ca"
+  }
+}

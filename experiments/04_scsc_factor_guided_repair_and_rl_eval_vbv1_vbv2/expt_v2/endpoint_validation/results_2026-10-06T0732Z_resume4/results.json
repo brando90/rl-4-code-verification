@@ -1,0 +1,162 @@
+{
+  "status": "INFRASTRUCTURE_OR_INPUT_FAILURE",
+  "started_at": "2026-10-06T07:30:25.400647+00:00",
+  "host": "skampere1.stanford.edu",
+  "script_sha256": "28b6e1db177668b10c584d3cf583211d31f084b8aa2319d1c6ece51c2d16b857",
+  "manifest_sha256": "04546bc98599d31fa4bc48e53f66b44af981e651eb6ab1e58f4d3aaf775a0df3",
+  "rows": [
+    {
+      "cell": "cap_two_sorry",
+      "task": "cap_two",
+      "candidate_sha256": "56331f3da62544995b00589f261fd35d7a007db572c4d7b8585a933efac8e842",
+      "status": "PENDING",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      },
+      "reference_tests_pass": {
+        "status": "unmeasured",
+        "value": null,
+        "reason": "not_run"
+      },
+      "submitted_certificate_accepted": {
+        "status": "unmeasured",
+        "value": null,
+        "reason": "not_run"
+      },
+      "evaluator_reference_obligations_proved": {
+        "status": "unmeasured",
+        "value": null,
+        "reason": "not_run"
+      },
+      "reference_verified_success": {
+        "status": "unmeasured",
+        "value": null,
+        "reason": "not_run"
+      }
+    },
+    {
+      "cell": "cap_two_helper_sorry",
+      "task": "cap_two",
+      "candidate_sha256": "813f8724a168c828af6dba8ec9ca08fdfe8c49fc217a39b8cac825d9cc752c0a",
+      "status": "PENDING",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      },
+      "reference_tests_pass": {
+        "status": "unmeasured",
+        "value": null,
+        "reason": "not_run"
+      },
+      "submitted_certificate_accepted": {
+        "status": "unmeasured",
+        "value": null,
+        "reason": "not_run"
+      },
+      "evaluator_reference_obligations_proved": {
+        "status": "unmeasured",
+        "value": null,
+        "reason": "not_run"
+      },
+      "reference_verified_success": {
+        "status": "unmeasured",
+        "value": null,
+        "reason": "not_run"
+      }
+    },
+    {
+      "cell": "cap_two_axiom",
+      "task": "cap_two",
+      "candidate_sha256": "790e47ce3462aab50349c692fea96788f4e1459f20f8117dfd464f2180a2ad1e",
+      "status": "PENDING",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      },
+      "reference_tests_pass": {
+        "status": "unmeasured",
+        "value": null,
+        "reason": "not_run"
+      },
+      "submitted_certificate_accepted": {
+        "status": "unmeasured",
+        "value": null,
+        "reason": "not_run"
+      },
+      "evaluator_reference_obligations_proved": {
+        "status": "unmeasured",
+        "value": null,
+        "reason": "not_run"
+      },
+      "reference_verified_success": {
+        "status": "unmeasured",
+        "value": null,
+        "reason": "not_run"
+      }
+    },
+    {
+      "cell": "cap_two_native_decide",
+      "task": "cap_two",
+      "candidate_sha256": "9bba659d779f07daeceb59914fa3b5e50c4172a4db3f2de81f03a216e0a315c4",
+      "status": "PENDING",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      },
+      "reference_tests_pass": {
+        "status": "unmeasured",
+        "value": null,
+        "reason": "not_run"
+      },
+      "submitted_certificate_accepted": {
+        "status": "unmeasured",
+        "value": null,
+        "reason": "not_run"
+      },
+      "evaluator_reference_obligations_proved": {
+        "status": "unmeasured",
+        "value": null,
+        "reason": "not_run"
+      },
+      "reference_verified_success": {
+        "status": "unmeasured",
+        "value": null,
+        "reason": "not_run"
+      }
+    }
+  ],
+  "kernel_commit": "59059a20d40adf3289869e58302169ad78102877",
+  "kernel_sha256": "5dbbdcae75ba8b22911fcb43ab1fcde45a1475cf92742a39a29ebe41116de287",
+  "probe_timeout_seconds": 30,
+  "tactics": [
+    "intro n; rfl",
+    "simp [Candidate.impl]",
+    "intro n; simp [Candidate.impl]; omega"
+  ],
+  "scope": "authored_harness_validation_only",
+  "declared_cells": 24,
+  "executed_cells": 4,
+  "selection": {
+    "kind": "explicit_resume",
+    "cell_ids": [
+      "cap_two_sorry",
+      "cap_two_helper_sorry",
+      "cap_two_axiom",
+      "cap_two_native_decide"
+    ]
+  },
+  "preflight": {
+    "lean_version": "Lean (version 4.22.0, x86_64-unknown-linux-gnu, commit ba2cbbf09d4978f416e0ebd1fceeebc2c4138c05, Release)",
+    "lean_toolchain": "leanprover/lean4:v4.22.0",
+    "mathlib_commit": "79e94a093aff4a60fb1b1f92d9681e407124c2ca",
+    "lake_manifest_sha256": "d99caf0bc025deb50cb467cb84af15464d248fde48e72aea336191efde4ceef1"
+  },
+  "error": "Command '['git', '-C', '/lfs/skampere1/0/brando9/handoff/veribench', 'show', '59059a20d40adf3289869e58302169ad78102877:scripts/scsc/kernel_axioms.py']' returned non-zero exit status 128.",
+  "finished_at": "2026-10-06T07:30:26.991532+00:00",
+  "exit_code": 1
+}

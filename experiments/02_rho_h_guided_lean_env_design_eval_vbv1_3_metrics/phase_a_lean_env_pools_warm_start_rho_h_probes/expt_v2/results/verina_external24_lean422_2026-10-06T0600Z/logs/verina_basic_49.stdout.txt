@@ -1,0 +1,92 @@
+/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/external/verina_66b3ce50/datasets/verina/verina_basic_49/task.lean:26:34: warning: unused variable `h_precond`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/external/verina_66b3ce50/datasets/verina/verina_basic_49/task.lean:45:64: warning: unused variable `h_precond`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/external/verina_66b3ce50/datasets/verina/verina_basic_49/task.lean:79:12: warning: `Option.map_eq_none` has been deprecated: use `Option.map_eq_none_iff` instead
+/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/external/verina_66b3ce50/datasets/verina/verina_basic_49/task.lean:86:15: error: Function expected at
+  List.getElem?_eq_some_getElem_iff ?m.8087
+but this term has type
+  ?m.8076[?m.8077]? = some ?m.8076[?m.8077] ↔ True
+
+Note: Expected a function because this term is being applied to the argument
+  i
+/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/external/verina_66b3ce50/datasets/verina/verina_basic_49/task.lean:86:49: error: Application type mismatch: In the application
+  List.getElem?_eq_some_getElem_iff la
+the argument
+  la
+has type
+  List Int : Type
+but is expected to have type
+  ?m.8077 < List.length ?m.8076 : Prop
+/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/external/verina_66b3ce50/datasets/verina/verina_basic_49/task.lean:91:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  a[i]!
+case none
+a : Array Int
+la : List Int := a.toList
+indexed : List (Int × Nat) := la.zipIdx
+found : Option (Int × Nat) :=
+  List.find?
+    (fun x =>
+      match x with
+      | (x, snd) => isOdd x)
+    indexed
+res : Option Nat :=
+  Option.map
+    (fun x =>
+      match x with
+      | (fst, i) => i)
+    found
+h_precond : 0 < a.size
+h_la : la = a.toList
+h_indexed : indexed = a.toList.zipIdx
+h_found : found = List.find? (fun x => isOdd x.fst) a.toList.zipIdx
+h_res : none = Option.map (fun x => x.snd) (List.find? (fun x => isOdd x.fst) a.toList.zipIdx)
+h_rescase : res = none
+h_notfound : ∀ (a : Int) (b : Nat), (a, b) ∈ indexed → isOdd a = false
+i : Nat
+hi : i < a.size
+hi' : i < la.length
+h_mem : (la[i], i) ∈ indexed
+hai : a[i]! = a[i]
+⊢ isOdd a[i] = false
+/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/external/verina_66b3ce50/datasets/verina/verina_basic_49/task.lean:97:8: warning: `Option.map_eq_some'` has been deprecated: use `Option.map_eq_some_iff` instead
+/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/external/verina_66b3ce50/datasets/verina/verina_basic_49/task.lean:106:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  a[i]!
+case some.intro.intro
+a : Array Int
+la : List Int := a.toList
+indexed : List (Int × Nat) := la.zipIdx
+found : Option (Int × Nat) :=
+  List.find?
+    (fun x =>
+      match x with
+      | (x, snd) => isOdd x)
+    indexed
+res : Option Nat :=
+  Option.map
+    (fun x =>
+      match x with
+      | (fst, i) => i)
+    found
+h_precond : 0 < a.size
+h_la : la = a.toList
+h_indexed : indexed = a.toList.zipIdx
+i : Nat
+p : Int × Nat
+hp✝ : p.snd = i
+h_mem : p ∈ indexed
+i' : Nat
+hi' : i' < a.toList.zipIdx.length
+h_found : found = some p
+h_res : res = some i
+h_found' : List.find? (fun x => isOdd x.fst) a.toList.zipIdx = some p
+hp : p.snd = i
+hi : i < a.size
+hx : p.fst = a[i]
+h_odd : isOdd a[i] = true
+hii' : (a[i'], i') = p
+h_prefix : ∀ (j : Nat) (hj : j < i'), isOdd a[j] = false
+hai : a[i]! = a[i]
+⊢ ∀ (j : Nat), j < i → isOdd a[j]! = false

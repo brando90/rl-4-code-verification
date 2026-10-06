@@ -1,0 +1,376 @@
+{
+  "schema": 1,
+  "scope": "authored_harness_validation_only",
+  "tasks": [
+    {
+      "id": "increment",
+      "objective": "Return the successor of every natural number; there is no precondition.",
+      "reference": {
+        "op": "add",
+        "left": {
+          "op": "var"
+        },
+        "right": {
+          "op": "nat",
+          "value": 1
+        }
+      },
+      "tests": [
+        {
+          "input": 0,
+          "expected": 1
+        },
+        {
+          "input": 1,
+          "expected": 2
+        },
+        {
+          "input": 2,
+          "expected": 3
+        },
+        {
+          "input": 7,
+          "expected": 8
+        }
+      ],
+      "obligations": [
+        "exact"
+      ]
+    },
+    {
+      "id": "double",
+      "objective": "Return twice every natural number; there is no precondition.",
+      "reference": {
+        "op": "add",
+        "left": {
+          "op": "var"
+        },
+        "right": {
+          "op": "var"
+        }
+      },
+      "tests": [
+        {
+          "input": 0,
+          "expected": 0
+        },
+        {
+          "input": 1,
+          "expected": 2
+        },
+        {
+          "input": 2,
+          "expected": 4
+        },
+        {
+          "input": 7,
+          "expected": 14
+        }
+      ],
+      "obligations": [
+        "exact"
+      ]
+    },
+    {
+      "id": "cap_two",
+      "objective": "Return the minimum of every natural number and two; there is no precondition.",
+      "reference": {
+        "op": "min",
+        "left": {
+          "op": "var"
+        },
+        "right": {
+          "op": "nat",
+          "value": 2
+        }
+      },
+      "tests": [
+        {
+          "input": 0,
+          "expected": 0
+        },
+        {
+          "input": 1,
+          "expected": 1
+        },
+        {
+          "input": 2,
+          "expected": 2
+        },
+        {
+          "input": 7,
+          "expected": 2
+        }
+      ],
+      "obligations": [
+        "exact"
+      ]
+    }
+  ],
+  "cells": [
+    {
+      "id": "increment_correct",
+      "task": "increment",
+      "candidate": "candidates/increment_correct.json",
+      "candidate_sha256": "700e0853c49eadff6db2a206122406b5cdc8e60e86fed8c7bc204f973fdc5d76",
+      "expected": {
+        "tests": "pass",
+        "submitted": "pass",
+        "evaluator": "pass"
+      }
+    },
+    {
+      "id": "increment_bug",
+      "task": "increment",
+      "candidate": "candidates/increment_bug.json",
+      "candidate_sha256": "1168d3d0650710ad370346f1fa8570707c579cbd986a1d995362d79986643868",
+      "expected": {
+        "tests": "fail",
+        "submitted": "unknown",
+        "evaluator": "fail"
+      }
+    },
+    {
+      "id": "increment_weak_spec",
+      "task": "increment",
+      "candidate": "candidates/increment_weak_spec.json",
+      "candidate_sha256": "e6b0c7ccd8335186f3236d79af87e1c2b3f711457eeca3dac994864cf03c1ca3",
+      "expected": {
+        "tests": "fail",
+        "submitted": "pass",
+        "evaluator": "fail"
+      }
+    },
+    {
+      "id": "increment_vacuous_spec",
+      "task": "increment",
+      "candidate": "candidates/increment_vacuous_spec.json",
+      "candidate_sha256": "b490628b3994eb2a75796860565e320eb286b12b13463d4cf5280630826d9c0c",
+      "expected": {
+        "tests": "fail",
+        "submitted": "pass",
+        "evaluator": "fail"
+      }
+    },
+    {
+      "id": "increment_sorry",
+      "task": "increment",
+      "candidate": "candidates/increment_sorry.json",
+      "candidate_sha256": "8629a03e9556701c47c930e7c49febc147de5ccdf4f0f02174cca22e767a17e9",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      }
+    },
+    {
+      "id": "increment_helper_sorry",
+      "task": "increment",
+      "candidate": "candidates/increment_helper_sorry.json",
+      "candidate_sha256": "cb94842883f6814dd97bffb06d3a4172159e8f73351ee63b818905639b2cc126",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      }
+    },
+    {
+      "id": "increment_axiom",
+      "task": "increment",
+      "candidate": "candidates/increment_axiom.json",
+      "candidate_sha256": "e9f9bc463d3d741ea98a8e1e22919427635be7981b6bcb465f52e98716b26eb9",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      }
+    },
+    {
+      "id": "increment_native_decide",
+      "task": "increment",
+      "candidate": "candidates/increment_native_decide.json",
+      "candidate_sha256": "49c2a2c88bd6f13daebafe23a3cc432a0fa4526277ba0f35b69848d339f5ea55",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      }
+    },
+    {
+      "id": "double_correct",
+      "task": "double",
+      "candidate": "candidates/double_correct.json",
+      "candidate_sha256": "62c2c3c5d6e0055664b4f0b80ecf35d51f1d12209050067c5ba56e892fa798bd",
+      "expected": {
+        "tests": "pass",
+        "submitted": "pass",
+        "evaluator": "pass"
+      }
+    },
+    {
+      "id": "double_bug",
+      "task": "double",
+      "candidate": "candidates/double_bug.json",
+      "candidate_sha256": "3c067e9ff4b15c1e2f43a3efdf27d70f9b456e64239c156b40dff69884aef9bd",
+      "expected": {
+        "tests": "fail",
+        "submitted": "unknown",
+        "evaluator": "fail"
+      }
+    },
+    {
+      "id": "double_weak_spec",
+      "task": "double",
+      "candidate": "candidates/double_weak_spec.json",
+      "candidate_sha256": "501e01138745b124294a1913c22dc2cae9b6a0760a66f2fb6f57815cc31dfb87",
+      "expected": {
+        "tests": "fail",
+        "submitted": "pass",
+        "evaluator": "fail"
+      }
+    },
+    {
+      "id": "double_vacuous_spec",
+      "task": "double",
+      "candidate": "candidates/double_vacuous_spec.json",
+      "candidate_sha256": "c84e281e2326f4fca477de2de9194190e0be0d7c448198fa0f2dcd97ac632f8a",
+      "expected": {
+        "tests": "fail",
+        "submitted": "pass",
+        "evaluator": "fail"
+      }
+    },
+    {
+      "id": "double_sorry",
+      "task": "double",
+      "candidate": "candidates/double_sorry.json",
+      "candidate_sha256": "26aef18a4266011517d3b5460892b489d3f0b73975855ff52991e3dca3469a5f",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      }
+    },
+    {
+      "id": "double_helper_sorry",
+      "task": "double",
+      "candidate": "candidates/double_helper_sorry.json",
+      "candidate_sha256": "f0eebf335d2fd5c1089240022ebf36f47d8a795f28188e436da01d1fa4f21fe1",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      }
+    },
+    {
+      "id": "double_axiom",
+      "task": "double",
+      "candidate": "candidates/double_axiom.json",
+      "candidate_sha256": "ebc56db5b34b05d804894a9e86ea311d532673104bda6e2c8da3c30d98b464df",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      }
+    },
+    {
+      "id": "double_native_decide",
+      "task": "double",
+      "candidate": "candidates/double_native_decide.json",
+      "candidate_sha256": "a301322e62dbb6d76e377f48f8ed959c2b0a9571e1dfacdb6b98cecb5727aa9c",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      }
+    },
+    {
+      "id": "cap_two_correct",
+      "task": "cap_two",
+      "candidate": "candidates/cap_two_correct.json",
+      "candidate_sha256": "58e82063cb11fe98f2e67cd45b3ec8492e05eb3378ec4b78b204c8de0f555106",
+      "expected": {
+        "tests": "pass",
+        "submitted": "pass",
+        "evaluator": "pass"
+      }
+    },
+    {
+      "id": "cap_two_bug",
+      "task": "cap_two",
+      "candidate": "candidates/cap_two_bug.json",
+      "candidate_sha256": "68604cd02dcba3217b84e99719268e19b049bf7f8e507e34f10ffff7668c4194",
+      "expected": {
+        "tests": "fail",
+        "submitted": "unknown",
+        "evaluator": "fail"
+      }
+    },
+    {
+      "id": "cap_two_weak_spec",
+      "task": "cap_two",
+      "candidate": "candidates/cap_two_weak_spec.json",
+      "candidate_sha256": "6cf752a50dd718efb195f2eb165bafdf6a478deb9a1090e0d1805abad1de940d",
+      "expected": {
+        "tests": "fail",
+        "submitted": "pass",
+        "evaluator": "fail"
+      }
+    },
+    {
+      "id": "cap_two_vacuous_spec",
+      "task": "cap_two",
+      "candidate": "candidates/cap_two_vacuous_spec.json",
+      "candidate_sha256": "9a671fee6dc7f1f6865315b583ae95013c9ee3bc416b1fad8c2a9efdc4a06810",
+      "expected": {
+        "tests": "fail",
+        "submitted": "pass",
+        "evaluator": "fail"
+      }
+    },
+    {
+      "id": "cap_two_sorry",
+      "task": "cap_two",
+      "candidate": "candidates/cap_two_sorry.json",
+      "candidate_sha256": "56331f3da62544995b00589f261fd35d7a007db572c4d7b8585a933efac8e842",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      }
+    },
+    {
+      "id": "cap_two_helper_sorry",
+      "task": "cap_two",
+      "candidate": "candidates/cap_two_helper_sorry.json",
+      "candidate_sha256": "813f8724a168c828af6dba8ec9ca08fdfe8c49fc217a39b8cac825d9cc752c0a",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      }
+    },
+    {
+      "id": "cap_two_axiom",
+      "task": "cap_two",
+      "candidate": "candidates/cap_two_axiom.json",
+      "candidate_sha256": "790e47ce3462aab50349c692fea96788f4e1459f20f8117dfd464f2180a2ad1e",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      }
+    },
+    {
+      "id": "cap_two_native_decide",
+      "task": "cap_two",
+      "candidate": "candidates/cap_two_native_decide.json",
+      "candidate_sha256": "9bba659d779f07daeceb59914fa3b5e50c4172a4db3f2de81f03a216e0a315c4",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      }
+    }
+  ]
+}

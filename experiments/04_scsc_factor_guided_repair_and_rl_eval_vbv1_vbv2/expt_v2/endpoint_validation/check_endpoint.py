@@ -363,6 +363,8 @@ def main(argv=None) -> int:
     parser.add_argument("--lake-dir", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--probe-timeout", type=int, default=30)
+    parser.add_argument("--cell-ids", nargs="+", metavar="CELL_ID",
+                        help="Evaluate only declared cells into a new receipt; use for a deterministic resume after an interrupted run.")
     args = parser.parse_args(argv)
     if not 1 <= args.probe_timeout <= 60:
         parser.error("probe timeout must be in [1,60] seconds")
@@ -381,25 +383,35 @@ def main(argv=None) -> int:
     exit_code = 1
     try:
         manifest = load_manifest(args.manifest)
-        receipt["declared_cells"] = len(manifest["cells"])
+        all_cells = manifest["cells"]
+        requested = set(args.cell_ids or ())
+        known = {cell["id"] for cell in all_cells}
+        unknown = requested - known
+        if unknown:
+            raise ValueError(f"unknown requested cell ids: {sorted(unknown)}")
+        cells = [cell for cell in all_cells if not requested or cell["id"] in requested]
+        receipt["declared_cells"] = len(all_cells)
+        receipt["executed_cells"] = len(cells)
+        receipt["selection"] = {"kind": "all" if not requested else "explicit_resume",
+                                "cell_ids": [cell["id"] for cell in cells]}
         receipt["rows"] = [{"cell": c["id"], "task": c["task"], "candidate_sha256": c["candidate_sha256"],
                             "status": "PENDING", "expected": c["expected"],
                             "reference_tests_pass": endpoint("unmeasured", "not_run"),
                             "submitted_certificate_accepted": endpoint("unmeasured", "not_run"),
                             "evaluator_reference_obligations_proved": endpoint("unmeasured", "not_run"),
                             "reference_verified_success": endpoint("unmeasured", "not_run")}
-                           for c in manifest["cells"]]
+                           for c in cells]
         save()
         # Validate and hash-check the entire declared set before the first Lean call.
         candidates = {cell["id"]: load_candidate(args.manifest.parent / cell["candidate"], cell["candidate_sha256"], cell["task"])
-                      for cell in manifest["cells"]}
+                      for cell in all_cells}
         inputs = args.output / "inputs"
         inputs.mkdir()
         manifest_data = args.manifest.read_bytes()
         if digest(manifest_data) != receipt["manifest_sha256"]:
             raise ValueError("manifest changed after validation")
         (inputs / "manifest.json").write_bytes(manifest_data)
-        for cell in manifest["cells"]:
+        for cell in all_cells:
             data = (args.manifest.parent / cell["candidate"]).read_bytes()
             if digest(data) != cell["candidate_sha256"]:
                 raise ValueError("candidate changed after validation")
@@ -407,7 +419,7 @@ def main(argv=None) -> int:
         receipt["preflight"] = preflight(args.lake_dir.resolve())
         module = load_kernel(args.scorer_repo.resolve(), args.output)
         tasks = {task["id"]: task for task in manifest["tasks"]}
-        for index, cell in enumerate(manifest["cells"]):
+        for index, cell in enumerate(cells):
             row = evaluate_cell(cell, tasks[cell["task"]], candidates[cell["id"]], module,
                                 args.lake_dir.resolve(), args.output, args.probe_timeout)
             actual = {"tests": row["reference_tests_pass"]["status"],

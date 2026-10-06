@@ -1,0 +1,426 @@
+{
+  "status": "COMPLETE",
+  "started_at": "2026-10-06T07:31:14.959402+00:00",
+  "host": "skampere1.stanford.edu",
+  "script_sha256": "28b6e1db177668b10c584d3cf583211d31f084b8aa2319d1c6ece51c2d16b857",
+  "manifest_sha256": "04546bc98599d31fa4bc48e53f66b44af981e651eb6ab1e58f4d3aaf775a0df3",
+  "rows": [
+    {
+      "cell": "cap_two_sorry",
+      "task": "cap_two",
+      "candidate_sha256": "56331f3da62544995b00589f261fd35d7a007db572c4d7b8585a933efac8e842",
+      "implementation_compiles": true,
+      "implementation_attempt": {
+        "status": "unknown",
+        "value": null,
+        "reason": "certificate_missing",
+        "elapsed_seconds": 21.445683761499822,
+        "source_sha256": "8fd898f8029c21bb0a355e0159f8f747bf7c69964f0c1cde5866a39cfd5c9bc8",
+        "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_sorry/implementation"
+      },
+      "reference_tests_pass": {
+        "status": "pass",
+        "value": true,
+        "reason": "allowed_transitive_axioms",
+        "certificates": [
+          "reference_test_0",
+          "reference_test_1",
+          "reference_test_2",
+          "reference_test_3"
+        ],
+        "elapsed_seconds": 14.254364313557744,
+        "source_sha256": "3f9d7a5eaf4f9903d51ba7a6bacb8ba8bcd5d122bdf9dd3c0491d7a512282200",
+        "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_sorry/tests"
+      },
+      "submitted_certificate_accepted": {
+        "status": "fail",
+        "value": false,
+        "reason": "forbidden_transitive_axioms",
+        "axioms": [
+          "sorryAx"
+        ],
+        "elapsed_seconds": 13.879372172057629,
+        "source_sha256": "4c7a684fc1e5a6e911bb65b18e800149d7b555ab11b4466679aaf34356b27100",
+        "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_sorry/submitted",
+        "specification_kind": "full"
+      },
+      "submitted_reference_obligations_proved": {
+        "status": "fail",
+        "value": false,
+        "reason": "forbidden_transitive_axioms",
+        "axioms": [
+          "sorryAx"
+        ],
+        "elapsed_seconds": 13.879372172057629,
+        "source_sha256": "4c7a684fc1e5a6e911bb65b18e800149d7b555ab11b4466679aaf34356b27100",
+        "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_sorry/submitted",
+        "specification_kind": "full"
+      },
+      "evaluator_reference_obligations_proved": {
+        "status": "pass",
+        "value": true,
+        "reason": "all_required_components_accepted"
+      },
+      "obligations": [
+        {
+          "name": "exact",
+          "tactic": "intro n; rfl",
+          "status": "pass",
+          "value": true,
+          "reason": "allowed_transitive_axioms",
+          "certificates": [
+            "reference_obligation"
+          ],
+          "elapsed_seconds": 13.240747204981744,
+          "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_sorry/obligation_exact_0",
+          "attempts": [
+            {
+              "tactic": "intro n; rfl",
+              "status": "pass",
+              "value": true,
+              "reason": "allowed_transitive_axioms",
+              "certificates": [
+                "reference_obligation"
+              ],
+              "elapsed_seconds": 13.240747204981744,
+              "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+              "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_sorry/obligation_exact_0"
+            }
+          ]
+        }
+      ],
+      "reference_verified_success": {
+        "status": "pass",
+        "value": true,
+        "reason": "all_required_components_accepted"
+      },
+      "scope": "authored_harness_validation_only",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      },
+      "control_matches": true,
+      "status": "MEASURED"
+    },
+    {
+      "cell": "cap_two_helper_sorry",
+      "task": "cap_two",
+      "candidate_sha256": "813f8724a168c828af6dba8ec9ca08fdfe8c49fc217a39b8cac825d9cc752c0a",
+      "implementation_compiles": true,
+      "implementation_attempt": {
+        "status": "unknown",
+        "value": null,
+        "reason": "certificate_missing",
+        "elapsed_seconds": 12.34889312274754,
+        "source_sha256": "8fd898f8029c21bb0a355e0159f8f747bf7c69964f0c1cde5866a39cfd5c9bc8",
+        "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_helper_sorry/implementation"
+      },
+      "reference_tests_pass": {
+        "status": "pass",
+        "value": true,
+        "reason": "allowed_transitive_axioms",
+        "certificates": [
+          "reference_test_0",
+          "reference_test_1",
+          "reference_test_2",
+          "reference_test_3"
+        ],
+        "elapsed_seconds": 12.671193373389542,
+        "source_sha256": "3f9d7a5eaf4f9903d51ba7a6bacb8ba8bcd5d122bdf9dd3c0491d7a512282200",
+        "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_helper_sorry/tests"
+      },
+      "submitted_certificate_accepted": {
+        "status": "fail",
+        "value": false,
+        "reason": "forbidden_transitive_axioms",
+        "axioms": [
+          "sorryAx"
+        ],
+        "elapsed_seconds": 13.463108980096877,
+        "source_sha256": "b831711334612ba5443b527f09cc8554f51b7ece4cb5861553dbf8d2040be3c8",
+        "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_helper_sorry/submitted",
+        "specification_kind": "full"
+      },
+      "submitted_reference_obligations_proved": {
+        "status": "fail",
+        "value": false,
+        "reason": "forbidden_transitive_axioms",
+        "axioms": [
+          "sorryAx"
+        ],
+        "elapsed_seconds": 13.463108980096877,
+        "source_sha256": "b831711334612ba5443b527f09cc8554f51b7ece4cb5861553dbf8d2040be3c8",
+        "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_helper_sorry/submitted",
+        "specification_kind": "full"
+      },
+      "evaluator_reference_obligations_proved": {
+        "status": "pass",
+        "value": true,
+        "reason": "all_required_components_accepted"
+      },
+      "obligations": [
+        {
+          "name": "exact",
+          "tactic": "intro n; rfl",
+          "status": "pass",
+          "value": true,
+          "reason": "allowed_transitive_axioms",
+          "certificates": [
+            "reference_obligation"
+          ],
+          "elapsed_seconds": 13.44660017453134,
+          "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_helper_sorry/obligation_exact_0",
+          "attempts": [
+            {
+              "tactic": "intro n; rfl",
+              "status": "pass",
+              "value": true,
+              "reason": "allowed_transitive_axioms",
+              "certificates": [
+                "reference_obligation"
+              ],
+              "elapsed_seconds": 13.44660017453134,
+              "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+              "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_helper_sorry/obligation_exact_0"
+            }
+          ]
+        }
+      ],
+      "reference_verified_success": {
+        "status": "pass",
+        "value": true,
+        "reason": "all_required_components_accepted"
+      },
+      "scope": "authored_harness_validation_only",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      },
+      "control_matches": true,
+      "status": "MEASURED"
+    },
+    {
+      "cell": "cap_two_axiom",
+      "task": "cap_two",
+      "candidate_sha256": "790e47ce3462aab50349c692fea96788f4e1459f20f8117dfd464f2180a2ad1e",
+      "implementation_compiles": true,
+      "implementation_attempt": {
+        "status": "unknown",
+        "value": null,
+        "reason": "certificate_missing",
+        "elapsed_seconds": 12.81499778944999,
+        "source_sha256": "8fd898f8029c21bb0a355e0159f8f747bf7c69964f0c1cde5866a39cfd5c9bc8",
+        "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_axiom/implementation"
+      },
+      "reference_tests_pass": {
+        "status": "pass",
+        "value": true,
+        "reason": "allowed_transitive_axioms",
+        "certificates": [
+          "reference_test_0",
+          "reference_test_1",
+          "reference_test_2",
+          "reference_test_3"
+        ],
+        "elapsed_seconds": 12.602309364825487,
+        "source_sha256": "3f9d7a5eaf4f9903d51ba7a6bacb8ba8bcd5d122bdf9dd3c0491d7a512282200",
+        "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_axiom/tests"
+      },
+      "submitted_certificate_accepted": {
+        "status": "fail",
+        "value": false,
+        "reason": "forbidden_transitive_axioms",
+        "axioms": [
+          "submitted_assumption"
+        ],
+        "elapsed_seconds": 12.814473911188543,
+        "source_sha256": "e1e2b5bf7a4ba7b1a6b73d654ead1b50e073889ddb433d1ee6cb5be9a5ca003f",
+        "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_axiom/submitted",
+        "specification_kind": "full"
+      },
+      "submitted_reference_obligations_proved": {
+        "status": "fail",
+        "value": false,
+        "reason": "forbidden_transitive_axioms",
+        "axioms": [
+          "submitted_assumption"
+        ],
+        "elapsed_seconds": 12.814473911188543,
+        "source_sha256": "e1e2b5bf7a4ba7b1a6b73d654ead1b50e073889ddb433d1ee6cb5be9a5ca003f",
+        "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_axiom/submitted",
+        "specification_kind": "full"
+      },
+      "evaluator_reference_obligations_proved": {
+        "status": "pass",
+        "value": true,
+        "reason": "all_required_components_accepted"
+      },
+      "obligations": [
+        {
+          "name": "exact",
+          "tactic": "intro n; rfl",
+          "status": "pass",
+          "value": true,
+          "reason": "allowed_transitive_axioms",
+          "certificates": [
+            "reference_obligation"
+          ],
+          "elapsed_seconds": 12.877567225135863,
+          "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_axiom/obligation_exact_0",
+          "attempts": [
+            {
+              "tactic": "intro n; rfl",
+              "status": "pass",
+              "value": true,
+              "reason": "allowed_transitive_axioms",
+              "certificates": [
+                "reference_obligation"
+              ],
+              "elapsed_seconds": 12.877567225135863,
+              "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+              "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_axiom/obligation_exact_0"
+            }
+          ]
+        }
+      ],
+      "reference_verified_success": {
+        "status": "pass",
+        "value": true,
+        "reason": "all_required_components_accepted"
+      },
+      "scope": "authored_harness_validation_only",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      },
+      "control_matches": true,
+      "status": "MEASURED"
+    },
+    {
+      "cell": "cap_two_native_decide",
+      "task": "cap_two",
+      "candidate_sha256": "9bba659d779f07daeceb59914fa3b5e50c4172a4db3f2de81f03a216e0a315c4",
+      "implementation_compiles": true,
+      "implementation_attempt": {
+        "status": "unknown",
+        "value": null,
+        "reason": "certificate_missing",
+        "elapsed_seconds": 12.932864766567945,
+        "source_sha256": "8fd898f8029c21bb0a355e0159f8f747bf7c69964f0c1cde5866a39cfd5c9bc8",
+        "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_native_decide/implementation"
+      },
+      "reference_tests_pass": {
+        "status": "pass",
+        "value": true,
+        "reason": "allowed_transitive_axioms",
+        "certificates": [
+          "reference_test_0",
+          "reference_test_1",
+          "reference_test_2",
+          "reference_test_3"
+        ],
+        "elapsed_seconds": 13.049897525459528,
+        "source_sha256": "3f9d7a5eaf4f9903d51ba7a6bacb8ba8bcd5d122bdf9dd3c0491d7a512282200",
+        "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_native_decide/tests"
+      },
+      "submitted_certificate_accepted": {
+        "status": "fail",
+        "value": false,
+        "reason": "forbidden_transitive_axioms",
+        "axioms": [
+          "Lean.ofReduceBool"
+        ],
+        "elapsed_seconds": 13.606601651757956,
+        "source_sha256": "689100cc945ed870bc249394b49e6e61815d0a3092d5a5d4ba6eeb0b4f62a5ca",
+        "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_native_decide/submitted",
+        "specification_kind": "sample_zero"
+      },
+      "submitted_reference_obligations_proved": {
+        "status": "unknown",
+        "value": null,
+        "reason": "submitted_reference_bridge_unavailable"
+      },
+      "evaluator_reference_obligations_proved": {
+        "status": "pass",
+        "value": true,
+        "reason": "all_required_components_accepted"
+      },
+      "obligations": [
+        {
+          "name": "exact",
+          "tactic": "intro n; rfl",
+          "status": "pass",
+          "value": true,
+          "reason": "allowed_transitive_axioms",
+          "certificates": [
+            "reference_obligation"
+          ],
+          "elapsed_seconds": 12.928677720949054,
+          "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_native_decide/obligation_exact_0",
+          "attempts": [
+            {
+              "tactic": "intro n; rfl",
+              "status": "pass",
+              "value": true,
+              "reason": "allowed_transitive_axioms",
+              "certificates": [
+                "reference_obligation"
+              ],
+              "elapsed_seconds": 12.928677720949054,
+              "source_sha256": "dcae77da1b4dafd36c05e93fe8bedfd80de1b7eca3223e9eb7cd8e7c4ff746ee",
+              "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation/results_2026-10-06T0734Z_resume4_retry1/cap_two_native_decide/obligation_exact_0"
+            }
+          ]
+        }
+      ],
+      "reference_verified_success": {
+        "status": "pass",
+        "value": true,
+        "reason": "all_required_components_accepted"
+      },
+      "scope": "authored_harness_validation_only",
+      "expected": {
+        "tests": "pass",
+        "submitted": "fail",
+        "evaluator": "pass"
+      },
+      "control_matches": true,
+      "status": "MEASURED"
+    }
+  ],
+  "kernel_commit": "59059a20d40adf3289869e58302169ad78102877",
+  "kernel_sha256": "5dbbdcae75ba8b22911fcb43ab1fcde45a1475cf92742a39a29ebe41116de287",
+  "probe_timeout_seconds": 30,
+  "tactics": [
+    "intro n; rfl",
+    "simp [Candidate.impl]",
+    "intro n; simp [Candidate.impl]; omega"
+  ],
+  "scope": "authored_harness_validation_only",
+  "declared_cells": 24,
+  "executed_cells": 4,
+  "selection": {
+    "kind": "explicit_resume",
+    "cell_ids": [
+      "cap_two_sorry",
+      "cap_two_helper_sorry",
+      "cap_two_axiom",
+      "cap_two_native_decide"
+    ]
+  },
+  "preflight": {
+    "lean_version": "Lean (version 4.22.0, x86_64-unknown-linux-gnu, commit ba2cbbf09d4978f416e0ebd1fceeebc2c4138c05, Release)",
+    "lean_toolchain": "leanprover/lean4:v4.22.0",
+    "mathlib_commit": "79e94a093aff4a60fb1b1f92d9681e407124c2ca",
+    "lake_manifest_sha256": "d99caf0bc025deb50cb467cb84af15464d248fde48e72aea336191efde4ceef1"
+  },
+  "finished_at": "2026-10-06T07:34:54.277190+00:00",
+  "exit_code": 0
+}

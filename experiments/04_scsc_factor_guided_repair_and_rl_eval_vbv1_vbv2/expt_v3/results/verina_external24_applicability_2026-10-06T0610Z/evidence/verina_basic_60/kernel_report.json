@@ -1,0 +1,89 @@
+{
+  "kernel_check": "kernel_axioms_v4_2026-09-09",
+  "path": "external/verina_66b3ce50/datasets/verina/verina_basic_60/task.lean",
+  "probe_ok": true,
+  "probe_rc": 0,
+  "allow_native_decide": false,
+  "n_stated": 1,
+  "n_phantom": 0,
+  "n_theorems": 1,
+  "n_honest": 0,
+  "n_sorry_ax": 1,
+  "n_native_decide": 0,
+  "n_declared_axiom": 0,
+  "n_unknown": 0,
+  "ic_pp": 0.0,
+  "theorems": [
+    {
+      "name": "FindEvenNumbers_spec_satisfied",
+      "short": "FindEvenNumbers_spec_satisfied",
+      "line": 58,
+      "column": 8,
+      "offset": 1301,
+      "declaration": "theorem",
+      "prefix": "",
+      "phantom": false,
+      "full_name": "FindEvenNumbers_spec_satisfied",
+      "kind": "theorem",
+      "axioms": [
+        "Quot.sound",
+        "propext",
+        "sorryAx"
+      ],
+      "category": "sorryAx",
+      "resolution": "source_position",
+      "regex_sorry": null,
+      "kernel_honest": false
+    }
+  ],
+  "declared_axioms": [],
+  "extra_theorems": [
+    {
+      "full_name": "FindEvenNumbers.loop._unary._proof_1",
+      "axioms": [],
+      "category": "honest"
+    },
+    {
+      "full_name": "FindEvenNumbers.loop._unary._proof_2",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "category": "honest"
+    },
+    {
+      "full_name": "FindEvenNumbers.loop._unary._proof_3",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "category": "honest"
+    },
+    {
+      "full_name": "FindEvenNumbers.loop._unary.eq_def",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "category": "honest"
+    },
+    {
+      "full_name": "FindEvenNumbers.loop.eq_def",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "category": "honest"
+    }
+  ],
+  "probe_errors": [],
+  "stderr_tail": "\n",
+  "probe_output_sha256": "8310c5ddb5e2607f82123739ec2ca442a08ecba1e3063ad04528a095915bf9f4",
+  "n_legacy_theorems": 1,
+  "compile_rc": 0,
+  "inspect_rc": 0,
+  "source_sha256": "17a577bf46027c9ac3cd11a9ddc1b08476245f68c39a83148d2cb3f70bfccd26",
+  "compiled_module_sha256": "249f8f915f9ae52664cc558600f578727d8a7bae977222ee4ce8c5e8cfa68bc2",
+  "evidence_dir": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v3/results/verina_external24_applicability_2026-10-06T0610Z/evidence/verina_basic_60/vbax_06ocauhf",
+  "compiled_module": "_stdin"
+}

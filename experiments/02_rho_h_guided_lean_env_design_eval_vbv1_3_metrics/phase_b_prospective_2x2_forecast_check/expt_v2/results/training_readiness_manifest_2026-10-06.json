@@ -1,0 +1,48 @@
+{
+  "manifest_kind": "prospective_external_training_readiness_v1",
+  "status": "NOT_ADMITTED",
+  "design": {
+    "environments": ["full_file", "theorem_completion"],
+    "seeds_per_environment": 2,
+    "optimizer_steps_per_trajectory": 64,
+    "declared_trajectories": 4,
+    "declared_optimizer_steps_total": 256,
+    "reward_contract": "kernel_binary only after a Lean-safe rollout adapter and accepted fixed references exist"
+  },
+  "source_and_partitions": {
+    "verina_candidate_manifest": "experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_a_lean_env_pools_warm_start_rho_h_probes/expt_v2/results/verina_external24_candidate_manifest_2026-10-06.json",
+    "candidate_partitions": "experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_a_lean_env_pools_warm_start_rho_h_probes/expt_v2/results/verina_candidate_train_validation_test_2026-10-06.json",
+    "counts": {"train": 141, "validation": 24, "test": 24},
+    "admission": "candidate-only; none may be used for training or checkpoint selection"
+  },
+  "model_and_code": {
+    "candidate_initialization": "Qwen/Qwen3-1.7B-Base",
+    "reachable_local_revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+    "candidate_4b_revision": "906bfd4b4dc7f14ee4320094d8b41684abff8539",
+    "pinned_rl_env_scaling_commit": "7118b86f84e8ce0d8607b09c9826a4a6ffbbd015",
+    "reachable_rl_env_scaling_head": "c75755c07481c335e87e3ce3455132d6b4892390",
+    "training_config_path": "external/rl_env_scaling/configs/example_grpo_pilot.yaml",
+    "training_config_status": "placeholder and not a Lean rollout implementation",
+    "warm_start_checkpoint": "unavailable; do not fabricate"
+  },
+  "forecast": {
+    "status": "NOT_FROZEN",
+    "required_api": "rl4cv.forecast.freeze_forecast",
+    "reason": "no numeric rho-H equation coefficients and no pre-training measured probe rows; creating a numeric forecast would be fabricated"
+  },
+  "resources": {
+    "candidate_allocation_after_admission": "four A100 80 GB GPUs, one 64-step trajectory per device",
+    "known_device_memory_gib": 80,
+    "elapsed_hours_estimate": "unknown until a one-device Lean rollout and scorer-throughput baseline is measured",
+    "gpu_hours_estimate": "unknown; no allocation is admitted",
+    "cpu_requirement": "Lean compile/scoring worker capacity must be benchmarked before admission",
+    "large_350_plus_gpu_hour_plan": "not admitted"
+  },
+  "blocking_dependencies": [
+    "accepted non-VeriBench Lean 4.22 references with allowed-axiom and non-vacuity receipts",
+    "audited generic Lean endpoint and rollout adapter preserving fixed references outside the solver context",
+    "Lean reward/scorer integration with the pinned training implementation",
+    "verified pinned training source and non-placeholder config",
+    "numeric prospective rho-H forecast frozen before any training outcome"
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "kernel_check": "kernel_axioms_v4_2026-09-09",
+  "path": "external/verina_66b3ce50/datasets/verina/verina_basic_68/task.lean",
+  "probe_ok": true,
+  "probe_rc": 0,
+  "allow_native_decide": false,
+  "n_stated": 1,
+  "n_phantom": 0,
+  "n_theorems": 1,
+  "n_honest": 1,
+  "n_sorry_ax": 0,
+  "n_native_decide": 0,
+  "n_declared_axiom": 0,
+  "n_unknown": 0,
+  "ic_pp": 1.0,
+  "theorems": [
+    {
+      "name": "LinearSearch_spec_satisfied",
+      "short": "LinearSearch_spec_satisfied",
+      "line": 51,
+      "column": 8,
+      "offset": 1126,
+      "declaration": "theorem",
+      "prefix": "",
+      "phantom": false,
+      "full_name": "LinearSearch_spec_satisfied",
+      "kind": "theorem",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "category": "honest",
+      "resolution": "source_position",
+      "regex_sorry": null,
+      "kernel_honest": true
+    }
+  ],
+  "declared_axioms": [],
+  "extra_theorems": [
+    {
+      "full_name": "LinearSearch.loop._proof_1",
+      "axioms": [],
+      "category": "honest"
+    },
+    {
+      "full_name": "LinearSearch.loop._proof_2",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "category": "honest"
+    },
+    {
+      "full_name": "LinearSearch.loop.eq_def",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "category": "honest"
+    }
+  ],
+  "probe_errors": [],
+  "stderr_tail": "\n",
+  "probe_output_sha256": "3a48ed6fd53c18ef8987a89e327a28aea9a90675458129475c0c5a59197684ba",
+  "n_legacy_theorems": 1,
+  "compile_rc": 0,
+  "inspect_rc": 0,
+  "source_sha256": "0a09eb9da58adb9d945c4100706e92921c5bb50eb1ee221b777f983e0275955c",
+  "compiled_module_sha256": "8e900f50e3ff3e3b856b8cf445bc36fbf0a898de378759f894631820f2a12bfb",
+  "evidence_dir": "/lfs/skampere1/0/brando9/rl4cv_azalia_execute/rl-4-code-verification/experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v3/results/verina_external24_applicability_2026-10-06T0610Z/evidence/verina_basic_68/vbax_9jokxw2i",
+  "compiled_module": "_stdin"
+}
