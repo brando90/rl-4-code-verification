@@ -65,7 +65,7 @@ VeriBench stays held out (repository `CLAUDE.md`). This is an evaluation only: n
 | Step | Status | Notes |
 |---|---|---|
 | Design and protocol | Done (10-05-2026) | this folder |
-| Preflight (5 tasks, prompt and stop-token checks) | Pending | `expt_v1/cc.md` step 3 |
-| G = 8 on 896 tasks, 3 Base models | Pending | `skampere1` |
+| Preflight (5 tasks, prompt and stop-token checks) | Done, PASS (10-05-2026 18:09) | `expt_v1/results/preflight_qwen3-1.7b-base.json` |
+| G = 8 on 896 tasks, 3 Base models | Running since 10-05-2026 18:10 | `skampere1`, tmux `rl4cv-e05-qwen3-base-g8` |
 | Kernel scoring, analysis, verdict | Pending | |
 | Follow-up `expt_v2`: Varun's SFT warm starts | Blocked on D-105 | same protocol, new condition label |

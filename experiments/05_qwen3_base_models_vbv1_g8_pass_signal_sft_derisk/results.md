@@ -2,18 +2,18 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/05_qwen3_base_models_vbv1_g8_pass_signal_sft_derisk/results.md>
 
-**TLDR:** Live ledger for the Qwen3 Base G=8 signal check that decides whether RL on Lean code verification needs an SFT warm start. Nothing has been measured yet; the table below fills in as each model's generation and kernel scoring land.
+**TLDR:** Live ledger for the Qwen3 Base G=8 signal check that decides whether RL on Lean code verification needs a supervised fine-tuning (SFT) warm start. The preflight passed and all three models are generating on `skampere1` since 10-05-2026 18:10; no full-run numbers yet.
 
-**Status:** PLANNED (protocol locked 10-05-2026; launch on `skampere1` follows the preflight)
+**Status:** RUNNING (started 10-05-2026 18:10)
 
-**Last updated:** 10-05-2026 18:30
+**Last updated:** 10-05-2026 18:20
 
 ## Phases
 
 | Phase | Status | Evidence |
 |---|---|---|
-| Preflight: 5 tasks × 2 samples, Qwen3-1.7B-Base | PENDING | `expt_v1/results/preflight_qwen3-1.7b-base.json` |
-| Generation, 896 × 8 per model (1.7B, 4B, 8B) | PENDING | per-model shard logs under `/lfs/skampere1/0/brando9/rl4cv_e05/logs/` |
+| Preflight: 5 tasks × 2 samples, Qwen3-1.7B-Base | DONE, PASS (10-05-2026 18:09) | `expt_v1/results/preflight_qwen3-1.7b-base.json` |
+| Generation, 896 × 8 per model (1.7B, 4B, 8B) | IN PROGRESS (launched 18:10) | per-model shard logs under `/lfs/skampere1/0/brando9/rl4cv_e05/logs/` |
 | Kernel scoring, 24 jobs of 896 files | PENDING | `expt_v1/results/summary_<label>_g8.json` |
 | Analysis and verdicts | PENDING | `expt_v1/results/analysis_e05.json`, `analysis_e05_table.md`, `per_task_<label>_g8.csv` |
 
@@ -26,6 +26,19 @@
 - **Scoring.** 24 jobs × 896 files; about 2 h per job at experiment 01's 8 files per minute, 4 concurrent scorers per model (12 in total), overlapping generation: about 4 h, about 45 CPU-hours.
 - **Total:** about 5–9 h. No judge and no API spend.
 - **Go.** Brando, 10-05-2026: "evaluate the qwen models we discussed ... 1.7b 4.b 8b on vbv1 ... Go!", plus the standing SNAP pre-approval (agents-config Trigger Rule 51).
+
+## Preflight (10-05-2026, GPU 7, Qwen3-1.7B-Base, 5 tasks × 2 samples)
+
+| Check | Result |
+|---|---|
+| Locked prompt hashes (addendum `a7a0fc1b…`, system `dc051963…`) | match on 10/10 cells |
+| Rendered prompt vs post-trained Qwen3-1.7B (`70d244cc`) | byte-identical on 5/5 tasks |
+| Finish reasons | 5 `stop` (the `<|im_end|>` stop fires), 5 `length` (12,288-token cap) |
+| Extraction | 4 no Lean block, 3 longest bare block, 2 file blocks, 1 single bare block |
+| Kernel scoring | 10/10 scored; IC_tests 0 and IC_proofs 0 on all 10 |
+| Mean generated tokens | 6,853 |
+
+Qualitatively, the Base model writes Lean-like files (`import Mathlib`, a namespace, `example … := by native_decide`, `sorry`), with invalid comment syntax (`/ * … * /`), and some samples loop on one tactic (`nth_rewrite 1`, `nth_rewrite 2`, …) or on copied Python test lines until the cap. Smoke-test evidence only; the verdict comes from the full run.
 
 ## Results
 

@@ -1,0 +1,91 @@
+{
+  "date": "10-05-2026",
+  "model": "Qwen/Qwen3-1.7B-Base",
+  "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+  "reference_rendering": {
+    "model": "Qwen/Qwen3-1.7B",
+    "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e"
+  },
+  "checks": {
+    "cells_generated": 10,
+    "cells_expected": 10,
+    "prompt_hashes_match_locked": true,
+    "stop_tokens_recorded": [
+      [
+        "<|im_end|>"
+      ]
+    ],
+    "rendering_identical_to_post_trained_qwen3_1.7b": true,
+    "finish_reasons": {
+      "stop": 5,
+      "length": 5
+    },
+    "any_stop": true,
+    "cells_scored": 10,
+    "extraction_methods": {
+      "single_bare_block": 1,
+      "longest_bare_block": 3,
+      "no_lean_block": 4,
+      "file_blocks": 2
+    },
+    "mean_generated_tokens": 6853.0,
+    "IC_tests": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "IC_proofs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "rendering": [
+    {
+      "task_id": "aerospace_set_real__my_fprime_crc_match",
+      "identical": true,
+      "base_chars": 15775,
+      "reference_chars": 15775
+    },
+    {
+      "task_id": "aerospace_set_real__my_fprime_crc_payload_size",
+      "identical": true,
+      "base_chars": 15512,
+      "reference_chars": 15512
+    },
+    {
+      "task_id": "aerospace_set_real__my_fprime_sequence_nonempty",
+      "identical": true,
+      "base_chars": 15406,
+      "reference_chars": 15406
+    },
+    {
+      "task_id": "aerospace_set_synthetic__my_airspeed_squat_gate",
+      "identical": true,
+      "base_chars": 15556,
+      "reference_chars": 15556
+    },
+    {
+      "task_id": "aerospace_set_synthetic__my_arming_interlock",
+      "identical": true,
+      "base_chars": 15942,
+      "reference_chars": 15942
+    }
+  ],
+  "stop_token_note": "If no cell stops, PROTOCOL.md requires inspecting completions and recording the behavior before launch.",
+  "verdict": "PASS"
+}
