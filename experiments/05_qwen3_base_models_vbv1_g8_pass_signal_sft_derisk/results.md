@@ -6,15 +6,15 @@
 
 **Status:** RUNNING (started 10-05-2026 18:10)
 
-**Last updated:** 10-05-2026 21:22
+**Last updated:** 10-05-2026 21:55
 
 ## Phases
 
 | Phase | Status | Evidence |
 |---|---|---|
 | Preflight: 5 tasks × 2 samples, Qwen3-1.7B-Base | DONE, PASS (10-05-2026 18:09) | `expt_v1/results/preflight_qwen3-1.7b-base.json` |
-| Generation, 896 × 8 per model (1.7B, 4B, 8B) | 4B-base DONE (20:09:57); 8B-base DONE (20:23:02), both exact 7,168-cell manifests; 1.7B-base generating, rebalanced across freed GPUs since 19:08 (see Deviations) | per-model shard logs under `/lfs/skampere1/0/brando9/rl4cv_e05/logs/` |
-| Kernel scoring, 24 jobs of 896 files | 4B-base and 8B-base scoring IN PROGRESS (started 20:09:57, 20:23:02); 1.7B-base PENDING | `expt_v1/results/summary_<label>_g8.json` |
+| Generation, 896 × 8 per model (1.7B, 4B, 8B) | all 3 models DONE (4B 20:09:57, 8B 20:23:02, 1.7B 21:55:41 via the rebalanced helpers), all exact 7,168-cell manifests (see Deviations) | per-model shard logs under `/lfs/skampere1/0/brando9/rl4cv_e05/logs/` |
+| Kernel scoring, 24 jobs of 896 files | all 3 models scoring IN PROGRESS (started 20:09:57, 20:23:02, 21:55:42) | `expt_v1/results/summary_<label>_g8.json` |
 | Analysis and verdicts | PENDING | `expt_v1/results/analysis_e05.json`, `analysis_e05_table.md`, `per_task_<label>_g8.csv` |
 
 ## Compute estimate (10-05-2026, before launch)
@@ -47,5 +47,6 @@ Pending. The headline table (`kernel_binary` mixed-group share with 95% Wilson i
 ## Deviations and open questions
 
 - **10-05-2026 19:07 — orchestration rebalance of Qwen3-1.7B-Base generation (agents-config Trigger Rule 57; `PROTOCOL.md` unchanged).** Qwen3-1.7B-Base ran alone on 1 GPU and was the long pole (~9 h) while Qwen3-4B-Base and Qwen3-8B-Base (on 2 and 3 GPUs) were on track to finish generating around 20:45, leaving GPUs idle. The master directed `expt_v1/rebalance_1p7b_e05.sh`: as GPUs free up, they generate 1.7B-base's not-yet-started 128-task blocks (1,024-cell batches) top-down with the identical pack, prompt, decoding and per-sample seed formula (`91·100003 + k`, a function of sample index only, so it does not depend on task order or which GPU runs a task — reordering tasks across GPUs is bit-for-bit equivalent to the original single-shard plan). A watcher stops the original shard only once it finishes a block whose successor is already claimed by a helper GPU, so no cell is generated twice by design; the merge keeps the first copy of any infrastructure duplicate (never chosen by score) and still requires an exact 896 × 8 manifest before scoring proceeds. This changes only execution orchestration (which process generates which task, in what order); no prompt, decoding parameter, scorer setting or threshold changed. Full detail and the dry-run receipt are in `expt_v1/CKPT_e05.md`.
+- **10-05-2026 21:53 — infra incident during the rebalance, recovered, no data lost.** All six helper-generated blocks plus shard 0's two blocks merged correctly (exact 7,168-cell manifest, 0 missing/extra/duplicate), but the rebalance script's final step — killing and restarting the `qwen3-1.7b-base` tmux window to launch scoring — silently failed because tmux's target syntax misparsed the `.` in that window's name as a `window.pane` separator, and the script still logged a false `EXIT=0`. No generation or scoring cell was affected; the merge had already completed correctly. Recovered by sending the identical intended restart command into the existing window addressed by index instead of name; scoring for all 8 of 1.7B-base's samples started immediately afterward. Full detail in `expt_v1/CKPT_e05.md`.
 
 **TLDR-end:** [rl4cv: 05_qwen3_base_models_vbv1_g8_pass_signal_sft_derisk] Qwen3 Base 1.7B/4B/8B G=8 VeriBench V1 signal check to decide whether RL needs an SFT warm start; planned and locked, not yet measured.
