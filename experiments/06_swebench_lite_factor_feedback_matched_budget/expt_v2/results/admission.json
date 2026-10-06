@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "run_id": "rl4cv-e06-swebench-validation-v1-10-05-2026",
+  "frozen_at": "2026-10-06T06:44:00Z",
+  "version": 2,
+  "panel_manifest_sha256": "68dc55c9a0ea1bf7191fe23dd28fbc0a655f0a718a2dc487bbedb72b638bba46",
+  "solver_view_sha256": "6b502b2e36b138aa1fd6d67d0fca470a4d27891e17b8fbe414ccc468a319bb28",
+  "public_contexts_sha256": "51bf5613dd91e4bcd60d6d4cf44431398a6ef3510fd0a6907999ac799b1467eb",
+  "evaluator_compatibility_sha256": "866e2d7a9e0639a30b7ea37d999a11da0c1f9c4037dec7b5c30711e973091e6e",
+  "dataset": {
+    "id": "princeton-nlp/SWE-bench_Lite",
+    "revision": "6ec7bb89b9342f664a54a6e0a6ea6501d3437cc2",
+    "upstream_split": "dev",
+    "logical_split": "validation",
+    "row_count": 23,
+    "private_export_sha256": "4598a9f0195fe2d8d3ef83e5a2aad322cfcb3efb0a4b7abb559128a52adfb6df"
+  },
+  "evaluator": {
+    "harness_commit": "f7bbbb2ccdf479001d6467c9e34af59e44a840f9",
+    "harness_version": "4.1.0",
+    "clean_dependency_freeze_sha256": "c3cffdc4bab2d9981fc9283dce9d82c9925bf3b2d122d8737612e4622898a90a",
+    "container_max": 2,
+    "max_workers": 2,
+    "per_container_cpus": 4,
+    "per_container_memory_gib": 8,
+    "official_evaluation_command": "env -u PYTHONPATH PYTHONNOUSERSITE=1 <venv_v2_clean>/bin/python -m swebench.harness.run_evaluation --dataset_name <private_legacy_rows.jsonl> --split dev --instance_ids <declared task ids> --predictions_path <private predictions.jsonl> --max_workers 2 --timeout 1800 --namespace none --run_id <kind>-<prediction_sha256_prefix>",
+    "unique_run_id": "Each patch receives a distinct run identifier containing its patch SHA-256 prefix; reports and raw logs remain evaluator-only.",
+    "controls_before_generation": ["gold-patch", "empty-patch"]
+  },
+  "public_retrieval": {
+    "script_sha256": "7ee314dec9279234f7c210a1c00e54a6db3641c43942f472663a753d26d9d13d",
+    "base_checkout": "Exact shallow base commit with no Git remote for every selected task.",
+    "context_limit_characters": 72000,
+    "context_file_limit_characters": 6000,
+    "context_file_limit": 8
+  },
+  "measured_solver": {
+    "client": "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/claude",
+    "client_version": "2.1.291",
+    "authentication": "existing OAuth subscription grant injected only into child environment",
+    "model": "claude-sonnet-5",
+    "effort": "medium",
+    "invoker_script_sha256": "6e43ca06a60309ddd8a692eb3ce2c7e61852d5ad5498c512932728cf5f404cd2",
+    "command_flags": ["--print", "--output-format json", "--no-session-persistence", "--restricted", "--tools ''", "--strict-mcp-config", "--permission-prompts none", "--model claude-sonnet-5", "--effort medium"],
+    "tool_isolation": "Restricted mode ignores user, project, and local settings; no built-in tools or Model Context Protocol servers are available; no session is resumed or persisted.",
+    "input_limit_characters": 96000,
+    "wall_limit_seconds": 300,
+    "output_capture_limit_bytes": 40960,
+    "output_capture_limit_meaning": "The client offers no enforced output-token option. The external driver retains at most 40,960 response bytes and records capture overflow; this is not claimed to cap generated tokens."
+  },
+  "prompts": {
+    "shared_completion_reminder": "Solve the entire assigned task. Return the complete requested artifact, not a plan or progress report. You have no tools and must not claim to run checks. The external driver runs frozen checks. If unresolved, return the best complete unified diff and state the exact unresolved issue.",
+    "diagnostic_author": "Using only the supplied public issue and frozen base-source excerpts, return strict JSON with nonempty syntax_commands, regression_commands, and issue_commands arrays. Commands must be safe, bounded public repository checks; do not use reference patches, hidden tests, network access, shell redirection, or evaluator information. Explain in a notes field whether the issue command is expected to reproduce on the base. The driver rejects commands outside its frozen allowlist.",
+    "initial_solver": "Using only the supplied public issue and frozen base-source excerpts, return one complete unified diff against the stated base commit. Do not access tools, tests, network resources, evaluator data, or prior sessions.",
+    "repair_solver": "Using only the supplied public issue, frozen base-source excerpts, prior complete unified diff, and the condition-specific public feedback, return one complete replacement unified diff against the stated base commit. Do not use tools or evaluator information."
+  },
+  "diagnostic_freeze": {
+    "author_calls_max": 8,
+    "one_call_per_task": true,
+    "checks_must_freeze_before_candidates": true,
+    "diagnostics_computed_for_each_condition": true,
+    "equal_feedback_space": true
+  },
+  "cells": {
+    "shared_initial": 8,
+    "repair": 48,
+    "solver_total": 56,
+    "diagnostic_author_max": 8,
+    "conditions": ["ordinary", "scalar", "vector"],
+    "repair_steps": [1, 2],
+    "declared_final_condition_cells": 24,
+    "order": "For each task, hash-permute the six condition/step repair cells while retaining each condition's step order."
+  },
+  "budget": {
+    "model_calls_max": 64,
+    "gpu_count": 0,
+    "new_docker_gib_max": 120,
+    "scratch_gib_max": 120,
+    "cpu_hours_max": 160,
+    "wall_hours_max": 18,
+    "infrastructure_retry": "At most one identical deterministic retry per failed infrastructure cell; never a fresh model sample."
+  },
+  "admission_status": "admitted_for_diagnostic-author calls only; solver calls require frozen per-task public checks and passing or explicit-null endpoint controls"
+}
