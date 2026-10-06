@@ -87,8 +87,9 @@
     "expt_v1/scripts/prepare_panel.py": "d61b60de19e315b70f09e16c8f417678d3da7fe336a2e9add9b7c0f54aba39b5",
     "expt_v1/scripts/test_analyze_paired.py": "2a6056ce6c743e43c21aa78af1166026181aa89ccb213acf34343b68f6cc3f28",
     "expt_v1/scripts/test_prepare_panel.py": "c6be2a0c085c4864f5d10da91760f002ebb0e295cc99c2ac70e7678e36d99e43",
-    "expt_v1/supervise.py": "0ecfee677a3f2ec1a2986b48f22bcee7e38b6876077ee5b54e55c878896d8e4f",
-    "expt_v1/recovery_cc.md": "349aaf86d0495a6d393b76bf6f686b1fa6dea754d6c12f9c0efa09f31bea4a5f"
+    "expt_v1/supervise.py": "cf659b9dc7376f69fee6a73052b0f032932b339398368380d2d8343692bd69ed",
+    "expt_v1/recovery_cc.md": "349aaf86d0495a6d393b76bf6f686b1fa6dea754d6c12f9c0efa09f31bea4a5f",
+    "expt_v1/recovery_vals.md": "c3b44c521d05029fb4eb25203b465c315bd9a176e6e1d125af0929190b017257"
   },
   "executor_recovery": {
     "observed_at": "10-05-2026 23:17 PDT",
@@ -110,5 +111,26 @@
     "new_charges": false,
     "recovery_prompt_sha256": "349aaf86d0495a6d393b76bf6f686b1fa6dea754d6c12f9c0efa09f31bea4a5f",
     "supervisor_sha256": "0ecfee677a3f2ec1a2986b48f22bcee7e38b6876077ee5b54e55c878896d8e4f"
+  },
+  "vals_recovery": {
+    "observed_at": "10-05-2026 23:23 PDT",
+    "client": "codex-vals, canonical codex-cli 0.154.0",
+    "model": "gpt-5.6-terra",
+    "effort": "high",
+    "permissions": "--dangerously-bypass-approvals-and-sandbox",
+    "auth_mode": "chatgpt",
+    "account_distinct_from_exhausted_default": true,
+    "provider_api_key_present": false,
+    "allowance_remaining": null,
+    "runtime": "/lfs/skampere1/0/brando9/rl4cv_e06_swebench/runtime_vals_recovery",
+    "session": "rl4cv-e06-swebench-vals-recovery",
+    "max_additional_attempts": 2,
+    "prior_attempts": {
+      "exhausted_default_codex": 2,
+      "claude_declined_task": 2
+    },
+    "measured_calls_so_far": 0,
+    "new_charges": false,
+    "measured_solver_changed": false
   }
 }

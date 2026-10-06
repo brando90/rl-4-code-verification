@@ -5,7 +5,7 @@
 **TLDR:** This coordinator executes `04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2` and the prerequisite preparation in `02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics`. The repository-repair extension is `06_swebench_lite_factor_feedback_matched_budget`. The separate Qwen3 Base run remains owned by its existing worker. Resume from current receipts, not old status prose.
 
 Created: 10-05-2026 22:33 PDT
-Last updated: 10-05-2026 23:17 PDT
+Last updated: 10-05-2026 23:23 PDT
 
 ## Identity and recovery
 
@@ -54,6 +54,12 @@ Runbook makes bounded implementation decisions without further permission questi
 
 ## Cluster subscription recovery
 
-Both remote Codex coordinators stopped on a provider-wide usage limit after their bounded retries; the 59-percent desktop reading applied to a different account/profile and must not be used for cluster admission. Original runtime/log evidence is preserved. No new credits or charges. The experiment06 handoff had not reached source export or measured calls. Experiment04 has uncommitted preparation/control evidence requiring verification and publication; its summaries are not independently accepted results yet.
+Both remote Codex coordinators stopped on the default cluster account’s usage limit after their bounded retries; the 59-percent desktop reading applied to a different account/profile and must not be used for cluster admission. Original runtime/log evidence is preserved. No new credits or charges. The experiment06 handoff had not reached source export or measured calls. Experiment04 has uncommitted preparation/control evidence requiring verification and publication; its summaries are not independently accepted results yet.
 
 Selected one existing authenticated Claude subscription coordinator (`claude-sonnet-5` / high) to recover experiment06 and verify/publish the earlier experiment04/02 findings during waits. The recovery prompt explicitly transfers only those prior owned paths after checking no old writer survives, retains scientific gates and budgets, and keeps Qwen read-only. New runtime `runtime_claude_recovery`, new session `rl4cv-e06-swebench-claude-recovery`; native acknowledgement remains to verify. Its supervisor will watch both owned roots and preserve healthy child jobs. No unmeasured extra worker fanout.
+
+### Current fallback after Claude confirmation stall
+
+The Claude replacement authenticated and read files, but both attempts declined execution and requested redundant confirmation despite the actual user authorization; neither wrote an acknowledgement or began benchmark preparation. Their native results/logs are preserved. This was a worker response, not an automatic tool-approval rejection. It did not spend any measured solver calls.
+
+The master verified an existing distinct Vals Codex ChatGPT account in `/lfs/skampere1/0/brando9/.codex-vals`, with no provider API key and successful login status. Selected one bounded `gpt-5.6-terra` / high executor there, with unchanged scientific pins and scopes; no credentials copied or credits purchased. New current runtime `runtime_vals_recovery`, session `rl4cv-e06-swebench-vals-recovery`, runbook experiment06 `expt_v1/recovery_vals.md`; verify acknowledgement plus useful source action before accepting handoff. Original and Claude runtimes are historical, not current liveness. No additional provider fanout is admitted by unknown allowance.

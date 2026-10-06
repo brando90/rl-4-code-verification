@@ -129,7 +129,7 @@ def main():
     ap.add_argument('--runtime', required=True, type=Path)
     ap.add_argument('--interval', type=float, default=120)
     ap.add_argument('--self-test', action='store_true')
-    ap.add_argument('--executor', choices=('codex', 'claude'), default='codex')
+    ap.add_argument('--executor', choices=('codex', 'codex-vals', 'claude'), default='codex')
     ap.add_argument('--claude-path', type=Path)
     ap.add_argument('--watch-root', action='append', type=Path, default=[])
     args = ap.parse_args()
@@ -158,7 +158,7 @@ def main():
                    'stream-json', '--verbose', '--no-session-persistence',
                    '--setting-sources', '', '--strict-mcp-config', '--mcp-config', '{"mcpServers":{}}']
     else:
-        command = ['codex', 'exec', '--dangerously-bypass-approvals-and-sandbox', '-m', 'gpt-5.6-terra',
+        command = [args.executor, 'exec', '--dangerously-bypass-approvals-and-sandbox', '-m', 'gpt-5.6-terra',
                    '-c', 'model_reasoning_effort="high"', '--json', '-']
     raise SystemExit(supervise(args.root, args.prompt, args.runtime, command, args.interval,
                               watch_roots=args.watch_root))
