@@ -49,9 +49,9 @@ Dependencies are the pinned SWE-bench harness and dataset, isolated Docker execu
 |---|---|---|
 | Target and source selection | Done | Official source note |
 | Public/evaluator manifest separation | Implementing | Version1 scripts |
-| Eight-task environment and reference controls | Pending remote execution | Full denominator must remain eight |
-| Public diagnostic checks | Pending | Frozen before candidates |
-| Three-condition repair comparison | Pending admission | 56 solver responses maximum |
+| Eight-task environment and reference controls | Reconciled with limits | 8 report-backed gold, 6 exact-empty base, 2 null baselines; no repair inference |
+| Public diagnostic checks | Failed admission | 1/8 structural acceptance versus 6/8 gate; audit corrects late/unverified validator chronology |
+| Three-condition repair comparison | Not admitted | 0/56 solver responses; gate remains closed |
 | Proposed 24-task test confirmation | Planned | New frozen version after validation |
 | Environment scaling or reinforcement learning | Planned | Separate forecast and training budget required |
 
