@@ -61,7 +61,7 @@ Worker commits: `b384e06` earlier controls/applicability/readiness; `76435d7` ma
 
 [p 9/10] Review the separate generic external Lean adapter draft. It requires interface/lineage/non-vacuity validation and accepted references; no repair, reference editing or judge call is silently added. The environment-design forecast remains blocked until exact code and measured inputs exist.
 
-The same-thread heartbeat `continue-azalia-repair-and-environment-experiments` is eligible to pause only after this closeout is published and synchronized. Its reason is exhausted bounded continuation plus a concrete new-budget dependency, with no remaining independent duty in the admitted run. The thesis goal remains unfinished. No email or other-chat message is authorized.
+The same-thread heartbeat `continue-azalia-repair-and-environment-experiments` was verified PAUSED at 10-06-2026 01:40 PDT after correction commit `49c73d3` reached main and both clean remote checkouts. Schedule, prompt and target thread were preserved. Its reason is exhausted bounded continuation plus a concrete new-budget dependency, with no remaining independent duty in the admitted run. The thesis goal remains unfinished. No email or other-chat message is authorized.
 
 The [parent closeout receipt](06_swebench_lite_factor_feedback_matched_budget/expt_v2/results/parent_closeout_10-06-2026.json) records terminal counts and deterministic checks.
 
