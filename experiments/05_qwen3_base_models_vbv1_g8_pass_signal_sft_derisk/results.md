@@ -6,7 +6,7 @@
 
 **Status:** RUNNING (started 10-05-2026 18:10)
 
-**Last updated:** 10-05-2026 18:20
+**Last updated:** 10-05-2026 19:07
 
 ## Phases
 
@@ -46,6 +46,6 @@ Pending. The headline table (`kernel_binary` mixed-group share with 95% Wilson i
 
 ## Deviations and open questions
 
-None yet.
+- **10-05-2026 19:07 — orchestration rebalance of Qwen3-1.7B-Base generation (agents-config Trigger Rule 57; `PROTOCOL.md` unchanged).** Qwen3-1.7B-Base ran alone on 1 GPU and was the long pole (~9 h) while Qwen3-4B-Base and Qwen3-8B-Base (on 2 and 3 GPUs) were on track to finish generating around 20:45, leaving GPUs idle. The master directed `expt_v1/rebalance_1p7b_e05.sh`: as GPUs free up, they generate 1.7B-base's not-yet-started 128-task blocks (1,024-cell batches) top-down with the identical pack, prompt, decoding and per-sample seed formula (`91·100003 + k`, a function of sample index only, so it does not depend on task order or which GPU runs a task — reordering tasks across GPUs is bit-for-bit equivalent to the original single-shard plan). A watcher stops the original shard only once it finishes a block whose successor is already claimed by a helper GPU, so no cell is generated twice by design; the merge keeps the first copy of any infrastructure duplicate (never chosen by score) and still requires an exact 896 × 8 manifest before scoring proceeds. This changes only execution orchestration (which process generates which task, in what order); no prompt, decoding parameter, scorer setting or threshold changed. Full detail and the dry-run receipt are in `expt_v1/CKPT_e05.md`.
 
 **TLDR-end:** [rl4cv: 05_qwen3_base_models_vbv1_g8_pass_signal_sft_derisk] Qwen3 Base 1.7B/4B/8B G=8 VeriBench V1 signal check to decide whether RL needs an SFT warm start; planned and locked, not yet measured.
