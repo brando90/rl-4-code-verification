@@ -1,0 +1,22 @@
+# TLDR: The declared models, revisions, decoding and GPU plan for experiment 05 (Qwen3 Base 1.7B/4B/8B, VeriBench V1, G=8).
+# Revisions were resolved from the Hugging Face API on 10-05-2026; a model added, dropped or swapped after preflight is a
+# new condition (expt_v2), never an edit here. Varun's SFT warm starts (D-105) are the planned expt_v2.
+condition: rl4cv-e05-qwen3-base-vbv1-g8-v1
+models:
+  - {id: Qwen/Qwen3-1.7B-Base, label: qwen3-1.7b-base, revision: ea980cb0a6c2ae4b936e82123acc929f1cec04c1, gpus: "0"}
+  - {id: Qwen/Qwen3-4B-Base,   label: qwen3-4b-base,   revision: 906bfd4b4dc7f14ee4320094d8b41684abff8539, gpus: "1,2"}
+  - {id: Qwen/Qwen3-8B-Base,   label: qwen3-8b-base,   revision: 49e3418fbbbca6ecbdf9608b4d22e5a407081db4, gpus: "3,5,6"}
+post_trained_comparison:   # experiment 01's G=8 probe rows on its 128-task subset, same decoding and rendered prompt
+  qwen3-1.7b-base: {id: Qwen/Qwen3-1.7B, revision: 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e}
+  qwen3-4b-base:   {id: Qwen/Qwen3-4B,   revision: 1cfa9a7208912126459214e8b04321603b3df60c}
+  qwen3-8b-base:   {id: Qwen/Qwen3-8B,   revision: b968826d9c46dd6066d109eabc6255188de91218}
+tasks: all 896 VeriBench V1 tasks (experiment 103 gated v6 pack)
+decoding:
+  samples: 8
+  max_tokens: 12288
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 20
+  seed: 91            # per-sample seed 91*100003 + k
+  thinking: "on"      # chat template default; no empty think block injected
+  stop_tokens: ["<|im_end|>"]   # plus the model's own EOS <|endoftext|>
