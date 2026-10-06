@@ -8,10 +8,10 @@
 
 | Preflight gate | Status | Evidence |
 |---|---|---|
-| External source identity and screen | Ready for remote rerun | Phase-A v2 manifest builder |
-| 24 accepted Lean references | Blocked | Released FVAPPS `spec` field has `sorry` stubs |
-| Lean 4.22.0 toolchain | Available locally | VeriBench `lean-toolchain` pins `leanprover/lean4:v4.22.0` |
-| Lean RL adapter/scorer isolation | Blocked | `rl-env-scaling` commit `7118b86` launcher is math/Math-Verify-specific |
+| External source identity and screen | DONE, candidate-only | Phase-A version-2 remote receipts verify FVAPPS and VERINA source screens; VERINA partitions are 141 train / 24 validation / 24 test |
+| Accepted external Lean references | Blocked | FVAPPS released stubs contain `sorry`; among 24 inspected VERINA references, 6 passed kernel trust, 16 used forbidden `sorryAx`, and 2 were unknown after compilation failure; none is an admitted generic endpoint |
+| Lean 4.22.0 toolchain | Used by completed engineering checks | All 24 authored checker controls matched; original VERINA source compiled for 22/24 tasks |
+| Lean RL adapter/scorer isolation | Blocked | No Lean rollout adapter; required `rl-env-scaling` revision is absent from the reachable checkout and the available configuration is a placeholder |
 | Numeric ρ–H forecast | Not created | Exact law equation and coefficients are not established; it must precede any arm outcome |
 | Equal-compute trajectories | Not launched | 2 environments × 2 seeds × 64 frozen steps after preflight |
 
@@ -29,9 +29,10 @@ The machine-readable blocker and resource receipt is `results/training_readiness
 
 **Snapshot:**
 ```text
-candidate external panel: 24 FVAPPS rows
-accepted references: 0 / 24
+candidate partitions: VERINA train141 / validation24 / test24
+external endpoint applicability: 0 / 24; required >=20 / 24
+accepted training pool: not established
 forecast frozen: no
 training trajectories launched: 0 / 4
-reusable trainer: math-specific GRPO only (commit 7118b86)
+executable Lean trainer: unavailable; required revision unverified
 ```

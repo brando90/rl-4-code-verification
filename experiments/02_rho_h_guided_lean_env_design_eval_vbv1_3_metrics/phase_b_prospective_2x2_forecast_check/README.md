@@ -60,12 +60,16 @@ phase_b_prospective_2x2_forecast_check/
 - Experiment 02A's gate G2.
 - Decision D-103 (about 500–700 B200 GPU-hours) and D-105 (the paper's NeMo configs).
 
-## Status
+## Current execution status
+
+The [bounded version-2 readiness study](expt_v2/results.md), published 10-06-2026, has a [machine-readable receipt](expt_v2/results/training_readiness_manifest_2026-10-06.json): training `NOT_ADMITTED`, forecast `NOT_FROZEN`, and 0/4 proposed trajectories launched. External partitions are candidate-only at 141 train / 24 validation / 24 test tasks; the independent endpoint admits 0/24 against its 20/24 engineering gate. Accepted references, a generic Lean endpoint and rollout adapter, verified training source and executable configuration, measured pre-training probes, and numeric law coefficients remain missing. A model revision being reachable does not establish a usable warm-start checkpoint or trainer.
+
+The version-2 proposal is two environments × two seeds × 64 steps, distinct from the larger design above. Neither has an admitted graphics-processor allocation or a fabricated numeric runtime estimate. The table below describes the larger design's remaining work.
 
 | Step | Status |
 |---|---|
 | Design | Done (09-30-2026) |
-| PROTOCOL.md | TODO, after experiment 02A |
+| Protocols | Version-2 bounded preflight protocol exists; larger phase protocol remains pending its gates |
 | 1.7B / 4B runs | TODO |
 | Frozen 8B and L3 forecasts | TODO |
 | 8B runs and scoring | TODO |

@@ -48,11 +48,13 @@ Dependencies are the pinned SWE-bench harness and dataset, isolated Docker execu
 | Stage | Status | Evidence |
 |---|---|---|
 | Target and source selection | Done | Official source note |
-| Public/evaluator manifest separation | Implementing | Version1 scripts |
-| Eight-task environment and reference controls | Reconciled with limits | 8 report-backed gold, 6 exact-empty base, 2 null baselines; no repair inference |
+| Public/evaluator manifest separation | Implemented; exposure caveat retained | Public projection sealed; evaluator roots now mode 0700; prior traversal cannot be ruled out |
+| Eight-task environment and reference controls | Failed admission | 5/16 interpretable endpoints, 11/16 null; 2/8 valid pairs versus 6/8 required; [audit](expt_v2/results/official_evaluator_controls.md) |
 | Public diagnostic checks | Failed admission | 1/8 structural acceptance versus 6/8 gate; audit corrects late/unverified validator chronology |
 | Three-condition repair comparison | Not admitted | 0/56 solver responses; gate remains closed |
 | Proposed 24-task test confirmation | Planned | New frozen version after validation |
 | Environment scaling or reinforcement learning | Planned | Separate forecast and training budget required |
 
 See [live results](results.md), [protocol](PROTOCOL.md) and [execution prompt](expt_v1/cc.md).
+
+The bounded version 2 execution has ended. [Version 3](expt_v3/README.md) is a concrete proposal, with zero current additional call admission. It retains the eight-task validation panel and requests a new explicit resource/call envelope before repairing environments or generating new checks. No owned experiment is currently running.

@@ -15,9 +15,9 @@ Created: 10-05-2026 22:33 PDT
 | Matched feedback repair | NOT ADMITTED: 0 / 192 repair cells and 0 / 1,296 judge-member calls, because the independent endpoint is inapplicable |
 | Prospective environment comparison | NOT ADMITTED: candidate-only 141 / 24 / 24 train / validation / test split and readiness receipt; no forecast or training result |
 
-The separate Qwen3 Base eight-response evaluation is scoring under its existing owner. Its result is a training-feasibility dependency; it does not block endpoint validation or external-data preparation.
+The separate Qwen3 Base eight-response evaluation completed under its existing owner: 21,504/21,504 scored cells and 24/24 scoring jobs. Of those generations, 6,214 ended at the generation-length limit but have actual recorded kernel and proof-fraction scores; they are not missing scoring rows. The owner's artifacts remain read-only. This completed feasibility evaluation does not admit warm-start training or remove this study's external-adapter blocker.
 
-Runtime receipts will live at `/lfs/skampere1/0/brando9/rl4cv_azalia_execute/runtime`. A coordinator exit or synthetic-control pass must not be reported as completion of the repair study.
+Runtime receipts are retained at `/lfs/skampere1/0/brando9/rl4cv_azalia_execute/runtime`, with published findings linked below. A coordinator exit or authored-control pass must not be reported as completion of the repair study.
 
 ## Completed authored-control reconciliation
 

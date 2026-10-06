@@ -1,0 +1,522 @@
+{
+  "audit_script_sha256": "192dfc12db5f1e30d925ce7168c6e813a505aef1e44d64772f0d1fc9e9822be5",
+  "chronology": "Post-hoc interpretation of existing receipts and logs; no new evaluation or model call.",
+  "counts": {
+    "declared_cells": 16,
+    "declared_tasks": 8,
+    "endpoint_values_measured": 5,
+    "endpoint_values_null": 11,
+    "report_backed_cells": 14,
+    "required_control_pairs": 6,
+    "valid_control_pairs": 2
+  },
+  "harness_commit": "f7bbbb2ccdf479001d6467c9e34af59e44a840f9",
+  "panel_sha256": "552c8bde40bc102b2145607e79cdffaeff45ad50e30011cafaf311890a819e7d",
+  "reconciliation_manifest_sha256": "aed7659c576300c662b4668356b9fd819db50a977c512a8f038e95d4c10bba9e",
+  "recorded_wrapper_elapsed_seconds": 2275.874,
+  "resource_limitations": [
+    "outer build timeout was not enforced",
+    "120-GiB new-storage ceiling was not enforced",
+    "wrapper elapsed time is not measured processor use",
+    "pre-receipt failures have incomplete duration accounting"
+  ],
+  "rows": [
+    {
+      "empty": {
+        "condition": "exact_empty_patch_adapter",
+        "endpoint_value": null,
+        "matches_expected": null,
+        "raw_resolved": null,
+        "report_present": false,
+        "status": "retry_exhausted"
+      },
+      "gold": {
+        "condition": "gold",
+        "endpoint_value": true,
+        "log_sha256": [
+          "2e61100e483fa4be3e2e172ab50faf7f1edc9f67f05612936001b93681f9411b"
+        ],
+        "matches_expected": true,
+        "patch_sha256": "cd92d07e1002ae1df3c209f792bc06e2c20153f281d8070dae6970ecacba22ba",
+        "raw_resolved": true,
+        "receipt_sha256": "f45420b776b5fbcf5e7c09103bda53c40a87f7b2ef15cc0e3213bf29b4256414",
+        "report_present": true,
+        "report_sha256": "76faa77afa5effcd9a467eb49a6d6034503ac0cf9819bded4a222dd12cec7c6d",
+        "status": "test_execution_observed",
+        "test_group_counts": {
+          "FAIL_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "FAIL_TO_PASS": {
+            "failure": 0,
+            "success": 3
+          },
+          "PASS_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "PASS_TO_PASS": {
+            "failure": 0,
+            "success": 63
+          }
+        }
+      },
+      "instance_id": "sqlfluff__sqlfluff-1763",
+      "valid_control_pair": false
+    },
+    {
+      "empty": {
+        "condition": "exact_empty_patch_adapter",
+        "endpoint_value": null,
+        "matches_expected": null,
+        "raw_resolved": null,
+        "report_present": false,
+        "status": "retry_exhausted"
+      },
+      "gold": {
+        "condition": "gold",
+        "endpoint_value": null,
+        "log_sha256": [
+          "bcedee4115fbf39bcb90ac341c20c2c4f77cc5dc983c9b8574aae226d490ee91"
+        ],
+        "matches_expected": null,
+        "patch_sha256": "e5d1affcf45d62c9c6a201ed98d7f824b8a6fc7936301e4fb0ddafac8a6898d1",
+        "raw_resolved": false,
+        "receipt_sha256": "514dcb1c2d4a5d02bb6837172e1ea5e8ae55ada2a68ca78042a24cc6fbb7cab0",
+        "report_present": true,
+        "report_sha256": "3fa72842b931e33de3531b4943600f6b891cebf2a4ecde97c084c218e124c027",
+        "status": "import_failure_before_test_completion",
+        "test_group_counts": {
+          "FAIL_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "FAIL_TO_PASS": {
+            "failure": 1,
+            "success": 0
+          },
+          "PASS_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "PASS_TO_PASS": {
+            "failure": 10,
+            "success": 0
+          }
+        }
+      },
+      "instance_id": "pvlib__pvlib-python-1606",
+      "valid_control_pair": false
+    },
+    {
+      "empty": {
+        "condition": "exact_empty_patch_adapter",
+        "endpoint_value": false,
+        "log_sha256": [
+          "4a59c3c7c7bdba4166d7a165e8f39aff1578552fa234125d35d9db18e896da41"
+        ],
+        "matches_expected": true,
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_resolved": false,
+        "receipt_sha256": "f98c73acde274bc7d958440a8e7d32e9b508354312bc4ecff9007f3ba9ae4953",
+        "report_present": true,
+        "report_sha256": "be0b6be38551823665a560678f50a6458c27043e6383392439cbc1c531c4aa02",
+        "status": "test_execution_observed",
+        "test_group_counts": {
+          "FAIL_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "FAIL_TO_PASS": {
+            "failure": 1,
+            "success": 0
+          },
+          "PASS_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "PASS_TO_PASS": {
+            "failure": 0,
+            "success": 0
+          }
+        }
+      },
+      "gold": {
+        "condition": "gold",
+        "endpoint_value": true,
+        "log_sha256": [
+          "b667f8f403e552321a6fe6c3309593891c0241a0081ca8fb2b6ac2572e3ccc75"
+        ],
+        "matches_expected": true,
+        "patch_sha256": "ead8cd4fea56ca2e085d1e4ad6f7f076f9cd806ac8016a220023e4b91845ecce",
+        "raw_resolved": true,
+        "receipt_sha256": "e665ecf2833177ee8a6f10dd5bce0b94bb738ffb3ac821576064a762f5d5a569",
+        "report_present": true,
+        "report_sha256": "377853a4a319cc54f32aaa7320aafa26e81194ccd5acde07b3a351b01bd1d40f",
+        "status": "test_execution_observed",
+        "test_group_counts": {
+          "FAIL_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "FAIL_TO_PASS": {
+            "failure": 0,
+            "success": 1
+          },
+          "PASS_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "PASS_TO_PASS": {
+            "failure": 0,
+            "success": 0
+          }
+        }
+      },
+      "instance_id": "sqlfluff__sqlfluff-2419",
+      "valid_control_pair": true
+    },
+    {
+      "empty": {
+        "condition": "exact_empty_patch_adapter",
+        "endpoint_value": false,
+        "log_sha256": [
+          "8b09c1251b08fb847b861d8255eda8c813094999d7938baa9c605363d7bc0808"
+        ],
+        "matches_expected": true,
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_resolved": false,
+        "receipt_sha256": "998bd3c25fc72bbc2e4648ab38f5192c474124836f321dd59d29f1b5a9f929ef",
+        "report_present": true,
+        "report_sha256": "394708f5bdfd6486c6620ed10063be9eeacfc726975a1c8796241e663bed4a07",
+        "status": "test_execution_observed",
+        "test_group_counts": {
+          "FAIL_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "FAIL_TO_PASS": {
+            "failure": 1,
+            "success": 0
+          },
+          "PASS_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "PASS_TO_PASS": {
+            "failure": 0,
+            "success": 24
+          }
+        }
+      },
+      "gold": {
+        "condition": "gold",
+        "endpoint_value": true,
+        "log_sha256": [
+          "a67cdca48f809d49fd3668f05e69960a18974bf1d261cb7b6940e623759dd9cc"
+        ],
+        "matches_expected": true,
+        "patch_sha256": "fb93d3650801b4da32dce01c6f7cc72194236aa7445189dd5edfb9d5081d3ecf",
+        "raw_resolved": true,
+        "receipt_sha256": "e6e304fe640717f3267331490841d2b894e60e631aa1ea1e189179066ebdcbe5",
+        "report_present": true,
+        "report_sha256": "b475dee94fb8b2f3c8c6fd7bb5dd1751576e50e305402217e3a4f90364d4c14d",
+        "status": "test_execution_observed",
+        "test_group_counts": {
+          "FAIL_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "FAIL_TO_PASS": {
+            "failure": 0,
+            "success": 1
+          },
+          "PASS_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "PASS_TO_PASS": {
+            "failure": 0,
+            "success": 24
+          }
+        }
+      },
+      "instance_id": "marshmallow-code__marshmallow-1343",
+      "valid_control_pair": true
+    },
+    {
+      "empty": {
+        "condition": "exact_empty_patch_adapter",
+        "endpoint_value": null,
+        "log_sha256": [
+          "96ce4e2bc7410376a143f67e83795efb73e7bacaf39c1b053d746a02cd62f354"
+        ],
+        "matches_expected": null,
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_resolved": false,
+        "receipt_sha256": "dc5e695c748743a9da02db3f46358a3d3b1c7a1ac348494174fd286875e6d5dc",
+        "report_present": true,
+        "report_sha256": "c62e83147a9107bb841b80407b610c1ba4179dd205eb5c81a15695980a8395df",
+        "status": "import_failure_before_test_completion",
+        "test_group_counts": {
+          "FAIL_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "FAIL_TO_PASS": {
+            "failure": 1,
+            "success": 0
+          },
+          "PASS_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "PASS_TO_PASS": {
+            "failure": 30,
+            "success": 0
+          }
+        }
+      },
+      "gold": {
+        "condition": "gold",
+        "endpoint_value": null,
+        "log_sha256": [
+          "153896febd0e9ff1ac84cb68984b5b33dc9f4bfd2a8ad0b25926857769021b3f"
+        ],
+        "matches_expected": null,
+        "patch_sha256": "e59ef7e4f9d4b98262066347448800074334e4a27810c65b1686e0e10f2e4917",
+        "raw_resolved": false,
+        "receipt_sha256": "84484b586206667437f0a5a33d3155ec2894c926f780613fd66a086321f7b334",
+        "report_present": true,
+        "report_sha256": "c62e83147a9107bb841b80407b610c1ba4179dd205eb5c81a15695980a8395df",
+        "status": "import_failure_before_test_completion",
+        "test_group_counts": {
+          "FAIL_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "FAIL_TO_PASS": {
+            "failure": 1,
+            "success": 0
+          },
+          "PASS_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "PASS_TO_PASS": {
+            "failure": 30,
+            "success": 0
+          }
+        }
+      },
+      "instance_id": "pvlib__pvlib-python-1707",
+      "valid_control_pair": false
+    },
+    {
+      "empty": {
+        "condition": "exact_empty_patch_adapter",
+        "endpoint_value": null,
+        "log_sha256": [
+          "3d26dbb582470afafed01c1be287e6ab8af6d505f2463ec63f6c3d30511299c3"
+        ],
+        "matches_expected": null,
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_resolved": false,
+        "receipt_sha256": "fb5e9066c787e0aeb251bea5108b8ccdad782ce2415f017d6266a89956bc2229",
+        "report_present": true,
+        "report_sha256": "82bf8021e9dc799e13eb3886b26f3b0b9186fc2633b072726176393ee188627b",
+        "status": "import_failure_before_test_completion",
+        "test_group_counts": {
+          "FAIL_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "FAIL_TO_PASS": {
+            "failure": 1,
+            "success": 0
+          },
+          "PASS_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "PASS_TO_PASS": {
+            "failure": 97,
+            "success": 0
+          }
+        }
+      },
+      "gold": {
+        "condition": "gold",
+        "endpoint_value": null,
+        "log_sha256": [
+          "74da2f53a96d9889c13f6801649350cce1a960a25cca3614799538a4cc7450ba"
+        ],
+        "matches_expected": null,
+        "patch_sha256": "56a6a7d3b9aff69c49a12d64e867a60c406aba758b5d00ed4f0e134147a4c7df",
+        "raw_resolved": false,
+        "receipt_sha256": "e9cdc2458225cca3ed79dbcc11cba8eff75f927a4a24a46c8231c344aa30dad0",
+        "report_present": true,
+        "report_sha256": "82bf8021e9dc799e13eb3886b26f3b0b9186fc2633b072726176393ee188627b",
+        "status": "import_failure_before_test_completion",
+        "test_group_counts": {
+          "FAIL_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "FAIL_TO_PASS": {
+            "failure": 1,
+            "success": 0
+          },
+          "PASS_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "PASS_TO_PASS": {
+            "failure": 97,
+            "success": 0
+          }
+        }
+      },
+      "instance_id": "pvlib__pvlib-python-1154",
+      "valid_control_pair": false
+    },
+    {
+      "empty": {
+        "condition": "exact_empty_patch_adapter",
+        "endpoint_value": null,
+        "log_sha256": [
+          "064deb4fb1f31476a73be821bf767978039bb6ebbf02059e0e70d8634be3a2d5"
+        ],
+        "matches_expected": null,
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_resolved": false,
+        "receipt_sha256": "fc3182c1545c31008f60c6efa45e4bd784da4024f8981e6b5c1e0b0bd3c51a57",
+        "report_present": true,
+        "report_sha256": "7fab79f6592f3a5cf8d60104a40c7e33a41c41ad9f9db878b1f5279b662a9c53",
+        "status": "import_failure_before_test_completion",
+        "test_group_counts": {
+          "FAIL_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "FAIL_TO_PASS": {
+            "failure": 1,
+            "success": 0
+          },
+          "PASS_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "PASS_TO_PASS": {
+            "failure": 18,
+            "success": 0
+          }
+        }
+      },
+      "gold": {
+        "condition": "gold",
+        "endpoint_value": null,
+        "log_sha256": [
+          "c31cdd52ed30bf0cf6d9957da84c97cd7b9f95b13d43738b9db30c09e9242578"
+        ],
+        "matches_expected": null,
+        "patch_sha256": "d18c3f99799433eb709ff9c4153b1d5e846e487d3a2b25443b64dfd1b4b35bcd",
+        "raw_resolved": false,
+        "receipt_sha256": "63b6b0d6839eff4a586e1114a9950aa324f7beffaa25435963d7545ca6f70228",
+        "report_present": true,
+        "report_sha256": "7fab79f6592f3a5cf8d60104a40c7e33a41c41ad9f9db878b1f5279b662a9c53",
+        "status": "import_failure_before_test_completion",
+        "test_group_counts": {
+          "FAIL_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "FAIL_TO_PASS": {
+            "failure": 1,
+            "success": 0
+          },
+          "PASS_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "PASS_TO_PASS": {
+            "failure": 18,
+            "success": 0
+          }
+        }
+      },
+      "instance_id": "pvlib__pvlib-python-1072",
+      "valid_control_pair": false
+    },
+    {
+      "empty": {
+        "condition": "exact_empty_patch_adapter",
+        "endpoint_value": null,
+        "log_sha256": [
+          "45437f4468a8bf7997fe5d7ee50576c07b7f7c43b3d8800772d8324f5410dee7"
+        ],
+        "matches_expected": null,
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_resolved": false,
+        "receipt_sha256": "4626c33eaf0dd73b1992c0849812971e5ddfbabc77d4310c59e52e2864decee7",
+        "report_present": true,
+        "report_sha256": "9367d8dbe2e014d1e95cbc38d47cf2b864d210066ba63bd058735ee32bc14abc",
+        "status": "fixture_failure_requires_environment_validation",
+        "test_group_counts": {
+          "FAIL_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "FAIL_TO_PASS": {
+            "failure": 3,
+            "success": 0
+          },
+          "PASS_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "PASS_TO_PASS": {
+            "failure": 2,
+            "success": 36
+          }
+        }
+      },
+      "gold": {
+        "condition": "gold",
+        "endpoint_value": null,
+        "log_sha256": [
+          "aba20027b1b5c6e929ff1ba9a64c05862041b776e31a38173644ef2417118f4b"
+        ],
+        "matches_expected": null,
+        "patch_sha256": "061145e48f902830c6246266cbab0cdb8d42814dcd7a4694baebb03450cb8caa",
+        "raw_resolved": false,
+        "receipt_sha256": "aa279101ecec2c2d4b72b414f0dc0168c0b632e9c36f9102c2469c267670e96b",
+        "report_present": true,
+        "report_sha256": "c9b2aca9a123f4a2b456973d8d4c15033ee41677d751c8cdcf6ff0f81cae5af6",
+        "status": "fixture_failure_requires_environment_validation",
+        "test_group_counts": {
+          "FAIL_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "FAIL_TO_PASS": {
+            "failure": 0,
+            "success": 3
+          },
+          "PASS_TO_FAIL": {
+            "failure": 0,
+            "success": 0
+          },
+          "PASS_TO_PASS": {
+            "failure": 2,
+            "success": 36
+          }
+        }
+      },
+      "instance_id": "pydicom__pydicom-1139",
+      "valid_control_pair": false
+    }
+  ],
+  "schema": "e06_parent_control_audit_v1"
+}

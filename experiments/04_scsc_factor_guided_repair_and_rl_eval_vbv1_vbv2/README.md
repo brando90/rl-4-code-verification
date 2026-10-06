@@ -4,7 +4,9 @@
 
 **TLDR:** Test whether access to VeriBench’s three components improves decisions and held-out verification at matched cost. Start by validating an independent reference-success outcome, then compare feedback policies; reuse the existing environment-scaling experiments for reinforcement learning.
 
-**Created:** 10-05-2026. **Execution:** existing-artifact audit complete on SNAP; intervention, new proof and training runs not started. **Thesis inclusion:** intended, conditional on defensible evidence.
+**Created:** 10-05-2026. **Execution, updated 10-06-2026:** historical audit and all 24 authored checker controls are complete; external endpoint applicability failed at 0/24 against the fixed 20/24 engineering gate. Repair, judge and training calls remain unadmitted. **Thesis inclusion:** intended, conditional on defensible evidence.
+
+The [published external study](expt_v3/results.md) separates the 24/24 matching authored controls from the missing adapter for general Lean programs. The [control reconciliation](expt_v2/endpoint_validation/results_2026-10-06T0734Z_reconciliation.json) preserves every original measured row. Candidate-only external partitions contain 141 train, 24 validation and 24 test tasks; they are not accepted training data. The next engineering proposal is the [draft generic-adapter plan](expt_v4/README.md), with zero new model calls admitted. No causal benefit of factor feedback has been measured.
 
 **Goal:** turn Azalia Mirhoseini's suggestion into a falsifiable test of the practical value of interpretable evaluation.
 **Main uncertainty:** do the components identify a useful intervention beyond information already available in the aggregate and compiler feedback?
@@ -44,7 +46,7 @@ Scores are predicted priorities, not measured effect sizes.
 2. **[p 9/10] Run a controlled inference-time repair study**, because it tests actionable interpretation more cheaply than training and isolates feedback information.
 3. **[p 8/10] Reuse `02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics` for environment and reward selection**, because that work already owns the training comparison and should not be duplicated.
 4. **[p 6/10] Add the proposed specification-equivalence diagnostic**, because implication may be useful but adapter and proof-search failures limit interpretation.
-5. **[p 4/10] Explore transfer to repository repair benchmarks**, after the within-VeriBench causal result; a SWE-bench factorization requires its own construct validation.
+5. **[p 4/10] Explore transfer to repository repair benchmarks.** The separately authorized [06_swebench_lite_factor_feedback_matched_budget](../06_swebench_lite_factor_feedback_matched_budget/README.md) was pursued independently; its bounded validation has ended with failed diagnostic/control gates and a separate next-version proposal.
 
 ## First study and deliverables
 
@@ -61,6 +63,9 @@ Read [PROTOCOL.md](PROTOCOL.md) for the locked existing-artifact audit, [PLAN.md
   expt_v1/audit_existing.py  deterministic feasibility audit
   expt_v1/input_manifest.json
   expt_v1/results/           audit and execution receipts
+  expt_v2/endpoint_validation/ authored checker controls and reconciliation
+  expt_v3/results.md         external-reference applicability findings
+  expt_v4/README.md          draft generic-adapter plan; not admitted
   results.md                 live evidence
   CKPT_azalia.md              resume record
 ```

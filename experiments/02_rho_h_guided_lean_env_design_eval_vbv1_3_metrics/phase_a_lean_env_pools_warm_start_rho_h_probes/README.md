@@ -53,12 +53,16 @@ phase_a_lean_env_pools_warm_start_rho_h_probes/
 - Experiment 01's gate G1 verdict and its measured response lengths (to set the cap).
 - Decisions D-101 (self-hosted inference), D-102 (judge, for FSC channels), D-103 (GPUs), D-104 (pool and teacher) and D-105 (the paper's code and configs).
 
-## Status
+## Current execution status
+
+The [bounded version-2 source preparation](expt_v2/results.md), published 10-06-2026, screened external candidates and froze outcome-blind partitions of 141 train, 24 validation and 24 test tasks. They remain candidate-only. The external endpoint study in `04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2` found 0/24 supported generic adapters versus its fixed 20/24 engineering gate, despite 24/24 matching authored checker controls. No candidate has entered warm-start training, probes, repair, judge scoring or checkpoint selection. Its [draft adapter plan](../../04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v4/README.md) is the next engineering dependency, with zero new model calls admitted.
+
+The table below retains the larger phase design; completing candidate preparation does not complete its warm starts or policy-relative probes.
 
 | Step | Status |
 |---|---|
 | Design | Done (09-30-2026) |
-| PROTOCOL.md | TODO, after experiment 01 |
-| Pools, screens, panel | TODO |
+| Protocols | Version-2 bounded preflight protocol exists; larger phase protocol remains pending its gates |
+| Pools, screens, panel | Version-2 source screening and candidate partitions published; accepted training references remain blocked |
 | Warm start ×4 scales | TODO |
 | Probes and cells ×4 scales | TODO |

@@ -1,0 +1,74 @@
+{
+  "additional_experiment_calls_admitted": 0,
+  "authored_lean_controls": {
+    "declared": 24,
+    "matching": 24,
+    "measured": 24
+  },
+  "checks": {
+    "coding_experiment": {
+      "passed": 35,
+      "subtests_passed": 23
+    },
+    "lean_endpoint": {
+      "passed": 10,
+      "subtests_passed": 11
+    },
+    "repository": {
+      "command": "VERIBENCH_ROOT=/Users/brandomiranda/veribench make test",
+      "passed": 35,
+      "skipped": 0
+    }
+  },
+  "control_audit_sha256": "cf28d5fd89cc200edbb196b59fa62eab796e3e64a6d94cdf7e61bc17500ffbd3",
+  "diagnostic_author_calls_consumed": 8,
+  "diagnostic_structural_accepted": 1,
+  "diagnostic_structural_required": 6,
+  "external_applicability": {
+    "applicable": 0,
+    "declared": 24,
+    "required": 20
+  },
+  "final_condition_cells": {
+    "declared": 24,
+    "measured": 0,
+    "missing": 24
+  },
+  "forecast_status": "NOT_FROZEN",
+  "heartbeat_pause_criterion": "After corrected publication and synchronization, the bounded continuation is exhausted and only separately admitted next versions remain.",
+  "official_control_counts": {
+    "declared_cells": 16,
+    "declared_tasks": 8,
+    "endpoint_values_measured": 5,
+    "endpoint_values_null": 11,
+    "report_backed_cells": 14,
+    "required_control_pairs": 6,
+    "valid_control_pairs": 2
+  },
+  "original_input_control_json_files_verified_unchanged": 26,
+  "owned_evaluator_containers_running": 0,
+  "owned_jobs_running": 0,
+  "prior_publication_commits": [
+    "b384e06",
+    "76435d7",
+    "3056662"
+  ],
+  "proposals": [
+    "expt_v3/README.md",
+    "../04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v4/README.md"
+  ],
+  "recorded_at": "2026-10-06T08:38:49.793548+00:00",
+  "repair_solver_cells": {
+    "declared": 56,
+    "measured": 0,
+    "missing": 56
+  },
+  "schema": "factor_feedback_parent_closeout_v1",
+  "scientific_goal_complete": false,
+  "status": "bounded_continuation_closed_new_admission_required",
+  "training_trajectories": {
+    "declared": 4,
+    "launched": 0
+  },
+  "worker_publication_check_limitation": "Remote make test failed because python was not on its command path; parent independently passed tests locally."
+}
