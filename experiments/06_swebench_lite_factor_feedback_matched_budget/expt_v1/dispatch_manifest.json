@@ -1,0 +1,92 @@
+{
+  "run_id": "rl4cv-e06-swebench-validation-v1-10-05-2026",
+  "canonical_experiment": "06_swebench_lite_factor_feedback_matched_budget",
+  "master_thread": "01a10d32-a3b2-7d70-a8e9-764e40592ed5",
+  "created_at": "10-05-2026 23:04 PDT",
+  "policy_revision": "cc5f2f49dc3724b9e3f8cf8412ddce4194b34c40",
+  "host": "skampere1",
+  "owned_root": "/lfs/skampere1/0/brando9/rl4cv_e06_swebench/rl-4-code-verification",
+  "runtime": "/lfs/skampere1/0/brando9/rl4cv_e06_swebench/runtime",
+  "session": "rl4cv-e06-swebench-factor-feedback",
+  "executor": {
+    "client": "codex-cli 0.154.0",
+    "model": "gpt-5.6-terra",
+    "effort": "high",
+    "role": "implementation and execution coordinator; not measured solver",
+    "permissions": "--dangerously-bypass-approvals-and-sandbox",
+    "auth_evidence": "existing same-host ChatGPT authenticated worker and health preflight",
+    "fallback": "one same-model coordinator restart after owned processes stop; other eligible subscription executor requires explicit ownership/verification; never change measured model"
+  },
+  "allowance": {
+    "source": "Codex app usage tool 10-05-2026",
+    "codex_weekly_used_percent": 41,
+    "codex_weekly_remaining_percent": 59,
+    "five_hour_window": null,
+    "purchased_credit_balance": 0,
+    "shared_consumers": "master, experiment04 coordinator, this new coordinator; no additional remote fanout",
+    "coordinator_estimate_tokens": [
+      20000,
+      60000
+    ],
+    "reserve_remaining_percent": 25,
+    "no_new_expensive_batches_below_percent": 10,
+    "claude_allowance": null,
+    "no_new_charges": true
+  },
+  "measured_proposal": {
+    "solver_model": "claude-sonnet-5",
+    "effort": "medium",
+    "validation_tasks": 8,
+    "initial_responses": 8,
+    "repair_responses": 48,
+    "diagnostic_author_responses_max": 8,
+    "model_calls_total_max": 64,
+    "conditions": [
+      "ordinary",
+      "scalar",
+      "vector"
+    ],
+    "repair_steps": 2,
+    "admission": "exact scripts prompts check definitions environment hashes and cellmanifest must freeze before calls"
+  },
+  "resources": {
+    "gpus": 0,
+    "containers_max": 2,
+    "cpus_per_container": 4,
+    "memory_gib_per_container": 8,
+    "new_docker_gib_max": 120,
+    "scratch_gib_max": 120,
+    "docker_free_gib_min": 100,
+    "scratch_free_gib_min": 1024,
+    "cpu_hours_max": 160,
+    "wall_hours_max": 18
+  },
+  "recovery": {
+    "supervisor": "expt_v1/supervise.py",
+    "poll_seconds": 120,
+    "max_coordinator_attempts": 2,
+    "healthy_children": "adopt and preserve",
+    "reboot_automatic": false,
+    "notification": "existing same-thread heartbeat extended to this experiment; no emails or other-chat messages",
+    "stop": "scientifically verified completion or explicit needs_attention receipt; a worker exit alone is not completion"
+  },
+  "ownership": {
+    "worker": "experiment06 only after acknowledgement",
+    "parent": "experiment index, decisions and stable master checkpoint",
+    "other_jobs": "experiment04 and existing Qwen evaluation are read-only; no GPU allocated here"
+  },
+  "publication": "explicit owned paths on main, make test and experiment checks, exact staged review; no secret/private evaluator rows",
+  "input_sha256": {
+    ".gitignore": "7a4d2dbcbeaeccec1f406f9eec21e9d4279b34f14e43343097a48e4c09eee870",
+    "PROTOCOL.md": "e6054407ee1f6a8122454d41acea16bd0ba163ea93279628837cc0cd84f2c673",
+    "README.md": "b1cd1423aad7a0dd84b81ae12b8c9714e59a590ac2cfa2e6aa1169437190040f",
+    "SOURCES_AND_DESIGN.md": "c9503410ae67a4205715458a889b11c5c35004438e8be95595824da992e41ee4",
+    "expt_v1/cc.md": "0a6d4e2c1a8279d84120770275e6f6c17ce2d132aa505780bb10404eafdc420c",
+    "expt_v1/results/host_preflight.json": "5f2b4392439c00719fddcab0d05dfd9d1c17cf157a42abf1cf3f432423b7628c",
+    "expt_v1/scripts/analyze_paired.py": "10274afe9f13a92b5044cd06d61cdcbd655704e441ca407b95a75ae07d9e5cb2",
+    "expt_v1/scripts/prepare_panel.py": "d61b60de19e315b70f09e16c8f417678d3da7fe336a2e9add9b7c0f54aba39b5",
+    "expt_v1/scripts/test_analyze_paired.py": "2a6056ce6c743e43c21aa78af1166026181aa89ccb213acf34343b68f6cc3f28",
+    "expt_v1/scripts/test_prepare_panel.py": "c6be2a0c085c4864f5d10da91760f002ebb0e295cc99c2ac70e7678e36d99e43",
+    "expt_v1/supervise.py": "1db6dc385b4eed5b3ec32cac38b03771a359dfc737d7751cef56d28f9bccb2a0"
+  }
+}
