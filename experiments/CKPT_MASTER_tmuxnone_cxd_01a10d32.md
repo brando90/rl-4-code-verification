@@ -5,7 +5,7 @@
 **TLDR:** Execute `06_swebench_lite_factor_feedback_matched_budget` and preserve/finish the already-authorized `04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2` and experiment02 preparation. The current recovery owner uses the distinct existing Vals Codex account; original default-Codex and Claude runtimes are historical. Qwen's evaluation retains its own owner.
 
 Created: 10-05-2026 22:33 PDT
-Last updated: 10-05-2026 23:37 PDT
+Last updated: 10-06-2026 00:10 PDT
 
 ## Identity and current recovery
 
@@ -36,6 +36,12 @@ Last updated: 10-05-2026 23:37 PDT
 - Experiment06 public manifest: `expt_v1/results/panel_public.json`, design digest `ae0927a7b56c9ad7cecf27b4c38dc2030ddf0430d9f1ffa4cc5a69851384bc46`, source-row digest `4598a9f0195fe2d8d3ef83e5a2aad322cfcb3efb0a4b7abb559128a52adfb6df`. Compatibility receipt: current runtime `evaluator_inputs/harness_schema_compatibility.json`. Original pinned harness remains unchanged; candidate separate checkout is `evaluator_sources/SWE-bench-f7bbbb2` (not yet accepted by this parent).
 - Experiment04 authored-control receipt under its earlier checkout: `expt_v2/endpoint_validation/results_2026-10-06T0544Z_controls/results.json`, digest `2e693baa5672192d90bdc0ccf0a0df680d08e2270fc9876d4109a3a4e8fefefd`. Four pending cells: `cap_two_sorry`, `cap_two_helper_sorry`, `cap_two_axiom`, `cap_two_native_decide`.
 - Experiment04 applicability receipt: `expt_v3/results/verina_external24_applicability_2026-10-06T0610Z/results.json`, digest `2bff38d953ccf2b369653ec0dbeb28c01f5e5286c17bcfdaaa46ad8f0a237a63`. Counts were recomputed from its 24 rows. These are fixed engineering checks, not a sampled treatment comparison; statistical intervals and hypothesis tests are not applicable. Earlier result publication remains the remote owner's responsibility.
+
+## Continuation after diagnostic preparation, 10-06-2026
+
+- Vals attempt1 ended and all its owned processes exited. It published experiment06 at `7ba5095`: compatible harness schema checks 8/8, eight author calls terminal, one structurally accepted bundle versus the 6/8 gate, zero solver calls. The raw 1/8 count is not functional diagnostic validity: no public check or official control was executed, and exact validator freeze chronology needs audit. Existing response inspection identifies strict JSON framing, quoted Python semicolons, and some print-only issue checks as distinct concerns. Preserve these outcomes; no new author or repair calls admitted.
+- Independent duties remained unfinished: four Lean controls, publication of earlier experiment04/02 evidence, and all 16 official evaluator controls for the eight coding tasks. Prepared [finish_controls.md](06_swebench_lite_factor_feedback_matched_budget/expt_v2/finish_controls.md) and its [dispatch manifest](06_swebench_lite_factor_feedback_matched_budget/expt_v2/control_continuation_dispatch.json) for the existing second/final Vals coordinator attempt. Original scientific budgets remain cumulative. Handoff is pending until this checkpoint records the new acknowledgement and real action.
+- Qwen evaluation is now fully scored: 24/24 scoring jobs, 21,504/21,504 cells, zero missing; its owner merged publication into main at 10-06-2026 00:05:51 PDT. Parent synchronized through `8287fa9`. The read-only lookup found a possible mismatch between the narrative and analysis total for 4B passes, so do not restate a full-pass count without reconciliation. No training follows automatically; VeriBench remains held out.
 
 ## Watches and limits
 
