@@ -1,0 +1,94 @@
+{
+  "observed_at": "10-05-2026 23:04 PDT",
+  "source": "snap_health.sh --node skampere1 --json; no model smoke calls",
+  "checks": [
+    {
+      "status": "PASS",
+      "node": "skampere1",
+      "check": "reachability",
+      "detail": "reachable via skampere1.stanford.edu",
+      "repair": null
+    },
+    {
+      "status": "PASS",
+      "node": "skampere1",
+      "check": "shell.canonical_path",
+      "detail": "login and child non-login shells resolve canonical Codex; BASH_ENV=/dfs/scratch0/brando9/.bash_env",
+      "repair": null
+    },
+    {
+      "status": "WARN",
+      "node": "skampere1",
+      "check": "tool.claude",
+      "detail": "resolved=/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/claude; stale alternates=/lfs/skampere1/0/brando9/.local/bin/claude,/usr/local/bin/claude; hits=/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/claude@2.1.291 (Claude Code),/lfs/skampere1/0/brando9/.local/bin/claude@2.1.275 (Claude Code),/usr/local/bin/claude@2.1.75 (Claude Code)",
+      "repair": "remove user-owned stale copies; ask root to remove root-owned copies"
+    },
+    {
+      "status": "WARN",
+      "node": "skampere1",
+      "check": "tool.codex",
+      "detail": "resolved=/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/codex; stale alternates=/usr/local/bin/codex; hits=/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/codex@codex-cli 0.154.0,/usr/local/bin/codex@codex-cli 0.114.0",
+      "repair": "remove user-owned stale copies; ask root to remove root-owned copies"
+    },
+    {
+      "status": "PASS",
+      "node": "skampere1",
+      "check": "tool.docker",
+      "detail": "resolved=/usr/bin/docker; hits=/usr/bin/docker@Docker version 28.1.1, build 4eba377,/bin/docker@Docker version 28.1.1, build 4eba377",
+      "repair": null
+    },
+    {
+      "status": "PASS",
+      "node": "skampere1",
+      "check": "disk.lfs",
+      "detail": "path=/lfs/skampere1/0/brando9 mount=/lfs/skampere1/0 used=80% free=11063GiB total=57002GiB thresholds=warn<10%,fail<5% free",
+      "repair": null
+    },
+    {
+      "status": "FAIL",
+      "node": "skampere1",
+      "check": "disk.dfs",
+      "detail": "path=/dfs/scratch0/brando9 mount=/dfs/scratch0 used=100% free=413GiB total=74112GiB thresholds=warn<10%,fail<5% free",
+      "repair": "du -x -h --max-depth=1 /dfs/scratch0/brando9 2>/dev/null | sort -h | tail -20; delete only reviewed, finished, regenerable user artifacts"
+    },
+    {
+      "status": "PASS",
+      "node": "skampere1",
+      "check": "auth.kerberos",
+      "detail": "valid Kerberos ticket",
+      "repair": null
+    },
+    {
+      "status": "PASS",
+      "node": "skampere1",
+      "check": "auth.afs",
+      "detail": "valid Andrew File System token",
+      "repair": null
+    },
+    {
+      "status": "PASS",
+      "node": "skampere1",
+      "check": "auth.krenew_loop",
+      "detail": "alive pid=3564039",
+      "repair": null
+    },
+    {
+      "status": "PASS",
+      "node": "skampere1",
+      "check": "auth.vals_credentials",
+      "detail": "present mode=600",
+      "repair": null
+    }
+  ],
+  "docker_server": "28.1.1",
+  "docker_root": "/var/lib/docker",
+  "docker_root_available_gb": 266,
+  "job_admission": "local scratch only; shared DFS disk threshold failure is excluded from large writes; existing small client/auth state remains shared",
+  "claude_auth": {
+    "logged_in": true,
+    "auth_method": "oauth_token",
+    "grant_path": "~/keys/claude_code_oauth_token.txt",
+    "entitlement_verified": false,
+    "remaining_allowance": null
+  }
+}

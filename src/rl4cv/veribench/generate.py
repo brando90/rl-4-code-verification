@@ -44,6 +44,17 @@ def done_cells(out_path: Path) -> set[tuple[str, int]]:
     return done
 
 
+def resolve_stop_token_ids(tokenizer, tokens: list[str]) -> list[int]:
+    """Map extra stop tokens (for example `<|im_end|>` for a Base checkpoint whose own EOS is `<|endoftext|>`) to ids."""
+    ids = []
+    for t in tokens:
+        i = tokenizer.convert_tokens_to_ids(t)
+        if i is None or (tokenizer.unk_token_id is not None and i == tokenizer.unk_token_id):
+            raise ValueError(f"stop token {t!r} is not a single token in this tokenizer")
+        ids.append(int(i))
+    return ids
+
+
 @dataclass
 class Completion:
     text: str
@@ -68,11 +79,15 @@ class _VllmEngine:
             trust_remote_code=False,
         )
         self.tokenizer = self.llm.get_tokenizer()
+        self.stop_ids = resolve_stop_token_ids(self.tokenizer, args.stop_token)
 
     def generate(self, texts: list[str], seeds: list[int]) -> list[Completion]:
         a = self.args
         params = [
-            self._SamplingParams(n=1, temperature=a.temperature, top_p=a.top_p, top_k=a.top_k, max_tokens=a.max_tokens, seed=sd)
+            self._SamplingParams(
+                n=1, temperature=a.temperature, top_p=a.top_p, top_k=a.top_k, max_tokens=a.max_tokens, seed=sd,
+                stop_token_ids=self.stop_ids or None,
+            )
             for sd in seeds
         ]
         outs = self.llm.generate(texts, params)
@@ -97,6 +112,7 @@ class _HfEngine:
             self.tokenizer.pad_token = self.tokenizer.eos_token
         self.model = AutoModelForCausalLM.from_pretrained(args.model, revision=args.revision, torch_dtype=torch.bfloat16)
         self.model.eval()
+        self.stop_ids = resolve_stop_token_ids(self.tokenizer, args.stop_token)
 
     def generate(self, texts: list[str], seeds: list[int]) -> list[Completion]:
         a, torch = self.args, self.torch
@@ -115,6 +131,7 @@ class _HfEngine:
         res = []
         width = enc["input_ids"].shape[1]
         eos = set(self.model.generation_config.eos_token_id if isinstance(self.model.generation_config.eos_token_id, list) else [self.model.generation_config.eos_token_id])
+        eos |= set(self.stop_ids)
         for i in range(len(texts)):
             gen = out[i, width:].tolist()
             ended = next((j for j, t in enumerate(gen) if t in eos), None)
@@ -143,6 +160,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--top-k", type=int, default=20)
     ap.add_argument("--seed", type=int, default=91)
     ap.add_argument("--thinking", choices=["on", "off", "model-default"], default="on")
+    ap.add_argument("--stop-token", action="append", default=[], help="extra stop token, repeatable (e.g. <|im_end|> for Base checkpoints)")
     ap.add_argument("--tensor-parallel-size", type=int, default=1)
     ap.add_argument("--gpu-memory-utilization", type=float, default=0.88)
     ap.add_argument("--addendum", default="vbv1")
@@ -194,6 +212,7 @@ def main(argv: list[str] | None = None) -> int:
                         "max_tokens": args.max_tokens,
                         "seed": args.seed * 100003 + k,
                         "thinking": args.thinking,
+                        "stop_tokens": args.stop_token,
                     },
                     "instruction_sha256": p.instruction_sha256,
                     "addendum_sha256": p.addendum_sha256,

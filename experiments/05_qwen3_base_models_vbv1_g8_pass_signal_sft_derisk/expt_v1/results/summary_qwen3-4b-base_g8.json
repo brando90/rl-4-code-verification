@@ -1,0 +1,60 @@
+{
+  "qwen3-4b-base_g8": {
+    "cells_declared": 7168,
+    "cells_scored": 7168,
+    "cells_unscored": 0,
+    "cells_cut_off_at_length": 704,
+    "cells_no_lean_extracted": 1029,
+    "compile_rate_scored": 0.0013950892857142857,
+    "IC_tests": [
+      0.0013950892857142857,
+      7168
+    ],
+    "IC_proofs": [
+      0.0006975446428571429,
+      7168
+    ],
+    "FSC_judged": [
+      null,
+      0
+    ],
+    "SCSC_exact_where_available": [
+      0.0,
+      7163
+    ],
+    "mean_generated_tokens": 2218.616768973214,
+    "probe_k": 8,
+    "probe": {
+      "fsc": {
+        "tasks_fully_measured": 0,
+        "mean_reward": null,
+        "pass_at_k_any_positive": null,
+        "share_of_mixed_groups": null
+      },
+      "fsc_compiled": {
+        "tasks_fully_measured": 886,
+        "mean_reward": 0.0,
+        "pass_at_k_any_positive": 0.0,
+        "share_of_mixed_groups": 0.0
+      },
+      "kernel_binary": {
+        "tasks_fully_measured": 896,
+        "mean_reward": 0.0006975446428571429,
+        "pass_at_k_any_positive": 0.005580357142857143,
+        "share_of_mixed_groups": 0.005580357142857143
+      },
+      "proof_fraction": {
+        "tasks_fully_measured": 896,
+        "mean_reward": 0.0006975446428571429,
+        "pass_at_k_any_positive": 0.005580357142857143,
+        "share_of_mixed_groups": 0.005580357142857143
+      },
+      "scsc": {
+        "tasks_fully_measured": 891,
+        "mean_reward": 0.0,
+        "pass_at_k_any_positive": 0.0,
+        "share_of_mixed_groups": 0.0
+      }
+    }
+  }
+}

@@ -1,0 +1,1008 @@
+{
+  "condition": "rl4cv-e05-qwen3-base-vbv1-g8-v1",
+  "thresholds": {
+    "fail_below": 0.05,
+    "pass_at_or_above": 0.2,
+    "source": "experiment 01 PROTOCOL.md gate G1, reused by experiment 05 PROTOCOL.md"
+  },
+  "models": {
+    "qwen3-1.7b-base": {
+      "scored_path": "/lfs/skampere1/0/brando9/rl4cv_e05/out/scored/scored_qwen3-1.7b-base_g8.jsonl",
+      "execution": {
+        "cells_declared": 7168,
+        "cells_present": 7168,
+        "cells_scored": 7168,
+        "cells_cut_off_at_length": 4411,
+        "cells_no_lean_extracted": 3154,
+        "cells_compiling": 34,
+        "mean_generated_tokens": 8026.183872767857,
+        "IC_tests_mean": 0.00027901785714285713,
+        "IC_proofs_mean": 0.00015943877551020407,
+        "SCSC": "exact 0.0 on every scored cell",
+        "cells_ic_tests_x_ic_proofs_positive_fsc_unmeasured": []
+      },
+      "channels": {
+        "kernel_binary": {
+          "all_896": {
+            "tasks_declared": 896,
+            "tasks_measured": 896,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 896
+            },
+            "mixed_groups": 0,
+            "mixed_share": 0.0,
+            "mixed_share_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 1.0973630654219173e-20,
+            "pass_at_8_tasks": 0,
+            "pass_at_8_share": 0.0,
+            "pass_at_8_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "mean_reward": 0.0,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0
+            ]
+          },
+          "core_614": {
+            "tasks_declared": 614,
+            "tasks_measured": 614,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 614
+            },
+            "mixed_groups": 0,
+            "mixed_share": 0.0,
+            "mixed_share_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 2.1003595575633628e-14,
+            "pass_at_8_tasks": 0,
+            "pass_at_8_share": 0.0,
+            "pass_at_8_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "mean_reward": 0.0,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0
+            ]
+          },
+          "industry_282": {
+            "tasks_declared": 282,
+            "tasks_measured": 282,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 282
+            },
+            "mixed_groups": 0,
+            "mixed_share": 0.0,
+            "mixed_share_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 5.224643854288326e-07,
+            "pass_at_8_tasks": 0,
+            "pass_at_8_share": 0.0,
+            "pass_at_8_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "mean_reward": 0.0,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "ic_tests": {
+          "all_896": {
+            "tasks_declared": 896,
+            "tasks_measured": 896,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 894,
+              "1": 2
+            },
+            "mixed_groups": 2,
+            "mixed_share": 0.002232142857142857,
+            "mixed_share_wilson95": [
+              0.0006123476596071576,
+              0.0081019194413674
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 1.2716796443322218e-17,
+            "pass_at_8_tasks": 2,
+            "pass_at_8_share": 0.002232142857142857,
+            "pass_at_8_wilson95": [
+              0.0006123476596071576,
+              0.0081019194413674
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "mean_reward": 0.00027901785714285713,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0006975446428571429
+            ]
+          },
+          "core_614": {
+            "tasks_declared": 614,
+            "tasks_measured": 614,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 614
+            },
+            "mixed_groups": 0,
+            "mixed_share": 0.0,
+            "mixed_share_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 2.1003595575633628e-14,
+            "pass_at_8_tasks": 0,
+            "pass_at_8_share": 0.0,
+            "pass_at_8_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "mean_reward": 0.0,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0
+            ]
+          },
+          "industry_282": {
+            "tasks_declared": 282,
+            "tasks_measured": 282,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 280,
+              "1": 2
+            },
+            "mixed_groups": 2,
+            "mixed_share": 0.0070921985815602835,
+            "mixed_share_wilson95": [
+              0.0019470961918579156,
+              0.02548579913776257
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 6.561921117823623e-05,
+            "pass_at_8_tasks": 2,
+            "pass_at_8_share": 0.0070921985815602835,
+            "pass_at_8_wilson95": [
+              0.0019470961918579156,
+              0.02548579913776257
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "mean_reward": 0.0008865248226950354,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.002216312056737589
+            ]
+          }
+        },
+        "proof_fraction": {
+          "all_896": {
+            "tasks_declared": 896,
+            "tasks_measured": 896,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 896
+            },
+            "mixed_groups": 0,
+            "mixed_share": 0.0,
+            "mixed_share_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 1.0973630654219173e-20,
+            "pass_at_8_tasks": 0,
+            "pass_at_8_share": 0.0,
+            "pass_at_8_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "mean_reward": 0.0,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0
+            ]
+          },
+          "core_614": {
+            "tasks_declared": 614,
+            "tasks_measured": 614,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 614
+            },
+            "mixed_groups": 0,
+            "mixed_share": 0.0,
+            "mixed_share_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 2.1003595575633628e-14,
+            "pass_at_8_tasks": 0,
+            "pass_at_8_share": 0.0,
+            "pass_at_8_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "mean_reward": 0.0,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0
+            ]
+          },
+          "industry_282": {
+            "tasks_declared": 282,
+            "tasks_measured": 282,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 282
+            },
+            "mixed_groups": 0,
+            "mixed_share": 0.0,
+            "mixed_share_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 5.224643854288326e-07,
+            "pass_at_8_tasks": 0,
+            "pass_at_8_share": 0.0,
+            "pass_at_8_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "mean_reward": 0.0,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      },
+      "verdict": "SFT warm start needed",
+      "paired_vs_post_trained_on_e01_probe_128": {
+        "post_trained_scored_path": "/lfs/skampere1/0/brando9/rl4cv_e01/out/scored/scored_qwen3-1.7b_g8.jsonl",
+        "tasks": 128,
+        "mixed_share_base": 0.0,
+        "mixed_share_post_trained": 0.0,
+        "difference_base_minus_post": 0.0,
+        "difference_paired_task_bootstrap95": [
+          0.0,
+          0.0
+        ],
+        "discordant_base_only": 0,
+        "discordant_post_only": 0,
+        "p_exact_mcnemar_two_sided": 1.0
+      }
+    },
+    "qwen3-4b-base": {
+      "scored_path": "/lfs/skampere1/0/brando9/rl4cv_e05/out/scored/scored_qwen3-4b-base_g8.jsonl",
+      "execution": {
+        "cells_declared": 7168,
+        "cells_present": 7168,
+        "cells_scored": 7168,
+        "cells_cut_off_at_length": 704,
+        "cells_no_lean_extracted": 1029,
+        "cells_compiling": 10,
+        "mean_generated_tokens": 2218.616768973214,
+        "IC_tests_mean": 0.0013950892857142857,
+        "IC_proofs_mean": 0.0006975446428571429,
+        "SCSC": "unmeasured on the listed cells (FSC not judged)",
+        "cells_ic_tests_x_ic_proofs_positive_fsc_unmeasured": [
+          "compilers_set_synthetic__my_boolean_double_neg#s2",
+          "compilers_set_synthetic__my_peephole_add_zero#s5",
+          "finance_set_synthetic__my_slippage_charge#s6",
+          "gov_cert_set_synthetic__my_audit_hash_chain_extend#s2",
+          "security_set__security_6858__vulnerabilities__107_unsafeprofilesandbox#s6"
+        ]
+      },
+      "channels": {
+        "kernel_binary": {
+          "all_896": {
+            "tasks_declared": 896,
+            "tasks_measured": 896,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 891,
+              "1": 5
+            },
+            "mixed_groups": 5,
+            "mixed_share": 0.005580357142857143,
+            "mixed_share_wilson95": [
+              0.002385880470966376,
+              0.01299622788269221
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 2.3540517718718797e-14,
+            "pass_at_8_tasks": 5,
+            "pass_at_8_share": 0.005580357142857143,
+            "pass_at_8_wilson95": [
+              0.002385880470966376,
+              0.01299622788269221
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "mean_reward": 0.0006975446428571429,
+            "mean_reward_task_bootstrap95": [
+              0.00013950892857142856,
+              0.0013950892857142857
+            ]
+          },
+          "core_614": {
+            "tasks_declared": 614,
+            "tasks_measured": 614,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 613,
+              "1": 1
+            },
+            "mixed_groups": 1,
+            "mixed_share": 0.0016286644951140066,
+            "mixed_share_wilson95": [
+              0.0002875571514462062,
+              0.009167067068566515
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 6.997513683882152e-13,
+            "pass_at_8_tasks": 1,
+            "pass_at_8_share": 0.0016286644951140066,
+            "pass_at_8_wilson95": [
+              0.0002875571514462062,
+              0.009167067068566515
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "mean_reward": 0.00020358306188925082,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0006107491856677524
+            ]
+          },
+          "industry_282": {
+            "tasks_declared": 282,
+            "tasks_measured": 282,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 278,
+              "1": 4
+            },
+            "mixed_groups": 4,
+            "mixed_share": 0.014184397163120567,
+            "mixed_share_wilson95": [
+              0.0055294943020314374,
+              0.03589717231781033
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 0.0013813676353632187,
+            "pass_at_8_tasks": 4,
+            "pass_at_8_share": 0.014184397163120567,
+            "pass_at_8_wilson95": [
+              0.0055294943020314374,
+              0.03589717231781033
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "mean_reward": 0.0017730496453900709,
+            "mean_reward_task_bootstrap95": [
+              0.0004432624113475177,
+              0.0035460992907801418
+            ]
+          }
+        },
+        "ic_tests": {
+          "all_896": {
+            "tasks_declared": 896,
+            "tasks_measured": 896,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 886,
+              "1": 10
+            },
+            "mixed_groups": 10,
+            "mixed_share": 0.011160714285714286,
+            "mixed_share_wilson95": [
+              0.006073411438072545,
+              0.02042176567005942
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 1.9764694290289203e-10,
+            "pass_at_8_tasks": 10,
+            "pass_at_8_share": 0.011160714285714286,
+            "pass_at_8_wilson95": [
+              0.006073411438072545,
+              0.02042176567005942
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "mean_reward": 0.0013950892857142857,
+            "mean_reward_task_bootstrap95": [
+              0.0005580357142857143,
+              0.0023716517857142855
+            ]
+          },
+          "core_614": {
+            "tasks_declared": 614,
+            "tasks_measured": 614,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 612,
+              "1": 2
+            },
+            "mixed_groups": 2,
+            "mixed_share": 0.003257328990228013,
+            "mixed_share_wilson95": [
+              0.0008937320633115664,
+              0.01179796854813902
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 1.1649024650864862e-11,
+            "pass_at_8_tasks": 2,
+            "pass_at_8_share": 0.003257328990228013,
+            "pass_at_8_wilson95": [
+              0.0008937320633115664,
+              0.01179796854813902
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "mean_reward": 0.00040716612377850165,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.001017915309446254
+            ]
+          },
+          "industry_282": {
+            "tasks_declared": 282,
+            "tasks_measured": 282,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 274,
+              "1": 8
+            },
+            "mixed_groups": 8,
+            "mixed_share": 0.028368794326241134,
+            "mixed_share_wilson95": [
+              0.014443583914838777,
+              0.05497062528544556
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 0.054623432992733895,
+            "pass_at_8_tasks": 8,
+            "pass_at_8_share": 0.028368794326241134,
+            "pass_at_8_wilson95": [
+              0.014443583914838777,
+              0.05497062528544556
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "mean_reward": 0.0035460992907801418,
+            "mean_reward_task_bootstrap95": [
+              0.0013297872340425532,
+              0.0062056737588652485
+            ]
+          }
+        },
+        "proof_fraction": {
+          "all_896": {
+            "tasks_declared": 896,
+            "tasks_measured": 896,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 891,
+              "1": 5
+            },
+            "mixed_groups": 5,
+            "mixed_share": 0.005580357142857143,
+            "mixed_share_wilson95": [
+              0.002385880470966376,
+              0.01299622788269221
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 2.3540517718718797e-14,
+            "pass_at_8_tasks": 5,
+            "pass_at_8_share": 0.005580357142857143,
+            "pass_at_8_wilson95": [
+              0.002385880470966376,
+              0.01299622788269221
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "mean_reward": 0.0006975446428571429,
+            "mean_reward_task_bootstrap95": [
+              0.00013950892857142856,
+              0.0013950892857142857
+            ]
+          },
+          "core_614": {
+            "tasks_declared": 614,
+            "tasks_measured": 614,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 613,
+              "1": 1
+            },
+            "mixed_groups": 1,
+            "mixed_share": 0.0016286644951140066,
+            "mixed_share_wilson95": [
+              0.0002875571514462062,
+              0.009167067068566515
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 6.997513683882152e-13,
+            "pass_at_8_tasks": 1,
+            "pass_at_8_share": 0.0016286644951140066,
+            "pass_at_8_wilson95": [
+              0.0002875571514462062,
+              0.009167067068566515
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "mean_reward": 0.00020358306188925082,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0006107491856677524
+            ]
+          },
+          "industry_282": {
+            "tasks_declared": 282,
+            "tasks_measured": 282,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 278,
+              "1": 4
+            },
+            "mixed_groups": 4,
+            "mixed_share": 0.014184397163120567,
+            "mixed_share_wilson95": [
+              0.0055294943020314374,
+              0.03589717231781033
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 0.0013813676353632187,
+            "pass_at_8_tasks": 4,
+            "pass_at_8_share": 0.014184397163120567,
+            "pass_at_8_wilson95": [
+              0.0055294943020314374,
+              0.03589717231781033
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "mean_reward": 0.0017730496453900709,
+            "mean_reward_task_bootstrap95": [
+              0.0004432624113475177,
+              0.0035460992907801418
+            ]
+          }
+        }
+      },
+      "verdict": "SFT warm start needed",
+      "paired_vs_post_trained_on_e01_probe_128": {
+        "post_trained_scored_path": "/lfs/skampere1/0/brando9/rl4cv_e01/out/scored/scored_qwen3-4b_g8.jsonl",
+        "tasks": 128,
+        "mixed_share_base": 0.0078125,
+        "mixed_share_post_trained": 0.0,
+        "difference_base_minus_post": 0.0078125,
+        "difference_paired_task_bootstrap95": [
+          0.0,
+          0.0234375
+        ],
+        "discordant_base_only": 1,
+        "discordant_post_only": 0,
+        "p_exact_mcnemar_two_sided": 1.0
+      }
+    },
+    "qwen3-8b-base": {
+      "scored_path": "/lfs/skampere1/0/brando9/rl4cv_e05/out/scored/scored_qwen3-8b-base_g8.jsonl",
+      "execution": {
+        "cells_declared": 7168,
+        "cells_present": 7168,
+        "cells_scored": 7168,
+        "cells_cut_off_at_length": 1099,
+        "cells_no_lean_extracted": 1160,
+        "cells_compiling": 0,
+        "mean_generated_tokens": 2819.424246651786,
+        "IC_tests_mean": 0.0,
+        "IC_proofs_mean": 0.0,
+        "SCSC": "exact 0.0 on every scored cell",
+        "cells_ic_tests_x_ic_proofs_positive_fsc_unmeasured": []
+      },
+      "channels": {
+        "kernel_binary": {
+          "all_896": {
+            "tasks_declared": 896,
+            "tasks_measured": 896,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 896
+            },
+            "mixed_groups": 0,
+            "mixed_share": 0.0,
+            "mixed_share_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 1.0973630654219173e-20,
+            "pass_at_8_tasks": 0,
+            "pass_at_8_share": 0.0,
+            "pass_at_8_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "mean_reward": 0.0,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0
+            ]
+          },
+          "core_614": {
+            "tasks_declared": 614,
+            "tasks_measured": 614,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 614
+            },
+            "mixed_groups": 0,
+            "mixed_share": 0.0,
+            "mixed_share_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 2.1003595575633628e-14,
+            "pass_at_8_tasks": 0,
+            "pass_at_8_share": 0.0,
+            "pass_at_8_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "mean_reward": 0.0,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0
+            ]
+          },
+          "industry_282": {
+            "tasks_declared": 282,
+            "tasks_measured": 282,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 282
+            },
+            "mixed_groups": 0,
+            "mixed_share": 0.0,
+            "mixed_share_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 5.224643854288326e-07,
+            "pass_at_8_tasks": 0,
+            "pass_at_8_share": 0.0,
+            "pass_at_8_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "mean_reward": 0.0,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "ic_tests": {
+          "all_896": {
+            "tasks_declared": 896,
+            "tasks_measured": 896,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 896
+            },
+            "mixed_groups": 0,
+            "mixed_share": 0.0,
+            "mixed_share_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 1.0973630654219173e-20,
+            "pass_at_8_tasks": 0,
+            "pass_at_8_share": 0.0,
+            "pass_at_8_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "mean_reward": 0.0,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0
+            ]
+          },
+          "core_614": {
+            "tasks_declared": 614,
+            "tasks_measured": 614,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 614
+            },
+            "mixed_groups": 0,
+            "mixed_share": 0.0,
+            "mixed_share_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 2.1003595575633628e-14,
+            "pass_at_8_tasks": 0,
+            "pass_at_8_share": 0.0,
+            "pass_at_8_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "mean_reward": 0.0,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0
+            ]
+          },
+          "industry_282": {
+            "tasks_declared": 282,
+            "tasks_measured": 282,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 282
+            },
+            "mixed_groups": 0,
+            "mixed_share": 0.0,
+            "mixed_share_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 5.224643854288326e-07,
+            "pass_at_8_tasks": 0,
+            "pass_at_8_share": 0.0,
+            "pass_at_8_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "mean_reward": 0.0,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "proof_fraction": {
+          "all_896": {
+            "tasks_declared": 896,
+            "tasks_measured": 896,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 896
+            },
+            "mixed_groups": 0,
+            "mixed_share": 0.0,
+            "mixed_share_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 1.0973630654219173e-20,
+            "pass_at_8_tasks": 0,
+            "pass_at_8_share": 0.0,
+            "pass_at_8_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              4.336808689942018e-19,
+              0.004269039599185204
+            ],
+            "mean_reward": 0.0,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0
+            ]
+          },
+          "core_614": {
+            "tasks_declared": 614,
+            "tasks_measured": 614,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 614
+            },
+            "mixed_groups": 0,
+            "mixed_share": 0.0,
+            "mixed_share_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 2.1003595575633628e-14,
+            "pass_at_8_tasks": 0,
+            "pass_at_8_share": 0.0,
+            "pass_at_8_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.006217547828574852
+            ],
+            "mean_reward": 0.0,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0
+            ]
+          },
+          "industry_282": {
+            "tasks_declared": 282,
+            "tasks_measured": 282,
+            "tasks_unmeasured": [],
+            "pass_count_histogram": {
+              "0": 282
+            },
+            "mixed_groups": 0,
+            "mixed_share": 0.0,
+            "mixed_share_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "mixed_share_p_one_sided_vs_0.05": 5.224643854288326e-07,
+            "pass_at_8_tasks": 0,
+            "pass_at_8_share": 0.0,
+            "pass_at_8_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "all_pass_tasks": 0,
+            "all_pass_share": 0.0,
+            "all_pass_wilson95": [
+              0.0,
+              0.013439124039399194
+            ],
+            "mean_reward": 0.0,
+            "mean_reward_task_bootstrap95": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      },
+      "verdict": "SFT warm start needed",
+      "paired_vs_post_trained_on_e01_probe_128": {
+        "post_trained_scored_path": "/lfs/skampere1/0/brando9/rl4cv_e01/out/scored/scored_qwen3-8b_g8.jsonl",
+        "tasks": 128,
+        "mixed_share_base": 0.0,
+        "mixed_share_post_trained": 0.0,
+        "difference_base_minus_post": 0.0,
+        "difference_paired_task_bootstrap95": [
+          0.0,
+          0.0
+        ],
+        "discordant_base_only": 0,
+        "discordant_post_only": 0,
+        "p_exact_mcnemar_two_sided": 1.0
+      }
+    }
+  }
+}
