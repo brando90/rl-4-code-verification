@@ -143,3 +143,19 @@ def test_scored_response_reads_frozen_scorer_legacy_columns():
     no_kernel = {"task": "t", "IC_ap": "0.0", "IC_pp": "0.0", "agent_compiles": "False", "agent_n_ex": "1", "agent_n_thm": "1"}
     s2 = scored_response(no_kernel, gen)
     assert s2.ic_tests == 0.0 and s2.n_theorems_proved == 0
+
+
+def test_resolve_stop_token_ids_maps_known_tokens_and_rejects_unknown():
+    from rl4cv.veribench.generate import resolve_stop_token_ids
+
+    class Tok:
+        unk_token_id = None
+        vocab = {"<|im_end|>": 151645, "<|endoftext|>": 151643}
+
+        def convert_tokens_to_ids(self, t):
+            return self.vocab.get(t)
+
+    assert resolve_stop_token_ids(Tok(), []) == []
+    assert resolve_stop_token_ids(Tok(), ["<|im_end|>", "<|endoftext|>"]) == [151645, 151643]
+    with pytest.raises(ValueError):
+        resolve_stop_token_ids(Tok(), ["<|not_a_token|>"])
