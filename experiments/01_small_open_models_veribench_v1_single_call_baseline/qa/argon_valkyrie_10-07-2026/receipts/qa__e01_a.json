@@ -1,0 +1,63 @@
+{
+  "config": {
+    "max_tokens": 65536,
+    "reasoning_effort": "high",
+    "temperature": 1.0
+  },
+  "cost_usd": 1.28594,
+  "ended": "2026-10-07T22:35:36.943127+00:00",
+  "expected": {
+    "prompt": "3a6658ded02a4db31e3a28c1ec1603130960fb8c203c63628eef1282fbbcc175",
+    "system": "afcefad07b07214b40144cecaab51d92cc72caf40fb96a714a76e66e45405aa2",
+    "user": "cd7b544a30cfa1c233ed87667613a27558e8f9c3012571d2df83c99aef61d77b"
+  },
+  "fallback": null,
+  "finish_reason": {
+    "raw": "STOP",
+    "reason": "stop"
+  },
+  "output_text_bytes": 20410,
+  "output_text_sha256": "0772450e142e2df81d0b896e6733eab4a60b094addf58d62309bec7d44fafe1d",
+  "prompt_sha256": "3a6658ded02a4db31e3a28c1ec1603130960fb8c203c63628eef1282fbbcc175",
+  "provider_endpoint": "models/barium-bb",
+  "provider_name": "google",
+  "requests_sent": 1,
+  "run_id": "5f86e990-fa64-4821-aca1-2636a6c74961",
+  "selector": "google/gemini-4-argon",
+  "started": "2026-10-07T22:29:17.082474+00:00",
+  "status": "measured",
+  "system_sha256": "afcefad07b07214b40144cecaab51d92cc72caf40fb96a714a76e66e45405aa2",
+  "task_id": "qa__e01_a",
+  "temperature_dropped_unsupported": false,
+  "usage": {
+    "cache_read_tokens": 0,
+    "cache_write_tokens": null,
+    "in_tokens": 136020,
+    "out_tokens": 7430,
+    "reasoning_tokens": 29663
+  },
+  "user_sha256": "cd7b544a30cfa1c233ed87667613a27558e8f9c3012571d2df83c99aef61d77b",
+  "wall_seconds": 379.678,
+  "wire": {
+    "config": {
+      "max_tokens": 65536,
+      "provider_config": {},
+      "reasoning_effort": "high",
+      "temperature": 1.0
+    },
+    "envelope_sha256": "96be4f192ffee04da18dd472edd8f7ffbac0569afb6841c8a4a241194a1fe689",
+    "identity": {
+      "agent_name": "vb106_rater",
+      "benchmark_name": "rl4cv-argon-qa"
+    },
+    "inputs_sha256": "dcd93bfa98f354b26661e0ca29189f63544e6403a942ff178770cc7d29e90688",
+    "model": "google/gemini-4-argon",
+    "tools": []
+  },
+  "wire_provider_config": {},
+  "written_file": {
+    "bytes": 20411,
+    "path": "/home/user/lean_project/Veribench/QaReview.lean",
+    "sha256": "970dbf944c615ee8bbe11a72d965a06fdfa175519aa2bdf3480b29e9993c4b21"
+  }
+}
