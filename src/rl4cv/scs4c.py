@@ -38,6 +38,7 @@ class Cell:
     t_keep: float | None
     resolved: bool | None
     d_gold: float | None = None
+    unmeasured_reason: str | None = None
 
     @property
     def measured(self) -> bool:

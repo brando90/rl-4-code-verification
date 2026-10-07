@@ -50,7 +50,7 @@ Does SCS4C track pass@1 across models, and does its partial credit carry capabil
 
 | Phase | What | Model calls | State |
 |---|---|---|---|
-| A | SCS4C-T versus pass@1 across every public SWE-bench Verified submission with per-test logs (about 180 systems × 500 tasks) | None | Protocol locked; dispatch reported, launch receipt unverified |
+| A | SCS4C-T versus pass@1 across every public SWE-bench Verified submission with per-test logs (182 systems × 500 tasks declared; 164 included) | None | Done 10-07-2026: H1 holds, H1b positive, H2 fails ([results.md](results.md)) |
 | B | Full SCS4C (with D_gold) on SWE-Bench Pro Verified (731 tasks), a panel of at least 6 models from at least 3 families in each vendor's own agent, through Vals Valkyrie | Valkyrie (D-108) | Designed, not admitted |
 | C | SCS4C as an RL reward: at group size 8, mixed-group share and ρ/H under SCS4C versus binary `resolved` on screened training environments disjoint from evaluation, then pass@1 on SWE-Bench Pro Verified | Self-hosted or Valkyrie | Designed, not admitted |
 
@@ -66,12 +66,13 @@ Does SCS4C track pass@1 across models, and does its partial credit carry capabil
 └── expt_v1/           ← phase A
     ├── cc.md              ← SNAP worker prompt
     ├── fetch_e07.py       ← gold lists + public per-instance report.json files
-    ├── analyze_e07.py     ← primary H1, H1b, H2, H3 and validity checks
+    ├── analyze_e07.py     ← primary H1, H1b, H2, H3, validity checks and the base-model sensitivity
+    ├── render_results_e07.py ← renders results.md's numeric sections from results/
     ├── forecasts/         ← frozen phase A forecast (rl4cv.forecast)
     └── results/           ← committed summaries; raw logs stay on the host
 ```
 
-The worker still implements GitHub-hosted log adapters and the one-system-per-base-model sensitivity in `expt_v1/cc.md` before publishing results. Invalid or empty cohorts and undefined split correlations produce explicit unavailable results, and every declared cell has a receipt.
+The phase A worker implemented the metadata-driven log adapters (S3 `verified/` and `bash-only/` prefixes, self-hosted GitHub repositories, both official `report.json` shapes) and the one-system-per-base-model sensitivity; `expt_v1/render_results_e07.py` renders every number in `results.md` from `expt_v1/results/analysis_e07.json`. Invalid or empty cohorts and undefined split correlations produce explicit unavailable results, and every declared cell has a receipt in `expt_v1/results/per_cell_e07.jsonl.gz`.
 
 The metric itself lives in [`src/rl4cv/scs4c.py`](../../src/rl4cv/scs4c.py) (tested in `tests/test_scs4c.py`) so phase C can use it as a reward.
 
@@ -87,5 +88,5 @@ The metric itself lives in [`src/rl4cv/scs4c.py`](../../src/rl4cv/scs4c.py) (tes
 |---|---|---|
 | Definition and design | Done (10-07-2026) | this file |
 | Phase A protocol and frozen forecast | Done (10-07-2026) | [PROTOCOL.md](PROTOCOL.md), `expt_v1/forecasts/` |
-| Phase A run on SNAP | Running (launched 10-07-2026 16:01 PDT) | launch receipt in `expt_v1/CKPT_e07.md`; [results.md](results.md) |
-| Phases B and C | Designed, not admitted | needs phase A, D_gold harness controls, Valkyrie service |
+| Phase A run on SNAP | Done (10-07-2026): 164/182 systems included on a 424-task common cohort; H1 holds (Spearman 0.985), H1b positive (Spearman 0.736 [0.507, 0.801]), H2 forecast fails (median Δ −0.012, share 0.046) | [results.md](results.md); receipts in `expt_v1/CKPT_e07.md` |
+| Phases B and C | Designed, not admitted | phase A done; still needs the D_gold harness controls and the Valkyrie service for SWE-Bench Pro Verified |
