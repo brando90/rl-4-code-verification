@@ -48,7 +48,7 @@ Draft; the exact teacher agents, prompt bytes and scoring adapter are fixed in `
 1. **Source.** MBPP ([`google-research-datasets/mbpp`](https://huggingface.co/datasets/google-research-datasets/mbpp), revision `4bb6404fdc6cacfda99d4ac4205087b89d32030c`, CC-BY-4.0, 974 tasks). Every task is used: MBPP is a data source here, not an evaluation, so its own splits play no role. A deterministic script rewrites each task into VeriBench's Python task layout (docstring from the task text, the reference function as `prog`, a `check(candidate)` built from MBPP's assert tests, a `__main__` runner). A rewritten task is kept only if it runs and passes its own tests under Python 3.
 2. **Screens.** `rl4cv.screens` against VeriBench `py_src` and `lean_src` at the pinned commit: exact normalized-hash matches and word-5-gram Jaccard ≥ 0.70 are removed and listed. MBPP is not HumanEval-derived.
 3. **Prompt.** VeriBench V1's single-call system prompt and task template (experiment 103), unchanged except for the task file, so the teacher files have exactly the format the warm-started policy must later produce. The prompt is checked to carry no VeriBench task text, because it becomes the SFT input.
-4. **Teachers.** One declared call per (task, teacher) through Valkyrie, for three vendor families at their strongest settings (Anthropic, OpenAI and Google's Gemini 4 Argon), exact model identifiers and agents recorded. Several families keep the warm start from inheriting one vendor's Lean style. No vendor's own agent is runnable on Valkyrie for these teachers today, so a common single-call agent is used; that is an exception to D-108 that Brando must approve before the first call (PROTOCOL § 4).
+4. **Teachers.** One declared call per (task, teacher) through Valkyrie, for three vendor families at their strongest settings (Anthropic, OpenAI and Google's Gemini 4 Argon), exact model identifiers and agents recorded. Several families keep the warm start from inheriting one vendor's Lean style. No vendor's own agent is runnable on Valkyrie for these teachers today, so a common single-call agent is used; that is an exception to D-108, approved by Brando on 10-07-2026 as D-013 (PROTOCOL § 4).
 5. **Score and screen.** The frozen scorer (`--skip-tc`) on `skampere1`, then the keep rule above; kept Lean files are then screened against VeriBench and the other held-out panels before entering the SFT set. Only cells shown to be unserved are re-sent (PROTOCOL § 4); no cell is re-sampled because of its score.
 6. **Analyze.** Per teacher: observed yield (kept / declared), measured-cell yield with a 95% Wilson interval (unit = task) and missing-outcome bounds; union coverage; failure taxonomy (no Lean block, does not typecheck, no `example`, unproved theorem, forbidden axiom, vacuous theorem); file length; overlap between teachers.
 7. **Outputs.** Committed: manifests, hashes, per-cell receipts and summaries. Raw teacher files and the assembled SFT set stay on the host.
@@ -64,7 +64,7 @@ Draft; the exact teacher agents, prompt bytes and scoring adapter are fixed in `
 | Step | Status |
 |---|---|
 | Design | Done (10-07-2026), one Codex light-QA round, 7 findings fixed |
-| D-108 exception (single-call teachers) | Awaiting Brando |
+| D-108 exception (single-call teachers) | Approved by Brando 10-07-2026 ([D-013](../../../../docs/DECISIONS.md)) |
 | Protocol lock | Pending (after the preflight) |
 | Source build and screens | Pending |
 | Teacher runs | Pending |

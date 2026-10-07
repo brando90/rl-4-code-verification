@@ -70,6 +70,12 @@ Append new entries; strike through superseded ones and point to the entry that r
 - **Context:** Brando, 10-07-2026: "we likely need to put a reminder in the agents claude .md folders to push to main often since this repo is shared by 3+1+1 people!" The same day, three agent sessions edited one checkout at once and one held an unpushed local commit that touched shared files (`CLAUDE.md`, this file).
 - **Decision:** `CLAUDE.md` → Repository conventions → "Push small and often": commit and push each finished, test-passing step immediately; pull before starting and before each push; never stage or commit another session's uncommitted files; when sessions share a checkout, work from a separate clone or a detached worktree that pushes `HEAD:main` (no feature branch). Extends D-006.
 
+### D-013 — Single-call teachers for experiment 02A v3, an exception to D-108's vendor-agent rule — accepted — 10-07-2026 — Brando
+
+- **Context:** experiment 02A v3 builds Lean warm-start data from frontier teachers through Valkyrie. D-108 asks for each vendor's own agent, but on 10-07-2026 none is runnable on Valkyrie for these teachers (the native Claude Code and Codex routes lost their credential route; there is no Google agent for Gemini 4 Argon).
+- **Decision:** Brando chose "Approve single-call (Recommended)" over Terminus 2 with a Lean compiler and over waiting for vendor agents: one common single-call agent (`vb103_single_call`) for Claude Fable 5.1, GPT-6 Astra and Gemini 4 Argon through Valkyrie, Vals-funded, as specified in that experiment's `PROTOCOL.md` § 4.
+- **Scope:** experiment 02A v3 only. D-108 is unchanged for every other experiment; payer verification, route naming and the runaway guard still apply.
+
 ## Open — needs Brando
 
 | ID | Question | Recommendation | Blocks |
