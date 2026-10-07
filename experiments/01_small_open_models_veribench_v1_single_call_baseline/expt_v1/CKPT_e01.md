@@ -4,6 +4,23 @@
 
 **TLDR:** Live checkpoint for the GPU worker running experiment 01 on `skampere1`. Updated at every stage change.
 
+## Zero-score diagnostic (CPU only, no model calls) — started 10-07-2026 15:32
+
+- **Why:** Brando questioned whether SCSC (VeriBench's aggregate score) is really 0 for these models, and whether IC_tests (does the file compile with at least one `example` test) is really 0. The scorer stored no compile logs, so this recompiles the existing G = 1 files to find out why they fail.
+- **Code:** [`diagnostics/diagnose_zero_scores.py`](diagnostics/diagnose_zero_scores.py). Live copy and outputs are in `/lfs/skampere1/0/brando9/rl4cv_e01_diag_10-07-2026/` (per-cell rows and summaries under `full/`; ablated files under `full/cells/`, which stay on the host because they contain model outputs on VeriBench tasks).
+- **Sessions:** tmux `rl4cv-e01-zero-diag-A` runs Qwen3-14B, Qwen3-8B, Qwen3-4B, Qwen3-1.7B and Qwen3.5-0.8B. `rl4cv-e01-zero-diag-B` runs Qwen3.5-9B, Qwen3.6-27B, Qwen3.5-4B and Qwen3.5-2B. Each uses 20 CPU workers, and each model has one writer.
+  - A first single session with 24 workers was stopped at 15:35 after 233 of Qwen3-14B's 896 cells. Session A resumed from those 233 rows (rows are append-only and keyed by task).
+  - Host load before launch was about 18 on 128 cores. No GPU is used.
+  - **Variant (15:43):** tmux `rl4cv-e01-zero-diag-C-nsfix` (16 workers, output in `full_nsfix/`) reruns the same pipeline after wrapping digit-leading namespace names in `«»`. It covers only the cells whose file contains one. Cause: VeriBench's task instruction suggests ``namespace {file stem}`` (`vb_harbor/adapter/adapter.py:134`), which is invalid Lean for 533 of 896 tasks.
+  - **Variant (15:51):** tmux `rl4cv-e01-zero-diag-D-surface` (12 workers, output in `full_surface/`) applies comment and name fixes only: the namespace escape above; a stand-alone `-!` line becomes the comment closer `-/`; and a `/--` doc comment that precedes a non-declaration becomes the module doc `/-!`. It covers only the cells these fixes edit.
+  - **Cleanup (15:38):** closed 17 idle (no child process) experiment 01 tmux sessions from 09-30-2026. `rl4cv-e01-qwen-vbv1-baseline` still runs a Claude process and was left alone.
+- **Done signal:** `STATUS_A`, `STATUS_B`, `STATUS_C` and `STATUS_D` each contain `DONE rc=0`. `full/summary_<label>.json` exists for all 9 labels, and `full_nsfix/` and `full_surface/` hold a summary for every label with at least one edited cell.
+- **Orphans cleaned (15:45):**
+  - Killed 6 `lean` compiles orphaned when the first diagnostic session stopped.
+  - Killed 2 `lean` processes from experiment 05 (Qwen3 Base, `STATUS_e05 = DONE`) that had run about 43 h at 99% CPU after that scorer's 600 s timeout. Those cells were already recorded as timeouts.
+  - This is the pinned scorer's known gap: it kills only its direct child (REPORT.md deviation 16). The diagnostic kills the whole process group instead.
+- **Resume:** check `tmux ls | grep zero-diag` first and never start a second writer for a label. To resume a dead session, run `bash /lfs/skampere1/0/brando9/rl4cv_e01_diag_10-07-2026/run_diag_<A|B>.sh`; it skips finished cells.
+
 ## EXPERIMENT COMPLETE (RE-VERIFIED) — 10-01-2026 12:35 (`STATUS_e01 = DONE`)
 
 **Reopened 12:16 by master (Trigger Rule 57, full-set completion rule): the 09:08 "DONE" below missed one model.** Two real gaps, both now fixed and both purely additive (no other model's numbers changed):
