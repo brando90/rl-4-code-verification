@@ -40,9 +40,18 @@ This file holds the project rules for **rl-4-code-verification** for every agent
 ## Compute and model calls
 
 - **No agent-written direct provider API calls** (agents-config Hard Rule 9).
-  - Closed models and the judge go through the route decided in D-102.
+  - Closed models and the judge go through the route decided in D-102; other model calls follow D-108 below.
   - Self-hosted open-weight inference (vLLM) requires D-101.
   - Never copy keys or `.env` files into the repository, prompts or logs.
+- **Vals Valkyrie when Brando runs the work (Brando, 10-07-2026; D-108).** When Brando, or an agent working on his accounts, runs an experiment, solver and agent generation, judging and reruns go through [Vals Valkyrie](https://github.com/vals-ai/Valkyrie) (`valk` / `valkyrie`). It uses the saved configuration `~/.config/valkyrie/valkyrie.yaml` on the execution host and is funded by Vals. These rules follow VeriBench's `CLAUDE.md` sections "Model-call keys: Valkyrie only" and "Valkyrie versus the Vals direct API".
+  - **Privacy.** Keep the configuration private: never copy its contents into prompts, logs, results or Git.
+  - **Keys.** Use no direct provider key, no Vals gateway key outside a Valkyrie run, and no personal subscription or key as a fallback, unless Brando names that key for that experiment. Record his instruction in the protocol.
+  - **Verify before the first call.** Check the host, organization, model-provider credential source and payer, and record non-secret evidence and the run identity in the checkpoint. A working login does not prove the payer.
+  - **Capacity.** It is effectively unlimited, so do not shrink manifests, sample tasks, drop models or set small dollar caps to save cost. Keep a runaway guard (declared calls per cell, no silent retry loops), record the charges each route reports, and treat rate limits (HTTP 429) as infrastructure failures.
+  - **Name the route for every call.** Valkyrie (`valk run start --benchmark … --agent … --model …`) and the Vals direct API (the gateway's `/query` endpoint, which has hit organization limits) are different routes. Use the direct API only where a frozen, validated configuration requires it.
+  - **Agents.** Run each model in its vendor's strongest current agent (Claude Code, Codex, the Antigravity CLI `agy`, Qwen Code, …), recording the agent, its version, the exact model and the effort. Never silently substitute a model or fall back to another one.
+  - **Other collaborators** (for example Emily) use Valkyrie only with their own authorized access. Otherwise the run waits for Brando or uses self-hosted inference under D-101.
+  - **Setup and diagnosis:** agents-config `workflows/valkyrie.md` and `machine/snap.md` → "Valkyrie".
 - **GPU discipline** (agents-config Trigger Rule 9): baseline, estimate, ask Brando, launch, verify, clean up.
   - On SNAP, work under `/lfs/$(hostname)/0/$USER/`, never DFS home.
   - Raw generations stay on the host; commit summaries.
