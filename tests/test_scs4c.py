@@ -316,6 +316,37 @@ def test_invalid_predictions_are_discarded_rather_than_read_as_no_generation(e07
     assert (tmp_path / "all_preds.jsonl").is_file() and not pending.exists()
 
 
+@pytest.mark.parametrize("patch", [False, 0, [], {}, 123])
+def test_invalid_patch_types_cannot_become_measured_zeros(e07_fetch, e07, tmp_path, patch):
+    pending = tmp_path / "all_preds.jsonl.partial"
+    pending.write_text(json.dumps({"instance_id": "a", "model_patch": patch}))
+    with pytest.raises(ValueError, match="discarded"):
+        e07_fetch.install_predictions(pending, tmp_path)
+    assert not pending.exists() and not (tmp_path / "all_preds.jsonl").exists()
+    assert not e07.load_cells(tmp_path, {"a": (F2P, P2P)})[0].measured
+    # A cache created by an older fetcher must not bypass the same validation.
+    (tmp_path / "all_preds.jsonl").write_text(json.dumps({"instance_id": "a", "model_patch": patch}))
+    cell = e07.load_cells(tmp_path, {"a": (F2P, P2P)})[0]
+    assert not cell.measured and "invalid or conflicting prediction evidence" in cell.unmeasured_reason
+
+
+@pytest.mark.parametrize("patches", [["diff", "", ""], ["", "diff", "diff"]])
+def test_duplicate_predictions_cannot_overwrite_patch_evidence(e07_fetch, e07, tmp_path, patches):
+    pending = tmp_path / "all_preds.jsonl.partial"
+    pending.write_text(json.dumps([{"instance_id": "a", "model_patch": patch} for patch in patches]))
+    e07_fetch.install_predictions(pending, tmp_path)
+    assert not e07.load_cells(tmp_path, {"a": (F2P, P2P)})[0].measured
+    (tmp_path / "results.json").write_text(json.dumps({"no_generation": ["a"]}))
+    assert cell_score(e07.load_cells(tmp_path, {"a": (F2P, P2P)})[0]) == 0
+
+
+def test_identical_duplicate_predictions_keep_valid_empty_patch_evidence(e07_fetch, e07, tmp_path):
+    pending = tmp_path / "all_preds.jsonl.partial"
+    pending.write_text(json.dumps([{"instance_id": "a", "model_patch": ""}] * 2))
+    e07_fetch.install_predictions(pending, tmp_path)
+    assert cell_score(e07.load_cells(tmp_path, {"a": (F2P, P2P)})[0]) == 0
+
+
 def _metadata_dir(root, name, assets):
     import yaml
     d = root / name
@@ -414,6 +445,28 @@ def test_fetch_submission_keeps_downloaded_reports_when_predictions_fail(e07_fet
     assert entry["reports"] == 1 and entry["error"].startswith("ValueError") and entry["source_rule"] == "assets.logs"
     assert (entry["logs_entries"], entry["legacy_eval_logs"], entry["instance_dirs"]) == (1, 0, 1)
     assert not (tmp_path / "out" / "submissions" / "sub" / "all_preds.jsonl").exists()
+
+
+@pytest.mark.parametrize("metadata", ["assets: [\n", "- not a mapping\n", "assets: [not, a, mapping]\n"])
+def test_fetch_submission_captures_metadata_errors(e07_fetch, tmp_path, metadata):
+    from types import SimpleNamespace
+    sub = tmp_path / "repo/evaluation/verified/sub"
+    sub.mkdir(parents=True)
+    (sub / "metadata.yaml").write_text(metadata)
+    args = SimpleNamespace(experiments_repo=tmp_path / "repo", split="verified", out=tmp_path / "out")
+    entry = e07_fetch.fetch_submission(args, "sub")
+    assert entry["submission"] == "sub" and entry["reports"] == 0
+    assert entry["source"] == "unresolved" and entry["error"].startswith("ValueError")
+
+
+def test_fetch_submission_captures_source_resolution_errors(e07_fetch, tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    def fail(*_):
+        raise OSError("listing unavailable")
+    monkeypatch.setattr(e07_fetch, "resolve_source", fail)
+    args = SimpleNamespace(experiments_repo=tmp_path / "repo", split="verified", out=tmp_path / "out")
+    entry = e07_fetch.fetch_submission(args, "sub")
+    assert entry["submission"] == "sub" and entry["error"] == "OSError: listing unavailable"
 
 
 def test_fetch_rejects_wrong_commit_before_download(e07_fetch, tmp_path, monkeypatch):

@@ -14,7 +14,7 @@ from pathlib import Path
 
 import numpy as np
 
-from rl4cv.scs4c import TEST_FACTORS, Cell, cell_from_report, cell_score, kendall_tau_b, pearson, spearman, system_summary
+from rl4cv.scs4c import TEST_FACTORS, Cell, cell_from_report, cell_score, kendall_tau_b, pearson, prediction_patch_presence, spearman, system_summary
 
 EMPTY_KEYS = ("no_generation", "empty_patch", "empty_generation")
 CORRELATIONS = ("pearson", "spearman", "kendall_tau_b")
@@ -83,24 +83,27 @@ def official_resolution(sub: Path) -> tuple[set[str], set[str] | None]:
 def load_cells(sub: Path, gold: dict) -> list[Cell]:
     """One cell per gold task. A report decides the gate; without one, a known-empty patch is 0, otherwise unmeasured."""
     preds = None
+    invalid_predictions = False
     if (sub / "all_preds.jsonl").is_file():
-        preds = {}
-        for line in (sub / "all_preds.jsonl").read_text().splitlines():
-            if line.strip():
-                p = json.loads(line)
-                preds[p["instance_id"]] = bool((p.get("model_patch") or "").strip())
+        try:
+            rows = [json.loads(line) for line in (sub / "all_preds.jsonl").read_text().splitlines() if line.strip()]
+            preds = prediction_patch_presence(rows)
+        except (ValueError, UnicodeDecodeError):
+            invalid_predictions = True
     empty, official_resolved = official_resolution(sub)
     cells = []
     for iid in gold:
         rp = sub / "logs" / iid / "report.json"
         report = read_report(rp, iid)
-        has_patch = report is not None or (iid not in empty and (preds.get(iid, False) if preds is not None else True))
+        has_patch = report is not None or (iid not in empty and (preds.get(iid, False) is not False if preds is not None else True))
         cell = cell_from_report(iid, report, has_patch=has_patch)
         if official_resolved is not None and (report is None or cell.resolved is None):
             cell = replace(cell, resolved=iid in official_resolved)
         if not cell.measured:
             reason = ("no report file" if not rp.is_file() else "report file empty, malformed or for another instance" if report is None
                       else "report lacks gate flags or per-test status")
+            if report is None and (invalid_predictions or preds is not None and preds.get(iid, False) is None):
+                reason += "; invalid or conflicting prediction evidence"
             cell = replace(cell, unmeasured_reason=reason)
         cells.append(cell)
     return cells

@@ -28,6 +28,24 @@ TEST_FACTORS = ("t_fix", "t_keep")
 FULL_FACTORS = ("t_fix", "t_keep", "d_gold")
 
 
+def prediction_patch_presence(rows: list) -> dict[str, bool | None]:
+    """Validate prediction rows; conflicting duplicate patch presence is unknown, never an invented empty patch."""
+    if not isinstance(rows, list):
+        raise ValueError("predictions must be a list of rows")
+    presence: dict[str, bool | None] = {}
+    for row in rows:
+        if not isinstance(row, Mapping):
+            raise ValueError("invalid prediction row")
+        iid, patch = row.get("instance_id"), row.get("model_patch")
+        if not isinstance(iid, str) or not iid.strip() or "model_patch" not in row:
+            raise ValueError("invalid prediction row")
+        if patch is not None and not isinstance(patch, str):
+            raise ValueError("invalid prediction model_patch type")
+        has_patch = bool(patch and patch.strip())
+        presence[iid] = None if iid in presence and presence[iid] != has_patch else has_patch
+    return presence
+
+
 @dataclass(frozen=True)
 class Cell:
     """One system's artifact for one task. ``gate is None`` marks an unmeasured cell (infrastructure gap)."""

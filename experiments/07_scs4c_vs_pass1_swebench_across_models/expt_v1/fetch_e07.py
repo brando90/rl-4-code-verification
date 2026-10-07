@@ -12,6 +12,8 @@ from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 from pathlib import Path
 
+from rl4cv.scs4c import prediction_patch_presence
+
 S3_BUCKET = "swe-bench-submissions"
 EXPERIMENTS_COMMIT = "40f164d5b8f1d249bf95a6df8b74b577fd8e519d"
 GOLD_REVISION = "c104f840cc67f8b6eec6f759ebc8b2693d585d4a"
@@ -41,7 +43,13 @@ def read_metadata(sub_dir: Path) -> dict:
         if meta_path.is_file():
             import yaml
 
-            return yaml.safe_load(meta_path.read_text()) or {}
+            try:
+                metadata = yaml.safe_load(meta_path.read_text()) or {}
+            except yaml.YAMLError as exc:
+                raise ValueError("invalid submission metadata YAML") from exc
+            if not isinstance(metadata, dict):
+                raise ValueError("submission metadata must be a mapping")
+            return metadata
     return {}
 
 
@@ -81,6 +89,8 @@ def resolve_source(sub_dir: Path, split: str, exists=None) -> dict:
     """
     exists = s3_prefix_exists if exists is None else exists
     assets = read_metadata(sub_dir).get("assets") or {}
+    if not isinstance(assets, dict):
+        raise ValueError("submission metadata assets must be a mapping")
     repo = assets.get("repo")
     if isinstance(repo, str) and "github.com" in repo:
         return {"kind": "github", "repo": repo.rstrip("/"), "rule": "assets.repo"}
@@ -114,8 +124,7 @@ def install_predictions(pending: Path, dest: Path) -> None:
     try:
         text = pending.read_text()
         rows = json.loads(text) if text.lstrip().startswith("[") else [json.loads(line) for line in text.splitlines() if line.strip()]
-        if not isinstance(rows, list) or not all(isinstance(r, dict) and isinstance(r.get("instance_id"), str) and "model_patch" in r for r in rows):
-            raise ValueError("invalid prediction row")
+        prediction_patch_presence(rows)
     except (ValueError, UnicodeDecodeError) as exc:
         pending.unlink(missing_ok=True)
         raise ValueError(f"predictions discarded ({exc}); submission stays unmeasured where reports are missing") from exc
@@ -174,13 +183,14 @@ def fetch_submission(args: argparse.Namespace, name: str) -> dict:
     """Copy a submission's committed metadata, locate its logs and download the reports; one inventory row."""
     sub_dir = args.experiments_repo / "evaluation" / args.split / name
     dest = args.out / "submissions" / name
-    dest.mkdir(parents=True, exist_ok=True)
-    for rel in COPIED_METADATA:
-        if (sub_dir / rel).is_file():
-            shutil.copy(sub_dir / rel, dest / Path(rel).name)
-    source = resolve_source(sub_dir, args.split)
-    entry = {"submission": name, "source": source["kind"], "source_rule": source["rule"], "reports": 0, "error": None}
+    entry = {"submission": name, "source": "unresolved", "source_rule": "source resolution failed", "reports": 0, "error": None}
     try:
+        dest.mkdir(parents=True, exist_ok=True)
+        for rel in COPIED_METADATA:
+            if (sub_dir / rel).is_file():
+                shutil.copy(sub_dir / rel, dest / Path(rel).name)
+        source = resolve_source(sub_dir, args.split)
+        entry.update(source=source["kind"], source_rule=source["rule"])
         if source["kind"] == "s3":
             entry["source"] = f"s3:{source['logs']}"
             entry.update(logs_layout(source["logs"]))
