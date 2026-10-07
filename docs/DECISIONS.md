@@ -65,6 +65,11 @@ Append new entries; strike through superseded ones and point to the entry that r
 - **Decision:** Brando: "use the vb103_judge Valkyrie route." Route: experiment 103's `vb103_judge` Valkyrie agent (experiment 100 H2 ensemble: GPT-6 Sol high + Claude Opus 5.5 max, median of 3 each, mean of the 2, divided by 5). Payer: the Vals model gateway, the same account and environment experiment 103 used.
 - **Consequences:** Scope per `PROTOCOL.md`: every scored cell with IC_tests · IC_proofs > 0, plus the 60-file audit per model. Judging runs as a new, separately labelled suite (`rl4cv-e01:<label>`) on its own benchmark instance; experiment 103's existing judge records and runs under `veribench_vb103` are never modified. FSC in experiments 01–05 (old numbering, see D-007) is unblocked.
 
+### D-012 — Push to `main` small and often — accepted — 10-07-2026 — Brando
+
+- **Context:** Brando, 10-07-2026: "we likely need to put a reminder in the agents claude .md folders to push to main often since this repo is shared by 3+1+1 people!" The same day, three agent sessions edited one checkout at once and one held an unpushed local commit that touched shared files (`CLAUDE.md`, this file).
+- **Decision:** `CLAUDE.md` → Repository conventions → "Push small and often": commit and push each finished, test-passing step immediately; pull before starting and before each push; never stage or commit another session's uncommitted files; use a separate `git worktree` when sessions share a checkout. Extends D-006.
+
 ## Open — needs Brando
 
 | ID | Question | Recommendation | Blocks |

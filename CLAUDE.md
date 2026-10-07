@@ -50,6 +50,7 @@ This file holds the project rules for **rl-4-code-verification** for every agent
 ## Repository conventions
 
 - **Work on `main` (Brando, 09-30-2026).** Commit directly to `main` and push once `make test` passes; no feature branches or pull requests unless Brando asks for one. Stage with explicit pathspecs (never `git add -A`), pull with `--ff-only` or merge before pushing, and never force-push `main`. Delete any branch as soon as it is merged (agents-config Trigger Rule 19).
+  - **Push small and often (Brando, 10-07-2026; D-012).** About five people (Brando, Varun and the mentees) and their agents share this repository, often in the same checkout at the same time. Commit and push each finished, test-passing step as soon as it lands instead of batching a session's work. Pull before you start and before every push. Never stage, commit or revert another person's or agent's uncommitted files; if another session is editing the same checkout, work from your own `git worktree` and push from there.
 - **External repositories are pinned clones, not submodules (D-002).**
   - `external/deps.lock.json` holds exact commits.
   - `scripts/setup_external.sh` fetches them into git-ignored `external/<name>`.
