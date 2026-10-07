@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/docs/DECISIONS.md>
 
-**TLDR:** Decided so far: separate repository; pinned clones instead of submodules; FSC always gated on compilation; forecasts hash-frozen before outcomes; work directly on `main`; self-hosted open-weight inference approved with model substitution allowed; FSC judge route and payer (`vb103_judge` on Valkyrie, Vals gateway); experiments restructured to Brando's two goals (D-007). Still open for Brando: GPU compute, the pool source, the paper's code, and who leads.
+**TLDR:** Decided so far: separate repository; pinned clones instead of submodules; FSC always gated on compilation; forecasts hash-frozen before outcomes; work directly on `main`; self-hosted open-weight inference approved with model substitution allowed; FSC judge route and payer (`vb103_judge` on Valkyrie, Vals gateway); experiments restructured to Brando's two goals (D-007); VeriBench V1 split into train / validation / test for policy training, test held out (D-013); single-call Valkyrie teachers for experiments 02A v3 and 08 (D-014, D-015). Still open for Brando: GPU compute, the pool source, the paper's code, and who leads.
 
 Format: `D-NNN — title — status — date — owner`, then context, decision and consequences.
 Append new entries; strike through superseded ones and point to the entry that replaces them.
@@ -75,6 +75,31 @@ Append new entries; strike through superseded ones and point to the entry that r
 - **Context:** experiment 02A v3 builds Lean warm-start data from frontier teachers through Valkyrie. D-108 asks for each vendor's own agent, but on 10-07-2026 none is runnable on Valkyrie for these teachers (the native Claude Code and Codex routes lost their credential route; there is no Google agent for Gemini 4 Argon).
 - **Decision:** Brando chose "Approve single-call (Recommended)" over Terminus 2 with a Lean compiler and over waiting for vendor agents: one common single-call agent (`vb103_single_call`) for Claude Fable 5.1, GPT-6 Astra and Gemini 4 Argon through Valkyrie, Vals-funded, as specified in that experiment's `PROTOCOL.md` § 4.
 - **Scope:** experiment 02A v3 only. D-108 is unchanged for every other experiment; payer verification, route naming and the runaway guard still apply.
+
+### D-013 — VeriBench V1 train / validation / test split for policy training — accepted — 10-07-2026 — Brando
+
+- **Authorization:** Brando, 10-07-2026: "maybe we can use VeriBench as a validation set … we can split VeriBench into train val test in a reasonable way, and then create a plan so that we use Valkyrie to create a bunch of synthetic data from Claude Opus 5.5 and Astra … start doing an SFT and then do the training."
+- **Decision:** `rl4cv.splits` splits VeriBench V1 (896 tasks at the `veribench` pin `c11b99ba`) into train 539, validation 135 and test 222. Core is 369 / 93 / 152 and IndustrySet is 170 / 42 / 70.
+  - Near-duplicates stay in one split. A near-duplicate is an exact normalized hash or a word-5-gram Jaccard ≥ 0.70 on the Python program or the gold Lean reference. Each security safe/vulnerable pair also stays together. The result is 664 groups.
+  - Groups are assigned per family, in salted-hash order (salt `rl4cv-d013-vbv1-split-v1`), to the split with the largest deficit against 0.60 / 0.15 / 0.25.
+  - No model output or score is read. Manifest SHA-256 `157ce781ed9e4ac93a1a1fe0c49f2ee2ae907be1260402485c8f6fa3d06e0e24` in `experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/split/`.
+  - The largest cross-split Jaccard is 0.640 (Python) and 0.610 (gold Lean).
+- **Use:**
+  - Train: SFT and RL prompts, gold references and teacher outputs on train tasks.
+  - Validation: checkpoint selection, tuning and RL monitoring.
+  - Test: one evaluation per frozen checkpoint, never used for training, tuning or selection.
+  - VeriBench numbers for trained policies are reported on the test split, core and IndustrySet separately, never on all 896, which now contain training tasks.
+- **Consequences:**
+  - `CLAUDE.md`'s "VeriBench is held out" becomes "VeriBench V1's test split is held out" for experiments locked from 10-07-2026 on. Experiments 01–07 and 02A v3 keep the rule they were locked under (all of VeriBench held out).
+  - Experiment 05's per-task receipts restricted to the splits are free Base-model baselines.
+  - Frontier evaluations in the VeriBench repository train nothing and are unaffected.
+  - D-104 gains a pool: VeriBench train tasks with kernel-verified teacher files (experiment 08).
+
+### D-015 — Single-call Valkyrie teachers (Claude Opus 5.5, GPT-6 Astra) for experiment 08's SFT data — accepted — 10-07-2026 — Brando (request), Claude master (route)
+
+- **Context:** Brando asked on 10-07-2026 for synthetic SFT data "from Claude Opus 5.5 and Astra" via Valkyrie for experiment 08. D-108 asks for each vendor's own agent. No such route is runnable on Valkyrie for these teachers today, for the reasons D-014 records. The Qwen policy being trained answers in one call, so single-call teacher files match its format.
+- **Decision:** the same route Brando approved for experiment 02A v3 in D-014: `vb103_single_call` through Valkyrie, Vals-funded. The teachers are `anthropic/claude-opus-5-5-no-fallback` at maximum compute effort and the highest-effort GPT-6 Astra selector the registry serves, with 4 samples per train task. Settings are in experiment 08's `PROTOCOL.md` § 3. The route choice was made by the master under agents-config Trigger Rule 57, following Brando's D-014 choice, and is flagged to Brando in the experiment 08 issue.
+- **Scope:** experiment 08's teacher data only. These are data-generation calls, not a VeriBench evaluation. D-108 is unchanged elsewhere; payer verification, route naming and the runaway guard apply.
 
 ## Open — needs Brando
 

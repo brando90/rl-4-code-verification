@@ -1,0 +1,221 @@
+{
+  "schema": "rl4cv-vbv1-split-v1",
+  "decision": "D-013",
+  "parameters": {
+    "fractions": {
+      "train": 0.6,
+      "validation": 0.15,
+      "test": 0.25
+    },
+    "salt": "rl4cv-d013-vbv1-split-v1",
+    "jaccard_threshold": 0.7,
+    "ngram": 5
+  },
+  "tasks": 896,
+  "groups": 664,
+  "group_size_histogram": {
+    "1": 434,
+    "2": 229,
+    "4": 1
+  },
+  "link_edges_by_reason": {
+    "gold_exact": 4,
+    "gold_near": 1,
+    "py_exact": 2,
+    "py_near": 1,
+    "security_pair": 230
+  },
+  "counts": {
+    "all": {
+      "train": 539,
+      "validation": 135,
+      "test": 222
+    },
+    "core_614": {
+      "train": 369,
+      "validation": 93,
+      "test": 152
+    },
+    "industryset_282": {
+      "train": 170,
+      "validation": 42,
+      "test": 70
+    }
+  },
+  "counts_by_family": {
+    "aerospace_set_real": {
+      "train": 2,
+      "validation": 0,
+      "test": 1
+    },
+    "aerospace_set_synthetic": {
+      "train": 10,
+      "validation": 3,
+      "test": 4
+    },
+    "compilers_set_real": {
+      "train": 3,
+      "validation": 1,
+      "test": 1
+    },
+    "compilers_set_synthetic": {
+      "train": 9,
+      "validation": 2,
+      "test": 4
+    },
+    "concurrent_set_real": {
+      "train": 3,
+      "validation": 1,
+      "test": 1
+    },
+    "concurrent_set_synthetic": {
+      "train": 9,
+      "validation": 2,
+      "test": 4
+    },
+    "critical_infra_set_real": {
+      "train": 4,
+      "validation": 1,
+      "test": 1
+    },
+    "critical_infra_set_synthetic": {
+      "train": 8,
+      "validation": 2,
+      "test": 4
+    },
+    "crypto_set_real": {
+      "train": 10,
+      "validation": 2,
+      "test": 4
+    },
+    "crypto_set_synthetic": {
+      "train": 2,
+      "validation": 1,
+      "test": 1
+    },
+    "cs_set": {
+      "train": 15,
+      "validation": 4,
+      "test": 6
+    },
+    "easy_set": {
+      "train": 25,
+      "validation": 6,
+      "test": 10
+    },
+    "finance_set_real": {
+      "train": 5,
+      "validation": 1,
+      "test": 2
+    },
+    "finance_set_synthetic": {
+      "train": 7,
+      "validation": 2,
+      "test": 3
+    },
+    "gov_cert_set_real": {
+      "train": 2,
+      "validation": 1,
+      "test": 1
+    },
+    "gov_cert_set_synthetic": {
+      "train": 10,
+      "validation": 2,
+      "test": 4
+    },
+    "hardware_set_real": {
+      "train": 3,
+      "validation": 1,
+      "test": 1
+    },
+    "hardware_set_synthetic": {
+      "train": 10,
+      "validation": 2,
+      "test": 4
+    },
+    "humaneval_set": {
+      "train": 34,
+      "validation": 8,
+      "test": 14
+    },
+    "hypervisor_set_real": {
+      "train": 3,
+      "validation": 1,
+      "test": 1
+    },
+    "hypervisor_set_synthetic": {
+      "train": 10,
+      "validation": 2,
+      "test": 4
+    },
+    "medical_oss_set_real": {
+      "train": 6,
+      "validation": 1,
+      "test": 2
+    },
+    "medical_oss_set_synthetic": {
+      "train": 6,
+      "validation": 2,
+      "test": 3
+    },
+    "memory_bugs_set_real": {
+      "train": 3,
+      "validation": 1,
+      "test": 1
+    },
+    "memory_bugs_set_synthetic": {
+      "train": 9,
+      "validation": 2,
+      "test": 4
+    },
+    "os_embedded_set_real": {
+      "train": 4,
+      "validation": 1,
+      "test": 1
+    },
+    "os_embedded_set_synthetic": {
+      "train": 8,
+      "validation": 2,
+      "test": 4
+    },
+    "realcode_set": {
+      "train": 19,
+      "validation": 5,
+      "test": 8
+    },
+    "regulated_set_real": {
+      "train": 3,
+      "validation": 1,
+      "test": 1
+    },
+    "regulated_set_synthetic": {
+      "train": 9,
+      "validation": 2,
+      "test": 4
+    },
+    "rfc_set_real": {
+      "train": 11,
+      "validation": 3,
+      "test": 5
+    },
+    "rfc_set_synthetic": {
+      "train": 1,
+      "validation": 0,
+      "test": 0
+    },
+    "security_set": {
+      "train": 276,
+      "validation": 70,
+      "test": 114
+    }
+  },
+  "gold_mapping": {
+    "py_files": 896,
+    "gold_matched": 896,
+    "py_without_gold": [],
+    "py_with_ambiguous_gold": {},
+    "gold_without_py": []
+  },
+  "manifest_sha256": "157ce781ed9e4ac93a1a1fe0c49f2ee2ae907be1260402485c8f6fa3d06e0e24",
+  "veribench_commit": "c11b99badfa386fd26810b208eef1eb8dc9f6806"
+}

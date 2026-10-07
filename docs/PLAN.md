@@ -123,7 +123,7 @@ Renumbered 09-30-2026 (D-007): old 02 → 02A, 03 → 02B, 04 → 02C, 06 → 02
 
 ## 8. Integrity rules (enforced in [CLAUDE.md](../CLAUDE.md))
 
-- **Data.** No VeriBench task, reference or derived text is ever used for training or the warm start. Screens are in [DATASETS.md](DATASETS.md).
+- **Data.** Only VeriBench V1's train split (D-013) may be used for training or the warm start; its validation split is for selection and its test split is held out (experiments locked before D-013 hold out all of VeriBench). Screens are in [DATASETS.md](DATASETS.md).
 - **Scoring.**
   - The kernel check is VeriBench's own, from the pinned scorer, and is never loosened.
   - FSC is compile-gated (D-003).
