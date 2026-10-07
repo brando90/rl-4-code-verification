@@ -1,0 +1,129 @@
+{
+  "label": "qwen3.5-9b_g1",
+  "n_cells": 896,
+  "n_with_file": 895,
+  "n_no_file": 1,
+  "recompile_vs_scored_mismatches": [],
+  "classes": {
+    "definitions_fail": 860,
+    "tests_or_statements_fail": 27,
+    "compiles": 5,
+    "no_file": 1,
+    "compiles_after_proof_ablation": 3
+  },
+  "compiles_original": [
+    5,
+    [
+      0.0024,
+      0.013
+    ]
+  ],
+  "compiles_after_proof_ablation_incl_original": [
+    8,
+    [
+      0.0045,
+      0.0175
+    ]
+  ],
+  "definitions_only_compile_among_noncompiling": [
+    30,
+    890
+  ],
+  "ablation_IC_tests_mean_over_n": 0.0033,
+  "ablation_IC_proofs_mean_over_n": 0.0013,
+  "cells_IC_tests_x_IC_proofs_positive_after_ablation": [
+    2,
+    [
+      0.0006,
+      0.0081
+    ]
+  ],
+  "noncompiling_files_with_error_category": {
+    "parse": 841,
+    "tactic_failed": 699,
+    "type_error": 445,
+    "unknown_name": 401,
+    "other": 374,
+    "index_bounds_proof": 24,
+    "termination": 17,
+    "timeout": 9
+  },
+  "noncompiling_files_with_error_region": {
+    "other": 762,
+    "theorem_proof": 639,
+    "example_test": 607,
+    "definition": 574,
+    "theorem_statement": 251
+  },
+  "top_first_errors": [
+    [
+      "unexpected token _; expected _",
+      323
+    ],
+    [
+      "unexpected character; expected decimal number",
+      314
+    ],
+    [
+      "unterminated comment",
+      34
+    ],
+    [
+      "type mismatch",
+      22
+    ],
+    [
+      "unexpected token; expected command",
+      18
+    ],
+    [
+      "failed to synthesize",
+      17
+    ],
+    [
+      "tactic _ failed, the left-hand side",
+      14
+    ],
+    [
+      "unknown constant _",
+      14
+    ],
+    [
+      "unexpected token _; expected command",
+      11
+    ],
+    [
+      "unknown identifier _",
+      8
+    ],
+    [
+      "Application type mismatch: In the application",
+      8
+    ],
+    [
+      "Function expected at",
+      8
+    ]
+  ],
+  "files_with_lean3_markers": 86,
+  "think": {
+    "n_with_close_tag": 893,
+    "n_empty_think": 0,
+    "ablation_compile_rate_empty_think": [
+      0,
+      0,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "ablation_compile_rate_nonempty_think": [
+      8,
+      893,
+      [
+        0.0045,
+        0.0176
+      ]
+    ]
+  }
+}

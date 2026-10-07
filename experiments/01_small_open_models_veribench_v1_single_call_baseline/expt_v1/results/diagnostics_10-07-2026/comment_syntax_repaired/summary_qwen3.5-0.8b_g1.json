@@ -1,0 +1,124 @@
+{
+  "label": "qwen3.5-0.8b_g1",
+  "n_cells": 135,
+  "n_with_file": 135,
+  "n_no_file": 0,
+  "recompile_vs_scored_mismatches": [],
+  "classes": {
+    "definitions_fail": 134,
+    "tests_or_statements_fail": 1
+  },
+  "compiles_original": [
+    0,
+    [
+      0.0,
+      0.0277
+    ]
+  ],
+  "compiles_after_proof_ablation_incl_original": [
+    0,
+    [
+      0.0,
+      0.0277
+    ]
+  ],
+  "definitions_only_compile_among_noncompiling": [
+    1,
+    135
+  ],
+  "ablation_IC_tests_mean_over_n": 0.0,
+  "ablation_IC_proofs_mean_over_n": 0.0,
+  "cells_IC_tests_x_IC_proofs_positive_after_ablation": [
+    0,
+    [
+      0.0,
+      0.0277
+    ]
+  ],
+  "noncompiling_files_with_error_category": {
+    "unknown_name": 62,
+    "parse": 58,
+    "other": 57,
+    "tactic_failed": 17,
+    "type_error": 8,
+    "index_bounds_proof": 1
+  },
+  "noncompiling_files_with_error_region": {
+    "other": 113,
+    "definition": 35,
+    "theorem_statement": 18,
+    "theorem_proof": 13,
+    "example_test": 13
+  },
+  "top_first_errors": [
+    [
+      "unknown module prefix _",
+      42
+    ],
+    [
+      "unexpected token _; expected command",
+      14
+    ],
+    [
+      "invalid _ command, it must be used in the beginning of the file",
+      13
+    ],
+    [
+      "unexpected token _; expected _",
+      9
+    ],
+    [
+      "unexpected character; expected decimal number",
+      7
+    ],
+    [
+      "object file _ of module Mathlib.Data.Int does not exist",
+      6
+    ],
+    [
+      "unexpected identifier; expected command",
+      5
+    ],
+    [
+      "unexpected token _; expected _, _ or _",
+      5
+    ],
+    [
+      "unterminated comment",
+      3
+    ],
+    [
+      "type expected, got",
+      3
+    ],
+    [
+      "unknown constant _",
+      2
+    ],
+    [
+      "failed to synthesize",
+      1
+    ]
+  ],
+  "files_with_lean3_markers": 1,
+  "think": {
+    "n_with_close_tag": 131,
+    "n_empty_think": 0,
+    "ablation_compile_rate_empty_think": [
+      0,
+      0,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "ablation_compile_rate_nonempty_think": [
+      0,
+      131,
+      [
+        0.0,
+        0.0285
+      ]
+    ]
+  }
+}

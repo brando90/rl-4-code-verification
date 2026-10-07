@@ -1,0 +1,134 @@
+{
+  "label": "qwen3.6-27b-local_g1",
+  "n_cells": 264,
+  "n_with_file": 264,
+  "n_no_file": 0,
+  "recompile_vs_scored_mismatches": [
+    "security_set__security_6858__safe__102_unsafersatiming_safe",
+    "security_set__security_6858__safe__105_unsafenofranking_safe",
+    "security_set__security_6858__vulnerabilities__104_unsafehttpparse",
+    "security_set__security_6858__vulnerabilities__113_unsafeplaintextfs",
+    "security_set__security_6858__vulnerabilities__121_unsafekerberosreplay",
+    "security_set__security_6858__vulnerabilities__116_unsafeupwardstack"
+  ],
+  "classes": {
+    "definitions_fail": 242,
+    "tests_or_statements_fail": 11,
+    "compiles": 6,
+    "compiles_after_proof_ablation": 5
+  },
+  "compiles_original": [
+    6,
+    [
+      0.0105,
+      0.0487
+    ]
+  ],
+  "compiles_after_proof_ablation_incl_original": [
+    11,
+    [
+      0.0234,
+      0.0731
+    ]
+  ],
+  "definitions_only_compile_among_noncompiling": [
+    16,
+    258
+  ],
+  "ablation_IC_tests_mean_over_n": 0.0417,
+  "ablation_IC_proofs_mean_over_n": 0.0336,
+  "cells_IC_tests_x_IC_proofs_positive_after_ablation": [
+    10,
+    [
+      0.0207,
+      0.0683
+    ]
+  ],
+  "noncompiling_files_with_error_category": {
+    "parse": 230,
+    "tactic_failed": 225,
+    "unknown_name": 124,
+    "other": 92,
+    "type_error": 88,
+    "termination": 3,
+    "index_bounds_proof": 1
+  },
+  "noncompiling_files_with_error_region": {
+    "other": 231,
+    "theorem_proof": 214,
+    "example_test": 182,
+    "definition": 111,
+    "theorem_statement": 48
+  },
+  "top_first_errors": [
+    [
+      "unexpected token _; expected _",
+      195
+    ],
+    [
+      "no goals to be solved",
+      21
+    ],
+    [
+      "unterminated comment",
+      5
+    ],
+    [
+      "simp made no progress",
+      5
+    ],
+    [
+      "type mismatch",
+      4
+    ],
+    [
+      "failed to synthesize",
+      3
+    ],
+    [
+      "Application type mismatch: In the application",
+      3
+    ],
+    [
+      "unsolved goals",
+      3
+    ],
+    [
+      "failed to rewrite using equation theorems for _.",
+      3
+    ],
+    [
+      "unknown identifier _",
+      2
+    ],
+    [
+      "Invalid field _: The environment does not contain _",
+      2
+    ],
+    [
+      "object file _ of module Mathlib.Data.Id.Basic does not ex",
+      1
+    ]
+  ],
+  "files_with_lean3_markers": 25,
+  "think": {
+    "n_with_close_tag": 220,
+    "n_empty_think": 0,
+    "ablation_compile_rate_empty_think": [
+      0,
+      0,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "ablation_compile_rate_nonempty_think": [
+      11,
+      220,
+      [
+        0.0281,
+        0.0873
+      ]
+    ]
+  }
+}

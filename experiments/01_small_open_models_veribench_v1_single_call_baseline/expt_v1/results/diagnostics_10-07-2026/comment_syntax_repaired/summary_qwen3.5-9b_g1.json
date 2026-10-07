@@ -1,0 +1,139 @@
+{
+  "label": "qwen3.5-9b_g1",
+  "n_cells": 667,
+  "n_with_file": 667,
+  "n_no_file": 0,
+  "recompile_vs_scored_mismatches": [
+    "crypto_set_real__my_erc20_infinite_allowance_after",
+    "easy_set__1_myadd",
+    "memory_bugs_set_synthetic__my_bump_alloc_fits",
+    "os_embedded_set_synthetic__my_recursive_mutex_can_unlock",
+    "security_set__security_6858__safe__137_unsafehmaclength_safe",
+    "security_set__security_6858__safe__3_unsafelinkedlist_safe",
+    "security_set__security_6858__safe__43_unsafetenexbyte_safe",
+    "security_set__security_6858__vulnerabilities__101_unsafeguardreuse",
+    "security_set__security_6858__vulnerabilities__104_unsafehttpparse",
+    "security_set__security_6858__vulnerabilities__52_unsafechrootescape"
+  ],
+  "classes": {
+    "definitions_fail": 547,
+    "tests_or_statements_fail": 90,
+    "compiles": 10,
+    "compiles_after_proof_ablation": 20
+  },
+  "compiles_original": [
+    10,
+    [
+      0.0082,
+      0.0274
+    ]
+  ],
+  "compiles_after_proof_ablation_incl_original": [
+    30,
+    [
+      0.0317,
+      0.0635
+    ]
+  ],
+  "definitions_only_compile_among_noncompiling": [
+    110,
+    657
+  ],
+  "ablation_IC_tests_mean_over_n": 0.027,
+  "ablation_IC_proofs_mean_over_n": 0.0171,
+  "cells_IC_tests_x_IC_proofs_positive_after_ablation": [
+    18,
+    [
+      0.0171,
+      0.0423
+    ]
+  ],
+  "noncompiling_files_with_error_category": {
+    "tactic_failed": 529,
+    "parse": 484,
+    "type_error": 320,
+    "unknown_name": 301,
+    "other": 279,
+    "index_bounds_proof": 18,
+    "termination": 11,
+    "timeout": 7
+  },
+  "noncompiling_files_with_error_region": {
+    "theorem_proof": 481,
+    "example_test": 461,
+    "definition": 429,
+    "other": 252,
+    "theorem_statement": 196
+  },
+  "top_first_errors": [
+    [
+      "simp made no progress",
+      55
+    ],
+    [
+      "failed to synthesize",
+      49
+    ],
+    [
+      "tactic _ failed, the left-hand side",
+      46
+    ],
+    [
+      "unterminated comment",
+      42
+    ],
+    [
+      "type mismatch",
+      40
+    ],
+    [
+      "Function expected at",
+      32
+    ],
+    [
+      "Application type mismatch: In the application",
+      31
+    ],
+    [
+      "unknown identifier _",
+      28
+    ],
+    [
+      "unknown constant _",
+      28
+    ],
+    [
+      "unsolved goals",
+      27
+    ],
+    [
+      "unexpected identifier; expected command",
+      22
+    ],
+    [
+      "no goals to be solved",
+      20
+    ]
+  ],
+  "files_with_lean3_markers": 65,
+  "think": {
+    "n_with_close_tag": 665,
+    "n_empty_think": 0,
+    "ablation_compile_rate_empty_think": [
+      0,
+      0,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "ablation_compile_rate_nonempty_think": [
+      29,
+      665,
+      [
+        0.0305,
+        0.0619
+      ]
+    ]
+  }
+}

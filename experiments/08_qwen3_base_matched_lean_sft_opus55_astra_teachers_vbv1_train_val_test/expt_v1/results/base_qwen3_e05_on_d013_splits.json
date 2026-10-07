@@ -1,0 +1,257 @@
+{
+  "source": "experiment 05 per-task G=8 CSVs (kernel-scored, no FSC)",
+  "results": {
+    "qwen3-1.7b-base": {
+      "validation": {
+        "all": {
+          "tasks": 135,
+          "samples_present": 1080,
+          "kernel_binary_mixed_share": 0.0,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0,
+            0.0277
+          ],
+          "kernel_binary_pass_at_8_share": 0.0,
+          "kernel_binary_mean_pass_rate": 0.0,
+          "ic_tests_mean_pass_rate": 0.00093,
+          "mean_proof_fraction": 0.0
+        },
+        "core": {
+          "tasks": 93,
+          "samples_present": 744,
+          "kernel_binary_mixed_share": 0.0,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0,
+            0.0397
+          ],
+          "kernel_binary_pass_at_8_share": 0.0,
+          "kernel_binary_mean_pass_rate": 0.0,
+          "ic_tests_mean_pass_rate": 0.0,
+          "mean_proof_fraction": 0.0
+        },
+        "industryset": {
+          "tasks": 42,
+          "samples_present": 336,
+          "kernel_binary_mixed_share": 0.0,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0,
+            0.0838
+          ],
+          "kernel_binary_pass_at_8_share": 0.0,
+          "kernel_binary_mean_pass_rate": 0.0,
+          "ic_tests_mean_pass_rate": 0.00298,
+          "mean_proof_fraction": 0.0
+        }
+      },
+      "test": {
+        "all": {
+          "tasks": 222,
+          "samples_present": 1776,
+          "kernel_binary_mixed_share": 0.0,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0,
+            0.017
+          ],
+          "kernel_binary_pass_at_8_share": 0.0,
+          "kernel_binary_mean_pass_rate": 0.0,
+          "ic_tests_mean_pass_rate": 0.0,
+          "mean_proof_fraction": 0.0
+        },
+        "core": {
+          "tasks": 152,
+          "samples_present": 1216,
+          "kernel_binary_mixed_share": 0.0,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0,
+            0.0246
+          ],
+          "kernel_binary_pass_at_8_share": 0.0,
+          "kernel_binary_mean_pass_rate": 0.0,
+          "ic_tests_mean_pass_rate": 0.0,
+          "mean_proof_fraction": 0.0
+        },
+        "industryset": {
+          "tasks": 70,
+          "samples_present": 560,
+          "kernel_binary_mixed_share": 0.0,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0,
+            0.052
+          ],
+          "kernel_binary_pass_at_8_share": 0.0,
+          "kernel_binary_mean_pass_rate": 0.0,
+          "ic_tests_mean_pass_rate": 0.0,
+          "mean_proof_fraction": 0.0
+        }
+      }
+    },
+    "qwen3-4b-base": {
+      "validation": {
+        "all": {
+          "tasks": 135,
+          "samples_present": 1080,
+          "kernel_binary_mixed_share": 0.0222,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0076,
+            0.0633
+          ],
+          "kernel_binary_pass_at_8_share": 0.0222,
+          "kernel_binary_mean_pass_rate": 0.00278,
+          "ic_tests_mean_pass_rate": 0.00463,
+          "mean_proof_fraction": 0.00278
+        },
+        "core": {
+          "tasks": 93,
+          "samples_present": 744,
+          "kernel_binary_mixed_share": 0.0108,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0019,
+            0.0584
+          ],
+          "kernel_binary_pass_at_8_share": 0.0108,
+          "kernel_binary_mean_pass_rate": 0.00134,
+          "ic_tests_mean_pass_rate": 0.00269,
+          "mean_proof_fraction": 0.00134
+        },
+        "industryset": {
+          "tasks": 42,
+          "samples_present": 336,
+          "kernel_binary_mixed_share": 0.0476,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0132,
+            0.1579
+          ],
+          "kernel_binary_pass_at_8_share": 0.0476,
+          "kernel_binary_mean_pass_rate": 0.00595,
+          "ic_tests_mean_pass_rate": 0.00893,
+          "mean_proof_fraction": 0.00595
+        }
+      },
+      "test": {
+        "all": {
+          "tasks": 222,
+          "samples_present": 1776,
+          "kernel_binary_mixed_share": 0.0045,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0008,
+            0.0251
+          ],
+          "kernel_binary_pass_at_8_share": 0.0045,
+          "kernel_binary_mean_pass_rate": 0.00056,
+          "ic_tests_mean_pass_rate": 0.00113,
+          "mean_proof_fraction": 0.00056
+        },
+        "core": {
+          "tasks": 152,
+          "samples_present": 1216,
+          "kernel_binary_mixed_share": 0.0,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0,
+            0.0246
+          ],
+          "kernel_binary_pass_at_8_share": 0.0,
+          "kernel_binary_mean_pass_rate": 0.0,
+          "ic_tests_mean_pass_rate": 0.0,
+          "mean_proof_fraction": 0.0
+        },
+        "industryset": {
+          "tasks": 70,
+          "samples_present": 560,
+          "kernel_binary_mixed_share": 0.0143,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0025,
+            0.0766
+          ],
+          "kernel_binary_pass_at_8_share": 0.0143,
+          "kernel_binary_mean_pass_rate": 0.00179,
+          "ic_tests_mean_pass_rate": 0.00357,
+          "mean_proof_fraction": 0.00179
+        }
+      }
+    },
+    "qwen3-8b-base": {
+      "validation": {
+        "all": {
+          "tasks": 135,
+          "samples_present": 1080,
+          "kernel_binary_mixed_share": 0.0,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0,
+            0.0277
+          ],
+          "kernel_binary_pass_at_8_share": 0.0,
+          "kernel_binary_mean_pass_rate": 0.0,
+          "ic_tests_mean_pass_rate": 0.0,
+          "mean_proof_fraction": 0.0
+        },
+        "core": {
+          "tasks": 93,
+          "samples_present": 744,
+          "kernel_binary_mixed_share": 0.0,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0,
+            0.0397
+          ],
+          "kernel_binary_pass_at_8_share": 0.0,
+          "kernel_binary_mean_pass_rate": 0.0,
+          "ic_tests_mean_pass_rate": 0.0,
+          "mean_proof_fraction": 0.0
+        },
+        "industryset": {
+          "tasks": 42,
+          "samples_present": 336,
+          "kernel_binary_mixed_share": 0.0,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0,
+            0.0838
+          ],
+          "kernel_binary_pass_at_8_share": 0.0,
+          "kernel_binary_mean_pass_rate": 0.0,
+          "ic_tests_mean_pass_rate": 0.0,
+          "mean_proof_fraction": 0.0
+        }
+      },
+      "test": {
+        "all": {
+          "tasks": 222,
+          "samples_present": 1776,
+          "kernel_binary_mixed_share": 0.0,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0,
+            0.017
+          ],
+          "kernel_binary_pass_at_8_share": 0.0,
+          "kernel_binary_mean_pass_rate": 0.0,
+          "ic_tests_mean_pass_rate": 0.0,
+          "mean_proof_fraction": 0.0
+        },
+        "core": {
+          "tasks": 152,
+          "samples_present": 1216,
+          "kernel_binary_mixed_share": 0.0,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0,
+            0.0246
+          ],
+          "kernel_binary_pass_at_8_share": 0.0,
+          "kernel_binary_mean_pass_rate": 0.0,
+          "ic_tests_mean_pass_rate": 0.0,
+          "mean_proof_fraction": 0.0
+        },
+        "industryset": {
+          "tasks": 70,
+          "samples_present": 560,
+          "kernel_binary_mixed_share": 0.0,
+          "kernel_binary_mixed_share_wilson95": [
+            0.0,
+            0.052
+          ],
+          "kernel_binary_pass_at_8_share": 0.0,
+          "kernel_binary_mean_pass_rate": 0.0,
+          "ic_tests_mean_pass_rate": 0.0,
+          "mean_proof_fraction": 0.0
+        }
+      }
+    }
+  }
+}

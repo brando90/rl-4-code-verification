@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/docs/DATASETS.md>
 
-**TLDR:** This lists where RL prompts and held-out panels can come from. VeriBench is held out and never trained on. The training pools come from other sources: FVAPPS (the largest public Lean spec set that comes with Python programs), the Vericoding Lean subset, and synthetic VeriBench-style tasks. Every pool must pass license checks and contamination screens before it is used.
+**TLDR:** This lists where RL prompts and held-out panels can come from. VeriBench V1 is split into train / validation / test (D-013): only its train split may be trained on, its validation split selects checkpoints, and its test split is held out. Additional training pools come from other sources: FVAPPS (the largest public Lean spec set that comes with Python programs), the Vericoding Lean subset, and synthetic VeriBench-style tasks. Every pool must pass license checks and contamination screens before it is used.
 
 Environment families refer to the plan's families (see [PLAN.md §4](PLAN.md#4-environment-families-and-reward-channels)).
-Sizes are as reported by the sources on 2026-09-30.
+Sizes are as reported by the sources on 09-30-2026.
 Every row marked "verify" has to be checked before use; nothing here has been downloaded yet.
 
 | Pool | What a task gives the policy | Size | Reward channels it supports | Reference specs for FSC | Role | Status |
@@ -17,13 +17,15 @@ Every row marked "verify" has to be checked before use; nothing here has been do
 | [CLEVER](https://arxiv.org/abs/2505.13938) | Specification-first verified code generation | 161 | — | — | **Do not use.** It is derived from HumanEval, which overlaps VeriBench's `humaneval_set`. | excluded |
 | [FVSpec](https://arxiv.org/abs/2606.01008) | Real-world property-based tests turned into Lean challenges | verify | kernel_binary | verify | Candidate specification family | verify |
 | Paper's OpenR1-Math cells | Math problems | 4 cells × 256 per scale | Math-Verify binary | n/a | The "far" family: does math RL move Lean utility? | available from the paper's archive (decision D-105) |
-| **VeriBench V1** | Python program to a full Lean file | 896 = core 614 + IndustrySet 282 | official factors | gold | **Target held-out panel. Never trained on.** | pinned in `external/deps.lock.json` |
+| **VeriBench V1** | Python program to a full Lean file | 896 = core 614 + IndustrySet 282 | official factors | gold | **D-013 split: train 539 (training pool, experiment 08), validation 135 (selection), test 222 (held-out panel, never trained on).** Experiments locked before D-013 hold out all 896. | pinned in `external/deps.lock.json`; split manifest in `experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/split/` |
 | VeriBench V2 / V2.1 | Multi-file tasks from VeriSoftBench | small (pilot sets) | official factors | gold | Out-of-distribution panel where FSC has headroom | only if VSB-derived data stay out of training |
 
 ## Contamination and integrity screens (required before any pool is used)
 
-1. **Exact overlap.** Compare normalized hashes of the Python source and of any Lean text against VeriBench's `veribench_dataset/py_src` and `lean_src` (at the pinned commit). Any overlap is removed.
-2. **Near-duplicates.** Use the paper's word-5-gram Jaccard screen (flag ≥ 0.7) against VeriBench Python and against every held-out panel. Report flagged counts, and report the held-out result with and without flagged items, as the paper's Appendix A does.
-3. **Excluded sources.** Nothing derived from HumanEval (because of VeriBench `humaneval_set`). Nothing derived from VeriSoftBench if VBV2 is used as a panel.
+The protected corpus depends on the locked protocol. Experiments locked before D-013 (01–07 and 02A v3) retain all 896 VeriBench V1 tasks and their original exclusions. For experiment 08 and later protocols explicitly adopting D-013, protect the validation and test tasks and all other held-out panels; the train split is eligible. Never reinterpret an older lock using the new split.
+
+1. **Exact overlap.** Compare normalized hashes of Python, Lean and all text that will receive training loss against the protected Python sources and gold Lean references at the pinned commit. Remove every hit. Authorized D-013 train references are not screened against themselves.
+2. **Near-duplicates.** Use the paper's word-5-gram Jaccard screen (flag ≥ 0.7) against the protected Python and gold Lean text and every other held-out panel. Report flagged counts. Experiment 08 excludes flagged training examples before use; older locked protocols retain their recorded handling and reports with/without flagged items.
+3. **Excluded sources.** No external data derived from HumanEval (because of VeriBench `humaneval_set`); D-013 permits only the already assigned VeriBench train tasks from that family. This exception does not apply to older locked experiments. Nothing derived from VeriSoftBench if VBV2 is used as a panel.
 4. **Reference quality.** Reference specifications used for FSC rewards must compile and must pass a non-vacuity check (no theorem whose conclusion is only `True` or a self-equality), matching VeriBench's `tests/test_reference_specs_nonvacuous.py`.
 5. **No gold in rollouts.** The rollout sandbox never contains a reference, the scorer or the judge prompt. Scoring runs outside, after generation.

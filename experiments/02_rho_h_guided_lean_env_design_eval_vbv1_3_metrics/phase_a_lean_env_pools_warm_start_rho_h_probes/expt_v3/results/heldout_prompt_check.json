@@ -1,0 +1,43 @@
+{
+ "meaning": "PASS: none of the three prompt components contains a VeriBench py_src program or lean_src file, and no 12-word normalized window is shared with any of them; the only task-specific bytes in a teacher prompt are the MBPP program.",
+ "min_shared_window_words": 12,
+ "n_protected_files": 1795,
+ "texts": {
+  "addendum_vbv1": {
+   "bytes": 3634,
+   "embedded_protected_files": [],
+   "max_word5_jaccard": 0.0,
+   "nearest_protected_file": "py_src/security_set/security_python/vulnerabilities/2_executable_escalation.py",
+   "sha256": "a7a0fc1b7be6b4ede41fd6b31e1e1dcae3d2fd320a6cddf9b311cf55855a18f5",
+   "shared_12_word_windows": [],
+   "trivial_protected_files_ignored": {
+    "lean_src/sandbox.lean": "import mathlib"
+   }
+  },
+  "instruction_template": {
+   "bytes": 10097,
+   "embedded_protected_files": [],
+   "max_word5_jaccard": 0.0,
+   "nearest_protected_file": "py_src/security_set/security_python/vulnerabilities/2_executable_escalation.py",
+   "sha256": "35be79b47001d138a9e9d8ef27e957273bc7bc59dcc687be07091fbfe17da0cf",
+   "shared_12_word_windows": [],
+   "trivial_protected_files_ignored": {
+    "lean_src/sandbox.lean": "import mathlib"
+   }
+  },
+  "system_prompt": {
+   "bytes": 286,
+   "embedded_protected_files": [],
+   "max_word5_jaccard": 0.0,
+   "nearest_protected_file": "py_src/security_set/security_python/vulnerabilities/2_executable_escalation.py",
+   "sha256": "dc051963de1199dd4f77c9f8f96218eb45be331c819b8e76693b063b206143cd",
+   "shared_12_word_windows": [],
+   "trivial_protected_files_ignored": {
+    "lean_src/sandbox.lean": "import mathlib"
+   }
+  }
+ },
+ "verdict": "PASS",
+ "veribench_root": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/rl-4-code-verification/external/veribench",
+ "written_utc": "2026-10-07T23:21:32+00:00"
+}

@@ -28,6 +28,14 @@ How Qwen3.6-27B failed (experiment 103):
 - 245 of its 292 lost cells hit the 65,536-token output cap, and 47 were gateway timeouts.
 - 87.5% of its sampled zeros do not parse as Lean 4.
 
+**An instruction defect that hits literal-minded models (experiment 01 diagnostic, 10-07-2026).**
+
+- VeriBench's task instruction (`vb_harbor/adapter/adapter.py:134`, at the pin `c11b99ba` and at HEAD `9e312c9052`) suggests ``namespace {file stem}``.
+- For 533 of the 896 VBV1 tasks (all of easy_set, realcode_set and security_set) the stem starts with a digit, e.g. `namespace 1_MyAdd`. That is not a Lean identifier; the gold files use `namespace MyAdd`.
+- Small Qwen models copy the hint: Qwen3-14B does so in 516 of its 896 files, and each of those files fails to compile.
+- Frontier single-call models in experiment 103 do not show the penalty: their compile rates are higher on these three splits.
+- Fixing the template is a benchmark change, so Trigger Rule 43 applies.
+
 The statement "an open model of ≤14B starts at about 0 on VeriBench" is therefore an extrapolation from this 27B row. [Experiment 01](../experiments/01_small_open_models_veribench_v1_single_call_baseline/README.md) measures it directly.
 
 ## 2. Frontier systems: two factors are nearly saturated; FSC carries the remaining signal

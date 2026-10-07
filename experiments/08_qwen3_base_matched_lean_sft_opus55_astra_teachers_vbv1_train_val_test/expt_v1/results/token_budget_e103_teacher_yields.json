@@ -1,0 +1,96 @@
+{
+  "proxy": "IC_ap == 1 and IC_pp == 1 and kernel_n_theorems >= 1 and agent_n_ex >= 1; vacuity not checked",
+  "models": {
+    "claude-opus-5-max": {
+      "train": {
+        "tasks": 539,
+        "measured": 418,
+        "kernel_pass_proxy": 251,
+        "kernel_pass_share_of_tasks": 0.4657,
+        "passing_lean_tokens": {
+          "n": 251,
+          "mean": 5104,
+          "median": 4993,
+          "p90": 6425,
+          "max": 8337,
+          "total": 1281211
+        }
+      },
+      "validation": {
+        "tasks": 135,
+        "measured": 108,
+        "kernel_pass_proxy": 62,
+        "kernel_pass_share_of_tasks": 0.4593,
+        "passing_lean_tokens": {
+          "n": 62,
+          "mean": 4998,
+          "median": 4917,
+          "p90": 6433,
+          "max": 7707,
+          "total": 309886
+        }
+      },
+      "test": {
+        "tasks": 222,
+        "measured": 174,
+        "kernel_pass_proxy": 99,
+        "kernel_pass_share_of_tasks": 0.4459,
+        "passing_lean_tokens": {
+          "n": 99,
+          "mean": 5042,
+          "median": 4981,
+          "p90": 6351,
+          "max": 8412,
+          "total": 499163
+        }
+      }
+    },
+    "gpt-6-astra-high": {
+      "train": {
+        "tasks": 539,
+        "measured": 513,
+        "kernel_pass_proxy": 261,
+        "kernel_pass_share_of_tasks": 0.4842,
+        "passing_lean_tokens": {
+          "n": 261,
+          "mean": 2731,
+          "median": 2511,
+          "p90": 3822,
+          "max": 8450,
+          "total": 712758
+        }
+      },
+      "validation": {
+        "tasks": 135,
+        "measured": 128,
+        "kernel_pass_proxy": 68,
+        "kernel_pass_share_of_tasks": 0.5037,
+        "passing_lean_tokens": {
+          "n": 68,
+          "mean": 2602,
+          "median": 2386,
+          "p90": 3717,
+          "max": 7672,
+          "total": 176931
+        }
+      },
+      "test": {
+        "tasks": 222,
+        "measured": 214,
+        "kernel_pass_proxy": 118,
+        "kernel_pass_share_of_tasks": 0.5315,
+        "passing_lean_tokens": {
+          "n": 118,
+          "mean": 2809,
+          "median": 2731,
+          "p90": 4113,
+          "max": 6078,
+          "total": 331499
+        }
+      }
+    }
+  },
+  "train_union_tasks": 362,
+  "train_intersection_tasks": 150,
+  "train_tasks": 539
+}

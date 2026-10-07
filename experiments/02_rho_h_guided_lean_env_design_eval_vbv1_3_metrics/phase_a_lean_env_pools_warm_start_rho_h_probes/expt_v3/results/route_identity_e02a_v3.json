@@ -1,0 +1,1736 @@
+{
+ "agent": {
+  "bundle_manifest_sha256_frozen": "cd2c7c92de5246fca05acca6218d2f7a6b11411e3a8564af240c1eacb91b6a1b",
+  "contract_kwargs": [
+   "addendum",
+   "benchmark",
+   "compute_effort",
+   "max_tokens",
+   "reasoning_effort",
+   "temperature"
+  ],
+  "contract_secrets": {
+   "MODEL_GATEWAY_API_KEY": "fellows/brandoModelGatewayApiKey"
+  },
+  "download_exit_code": 0,
+  "frozen_receipt_sha256": {
+   "contract.yaml": "7136f24c3dc8e6c5f0b5ce665538397927f83f6238dd7746ee0081ede975bff6",
+   "prompts/addendum_vbv1.md": "a7a0fc1b7be6b4ede41fd6b31e1e1dcae3d2fd320a6cddf9b311cf55855a18f5",
+   "setup.sh": "901c2065fa68a8eeaba451ebcd625a331009530b72abaddb1d9f8356a2d8e6fb",
+   "single_call.py": "6e1a9b0de0755932b2869d45c5b32ff54c5647069558125b23a42dcd7afedf8f"
+  },
+  "installed_files_sha256": {
+   "contract.yaml": "7136f24c3dc8e6c5f0b5ce665538397927f83f6238dd7746ee0081ede975bff6",
+   "prompts/addendum_vbv1.md": "a7a0fc1b7be6b4ede41fd6b31e1e1dcae3d2fd320a6cddf9b311cf55855a18f5",
+   "setup.sh": "901c2065fa68a8eeaba451ebcd625a331009530b72abaddb1d9f8356a2d8e6fb",
+   "single_call.py": "6e1a9b0de0755932b2869d45c5b32ff54c5647069558125b23a42dcd7afedf8f"
+  },
+  "installed_matches_frozen": true,
+  "local_files_sha256": {
+   "contract.yaml": "7136f24c3dc8e6c5f0b5ce665538397927f83f6238dd7746ee0081ede975bff6",
+   "prompts/addendum_vbv1.md": "a7a0fc1b7be6b4ede41fd6b31e1e1dcae3d2fd320a6cddf9b311cf55855a18f5",
+   "setup.sh": "901c2065fa68a8eeaba451ebcd625a331009530b72abaddb1d9f8356a2d8e6fb",
+   "single_call.py": "c7cbe3e6bffbc2b950e2a42f7d7c1ac859945a361a421b35b3b702aa100cdcf0"
+  },
+  "local_matches_frozen": false,
+  "name": "vb103_single_call",
+  "run_cmd_gateway_url": "https://dev.model-gateway.vals.ai"
+ },
+ "aws_identity": {
+  "account": "613431292675",
+  "arn": "arn:aws:iam::613431292675:user/brando",
+  "owner": "Vals (account 613431292675, as recorded by VeriBench experiments 90 and 103)"
+ },
+ "cli": "valk (version flag unsupported)",
+ "gateway": {
+  "calls": "GET /registry only (metadata); zero /query calls",
+  "key_secret_name": "fellows/brandoModelGatewayApiKey",
+  "key_secret_resolves": true,
+  "registry_fetched_utc": "2026-10-07T23:28:45+00:00",
+  "registry_models": 454,
+  "registry_private_copy": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/private/registry/registry_2026-10-07T232823+0000.json",
+  "registry_sha256": "572c742f73ac48f873ed002ea046796cd9eca47e4ce18c8aaad4e13448756882",
+  "url": "https://dev.model-gateway.vals.ai"
+ },
+ "host": "skampere1.stanford.edu",
+ "payer": "Vals: the provider credential is Vals' gateway key in Vals' Secrets Manager, mapped into the sandbox by Valkyrie's secret mapping; no personal key or subscription token is used",
+ "prior_runs_on_this_benchmark": {
+  "exit_code": 0,
+  "n": null
+ },
+ "route": "Valkyrie run (valk run start --agent vb103_single_call --benchmark rl4cv-e02a-v3-mbpp --model <selector>); the agent calls the Vals model gateway from inside the sandbox",
+ "teacher_selector_candidates": {
+  "anthropic": {
+   "anthropic/claude-fable-5": {
+    "company": "Anthropic",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": 1.0,
+      "read_discount": 0.1,
+      "write": 12.5,
+      "write_markup": 1.25
+     },
+     "context": null,
+     "input": 10.0,
+     "output": 50.0
+    },
+    "default_parameters": {
+     "compute_effort": "max",
+     "max_tokens": 128000,
+     "temperature": 1.0
+    },
+    "entry_sha256": "05fff581f9d9a5d3e48f486ff97fa27d7364c379650921d2d7cadd2c4246a54f",
+    "fallback_models": [
+     "claude-opus-4-8"
+    ],
+    "label": "Claude Fable 5",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1000000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": null
+    },
+    "provider_endpoint": "claude-fable-5",
+    "provider_name": "anthropic",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-06-09",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": true,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": true
+   },
+   "anthropic/claude-fable-5-1": {
+    "company": "Anthropic",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": 0.25,
+      "read_discount": 0.1,
+      "write": 12.5,
+      "write_markup": 1.25
+     },
+     "context": null,
+     "input": 10.0,
+     "output": 50.0
+    },
+    "default_parameters": {
+     "compute_effort": "max",
+     "max_tokens": 128000,
+     "temperature": 1.0
+    },
+    "entry_sha256": "6b003b1258eb8f0260ddafaca2fe93c5c1671cff05d233982d1fa649d0d3ef66",
+    "fallback_models": [
+     "claude-opus-5",
+     "claude-opus-4-8"
+    ],
+    "label": "Claude Fable 5.1",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1000000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": null
+    },
+    "provider_endpoint": "claude-fable-5-1",
+    "provider_name": "anthropic",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-09-01",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": true,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": true
+   },
+   "anthropic/claude-fable-5-1-high": {
+    "company": "Anthropic",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": 0.25,
+      "read_discount": 0.1,
+      "write": 12.5,
+      "write_markup": 1.25
+     },
+     "context": null,
+     "input": 10.0,
+     "output": 50.0
+    },
+    "default_parameters": {
+     "compute_effort": "high",
+     "max_tokens": 128000,
+     "temperature": 1.0
+    },
+    "entry_sha256": "2ffe1b792de224fe1cb925fc3bd2ac56c7e401eff2a625fc01f5cb277ab9c664",
+    "fallback_models": [
+     "claude-opus-5",
+     "claude-opus-4-8"
+    ],
+    "label": "Claude Fable 5.1 (High Effort)",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1000000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": null
+    },
+    "provider_endpoint": "claude-fable-5-1",
+    "provider_name": "anthropic",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-09-01",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": true,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": true
+   },
+   "anthropic/claude-fable-5-1-low": {
+    "company": "Anthropic",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": 0.25,
+      "read_discount": 0.1,
+      "write": 12.5,
+      "write_markup": 1.25
+     },
+     "context": null,
+     "input": 10.0,
+     "output": 50.0
+    },
+    "default_parameters": {
+     "compute_effort": "low",
+     "max_tokens": 128000,
+     "temperature": 1.0
+    },
+    "entry_sha256": "29da5d1a28a66698264a2e059d7bb9be089f10998d2ab4cb5cfd6bd878857676",
+    "fallback_models": [
+     "claude-opus-5",
+     "claude-opus-4-8"
+    ],
+    "label": "Claude Fable 5.1 (Low Effort)",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1000000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": null
+    },
+    "provider_endpoint": "claude-fable-5-1",
+    "provider_name": "anthropic",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-09-01",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": true,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": true
+   },
+   "anthropic/claude-fable-5-1-max": {
+    "company": "Anthropic",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": 0.25,
+      "read_discount": 0.1,
+      "write": 12.5,
+      "write_markup": 1.25
+     },
+     "context": null,
+     "input": 10.0,
+     "output": 50.0
+    },
+    "default_parameters": {
+     "compute_effort": "max",
+     "max_tokens": 128000,
+     "temperature": 1.0
+    },
+    "entry_sha256": "c1b90cd7019ae84f42ad8c9a1c5112ff4d397f048374b75d8445dc63ebce6c8a",
+    "fallback_models": [
+     "claude-opus-5",
+     "claude-opus-4-8"
+    ],
+    "label": "Claude Fable 5.1 (Max Effort)",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1000000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": null
+    },
+    "provider_endpoint": "claude-fable-5-1",
+    "provider_name": "anthropic",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-09-01",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": true,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": true
+   },
+   "anthropic/claude-fable-5-1-medium": {
+    "company": "Anthropic",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": 0.25,
+      "read_discount": 0.1,
+      "write": 12.5,
+      "write_markup": 1.25
+     },
+     "context": null,
+     "input": 10.0,
+     "output": 50.0
+    },
+    "default_parameters": {
+     "compute_effort": "medium",
+     "max_tokens": 128000,
+     "temperature": 1.0
+    },
+    "entry_sha256": "cbe960d70f46e6c0c3b969d5b24592892b36273438d2374390fdce1ee3a086ba",
+    "fallback_models": [
+     "claude-opus-5",
+     "claude-opus-4-8"
+    ],
+    "label": "Claude Fable 5.1 (Medium Effort)",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1000000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": null
+    },
+    "provider_endpoint": "claude-fable-5-1",
+    "provider_name": "anthropic",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-09-01",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": true,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": true
+   },
+   "anthropic/claude-fable-5-1-no-fallback": {
+    "company": "Anthropic",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": 0.25,
+      "read_discount": 0.1,
+      "write": 12.5,
+      "write_markup": 1.25
+     },
+     "context": null,
+     "input": 10.0,
+     "output": 50.0
+    },
+    "default_parameters": {
+     "compute_effort": "max",
+     "max_tokens": 128000,
+     "temperature": 1.0
+    },
+    "entry_sha256": "741e37a42173aa27eb06d8af97aaf783e2487ddf03a5e2847285d7f57caf3ff1",
+    "fallback_models": [],
+    "label": "Claude Fable 5.1 (No Fallback)",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1000000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": null
+    },
+    "provider_endpoint": "claude-fable-5-1",
+    "provider_name": "anthropic",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-09-01",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": true,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": true
+   },
+   "anthropic/claude-fable-5-1-xhigh": {
+    "company": "Anthropic",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": 0.25,
+      "read_discount": 0.1,
+      "write": 12.5,
+      "write_markup": 1.25
+     },
+     "context": null,
+     "input": 10.0,
+     "output": 50.0
+    },
+    "default_parameters": {
+     "compute_effort": "xhigh",
+     "max_tokens": 128000,
+     "temperature": 1.0
+    },
+    "entry_sha256": "76285a988cbe93ad968bd9e9d202a71fef9fa7995419002323d57e0872acf5ae",
+    "fallback_models": [
+     "claude-opus-5",
+     "claude-opus-4-8"
+    ],
+    "label": "Claude Fable 5.1 (Extra High Effort)",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1000000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": null
+    },
+    "provider_endpoint": "claude-fable-5-1",
+    "provider_name": "anthropic",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-09-01",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": true,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": true
+   },
+   "anthropic/claude-fable-5-high": {
+    "company": "Anthropic",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": 1.0,
+      "read_discount": 0.1,
+      "write": 12.5,
+      "write_markup": 1.25
+     },
+     "context": null,
+     "input": 10.0,
+     "output": 50.0
+    },
+    "default_parameters": {
+     "compute_effort": "high",
+     "max_tokens": 128000,
+     "temperature": 1.0
+    },
+    "entry_sha256": "3357144f00620f5ba743ca699015feda10d3840916effb2bc07db57174f002f6",
+    "fallback_models": [
+     "claude-opus-4-8"
+    ],
+    "label": "Claude Fable 5 (High Effort)",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1000000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": null
+    },
+    "provider_endpoint": "claude-fable-5",
+    "provider_name": "anthropic",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-06-09",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": true,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": true
+   },
+   "anthropic/claude-fable-5-no-fallback": {
+    "company": "Anthropic",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": 1.0,
+      "read_discount": 0.1,
+      "write": 12.5,
+      "write_markup": 1.25
+     },
+     "context": null,
+     "input": 10.0,
+     "output": 50.0
+    },
+    "default_parameters": {
+     "compute_effort": "max",
+     "max_tokens": 128000,
+     "temperature": 1.0
+    },
+    "entry_sha256": "60f6b3c4db93f067dbb4e27ab6ac4fd5547581de7071525937c6dd9cbde8ba86",
+    "fallback_models": [],
+    "label": "Claude Fable 5 (No Fallback)",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1000000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": null
+    },
+    "provider_endpoint": "claude-fable-5",
+    "provider_name": "anthropic",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-06-09",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": true,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": true
+   }
+  },
+  "google": {
+   "google/argon-d": {
+    "company": "Google",
+    "costs_per_million_token": null,
+    "default_parameters": {
+     "reasoning_effort": "high",
+     "temperature": 1.0
+    },
+    "entry_sha256": "62a069a51c4c4400282acca30611934a520c5c0a4f53205616401becebce366c",
+    "fallback_models": null,
+    "label": "Argon D",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": false,
+     "deprecated": false,
+     "ignored_for_cost": true,
+     "internal_only": true
+    },
+    "properties": {
+     "context_window": 1048576,
+     "max_tokens": 262144,
+     "reasoning_model": true,
+     "training_cutoff": null
+    },
+    "provider_endpoint": "models/argon-d",
+    "provider_name": "google",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-09-19",
+    "supports": {
+     "audio": true,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": true,
+     "tools": true,
+     "videos": true
+    },
+    "supports_compute_effort": null
+   },
+   "google/gemini-4-argon": {
+    "company": "Google",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": 0.2,
+      "read_discount": 0.1,
+      "write": null,
+      "write_markup": 1.0
+     },
+     "context": null,
+     "input": 4.0,
+     "output": 20.0
+    },
+    "default_parameters": {
+     "reasoning_effort": "high",
+     "temperature": 1.0
+    },
+    "entry_sha256": "aa2c764b7fa256a93ddc15fa676d1a6b3d85a973ffa191c4e1d70d19222e200a",
+    "fallback_models": null,
+    "label": "Gemini 4 Argon",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": false,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": true
+    },
+    "properties": {
+     "context_window": 1048576,
+     "max_tokens": 262144,
+     "reasoning_model": true,
+     "training_cutoff": null
+    },
+    "provider_endpoint": "models/barium-bb",
+    "provider_name": "google",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-09-30",
+    "supports": {
+     "audio": true,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": true,
+     "tools": true,
+     "videos": true
+    },
+    "supports_compute_effort": null
+   }
+  },
+  "openai": {
+   "openai/gpt-6-astra": {
+    "company": "OpenAI",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": null,
+      "read_discount": 0.1,
+      "write": null,
+      "write_markup": 1.25
+     },
+     "context": {
+      "cache": {
+       "read": null,
+       "read_discount": 0.1,
+       "write": null,
+       "write_markup": 1.25
+      },
+      "input": 20.0,
+      "output": 75.0,
+      "threshold": 272000.0
+     },
+     "input": 10.0,
+     "output": 50.0
+    },
+    "default_parameters": {
+     "reasoning_effort": "max"
+    },
+    "entry_sha256": "29d6b84b1963a918b53d849f09a3a4cccbd989888d6063d0d62cafe9468da697",
+    "fallback_models": null,
+    "label": "GPT-6 Astra",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1050000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": "2026-04"
+    },
+    "provider_endpoint": "gpt-6-astra",
+    "provider_name": "openai",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-09-03",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": false,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": null
+   },
+   "openai/gpt-6-astra-high": {
+    "company": "OpenAI",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": null,
+      "read_discount": 0.1,
+      "write": null,
+      "write_markup": 1.25
+     },
+     "context": {
+      "cache": {
+       "read": null,
+       "read_discount": 0.1,
+       "write": null,
+       "write_markup": 1.25
+      },
+      "input": 20.0,
+      "output": 75.0,
+      "threshold": 272000.0
+     },
+     "input": 10.0,
+     "output": 50.0
+    },
+    "default_parameters": {
+     "reasoning_effort": "high"
+    },
+    "entry_sha256": "a2a3a417b64925ebba3201473b04c75fd4ea7ede94f9f4c3910500bc97751e7f",
+    "fallback_models": null,
+    "label": "GPT-6 Astra (High)",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1050000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": "2026-04"
+    },
+    "provider_endpoint": "gpt-6-astra",
+    "provider_name": "openai",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-09-03",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": false,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": null
+   },
+   "openai/gpt-6-astra-low": {
+    "company": "OpenAI",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": null,
+      "read_discount": 0.1,
+      "write": null,
+      "write_markup": 1.25
+     },
+     "context": {
+      "cache": {
+       "read": null,
+       "read_discount": 0.1,
+       "write": null,
+       "write_markup": 1.25
+      },
+      "input": 20.0,
+      "output": 75.0,
+      "threshold": 272000.0
+     },
+     "input": 10.0,
+     "output": 50.0
+    },
+    "default_parameters": {
+     "reasoning_effort": "low"
+    },
+    "entry_sha256": "115b7090dbe108ea6fb8aecc610bcfc1bf81e7e58d4e566920cacb62a0948ada",
+    "fallback_models": null,
+    "label": "GPT-6 Astra (Low)",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1050000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": "2026-04"
+    },
+    "provider_endpoint": "gpt-6-astra",
+    "provider_name": "openai",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-09-03",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": false,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": null
+   },
+   "openai/gpt-6-astra-max": {
+    "company": "OpenAI",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": null,
+      "read_discount": 0.1,
+      "write": null,
+      "write_markup": 1.25
+     },
+     "context": {
+      "cache": {
+       "read": null,
+       "read_discount": 0.1,
+       "write": null,
+       "write_markup": 1.25
+      },
+      "input": 20.0,
+      "output": 75.0,
+      "threshold": 272000.0
+     },
+     "input": 10.0,
+     "output": 50.0
+    },
+    "default_parameters": {
+     "reasoning_effort": "max"
+    },
+    "entry_sha256": "f1e23437a373cdf094a90b23d649c1d30fc34897cae1248622826f76f553d227",
+    "fallback_models": null,
+    "label": "GPT-6 Astra (Max)",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1050000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": "2026-04"
+    },
+    "provider_endpoint": "gpt-6-astra",
+    "provider_name": "openai",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-09-03",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": false,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": null
+   },
+   "openai/gpt-6-astra-medium": {
+    "company": "OpenAI",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": null,
+      "read_discount": 0.1,
+      "write": null,
+      "write_markup": 1.25
+     },
+     "context": {
+      "cache": {
+       "read": null,
+       "read_discount": 0.1,
+       "write": null,
+       "write_markup": 1.25
+      },
+      "input": 20.0,
+      "output": 75.0,
+      "threshold": 272000.0
+     },
+     "input": 10.0,
+     "output": 50.0
+    },
+    "default_parameters": {
+     "reasoning_effort": "medium"
+    },
+    "entry_sha256": "653cae09403d57eda59dce2f3b704d463d1c71fd4e29c3d87b9b77d15bebd923",
+    "fallback_models": null,
+    "label": "GPT-6 Astra (Medium)",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1050000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": "2026-04"
+    },
+    "provider_endpoint": "gpt-6-astra",
+    "provider_name": "openai",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-09-03",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": false,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": null
+   },
+   "openai/gpt-6-astra-xhigh": {
+    "company": "OpenAI",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": null,
+      "read_discount": 0.1,
+      "write": null,
+      "write_markup": 1.25
+     },
+     "context": {
+      "cache": {
+       "read": null,
+       "read_discount": 0.1,
+       "write": null,
+       "write_markup": 1.25
+      },
+      "input": 20.0,
+      "output": 75.0,
+      "threshold": 272000.0
+     },
+     "input": 10.0,
+     "output": 50.0
+    },
+    "default_parameters": {
+     "reasoning_effort": "xhigh"
+    },
+    "entry_sha256": "82f973e929112ba60c85ea5f1dd6d8234b820fc9fb8d442e5f922900e7deb3b3",
+    "fallback_models": null,
+    "label": "GPT-6 Astra (Extra High)",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1050000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": "2026-04"
+    },
+    "provider_endpoint": "gpt-6-astra",
+    "provider_name": "openai",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-09-03",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": false,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": null
+   }
+  }
+ },
+ "valkyrie_config": {
+  "default_sandbox_provider": "daytona",
+  "environment": "bench",
+  "log_group": "fellows/brando-miranda",
+  "note": "contents never copied; the private copy used by runs adds this experiment's benchmark service and bearer",
+  "path": "/lfs/skampere1/0/brando9/.config/valkyrie/valkyrie.yaml",
+  "s3_bucket": "fellow-brando-miranda",
+  "sandbox_providers": [
+   "daytona"
+  ]
+ },
+ "written_utc": "2026-10-07T23:28:39+00:00"
+}

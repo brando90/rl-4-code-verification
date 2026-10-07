@@ -4,7 +4,9 @@
 
 **TLDR:** Live checkpoint for the GPU worker running experiment 01 on `skampere1`. Updated at every stage change.
 
-## Zero-score diagnostic (CPU only, no model calls) — started 10-07-2026 15:32
+## Zero-score diagnostic (CPU only, no model calls) — DONE 10-07-2026 16:41 (started 15:32)
+
+**Outcome:** all six sessions finished `DONE rc=0`; 0 diagnostic errors; one row per task in every rows file; no tmux session or orphaned process left. Results: `results.md` → "Zero-score diagnostic"; summaries in `results/diagnostics_10-07-2026/`. The follow-up (SFT warm start) is owned by Rakshit (D-015).
 
 - **Why:** Brando questioned whether SCSC (VeriBench's aggregate score) is really 0 for these models, and whether IC_tests (does the file compile with at least one `example` test) is really 0. The scorer stored no compile logs, so this recompiles the existing G = 1 files to find out why they fail.
 - **Code:** [`diagnostics/diagnose_zero_scores.py`](diagnostics/diagnose_zero_scores.py). Live copy and outputs are in `/lfs/skampere1/0/brando9/rl4cv_e01_diag_10-07-2026/` (per-cell rows and summaries under `full/`; ablated files under `full/cells/`, which stay on the host because they contain model outputs on VeriBench tasks).
@@ -13,13 +15,14 @@
   - Host load before launch was about 18 on 128 cores. No GPU is used.
   - **Variant (15:43):** tmux `rl4cv-e01-zero-diag-C-nsfix` (16 workers, output in `full_nsfix/`) reruns the same pipeline after wrapping digit-leading namespace names in `«»`. It covers only the cells whose file contains one. Cause: VeriBench's task instruction suggests ``namespace {file stem}`` (`vb_harbor/adapter/adapter.py:134`), which is invalid Lean for 533 of 896 tasks.
   - **Variant (15:51):** tmux `rl4cv-e01-zero-diag-D-surface` (12 workers, output in `full_surface/`) applies comment and name fixes only: the namespace escape above; a stand-alone `-!` line becomes the comment closer `-/`; and a `/--` doc comment that precedes a non-declaration becomes the module doc `/-!`. It covers only the cells these fixes edit.
+  - **Split (16:18):** session D was stopped after its Qwen3-14B and Qwen3.5-9B labels, plus 120 Qwen3-8B cells. Its orphaned compiles were killed. It resumed as three disjoint sessions with 14 workers each: `rl4cv-e01-zero-diag-D1-surface` (Qwen3-8B, Qwen3.6-27B), `-D2-surface` (Qwen3-4B, Qwen3.5-4B) and `-D3-surface` (Qwen3-1.7B, Qwen3.5-2B, Qwen3.5-0.8B).
   - **Cleanup (15:38):** closed 17 idle (no child process) experiment 01 tmux sessions from 09-30-2026. `rl4cv-e01-qwen-vbv1-baseline` still runs a Claude process and was left alone.
-- **Done signal:** `STATUS_A`, `STATUS_B`, `STATUS_C` and `STATUS_D` each contain `DONE rc=0`. `full/summary_<label>.json` exists for all 9 labels, and `full_nsfix/` and `full_surface/` hold a summary for every label with at least one edited cell.
+- **Done signal:** `STATUS_A`, `STATUS_B`, `STATUS_C`, `STATUS_D1`, `STATUS_D2` and `STATUS_D3` each contain `DONE rc=0`. `STATUS_D` stays at START, because that session was split. `full/summary_<label>.json` exists for all 9 labels, and `full_nsfix/` and `full_surface/` hold a summary for every label with at least one edited cell.
 - **Orphans cleaned (15:45):**
   - Killed 6 `lean` compiles orphaned when the first diagnostic session stopped.
   - Killed 2 `lean` processes from experiment 05 (Qwen3 Base, `STATUS_e05 = DONE`) that had run about 43 h at 99% CPU after that scorer's 600 s timeout. Those cells were already recorded as timeouts.
   - This is the pinned scorer's known gap: it kills only its direct child (REPORT.md deviation 16). The diagnostic kills the whole process group instead.
-- **Resume:** check `tmux ls | grep zero-diag` first and never start a second writer for a label. To resume a dead session, run `bash /lfs/skampere1/0/brando9/rl4cv_e01_diag_10-07-2026/run_diag_<A|B>.sh`; it skips finished cells.
+- **Resume:** check `tmux ls | grep zero-diag` first and never start a second writer for a label. To resume a dead session, run `bash /lfs/skampere1/0/brando9/rl4cv_e01_diag_10-07-2026/run_diag_<A|B|C|D1|D2|D3>.sh`; it skips finished cells.
 
 ## EXPERIMENT COMPLETE (RE-VERIFIED) — 10-01-2026 12:35 (`STATUS_e01 = DONE`)
 

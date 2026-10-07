@@ -1,0 +1,129 @@
+{
+  "label": "qwen3-14b_g1",
+  "n_cells": 896,
+  "n_with_file": 875,
+  "n_no_file": 21,
+  "recompile_vs_scored_mismatches": [],
+  "classes": {
+    "definitions_fail": 801,
+    "tests_or_statements_fail": 37,
+    "compiles_after_proof_ablation": 32,
+    "compiles": 5,
+    "no_file": 21
+  },
+  "compiles_original": [
+    5,
+    [
+      0.0024,
+      0.013
+    ]
+  ],
+  "compiles_after_proof_ablation_incl_original": [
+    37,
+    [
+      0.0301,
+      0.0564
+    ]
+  ],
+  "definitions_only_compile_among_noncompiling": [
+    69,
+    870
+  ],
+  "ablation_IC_tests_mean_over_n": 0.0413,
+  "ablation_IC_proofs_mean_over_n": 0.0086,
+  "cells_IC_tests_x_IC_proofs_positive_after_ablation": [
+    17,
+    [
+      0.0119,
+      0.0302
+    ]
+  ],
+  "noncompiling_files_with_error_category": {
+    "parse": 765,
+    "tactic_failed": 608,
+    "unknown_name": 442,
+    "type_error": 420,
+    "other": 259,
+    "index_bounds_proof": 33,
+    "termination": 4,
+    "timeout": 3
+  },
+  "noncompiling_files_with_error_region": {
+    "other": 708,
+    "theorem_proof": 592,
+    "example_test": 509,
+    "definition": 427,
+    "theorem_statement": 213
+  },
+  "top_first_errors": [
+    [
+      "unexpected character; expected decimal number",
+      446
+    ],
+    [
+      "unterminated comment",
+      102
+    ],
+    [
+      "failed to synthesize",
+      37
+    ],
+    [
+      "unknown identifier _",
+      31
+    ],
+    [
+      "type mismatch",
+      24
+    ],
+    [
+      "Invalid field _: The environment does not contain _",
+      20
+    ],
+    [
+      "unexpected token _; expected _, _, _, _ or term",
+      18
+    ],
+    [
+      "typeclass instance problem is stuck, it is often due to metavariables",
+      17
+    ],
+    [
+      "Function expected at",
+      15
+    ],
+    [
+      "no goals to be solved",
+      13
+    ],
+    [
+      "Application type mismatch: In the application",
+      12
+    ],
+    [
+      "unexpected identifier; expected command",
+      12
+    ]
+  ],
+  "files_with_lean3_markers": 300,
+  "think": {
+    "n_with_close_tag": 875,
+    "n_empty_think": 574,
+    "ablation_compile_rate_empty_think": [
+      24,
+      574,
+      [
+        0.0283,
+        0.0615
+      ]
+    ],
+    "ablation_compile_rate_nonempty_think": [
+      13,
+      301,
+      [
+        0.0254,
+        0.0725
+      ]
+    ]
+  }
+}
