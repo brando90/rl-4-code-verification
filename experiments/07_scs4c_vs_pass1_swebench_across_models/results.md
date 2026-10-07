@@ -2,11 +2,11 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/07_scs4c_vs_pass1_swebench_across_models/results.md>
 
-**TLDR:** Phase A (SCS4C-T, the tests-only smooth conjunctive score for code, versus pass@1 across every public SWE-bench Verified submission, zero model calls) is locked for SNAP execution. The master reported dispatch, but no launch receipt is recorded here; every hypothesis remains unmeasured in this record.
+**TLDR:** Phase A (SCS4C-T, the tests-only smooth conjunctive score for code, versus pass@1 across every public SWE-bench Verified submission, zero model calls) is locked and running on SNAP (`skampere1`, launched 10-07-2026 16:01 PDT). Every hypothesis remains unmeasured until the worker publishes.
 
-**Status:** DISPATCH REPORTED; EXECUTION UNVERIFIED (10-07-2026)
+**Status:** RUNNING (launched 10-07-2026 16:01 PDT on `skampere1`; launch receipt in `expt_v1/CKPT_e07.md`)
 
-**Last updated:** 10-07-2026 (local light review; no new experimental outcomes read)
+**Last updated:** 10-07-2026 16:01 PDT (master, launch receipt)
 
 ## Phases
 
@@ -27,7 +27,7 @@ Unmeasured. The worker fills this section from `expt_v1/results/analysis_e07.jso
 - **10-07-2026, implementation corrections before local outcome analysis:** report parsing now distinguishes absent test evidence from explicit empty lists; nonfinite statistics remain undefined; the analyzer enforces the locked consistency/coverage checks, preserves known aggregate resolutions in the declared-denominator diagnostic, reports both cohorts and all cell receipts, and reports bootstrap/split denominators. Fetching validates pinned input provenance and protects against partial prediction downloads. Record the actual reviewed code commit used by the worker, since it differs from the protocol's original code pin.
 - Frozen predictions, thresholds and `expt_v1/forecasts/` are unchanged. Protocol edits only clarify the already disclosed pre-lock exposure, the declared-denominator diagnostic, and the worker's sensitivity responsibility.
 - The GitHub adapter, base-model sensitivity and human-readable hypothesis verdicts remain explicit worker deliverables; no real phase A result was computed during this review.
-- The claimed dispatch lacks a committed launch receipt. Verify the named worker/session on the host and record the exact revision, process and first completed action before reporting RUNNING.
+- Launch receipt recorded by the master at 10-07-2026 16:01 PDT (`expt_v1/CKPT_e07.md`): `skampere1`, tmux `rl4cv-e07-worker`, `claude-fable-5-1` / `max`, clone at `39b575e`.
 - The common cohort can be empty even when every system passes the frozen 95% inclusion rule; split sizes can also exceed it. These states are reported unavailable without altering the locked inclusion or hypothesis thresholds.
 
 
