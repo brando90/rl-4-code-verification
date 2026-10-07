@@ -4,9 +4,9 @@
 
 **TLDR:** The VeriBench V1 train / validation / test split (539 / 135 / 222 tasks, D-013) and the zero-call baselines are done. On the new validation split, Qwen3 Base's `kernel_binary` mixed-group share at G = 8 is 0.000 (1.7B), 0.022 (4B) and 0.000 (8B), all below the 0.05 gate. Teacher calls, SFT and evaluation have not started.
 
-**Status:** DESIGN (10-07-2026). Zero-call steps done; SNAP dispatch pending.
+**Status:** RUNNING (SNAP worker launched 10-07-2026 16:47 PDT on `skampere1`, tmux `rl4cv-e08-worker`; launch receipt in `expt_v1/CKPT_e08.md`)
 
-**Last updated:** 10-07-2026 16:42 PDT (master, light QA applied)
+**Last updated:** 10-07-2026 16:47 PDT (master, launch receipt)
 
 ## Phases
 
