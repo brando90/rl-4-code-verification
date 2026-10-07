@@ -1,0 +1,105 @@
+# Experiment 08 — Matched Lean SFT warm start for Qwen3 Base 1.7B–14B from Valkyrie teachers (Claude Opus 5.5, GPT-6 Astra) on the VeriBench V1 train split, evaluated on its validation and test splits
+
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/README.md>
+
+**TLDR:** Qwen3 Base gives essentially zero reinforcement-learning (RL) signal on VeriBench V1 at every size (experiment 05), so it needs a supervised fine-tuning (SFT) warm start. This experiment splits VeriBench V1 into train / validation / test (539 / 135 / 222 tasks; decision D-013). It asks two frontier teachers through Vals Valkyrie (Claude Opus 5.5 and GPT-6 Astra) for four single-call Lean files per train task, and keeps only files the Lean kernel fully verifies. It then fine-tunes Qwen3 Base 1.7B, 4B, 8B and 14B with one identical recipe (same data, order, token budget and hyperparameters at every size, as Varun requires). The validation split measures how many SFT tokens it takes before every size gives usable RL signal; the test split is touched once, for the selected checkpoints.
+
+**Owner:** Rakshit Kaushik (@rakshit-kaushik). **Set up by:** Claude Code master session for Brando, 10-07-2026. **Status:** see [results.md](results.md).
+
+## Origin
+
+- **Brando, 10-07-2026:** "maybe we can use VeriBench as a validation set … we can split VeriBench into train val test in a reasonable way, and then create a plan so that we use Valkyrie to create a bunch of synthetic data from Claude Opus 5.5 and Astra. Guess how many tokens we might need for SFT so that these Qwen models are all trained in a consistent way … start doing an SFT and then do the training … execute it and do a light QA with Codex … create a Git issue assigned to Rakshit."
+- **Experiment 05** ([results](../05_qwen3_base_models_vbv1_g8_pass_signal_sft_derisk/results.md)): Qwen3 Base 1.7B / 4B / 8B, all 896 VeriBench V1 tasks × 8 samples: `kernel_binary` mixed-group share 0.000 / 0.006 / 0.000. Experiment 01 found the same for post-trained Qwen3. Verdict at every size: SFT warm start needed.
+- **Varun, 10-05-2026 meeting** ([transcript](../meetings/oct_5_2026/transcription.md), 18:23–21:47): the paper used "all of the Qwen3 sizes, and it was the same fine tuning warmup … just to keep it controlled", from the Base models, because "different sizes are post-trained in different ways in Qwen". Instruct checkpoints are not used.
+- **Varun's matched warm-start contract** (`rl-env-scaling` @ `7118b86`, `docs/research/PAPER1_PHASE1_MATCHED_SFT_EXECUTION_PLAN_V1_20260829.md` and `data/manifests/paper1_phase1c_sft_v1/matched_sft_recipe.json`): every scale gets the same examples, order, template, loss and selected fraction of one SFT token budget. The checkpoint chosen is the earliest common token fraction that passes behaviour gates, never the best SFT score. His production run (`/lfs/skampere3/0/vmadan/paper1_phase1c_sft_v1/`) is NeMo RL 0.4.0 SFT on 2,048 math and code rows: global batch 2, one epoch, checkpoints every 25%.
+- **Experiment 02A v3** ([README](../02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_a_lean_env_pools_warm_start_rho_h_probes/expt_v3/README.md), owner Ethan Li): the same teacher route on MBPP-derived tasks, with VeriBench fully held out. Its verified files are a complementary, non-VeriBench Lean source; this experiment reuses its route, scorer adapter and keep rule.
+
+## Goal, hypothesis and decision criterion
+
+- **Uncertainty.** Does a matched Lean SFT warm start, built only from kernel-verified teacher files on VeriBench train tasks, give Qwen3 Base usable group-relative RL signal on held-out VeriBench tasks at every size? How many SFT tokens does that take?
+- **Hypothesis.** At or before the 100% checkpoint (about 4–5M assistant tokens, estimate below), every size reaches a validation `kernel_binary` mixed-group share ≥ 0.05 at G = 8 (gate G1 of experiment 01), with format reliability above the gates in [PROTOCOL.md](PROTOCOL.md) § 9. The 4B–14B models pass earlier than 1.7B.
+- **Decision** (applied on the validation split only; PROTOCOL § 9):
+
+  | Outcome | Verdict | Next |
+  |---|---|---|
+  | One token fraction passes at all four sizes | **RL-READY**: the earliest such fraction gives π₀(N) at every size and answers "how many tokens" | Test evaluation of π₀(N) once, then the RL phase (version 2) |
+  | Some sizes pass at some fraction, but no common one | **PARTIAL** | Report each size's earliest passing fraction; version 2 enlarges the SFT data (more teacher samples, 02A v3's MBPP Lean) for all sizes alike |
+  | No size passes at 100% | **NOT READY** | Failure taxonomy (extraction, compile, unproved theorem, truncation); version 2 as above |
+
+## How many SFT tokens? (estimate before any call)
+
+Measured, zero calls (`expt_v1/results/token_budget_*.json`, Qwen3 tokenizer):
+
+| Quantity | Value | Source |
+|---|---:|---|
+| Gold Lean reference, train split | mean 2,312 tokens (median 1,657, p90 3,621) | `estimate_token_budget.py gold` |
+| Experiment 103 single call, Claude Opus 5 max: train tasks passing the kernel proxy | 251 / 539 (46.6%) | `estimate_token_budget.py e103` |
+| … its verified files | mean 5,104 tokens (median 4,993, p90 6,425) | same |
+| Experiment 103 single call, GPT-6 Astra high: train tasks passing | 261 / 539 (48.4%) | same |
+| … its verified files | mean 2,731 tokens (median 2,511, p90 3,822) | same |
+| Train tasks with a verified file from either teacher (one sample each) | 362 / 539 (67.2%); both 150 | same |
+
+The kernel proxy is IC_tests = IC_proofs = 1 with at least one theorem and one `example`; it skips the vacuity check.
+
+Estimate for this experiment: 4 samples per (task, teacher) and at most 2 kept files per (task, teacher). Assuming each teacher keeps 1 file on about 65% of train tasks and 2 on about 45%, that is about 1,100–1,300 SFT examples. At about 3.9K assistant tokens each, that is **about 4–5M assistant tokens per model per epoch**, and about 8–9M tokens processed once prompts are included. Every size sees exactly the same tokens.
+
+My guess at what is needed: the 25% rung (~1M tokens) teaches the file format; nonzero verified signal needs about 2–5M tokens at 4B–14B. 1.7B is the uncertain size. For scale, Varun's math and code warm start is 2,048 long chain-of-thought rows, roughly 10M tokens (unverified estimate). The checkpoint ladder (12.5 / 25 / 50 / 75 / 100% of assistant tokens) measures the answer instead of guessing it.
+
+## Structure
+
+```
+08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/
+├── README.md        ← this design doc
+├── PROTOCOL.md      ← lock 1 before the first teacher call, lock 2 before the first SFT step
+├── results.md       ← live record
+└── expt_v1/
+    ├── cc.md                       ← SNAP worker runbook
+    ├── CKPT_e08.md                 ← worker checkpoint
+    ├── base_tables_from_e05.py     ← base models on the D-013 splits (zero calls)
+    ├── estimate_token_budget.py    ← token-budget inputs (zero calls)
+    ├── scripts/                    ← pack, scorer adapter, SFT assembly, configs, eval, analysis (worker)
+    └── results/
+        ├── split/                  ← D-013 manifest, id lists, links, leakage report
+        ├── base_qwen3_e05_on_d013_splits.json
+        └── token_budget_*.json
+```
+
+## Method (summary; exact settings in PROTOCOL.md)
+
+1. **Split (done, D-013).** `rl4cv.splits` on VeriBench V1 at the `veribench` pin. Near-duplicates (exact normalized hash, or word-5-gram Jaccard ≥ 0.70 on the Python program or the gold Lean) and security safe/vulnerable pairs stay in one split. Groups are assigned per family in salted-hash order, toward 60 / 15 / 25%. The result is 664 groups → 539 / 135 / 222 tasks (core 369 / 93 / 152; IndustrySet 170 / 42 / 70). The largest cross-split Jaccard is 0.640 (Python) and 0.610 (gold Lean).
+2. **Teacher data (Valkyrie, D-015).** The prompt is experiment 103's frozen single-call prompt for the 539 train tasks, the same bytes the Qwen policy sees in experiments 01 and 05 and at evaluation. The route is `vb103_single_call` through a collect-only benchmark service on `skampere1`. Teachers are `anthropic/claude-opus-5-5-no-fallback` at maximum compute effort and GPT-6 Astra at the highest reasoning effort the registry serves. Each teacher runs 4 times over the manifest, so there are 4,312 declared cells.
+3. **Keep rule.** The frozen scorer (`--skip-tc`) and `rl4cv.rewards.reward_kernel_binary == 1`. Every kept file then passes the generated-Lean screen against the validation and test splits. At most 2 kept files per (task, teacher), in sample order.
+4. **Matched SFT.** Qwen3-{1.7B, 4B, 8B, 14B}-Base, full-parameter, Varun's recipe: NeMo RL 0.4.0 SFT, AdamW 2×10⁻⁵, betas (0.9, 0.98), weight decay 0.1, clip 1.0, 3% warmup then cosine, global batch 2, maximum sequence length 16,384, assistant-only loss, one epoch in one fixed order. Checkpoints at 12.5 / 25 / 50 / 75 / 100% of assistant tokens. Only the GPU layout differs by size.
+5. **Validation.** Experiment 05's exact sampling (G = 8, T = 0.6, 12,288-token cap, thinking template on) on the 135 validation tasks for every checkpoint. Base 1.7B / 4B / 8B come from experiment 05's receipts; Base 14B is generated here. Gates are format, truncation and `kernel_binary` mixed-group share ≥ 0.05.
+6. **Test (once).** The selected π₀(N) and Base on the 222 test tasks, G = 8. Factors are IC_tests and IC_proofs from the kernel, and compile-gated formal specification coverage (FSC) from the validated `vb103_judge` (D-102). SCSC = (IC_tests · IC_proofs · FSC)^(1/3), always with its factors and n. Core and IndustrySet are reported separately.
+7. **RL (version 2, after RL-READY).** Group-relative RL (GRPO) from π₀(N) on train-split prompts, `kernel_binary` reward first, validation monitoring, one test evaluation. It gets its own locked protocol.
+
+## Compute and calls (estimate)
+
+- **Teacher calls:** 4,312 single calls through Valkyrie, funded by Vals and recorded rather than capped (D-108). Experiment 103's per-call charges suggest about $5–8K Vals-side: Opus 5 max ≈ $2.2 per call, Astra high ≈ $0.61.
+- **SFT:** 6·N·D with about 9M processed tokens is about 4–5 A100 GPU-hours for all four sizes together. Wall time is dominated by overhead.
+- **Validation generation:** 5 rungs × 4 sizes × 1,080 samples, plus Base 14B, about 22K samples: about 8–15 GPU-hours. Kernel scoring takes about 1–2 h with 32 CPU scorers.
+- **Test:** 5 systems × 1,776 samples, then FSC judging for compiling cells only.
+- **Host:** `skampere1` (8× A100-80GB; GPUs 1–7 free at 16:00 PDT 10-07-2026; Qwen3 1.7B / 4B / 8B Base cached at experiment 05's revisions; experiment 01/05 scorer and grading project). `skampere3` B200s if free.
+
+## Dependencies
+
+- D-013 (the split) and D-015 (the teacher route; D-014 is the same exception for experiment 02A v3) in [`docs/DECISIONS.md`](../../docs/DECISIONS.md); D-102 (judge route); D-108 (Valkyrie for Brando's runs).
+- `rl4cv.splits`, `rl4cv.screens`, `rl4cv.rewards`, `rl4cv.veribench.{exp103,generate,jobs,collect}`, and the frozen scorer (`external/deps.lock.json`: `veribench_scorer`).
+- VeriBench experiment 103: the `vb103_single_call` agent, its VBV1 pack and its service code. Experiment 01's service-deploy pattern.
+- NeMo RL 0.4.0 (commit `c751f811`), built in the worker's own environment; Varun's production SFT config is copied with provenance.
+- **Varun (D-105):** the math/code rows and his warm-start checkpoints would allow a math + code + Lean arm. Not needed for version 1; ask him before using any of his files.
+
+## Status
+
+| Step | Status |
+|---|---|
+| Split (D-013) | DONE (10-07-2026), committed with tests |
+| Base models on the splits (experiment 05 receipts) | DONE (10-07-2026), zero calls |
+| Token-budget inputs | DONE (10-07-2026), zero calls |
+| Protocol lock 1 (teacher data) | Pending, done by the SNAP worker after preflight |
+| Teacher runs, scoring, SFT set | Pending |
+| Protocol lock 2, matched SFT | Pending |
+| Validation ladder, selection | Pending |
+| Test evaluation | Pending |
+| RL (version 2) | Not started |
