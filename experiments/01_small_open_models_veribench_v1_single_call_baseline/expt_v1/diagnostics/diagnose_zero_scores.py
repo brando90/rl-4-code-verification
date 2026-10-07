@@ -563,6 +563,57 @@ def render(summaries: list[dict]) -> str:
     return "\n".join(out) + "\n"
 
 
+def _cell_factors(r: dict, ablated: bool) -> tuple[float, float]:
+    if r.get("class") == "compiles":
+        f = r.get("original_factors", {})
+    elif ablated and r.get("class") == "compiles_after_proof_ablation":
+        f = r["ablation"]
+    else:
+        f = {}
+    return f.get("IC_tests", 0.0), f.get("IC_proofs", 0.0)
+
+
+def combined_summary(label: str, work_dirs: list[str]) -> dict:
+    """Frozen-scorer factors over all cells when a variant's rows replace the base rows for the cells it edited.
+
+    `work_dirs[0]` is the base run; each later directory overrides the cells it contains."""
+    cells: dict[str, dict] = {}
+    for wd in work_dirs:
+        p = Path(wd) / f"rows_{label}.jsonl"
+        if p.is_file():
+            for line in p.read_text().splitlines():
+                if line.strip():
+                    r = json.loads(line)
+                    cells[r["task_id"]] = r
+    rows = list(cells.values())
+    n = len(rows)
+    out = {"label": label, "work_dirs": work_dirs, "n_cells": n,
+           "n_cells_from_variants": sum(1 for r in rows if any(k in r for k in ("surface_repairs", "n_namespaces_escaped"))),
+           "n_diagnostic_errors": sum(1 for r in rows if r.get("status") == "diagnostic_error")}
+    for name, ablated in (("as_written", False), ("failing_proofs_sorried", True)):
+        f = [_cell_factors(r, ablated) for r in rows]
+        comp = sum(1 for r in rows if r.get("class") == "compiles"
+                   or (ablated and r.get("class") == "compiles_after_proof_ablation"))
+        pos = sum(1 for t, q in f if t * q > 0)
+        out[name] = {"compiles": [comp, wilson(comp, n)], "IC_tests_mean": round(sum(t for t, _ in f) / n, 4),
+                     "IC_proofs_mean": round(sum(q for _, q in f) / n, 4), "cells_IC_tests_x_IC_proofs_positive": [pos, wilson(pos, n)]}
+    return out
+
+
+def render_combined(rows: list[tuple[str, dict]]) -> str:
+    out = ["| Model | Files as scored | Compile, as written [95% CI] | IC_tests | IC_proofs | Cells with IC_tests·IC_proofs > 0 | "
+           "Compile after failing proofs → `sorry` | IC_tests | IC_proofs | Cells with IC_tests·IC_proofs > 0 |",
+           "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|"]
+    for variant, c in rows:
+        a, b = c["as_written"], c["failing_proofs_sorried"]
+        n = c["n_cells"]
+        out.append(f"| {c['label'].removesuffix('_g1')} | {variant} | {_pct(a['compiles'][0], n, a['compiles'][1])} | {a['IC_tests_mean']:.3f} | "
+                   f"{a['IC_proofs_mean']:.3f} | {_pct(a['cells_IC_tests_x_IC_proofs_positive'][0], n, a['cells_IC_tests_x_IC_proofs_positive'][1])} | "
+                   f"{_pct(b['compiles'][0], n, b['compiles'][1])} | {b['IC_tests_mean']:.3f} | {b['IC_proofs_mean']:.3f} | "
+                   f"{_pct(b['cells_IC_tests_x_IC_proofs_positive'][0], n, b['cells_IC_tests_x_IC_proofs_positive'][1])} |")
+    return "\n".join(out) + "\n"
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--exp01-out")
@@ -575,6 +626,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--max-rounds", type=int, default=4)
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--render", action="store_true", help="only print markdown tables from existing summaries")
+    ap.add_argument("--combine", nargs="+", default=None, metavar="VARIANT_DIR",
+                    help="only print frozen-scorer factors over all cells, base rows overridden by each variant in turn")
     ap.add_argument("--escape-digit-namespace", action="store_true",
                     help="diagnostic variant: wrap digit-leading namespace names in «» first (only cells that have one)")
     ap.add_argument("--repair-surface-syntax", action="store_true",
@@ -582,6 +635,16 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
     if args.render:
         print(render([json.loads((Path(args.work_dir) / f"summary_{lb}.json").read_text()) for lb in args.labels]))
+        return 0
+    if args.combine:
+        names = ["model's own file"] + [f"+ {Path(d).name}" for d in args.combine]
+        combos = []
+        for lb in args.labels:
+            for k, name in enumerate(names):
+                c = combined_summary(lb, [args.work_dir] + args.combine[:k])
+                combos.append((name, c))
+                (Path(args.work_dir) / f"combined_{lb}__{k}.json").write_text(json.dumps(c, indent=2) + "\n")
+        print(render_combined(combos))
         return 0
     if not (args.exp01_out and args.scorer_dir):
         ap.error("--exp01-out and --scorer-dir are required unless --render")
