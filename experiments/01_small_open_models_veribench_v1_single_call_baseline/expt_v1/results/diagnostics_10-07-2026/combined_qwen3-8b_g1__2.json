@@ -1,0 +1,47 @@
+{
+  "label": "qwen3-8b_g1",
+  "work_dirs": [
+    "full",
+    "full_nsfix",
+    "full_surface"
+  ],
+  "n_cells": 896,
+  "n_cells_from_variants": 522,
+  "n_diagnostic_errors": 0,
+  "as_written": {
+    "compiles": [
+      13,
+      [
+        0.0085,
+        0.0247
+      ]
+    ],
+    "IC_tests_mean": 0.0145,
+    "IC_proofs_mean": 0.0113,
+    "cells_IC_tests_x_IC_proofs_positive": [
+      11,
+      [
+        0.0069,
+        0.0218
+      ]
+    ]
+  },
+  "failing_proofs_sorried": {
+    "compiles": [
+      74,
+      [
+        0.0663,
+        0.1024
+      ]
+    ],
+    "IC_tests_mean": 0.0826,
+    "IC_proofs_mean": 0.0222,
+    "cells_IC_tests_x_IC_proofs_positive": [
+      35,
+      [
+        0.0282,
+        0.0538
+      ]
+    ]
+  }
+}

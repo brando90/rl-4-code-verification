@@ -1,0 +1,149 @@
+{
+  "label": "qwen3.6-27b-local_g1",
+  "n_cells": 750,
+  "n_with_file": 750,
+  "n_no_file": 0,
+  "recompile_vs_scored_mismatches": [
+    "hardware_set_synthetic__my_axi_valid_ready_fire",
+    "memory_bugs_set_synthetic__my_bump_alloc_fits",
+    "security_set__security_6858__safe__102_unsafersatiming_safe",
+    "security_set__security_6858__safe__105_unsafenofranking_safe",
+    "security_set__security_6858__safe__28_unsafesameorigin_safe",
+    "security_set__security_6858__safe__45_unsafemeltdownread_safe",
+    "security_set__security_6858__safe__78_unsafeenclavekey_safe",
+    "security_set__security_6858__vulnerabilities__104_unsafehttpparse",
+    "security_set__security_6858__vulnerabilities__113_unsafeplaintextfs",
+    "security_set__security_6858__vulnerabilities__116_unsafeupwardstack",
+    "security_set__security_6858__vulnerabilities__121_unsafekerberosreplay",
+    "security_set__security_6858__vulnerabilities__122_unsafebitlockerorder",
+    "security_set__security_6858__vulnerabilities__123_unsafezoobartoken",
+    "security_set__security_6858__vulnerabilities__126_unsafeoauthredirect",
+    "security_set__security_6858__vulnerabilities__130_unsafebitlockerbios",
+    "security_set__security_6858__vulnerabilities__22_unsafetaintedlen",
+    "security_set__security_6858__vulnerabilities__26_unsafecsrftoken",
+    "security_set__security_6858__vulnerabilities__38_unsafetofukey",
+    "security_set__security_6858__vulnerabilities__93_unsafeappentitlements",
+    "security_set__security_6858__vulnerabilities__95_unsafedoubleratchet"
+  ],
+  "classes": {
+    "definitions_fail": 500,
+    "tests_or_statements_fail": 154,
+    "compiles_after_proof_ablation": 76,
+    "compiles": 20
+  },
+  "compiles_original": [
+    20,
+    [
+      0.0173,
+      0.0408
+    ]
+  ],
+  "compiles_after_proof_ablation_incl_original": [
+    96,
+    [
+      0.106,
+      0.1538
+    ]
+  ],
+  "definitions_only_compile_among_noncompiling": [
+    230,
+    730
+  ],
+  "ablation_IC_tests_mean_over_n": 0.128,
+  "ablation_IC_proofs_mean_over_n": 0.0662,
+  "cells_IC_tests_x_IC_proofs_positive_after_ablation": [
+    82,
+    [
+      0.089,
+      0.1337
+    ]
+  ],
+  "noncompiling_files_with_error_category": {
+    "tactic_failed": 657,
+    "unknown_name": 375,
+    "other": 292,
+    "parse": 290,
+    "type_error": 290,
+    "termination": 15,
+    "timeout": 4,
+    "index_bounds_proof": 2
+  },
+  "noncompiling_files_with_error_region": {
+    "theorem_proof": 632,
+    "example_test": 546,
+    "other": 437,
+    "definition": 323,
+    "theorem_statement": 135
+  },
+  "top_first_errors": [
+    [
+      "no goals to be solved",
+      209
+    ],
+    [
+      "unknown constant _",
+      56
+    ],
+    [
+      "failed to synthesize",
+      46
+    ],
+    [
+      "simp made no progress",
+      45
+    ],
+    [
+      "unterminated comment",
+      41
+    ],
+    [
+      "unsolved goals",
+      36
+    ],
+    [
+      "Application type mismatch: In the application",
+      29
+    ],
+    [
+      "type mismatch",
+      26
+    ],
+    [
+      "Invalid field _: The environment does not contain _",
+      23
+    ],
+    [
+      "Invalid field notation: Type is not of the form _ where C is a constant",
+      18
+    ],
+    [
+      "unknown identifier _",
+      16
+    ],
+    [
+      "tactic _ failed, the left-hand side",
+      16
+    ]
+  ],
+  "files_with_lean3_markers": 65,
+  "think": {
+    "n_with_close_tag": 583,
+    "n_empty_think": 0,
+    "ablation_compile_rate_empty_think": [
+      0,
+      0,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "ablation_compile_rate_nonempty_think": [
+      88,
+      583,
+      [
+        0.1242,
+        0.1823
+      ]
+    ]
+  }
+}

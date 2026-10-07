@@ -1,0 +1,134 @@
+{
+  "label": "qwen3.5-9b_g1",
+  "n_cells": 526,
+  "n_with_file": 526,
+  "n_no_file": 0,
+  "recompile_vs_scored_mismatches": [
+    "easy_set__1_myadd",
+    "security_set__security_6858__safe__3_unsafelinkedlist_safe",
+    "security_set__security_6858__safe__43_unsafetenexbyte_safe",
+    "security_set__security_6858__vulnerabilities__101_unsafeguardreuse",
+    "security_set__security_6858__vulnerabilities__104_unsafehttpparse"
+  ],
+  "classes": {
+    "definitions_fail": 470,
+    "compiles": 5,
+    "tests_or_statements_fail": 41,
+    "compiles_after_proof_ablation": 10
+  },
+  "compiles_original": [
+    5,
+    [
+      0.0041,
+      0.0221
+    ]
+  ],
+  "compiles_after_proof_ablation_incl_original": [
+    15,
+    [
+      0.0174,
+      0.0465
+    ]
+  ],
+  "definitions_only_compile_among_noncompiling": [
+    51,
+    521
+  ],
+  "ablation_IC_tests_mean_over_n": 0.0152,
+  "ablation_IC_proofs_mean_over_n": 0.0103,
+  "cells_IC_tests_x_IC_proofs_positive_after_ablation": [
+    8,
+    [
+      0.0077,
+      0.0297
+    ]
+  ],
+  "noncompiling_files_with_error_category": {
+    "parse": 452,
+    "tactic_failed": 419,
+    "type_error": 248,
+    "unknown_name": 243,
+    "other": 224,
+    "index_bounds_proof": 16,
+    "termination": 8,
+    "timeout": 5
+  },
+  "noncompiling_files_with_error_region": {
+    "theorem_proof": 378,
+    "example_test": 365,
+    "definition": 343,
+    "other": 323,
+    "theorem_statement": 159
+  },
+  "top_first_errors": [
+    [
+      "unexpected token _; expected _",
+      199
+    ],
+    [
+      "unterminated comment",
+      30
+    ],
+    [
+      "simp made no progress",
+      29
+    ],
+    [
+      "failed to synthesize",
+      23
+    ],
+    [
+      "type mismatch",
+      19
+    ],
+    [
+      "Function expected at",
+      17
+    ],
+    [
+      "Application type mismatch: In the application",
+      17
+    ],
+    [
+      "tactic _ failed, the left-hand side",
+      17
+    ],
+    [
+      "unknown constant _",
+      14
+    ],
+    [
+      "unknown identifier _",
+      12
+    ],
+    [
+      "unsolved goals",
+      11
+    ],
+    [
+      "no goals to be solved",
+      11
+    ]
+  ],
+  "files_with_lean3_markers": 43,
+  "think": {
+    "n_with_close_tag": 524,
+    "n_empty_think": 0,
+    "ablation_compile_rate_empty_think": [
+      0,
+      0,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "ablation_compile_rate_nonempty_think": [
+      15,
+      524,
+      [
+        0.0174,
+        0.0467
+      ]
+    ]
+  }
+}

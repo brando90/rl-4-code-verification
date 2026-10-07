@@ -1,0 +1,129 @@
+{
+  "label": "qwen3-1.7b_g1",
+  "n_cells": 356,
+  "n_with_file": 356,
+  "n_no_file": 0,
+  "recompile_vs_scored_mismatches": [
+    "security_set__security_6858__safe__99_unsafecipherdowngrade_safe",
+    "security_set__security_6858__vulnerabilities__28_unsafesameorigin"
+  ],
+  "classes": {
+    "definitions_fail": 325,
+    "tests_or_statements_fail": 23,
+    "compiles_after_proof_ablation": 6,
+    "compiles": 2
+  },
+  "compiles_original": [
+    2,
+    [
+      0.0015,
+      0.0202
+    ]
+  ],
+  "compiles_after_proof_ablation_incl_original": [
+    8,
+    [
+      0.0114,
+      0.0437
+    ]
+  ],
+  "definitions_only_compile_among_noncompiling": [
+    29,
+    354
+  ],
+  "ablation_IC_tests_mean_over_n": 0.0225,
+  "ablation_IC_proofs_mean_over_n": 0.0,
+  "cells_IC_tests_x_IC_proofs_positive_after_ablation": [
+    0,
+    [
+      0.0,
+      0.0107
+    ]
+  ],
+  "noncompiling_files_with_error_category": {
+    "parse": 303,
+    "unknown_name": 232,
+    "tactic_failed": 201,
+    "other": 177,
+    "type_error": 106,
+    "index_bounds_proof": 3
+  },
+  "noncompiling_files_with_error_region": {
+    "definition": 289,
+    "example_test": 244,
+    "theorem_statement": 214,
+    "theorem_proof": 201,
+    "other": 85
+  },
+  "top_first_errors": [
+    [
+      "unknown identifier _",
+      56
+    ],
+    [
+      "type expected, got",
+      50
+    ],
+    [
+      "unexpected identifier; expected command",
+      32
+    ],
+    [
+      "unexpected token _; expected _, _",
+      32
+    ],
+    [
+      "unexpected token _; expected _",
+      30
+    ],
+    [
+      "Function expected at",
+      19
+    ],
+    [
+      "invalid _ command, it must be used in the beginning of the file",
+      17
+    ],
+    [
+      "type mismatch",
+      15
+    ],
+    [
+      "unknown tactic",
+      13
+    ],
+    [
+      "failed to synthesize",
+      12
+    ],
+    [
+      "unexpected token _; expected _, _ or _",
+      10
+    ],
+    [
+      "Invalid pattern: Expected a constructor or constant marked with _",
+      8
+    ]
+  ],
+  "files_with_lean3_markers": 69,
+  "think": {
+    "n_with_close_tag": 356,
+    "n_empty_think": 291,
+    "ablation_compile_rate_empty_think": [
+      7,
+      291,
+      [
+        0.0117,
+        0.0488
+      ]
+    ],
+    "ablation_compile_rate_nonempty_think": [
+      1,
+      65,
+      [
+        0.0027,
+        0.0821
+      ]
+    ]
+  }
+}

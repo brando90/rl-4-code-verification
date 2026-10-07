@@ -1,0 +1,129 @@
+{
+  "label": "qwen3-8b_g1",
+  "n_cells": 896,
+  "n_with_file": 855,
+  "n_no_file": 41,
+  "recompile_vs_scored_mismatches": [],
+  "classes": {
+    "definitions_fail": 810,
+    "no_file": 41,
+    "tests_or_statements_fail": 30,
+    "compiles_after_proof_ablation": 13,
+    "compiles": 2
+  },
+  "compiles_original": [
+    2,
+    [
+      0.0006,
+      0.0081
+    ]
+  ],
+  "compiles_after_proof_ablation_incl_original": [
+    15,
+    [
+      0.0102,
+      0.0274
+    ]
+  ],
+  "definitions_only_compile_among_noncompiling": [
+    43,
+    853
+  ],
+  "ablation_IC_tests_mean_over_n": 0.0167,
+  "ablation_IC_proofs_mean_over_n": 0.0022,
+  "cells_IC_tests_x_IC_proofs_positive_after_ablation": [
+    5,
+    [
+      0.0024,
+      0.013
+    ]
+  ],
+  "noncompiling_files_with_error_category": {
+    "parse": 801,
+    "tactic_failed": 707,
+    "unknown_name": 566,
+    "type_error": 422,
+    "other": 247,
+    "index_bounds_proof": 25,
+    "termination": 10,
+    "timeout": 1
+  },
+  "noncompiling_files_with_error_region": {
+    "theorem_proof": 763,
+    "example_test": 722,
+    "definition": 619,
+    "other": 606,
+    "theorem_statement": 240
+  },
+  "top_first_errors": [
+    [
+      "unexpected character; expected decimal number",
+      485
+    ],
+    [
+      "failed to synthesize",
+      53
+    ],
+    [
+      "unknown identifier _",
+      48
+    ],
+    [
+      "type mismatch",
+      37
+    ],
+    [
+      "unexpected token _; expected _, _",
+      35
+    ],
+    [
+      "unexpected token _; expected _",
+      31
+    ],
+    [
+      "unexpected identifier; expected command",
+      27
+    ],
+    [
+      "Invalid field _: The environment does not contain _",
+      15
+    ],
+    [
+      "unknown constant _",
+      11
+    ],
+    [
+      "unexpected token _; expected _, _, _, _ or term",
+      11
+    ],
+    [
+      "tactic _ evaluated that the proposition",
+      10
+    ],
+    [
+      "Function expected at",
+      10
+    ]
+  ],
+  "files_with_lean3_markers": 331,
+  "think": {
+    "n_with_close_tag": 855,
+    "n_empty_think": 0,
+    "ablation_compile_rate_empty_think": [
+      0,
+      0,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "ablation_compile_rate_nonempty_think": [
+      15,
+      855,
+      [
+        0.0107,
+        0.0287
+      ]
+    ]
+  }
+}
