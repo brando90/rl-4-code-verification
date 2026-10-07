@@ -10,7 +10,7 @@
 
 | Item | Value |
 |---|---|
-| Current step | Light QA done (Codex, verdict FIXED) and committed; dispatching the SNAP worker |
+| Current step | Worker launched on `skampere1` (10-07-2026 16:47 PDT); it owns the next steps from runbook § 1 |
 | Master | Claude Code (Opus 5.5) on Brando's laptop; private worktree `~/vb_worktrees/rl4cv-sft-warmstart-1007` |
 | Intended worker | Claude Code `claude-fable-5-1`, effort `high`, on `skampere1`, tmux `rl4cv-e08-worker`, clone `/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification` |
 | Work root | `/lfs/skampere1/0/brando9/rl4cv_e08` (master scratch only so far: `master_scratch/`, token-budget runs) |
@@ -35,6 +35,13 @@
   - Pinned archive: `python3 -m pytest -q` gives 89 passed, 2 skipped (experiment 103 adapters require source absent from the dataset-only archive). Without that archive: 88 passed, 3 skipped. `git diff --check` passes. Split parameters and manifest hash are unchanged.
 
 - **10-07-2026 16:42 PDT (master).** Reviewed the Codex diff and committed it with the builder follow-ups listed in `results.md` (light QA section). Next: dispatch the SNAP worker.
+
+- **10-07-2026 16:47 PDT — launch receipt (master).**
+  - Host `skampere1`; tmux session `rl4cv-e08-worker`; client Claude Code via `/lfs/skampere1/0/brando9/bin/clauded_tok` (`claude --dangerously-skip-permissions`, node-local binary).
+  - Model `claude-fable-5-1`, effort `high`, pid 461405, session `d3968eac-37d1-4b77-b339-a69389689c9c`. Effort `high` rather than `max` because this is long execution under a detailed runbook, sharing the personal subscription with the 02A v3 and 07 workers.
+  - Clone `/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification` on `main` at `bae5929`. Launched with `deploy_cc.sh` (deployment identity `deploy_1a624de4…`); the master accepted the folder-trust prompt.
+  - First observed action: refreshing agents-config and reading the runbook.
+  - Preflight: `snap_health.sh --node skampere1` shows only `disk.dfs` FAIL (DFS 100% full), which is off this job's path. All 8 A100s were idle at 16:22 PDT.
 
 ## Next command (worker)
 
