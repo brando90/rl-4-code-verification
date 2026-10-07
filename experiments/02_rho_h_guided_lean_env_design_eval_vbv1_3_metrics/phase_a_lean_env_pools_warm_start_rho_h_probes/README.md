@@ -64,5 +64,6 @@ The table below retains the larger phase design; completing candidate preparatio
 | Design | Done (09-30-2026) |
 | Protocols | Version-2 bounded preflight protocol exists; larger phase protocol remains pending its gates |
 | Pools, screens, panel | Version-2 source screening and candidate partitions published; accepted training references remain blocked |
+| Warm-start Lean data | [v3](expt_v3/README.md) designed 10-07-2026: frontier teachers via Valkyrie on screened MBPP, kernel-verified keep rule |
 | Warm start ×4 scales | TODO |
 | Probes and cells ×4 scales | TODO |
