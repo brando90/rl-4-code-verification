@@ -97,7 +97,7 @@ def task_limits(url: str, bearer: str) -> dict:
     for tid in sample:
         data = get_json(url + f"/retrieve-task/?task_id={tid}", bearer)
         timeouts[tid] = data.get("agent_timeout") if isinstance(data, dict) else None
-    verify = get_json(url + "/verify-task-ids?task_ids=" + ",".join(sample), bearer)
+    verify = get_json(url + "/verify-task-ids?" + "&".join(f"task_ids={tid}" for tid in sample), bearer)
     vals = sorted({float(v) for v in timeouts.values() if v is not None})
     return {"sampled_task_ids": sample, "agent_timeout_s": timeouts, "verify_task_ids_response": verify, "required_min_s": AGENT_TIMEOUT_S,
             "limit_ok": bool(vals) and len(vals) == 1 and vals[0] >= AGENT_TIMEOUT_S}

@@ -1,0 +1,73 @@
+{
+  "agent_client_timeout_s": 3000,
+  "agent_timeout_s": 6600,
+  "benchmark": "rl4cv-e02a-v3-mbpp",
+  "control_pack": true,
+  "deployed_utc": "2026-10-07T23:35:37+00:00",
+  "grade_mode": "collect_only (VB_COLLECT_ONLY=1)",
+  "host": "skampere1.stanford.edu",
+  "inference_calls": 0,
+  "local_health": 200,
+  "local_unauthenticated_health": 401,
+  "pack_dir": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/pack",
+  "pack_task_count": 971,
+  "per_task_limit_local": {
+    "agent_timeout_s": {
+      "mbpp__preflight_task_1": 6600.0,
+      "mbpp__task_536": 6600.0,
+      "mbpp__task_99": 6600.0
+    },
+    "limit_ok": true,
+    "required_min_s": 6600,
+    "sampled_task_ids": [
+      "mbpp__preflight_task_1",
+      "mbpp__task_536",
+      "mbpp__task_99"
+    ],
+    "verify_task_ids_response": {
+      "task_ids": [
+        "mbpp__preflight_task_1",
+        "mbpp__task_536",
+        "mbpp__task_99"
+      ]
+    }
+  },
+  "per_task_limit_tunnel": {
+    "agent_timeout_s": {
+      "mbpp__preflight_task_1": 6600.0,
+      "mbpp__task_536": 6600.0,
+      "mbpp__task_99": 6600.0
+    },
+    "limit_ok": true,
+    "required_min_s": 6600,
+    "sampled_task_ids": [
+      "mbpp__preflight_task_1",
+      "mbpp__task_536",
+      "mbpp__task_99"
+    ],
+    "verify_task_ids_response": {
+      "task_ids": [
+        "mbpp__preflight_task_1",
+        "mbpp__task_536",
+        "mbpp__task_99"
+      ]
+    }
+  },
+  "port": 9720,
+  "port_claim": "9720-9739",
+  "sandbox_lean": "none (VB_NO_COMPILER=1)",
+  "service_dir": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/rl-4-code-verification/external/veribench/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/scripts/vb_service_single_call",
+  "service_files_sha256": {
+    "main.py": "ec197ee3b93ca597ca03cfa7bde6da5b0b348c2e4d46d32e1cdd19ff18d77b12",
+    "single_call_service.py": "985009a7875bc7a5a485cb88e5f2a2a36cd45bccb2382fe6b21394823a674fba",
+    "veribench_valkyrie_service.py": "e65d77ddf97b07ddb3c194754a22bbd87ae6e41a7d8076ee79560a23049fd2b7"
+  },
+  "service_pid": 149050,
+  "tunnel_health": 200,
+  "tunnel_pid": 152929,
+  "tunnel_unauthenticated_health": 401,
+  "tunnel_url": "recorded in $WORK/private/deployment.json (not published)",
+  "tunnel_version_status": 200,
+  "valkyrie_config": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/private/valkyrie.yaml",
+  "veribench_checkout": "c11b99badfa386fd26810b208eef1eb8dc9f6806"
+}
