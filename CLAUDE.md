@@ -12,12 +12,15 @@ This file holds the project rules for **rl-4-code-verification** for every agent
 
 ## Scientific integrity
 
-- **VeriBench is held out.**
-  - Never train, warm-start, tune or select checkpoints on VeriBench tasks, references or text derived from them.
-  - Every training pool passes the exact-hash and word-5-gram screens in `docs/DATASETS.md` (`rl4cv.screens`) before use.
-  - HumanEval-derived data is excluded (it overlaps VeriBench `humaneval_set`). VeriSoftBench-derived data is excluded whenever VBV2 is a panel.
+- **VeriBench V1's test split is held out (D-013, Brando, 10-07-2026).** `rl4cv.splits` splits VeriBench V1 into train 539, validation 135 and test 222. The manifest is in `experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/split/`. Near-duplicates and security safe/vulnerable pairs never straddle splits.
+  - Training and warm starts may use train-split tasks, their gold references and teacher outputs on them. They never use validation or test tasks, references or text derived from them.
+  - Checkpoint selection and tuning use the validation split only. The test split is evaluated once per frozen checkpoint and never used for training, tuning or selection.
+  - VeriBench numbers for trained policies are reported on the test split, never on all 896.
+  - Experiments locked before D-013 (01–07, 02A v3) keep their recorded rule: all of VeriBench held out.
+  - Every training pool passes the exact-hash and word-5-gram screens in `docs/DATASETS.md` (`rl4cv.screens`) before use, against at least the validation and test splits.
+  - HumanEval-derived external data is excluded (it overlaps VeriBench `humaneval_set`). VeriSoftBench-derived data is excluded whenever VBV2 is a panel.
 - **VeriBench numbers follow VeriBench's evaluation rules.**
-  - SCSC = (IC_tests · IC_proofs · FSC)^(1/3) is the only aggregate, always shown with its three factors and n. Core 614 and IndustrySet 282 are reported separately.
+  - SCSC = (IC_tests · IC_proofs · FSC)^(1/3) is the only aggregate, always shown with its three factors and n. Core 614 and IndustrySet 282 are reported separately (on the D-013 test split: core 152, IndustrySet 70).
   - Scoring uses the pinned frozen scorer (`external/deps.lock.json`: `veribench_scorer`) with `--skip-tc`.
   - FSC comes only from the validated judge (`vb103_judge`, the experiment 100 H2 ensemble). Never use `run_real_eval.py`'s built-in FSC, which is the retired Sonnet 4.6 judge.
   - Unmeasured cells stay in the denominator and are listed, never counted as zero.
