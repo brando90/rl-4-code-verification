@@ -68,7 +68,7 @@ Append new entries; strike through superseded ones and point to the entry that r
 ### D-012 — Push to `main` small and often — accepted — 10-07-2026 — Brando
 
 - **Context:** Brando, 10-07-2026: "we likely need to put a reminder in the agents claude .md folders to push to main often since this repo is shared by 3+1+1 people!" The same day, three agent sessions edited one checkout at once and one held an unpushed local commit that touched shared files (`CLAUDE.md`, this file).
-- **Decision:** `CLAUDE.md` → Repository conventions → "Push small and often": commit and push each finished, test-passing step immediately; pull before starting and before each push; never stage or commit another session's uncommitted files; use a separate `git worktree` when sessions share a checkout. Extends D-006.
+- **Decision:** `CLAUDE.md` → Repository conventions → "Push small and often": commit and push each finished, test-passing step immediately; pull before starting and before each push; never stage or commit another session's uncommitted files; when sessions share a checkout, work from a separate clone or a detached worktree that pushes `HEAD:main` (no feature branch). Extends D-006.
 
 ## Open — needs Brando
 
