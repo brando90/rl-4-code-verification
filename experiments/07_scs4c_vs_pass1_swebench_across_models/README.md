@@ -87,5 +87,5 @@ The metric itself lives in [`src/rl4cv/scs4c.py`](../../src/rl4cv/scs4c.py) (tes
 |---|---|---|
 | Definition and design | Done (10-07-2026) | this file |
 | Phase A protocol and frozen forecast | Done (10-07-2026) | [PROTOCOL.md](PROTOCOL.md), `expt_v1/forecasts/` |
-| Phase A run on SNAP | Dispatch reported; execution unverified (10-07-2026) | No launch receipt recorded; [results.md](results.md) |
+| Phase A run on SNAP | Running (launched 10-07-2026 16:01 PDT) | launch receipt in `expt_v1/CKPT_e07.md`; [results.md](results.md) |
 | Phases B and C | Designed, not admitted | needs phase A, D_gold harness controls, Valkyrie service |
