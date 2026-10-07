@@ -1,19 +1,21 @@
 # Run and land experiment 07 phase A (SCS4C-T versus pass@1 across SWE-bench Verified submissions) on skampere1
 
-**TLDR:** You run experiment 07 phase A end to end on `skampere1`. Fetch every public SWE-bench Verified submission's per-instance `report.json`, compute SCS4C-T (the tests-only smooth conjunctive score for code) and pass@1 for each system, and run the locked analyses H1, H1b, H2 and H3. Then publish `results.md` with the frozen predictions beside the outcomes, get one light quality-assurance (QA) round from Codex, and merge the pull request. Finally, email Brando and comment on GitHub issue #ISSUE for Emily (@emxia18). No model calls are needed except the Codex reviewer.
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/07_scs4c_vs_pass1_swebench_across_models/expt_v1/cc.md>
+
+**TLDR:** You run experiment 07 phase A end to end on `skampere1`. Fetch every public SWE-bench Verified submission's per-instance `report.json`, compute SCS4C-T (the tests-only smooth conjunctive score for code) and pass@1 for each system, and run the locked analyses H1, H1b, H2 and H3. Then publish `results.md` with the frozen predictions beside the outcomes, get one light quality-assurance (QA) round from Codex, and publish the verified changes to `main`. Finally, email Brando and comment on GitHub issue #5 for Emily (@emxia18). No model calls are needed except the Codex reviewer.
 
 SNAP PRE-APPROVAL (Brando, 2026-09-14): you run with full access (permission prompts and sandbox bypassed). Every command, install, Docker/GPU use, file and git operation (branch, commit, push, PR, merge per Rule 46) and every budgeted experiment call needed for this task is already approved. Never stop to ask for permission or confirmation; treat any approval step as granted, proceed, and log what you did. Pause only for a real blocker (missing credential, exhausted budget, a human-only login step).
 
 ## 0. Context
 
 - **Why.** Brando's thesis committee member Azalia asked for evidence that interpretable metrics track downstream evaluations and can guide environments, feedback and rewards. Read `README.md` (definition, hypotheses) and `PROTOCOL.md` (locked) in the experiment folder before acting.
-- **Work root.** `WORK=/lfs/skampere1/0/brando9/rl4cv_e07`. Clone `$WORK/rl-4-code-verification` on branch `e07-scs4c-phase-a` (you are its only writer). `EXP=$WORK/rl-4-code-verification/experiments/07_scs4c_vs_pass1_swebench_across_models`. Raw downloads go to `$WORK/data` and stay on the host. Commit only summaries.
-- **State on dispatch.** The master created the clone, branch and `$WORK/STATUS_e07` (`RUNNING`). Keep `$EXP/expt_v1/CKPT_e07.md` current (agents-config Trigger Rule 44: real `date "+%m-%d-%Y %H:%M %Z"` stamps, current step, exact next command, blockers). Keep `$EXP/results.md` live (Trigger Rule 37).
+- **Work root.** `WORK=/lfs/skampere1/0/brando9/rl4cv_e07`. Use an isolated clone at `$WORK/rl-4-code-verification` on `main` (you are its only writer), following the project rule. Do not create a feature branch or pull request. `EXP=$WORK/rl-4-code-verification/experiments/07_scs4c_vs_pass1_swebench_across_models`. Raw downloads go to `$WORK/data` and stay on the host. Commit only summaries.
+- **State on dispatch.** The master created the clone on `main`, wrote `$WORK/STATUS_e07` = `RUNNING` and started you in tmux session `rl4cv-e07-worker`; its launch receipt is in `CKPT_e07.md`. Verify the clone, revision and your own process, and append your first-action receipt. Keep `$EXP/expt_v1/CKPT_e07.md` current (agents-config Trigger Rule 44: real `date "+%m-%d-%Y %H:%M %Z"` stamps, current step, exact next command, blockers). Keep `$EXP/results.md` live (Trigger Rule 37).
 - **Owner.** Emily (@emxia18) owns the experiment; you execute phase A for Brando.
 
 ## 1. Environment and lock check
 
-1. `cd $WORK/rl-4-code-verification && git fetch origin '+refs/heads/main:refs/remotes/origin/main'` and confirm your branch contains the commit that added `PROTOCOL.md`.
+1. `cd $WORK/rl-4-code-verification && git fetch origin '+refs/heads/main:refs/remotes/origin/main'` and confirm `main` contains the protocol and reviewed fixes, then record the exact code revision. Keep any existing owned changes; never reset another session's work.
 2. Create an isolated environment: `uv venv $WORK/venv --python 3.12 && source $WORK/venv/bin/activate && uv pip install -e ".[dev]" scipy datasets boto3`. Use the system or pip `aws` command-line interface (CLI) for unsigned S3 (`aws --version`; else `uv pip install awscli`). Record versions in the checkpoint.
 3. Run `make test`; it must pass.
 4. Verify the frozen forecast: `python -c "from rl4cv.forecast import verify_forecast as v; assert v('$EXP/expt_v1/forecasts/e07_phase_a_forecast.json')"`. Never edit `PROTOCOL.md` or anything under `forecasts/`.
@@ -25,7 +27,7 @@ SNAP PRE-APPROVAL (Brando, 2026-09-14): you run with full access (permission pro
    git clone --filter=blob:none https://github.com/SWE-bench/experiments $WORK/swe-bench-experiments
    git -C $WORK/swe-bench-experiments checkout 40f164d5b8f1d249bf95a6df8b74b577fd8e519d
    ```
-2. Run the fetch. It writes `inventory.json` with one row per submission:
+2. Run the fetch. It verifies the clean pinned submission checkout, writes `inputs_manifest.json` (including the gold-file hash), and writes `inventory.json` with one row per submission. Reusing gold without matching provenance is refused; use a fresh raw-data directory rather than inventing provenance for an old cache:
    ```bash
    python $EXP/expt_v1/fetch_e07.py --experiments-repo $WORK/swe-bench-experiments \
      --out $WORK/data --gold-revision c104f840cc67f8b6eec6f759ebc8b2693d585d4a
@@ -39,18 +41,19 @@ SNAP PRE-APPROVAL (Brando, 2026-09-14): you run with full access (permission pro
    ```bash
    PYTHONPATH=src python $EXP/expt_v1/analyze_e07.py --data $WORK/data --out-dir $EXP/expt_v1/results
    ```
-2. **Validity first** (PROTOCOL.md). If `resolved_but_score_below_1 + unresolved_but_score_1` exceeds 0.5% of measured cells, stop and diagnose the parser before reporting any hypothesis. If fewer than 20 systems are included, report phase A as underpowered.
+2. **Validity first** (PROTOCOL.md). The analyzer checks all declared systems before any hypothesis calculation: more than 0.5% inconsistent measured cells stops analysis; fewer than 20 included systems is underpowered; an empty common cohort is unmeasured. Check `status` and `validity_all_declared_systems`, and do not issue hypothesis verdicts in these states. If a split size has an empty A/B or undefined correlations, report its defined/undefined counts and leave its verdict unavailable; do not silently replace the frozen denominator. Confirm `locked_settings` is true for protocol results.
 3. **Sensitivity (protocol, not primary).** Add one system per base model (latest submission, keyed by `metadata.yaml` `info.model_display` or the closest equivalent field) and report H1, H1b and H2 at n_A = 50 for it. Implement this as a small, separately labelled function; do not change the primary analysis.
-4. Copy `$WORK/data/inventory.json` into `$EXP/expt_v1/results/` (it holds no secrets). Commit `analysis_e07.json` and `per_system_e07.csv`, and a gzip of the per-cell table if it is under 5 MB.
+4. Copy `$WORK/data/inventory.json` and `inputs_manifest.json` into `$EXP/expt_v1/results/` (they hold no secrets). Commit `analysis_e07.json`, `per_system_e07.csv` (own and common cohorts) and the generated `per_cell_e07.jsonl.gz` if under 5 MB; otherwise preserve its host path and hash. Every declared cell remains listed. Add exclusion reasons from inventory/adapter evidence and diagnose generic missing-report reasons before publication. All-resolved systems have undefined H1b partial credit, never zero.
+5. **Worker deliverables still required.** Implement the GitHub adapter and base-model sensitivity above, then write the human-readable verdicts below. The scripts do not yet supply these deliverables. Record the exact reviewed code revision and any fixes since the protocol's original code pin in the deviations record; preserve the forecast and every frozen prediction/threshold.
 
 ## 4. Publish
 
 1. Write `results.md`:
    - Status DONE, with a TLDR whose first clause restates the experiment.
    - Counts: systems total / included / excluded (with reasons), common-cohort tasks, measured and unmeasured cells.
-   - For H1 and H1b: Pearson, Spearman and Kendall τ-b, each with task- and system-bootstrap intervals, plus mean bias and mean absolute error for H1.
-   - For H2: median Δ, 5th–95th percentiles and share of Δ > 0 at every n_A.
-   - For H3: counts with denominators.
+   - For H1 and H1b: Pearson, Spearman and Kendall τ-b, each with task- and system-bootstrap intervals, usable-system counts and defined/requested draw counts. For H1 include both system-score means, mean bias (SCS4C-T minus pass@1; positive means higher smooth scores), mean absolute error and their intervals. These intervals condition on the observed common cohort and are not task-and-system joint intervals; write `p-val=n/a` because no hypothesis test is run.
+   - For H2: median Δ, 5th–95th split percentiles and positive-split counts over all requested splits at every n_A, with defined/undefined counts; these are split-distribution summaries, not population confidence intervals. Leave a verdict unavailable when required correlations are undefined.
+   - For H3: common-cohort counts with denominators; label own-cohort counts separately.
    - The frozen prediction beside each outcome, with a verdict per the README table. A failed forecast is reported exactly like a successful one.
    - The validity checks, the sensitivity analysis and the 15 highest-pass@1 rows of the per-system table.
    - Expand acronyms on first use; dates `MM-DD-YYYY`.
@@ -64,18 +67,18 @@ One round, then deterministic verification (agents-config `workflows/qa-correctn
 - **Prompt:** review the complete change from `origin/main` to your branch within `experiments/07_scs4c_vs_pass1_swebench_across_models/`, `experiments/README.md` and any `src/rl4cv/scs4c.py` change. Check correctness of report parsing, gating, denominators, statistics and the adapter; confirm every number in `results.md` matches `analysis_e07.json`; confirm the protocol was followed; fix critical and major issues directly; return a short PASS / FIXED / FAIL verdict with findings.
 - **After review:** rerun `make test` and the analysis if code changed, and confirm the numbers again.
 - **If Codex is unavailable on the host:** route through another verified Codex client per Trigger Rule 58, and record the route.
-- **In the PR body:** the verdict block, the reviewer model, the effort and any fixes.
+- **In the results receipt:** the verdict block, the reviewer model, the effort and any fixes.
 
-## 6. Land (agents-config Trigger Rule 46)
+## 6. Publish to main (project rule)
 
-1. **Stage and test.** Stage explicit pathspecs only, inspect `git diff --cached` (no secrets, no raw logs), and run `make test`. Push the branch and open a PR. Its body holds the TLDR, the changes, the verification commands with exit codes, the QA verdict, the models used, and `Closes #ISSUE` only if phase A completes the issue's phase A checklist (otherwise `Refs #ISSUE`).
-2. **Rebase if needed.** Fetch `origin/main`; if it moved, rebase, re-verify and push with `--force-with-lease` on your branch only.
-3. **Merge.** Run `gh pr merge <n> --rebase --match-head-commit <verified-sha>` and confirm `MERGED`. Then delete the remote branch.
-4. **Email** `brando.science@gmail.com` (no CC), subject `[rl4cv] PR #<n> merged: experiment 07 phase A`. The body holds the PR URL, the TLDR with H1, H1b and H2 verdicts and numbers, and the ledger and CKPT paths. Send it with `uutils.emailing.send_email_smtp(..., smtp_pass_file="~/keys/gmail_app_password.txt")`, as experiment 05 did.
-5. **Comment** on issue #ISSUE: the TLDR, the headline table and a link to `results.md`, addressed to @emxia18.
-6. **Signal the master.** On `main`, append `LANDED <merged-commit> <PR URL> <MM-DD-YYYY HH:MM>` to `CKPT_e07.md`, then pull with `--ff-only`, commit and push. Write `DONE` to `$WORK/STATUS_e07`.
+1. **Stage and test.** Stage explicit owned pathspecs only, inspect the exact staged diff (no secrets or raw logs), and run `make test`. Include metric regression tests when code changes. Do not publish while a required review or scientific result is incomplete.
+2. **Synchronize and publish.** Commit on `main`, fetch the latest `origin/main`, then fast-forward or merge while preserving concurrent work. Re-run affected checks on the combined tree, inspect the owned diff, and push `main` without force. If the remote advances again, repeat synchronization. No feature branch or pull request is authorized by this brief.
+3. **Verify.** Confirm the published revision is on `origin/main` and record its hash and results link in the checkpoint.
+4. **Email** `brando.science@gmail.com` (no CC), subject `[rl4cv] experiment 07 phase A published`. The body holds the commit URL, the headline hypotheses and results, and the ledger/checkpoint paths. Send it with `uutils.emailing.send_email_smtp(..., smtp_pass_file="~/keys/gmail_app_password.txt")`, importing `uutils` from `/lfs/skampere1/0/brando9/ultimate-utils/py_src` on `PYTHONPATH` (as experiment 05 did); keep credentials out of logs.
+5. **Comment** on issue #5: the summary, headline table and link to `results.md`, addressed to @emxia18. Close only if the issue's phase A checklist is complete.
+6. **Signal the master.** Record `LANDED <verified-commit> <commit URL> <MM-DD-YYYY HH:MM>` in the checkpoint, publish the receipt with the same synchronization/checks, and write `DONE` to `$WORK/STATUS_e07`.
 
-If blocked by a real blocker you cannot route around, write `BLOCKED` to `$WORK/STATUS_e07`, describe it in the checkpoint and the PR, email `[rl4cv] PR #<n> blocked: experiment 07 phase A`, and stop.
+If a real blocker cannot be recovered, write `BLOCKED` to `$WORK/STATUS_e07`, describe it in the checkpoint, send the authorized blocker notification, and stop. Never report missing outcomes as completed.
 
 ## 7. Guardrails
 
@@ -84,4 +87,4 @@ If blocked by a real blocker you cannot route around, write `BLOCKED` to `$WORK/
 - Never edit `PROTOCOL.md` or the frozen forecast. Deviations go to `results.md` → "Deviations and open questions".
 - Never print or commit tokens; `GH_TOKEN` comes from `~/keys/.brando90_github_token.txt` in the environment only.
 
-TL;DR: Fetch public SWE-bench Verified per-instance reports, compute SCS4C-T and pass@1 per system, run the locked H1/H1b/H2/H3 analyses and publish `results.md`. Then get one Codex light-QA round, merge the PR, email Brando and comment on issue #ISSUE for Emily.
+TL;DR: Fetch public SWE-bench Verified per-instance reports, compute SCS4C-T and pass@1 per system, run the locked H1/H1b/H2/H3 analyses and publish `results.md`. Then get one Codex light-QA round, publish to `main`, email Brando and comment on issue #5 for Emily.

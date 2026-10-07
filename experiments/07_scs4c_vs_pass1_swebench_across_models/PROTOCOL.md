@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/07_scs4c_vs_pass1_swebench_across_models/PROTOCOL.md>
 
-**TLDR:** Locked before any outcome is read. Phase A computes SCS4C-T = G · (T_fix · T_keep)^(1/2) from every public SWE-bench Verified submission's per-instance `report.json`, then tests whether it tracks pass@1 across systems (H1), whether partial credit on failed tasks tracks capability (H1b), and whether it predicts held-out pass@1 better than pass@1 does (H2). No model calls. Changes after the lock go to `results.md` → Deviations, never here.
+**TLDR:** Locked before cross-system analysis; pre-lock exposure is disclosed below. Phase A computes SCS4C-T = G · (T_fix · T_keep)^(1/2) from every public SWE-bench Verified submission's per-instance `report.json`, then tests whether it tracks pass@1 across systems (H1), whether partial credit on failed tasks tracks capability (H1b), and whether it predicts held-out pass@1 better than pass@1 does (H2). No model calls. Changes after the lock go to `results.md` → Deviations, never here.
 
 Locked: 10-07-2026 by the experiment 07 master (Claude Code, Opus 5.5, for Brando). Frozen forecast: `expt_v1/forecasts/e07_phase_a_forecast.json` (SHA-256 sidecar and ledger beside it).
 
@@ -24,9 +24,9 @@ Locked: 10-07-2026 by the experiment 07 master (Claude Code, Opus 5.5, for Brand
 - **Missing data.** No patch (absent or empty in `all_preds.jsonl`, or listed as no generation or empty patch in `results.json`) is a genuine 0. A patch with no report is **unmeasured**: listed, never counted as 0.
 - **Inclusion.** A system enters the cross-system analysis if at least 95% (475) of its 500 cells are measured. Excluded systems are listed with counts.
 - **Cohort.** Primary analyses use the common cohort: tasks measured for every included system. Its size is reported; each system's own-cohort scores are reported beside it.
-- **pass@1.** The official `resolved` flag, on the same cohort. The leaderboard convention (unmeasured counted unresolved, denominator 500) is reported as `pass1_declared`.
+- **pass@1.** The official `resolved` flag, on the same cohort. The leaderboard convention (known official resolved count divided by 500, otherwise unknown resolution counted unresolved only for this diagnostic) is reported as `pass1_declared`. A known resolution from `results.json` can contribute to that count even when per-test factors are unmeasured.
 
-## Analyses (all in `analyze_e07.py`, seed 20261007)
+## Analyses (primary analyses in `analyze_e07.py`, seed 20261007)
 
 | ID | Statistic | Uncertainty | Frozen prediction | Verdict rule |
 |---|---|---|---|---|
@@ -43,7 +43,7 @@ Thresholds are agent-suggested (Claude, 10-07-2026); Brando or Emily may revise 
 - **Gold-list agreement.** Count reports whose test sets differ from the pinned gold lists, per system (dataset-version drift); report, do not exclude.
 - **Coverage.** If fewer than 20 systems pass inclusion, report phase A as underpowered rather than giving verdicts.
 - **GitHub-hosted logs.** Submissions whose logs live in their own repository need an adapter. A worker may add one as a recorded deviation before the analysis runs; a submission whose logs lack per-test status is excluded with that reason.
-- **Sensitivity (reported, not primary).** One system per base model (the latest submission), if metadata names the model.
+- **Sensitivity (reported, not primary).** One system per base model (the latest submission), if metadata names the model. The worker implements this separately per `expt_v1/cc.md` § 3 before publication.
 
 ## Not in phase A
 
