@@ -1,0 +1,121 @@
+sft:
+  max_num_epochs: 1
+  max_num_steps: 1024
+  val_period: 256
+  # Full frozen validation panel: 128 batches x 2 examples = 256 rows.
+  val_batches: 128
+  val_global_batch_size: 2
+  val_micro_batch_size: 1
+  val_at_start: true
+  seed: 20260830
+
+checkpointing:
+  enabled: true
+  checkpoint_dir: ${oc.env:PHASE1C_CHECKPOINT_DIR}
+  metric_name: val:val_loss
+  higher_is_better: false
+  # Preserve the four update-quartile checkpoints for learning-curve audits.
+  keep_top_k: 4
+  save_period: 256
+  save_optimizer: true
+  checkpoint_must_save_by: null
+
+policy:
+  model_name: ${oc.env:PHASE1C_MODEL_PATH}
+  tokenizer:
+    name: ${policy.model_name}
+    chat_template: default
+    chat_template_kwargs: null
+  train_global_batch_size: 2
+  train_micro_batch_size: 1
+  max_total_sequence_length: 16384
+  precision: bfloat16
+  dtensor_cfg:
+    enabled: true
+    env_vars: {}
+    cpu_offload: false
+    sequence_parallel: false
+    activation_checkpointing: true
+    tensor_parallel_size: 1
+    context_parallel_size: 1
+    custom_parallel_plan: null
+  dynamic_batching:
+    enabled: false
+    train_mb_tokens: 16384
+    sequence_length_round: 64
+  sequence_packing:
+    enabled: false
+    train_mb_tokens: 16384
+    algorithm: modified_first_fit_decreasing
+    sequence_length_round: 64
+  make_sequence_length_divisible_by: 1
+  max_grad_norm: 1.0
+  optimizer:
+    name: torch.optim.AdamW
+    kwargs:
+      lr: 2.0e-5
+      weight_decay: 0.1
+      betas: [0.9, 0.98]
+      eps: 1.0e-5
+      foreach: false
+      fused: false
+  scheduler:
+    - name: torch.optim.lr_scheduler.LinearLR
+      kwargs: {start_factor: 0.03225806451612903, end_factor: 1.0, total_iters: 31}
+    - name: torch.optim.lr_scheduler.CosineAnnealingLR
+      kwargs: {T_max: 993, eta_min: 0.0}
+    - milestones: [31]
+  megatron_cfg:
+    enabled: false
+    env_vars: {}
+    empty_unused_memory_level: 1
+    activation_checkpointing: false
+    tensor_model_parallel_size: 1
+    expert_tensor_parallel_size: 1
+    expert_model_parallel_size: 1
+    pipeline_model_parallel_size: 1
+    context_parallel_size: 1
+    pipeline_dtype: bfloat16
+    num_layers_in_first_pipeline_stage: null
+    num_layers_in_last_pipeline_stage: null
+    sequence_parallel: false
+    freeze_moe_router: false
+    moe_router_dtype: null
+    moe_router_load_balancing_type: aux_loss
+    moe_router_bias_update_rate: 1.0e-3
+    moe_permute_fusion: false
+    apply_rope_fusion: true
+    defer_fp32_logits: false
+    optimizer: {optimizer: adam, lr: 2.0e-5, min_lr: 0.0, weight_decay: 0.1, bf16: false, fp16: false, params_dtype: float32, adam_beta1: 0.9, adam_beta2: 0.98, adam_eps: 1.0e-5, sgd_momentum: 0.9, use_distributed_optimizer: true, use_precision_aware_optimizer: true, clip_grad: 1.0, optimizer_cpu_offload: false, optimizer_offload_fraction: 0.0}
+    scheduler: {start_weight_decay: 0.1, end_weight_decay: 0.1, weight_decay_incr_style: constant, lr_decay_style: cosine, lr_decay_iters: 1024, lr_warmup_iters: 31, lr_warmup_init: 6.451612903225807e-7}
+    distributed_data_parallel_config: {grad_reduce_in_fp32: false, overlap_grad_reduce: true, overlap_param_gather: true, data_parallel_sharding_strategy: optim_grads_params, use_custom_fsdp: false}
+
+data:
+  max_input_seq_length: 16384
+  add_bos: true
+  add_eos: true
+  add_generation_prompt: false
+  shuffle: false
+  num_workers: 1
+  dataset_name: ResponseDataset
+  train_data_path: /lfs/skampere3/0/vmadan/paper1_phase1c_sft_v1/matched_sft_train.jsonl
+  val_data_path: /lfs/skampere3/0/vmadan/paper1_phase1c_sft_v1/matched_sft_validation.jsonl
+  input_key: input
+  output_key: output
+  prompt_file: null
+  split: null
+  seed: null
+
+logger:
+  log_dir: ${oc.env:PHASE1C_LOG_DIR}
+  wandb_enabled: true
+  tensorboard_enabled: true
+  mlflow_enabled: false
+  swanlab_enabled: false
+  monitor_gpus: true
+  wandb: {project: paper1-phase1c-sft, name: "${oc.env:PHASE1C_RUN_NAME}"}
+  tensorboard: {log_dir: "${oc.env:PHASE1C_TENSORBOARD_DIR}"}
+  mlflow: {experiment_name: paper1-phase1c-sft, run_name: "${oc.env:PHASE1C_RUN_NAME}"}
+  gpu_monitoring: {collection_interval: 10, flush_interval: 10}
+
+cluster: {gpus_per_node: 1, num_nodes: 1}

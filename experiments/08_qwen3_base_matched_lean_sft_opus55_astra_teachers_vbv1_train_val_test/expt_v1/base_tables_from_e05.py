@@ -27,12 +27,18 @@ def wilson(k: int, n: int, z: float = 1.959964) -> tuple[float, float]:
 
 def table(manifest: Path) -> dict:
     with open(manifest, encoding="utf-8", newline="") as fh:
-        split_of = {r["task_id"]: (r["split"], int(r["core"])) for r in csv.DictReader(fh)}
+        manifest_rows = list(csv.DictReader(fh))
+    split_of = {r["task_id"]: (r["split"], int(r["core"])) for r in manifest_rows}
+    if len(split_of) != len(manifest_rows):
+        raise ValueError("duplicate task ids in the split manifest")
     out: dict = {}
     for m in MODELS:
         with open(E05 / f"per_task_{m}_g8.csv", encoding="utf-8", newline="") as fh:
             rows = list(csv.DictReader(fh))
-        assert {r["task_id"] for r in rows} == set(split_of), f"{m}: task ids differ from the split manifest"
+        if len(rows) != len(split_of) or {r["task_id"] for r in rows} != set(split_of):
+            raise ValueError(f"{m}: expected exactly one row per manifest task")
+        if any(int(r["samples_present"]) != G for r in rows):
+            raise ValueError(f"{m}: incomplete G={G} rows cannot be reported as measured failures")
         for split in ("validation", "test"):
             for scope, keep in (("all", lambda c: True), ("core", lambda c: c == 1), ("industryset", lambda c: c == 0)):
                 sel = [r for r in rows if split_of[r["task_id"]][0] == split and keep(split_of[r["task_id"]][1])]

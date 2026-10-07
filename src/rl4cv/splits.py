@@ -288,6 +288,16 @@ def build_split(veribench_root: str | Path, *, fractions: tuple[float, ...] = DE
     ]
     manifest_csv = manifest_to_csv(rows)
 
+    summary = _split_summary(rows, sizes, edges, mapping, manifest_csv, fractions, salt, threshold, n)
+    out = {"rows": rows, "manifest_csv": manifest_csv, "summary": summary, "edges": edges}
+    if with_leakage:
+        out["leakage"] = leakage_report(tasks, split_of, n=n)
+    return out
+
+
+def _split_summary(rows: list[dict], sizes: dict[str, int], edges: list[dict], mapping: dict,
+                   manifest_csv: str, fractions: tuple[float, ...], salt: str, threshold: float, n: int) -> dict:
+    """Summarize the manifest's counts, grouping evidence and reproducibility parameters."""
     def counts(pred) -> dict:
         c = {s: 0 for s in SPLITS}
         for r in rows:
@@ -302,7 +312,7 @@ def build_split(veribench_root: str | Path, *, fractions: tuple[float, ...] = DE
     edge_counts: dict[str, int] = {}
     for e in edges:
         edge_counts[e["reason"]] = edge_counts.get(e["reason"], 0) + 1
-    summary = {
+    return {
         "schema": "rl4cv-vbv1-split-v1",
         "decision": "D-013",
         "parameters": {"fractions": dict(zip(SPLITS, fractions)), "salt": salt, "jaccard_threshold": threshold, "ngram": n},
@@ -315,10 +325,6 @@ def build_split(veribench_root: str | Path, *, fractions: tuple[float, ...] = DE
         "gold_mapping": mapping,
         "manifest_sha256": hashlib.sha256(manifest_csv.encode("utf-8")).hexdigest(),
     }
-    out = {"rows": rows, "manifest_csv": manifest_csv, "summary": summary, "edges": edges}
-    if with_leakage:
-        out["leakage"] = leakage_report(tasks, split_of, n=n)
-    return out
 
 
 def manifest_to_csv(rows: list[dict]) -> str:

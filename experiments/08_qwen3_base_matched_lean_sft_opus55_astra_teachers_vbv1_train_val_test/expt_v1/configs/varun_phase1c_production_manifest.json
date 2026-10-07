@@ -1,0 +1,17 @@
+{
+  "schema": "paper1-phase1c-production-sft-v1",
+  "nemo_rl": {"version": "0.4.0", "revision": "c751f811217db7df0d4c94abdeaada6626cfc150", "cuda_lock": "pytorch-cu128"},
+  "data": {
+    "train_rows": 2048,
+    "train_sha256": "dd95b0ca8f89dfe6ca1c644995ddba62e279f3fbfe09cf9eab0a949ab0320e07",
+    "validation_rows": 256,
+    "validation_sha256": "d1ebc28cbd4695f4a53b7acb006df71706c9790db686ada47c5e5c975743bda9",
+    "recipe_sha256": "b65f15939504ddd31c7809b8255ba3f90df51373fd4d2acf1af0af43540f1a6a"
+  },
+  "models": {
+    "1.7B": {"repo": "Qwen/Qwen3-1.7B-Base", "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1"},
+    "4B": {"repo": "Qwen/Qwen3-4B-Base", "revision": "906bfd4b4dc7f14ee4320094d8b41684abff8539"},
+    "8B": {"repo": "Qwen/Qwen3-8B-Base", "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"}
+  },
+  "matched_science": {"epochs": 1, "global_examples_per_update": 2, "updates": 1024, "max_sequence_length": 16384, "assistant_only_loss": true, "precision": "bfloat16", "lr": 0.00002, "warmup_updates": 31, "scheduler": "linear-warmup-then-cosine", "checkpoint_period_updates": 256, "checkpoint_keep_top_k": 4, "checkpoint_axis": "update_quartiles_256_512_768_1024", "checkpoint_reporting": "report exact cumulative admitted assistant tokens at every checkpoint", "validation_rows_per_evaluation": 256}
+}
