@@ -4,9 +4,9 @@
 
 **TLDR:** The VeriBench V1 train / validation / test split (539 / 135 / 222 tasks, D-013) and the zero-call baselines are done. On the new validation split, Qwen3 Base's `kernel_binary` mixed-group share at G = 8 is 0.000 (1.7B), 0.022 (4B) and 0.000 (8B), all below the 0.05 gate. The SNAP worker has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity); lock 1 and the live teacher preflight are next.
 
-**Status:** RUNNING (SNAP worker on `skampere1`, tmux `rl4cv-e08-worker`; zero-call lock-1 checks done, lock 1 pending)
+**Status:** RUNNING (SNAP worker on `skampere1`, tmux `rl4cv-e08-worker`; lock 1 done, live teacher preflight running, NeMo RL 0.4.0 built)
 
-**Last updated:** 10-07-2026 17:12 PDT (worker, lock-1 zero-call checks)
+**Last updated:** 10-07-2026 17:31 PDT (worker, lock 1 and live preflight)
 
 ## Phases
 
@@ -15,7 +15,7 @@
 | D-013 split | DONE (10-07-2026) | `expt_v1/results/split/` (manifest SHA-256 `157ce781…`), `tests/test_splits.py` |
 | Base models on the splits (experiment 05 receipts) | DONE (10-07-2026) | `expt_v1/results/base_qwen3_e05_on_d013_splits.json` |
 | Token-budget inputs | DONE (10-07-2026) | `expt_v1/results/token_budget_gold_lengths.json`, `token_budget_e103_teacher_yields.json` |
-| Lock 1 preflight and lock | IN PROGRESS (zero-call checks DONE 10-07-2026; lock and live preflight pending) | `expt_v1/results/pack_check.json`, `scorer_adapter_check.json`, `template_check.json`, `deployment_e08.json`, `route_identity_e08.json` |
+| Lock 1 preflight and lock | lock 1 LOCKED 2026-10-08T00:16 UTC at `6e6890f` (lock commit `cc86ec0`); live preflight (8 cells) IN PROGRESS since 10-07-2026 17:17 PDT | `expt_v1/results/pack_check.json`, `scorer_adapter_check.json`, `template_check.json`, `deployment_e08.json`, `route_identity_e08.json` |
 | Teacher runs (4,312 cells) | PENDING | — |
 | Scoring, screen, SFT set S | PENDING | — |
 | Lock 2 preflight and lock | PENDING | — |

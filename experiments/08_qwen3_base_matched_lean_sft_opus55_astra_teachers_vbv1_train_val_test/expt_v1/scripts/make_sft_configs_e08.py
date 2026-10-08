@@ -120,6 +120,8 @@ def main(argv: list[str] | None = None) -> int:
     report = {"written_utc": stamp(), "source": {"path": str(VARUN_YAML.relative_to(EXP)), "sha256": VARUN_SHA256}, "schedule_sha256": sha(a.schedule.read_bytes()),
               "steps": sched["steps"], "warmup_steps_W": sched["warmup_steps_W"], "checkpoints": sched["checkpoints"], "sizes": {}}
     md = ["| Key | Varun | Experiment 08 | Reason |", "|---|---|---|---|"]
+    a.out_dir.mkdir(parents=True, exist_ok=True)
+    a.report.parent.mkdir(parents=True, exist_ok=True)
     for size in SIZES:
         cfg, changes = build(size, varun, sched)
         out = a.out_dir / f"e08_sft_{size}.yaml"
@@ -127,7 +129,7 @@ def main(argv: list[str] | None = None) -> int:
                   f"scripts/make_sft_configs_e08.py; every difference is listed in results/sft_config_diff.md.\n")
         out.write_text(header + yaml.safe_dump(cfg, sort_keys=False), encoding="utf-8")
         unchanged = {k: v for k, v in flatten(varun).items() if flatten(cfg).get(k, "<absent>") == v}
-        report["sizes"][size] = {"config": str(out.relative_to(EXP)), "sha256": sha(out.read_bytes()), "n_changes": len(changes), "changes": changes, "n_unchanged_keys": len(unchanged),
+        report["sizes"][size] = {"config": str(out.relative_to(EXP)) if out.is_relative_to(EXP) else str(out), "sha256": sha(out.read_bytes()), "n_changes": len(changes), "changes": changes, "n_unchanged_keys": len(unchanged),
                                  "gpu_layout": GPU_LAYOUT[size]}
         if size == SIZES[0]:
             for c in changes:
