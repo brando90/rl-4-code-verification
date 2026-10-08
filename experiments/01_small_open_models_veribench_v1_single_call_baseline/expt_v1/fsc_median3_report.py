@@ -84,7 +84,7 @@ def main() -> int:
             "items_with_missing_repeats": d["items_with_missing_repeats"],
             "charges_usd_total_suite": d["charges_usd_total"],
             "charges_usd_r23": round(sum(v for k, v in d["charges_usd_per_member_and_part"].items()
-                                         if k.endswith("@r23")), 6),
+                                         if "@r23" in k), 6),
             "status_counts": d["status_counts_per_member_and_part"],
         }
         if label == "qwen3-14b" and MAIN_CELL_14B in d["per_task"]:
@@ -101,6 +101,7 @@ def main() -> int:
         rows.append(f"| {NAMES[label]} | {s['n_paired']} | {s['mean_FSC_single_repeat']:.3f} | "
                     f"{s['mean_FSC_median3_paired']:.3f} | {s['mean_paired_delta']:+.3f} [{lo:+.3f}, {hi:+.3f}] "
                     f"p-val={p:.3f} | {s['mean_abs_change']:.3f} | {s['n_items_changed']}/{s['n_paired']} | "
+                    f"{s['mean_FSC_median3_all_complete']:.3f} ({s['n_items_complete']}/{s['n_items_judged']}) | "
                     f"{lt3_any} | {s['charges_usd_r23']:.2f} |")
     pooled = {}
     if all_diffs:
@@ -116,8 +117,9 @@ def main() -> int:
            "fsc_order_unchanged": order_old == order_new}
     (RESULTS / "fsc_median3_summary.json").write_text(json.dumps(out, indent=1) + "\n")
     header = ("| Model | n (paired items) | FSC, 1 repeat | FSC, median of 3 | Δ (new − old) [95% task bootstrap] | "
-              "mean abs change | items changed | complete items on < 3 repeats (any member) | repeats 2–3 spend (USD) |\n"
-              "|---|---:|---:|---:|---|---:|---:|---:|---:|")
+              "mean abs change | items changed | **new FSC, all complete items (n/judged)** | "
+              "complete items on < 3 repeats (any member) | repeats 2–3 spend incl. recovery (USD) |\n"
+              "|---|---:|---:|---:|---|---:|---:|---:|---:|---:|")
     print(header + "\n" + "\n".join(rows))
     print(json.dumps({"pooled": pooled, "order_unchanged": out["fsc_order_unchanged"],
                       "order_old": order_old, "order_new": order_new}, indent=1))
