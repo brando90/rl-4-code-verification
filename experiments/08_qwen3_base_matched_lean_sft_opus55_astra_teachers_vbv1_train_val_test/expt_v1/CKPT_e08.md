@@ -4,7 +4,7 @@
 
 **TLDR:** Resumable state of experiment 08. The master finished the zero-call design steps; the SNAP worker (tmux `rl4cv-e08-worker` on `skampere1`) has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity) and is locking PROTOCOL §§ 1–7 before the 8-call live teacher preflight. `$WORK/CKPT_rl4cv-e08-worker.md` is a symlink to this file.
 
-**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-07-2026 17:47 PDT (worker).
+**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-07-2026 17:52 PDT (worker).
 
 ## State
 
@@ -55,6 +55,12 @@
   - Astra (`openai/gpt-6-astra-max`): 4 / 4 cells measured, finish `stop`, 2.3–3.8k output tokens with 17–33k reasoning tokens, 8–16 min each, charges 2.94 + 2.83 USD; Lean files collected by the service (`valk run results` returns "tracker returned a malformed response", as in 02A v3; the run-output benchmark JSON carries the rows and the harvest now reads it).
   - Opus 5.5 (`anthropic/claude-opus-5-5-no-fallback`, `compute_effort max`): 4 / 4 cells `model_error` / `MaxOutputTokensExceededError` after ~18 min, no usage or charge recorded. Zero-call evidence: the gateway caps this model's `max_tokens` at 128,000 (registry `properties`); experiment 103's Opus 5 max used a median 76,840 reasoning tokens (117 / 895 cells exceeded, the two preflight tasks did not); 02A v3's Fable 5.1 max preflight failed the same way. So the locked setting cannot yield files on most tasks and 2,156 main calls at max would be wasted.
   - Decision: do not admit Opus main runs at max. Run a tagged diagnostic preflight at `compute_effort xhigh` (same two train tasks, same labels + `-xhigh`, recorded in `runs_state.json` under `@xhigh`, excluded from S). If it completes and scores end to end, amend PROTOCOL § 3 for `opus55` to `xhigh` as a versioned lock-1 amendment (v1.1) before any Opus main call; if not, step to `high` once more, else report the Opus teacher as BLOCKED and continue with Astra only. Astra main runs are admitted under the unchanged lock once its preflight scores end to end. Flagged for Brando / the master in `results.md`.
+
+- **10-07-2026 17:52 PDT — § 7 infrastructure verified (disposable smokes, synthetic data, GPU 0) and § 9 Base 14B generation launched.**
+  - NeMo RL 0.4.0 `c751f811` (`$WORK/nemo_rl`, `uv`; torch 2.7.1+cu128, transformers 4.55.4; worker venvs built at first launch, Ray temp dir must be short: `/tmp/user/<uid>/e08ray*`). Smoke 1: 4 synthetic examples, 2 steps, loss 2.73 → 2.15, `step_2` checkpoint (weights + optimizer + scheduler + dataloader state) exported with `convert_dcp_to_hf.py` and loaded by vLLM 0.30.0 (`venv_gen`; CUDA 12.8 `nvcc` must be first on PATH for flashinfer's JIT, as experiment 01 found) → generation + extraction OK on the two preflight train tasks.
+  - Smoke 2 (3 examples + the odd-|S| padding slot from `prepare_sft_nemo_e08.py`): TensorBoard `train/global_valid_toks` = 60 then 30, i.e. the padding slot contributes zero loss tokens and the cumulative log equals the precomputed schedule (`extract_train_logs_e08.py` → `matches_schedule true`). TensorBoard files live under `<log_dir>/exp_NNN/tensorboard/`.
+  - Checkpoint mechanism for the token-fraction rungs: NeMo RL saves only every `save_period` steps or at the last step, so production runs as a chain of segments (`launch_sft_e08.sh`): each segment's `sft.max_num_steps` is the next rung step; the next segment resumes weights, optimizer, LR scheduler and dataloader state from it. Identical at every size.
+  - Base 14B validation generation: `tmux rl4cv-e08-ladder-base14b`, `run_ladder_e08.sh validation base14b Qwen/Qwen3-14B-Base 0b0bd373… 1,2 1` (2 vLLM shards, 540 cells each; frozen manifest `results/ladder_manifest_base14b.json`); GPU 1 at 70 GB / 100 % four minutes after launch, GPU 2 shard staggered 180 s.
 
 ## Next command (worker)
 
