@@ -94,6 +94,7 @@ Append new entries; strike through superseded ones and point to the entry that r
   - Experiment 05's per-task receipts restricted to the splits are free Base-model baselines.
   - Frontier evaluations in the VeriBench repository train nothing and are unaffected.
   - D-104 gains a pool: VeriBench train tasks with kernel-verified teacher files (experiment 08).
+  - **Review clarification (10-07-2026):** `docs/DATASETS.md` screens D-013 training text against validation/test and other held-out panels; earlier locks still screen against all 896. Existing Base/teacher test summaries are prior exposure, not a previously unseen test; they cannot guide the prospective recipe or selection. D-009 common-cohort aggregation requires FSC for every IC_tests = 1 cell, even with zero proved theorems; experiment 08 adds that coverage to D-102's proof-positive scope and preserves its 60-file audit. Historical protocols and numbers are unchanged.
 
 ### D-015 — Single-call Valkyrie teachers (Claude Opus 5.5, GPT-6 Astra) for experiment 08's SFT data — accepted — 10-07-2026 — Brando (request), Claude master (route)
 

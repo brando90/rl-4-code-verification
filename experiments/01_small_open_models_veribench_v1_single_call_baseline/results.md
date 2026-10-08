@@ -2,7 +2,143 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/01_small_open_models_veribench_v1_single_call_baseline/results.md>
 
-**TLDR:** The GPU run on `skampere1` (GPUs 2–7) is **complete**: full G=1 eval (9 models × 896 tasks) and G=8 probe (8 models × 128 tasks × 8 samples) jobs, launched 09-30-2026 12:31, all generated, kernel-scored and FSC-judged as of 10-01-2026 12:35 — every declared cell has a terminal receipt (reopened 12:16 to fix one omission: Qwen3.5-0.8B's row and FSC audit, below). D-101 (self-hosted inference) and D-102 (FSC judge route: `vb103_judge` Valkyrie, payer: Vals gateway) are both accepted; the judge's own controls passed on a new, isolated Valkyrie benchmark service. Near-zero IC_tests/IC_proofs throughout, as hypothesized, with one exception: **Qwen3-14B produced the experiment's first (and only) fully-compiling, fully-proving cell** (1/896, SCSC≈0.928). **Gate G1 resolves to PASS**: two models (Qwen3-14B, 6 splits, max 0.333; Qwen3.5-9B, 4 splits, max 0.25) clear the locked kernel_binary mixed-group-share ≥ 0.20 threshold; the other 6 of 8 probe-scored models show exactly 0.0 overall mixed-group share — the signal is thin and concentrated in the two largest probed models. Interesting secondary observation (diagnostic only, not SCSC-relevant since still 0 positive cells): **Qwen3.6-27B's ungated audit FSC (0.771) is far higher than every smaller model's (0.01–0.46 range)** — a more capable model produces more plausible-looking Lean even when it still doesn't compile/prove. Total judge spend: **$106.37 of $400**.
+**TLDR:** The GPU run on `skampere1` (GPUs 2–7) is **complete**: full G=1 eval (9 models × 896 tasks) and G=8 probe (8 models × 128 tasks × 8 samples) jobs, launched 09-30-2026 12:31, all generated, kernel-scored and FSC-judged as of 10-01-2026 12:35 — every declared cell has a terminal receipt (reopened 12:16 to fix one omission: Qwen3.5-0.8B's row and FSC audit, below). D-101 (self-hosted inference) and D-102 (FSC judge route: `vb103_judge` Valkyrie, payer: Vals gateway) are both accepted; the judge's own controls passed on a new, isolated Valkyrie benchmark service. Near-zero IC_tests/IC_proofs throughout, as hypothesized, with one exception: **Qwen3-14B produced the experiment's first (and only) fully-compiling, fully-proving cell** (1/896, SCSC≈0.928). **Gate G1 resolves to PASS**: two models (Qwen3-14B, 6 splits, max 0.333; Qwen3.5-9B, 4 splits, max 0.25) clear the locked kernel_binary mixed-group-share ≥ 0.20 threshold; the other 6 of 8 probe-scored models show exactly 0.0 overall mixed-group share — the signal is thin and concentrated in the two largest probed models. Interesting secondary observation (diagnostic only, not SCSC-relevant since still 0 positive cells): **Qwen3.6-27B's ungated audit FSC (0.771) is far higher than every smaller model's (0.01–0.46 range)** — a more capable model produces more plausible-looking Lean even when it still doesn't compile/prove. Total judge spend: **$106.37 of $400**. **Update 10-07-2026:** a recompile diagnostic (no model calls) confirms the zeros under the frozen scorer. Most files fail on Lean 4 well-formedness before any test runs. VeriBench's own `namespace {file stem}` hint, which is invalid on 533/896 tasks, accounts for a large share: escaping just that name moves Qwen3-14B from 1 to 25 tasks with IC_tests·IC_proofs > 0. See "Zero-score diagnostic" below.
+
+## Zero-score diagnostic (10-07-2026): are the zeros real?
+
+**Setup and status.** This used no model calls and finished 10-07-2026 16:41.
+
+- **What ran.** On skampere1 I recompiled every G = 1 file from all 9 models (8,064 cells) with the frozen scorer's command and logged every error with the declaration it sits in. Then I ran two cumulative edit variants and one proof ablation, each rescored with the frozen scorer's own functions.
+- **Integrity.**
+  - Every rows file has one row per task.
+  - There were 0 diagnostic errors.
+  - **The recompile agreed with the recorded `compiles` field on 8,064 of 8,064 files.**
+  - The "model's own file" rows below reproduce experiment 01's recorded compile counts and IC factors for all 9 models.
+- **Where things are.**
+  - Code: [`expt_v1/diagnostics/diagnose_zero_scores.py`](expt_v1/diagnostics/diagnose_zero_scores.py).
+  - Summaries: [`expt_v1/results/diagnostics_10-07-2026/`](expt_v1/results/diagnostics_10-07-2026/README.md).
+  - Per-cell rows and edited files stay on the host (`/lfs/skampere1/0/brando9/rl4cv_e01_diag_10-07-2026/`), because they contain model output on VeriBench tasks.
+
+**Why this was run.** Brando asked whether SCSC is really 0, and whether these models fail even IC_tests, i.e. their own `example` tests. The frozen scorer gives IC_tests = 1 only if the **whole file** compiles and contains at least one `example`. So one bad line anywhere zeroes IC_tests, IC_proofs and SCSC together. The scorer kept no compile logs, so the reasons were unknown.
+
+**What each variant changes.** These are diagnostics, never VeriBench scores. Each row replaces the previous row's cell only where the variant edits the file.
+
+1. **Model's own file.** The file is unchanged; only the recompile is new.
+2. **+ namespace escaped.** Only the name in a digit-leading `namespace` (and its matching `end`, `open` and qualified uses) is wrapped in `«»`.
+   - VeriBench's task instruction gives ``Namespace (e.g., `namespace {file stem}`)``. This is in `vb_harbor/adapter/adapter.py:134`, at the pinned commit `c11b99b` and at VeriBench HEAD `9e312c9052`.
+   - For **533 of 896 tasks** (all of easy_set, realcode_set and security_set) the stem starts with a digit, e.g. `namespace 1_MyAdd`. That is not a Lean identifier.
+   - The gold files use `namespace MyAdd`.
+3. **+ comment syntax repaired.** On top of variant 2:
+   - a stand-alone `-!` line becomes the comment closer `-/`;
+   - a `/--` declaration doc comment that is followed by a non-declaration becomes the module doc `/-!`.
+
+   No code, test, statement or proof changes.
+
+**The proof ablation.** "Failing proofs → `sorry`" replaces only the theorem or lemma proofs that hold an error with `by sorry`, for up to 4 recompiles. Definitions, statements and `example` tests are never touched, because IC_tests does not inspect examples for `sorry`. Factors come from the frozen scorer's `analyze_lean_file` and `ic_pp_for_compiled` (the kernel axiom check), so a `sorry` proof counts 0. FSC was not judged for any variant, so no SCSC is given for them.
+
+### Frozen-scorer factors over all 896 cells (95% Wilson intervals; unit = task)
+
+| Model | Files as scored | Compile, as written [95% CI] | IC_tests | IC_proofs | Cells with IC_tests·IC_proofs > 0 | Compile after failing proofs → `sorry` | IC_tests | IC_proofs | Cells with IC_tests·IC_proofs > 0 |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| qwen3.5-0.8b | model's own file | 4/896 (0.4%) [0.2, 1.1] | 0.000 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 4/896 (0.4%) [0.2, 1.1] | 0.000 | 0.000 | 0/896 (0.0%) [0.0, 0.4] |
+| qwen3.5-0.8b | + namespace escaped | 4/896 (0.4%) [0.2, 1.1] | 0.000 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 4/896 (0.4%) [0.2, 1.1] | 0.000 | 0.000 | 0/896 (0.0%) [0.0, 0.4] |
+| qwen3.5-0.8b | + comment syntax repaired | 4/896 (0.4%) [0.2, 1.1] | 0.000 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 4/896 (0.4%) [0.2, 1.1] | 0.000 | 0.000 | 0/896 (0.0%) [0.0, 0.4] |
+| qwen3.5-2b | model's own file | 3/896 (0.3%) [0.1, 1.0] | 0.000 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 3/896 (0.3%) [0.1, 1.0] | 0.000 | 0.000 | 0/896 (0.0%) [0.0, 0.4] |
+| qwen3.5-2b | + namespace escaped | 5/896 (0.6%) [0.2, 1.3] | 0.000 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 5/896 (0.6%) [0.2, 1.3] | 0.000 | 0.000 | 0/896 (0.0%) [0.0, 0.4] |
+| qwen3.5-2b | + comment syntax repaired | 6/896 (0.7%) [0.3, 1.5] | 0.000 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 6/896 (0.7%) [0.3, 1.5] | 0.000 | 0.000 | 0/896 (0.0%) [0.0, 0.4] |
+| qwen3-1.7b | model's own file | 0/896 (0.0%) [0.0, 0.4] | 0.000 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 1/896 (0.1%) [0.0, 0.6] | 0.001 | 0.000 | 0/896 (0.0%) [0.0, 0.4] |
+| qwen3-1.7b | + namespace escaped | 2/896 (0.2%) [0.1, 0.8] | 0.002 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 9/896 (1.0%) [0.5, 1.9] | 0.010 | 0.000 | 0/896 (0.0%) [0.0, 0.4] |
+| qwen3-1.7b | + comment syntax repaired | 2/896 (0.2%) [0.1, 0.8] | 0.002 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 9/896 (1.0%) [0.5, 1.9] | 0.010 | 0.000 | 0/896 (0.0%) [0.0, 0.4] |
+| qwen3.5-4b | model's own file | 4/896 (0.4%) [0.2, 1.1] | 0.001 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 4/896 (0.4%) [0.2, 1.1] | 0.001 | 0.000 | 0/896 (0.0%) [0.0, 0.4] |
+| qwen3.5-4b | + namespace escaped | 6/896 (0.7%) [0.3, 1.5] | 0.001 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 8/896 (0.9%) [0.4, 1.8] | 0.002 | 0.001 | 1/896 (0.1%) [0.0, 0.6] |
+| qwen3.5-4b | + comment syntax repaired | 15/896 (1.7%) [1.0, 2.7] | 0.002 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 18/896 (2.0%) [1.3, 3.1] | 0.003 | 0.001 | 1/896 (0.1%) [0.0, 0.6] |
+| qwen3-4b | model's own file | 0/896 (0.0%) [0.0, 0.4] | 0.000 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 11/896 (1.2%) [0.7, 2.2] | 0.012 | 0.002 | 3/896 (0.3%) [0.1, 1.0] |
+| qwen3-4b | + namespace escaped | 2/896 (0.2%) [0.1, 0.8] | 0.002 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 36/896 (4.0%) [2.9, 5.5] | 0.040 | 0.005 | 10/896 (1.1%) [0.6, 2.0] |
+| qwen3-4b | + comment syntax repaired | 2/896 (0.2%) [0.1, 0.8] | 0.002 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 38/896 (4.2%) [3.1, 5.8] | 0.042 | 0.005 | 11/896 (1.2%) [0.7, 2.2] |
+| qwen3-8b | model's own file | 2/896 (0.2%) [0.1, 0.8] | 0.002 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 15/896 (1.7%) [1.0, 2.7] | 0.017 | 0.002 | 5/896 (0.6%) [0.2, 1.3] |
+| qwen3-8b | + namespace escaped | 13/896 (1.5%) [0.9, 2.5] | 0.015 | 0.011 | 11/896 (1.2%) [0.7, 2.2] | 73/896 (8.1%) [6.5, 10.1] | 0.082 | 0.022 | 35/896 (3.9%) [2.8, 5.4] |
+| qwen3-8b | + comment syntax repaired | 13/896 (1.5%) [0.9, 2.5] | 0.015 | 0.011 | 11/896 (1.2%) [0.7, 2.2] | 74/896 (8.3%) [6.6, 10.2] | 0.083 | 0.022 | 35/896 (3.9%) [2.8, 5.4] |
+| qwen3.5-9b | model's own file | 5/896 (0.6%) [0.2, 1.3] | 0.000 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 8/896 (0.9%) [0.4, 1.8] | 0.003 | 0.001 | 2/896 (0.2%) [0.1, 0.8] |
+| qwen3.5-9b | + namespace escaped | 10/896 (1.1%) [0.6, 2.0] | 0.001 | 0.002 | 1/896 (0.1%) [0.0, 0.6] | 23/896 (2.6%) [1.7, 3.8] | 0.012 | 0.007 | 10/896 (1.1%) [0.6, 2.0] |
+| qwen3.5-9b | + comment syntax repaired | 15/896 (1.7%) [1.0, 2.7] | 0.002 | 0.004 | 2/896 (0.2%) [0.1, 0.8] | 38/896 (4.2%) [3.1, 5.8] | 0.023 | 0.014 | 20/896 (2.2%) [1.5, 3.4] |
+| qwen3-14b | model's own file | 5/896 (0.6%) [0.2, 1.3] | 0.006 | 0.001 | 1/896 (0.1%) [0.0, 0.6] | 37/896 (4.1%) [3.0, 5.6] | 0.041 | 0.009 | 17/896 (1.9%) [1.2, 3.0] |
+| qwen3-14b | + namespace escaped | 30/896 (3.3%) [2.4, 4.7] | 0.034 | 0.027 | 25/896 (2.8%) [1.9, 4.1] | 130/896 (14.5%) [12.3, 17.0] | 0.145 | 0.065 | 90/896 (10.0%) [8.2, 12.2] |
+| qwen3-14b | + comment syntax repaired | 33/896 (3.7%) [2.6, 5.1] | 0.037 | 0.030 | 28/896 (3.1%) [2.2, 4.5] | 140/896 (15.6%) [13.4, 18.1] | 0.156 | 0.071 | 98/896 (10.9%) [9.1, 13.2] |
+| qwen3.6-27b-local | model's own file | 2/896 (0.2%) [0.1, 0.8] | 0.001 | 0.000 | 0/896 (0.0%) [0.0, 0.4] | 15/896 (1.7%) [1.0, 2.7] | 0.016 | 0.005 | 9/896 (1.0%) [0.5, 1.9] |
+| qwen3.6-27b-local | + namespace escaped | 8/896 (0.9%) [0.4, 1.8] | 0.008 | 0.007 | 6/896 (0.7%) [0.3, 1.5] | 26/896 (2.9%) [2.0, 4.2] | 0.028 | 0.015 | 19/896 (2.1%) [1.4, 3.3] |
+| qwen3.6-27b-local | + comment syntax repaired | 22/896 (2.5%) [1.6, 3.7] | 0.023 | 0.022 | 20/896 (2.2%) [1.5, 3.4] | 111/896 (12.4%) [10.4, 14.7] | 0.123 | 0.060 | 91/896 (10.2%) [8.3, 12.3] |
+
+### Why the model's own files fail
+
+| Model | Cells with a file | Recompile disagrees with recorded result | No file (cut off or no Lean) | Definitions fail | Tests or statements fail | Compiles after proof→`sorry` | Compiles as is |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| qwen3.5-0.8b | 800/896 | 0 | 96 | 766 | 30 | 0 | 4 |
+| qwen3.5-2b | 585/896 | 0 | 311 | 578 | 4 | 0 | 3 |
+| qwen3-1.7b | 606/896 | 0 | 290 | 598 | 7 | 1 | 0 |
+| qwen3.5-4b | 893/896 | 0 | 3 | 874 | 15 | 0 | 4 |
+| qwen3-4b | 859/896 | 0 | 37 | 820 | 28 | 11 | 0 |
+| qwen3-8b | 855/896 | 0 | 41 | 810 | 30 | 13 | 2 |
+| qwen3.5-9b | 895/896 | 0 | 1 | 860 | 27 | 3 | 5 |
+| qwen3-14b | 875/896 | 0 | 21 | 801 | 37 | 32 | 5 |
+| qwen3.6-27b-local | 896/896 | 0 | 0 | 858 | 23 | 13 | 2 |
+
+| Model | Compiles after proof→`sorry` (incl. as is), 95% Wilson CI | Cells with IC_tests·IC_proofs > 0 after ablation | Ablation IC_tests (mean over 896) | Ablation IC_proofs (mean over 896) | Definitions compile, among non-compiling files | Empty reasoning block |
+|---|---:|---:|---:|---:|---:|---:|
+| qwen3.5-0.8b | 4/896 (0.4%) [0.2, 1.1] | 0/896 (0.0%) [0.0, 0.4] | 0.000 | 0.000 | 30/796 (3.8%) | 0/753 |
+| qwen3.5-2b | 3/896 (0.3%) [0.1, 1.0] | 0/896 (0.0%) [0.0, 0.4] | 0.000 | 0.000 | 4/582 (0.7%) | 0/569 |
+| qwen3-1.7b | 1/896 (0.1%) [0.0, 0.6] | 0/896 (0.0%) [0.0, 0.4] | 0.001 | 0.000 | 8/606 (1.3%) | 501/606 |
+| qwen3.5-4b | 4/896 (0.4%) [0.2, 1.1] | 0/896 (0.0%) [0.0, 0.4] | 0.001 | 0.000 | 15/889 (1.7%) | 0/887 |
+| qwen3-4b | 11/896 (1.2%) [0.7, 2.2] | 3/896 (0.3%) [0.1, 1.0] | 0.012 | 0.002 | 39/859 (4.5%) | 0/859 |
+| qwen3-8b | 15/896 (1.7%) [1.0, 2.7] | 5/896 (0.6%) [0.2, 1.3] | 0.017 | 0.002 | 43/853 (5.0%) | 0/855 |
+| qwen3.5-9b | 8/896 (0.9%) [0.4, 1.8] | 2/896 (0.2%) [0.1, 0.8] | 0.003 | 0.001 | 30/890 (3.4%) | 0/893 |
+| qwen3-14b | 37/896 (4.1%) [3.0, 5.6] | 17/896 (1.9%) [1.2, 3.0] | 0.041 | 0.009 | 69/870 (7.9%) | 574/875 |
+| qwen3.6-27b-local | 15/896 (1.7%) [1.0, 2.7] | 9/896 (1.0%) [0.5, 1.9] | 0.016 | 0.005 | 36/894 (4.0%) | 0/688 |
+
+Share of non-compiling files with at least one error of each kind (a file can have several):
+
+| Model | Non-compiling files | parse | unknown_name | type_error | tactic_failed | termination | index_bounds_proof | timeout | other | in theorem_proof | in theorem_statement | in definition | in example_test | in other |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| qwen3.5-0.8b | 796 | 59% | 38% | 7% | 12% | 0% | 1% | 0% | 44% | 8% | 12% | 24% | 8% | 83% |
+| qwen3.5-2b | 582 | 93% | 52% | 38% | 54% | 1% | 2% | 0% | 57% | 42% | 39% | 62% | 47% | 91% |
+| qwen3-1.7b | 606 | 96% | 63% | 31% | 57% | 0% | 1% | 0% | 55% | 52% | 60% | 83% | 72% | 69% |
+| qwen3.5-4b | 889 | 96% | 53% | 51% | 76% | 0% | 2% | 2% | 43% | 67% | 38% | 69% | 72% | 88% |
+| qwen3-4b | 859 | 92% | 59% | 49% | 68% | 0% | 1% | 0% | 53% | 62% | 35% | 63% | 67% | 81% |
+| qwen3-8b | 853 | 94% | 66% | 49% | 83% | 1% | 3% | 0% | 29% | 89% | 28% | 73% | 85% | 71% |
+| qwen3.5-9b | 890 | 94% | 45% | 50% | 79% | 2% | 3% | 1% | 42% | 72% | 28% | 64% | 68% | 86% |
+| qwen3-14b | 870 | 88% | 51% | 48% | 70% | 0% | 4% | 0% | 30% | 68% | 24% | 49% | 59% | 81% |
+| qwen3.6-27b-local | 894 | 91% | 48% | 39% | 86% | 2% | 1% | 1% | 39% | 83% | 19% | 44% | 72% | 94% |
+
+**Failure classes.** These are assigned to the model's own non-compiling files, in this order:
+
+1. *definitions fail*: the file still fails with every `theorem`, `lemma` and `example` removed;
+2. *tests or statements fail*: definitions compile, but an `example` or a theorem statement errors;
+3. *compiles after proof → `sorry`*.
+
+The digit-namespace and `/--` cells fall in class 1, because the bad line is kept. Error kinds are message-regex categories, and "in other" covers module-level lines such as `namespace`, `end`, `open` and imports. The summaries' `files_with_lean3_markers` came from a regex that also matched valid Lean 4 `cases … with`, so it is not reported.
+
+### What this shows
+
+- **The zeros are real under VeriBench's rules; the scoring is not the problem.** The same compiler reproduces every recorded result. Very few files reach the tests: with every theorem and `example` removed, only 0.7–7.9% of each model's non-compiling files still compile.
+- **VeriBench's own namespace hint is a large, avoidable share of the zero.** Small Qwen models copy it: Qwen3-14B does so in 516 of its 896 files, Qwen3.5-9B in 526 and Qwen3-8B in 511. Escaping only that name changes cells with IC_tests·IC_proofs > 0 as follows:
+  - **Qwen3-14B: 1 → 25** (2.8% [1.9, 4.1]); IC_tests 0.006 → 0.034, IC_proofs 0.001 → 0.027;
+  - Qwen3-8B: 0 → 11;
+  - Qwen3.6-27B: 0 → 6.
+
+  Every definition, test and proof in those files is the model's own. Frontier single-call models in experiment 103 do not show a penalty on these splits: their compile-with-example rate is higher there, e.g. `gpt-6-astra-high` 0.673 [0.631, 0.712] vs 0.299 [0.253, 0.350] elsewhere. Split difficulty confounds that comparison.
+- **Comment syntax is the next shallow error.** Qwen3.6-27B mostly opens files with a `/--` doc comment before `namespace`: 659 of its first errors are "unexpected token …; expected …". Repairing comments takes it from 6 to 20 positive cells, and from 26 to 111 files compiling after failing proofs → `sorry`.
+- **Once a file compiles, many of its proofs check.** Among files that compile after both repairs and the proof ablation, the stated theorems that are kernel-proved are:
+  - 46% for Qwen3-14B (140 files);
+  - 49% for Qwen3.6-27B (111 files);
+  - 33% for Qwen3.5-9B (38 files);
+  - 27% for Qwen3-8B (74 files).
+
+  This is a selected subset, so it is descriptive only.
+- **The smallest models need more than syntax.** Qwen3.5-0.8B, Qwen3.5-2B and Qwen3-1.7B stay at ≤ 1.0% compiling and 0 positive cells even with every repair and the ablation. They yield no Lean file at all in 96–311 of 896 cells (cut off at the token cap or no extractable block), and they cite modules that do not exist: "unknown module prefix" is Qwen3.5-0.8B's most common first error, at 183.
+- **Skipped reasoning is not the driver.** Qwen3-14B leaves its `<think>` block empty in 574 of 875 files, and Qwen3-1.7B in 501 of 606. For Qwen3-14B, files with an empty block compile after the ablation at 24/574 (4.2%); files with reasoning do so at 13/301 (4.3%).
+- **What this means for the follow-up.**
+  - An SFT warm start should mainly teach well-formed Lean 4 under the pinned toolchain: valid names, comment syntax, real Mathlib modules and lemmas, instances, and termination proofs. Proof skill comes next.
+  - Its data should include digit-leading file stems with valid namespaces.
+  - Fixing the namespace hint is a VeriBench decision (agents-config Trigger Rule 43). A rerun on a fixed instruction would be a new `expt_v2` condition.
 
 ## Judge spend (running total against the $400 cap) — final, all runs harvested
 

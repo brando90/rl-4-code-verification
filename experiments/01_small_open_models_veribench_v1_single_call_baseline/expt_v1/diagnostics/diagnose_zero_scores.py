@@ -71,8 +71,10 @@ CATEGORIES = [
                               r"expected type|don't know how to synthesize|has type|mismatch", re.I)),
 ]
 
+# Lean 3 idioms only (`cases h with` is also valid Lean 4, so it is not counted). The 10-07-2026 summaries were
+# written with an earlier, looser version that also counted `cases … with`; their `files_with_lean3_markers` is not reported.
 LEAN3_MARKERS = re.compile(r"^\s*begin\s*$|^import (data|tactic|algebra|logic|init)\.|λ\s*\w+\s*,|^\s*assume\s|"
-                           r"\bcases\s+\w+\s+with\b|\bnat\.(succ|zero|rec)\b|\blist\.(nil|cons)\b", re.M)
+                           r"\bnat\.(succ|zero|rec)\b|\blist\.(nil|cons)\b", re.M)
 
 
 def categorize(msg: str) -> str:
@@ -637,7 +639,8 @@ def main(argv: list[str] | None = None) -> int:
         print(render([json.loads((Path(args.work_dir) / f"summary_{lb}.json").read_text()) for lb in args.labels]))
         return 0
     if args.combine:
-        names = ["model's own file"] + [f"+ {Path(d).name}" for d in args.combine]
+        pretty = {"full_nsfix": "+ namespace escaped", "full_surface": "+ comment syntax repaired"}
+        names = ["model's own file"] + [pretty.get(Path(d).name, f"+ {Path(d).name}") for d in args.combine]
         combos = []
         for lb in args.labels:
             for k, name in enumerate(names):

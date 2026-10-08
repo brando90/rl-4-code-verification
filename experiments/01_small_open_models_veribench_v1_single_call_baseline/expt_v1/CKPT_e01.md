@@ -4,7 +4,9 @@
 
 **TLDR:** Live checkpoint for the GPU worker running experiment 01 on `skampere1`. Updated at every stage change.
 
-## Zero-score diagnostic (CPU only, no model calls) — started 10-07-2026 15:32
+## Zero-score diagnostic (CPU only, no model calls) — DONE 10-07-2026 16:41 (started 15:32)
+
+**Outcome:** all six sessions finished `DONE rc=0`; 0 diagnostic errors; one row per task in every rows file; no tmux session or orphaned process left. Results: `results.md` → "Zero-score diagnostic"; summaries in `results/diagnostics_10-07-2026/`. The follow-up (SFT warm start) is owned by Rakshit (D-015).
 
 - **Why:** Brando questioned whether SCSC (VeriBench's aggregate score) is really 0 for these models, and whether IC_tests (does the file compile with at least one `example` test) is really 0. The scorer stored no compile logs, so this recompiles the existing G = 1 files to find out why they fail.
 - **Code:** [`diagnostics/diagnose_zero_scores.py`](diagnostics/diagnose_zero_scores.py). Live copy and outputs are in `/lfs/skampere1/0/brando9/rl4cv_e01_diag_10-07-2026/` (per-cell rows and summaries under `full/`; ablated files under `full/cells/`, which stay on the host because they contain model outputs on VeriBench tasks).

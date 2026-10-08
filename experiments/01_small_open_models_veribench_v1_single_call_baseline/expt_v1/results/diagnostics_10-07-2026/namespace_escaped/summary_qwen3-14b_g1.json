@@ -1,0 +1,154 @@
+{
+  "label": "qwen3-14b_g1",
+  "n_cells": 516,
+  "n_with_file": 516,
+  "n_no_file": 0,
+  "recompile_vs_scored_mismatches": [
+    "security_set__security_6858__safe__100_unsafecentralkeyserver_safe",
+    "security_set__security_6858__safe__102_unsafersatiming_safe",
+    "security_set__security_6858__safe__135_unsaferaceconditiontoctou_safe",
+    "security_set__security_6858__safe__162_unsafespectreevictbypass_safe",
+    "security_set__security_6858__safe__39_unsafeoobauth_safe",
+    "security_set__security_6858__safe__45_unsafemeltdownread_safe",
+    "security_set__security_6858__safe__84_unsafexssecho_safe",
+    "security_set__security_6858__vulnerabilities__100_unsafetamperdetection",
+    "security_set__security_6858__vulnerabilities__106_unsafeservernokeyproof",
+    "security_set__security_6858__vulnerabilities__112_unsafefileintegrity",
+    "security_set__security_6858__vulnerabilities__111_unsafewormpropagation",
+    "security_set__security_6858__vulnerabilities__125_unsafetpmhash",
+    "security_set__security_6858__vulnerabilities__133_unsafednsspoofing",
+    "security_set__security_6858__vulnerabilities__139_unsafebufferbounds",
+    "security_set__security_6858__vulnerabilities__142_unsafecertpinning",
+    "security_set__security_6858__vulnerabilities__26_unsafecsrftoken",
+    "security_set__security_6858__vulnerabilities__54_unsafenamespaceisolation",
+    "security_set__security_6858__vulnerabilities__61_unsafeuridelegation",
+    "security_set__security_6858__vulnerabilities__66_unsaferatelimit",
+    "security_set__security_6858__vulnerabilities__80_unsafepermlabel",
+    "security_set__security_6858__vulnerabilities__81_unsafesigperm",
+    "security_set__security_6858__vulnerabilities__82_unsafecookieforge",
+    "security_set__security_6858__vulnerabilities__85_unsafecookiedomain",
+    "security_set__security_6858__vulnerabilities__89_unsafecookiesamesite",
+    "security_set__security_6858__vulnerabilities__95_unsafecerttransparency"
+  ],
+  "classes": {
+    "definitions_fail": 347,
+    "tests_or_statements_fail": 76,
+    "compiles_after_proof_ablation": 68,
+    "compiles": 25
+  },
+  "compiles_original": [
+    25,
+    [
+      0.033,
+      0.0705
+    ]
+  ],
+  "compiles_after_proof_ablation_incl_original": [
+    93,
+    [
+      0.1495,
+      0.2157
+    ]
+  ],
+  "definitions_only_compile_among_noncompiling": [
+    143,
+    491
+  ],
+  "ablation_IC_tests_mean_over_n": 0.1802,
+  "ablation_IC_proofs_mean_over_n": 0.0986,
+  "cells_IC_tests_x_IC_proofs_positive_after_ablation": [
+    73,
+    [
+      0.114,
+      0.1742
+    ]
+  ],
+  "noncompiling_files_with_error_category": {
+    "parse": 339,
+    "tactic_failed": 335,
+    "unknown_name": 267,
+    "type_error": 258,
+    "other": 153,
+    "index_bounds_proof": 14,
+    "timeout": 2,
+    "termination": 1
+  },
+  "noncompiling_files_with_error_region": {
+    "theorem_proof": 354,
+    "example_test": 288,
+    "definition": 241,
+    "other": 205,
+    "theorem_statement": 162
+  },
+  "top_first_errors": [
+    [
+      "unterminated comment",
+      62
+    ],
+    [
+      "unknown identifier _",
+      51
+    ],
+    [
+      "type mismatch",
+      40
+    ],
+    [
+      "Not a definitional equality: the left-hand side",
+      39
+    ],
+    [
+      "failed to synthesize",
+      35
+    ],
+    [
+      "Application type mismatch: In the application",
+      27
+    ],
+    [
+      "unexpected token _; expected _, _, _, _ or term",
+      26
+    ],
+    [
+      "Invalid field _: The environment does not contain _",
+      23
+    ],
+    [
+      "unknown constant _",
+      19
+    ],
+    [
+      "no goals to be solved",
+      15
+    ],
+    [
+      "tactic _ evaluated that the proposition",
+      12
+    ],
+    [
+      "Function expected at",
+      11
+    ]
+  ],
+  "files_with_lean3_markers": 174,
+  "think": {
+    "n_with_close_tag": 516,
+    "n_empty_think": 322,
+    "ablation_compile_rate_empty_think": [
+      52,
+      322,
+      [
+        0.1253,
+        0.2056
+      ]
+    ],
+    "ablation_compile_rate_nonempty_think": [
+      41,
+      194,
+      [
+        0.1598,
+        0.2741
+      ]
+    ]
+  }
+}

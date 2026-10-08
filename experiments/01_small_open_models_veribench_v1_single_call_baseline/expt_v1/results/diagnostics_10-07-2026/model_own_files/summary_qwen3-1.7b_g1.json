@@ -1,0 +1,127 @@
+{
+  "label": "qwen3-1.7b_g1",
+  "n_cells": 896,
+  "n_with_file": 606,
+  "n_no_file": 290,
+  "recompile_vs_scored_mismatches": [],
+  "classes": {
+    "no_file": 290,
+    "definitions_fail": 598,
+    "tests_or_statements_fail": 7,
+    "compiles_after_proof_ablation": 1
+  },
+  "compiles_original": [
+    0,
+    [
+      0.0,
+      0.0043
+    ]
+  ],
+  "compiles_after_proof_ablation_incl_original": [
+    1,
+    [
+      0.0002,
+      0.0063
+    ]
+  ],
+  "definitions_only_compile_among_noncompiling": [
+    8,
+    606
+  ],
+  "ablation_IC_tests_mean_over_n": 0.0011,
+  "ablation_IC_proofs_mean_over_n": 0.0,
+  "cells_IC_tests_x_IC_proofs_positive_after_ablation": [
+    0,
+    [
+      0.0,
+      0.0043
+    ]
+  ],
+  "noncompiling_files_with_error_category": {
+    "parse": 583,
+    "unknown_name": 380,
+    "tactic_failed": 348,
+    "other": 334,
+    "type_error": 186,
+    "index_bounds_proof": 4,
+    "termination": 1
+  },
+  "noncompiling_files_with_error_region": {
+    "definition": 501,
+    "example_test": 438,
+    "other": 417,
+    "theorem_statement": 365,
+    "theorem_proof": 316
+  },
+  "top_first_errors": [
+    [
+      "unexpected character; expected decimal number",
+      330
+    ],
+    [
+      "unknown identifier _",
+      45
+    ],
+    [
+      "unexpected identifier; expected command",
+      32
+    ],
+    [
+      "type expected, got",
+      30
+    ],
+    [
+      "unexpected token _; expected _, _",
+      27
+    ],
+    [
+      "unexpected token _; expected _",
+      25
+    ],
+    [
+      "failed to synthesize",
+      16
+    ],
+    [
+      "Invalid pattern: Expected a constructor or constant marked with _",
+      15
+    ],
+    [
+      "unexpected token _; expected _, _ or _",
+      13
+    ],
+    [
+      "unexpected token _; expected command",
+      9
+    ],
+    [
+      "type mismatch",
+      6
+    ],
+    [
+      "Function expected at",
+      6
+    ]
+  ],
+  "files_with_lean3_markers": 133,
+  "think": {
+    "n_with_close_tag": 606,
+    "n_empty_think": 501,
+    "ablation_compile_rate_empty_think": [
+      0,
+      501,
+      [
+        0.0,
+        0.0076
+      ]
+    ],
+    "ablation_compile_rate_nonempty_think": [
+      1,
+      105,
+      [
+        0.0017,
+        0.052
+      ]
+    ]
+  }
+}

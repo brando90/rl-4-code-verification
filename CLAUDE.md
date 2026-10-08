@@ -17,13 +17,13 @@ This file holds the project rules for **rl-4-code-verification** for every agent
   - Checkpoint selection and tuning use the validation split only. The test split is evaluated once per frozen checkpoint and never used for training, tuning or selection.
   - VeriBench numbers for trained policies are reported on the test split, never on all 896.
   - Experiments locked before D-013 (01–07, 02A v3) keep their recorded rule: all of VeriBench held out.
-  - Every training pool passes the exact-hash and word-5-gram screens in `docs/DATASETS.md` (`rl4cv.screens`) before use, against at least the validation and test splits.
+  - Every training pool passes the exact-hash and word-5-gram screens in `docs/DATASETS.md` (`rl4cv.screens`) before use, against at least the validation and test splits for protocols adopting D-013; older locked protocols still screen against all 896 tasks.
   - HumanEval-derived external data is excluded (it overlaps VeriBench `humaneval_set`). VeriSoftBench-derived data is excluded whenever VBV2 is a panel.
 - **VeriBench numbers follow VeriBench's evaluation rules.**
-  - SCSC = (IC_tests · IC_proofs · FSC)^(1/3) is the only aggregate, always shown with its three factors and n. Core 614 and IndustrySet 282 are reported separately (on the D-013 test split: core 152, IndustrySet 70).
+  - SCSC = (IC_tests · IC_proofs · FSC)^(1/3) is the only aggregate, always shown with its three factors and n. For new official summaries, D-009 uses the geometric mean of the three factor means on one common measured cohort; mean per-file SCSC is diagnostic only. Core 614 and IndustrySet 282 are reported separately (on the D-013 test split: core 152, IndustrySet 70).
   - Scoring uses the pinned frozen scorer (`external/deps.lock.json`: `veribench_scorer`) with `--skip-tc`.
   - FSC comes only from the validated judge (`vb103_judge`, the experiment 100 H2 ensemble). Never use `run_real_eval.py`'s built-in FSC, which is the retired Sonnet 4.6 judge.
-  - Unmeasured cells stay in the denominator and are listed, never counted as zero.
+  - Unmeasured cells stay in the declared denominator and are listed, never counted as zero. When incomplete, label measured-cohort summaries with measured/declared counts and separately bound the full-manifest result.
   - Record exact model IDs and Hugging Face revisions.
 - **The verifier is never loosened.** A theorem counts as proved only if its kernel axioms are within {`propext`, `Classical.choice`, `Quot.sound`}; `sorry`, `admit`, declared axioms and `native_decide` in named theorems fail. Prompts follow VeriBench's prove-first contract: `sorry` is an honest last resort worth zero, never a template.
 - **FSC is compile-gated (D-003).** Rewards and outcomes use `fsc_compiled` or `scsc`. Ungated `fsc` is a diagnostic only, because the judge scores files that do not compile.

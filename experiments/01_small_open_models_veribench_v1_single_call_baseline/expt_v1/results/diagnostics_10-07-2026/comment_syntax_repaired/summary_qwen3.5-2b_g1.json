@@ -1,0 +1,131 @@
+{
+  "label": "qwen3.5-2b_g1",
+  "n_cells": 347,
+  "n_with_file": 347,
+  "n_no_file": 0,
+  "recompile_vs_scored_mismatches": [
+    "realcode_set__26_secrets_token",
+    "security_set__security_6858__safe__135_unsaferaceconditiontoctou_safe",
+    "security_set__security_6858__safe__8_crosssitescripting_safe"
+  ],
+  "classes": {
+    "definitions_fail": 339,
+    "tests_or_statements_fail": 5,
+    "compiles": 3
+  },
+  "compiles_original": [
+    3,
+    [
+      0.0029,
+      0.0251
+    ]
+  ],
+  "compiles_after_proof_ablation_incl_original": [
+    3,
+    [
+      0.0029,
+      0.0251
+    ]
+  ],
+  "definitions_only_compile_among_noncompiling": [
+    5,
+    344
+  ],
+  "ablation_IC_tests_mean_over_n": 0.0,
+  "ablation_IC_proofs_mean_over_n": 0.0,
+  "cells_IC_tests_x_IC_proofs_positive_after_ablation": [
+    0,
+    [
+      0.0,
+      0.0109
+    ]
+  ],
+  "noncompiling_files_with_error_category": {
+    "parse": 312,
+    "unknown_name": 190,
+    "tactic_failed": 190,
+    "other": 185,
+    "type_error": 142,
+    "index_bounds_proof": 9,
+    "termination": 1,
+    "timeout": 1
+  },
+  "noncompiling_files_with_error_region": {
+    "other": 278,
+    "definition": 223,
+    "example_test": 172,
+    "theorem_proof": 151,
+    "theorem_statement": 150
+  },
+  "top_first_errors": [
+    [
+      "unexpected identifier; expected command",
+      102
+    ],
+    [
+      "unexpected token _; expected command",
+      29
+    ],
+    [
+      "unknown namespace _",
+      26
+    ],
+    [
+      "unterminated comment",
+      24
+    ],
+    [
+      "unknown identifier _",
+      21
+    ],
+    [
+      "invalid _ command, it must be used in the beginning of the file",
+      16
+    ],
+    [
+      "unexpected token _; expected _",
+      15
+    ],
+    [
+      "type mismatch",
+      13
+    ],
+    [
+      "failed to synthesize",
+      7
+    ],
+    [
+      "unexpected token _; expected _ or identifier",
+      7
+    ],
+    [
+      "Function expected at",
+      7
+    ],
+    [
+      "type expected, got",
+      6
+    ]
+  ],
+  "files_with_lean3_markers": 17,
+  "think": {
+    "n_with_close_tag": 341,
+    "n_empty_think": 0,
+    "ablation_compile_rate_empty_think": [
+      0,
+      0,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "ablation_compile_rate_nonempty_think": [
+      3,
+      341,
+      [
+        0.003,
+        0.0255
+      ]
+    ]
+  }
+}

@@ -7,11 +7,17 @@
 # touches or restarts any existing (8923-8998, etc.) service.
 # Usage: python3 deploy_rl4cv_e01_judge_service.py --instance controls
 #        python3 deploy_rl4cv_e01_judge_service.py --instance <label> --status
+#        python3 deploy_rl4cv_e01_judge_service.py --instance <label> --part r23   # repeats 2-3 pack
+#        python3 deploy_rl4cv_e01_judge_service.py --instance <label> --part r23 --stop
 from __future__ import annotations
 
 import argparse
+import json
+import os
+import signal
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
@@ -59,12 +65,49 @@ def status(instance_key: str) -> int:
     return deploy_service.main()
 
 
+def stop(instance_key: str) -> int:
+    """Stop ONLY the service and tunnel this wrapper deployed for `instance_key` (PIDs from its own
+    deployment receipt), then confirm the port is free. Never touches any other instance."""
+    receipt = deploy_service.PRIVATE / f"deployment_{instance_key}.json"
+    if not receipt.exists():
+        print(json.dumps({"instance": instance_key, "stopped": False, "reason": "no deployment receipt"}))
+        return 1
+    state = json.loads(receipt.read_text())
+    killed = {}
+    for role in ("service_pid", "tunnel_pid"):
+        pid = state.get(role)
+        if deploy_service.alive(pid):
+            os.kill(int(pid), signal.SIGTERM)
+            killed[role] = pid
+    for _ in range(30):
+        if not any(deploy_service.alive(state.get(r)) for r in ("service_pid", "tunnel_pid")):
+            break
+        time.sleep(1)
+    for role in ("service_pid", "tunnel_pid"):
+        pid = state.get(role)
+        if deploy_service.alive(pid):
+            os.kill(int(pid), signal.SIGKILL)
+    ss = subprocess.run(["ss", "-tlnp"], capture_output=True, text=True).stdout
+    port_free = f":{state['port']} " not in ss
+    print(json.dumps({"instance": instance_key, "port": state["port"], "killed": killed,
+                      "port_free_after": port_free}))
+    return 0 if port_free else 1
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--instance", required=True, help="'controls' or a model label")
+    ap.add_argument("--part", choices=["gate", "r23"], default="gate",
+                    help="r23 serves the repeats-2-3 pack on its own instance/benchmark/port")
     ap.add_argument("--status", action="store_true")
+    ap.add_argument("--stop", action="store_true", help="stop this wrapper's own service+tunnel for the instance")
     args = ap.parse_args()
     key = CONTROLS_KEY if args.instance == "controls" else f"rl4cv-e01-{args.instance}"
+    if args.part == "r23":
+        assert args.instance != "controls", "controls have no repeats (reference design: controls are __r1 only)"
+        key = f"{key}-r23"
+    if args.stop:
+        return stop(key)
     if args.status:
         # register a throwaway entry first only if needed for --status to resolve the instance;
         # normal status calls happen after register() already added it to INSTANCES this run.
@@ -77,6 +120,10 @@ def main() -> int:
     if key == CONTROLS_KEY:
         pack = judge_priv / "packs" / "judge_rl4cv_e01_controls"
         benchmark = "veribench-rl4cv-e01-controls"
+    elif args.part == "r23":
+        label = args.instance
+        pack = judge_priv / "packs" / f"judge_rl4cv_e01_{label}_r23"
+        benchmark = f"veribench-rl4cv-e01-{label}-r23".replace(".", "-")
     else:
         label = args.instance
         pack = judge_priv / "packs" / f"judge_rl4cv_e01_{label}"

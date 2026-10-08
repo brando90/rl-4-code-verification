@@ -1,0 +1,68 @@
+{
+  "data": {
+    "train": {
+      "rows": 2048,
+      "sha256": "dd95b0ca8f89dfe6ca1c644995ddba62e279f3fbfe09cf9eab0a949ab0320e07"
+    },
+    "validation": {
+      "rows": 256,
+      "sha256": "d1ebc28cbd4695f4a53b7acb006df71706c9790db686ada47c5e5c975743bda9"
+    }
+  },
+  "domains": {
+    "code": 0.5,
+    "math": 0.5
+  },
+  "models": {
+    "1.7B": "Qwen/Qwen3-1.7B-Base",
+    "4B": "Qwen/Qwen3-4B-Base",
+    "8B": "Qwen/Qwen3-8B-Base"
+  },
+  "optimization": {
+    "betas": [
+      0.9,
+      0.98
+    ],
+    "checkpoint_token_fractions": [
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "eps": 1e-05,
+    "full_parameter": true,
+    "grad_clip": 1.0,
+    "lr": 2e-05,
+    "max_epochs": 1,
+    "optimizer": "AdamW",
+    "precision": "bfloat16",
+    "scheduler": "cosine",
+    "token_normalization": "global admitted assistant tokens",
+    "warmup_fraction_of_admitted_tokens": 0.03,
+    "weight_decay": 0.1
+  },
+  "rendering": {
+    "assistant_only_loss": true,
+    "chat_template": "pinned model tokenizer default",
+    "max_total_sequence_length": 16384,
+    "rope_extension": false,
+    "thinking": true,
+    "train_cot": true
+  },
+  "runtime": {
+    "backend": "DTensor v2",
+    "cuda_contract": "official pytorch-cu128 lock",
+    "framework": "NeMo RL",
+    "framework_revision": "c751f811217db7df0d4c94abdeaada6626cfc150",
+    "framework_version": "0.4.0",
+    "sequence_packing": "requires packed/unpacked parity before promotion"
+  },
+  "schema": "paper1-phase1c-matched-sft-v1",
+  "seed": "paper1-phase1c-matched-sft-v1",
+  "source_revisions": {
+    "apps": "21e74ddf8de1a21436da12e3e653065c5213e9d1",
+    "code": "20a1ca19c0d050fe9057fc08339d6b370ec1c67a",
+    "math": "e4e141ec9dea9f8326f4d347be56105859b2bd68",
+    "taco": "d593ed0a2becbbc952230bb89be09189bf1056dc"
+  }
+}

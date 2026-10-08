@@ -4,6 +4,8 @@
 # every path below resolves relative to OUR OWN pinned external/veribench checkout, which is a physically
 # separate clone. Suites: "rl4cv-e01-controls" (oracle/blank/shuffled/vacuous/halfdel, no model dependency)
 # and "rl4cv-e01:<label>" (one model's measured cells with IC_tests*IC_proofs>0 plus a 60-file audit).
+# Part "r23" (10-07-2026) completes PROTOCOL.md's locked "median of 3 each": repeats 2 and 3 of every
+# repeat-1 main cell, byte-identical prompts, own pack/benchmark/harvest; `fsc-median3` combines them.
 from __future__ import annotations
 
 import argparse
@@ -89,19 +91,28 @@ def relative(path: Path) -> str:
 # Suites
 # --------------------------------------------------------------------------------------------------
 
-def suite_spec(suite: str) -> dict:
+def suite_spec(suite: str, part: str = "gate") -> dict:
     if suite == "rl4cv-e01-controls":
         return {"suite": suite, "model": None, "benchmark": "veribench-rl4cv-e01-controls",
                 "pack_receipt": RESULTS / "judge_pack_controls.json", "key_prefix": "controls/",
                 "condition": "rl4cv-e01-judge-controls"}
     assert suite.startswith("rl4cv-e01:"), f"unknown suite: {suite}"
     label = suite.split(":", 1)[1]
+    if part == "r23":
+        # Repeats 2-3 are a separate pack served by a separate benchmark instance (a judge service serves
+        # one pack's bytes), so they never touch the repeat-1 pack, service or harvest.
+        return {"suite": suite, "model": label,
+                "benchmark": f"veribench-rl4cv-e01-{label}-r23".replace(".", "-"),
+                "pack_receipt": RESULTS / f"judge_pack_{label}_r23.json", "key_prefix": f"{label}/",
+                "condition": f"rl4cv-e01-judge-{label}-r23"}
     return {"suite": suite, "model": label, "benchmark": f"veribench-rl4cv-e01-{label}".replace(".", "-"),
             "pack_receipt": RESULTS / f"judge_pack_{label}.json", "key_prefix": f"{label}/",
             "condition": f"rl4cv-e01-judge-{label}"}
 
 
-PARTS = {"gate": ("cells", ""), "controls": ("control_cells", "@controls")}
+# part -> (pack-receipt field holding its cells, state-key / harvest-file suffix)
+PARTS = {"gate": ("cells", ""), "controls": ("control_cells", "@controls"), "r23": ("cells", "@r23")}
+REPEATS_R23 = (2, 3)
 
 
 # --------------------------------------------------------------------------------------------------
@@ -259,6 +270,93 @@ def build_model_pack(label: str, scored_jsonl: Path, per_core_split: int = 12, s
 
 
 # --------------------------------------------------------------------------------------------------
+# Build: repeats 2-3 of one model's repeat-1 main cells (zero model calls, byte-identical prompts)
+# --------------------------------------------------------------------------------------------------
+
+def repeat_rows(r1_rows: list[dict], rendered_of, repeats: tuple[int, ...] = REPEATS_R23
+                ) -> tuple[list[dict], dict[str, dict]]:
+    """Pure: derive repeat-r cell rows from repeat-1 main cell rows.
+
+    `rendered_of(cell_name) -> {"system", "user"}` returns the repeat-1 rendered prompt. Every derived row
+    keeps the item's candidate_sha256 and prompt_sha256; the prompt text is re-hashed and must equal the
+    recorded repeat-1 digest (a mismatch is a hard stop: the served bytes would not be the locked ones).
+    Returns (rows, {new_cell_name: rendered}) so the caller writes the rendered files and the receipt.
+    """
+    rows, rendered_out = [], {}
+    for row in r1_rows:
+        assert row["kind"] == "main" and row["repeat"] == 1, row["cell"]
+        rendered = rendered_of(row["cell"])
+        system, user = rendered["system"], rendered["user"]
+        digest = sha((system + "\n\n" + user).encode())
+        if digest != row["prompt_sha256"]:
+            raise SystemExit(f"{row['cell']}: rendered repeat-1 prompt sha256 {digest[:12]} != receipt "
+                             f"{row['prompt_sha256'][:12]}; refusing to build repeats")
+        for r in repeats:
+            cell = f"{row['item']}__r{r}"
+            rows.append({"cell": cell, "item": row["item"], "task": row["task"], "repeat": r,
+                         "kind": "main", "candidate_sha256": row["candidate_sha256"],
+                         "prompt_sha256": row["prompt_sha256"]})
+            rendered_out[cell] = {"system": system, "user": user}
+    return rows, rendered_out
+
+
+def served_prompt_hashes(label: str) -> dict[str, str]:
+    """prompt_sha256 the Valkyrie agent recorded for each served repeat-1 cell, from the raw receipts."""
+    out = {}
+    for name in CONFIGS:
+        for path in (RESULTS / "raw" / f"{label}__{name}_artifacts").rglob("receipt.json"):
+            try:
+                receipt = json.loads(path.read_text())
+            except (json.JSONDecodeError, OSError):
+                continue
+            if receipt.get("cell") and receipt.get("prompt_sha256"):
+                out.setdefault(receipt["cell"], receipt["prompt_sha256"])
+    return out
+
+
+def build_repeats(label: str, repeats: tuple[int, ...] = REPEATS_R23) -> dict:
+    receipt_r1 = PRIVATE / label / "cells_receipt.json"
+    rendered_dir = PRIVATE / label / "rendered"
+    r1_rows = [r for r in json.loads(receipt_r1.read_text())["cells"]
+               if r["kind"] == "main" and r["repeat"] == 1]
+    assert r1_rows, f"{label}: no repeat-1 main cells in {receipt_r1}"
+    rows, rendered_new = repeat_rows(
+        r1_rows, lambda cell: json.loads((rendered_dir / f"{cell}.json").read_text()), repeats)
+    # The agent's own receipts for repeat 1 carry the prompt hash it verified before calling the model;
+    # the repeats must match those served bytes too (cells without a receipt were never served).
+    served = served_prompt_hashes(label)
+    served_mismatch = [r["cell"] for r in r1_rows
+                       if r["cell"] in served and served[r["cell"]] != r["prompt_sha256"]]
+    if served_mismatch:
+        raise SystemExit(f"{label}: served repeat-1 prompt hash differs from receipt for {served_mismatch[:3]}")
+    for cell, rendered in rendered_new.items():
+        write_json(rendered_dir / f"{cell}.json", rendered)
+    receipt_path = PRIVATE / label / "cells_receipt_r23.json"
+    write_json(receipt_path, {"cells": rows, "derived_from": str(receipt_r1), "repeats": list(repeats),
+                              "r1_receipt_sha256": sha(receipt_r1.read_bytes())})
+
+    pack_path = PRIVATE / "packs" / f"judge_rl4cv_e01_{label}_r23"
+    judge_pack.RENDERED = rendered_dir
+    manifest = judge_pack.build(pack_path, receipt_path, "judge", smoke_items=0)
+    manifest["round_trip"] = judge_pack.verify(pack_path, manifest)
+    by_r1 = {r["item"]: r["prompt_sha256"] for r in r1_rows}
+    hash_mismatch = [c["cell"] for c in manifest["cells"] if c["prompt_sha256"] != by_r1[c["item"]]]
+    manifest["written_utc"] = stamp()
+    manifest["repeats"] = list(repeats)
+    manifest["n_r1_main_cells"] = len(r1_rows)
+    manifest["n_cells"] = len(manifest["cells"])
+    manifest["n_served_r1_receipts_checked"] = sum(1 for r in r1_rows if r["cell"] in served)
+    manifest["prompt_sha256_mismatches_vs_r1"] = hash_mismatch
+    ok = (not manifest["round_trip"]["failures"] and not hash_mismatch
+          and manifest["n_cells"] == len(repeats) * len(r1_rows) and manifest["n_smoke_tasks"] == 0)
+    manifest["verdict"] = "PASS" if ok else "FAIL"
+    write_json(suite_spec(f"rl4cv-e01:{label}", "r23")["pack_receipt"], manifest)
+    if hash_mismatch:
+        raise SystemExit(f"{label}: pack prompt hash != repeat-1 hash for {hash_mismatch[:3]}")
+    return manifest
+
+
+# --------------------------------------------------------------------------------------------------
 # Admit / poll / harvest / controls / fsc  (adapted from judge_controller.py, same CLI shape)
 # --------------------------------------------------------------------------------------------------
 
@@ -320,9 +418,10 @@ def admit(configs: list[str], concurrency: int, part: str, suite: str) -> int:
     if spent >= SPEND_CAP_USD:
         print(f"SPEND CAP HIT: ${spent:.2f} >= ${SPEND_CAP_USD}; refusing new admissions")
         return 3
-    spec = suite_spec(suite)
+    spec = suite_spec(suite, part)
     pack = json.loads(spec["pack_receipt"].read_text())
     assert not pack.get("round_trip", {}).get("failures"), f"{suite}: pack failed round-trip"
+    assert pack.get("verdict") == "PASS", f"{suite}/{part}: pack verdict is not PASS"
     ids_file, n_tasks, suffix = part_ids(part, spec)
     state = load_state()
     for name in configs:
@@ -418,7 +517,7 @@ def rows_of(results_path: Path) -> dict[str, dict]:
 
 
 def harvest(configs: list[str], part: str, suite: str) -> int:
-    spec = suite_spec(suite)
+    spec = suite_spec(suite, part)
     blob = json.loads(spec["pack_receipt"].read_text())
     field, suffix = PARTS[part]
     pack = {c["task_id"]: c for c in blob[field]}
@@ -534,10 +633,102 @@ def fsc(suite: str) -> int:
     return 0
 
 
+def aggregate_median3(members: dict[str, dict[str, list[int]]],
+                      bases: dict[str, dict[str, list[float]]] | None = None) -> tuple[dict, list]:
+    """Pure: per-item FSC from each member's measured repeat scores (0-5), as experiment 103 does it.
+
+    Rule applied verbatim from VeriBench experiment 103 `scripts/judge_controller.py` (pinned commit
+    c11b99ba) `fsc()`, lines 622-635: a member's value is the median of its measured repeats, whatever
+    their number; FSC = mean of the member medians / 5 and is reported whenever at least one member
+    measured; an item is `complete` only when both members have at least one measured repeat, and it is
+    listed under `items_with_missing_repeats` when any member has fewer than 2 measured repeats.
+    """
+    bases = bases or {}
+    items = sorted(set().union(*[set(m) for m in members.values()]))
+    per_task, incomplete = {}, []
+    for item in items:
+        medians = [statistics.median(members[c][item]) for c in CONFIGS if members[c].get(item)]
+        repeats = {c: len(members[c].get(item, [])) for c in CONFIGS}
+        if len(medians) < len(CONFIGS) or any(n < 2 for n in repeats.values()):
+            incomplete.append({"item": item, "repeats": repeats})
+        if not medians:
+            continue
+        base_medians = [statistics.median(bases[c][item]) for c in CONFIGS
+                        if bases.get(c, {}).get(item)]
+        per_task[item] = {"FSC": statistics.fmean(medians) / 5.0,
+                          "member_medians_0_5": {c: statistics.median(members[c][item])
+                                                 for c in CONFIGS if members[c].get(item)},
+                          "member_repeat_scores_0_5": {c: list(members[c].get(item, [])) for c in CONFIGS},
+                          "base_score_0_5": statistics.fmean(base_medians) if base_medians else None,
+                          "repeats": repeats, "complete": len(medians) == len(CONFIGS)}
+    return per_task, incomplete
+
+
+def fsc_median3(suite: str) -> int:
+    """Combine the repeat-1 harvest with the @r23 harvest per member and write fsc_median3_<label>.json.
+
+    Never edits fsc_<label>.json or any harvest; the single-repeat FSC is carried beside the new value.
+    """
+    spec = suite_spec(suite)
+    label = spec["model"]
+    members, bases, charges, counts, runs = {}, {}, {}, {}, {}
+    for name in CONFIGS:
+        by_item: dict[str, list[int]] = {}
+        by_base: dict[str, list[float]] = {}
+        for suffix in ("", "@r23"):
+            path = RESULTS / "harvests" / f"cells_{label}__{name}{suffix}.json"
+            if not path.exists():
+                print(f"{name}: harvest first ({path} missing)")
+                return 2
+            harvested = json.loads(path.read_text())
+            for cell in sorted(harvested["cells"], key=lambda c: c["repeat"]):
+                if cell["status"] == "measured":
+                    by_item.setdefault(cell["item"], []).append(cell["score_raw"])
+                    if cell.get("base_score") is not None:
+                        by_base.setdefault(cell["item"], []).append(float(cell["base_score"]))
+            charges[f"{name}{suffix}"] = harvested["charges_usd"]
+            counts[f"{name}{suffix}"] = harvested["status_counts"]
+            runs[f"{name}{suffix}"] = harvested.get("run_id")
+        members[name], bases[name] = by_item, by_base
+    per_task, incomplete = aggregate_median3(members, bases)
+    old_path = RESULTS.parent / f"fsc_{label}.json"
+    old = json.loads(old_path.read_text())["per_task"] if old_path.exists() else {}
+    for item, row in per_task.items():
+        row["FSC_single_repeat"] = old.get(item, {}).get("FSC")
+    complete = [row for row in per_task.values() if row["complete"]]
+    paired = [(row["FSC_single_repeat"], row["FSC"]) for row in complete
+              if row["FSC_single_repeat"] is not None]
+    lt3 = {c: sum(1 for row in complete if row["repeats"][c] < 3) for c in CONFIGS}
+    out = {"written_utc": stamp(), "suite": suite, "model": label,
+           "judge": ("experiment 100 frozen H2 ensemble: per-member median of 3 repeats, mean of the two "
+                     "members, integer 0-5 divided by 5 (PROTOCOL.md 'median of 3 each')"),
+           "missing_repeat_rule": ("VeriBench experiment 103 scripts/judge_controller.py fsc() lines "
+                                   "622-635 at commit c11b99ba, applied verbatim: member value = median of "
+                                   "its measured repeats; complete = both members measured at least once; "
+                                   "items with any member < 2 repeats are listed, never dropped"),
+           "route": "Valkyrie (vb103_judge)", "runs": runs,
+           "n_items_judged": len(per_task), "n_items_complete": len(complete),
+           "mean_FSC_complete_items": statistics.fmean(r["FSC"] for r in complete) if complete else None,
+           "median_FSC_complete_items": statistics.median(r["FSC"] for r in complete) if complete else None,
+           "n_paired_with_single_repeat": len(paired),
+           "mean_FSC_single_repeat_same_items": statistics.fmean(o for o, _ in paired) if paired else None,
+           "mean_FSC_median3_same_items": statistics.fmean(n for _, n in paired) if paired else None,
+           "n_complete_items_with_fewer_than_3_repeats_per_member": lt3,
+           "items_with_missing_repeats": incomplete,
+           "status_counts_per_member_and_part": counts, "charges_usd_per_member_and_part": charges,
+           "charges_usd_total": round(sum(charges.values()), 6), "per_task": per_task}
+    write_json(RESULTS.parent / f"fsc_median3_{label}.json", out)
+    print(json.dumps({k: out[k] for k in ("suite", "n_items_judged", "n_items_complete",
+                                          "mean_FSC_complete_items", "mean_FSC_single_repeat_same_items",
+                                          "mean_FSC_median3_same_items", "charges_usd_total")}))
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("action", choices=["build-controls", "build-model", "admit", "poll", "harvest",
-                                       "controls", "fsc"])
+    ap.add_argument("action", choices=["build-controls", "build-model", "build-repeats", "admit", "poll",
+                                       "harvest", "controls", "fsc", "fsc-median3"])
+    ap.add_argument("--repeats", default="2,3", help="build-repeats: repeat indices to derive (default 2,3)")
     ap.add_argument("--label")
     ap.add_argument("--scored")
     ap.add_argument("--pack")
@@ -555,6 +746,15 @@ def main() -> int:
         manifest = build_model_pack(args.label, Path(args.scored))
         print(json.dumps({k: manifest[k] for k in ("verdict", "n_positive_cells", "n_audit_cells")}))
         return 0 if manifest["verdict"] == "PASS" else 1
+    if args.action == "build-repeats":
+        repeats = tuple(int(r) for r in args.repeats.split(",") if r)
+        assert repeats == REPEATS_R23, f"only repeats {REPEATS_R23} are wired to the r23 part, got {repeats}"
+        manifest = build_repeats(args.label, repeats)
+        print(json.dumps({k: manifest[k] for k in ("verdict", "n_r1_main_cells", "n_cells", "n_smoke_tasks",
+                                                    "n_served_r1_receipts_checked")}))
+        return 0 if manifest["verdict"] == "PASS" else 1
+    if args.action == "fsc-median3":
+        return fsc_median3(args.suite)
     if args.action == "admit":
         return admit(configs, args.concurrency, args.part, args.suite)
     if args.action == "poll":

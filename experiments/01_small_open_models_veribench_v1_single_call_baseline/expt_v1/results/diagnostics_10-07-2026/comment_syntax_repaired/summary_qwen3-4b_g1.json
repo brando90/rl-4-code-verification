@@ -1,0 +1,130 @@
+{
+  "label": "qwen3-4b_g1",
+  "n_cells": 548,
+  "n_with_file": 548,
+  "n_no_file": 0,
+  "recompile_vs_scored_mismatches": [
+    "security_set__security_6858__safe__105_unsafeexecstack_safe",
+    "security_set__security_6858__vulnerabilities__122_unsafebitlockerorder"
+  ],
+  "classes": {
+    "definitions_fail": 450,
+    "compiles_after_proof_ablation": 25,
+    "tests_or_statements_fail": 71,
+    "compiles": 2
+  },
+  "compiles_original": [
+    2,
+    [
+      0.001,
+      0.0132
+    ]
+  ],
+  "compiles_after_proof_ablation_incl_original": [
+    27,
+    [
+      0.0341,
+      0.0707
+    ]
+  ],
+  "definitions_only_compile_among_noncompiling": [
+    96,
+    546
+  ],
+  "ablation_IC_tests_mean_over_n": 0.0493,
+  "ablation_IC_proofs_mean_over_n": 0.006,
+  "cells_IC_tests_x_IC_proofs_positive_after_ablation": [
+    8,
+    [
+      0.0074,
+      0.0285
+    ]
+  ],
+  "noncompiling_files_with_error_category": {
+    "parse": 392,
+    "tactic_failed": 363,
+    "unknown_name": 332,
+    "other": 292,
+    "type_error": 279,
+    "index_bounds_proof": 4,
+    "termination": 2
+  },
+  "noncompiling_files_with_error_region": {
+    "theorem_proof": 351,
+    "example_test": 340,
+    "definition": 331,
+    "other": 283,
+    "theorem_statement": 219
+  },
+  "top_first_errors": [
+    [
+      "unknown identifier _",
+      81
+    ],
+    [
+      "unexpected identifier; expected command",
+      68
+    ],
+    [
+      "unknown tactic",
+      35
+    ],
+    [
+      "unexpected token _; expected _, _",
+      34
+    ],
+    [
+      "Application type mismatch: In the application",
+      34
+    ],
+    [
+      "unexpected token _; expected command",
+      31
+    ],
+    [
+      "failed to synthesize",
+      25
+    ],
+    [
+      "Function expected at",
+      25
+    ],
+    [
+      "Invalid field _: The environment does not contain _",
+      24
+    ],
+    [
+      "type mismatch",
+      19
+    ],
+    [
+      "type expected, got",
+      18
+    ],
+    [
+      "unexpected token _; expected _, _ or _",
+      12
+    ]
+  ],
+  "files_with_lean3_markers": 139,
+  "think": {
+    "n_with_close_tag": 548,
+    "n_empty_think": 0,
+    "ablation_compile_rate_empty_think": [
+      0,
+      0,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "ablation_compile_rate_nonempty_think": [
+      27,
+      548,
+      [
+        0.0341,
+        0.0707
+      ]
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "label": "qwen3.6-27b-local_g1",
+  "work_dirs": [
+    "full",
+    "full_nsfix"
+  ],
+  "n_cells": 896,
+  "n_cells_from_variants": 264,
+  "n_diagnostic_errors": 0,
+  "as_written": {
+    "compiles": [
+      8,
+      [
+        0.0045,
+        0.0175
+      ]
+    ],
+    "IC_tests_mean": 0.0078,
+    "IC_proofs_mean": 0.0067,
+    "cells_IC_tests_x_IC_proofs_positive": [
+      6,
+      [
+        0.0031,
+        0.0145
+      ]
+    ]
+  },
+  "failing_proofs_sorried": {
+    "compiles": [
+      26,
+      [
+        0.0199,
+        0.0422
+      ]
+    ],
+    "IC_tests_mean": 0.0279,
+    "IC_proofs_mean": 0.0147,
+    "cells_IC_tests_x_IC_proofs_positive": [
+      19,
+      [
+        0.0136,
+        0.0329
+      ]
+    ]
+  }
+}

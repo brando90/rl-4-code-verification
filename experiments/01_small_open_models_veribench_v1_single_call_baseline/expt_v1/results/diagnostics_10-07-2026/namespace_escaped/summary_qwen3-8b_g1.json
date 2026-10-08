@@ -1,0 +1,140 @@
+{
+  "label": "qwen3-8b_g1",
+  "n_cells": 511,
+  "n_with_file": 511,
+  "n_no_file": 0,
+  "recompile_vs_scored_mismatches": [
+    "security_set__security_6858__safe__142_unsafecertpinning_safe",
+    "security_set__security_6858__vulnerabilities__105_unsafephishingvalidcert",
+    "security_set__security_6858__vulnerabilities__107_unsafeprofilesandbox",
+    "security_set__security_6858__vulnerabilities__114_unsafeversionrollback",
+    "security_set__security_6858__vulnerabilities__113_unsafeplaintextfs",
+    "security_set__security_6858__vulnerabilities__116_unsafeupwardstack",
+    "security_set__security_6858__vulnerabilities__121_unsafekerberosreplay",
+    "security_set__security_6858__vulnerabilities__15_unsafeprivilegedrop",
+    "security_set__security_6858__vulnerabilities__55_unsafegvisorsyscall",
+    "security_set__security_6858__vulnerabilities__89_unsafesynflood",
+    "security_set__security_6858__vulnerabilities__90_unsafetlsreplay"
+  ],
+  "classes": {
+    "definitions_fail": 357,
+    "tests_or_statements_fail": 96,
+    "compiles_after_proof_ablation": 47,
+    "compiles": 11
+  },
+  "compiles_original": [
+    11,
+    [
+      0.0121,
+      0.0381
+    ]
+  ],
+  "compiles_after_proof_ablation_incl_original": [
+    58,
+    [
+      0.0888,
+      0.1439
+    ]
+  ],
+  "definitions_only_compile_among_noncompiling": [
+    143,
+    500
+  ],
+  "ablation_IC_tests_mean_over_n": 0.1135,
+  "ablation_IC_proofs_mean_over_n": 0.0351,
+  "cells_IC_tests_x_IC_proofs_positive_after_ablation": [
+    30,
+    [
+      0.0414,
+      0.0826
+    ]
+  ],
+  "noncompiling_files_with_error_category": {
+    "tactic_failed": 409,
+    "parse": 386,
+    "unknown_name": 320,
+    "type_error": 251,
+    "other": 100,
+    "index_bounds_proof": 12,
+    "termination": 2,
+    "timeout": 1
+  },
+  "noncompiling_files_with_error_region": {
+    "theorem_proof": 453,
+    "example_test": 418,
+    "definition": 338,
+    "theorem_statement": 152,
+    "other": 81
+  },
+  "top_first_errors": [
+    [
+      "failed to synthesize",
+      86
+    ],
+    [
+      "unknown identifier _",
+      58
+    ],
+    [
+      "unexpected token _; expected _, _",
+      54
+    ],
+    [
+      "type mismatch",
+      39
+    ],
+    [
+      "unknown constant _",
+      27
+    ],
+    [
+      "Invalid field _: The environment does not contain _",
+      23
+    ],
+    [
+      "unexpected token _; expected _",
+      21
+    ],
+    [
+      "Application type mismatch: In the application",
+      20
+    ],
+    [
+      "unexpected identifier; expected command",
+      19
+    ],
+    [
+      "Function expected at",
+      19
+    ],
+    [
+      "tactic _ evaluated that the proposition",
+      11
+    ],
+    [
+      "unexpected token _; expected _, _, _, _ or term",
+      10
+    ]
+  ],
+  "files_with_lean3_markers": 169,
+  "think": {
+    "n_with_close_tag": 511,
+    "n_empty_think": 0,
+    "ablation_compile_rate_empty_think": [
+      0,
+      0,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "ablation_compile_rate_nonempty_think": [
+      58,
+      511,
+      [
+        0.0888,
+        0.1439
+      ]
+    ]
+  }
+}

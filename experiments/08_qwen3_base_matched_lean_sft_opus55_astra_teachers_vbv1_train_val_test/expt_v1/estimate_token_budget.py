@@ -27,6 +27,7 @@ def _tokenizer():
 
 
 def _stats(xs: list[int]) -> dict:
+    """Report rounded means and order statistics, using the upper middle observation for the median."""
     xs = sorted(xs)
     if not xs:
         return {"n": 0}
@@ -42,11 +43,15 @@ def gold(veribench_root: Path) -> dict:
     tok = _tokenizer()
     lean_root = veribench_root / "veribench_dataset" / "lean_src" / "veribench"
     py_root = veribench_root / "veribench_dataset" / "py_src"
+    manifest = _manifest()
+
+    def count_tokens(path: Path) -> int:
+        return len(tok(path.read_text(encoding="utf-8"), add_special_tokens=False)["input_ids"])
+
     out = {}
     for split in ("train", "validation", "test"):
-        rows = [r for r in _manifest() if r["split"] == split]
-        n = lambda p: len(tok(p.read_text(encoding="utf-8"), add_special_tokens=False)["input_ids"])  # noqa: E731
-        out[split] = {"gold_lean_tokens": _stats([n(lean_root / r["gold_relpath"]) for r in rows]), "python_tokens": _stats([n(py_root / r["py_relpath"]) for r in rows])}
+        rows = [r for r in manifest if r["split"] == split]
+        out[split] = {"gold_lean_tokens": _stats([count_tokens(lean_root / r["gold_relpath"]) for r in rows]), "python_tokens": _stats([count_tokens(py_root / r["py_relpath"]) for r in rows])}
     return {"tokenizer": TOKENIZER, "by_split": out}
 
 
@@ -59,6 +64,8 @@ def e103(private: Path) -> dict:
     for m in E103_MODELS:
         with open(private / "scsc_vbv1" / m / f"scsc_expt103-single-call-vbv1-{m}_{m}_per_task.csv", encoding="utf-8", newline="") as fh:
             rows = list(csv.DictReader(fh))
+        if len(rows) != len(split_of) or {r["task"] for r in rows} != set(split_of):
+            raise ValueError(f"{m}: expected exactly one row per manifest task")
         ok_all = {
             r["task"]
             for r in rows
@@ -72,8 +79,7 @@ def e103(private: Path) -> dict:
             lens = []
             for r in ok:
                 f = private / "jobs" / m / r["task"] / "verifier" / "solution.lean"
-                if f.is_file():
-                    lens.append(len(tok(f.read_text(encoding="utf-8"), add_special_tokens=False)["input_ids"]))
+                lens.append(len(tok(f.read_text(encoding="utf-8"), add_special_tokens=False)["input_ids"]))
             out["models"].setdefault(m, {})[split] = {"tasks": len(sel), "measured": len(measured), "kernel_pass_proxy": len(ok), "kernel_pass_share_of_tasks": round(len(ok) / max(1, len(sel)), 4), "passing_lean_tokens": _stats(lens)}
     train = {t for t, s in split_of.items() if s == "train"}
     out["train_union_tasks"] = len((passed[E103_MODELS[0]] | passed[E103_MODELS[1]]) & train)

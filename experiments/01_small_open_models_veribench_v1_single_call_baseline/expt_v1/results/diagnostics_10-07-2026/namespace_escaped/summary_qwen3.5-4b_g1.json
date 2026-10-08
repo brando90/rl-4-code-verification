@@ -1,0 +1,131 @@
+{
+  "label": "qwen3.5-4b_g1",
+  "n_cells": 529,
+  "n_with_file": 529,
+  "n_no_file": 0,
+  "recompile_vs_scored_mismatches": [
+    "security_set__security_6858__vulnerabilities__103_unsafellcpartition",
+    "security_set__security_6858__vulnerabilities__107_unsafesoftfailrevocation"
+  ],
+  "classes": {
+    "definitions_fail": 502,
+    "tests_or_statements_fail": 23,
+    "compiles": 2,
+    "compiles_after_proof_ablation": 2
+  },
+  "compiles_original": [
+    2,
+    [
+      0.001,
+      0.0137
+    ]
+  ],
+  "compiles_after_proof_ablation_incl_original": [
+    4,
+    [
+      0.0029,
+      0.0193
+    ]
+  ],
+  "definitions_only_compile_among_noncompiling": [
+    25,
+    527
+  ],
+  "ablation_IC_tests_mean_over_n": 0.0019,
+  "ablation_IC_proofs_mean_over_n": 0.0009,
+  "cells_IC_tests_x_IC_proofs_positive_after_ablation": [
+    1,
+    [
+      0.0003,
+      0.0106
+    ]
+  ],
+  "noncompiling_files_with_error_category": {
+    "parse": 485,
+    "tactic_failed": 407,
+    "unknown_name": 274,
+    "type_error": 268,
+    "other": 222,
+    "timeout": 12,
+    "index_bounds_proof": 11,
+    "termination": 3
+  },
+  "noncompiling_files_with_error_region": {
+    "example_test": 389,
+    "other": 370,
+    "definition": 359,
+    "theorem_proof": 353,
+    "theorem_statement": 208
+  },
+  "top_first_errors": [
+    [
+      "unexpected token _; expected _",
+      187
+    ],
+    [
+      "unexpected token _; expected command",
+      95
+    ],
+    [
+      "unterminated comment",
+      35
+    ],
+    [
+      "type mismatch",
+      21
+    ],
+    [
+      "unknown identifier _",
+      17
+    ],
+    [
+      "Function expected at",
+      15
+    ],
+    [
+      "failed to synthesize",
+      14
+    ],
+    [
+      "tactic _ failed, the left-hand side",
+      11
+    ],
+    [
+      "type expected, got",
+      9
+    ],
+    [
+      "unexpected identifier; expected command",
+      8
+    ],
+    [
+      "unexpected token _; expected _, _ or _",
+      8
+    ],
+    [
+      "Application type mismatch: In the application",
+      7
+    ]
+  ],
+  "files_with_lean3_markers": 52,
+  "think": {
+    "n_with_close_tag": 527,
+    "n_empty_think": 0,
+    "ablation_compile_rate_empty_think": [
+      0,
+      0,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "ablation_compile_rate_nonempty_think": [
+      3,
+      527,
+      [
+        0.0019,
+        0.0166
+      ]
+    ]
+  }
+}

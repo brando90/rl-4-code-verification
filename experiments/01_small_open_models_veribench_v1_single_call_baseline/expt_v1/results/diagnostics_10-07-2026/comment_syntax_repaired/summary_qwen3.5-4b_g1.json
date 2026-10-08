@@ -1,0 +1,140 @@
+{
+  "label": "qwen3.5-4b_g1",
+  "n_cells": 661,
+  "n_with_file": 661,
+  "n_no_file": 0,
+  "recompile_vs_scored_mismatches": [
+    "concurrent_set_synthetic__my_paxos_ballot_accept",
+    "easy_set__2_mymax",
+    "easy_set__9_myoddsumparity",
+    "finance_set_synthetic__my_order_crosses",
+    "hardware_set_real__my_spike_rd_field",
+    "hypervisor_set_synthetic__my_iommu_window_translate",
+    "security_set__security_6858__safe__97_unsafeephemeralkey_safe",
+    "security_set__security_6858__vulnerabilities__102_unsafebarekeybaselookup",
+    "security_set__security_6858__vulnerabilities__103_unsafellcpartition",
+    "security_set__security_6858__vulnerabilities__107_unsafesoftfailrevocation",
+    "security_set__security_6858__vulnerabilities__37_unsaferollback"
+  ],
+  "classes": {
+    "definitions_fail": 590,
+    "tests_or_statements_fail": 57,
+    "compiles": 11,
+    "compiles_after_proof_ablation": 3
+  },
+  "compiles_original": [
+    11,
+    [
+      0.0093,
+      0.0296
+    ]
+  ],
+  "compiles_after_proof_ablation_incl_original": [
+    14,
+    [
+      0.0127,
+      0.0352
+    ]
+  ],
+  "definitions_only_compile_among_noncompiling": [
+    60,
+    650
+  ],
+  "ablation_IC_tests_mean_over_n": 0.003,
+  "ablation_IC_proofs_mean_over_n": 0.0008,
+  "cells_IC_tests_x_IC_proofs_positive_after_ablation": [
+    1,
+    [
+      0.0003,
+      0.0085
+    ]
+  ],
+  "noncompiling_files_with_error_category": {
+    "parse": 573,
+    "tactic_failed": 513,
+    "unknown_name": 349,
+    "type_error": 342,
+    "other": 276,
+    "index_bounds_proof": 14,
+    "timeout": 13,
+    "termination": 4
+  },
+  "noncompiling_files_with_error_region": {
+    "example_test": 489,
+    "definition": 457,
+    "theorem_proof": 452,
+    "other": 313,
+    "theorem_statement": 257
+  },
+  "top_first_errors": [
+    [
+      "unexpected token _; expected command",
+      102
+    ],
+    [
+      "unterminated comment",
+      65
+    ],
+    [
+      "unexpected token _; expected _",
+      52
+    ],
+    [
+      "type mismatch",
+      40
+    ],
+    [
+      "Function expected at",
+      35
+    ],
+    [
+      "unknown identifier _",
+      30
+    ],
+    [
+      "tactic _ failed, the left-hand side",
+      24
+    ],
+    [
+      "failed to synthesize",
+      21
+    ],
+    [
+      "unsolved goals",
+      20
+    ],
+    [
+      "Application type mismatch: In the application",
+      19
+    ],
+    [
+      "simp made no progress",
+      18
+    ],
+    [
+      "failed to infer binder type",
+      18
+    ]
+  ],
+  "files_with_lean3_markers": 86,
+  "think": {
+    "n_with_close_tag": 659,
+    "n_empty_think": 0,
+    "ablation_compile_rate_empty_think": [
+      0,
+      0,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "ablation_compile_rate_nonempty_think": [
+      13,
+      659,
+      [
+        0.0116,
+        0.0335
+      ]
+    ]
+  }
+}
