@@ -4,7 +4,7 @@
 
 **TLDR:** This fixes, before any teacher call, the source tasks, contamination screens, prompt bytes, teacher models and settings, scorer bytes, keep rule, analysis and decision rule for building kernel-verified Lean warm-start data from MBPP. Nothing in it trains a model or touches VeriBench tasks.
 
-**Lock line:** `NOT LOCKED` — the SNAP worker replaces this line with `LOCKED <UTC time> at commit <hash>` after § Preflight passes and before the first teacher call. After the lock, any change is a new version (`expt_v4`).
+**Lock line:** `LOCKED 2026-10-08 00:09 UTC at commit 879eefbb219c621802a868d5e9d68e5052b31f3b` (the commit holding the preflight evidence; the preflight's three calls are the only teacher calls before this lock). After the lock, any change is a new version (`expt_v4`).
 
 ## 1. Source and task build (zero model calls)
 
@@ -38,6 +38,7 @@
   | OpenAI | GPT-6 Astra | highest reasoning effort selector the registry serves; `max_tokens` 128,000 |
   | Google | Gemini 4 Argon (`google/gemini-4-argon`) | reasoning effort high (its highest); temperature 1.0; `max_tokens` 65,536 (registry default for the rater route) or higher if the registry allows |
 
+- **Locked settings (10-07-2026, from the registry dump in `results/route_identity_e02a_v3.json`):** Anthropic `anthropic/claude-fable-5-1-no-fallback` with `-k max_tokens 128000 -k compute_effort max`; OpenAI `openai/gpt-6-astra-max` with `-k max_tokens 128000 -k reasoning_effort max` (no temperature, unsupported); Google `google/gemini-4-argon` with `-k max_tokens 128000 -k reasoning_effort high -k temperature 1.0` (128,000 of the 262,144 the registry allows, so the three teachers share one output budget); every run also sends `-k addendum vbv1 -k benchmark rl4cv-e02a-v3-mbpp`, agent `vb103_single_call` (installed bundle = experiment 103's frozen receipt, `single_call.py` `6e1a9b0d…`), dataset `default`, concurrency 24 per teacher (experiment 103 ran 20 per model for seven models at once), task list `results/declared_manifest.json` (970 ids, SHA-256 `ef51bae1…`). Service: `rl4cv-e02a-v3-mbpp` (`results/deployment_e02a_v3.json`, per-task limit 6,600 s). Scorer and grading project: § 5, `results/scorer_adapter_check.json`.
 - **Payer and identity (D-108):** before the first call, record the host, Valkyrie environment and organization, the agent's gateway-key secret mapping (by name only) and the payer, with non-secret evidence.
 - **Calls:** exactly one declared call per (task, teacher), with at most **two model requests per cell in total**, counting the agent's own internal re-send after HTTP 429/5xx. A cell is re-sent (once, as the identical cell) only when its receipts positively show that no model request was served: the sandbox or service failed before the agent started, or `requests_sent = 0`, or every request ended in HTTP 429/5xx with no response, and the shared two-request allowance is not exhausted. A served or possibly served call (client timeout, a failure after a response arrived, a collection failure after generation) is never re-sent: recover its artifacts from the run output if they exist, otherwise it stays `unmeasured`. No cell is re-sampled or dropped because of its content or score; unmeasured cells stay in the denominator.
 
