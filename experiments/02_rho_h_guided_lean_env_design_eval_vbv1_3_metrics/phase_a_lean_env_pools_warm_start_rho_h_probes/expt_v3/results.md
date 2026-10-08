@@ -4,17 +4,17 @@
 
 **TLDR:** Live record of the Lean warm-start data run: how many screened, non-VeriBench Python tasks each frontier teacher turns into a kernel-verified VeriBench-format Lean file. The source build and screens are done (970 of 974 MBPP tasks declared, 0 contamination hits); no teacher call has been made. The design is in [README.md](README.md).
 
-**Status:** PREFLIGHT DONE, LOCKING (worker on `skampere1`, 10-07-2026 17:08 PDT). Zero-model-call steps in progress; no teacher call has been made.
+**Status:** TEACHER RUNS IN PROGRESS (worker on `skampere1`, 10-07-2026 17:08 PDT). Zero-model-call steps in progress; no teacher call has been made.
 
 | Step | Status | Evidence |
 |---|---|---|
-| Protocol lock | pending | — |
+| Protocol lock | done | `LOCKED 2026-10-08 00:09 UTC at commit 879eefbb…` ([PROTOCOL.md](PROTOCOL.md)) |
 | Source build and screens | done | MBPP `full` revision `4bb6404f`, 974 rows; 970 kept, 4 dropped (`harness_name_collision`, MBPP ids 56, 349, 899, 967); screens vs VeriBench `c11b99ba` (896 Python + 899 Lean files): 0 exact, 0 near (max word-5-gram Jaccard 0.103). [`results/mbpp_rewrite_manifest.json`](results/mbpp_rewrite_manifest.json), [`results/screen_report.json`](results/screen_report.json), [`results/declared_manifest.json`](results/declared_manifest.json) (970 task ids, list SHA-256 `ef51bae1…`, file SHA-256 `b85e5374…`) |
 | Prompt pack and held-out check | done | 971 task dirs (970 declared + 1 preflight) from the agent-spec v6 adapter at VeriBench `85fd329c6`; [`results/pack_manifest.json`](results/pack_manifest.json); held-out prompt check PASS ([`results/heldout_prompt_check.json`](results/heldout_prompt_check.json)); service-loader round-trip 971/971 PASS ([`results/pack_roundtrip.json`](results/pack_roundtrip.json)) |
 | Scorer adapter | done | mapping gate 971/971 PASS ([`results/mapping_gate.json`](results/mapping_gate.json)); adapter check PASS on 3 gold + 3 broken files, identical factors on both identity paths ([`results/scorer_adapter_check.json`](results/scorer_adapter_check.json)) |
 | Route identity (D-108) | done | Valkyrie `bench`, Vals AWS account 613431292675, agent `vb103_single_call` = experiment 103's frozen bundle, payer Vals; selectors `anthropic/claude-fable-5-1-no-fallback` (compute_effort max), `openai/gpt-6-astra-max`, `google/gemini-4-argon` (reasoning high, T 1.0); all `max_tokens` 128,000 ([`results/route_identity_e02a_v3.json`](results/route_identity_e02a_v3.json)) |
 | Service and preflight | done | collect-only service on `skampere1:9720` behind a bearer-protected tunnel (health 200 / 401, per-task limit 6,600 s; [`results/deployment_e02a_v3.json`](results/deployment_e02a_v3.json)); preflight 3 cells, infrastructure PASS ([`results/preflight.json`](results/preflight.json)) |
-| Teacher runs | pending | protocol lock, then one Valkyrie run per teacher over the 970 declared tasks |
+| Teacher runs | running (admitted 10-08-2026 00:09 UTC) | 3 Valkyrie runs × 970 cells, concurrency 24: anthropic `1331991a…`, openai `6ecd7da9…`, google `2b3e9d64…` ([`results/runs_state.json`](results/runs_state.json)) |
 | Scoring and verdict | pending | — |
 
 ## Route evidence (D-108, D-014), recorded before the first teacher call
