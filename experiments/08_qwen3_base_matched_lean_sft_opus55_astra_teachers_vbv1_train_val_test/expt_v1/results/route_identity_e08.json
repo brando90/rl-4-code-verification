@@ -1,0 +1,331 @@
+{
+ "agent": {
+  "bundle_manifest_sha256_frozen": "cd2c7c92de5246fca05acca6218d2f7a6b11411e3a8564af240c1eacb91b6a1b",
+  "client_timeout_s_default": 3000,
+  "contract_kwargs": [
+   "addendum",
+   "benchmark",
+   "compute_effort",
+   "max_tokens",
+   "reasoning_effort",
+   "temperature"
+  ],
+  "contract_secrets": {
+   "MODEL_GATEWAY_API_KEY": "fellows/brandoModelGatewayApiKey"
+  },
+  "download_exit_code": 0,
+  "frozen_receipt_sha256": {
+   "contract.yaml": "7136f24c3dc8e6c5f0b5ce665538397927f83f6238dd7746ee0081ede975bff6",
+   "prompts/addendum_vbv1.md": "a7a0fc1b7be6b4ede41fd6b31e1e1dcae3d2fd320a6cddf9b311cf55855a18f5",
+   "setup.sh": "901c2065fa68a8eeaba451ebcd625a331009530b72abaddb1d9f8356a2d8e6fb",
+   "single_call.py": "6e1a9b0de0755932b2869d45c5b32ff54c5647069558125b23a42dcd7afedf8f"
+  },
+  "installed_files_sha256": {
+   "contract.yaml": "7136f24c3dc8e6c5f0b5ce665538397927f83f6238dd7746ee0081ede975bff6",
+   "prompts/addendum_vbv1.md": "a7a0fc1b7be6b4ede41fd6b31e1e1dcae3d2fd320a6cddf9b311cf55855a18f5",
+   "setup.sh": "901c2065fa68a8eeaba451ebcd625a331009530b72abaddb1d9f8356a2d8e6fb",
+   "single_call.py": "6e1a9b0de0755932b2869d45c5b32ff54c5647069558125b23a42dcd7afedf8f"
+  },
+  "installed_matches_frozen": true,
+  "name": "vb103_single_call",
+  "pinned_checkout_files_sha256": {
+   "contract.yaml": "7136f24c3dc8e6c5f0b5ce665538397927f83f6238dd7746ee0081ede975bff6",
+   "prompts/addendum_vbv1.md": "a7a0fc1b7be6b4ede41fd6b31e1e1dcae3d2fd320a6cddf9b311cf55855a18f5",
+   "setup.sh": "901c2065fa68a8eeaba451ebcd625a331009530b72abaddb1d9f8356a2d8e6fb",
+   "single_call.py": "c7cbe3e6bffbc2b950e2a42f7d7c1ac859945a361a421b35b3b702aa100cdcf0"
+  },
+  "pinned_checkout_matches_frozen": false,
+  "pinned_checkout_note": "the pinned checkout's single_call.py is a later revision (VBV2 multi-file path policy only); the installed frozen bundle (single_call.py 6e1a9b0d\u2026) is what runs; host-side extraction uses rl4cv.veribench.exp103 on the pinned checkout, whose vbv1 behaviour is identical (experiment 02A v3 checked this on 10-07-2026)",
+  "private_bundle_copy": "/lfs/skampere1/0/brando9/rl4cv_e08/private/agent_bundle_vb103_single_call",
+  "retry_bound": {
+   "max_requests_per_cell": 2,
+   "requests_sent_recorded": true,
+   "resend_only_on_http_429_5xx": true,
+   "timeout_never_replayed": true,
+   "two_attempts_loop": true
+  },
+  "run_cmd_gateway_url": "https://dev.model-gateway.vals.ai"
+ },
+ "cli": "valk (no version flag; `valk --help` smoke passed)",
+ "gateway": {
+  "key_on_host": false,
+  "key_secret_name": "fellows/brandoModelGatewayApiKey",
+  "registry_dump": {
+   "bytes": 862094,
+   "calls": "metadata-only GET /registry taken by another worker; zero /query calls; the key never reached this experiment's host process",
+   "n_models": 454,
+   "path": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/private/registry/registry_2026-10-07T232823+0000.json",
+   "provenance": "metadata-only GET /registry taken 2026-10-07T23:28 UTC by the experiment 02A v3 worker on skampere1 (same Vals account; SHA-256 recorded in its committed results/route_identity_e02a_v3.json as 572c742f\u2026); read-only here",
+   "sha256": "572c742f73ac48f873ed002ea046796cd9eca47e4ce18c8aaad4e13448756882"
+  },
+  "url": "https://dev.model-gateway.vals.ai"
+ },
+ "host": "skampere1.stanford.edu",
+ "organization_bucket": {
+  "environment": "bench",
+  "log_group": "fellows/brando-miranda",
+  "s3_bucket": "fellow-brando-miranda"
+ },
+ "payer": "Vals: the provider credential is Vals' gateway key in Vals' Secrets Manager, mapped into the sandbox by Valkyrie's secret mapping (fellows/brandoModelGatewayApiKey); no personal key or subscription token is used; charges are recorded per receipt (D-108)",
+ "prior_runs_on_this_benchmark": {
+  "exit_code": 0,
+  "n": null,
+  "stdout_head": "{\"kind\":\"run_list\",\"observed_at\":\"2026-10-08T00:12:30.578620Z\",\"returned_count\":0,\"runs\":[],\"schema_version\":1}\n"
+ },
+ "route": "Valkyrie run (valk run start --agent vb103_single_call --benchmark rl4cv-e08-vbv1-train --model <selector> -k \u2026); the agent calls the Vals model gateway from inside the sandbox",
+ "teachers": {
+  "astra": {
+   "all_astra_selectors": {
+    "openai/gpt-6-astra": "max",
+    "openai/gpt-6-astra-high": "high",
+    "openai/gpt-6-astra-low": "low",
+    "openai/gpt-6-astra-max": "max",
+    "openai/gpt-6-astra-medium": "medium",
+    "openai/gpt-6-astra-xhigh": "xhigh"
+   },
+   "efforts_served": [
+    "max",
+    "xhigh",
+    "high",
+    "medium",
+    "low"
+   ],
+   "entry": {
+    "company": "OpenAI",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": null,
+      "read_discount": 0.1,
+      "write": null,
+      "write_markup": 1.25
+     },
+     "context": {
+      "cache": {
+       "read": null,
+       "read_discount": 0.1,
+       "write": null,
+       "write_markup": 1.25
+      },
+      "input": 20.0,
+      "output": 75.0,
+      "threshold": 272000.0
+     },
+     "input": 10.0,
+     "output": 50.0
+    },
+    "default_parameters": {
+     "reasoning_effort": "max"
+    },
+    "entry_sha256": "f1e23437a373cdf094a90b23d649c1d30fc34897cae1248622826f76f553d227",
+    "fallback_models": null,
+    "label": "GPT-6 Astra (Max)",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1050000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": "2026-04"
+    },
+    "provider_endpoint": "gpt-6-astra",
+    "provider_name": "openai",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-09-03",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": false,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": null
+   },
+   "highest_effort": "max",
+   "kwargs": {
+    "reasoning_effort": "max"
+   },
+   "present": true,
+   "selector": "openai/gpt-6-astra-max",
+   "settings": {
+    "max_tokens": 128000,
+    "reasoning_effort": "max",
+    "temperature": "not passed (unsupported)"
+   }
+  },
+  "opus55": {
+   "entry": {
+    "company": "Anthropic",
+    "costs_per_million_token": {
+     "batch": {
+      "input": null,
+      "input_discount": 0.5,
+      "output": null,
+      "output_discount": 0.5
+     },
+     "cache": {
+      "read": 0.4,
+      "read_discount": 0.1,
+      "write": 5.0,
+      "write_markup": 1.25
+     },
+     "context": null,
+     "input": 4.0,
+     "output": 20.0
+    },
+    "default_parameters": {
+     "compute_effort": "max",
+     "max_tokens": 128000,
+     "temperature": 1.0
+    },
+    "entry_sha256": "2cc21ae5da686c0b687dab8460fae0437b2b121b050b9aff7bbb21c2ce3959a9",
+    "fallback_models": [],
+    "label": "Claude Opus 5.5 (No Fallback)",
+    "metadata": {
+     "available_as_evaluator": false,
+     "available_for_everyone": true,
+     "deprecated": false,
+     "ignored_for_cost": false,
+     "internal_only": false
+    },
+    "properties": {
+     "context_window": 1000000,
+     "max_tokens": 128000,
+     "reasoning_model": true,
+     "training_cutoff": "2026-06"
+    },
+    "provider_endpoint": "claude-opus-5-5",
+    "provider_name": "anthropic",
+    "provider_properties_keys": [
+     "api_base",
+     "clear_thinking",
+     "deep_research",
+     "fallback_models",
+     "firerouter_routing_preference",
+     "international",
+     "mainland",
+     "native",
+     "openrouter_allowed_models",
+     "openrouter_cost_tier",
+     "openrouter_min_coding_score",
+     "parallel_tool_calls",
+     "preserve_thinking",
+     "prompt_cache_key",
+     "prompt_cache_retention",
+     "reasoning_context",
+     "returns_thinking_truncated_turns",
+     "separate_reasoning",
+     "serverless",
+     "service_tier",
+     "stream_completions",
+     "supports_auto_thinking",
+     "supports_compute_effort",
+     "supports_disabling_thinking",
+     "task_budget_tokens",
+     "thinking_effort",
+     "thinking_keep",
+     "thinking_off_type",
+     "tool_call_mode",
+     "use_interactions",
+     "use_responses",
+     "use_vertex",
+     "verbosity"
+    ],
+    "release_date": "2026-09-22",
+    "supports": {
+     "audio": false,
+     "files": true,
+     "images": true,
+     "output_schema": true,
+     "temperature": true,
+     "tools": true,
+     "videos": false
+    },
+    "supports_compute_effort": true
+   },
+   "kwargs": {
+    "compute_effort": "max"
+   },
+   "only_opus_5_5_selector_without_fallbacks": true,
+   "opus_5_5_selectors_without_fallbacks": [
+    "anthropic/claude-opus-5-5-no-fallback"
+   ],
+   "present": true,
+   "selector": "anthropic/claude-opus-5-5-no-fallback",
+   "settings": {
+    "compute_effort": "max",
+    "max_tokens": 128000,
+    "temperature": "not passed (registry default 1.0)"
+   }
+  }
+ },
+ "valkyrie_config": {
+  "LOG_GROUP": "fellows/brando-miranda",
+  "S3_BUCKET": "fellow-brando-miranda",
+  "default_sandbox_provider": "daytona",
+  "environment": "bench",
+  "field_names": [
+   "AWS_DEFAULT_REGION",
+   "LOG_GROUP",
+   "LOG_RETENTION_POLICY",
+   "S3_BUCKET",
+   "default_sandbox_provider",
+   "environment",
+   "sandbox_providers"
+  ],
+  "n_secret_like_fields_not_listed": 3,
+  "note": "values of secret-like fields are never read into this record; the private copy used by runs adds this experiment's benchmark service URL and bearer under $WORK/private/ (0600)",
+  "path": "/lfs/skampere1/0/brando9/.config/valkyrie/valkyrie.yaml",
+  "sandbox_providers": [
+   "daytona"
+  ]
+ },
+ "verdict": "PASS",
+ "written_utc": "2026-10-08T00:12:31+00:00"
+}

@@ -2,23 +2,24 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/CKPT_e08.md>
 
-**TLDR:** Resumable state of experiment 08. The master finished the zero-call steps (D-013 split, Base baselines, token-budget inputs, design, protocol, runbook); one requested Codex light review has applied uncommitted fixes in `~/vb_worktrees/rl4cv-e08-qa`. The builder reviews/commits them before the SNAP worker starts runbook § 1.
+**TLDR:** Resumable state of experiment 08. The master finished the zero-call design steps; the SNAP worker (tmux `rl4cv-e08-worker` on `skampere1`) has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity) and is locking PROTOCOL §§ 1–7 before the 8-call live teacher preflight. `$WORK/CKPT_rl4cv-e08-worker.md` is a symlink to this file.
 
-**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-07-2026 16:42 PDT (master).
+**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-07-2026 17:12 PDT (worker).
 
 ## State
 
 | Item | Value |
 |---|---|
-| Current step | Worker launched on `skampere1` (10-07-2026 16:47 PDT); it owns the next steps from runbook § 1 |
+| Current step | Runbook § 4.4: lock 1 (zero-call checks 1–6 all PASS); then § 4.5 live preflight (8 calls) |
 | Master | Claude Code (Opus 5.5) on Brando's laptop; private worktree `~/vb_worktrees/rl4cv-sft-warmstart-1007` |
-| Intended worker | Claude Code `claude-fable-5-1`, effort `high`, on `skampere1`, tmux `rl4cv-e08-worker`, clone `/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification` |
-| Work root | `/lfs/skampere1/0/brando9/rl4cv_e08` (master scratch only so far: `master_scratch/`, token-budget runs) |
-| Status file | `/lfs/skampere1/0/brando9/rl4cv_e08/STATUS_e08` (not created yet) |
-| Lock 1 / lock 2 | not locked |
+| Worker | Claude Code `claude-fable-5-1`, effort `high`, on `skampere1`, tmux `rl4cv-e08-worker`, clone `/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification` (`main`) |
+| Work root | `/lfs/skampere1/0/brando9/rl4cv_e08`: `env_e08.sh` (source in every shell), `.venv` (tests), `venv_gen` (vLLM 0.30.0 / torch 2.13.0+cu130 / transformers 5.18.0), `grading/lean_src` (private Lean v4.22.0 + Mathlib copy), `pack_train539/`, `cache/huggingface` (HF_HOME; 1.7B/4B/8B linked, 14B tokenizer), `private/` (0700), `logs/` |
+| Status file | `/lfs/skampere1/0/brando9/rl4cv_e08/STATUS_e08` = RUNNING |
+| Lock 1 / lock 2 | not locked (lock 1 in progress) |
 | Valkyrie runs | none |
 | GPUs held | none |
-| Services, ports, tunnels | none |
+| Services, ports, tunnels | service `rl4cv-e08-vbv1-train` on `127.0.0.1:9740` (uvicorn pid in `$WORK/private/service.pid`), cloudflared tunnel (pid in `$WORK/private/tunnel.pid`); port claim `/lfs/skampere1/0/brando9/valkyrie_port_claims/rl4cv-e08_9740-9759.txt`; private config `$WORK/private/valkyrie.yaml` (use `VALKYRIE_CONFIG_PATH`) |
+| Health check | `snap_health.sh --node skampere1`: only `disk.dfs` FAIL (DFS 100% full), off this job's path |
 
 ## Log
 
@@ -43,6 +44,17 @@
   - First observed action: refreshing agents-config and reading the runbook.
   - Preflight: `snap_health.sh --node skampere1` shows only `disk.dfs` FAIL (DFS 100% full), which is off this job's path. All 8 A100s were idle at 16:22 PDT.
 
+- **10-07-2026 17:12 PDT — worker § 1–4 zero-call checks (all PASS; details in `results.md`).**
+  - § 1: pulled `main` (818285a); `make external` at the three pins; `.venv` + `make install`; `make test` with `VERIBENCH_ROOT=external/veribench`: 112 passed, 1 skipped (experiment 07 `scipy`), all 13 split tests ran. `venv_gen` built with `uv` from `$WORK/env/gen_requirements.txt` (experiment 01's freeze recorded at `$WORK/env/e01_venv_freeze.txt`); `import vllm` and CUDA OK. Private grading project copied to `$WORK/grading/lean_src` (5.6 GB).
+  - § 2: `scripts/build_train_pack.py` → `$WORK/pack_train539/` and `results/pack_check.json` PASS. `scripts/template_check.py control` → `results/template_check.json` PASS (4 sizes identical; assistant prefix `<think>\n\n</think>\n\n`).
+  - § 3: `scripts/score_teacher_files.py adapter-check` → `results/scorer_adapter_check.json` PASS (14 files). First run exposed that 403/896 gold references use `native_decide` (2 of the first 3 train gold files score IC_proofs 0.5); gold selection now skips such references and scores two as diagnostics; `sorry` is classed `unproved_theorem`, `forbidden_axiom` is reserved for declared axioms / `native_decide`.
+  - § 4.1: `scripts/deploy_service_e08.py deploy` → service + tunnel live (200/401 local and tunnel, limit 6,600 s), `results/deployment_e08.json`.
+  - § 4.2–4.3: `scripts/identity_e08.py` with the 10-07 registry dump (read-only from the 02A v3 worker's private copy, SHA-256 `572c742f…`, 454 models; no key on this host) → `results/route_identity_e08.json` PASS: `anthropic/claude-opus-5-5-no-fallback` (fallbacks `[]`, compute_effort max), `openai/gpt-6-astra-max` (highest served); installed bundle = frozen hashes; retry bound 2 requests/cell; 0 prior runs. Decision (Rule 57): reuse that same-day dump instead of fetching the gateway key on this host.
+
 ## Next command (worker)
 
-Runbook `expt_v1/cc.md` § 1 on `skampere1`; both protocol locks remain pending host preflight.
+```bash
+source /lfs/skampere1/0/brando9/rl4cv_e08/env_e08.sh && cd $REPO && . .venv/bin/activate
+# 1. commit + push this zero-call step; 2. set PROTOCOL lock-1 line to that commit, commit + push (record the lock commit here);
+# 3. live preflight: python $EXP/expt_v1/scripts/run_teachers_e08.py admit --phase preflight --teacher opus55 --sample p1 (and p2; astra p1, p2)
+```
