@@ -4,7 +4,7 @@
 
 **TLDR:** Live record of the Lean warm-start data run: how many screened, non-VeriBench Python tasks each frontier teacher turns into a kernel-verified VeriBench-format Lean file. The source build and screens are done (970 of 974 MBPP tasks declared, 0 contamination hits); no teacher call has been made. The design is in [README.md](README.md).
 
-**Status:** TEACHER RUNS IN PROGRESS (worker on `skampere1`, 10-07-2026 17:08 PDT). Zero-model-call steps in progress; no teacher call has been made.
+**Status:** SCORING (teacher runs finished 10-08-2026 17:12 UTC; frozen-scorer scoring and the 16-cell re-send in progress) (worker on `skampere1`, 10-08-2026 10:25 PDT). Zero-model-call steps in progress; no teacher call has been made.
 
 | Step | Status | Evidence |
 |---|---|---|
@@ -14,8 +14,8 @@
 | Scorer adapter | done | mapping gate 971/971 PASS ([`results/mapping_gate.json`](results/mapping_gate.json)); adapter check PASS on 3 gold + 3 broken files, identical factors on both identity paths ([`results/scorer_adapter_check.json`](results/scorer_adapter_check.json)) |
 | Route identity (D-108) | done | Valkyrie `bench`, Vals AWS account 613431292675, agent `vb103_single_call` = experiment 103's frozen bundle, payer Vals; selectors `anthropic/claude-fable-5-1-no-fallback` (compute_effort max), `openai/gpt-6-astra-max`, `google/gemini-4-argon` (reasoning high, T 1.0); all `max_tokens` 128,000 ([`results/route_identity_e02a_v3.json`](results/route_identity_e02a_v3.json)) |
 | Service and preflight | done | collect-only service on `skampere1:9720` behind a bearer-protected tunnel (health 200 / 401, per-task limit 6,600 s; [`results/deployment_e02a_v3.json`](results/deployment_e02a_v3.json)); preflight 3 cells, infrastructure PASS ([`results/preflight.json`](results/preflight.json)) |
-| Teacher runs | running (admitted 10-08-2026 00:09 UTC) | 3 Valkyrie runs × 970 cells, concurrency 24: anthropic `1331991a…`, openai `6ecd7da9…`, google `2b3e9d64…` ([`results/runs_state.json`](results/runs_state.json)) |
-| Scoring and verdict | pending | — |
+| Teacher runs | done (admitted 10-08-2026 00:09 UTC, all terminal 17:12 UTC) | 3 × 970 cells, concurrency 24: anthropic `1331991a…` (61 measured, 26 incomplete, 860 model_error `MaxOutputTokensExceededError`, 13 timeout, 10 no receipt; $499.80), openai `6ecd7da9…` (953 measured, 15 timeout, 2 no receipt; $1,995.08), google `2b3e9d64…` (952 measured, 14 timeout, 4 no receipt; $564.69); the 16 no-receipt cells re-sent once as identical cells in `recovery` runs ([`results/receipts/main/`](results/receipts/main/), [`results/resend_eligible.json`](results/resend_eligible.json)) |
+| Scoring and verdict | running | frozen scorer over 1,969 collected Lean files in 9 parallel shards on `skampere1` (started 17:23 UTC) |
 
 ## Route evidence (D-108, D-014), recorded before the first teacher call
 
