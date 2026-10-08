@@ -4,9 +4,9 @@
 
 **TLDR:** The VeriBench V1 train / validation / test split (539 / 135 / 222 tasks, D-013) and the zero-call baselines are done. On the new validation split, Qwen3 Base's `kernel_binary` mixed-group share at G = 8 is 0.000 (1.7B), 0.022 (4B) and 0.000 (8B), all below the 0.05 gate. The SNAP worker has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity); lock 1 and the live teacher preflight are next.
 
-**Status:** RUNNING (SNAP worker on `skampere1`, tmux `rl4cv-e08-worker`; all 8 teacher main runs in flight after lock-1 amendment A1; Base 14B validation generation running)
+**Status:** RUNNING (SNAP worker on `skampere1`; teacher data and S done; locking lock 2, then the dry run and matched SFT)
 
-**Last updated:** 10-07-2026 18:48 PDT (worker, Base 14B validation)
+**Last updated:** 10-08-2026 02:43 PDT (worker, S assembled)
 
 ## Phases
 
@@ -16,9 +16,9 @@
 | Base models on the splits (experiment 05 receipts) | DONE (10-07-2026) | `expt_v1/results/base_qwen3_e05_on_d013_splits.json` |
 | Token-budget inputs | DONE (10-07-2026) | `expt_v1/results/token_budget_gold_lengths.json`, `token_budget_e103_teacher_yields.json` |
 | Lock 1 preflight and lock | lock 1 LOCKED 2026-10-08T00:16 UTC at `6e6890f` (lock commit `cc86ec0`); live preflight (8 cells) IN PROGRESS since 10-07-2026 17:17 PDT | `expt_v1/results/pack_check.json`, `scorer_adapter_check.json`, `template_check.json`, `deployment_e08.json`, `route_identity_e08.json` |
-| Teacher runs (4,312 cells) | IN PROGRESS: Astra 4 runs × 539 admitted 10-07-2026 17:44 PDT; Opus 5.5 4 runs × 539 admitted after amendment A1 (`xhigh`), concurrency 24 each | `expt_v1/results/runs_state.json`, `results/receipts/preflight/` |
-| Scoring, screen, SFT set S | PENDING | — |
-| Lock 2 preflight and lock | PENDING | — |
+| Teacher runs (4,312 cells) | DONE (10-08-2026): 4,312 / 4,312 terminal; measured 3,827; kept 2,004; charges 5,111.94 USD | `expt_v1/results/runs_state.json`, `results/receipts/preflight/` |
+| Scoring, screen, SFT set S | DONE (10-08-2026): |S| = 1315 over 476 tasks, 5.75M assistant tokens | `expt_v1/results/scored_cells.jsonl`, `generated_lean_screen.json`, `sft_set_manifest.csv`, `sft_set_stats.json`, `teacher_analysis.json` |
+| Lock 2 preflight and lock | IN PROGRESS: static checks PASS; lock and dry run next | `expt_v1/results/template_check_examples.json`, `sft_schedule.json`, `sft_config_diff.md` |
 | Matched SFT, 4 sizes × 5 checkpoints | PENDING | — |
 | Validation ladder and selection | IN PROGRESS: Base 14B DONE (passes all gates at the boundary, mixed 7 / 135); trained checkpoints pending SFT | `expt_v1/results/validation_ladder_base14b.json` |
 | Test evaluation | PENDING | — |
@@ -139,6 +139,31 @@ Qwen3-14B-Base `0b0bd373…`, experiment 05's exact sampling, 135 tasks × 8 = 1
 | (c) `kernel_binary` mixed-group share | 7 / 135 = 0.052, Wilson 95% [0.025, 0.103] | ≥ 0.05 | yes (at the boundary) |
 
 Diagnostics: pass@8 share 0.052, all-pass share 0, mean pass rate 9 / 1,080 = 0.0083, IC_tests rate 0.0083, mean generated tokens 2,001, within-task diversity (mean pairwise word-5-gram Jaccard) 0.144; 5 cells had a vacuous theorem and are not counted as passes. p-val=n/a (prespecified point-estimate gate). Note: Base 14B meets the readiness gate without any SFT, unlike Base 1.7B / 4B / 8B on experiment 05's receipts (0.000 / 0.022 / 0.000); the selection rule in PROTOCOL § 9 applies to the trained checkpoints and is unchanged. Evidence: `expt_v1/results/validation_ladder_base14b.json`, `expt_v1/results/ladder/base14b_validation_{per_task,cells}.csv`.
+
+## Teacher runs, scoring, screen and the SFT set S (PROTOCOL §§ 3–7; 10-08-2026)
+
+All 4,312 declared cells are terminal (8 Valkyrie runs of 539 cells, concurrency 24; one identical recovery re-send for 16 positively unserved cells, all measured). Every collected file was kernel-scored by the frozen scorer in the private grading project; `kernel_binary` includes the non-vacuity screen. Charges are the gateway's per-receipt reports (Vals-funded, D-108). Unmeasured = no model response (output cap, content filter, infrastructure); such cells stay in the denominator.
+
+| Teacher / sample | Declared | Measured | Unmeasured | Kept | Kept / measured [Wilson 95%] | Truncated | Charge (USD) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| opus55/s1 | 539 | 539 | 0 | 303 | 0.5622 [0.52, 0.6034] | 97 | 447.75 |
+| opus55/s2 | 539 | 539 | 0 | 287 | 0.5325 [0.4903, 0.5742] | 102 | 461.02 |
+| opus55/s3 | 539 | 539 | 0 | 304 | 0.564 [0.5218, 0.6053] | 96 | 467.13 |
+| opus55/s4 | 539 | 539 | 0 | 306 | 0.5677 [0.5256, 0.6089] | 101 | 460.19 |
+| astra/s1 | 539 | 539 | 0 | 206 | 0.3822 [0.3421, 0.4239] | 0 | 840.9 |
+| astra/s2 | 539 | 539 | 0 | 207 | 0.384 [0.3439, 0.4258] | 0 | 812.77 |
+| astra/s3 | 539 | 539 | 0 | 193 | 0.3581 [0.3187, 0.3994] | 0 | 807.72 |
+| astra/s4 | 539 | 539 | 0 | 198 | 0.3673 [0.3277, 0.4089] | 0 | 814.46 |
+
+Union coverage: 479 / 539 train tasks have at least one kept file (share 0.8887, Wilson 95% [0.8593, 0.9125]); both teachers 277, opus55 only 159, astra only 43, neither 60. Total reported charge 5111.94 USD.
+
+Failure taxonomy (cells): Opus 5.5 {"kept": 1200, "no_lean": 437, "no_typecheck": 515, "unproved_theorem": 2, "vacuous_theorem": 2}; Astra {"kept": 804, "no_lean": 34, "no_typecheck": 1316, "unparseable_theorem_type": 2}. `no_lean` cells are the unmeasured ones (Opus: 78 per run exceeded the 128,000-token output cap even at xhigh, 9–11 were content-filtered); `no_typecheck` is the dominant measured failure. Kept-file lengths (Qwen3 tokens): Opus mean 4908, median 4811, p90 6615 (n 1200); Astra mean 3055, median 2653, p90 4693 (n 804). Per-family union coverage: aerospace_set_real 2/2, aerospace_set_synthetic 10/10, compilers_set_real 3/3, compilers_set_synthetic 9/9, concurrent_set_real 3/3, concurrent_set_synthetic 9/9, critical_infra_set_real 4/4, critical_infra_set_synthetic 8/8, crypto_set_real 10/10, crypto_set_synthetic 2/2, cs_set 1/15, easy_set 20/25, finance_set_real 5/5, finance_set_synthetic 7/7, gov_cert_set_real 2/2, gov_cert_set_synthetic 10/10, hardware_set_real 3/3, hardware_set_synthetic 10/10, humaneval_set 30/34, hypervisor_set_real 3/3, hypervisor_set_synthetic 10/10, medical_oss_set_real 6/6, medical_oss_set_synthetic 6/6, memory_bugs_set_real 3/3, memory_bugs_set_synthetic 9/9, os_embedded_set_real 4/4, os_embedded_set_synthetic 8/8, realcode_set 3/19, regulated_set_real 3/3, regulated_set_synthetic 9/9, rfc_set_real 11/11, rfc_set_synthetic 1/1, security_set 255/276.
+
+**Generated-Lean screen (§ 6):** 2004 kept, extraction-consistent cells → 6012 texts (file, full response, each fenced block) against the 714 validation + test Python programs and gold Lean references: 0 exact, 0 near hits (max word-5-gram Jaccard 0.0277); mean Jaccard to the task's own gold 0.0284 (max 0.1402), diagnostic only.
+
+**S (§ 7):** |S| = 1315 examples over 476 distinct train tasks (Opus 798, Astra 517); exclusions {"over_length_cap": 4, "per_teacher_cap": 685} (the per-teacher cap of 2 distinct files is the rule, not a loss); per-task example counts {"0": 63, "1": 29, "2": 185, "3": 132, "4": 130}. Assistant tokens (template-inserted prefix + response + `<|im_end|>\n`): total 5,751,621, mean 4373.9, median 4296, p10 2213, p90 6623, max 12070; prompt tokens total 4,617,702 (mean 3511.6). Against the README estimate (1,100–1,600 examples, 4–6.5M assistant tokens): realized 1,315 examples and 5.75M assistant tokens, inside the upper scenario. Manifest (ids, hashes, token counts, no contents): `expt_v1/results/sft_set_manifest.csv`; stats `sft_set_stats.json`; the JSONL stays on the host.
+
+**Lock-2 static checks (§ 12):** rendering prefix and mask on every example under all four tokenizers: 1315 / 1315 PASS (`template_check_examples.json`); NeMo RL's own formatter reproduces the evaluation prompt and the loss span (`<think>\n\n</think>\n\n` + response + `<|im_end|>\n` + `<|endoftext|>`) on every example with identical ids across sizes (`sft_schedule.json`, verdict PASS). Schedule: 658 steps of global batch 2 (|S| odd → one fully loss-masked padding slot in the last step), warmup W = 20 then cosine over 638; loss-token total 5,752,936; checkpoints at steps [82, 164, 334, 497, 658] (12.5 / 25 / 50 / 75 / 100 %, overshoot 1,658 / 4,315 / 8,240 / 4,079 / 0 tokens). Configs `expt_v1/configs/e08_sft_<size>.yaml` derive from Varun's with every difference listed in `sft_config_diff.md` (declared: `add_generation_prompt true` so the loss span excludes the generation prompt; openai_format adapter for the system message; SFT-time validation and Weights & Biases off; segment-and-resume checkpoints; GPU layout per size).
 
 ## Open questions for Brando
 

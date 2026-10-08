@@ -100,7 +100,7 @@ def main(argv: list[str] | None = None) -> int:
                 elif cid in excluded_screen:
                     reason = "screen_hit"
                 if reason is None:
-                    lean_path = a.job_root / f"{teacher}_{s}_s0" / tid / "verifier" / "solution.lean"
+                    lean_path = a.job_root / (f"{teacher}_{s}_rec1_s0" if r.get("recovered") else f"{teacher}_{s}_s0") / tid / "verifier" / "solution.lean"
                     lean = lean_path.read_text(encoding="utf-8")
                     response = Path(r["response_path"]).read_text(encoding="utf-8", errors="replace")
                     if sha(lean.encode("utf-8")) != r["lean_sha256"] or sha(response.encode("utf-8")) != r["response_text_sha256"]:
@@ -138,7 +138,7 @@ def main(argv: list[str] | None = None) -> int:
     cols = ["index", "task_id", "family", "teacher", "r", "order_key", "lean_sha256", "lean_norm_hash", "response_sha256", "prompt_sha256", "n_prompt_tokens", "n_assistant_tokens",
             "n_total_tokens", "run_id"]
     with a.manifest_out.open("w", encoding="utf-8", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=cols)
+        w = csv.DictWriter(fh, fieldnames=cols, lineterminator="\n")
         w.writeheader()
         for i, e in enumerate(selected):
             w.writerow({"index": i, **{k: e[k] for k in cols if k != "index"}})

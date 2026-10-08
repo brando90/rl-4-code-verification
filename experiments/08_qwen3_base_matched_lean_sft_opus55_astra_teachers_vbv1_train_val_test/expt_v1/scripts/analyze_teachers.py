@@ -81,7 +81,7 @@ def main(argv: list[str] | None = None) -> int:
                 taxonomy[t][r["failure_class"]] = taxonomy[t].get(r["failure_class"], 0) + 1
             for r in kept:
                 kept_tasks[t].add(r["task_id"])
-                lean = (a.job_root / f"{t}_{s}_s0" / r["task_id"] / "verifier" / "solution.lean").read_text(encoding="utf-8")
+                lean = (a.job_root / (f"{t}_{s}_rec1_s0" if r.get("recovered") else f"{t}_{s}_s0") / r["task_id"] / "verifier" / "solution.lean").read_text(encoding="utf-8")
                 kept_lengths[t].append(len(tok(lean, add_special_tokens=False)["input_ids"]))
     union = kept_tasks["opus55"] | kept_tasks["astra"]
     both = kept_tasks["opus55"] & kept_tasks["astra"]

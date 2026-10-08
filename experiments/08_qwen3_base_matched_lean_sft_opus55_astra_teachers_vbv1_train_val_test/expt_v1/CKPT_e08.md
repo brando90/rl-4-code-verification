@@ -4,13 +4,13 @@
 
 **TLDR:** Resumable state of experiment 08. The master finished the zero-call design steps; the SNAP worker (tmux `rl4cv-e08-worker` on `skampere1`) has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity) and is locking PROTOCOL §§ 1–7 before the 8-call live teacher preflight. `$WORK/CKPT_rl4cv-e08-worker.md` is a symlink to this file.
 
-**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-08-2026 01:14 PDT (worker).
+**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-08-2026 02:43 PDT (worker).
 
 ## State
 
 | Item | Value |
 |---|---|
-| Current step | Runbook § 6: all 8 main runs terminal and harvested; scoring Opus + Astra files; 5 recovery runs (16 cells) in flight; then screen, S, lock 2. Earlier: all 8 teacher main runs in flight (at 18:07 PDT: Astra ~26 and Opus ~14 finished cells per run per 20 min → Astra ≈ 7 h, Opus ≈ 12 h; poll `logs/main_poll.log` every 20 min); Base 14B validation DONE (passes gates, mixed 7/135; `results/validation_ladder_base14b.json`); next: harvest + score each run as it turns terminal (§ 6), then S, lock 2 |
+| Current step | Runbook § 7.5: lock 2 (static checks PASS, configs derived); then § 7.6 dry run on GPU 0, then § 8 matched SFT |
 | Master | Claude Code (Opus 5.5) on Brando's laptop; private worktree `~/vb_worktrees/rl4cv-sft-warmstart-1007` |
 | Worker | Claude Code `claude-fable-5-1`, effort `high`, on `skampere1`, tmux `rl4cv-e08-worker`, clone `/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification` (`main`) |
 | Work root | `/lfs/skampere1/0/brando9/rl4cv_e08`: `env_e08.sh` (source in every shell), `.venv` (tests), `venv_gen` (vLLM 0.30.0 / torch 2.13.0+cu130 / transformers 5.18.0), `grading/lean_src` (private Lean v4.22.0 + Mathlib copy), `pack_train539/`, `cache/huggingface` (HF_HOME; 1.7B/4B/8B linked, 14B tokenizer), `private/` (0700), `logs/` |
@@ -67,6 +67,8 @@
 - **10-07-2026 23:48 PDT — all 8 main runs terminal (06:43 UTC); Astra harvested; recovery re-sends admitted.** Astra per run: measured 526–533, `unmeasured_infra` 6–13 (possibly served, never re-sent), no receipt 4 (s1 only), extraction consistent on every collected file, charges 808–834 USD per run (≈ 3,269 USD for Astra; teachers ≈ 5,100 USD so far). Recovery (one identical re-send of positively unserved cells, same `-k benchmark`, labels `…-recovery1`): astra/s1@recovery1 `d9760097-94c8-4bf8-ae72-b5645a72cdb3`, opus55/s1@recovery1 `180bf8d6-c1df-4fd1-aab2-4c03da81702b`, opus55/s2@recovery1 `98f791cc-a05a-4538-90bd-32458632c926`, opus55/s3@recovery1 `d3225f57-7027-4d2f-a62e-5101b021b2e0`, opus55/s4@recovery1 `1eaffaa4-e6ae-492c-b43b-1446a109b80e` (16 cells). Opus scoring running since 22:04 PDT, Astra scoring queued behind its harvest (`logs/harvest_score_{opus55,astra}.log`).
 
 - **10-08-2026 01:14 PDT — Opus 5.5 files scored (frozen scorer, private grading project; 8 scorer jobs on a saturated host, ~3 h for the Opus jobs).** Failure classes per run after merging the recovered cells: {"s1": {"kept": 303, "no_typecheck": 128, "no_lean": 107, "unproved_theorem": 1}, "s2": {"kept": 287, "no_lean": 113, "no_typecheck": 139}, "s3": {"no_typecheck": 127, "kept": 304, "no_lean": 107, "vacuous_theorem": 1}, "s4": {"kept": 306, "no_typecheck": 121, "no_lean": 110, "unproved_theorem": 1, "vacuous_theorem": 1}}. Kept = `kernel_binary` 1 (typechecks, ≥ 1 example, every theorem kernel-proved with allowed axioms, none vacuous). Astra scoring still running (~150–160 / 539 per job at 00:27 PDT).
+
+- **10-08-2026 02:43 PDT — § 6 done, § 7 static checks PASS; GPU plan for the SFT (Rule 9, pre-approved on SNAP).** 4,312 / 4,312 cells terminal; kept 2,004; screen clean; |S| = 1,315 (5.75M assistant tokens), 658 steps, checkpoints at steps 82 / 164 / 334 / 497 / 658. Processed tokens per epoch ≈ 10.4M (prompt + assistant). Estimates (6·N·D, 100 TFLOP/s sustained per A100, ×3 for activation checkpointing and inefficiency): 1.7B on GPU 0 (TP 1): ~0.5–1 h, ~40 GB; 4B on GPUs 1–2 (TP 2): ~1–2 h, ~40 GB each; 8B on GPUs 3–6 (TP 4): ~2–4 h, ~45 GB each; 14B on GPUs 0–7 (TP 8) after the others: ~4–8 h, ~45 GB each. Compute-bound. Dry run first on GPU 0 (1.7B, 16 examples, 8 steps, minutes).
 
 ## Next command (worker)
 

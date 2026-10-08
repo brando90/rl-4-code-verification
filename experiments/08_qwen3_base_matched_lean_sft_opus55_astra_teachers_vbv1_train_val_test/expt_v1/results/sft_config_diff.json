@@ -1,0 +1,1091 @@
+{
+ "checkpoints": {
+  "0.125": {
+   "actual_fraction": 0.125288,
+   "cumulative_assistant_tokens": 720775,
+   "overshoot_tokens": 1658.0,
+   "step": 82,
+   "target_tokens": 719117.0
+  },
+  "0.25": {
+   "actual_fraction": 0.25075,
+   "cumulative_assistant_tokens": 1442549,
+   "overshoot_tokens": 4315.0,
+   "step": 164,
+   "target_tokens": 1438234.0
+  },
+  "0.5": {
+   "actual_fraction": 0.501432,
+   "cumulative_assistant_tokens": 2884708,
+   "overshoot_tokens": 8240.0,
+   "step": 334,
+   "target_tokens": 2876468.0
+  },
+  "0.75": {
+   "actual_fraction": 0.750709,
+   "cumulative_assistant_tokens": 4318781,
+   "overshoot_tokens": 4079.0,
+   "step": 497,
+   "target_tokens": 4314702.0
+  },
+  "1.0": {
+   "actual_fraction": 1.0,
+   "cumulative_assistant_tokens": 5752936,
+   "overshoot_tokens": 0.0,
+   "step": 658,
+   "target_tokens": 5752936.0
+  }
+ },
+ "schedule_sha256": "e0d6d896a1f4c085629ac90dc8fda9c52e6e5bf511a5a8b42fb30c769e575f8b",
+ "sizes": {
+  "1.7B": {
+   "changes": [
+    {
+     "e08": 658,
+     "key": "sft.max_num_steps",
+     "reason": "step schedule: \u2308|S| / 2\u2309 steps over S in the frozen order (PROTOCOL \u00a7 8); per-segment overrides stop at each checkpoint step",
+     "varun": 1024
+    },
+    {
+     "e08": 0,
+     "key": "sft.val_period",
+     "reason": "SFT-time validation off (PROTOCOL \u00a7 8); the \u00a7 9 ladder selects checkpoints",
+     "varun": 256
+    },
+    {
+     "e08": 0,
+     "key": "sft.val_batches",
+     "reason": "SFT-time validation off",
+     "varun": 128
+    },
+    {
+     "e08": false,
+     "key": "sft.val_at_start",
+     "reason": "SFT-time validation off",
+     "varun": true
+    },
+    {
+     "e08": "${oc.env:E08_CHECKPOINT_DIR}",
+     "key": "checkpointing.checkpoint_dir",
+     "reason": "run-specific output directory",
+     "varun": "${oc.env:PHASE1C_CHECKPOINT_DIR}"
+    },
+    {
+     "e08": null,
+     "key": "checkpointing.metric_name",
+     "reason": "no validation metric; checkpoints are kept by step, never by score",
+     "varun": "val:val_loss"
+    },
+    {
+     "e08": null,
+     "key": "checkpointing.keep_top_k",
+     "reason": "keep every token-fraction checkpoint",
+     "varun": 4
+    },
+    {
+     "e08": 1000000,
+     "key": "checkpointing.save_period",
+     "reason": "checkpoints at the precomputed token-fraction steps: each training segment ends (is_last_step) at one of them and the next segment resumes from it",
+     "varun": 256
+    },
+    {
+     "e08": "${oc.env:E08_MODEL_PATH}",
+     "key": "policy.model_name",
+     "reason": "run-specific input: the pinned Base snapshot for this size",
+     "varun": "${oc.env:PHASE1C_MODEL_PATH}"
+    },
+    {
+     "e08": [
+      {
+       "kwargs": {
+        "end_factor": 1.0,
+        "start_factor": 0.05,
+        "total_iters": 20
+       },
+       "name": "torch.optim.lr_scheduler.LinearLR"
+      },
+      {
+       "kwargs": {
+        "T_max": 638,
+        "eta_min": 0.0
+       },
+       "name": "torch.optim.lr_scheduler.CosineAnnealingLR"
+      },
+      {
+       "milestones": [
+        20
+       ]
+      }
+     ],
+     "key": "policy.scheduler",
+     "reason": "Varun's schedule form with W = \u23080.03 \u00d7 658\u2309 = 20 warmup updates then cosine over 638",
+     "varun": [
+      {
+       "kwargs": {
+        "end_factor": 1.0,
+        "start_factor": 0.03225806451612903,
+        "total_iters": 31
+       },
+       "name": "torch.optim.lr_scheduler.LinearLR"
+      },
+      {
+       "kwargs": {
+        "T_max": 993,
+        "eta_min": 0.0
+       },
+       "name": "torch.optim.lr_scheduler.CosineAnnealingLR"
+      },
+      {
+       "milestones": [
+        31
+       ]
+      }
+     ]
+    },
+    {
+     "e08": "openai_format",
+     "key": "data.dataset_name",
+     "reason": "dataset adapter: system + user + assistant messages (Varun's ResponseDataset has no system message)",
+     "varun": "ResponseDataset"
+    },
+    {
+     "e08": "${oc.env:E08_TRAIN_JSONL}",
+     "key": "data.train_data_path",
+     "reason": "run-specific input: S in NeMo RL openai_format (host only)",
+     "varun": "/lfs/skampere3/0/vmadan/paper1_phase1c_sft_v1/matched_sft_train.jsonl"
+    },
+    {
+     "e08": "${oc.env:E08_VAL_JSONL}",
+     "key": "data.val_data_path",
+     "reason": "loader requirement only: a 2-example file never evaluated (val_period 0, val_at_start false)",
+     "varun": "/lfs/skampere3/0/vmadan/paper1_phase1c_sft_v1/matched_sft_validation.jsonl"
+    },
+    {
+     "e08": "messages",
+     "key": "data.chat_key",
+     "reason": "openai_format adapter key",
+     "varun": "<absent>"
+    },
+    {
+     "e08": null,
+     "key": "data.system_key",
+     "reason": "openai_format adapter: the system message is inside messages",
+     "varun": "<absent>"
+    },
+    {
+     "e08": null,
+     "key": "data.system_prompt",
+     "reason": "openai_format adapter",
+     "varun": "<absent>"
+    },
+    {
+     "e08": null,
+     "key": "data.tool_key",
+     "reason": "openai_format adapter: no tools",
+     "varun": "<absent>"
+    },
+    {
+     "e08": false,
+     "key": "data.use_preserving_dataset",
+     "reason": "openai_format adapter",
+     "varun": "<absent>"
+    },
+    {
+     "e08": true,
+     "key": "data.add_generation_prompt",
+     "reason": "rendering/mask (declared difference): the generation prompt `<|im_start|>assistant\\n` belongs to the prompt (no loss), so the loss span is exactly what the policy generates at evaluation (PROTOCOL \u00a7 7)",
+     "varun": false
+    },
+    {
+     "e08": "<removed>",
+     "key": "data.input_key",
+     "reason": "ResponseDataset-only key",
+     "varun": "input"
+    },
+    {
+     "e08": "<removed>",
+     "key": "data.output_key",
+     "reason": "ResponseDataset-only key",
+     "varun": "output"
+    },
+    {
+     "e08": "${oc.env:E08_LOG_DIR}",
+     "key": "logger.log_dir",
+     "reason": "run-specific output directory",
+     "varun": "${oc.env:PHASE1C_LOG_DIR}"
+    },
+    {
+     "e08": false,
+     "key": "logger.wandb_enabled",
+     "reason": "Weights & Biases off (PROTOCOL \u00a7 8)",
+     "varun": true
+    },
+    {
+     "e08": "${oc.env:E08_TENSORBOARD_DIR}",
+     "key": "logger.tensorboard.log_dir",
+     "reason": "run-specific output directory",
+     "varun": "${oc.env:PHASE1C_TENSORBOARD_DIR}"
+    },
+    {
+     "e08": {
+      "name": "${oc.env:E08_RUN_NAME}",
+      "project": "rl4cv-e08-sft"
+     },
+     "key": "logger.wandb",
+     "reason": "run name (W&B disabled)",
+     "varun": {
+      "name": "${oc.env:PHASE1C_RUN_NAME}",
+      "project": "paper1-phase1c-sft"
+     }
+    },
+    {
+     "e08": {
+      "experiment_name": "rl4cv-e08-sft",
+      "run_name": "${oc.env:E08_RUN_NAME}"
+     },
+     "key": "logger.mlflow",
+     "reason": "run name (MLflow disabled)",
+     "varun": {
+      "experiment_name": "paper1-phase1c-sft",
+      "run_name": "${oc.env:PHASE1C_RUN_NAME}"
+     }
+    }
+   ],
+   "config": "configs/e08_sft_1.7B.yaml",
+   "gpu_layout": {
+    "gpus": 1,
+    "tp": 1
+   },
+   "n_changes": 26,
+   "n_unchanged_keys": 101,
+   "sha256": "38a1e4e8af3ef3621dd970a257e218c6ac16a7fb2eb7f57a4829b0c5108790ef"
+  },
+  "14B": {
+   "changes": [
+    {
+     "e08": 658,
+     "key": "sft.max_num_steps",
+     "reason": "step schedule: \u2308|S| / 2\u2309 steps over S in the frozen order (PROTOCOL \u00a7 8); per-segment overrides stop at each checkpoint step",
+     "varun": 1024
+    },
+    {
+     "e08": 0,
+     "key": "sft.val_period",
+     "reason": "SFT-time validation off (PROTOCOL \u00a7 8); the \u00a7 9 ladder selects checkpoints",
+     "varun": 256
+    },
+    {
+     "e08": 0,
+     "key": "sft.val_batches",
+     "reason": "SFT-time validation off",
+     "varun": 128
+    },
+    {
+     "e08": false,
+     "key": "sft.val_at_start",
+     "reason": "SFT-time validation off",
+     "varun": true
+    },
+    {
+     "e08": "${oc.env:E08_CHECKPOINT_DIR}",
+     "key": "checkpointing.checkpoint_dir",
+     "reason": "run-specific output directory",
+     "varun": "${oc.env:PHASE1C_CHECKPOINT_DIR}"
+    },
+    {
+     "e08": null,
+     "key": "checkpointing.metric_name",
+     "reason": "no validation metric; checkpoints are kept by step, never by score",
+     "varun": "val:val_loss"
+    },
+    {
+     "e08": null,
+     "key": "checkpointing.keep_top_k",
+     "reason": "keep every token-fraction checkpoint",
+     "varun": 4
+    },
+    {
+     "e08": 1000000,
+     "key": "checkpointing.save_period",
+     "reason": "checkpoints at the precomputed token-fraction steps: each training segment ends (is_last_step) at one of them and the next segment resumes from it",
+     "varun": 256
+    },
+    {
+     "e08": "${oc.env:E08_MODEL_PATH}",
+     "key": "policy.model_name",
+     "reason": "run-specific input: the pinned Base snapshot for this size",
+     "varun": "${oc.env:PHASE1C_MODEL_PATH}"
+    },
+    {
+     "e08": 8,
+     "key": "policy.dtensor_cfg.tensor_parallel_size",
+     "reason": "GPU layout for 14B: 8 GPU(s), tensor parallel 8, data parallel 1",
+     "varun": 1
+    },
+    {
+     "e08": 8,
+     "key": "policy.make_sequence_length_divisible_by",
+     "reason": "GPU layout: sequence length divisible by the tensor-parallel size (padding only, no loss)",
+     "varun": 1
+    },
+    {
+     "e08": [
+      {
+       "kwargs": {
+        "end_factor": 1.0,
+        "start_factor": 0.05,
+        "total_iters": 20
+       },
+       "name": "torch.optim.lr_scheduler.LinearLR"
+      },
+      {
+       "kwargs": {
+        "T_max": 638,
+        "eta_min": 0.0
+       },
+       "name": "torch.optim.lr_scheduler.CosineAnnealingLR"
+      },
+      {
+       "milestones": [
+        20
+       ]
+      }
+     ],
+     "key": "policy.scheduler",
+     "reason": "Varun's schedule form with W = \u23080.03 \u00d7 658\u2309 = 20 warmup updates then cosine over 638",
+     "varun": [
+      {
+       "kwargs": {
+        "end_factor": 1.0,
+        "start_factor": 0.03225806451612903,
+        "total_iters": 31
+       },
+       "name": "torch.optim.lr_scheduler.LinearLR"
+      },
+      {
+       "kwargs": {
+        "T_max": 993,
+        "eta_min": 0.0
+       },
+       "name": "torch.optim.lr_scheduler.CosineAnnealingLR"
+      },
+      {
+       "milestones": [
+        31
+       ]
+      }
+     ]
+    },
+    {
+     "e08": "openai_format",
+     "key": "data.dataset_name",
+     "reason": "dataset adapter: system + user + assistant messages (Varun's ResponseDataset has no system message)",
+     "varun": "ResponseDataset"
+    },
+    {
+     "e08": "${oc.env:E08_TRAIN_JSONL}",
+     "key": "data.train_data_path",
+     "reason": "run-specific input: S in NeMo RL openai_format (host only)",
+     "varun": "/lfs/skampere3/0/vmadan/paper1_phase1c_sft_v1/matched_sft_train.jsonl"
+    },
+    {
+     "e08": "${oc.env:E08_VAL_JSONL}",
+     "key": "data.val_data_path",
+     "reason": "loader requirement only: a 2-example file never evaluated (val_period 0, val_at_start false)",
+     "varun": "/lfs/skampere3/0/vmadan/paper1_phase1c_sft_v1/matched_sft_validation.jsonl"
+    },
+    {
+     "e08": "messages",
+     "key": "data.chat_key",
+     "reason": "openai_format adapter key",
+     "varun": "<absent>"
+    },
+    {
+     "e08": null,
+     "key": "data.system_key",
+     "reason": "openai_format adapter: the system message is inside messages",
+     "varun": "<absent>"
+    },
+    {
+     "e08": null,
+     "key": "data.system_prompt",
+     "reason": "openai_format adapter",
+     "varun": "<absent>"
+    },
+    {
+     "e08": null,
+     "key": "data.tool_key",
+     "reason": "openai_format adapter: no tools",
+     "varun": "<absent>"
+    },
+    {
+     "e08": false,
+     "key": "data.use_preserving_dataset",
+     "reason": "openai_format adapter",
+     "varun": "<absent>"
+    },
+    {
+     "e08": true,
+     "key": "data.add_generation_prompt",
+     "reason": "rendering/mask (declared difference): the generation prompt `<|im_start|>assistant\\n` belongs to the prompt (no loss), so the loss span is exactly what the policy generates at evaluation (PROTOCOL \u00a7 7)",
+     "varun": false
+    },
+    {
+     "e08": "<removed>",
+     "key": "data.input_key",
+     "reason": "ResponseDataset-only key",
+     "varun": "input"
+    },
+    {
+     "e08": "<removed>",
+     "key": "data.output_key",
+     "reason": "ResponseDataset-only key",
+     "varun": "output"
+    },
+    {
+     "e08": "${oc.env:E08_LOG_DIR}",
+     "key": "logger.log_dir",
+     "reason": "run-specific output directory",
+     "varun": "${oc.env:PHASE1C_LOG_DIR}"
+    },
+    {
+     "e08": false,
+     "key": "logger.wandb_enabled",
+     "reason": "Weights & Biases off (PROTOCOL \u00a7 8)",
+     "varun": true
+    },
+    {
+     "e08": "${oc.env:E08_TENSORBOARD_DIR}",
+     "key": "logger.tensorboard.log_dir",
+     "reason": "run-specific output directory",
+     "varun": "${oc.env:PHASE1C_TENSORBOARD_DIR}"
+    },
+    {
+     "e08": {
+      "name": "${oc.env:E08_RUN_NAME}",
+      "project": "rl4cv-e08-sft"
+     },
+     "key": "logger.wandb",
+     "reason": "run name (W&B disabled)",
+     "varun": {
+      "name": "${oc.env:PHASE1C_RUN_NAME}",
+      "project": "paper1-phase1c-sft"
+     }
+    },
+    {
+     "e08": {
+      "experiment_name": "rl4cv-e08-sft",
+      "run_name": "${oc.env:E08_RUN_NAME}"
+     },
+     "key": "logger.mlflow",
+     "reason": "run name (MLflow disabled)",
+     "varun": {
+      "experiment_name": "paper1-phase1c-sft",
+      "run_name": "${oc.env:PHASE1C_RUN_NAME}"
+     }
+    },
+    {
+     "e08": 8,
+     "key": "cluster.gpus_per_node",
+     "reason": "GPU layout for 14B",
+     "varun": 1
+    }
+   ],
+   "config": "configs/e08_sft_14B.yaml",
+   "gpu_layout": {
+    "gpus": 8,
+    "tp": 8
+   },
+   "n_changes": 29,
+   "n_unchanged_keys": 98,
+   "sha256": "4244709493df989ebae42a5a0fa05d698b3d8cbb32eec2138db9be4235dd91f3"
+  },
+  "4B": {
+   "changes": [
+    {
+     "e08": 658,
+     "key": "sft.max_num_steps",
+     "reason": "step schedule: \u2308|S| / 2\u2309 steps over S in the frozen order (PROTOCOL \u00a7 8); per-segment overrides stop at each checkpoint step",
+     "varun": 1024
+    },
+    {
+     "e08": 0,
+     "key": "sft.val_period",
+     "reason": "SFT-time validation off (PROTOCOL \u00a7 8); the \u00a7 9 ladder selects checkpoints",
+     "varun": 256
+    },
+    {
+     "e08": 0,
+     "key": "sft.val_batches",
+     "reason": "SFT-time validation off",
+     "varun": 128
+    },
+    {
+     "e08": false,
+     "key": "sft.val_at_start",
+     "reason": "SFT-time validation off",
+     "varun": true
+    },
+    {
+     "e08": "${oc.env:E08_CHECKPOINT_DIR}",
+     "key": "checkpointing.checkpoint_dir",
+     "reason": "run-specific output directory",
+     "varun": "${oc.env:PHASE1C_CHECKPOINT_DIR}"
+    },
+    {
+     "e08": null,
+     "key": "checkpointing.metric_name",
+     "reason": "no validation metric; checkpoints are kept by step, never by score",
+     "varun": "val:val_loss"
+    },
+    {
+     "e08": null,
+     "key": "checkpointing.keep_top_k",
+     "reason": "keep every token-fraction checkpoint",
+     "varun": 4
+    },
+    {
+     "e08": 1000000,
+     "key": "checkpointing.save_period",
+     "reason": "checkpoints at the precomputed token-fraction steps: each training segment ends (is_last_step) at one of them and the next segment resumes from it",
+     "varun": 256
+    },
+    {
+     "e08": "${oc.env:E08_MODEL_PATH}",
+     "key": "policy.model_name",
+     "reason": "run-specific input: the pinned Base snapshot for this size",
+     "varun": "${oc.env:PHASE1C_MODEL_PATH}"
+    },
+    {
+     "e08": 2,
+     "key": "policy.dtensor_cfg.tensor_parallel_size",
+     "reason": "GPU layout for 4B: 2 GPU(s), tensor parallel 2, data parallel 1",
+     "varun": 1
+    },
+    {
+     "e08": 2,
+     "key": "policy.make_sequence_length_divisible_by",
+     "reason": "GPU layout: sequence length divisible by the tensor-parallel size (padding only, no loss)",
+     "varun": 1
+    },
+    {
+     "e08": [
+      {
+       "kwargs": {
+        "end_factor": 1.0,
+        "start_factor": 0.05,
+        "total_iters": 20
+       },
+       "name": "torch.optim.lr_scheduler.LinearLR"
+      },
+      {
+       "kwargs": {
+        "T_max": 638,
+        "eta_min": 0.0
+       },
+       "name": "torch.optim.lr_scheduler.CosineAnnealingLR"
+      },
+      {
+       "milestones": [
+        20
+       ]
+      }
+     ],
+     "key": "policy.scheduler",
+     "reason": "Varun's schedule form with W = \u23080.03 \u00d7 658\u2309 = 20 warmup updates then cosine over 638",
+     "varun": [
+      {
+       "kwargs": {
+        "end_factor": 1.0,
+        "start_factor": 0.03225806451612903,
+        "total_iters": 31
+       },
+       "name": "torch.optim.lr_scheduler.LinearLR"
+      },
+      {
+       "kwargs": {
+        "T_max": 993,
+        "eta_min": 0.0
+       },
+       "name": "torch.optim.lr_scheduler.CosineAnnealingLR"
+      },
+      {
+       "milestones": [
+        31
+       ]
+      }
+     ]
+    },
+    {
+     "e08": "openai_format",
+     "key": "data.dataset_name",
+     "reason": "dataset adapter: system + user + assistant messages (Varun's ResponseDataset has no system message)",
+     "varun": "ResponseDataset"
+    },
+    {
+     "e08": "${oc.env:E08_TRAIN_JSONL}",
+     "key": "data.train_data_path",
+     "reason": "run-specific input: S in NeMo RL openai_format (host only)",
+     "varun": "/lfs/skampere3/0/vmadan/paper1_phase1c_sft_v1/matched_sft_train.jsonl"
+    },
+    {
+     "e08": "${oc.env:E08_VAL_JSONL}",
+     "key": "data.val_data_path",
+     "reason": "loader requirement only: a 2-example file never evaluated (val_period 0, val_at_start false)",
+     "varun": "/lfs/skampere3/0/vmadan/paper1_phase1c_sft_v1/matched_sft_validation.jsonl"
+    },
+    {
+     "e08": "messages",
+     "key": "data.chat_key",
+     "reason": "openai_format adapter key",
+     "varun": "<absent>"
+    },
+    {
+     "e08": null,
+     "key": "data.system_key",
+     "reason": "openai_format adapter: the system message is inside messages",
+     "varun": "<absent>"
+    },
+    {
+     "e08": null,
+     "key": "data.system_prompt",
+     "reason": "openai_format adapter",
+     "varun": "<absent>"
+    },
+    {
+     "e08": null,
+     "key": "data.tool_key",
+     "reason": "openai_format adapter: no tools",
+     "varun": "<absent>"
+    },
+    {
+     "e08": false,
+     "key": "data.use_preserving_dataset",
+     "reason": "openai_format adapter",
+     "varun": "<absent>"
+    },
+    {
+     "e08": true,
+     "key": "data.add_generation_prompt",
+     "reason": "rendering/mask (declared difference): the generation prompt `<|im_start|>assistant\\n` belongs to the prompt (no loss), so the loss span is exactly what the policy generates at evaluation (PROTOCOL \u00a7 7)",
+     "varun": false
+    },
+    {
+     "e08": "<removed>",
+     "key": "data.input_key",
+     "reason": "ResponseDataset-only key",
+     "varun": "input"
+    },
+    {
+     "e08": "<removed>",
+     "key": "data.output_key",
+     "reason": "ResponseDataset-only key",
+     "varun": "output"
+    },
+    {
+     "e08": "${oc.env:E08_LOG_DIR}",
+     "key": "logger.log_dir",
+     "reason": "run-specific output directory",
+     "varun": "${oc.env:PHASE1C_LOG_DIR}"
+    },
+    {
+     "e08": false,
+     "key": "logger.wandb_enabled",
+     "reason": "Weights & Biases off (PROTOCOL \u00a7 8)",
+     "varun": true
+    },
+    {
+     "e08": "${oc.env:E08_TENSORBOARD_DIR}",
+     "key": "logger.tensorboard.log_dir",
+     "reason": "run-specific output directory",
+     "varun": "${oc.env:PHASE1C_TENSORBOARD_DIR}"
+    },
+    {
+     "e08": {
+      "name": "${oc.env:E08_RUN_NAME}",
+      "project": "rl4cv-e08-sft"
+     },
+     "key": "logger.wandb",
+     "reason": "run name (W&B disabled)",
+     "varun": {
+      "name": "${oc.env:PHASE1C_RUN_NAME}",
+      "project": "paper1-phase1c-sft"
+     }
+    },
+    {
+     "e08": {
+      "experiment_name": "rl4cv-e08-sft",
+      "run_name": "${oc.env:E08_RUN_NAME}"
+     },
+     "key": "logger.mlflow",
+     "reason": "run name (MLflow disabled)",
+     "varun": {
+      "experiment_name": "paper1-phase1c-sft",
+      "run_name": "${oc.env:PHASE1C_RUN_NAME}"
+     }
+    },
+    {
+     "e08": 2,
+     "key": "cluster.gpus_per_node",
+     "reason": "GPU layout for 4B",
+     "varun": 1
+    }
+   ],
+   "config": "configs/e08_sft_4B.yaml",
+   "gpu_layout": {
+    "gpus": 2,
+    "tp": 2
+   },
+   "n_changes": 29,
+   "n_unchanged_keys": 98,
+   "sha256": "5a3113cdd2d6bb4832e929a8221a12ce1c98dfe4379d1efc99369b633b87aaf2"
+  },
+  "8B": {
+   "changes": [
+    {
+     "e08": 658,
+     "key": "sft.max_num_steps",
+     "reason": "step schedule: \u2308|S| / 2\u2309 steps over S in the frozen order (PROTOCOL \u00a7 8); per-segment overrides stop at each checkpoint step",
+     "varun": 1024
+    },
+    {
+     "e08": 0,
+     "key": "sft.val_period",
+     "reason": "SFT-time validation off (PROTOCOL \u00a7 8); the \u00a7 9 ladder selects checkpoints",
+     "varun": 256
+    },
+    {
+     "e08": 0,
+     "key": "sft.val_batches",
+     "reason": "SFT-time validation off",
+     "varun": 128
+    },
+    {
+     "e08": false,
+     "key": "sft.val_at_start",
+     "reason": "SFT-time validation off",
+     "varun": true
+    },
+    {
+     "e08": "${oc.env:E08_CHECKPOINT_DIR}",
+     "key": "checkpointing.checkpoint_dir",
+     "reason": "run-specific output directory",
+     "varun": "${oc.env:PHASE1C_CHECKPOINT_DIR}"
+    },
+    {
+     "e08": null,
+     "key": "checkpointing.metric_name",
+     "reason": "no validation metric; checkpoints are kept by step, never by score",
+     "varun": "val:val_loss"
+    },
+    {
+     "e08": null,
+     "key": "checkpointing.keep_top_k",
+     "reason": "keep every token-fraction checkpoint",
+     "varun": 4
+    },
+    {
+     "e08": 1000000,
+     "key": "checkpointing.save_period",
+     "reason": "checkpoints at the precomputed token-fraction steps: each training segment ends (is_last_step) at one of them and the next segment resumes from it",
+     "varun": 256
+    },
+    {
+     "e08": "${oc.env:E08_MODEL_PATH}",
+     "key": "policy.model_name",
+     "reason": "run-specific input: the pinned Base snapshot for this size",
+     "varun": "${oc.env:PHASE1C_MODEL_PATH}"
+    },
+    {
+     "e08": 4,
+     "key": "policy.dtensor_cfg.tensor_parallel_size",
+     "reason": "GPU layout for 8B: 4 GPU(s), tensor parallel 4, data parallel 1",
+     "varun": 1
+    },
+    {
+     "e08": 4,
+     "key": "policy.make_sequence_length_divisible_by",
+     "reason": "GPU layout: sequence length divisible by the tensor-parallel size (padding only, no loss)",
+     "varun": 1
+    },
+    {
+     "e08": [
+      {
+       "kwargs": {
+        "end_factor": 1.0,
+        "start_factor": 0.05,
+        "total_iters": 20
+       },
+       "name": "torch.optim.lr_scheduler.LinearLR"
+      },
+      {
+       "kwargs": {
+        "T_max": 638,
+        "eta_min": 0.0
+       },
+       "name": "torch.optim.lr_scheduler.CosineAnnealingLR"
+      },
+      {
+       "milestones": [
+        20
+       ]
+      }
+     ],
+     "key": "policy.scheduler",
+     "reason": "Varun's schedule form with W = \u23080.03 \u00d7 658\u2309 = 20 warmup updates then cosine over 638",
+     "varun": [
+      {
+       "kwargs": {
+        "end_factor": 1.0,
+        "start_factor": 0.03225806451612903,
+        "total_iters": 31
+       },
+       "name": "torch.optim.lr_scheduler.LinearLR"
+      },
+      {
+       "kwargs": {
+        "T_max": 993,
+        "eta_min": 0.0
+       },
+       "name": "torch.optim.lr_scheduler.CosineAnnealingLR"
+      },
+      {
+       "milestones": [
+        31
+       ]
+      }
+     ]
+    },
+    {
+     "e08": "openai_format",
+     "key": "data.dataset_name",
+     "reason": "dataset adapter: system + user + assistant messages (Varun's ResponseDataset has no system message)",
+     "varun": "ResponseDataset"
+    },
+    {
+     "e08": "${oc.env:E08_TRAIN_JSONL}",
+     "key": "data.train_data_path",
+     "reason": "run-specific input: S in NeMo RL openai_format (host only)",
+     "varun": "/lfs/skampere3/0/vmadan/paper1_phase1c_sft_v1/matched_sft_train.jsonl"
+    },
+    {
+     "e08": "${oc.env:E08_VAL_JSONL}",
+     "key": "data.val_data_path",
+     "reason": "loader requirement only: a 2-example file never evaluated (val_period 0, val_at_start false)",
+     "varun": "/lfs/skampere3/0/vmadan/paper1_phase1c_sft_v1/matched_sft_validation.jsonl"
+    },
+    {
+     "e08": "messages",
+     "key": "data.chat_key",
+     "reason": "openai_format adapter key",
+     "varun": "<absent>"
+    },
+    {
+     "e08": null,
+     "key": "data.system_key",
+     "reason": "openai_format adapter: the system message is inside messages",
+     "varun": "<absent>"
+    },
+    {
+     "e08": null,
+     "key": "data.system_prompt",
+     "reason": "openai_format adapter",
+     "varun": "<absent>"
+    },
+    {
+     "e08": null,
+     "key": "data.tool_key",
+     "reason": "openai_format adapter: no tools",
+     "varun": "<absent>"
+    },
+    {
+     "e08": false,
+     "key": "data.use_preserving_dataset",
+     "reason": "openai_format adapter",
+     "varun": "<absent>"
+    },
+    {
+     "e08": true,
+     "key": "data.add_generation_prompt",
+     "reason": "rendering/mask (declared difference): the generation prompt `<|im_start|>assistant\\n` belongs to the prompt (no loss), so the loss span is exactly what the policy generates at evaluation (PROTOCOL \u00a7 7)",
+     "varun": false
+    },
+    {
+     "e08": "<removed>",
+     "key": "data.input_key",
+     "reason": "ResponseDataset-only key",
+     "varun": "input"
+    },
+    {
+     "e08": "<removed>",
+     "key": "data.output_key",
+     "reason": "ResponseDataset-only key",
+     "varun": "output"
+    },
+    {
+     "e08": "${oc.env:E08_LOG_DIR}",
+     "key": "logger.log_dir",
+     "reason": "run-specific output directory",
+     "varun": "${oc.env:PHASE1C_LOG_DIR}"
+    },
+    {
+     "e08": false,
+     "key": "logger.wandb_enabled",
+     "reason": "Weights & Biases off (PROTOCOL \u00a7 8)",
+     "varun": true
+    },
+    {
+     "e08": "${oc.env:E08_TENSORBOARD_DIR}",
+     "key": "logger.tensorboard.log_dir",
+     "reason": "run-specific output directory",
+     "varun": "${oc.env:PHASE1C_TENSORBOARD_DIR}"
+    },
+    {
+     "e08": {
+      "name": "${oc.env:E08_RUN_NAME}",
+      "project": "rl4cv-e08-sft"
+     },
+     "key": "logger.wandb",
+     "reason": "run name (W&B disabled)",
+     "varun": {
+      "name": "${oc.env:PHASE1C_RUN_NAME}",
+      "project": "paper1-phase1c-sft"
+     }
+    },
+    {
+     "e08": {
+      "experiment_name": "rl4cv-e08-sft",
+      "run_name": "${oc.env:E08_RUN_NAME}"
+     },
+     "key": "logger.mlflow",
+     "reason": "run name (MLflow disabled)",
+     "varun": {
+      "experiment_name": "paper1-phase1c-sft",
+      "run_name": "${oc.env:PHASE1C_RUN_NAME}"
+     }
+    },
+    {
+     "e08": 4,
+     "key": "cluster.gpus_per_node",
+     "reason": "GPU layout for 8B",
+     "varun": 1
+    }
+   ],
+   "config": "configs/e08_sft_8B.yaml",
+   "gpu_layout": {
+    "gpus": 4,
+    "tp": 4
+   },
+   "n_changes": 29,
+   "n_unchanged_keys": 98,
+   "sha256": "031dc04f91c1cf56a1f22f2d7268613bbae38560ec5f94645b3cf57766670ec7"
+  }
+ },
+ "source": {
+  "path": "configs/varun_phase1c_production_sft.yaml",
+  "sha256": "8e45b9f5605dbd5eeaf448bc1e0088760d572b0eecebeb9908d1eaacbdf9a290"
+ },
+ "steps": 658,
+ "unchanged_keys_all_sizes": [
+  "checkpointing.checkpoint_must_save_by",
+  "checkpointing.enabled",
+  "checkpointing.higher_is_better",
+  "checkpointing.save_optimizer",
+  "cluster.num_nodes",
+  "data.add_bos",
+  "data.add_eos",
+  "data.max_input_seq_length",
+  "data.num_workers",
+  "data.prompt_file",
+  "data.seed",
+  "data.shuffle",
+  "data.split",
+  "logger.gpu_monitoring.collection_interval",
+  "logger.gpu_monitoring.flush_interval",
+  "logger.mlflow_enabled",
+  "logger.monitor_gpus",
+  "logger.swanlab_enabled",
+  "logger.tensorboard_enabled",
+  "policy.dtensor_cfg.activation_checkpointing",
+  "policy.dtensor_cfg.context_parallel_size",
+  "policy.dtensor_cfg.cpu_offload",
+  "policy.dtensor_cfg.custom_parallel_plan",
+  "policy.dtensor_cfg.enabled",
+  "policy.dtensor_cfg.sequence_parallel",
+  "policy.dynamic_batching.enabled",
+  "policy.dynamic_batching.sequence_length_round",
+  "policy.dynamic_batching.train_mb_tokens",
+  "policy.max_grad_norm",
+  "policy.max_total_sequence_length",
+  "policy.megatron_cfg.activation_checkpointing",
+  "policy.megatron_cfg.apply_rope_fusion",
+  "policy.megatron_cfg.context_parallel_size",
+  "policy.megatron_cfg.defer_fp32_logits",
+  "policy.megatron_cfg.distributed_data_parallel_config.data_parallel_sharding_strategy",
+  "policy.megatron_cfg.distributed_data_parallel_config.grad_reduce_in_fp32",
+  "policy.megatron_cfg.distributed_data_parallel_config.overlap_grad_reduce",
+  "policy.megatron_cfg.distributed_data_parallel_config.overlap_param_gather",
+  "policy.megatron_cfg.distributed_data_parallel_config.use_custom_fsdp",
+  "policy.megatron_cfg.empty_unused_memory_level",
+  "policy.megatron_cfg.enabled",
+  "policy.megatron_cfg.expert_model_parallel_size",
+  "policy.megatron_cfg.expert_tensor_parallel_size",
+  "policy.megatron_cfg.freeze_moe_router",
+  "policy.megatron_cfg.moe_permute_fusion",
+  "policy.megatron_cfg.moe_router_bias_update_rate",
+  "policy.megatron_cfg.moe_router_dtype",
+  "policy.megatron_cfg.moe_router_load_balancing_type",
+  "policy.megatron_cfg.num_layers_in_first_pipeline_stage",
+  "policy.megatron_cfg.num_layers_in_last_pipeline_stage",
+  "policy.megatron_cfg.optimizer.adam_beta1",
+  "policy.megatron_cfg.optimizer.adam_beta2",
+  "policy.megatron_cfg.optimizer.adam_eps",
+  "policy.megatron_cfg.optimizer.bf16",
+  "policy.megatron_cfg.optimizer.clip_grad",
+  "policy.megatron_cfg.optimizer.fp16",
+  "policy.megatron_cfg.optimizer.lr",
+  "policy.megatron_cfg.optimizer.min_lr",
+  "policy.megatron_cfg.optimizer.optimizer",
+  "policy.megatron_cfg.optimizer.optimizer_cpu_offload",
+  "policy.megatron_cfg.optimizer.optimizer_offload_fraction",
+  "policy.megatron_cfg.optimizer.params_dtype",
+  "policy.megatron_cfg.optimizer.sgd_momentum",
+  "policy.megatron_cfg.optimizer.use_distributed_optimizer",
+  "policy.megatron_cfg.optimizer.use_precision_aware_optimizer",
+  "policy.megatron_cfg.optimizer.weight_decay",
+  "policy.megatron_cfg.pipeline_dtype",
+  "policy.megatron_cfg.pipeline_model_parallel_size",
+  "policy.megatron_cfg.scheduler.end_weight_decay",
+  "policy.megatron_cfg.scheduler.lr_decay_iters",
+  "policy.megatron_cfg.scheduler.lr_decay_style",
+  "policy.megatron_cfg.scheduler.lr_warmup_init",
+  "policy.megatron_cfg.scheduler.lr_warmup_iters",
+  "policy.megatron_cfg.scheduler.start_weight_decay",
+  "policy.megatron_cfg.scheduler.weight_decay_incr_style",
+  "policy.megatron_cfg.sequence_parallel",
+  "policy.megatron_cfg.tensor_model_parallel_size",
+  "policy.optimizer.kwargs.betas",
+  "policy.optimizer.kwargs.eps",
+  "policy.optimizer.kwargs.foreach",
+  "policy.optimizer.kwargs.fused",
+  "policy.optimizer.kwargs.lr",
+  "policy.optimizer.kwargs.weight_decay",
+  "policy.optimizer.name",
+  "policy.precision",
+  "policy.sequence_packing.algorithm",
+  "policy.sequence_packing.enabled",
+  "policy.sequence_packing.sequence_length_round",
+  "policy.sequence_packing.train_mb_tokens",
+  "policy.tokenizer.chat_template",
+  "policy.tokenizer.chat_template_kwargs",
+  "policy.tokenizer.name",
+  "policy.train_global_batch_size",
+  "policy.train_micro_batch_size",
+  "sft.max_num_epochs",
+  "sft.seed",
+  "sft.val_global_batch_size",
+  "sft.val_micro_batch_size"
+ ],
+ "warmup_steps_W": 20,
+ "written_utc": "2026-10-08T09:42:19+00:00"
+}

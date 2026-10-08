@@ -57,7 +57,7 @@ def main(argv: list[str] | None = None) -> int:
     pool, cells, own_gold = {}, {}, {}
     for r in kept:
         cid = f"{r['teacher']}/{r['r']}/{r['task_id']}"
-        lean_path = a.job_root / f"{r['teacher']}_{r['r']}_s0" / r["task_id"] / "verifier" / "solution.lean"
+        lean_path = a.job_root / (f"{r['teacher']}_{r['r']}_rec1_s0" if r.get("recovered") else f"{r['teacher']}_{r['r']}_s0") / r["task_id"] / "verifier" / "solution.lean"
         lean = lean_path.read_text(encoding="utf-8")
         if sha(lean.encode("utf-8")) != r["lean_sha256"]:
             raise RuntimeError(f"{cid}: file hash differs from scored_cells")
