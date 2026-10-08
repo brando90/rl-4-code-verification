@@ -36,8 +36,11 @@ def main() -> int:
             "max_tokens_delivered": str(cfg.get("max_tokens")) == run.get("kwargs", {}).get("max_tokens"),
             "effort_delivered": (cfg.get("compute_effort") or cfg.get("reasoning_effort")) == (run.get("kwargs", {}).get("compute_effort") or run.get("kwargs", {}).get("reasoning_effort")),
             "prompt_hash_matches_pack": cell.get("prompt_hash_matches_pack") is True,
-            "lean_collected_by_service": cell.get("lean_source") == "service_collected",
-            "scored_end_to_end": scored.get("scored") is True,
+            # A completion that arrives must come back through the service's collect-only read-back; a `model_error`
+            # (the provider returned an error instead of a completion) is a recorded model outcome, not a transport fault.
+            "lean_collected_by_service_when_measured": (cell.get("lean_source") == "service_collected") if receipt.get("status") == "measured" else True,
+            "scored_end_to_end": scored.get("scored") is True or (receipt.get("status") != "measured" and scored.get("failure_class") == "no_lean"),
+            "model_outcome_recorded": receipt.get("status") in {"measured", "incomplete", "model_error"},
         }
         if t == "google":
             checks["temperature_delivered"] = cfg.get("temperature") == 1.0

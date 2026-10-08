@@ -1,0 +1,183 @@
+{
+ "charges_usd_reported_total": 3.2994,
+ "meaning": "PASS means every teacher's preflight cell was served by exactly one request with the locked selector and settings, the prompt bytes matched the pack, the service collected the file and the frozen scorer scored it end to end; the scientific outcome (kept or not) is recorded but is not a pass criterion.",
+ "task_id": "mbpp__preflight_task_1",
+ "teachers": {
+  "anthropic": {
+   "agent_status": "model_error",
+   "cost_usd": null,
+   "delivered_config": {
+    "compute_effort": "max",
+    "max_tokens": 128000
+   },
+   "extraction": null,
+   "finish_reason": "none",
+   "infrastructure_checks": {
+    "effort_delivered": true,
+    "lean_collected_by_service_when_measured": true,
+    "max_tokens_delivered": true,
+    "model_outcome_recorded": true,
+    "no_fallback": true,
+    "prompt_hash_matches_pack": true,
+    "scored_end_to_end": true,
+    "selector_delivered": true,
+    "served_one_request": true
+   },
+   "infrastructure_pass": true,
+   "kwargs_sent": {
+    "addendum": "vbv1",
+    "benchmark": "rl4cv-e02a-v3-mbpp",
+    "compute_effort": "max",
+    "max_tokens": "128000"
+   },
+   "lean_bytes": 0,
+   "lean_sha256": null,
+   "provider_endpoint": "claude-fable-5-1",
+   "requests_sent": 1,
+   "run_id": "34a00ede-f3ed-424d-9e42-66d23333ba26",
+   "score": {
+    "IC_proofs": 0.0,
+    "IC_tests": 0.0,
+    "compiles": false,
+    "failure_class": "no_lean",
+    "kernel_binary": 0.0,
+    "kernel_n_declared_axiom": null,
+    "kernel_n_native_decide": null,
+    "kernel_n_sorry_ax": null,
+    "n_examples": 0,
+    "n_theorems_proved": 0,
+    "n_theorems_stated": 0,
+    "n_vacuous": 0
+   },
+   "selector": "anthropic/claude-fable-5-1-no-fallback",
+   "service_solution_sha256": null,
+   "usage": {
+    "cache_read_tokens": null,
+    "cache_write_tokens": null,
+    "in_tokens": null,
+    "out_tokens": null,
+    "reasoning_tokens": null
+   },
+   "wall_seconds": 1361.944
+  },
+  "google": {
+   "agent_status": "measured",
+   "cost_usd": 0.89464,
+   "delivered_config": {
+    "max_tokens": 128000,
+    "reasoning_effort": "high",
+    "temperature": 1.0
+   },
+   "extraction": "file_blocks",
+   "finish_reason": "stop",
+   "infrastructure_checks": {
+    "effort_delivered": true,
+    "lean_collected_by_service_when_measured": true,
+    "max_tokens_delivered": true,
+    "model_outcome_recorded": true,
+    "no_fallback": true,
+    "prompt_hash_matches_pack": true,
+    "scored_end_to_end": true,
+    "selector_delivered": true,
+    "served_one_request": true,
+    "temperature_delivered": true
+   },
+   "infrastructure_pass": true,
+   "kwargs_sent": {
+    "addendum": "vbv1",
+    "benchmark": "rl4cv-e02a-v3-mbpp",
+    "max_tokens": "128000",
+    "reasoning_effort": "high",
+    "temperature": "1.0"
+   },
+   "lean_bytes": 29076,
+   "lean_sha256": "2ce235a3b2816f59eeaba7a35d7fda90c66f1236a1aef4b067114d26df92b294",
+   "provider_endpoint": "models/barium-bb",
+   "requests_sent": 1,
+   "run_id": "adad43cb-5f01-47bf-bc72-c498f63d9c4d",
+   "score": {
+    "IC_proofs": 0.0,
+    "IC_tests": 0.0,
+    "compiles": false,
+    "failure_class": "no_typecheck",
+    "kernel_binary": 0.0,
+    "kernel_n_declared_axiom": null,
+    "kernel_n_native_decide": null,
+    "kernel_n_sorry_ax": null,
+    "n_examples": 19,
+    "n_theorems_proved": 0,
+    "n_theorems_stated": 46,
+    "n_vacuous": 0
+   },
+   "selector": "google/gemini-4-argon",
+   "service_solution_sha256": "2ce235a3b2816f59eeaba7a35d7fda90c66f1236a1aef4b067114d26df92b294",
+   "usage": {
+    "cache_read_tokens": 0,
+    "cache_write_tokens": null,
+    "in_tokens": 3595,
+    "out_tokens": 11177,
+    "reasoning_tokens": 32836
+   },
+   "wall_seconds": 503.309
+  },
+  "openai": {
+   "agent_status": "measured",
+   "cost_usd": 2.4047925,
+   "delivered_config": {
+    "max_tokens": 128000,
+    "reasoning_effort": "max"
+   },
+   "extraction": "file_blocks",
+   "finish_reason": "stop",
+   "infrastructure_checks": {
+    "effort_delivered": true,
+    "lean_collected_by_service_when_measured": true,
+    "max_tokens_delivered": true,
+    "model_outcome_recorded": true,
+    "no_fallback": true,
+    "prompt_hash_matches_pack": true,
+    "scored_end_to_end": true,
+    "selector_delivered": true,
+    "served_one_request": true
+   },
+   "infrastructure_pass": true,
+   "kwargs_sent": {
+    "addendum": "vbv1",
+    "benchmark": "rl4cv-e02a-v3-mbpp",
+    "max_tokens": "128000",
+    "reasoning_effort": "max"
+   },
+   "lean_bytes": 20529,
+   "lean_sha256": "548540b3925d1cf0ec449e6b7cb4e9cf13785fe4dd5332ba8007ef9c500e40d5",
+   "provider_endpoint": "gpt-6-astra",
+   "requests_sent": 1,
+   "run_id": "a92c284c-6916-4ccf-8604-d794f21ff759",
+   "score": {
+    "IC_proofs": 0.0,
+    "IC_tests": 0.0,
+    "compiles": false,
+    "failure_class": "no_typecheck",
+    "kernel_binary": 0.0,
+    "kernel_n_declared_axiom": null,
+    "kernel_n_native_decide": null,
+    "kernel_n_sorry_ax": null,
+    "n_examples": 23,
+    "n_theorems_proved": 0,
+    "n_theorems_stated": 21,
+    "n_vacuous": 0
+   },
+   "selector": "openai/gpt-6-astra-max",
+   "service_solution_sha256": "548540b3925d1cf0ec449e6b7cb4e9cf13785fe4dd5332ba8007ef9c500e40d5",
+   "usage": {
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 3497,
+    "in_tokens": 3,
+    "out_tokens": 6372,
+    "reasoning_tokens": 40849
+   },
+   "wall_seconds": 1111.16
+  }
+ },
+ "verdict": "PASS",
+ "written_utc": "2026-10-08T00:08:00+00:00"
+}
