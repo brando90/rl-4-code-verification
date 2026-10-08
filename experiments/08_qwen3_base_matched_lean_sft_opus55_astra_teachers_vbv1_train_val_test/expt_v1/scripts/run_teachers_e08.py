@@ -29,8 +29,10 @@ PREFLIGHT_IDS = WORK / "preflight_ids.txt"
 # PROTOCOL § 3 teachers, confirmed against the 10-07-2026 registry dump (results/route_identity_e08.json).
 TEACHERS = {
     "opus55": {"model_name": "Claude Opus 5.5", "selector": "anthropic/claude-opus-5-5-no-fallback",
-               "kwargs": {"addendum": "vbv1", "max_tokens": "128000", "compute_effort": "max"},
-               "why": "the only Opus 5.5 selector with fallback_models = []; compute_effort max is the highest the registry allows (its default); temperature not passed"},
+               "kwargs": {"addendum": "vbv1", "max_tokens": "128000", "compute_effort": "xhigh"},
+               "why": "the only Opus 5.5 selector with fallback_models = []; compute_effort xhigh (PROTOCOL lock-1 amendment A1, 10-07-2026): at max the "
+                      "model's reasoning exceeds the gateway's 128,000-token output cap on 4 / 4 preflight cells (MaxOutputTokensExceededError); at xhigh "
+                      "4 / 4 complete and pass the keep rule; temperature not passed"},
     "astra": {"model_name": "GPT-6 Astra", "selector": "openai/gpt-6-astra-max",
               "kwargs": {"addendum": "vbv1", "max_tokens": "128000", "reasoning_effort": "max"},
               "why": "the highest reasoning-effort selector the registry serves (max > xhigh > high > medium > low); no fallback models; temperature unsupported, not sent"},
