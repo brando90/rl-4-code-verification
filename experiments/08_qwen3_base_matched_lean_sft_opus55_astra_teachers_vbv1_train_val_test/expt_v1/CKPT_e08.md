@@ -4,20 +4,20 @@
 
 **TLDR:** Resumable state of experiment 08. The master finished the zero-call design steps; the SNAP worker (tmux `rl4cv-e08-worker` on `skampere1`) has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity) and is locking PROTOCOL §§ 1–7 before the 8-call live teacher preflight. `$WORK/CKPT_rl4cv-e08-worker.md` is a symlink to this file.
 
-**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-08-2026 04:53 PDT (worker).
+**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-08-2026 15:20 PDT (worker).
 
 ## State
 
 | Item | Value |
 |---|---|
-| Current step | Runbook § 9: ladders running for 1.7B (GPU 5) and 4B (GPUs 6–7); § 8 SFT for 8B / 14B waits for free GPUs |
+| Current step | Runbook §§ 8–9: 8B SFT running (GPUs 0–3); 1.7B and 4B ladders at rung 75 %; 14B SFT next on GPUs 4–7 |
 | Master | Claude Code (Opus 5.5) on Brando's laptop; private worktree `~/vb_worktrees/rl4cv-sft-warmstart-1007` |
 | Worker | Claude Code `claude-fable-5-1`, effort `high`, on `skampere1`, tmux `rl4cv-e08-worker`, clone `/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification` (`main`) |
 | Work root | `/lfs/skampere1/0/brando9/rl4cv_e08`: `env_e08.sh` (source in every shell), `.venv` (tests), `venv_gen` (vLLM 0.30.0 / torch 2.13.0+cu130 / transformers 5.18.0), `grading/lean_src` (private Lean v4.22.0 + Mathlib copy), `pack_train539/`, `cache/huggingface` (HF_HOME; 1.7B/4B/8B linked, 14B tokenizer), `private/` (0700), `logs/` |
 | Status file | `/lfs/skampere1/0/brando9/rl4cv_e08/STATUS_e08` = RUNNING |
 | Lock 1 / lock 2 | lock 1 LOCKED 2026-10-08T00:16:15Z at code commit `6e6890f`; the lock commit itself is `cc86ec0` (10-07-2026 17:16 PDT). **Amendment A1 (v1.1)** LOCKED 2026-10-08T00:55:51Z at `bc27e1c`: opus55 compute_effort xhigh. **Lock 2** LOCKED 2026-10-08T09:44:45Z at code commit `d1c101a`; the lock commit itself is `9995821` (10-08-2026 02:46 PDT) |
 | Valkyrie runs | preflight (8 cells, admitted 10-07-2026 17:17–17:19 PDT): opus55 p1 `67be268e-2560-4c6d-ae77-eb0448560508`, p2 `a3f8317d-3e9c-4f34-9d08-6f4cc4b85ccc`; astra p1 `68b86858-6af1-404e-ae1d-61d5c49da838`, p2 `62365cc4-5ff5-4ade-803f-320343716ca9` (`expt_v1/results/runs_state.json`); **Astra main** (admitted 17:44 PDT, 539 cells each, concurrency 24): s1 `e8ead92a-2839-41bd-8631-fe6b57e67747`, s2 `20362628-b046-4781-99a8-b3c7bd763d1f`, s3 `670496fd-932f-4ae9-af20-5d90106e046e`, s4 `3e4b9292-4da7-4db0-959a-26f582e9e3b2`; **Opus xhigh diagnostic preflight** (17:43 PDT): p1 `e4294309-0639-404c-b4f0-316437e4179c`, p2 `9ede472b-0200-47e6-98ab-8384b10fd5df`; **Opus main (xhigh, admitted 17:57 PDT, 539 cells each, concurrency 24)**: s1 `65dfef88-acc0-4bb3-9c32-88be333fccd2`, s2 `968f1080-e811-4736-865d-b728c333736b`, s3 `f26ab151-1a11-4afe-b576-276e73c6663e`, s4 `b267e358-bb10-4d66-981f-3ec730a9c367` |
-| GPUs held | GPU 5 (1.7B ladder), GPUs 6–7 (4B ladder); GPUs 0–4 another user's. Queued: 8B SFT (4 GPUs, TP4), 14B SFT (8 GPUs, TP8) |
+| GPUs held | GPUs 0–3 (8B SFT, TP4) from 15:20 PDT 10-08-2026; GPU 5 (1.7B ladder) and GPUs 6–7 (4B ladder) during their generation phases; 14B SFT queued for GPUs 4–7 (TP4) after the ladders |
 | Services, ports, tunnels | service `rl4cv-e08-vbv1-train` on `127.0.0.1:9740` (uvicorn pid in `$WORK/private/service.pid`), cloudflared tunnel (pid in `$WORK/private/tunnel.pid`); port claim `/lfs/skampere1/0/brando9/valkyrie_port_claims/rl4cv-e08_9740-9759.txt`; private config `$WORK/private/valkyrie.yaml` (use `VALKYRIE_CONFIG_PATH`) |
 | Health check | `snap_health.sh --node skampere1`: only `disk.dfs` FAIL (DFS 100% full), off this job's path |
 
@@ -75,6 +75,8 @@
 - **10-08-2026 04:07 PDT — 1.7B matched SFT done (658 steps, 5 rungs exported with distinct `pytorch_model.bin` hashes and SHA256SUMS); resume continuity verified (learning rate and cumulative loss tokens continuous across segment boundaries, 0 schedule mismatches). Training log CSV at `results/train_logs/sft_1p7B_steps.csv`. 1.7B validation ladder launched on GPU 5 (tmux `rl4cv-e08-ladder-1_7B`, `run_size_ladder_e08.sh 1.7B 5 1`; 5 checkpoints × 1,080 cells). 4B SFT still running on GPUs 6–7.**
 
 - **10-08-2026 04:53 PDT — 4B matched SFT done (658 steps, 5 rungs exported, distinct weight hashes, token log on schedule; `results/train_logs/sft_4B_steps.csv`). 4B validation ladder launched on GPUs 6–7 (tmux `rl4cv-e08-ladder-4B`, 2 data-parallel vLLM shards). 1.7B ladder on GPU 5 at its first checkpoint. 8B / 14B SFT still queued (GPUs 0–4 held by another user).**
+
+- **10-08-2026 15:20 PDT — GPUs 0–4 freed (22:18 UTC); 8B SFT launched; ladders at rung 4 of 5.** Ladder progress (gen ≈ 30–45 min per rung, scoring 1–3 h because trained models produce many compiling files): 1.7B rungs 12.5 / 25 / 50 % scored, 75 % scoring; 4B the same. GPU plan (Rule 9): 8B SFT on GPUs 0–3 (TP 4, ~45 GB per GPU, compute-bound, est. 2–4 h) in tmux `rl4cv-e08-sft-8B`; 14B SFT on GPUs 4–7 (TP 4, ~60 GB per GPU, est. 4–8 h) once both ladders have finished their last GPU phase (they still need GPUs 5–7 for the 100 % rung); if TP 4 overflows 80 GB the 14B run restarts on 8 GPUs with TP 8 after 8B.
 
 ## Next command (worker)
 
