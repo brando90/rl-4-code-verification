@@ -2,7 +2,35 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/01_small_open_models_veribench_v1_single_call_baseline/results.md>
 
-**TLDR:** The GPU run on `skampere1` (GPUs 2–7) is **complete**: full G=1 eval (9 models × 896 tasks) and G=8 probe (8 models × 128 tasks × 8 samples) jobs, launched 09-30-2026 12:31, all generated, kernel-scored and FSC-judged as of 10-01-2026 12:35 — every declared cell has a terminal receipt (reopened 12:16 to fix one omission: Qwen3.5-0.8B's row and FSC audit, below). D-101 (self-hosted inference) and D-102 (FSC judge route: `vb103_judge` Valkyrie, payer: Vals gateway) are both accepted; the judge's own controls passed on a new, isolated Valkyrie benchmark service. Near-zero IC_tests/IC_proofs throughout, as hypothesized, with one exception: **Qwen3-14B produced the experiment's first (and only) fully-compiling, fully-proving cell** (1/896, SCSC≈0.888 under the locked median-of-3 judge; 0.928 under the single-repeat judge that was first reported). **Gate G1 resolves to PASS**: two models (Qwen3-14B, 6 splits, max 0.333; Qwen3.5-9B, 4 splits, max 0.25) clear the locked kernel_binary mixed-group-share ≥ 0.20 threshold; the other 6 of 8 probe-scored models show exactly 0.0 overall mixed-group share — the signal is thin and concentrated in the two largest probed models. Interesting secondary observation (diagnostic only, not SCSC-relevant since still 0 positive cells): **Qwen3.6-27B's ungated audit FSC (0.775) is far higher than every smaller model's (0.01–0.46 range)** — a more capable model produces more plausible-looking Lean even when it still doesn't compile/prove. Total judge spend: **$289.78 of $400** (after the FSC repeat correction below; $106.37 before it). **Update 10-07-2026:** a recompile diagnostic (no model calls) confirms the zeros under the frozen scorer. Most files fail on Lean 4 well-formedness before any test runs. VeriBench's own `namespace {file stem}` hint, which is invalid on 533/896 tasks, is one contributor: the legacy namespace rewrite moves Qwen3-14B from 1 to 25 tasks with IC_tests·IC_proofs > 0. See "Zero-score diagnostic" below. **FSC repeat correction (10-07-2026):** PROTOCOL.md locks the judge as the median of 3 repeats per member, but only repeat 1 had been run; repeats 2 and 3 were judged on 10-07-2026 and every FSC in this file is now the median of 3. No model's FSC moved by more than 0.009, the FSC ordering of the 9 models is unchanged, Gate G1 is unaffected (it never used FSC), and no conclusion changes. See "FSC repeat correction".
+**TLDR:** The GPU run on `skampere1` (GPUs 2–7) is **complete**: full G=1 eval (9 models × 896 tasks) and G=8 probe (8 models × 128 tasks × 8 samples) jobs, launched 09-30-2026 12:31, all generated, kernel-scored and FSC-judged as of 10-01-2026 12:35 — every declared cell has a terminal receipt (reopened 12:16 to fix one omission: Qwen3.5-0.8B's row and FSC audit, below). D-101 (self-hosted inference) and D-102 (FSC judge route: `vb103_judge` Valkyrie, payer: Vals gateway) are both accepted; the judge's own controls passed on a new, isolated Valkyrie benchmark service. Near-zero IC_tests/IC_proofs throughout, as hypothesized, with one exception: **Qwen3-14B produced the experiment's first (and only) fully-compiling, fully-proving cell** (1/896, SCSC≈0.888 under the locked median-of-3 judge; 0.928 under the single-repeat judge that was first reported). **Gate G1 resolves to PASS**: two models (Qwen3-14B, 6 splits, max 0.333; Qwen3.5-9B, 4 splits, max 0.25) clear the locked kernel_binary mixed-group-share ≥ 0.20 threshold; the other 6 of 8 probe-scored models show exactly 0.0 overall mixed-group share — the signal is thin and concentrated in the two largest probed models. Interesting secondary observation (diagnostic only, not SCSC-relevant since still 0 positive cells): **Qwen3.6-27B's ungated audit FSC (0.775) is far higher than every smaller model's (0.01–0.46 range)** — a more capable model produces more plausible-looking Lean even when it still doesn't compile/prove. Total judge spend: **$289.78 of $400** (after the FSC repeat correction below; $106.37 before it). **Update 10-07-2026:** a recompile diagnostic (no model calls) confirms the zeros under the frozen scorer. Most files fail on Lean 4 well-formedness before any test runs. VeriBench's own `namespace {file stem}` hint, which is invalid on 533/896 tasks, is one contributor: the legacy namespace rewrite moves Qwen3-14B from 1 to 25 tasks with IC_tests·IC_proofs > 0. See "Zero-score diagnostic" below. **FSC repeat correction (10-07-2026):** PROTOCOL.md locks the judge as the median of 3 repeats per member, but only repeat 1 had been run; repeats 2 and 3 were judged on 10-07-2026 and every FSC in this file is now the median of 3. No model's FSC moved by more than 0.009, the FSC ordering of the 9 models is unchanged, Gate G1 is unaffected (it never used FSC), and no conclusion changes. See "FSC repeat correction". **Probe proving cells judged (10-07-2026):** the 11 proving G = 8 probe cells (4 Qwen3.5-9B, 7 Qwen3-14B) were judged with the same locked design (66/66 cells measured, $7.06; judge total $296.84 of $400), giving the probe its `scsc` channel for all 8 models and a partial `fsc_compiled` channel: FSC 0.2–1.0 (mean 0.536, n = 11), so the proving cells pay 0.58–1.0 under `scsc` instead of 1.0; the mixed-group shares, Gate G1 (PASS) and the 8 seed splits for experiment 02 are unchanged. See "Probe proving cells judged".
+
+## Probe proving cells judged (10-07-2026)
+
+**Setup and status.** The G = 8 probe's 11 proving cells (IC_tests · IC_proofs > 0: 4 for Qwen3.5-9B, 7 for Qwen3-14B, 0 for the other 6 probe models; `expt_v1/results/judge/probe_proving_cells.json`, every solution file hash-checked against its generation receipt) were judged on 10-07-2026 with the locked FSC design (GPT-6 Sol high and Claude Opus 5.5 max, 3 repeats each with byte-identical prompts, median of 3 per member, mean of the 2, divided by 5) on the same `vb103_judge` Valkyrie route (D-102, payer Vals gateway), from their own collect-only benchmark instances (ports 9710–9711, torn down afterwards). **66 of 66 judge cells measured**, no recovery pass needed. Finished 10-07-2026 20:20 PDT. Spend **$7.06**; the experiment's judge total is now **$296.84 of the $400 cap**. Checkpoint: [`expt_v1/CKPT_e01_probe_judge.md`](expt_v1/CKPT_e01_probe_judge.md); per-item FSC: `expt_v1/results/fsc_probe_<label>.json`; channel summaries: `expt_v1/results/probe_channels_summary.json` (script `expt_v1/probe_channels_report.py`, zero model calls).
+
+**Why it was open.** PROTOCOL.md puts every cell with IC_tests · IC_proofs > 0 in the judge's scope and lists the probe's reward channels as `kernel_binary`, `proof_fraction` "plus `scsc` and `fsc_compiled` once judged"; the first judge passes covered only the G = 1 cells, so the probe table (section "Signal probe, G = 8" below) carried only the two kernel channels (REPORT.md 17, found by the Gemini 4 Argon QA test).
+
+**Per cell** (judge scores on the 0–5 rubric scale, repeats in order; FSC = mean of the two member medians / 5; SCSC = (IC_tests · IC_proofs · FSC)^(1/3) with both IC factors 1.0 on every cell):
+
+| Model | Task | Sample | GPT-6 Sol high, repeats → median | Claude Opus 5.5 max, repeats → median | FSC | SCSC |
+|---|---|---:|---|---|---:|---:|
+| Qwen3.5-9B | `compilers_set_synthetic__my_strength_reduce_mul2` | 5 | [5, 5, 5] → 5 | [4, 4, 3] → 4 | 0.9 | 0.965 |
+| Qwen3.5-9B | `concurrent_set_real__my_raft_term_tick` | 4 | [2, 2, 2] → 2 | [1, 1, 1] → 1 | 0.3 | 0.669 |
+| Qwen3.5-9B | `medical_oss_set_real__my_temp_target_active` | 0 | [5, 5, 5] → 5 | [5, 5, 5] → 5 | 1.0 | 1.000 |
+| Qwen3.5-9B | `os_embedded_set_synthetic__my_mmu_can_write` | 7 | [2, 2, 2] → 2 | [1, 2, 2] → 2 | 0.4 | 0.737 |
+| Qwen3-14B | `aerospace_set_real__my_fprime_crc_match` | 2 | [2, 2, 2] → 2 | [1, 1, 1] → 1 | 0.3 | 0.669 |
+| Qwen3-14B | `concurrent_set_real__my_raft_term_tick` | 5 | [2, 1, 1] → 1 | [1, 1, 1] → 1 | 0.2 | 0.585 |
+| Qwen3-14B | `concurrent_set_real__my_raft_term_tick` | 6 | [1, 2, 2] → 2 | [1, 1, 1] → 1 | 0.3 | 0.669 |
+| Qwen3-14B | `finance_set_synthetic__my_utxo_double_spend_reject` | 3 | [5, 5, 2] → 5 | [1, 0, 1] → 1 | 0.6 | 0.843 |
+| Qwen3-14B | `gov_cert_set_synthetic__my_election_tally_add` | 2 | [4, 2, 4] → 4 | [4, 4, 4] → 4 | 0.8 | 0.928 |
+| Qwen3-14B | `hardware_set_real__my_spike_funct3_field` | 0 | [2, 2, 2] → 2 | [1, 1, 1] → 1 | 0.3 | 0.669 |
+| Qwen3-14B | `medical_oss_set_real__my_expected_delta_forecast` | 3 | [4, 4, 4] → 4 | [4, 4, 3] → 4 | 0.8 | 0.928 |
+
+- **Over the 11 cells:** mean FSC 0.536 (n = 11; Qwen3.5-9B 0.650 over 4, Qwen3-14B 0.471 over 7; range 0.2–1.0); mean cell SCSC 0.788 (range 0.585–1.000). Member bias on these cells, Sol median − Opus median: mean +0.82 rubric points (Sol higher on 6/11, equal on 5/11, Opus higher on 0/11). Within-member repeat spread was 0 on 14 of the 22 (cell, member) pairs; the widest is `finance_set_synthetic__my_utxo_double_spend_reject` sample 3 (Sol 5, 5, 2; Opus 1, 0, 1), where the median-of-3 rule matters. Every proving cell proves all of its stated theorems with a compiling file, yet the judge finds the stated theorems cover only part of the reference specification on 7 of 11 (FSC ≤ 0.6): the kernel channels pay these cells 1.0, `scsc` pays 0.58–1.0.
+- **What changes in the probe table.** The `scsc` channel is fully measured for all 8 models (128/128 groups; exactly 0 wherever IC_tests · IC_proofs = 0, so the 6 models without proving cells are unchanged at 0). For the two models with proving cells, the set of mixed groups is identical to `kernel_binary` (a judged cell's SCSC is in [0.58, 1.0], still above its 0-reward siblings), so the mixed-group share, H and the per-split maximum are unchanged; the mean reward and ρ fall because the per-cell reward is now below 1: Qwen3-14B ρ 5.98 → 4.46, Qwen3.5-9B 2.06 → 1.72 (group-weighted overall; pooled single-environment ρ 4.86 → 3.72 and 1.58 → 1.33).
+- **Gate G1 and experiment 02's seed splits do not change.** G1 is locked on `kernel_binary` and stays **PASS**. Under `scsc` the splits at or above 0.20 are the same 6 for Qwen3-14B (max 0.333, `aerospace_set_real`) and the same 4 for Qwen3.5-9B (max 0.25), so the union that seeds experiment 02's pools is the same 8 splits (`probe_channels_summary.json` → `gate_g1.seed_splits_unchanged_under_scsc: true`).
+- **`fsc_compiled` is partial by design.** Its judge scope under D-003 is every cell with IC_tests = 1, but the locked judge scope for this experiment is IC_tests · IC_proofs > 0, so the 17 probe cells with IC_tests = 1 and IC_proofs = 0 (Qwen3.5-4B 1, Qwen3-1.7B 3, Qwen3-4B 7, Qwen3-8B 1, Qwen3-14B 5; Qwen3.5-9B 0) stay `null` and their groups are excluded from the `fsc_compiled` row, never counted as 0: measured groups 127, 126, 121, 127 and 123 of 128 respectively. Judging them would be a new admission outside the locked scope and is left for Brando to decide.
+- **Files.** Pre-judging scored JSONL files on the host are untouched; the re-collected files with FSC are `out/scored/scored_<label>_g8_with_fsc.jsonl` (the 10-01-2026 G = 1 precedent), from `out/fsc/<label>_g8_s<k>.json` exported by `judge_rl4cv_e01.py fsc-probe`. Transport: `valk run results` still returns the tracker regression noted in the FSC repeat correction; the harvest read the per-task verdict bytes via `valk run task` (`results_source` recorded in each harvest).
 
 ## FSC repeat correction (10-07-2026)
 
@@ -190,9 +218,12 @@ The definitions-only probe removes theorem declarations as well as proofs, so re
 | `rl4cv-e01:qwen3-14b` repeats 2–3 (+ recovery) | H2_sol_high + H2_opus55_max | 61 × 2 × 2 | 243/244 measured | 26.22 |
 | `rl4cv-e01:qwen3.6-27b-local` repeats 2–3 (+ recovery) | H2_sol_high + H2_opus55_max | 52 × 2 × 2 | 207/208 measured | 19.89 |
 
-**Final total: $289.78 of $400** ($106.37 for controls and repeat 1 through 10-01-2026; $183.41 for repeats 2–3 and the recovery pass on 10-07-2026). Every admitted FSC run is harvested; no further Valkyrie spend is expected for this experiment.
+| `rl4cv-e01-probe:qwen3.5-9b` (4 proving G = 8 cells × 3 repeats; added 10-07-2026) | H2_sol_high + H2_opus55_max | 4 × 3 × 2 | 24/24 measured | 3.04 |
+| `rl4cv-e01-probe:qwen3-14b` (7 proving G = 8 cells × 3 repeats; added 10-07-2026) | H2_sol_high + H2_opus55_max | 7 × 3 × 2 | 42/42 measured | 4.02 |
 
-Last updated: 10-07-2026 18:34 PDT.
+**Final total: $296.84 of $400** ($106.37 for controls and repeat 1 through 10-01-2026; $183.41 for repeats 2–3 and the recovery pass on 10-07-2026; $7.06 for the 11 proving G = 8 probe cells on 10-07-2026). Every admitted FSC run is harvested; no further Valkyrie spend is expected for this experiment unless Brando admits the 17 IC_tests = 1, IC_proofs = 0 probe cells that sit outside the locked judge scope.
+
+Last updated: 10-07-2026 20:20 PDT.
 
 ## Pipeline validation on CPU (09-30-2026, not the locked preflight)
 
@@ -252,23 +283,39 @@ The denominator is always 896 declared cells per model. Unmeasured cells are lis
 
 Per README §Decision criterion, the union of Qwen3-14B's 6 splits and Qwen3.5-9B's 4 splits (8 distinct: `aerospace_set_real`, `compilers_set_synthetic`, `concurrent_set_real`, `finance_set_synthetic`, `gov_cert_set_synthetic`, `hardware_set_real`, `medical_oss_set_real`, `os_embedded_set_synthetic`) seed experiment 02's pools.
 
-| Model | Channel | Mean reward | Mixed-group share (overall) | ρ (overall) | H (overall) | Max per-split mixed-group share |
-|---|---|---:|---:|---:|---:|---:|
-| Qwen3.5-0.8B | kernel_binary | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
-| Qwen3.5-0.8B | proof_fraction | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
-| Qwen3.5-2B | kernel_binary | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
-| Qwen3.5-2B | proof_fraction | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
-| Qwen3.5-4B | kernel_binary | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
-| Qwen3.5-4B | proof_fraction | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
-| Qwen3.5-9B | kernel_binary | 0.0039 | 0.0312 | 2.06 | 0.0312 | **0.25** (`compilers_set_synthetic`, 3 others tied) |
-| Qwen3.5-9B | proof_fraction | 0.0039 | 0.0312 | 2.06 | 0.0312 | **0.25** (`compilers_set_synthetic`, 3 others tied) |
-| Qwen3-1.7B | kernel_binary | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
-| Qwen3-1.7B | proof_fraction | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
-| Qwen3-4B | kernel_binary | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
-| Qwen3-4B | proof_fraction | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
-| Qwen3-8B | kernel_binary | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
-| Qwen3-8B | proof_fraction | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
-| Qwen3-14B | kernel_binary | 0.0068 | 0.0469 | 5.98 | 0.0469 | **0.333** (`aerospace_set_real`, 5 others ≥0.20) |
-| Qwen3-14B | proof_fraction | 0.0068 | 0.0469 | 5.98 | 0.0469 | **0.333** (`aerospace_set_real`, 5 others ≥0.20) |
+| Model | Channel | Mean reward | Mixed-group share (overall) | ρ (overall) | H (overall) | Max per-split mixed-group share | Groups measured / 128 |
+|---|---|---:|---:|---:|---:|---:|---:|
+| Qwen3.5-0.8B | kernel_binary | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3.5-0.8B | proof_fraction | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3.5-0.8B | scsc | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3.5-0.8B | fsc_compiled | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3.5-2B | kernel_binary | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3.5-2B | proof_fraction | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3.5-2B | scsc | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3.5-2B | fsc_compiled | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3.5-4B | kernel_binary | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3.5-4B | proof_fraction | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3.5-4B | scsc | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3.5-4B | fsc_compiled (partial: 1 groups unmeasured) | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 127/128 |
+| Qwen3.5-9B | kernel_binary | 0.0039 | 0.0312 | 2.06 | 0.0312 | **0.25** (`compilers_set_synthetic`, 3 others ≥0.20) | 128/128 |
+| Qwen3.5-9B | proof_fraction | 0.0039 | 0.0312 | 2.06 | 0.0312 | **0.25** (`compilers_set_synthetic`, 3 others ≥0.20) | 128/128 |
+| Qwen3.5-9B | scsc | 0.0033 | 0.0312 | 1.72 | 0.0312 | **0.25** (`compilers_set_synthetic`, 3 others ≥0.20) | 128/128 |
+| Qwen3.5-9B | fsc_compiled | 0.0025 | 0.0312 | 1.30 | 0.0312 | **0.25** (`compilers_set_synthetic`, 3 others ≥0.20) | 128/128 |
+| Qwen3-1.7B | kernel_binary | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3-1.7B | proof_fraction | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3-1.7B | scsc | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3-1.7B | fsc_compiled (partial: 2 groups unmeasured) | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 126/128 |
+| Qwen3-4B | kernel_binary | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3-4B | proof_fraction | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3-4B | scsc | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3-4B | fsc_compiled (partial: 7 groups unmeasured) | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 121/128 |
+| Qwen3-8B | kernel_binary | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3-8B | proof_fraction | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3-8B | scsc | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 128/128 |
+| Qwen3-8B | fsc_compiled (partial: 1 groups unmeasured) | 0.0000 | 0.0000 | 0.00 | 0.0000 | 0.0000 | 127/128 |
+| Qwen3-14B | kernel_binary | 0.0068 | 0.0469 | 5.98 | 0.0469 | **0.3333** (`aerospace_set_real`, 5 others ≥0.20) | 128/128 |
+| Qwen3-14B | proof_fraction | 0.0068 | 0.0469 | 5.98 | 0.0469 | **0.3333** (`aerospace_set_real`, 5 others ≥0.20) | 128/128 |
+| Qwen3-14B | scsc | 0.0052 | 0.0469 | 4.46 | 0.0469 | **0.3333** (`aerospace_set_real`, 5 others ≥0.20) | 128/128 |
+| Qwen3-14B | fsc_compiled (partial: 5 groups unmeasured) | 0.0034 | 0.0488 | 2.72 | 0.0488 | **0.3333** (`aerospace_set_real`, 5 others ≥0.20) | 123/128 |
 
-"Overall" columns are group-weighted means across all 128 groups (32 splits × 4 tasks); per-split values and `pass@8` are in `expt_v1/results/summaries/rho_h_<label>_g8_<channel>.{json,md}`.
+"Overall" columns are group-weighted means of the per-split values over the fully measured groups (32 splits × 4 tasks = 128 groups; a group is unmeasured when any of its 8 samples has a `null` reward, and it is excluded, never counted as 0); per-split values are in `expt_v1/results/summaries/rho_h_<label>_g8_<channel>.{json,md}` (all four channels committed 10-07-2026; the pooled single-environment ρ and H are in `expt_v1/results/probe_channels_summary.json` → `pooled_single_environment`). `scsc` and `fsc_compiled` rows were added on 10-07-2026 after the 11 proving probe cells were judged (see "Probe proving cells judged"). `fsc_compiled` is **partial**: the locked judge scope (PROTOCOL.md) covers only cells with IC_tests · IC_proofs > 0, so the 17 probe cells with IC_tests = 1 and IC_proofs = 0 (Qwen3.5-4B 1, Qwen3-1.7B 3, Qwen3-4B 7, Qwen3-8B 1, Qwen3-14B 5) keep `fsc_compiled = null` and their groups are excluded from that row; Qwen3-14B's `fsc_compiled` mixed-group share (0.0488) is 6 mixed of 123 measured groups, against 6 of 128 for `scsc`.
