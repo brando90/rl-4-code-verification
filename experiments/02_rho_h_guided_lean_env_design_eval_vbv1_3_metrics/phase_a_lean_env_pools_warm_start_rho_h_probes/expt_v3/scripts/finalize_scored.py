@@ -28,12 +28,18 @@ def main() -> int:
     for t in TEACHERS:
         final = {c["task_id"]: c for c in rows(W / "raw/final" / t / "cells.jsonl")}
         replaced = set(state["runs"].get(f"final/{t}", {}).get("replaced_by_recovery", []))
+        # Read-back shards: the first attempt wrote `main_<t>_k<i>.jsonl` (Anthropic finished before the 10-08-2026 reboot);
+        # the resumed scoring wrote `main_<t>_r<j>.jsonl` over symlinked job views. Both name their job dir `<shard>_s0`.
         scored_main, shard_of = {}, {}
-        for shard in sorted((W / "scored").glob(f"main_{t}_k*.jsonl")):
+        shards = sorted((W / "scored").glob(f"main_{t}_r*.jsonl")) or sorted((W / "scored").glob(f"main_{t}_k*.jsonl"))
+        for shard in shards:
             name = shard.stem
             for r in rows(shard):
+                if r["task_id"] in scored_main:
+                    raise RuntimeError(f"{t}/{r['task_id']}: read back twice ({shard_of[r['task_id']]} and {name})")
                 scored_main[r["task_id"]] = r
                 shard_of[r["task_id"]] = name
+        summary_shards = [s.stem for s in shards]
         scored_rec = {r["task_id"]: r for r in rows(W / "scored" / f"scored_rec_{t}.jsonl")}
         missing = sorted(set(final) - set(scored_main))
         if missing:
@@ -49,6 +55,7 @@ def main() -> int:
             else:
                 r, src = dict(scored_main[tid]), W / "jobs" / f"{shard_of[tid]}_s0" / tid
                 r["attempt"] = "main"
+            src = src.resolve()          # resume shards are symlinks to the first attempt's materialized trial dirs
             lean_path = src / "verifier" / "solution.lean"
             lean = lean_path.read_text(encoding="utf-8") if lean_path.exists() else ""
             if (hashlib.sha256(lean.encode("utf-8")).hexdigest() if lean else None) != cell.get("lean_sha256"):
@@ -65,12 +72,15 @@ def main() -> int:
                      cost_usd=cell.get("cost_usd"), run_id=cell["run_id"])
             out_rows.append(r)
         classes = Counter(r["failure_class"] for r in out_rows if r["teacher"] == t)
-        summary[t] = {"n": sum(classes.values()), "classes": dict(classes), "replaced_by_recovery": sorted(replaced)}
+        summary[t] = {"n": sum(classes.values()), "classes": dict(classes), "replaced_by_recovery": sorted(replaced), "readback_shards": summary_shards}
+        if sum(classes.values()) != len(final):
+            raise RuntimeError(f"{t}: {sum(classes.values())} rows for {len(final)} final cells")
     a.out.parent.mkdir(parents=True, exist_ok=True)
     with a.out.open("w", encoding="utf-8") as fh:
         for r in sorted(out_rows, key=lambda r: (r["teacher"], r["task_id"])):
             fh.write(json.dumps(r, sort_keys=True) + "\n")
-    print(json.dumps(summary, indent=1))
+    (a.out.with_suffix(".summary.json")).write_text(json.dumps(summary, indent=1, sort_keys=True) + "\n")
+    print(json.dumps({t: {k: v for k, v in s.items() if k != "replaced_by_recovery"} for t, s in summary.items()}, indent=1))
     return 0
 
 
