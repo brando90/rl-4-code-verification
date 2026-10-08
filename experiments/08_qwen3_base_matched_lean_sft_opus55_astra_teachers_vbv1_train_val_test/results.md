@@ -2,11 +2,11 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/results.md>
 
-**TLDR:** The VeriBench V1 train / validation / test split (539 / 135 / 222 tasks, D-013) and the zero-call baselines are done. On the new validation split, Qwen3 Base's `kernel_binary` mixed-group share at G = 8 is 0.000 (1.7B), 0.022 (4B) and 0.000 (8B), all below the 0.05 gate. Teacher calls, SFT and evaluation have not started.
+**TLDR:** The VeriBench V1 train / validation / test split (539 / 135 / 222 tasks, D-013) and the zero-call baselines are done. On the new validation split, Qwen3 Base's `kernel_binary` mixed-group share at G = 8 is 0.000 (1.7B), 0.022 (4B) and 0.000 (8B), all below the 0.05 gate. The SNAP worker has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity); lock 1 and the live teacher preflight are next.
 
-**Status:** RUNNING (SNAP worker launched 10-07-2026 16:47 PDT on `skampere1`, tmux `rl4cv-e08-worker`; launch receipt in `expt_v1/CKPT_e08.md`)
+**Status:** RUNNING (SNAP worker on `skampere1`, tmux `rl4cv-e08-worker`; all 8 teacher main runs in flight after lock-1 amendment A1; Base 14B validation generation running)
 
-**Last updated:** 10-07-2026 16:47 PDT (master, launch receipt)
+**Last updated:** 10-07-2026 17:56 PDT (worker, amendment A1 and Opus main admission)
 
 ## Phases
 
@@ -15,8 +15,8 @@
 | D-013 split | DONE (10-07-2026) | `expt_v1/results/split/` (manifest SHA-256 `157ce781…`), `tests/test_splits.py` |
 | Base models on the splits (experiment 05 receipts) | DONE (10-07-2026) | `expt_v1/results/base_qwen3_e05_on_d013_splits.json` |
 | Token-budget inputs | DONE (10-07-2026) | `expt_v1/results/token_budget_gold_lengths.json`, `token_budget_e103_teacher_yields.json` |
-| Lock 1 preflight and lock | PENDING | — |
-| Teacher runs (4,312 cells) | PENDING | — |
+| Lock 1 preflight and lock | lock 1 LOCKED 2026-10-08T00:16 UTC at `6e6890f` (lock commit `cc86ec0`); live preflight (8 cells) IN PROGRESS since 10-07-2026 17:17 PDT | `expt_v1/results/pack_check.json`, `scorer_adapter_check.json`, `template_check.json`, `deployment_e08.json`, `route_identity_e08.json` |
+| Teacher runs (4,312 cells) | IN PROGRESS: Astra 4 runs × 539 admitted 10-07-2026 17:44 PDT; Opus 5.5 4 runs × 539 admitted after amendment A1 (`xhigh`), concurrency 24 each | `expt_v1/results/runs_state.json`, `results/receipts/preflight/` |
 | Scoring, screen, SFT set S | PENDING | — |
 | Lock 2 preflight and lock | PENDING | — |
 | Matched SFT, 4 sizes × 5 checkpoints | PENDING | — |
@@ -97,6 +97,36 @@ The kernel proxy is IC_tests = IC_proofs = 1 with at least one theorem and one `
   - Aligned PROTOCOL § 8 with Varun's committed config: his `LinearLR`-then-cosine schedule form, seed 20260830, SFT-time validation and Weights & Biases off.
   - Committed Varun's config files with provenance (`expt_v1/configs/`), so the worker needs no access to `skampere3`.
   - Added an upper scenario to the token estimate: about 1,200–1,600 examples and 4.5–6.5M assistant tokens.
+
+## Worker setup and lock-1 zero-call checks (SNAP worker, 10-07-2026)
+
+Host `skampere1`, work root `/lfs/skampere1/0/brando9/rl4cv_e08`, own clone on `main`. Zero model calls in this section.
+
+| Check (PROTOCOL § 12, before lock 1) | Result | Evidence |
+|---|---|---|
+| `make test` with the pinned VeriBench root | 112 passed, 1 skipped (the skip is experiment 07's `scipy` test); all 13 split tests ran, including the reproduction test | `.venv`, `external/` at the three pins |
+| Served pack (539 train tasks) | PASS: 539 / 539 instruction hashes equal experiment 05's receipts; no `.lean`, `solution/`, gold or theorem text outside `instruction.md`; system prompt `dc051963…`, addendum `a7a0fc1b…` | `expt_v1/results/pack_check.json` |
+| Held-out screen of system prompt, addendum and 539 instructions vs validation + test Python and gold Lean (714 files) | 0 exact, 0 near hits; max word-5-gram Jaccard 0.177 (an instruction vs a validation Python program) | same file |
+| Tokenizer template (control task, 4 sizes) | PASS: evaluation prompt is a byte and token-id prefix of the full render; loss span = `<think>\n\n</think>\n\n` + response verbatim + `<|im_end|>\n`; 1.7B / 4B / 8B / 14B tokenizer files and chat template byte-identical; 3,630 prompt tokens, 87 assistant tokens on the control | `expt_v1/results/template_check.json` |
+| Scorer adapter (frozen scorer `59059a20`, private grading project, Lean v4.22.0 + Mathlib `79e94a09`) | PASS on 14 files: 3 train gold kept (IC_tests = IC_proofs = 1, `kernel_binary` 1); empty → `no_lean`, non-compiling → `no_typecheck`, `sorry` → `unproved_theorem`; the compiling `True` control → `vacuous_theorem` despite perfect kernel factors; 5 experiment-103 Astra train files reproduce experiment 103's IC_tests / IC_proofs / theorem and axiom counts exactly | `expt_v1/results/scorer_adapter_check.json` |
+| Service | `rl4cv-e08-vbv1-train` on `127.0.0.1:9740` (claimed block 9740–9759) behind a bearer-protected cloudflared tunnel; health 200 with the bearer and 401 without, locally and through the tunnel; per-task limit read back 6,600 s = 2 × 3,000 + 600 | `expt_v1/results/deployment_e08.json` (URL and bearer only under `$WORK/private/`) |
+| Route identity (D-108) | PASS: Valkyrie environment `bench`, log group `fellows/brando-miranda`, bucket `fellow-brando-miranda` (organization BrandoMiranda-fellow); the gateway key never reached the host (secret mapping `fellows/brandoModelGatewayApiKey` by name); installed `vb103_single_call` bundle = experiment 103's frozen hashes (`single_call.py` `6e1a9b0d…`); retry bound verified: at most 2 requests per cell, re-send only after HTTP 429/5xx, timeouts never replayed; payer Vals; 0 prior runs on this benchmark | `expt_v1/results/route_identity_e08.json` |
+| Registry dump (10-07-2026, 454 models, SHA-256 `572c742f…`) | `anthropic/claude-opus-5-5-no-fallback`: fallback list empty (the only Opus 5.5 selector without fallbacks), default compute effort `max`, max_tokens 128,000; `openai/gpt-6-astra-max`: the highest served effort (max > xhigh > high > medium > low) | same file |
+
+**Finding (gold references and the keep rule):** 403 of the 896 pinned gold references use `native_decide`, mostly in `example`s but sometimes inside named theorems, where the frozen scorer counts the theorem as not kernel-proved (IC_proofs 0.5 on the two aerospace diagnostics). The adapter check therefore picks its 3 gold files among references that never use `native_decide` and scores the first 2 that do as diagnostics (`forbidden_axiom`, `kernel_binary` 0). The keep rule for teacher files is unchanged.
+
+## Live preflight (PROTOCOL § 12.7; 8 locked cells + 4 diagnostic cells)
+
+| Teacher | Cells | Served | Finish | Lean collected | Scored | Independent samples | Charge (USD) |
+|---|---:|---:|---|---:|---|---|---:|
+| Astra (`openai/gpt-6-astra-max`, reasoning max) | 4 | 4 | `stop` ×4 (2.3–3.8k output, 17–33k reasoning tokens, 8–16 min) | 4 | 4 × `no_typecheck` (IC_tests 0; 6–9 theorems stated); prompt hashes = pack; extraction consistent 4 / 4 | yes (response hashes differ on both tasks) | 5.78 |
+| Opus 5.5 (`anthropic/claude-opus-5-5-no-fallback`, compute max) | 4 | 4 | `model_error` / `MaxOutputTokensExceededError` ×4 after ~18 min | 0 | 4 × `no_lean` | not testable (no responses) | 0.00 recorded |
+| Opus 5.5, compute **xhigh** (diagnostic, amendment A1) | 4 | 4 | `stop` ×4 (5.1–9.0k output, 22.8–43.3k reasoning tokens, 4–7 min) | 4 | 4 × **kept** (IC_tests = IC_proofs = 1, 10–20 theorems stated, none vacuous); extraction consistent 4 / 4 | yes (both tasks) | 3.51 |
+
+- **Finding (10-07-2026, worker):** the gateway caps this model's output at 128,000 tokens (registry `properties.max_tokens`). Experiment 103's Opus 5 max run spent a median 76,840 reasoning tokens per cell and 117 / 895 cells hit the same error; experiment 02A v3's Fable 5.1 max preflight failed the same way. Opus 5.5 at max effort therefore cannot deliver files on most tasks under the locked settings, and the 2,156 main calls would be wasted.
+- **Decision (agents-config Rule 57, flagged for Brando):** Opus main runs were not admitted at `max`. The tagged diagnostic preflight at `compute_effort xhigh` completed and passed end to end, so PROTOCOL § 3 was amended for `opus55` to `xhigh` (lock-1 amendment A1, version 1.1, `LOCKED 2026-10-08T00:55:51Z at bc27e1c`) before any Opus main call; the Opus main runs were then admitted. Astra's settings are unchanged; its 4 main runs (2,156 cells) were admitted at 17:44 PDT under the lock.
+- **Harvest note:** `valk run results` answers "tracker returned a malformed response" on this tracker (as in 02A v3 and experiment 01); the run-output benchmark JSON carries the same per-task rows with the service-collected bytes, and the per-task `agent_output.tar.gz` carries `receipt.json` + `response.txt`.
+- **NeMo RL infrastructure smoke (not scientific):** NeMo RL 0.4.0 at `c751f811` built with `uv` (worker venvs built at first launch); Qwen3-1.7B-Base, 4 synthetic examples, 2 steps on GPU 0 (21.7 GB): loss 2.73 → 2.15, `step_2` checkpoint saved with optimizer, scheduler and dataloader state, exported to Hugging Face format (`qwen3`). All four Base snapshots hash-verified against the hub (`expt_v1/results/model_weights_e08.json`).
 
 ## Open questions for Brando
 

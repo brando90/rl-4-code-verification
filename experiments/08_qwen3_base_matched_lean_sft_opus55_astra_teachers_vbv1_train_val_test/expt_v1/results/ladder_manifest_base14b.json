@@ -1,0 +1,34 @@
+{
+ "n_declared_cells": 1080,
+ "n_tasks": 135,
+ "note": "Frozen before generation (PROTOCOL \u00a7 9). The trained-checkpoint systems join the full ladder manifest at lock 2; this file is the frozen manifest for the Base 14B cells generated early to use idle GPUs.",
+ "samples_per_task": 8,
+ "sampling": {
+  "batch": 1024,
+  "command": "python -m rl4cv.veribench.generate (experiment 05's exact arguments; run_ladder_e08.sh)",
+  "max_tokens": 12288,
+  "samples": 8,
+  "seed": 91,
+  "stop_token": "<|im_end|>",
+  "temperature": 0.6,
+  "thinking": "on",
+  "top_k": 20,
+  "top_p": 0.95
+ },
+ "split": "validation",
+ "systems": [
+  {
+   "in_test": true,
+   "label": "base14b",
+   "model": "Qwen/Qwen3-14B-Base",
+   "revision": "0b0bd3732e2c374d483664439ea334928b65f304",
+   "role": "base",
+   "size": "14B",
+   "snapshot": "/lfs/skampere1/0/brando9/rl4cv_e08/cache/huggingface/hub/models--Qwen--Qwen3-14B-Base/snapshots/0b0bd3732e2c374d483664439ea334928b65f304",
+   "source": "e08",
+   "weights_all_lfs_match": true
+  }
+ ],
+ "task_ids_sha256": "666d6d6b31cb3f736d8ca0eee625ff5ad5ea31efa7e0ce3a10c350091848c84d",
+ "written_utc": "2026-10-08T00:47:16+00:00"
+}
