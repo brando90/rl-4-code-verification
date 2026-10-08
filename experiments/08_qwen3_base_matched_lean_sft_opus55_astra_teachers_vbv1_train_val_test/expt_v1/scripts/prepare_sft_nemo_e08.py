@@ -104,6 +104,11 @@ def main(argv: list[str] | None = None) -> int:
         if padded:
             fh.write(json.dumps({"messages": [{"role": "system", "content": "padding slot"}, {"role": "user", "content": PAD_USER}, {"role": "assistant", "content": "padding slot"}],
                                  "task_id": None, "teacher": None, "r": None, "index": n, "is_padding": True}, ensure_ascii=False) + "\n")
+    # NeMo RL's loader needs a validation file; it is never evaluated (val_period 0, val_at_start false): the first two train examples.
+    val_dummy = a.out_jsonl.with_name("s_v1_val_dummy.jsonl")
+    with val_dummy.open("w", encoding="utf-8") as fh:
+        for r in rows[:2]:
+            fh.write(json.dumps({"messages": r["messages"], "task_id": r["task_id"], "teacher": r["teacher"], "r": r["r"], "index": r["index"], "is_padding": False}, ensure_ascii=False) + "\n")
     # Batch-2 step schedule over the fixed order: step j (1-indexed) consumes examples 2j-1 and 2j.
     steps = math.ceil(n / GLOBAL_BATCH)
     cum, cum_steps = 0, []
