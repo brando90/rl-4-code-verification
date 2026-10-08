@@ -4,13 +4,13 @@
 
 **TLDR:** Resumable state of experiment 08. The master finished the zero-call design steps; the SNAP worker (tmux `rl4cv-e08-worker` on `skampere1`) has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity) and is locking PROTOCOL §§ 1–7 before the 8-call live teacher preflight. `$WORK/CKPT_rl4cv-e08-worker.md` is a symlink to this file.
 
-**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-07-2026 17:26 PDT (worker).
+**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-07-2026 17:23 PDT (worker).
 
 ## State
 
 | Item | Value |
 |---|---|
-| Current step | Runbook § 4.4: lock 1 (zero-call checks 1–6 all PASS); then § 4.5 live preflight (8 calls) |
+| Current step | Runbook § 4.5: live preflight running (4 runs, 8 cells); NeMo RL 0.4.0 env built at `c751f811`; Qwen3-14B-Base download in progress |
 | Master | Claude Code (Opus 5.5) on Brando's laptop; private worktree `~/vb_worktrees/rl4cv-sft-warmstart-1007` |
 | Worker | Claude Code `claude-fable-5-1`, effort `high`, on `skampere1`, tmux `rl4cv-e08-worker`, clone `/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification` (`main`) |
 | Work root | `/lfs/skampere1/0/brando9/rl4cv_e08`: `env_e08.sh` (source in every shell), `.venv` (tests), `venv_gen` (vLLM 0.30.0 / torch 2.13.0+cu130 / transformers 5.18.0), `grading/lean_src` (private Lean v4.22.0 + Mathlib copy), `pack_train539/`, `cache/huggingface` (HF_HOME; 1.7B/4B/8B linked, 14B tokenizer), `private/` (0700), `logs/` |
