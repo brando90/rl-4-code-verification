@@ -5,7 +5,7 @@
 **TLDR:** Resume record for completing experiment 01's locked FSC judge design (repeats 2 and 3, median of 3) without overwriting repeat-1 evidence.
 
 **Created:** 10-07-2026 16:48 PDT
-**Last updated:** 10-07-2026 17:07 PDT (worker)
+**Last updated:** 10-07-2026 17:57 PDT (worker)
 
 - **Task:** `expt_v1/cc_fsc_median3_fix.md`. Requested by Brando, 10-07-2026: "fix the 01 FSC repeat deviation".
 - **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `cc-rl4cv-master-argon-qa-e02-lethan-e01-fsc`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv. **Worker:** Claude Code `claude-fable-5-1` / effort `high` via `/lfs/skampere1/0/brando9/bin/clauded_tok` (full access) on `skampere1`, tmux `rl4cv-e01-fsc-median3-worker`.
@@ -43,3 +43,4 @@
   | `qwen3.6-27b-local/H2_opus55_max@r23` | `01b5c429-cdd0-4b2e-b3fc-3c31e7e31040` | 104 | `veribench-rl4cv-e01-qwen3-6-27b-local-r23` |
 
   - **Next command:** watcher `poll` loop until every `@r23` key is terminal, then `harvest --part r23 --suite rl4cv-e01:<label>` for each label, then `fsc-median3`. Recovery policy: re-send once, as the identical cell, only cells whose receipt shows no request served.
+- **10-07-2026 17:57 PDT — all 18 r23 runs terminal (watcher poll 17:32 PDT); harvesting.** Live status over all runs: 1,878 FINISHED, 114 ERROR of 1,992 cells. Every ERROR is a Daytona sandbox-provisioning failure before the agent ran ("Failed to update network settings: An operation is already in progress for this resource"), so those cells have no receipt and no model request; they are the declared single recovery pass's input. **Transport deviation:** `valk run results <run_id>` returns "tracker returned a malformed response" for every run, including the repeat-1 runs harvested on 10-01-2026, so it is a Valkyrie tracker-side regression, not these runs. `valk run output` (artifact receipts) and `valk run task <run> <task> --format json` (the same `evaluation_result.solution_b64` verdict bytes, per task) both work; `harvest` now falls back to the per-task fetch and records `results_source` in each harvest file. Same route, same bytes, no scientific setting changed.

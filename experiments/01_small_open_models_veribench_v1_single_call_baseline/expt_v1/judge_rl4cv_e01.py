@@ -519,6 +519,25 @@ def rows_of(results_path: Path) -> dict[str, dict]:
 RECOVERY_SUFFIX = "__recovery_1"
 
 
+def rows_via_task(run_id: str, task_ids: list[str], workers: int = 8) -> dict[str, dict]:
+    """Fallback for `valk run results` (tracker returned a malformed response for every run, old and new,
+    on 10-07-2026): fetch each task's `evaluation_result` with `valk run task`, which carries the same
+    `solution_b64` verdict bytes the run-level results file does. Same route, same bytes, per task."""
+    from concurrent.futures import ThreadPoolExecutor
+    def one(task_id: str) -> tuple[str, dict]:
+        for attempt in range(3):
+            result = cli(["run", "task", run_id, task_id, "--format", "json"], timeout=300)
+            try:
+                payload = json.loads(result.stdout)
+                row = payload.get("evaluation_result") or {}
+                return task_id, (row if isinstance(row, dict) else {})
+            except json.JSONDecodeError:
+                continue
+        return task_id, {}
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        return dict(pool.map(one, task_ids))
+
+
 def harvest(configs: list[str], part: str, suite: str, recovery: bool = False) -> int:
     spec = suite_spec(suite, part)
     blob = json.loads(spec["pack_receipt"].read_text())
@@ -536,10 +555,11 @@ def harvest(configs: list[str], part: str, suite: str, recovery: bool = False) -
         # A recovery harvest covers exactly the cells that recovery re-sent, nothing else.
         pack = ({t: pack_all[t] for t in entry["task_ids"]} if recovery else pack_all)
         results_path, artifacts = download(key, entry["run_id"])
-        if not results_path.exists():
-            print(f"{key}: no results downloaded")
-            continue
-        rows = rows_of(results_path)
+        if results_path.exists():
+            rows, results_source = rows_of(results_path), "valk run results"
+        else:
+            rows, results_source = rows_via_task(entry["run_id"], sorted(pack)), "valk run task (per task)"
+            print(f"{key}: run-level results unavailable; fetched {len(rows)} per-task results")
         receipts = {}
         for path in sorted(artifacts.rglob("receipt.json")):
             try:
@@ -570,7 +590,8 @@ def harvest(configs: list[str], part: str, suite: str, recovery: bool = False) -
         for cell in cells:
             counts[cell["status"]] = counts.get(cell["status"], 0) + 1
         out = {"written_utc": stamp(), "config": name, "run_id": entry["run_id"], "n_cells": len(cells),
-               "status_counts": counts, "charges_usd": round(charges, 6), "cells": cells}
+               "results_source": results_source, "status_counts": counts, "charges_usd": round(charges, 6),
+               "cells": cells}
         write_json(RESULTS / "harvests" / f"cells_{key.replace('/', '__')}.json", out)
         print(json.dumps({key: {"status_counts": counts, "charges_usd": round(charges, 6)}}))
     return 0
