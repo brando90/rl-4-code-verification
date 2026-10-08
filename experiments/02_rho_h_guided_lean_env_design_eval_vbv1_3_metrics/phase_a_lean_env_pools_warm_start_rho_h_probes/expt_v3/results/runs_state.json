@@ -1,6 +1,55 @@
 {
  "created_utc": "2026-10-07T23:36:14+00:00",
  "runs": {
+  "final/anthropic": {
+   "merged_utc": "2026-10-08T18:46:45+00:00",
+   "n_main": 970,
+   "n_recovery_cells": 10,
+   "n_served_final": 970,
+   "n_with_lean_final": 64,
+   "replaced_by_recovery": [
+    "mbpp__task_1",
+    "mbpp__task_10",
+    "mbpp__task_103",
+    "mbpp__task_104",
+    "mbpp__task_107",
+    "mbpp__task_11",
+    "mbpp__task_120",
+    "mbpp__task_126",
+    "mbpp__task_895",
+    "mbpp__task_9"
+   ],
+   "still_unserved": [],
+   "teacher": "anthropic"
+  },
+  "final/google": {
+   "merged_utc": "2026-10-08T18:46:03+00:00",
+   "n_main": 970,
+   "n_recovery_cells": 4,
+   "n_served_final": 970,
+   "n_with_lean_final": 956,
+   "replaced_by_recovery": [
+    "mbpp__task_107",
+    "mbpp__task_322",
+    "mbpp__task_331",
+    "mbpp__task_355"
+   ],
+   "still_unserved": [],
+   "teacher": "google"
+  },
+  "final/openai": {
+   "merged_utc": "2026-10-08T18:45:30+00:00",
+   "n_main": 970,
+   "n_recovery_cells": 2,
+   "n_served_final": 970,
+   "n_with_lean_final": 955,
+   "replaced_by_recovery": [
+    "mbpp__task_102",
+    "mbpp__task_580"
+   ],
+   "still_unserved": [],
+   "teacher": "openai"
+  },
   "main/anthropic": {
    "admitted_utc": "2026-10-08T00:09:27+00:00",
    "command": [
@@ -568,6 +617,23 @@
    ],
    "concurrency": 4,
    "expected_cells": 10,
+   "harvest": {
+    "cells_jsonl": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/raw/recovery/anthropic/cells.jsonl",
+    "charges_usd_reported": 0.0,
+    "harvested_utc": "2026-10-08T18:46:45+00:00",
+    "n_expected": 10,
+    "n_receipts": 10,
+    "n_results_rows": 0,
+    "n_served": 10,
+    "n_unserved": 0,
+    "n_with_lean": 0,
+    "results_json_ok": false,
+    "rows_source": "run record from valk run output",
+    "run_id": "612c0024-414e-4404-a1f3-b900231ab13b",
+    "status_counts": {
+     "model_error": 10
+    }
+   },
    "kwargs": {
     "addendum": "vbv1",
     "benchmark": "rl4cv-e02a-v3-mbpp",
@@ -575,11 +641,31 @@
     "max_tokens": "128000"
    },
    "phase": "recovery",
+   "polled_utc": "2026-10-08T18:44:01+00:00",
    "run_id": "612c0024-414e-4404-a1f3-b900231ab13b",
+   "run_status": "error",
    "selector": "anthropic/claude-fable-5-1-no-fallback",
-   "status": "running",
+   "status": "terminal",
+   "status_raw_keys": [
+    "finished_at",
+    "finished_tasks",
+    "progress_percent",
+    "run_id",
+    "status",
+    "task_state_counts",
+    "total_tasks"
+   ],
    "task_ids": "mbpp__task_1,mbpp__task_10,mbpp__task_103,mbpp__task_104,mbpp__task_107,mbpp__task_11,mbpp__task_120,mbpp__task_126,mbpp__task_895,mbpp__task_9",
    "task_ids_file": null,
+   "task_state_counts": {
+    "BUILDING": 0,
+    "ERROR": 10,
+    "EVALUATING": 0,
+    "FINISHED": 0,
+    "IN_PROGRESS": 0,
+    "PENDING": 0,
+    "STOPPED": 0
+   },
    "teacher": "anthropic"
   },
   "recovery/google": {
@@ -620,6 +706,23 @@
    ],
    "concurrency": 4,
    "expected_cells": 4,
+   "harvest": {
+    "cells_jsonl": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/raw/recovery/google/cells.jsonl",
+    "charges_usd_reported": 3.5493,
+    "harvested_utc": "2026-10-08T18:46:02+00:00",
+    "n_expected": 4,
+    "n_receipts": 4,
+    "n_results_rows": 4,
+    "n_served": 4,
+    "n_unserved": 0,
+    "n_with_lean": 4,
+    "results_json_ok": false,
+    "rows_source": "run record from valk run output",
+    "run_id": "95cb14e6-bb99-411a-b7b2-0b88f950cb11",
+    "status_counts": {
+     "measured": 4
+    }
+   },
    "kwargs": {
     "addendum": "vbv1",
     "benchmark": "rl4cv-e02a-v3-mbpp",
@@ -628,11 +731,31 @@
     "temperature": "1.0"
    },
    "phase": "recovery",
+   "polled_utc": "2026-10-08T18:44:17+00:00",
    "run_id": "95cb14e6-bb99-411a-b7b2-0b88f950cb11",
+   "run_status": "finished",
    "selector": "google/gemini-4-argon",
-   "status": "running",
+   "status": "terminal",
+   "status_raw_keys": [
+    "finished_at",
+    "finished_tasks",
+    "progress_percent",
+    "run_id",
+    "status",
+    "task_state_counts",
+    "total_tasks"
+   ],
    "task_ids": "mbpp__task_107,mbpp__task_322,mbpp__task_331,mbpp__task_355",
    "task_ids_file": null,
+   "task_state_counts": {
+    "BUILDING": 0,
+    "ERROR": 0,
+    "EVALUATING": 0,
+    "FINISHED": 4,
+    "IN_PROGRESS": 0,
+    "PENDING": 0,
+    "STOPPED": 0
+   },
    "teacher": "google"
   },
   "recovery/openai": {
@@ -670,6 +793,23 @@
    ],
    "concurrency": 4,
    "expected_cells": 2,
+   "harvest": {
+    "cells_jsonl": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/raw/recovery/openai/cells.jsonl",
+    "charges_usd_reported": 4.7807,
+    "harvested_utc": "2026-10-08T18:45:29+00:00",
+    "n_expected": 2,
+    "n_receipts": 2,
+    "n_results_rows": 2,
+    "n_served": 2,
+    "n_unserved": 0,
+    "n_with_lean": 2,
+    "results_json_ok": false,
+    "rows_source": "run record from valk run output",
+    "run_id": "14fb9a1f-3836-4f48-8ed5-d3109aea7491",
+    "status_counts": {
+     "measured": 2
+    }
+   },
    "kwargs": {
     "addendum": "vbv1",
     "benchmark": "rl4cv-e02a-v3-mbpp",
@@ -677,13 +817,33 @@
     "reasoning_effort": "max"
    },
    "phase": "recovery",
+   "polled_utc": "2026-10-08T18:44:28+00:00",
    "run_id": "14fb9a1f-3836-4f48-8ed5-d3109aea7491",
+   "run_status": "finished",
    "selector": "openai/gpt-6-astra-max",
-   "status": "running",
+   "status": "terminal",
+   "status_raw_keys": [
+    "finished_at",
+    "finished_tasks",
+    "progress_percent",
+    "run_id",
+    "status",
+    "task_state_counts",
+    "total_tasks"
+   ],
    "task_ids": "mbpp__task_102,mbpp__task_580",
    "task_ids_file": null,
+   "task_state_counts": {
+    "BUILDING": 0,
+    "ERROR": 0,
+    "EVALUATING": 0,
+    "FINISHED": 2,
+    "IN_PROGRESS": 0,
+    "PENDING": 0,
+    "STOPPED": 0
+   },
    "teacher": "openai"
   }
  },
- "updated_utc": "2026-10-08T17:24:37+00:00"
+ "updated_utc": "2026-10-08T18:46:45+00:00"
 }
