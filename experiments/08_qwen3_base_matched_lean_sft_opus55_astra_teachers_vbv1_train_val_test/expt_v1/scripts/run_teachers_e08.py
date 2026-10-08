@@ -117,6 +117,20 @@ def cmd_admit(a) -> int:
     if a.tag:
         label, kbench = f"{label}-{a.tag}", f"{kbench}-{a.tag}"
     ids_path = ids_file(a.phase)
+    if a.recovery:
+        # PROTOCOL § 3: one identical re-send, only for cells whose receipts positively show that no model request was served.
+        base_key = f"{a.phase}/{a.teacher}/{a.sample}"
+        if state["runs"].get(base_key, {}).get("recovery_admitted"):
+            raise SystemExit(f"{base_key}: a recovery run was already admitted; only one re-send per cell is allowed")
+        raw = (RAW / a.teacher / a.sample if a.phase == "main" else RAW / "preflight" / a.teacher / a.sample) / "cells.jsonl"
+        unserved = [json.loads(l)["task_id"] for l in raw.read_text().splitlines() if l.strip() and not json.loads(l)["served"]]
+        if not unserved:
+            raise SystemExit(f"{base_key}: no positively unserved cells; nothing to recover")
+        ids_path = raw.with_name("recovery_1_task_ids.txt")
+        ids_path.write_text("".join(t + "\n" for t in unserved))
+        label = f"{label}-recovery1"          # the -k benchmark (query identity) stays identical to the first attempt
+        key = f"{base_key}@recovery1"
+        state["runs"][base_key]["recovery_admitted"] = stamp()
     n_tasks = len(read_ids(ids_path))
     kwargs = {**t["kwargs"], "benchmark": kbench}
     for kv in a.kwarg or []:
@@ -128,7 +142,7 @@ def cmd_admit(a) -> int:
         cmd += ["-k", k, v]
     entry = {"phase": a.phase, "teacher": a.teacher, "sample": a.sample, "selector": t["selector"], "kwargs": kwargs, "label": label,
              "concurrency": a.concurrency, "expected_cells": n_tasks, "task_ids_file": str(ids_path), "task_ids_sha256": sha(ids_path.read_bytes()),
-             "command": ["valk", *cmd], "admitted_utc": stamp(), "status": "admitting"}
+             "command": ["valk", *cmd], "admitted_utc": stamp(), "status": "admitting", "recovery_of": (f"{a.phase}/{a.teacher}/{a.sample}" if a.recovery else None)}
     state["runs"][key] = entry
     save_state(state)
     done = valk(*cmd, timeout=900)
@@ -228,10 +242,10 @@ def cmd_harvest(a) -> int:
     from rl4cv.veribench.exp103 import extract_lean
 
     state = load_state()
-    key = f"{a.phase}/{a.teacher}/{a.sample}" + (f"@{a.tag}" if a.tag else "")
+    key = f"{a.phase}/{a.teacher}/{a.sample}" + (f"@{a.tag}" if a.tag else "") + ("@recovery1" if a.recovery else "")
     entry = state["runs"][key]
     run_id = entry["run_id"]
-    sample_dir = a.sample + (f"_{a.tag}" if a.tag else "")
+    sample_dir = a.sample + (f"_{a.tag}" if a.tag else "") + ("_recovery1" if a.recovery else "")
     raw = RAW / a.teacher / sample_dir if a.phase == "main" else RAW / "preflight" / a.teacher / sample_dir
     raw.mkdir(parents=True, exist_ok=True)
     results_path, artifacts = raw / "results.json", raw / "artifacts"
@@ -318,6 +332,23 @@ def cmd_harvest(a) -> int:
     with (rdir_out / f"{a.teacher}_{sample_dir}.jsonl").open("w", encoding="utf-8") as fh:
         for r in receipts_out:
             fh.write(json.dumps(r, sort_keys=True) + "\n")
+    if a.recovery:
+        main_raw = (RAW / a.teacher / a.sample if a.phase == "main" else RAW / "preflight" / a.teacher / a.sample)
+        main_cells = [json.loads(l) for l in (main_raw / "cells.jsonl").read_text().splitlines() if l.strip()]
+        by_tid = {c["task_id"]: c for c in cells}
+        n_merged = 0
+        for i, c in enumerate(main_cells):
+            if c["task_id"] in by_tid and not c["served"]:
+                rec = dict(by_tid[c["task_id"]]); rec["recovered"] = True; rec["first_attempt_run_id"] = c["run_id"]; rec["r"] = a.sample
+                main_cells[i] = rec; n_merged += 1
+        with (main_raw / "cells.jsonl").open("w", encoding="utf-8") as fh:
+            for c in main_cells:
+                fh.write(json.dumps(c, sort_keys=True) + "\n")
+        rec_dir = EXP / "results" / "receipts" / a.phase
+        with (rec_dir / f"{a.teacher}_{a.sample}.jsonl").open("a", encoding="utf-8") as fh:
+            for r in receipts_out:
+                fh.write(json.dumps({**r, "recovery_1": True}, sort_keys=True) + "\n")
+        print(json.dumps({"recovery_merged_cells": n_merged, "into": str(main_raw / "cells.jsonl")}))
     charges = round(sum(c["cost_usd"] or 0.0 for c in cells), 4)
     summary = {"run_id": run_id, "n_expected": len(expected), "n_results_rows": len(rows), "n_receipts": len(receipts), "status_counts": counts,
                "n_served": sum(c["served"] for c in cells), "n_with_lean": sum(bool(c["lean"]) for c in cells), "n_unserved": sum(not c["served"] for c in cells),
@@ -370,6 +401,7 @@ def main() -> int:
     p.add_argument("--concurrency", type=int, default=8)
     p.add_argument("--force", action="store_true")
     p.add_argument("--tag", default=None, help="suffix for a tagged (amendment) run, e.g. xhigh")
+    p.add_argument("--recovery", action="store_true", help="re-send the positively unserved cells of the harvested run once (PROTOCOL § 3)")
     p.add_argument("--kwarg", action="append", help="override an agent kwarg, e.g. compute_effort=xhigh (recorded in runs_state)")
     p = sub.add_parser("status")
     p.add_argument("--phase")
@@ -378,6 +410,7 @@ def main() -> int:
     p.add_argument("--phase", choices=["preflight", "main"], required=True)
     p.add_argument("--sample", required=True)
     p.add_argument("--tag", default=None)
+    p.add_argument("--recovery", action="store_true", help="harvest the recovery run and merge its cells into the main cells.jsonl and receipts")
     p = sub.add_parser("preflight-check")
     p.add_argument("--tags", default="", help="comma list teacher=tag to read tagged preflight dirs, e.g. opus55=xhigh")
     p.add_argument("--out", type=Path, default=EXP / "results" / "preflight_e08.json")

@@ -4,7 +4,7 @@
 
 **TLDR:** Resumable state of experiment 08. The master finished the zero-call design steps; the SNAP worker (tmux `rl4cv-e08-worker` on `skampere1`) has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity) and is locking PROTOCOL §§ 1–7 before the 8-call live teacher preflight. `$WORK/CKPT_rl4cv-e08-worker.md` is a symlink to this file.
 
-**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-07-2026 18:48 PDT (worker).
+**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-07-2026 22:05 PDT (worker).
 
 ## State
 
@@ -61,6 +61,8 @@
   - Smoke 2 (3 examples + the odd-|S| padding slot from `prepare_sft_nemo_e08.py`): TensorBoard `train/global_valid_toks` = 60 then 30, i.e. the padding slot contributes zero loss tokens and the cumulative log equals the precomputed schedule (`extract_train_logs_e08.py` → `matches_schedule true`). TensorBoard files live under `<log_dir>/exp_NNN/tensorboard/`.
   - Checkpoint mechanism for the token-fraction rungs: NeMo RL saves only every `save_period` steps or at the last step, so production runs as a chain of segments (`launch_sft_e08.sh`): each segment's `sft.max_num_steps` is the next rung step; the next segment resumes weights, optimizer, LR scheduler and dataloader state from it. Identical at every size.
   - Base 14B validation generation: `tmux rl4cv-e08-ladder-base14b`, `run_ladder_e08.sh validation base14b Qwen/Qwen3-14B-Base 0b0bd373… 1,2 1` (2 vLLM shards, 540 cells each; frozen manifest `results/ladder_manifest_base14b.json`); GPU 1 at 70 GB / 100 % four minutes after launch, GPU 2 shard staggered 180 s.
+
+- **10-07-2026 22:05 PDT — Opus main runs terminal and harvested; scoring in progress.** Per run (539 cells): measured 423–428, `model_error` 83–90 (74–79 `MaxOutputTokensExceededError` even at xhigh, 9–11 `ContentFilterError`), `unmeasured_infra` 10–12, `incomplete` 7–15, no receipt 2–5; Lean collected 424–430 with extraction consistent on all; reported charges 446–466 USD per run (≈ 1,826 USD for Opus). `score_teacher_runs.sh main opus55:s1..s4` running (`logs/harvest_score_opus55.log`). Astra at ~70 % (349–387 finished per run). Added `run_teachers_e08.py admit/harvest --recovery` (one identical re-send of positively unserved cells, PROTOCOL § 3), to be used once for every run after Astra is harvested.
 
 ## Next command (worker)
 
