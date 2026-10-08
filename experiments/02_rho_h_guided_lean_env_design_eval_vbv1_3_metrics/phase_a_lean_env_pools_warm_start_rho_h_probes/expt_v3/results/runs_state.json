@@ -36,6 +36,27 @@
    ],
    "concurrency": 24,
    "expected_cells": 970,
+   "harvest": {
+    "cells_jsonl": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/raw/main/anthropic/cells.jsonl",
+    "charges_usd_reported": 499.7964,
+    "harvested_utc": "2026-10-08T17:20:26+00:00",
+    "n_expected": 970,
+    "n_receipts": 960,
+    "n_results_rows": 87,
+    "n_served": 960,
+    "n_unserved": 10,
+    "n_with_lean": 64,
+    "results_json_ok": false,
+    "rows_source": "run record from valk run output",
+    "run_id": "1331991a-17cc-4e56-8c59-eac2b1f65799",
+    "status_counts": {
+     "incomplete": 26,
+     "measured": 61,
+     "missing": 10,
+     "model_error": 860,
+     "unmeasured_infra": 13
+    }
+   },
    "kwargs": {
     "addendum": "vbv1",
     "benchmark": "rl4cv-e02a-v3-mbpp",
@@ -43,11 +64,31 @@
     "max_tokens": "128000"
    },
    "phase": "main",
+   "polled_utc": "2026-10-08T17:12:32+00:00",
    "run_id": "1331991a-17cc-4e56-8c59-eac2b1f65799",
+   "run_status": "finished",
    "selector": "anthropic/claude-fable-5-1-no-fallback",
-   "status": "running",
+   "status": "terminal",
+   "status_raw_keys": [
+    "finished_at",
+    "finished_tasks",
+    "progress_percent",
+    "run_id",
+    "status",
+    "task_state_counts",
+    "total_tasks"
+   ],
    "task_ids": null,
    "task_ids_file": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/task_ids_declared.txt",
+   "task_state_counts": {
+    "BUILDING": 0,
+    "ERROR": 883,
+    "EVALUATING": 0,
+    "FINISHED": 87,
+    "IN_PROGRESS": 0,
+    "PENDING": 0,
+    "STOPPED": 0
+   },
    "teacher": "anthropic"
   },
   "main/google": {
@@ -88,6 +129,25 @@
    ],
    "concurrency": 24,
    "expected_cells": 970,
+   "harvest": {
+    "cells_jsonl": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/raw/main/google/cells.jsonl",
+    "charges_usd_reported": 564.6934,
+    "harvested_utc": "2026-10-08T17:19:23+00:00",
+    "n_expected": 970,
+    "n_receipts": 966,
+    "n_results_rows": 952,
+    "n_served": 966,
+    "n_unserved": 4,
+    "n_with_lean": 952,
+    "results_json_ok": false,
+    "rows_source": "run record from valk run output",
+    "run_id": "2b3e9d64-5dd9-46e4-8e6a-1225c0c31097",
+    "status_counts": {
+     "measured": 952,
+     "missing": 4,
+     "unmeasured_infra": 14
+    }
+   },
    "kwargs": {
     "addendum": "vbv1",
     "benchmark": "rl4cv-e02a-v3-mbpp",
@@ -96,11 +156,31 @@
     "temperature": "1.0"
    },
    "phase": "main",
+   "polled_utc": "2026-10-08T17:12:40+00:00",
    "run_id": "2b3e9d64-5dd9-46e4-8e6a-1225c0c31097",
+   "run_status": "finished",
    "selector": "google/gemini-4-argon",
-   "status": "running",
+   "status": "terminal",
+   "status_raw_keys": [
+    "finished_at",
+    "finished_tasks",
+    "progress_percent",
+    "run_id",
+    "status",
+    "task_state_counts",
+    "total_tasks"
+   ],
    "task_ids": null,
    "task_ids_file": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/task_ids_declared.txt",
+   "task_state_counts": {
+    "BUILDING": 0,
+    "ERROR": 18,
+    "EVALUATING": 0,
+    "FINISHED": 952,
+    "IN_PROGRESS": 0,
+    "PENDING": 0,
+    "STOPPED": 0
+   },
    "teacher": "google"
   },
   "main/openai": {
@@ -138,6 +218,25 @@
    ],
    "concurrency": 24,
    "expected_cells": 970,
+   "harvest": {
+    "cells_jsonl": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/raw/main/openai/cells.jsonl",
+    "charges_usd_reported": 1995.0805,
+    "harvested_utc": "2026-10-08T17:18:17+00:00",
+    "n_expected": 970,
+    "n_receipts": 968,
+    "n_results_rows": 953,
+    "n_served": 968,
+    "n_unserved": 2,
+    "n_with_lean": 953,
+    "results_json_ok": false,
+    "rows_source": "run record from valk run output",
+    "run_id": "6ecd7da9-46b3-44a1-9f6a-90ab0b1ef483",
+    "status_counts": {
+     "measured": 953,
+     "missing": 2,
+     "unmeasured_infra": 15
+    }
+   },
    "kwargs": {
     "addendum": "vbv1",
     "benchmark": "rl4cv-e02a-v3-mbpp",
@@ -145,11 +244,31 @@
     "reasoning_effort": "max"
    },
    "phase": "main",
+   "polled_utc": "2026-10-08T17:12:49+00:00",
    "run_id": "6ecd7da9-46b3-44a1-9f6a-90ab0b1ef483",
+   "run_status": "finished",
    "selector": "openai/gpt-6-astra-max",
-   "status": "running",
+   "status": "terminal",
+   "status_raw_keys": [
+    "finished_at",
+    "finished_tasks",
+    "progress_percent",
+    "run_id",
+    "status",
+    "task_state_counts",
+    "total_tasks"
+   ],
    "task_ids": null,
    "task_ids_file": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/task_ids_declared.txt",
+   "task_state_counts": {
+    "BUILDING": 0,
+    "ERROR": 17,
+    "EVALUATING": 0,
+    "FINISHED": 953,
+    "IN_PROGRESS": 0,
+    "PENDING": 0,
+    "STOPPED": 0
+   },
    "teacher": "openai"
   },
   "preflight/anthropic": {
@@ -415,5 +534,5 @@
    "teacher": "openai"
   }
  },
- "updated_utc": "2026-10-08T00:09:54+00:00"
+ "updated_utc": "2026-10-08T17:20:26+00:00"
 }
