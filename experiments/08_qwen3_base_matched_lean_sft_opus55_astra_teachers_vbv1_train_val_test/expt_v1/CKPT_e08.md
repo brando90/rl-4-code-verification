@@ -4,7 +4,7 @@
 
 **TLDR:** Resumable state of experiment 08. The master finished the zero-call design steps; the SNAP worker (tmux `rl4cv-e08-worker` on `skampere1`) has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity) and is locking PROTOCOL §§ 1–7 before the 8-call live teacher preflight. `$WORK/CKPT_rl4cv-e08-worker.md` is a symlink to this file.
 
-**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-07-2026 23:48 PDT (worker).
+**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-08-2026 01:14 PDT (worker).
 
 ## State
 
@@ -65,6 +65,8 @@
 - **10-07-2026 22:05 PDT — Opus main runs terminal and harvested; scoring in progress.** Per run (539 cells): measured 423–428, `model_error` 83–90 (74–79 `MaxOutputTokensExceededError` even at xhigh, 9–11 `ContentFilterError`), `unmeasured_infra` 10–12, `incomplete` 7–15, no receipt 2–5; Lean collected 424–430 with extraction consistent on all; reported charges 446–466 USD per run (≈ 1,826 USD for Opus). `score_teacher_runs.sh main opus55:s1..s4` running (`logs/harvest_score_opus55.log`). Astra at ~70 % (349–387 finished per run). Added `run_teachers_e08.py admit/harvest --recovery` (one identical re-send of positively unserved cells, PROTOCOL § 3), to be used once for every run after Astra is harvested.
 
 - **10-07-2026 23:48 PDT — all 8 main runs terminal (06:43 UTC); Astra harvested; recovery re-sends admitted.** Astra per run: measured 526–533, `unmeasured_infra` 6–13 (possibly served, never re-sent), no receipt 4 (s1 only), extraction consistent on every collected file, charges 808–834 USD per run (≈ 3,269 USD for Astra; teachers ≈ 5,100 USD so far). Recovery (one identical re-send of positively unserved cells, same `-k benchmark`, labels `…-recovery1`): astra/s1@recovery1 `d9760097-94c8-4bf8-ae72-b5645a72cdb3`, opus55/s1@recovery1 `180bf8d6-c1df-4fd1-aab2-4c03da81702b`, opus55/s2@recovery1 `98f791cc-a05a-4538-90bd-32458632c926`, opus55/s3@recovery1 `d3225f57-7027-4d2f-a62e-5101b021b2e0`, opus55/s4@recovery1 `1eaffaa4-e6ae-492c-b43b-1446a109b80e` (16 cells). Opus scoring running since 22:04 PDT, Astra scoring queued behind its harvest (`logs/harvest_score_{opus55,astra}.log`).
+
+- **10-08-2026 01:14 PDT — Opus 5.5 files scored (frozen scorer, private grading project; 8 scorer jobs on a saturated host, ~3 h for the Opus jobs).** Failure classes per run after merging the recovered cells: {"s1": {"kept": 303, "no_typecheck": 128, "no_lean": 107, "unproved_theorem": 1}, "s2": {"kept": 287, "no_lean": 113, "no_typecheck": 139}, "s3": {"no_typecheck": 127, "kept": 304, "no_lean": 107, "vacuous_theorem": 1}, "s4": {"kept": 306, "no_typecheck": 121, "no_lean": 110, "unproved_theorem": 1, "vacuous_theorem": 1}}. Kept = `kernel_binary` 1 (typechecks, ≥ 1 example, every theorem kernel-proved with allowed axioms, none vacuous). Astra scoring still running (~150–160 / 539 per job at 00:27 PDT).
 
 ## Next command (worker)
 

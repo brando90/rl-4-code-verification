@@ -20,7 +20,7 @@ EOF
   N=$(wc -l < "$REC")
   [ "$N" = 0 ] && { echo "[$(ts)] $NAME: no recovered cells"; continue; }
   MAIN="$WORK/scores/${NAME}_s0/scored_cells_${NAME}.jsonl"
-  [ -f "$MAIN" ] || { echo "[$(ts)] $NAME: main readback missing ($MAIN); run score_teacher_runs.sh first" >&2; exit 1; }
+  [ -f "$MAIN" ] || { echo "[$(ts)] $NAME: main readback missing ($MAIN); skipping for now"; continue; }
   if ! ls "$WORK/scores/${NAME}_rec1_s0"/*_per_task.csv >/dev/null 2>&1; then
     echo "[$(ts)] $NAME: scoring $N recovered cells"
     rm -rf "$WORK/scores/${NAME}_rec1_s0" "$WORK/jobs/${NAME}_rec1_s0"
@@ -42,6 +42,7 @@ with open(sys.argv[1], "w") as fh:
 print("merged", n, "recovered rows into", sys.argv[1])
 EOF
 done
+for RUN in opus55:s1 opus55:s2 opus55:s3 opus55:s4 astra:s1 astra:s2 astra:s3 astra:s4; do T="${RUN%%:*}"; R="${RUN##*:}"; [ -f "$WORK/scores/${T}_${R}_s0/scored_cells_${T}_${R}.jsonl" ] || { echo "[$(ts)] not all runs read back yet; combined file not rebuilt"; exit 0; }; done
 OUT="$EXP/expt_v1/results/scored_cells.jsonl"; : > "$OUT.tmp"
 for RUN in opus55:s1 opus55:s2 opus55:s3 opus55:s4 astra:s1 astra:s2 astra:s3 astra:s4; do T="${RUN%%:*}"; R="${RUN##*:}"; cat "$WORK/scores/${T}_${R}_s0/scored_cells_${T}_${R}.jsonl" >> "$OUT.tmp"; done
 mv "$OUT.tmp" "$OUT"; echo "[$(ts)] wrote $OUT ($(wc -l < "$OUT") rows)"
