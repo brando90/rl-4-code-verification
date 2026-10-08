@@ -1,0 +1,82 @@
+{
+ "gates": {
+  "capped_max_share": 0.1,
+  "extraction_min_share": 0.9,
+  "mixed_min_share": 0.05,
+  "p_val": "n/a (prespecified point-estimate gate)"
+ },
+ "manifest_sha256": "bfaaeaae842c5222aa89f0756dfcd972d94afc0503c08f65a3da4aa871a90db0",
+ "n_tasks": 135,
+ "samples_per_task": 8,
+ "split": "validation",
+ "systems": {
+  "base14b": {
+   "cells_csv": "results/ladder/base14b_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.00833,
+    "mean_generated_tokens": 2000.6,
+    "mean_pass_rate": 0.00833,
+    "mean_proof_fraction": 0.00833,
+    "n_tasks_with_diversity": 135,
+    "pass_at_8_share": 0.0519,
+    "within_task_diversity_mean_pairwise_jaccard": 0.144
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 1010,
+     "of": 1080,
+     "pass": true,
+     "share": 0.9352,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 77,
+     "of": 1080,
+     "pass": true,
+     "share": 0.0713,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 7,
+     "of": 135,
+     "pass": true,
+     "share": 0.0519,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0253,
+      0.1032
+     ]
+    },
+    "complete": true,
+    "n_declared": 1080,
+    "n_known": 1080,
+    "pass": true
+   },
+   "notes": {
+    "duplicates_rejected": 0,
+    "extras_rejected": 0,
+    "missing": [],
+    "n_missing": 0,
+    "n_unparseable_theorem_types": 0,
+    "n_vacuous_cells": 5,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_base14b_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/base14b_validation_per_task.csv",
+   "split": "validation",
+   "status": "COMPLETE",
+   "system": {
+    "in_test": true,
+    "label": "base14b",
+    "model": "Qwen/Qwen3-14B-Base",
+    "revision": "0b0bd3732e2c374d483664439ea334928b65f304",
+    "role": "base",
+    "size": "14B",
+    "snapshot": "/lfs/skampere1/0/brando9/rl4cv_e08/cache/huggingface/hub/models--Qwen--Qwen3-14B-Base/snapshots/0b0bd3732e2c374d483664439ea334928b65f304",
+    "source": "e08",
+    "weights_all_lfs_match": true
+   }
+  }
+ },
+ "written_utc": "2026-10-08T01:48:54+00:00"
+}

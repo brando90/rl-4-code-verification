@@ -132,12 +132,12 @@ def evaluate(system: dict, ids: list[str], split: str, per_task_dir: Path) -> di
     per_task_dir.mkdir(parents=True, exist_ok=True)
     csv_path = per_task_dir / f"{system['label']}_{split}_per_task.csv"
     with csv_path.open("w", newline="", encoding="utf-8") as fh:
-        w = csv.DictWriter(fh, fieldnames=list(per_task[0].keys()))
+        w = csv.DictWriter(fh, fieldnames=list(per_task[0].keys()), lineterminator="\n")
         w.writeheader()
         w.writerows(per_task)
     cells_csv = per_task_dir / f"{system['label']}_{split}_cells.csv"
     with cells_csv.open("w", newline="", encoding="utf-8") as fh:
-        w = csv.writer(fh)
+        w = csv.writer(fh, lineterminator="\n")
         w.writerow(["task_id", "sample_idx", "known", "extracted", "capped", "kernel_binary", "IC_tests", "IC_proofs", "n_vacuous", "unparseable", "generated_tokens", "lean_sha256"])
         for (t, s), c in sorted(cells.items()):
             w.writerow([t, s, c["known"], c["extracted"], c["capped"], c["kernel_binary"], c["IC_tests"], c["IC_proofs"], c["n_vacuous"], c["unparseable"], c["generated_tokens"], c["lean_sha256"]])

@@ -6,7 +6,7 @@
 
 **Status:** RUNNING (SNAP worker on `skampere1`, tmux `rl4cv-e08-worker`; all 8 teacher main runs in flight after lock-1 amendment A1; Base 14B validation generation running)
 
-**Last updated:** 10-07-2026 17:56 PDT (worker, amendment A1 and Opus main admission)
+**Last updated:** 10-07-2026 18:48 PDT (worker, Base 14B validation)
 
 ## Phases
 
@@ -20,7 +20,7 @@
 | Scoring, screen, SFT set S | PENDING | — |
 | Lock 2 preflight and lock | PENDING | — |
 | Matched SFT, 4 sizes × 5 checkpoints | PENDING | — |
-| Validation ladder and selection | PENDING | — |
+| Validation ladder and selection | IN PROGRESS: Base 14B DONE (passes all gates at the boundary, mixed 7 / 135); trained checkpoints pending SFT | `expt_v1/results/validation_ladder_base14b.json` |
 | Test evaluation | PENDING | — |
 
 ## D-013 split
@@ -127,6 +127,18 @@ Host `skampere1`, work root `/lfs/skampere1/0/brando9/rl4cv_e08`, own clone on `
 - **Decision (agents-config Rule 57, flagged for Brando):** Opus main runs were not admitted at `max`. The tagged diagnostic preflight at `compute_effort xhigh` completed and passed end to end, so PROTOCOL § 3 was amended for `opus55` to `xhigh` (lock-1 amendment A1, version 1.1, `LOCKED 2026-10-08T00:55:51Z at bc27e1c`) before any Opus main call; the Opus main runs were then admitted. Astra's settings are unchanged; its 4 main runs (2,156 cells) were admitted at 17:44 PDT under the lock.
 - **Harvest note:** `valk run results` answers "tracker returned a malformed response" on this tracker (as in 02A v3 and experiment 01); the run-output benchmark JSON carries the same per-task rows with the service-collected bytes, and the per-task `agent_output.tar.gz` carries `receipt.json` + `response.txt`.
 - **NeMo RL infrastructure smoke (not scientific):** NeMo RL 0.4.0 at `c751f811` built with `uv` (worker venvs built at first launch); Qwen3-1.7B-Base, 4 synthetic examples, 2 steps on GPU 0 (21.7 GB): loss 2.73 → 2.15, `step_2` checkpoint saved with optimizer, scheduler and dataloader state, exported to Hugging Face format (`qwen3`). All four Base snapshots hash-verified against the hub (`expt_v1/results/model_weights_e08.json`).
+
+## Base 14B on the validation split (generated here, PROTOCOL § 9; zero model calls)
+
+Qwen3-14B-Base `0b0bd373…`, experiment 05's exact sampling, 135 tasks × 8 = 1,080 cells (frozen manifest `expt_v1/results/ladder_manifest_base14b.json`), all 1,080 known.
+
+| Gate | Value | Threshold | Pass |
+|---|---:|---|---|
+| (a) extraction | 1,010 / 1,080 = 0.935 | ≥ 0.90 | yes |
+| (b) capped at 12,288 tokens | 77 / 1,080 = 0.071 | ≤ 0.10 | yes |
+| (c) `kernel_binary` mixed-group share | 7 / 135 = 0.052, Wilson 95% [0.025, 0.103] | ≥ 0.05 | yes (at the boundary) |
+
+Diagnostics: pass@8 share 0.052, all-pass share 0, mean pass rate 9 / 1,080 = 0.0083, IC_tests rate 0.0083, mean generated tokens 2,001, within-task diversity (mean pairwise word-5-gram Jaccard) 0.144; 5 cells had a vacuous theorem and are not counted as passes. p-val=n/a (prespecified point-estimate gate). Note: Base 14B meets the readiness gate without any SFT, unlike Base 1.7B / 4B / 8B on experiment 05's receipts (0.000 / 0.022 / 0.000); the selection rule in PROTOCOL § 9 applies to the trained checkpoints and is unchanged. Evidence: `expt_v1/results/validation_ladder_base14b.json`, `expt_v1/results/ladder/base14b_validation_{per_task,cells}.csv`.
 
 ## Open questions for Brando
 

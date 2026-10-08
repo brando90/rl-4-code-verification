@@ -4,13 +4,13 @@
 
 **TLDR:** Resumable state of experiment 08. The master finished the zero-call design steps; the SNAP worker (tmux `rl4cv-e08-worker` on `skampere1`) has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity) and is locking PROTOCOL §§ 1–7 before the 8-call live teacher preflight. `$WORK/CKPT_rl4cv-e08-worker.md` is a symlink to this file.
 
-**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-07-2026 18:18 PDT (worker).
+**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-07-2026 18:48 PDT (worker).
 
 ## State
 
 | Item | Value |
 |---|---|
-| Current step | Runbook § 5: all 8 teacher main runs in flight (at 18:07 PDT: Astra ~26 and Opus ~14 finished cells per run per 20 min → Astra ≈ 7 h, Opus ≈ 12 h; poll `logs/main_poll.log` every 20 min); Base 14B validation scoring running; next: harvest + score each run as it turns terminal (§ 6), then S, lock 2 |
+| Current step | Runbook § 5: all 8 teacher main runs in flight (at 18:07 PDT: Astra ~26 and Opus ~14 finished cells per run per 20 min → Astra ≈ 7 h, Opus ≈ 12 h; poll `logs/main_poll.log` every 20 min); Base 14B validation DONE (passes gates, mixed 7/135; `results/validation_ladder_base14b.json`); next: harvest + score each run as it turns terminal (§ 6), then S, lock 2 |
 | Master | Claude Code (Opus 5.5) on Brando's laptop; private worktree `~/vb_worktrees/rl4cv-sft-warmstart-1007` |
 | Worker | Claude Code `claude-fable-5-1`, effort `high`, on `skampere1`, tmux `rl4cv-e08-worker`, clone `/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification` (`main`) |
 | Work root | `/lfs/skampere1/0/brando9/rl4cv_e08`: `env_e08.sh` (source in every shell), `.venv` (tests), `venv_gen` (vLLM 0.30.0 / torch 2.13.0+cu130 / transformers 5.18.0), `grading/lean_src` (private Lean v4.22.0 + Mathlib copy), `pack_train539/`, `cache/huggingface` (HF_HOME; 1.7B/4B/8B linked, 14B tokenizer), `private/` (0700), `logs/` |
