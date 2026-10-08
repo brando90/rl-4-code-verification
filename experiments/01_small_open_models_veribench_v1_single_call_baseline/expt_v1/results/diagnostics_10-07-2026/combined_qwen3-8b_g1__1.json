@@ -23,6 +23,14 @@
         0.0069,
         0.0218
       ]
+    ],
+    "IC_tests_mean_ci95": [
+      0.00849843,
+      0.02466458
+    ],
+    "IC_proofs_mean_ci95": [
+      0.0047123,
+      0.01897321
     ]
   },
   "failing_proofs_sorried": {
@@ -41,6 +49,38 @@
         0.0282,
         0.0538
       ]
+    ],
+    "IC_tests_mean_ci95": [
+      0.06529698,
+      0.10122286
+    ],
+    "IC_proofs_mean_ci95": [
+      0.01439775,
+      0.03109398
     ]
+  },
+  "factor_interval_provenance": {
+    "confidence_level": 0.95,
+    "unit": "task (896 declared tasks, one historical generation per task)",
+    "IC_tests_method": "Wilson score interval for the binary task factor",
+    "IC_proofs_method": "percentile bootstrap of the mean per-task proof factor",
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 0,
+    "bootstrap_rng": "numpy.random.default_rng; reset per model, variant and factor",
+    "bootstrap_task_order": "task_id lexicographic ascending",
+    "numpy_version": "2.2.6",
+    "repetitions": "single generation per task; no model calls or compiler reruns",
+    "p_value": "n/a; descriptive intervals, no hypothesis test",
+    "limits": "Conditional on the recorded historical files and transformations; does not cover transformation validity, between-generation variability or judge uncertainty."
+  },
+  "historical_rewrite_audit": {
+    "date": "10-07-2026",
+    "method": "read-only comparison of 3653 archived namespace variants with guarded rewrite, comments stripped and literals retained",
+    "limitation": "legacy regex also rewrote literal/prose text or discovered names only in comments; not guaranteed a pure identifier intervention",
+    "affected_task_ids": [],
+    "affected_legacy_namespace_or_surface_compiles": 0,
+    "affected_legacy_namespace_or_surface_ablation_compiles": 0,
+    "affected_positive_factor_cells": 0,
+    "guarded_counterfactual": "not recompiled; historical measurements unchanged"
   }
 }

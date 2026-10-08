@@ -17,9 +17,9 @@ For every G = 1 cell of experiment 01 (model × 896 tasks) this script:
    the frozen scorer's own functions (`analyze_lean_file`, `ic_pp_for_compiled`, i.e. the kernel axiom
    check) give its IC_tests and IC_proofs. A `sorry` proof counts zero there, as in VeriBench.
 
-The ablation answers "how close was the file?" and bounds what a compile-feedback scaffold with an honest
-`sorry` fallback could reach. It edits the model's output, so its numbers are diagnostics and must never be
-reported as VeriBench scores.
+The ablation measures one edited-file outcome using an honest `sorry` fallback; it does not bound what
+a model with compiler feedback could achieve. It edits the model's output, so its numbers are diagnostics
+and must never be reported as VeriBench scores.
 
 Usage (on the host that holds experiment 01's outputs and the pinned scorer checkout):
 
@@ -50,10 +50,10 @@ MODIFIERS = r"(?:(?:private|protected|noncomputable|partial|unsafe|nonrec|scoped
 DECL_KWS = (
     "theorem|lemma|def|abbrev|example|instance|structure|inductive|class|opaque|axiom|namespace|end|section|"
     "open|variable|universe|set_option|attribute|macro|macro_rules|syntax|notation|infix|infixl|infixr|prefix|"
-    "postfix|elab|deriving|mutual|import|#eval|#check|#print|#guard|#guard_msgs|#reduce|#exit"
+    "postfix|elab|deriving|mutual|import|export|include|omit|constant|constants|initialize|builtin_initialize|"
+    "run_cmd|#eval|#check|#print|#guard|#guard_msgs|#reduce|#exit"
 )
 DECL_START_RE = re.compile(r"^(?:@\[[^\n]*?\]\s*)*" + MODIFIERS + r"(?P<kw>" + DECL_KWS + r")(?![\w'.])")
-PREFIX_START_RE = re.compile(r"^(?:@\[|/--|/-!)")
 PROOF_KWS = {"theorem", "lemma"}
 DEF_KWS = {"def", "abbrev", "instance", "structure", "inductive", "class", "opaque", "mutual"}
 
@@ -61,14 +61,15 @@ CATEGORIES = [
     ("timeout", re.compile(r"timeout|maximum recursion depth|heartbeats", re.I)),
     ("index_bounds_proof", re.compile(r"failed to prove index is valid", re.I)),
     ("termination", re.compile(r"termination|structural recursion|decreasing", re.I)),
-    ("parse", re.compile(r"unexpected token|unexpected character|unexpected identifier|expected |unterminated|"
+    ("type_error", re.compile(r"type mismatch|failed to synthesize|function expected|ambiguous|"
+                              r"expected type|type expected|don't know how to synthesize|has type|mismatch", re.I)),
+    ("parse", re.compile(r"unexpected token|unexpected character|unexpected identifier|^expected |unterminated|"
                          r"invalid 'end'|missing end", re.I)),
     ("unknown_name", re.compile(r"unknown (identifier|constant|namespace|tactic|attribute|declaration|module)|"
                                 r"invalid field|is not a field|unknown universe", re.I)),
     ("tactic_failed", re.compile(r"unsolved goals|failed|no goals|made no progress|linarith|omega|"
                                  r"could not|did not|not a rfl|decide|rfl|aesop|norm_num|simp", re.I)),
-    ("type_error", re.compile(r"type mismatch|failed to synthesize|function expected|cannot|ambiguous|"
-                              r"expected type|don't know how to synthesize|has type|mismatch", re.I)),
+
 ]
 
 # Lean 3 idioms only (`cases h with` is also valid Lean 4, so it is not counted). The 10-07-2026 summaries were
@@ -85,97 +86,97 @@ def categorize(msg: str) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Lean source segmentation (heuristic, column-0 declarations; good enough for a diagnostic)
+# Lean source segmentation (conservative lexical boundaries, not a Lean parser)
 # ---------------------------------------------------------------------------
+def _masked_source(src: str) -> str:
+    """Use the frozen scorer's lexer; retain positions but hide quoted identifiers too."""
+    if _RRE is None:
+        raise RuntimeError("load the frozen scorer before segmenting Lean source")
+    masked = _RRE.kernel_axioms.strip_comments(src)
+    return re.sub(r"«[^»]*»", lambda m: "".join("\n" if c == "\n" else " " for c in m[0]), masked)
+
+
 def segment(src: str) -> list[dict]:
-    """Split a file into top-level blocks. Each block: kind, start/end line (1-based, inclusive), text."""
+    """Conservatively split declarations, including indented ones; preserve source line coordinates."""
     lines = src.split("\n")
+    masked = _masked_source(src)
+    code = masked.split("\n")
     starts: list[tuple[int, str]] = []
-    in_block_comment = 0
-    for i, line in enumerate(lines):
-        if in_block_comment > 0:  # inside a multi-line /- -/, /-- -/ or /-! -/ comment
-            in_block_comment += line.count("/-") - line.count("-/")
-            continue
-        m = DECL_START_RE.match(line)
+    # Find actual comment openers using the canonical literal-preserving mask;
+    # skip each whole comment so nested doc-like text cannot become a prefix.
+    literal_mask = _RRE.kernel_axioms.strip_comments(src, keep_literals=True)
+    comment_starts = {}
+    pos = 0
+    while pos < len(src):
+        if literal_mask[pos] == " " and src.startswith("--", pos):
+            end = src.find("\n", pos)
+            pos = len(src) if end < 0 else end
+        elif literal_mask[pos] == " " and src.startswith("/-", pos):
+            end = _RRE.kernel_axioms._block_end(src, pos)
+            following = masked[end:].lstrip()
+            if (src.startswith(("/--", "/-!"), pos)
+                    and not src[src.rfind("\n", 0, pos) + 1:pos].strip()
+                    and (DECL_START_RE.match(following) or following.startswith("@["))):
+                comment_starts[src.count("\n", 0, pos)] = "prefix" if src.startswith("/--", pos) else "comment"
+            pos = end
+        else:
+            pos += 1
+    for i, line in enumerate(code):
+        m = DECL_START_RE.match(line.lstrip())
         if m:
             starts.append((i, m.group("kw")))
-        elif PREFIX_START_RE.match(line):
-            starts.append((i, "prefix"))
-        if line.startswith("/-"):
-            in_block_comment = max(0, line.count("/-") - line.count("-/"))
-    blocks = []
+        elif i in comment_starts:
+            starts.append((i, comment_starts[i]))
+        elif line.lstrip().startswith("@["):
+            starts.append((i, "prefix"))  # keep standalone attributes attached to the next command
+        elif line and not line[0].isspace():
+            # Unknown column-zero syntax must not be swallowed by an earlier proof.
+            starts.append((i, "other"))
     if not starts or starts[0][0] != 0:
         starts.insert(0, (0, "header"))
+    blocks = []
     for j, (i, kw) in enumerate(starts):
-        end = starts[j + 1][0] - 1 if j + 1 < len(starts) else len(lines) - 1
-        blocks.append({"kind": kw, "start": i + 1, "end": end + 1})
-    # attach attribute / doc-comment prefixes to the declaration that follows them
-    merged: list[dict] = []
-    pending = None
+        end = starts[j + 1][0] if j + 1 < len(starts) else len(lines)
+        b = {"kind": kw, "start": i + 1, "end": end, "kw_line": i + 1,
+             "text": "\n".join(lines[i:end])}
+        b["proof_pos"] = proof_position(code, b) if kw in PROOF_KWS else None
+        if re.search(r"\b(?:where|termination_by|decreasing_by)\b", "\n".join(code[i:end])):
+            b["proof_pos"] = None  # do not remove attached auxiliary definitions
+        if b["proof_pos"] is not None:
+            pl, pc = b["proof_pos"]
+            body = "\n".join([code[pl - 1][pc + 2:]] + code[pl:end])
+            if re.search(r"(?<![\w\'.])(?:" + DECL_KWS + r")(?![\w\'.])|@\[", body):
+                b["proof_pos"] = None  # e.g. another declaration on the same source line
+        blocks.append(b)
+    merged = []
     for b in blocks:
-        if b["kind"] == "prefix":
-            pending = pending or b["start"]
-            continue
-        if pending is not None:
-            b = dict(b, start=pending)
-            pending = None
+        if merged and merged[-1]["kind"] == "prefix" and b["kind"] in PROOF_KWS | DEF_KWS | {"example", "axiom", "constant", "prefix"}:
+            prefix = merged.pop()
+            b["start"] = prefix["start"]
+            b["text"] = "\n".join(lines[b["start"] - 1:b["end"]])
         merged.append(b)
-    if pending is not None:
-        merged.append({"kind": "prefix", "start": pending, "end": len(lines)})
-    for b in merged:
-        b["text"] = "\n".join(lines[b["start"] - 1 : b["end"]])
-        kw_line = None
-        for k in range(b["start"], b["end"] + 1):
-            if DECL_START_RE.match(lines[k - 1]):
-                kw_line = k
-                break
-        b["kw_line"] = kw_line or b["start"]
-        b["proof_pos"] = proof_position(lines, b) if b["kind"] in PROOF_KWS else None
     return merged
 
 
 def proof_position(lines: list[str], block: dict) -> tuple[int, int] | None:
-    """(line, col) of the first depth-0 `:=` after the declaration keyword, skipping comments and strings."""
-    depth, in_str, block_c = 0, False, 0
+    """Locate a depth-zero body assignment in masked code; reject ambiguous term headers."""
+    depth = 0
     for ln in range(block["kw_line"], block["end"] + 1):
         s = lines[ln - 1]
-        i = 0
-        while i < len(s):
-            c, nxt = s[i], s[i + 1] if i + 1 < len(s) else ""
-            if block_c:
-                if c == "-" and nxt == "/":
-                    block_c -= 1
-                    i += 2
-                    continue
-                if c == "/" and nxt == "-":
-                    block_c += 1
-                    i += 2
-                    continue
-                i += 1
-                continue
-            if in_str:
-                if c == "\\":
-                    i += 2
-                    continue
-                if c == '"':
-                    in_str = False
-                i += 1
-                continue
-            if c == "-" and nxt == "-":
-                break
-            if c == "/" and nxt == "-":
-                block_c += 1
-                i += 2
-                continue
-            if c == '"':
-                in_str = True
-            elif c in "([{⟨":
+        for token in re.finditer(r":=|[\w']+|[^\s]", s):
+            word = token[0]
+            if word in "([{⟨" and len(word) == 1:
                 depth += 1
-            elif c in ")]}⟩":
-                depth = max(0, depth - 1)
-            elif c == ":" and nxt == "=" and depth == 0:
-                return (ln, i)
-            i += 1
+            elif word in ")]}⟩" and len(word) == 1:
+                if not depth:
+                    return None
+                depth -= 1
+            elif depth == 0:
+                if word.startswith(("let", "have")) or word in {"show", "by", "do", "match", "if", "fun", "λ"}:
+                    # These can contain := within the theorem's statement. Fail closed.
+                    return None
+                if word == ":=":
+                    return ln, token.start()
     return None
 
 
@@ -197,17 +198,17 @@ def region_of(blocks: list[dict], line: int, col: int) -> tuple[str, int | None]
 
 
 def sorry_proofs(src: str, blocks: list[dict], idxs: set[int]) -> str:
+    """Replace only identified proof bodies, preserving all line positions across rounds."""
     lines = src.split("\n")
-    out: list[str] = []
-    for idx, b in enumerate(blocks):
-        blines = lines[b["start"] - 1 : b["end"]]
-        if idx in idxs and b["proof_pos"] is not None:
-            pl, pc = b["proof_pos"]
-            keep = lines[b["start"] - 1 : pl - 1] + [lines[pl - 1][:pc] + ":= by", "  sorry", ""]
-            out.extend(keep)
-        else:
-            out.extend(blines)
-    return "\n".join(out)
+    for idx in sorted(idxs):
+        b = blocks[idx]
+        if b["kind"] not in PROOF_KWS or b["proof_pos"] is None:
+            raise ValueError("refusing to ablate a block without a safe theorem proof boundary")
+        pl, pc = b["proof_pos"]
+        lines[pl - 1] = lines[pl - 1][:pc] + ":= by sorry"
+        for ln in range(pl, b["end"]):
+            lines[ln] = ""
+    return "\n".join(lines)
 
 
 def defs_only(src: str, blocks: list[dict]) -> str:
@@ -258,13 +259,13 @@ def frozen_scorer(scorer_dir: str):
     return _RRE
 
 
-def frozen_factors(path: Path, split: str, scorer_dir: str) -> dict:
+def frozen_factors(path: Path, split: str, scorer_dir: str, lake_dir: str | None = None) -> dict:
     """IC_tests / IC_proofs of a file that compiles, via the frozen scorer's own analysis and kernel check."""
     rre = frozen_scorer(scorer_dir)
     analysis = rre.analyze_lean_file(str(path), split)
     analysis.compiles = True
     ic_ap = 1.0 if analysis.n_examples > 0 else 0.0
-    ic_pp = rre.ic_pp_for_compiled(str(path), rre.LAKE_DIR, analysis)
+    ic_pp = rre.ic_pp_for_compiled(str(path), lake_dir or rre.LAKE_DIR, analysis)
     if not analysis.compiles:
         ic_ap = 0.0
     k = analysis.kernel or {}
@@ -282,11 +283,17 @@ DIGIT_NS_RE = re.compile(r"^namespace\s+(\d[\w'.]*)\s*$", re.M)
 
 def escape_digit_namespaces(src: str) -> tuple[str, int]:
     """Wrap digit-leading namespace names (invalid Lean identifiers, e.g. `namespace 1_MyAdd`) in «»."""
-    names = sorted(set(DIGIT_NS_RE.findall(src)), key=len, reverse=True)
+    names = sorted(set(DIGIT_NS_RE.findall(_masked_source(src))), key=len, reverse=True)
+
+    def replace_code(pattern: str, replacement: str) -> None:
+        nonlocal src
+        masked = _masked_source(src)
+        src = re.sub(pattern, lambda m: m.expand(replacement)
+                     if masked[m.start():m.end()] == m[0] else m[0], src, flags=re.M)
     for name in names:
         q = re.escape(name)
-        src = re.sub(rf"^(namespace|end|open|export)(\s+)(?:{q})(?=\s|$)", rf"\1\2«{name}»", src, flags=re.M)
-        src = re.sub(rf"(?<![\w«.]){q}\.", f"«{name}».", src)
+        replace_code(rf"^(namespace|end|open|export)(\s+)(?:{q})(?=\s|$)", rf"\1\2«{name}»")
+        replace_code(rf"(?<![\w«.]){q}\.", f"«{name}».")
     return src, len(names)
 
 
@@ -298,10 +305,22 @@ def repair_surface_syntax(src: str) -> tuple[str, dict]:
     line into the comment closer `-/`, and turn a `/--` doc comment that precedes a non-declaration into the
     module doc `/-!`."""
     src, n_ns = escape_digit_namespaces(src)
-    src, n_close = re.subn(r"^([ \t]*)-![ \t]*$", r"\1-/", src, flags=re.M)
+    # A malformed closer may occur inside a block comment, never alter string data.
+    literal_mask = _RRE.kernel_axioms.strip_comments(src, keep_literals=True)
+    n_close = 0
+
+    def close_comment(m):
+        nonlocal n_close
+        if literal_mask[m.start():m.end()].strip():
+            return m[0]
+        n_close += 1
+        return m[1] + "-/"
+
+    src = re.sub(r"^([ \t]*)-![ \t]*$", close_comment, src, flags=re.M)
     lines, n_doc, i = src.split("\n"), 0, 0
+    literal_lines = _RRE.kernel_axioms.strip_comments(src, keep_literals=True).split("\n")
     while i < len(lines):
-        if lines[i].startswith("/--"):
+        if lines[i].startswith("/--") and not literal_lines[i].strip():
             j = i
             while j < len(lines) and "-/" not in lines[j][(3 if j == i else 0):]:
                 j += 1
@@ -319,6 +338,7 @@ def repair_surface_syntax(src: str) -> tuple[str, dict]:
 
 def diagnose_cell(job: dict) -> dict:
     lake_dir, scorer_dir, timeout = job["lake_dir"], job["scorer_dir"], job["timeout"]
+    frozen_scorer(scorer_dir)  # supplies the canonical comment/string lexer for segmentation
     row = {k: job[k] for k in ("label", "task_id", "split", "scored_compiles", "scored_IC_tests",
                                "scored_IC_proofs", "truncated", "extraction", "think")}
     sol = Path(job["solution"])
@@ -352,7 +372,7 @@ def diagnose_cell(job: dict) -> dict:
     row["error_regions"] = Counter(region_of(blocks, e["line"], e["col"])[0] for e in orig["errors"])
 
     if orig["success"]:
-        row["original_factors"] = frozen_factors(sol, job["split"], scorer_dir)
+        row["original_factors"] = frozen_factors(sol, job["split"], scorer_dir, lake_dir)
         row["class"] = "compiles"
         return row
 
@@ -362,10 +382,8 @@ def diagnose_cell(job: dict) -> dict:
     row["defs_only_success"] = dres["success"]
     row["defs_only_error_categories"] = Counter(categorize(e["msg"]) for e in dres["errors"])
 
-    # `sorry_proofs` rewrites block by block, so block i of the ablated file is block i of the original;
-    # each round locates the new errors in the re-segmented ablated file and sorries those block indices.
+    # Proof replacement preserves line coordinates, so every round uses the original region map.
     sorried: set[int] = set()
-    cur_blocks = blocks
     abl = {"rounds": 0, "stop": "max_rounds"}
     errors = orig["errors"]
     timed_out = orig["timeout"]
@@ -373,7 +391,7 @@ def diagnose_cell(job: dict) -> dict:
         if timed_out:
             abl["stop"] = "timeout"
             break
-        regions = [region_of(cur_blocks, e["line"], e["col"]) for e in errors]
+        regions = [region_of(blocks, e["line"], e["col"]) for e in errors]
         blocking = [r for r, _ in regions if r != "theorem_proof"]
         if blocking or not errors:
             abl["stop"] = "blocking_errors" if blocking else "failed_without_error_lines"
@@ -393,13 +411,9 @@ def diagnose_cell(job: dict) -> dict:
             abl["stop"] = "compiles"
             break
         errors, timed_out = res["errors"], res["timeout"]
-        cur_blocks = segment(cur)
-        if len(cur_blocks) != len(blocks):
-            abl["stop"] = "segmentation_changed"
-            break
     abl["n_proofs_sorried"] = len(sorried)
     if abl["stop"] == "compiles":
-        abl.update(frozen_factors(work / "ablated.lean", job["split"], scorer_dir))
+        abl.update(frozen_factors(work / "ablated.lean", job["split"], scorer_dir, lake_dir))
         row["class"] = "compiles_after_proof_ablation"
     elif not dres["success"]:
         row["class"] = "definitions_fail"
@@ -451,13 +465,15 @@ def build_jobs(args, label: str) -> list[dict]:
             Path(j["solution"]).read_text(encoding="utf-8", errors="replace"))[1].values())]
     elif args.escape_digit_namespace:
         jobs = [j for j in jobs if Path(j["solution"]).is_file()
-                and DIGIT_NS_RE.search(Path(j["solution"]).read_text(encoding="utf-8", errors="replace"))]
-    return jobs[: args.limit] if args.limit else jobs
+                and DIGIT_NS_RE.search(_masked_source(Path(j["solution"]).read_text(encoding="utf-8", errors="replace")))]
+    return jobs
 
 
-def wilson(k: int, n: int, z: float = 1.959964) -> list[float]:
+def wilson(k: int, n: int, z: float = 1.959964) -> list[float | None]:
+    if not 0 <= k <= n:
+        raise ValueError("Wilson counts must satisfy 0 <= k <= n")
     if n == 0:
-        return [float("nan"), float("nan")]
+        return [None, None]
     p = k / n
     den = 1 + z * z / n
     c = (p + z * z / (2 * n)) / den
@@ -466,6 +482,9 @@ def wilson(k: int, n: int, z: float = 1.959964) -> list[float]:
 
 
 def summarize(label: str, rows: list[dict]) -> dict:
+    unmeasured = [r["task_id"] for r in rows if r["status"] == "diagnostic_error"]
+    if unmeasured:
+        raise ValueError(f"unmeasured diagnostic cells retained in rows; refusing zero-filled summary: {unmeasured}")
     n = len(rows)
     files = [r for r in rows if r["status"] == "file"]
     cls = Counter(r.get("class", r["status"]) for r in rows)
@@ -528,7 +547,7 @@ def _jsonable(o):
 
 def _pct(k: int, n: int, ci: list | None = None) -> str:
     s = f"{k}/{n} ({100 * k / n:.1f}%)" if n else "0/0"
-    return s + (f" [{100 * ci[0]:.1f}, {100 * ci[1]:.1f}]" if ci else "")
+    return s + (f" [{100 * ci[0]:.1f}, {100 * ci[1]:.1f}]" if ci and all(x is not None for x in ci) else "")
 
 
 def render(summaries: list[dict]) -> str:
@@ -542,7 +561,7 @@ def render(summaries: list[dict]) -> str:
                    f"{c.get('no_file', 0)} | {c.get('definitions_fail', 0)} | {c.get('tests_or_statements_fail', 0)} | "
                    f"{c.get('compiles_after_proof_ablation', 0)} | {c.get('compiles', 0)} |")
     out += ["", "| Model | Compiles after proof→`sorry` (incl. as is), 95% Wilson CI | Cells with IC_tests·IC_proofs > 0 after ablation | "
-            "Ablation IC_tests (mean over 896) | Ablation IC_proofs (mean over 896) | Definitions compile, among non-compiling files | "
+            "Ablation IC_tests (mean over listed cells) | Ablation IC_proofs (mean over listed cells) | Definitions compile, among non-compiling files | "
             "Empty reasoning block |", "|---|---:|---:|---:|---:|---:|---:|"]
     for s in summaries:
         n = s["n_cells"]
@@ -562,6 +581,10 @@ def render(summaries: list[dict]) -> str:
         cat, reg = s["noncompiling_files_with_error_category"], s["noncompiling_files_with_error_region"]
         out.append(f"| {s['label'].removesuffix('_g1')} | {nc} | " + " | ".join(f"{100 * cat.get(x, 0) / max(nc, 1):.0f}%" for x in cats)
                    + " | " + " | ".join(f"{100 * reg.get(x, 0) / max(nc, 1):.0f}%" for x in regs) + " |")
+    subsets = [f"{s['label']}: {s['n_cells']}/{s['n_declared_cells']} declared cells measured"
+               for s in summaries if s.get("n_declared_cells", s["n_cells"]) != s["n_cells"]]
+    if subsets:
+        out[:0] = ["Measured-subset diagnostics: " + "; ".join(subsets) + ". Unmeasured cells are not zeros.", ""]
     return "\n".join(out) + "\n"
 
 
@@ -579,16 +602,40 @@ def combined_summary(label: str, work_dirs: list[str]) -> dict:
     """Frozen-scorer factors over all cells when a variant's rows replace the base rows for the cells it edited.
 
     `work_dirs[0]` is the base run; each later directory overrides the cells it contains."""
+    if not work_dirs:
+        raise ValueError("a base run is required")
     cells: dict[str, dict] = {}
-    for wd in work_dirs:
+    base_ids: set[str] = set()
+    for index, wd in enumerate(work_dirs):
         p = Path(wd) / f"rows_{label}.jsonl"
-        if p.is_file():
-            for line in p.read_text().splitlines():
-                if line.strip():
-                    r = json.loads(line)
-                    cells[r["task_id"]] = r
+        receipt_path = Path(wd) / f"summary_{label}.json"
+        receipt = json.loads(receipt_path.read_text())
+        if receipt.get("label") != label or receipt.get("n_declared_cells", receipt["n_cells"]) != receipt["n_cells"]:
+            raise ValueError(f"wrong label or incomplete declared cohort in {receipt_path}")
+        seen: set[str] = set()
+        # Missing variant files are missing evidence, not a no-op transformation.
+        for line in p.read_text().splitlines():
+            if not line.strip():
+                continue
+            r = json.loads(line)
+            tid = r["task_id"]
+            if r["label"] != label or tid in seen:
+                raise ValueError(f"wrong label or duplicate task in {p}: {tid}")
+            if index and tid not in base_ids:
+                raise ValueError(f"variant task absent from base manifest: {tid}")
+            seen.add(tid)
+            cells[tid] = r
+        if len(seen) != receipt["n_cells"]:
+            raise ValueError(f"rows do not match the completed summary receipt: {p}")
+        if index == 0:
+            base_ids = seen
     rows = list(cells.values())
     n = len(rows)
+    if not n:
+        raise ValueError("cannot combine an empty base run")
+    unmeasured = [r["task_id"] for r in rows if r.get("status") == "diagnostic_error"]
+    if unmeasured:
+        raise ValueError(f"unmeasured diagnostic cells retained in rows; refusing zero-filled summary: {unmeasured}")
     out = {"label": label, "work_dirs": work_dirs, "n_cells": n,
            "n_cells_from_variants": sum(1 for r in rows if any(k in r for k in ("surface_repairs", "n_namespaces_escaped"))),
            "n_diagnostic_errors": sum(1 for r in rows if r.get("status") == "diagnostic_error")}
@@ -651,8 +698,9 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if not (args.exp01_out and args.scorer_dir):
         ap.error("--exp01-out and --scorer-dir are required unless --render")
+    scorer = frozen_scorer(args.scorer_dir)
     if args.lake_dir is None:
-        args.lake_dir = frozen_scorer(args.scorer_dir).LAKE_DIR
+        args.lake_dir = scorer.LAKE_DIR
     wd = Path(args.work_dir)
     wd.mkdir(parents=True, exist_ok=True)
     for label in args.labels:
@@ -663,7 +711,9 @@ def main(argv: list[str] | None = None) -> int:
                 if x.strip():
                     r = json.loads(x)
                     done[r["task_id"]] = r
-        jobs = [j for j in build_jobs(args, label) if j["task_id"] not in done]
+        declared_jobs = build_jobs(args, label)
+        selected_jobs = declared_jobs[:args.limit] if args.limit else declared_jobs
+        jobs = [j for j in selected_jobs if j["task_id"] not in done]
         print(f"{label}: {len(done)} done, {len(jobs)} to run", file=sys.stderr, flush=True)
         with rows_path.open("a", encoding="utf-8") as fh, ProcessPoolExecutor(max_workers=args.workers) as ex:
             futs = {ex.submit(diagnose_cell, j): j for j in jobs}
@@ -681,6 +731,8 @@ def main(argv: list[str] | None = None) -> int:
                     print(f"{label}: {k}/{len(jobs)}", file=sys.stderr, flush=True)
         rows = [json.loads(json.dumps(r, default=_jsonable)) for r in done.values()]
         summ = summarize(label, rows)
+        summ["n_declared_cells"] = len(declared_jobs)
+        summ["cohort"] = "full declared set" if len(rows) == len(declared_jobs) else "measured subset"
         (wd / f"summary_{label}.json").write_text(json.dumps(summ, indent=2, default=_jsonable) + "\n")
         print(json.dumps({k: summ[k] for k in ("label", "classes", "compiles_after_proof_ablation_incl_original",
                                                  "cells_IC_tests_x_IC_proofs_positive_after_ablation")}),
