@@ -16,7 +16,7 @@
 - **Permission mode:** `--dangerously-skip-permissions`
 - **tmux session:** `rl4cv-e01-probe-judge-worker`
 - **Checkout:** `/lfs/skampere1/0/brando9/rl4cv_e01/rl-4-code-verification` on `main` at `4c1d6a2`
-- **Task:** Brando (10-07-2026): "now judge the 11 proving G=8 probe cells".
+- **Task:** judge the 11 proving G = 8 probe cells; started by the master session. Provenance correction (10-07-2026 20:40 PDT): this task was started by the master session, not by an instruction from Brando. The line "now judge the 11 proving G=8 probe cells" was Claude Code's dimmed auto-suggested next prompt left in the previous worker's input box; the master misread it as typed input and killed that session before checking. The same mechanism later left "now judge the 17 IC_tests=1 probe cells too" in this worker's pane, verified dim (ESC[2m), so it was not acted on. The work stands because PROTOCOL.md's locked judge scope already required these cells (IC_tests · IC_proofs > 0) and Brando had approved all actions for this session; it cost $7.06 of Vals-funded judge spend within the $400 cap. Commit 4c1d6a2's message repeats the misattribution; published history is not rewritten.
 - **Launched:** 10-07-2026 19:55:37 PDT; status file set to RUNNING.
 
 ## Log
