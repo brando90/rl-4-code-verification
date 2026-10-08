@@ -19,7 +19,7 @@ GOLD_DIR="$SCORER/veribench_dataset/lean_src/veribench"
 case "$SPLIT" in validation) IDS="$EXP/expt_v1/results/split/vbv1_validation_task_ids.txt"; N_TASKS=135 ;; test) IDS="$EXP/expt_v1/results/split/vbv1_test_task_ids.txt"; N_TASKS=222 ;; *) echo "bad split" >&2; exit 2 ;; esac
 OUT="$WORK/ladder/$SPLIT"; mkdir -p "$OUT/raw" "$OUT/jobs" "$OUT/scores" "$OUT/scored" "$OUT/summaries" "$OUT/ids" "$OUT/logs"
 BATCH="${BATCH:-1024}"; SCORE_PAR="${SCORE_PAR:-4}"; STAGGER_S="${STAGGER_S:-180}"
-export PYTHONPATH="$REPO/src" VERIBENCH_ROOT="$REPO/external/veribench" HF_HOME="$WORK/cache/huggingface" HF_HUB_OFFLINE=1 PATH="$HOME/.elan/bin:$PATH"
+export PYTHONPATH="$REPO/src" VERIBENCH_ROOT="$REPO/external/veribench" HF_HOME="$WORK/cache/huggingface" HF_HUB_OFFLINE=1 PATH="/usr/local/cuda-12.8/bin:$HOME/.elan/bin:$PATH"
 PY="$WORK/venv_gen/bin/python"
 NAME="${LABEL}_g8"; K=8
 IFS=, read -ra G <<< "$GPUS"; N=${#G[@]}
