@@ -516,11 +516,16 @@ def rows_of(results_path: Path) -> dict[str, dict]:
     return out
 
 
-def harvest(configs: list[str], part: str, suite: str) -> int:
+RECOVERY_SUFFIX = "__recovery_1"
+
+
+def harvest(configs: list[str], part: str, suite: str, recovery: bool = False) -> int:
     spec = suite_spec(suite, part)
     blob = json.loads(spec["pack_receipt"].read_text())
     field, suffix = PARTS[part]
-    pack = {c["task_id"]: c for c in blob[field]}
+    if recovery:
+        suffix += RECOVERY_SUFFIX
+    pack_all = {c["task_id"]: c for c in blob[field]}
     state = load_state()
     for name in configs:
         key = spec["key_prefix"] + name + suffix
@@ -528,6 +533,8 @@ def harvest(configs: list[str], part: str, suite: str) -> int:
         if not entry or not entry.get("run_id"):
             print(f"{name}: not admitted, nothing to harvest")
             continue
+        # A recovery harvest covers exactly the cells that recovery re-sent, nothing else.
+        pack = ({t: pack_all[t] for t in entry["task_ids"]} if recovery else pack_all)
         results_path, artifacts = download(key, entry["run_id"])
         if not results_path.exists():
             print(f"{key}: no results downloaded")
@@ -545,7 +552,7 @@ def harvest(configs: list[str], part: str, suite: str) -> int:
             row, receipt = rows.get(task_id, {}), receipts.get(task_id, {})
             cell = {"task_id": task_id, "cell": meta["cell"], "item": meta["item"], "repeat": meta["repeat"],
                     "kind": meta.get("kind", "main"), "config": name, "agent_status": receipt.get("status"),
-                    "cost_usd": receipt.get("cost_usd")}
+                    "requests_sent": receipt.get("requests_sent"), "cost_usd": receipt.get("cost_usd")}
             charges += cell["cost_usd"] or 0.0
             blob_b64 = row.get("solution_b64")
             if blob_b64:
@@ -566,6 +573,71 @@ def harvest(configs: list[str], part: str, suite: str) -> int:
                "status_counts": counts, "charges_usd": round(charges, 6), "cells": cells}
         write_json(RESULTS / "harvests" / f"cells_{key.replace('/', '__')}.json", out)
         print(json.dumps({key: {"status_counts": counts, "charges_usd": round(charges, 6)}}))
+    return 0
+
+
+def recover(configs: list[str], concurrency: int, part: str, suite: str) -> int:
+    """The single declared recovery pass for a part: re-send, once and as the identical cell on the same
+    benchmark, ONLY cells harvested `unmeasured_infra` whose receipt shows no model request was served
+    (no receipt at all, or requests_sent == 0). Cells with a served or possibly served request stay
+    unmeasured and are listed. Refuses to run twice for the same suite/member."""
+    spent = spent_so_far()
+    if spent >= SPEND_CAP_USD:
+        print(f"SPEND CAP HIT: ${spent:.2f} >= ${SPEND_CAP_USD}; refusing new admissions")
+        return 3
+    spec = suite_spec(suite, part)
+    field, suffix = PARTS[part]
+    state = load_state()
+    for name in configs:
+        base_key = spec["key_prefix"] + name + suffix
+        key = base_key + RECOVERY_SUFFIX
+        if key in state["runs"]:
+            print(f"{key}: recovery already admitted as {state['runs'][key].get('run_id')}; refusing a second pass")
+            continue
+        original = state["runs"].get(base_key, {})
+        if original.get("phase") != "terminal":
+            print(f"{base_key}: original run is {original.get('phase')}, not terminal; harvest it first")
+            continue
+        path = RESULTS / "harvests" / f"cells_{base_key.replace('/', '__')}.json"
+        if not path.exists():
+            print(f"{base_key}: harvest first ({path} missing)")
+            continue
+        unmeasured = [c for c in json.loads(path.read_text())["cells"] if c["status"] == "unmeasured_infra"]
+        eligible = [c for c in unmeasured if not c.get("requests_sent")]
+        served = [c["task_id"] for c in unmeasured if c.get("requests_sent")]
+        if not eligible:
+            print(json.dumps({key: {"eligible": 0, "kept_unmeasured_served": served}}))
+            continue
+        ids_file = RESULTS / f"task_ids_{suite.replace(':', '_').replace('.', '-')}_{part}{RECOVERY_SUFFIX}_{name}.txt"
+        ids_file.write_text("".join(c["task_id"] + "\n" for c in eligible))
+        cfg = judge_config(name)
+        kwargs = dict(original["kwargs"])            # identical judge settings to the original admission
+        assert kwargs["benchmark"] == spec["benchmark"] and kwargs["judge_config"] == name
+        args = ["run", "start", "--agent", AGENT, "--benchmark", spec["benchmark"], "--dataset", "default",
+                "--model", cfg["selector"], "--concurrency", str(concurrency),
+                "--label", f"rl4cv-e01-judge-{suite.replace(':', '-')}-{part}-{name}-recovery-1"[:96],
+                "--task-ids-file", str(ids_file)]
+        for kwarg, value in kwargs.items():
+            args += ["-k", kwarg, value]
+        entry = {"config": name, "selector": cfg["selector"], "kwargs": kwargs, "concurrency": concurrency,
+                 "expected_cells": len(eligible), "part": part, "suite": suite, "benchmark": spec["benchmark"],
+                 "recovery_of": base_key, "task_ids": [c["task_id"] for c in eligible],
+                 "kept_unmeasured_served": served, "admitted_at": stamp(), "phase": "admitting", "command": args}
+        state["runs"][key] = entry
+        save_state(state)
+        result = cli(args)
+        import re
+        found = re.findall(r"[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}", result.stdout)
+        if result.returncode or not found:
+            entry.update(phase="admission_failed", returncode=result.returncode,
+                         stderr_tail=(result.stderr or "")[-800:])
+            print(f"{key}: ADMISSION FAILED rc={result.returncode}")
+            print((result.stderr or result.stdout or "")[-600:])
+        else:
+            entry.update(phase="running", run_id=found[0])
+            print(f"{key}: run_id={found[0]} over {len(eligible)} never-served cell(s); "
+                  f"kept unmeasured (served): {served}")
+        save_state(state)
     return 0
 
 
@@ -675,9 +747,11 @@ def fsc_median3(suite: str) -> int:
     for name in CONFIGS:
         by_item: dict[str, list[int]] = {}
         by_base: dict[str, list[float]] = {}
-        for suffix in ("", "@r23"):
+        for suffix in ("", "@r23", "@r23" + RECOVERY_SUFFIX):
             path = RESULTS / "harvests" / f"cells_{label}__{name}{suffix}.json"
             if not path.exists():
+                if suffix.endswith(RECOVERY_SUFFIX):
+                    continue                       # no recovery pass was needed for this member
                 print(f"{name}: harvest first ({path} missing)")
                 return 2
             harvested = json.loads(path.read_text())
@@ -727,7 +801,8 @@ def fsc_median3(suite: str) -> int:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("action", choices=["build-controls", "build-model", "build-repeats", "admit", "poll",
-                                       "harvest", "controls", "fsc", "fsc-median3"])
+                                       "harvest", "recover", "controls", "fsc", "fsc-median3"])
+    ap.add_argument("--recovery", action="store_true", help="harvest: the part's recovery_1 run instead")
     ap.add_argument("--repeats", default="2,3", help="build-repeats: repeat indices to derive (default 2,3)")
     ap.add_argument("--label")
     ap.add_argument("--scored")
@@ -760,7 +835,9 @@ def main() -> int:
     if args.action == "poll":
         return poll()
     if args.action == "harvest":
-        return harvest(configs, args.part, args.suite)
+        return harvest(configs, args.part, args.suite, recovery=args.recovery)
+    if args.action == "recover":
+        return recover(configs, args.concurrency, args.part, args.suite)
     if args.action == "controls":
         return controls_verdict(args.suite)
     if args.action == "fsc":
