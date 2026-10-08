@@ -56,7 +56,7 @@ def main(argv: list[str] | None = None) -> int:
                      "grad_norm": gn.get(s)})
     a.out_csv.parent.mkdir(parents=True, exist_ok=True)
     with a.out_csv.open("w", newline="", encoding="utf-8") as fh:
-        w = csv.DictWriter(fh, fieldnames=["step", "loss", "lr", "loss_tokens_step", "cumulative_assistant_tokens", "grad_norm"])
+        w = csv.DictWriter(fh, fieldnames=["step", "loss", "lr", "loss_tokens_step", "cumulative_assistant_tokens", "grad_norm"], lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
     sched = json.loads(a.schedule.read_text()) if a.schedule.exists() else None
