@@ -1,0 +1,35 @@
+| env (scsc) | n_groups | mean_reward | q_mixed_empirical | admission_rate | mean_generated_tokens | rho | H | top_decile_mass_share | n_groups_excluded_unmeasured |
+|---|---|---|---|---|---|---|---|---|---|
+| aerospace_set_real | 3 | 0 | 0 | 0.9167 | 4654 | 0 | 0 | 0 | 0 |
+| aerospace_set_synthetic | 4 | 0 | 0 | 0.875 | 5613 | 0 | 0 | 0 | 0 |
+| compilers_set_real | 4 | 0 | 0 | 0.6875 | 6857 | 0 | 0 | 0 | 0 |
+| compilers_set_synthetic | 4 | 0 | 0 | 0.9375 | 4904 | 0 | 0 | 0 | 0 |
+| concurrent_set_real | 4 | 0 | 0 | 0.9062 | 5180 | 0 | 0 | 0 | 0 |
+| concurrent_set_synthetic | 4 | 0 | 0 | 0.875 | 5536 | 0 | 0 | 0 | 0 |
+| critical_infra_set_real | 4 | 0 | 0 | 0.9375 | 4898 | 0 | 0 | 0 | 0 |
+| critical_infra_set_synthetic | 4 | 0 | 0 | 0.9062 | 4413 | 0 | 0 | 0 | 0 |
+| crypto_set_real | 4 | 0 | 0 | 0.75 | 7065 | 0 | 0 | 0 | 0 |
+| crypto_set_synthetic | 4 | 0 | 0 | 0.8125 | 5430 | 0 | 0 | 0 | 0 |
+| cs_set | 4 | 0 | 0 | 0.9062 | 5620 | 0 | 0 | 0 | 0 |
+| easy_set | 4 | 0 | 0 | 0.9062 | 5856 | 0 | 0 | 0 | 0 |
+| finance_set_real | 4 | 0 | 0 | 0.8125 | 6364 | 0 | 0 | 0 | 0 |
+| finance_set_synthetic | 4 | 0 | 0 | 0.9062 | 6194 | 0 | 0 | 0 | 0 |
+| gov_cert_set_real | 4 | 0 | 0 | 0.7812 | 5729 | 0 | 0 | 0 | 0 |
+| gov_cert_set_synthetic | 4 | 0 | 0 | 0.9062 | 5262 | 0 | 0 | 0 | 0 |
+| hardware_set_real | 4 | 0 | 0 | 0.8438 | 6569 | 0 | 0 | 0 | 0 |
+| hardware_set_synthetic | 4 | 0 | 0 | 0.7812 | 6084 | 0 | 0 | 0 | 0 |
+| humaneval_set | 4 | 0 | 0 | 0.8438 | 5843 | 0 | 0 | 0 | 0 |
+| hypervisor_set_real | 4 | 0 | 0 | 0.8125 | 6973 | 0 | 0 | 0 | 0 |
+| hypervisor_set_synthetic | 4 | 0 | 0 | 0.875 | 6598 | 0 | 0 | 0 | 0 |
+| medical_oss_set_real | 4 | 0 | 0 | 1 | 4587 | 0 | 0 | 0 | 0 |
+| medical_oss_set_synthetic | 4 | 0 | 0 | 0.9062 | 5362 | 0 | 0 | 0 | 0 |
+| memory_bugs_set_real | 4 | 0 | 0 | 0.875 | 5903 | 0 | 0 | 0 | 0 |
+| memory_bugs_set_synthetic | 4 | 0 | 0 | 0.9062 | 7050 | 0 | 0 | 0 | 0 |
+| os_embedded_set_real | 4 | 0 | 0 | 0.9062 | 5642 | 0 | 0 | 0 | 0 |
+| os_embedded_set_synthetic | 4 | 0 | 0 | 0.9375 | 4536 | 0 | 0 | 0 | 0 |
+| realcode_set | 4 | 0 | 0 | 0.875 | 6087 | 0 | 0 | 0 | 0 |
+| regulated_set_real | 4 | 0 | 0 | 0.7812 | 6205 | 0 | 0 | 0 | 0 |
+| regulated_set_synthetic | 4 | 0 | 0 | 0.9688 | 5849 | 0 | 0 | 0 | 0 |
+| rfc_set_real | 4 | 0 | 0 | 0.7812 | 4781 | 0 | 0 | 0 | 0 |
+| rfc_set_synthetic | 1 | 0 | 0 | 0.625 | 6202 | 0 | 0 | 0 | 0 |
+| security_set | 4 | 0 | 0 | 0.9375 | 4129 | 0 | 0 | 0 | 0 |

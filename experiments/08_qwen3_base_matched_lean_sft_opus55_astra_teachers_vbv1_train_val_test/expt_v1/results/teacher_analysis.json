@@ -1,0 +1,397 @@
+{
+ "charges_usd_reported": {
+  "per_run": {
+   "astra/s1": 840.9,
+   "astra/s2": 812.77,
+   "astra/s3": 807.72,
+   "astra/s4": 814.46,
+   "opus55/s1": 447.75,
+   "opus55/s2": 461.02,
+   "opus55/s3": 467.13,
+   "opus55/s4": 460.19
+  },
+  "total": 5111.94
+ },
+ "failure_taxonomy": {
+  "astra": {
+   "kept": 804,
+   "no_lean": 34,
+   "no_typecheck": 1316,
+   "unparseable_theorem_type": 2
+  },
+  "opus55": {
+   "kept": 1200,
+   "no_lean": 437,
+   "no_typecheck": 515,
+   "unproved_theorem": 2,
+   "vacuous_theorem": 2
+  }
+ },
+ "kept_file_tokens_qwen3": {
+  "astra": {
+   "max": 17900,
+   "mean": 3055,
+   "median": 2653,
+   "n": 804,
+   "p90": 4693,
+   "total": 2455830
+  },
+  "opus55": {
+   "max": 11161,
+   "mean": 4908,
+   "median": 4811,
+   "n": 1200,
+   "p90": 6615,
+   "total": 5889067
+  }
+ },
+ "n_cells_scored": 4312,
+ "n_declared": 4312,
+ "overlap": {
+  "astra_only": 43,
+  "both_teachers": 277,
+  "neither": 60,
+  "opus55_only": 159
+ },
+ "per_family_union_coverage": {
+  "aerospace_set_real": {
+   "covered": 2,
+   "share": 1.0,
+   "tasks": 2
+  },
+  "aerospace_set_synthetic": {
+   "covered": 10,
+   "share": 1.0,
+   "tasks": 10
+  },
+  "compilers_set_real": {
+   "covered": 3,
+   "share": 1.0,
+   "tasks": 3
+  },
+  "compilers_set_synthetic": {
+   "covered": 9,
+   "share": 1.0,
+   "tasks": 9
+  },
+  "concurrent_set_real": {
+   "covered": 3,
+   "share": 1.0,
+   "tasks": 3
+  },
+  "concurrent_set_synthetic": {
+   "covered": 9,
+   "share": 1.0,
+   "tasks": 9
+  },
+  "critical_infra_set_real": {
+   "covered": 4,
+   "share": 1.0,
+   "tasks": 4
+  },
+  "critical_infra_set_synthetic": {
+   "covered": 8,
+   "share": 1.0,
+   "tasks": 8
+  },
+  "crypto_set_real": {
+   "covered": 10,
+   "share": 1.0,
+   "tasks": 10
+  },
+  "crypto_set_synthetic": {
+   "covered": 2,
+   "share": 1.0,
+   "tasks": 2
+  },
+  "cs_set": {
+   "covered": 1,
+   "share": 0.0667,
+   "tasks": 15
+  },
+  "easy_set": {
+   "covered": 20,
+   "share": 0.8,
+   "tasks": 25
+  },
+  "finance_set_real": {
+   "covered": 5,
+   "share": 1.0,
+   "tasks": 5
+  },
+  "finance_set_synthetic": {
+   "covered": 7,
+   "share": 1.0,
+   "tasks": 7
+  },
+  "gov_cert_set_real": {
+   "covered": 2,
+   "share": 1.0,
+   "tasks": 2
+  },
+  "gov_cert_set_synthetic": {
+   "covered": 10,
+   "share": 1.0,
+   "tasks": 10
+  },
+  "hardware_set_real": {
+   "covered": 3,
+   "share": 1.0,
+   "tasks": 3
+  },
+  "hardware_set_synthetic": {
+   "covered": 10,
+   "share": 1.0,
+   "tasks": 10
+  },
+  "humaneval_set": {
+   "covered": 30,
+   "share": 0.8824,
+   "tasks": 34
+  },
+  "hypervisor_set_real": {
+   "covered": 3,
+   "share": 1.0,
+   "tasks": 3
+  },
+  "hypervisor_set_synthetic": {
+   "covered": 10,
+   "share": 1.0,
+   "tasks": 10
+  },
+  "medical_oss_set_real": {
+   "covered": 6,
+   "share": 1.0,
+   "tasks": 6
+  },
+  "medical_oss_set_synthetic": {
+   "covered": 6,
+   "share": 1.0,
+   "tasks": 6
+  },
+  "memory_bugs_set_real": {
+   "covered": 3,
+   "share": 1.0,
+   "tasks": 3
+  },
+  "memory_bugs_set_synthetic": {
+   "covered": 9,
+   "share": 1.0,
+   "tasks": 9
+  },
+  "os_embedded_set_real": {
+   "covered": 4,
+   "share": 1.0,
+   "tasks": 4
+  },
+  "os_embedded_set_synthetic": {
+   "covered": 8,
+   "share": 1.0,
+   "tasks": 8
+  },
+  "realcode_set": {
+   "covered": 3,
+   "share": 0.1579,
+   "tasks": 19
+  },
+  "regulated_set_real": {
+   "covered": 3,
+   "share": 1.0,
+   "tasks": 3
+  },
+  "regulated_set_synthetic": {
+   "covered": 9,
+   "share": 1.0,
+   "tasks": 9
+  },
+  "rfc_set_real": {
+   "covered": 11,
+   "share": 1.0,
+   "tasks": 11
+  },
+  "rfc_set_synthetic": {
+   "covered": 1,
+   "share": 1.0,
+   "tasks": 1
+  },
+  "security_set": {
+   "covered": 255,
+   "share": 0.9239,
+   "tasks": 276
+  }
+ },
+ "per_run": {
+  "astra/s1": {
+   "charges_usd_reported": 840.9,
+   "declared": 539,
+   "generated_tokens_mean": 4355.0,
+   "harvested": 539,
+   "kept": 206,
+   "kept_eligible_after_consistency_and_screen": 206,
+   "kept_over_declared": 0.3822,
+   "kept_over_measured": 0.3822,
+   "measured": 539,
+   "truncated": 0,
+   "unmeasured": 0,
+   "wilson95": [
+    0.3421,
+    0.4239
+   ]
+  },
+  "astra/s2": {
+   "charges_usd_reported": 812.77,
+   "declared": 539,
+   "generated_tokens_mean": 4366.0,
+   "harvested": 539,
+   "kept": 207,
+   "kept_eligible_after_consistency_and_screen": 207,
+   "kept_over_declared": 0.384,
+   "kept_over_measured": 0.384,
+   "measured": 539,
+   "truncated": 0,
+   "unmeasured": 0,
+   "wilson95": [
+    0.3439,
+    0.4258
+   ]
+  },
+  "astra/s3": {
+   "charges_usd_reported": 807.72,
+   "declared": 539,
+   "generated_tokens_mean": 4406.0,
+   "harvested": 539,
+   "kept": 193,
+   "kept_eligible_after_consistency_and_screen": 193,
+   "kept_over_declared": 0.3581,
+   "kept_over_measured": 0.3581,
+   "measured": 539,
+   "truncated": 0,
+   "unmeasured": 0,
+   "wilson95": [
+    0.3187,
+    0.3994
+   ]
+  },
+  "astra/s4": {
+   "charges_usd_reported": 814.46,
+   "declared": 539,
+   "generated_tokens_mean": 4403.0,
+   "harvested": 539,
+   "kept": 198,
+   "kept_eligible_after_consistency_and_screen": 198,
+   "kept_over_declared": 0.3673,
+   "kept_over_measured": 0.3673,
+   "measured": 539,
+   "truncated": 0,
+   "unmeasured": 0,
+   "wilson95": [
+    0.3277,
+    0.4089
+   ]
+  },
+  "opus55/s1": {
+   "charges_usd_reported": 447.75,
+   "declared": 539,
+   "generated_tokens_mean": 7672.0,
+   "harvested": 539,
+   "kept": 303,
+   "kept_eligible_after_consistency_and_screen": 303,
+   "kept_over_declared": 0.5622,
+   "kept_over_measured": 0.5622,
+   "measured": 539,
+   "truncated": 97,
+   "unmeasured": 0,
+   "wilson95": [
+    0.52,
+    0.6034
+   ]
+  },
+  "opus55/s2": {
+   "charges_usd_reported": 461.02,
+   "declared": 539,
+   "generated_tokens_mean": 7647.0,
+   "harvested": 539,
+   "kept": 287,
+   "kept_eligible_after_consistency_and_screen": 287,
+   "kept_over_declared": 0.5325,
+   "kept_over_measured": 0.5325,
+   "measured": 539,
+   "truncated": 102,
+   "unmeasured": 0,
+   "wilson95": [
+    0.4903,
+    0.5742
+   ]
+  },
+  "opus55/s3": {
+   "charges_usd_reported": 467.13,
+   "declared": 539,
+   "generated_tokens_mean": 7717.0,
+   "harvested": 539,
+   "kept": 304,
+   "kept_eligible_after_consistency_and_screen": 304,
+   "kept_over_declared": 0.564,
+   "kept_over_measured": 0.564,
+   "measured": 539,
+   "truncated": 96,
+   "unmeasured": 0,
+   "wilson95": [
+    0.5218,
+    0.6053
+   ]
+  },
+  "opus55/s4": {
+   "charges_usd_reported": 460.19,
+   "declared": 539,
+   "generated_tokens_mean": 7622.0,
+   "harvested": 539,
+   "kept": 306,
+   "kept_eligible_after_consistency_and_screen": 306,
+   "kept_over_declared": 0.5677,
+   "kept_over_measured": 0.5677,
+   "measured": 539,
+   "truncated": 101,
+   "unmeasured": 0,
+   "wilson95": [
+    0.5256,
+    0.6089
+   ]
+  }
+ },
+ "per_teacher_tasks_kept_any_sample": {
+  "astra": 320,
+  "opus55": 436
+ },
+ "sft_set": {
+  "assistant_tokens": {
+   "max": 12070,
+   "mean": 4373.9,
+   "median": 4296,
+   "min": 1238,
+   "n": 1315,
+   "p10": 2213,
+   "p90": 6623,
+   "total": 5751621
+  },
+  "exclusions_by_reason": {
+   "over_length_cap": 4,
+   "per_teacher_cap": 685
+  },
+  "n_distinct_tasks": 476,
+  "n_examples": 1315,
+  "per_teacher": {
+   "astra": 517,
+   "opus55": 798
+  }
+ },
+ "union_coverage": {
+  "of": 539,
+  "share": 0.8887,
+  "tasks_with_a_kept_file": 479,
+  "wilson95": [
+   0.8593,
+   0.9125
+  ]
+ },
+ "written_utc": "2026-10-08T09:37:43+00:00"
+}

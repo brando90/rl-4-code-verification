@@ -1,0 +1,84 @@
+{
+ "checkpoint": "/lfs/skampere1/0/brando9/rl4cv_e08/dry_run/checkpoints/step_8",
+ "disposable": "outputs excluded from S and every evaluation; production restarts from Base",
+ "examples": "first 16 of S in the frozen order",
+ "framework": "NeMo RL 0.4.0 c751f811217db7df0d4c94abdeaada6626cfc150 (DTensor v2); TRL fallback not needed",
+ "global_batch": 2,
+ "gpu": 5,
+ "hf_export": {
+  "dir": "/lfs/skampere1/0/brando9/rl4cv_e08/dry_run/hf_step_8",
+  "files": [
+   "added_tokens.json",
+   "chat_template.jinja",
+   "config.json",
+   "generation_config.json",
+   "merges.txt",
+   "pytorch_model.bin",
+   "special_tokens_map.json",
+   "tokenizer.json",
+   "tokenizer_config.json",
+   "vocab.json"
+  ],
+  "weights_sha256": {
+   "pytorch_model.bin": "4ee95e82b7d1b752f905ed107099e36dd7b78f754ba509e697664a72bdd9bf14"
+  }
+ },
+ "loss_tokens": {
+  "matches_rendered_spans": true,
+  "per_step_logged": [
+   [
+    "0.125",
+    22913
+   ],
+   [
+    "0.25",
+    22913
+   ],
+   [
+    "0.5",
+    48534
+   ],
+   [
+    "0.75",
+    67732
+   ],
+   [
+    "1.0",
+    76914
+   ]
+  ],
+  "total_logged": 76914,
+  "total_rendered": 76914
+ },
+ "model": "Qwen/Qwen3-1.7B-Base ea980cb0",
+ "prompt_and_padding_zero_loss": "token_mask = assistant span only (NeMo RL add_loss_mask_to_message_log roles=['assistant']); smoke 2 showed a padding slot adds 0 loss tokens",
+ "steps": 8,
+ "train_loss_per_step": [
+  0.6129630208015442,
+  0.6524707078933716
+ ],
+ "validation_loss_fixed_set_eval_mode": {
+  "after_step_8": 0.5886,
+  "before_step_1": 0.6283,
+  "decreased": true
+ },
+ "verdict": "PASS",
+ "vllm_generation_preflight_tasks": [
+  {
+   "extraction": "longest_bare_block",
+   "finish_reason": "length",
+   "generated_tokens": 12288,
+   "lean_extracted": true,
+   "task_id": "aerospace_set_real__my_fprime_crc_match"
+  },
+  {
+   "extraction": "no_lean_block",
+   "finish_reason": "length",
+   "generated_tokens": 12288,
+   "lean_extracted": false,
+   "task_id": "aerospace_set_real__my_fprime_sequence_nonempty"
+  }
+ ],
+ "wall": "training 3.0 min incl. Ray start, export 1.2 min, vLLM 3.0 min",
+ "written_utc": "2026-10-08T09:55:31+00:00"
+}
