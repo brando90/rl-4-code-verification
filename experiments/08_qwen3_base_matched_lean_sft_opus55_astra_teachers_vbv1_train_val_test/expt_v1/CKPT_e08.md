@@ -4,20 +4,20 @@
 
 **TLDR:** Resumable state of experiment 08. The master finished the zero-call design steps; the SNAP worker (tmux `rl4cv-e08-worker` on `skampere1`) has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity) and is locking PROTOCOL §§ 1–7 before the 8-call live teacher preflight. `$WORK/CKPT_rl4cv-e08-worker.md` is a symlink to this file.
 
-**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-08-2026 02:43 PDT (worker).
+**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-08-2026 02:47 PDT (worker).
 
 ## State
 
 | Item | Value |
 |---|---|
-| Current step | Runbook § 7.5: lock 2 (static checks PASS, configs derived); then § 7.6 dry run on GPU 0, then § 8 matched SFT |
+| Current step | Runbook § 7.6: disposable dry run on GPU 5 (tmux `rl4cv-e08-dry-run`); GPUs 0–4 taken by another user, so § 8 starts with 1.7B and 4B on GPUs 5–7 |
 | Master | Claude Code (Opus 5.5) on Brando's laptop; private worktree `~/vb_worktrees/rl4cv-sft-warmstart-1007` |
 | Worker | Claude Code `claude-fable-5-1`, effort `high`, on `skampere1`, tmux `rl4cv-e08-worker`, clone `/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification` (`main`) |
 | Work root | `/lfs/skampere1/0/brando9/rl4cv_e08`: `env_e08.sh` (source in every shell), `.venv` (tests), `venv_gen` (vLLM 0.30.0 / torch 2.13.0+cu130 / transformers 5.18.0), `grading/lean_src` (private Lean v4.22.0 + Mathlib copy), `pack_train539/`, `cache/huggingface` (HF_HOME; 1.7B/4B/8B linked, 14B tokenizer), `private/` (0700), `logs/` |
 | Status file | `/lfs/skampere1/0/brando9/rl4cv_e08/STATUS_e08` = RUNNING |
-| Lock 1 / lock 2 | lock 1 LOCKED 2026-10-08T00:16:15Z at code commit `6e6890f`; the lock commit itself is `cc86ec0` (10-07-2026 17:16 PDT). **Amendment A1 (v1.1)** LOCKED 2026-10-08T00:55:51Z at `bc27e1c`: opus55 compute_effort xhigh. Lock 2 not locked |
+| Lock 1 / lock 2 | lock 1 LOCKED 2026-10-08T00:16:15Z at code commit `6e6890f`; the lock commit itself is `cc86ec0` (10-07-2026 17:16 PDT). **Amendment A1 (v1.1)** LOCKED 2026-10-08T00:55:51Z at `bc27e1c`: opus55 compute_effort xhigh. **Lock 2** LOCKED 2026-10-08T09:44:45Z at code commit `d1c101a`; the lock commit itself is `9995821` (10-08-2026 02:46 PDT) |
 | Valkyrie runs | preflight (8 cells, admitted 10-07-2026 17:17–17:19 PDT): opus55 p1 `67be268e-2560-4c6d-ae77-eb0448560508`, p2 `a3f8317d-3e9c-4f34-9d08-6f4cc4b85ccc`; astra p1 `68b86858-6af1-404e-ae1d-61d5c49da838`, p2 `62365cc4-5ff5-4ade-803f-320343716ca9` (`expt_v1/results/runs_state.json`); **Astra main** (admitted 17:44 PDT, 539 cells each, concurrency 24): s1 `e8ead92a-2839-41bd-8631-fe6b57e67747`, s2 `20362628-b046-4781-99a8-b3c7bd763d1f`, s3 `670496fd-932f-4ae9-af20-5d90106e046e`, s4 `3e4b9292-4da7-4db0-959a-26f582e9e3b2`; **Opus xhigh diagnostic preflight** (17:43 PDT): p1 `e4294309-0639-404c-b4f0-316437e4179c`, p2 `9ede472b-0200-47e6-98ab-8384b10fd5df`; **Opus main (xhigh, admitted 17:57 PDT, 539 cells each, concurrency 24)**: s1 `65dfef88-acc0-4bb3-9c32-88be333fccd2`, s2 `968f1080-e811-4736-865d-b728c333736b`, s3 `f26ab151-1a11-4afe-b576-276e73c6663e`, s4 `b267e358-bb10-4d66-981f-3ec730a9c367` |
-| GPUs held | none (Base 14B validation generation finished 18:17 PDT: 1,080 / 1,080 cells; CPU scoring with 4 parallel scorers in `tmux rl4cv-e08-ladder-base14b`). Production plan unchanged: 1.7B 1 GPU TP1, 4B 2 GPUs TP2, 8B 4 GPUs TP4, 14B 8 GPUs TP8 (after the others), full-parameter bf16 + fp32 AdamW, activation checkpointing |
+| GPUs held | GPU 5: dry run (Qwen3-1.7B-Base, 16 examples, 8 steps, ~25 GB, minutes). Another user holds GPUs 0–4 since ~02:40 PDT (10-08-2026), so only GPUs 5–7 are usable now: production 1.7B on GPU 5 (TP1) and 4B on GPUs 6–7 (TP2) first; 8B (4 GPUs) and 14B (8 GPUs) wait for free GPUs or move to separately allocated hardware (runbook § 8) |
 | Services, ports, tunnels | service `rl4cv-e08-vbv1-train` on `127.0.0.1:9740` (uvicorn pid in `$WORK/private/service.pid`), cloudflared tunnel (pid in `$WORK/private/tunnel.pid`); port claim `/lfs/skampere1/0/brando9/valkyrie_port_claims/rl4cv-e08_9740-9759.txt`; private config `$WORK/private/valkyrie.yaml` (use `VALKYRIE_CONFIG_PATH`) |
 | Health check | `snap_health.sh --node skampere1`: only `disk.dfs` FAIL (DFS 100% full), off this job's path |
 
