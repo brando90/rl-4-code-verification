@@ -2,9 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/docs/FACTS_veribench_baselines.md>
 
-**TLDR:** No model at or below 14B parameters has ever been evaluated on VeriBench; the smallest Qwen solver run, Qwen3.6-27B, scored SCSC 0.002 because almost nothing it wrote compiled. Frontier agents are near the ceiling on the two kernel-checked factors, and formal specification coverage (FSC) is their lowest factor. But the FSC judge also gives high scores to files that do not compile, so FSC must be gated on compilation before it can be used as a reward or an outcome.
+**TLDR:** Before experiment 01, no model at or below 14B parameters had been evaluated on the current VeriBench V1 panel; experiment 01 now measures these models directly. In experiment 103, the smallest Qwen solver run, Qwen3.6-27B, scored SCSC 0.002 because almost nothing it wrote compiled. Frontier agents are near the ceiling on the two kernel-checked factors, and formal specification coverage (FSC) is their lowest factor. But the FSC judge also gives high scores to files that do not compile, so FSC must be gated on compilation before it can be used as a reward or an outcome.
 
-Collected on 2026-09-30 from the VeriBench repository at commit `c11b99ba` (pinned in [`external/deps.lock.json`](../external/deps.lock.json)).
+Collected on 09-30-2026 from the VeriBench repository at commit `c11b99ba` (pinned in [`external/deps.lock.json`](../external/deps.lock.json)).
 Paths below are relative to that repository.
 Abbreviations:
 
@@ -15,7 +15,7 @@ Abbreviations:
 - **VBV1:** VeriBench V1, 896 tasks: a 614-task core plus the 282-task IndustrySet.
 - **VBV2:** VeriBench V2.
 
-## 1. Small open-weight models: nothing at or below 14B has been measured
+## 1. Small open-weight models: prior evidence and experiment 01 update
 
 | Model | Benchmark, n | IC_tests | IC_proofs | FSC | SCSC | Route | Source |
 |---|---|---:|---:|---:|---:|---|---|
@@ -28,15 +28,15 @@ How Qwen3.6-27B failed (experiment 103):
 - 245 of its 292 lost cells hit the 65,536-token output cap, and 47 were gateway timeouts.
 - 87.5% of its sampled zeros do not parse as Lean 4.
 
-**An instruction defect that hits literal-minded models (experiment 01 diagnostic, 10-07-2026).**
+**An invalid namespace hint copied by small models (experiment 01 diagnostic, 10-07-2026).**
 
 - VeriBench's task instruction (`vb_harbor/adapter/adapter.py:134`, at the pin `c11b99ba` and at HEAD `9e312c9052`) suggests ``namespace {file stem}``.
 - For 533 of the 896 VBV1 tasks (all of easy_set, realcode_set and security_set) the stem starts with a digit, e.g. `namespace 1_MyAdd`. That is not a Lean identifier; the gold files use `namespace MyAdd`.
-- Small Qwen models copy the hint: Qwen3-14B does so in 516 of its 896 files, and each of those files fails to compile.
-- Frontier single-call models in experiment 103 do not show the penalty: their compile rates are higher on these three splits.
+- The legacy regex matches digit-leading namespace text in 516 Qwen3-14B files out of 896 declared cells; those 516 files fail to compile. The historical namespace rewrite raises its positive-test-and-proof cells from 1/896 to 25/896 (2.8%, 95% Wilson interval [1.9%, 4.1%], unit = task; diagnostic only). Most cells still score zero. The [results write-up](../experiments/01_small_open_models_veribench_v1_single_call_baseline/results.md) records 13 legacy rewrites across models that also affected literal/prose text; none contributes a positive cell, and the guarded counterfactual was not recompiled.
+- Frontier single-call models in experiment 103 have higher compile-with-example rates on these task families than elsewhere. Family difficulty confounds this comparison; it does not measure the namespace hint's causal effect.
 - Fixing the template is a benchmark change, so Trigger Rule 43 applies.
 
-The statement "an open model of ≤14B starts at about 0 on VeriBench" is therefore an extrapolation from this 27B row. [Experiment 01](../experiments/01_small_open_models_veribench_v1_single_call_baseline/README.md) measures it directly.
+The statement "an open model of ≤14B starts at about 0 on VeriBench" was an extrapolation from this 27B row before experiment 01. [Experiment 01](../experiments/01_small_open_models_veribench_v1_single_call_baseline/README.md) measures it directly.
 
 ## 2. Frontier systems: two factors are nearly saturated; FSC carries the remaining signal
 

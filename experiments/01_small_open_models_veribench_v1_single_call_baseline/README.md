@@ -2,11 +2,11 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/01_small_open_models_veribench_v1_single_call_baseline/README.md>
 
-**TLDR:** This measures IC_tests, IC_proofs, FSC and SCSC for eight small open-weight Qwen models (Qwen3.5 0.8B–9B and Qwen3 1.7B–14B) on all 896 VeriBench V1 tasks, using experiment 103's single-call protocol, so the numbers sit beside experiment 103's table. An 8-sample probe on 132 tasks then shows whether VeriBench itself yields any group-relative learning signal at these scales. Nothing has been run yet.
+**TLDR:** This measures IC_tests, IC_proofs, FSC and SCSC for eight small open-weight Qwen models (Qwen3.5 0.8B–9B and Qwen3 1.7B–14B) on all 896 VeriBench V1 tasks, using experiment 103's single-call protocol, so the numbers sit beside experiment 103's table. An 8-sample probe on 128 tasks then shows whether VeriBench itself yields any group-relative learning signal at these scales. Done 10-01-2026: almost no file compiles (0–0.56% of 896 declared cells per model), so SCSC is 0 except for one Qwen3-14B task. A 10-07-2026 recompile diagnostic confirms the zeros under the frozen scorer. It finds that failures include parsing, names, types and proofs; the legacy message categories are coarse, and that a VeriBench instruction defect (an invalid `namespace` example on 533 of 896 tasks) adds to them. The follow-up is owned by Rakshit Kaushik ([issue #8](https://github.com/brando90/rl-4-code-verification/issues/8)); its supervised fine-tuning (SFT) warm start is experiment 08.
 
 ## Goal, hypothesis and decision criterion
 
-- **Uncertainty:** No model at or below 14B has ever been scored on VeriBench ([FACTS §1](../../docs/FACTS_veribench_baselines.md#1-small-open-weight-models-nothing-at-or-below-14b-has-been-measured)). The only small-open-model evidence is Qwen3.6-27B at SCSC 0.002, where 87.5% of the sampled zeros do not parse as Lean 4.
+- **Pre-run uncertainty (09-30-2026):** No model at or below 14B has ever been scored on VeriBench ([FACTS §1](../../docs/FACTS_veribench_baselines.md#1-small-open-weight-models-prior-evidence-and-experiment-01-update)). The only small-open-model evidence is Qwen3.6-27B at SCSC 0.002, where 87.5% of the sampled zeros do not parse as Lean 4.
 - **Hypothesis:**
   - IC_tests and IC_proofs are near 0 for every model at or below 14B.
   - FSC is high on the judge's raw scale even when nothing compiles.
@@ -43,7 +43,7 @@ Locked thresholds and parameters: [PROTOCOL.md](PROTOCOL.md). Live status: [resu
 
    Then check that the delivered prompt hashes match.
 4. **Evaluate.** G = 1 on all 896 tasks per model, with experiment 103's Qwen settings: temperature 1.0, top-p 0.95, top-k 20, a 65,536-token cap, thinking on.
-5. **Probe.** G = 8 on the 132-task stratified subset (4 per split, outcome-blind hash order), with the paper's RL decoding: temperature 0.6, top-p 0.95, top-k 20, a 12,288-token cap.
+5. **Probe.** G = 8 on the 128-task realized subset (4 per present split, outcome-blind hash order; 132 were planned), with the paper's RL decoding: temperature 0.6, top-p 0.95, top-k 20, a 12,288-token cap.
 6. **Score.** Kernel-score every cell with the frozen scorer (`--skip-tc`).
    - SCSC is exact without a judge wherever IC_tests · IC_proofs = 0.
    - FSC comes from `vb103_judge`, once decision D-102 is settled, for every cell with IC_tests · IC_proofs > 0, plus a 60-file stratified audit per model that includes non-compiling files.
@@ -69,7 +69,9 @@ Locked thresholds and parameters: [PROTOCOL.md](PROTOCOL.md). Live status: [resu
 | Preflight (5 tasks, controls) | Done (09-30-2026) | expt_v1/cc.md step 3 |
 | G = 1 evaluation, 9 models (8 + 27B control) | Done (10-01-2026 06:45) | all 896/896 cells generated and kernel-scored for every model |
 | G = 8 probe, 8 models | Done (09-30-2026) | all 1024/1024 cells generated and scored for every probe model |
-| FSC judging | Done (10-01-2026 09:08) | route: `vb103_judge` Valkyrie, payer: Vals gateway; all 9 suites (controls + 8 models) admitted and harvested, $102.55 of $400 spent |
+| FSC judging | Done (10-01-2026 09:08) | route: `vb103_judge` Valkyrie, payer: Vals gateway; all 10 suites (controls + 9 models) admitted and harvested by 10-01-2026 12:35, $106.37 of $400 spent |
 | Results table and gate G1 decision | Done (09-30-2026 19:20 for Gate G1; 10-01-2026 09:08 for the full table) | results.md; Gate G1 **PASS** |
+| Zero-score diagnostic (CPU only, no model calls) | Done (10-07-2026) | results.md → "Zero-score diagnostic"; `expt_v1/diagnostics/` |
+| Follow-up: SFT warm start to get off zero | Assigned to Rakshit Kaushik (@rakshit-kaushik), 10-07-2026 | [issue #8](https://github.com/brando90/rl-4-code-verification/issues/8); the SFT runs as `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test` |
 
-**Experiment complete as of 10-01-2026 09:08** (`STATUS_e01 = DONE`; see `CKPT_e01.md`). Per the index table in `experiments/README.md`, this folder is slated to be renamed `01_small_qwen_vbv1_single_call_baseline_g8_signal_probe` after the run — **not yet done**, since it touches every cross-reference and doc link in this folder; left for Brando or the next agent to execute deliberately rather than as an unprompted structural change here.
+**Experiment complete as of 10-01-2026 12:35** (`STATUS_e01 = DONE`; see `expt_v1/CKPT_e01.md`). Per the index table in `experiments/README.md`, this folder is slated to be renamed `01_small_qwen_vbv1_single_call_baseline_g8_signal_probe` after the run — **not yet done**, since it touches every cross-reference and doc link in this folder; left for Brando or the next agent to execute deliberately rather than as an unprompted structural change here.

@@ -18,8 +18,11 @@ from screen_mbpp_tasks import protected_corpus  # noqa: E402
 
 THRESHOLD, SHINGLE_N = 0.70, 5
 # Held-out panels beyond VeriBench V1 whose files may exist at the VeriBench pin (VeriBench V2 / V2.1 come from VeriSoftBench).
-PANEL_DIRS = ("experiments/91_lean_to_python_hopefully_unsaturated_vb/expt_v5_full_source",
-              "experiments/97_vsb_multifile_python_to_lean")
+# At the pin, VeriBench V2's five full-source task inputs live under a private directory that is not checked in, so only the
+# E97-P001 multi-file task (Python sources and tests) is available; its files are screened, and the absence of the rest is reported.
+PANEL_DIRS = ("experiments/97_vsb_multifile_python_to_lean/task",
+              "experiments/91_lean_to_python_hopefully_unsaturated_vb/expt_v5_full_source/data",
+              "experiments/91_lean_to_python_hopefully_unsaturated_vb/expt_v5_full_source/private")
 PANEL_EXCLUDE = ("scripts/", "runs/", "/results/", "__pycache__", ".lake/")
 
 

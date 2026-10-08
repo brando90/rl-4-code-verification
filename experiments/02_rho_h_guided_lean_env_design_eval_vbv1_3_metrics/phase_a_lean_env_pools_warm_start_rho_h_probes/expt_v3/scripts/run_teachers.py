@@ -162,32 +162,45 @@ def _rows_of(results_path: Path) -> dict[str, dict]:
 
 
 def _receipts(artifacts: Path) -> dict[str, tuple[dict, Path]]:
+    """task_id -> (receipt, directory holding receipt.json and, when the agent wrote one, response.txt).
+
+    `valk run output` delivers each task's `receipt.json` next to `agent_output.tar.gz` (the agent's /logs/vb103 final
+    output, which also carries response.txt); the tarball is always unpacked beside the receipt.
+    """
     found = {}
+    for tb in sorted(artifacts.rglob("*.tar.gz")):
+        try:
+            with tarfile.open(tb) as tf:
+                members = {m.name.rsplit("/", 1)[-1]: m for m in tf.getmembers() if m.isfile()}
+                dest = tb.parent / "extracted"
+                dest.mkdir(exist_ok=True)
+                for name in ("receipt.json", "response.txt"):
+                    if name in members:
+                        (dest / name).write_bytes(tf.extractfile(members[name]).read())
+        except tarfile.TarError:
+            continue
     for path in sorted(artifacts.rglob("receipt.json")):
         try:
             receipt = json.loads(path.read_text())
         except json.JSONDecodeError:
             continue
         tid = receipt.get("task_id") or path.parent.name
-        found[tid] = (receipt, path.parent)
-    # Some runs deliver the final_output directory as a tarball per task.
-    for tb in sorted(artifacts.rglob("*.tar.gz")):
-        try:
-            with tarfile.open(tb) as tf:
-                members = {m.name.rsplit("/", 1)[-1]: m for m in tf.getmembers() if m.isfile()}
-                if "receipt.json" in members:
-                    receipt = json.loads(tf.extractfile(members["receipt.json"]).read())
-                    tid = receipt.get("task_id") or tb.parent.name
-                    if tid not in found:
-                        dest = tb.parent / "extracted"
-                        dest.mkdir(exist_ok=True)
-                        for name in ("receipt.json", "response.txt"):
-                            if name in members:
-                                (dest / name).write_bytes(tf.extractfile(members[name]).read())
-                        found[tid] = (receipt, dest)
-        except (tarfile.TarError, json.JSONDecodeError):
-            continue
+        prev = found.get(tid)
+        if prev is None or ((path.parent / "response.txt").exists() and not (prev[1] / "response.txt").exists()):
+            found[tid] = (receipt, path.parent)
     return found
+
+
+def _run_record_rows(artifacts: Path) -> dict[str, dict]:
+    """The per-task rows from the run record `valk run output` delivers (`<benchmark>.json` → evaluation_results)."""
+    for path in sorted(artifacts.glob("*.json")):
+        try:
+            payload = json.loads(path.read_text())
+        except json.JSONDecodeError:
+            continue
+        if isinstance(payload, dict) and payload.get("evaluation_results"):
+            return {tid: (v.get("result", v) if isinstance(v, dict) else {}) for tid, v in payload["evaluation_results"].items()}
+    return {}
 
 
 def cmd_harvest(a) -> int:
@@ -209,6 +222,11 @@ def cmd_harvest(a) -> int:
         log.append(f"{stamp()} valk {' '.join(cmd[:2])} rc={done.returncode}\n{done.stdout[-1500:]}\n{done.stderr[-1500:]}\n")
     (raw / "harvest.log").write_text("".join(log))
     rows = _rows_of(results_path) if results_path.exists() else {}
+    rows_source = "valk run results"
+    if not rows and artifacts.exists():
+        # `valk run results` has returned "tracker returned a malformed response" since experiment 01's Argon test; the run
+        # record delivered by `valk run output` carries the same per-cell rows (service-collected bytes and hashes).
+        rows, rows_source = _run_record_rows(artifacts), "run record from valk run output"
     receipts = _receipts(artifacts) if artifacts.exists() else {}
     expected = [l.strip() for l in Path(entry["task_ids_file"]).read_text().splitlines() if l.strip()] if entry.get("task_ids_file") else entry["task_ids"].split(",")
     pack_manifest = read_json(EXP / "results" / "pack_manifest.json")
@@ -269,7 +287,7 @@ def cmd_harvest(a) -> int:
     summary = {"run_id": run_id, "n_expected": len(expected), "n_results_rows": len(rows), "n_receipts": len(receipts), "status_counts": counts,
                "n_served": sum(c["served"] for c in cells), "n_with_lean": sum(bool(c["lean"]) for c in cells),
                "n_unserved": sum(not c["served"] for c in cells), "charges_usd_reported": charges, "harvested_utc": stamp(),
-               "results_json_ok": results_path.exists(), "cells_jsonl": str(raw / "cells.jsonl")}
+               "results_json_ok": results_path.exists(), "rows_source": rows_source, "cells_jsonl": str(raw / "cells.jsonl")}
     entry["harvest"] = summary
     save_state(state)
     print(json.dumps(summary, indent=1))
