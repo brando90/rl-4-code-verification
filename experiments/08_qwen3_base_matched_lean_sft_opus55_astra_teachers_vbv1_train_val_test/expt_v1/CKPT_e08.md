@@ -4,18 +4,18 @@
 
 **TLDR:** Resumable state of experiment 08. The master finished the zero-call design steps; the SNAP worker (tmux `rl4cv-e08-worker` on `skampere1`) has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity) and is locking PROTOCOL §§ 1–7 before the 8-call live teacher preflight. `$WORK/CKPT_rl4cv-e08-worker.md` is a symlink to this file.
 
-**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-07-2026 17:52 PDT (worker).
+**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-07-2026 17:56 PDT (worker).
 
 ## State
 
 | Item | Value |
 |---|---|
-| Current step | Runbook § 5: Astra main runs in flight; Opus `xhigh` diagnostic preflight in flight (decision pending); § 7 infrastructure smoke passed |
+| Current step | Runbook § 5: all 8 teacher main runs in flight (Astra since 17:44 PDT, Opus xhigh since ~17:58 PDT); Base 14B validation generation running; next: harvest + score as runs finish (§ 6) |
 | Master | Claude Code (Opus 5.5) on Brando's laptop; private worktree `~/vb_worktrees/rl4cv-sft-warmstart-1007` |
 | Worker | Claude Code `claude-fable-5-1`, effort `high`, on `skampere1`, tmux `rl4cv-e08-worker`, clone `/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification` (`main`) |
 | Work root | `/lfs/skampere1/0/brando9/rl4cv_e08`: `env_e08.sh` (source in every shell), `.venv` (tests), `venv_gen` (vLLM 0.30.0 / torch 2.13.0+cu130 / transformers 5.18.0), `grading/lean_src` (private Lean v4.22.0 + Mathlib copy), `pack_train539/`, `cache/huggingface` (HF_HOME; 1.7B/4B/8B linked, 14B tokenizer), `private/` (0700), `logs/` |
 | Status file | `/lfs/skampere1/0/brando9/rl4cv_e08/STATUS_e08` = RUNNING |
-| Lock 1 / lock 2 | lock 1 LOCKED 2026-10-08T00:16:15Z at code commit `6e6890f`; the lock commit itself is `cc86ec0` (10-07-2026 17:16 PDT). Lock 2 not locked |
+| Lock 1 / lock 2 | lock 1 LOCKED 2026-10-08T00:16:15Z at code commit `6e6890f`; the lock commit itself is `cc86ec0` (10-07-2026 17:16 PDT). **Amendment A1 (v1.1)** LOCKED 2026-10-08T00:55:51Z at `bc27e1c`: opus55 compute_effort xhigh. Lock 2 not locked |
 | Valkyrie runs | preflight (8 cells, admitted 10-07-2026 17:17–17:19 PDT): opus55 p1 `67be268e-2560-4c6d-ae77-eb0448560508`, p2 `a3f8317d-3e9c-4f34-9d08-6f4cc4b85ccc`; astra p1 `68b86858-6af1-404e-ae1d-61d5c49da838`, p2 `62365cc4-5ff5-4ade-803f-320343716ca9` (`expt_v1/results/runs_state.json`); **Astra main** (admitted 17:44 PDT, 539 cells each, concurrency 24): s1 `e8ead92a-2839-41bd-8631-fe6b57e67747`, s2 `20362628-b046-4781-99a8-b3c7bd763d1f`, s3 `670496fd-932f-4ae9-af20-5d90106e046e`, s4 `3e4b9292-4da7-4db0-959a-26f582e9e3b2`; **Opus xhigh diagnostic preflight** (17:43 PDT): p1 `e4294309-0639-404c-b4f0-316437e4179c`, p2 `9ede472b-0200-47e6-98ab-8384b10fd5df`; Opus main not admitted |
 | GPUs held | GPUs 1–2 (planned now): Base 14B validation generation, 2 vLLM shards (bf16 28 GB weights + KV cache each, gpu_memory_utilization 0.88, compute-bound, est. 1–3 h for 1,080 cells; then CPU scoring, 4 parallel); GPU 0 briefly for the smoke's vLLM load check, then none; smoke done (loss 2.73→2.15, export OK). Earlier plan: GPU 0 only, for the NeMo RL infrastructure smoke (tmux `rl4cv-e08-smoke-nemo`): Qwen3-1.7B-Base, 4 synthetic examples, 2 steps, est. 20–40 GB, compute bursts, < 15 min; freed when it ends. Production plan (PROTOCOL § 8 GPU layout, to be re-estimated after the dry run): 1.7B 1 GPU TP1, 4B 2 GPUs TP2, 8B 4 GPUs TP4, 14B 8 GPUs TP8 (after the others), all A100-80GB, full-parameter bf16 + fp32 AdamW, activation checkpointing |
 | Services, ports, tunnels | service `rl4cv-e08-vbv1-train` on `127.0.0.1:9740` (uvicorn pid in `$WORK/private/service.pid`), cloudflared tunnel (pid in `$WORK/private/tunnel.pid`); port claim `/lfs/skampere1/0/brando9/valkyrie_port_claims/rl4cv-e08_9740-9759.txt`; private config `$WORK/private/valkyrie.yaml` (use `VALKYRIE_CONFIG_PATH`) |
