@@ -4,20 +4,20 @@
 
 **TLDR:** Resumable state of experiment 08. The master finished the zero-call design steps; the SNAP worker (tmux `rl4cv-e08-worker` on `skampere1`) has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity) and is locking PROTOCOL §§ 1–7 before the 8-call live teacher preflight. `$WORK/CKPT_rl4cv-e08-worker.md` is a symlink to this file.
 
-**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-08-2026 02:47 PDT (worker).
+**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-08-2026 02:57 PDT (worker).
 
 ## State
 
 | Item | Value |
 |---|---|
-| Current step | Runbook § 7.6: disposable dry run on GPU 5 (tmux `rl4cv-e08-dry-run`); GPUs 0–4 taken by another user, so § 8 starts with 1.7B and 4B on GPUs 5–7 |
+| Current step | Runbook § 8: matched SFT running for 1.7B (GPU 5) and 4B (GPUs 6–7); 8B / 14B queued for free GPUs; next: export + hash checkpoints, § 9 ladder generation per checkpoint |
 | Master | Claude Code (Opus 5.5) on Brando's laptop; private worktree `~/vb_worktrees/rl4cv-sft-warmstart-1007` |
 | Worker | Claude Code `claude-fable-5-1`, effort `high`, on `skampere1`, tmux `rl4cv-e08-worker`, clone `/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification` (`main`) |
 | Work root | `/lfs/skampere1/0/brando9/rl4cv_e08`: `env_e08.sh` (source in every shell), `.venv` (tests), `venv_gen` (vLLM 0.30.0 / torch 2.13.0+cu130 / transformers 5.18.0), `grading/lean_src` (private Lean v4.22.0 + Mathlib copy), `pack_train539/`, `cache/huggingface` (HF_HOME; 1.7B/4B/8B linked, 14B tokenizer), `private/` (0700), `logs/` |
 | Status file | `/lfs/skampere1/0/brando9/rl4cv_e08/STATUS_e08` = RUNNING |
 | Lock 1 / lock 2 | lock 1 LOCKED 2026-10-08T00:16:15Z at code commit `6e6890f`; the lock commit itself is `cc86ec0` (10-07-2026 17:16 PDT). **Amendment A1 (v1.1)** LOCKED 2026-10-08T00:55:51Z at `bc27e1c`: opus55 compute_effort xhigh. **Lock 2** LOCKED 2026-10-08T09:44:45Z at code commit `d1c101a`; the lock commit itself is `9995821` (10-08-2026 02:46 PDT) |
 | Valkyrie runs | preflight (8 cells, admitted 10-07-2026 17:17–17:19 PDT): opus55 p1 `67be268e-2560-4c6d-ae77-eb0448560508`, p2 `a3f8317d-3e9c-4f34-9d08-6f4cc4b85ccc`; astra p1 `68b86858-6af1-404e-ae1d-61d5c49da838`, p2 `62365cc4-5ff5-4ade-803f-320343716ca9` (`expt_v1/results/runs_state.json`); **Astra main** (admitted 17:44 PDT, 539 cells each, concurrency 24): s1 `e8ead92a-2839-41bd-8631-fe6b57e67747`, s2 `20362628-b046-4781-99a8-b3c7bd763d1f`, s3 `670496fd-932f-4ae9-af20-5d90106e046e`, s4 `3e4b9292-4da7-4db0-959a-26f582e9e3b2`; **Opus xhigh diagnostic preflight** (17:43 PDT): p1 `e4294309-0639-404c-b4f0-316437e4179c`, p2 `9ede472b-0200-47e6-98ab-8384b10fd5df`; **Opus main (xhigh, admitted 17:57 PDT, 539 cells each, concurrency 24)**: s1 `65dfef88-acc0-4bb3-9c32-88be333fccd2`, s2 `968f1080-e811-4736-865d-b728c333736b`, s3 `f26ab151-1a11-4afe-b576-276e73c6663e`, s4 `b267e358-bb10-4d66-981f-3ec730a9c367` |
-| GPUs held | GPU 5: dry run (Qwen3-1.7B-Base, 16 examples, 8 steps, ~25 GB, minutes). Another user holds GPUs 0–4 since ~02:40 PDT (10-08-2026), so only GPUs 5–7 are usable now: production 1.7B on GPU 5 (TP1) and 4B on GPUs 6–7 (TP2) first; 8B (4 GPUs) and 14B (8 GPUs) wait for free GPUs or move to separately allocated hardware (runbook § 8) |
+| GPUs held | GPU 5 (1.7B SFT, TP1) and GPUs 6–7 (4B SFT, TP2) since 02:56 PDT 10-08-2026; GPUs 0–4 belong to another user. Queued: 8B (4 GPUs, TP4), 14B (8 GPUs, TP8) |
 | Services, ports, tunnels | service `rl4cv-e08-vbv1-train` on `127.0.0.1:9740` (uvicorn pid in `$WORK/private/service.pid`), cloudflared tunnel (pid in `$WORK/private/tunnel.pid`); port claim `/lfs/skampere1/0/brando9/valkyrie_port_claims/rl4cv-e08_9740-9759.txt`; private config `$WORK/private/valkyrie.yaml` (use `VALKYRIE_CONFIG_PATH`) |
 | Health check | `snap_health.sh --node skampere1`: only `disk.dfs` FAIL (DFS 100% full), off this job's path |
 
@@ -70,10 +70,13 @@
 
 - **10-08-2026 02:43 PDT — § 6 done, § 7 static checks PASS; GPU plan for the SFT (Rule 9, pre-approved on SNAP).** 4,312 / 4,312 cells terminal; kept 2,004; screen clean; |S| = 1,315 (5.75M assistant tokens), 658 steps, checkpoints at steps 82 / 164 / 334 / 497 / 658. Processed tokens per epoch ≈ 10.4M (prompt + assistant). Estimates (6·N·D, 100 TFLOP/s sustained per A100, ×3 for activation checkpointing and inefficiency): 1.7B on GPU 0 (TP 1): ~0.5–1 h, ~40 GB; 4B on GPUs 1–2 (TP 2): ~1–2 h, ~40 GB each; 8B on GPUs 3–6 (TP 4): ~2–4 h, ~45 GB each; 14B on GPUs 0–7 (TP 8) after the others: ~4–8 h, ~45 GB each. Compute-bound. Dry run first on GPU 0 (1.7B, 16 examples, 8 steps, minutes).
 
+- **10-08-2026 02:57 PDT — § 12.5 dry run PASS (GPU 5; `results/dry_run_e08.json`) and § 8 production launched.** Dry run: 16 examples, 8 steps, validation-mode loss on the fixed set 0.6283 → 0.5886, logged loss tokens per step equal the rendered assistant spans (76,914 total), step_8 exported (`pytorch_model.bin`) and loaded by vLLM with extraction working on a preflight task. Framework: NeMo RL (no TRL fallback needed). Production: `launch_sft_e08.sh 1.7B 5` in tmux `rl4cv-e08-sft-1_7B` (tmux folds the dot) and `launch_sft_e08.sh 4B 6,7` in `rl4cv-e08-sft-4B`; checkpoints under `$WORK/ckpt/<size>/checkpoints/step_{82,164,334,497,658}`, HF exports under `$WORK/ckpt/<size>/hf/`, driver logs `$WORK/ckpt/driver_<size>.log` and `$WORK/ckpt/<size>/driver_logs/`. Each size is a chain of 5 segments resumed from the previous checkpoint. 8B and 14B start when 4 / 8 GPUs are free (another user holds GPUs 0–4).
+
 ## Next command (worker)
 
 ```bash
-source /lfs/skampere1/0/brando9/rl4cv_e08/env_e08.sh && cd $REPO && . .venv/bin/activate
-# 1. commit + push this zero-call step; 2. set PROTOCOL lock-1 line to that commit, commit + push (record the lock commit here);
-# 3. live preflight: python $EXP/expt_v1/scripts/run_teachers_e08.py admit --phase preflight --teacher opus55 --sample p1 (and p2; astra p1, p2)
+source /lfs/skampere1/0/brando9/rl4cv_e08/env_e08.sh
+# watch: tail $WORK/ckpt/driver_1.7B.log $WORK/ckpt/driver_4B.log ; nvidia-smi
+# when GPUs free: tmux new -d -s rl4cv-e08-sft-8B "bash $EXP/expt_v1/scripts/launch_sft_e08.sh 8B <4 gpu ids>" ; same for 14B with 8 ids
+# per finished size: python extract_train_logs_e08.py --tb-dir $WORK/ckpt/<size>/logs --size <size> --out-csv $EXP/expt_v1/results/train_logs/<size>.csv --out-json ...; then run_ladder_e08.sh validation <label> $WORK/ckpt/<size>/hf/step_<k> local <gpus> [tp]
 ```

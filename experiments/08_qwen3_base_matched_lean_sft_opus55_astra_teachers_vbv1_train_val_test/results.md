@@ -4,9 +4,9 @@
 
 **TLDR:** The VeriBench V1 train / validation / test split (539 / 135 / 222 tasks, D-013) and the zero-call baselines are done. On the new validation split, Qwen3 Base's `kernel_binary` mixed-group share at G = 8 is 0.000 (1.7B), 0.022 (4B) and 0.000 (8B), all below the 0.05 gate. The SNAP worker has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity); lock 1 and the live teacher preflight are next.
 
-**Status:** RUNNING (SNAP worker on `skampere1`; teacher data and S done; locking lock 2, then the dry run and matched SFT)
+**Status:** RUNNING (SNAP worker on `skampere1`; matched SFT running for 1.7B and 4B; 8B/14B queued on GPU availability)
 
-**Last updated:** 10-08-2026 02:43 PDT (worker, S assembled)
+**Last updated:** 10-08-2026 02:57 PDT (worker, dry run PASS, SFT launched)
 
 ## Phases
 
@@ -18,8 +18,8 @@
 | Lock 1 preflight and lock | lock 1 LOCKED 2026-10-08T00:16 UTC at `6e6890f` (lock commit `cc86ec0`); live preflight (8 cells) IN PROGRESS since 10-07-2026 17:17 PDT | `expt_v1/results/pack_check.json`, `scorer_adapter_check.json`, `template_check.json`, `deployment_e08.json`, `route_identity_e08.json` |
 | Teacher runs (4,312 cells) | DONE (10-08-2026): 4,312 / 4,312 terminal; measured 3,827; kept 2,004; charges 5,111.94 USD | `expt_v1/results/runs_state.json`, `results/receipts/preflight/` |
 | Scoring, screen, SFT set S | DONE (10-08-2026): |S| = 1315 over 476 tasks, 5.75M assistant tokens | `expt_v1/results/scored_cells.jsonl`, `generated_lean_screen.json`, `sft_set_manifest.csv`, `sft_set_stats.json`, `teacher_analysis.json` |
-| Lock 2 preflight and lock | IN PROGRESS: static checks PASS; lock and dry run next | `expt_v1/results/template_check_examples.json`, `sft_schedule.json`, `sft_config_diff.md` |
-| Matched SFT, 4 sizes × 5 checkpoints | PENDING | — |
+| Lock 2 preflight and lock | DONE (10-08-2026): lock 2 at `d1c101a` (lock commit `9995821`); dry run PASS (val loss on the fixed 16 examples 0.6283 → 0.5886, loss tokens = rendered spans, export loads in vLLM); framework NeMo RL | `expt_v1/results/sft_schedule.json`, `sft_config_diff.md`, `dry_run_e08.json` |
+| Matched SFT, 4 sizes × 5 checkpoints | IN PROGRESS: 1.7B (GPU 5) and 4B (GPUs 6–7) launched 10-08-2026 02:56 PDT; 8B and 14B wait for free GPUs (another user holds GPUs 0–4) | `$WORK/ckpt/<size>/` (host), `expt_v1/results/train_logs/` (to come) |
 | Validation ladder and selection | IN PROGRESS: Base 14B DONE (passes all gates at the boundary, mixed 7 / 135); trained checkpoints pending SFT | `expt_v1/results/validation_ladder_base14b.json` |
 | Test evaluation | PENDING | — |
 
