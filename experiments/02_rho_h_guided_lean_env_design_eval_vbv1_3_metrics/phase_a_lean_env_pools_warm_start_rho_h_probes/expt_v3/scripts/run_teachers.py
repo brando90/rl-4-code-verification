@@ -294,12 +294,44 @@ def cmd_harvest(a) -> int:
     return 0
 
 
+def cmd_merge(a) -> int:
+    """Final cells for a teacher: the main run's cells, with a positively unserved main cell replaced by its one identical
+    recovery re-send (PROTOCOL § 4); every other main cell, served or not, is kept exactly as harvested."""
+    main = {c["task_id"]: c for c in (json.loads(l) for l in (RAW / "main" / a.teacher / "cells.jsonl").read_text().splitlines() if l.strip())}
+    rec_path = RAW / "recovery" / a.teacher / "cells.jsonl"
+    recovery = {c["task_id"]: c for c in (json.loads(l) for l in rec_path.read_text().splitlines() if l.strip())} if rec_path.exists() else {}
+    replaced, kept_unserved = [], []
+    out = []
+    for tid, c in main.items():
+        if not c["served"] and tid in recovery:
+            r = dict(recovery[tid])
+            r.update(recovered_from_main=True, main_unserved_evidence=c["unserved_evidence"], requests_sent_total=(c.get("requests_sent") or 0) + (r.get("requests_sent") or 0))
+            out.append(r)
+            replaced.append(tid)
+        else:
+            if not c["served"]:
+                kept_unserved.append(tid)
+            out.append(c)
+    final = RAW / "final" / a.teacher
+    final.mkdir(parents=True, exist_ok=True)
+    with (final / "cells.jsonl").open("w", encoding="utf-8") as fh:
+        for c in out:
+            fh.write(json.dumps(c, sort_keys=True) + "\n")
+    summary = {"teacher": a.teacher, "n_main": len(main), "n_recovery_cells": len(recovery), "replaced_by_recovery": replaced, "still_unserved": kept_unserved,
+               "n_served_final": sum(c["served"] for c in out), "n_with_lean_final": sum(bool(c.get("lean")) for c in out), "merged_utc": stamp()}
+    state = load_state()
+    state["runs"].setdefault(f"final/{a.teacher}", {}).update(summary)
+    save_state(state)
+    print(json.dumps({k: v for k, v in summary.items()}))
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("admit")
     p.add_argument("--teacher", choices=sorted(TEACHERS), required=True)
-    p.add_argument("--phase", choices=["preflight", "main"], required=True)
+    p.add_argument("--phase", choices=["preflight", "main", "recovery"], required=True)
     p.add_argument("--task-ids-file", type=Path)
     p.add_argument("--task-ids")
     p.add_argument("--concurrency", type=int, default=1)
@@ -309,13 +341,15 @@ def main() -> int:
     p.add_argument("--phase")
     p = sub.add_parser("harvest")
     p.add_argument("--teacher", choices=sorted(TEACHERS), required=True)
-    p.add_argument("--phase", choices=["preflight", "main"], required=True)
+    p.add_argument("--phase", choices=["preflight", "main", "recovery"], required=True)
+    p = sub.add_parser("merge")
+    p.add_argument("--teacher", choices=sorted(TEACHERS), required=True)
     p = sub.add_parser("teachers")
     a = ap.parse_args()
     if a.cmd == "teachers":
         print(json.dumps(TEACHERS, indent=1))
         return 0
-    return {"admit": cmd_admit, "status": cmd_status, "harvest": cmd_harvest}[a.cmd](a)
+    return {"admit": cmd_admit, "status": cmd_status, "harvest": cmd_harvest, "merge": cmd_merge}[a.cmd](a)
 
 
 if __name__ == "__main__":
