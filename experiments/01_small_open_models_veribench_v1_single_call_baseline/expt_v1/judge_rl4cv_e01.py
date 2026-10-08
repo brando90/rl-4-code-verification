@@ -6,6 +6,9 @@
 # and "rl4cv-e01:<label>" (one model's measured cells with IC_tests*IC_proofs>0 plus a 60-file audit).
 # Part "r23" (10-07-2026) completes PROTOCOL.md's locked "median of 3 each": repeats 2 and 3 of every
 # repeat-1 main cell, byte-identical prompts, own pack/benchmark/harvest; `fsc-median3` combines them.
+# Suite "rl4cv-e01-probe:<label>" (10-07-2026) judges the G = 8 probe's proving cells (IC_tests*IC_proofs>0;
+# 4 for qwen3.5-9b, 7 for qwen3-14b): one item per (task, sample), all 3 repeats in one pack, own
+# benchmark; `fsc-probe` aggregates them and exports FSC for rl4cv.veribench.collect's --fsc-root.
 from __future__ import annotations
 
 import argparse
@@ -96,6 +99,14 @@ def suite_spec(suite: str, part: str = "gate") -> dict:
         return {"suite": suite, "model": None, "benchmark": "veribench-rl4cv-e01-controls",
                 "pack_receipt": RESULTS / "judge_pack_controls.json", "key_prefix": "controls/",
                 "condition": "rl4cv-e01-judge-controls"}
+    if suite.startswith("rl4cv-e01-probe:"):
+        # The G = 8 probe's proving cells: one pack carries all three repeats, so there is no r23 part.
+        assert part == "gate", f"{suite}: the probe pack carries all 3 repeats in part 'gate'"
+        label = suite.split(":", 1)[1]
+        return {"suite": suite, "model": label,
+                "benchmark": f"veribench-rl4cv-e01-probe-{label}".replace(".", "-"),
+                "pack_receipt": RESULTS / f"judge_pack_probe_{label}.json", "key_prefix": f"probe-{label}/",
+                "condition": f"rl4cv-e01-judge-probe-{label}"}
     assert suite.startswith("rl4cv-e01:"), f"unknown suite: {suite}"
     label = suite.split(":", 1)[1]
     if part == "r23":
@@ -354,6 +365,229 @@ def build_repeats(label: str, repeats: tuple[int, ...] = REPEATS_R23) -> dict:
     if hash_mismatch:
         raise SystemExit(f"{label}: pack prompt hash != repeat-1 hash for {hash_mismatch[:3]}")
     return manifest
+
+
+# --------------------------------------------------------------------------------------------------
+# Probe (G = 8): list the proving cells, build one pack per model with all 3 repeats (zero model calls)
+# --------------------------------------------------------------------------------------------------
+
+PROBE_LABELS = ("qwen3.5-0.8b", "qwen3.5-2b", "qwen3.5-4b", "qwen3.5-9b", "qwen3-1.7b", "qwen3-4b",
+                "qwen3-8b", "qwen3-14b")
+PROBE_EXPECTED = {"qwen3.5-9b": 4, "qwen3-14b": 7}      # REPORT.md 17 / the runbook: 11 cells in all
+REPEATS_PROBE = (1, 2, 3)
+PROBE_CELLS = RESULTS / "probe_proving_cells.json"
+
+
+def probe_cells_from_scored(label: str, rows: list[dict]) -> list[dict]:
+    """Pure: the scored G = 8 rows with IC_tests * IC_proofs > 0, one item per (task, sample)."""
+    out = []
+    for r in rows:
+        if r.get("status") != "scored":
+            continue
+        ic_t, ic_p = float(r.get("IC_tests") or 0.0), float(r.get("IC_proofs") or 0.0)
+        if ic_t * ic_p > 0:
+            k = int(r["sample_idx"])
+            out.append({"model": label, "task_id": r["task_id"], "sample_idx": k,
+                        "item": f"{r['task_id']}__s{k}", "split": r.get("split"),
+                        "IC_tests": ic_t, "IC_proofs": ic_p, "measured": r.get("measured"),
+                        "admitted": r.get("admitted"), "truncated": r.get("truncated"),
+                        "generated_tokens": r.get("generated_tokens"), "rewards_before_judging": r.get("rewards")})
+    return sorted(out, key=lambda c: (c["task_id"], c["sample_idx"]))
+
+
+def probe_solution_path(label: str, task_id: str, sample_idx: int) -> Path:
+    return GEN_OUT / "jobs" / f"{label}_g8_s{sample_idx}" / task_id / "verifier" / "solution.lean"
+
+
+def list_probe_cells() -> dict:
+    """Find every proving probe cell over all 8 probe models and record it with its solution's SHA-256.
+
+    The verdict is PASS only when the counts are exactly the expected 4 + 7 (every other model 0) and
+    every solution file on disk hashes to what the generation receipt recorded.
+    """
+    cells, per_label = [], {}
+    for label in PROBE_LABELS:
+        path = GEN_OUT / "scored" / f"scored_{label}_g8.jsonl"
+        rows = [json.loads(l) for l in path.read_text().splitlines() if l.strip()]
+        found = probe_cells_from_scored(label, rows)
+        for c in found:
+            sol = probe_solution_path(label, c["task_id"], c["sample_idx"])
+            receipt = sol.parent.parent / "receipt.json"
+            c["solution_path"] = str(sol)
+            c["solution_sha256"] = sha(sol.read_bytes()) if sol.exists() else None
+            c["receipt_solution_sha256"] = (json.loads(receipt.read_text()).get("solution_sha256")
+                                            if receipt.exists() else None)
+        per_label[label] = {"scored_jsonl": str(path), "scored_sha256": sha(path.read_bytes()), "n_rows": len(rows),
+                            "n_ic_tests_positive": sum(1 for r in rows if (r.get("IC_tests") or 0) > 0),
+                            "n_proving": len(found), "n_expected": PROBE_EXPECTED.get(label, 0)}
+        cells += found
+    counts_ok = all(v["n_proving"] == v["n_expected"] for v in per_label.values())
+    hashes_ok = all(c["solution_sha256"] and c["solution_sha256"] == c["receipt_solution_sha256"] for c in cells)
+    out = {"written_utc": stamp(), "rule": "status == scored and IC_tests * IC_proofs > 0 on scored_<label>_g8.jsonl",
+           "expected": PROBE_EXPECTED, "n_cells": len(cells), "n_expected": sum(PROBE_EXPECTED.values()),
+           "counts_match": counts_ok, "solution_hashes_match_receipts": hashes_ok,
+           "verdict": "PASS" if counts_ok and hashes_ok else "FAIL", "per_label": per_label, "cells": cells}
+    write_json(PROBE_CELLS, out)
+    return out
+
+
+def build_probe_pack(label: str, repeats: tuple[int, ...] = REPEATS_PROBE) -> dict:
+    """One item per proving (task, sample) cell; the candidate is that sample's solution.lean, the gold
+    file and Python source come from the pack exactly as build_model_pack assembles them; the prompt is
+    rendered once per item and repeats 2-3 reuse its bytes (repeat_rows asserts the hash)."""
+    import re
+    listing = json.loads(PROBE_CELLS.read_text())
+    assert listing.get("verdict") == "PASS", f"{PROBE_CELLS}: verdict is not PASS; run list-probe-cells first"
+    wanted = [c for c in listing["cells"] if c["model"] == label]
+    assert wanted, f"{label}: no proving probe cells listed"
+    root = PRIVATE / f"probe-{label}" / "inputs"
+    items = []
+    for c in wanted:
+        task_id, k = c["task_id"], int(c["sample_idx"])
+        solution_path = probe_solution_path(label, task_id, k)
+        gold_src, instr_src = PACK / task_id / "tests" / "gold.lean", PACK / task_id / "instruction.md"
+        assert solution_path.exists() and gold_src.exists(), f"{c['item']}: missing solution or gold on disk"
+        raw = solution_path.read_bytes()
+        if sha(raw) != c["solution_sha256"]:
+            raise SystemExit(f"{c['item']}: solution.lean sha256 {sha(raw)[:12]} != listed {c['solution_sha256'][:12]}")
+        lean = raw.decode("utf-8", errors="replace")
+        instruction = instr_src.read_text(encoding="utf-8", errors="replace")
+        blocks = re.findall(r"```python\n(.*?)```", instruction, re.S)
+        python = max(blocks, key=len) if blocks else ""
+        directory = root / c["item"]
+        directory.mkdir(parents=True, exist_ok=True)
+        (directory / "solution.lean").write_text(lean, encoding="utf-8")
+        (directory / "source.py").write_text(python, encoding="utf-8")
+        gold_path = directory / "gold.lean"
+        gold_path.write_text(gold_src.read_text(encoding="utf-8", errors="replace"), encoding="utf-8")
+        n_ref = len(build_inputs.statements(gold_path.read_text(encoding="utf-8", errors="replace")))
+        # `task` stays the VeriBench task id: prompts.demo_items leaves that task out of the rated demos.
+        items.append({"item": c["item"], "task": task_id, "sample_idx": k, "split": task_id.split("__", 1)[0],
+                      "candidate_file": "solution.lean", "gold_file_name": "gold.lean",
+                      "candidate_path": relative(directory / "solution.lean"),
+                      "ref_ann_path": relative(gold_path), "py_ann_path": relative(directory / "source.py"),
+                      "ref_placeholder_at_annotation": False, "n_ref_theorems_ann": n_ref,
+                      "solution_sha256": c["solution_sha256"], "is_audit_only": False})
+    (PRIVATE / f"probe-{label}" / "items.jsonl").write_text("".join(json.dumps(r) + "\n" for r in items))
+
+    rendered_dir = PRIVATE / f"probe-{label}" / "rendered"
+    r1_rows = []
+    for row in items:
+        candidate = (root / row["item"] / "solution.lean").read_text(encoding="utf-8", errors="replace")
+        system, user = prompts.render(RUBRIC, row, candidate, row["candidate_file"])
+        digest = sha((system + "\n\n" + user).encode())
+        cell = f"{row['item']}__r1"
+        write_json(rendered_dir / f"{cell}.json", {"system": system, "user": user})
+        r1_rows.append({"cell": cell, "item": row["item"], "task": row["task"], "repeat": 1, "kind": "main",
+                        "candidate_sha256": sha(candidate.encode()), "prompt_sha256": digest})
+    later = tuple(r for r in repeats if r != 1)
+    more, rendered_new = repeat_rows(
+        r1_rows, lambda cell: json.loads((rendered_dir / f"{cell}.json").read_text()), later)
+    for cell, rendered in rendered_new.items():
+        write_json(rendered_dir / f"{cell}.json", rendered)
+    rows = sorted(r1_rows + more, key=lambda r: (r["item"], r["repeat"]))
+    receipt_path = PRIVATE / f"probe-{label}" / "cells_receipt.json"
+    write_json(receipt_path, {"cells": rows, "repeats": list(repeats), "source": str(PROBE_CELLS),
+                              "source_sha256": sha(PROBE_CELLS.read_bytes())})
+
+    pack_path = PRIVATE / "packs" / f"judge_rl4cv_e01_probe_{label}"
+    judge_pack.RENDERED = rendered_dir
+    manifest = judge_pack.build(pack_path, receipt_path, "judge", smoke_items=0)
+    manifest["round_trip"] = judge_pack.verify(pack_path, manifest)
+    by_item = {r["item"]: r["prompt_sha256"] for r in r1_rows}
+    hash_mismatch = [c["cell"] for c in manifest["cells"] if c["prompt_sha256"] != by_item[c["item"]]]
+    manifest["written_utc"] = stamp()
+    manifest["repeats"] = list(repeats)
+    manifest["n_items"] = len(items)
+    manifest["n_cells"] = len(manifest["cells"])
+    manifest["items"] = [{k: row[k] for k in ("item", "task", "sample_idx", "split", "solution_sha256")}
+                         for row in items]
+    manifest["prompt_sha256_mismatches_vs_r1"] = hash_mismatch
+    ok = (not manifest["round_trip"]["failures"] and not hash_mismatch
+          and manifest["n_cells"] == len(repeats) * len(items) and manifest["n_smoke_tasks"] == 0
+          and manifest["n_control_tasks"] == 0)
+    manifest["verdict"] = "PASS" if ok else "FAIL"
+    write_json(suite_spec(f"rl4cv-e01-probe:{label}")["pack_receipt"], manifest)
+    if hash_mismatch:
+        raise SystemExit(f"{label}: pack prompt hash != repeat-1 hash for {hash_mismatch[:3]}")
+    return manifest
+
+
+def probe_fsc_export(per_task: dict[str, dict]) -> dict[int, dict[str, float]]:
+    """Pure: {sample_idx: {task_id: FSC}} over complete items only (rl4cv.veribench.collect's --fsc-root
+    layout, one <job>_s<k>.json per sample); an incomplete item is left out, so its judged channels
+    stay null (unmeasured), never 0."""
+    out: dict[int, dict[str, float]] = {}
+    for row in per_task.values():
+        if row.get("complete"):
+            out.setdefault(int(row["sample_idx"]), {})[row["task_id"]] = row["FSC"]
+    return out
+
+
+def fsc_probe(suite: str) -> int:
+    """Aggregate a probe suite's harvests (median of 3 per member, mean of the 2, / 5) per (task, sample)
+    item, write fsc_probe_<label>.json and export GEN_OUT/fsc/<label>_g8_s<k>.json for collect."""
+    spec = suite_spec(suite)
+    label = spec["model"]
+    listing = json.loads(PROBE_CELLS.read_text())
+    meta = {c["item"]: c for c in listing["cells"] if c["model"] == label}
+    members, bases, charges, counts, runs = {}, {}, {}, {}, {}
+    for name in CONFIGS:
+        by_item: dict[str, list[int]] = {}
+        by_base: dict[str, list[float]] = {}
+        for suffix in ("", RECOVERY_SUFFIX):
+            path = RESULTS / "harvests" / f"cells_{(spec['key_prefix'] + name + suffix).replace('/', '__')}.json"
+            if not path.exists():
+                if suffix:
+                    continue                       # no recovery pass was needed for this member
+                print(f"{name}: harvest first ({path} missing)")
+                return 2
+            harvested = json.loads(path.read_text())
+            for cell in sorted(harvested["cells"], key=lambda c: c["repeat"]):
+                if cell["status"] == "measured":
+                    by_item.setdefault(cell["item"], []).append(cell["score_raw"])
+                    if cell.get("base_score") is not None:
+                        by_base.setdefault(cell["item"], []).append(float(cell["base_score"]))
+            charges[f"{name}{suffix}"] = harvested["charges_usd"]
+            counts[f"{name}{suffix}"] = harvested["status_counts"]
+            runs[f"{name}{suffix}"] = harvested.get("run_id")
+        members[name], bases[name] = by_item, by_base
+    per_task, incomplete = aggregate_median3(members, bases)
+    for item, row in per_task.items():
+        m = meta[item]
+        row.update(task_id=m["task_id"], sample_idx=m["sample_idx"], split=m["split"],
+                   IC_tests=m["IC_tests"], IC_proofs=m["IC_proofs"])
+        row["SCSC"] = ((m["IC_tests"] * m["IC_proofs"] * row["FSC"]) ** (1 / 3)) if row["complete"] else None
+    unjudged = sorted(set(meta) - set(per_task))
+    complete = [r for r in per_task.values() if r["complete"]]
+    lt3 = {c: sum(1 for r in complete if r["repeats"][c] < 3) for c in CONFIGS}
+    export = probe_fsc_export(per_task)
+    fsc_dir = GEN_OUT / "fsc"
+    fsc_dir.mkdir(parents=True, exist_ok=True)
+    exported = {}
+    for k, mapping in sorted(export.items()):
+        path = fsc_dir / f"{label}_g8_s{k}.json"
+        path.write_text(json.dumps(mapping, indent=1, sort_keys=True) + "\n")
+        exported[str(path)] = len(mapping)
+    out = {"written_utc": stamp(), "suite": suite, "model": label,
+           "judge": ("experiment 100 frozen H2 ensemble: per-member median of 3 repeats, mean of the two "
+                     "members, integer 0-5 divided by 5 (PROTOCOL.md 'median of 3 each')"),
+           "missing_repeat_rule": ("VeriBench experiment 103 scripts/judge_controller.py fsc() lines 622-635 at "
+                                   "commit c11b99ba, applied verbatim (see aggregate_median3)"),
+           "route": "Valkyrie (vb103_judge)", "runs": runs, "n_items_declared": len(meta),
+           "n_items_judged": len(per_task), "n_items_complete": len(complete), "items_unjudged": unjudged,
+           "items_with_missing_repeats": incomplete,
+           "n_complete_items_with_fewer_than_3_repeats_per_member": lt3,
+           "mean_FSC_complete_items": statistics.fmean(r["FSC"] for r in complete) if complete else None,
+           "mean_SCSC_complete_items": statistics.fmean(r["SCSC"] for r in complete) if complete else None,
+           "status_counts_per_member_and_part": counts, "charges_usd_per_member_and_part": charges,
+           "charges_usd_total": round(sum(charges.values()), 6), "fsc_root_exports": exported,
+           "per_task": per_task}
+    write_json(RESULTS.parent / f"fsc_probe_{label}.json", out)
+    print(json.dumps({k: out[k] for k in ("suite", "n_items_declared", "n_items_judged", "n_items_complete",
+                                          "mean_FSC_complete_items", "mean_SCSC_complete_items",
+                                          "charges_usd_total")}))
+    return 0
 
 
 # --------------------------------------------------------------------------------------------------
@@ -821,8 +1055,9 @@ def fsc_median3(suite: str) -> int:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("action", choices=["build-controls", "build-model", "build-repeats", "admit", "poll",
-                                       "harvest", "recover", "controls", "fsc", "fsc-median3"])
+    ap.add_argument("action", choices=["build-controls", "build-model", "build-repeats", "list-probe-cells",
+                                       "build-probe", "admit", "poll", "harvest", "recover", "controls", "fsc",
+                                       "fsc-median3", "fsc-probe"])
     ap.add_argument("--recovery", action="store_true", help="harvest: the part's recovery_1 run instead")
     ap.add_argument("--repeats", default="2,3", help="build-repeats: repeat indices to derive (default 2,3)")
     ap.add_argument("--label")
@@ -849,8 +1084,19 @@ def main() -> int:
         print(json.dumps({k: manifest[k] for k in ("verdict", "n_r1_main_cells", "n_cells", "n_smoke_tasks",
                                                     "n_served_r1_receipts_checked")}))
         return 0 if manifest["verdict"] == "PASS" else 1
+    if args.action == "list-probe-cells":
+        listing = list_probe_cells()
+        print(json.dumps({k: listing[k] for k in ("verdict", "n_cells", "n_expected", "counts_match",
+                                                   "solution_hashes_match_receipts")}))
+        return 0 if listing["verdict"] == "PASS" else 1
+    if args.action == "build-probe":
+        manifest = build_probe_pack(args.label)
+        print(json.dumps({k: manifest[k] for k in ("verdict", "n_items", "n_cells", "n_smoke_tasks")}))
+        return 0 if manifest["verdict"] == "PASS" else 1
     if args.action == "fsc-median3":
         return fsc_median3(args.suite)
+    if args.action == "fsc-probe":
+        return fsc_probe(args.suite)
     if args.action == "admit":
         return admit(configs, args.concurrency, args.part, args.suite)
     if args.action == "poll":

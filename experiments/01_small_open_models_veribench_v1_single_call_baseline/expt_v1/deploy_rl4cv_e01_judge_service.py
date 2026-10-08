@@ -9,6 +9,8 @@
 #        python3 deploy_rl4cv_e01_judge_service.py --instance <label> --status
 #        python3 deploy_rl4cv_e01_judge_service.py --instance <label> --part r23   # repeats 2-3 pack
 #        python3 deploy_rl4cv_e01_judge_service.py --instance <label> --part r23 --stop
+#        python3 deploy_rl4cv_e01_judge_service.py --instance <label> --part probe --port 9710  # G=8 proving cells
+#        python3 deploy_rl4cv_e01_judge_service.py --instance <label> --part probe --stop
 from __future__ import annotations
 
 import argparse
@@ -31,7 +33,12 @@ PORT_MAX = 9719
 CONTROLS_KEY = "rl4cv-e01-controls"
 
 
-def _port_for(key: str) -> int:
+def _port_for(key: str, explicit: int | None = None) -> int:
+    if explicit is not None:
+        # A freed port inside the claimed block, re-claimed in valkyrie_port_claims by the caller; the
+        # registry's auto-assignment is exhausted (18 entries) and its freed ports are never reused.
+        assert PORT_BASE <= explicit <= PORT_MAX, f"port {explicit} outside the claimed block {PORT_BASE}-{PORT_MAX}"
+        return explicit
     if key == CONTROLS_KEY:
         return PORT_BASE
     # one port per model label, stable order via a small local registry file
@@ -46,8 +53,8 @@ def _port_for(key: str) -> int:
     return PORT_BASE + len(lines)
 
 
-def register(instance_key: str, benchmark: str, pack: Path) -> int:
-    port = _port_for(instance_key)
+def register(instance_key: str, benchmark: str, pack: Path, port: int | None = None) -> int:
+    port = _port_for(instance_key, port)
     ss = subprocess.run(["ss", "-tlnp"], capture_output=True, text=True).stdout
     if f":{port} " in ss:
         raise SystemExit(f"port {port} is already listening; refusing to bind (re-check "
@@ -97,8 +104,11 @@ def stop(instance_key: str) -> int:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--instance", required=True, help="'controls' or a model label")
-    ap.add_argument("--part", choices=["gate", "r23"], default="gate",
-                    help="r23 serves the repeats-2-3 pack on its own instance/benchmark/port")
+    ap.add_argument("--part", choices=["gate", "r23", "probe"], default="gate",
+                    help="r23 serves the repeats-2-3 pack, probe the G=8 proving-cell pack, each on its own "
+                         "instance/benchmark/port")
+    ap.add_argument("--port", type=int, default=None,
+                    help="explicit port inside the claimed block (required for --part probe)")
     ap.add_argument("--status", action="store_true")
     ap.add_argument("--stop", action="store_true", help="stop this wrapper's own service+tunnel for the instance")
     args = ap.parse_args()
@@ -106,6 +116,9 @@ def main() -> int:
     if args.part == "r23":
         assert args.instance != "controls", "controls have no repeats (reference design: controls are __r1 only)"
         key = f"{key}-r23"
+    elif args.part == "probe":
+        assert args.instance != "controls", "controls have no probe cells"
+        key = f"rl4cv-e01-probe-{args.instance}"
     if args.stop:
         return stop(key)
     if args.status:
@@ -124,13 +137,18 @@ def main() -> int:
         label = args.instance
         pack = judge_priv / "packs" / f"judge_rl4cv_e01_{label}_r23"
         benchmark = f"veribench-rl4cv-e01-{label}-r23".replace(".", "-")
+    elif args.part == "probe":
+        assert args.port is not None, "--part probe needs an explicit --port inside the claimed block"
+        label = args.instance
+        pack = judge_priv / "packs" / f"judge_rl4cv_e01_probe_{label}"
+        benchmark = f"veribench-rl4cv-e01-probe-{label}".replace(".", "-")
     else:
         label = args.instance
         pack = judge_priv / "packs" / f"judge_rl4cv_e01_{label}"
         benchmark = f"veribench-rl4cv-e01-{label}".replace(".", "-")
     if not pack.is_dir():
         raise SystemExit(f"pack not built yet: {pack} (run judge_rl4cv_e01.py build-controls/build-model first)")
-    return register(key, benchmark, pack)
+    return register(key, benchmark, pack, args.port)
 
 
 if __name__ == "__main__":
