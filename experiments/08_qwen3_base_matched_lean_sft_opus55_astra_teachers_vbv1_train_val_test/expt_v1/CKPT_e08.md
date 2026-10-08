@@ -4,13 +4,13 @@
 
 **TLDR:** Resumable state of experiment 08. The master finished the zero-call design steps; the SNAP worker (tmux `rl4cv-e08-worker` on `skampere1`) has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity) and is locking PROTOCOL §§ 1–7 before the 8-call live teacher preflight. `$WORK/CKPT_rl4cv-e08-worker.md` is a symlink to this file.
 
-**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-07-2026 22:05 PDT (worker).
+**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-07-2026 23:48 PDT (worker).
 
 ## State
 
 | Item | Value |
 |---|---|
-| Current step | Runbook § 5: all 8 teacher main runs in flight (at 18:07 PDT: Astra ~26 and Opus ~14 finished cells per run per 20 min → Astra ≈ 7 h, Opus ≈ 12 h; poll `logs/main_poll.log` every 20 min); Base 14B validation DONE (passes gates, mixed 7/135; `results/validation_ladder_base14b.json`); next: harvest + score each run as it turns terminal (§ 6), then S, lock 2 |
+| Current step | Runbook § 6: all 8 main runs terminal and harvested; scoring Opus + Astra files; 5 recovery runs (16 cells) in flight; then screen, S, lock 2. Earlier: all 8 teacher main runs in flight (at 18:07 PDT: Astra ~26 and Opus ~14 finished cells per run per 20 min → Astra ≈ 7 h, Opus ≈ 12 h; poll `logs/main_poll.log` every 20 min); Base 14B validation DONE (passes gates, mixed 7/135; `results/validation_ladder_base14b.json`); next: harvest + score each run as it turns terminal (§ 6), then S, lock 2 |
 | Master | Claude Code (Opus 5.5) on Brando's laptop; private worktree `~/vb_worktrees/rl4cv-sft-warmstart-1007` |
 | Worker | Claude Code `claude-fable-5-1`, effort `high`, on `skampere1`, tmux `rl4cv-e08-worker`, clone `/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification` (`main`) |
 | Work root | `/lfs/skampere1/0/brando9/rl4cv_e08`: `env_e08.sh` (source in every shell), `.venv` (tests), `venv_gen` (vLLM 0.30.0 / torch 2.13.0+cu130 / transformers 5.18.0), `grading/lean_src` (private Lean v4.22.0 + Mathlib copy), `pack_train539/`, `cache/huggingface` (HF_HOME; 1.7B/4B/8B linked, 14B tokenizer), `private/` (0700), `logs/` |
@@ -63,6 +63,8 @@
   - Base 14B validation generation: `tmux rl4cv-e08-ladder-base14b`, `run_ladder_e08.sh validation base14b Qwen/Qwen3-14B-Base 0b0bd373… 1,2 1` (2 vLLM shards, 540 cells each; frozen manifest `results/ladder_manifest_base14b.json`); GPU 1 at 70 GB / 100 % four minutes after launch, GPU 2 shard staggered 180 s.
 
 - **10-07-2026 22:05 PDT — Opus main runs terminal and harvested; scoring in progress.** Per run (539 cells): measured 423–428, `model_error` 83–90 (74–79 `MaxOutputTokensExceededError` even at xhigh, 9–11 `ContentFilterError`), `unmeasured_infra` 10–12, `incomplete` 7–15, no receipt 2–5; Lean collected 424–430 with extraction consistent on all; reported charges 446–466 USD per run (≈ 1,826 USD for Opus). `score_teacher_runs.sh main opus55:s1..s4` running (`logs/harvest_score_opus55.log`). Astra at ~70 % (349–387 finished per run). Added `run_teachers_e08.py admit/harvest --recovery` (one identical re-send of positively unserved cells, PROTOCOL § 3), to be used once for every run after Astra is harvested.
+
+- **10-07-2026 23:48 PDT — all 8 main runs terminal (06:43 UTC); Astra harvested; recovery re-sends admitted.** Astra per run: measured 526–533, `unmeasured_infra` 6–13 (possibly served, never re-sent), no receipt 4 (s1 only), extraction consistent on every collected file, charges 808–834 USD per run (≈ 3,269 USD for Astra; teachers ≈ 5,100 USD so far). Recovery (one identical re-send of positively unserved cells, same `-k benchmark`, labels `…-recovery1`): astra/s1@recovery1 `d9760097-94c8-4bf8-ae72-b5645a72cdb3`, opus55/s1@recovery1 `180bf8d6-c1df-4fd1-aab2-4c03da81702b`, opus55/s2@recovery1 `98f791cc-a05a-4538-90bd-32458632c926`, opus55/s3@recovery1 `d3225f57-7027-4d2f-a62e-5101b021b2e0`, opus55/s4@recovery1 `1eaffaa4-e6ae-492c-b43b-1446a109b80e` (16 cells). Opus scoring running since 22:04 PDT, Astra scoring queued behind its harvest (`logs/harvest_score_{opus55,astra}.log`).
 
 ## Next command (worker)
 

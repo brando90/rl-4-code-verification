@@ -109,7 +109,7 @@ def cmd_admit(a) -> int:
     t = TEACHERS[a.teacher]
     state = load_state()
     key = f"{a.phase}/{a.teacher}/{a.sample}" + (f"@{a.tag}" if a.tag else "")
-    if key in state["runs"] and state["runs"][key].get("run_id") and not a.force:
+    if not a.recovery and key in state["runs"] and state["runs"][key].get("run_id") and not a.force:
         raise SystemExit(f"{key}: already admitted as {state['runs'][key]['run_id']}; refusing a second admission")
     if not (PRIVATE / "valkyrie.yaml").exists():
         raise SystemExit("private Valkyrie config missing; deploy the service first")
