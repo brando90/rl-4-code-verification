@@ -259,7 +259,8 @@ def scored_cell(cell: dict, row: dict | None, lean: str) -> dict:
 
     vac = vacuity(lean) if lean.strip() else None
     keys = ("task_id", "teacher", "r", "model", "run_id", "status", "finish_reason", "served", "measured", "truncated", "extraction", "generated_tokens",
-            "reasoning_tokens", "in_tokens", "requests_sent", "cost_usd", "prompt_sha256", "response_sha256", "lean_source")
+            "reasoning_tokens", "in_tokens", "requests_sent", "cost_usd", "prompt_sha256", "response_sha256", "lean_source", "extraction_consistent",
+            "response_text_sha256", "response_text_bytes", "response_path", "error_type", "unserved_evidence", "phase", "kwargs")
     out = {k: cell.get(k) for k in keys}
     out.update(lean_sha256=sha(lean.encode("utf-8")) if lean else None, lean_bytes=len(lean.encode("utf-8")) if lean else 0)
     if row is not None:

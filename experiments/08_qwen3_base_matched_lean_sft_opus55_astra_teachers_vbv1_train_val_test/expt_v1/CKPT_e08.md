@@ -4,20 +4,20 @@
 
 **TLDR:** Resumable state of experiment 08. The master finished the zero-call design steps; the SNAP worker (tmux `rl4cv-e08-worker` on `skampere1`) has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity) and is locking PROTOCOL §§ 1–7 before the 8-call live teacher preflight. `$WORK/CKPT_rl4cv-e08-worker.md` is a symlink to this file.
 
-**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-07-2026 17:31 PDT (worker).
+**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-07-2026 17:45 PDT (worker).
 
 ## State
 
 | Item | Value |
 |---|---|
-| Current step | Runbook § 4.5: live preflight running (4 runs, 8 cells); NeMo RL 0.4.0 env built at `c751f811`; Qwen3-14B-Base download in progress |
+| Current step | Runbook § 5: Astra main runs in flight; Opus `xhigh` diagnostic preflight in flight (decision pending); § 7 infrastructure smoke passed |
 | Master | Claude Code (Opus 5.5) on Brando's laptop; private worktree `~/vb_worktrees/rl4cv-sft-warmstart-1007` |
 | Worker | Claude Code `claude-fable-5-1`, effort `high`, on `skampere1`, tmux `rl4cv-e08-worker`, clone `/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification` (`main`) |
 | Work root | `/lfs/skampere1/0/brando9/rl4cv_e08`: `env_e08.sh` (source in every shell), `.venv` (tests), `venv_gen` (vLLM 0.30.0 / torch 2.13.0+cu130 / transformers 5.18.0), `grading/lean_src` (private Lean v4.22.0 + Mathlib copy), `pack_train539/`, `cache/huggingface` (HF_HOME; 1.7B/4B/8B linked, 14B tokenizer), `private/` (0700), `logs/` |
 | Status file | `/lfs/skampere1/0/brando9/rl4cv_e08/STATUS_e08` = RUNNING |
 | Lock 1 / lock 2 | lock 1 LOCKED 2026-10-08T00:16:15Z at code commit `6e6890f`; the lock commit itself is `cc86ec0` (10-07-2026 17:16 PDT). Lock 2 not locked |
-| Valkyrie runs | preflight (8 cells, admitted 10-07-2026 17:17–17:19 PDT): opus55 p1 `67be268e-2560-4c6d-ae77-eb0448560508`, p2 `a3f8317d-3e9c-4f34-9d08-6f4cc4b85ccc`; astra p1 `68b86858-6af1-404e-ae1d-61d5c49da838`, p2 `62365cc4-5ff5-4ade-803f-320343716ca9` (`expt_v1/results/runs_state.json`); main runs not admitted |
-| GPUs held | GPU 0 only, for the NeMo RL infrastructure smoke (tmux `rl4cv-e08-smoke-nemo`): Qwen3-1.7B-Base, 4 synthetic examples, 2 steps, est. 20–40 GB, compute bursts, < 15 min; freed when it ends. Production plan (PROTOCOL § 8 GPU layout, to be re-estimated after the dry run): 1.7B 1 GPU TP1, 4B 2 GPUs TP2, 8B 4 GPUs TP4, 14B 8 GPUs TP8 (after the others), all A100-80GB, full-parameter bf16 + fp32 AdamW, activation checkpointing |
+| Valkyrie runs | preflight (8 cells, admitted 10-07-2026 17:17–17:19 PDT): opus55 p1 `67be268e-2560-4c6d-ae77-eb0448560508`, p2 `a3f8317d-3e9c-4f34-9d08-6f4cc4b85ccc`; astra p1 `68b86858-6af1-404e-ae1d-61d5c49da838`, p2 `62365cc4-5ff5-4ade-803f-320343716ca9` (`expt_v1/results/runs_state.json`); **Astra main** (admitted 17:44 PDT, 539 cells each, concurrency 24): s1 `e8ead92a-2839-41bd-8631-fe6b57e67747`, s2 `20362628-b046-4781-99a8-b3c7bd763d1f`, s3 `670496fd-932f-4ae9-af20-5d90106e046e`, s4 `3e4b9292-4da7-4db0-959a-26f582e9e3b2`; **Opus xhigh diagnostic preflight** (17:43 PDT): p1 `e4294309-0639-404c-b4f0-316437e4179c`, p2 `9ede472b-0200-47e6-98ab-8384b10fd5df`; Opus main not admitted |
+| GPUs held | GPU 0 briefly for the smoke's vLLM load check, then none; smoke done (loss 2.73→2.15, export OK). Earlier plan: GPU 0 only, for the NeMo RL infrastructure smoke (tmux `rl4cv-e08-smoke-nemo`): Qwen3-1.7B-Base, 4 synthetic examples, 2 steps, est. 20–40 GB, compute bursts, < 15 min; freed when it ends. Production plan (PROTOCOL § 8 GPU layout, to be re-estimated after the dry run): 1.7B 1 GPU TP1, 4B 2 GPUs TP2, 8B 4 GPUs TP4, 14B 8 GPUs TP8 (after the others), all A100-80GB, full-parameter bf16 + fp32 AdamW, activation checkpointing |
 | Services, ports, tunnels | service `rl4cv-e08-vbv1-train` on `127.0.0.1:9740` (uvicorn pid in `$WORK/private/service.pid`), cloudflared tunnel (pid in `$WORK/private/tunnel.pid`); port claim `/lfs/skampere1/0/brando9/valkyrie_port_claims/rl4cv-e08_9740-9759.txt`; private config `$WORK/private/valkyrie.yaml` (use `VALKYRIE_CONFIG_PATH`) |
 | Health check | `snap_health.sh --node skampere1`: only `disk.dfs` FAIL (DFS 100% full), off this job's path |
 
@@ -50,6 +50,11 @@
   - § 3: `scripts/score_teacher_files.py adapter-check` → `results/scorer_adapter_check.json` PASS (14 files). First run exposed that 403/896 gold references use `native_decide` (2 of the first 3 train gold files score IC_proofs 0.5); gold selection now skips such references and scores two as diagnostics; `sorry` is classed `unproved_theorem`, `forbidden_axiom` is reserved for declared axioms / `native_decide`.
   - § 4.1: `scripts/deploy_service_e08.py deploy` → service + tunnel live (200/401 local and tunnel, limit 6,600 s), `results/deployment_e08.json`.
   - § 4.2–4.3: `scripts/identity_e08.py` with the 10-07 registry dump (read-only from the 02A v3 worker's private copy, SHA-256 `572c742f…`, 454 models; no key on this host) → `results/route_identity_e08.json` PASS: `anthropic/claude-opus-5-5-no-fallback` (fallbacks `[]`, compute_effort max), `openai/gpt-6-astra-max` (highest served); installed bundle = frozen hashes; retry bound 2 requests/cell; 0 prior runs. Decision (Rule 57): reuse that same-day dump instead of fetching the gateway key on this host.
+
+- **10-07-2026 17:43 PDT — live preflight harvested; Opus 5.5 at max effort cannot complete (decision under Rule 57).**
+  - Astra (`openai/gpt-6-astra-max`): 4 / 4 cells measured, finish `stop`, 2.3–3.8k output tokens with 17–33k reasoning tokens, 8–16 min each, charges 2.94 + 2.83 USD; Lean files collected by the service (`valk run results` returns "tracker returned a malformed response", as in 02A v3; the run-output benchmark JSON carries the rows and the harvest now reads it).
+  - Opus 5.5 (`anthropic/claude-opus-5-5-no-fallback`, `compute_effort max`): 4 / 4 cells `model_error` / `MaxOutputTokensExceededError` after ~18 min, no usage or charge recorded. Zero-call evidence: the gateway caps this model's `max_tokens` at 128,000 (registry `properties`); experiment 103's Opus 5 max used a median 76,840 reasoning tokens (117 / 895 cells exceeded, the two preflight tasks did not); 02A v3's Fable 5.1 max preflight failed the same way. So the locked setting cannot yield files on most tasks and 2,156 main calls at max would be wasted.
+  - Decision: do not admit Opus main runs at max. Run a tagged diagnostic preflight at `compute_effort xhigh` (same two train tasks, same labels + `-xhigh`, recorded in `runs_state.json` under `@xhigh`, excluded from S). If it completes and scores end to end, amend PROTOCOL § 3 for `opus55` to `xhigh` as a versioned lock-1 amendment (v1.1) before any Opus main call; if not, step to `high` once more, else report the Opus teacher as BLOCKED and continue with Astra only. Astra main runs are admitted under the unchanged lock once its preflight scores end to end. Flagged for Brando / the master in `results.md`.
 
 ## Next command (worker)
 

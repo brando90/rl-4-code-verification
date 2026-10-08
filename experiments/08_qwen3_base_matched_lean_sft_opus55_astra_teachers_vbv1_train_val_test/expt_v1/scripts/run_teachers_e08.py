@@ -106,19 +106,25 @@ def cmd_admit(a) -> int:
         raise SystemExit(f"sample {a.sample} is not one of {SAMPLES[a.phase]} for phase {a.phase}")
     t = TEACHERS[a.teacher]
     state = load_state()
-    key = f"{a.phase}/{a.teacher}/{a.sample}"
+    key = f"{a.phase}/{a.teacher}/{a.sample}" + (f"@{a.tag}" if a.tag else "")
     if key in state["runs"] and state["runs"][key].get("run_id") and not a.force:
         raise SystemExit(f"{key}: already admitted as {state['runs'][key]['run_id']}; refusing a second admission")
     if not (PRIVATE / "valkyrie.yaml").exists():
         raise SystemExit("private Valkyrie config missing; deploy the service first")
     label, kbench = labels(a.phase, a.teacher, a.sample)
+    if a.tag:
+        label, kbench = f"{label}-{a.tag}", f"{kbench}-{a.tag}"
     ids_path = ids_file(a.phase)
     n_tasks = len(read_ids(ids_path))
+    kwargs = {**t["kwargs"], "benchmark": kbench}
+    for kv in a.kwarg or []:
+        k, v = kv.split("=", 1)
+        kwargs[k] = v
     cmd = ["run", "start", "--agent", AGENT, "--benchmark", BENCHMARK, "--dataset", "default", "--model", t["selector"], "--task-ids-file", str(ids_path),
            "--concurrency", str(a.concurrency), "--label", label]
-    for k, v in {**t["kwargs"], "benchmark": kbench}.items():
+    for k, v in kwargs.items():
         cmd += ["-k", k, v]
-    entry = {"phase": a.phase, "teacher": a.teacher, "sample": a.sample, "selector": t["selector"], "kwargs": {**t["kwargs"], "benchmark": kbench}, "label": label,
+    entry = {"phase": a.phase, "teacher": a.teacher, "sample": a.sample, "selector": t["selector"], "kwargs": kwargs, "label": label,
              "concurrency": a.concurrency, "expected_cells": n_tasks, "task_ids_file": str(ids_path), "task_ids_sha256": sha(ids_path.read_bytes()),
              "command": ["valk", *cmd], "admitted_utc": stamp(), "status": "admitting"}
     state["runs"][key] = entry
@@ -188,33 +194,43 @@ def _receipts(artifacts: Path) -> dict[str, tuple[dict, Path]]:
             continue
         tid = receipt.get("task_id") or path.parent.name
         found[tid] = (receipt, path.parent)
-    for tb in sorted(artifacts.rglob("*.tar.gz")):   # some runs deliver the final_output directory as a tarball per task
+    for tb in sorted(artifacts.rglob("*.tar.gz")):   # the agent's final_output directory arrives as a tarball per task (receipt.json + response.txt)
         try:
             with tarfile.open(tb) as tf:
                 members = {m.name.rsplit("/", 1)[-1]: m for m in tf.getmembers() if m.isfile()}
-                if "receipt.json" in members:
-                    receipt = json.loads(tf.extractfile(members["receipt.json"]).read())
-                    tid = receipt.get("task_id") or tb.parent.name
-                    if tid not in found:
-                        dest = tb.parent / "extracted"
-                        dest.mkdir(exist_ok=True)
-                        for name in ("receipt.json", "response.txt"):
-                            if name in members:
-                                (dest / name).write_bytes(tf.extractfile(members[name]).read())
-                        found[tid] = (receipt, dest)
+                if "receipt.json" not in members:
+                    continue
+                receipt = json.loads(tf.extractfile(members["receipt.json"]).read())
+                tid = receipt.get("task_id") or tb.parent.name
+                dest = tb.parent / "extracted"
+                dest.mkdir(exist_ok=True)
+                for name in ("receipt.json", "response.txt"):
+                    if name in members:
+                        (dest / name).write_bytes(tf.extractfile(members[name]).read())
+                prev = found.get(tid)
+                found[tid] = (prev[0] if prev else receipt, dest)   # the top-level receipt (if any) wins; the response comes from the tarball
         except (tarfile.TarError, json.JSONDecodeError):
             continue
     return found
+
+
+def _service_results(results_path: Path, artifacts: Path) -> dict[str, dict]:
+    """Per-task service rows: `valk run results` when it works, else the benchmark record `valk run output` delivers (same schema)."""
+    if results_path.exists():
+        return _rows_of(results_path)
+    cands = sorted(artifacts.glob(f"{BENCHMARK}*.json")) if artifacts.exists() else []
+    return _rows_of(cands[0]) if cands else {}
 
 
 def cmd_harvest(a) -> int:
     from rl4cv.veribench.exp103 import extract_lean
 
     state = load_state()
-    key = f"{a.phase}/{a.teacher}/{a.sample}"
+    key = f"{a.phase}/{a.teacher}/{a.sample}" + (f"@{a.tag}" if a.tag else "")
     entry = state["runs"][key]
     run_id = entry["run_id"]
-    raw = RAW / a.teacher / a.sample if a.phase == "main" else RAW / "preflight" / a.teacher / a.sample
+    sample_dir = a.sample + (f"_{a.tag}" if a.tag else "")
+    raw = RAW / a.teacher / sample_dir if a.phase == "main" else RAW / "preflight" / a.teacher / sample_dir
     raw.mkdir(parents=True, exist_ok=True)
     results_path, artifacts = raw / "results.json", raw / "artifacts"
     if results_path.exists():
@@ -225,7 +241,7 @@ def cmd_harvest(a) -> int:
         done = valk(*cmd, timeout=3600)
         log.append(f"{stamp()} valk {' '.join(cmd[:2])} rc={done.returncode}\n{done.stdout[-1500:]}\n{done.stderr[-1500:]}\n")
     (raw / "harvest.log").write_text("".join(log))
-    rows = _rows_of(results_path) if results_path.exists() else {}
+    rows = _service_results(results_path, artifacts)
     receipts = _receipts(artifacts) if artifacts.exists() else {}
     expected = read_ids(Path(entry["task_ids_file"]))
     pack_check = read_json(EXP / "results" / "pack_check.json")
@@ -284,7 +300,8 @@ def cmd_harvest(a) -> int:
                 "lean_source": lean_source, "lean_sha256": sha(lean.encode("utf-8")) if lean else None, "lean_bytes": len(lean.encode("utf-8")) if lean else 0,
                 "response_sha256": receipt.get("response_sha256"), "response_text_sha256": sha(response_text.encode("utf-8")) if response_text is not None else None,
                 "response_text_bytes": len(response_text.encode("utf-8")) if response_text is not None else None, "response_path": str(rdir / "response.txt") if response_text is not None else None,
-                "extraction_consistent": consistent, "fallback": receipt.get("fallback"), "wall_seconds": receipt.get("wall_seconds"), "lean": lean}
+                "extraction_consistent": consistent, "fallback": receipt.get("fallback"), "wall_seconds": receipt.get("wall_seconds"), "error_type": receipt.get("error_type"),
+                "kwargs": entry.get("kwargs"), "lean": lean}
         cells.append(cell)
         receipts_out.append({"run_id": run_id, "phase": a.phase, "teacher": a.teacher, "r": a.sample, "served": served, "unserved_evidence": unserved_evidence,
                              "lean_source": lean_source, "lean_sha256": cell["lean_sha256"], "response_text_sha256": cell["response_text_sha256"],
@@ -296,7 +313,7 @@ def cmd_harvest(a) -> int:
             fh.write(json.dumps(c, sort_keys=True) + "\n")
     rdir_out = EXP / "results" / "receipts" / a.phase
     rdir_out.mkdir(parents=True, exist_ok=True)
-    with (rdir_out / f"{a.teacher}_{a.sample}.jsonl").open("w", encoding="utf-8") as fh:
+    with (rdir_out / f"{a.teacher}_{sample_dir}.jsonl").open("w", encoding="utf-8") as fh:
         for r in receipts_out:
             fh.write(json.dumps(r, sort_keys=True) + "\n")
     charges = round(sum(c["cost_usd"] or 0.0 for c in cells), 4)
@@ -315,8 +332,9 @@ def cmd_preflight_check(a) -> int:
     out = {"written_utc": stamp(), "teachers": {}, "verdict": "PASS"}
     for teacher in TEACHERS:
         per = {}
+        tags = dict(kv.split("=", 1) for kv in a.tags.split(",") if kv)
         for sample in SAMPLES["preflight"]:
-            p = RAW / "preflight" / teacher / sample / "cells.jsonl"
+            p = RAW / "preflight" / teacher / (sample + (f"_{tags[teacher]}" if teacher in tags else "")) / "cells.jsonl"
             if not p.exists():
                 out["teachers"][teacher] = {"missing": str(p)}
                 out["verdict"] = "FAIL"
@@ -349,13 +367,17 @@ def main() -> int:
     p.add_argument("--sample", required=True, help="p1/p2 for preflight, s1..s4 for main")
     p.add_argument("--concurrency", type=int, default=8)
     p.add_argument("--force", action="store_true")
+    p.add_argument("--tag", default=None, help="suffix for a tagged (amendment) run, e.g. xhigh")
+    p.add_argument("--kwarg", action="append", help="override an agent kwarg, e.g. compute_effort=xhigh (recorded in runs_state)")
     p = sub.add_parser("status")
     p.add_argument("--phase")
     p = sub.add_parser("harvest")
     p.add_argument("--teacher", choices=sorted(TEACHERS), required=True)
     p.add_argument("--phase", choices=["preflight", "main"], required=True)
     p.add_argument("--sample", required=True)
+    p.add_argument("--tag", default=None)
     p = sub.add_parser("preflight-check")
+    p.add_argument("--tags", default="", help="comma list teacher=tag to read tagged preflight dirs, e.g. opus55=xhigh")
     p.add_argument("--out", type=Path, default=EXP / "results" / "preflight_e08.json")
     sub.add_parser("teachers")
     a = ap.parse_args()
