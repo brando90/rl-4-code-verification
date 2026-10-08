@@ -36,6 +36,23 @@
    ],
    "concurrency": 1,
    "expected_cells": 1,
+   "harvest": {
+    "cells_jsonl": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/raw/preflight/anthropic/cells.jsonl",
+    "charges_usd_reported": 0.0,
+    "harvested_utc": "2026-10-08T00:04:11+00:00",
+    "n_expected": 1,
+    "n_receipts": 1,
+    "n_results_rows": 0,
+    "n_served": 1,
+    "n_unserved": 0,
+    "n_with_lean": 0,
+    "results_json_ok": false,
+    "rows_source": "run record from valk run output",
+    "run_id": "34a00ede-f3ed-424d-9e42-66d23333ba26",
+    "status_counts": {
+     "model_error": 1
+    }
+   },
    "kwargs": {
     "addendum": "vbv1",
     "benchmark": "rl4cv-e02a-v3-mbpp",
@@ -43,11 +60,11 @@
     "max_tokens": "128000"
    },
    "phase": "preflight",
-   "polled_utc": "2026-10-07T23:37:08+00:00",
+   "polled_utc": "2026-10-08T00:00:57+00:00",
    "run_id": "34a00ede-f3ed-424d-9e42-66d23333ba26",
-   "run_status": "in_progress",
+   "run_status": "error",
    "selector": "anthropic/claude-fable-5-1-no-fallback",
-   "status": "running",
+   "status": "terminal",
    "status_raw_keys": [
     "finished_at",
     "finished_tasks",
@@ -61,10 +78,10 @@
    "task_ids_file": null,
    "task_state_counts": {
     "BUILDING": 0,
-    "ERROR": 0,
+    "ERROR": 1,
     "EVALUATING": 0,
     "FINISHED": 0,
-    "IN_PROGRESS": 1,
+    "IN_PROGRESS": 0,
     "PENDING": 0,
     "STOPPED": 0
    },
@@ -108,6 +125,23 @@
    ],
    "concurrency": 1,
    "expected_cells": 1,
+   "harvest": {
+    "cells_jsonl": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/raw/preflight/google/cells.jsonl",
+    "charges_usd_reported": 0.8946,
+    "harvested_utc": "2026-10-08T00:05:02+00:00",
+    "n_expected": 1,
+    "n_receipts": 1,
+    "n_results_rows": 1,
+    "n_served": 1,
+    "n_unserved": 0,
+    "n_with_lean": 1,
+    "results_json_ok": false,
+    "rows_source": "run record from valk run output",
+    "run_id": "adad43cb-5f01-47bf-bc72-c498f63d9c4d",
+    "status_counts": {
+     "measured": 1
+    }
+   },
    "kwargs": {
     "addendum": "vbv1",
     "benchmark": "rl4cv-e02a-v3-mbpp",
@@ -116,11 +150,11 @@
     "temperature": "1.0"
    },
    "phase": "preflight",
-   "polled_utc": "2026-10-07T23:37:14+00:00",
+   "polled_utc": "2026-10-08T00:01:03+00:00",
    "run_id": "adad43cb-5f01-47bf-bc72-c498f63d9c4d",
-   "run_status": "in_progress",
+   "run_status": "finished",
    "selector": "google/gemini-4-argon",
-   "status": "running",
+   "status": "terminal",
    "status_raw_keys": [
     "finished_at",
     "finished_tasks",
@@ -136,9 +170,9 @@
     "BUILDING": 0,
     "ERROR": 0,
     "EVALUATING": 0,
-    "FINISHED": 0,
+    "FINISHED": 1,
     "IN_PROGRESS": 0,
-    "PENDING": 1,
+    "PENDING": 0,
     "STOPPED": 0
    },
    "teacher": "google"
@@ -178,6 +212,23 @@
    ],
    "concurrency": 1,
    "expected_cells": 1,
+   "harvest": {
+    "cells_jsonl": "/lfs/skampere1/0/brando9/rl4cv_e02a_v3/raw/preflight/openai/cells.jsonl",
+    "charges_usd_reported": 2.4048,
+    "harvested_utc": "2026-10-08T00:04:36+00:00",
+    "n_expected": 1,
+    "n_receipts": 1,
+    "n_results_rows": 1,
+    "n_served": 1,
+    "n_unserved": 0,
+    "n_with_lean": 1,
+    "results_json_ok": false,
+    "rows_source": "run record from valk run output",
+    "run_id": "a92c284c-6916-4ccf-8604-d794f21ff759",
+    "status_counts": {
+     "measured": 1
+    }
+   },
    "kwargs": {
     "addendum": "vbv1",
     "benchmark": "rl4cv-e02a-v3-mbpp",
@@ -185,11 +236,11 @@
     "reasoning_effort": "max"
    },
    "phase": "preflight",
-   "polled_utc": "2026-10-07T23:37:21+00:00",
+   "polled_utc": "2026-10-08T00:01:09+00:00",
    "run_id": "a92c284c-6916-4ccf-8604-d794f21ff759",
-   "run_status": "in_progress",
+   "run_status": "finished",
    "selector": "openai/gpt-6-astra-max",
-   "status": "running",
+   "status": "terminal",
    "status_raw_keys": [
     "finished_at",
     "finished_tasks",
@@ -205,13 +256,13 @@
     "BUILDING": 0,
     "ERROR": 0,
     "EVALUATING": 0,
-    "FINISHED": 0,
+    "FINISHED": 1,
     "IN_PROGRESS": 0,
-    "PENDING": 1,
+    "PENDING": 0,
     "STOPPED": 0
    },
    "teacher": "openai"
   }
  },
- "updated_utc": "2026-10-07T23:37:21+00:00"
+ "updated_utc": "2026-10-08T00:05:02+00:00"
 }
