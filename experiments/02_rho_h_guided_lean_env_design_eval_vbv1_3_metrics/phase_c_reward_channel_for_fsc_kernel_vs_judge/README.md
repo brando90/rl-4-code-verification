@@ -6,6 +6,10 @@
 
 **TLDR:** On the same prompts and scales, this compares RL with a kernel-only reward against rewards that include compile-gated FSC. It tests whether ρ and H, measured before RL under each reward, predict which reward most improves VeriBench SCSC and FSC. That answers Azalea's question of whether VeriBench's metrics guide reward design, and whether the law survives LLM-judged rewards.
 
+## Flagged: README/code mismatch on the judge gate (10-09-2026, unresolved)
+
+The method section below says "the judge runs asynchronously, only on responses with `IC_tests · IC_proofs > 0`" — both mechanical factors positive. But `src/rl4cv/rewards.py`'s `fsc_compiled`/`needs_judge` (this phase's own named channel) gates on `ic_tests == 1.0 and vacuous_theorems == 0` only; it does not require `IC_proofs > 0` (that stricter gate is actually `scsc`'s, not `fsc_compiled`'s). This phase has no `PROTOCOL.md` yet and is still "TODO, after experiment 02A," so no locked protocol settles which gate is intended. Whoever locks this phase's protocol should pick one side and update the other before any training run reads `needs_judge`. See `notes/veribench_crosscheck_10-09-2026.md` for the full comparison.
+
 ## Goal, hypothesis and decision criterion
 
 - **Motivation.** FSC is where frontier headroom remains ([FACTS §2](../../../docs/FACTS_veribench_baselines.md#2-frontier-systems-two-factors-are-nearly-saturated-fsc-carries-the-remaining-signal)). But a judged reward is noisier and more exploitable than the kernel.
@@ -13,6 +17,10 @@
 - **Decision.**
   - If L4 holds, judge-gated environments can be selected before RL, which is the key step for non-verifiable domains (Nolera, and the Certification Judge thesis topic).
   - If it fails, report which part of the measurement breaks: judge noise in ρ, or concentration in H.
+
+## Flag for the owner (10-09-2026, unresolved — pick a side only once this phase's own protocol settles it)
+
+This README's "Method" step 3 (below) says the judge runs only when **both** mechanical factors are positive (`IC_tests · IC_proofs > 0`). That is actually the gate for the separate `scsc` channel. The `fsc_compiled` channel this phase is named for has a different, already-coded gate in `src/rl4cv/rewards.py`'s `needs_judge` (lines ~86-96): it fires whenever `ic_tests == 1.0 and vacuous_theorems == 0`, regardless of `ic_proofs`. No PROTOCOL.md exists yet for phase C (only phase A and phase B have one; this phase's status is still "designed"/TODO), so nothing locks which gate `fsc_compiled` should actually use — @lethan3, please settle this when phase C's protocol is written, and update whichever side (README prose or `needs_judge`) is wrong. Full crosscheck: [`../../../../notes/veribench_crosscheck_10-09-2026.md`](../../../../notes/veribench_crosscheck_10-09-2026.md) in this rl4cv worktree branch.
 
 ## Method
 

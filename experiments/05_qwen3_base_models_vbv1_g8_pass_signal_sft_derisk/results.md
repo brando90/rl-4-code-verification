@@ -6,7 +6,11 @@
 
 **Status:** DONE (10-05-2026 23:56)
 
-**Last updated:** 10-06-2026 00:00
+**Last updated:** 10-09-2026 (count correction, see note below)
+
+**Correction (10-09-2026):** two counts below were wrong; the verdicts and every other number are unaffected.
+- The execution-diagnostics table's Qwen3-1.7B-Base "Compiling (`IC_tests=1`)" cell said 34 of 7,168. The receipts (`IC_tests` mean 0.00028 × 7,168 ≈ 2) show only **2 of 7,168** cells satisfy `IC_tests = 1`; corrected below.
+- The "Representative completions" section said "the one genuine `kernel_binary = 1` pass across all 21,504 cells." The headline table's own Qwen3-4B-Base pass@8 share (0.006 ≈ 5/896 tasks) and the Core/IndustrySet histograms (1 task at k=1 in Core, 4 at k=1 in IndustrySet) show **5 passes for Qwen3-4B-Base alone**, not 1 across the whole run; corrected below. Cross-checked against the independent recount in VeriBench `experiments/ideas/rl4cv_factored_scsc_results_implications_for_vb/AUDIT.md` (`e05_qwen3-1.7b-base.ic_tests_samples = 2`, `e05_qwen3-4b-base.binary_pass_samples = 5`).
 
 ## Phases
 
@@ -71,7 +75,7 @@ All three models' full-896 `kernel_binary` histograms are the degenerate case k=
 
 | Model | Scored | Cut off at 12,288 tokens | No Lean block extracted | Compiling (`IC_tests=1`) | Mean generated tokens | IC_tests mean | IC_proofs mean | SCSC |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
-| Qwen3-1.7B-Base | 7,168/7,168 | 4,411 (61.5%) | 3,154 (44.0%) | 34 (0.47%) | 8,026 | 0.00028 | 0.00016 | exact 0.0 on every cell |
+| Qwen3-1.7B-Base | 7,168/7,168 | 4,411 (61.5%) | 3,154 (44.0%) | 2 (0.028%) | 8,026 | 0.00028 | 0.00016 | exact 0.0 on every cell |
 | Qwen3-4B-Base | 7,168/7,168 | 704 (9.8%) | 1,029 (14.4%) | 10 (0.14%) | 2,219 | 0.00140 | 0.00070 | unmeasured on 5 cells (listed below), exact 0.0 elsewhere |
 | Qwen3-8B-Base | 7,168/7,168 | 1,099 (15.3%) | 1,160 (16.2%) | 0 (0%) | 2,819 | 0.0 | 0.0 | exact 0.0 on every cell |
 
@@ -108,7 +112,7 @@ No significant difference between Base and post-trained checkpoints on this 128-
 
 Two or three samples showing what the Base checkpoints actually write (first 15 lines; full rows in the raw generation files on the host, not committed per the data-layout policy):
 
-**1. The one genuine `kernel_binary = 1` pass across all 21,504 cells** — Qwen3-4B-Base, `compilers_set_synthetic__my_boolean_double_neg`, sample 2 (`finish_reason: stop`):
+**1. One of Qwen3-4B-Base's 5 genuine `kernel_binary = 1` passes (corrected 10-09-2026; see note above)** — `compilers_set_synthetic__my_boolean_double_neg`, sample 2 (`finish_reason: stop`):
 ```lean
 import Mathlib
 
