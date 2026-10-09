@@ -42,6 +42,8 @@ The statement "an open model of ≤14B starts at about 0 on VeriBench" was an ex
 
 Single calls on VBV1, all 896 tasks, validated judge (experiment 103):
 
+**Aggregation note (10-09-2026, experiment 12 Amendment A1).** The SCSC column below is experiment 103's own convention: the arithmetic mean of per-cell SCSC over measured cells. The VeriBench paper and frozen scorer report S̃ = (mean IC_tests · mean IC_proofs · mean FSC)^(1/3), which is higher. On the same measured cells S̃ is 0.648 for `claude-opus-5-max` and 0.642 for `gpt-6-astra-high`. Never compare these SCSC values with the paper's S̃ ([experiment 12 preflight](../experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/results/aggregation_preflight.json)).
+
 | Model | IC_tests | IC_proofs | FSC | SCSC | measured n |
 |---|---:|---:|---:|---:|---:|
 | `claude-opus-5-max` | 0.608 | 0.607 | 0.737 | 0.605 | 681 |

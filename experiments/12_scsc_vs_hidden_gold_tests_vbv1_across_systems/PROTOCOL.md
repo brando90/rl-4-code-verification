@@ -50,7 +50,7 @@
   - A non-compiling candidate has `hidden_all_pass = 0` and `hidden_pass_rate = 0` (its code does not run).
   - A compiling candidate that is not applicable is **missing** for hidden outcomes: never zero, always listed, and covered by bounds (all missing fail / all missing pass).
   - `no_tests` tasks are excluded for every system alike.
-- **SCSC per cell:** (IC_tests · IC_proofs · FSC)^(1/3) from the recorded factors. It is exactly 0 when IC_tests · IC_proofs = 0. Where a needed FSC is unmeasured, it is missing, never zero. **System SCSC:** the published aggregate (mean IC_tests · mean IC_proofs · mean FSC)^(1/3) over that system's 896 cells, recomputed from the inputs and checked against the published value.
+- **SCSC per cell:** (IC_tests · IC_proofs · FSC)^(1/3) from the recorded factors. It is exactly 0 when IC_tests · IC_proofs = 0. Where a needed FSC is unmeasured, it is missing, never zero. **System SCSC:** S̃ = (mean IC_tests · mean IC_proofs · mean FSC)^(1/3) over the system's common measured cells (Amendment A1.1; the published-value check is A1.2).
 
 ## 5. Analyses (seed 20261009; task-cluster bootstrap, 10,000 draws; p-val=n/a unless stated)
 
@@ -73,9 +73,23 @@
 ## 6. Validity checks and stop rules
 
 - Every factor row joins to exactly one file, or is `file_missing` and listed. Stop if more than 5% of the primary-panel cells are `file_missing`.
-- Recomputed system SCSC must match the published value to 3 decimals, else stop and report the aggregation difference.
+- Each source's published aggregate must be reproduced under that source's own convention to 3 decimals (Amendment A1.2), else stop and report.
 - Recompiling a sample of 100 candidates must reproduce the recorded `compiles` field on ≥ 99%, else stop.
 - Never edit a candidate file, a gold file or a recorded factor. Never re-sample, drop or reorder cells by outcome.
+
+## 8. Amendment A1 (10-09-2026, master; before any hidden-test outcome)
+
+The worker's input preflight stopped at § 6's published-value check: 4/11 systems (experiment 102's) reproduce, and all 7 experiment-103 systems do not (`expt_v1/results/aggregation_preflight.json`, commit `c696725`). The cause is a convention difference, not a join error. VeriBench's paper (`paper_latex/TMLR_2026_VeriBench/04_eval_metric.tex`: "the geometric mean of the per-factor task averages") and its frozen scorer (`S_tilde`) define the system score as S̃ = (mean IC_tests · mean IC_proofs · mean FSC)^(1/3), the formula this protocol and the frozen forecast already use. Experiment 103's published `SCSC` values are instead the arithmetic mean of per-cell SCSC, a different and lower quantity. Examples on 103's measured cells: Claude Opus 5 max 0.648 (S̃) vs 0.605 (mean per cell); GPT-6 Astra high 0.642 vs 0.522. Experiment 103 also withholds all factors for `unmeasured_infra`, `model_error` and `incomplete` cells (576 of its 6,272 VBV1 cells), so S̃ over all 896 cells does not exist. No hidden-test outcome has been extracted or computed. These clarifications are frozen as `expt_v1/forecasts/e12_phase_a_forecast_amendment_A1.json` before the lock; the original forecast is unchanged.
+
+- **A1.1 System SCSC for P1** is S̃ for every system, computed over that system's **common measured cells** (all three factors present), as the frozen forecast's formula states. Experiment 103's mean-per-cell values are reported beside it, labelled, and never mixed with S̃.
+- **A1.2 Replaces § 6's published-value check.** Reproduce each source's own published aggregate under its declared convention, to 3 decimals: experiment 103's mean of per-cell SCSC over its measured cells, and experiment 102's S̃. This validates the joins and factor reads; it is not the P1 aggregate.
+- **A1.3 Cell set for P1.** The system hidden-test pass rate uses the same common measured cells, minus hidden-test missing cells (compiling but not applicable). Sensitivity S-A1 (reported, not the verdict): `model_error` and `incomplete` cells count as failures on both metrics (all factors 0, hidden fail) and `unmeasured_infra` stays excluded. P1 is reported under both definitions.
+- **A1.4 Joins.**
+  - A factor row joins to the file whose SHA-256 it records.
+  - A row without a recorded hash joins by a unique path and is flagged.
+  - An original-versus-recovery ambiguity is resolved by experiment 103's own rule (an original `unmeasured_infra` cell is replaced by its `recovery_1` cell) and the row's recorded run or condition; anything still ambiguous is `join_ambiguous`, which is missing and listed.
+  - § 6's 5% stop rule now counts `file_missing` plus `join_ambiguous`.
+- **A1.5 Splits.** P1 stays pooled over 896 tasks. Core 614 and IndustrySet 282 are also reported separately (project `CLAUDE.md`), as descriptives.
 
 ## 7. Not in phase A
 
