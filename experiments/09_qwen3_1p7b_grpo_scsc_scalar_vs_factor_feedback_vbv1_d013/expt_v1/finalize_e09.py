@@ -43,6 +43,21 @@ def main():
     cleanup = read(ROOT / 'receipts/cleanup_audit.json')
     assert not cleanup['after']
     assert not any(r['active'] for r in resource['leases'])
+    judge_path = ROOT / 'receipts/judge_e09/controls_check.json'
+    scorer_path = ROOT / 'receipts/scorer_adapter_e09.json'
+    judge, scorer = read(judge_path), read(scorer_path)
+    assert judge['verdict'] == 'PASS' and len(scorer['files']) == 14
+    assert all(r['expectations_met'] for r in scorer['files'])
+    assert sum(r['status_counts']['measured'] for r in judge['configs'].values()) == 50
+    assert abs(sum(r['charges_usd'] for r in judge['configs'].values()) - 3.0558) < 1e-8
+    write(HERE / 'results/completed_controls.json', {
+        'provenance': 'Read existing completed native receipts; no rerun or new calls',
+        'source_sha256': {str(p.relative_to(ROOT)): sha(p) for p in (judge_path, scorer_path)},
+        'judge': {key: judge[key] for key in ('configs', 'verdict', 'written_utc')},
+        'scorer': {'declared': 14, 'expectations_met': 14,
+                   'files': [{key: row[key] for key in ('task_id', 'kind', 'sha256', 'expected', 'got', 'expectations_met')}
+                             for row in scorer['files']]},
+        'warning': '50/50 is rating completion, not expected-label accuracy; two half-deletion scores fall outside the expected interval but the frozen category thresholds pass.'})
     resource['filesystem_headroom'] = []
     for path in (ROOT, Path('/tmp')):
         fs = os.statvfs(path)

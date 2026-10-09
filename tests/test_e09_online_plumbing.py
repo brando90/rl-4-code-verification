@@ -52,6 +52,7 @@ def test_empty_extraction_is_known_gate_zero_not_missing_judge():
     assert answer.truncated and log == ''
 
 
+@pytest.mark.skipif(sys.platform != 'linux', reason='Real process/start/boot identity requires Linux /proc; enforced on the native experiment host')
 def test_child_registered_before_exec_and_bad_identity_never_killed(tmp_path):
     (tmp_path / 'run_identity.json').write_text(json.dumps({'run_id': 'fixture'}))
     (tmp_path / 'child_receipts.json').write_text(json.dumps({'processes': []}))

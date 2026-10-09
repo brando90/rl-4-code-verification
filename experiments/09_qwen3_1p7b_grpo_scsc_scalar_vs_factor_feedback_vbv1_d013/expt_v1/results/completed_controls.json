@@ -1,0 +1,454 @@
+{
+  "judge": {
+    "configs": {
+      "H2_opus55_max": {
+        "charges_usd": 2.4579,
+        "delivered": {
+          "effort": "max",
+          "max_tokens": 32000,
+          "rubric": "H2_human_mirror_conventions_demos",
+          "selector": "anthropic/claude-opus-5-5-no-fallback"
+        },
+        "per_kind": {
+          "control_blank": {
+            "fraction": 1.0,
+            "measured": 5,
+            "min_fraction": 0.9,
+            "n": 5,
+            "ok": 5,
+            "pass": true,
+            "rule": "score_raw == 0",
+            "scores": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "control_halfdel": {
+            "fraction": 0.8,
+            "measured": 5,
+            "min_fraction": 0.8,
+            "n": 5,
+            "ok": 4,
+            "pass": true,
+            "rule": "1 <= score_raw <= 4",
+            "scores": [
+              3,
+              3,
+              4,
+              5,
+              3
+            ]
+          },
+          "control_oracle": {
+            "fraction": 1.0,
+            "measured": 5,
+            "min_fraction": 0.9,
+            "n": 5,
+            "ok": 5,
+            "pass": true,
+            "rule": "score_raw >= 4",
+            "scores": [
+              5,
+              5,
+              5,
+              5,
+              5
+            ]
+          },
+          "control_shuffled": {
+            "fraction": 1.0,
+            "measured": 5,
+            "min_fraction": 0.9,
+            "n": 5,
+            "ok": 5,
+            "pass": true,
+            "rule": "score_raw <= 1",
+            "scores": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "control_vacuous": {
+            "fraction": 1.0,
+            "measured": 5,
+            "min_fraction": 0.9,
+            "n": 5,
+            "ok": 5,
+            "pass": true,
+            "rule": "score_raw <= 1",
+            "scores": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "run_id": "02fa6a6b-c551-4dd2-8b60-79e664addf26",
+        "status_counts": {
+          "measured": 25
+        }
+      },
+      "H2_sol_high": {
+        "charges_usd": 0.5979,
+        "delivered": {
+          "effort": "high",
+          "max_tokens": 32000,
+          "rubric": "H2_human_mirror_conventions_demos",
+          "selector": "openai/gpt-6-sol-high"
+        },
+        "per_kind": {
+          "control_blank": {
+            "fraction": 1.0,
+            "measured": 5,
+            "min_fraction": 0.9,
+            "n": 5,
+            "ok": 5,
+            "pass": true,
+            "rule": "score_raw == 0",
+            "scores": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "control_halfdel": {
+            "fraction": 0.8,
+            "measured": 5,
+            "min_fraction": 0.8,
+            "n": 5,
+            "ok": 4,
+            "pass": true,
+            "rule": "1 <= score_raw <= 4",
+            "scores": [
+              3,
+              3,
+              4,
+              5,
+              3
+            ]
+          },
+          "control_oracle": {
+            "fraction": 1.0,
+            "measured": 5,
+            "min_fraction": 0.9,
+            "n": 5,
+            "ok": 5,
+            "pass": true,
+            "rule": "score_raw >= 4",
+            "scores": [
+              5,
+              5,
+              5,
+              5,
+              5
+            ]
+          },
+          "control_shuffled": {
+            "fraction": 1.0,
+            "measured": 5,
+            "min_fraction": 0.9,
+            "n": 5,
+            "ok": 5,
+            "pass": true,
+            "rule": "score_raw <= 1",
+            "scores": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "control_vacuous": {
+            "fraction": 1.0,
+            "measured": 5,
+            "min_fraction": 0.9,
+            "n": 5,
+            "ok": 5,
+            "pass": true,
+            "rule": "score_raw <= 1",
+            "scores": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "run_id": "f0ad5fbf-df35-439f-8581-5f2b066b1fb8",
+        "status_counts": {
+          "measured": 25
+        }
+      }
+    },
+    "verdict": "PASS",
+    "written_utc": "2026-10-09T02:44:22+00:00"
+  },
+  "provenance": "Read existing completed native receipts; no rerun or new calls",
+  "scorer": {
+    "declared": 14,
+    "expectations_met": 14,
+    "files": [
+      {
+        "expectations_met": true,
+        "expected": {
+          "IC_ap": 1.0,
+          "IC_pp": 1.0,
+          "agent_compiles": true,
+          "failure_class": "kept",
+          "kernel_binary": 1.0
+        },
+        "got": {
+          "IC_ap": 1.0,
+          "IC_pp": 1.0,
+          "agent_compiles": true,
+          "failure_class": "kept",
+          "kernel_binary": 1.0
+        },
+        "kind": "gold",
+        "sha256": "9fbad7e2c836a7b266f2e4c64b11da774aa4b5b26a998275425058bb5db7886d",
+        "task_id": "aerospace_set_real__my_fprime_crc_match"
+      },
+      {
+        "expectations_met": true,
+        "expected": {
+          "IC_ap": 1.0,
+          "IC_pp": 1.0,
+          "agent_compiles": true,
+          "failure_class": "kept",
+          "kernel_binary": 1.0
+        },
+        "got": {
+          "IC_ap": 1.0,
+          "IC_pp": 1.0,
+          "agent_compiles": true,
+          "failure_class": "kept",
+          "kernel_binary": 1.0
+        },
+        "kind": "gold",
+        "sha256": "d19925f040ed892404f00a11e2dd0381fd6665a6b8d4b239b84116b451793bf2",
+        "task_id": "compilers_set_real__my_cpython_dis_deopt_op"
+      },
+      {
+        "expectations_met": true,
+        "expected": {
+          "IC_ap": 1.0,
+          "IC_pp": 1.0,
+          "agent_compiles": true,
+          "failure_class": "kept",
+          "kernel_binary": 1.0
+        },
+        "got": {
+          "IC_ap": 1.0,
+          "IC_pp": 1.0,
+          "agent_compiles": true,
+          "failure_class": "kept",
+          "kernel_binary": 1.0
+        },
+        "kind": "gold",
+        "sha256": "b8cdab7b9cc9e62c28b6b5d34803ff7ffd78c4de79012f1d98410acd42279210",
+        "task_id": "critical_infra_set_real__my_envoy_panic_threshold"
+      },
+      {
+        "expectations_met": true,
+        "expected": {
+          "IC_ap": 1.0,
+          "agent_compiles": true
+        },
+        "got": {
+          "IC_ap": 1.0,
+          "IC_pp": 0.5,
+          "agent_compiles": true,
+          "failure_class": "forbidden_axiom",
+          "kernel_binary": 0.0
+        },
+        "kind": "gold_native_decide_diagnostic",
+        "sha256": "70e00dc5447b029a12b974dfd4596a6ab42c1ae2c48ad93419c1d8490b524e34",
+        "task_id": "aerospace_set_real__my_fprime_sequence_nonempty"
+      },
+      {
+        "expectations_met": true,
+        "expected": {
+          "IC_ap": 1.0,
+          "agent_compiles": true
+        },
+        "got": {
+          "IC_ap": 1.0,
+          "IC_pp": 0.5,
+          "agent_compiles": true,
+          "failure_class": "forbidden_axiom",
+          "kernel_binary": 0.0
+        },
+        "kind": "gold_native_decide_diagnostic",
+        "sha256": "0e916ec5f7eb606e39240a7daaef40ee349c76f9719dfed640202636d4e69f0e",
+        "task_id": "aerospace_set_synthetic__my_airspeed_squat_gate"
+      },
+      {
+        "expectations_met": true,
+        "expected": {
+          "IC_ap": 0.0,
+          "IC_pp": 0.0,
+          "agent_compiles": false,
+          "failure_class": "no_lean",
+          "kernel_binary": 0.0
+        },
+        "got": {
+          "IC_ap": 0.0,
+          "IC_pp": 0.0,
+          "agent_compiles": false,
+          "failure_class": "no_lean",
+          "kernel_binary": 0.0
+        },
+        "kind": "broken_empty",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "task_id": "aerospace_set_synthetic__my_clamp_actuator"
+      },
+      {
+        "expectations_met": true,
+        "expected": {
+          "IC_ap": 0.0,
+          "IC_pp": 0.0,
+          "agent_compiles": false,
+          "failure_class": "no_typecheck",
+          "kernel_binary": 0.0
+        },
+        "got": {
+          "IC_ap": 0.0,
+          "IC_pp": 0.0,
+          "agent_compiles": false,
+          "failure_class": "no_typecheck",
+          "kernel_binary": 0.0
+        },
+        "kind": "broken_nocompile",
+        "sha256": "5604c24ae7d74c88a76e5d36d28a2f36390b4a1be675b35ca6e8f41f14ddd8b4",
+        "task_id": "aerospace_set_synthetic__my_descent_floor"
+      },
+      {
+        "expectations_met": true,
+        "expected": {
+          "IC_ap": 1.0,
+          "IC_pp": 0.0,
+          "agent_compiles": true,
+          "failure_class": "unproved_theorem",
+          "kernel_binary": 0.0
+        },
+        "got": {
+          "IC_ap": 1.0,
+          "IC_pp": 0.0,
+          "agent_compiles": true,
+          "failure_class": "unproved_theorem",
+          "kernel_binary": 0.0
+        },
+        "kind": "broken_sorry",
+        "sha256": "1ab47ff79225f98a6a4454c35950b25e5dbd59e045fdbbc70c05c97c4ec96b23",
+        "task_id": "aerospace_set_synthetic__my_edac_syndrome_detect"
+      },
+      {
+        "expectations_met": true,
+        "expected": {
+          "IC_ap": 1.0,
+          "IC_pp": 1.0,
+          "agent_compiles": true,
+          "failure_class": "vacuous_theorem",
+          "kernel_binary": 0.0
+        },
+        "got": {
+          "IC_ap": 1.0,
+          "IC_pp": 1.0,
+          "agent_compiles": true,
+          "failure_class": "vacuous_theorem",
+          "kernel_binary": 0.0
+        },
+        "kind": "vacuous_control",
+        "sha256": "5ea2cd55a27f1d8e2f6e0796e85ba6f412b4bf9bb2df2cfd49eb73d58742f853",
+        "task_id": "aerospace_set_synthetic__my_fuel_reserve_gate"
+      },
+      {
+        "expectations_met": true,
+        "expected": {},
+        "got": {
+          "IC_ap": 1.0,
+          "IC_pp": 1.0,
+          "agent_compiles": true,
+          "failure_class": "kept",
+          "kernel_binary": 1.0
+        },
+        "kind": "e103_astra",
+        "sha256": "82177f45502f43f6fbebeef5dfb9f8a19681b6f725fa52f274aafb21f96ea664",
+        "task_id": "aerospace_set_synthetic__my_nav_seq_rollover"
+      },
+      {
+        "expectations_met": true,
+        "expected": {},
+        "got": {
+          "IC_ap": 1.0,
+          "IC_pp": 1.0,
+          "agent_compiles": true,
+          "failure_class": "kept",
+          "kernel_binary": 1.0
+        },
+        "kind": "e103_astra",
+        "sha256": "7a4107878f0f0c36b323a85bc26cb0831c9adf8d5581b930fcccfa75464b81b5",
+        "task_id": "aerospace_set_synthetic__my_redundant_bus_select"
+      },
+      {
+        "expectations_met": true,
+        "expected": {},
+        "got": {
+          "IC_ap": 0.0,
+          "IC_pp": 0.0,
+          "agent_compiles": false,
+          "failure_class": "no_typecheck",
+          "kernel_binary": 0.0
+        },
+        "kind": "e103_astra",
+        "sha256": "c99c935029a380be6d23ad893659ee18590db5f38b761a6de625a3fa4ac766c5",
+        "task_id": "aerospace_set_synthetic__my_safing_vote"
+      },
+      {
+        "expectations_met": true,
+        "expected": {},
+        "got": {
+          "IC_ap": 1.0,
+          "IC_pp": 1.0,
+          "agent_compiles": true,
+          "failure_class": "kept",
+          "kernel_binary": 1.0
+        },
+        "kind": "e103_astra",
+        "sha256": "57d1591e93c0c29344f5146c458085396c7b9e73db86dcc828470e70e5ea9caa",
+        "task_id": "aerospace_set_synthetic__my_thruster_duty_ok"
+      },
+      {
+        "expectations_met": true,
+        "expected": {},
+        "got": {
+          "IC_ap": 1.0,
+          "IC_pp": 1.0,
+          "agent_compiles": true,
+          "failure_class": "kept",
+          "kernel_binary": 1.0
+        },
+        "kind": "e103_astra",
+        "sha256": "5c9777eaf44f9aa3998f279697058d9aea3c022d24104054731e756072ae84f8",
+        "task_id": "aerospace_set_synthetic__my_tmr_voter"
+      }
+    ]
+  },
+  "source_sha256": {
+    "receipts/judge_e09/controls_check.json": "36d77231c46cf4ef8472380472c218f6e47bd45f9346582aecfad61aa50931ba",
+    "receipts/scorer_adapter_e09.json": "f6bdb43a006f37748a0d53789ce3c75ca17d4893d270fe75b3be290fc62fe07e"
+  },
+  "warning": "50/50 is rating completion, not expected-label accuracy; two half-deletion scores fall outside the expected interval but the frozen category thresholds pass."
+}

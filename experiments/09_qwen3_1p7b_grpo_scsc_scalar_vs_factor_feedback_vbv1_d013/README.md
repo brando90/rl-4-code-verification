@@ -28,4 +28,6 @@ Use the already installed, verified NeMo RL runtime if its real two-turn/scoring
 
 A successful scientific outcome requires a positive paired held-out gain under the frozen analysis, with missingness and coverage/proof guards disclosed. Two seeds and a short overnight horizon are exploratory; a completed training run alone does not establish improvement. A failed differentiation/technical gate is reported with all planned trajectories unrun, not disguised as a negative learning result.
 
-Status: AUTHORIZED; remote implementation and executable preflight pending.
+Status: **FAILED_TECHNICAL_GATE**, 10-08-2026. The real two-turn rollout passed boundary/mask checks, but 4 of 4,077 generated actions were outside recomputed old-policy support. No optimizer update was admitted. [Results](results.md) include all six unrun trajectories and all 2,499 missing evaluation cells; this is not a negative learning result.
+
+The canonical paths remain in place because the parent dispatch, ordinary-code watchdog, runbook and terminal receipt reference them. Raw evidence remains in the owned cluster runtime. No follow-on experiment is admitted by these implementation artifacts.

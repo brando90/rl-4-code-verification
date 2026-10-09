@@ -70,7 +70,7 @@ def write_matrix(rows, root):
         for row in rows:
             out.write(json.dumps(row, sort_keys=False) + '\n')
     with (root / 'aligned_task_factors.csv').open('w', newline='') as out:
-        writer = csv.DictWriter(out, fieldnames=FIELDS, extrasaction='ignore')
+        writer = csv.DictWriter(out, fieldnames=FIELDS, extrasaction='ignore', lineterminator='\n')
         writer.writeheader()
         writer.writerows(rows)
 
