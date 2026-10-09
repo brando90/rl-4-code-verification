@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/06_swebench_lite_factor_feedback_matched_budget/README.md>
 
-**TLDR:** Test whether exposing separate public diagnostics helps a model resolve real SWE-bench Lite issues at a fixed repair budget. The diagnostic geometric mean is a new proxy; the official issue-resolution outcome remains separate and hidden. This extension is authorized to proceed alongside the ongoing VeriBench experiments.
+**TLDR:** Version 3 is blocked before official admission, with all three coordinator launches spent: 0/16 official controls, 0/8 diagnostic-author calls and 0/56 solver cells completed. The experiment asks whether separate public diagnostics improve real SWE-bench Lite issue resolution at a fixed repair budget; no repair effect has been measured.
 
 Created: 10-05-2026. Paper inclusion: UNDECIDED until results exist.
 
@@ -41,6 +41,9 @@ expt_v1/cc.md                  remote execution runbook
 expt_v1/dispatch_manifest.json ownership, resource bounds and recovery
 expt_v1/scripts/               deterministic preparation and analysis
 expt_v1/results/               published manifests and result receipts
+expt_v3/README.md              current version and unmet admission conditions
+expt_v3/results.md             version-3 blocked outcome and evidence
+expt_v3/CKPT_e06_v3.md          preserved runtime and bounded continuation state
 ```
 
 Dependencies are the pinned SWE-bench harness and dataset, isolated Docker execution, verified Vals-funded Valkyrie model access, and a verified public-only feedback path. No Qwen evaluation result is required. The existing experiment04 worker and Qwen worker retain their own checkouts and jobs.
@@ -49,14 +52,15 @@ Dependencies are the pinned SWE-bench harness and dataset, isolated Docker execu
 |---|---|---|
 | Target and source selection | Done | Official source note |
 | Public/evaluator manifest separation | Implemented; exposure caveat retained | Public projection sealed; evaluator roots now mode 0700; prior traversal cannot be ruled out |
-| Eight-task environment and reference controls | Failed admission | 5/16 interpretable endpoints, 11/16 null; 2/8 valid pairs versus 6/8 required; [audit](expt_v2/results/official_evaluator_controls.md) |
-| Public diagnostic checks | Failed admission | 1/8 structural acceptance versus 6/8 gate; audit corrects late/unverified validator chronology |
-| Three-condition repair comparison | Not admitted | 0/56 solver responses; gate remains closed |
+| Version-2 environment and reference controls | Failed admission | 5/16 interpretable endpoints, 11/16 null; 2/8 valid pairs versus 6/8 required; [audit](expt_v2/results/official_evaluator_controls.md) |
+| Version-2 public diagnostic checks | Failed admission | 1/8 structural acceptance versus 6/8 gate; audit corrects late/unverified validator chronology |
+| Version-2 three-condition repair comparison | Not admitted | 0/56 solver responses; gate remains closed |
+| Version-3 controls and repair comparison | Blocked before admission | 0/16 official controls, 0/8 author calls and 0/56 solver cells; [blocked receipt](expt_v3/results/supervision_blocked_10-08-2026.json) |
 | Proposed 24-task test confirmation | Planned | New frozen version after validation |
 | Environment scaling or reinforcement learning | Planned | Separate forecast and training budget required |
 
-See [live results](results.md), the [version-3 protocol](expt_v3/PROTOCOL.md) and [current execution prompt](expt_v3/cc.md).
+See [live results](results.md), the [version-3 checkpoint](expt_v3/CKPT_e06_v3.md), and the unchanged [protocol](expt_v3/PROTOCOL.md) and [execution runbook](expt_v3/cc.md).
 
-The bounded version-2 execution has ended. Brando authorized [version 3](expt_v3/README.md) on 10-08-2026. Implementation and one Claude Fable 5.1 maximum-effort review are complete; review corrections passed deterministic verification. A dedicated root-backed runtime is provisioned on skampere2. The actual bounded evaluator backend, shared resource ledger, executable freeze and Vals-funded response route remain prerequisites for measured execution; no version-3 control or response has been measured.
+The bounded version-2 execution has ended. Brando authorized [version 3](expt_v3/README.md) on 10-08-2026, but its third coordinator launch reached the configured 90-turn limit at 19:34 PDT. Five real smoke executions occurred outside official admission; four lacked the required resource limits, and the later bounded smoke still had an observer failure. None counts toward the 16 official controls. Unfinished backend work is preserved privately, with no validated source-publication claim. Required tests, complete resource accounting, the executable freeze and the Vals-funded response route remain unresolved. After the blocked receipt was published in commit `c53c0e2`, the experiment06-only observer and its cron entry were removed at 20:05 PDT; no scientific job remained. This is an infrastructure blockage, not a measured failure of the scientific validity gate.
 
 The factor interpretation remains central: compare equal-budget repair with ordinary logs, the aggregate alone, and the aggregate plus its component vector. The retrospective ranking result in experiment07 does not determine this actionability result. Brando reiterated on 10-08-2026 that the score is both partial-credit and decomposed, with the latter intended to guide development decisions (meeting record: `experiments/meetings/oct_7_2026/transcription.md`).

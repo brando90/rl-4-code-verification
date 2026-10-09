@@ -2,9 +2,11 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/06_swebench_lite_factor_feedback_matched_budget/expt_v3/README.md>
 
-**TLDR:** Brando authorized automatic implementation and execution on 10-08-2026. Validate the unchanged eight-task panel with repaired public dependency environments and strict diagnostic transport, then run the complete matched repair comparison only if the validity gates pass. No version-3 measurement has started.
+**TLDR:** Version 3 is blocked before official admission after its three coordinator launches were spent: 0/16 official controls, 0/8 diagnostic-author calls and 0/56 solver cells completed. Five smoke executions were not admitted measurements. Unfinished source is preserved privately; no repair effect or validity-gate outcome is established.
 
-Created: 10-06-2026. Updated: 10-08-2026. **Status:** IMPLEMENTATION AUTHORIZED; EXECUTABLE FREEZE PENDING.
+Created: 10-06-2026. Updated: 10-08-2026. **Status:** BLOCKED BEFORE ADMISSION; COORDINATOR ATTEMPT BUDGET EXHAUSTED.
+
+The third coordinator reached its configured 90-turn limit at 19:34 PDT. The [blocked receipt](results/supervision_blocked_10-08-2026.json) was published at commit `c53c0e2`; [results](results.md) and the [checkpoint](CKPT_e06_v3.md) record the failed checks, preserved implementation and 20:05 PDT observer cleanup. No scientific job remains, and no fourth coordinator or fresh measured call is admitted by this closeout.
 
 ## Why this version exists
 
@@ -12,7 +14,7 @@ Version 2 produced only 2/8 valid gold/empty control pairs and 1/8 structurally 
 
 The research question is whether decomposed public feedback improves independent official issue resolution at a matched repair budget. Raising the public geometric mean alone does not answer it. The three components are execution viability, public regression preservation and public issue-check success. This is a coding diagnostic, distinct from VeriBench's Smooth Conjunctive Score for Code verification (SCSC).
 
-## Current plan and admission
+## Frozen design and unmet admission
 
 The [new protocol](PROTOCOL.md) is authoritative; the [remote runbook](cc.md) defines execution and recovery. The original 10-06-2026 proposal remains in Git history. The new authorization replaces its former zero allowance, and project decision D-108 requires Vals-funded Valkyrie for every measured response. Personal subscriptions may coordinate, implement and review only.
 
@@ -27,7 +29,7 @@ The eight tasks remain development/validation data whose earlier outcomes were i
 
 No graphics processors. Maximum two containers × four processors × eight gibibytes, 160 processor-hours, 18 elapsed hours from admitted remote setup/control execution, and 120 gibibytes each of new owned Docker and scratch data. Preserve 100 gibibytes Docker-root headroom and one tebibyte at the actual scratch filesystem, jointly accounting for shared devices. Enforce build/cell timeouts and exact owned-resource cleanup. At most one identical deterministic infrastructure retry per cell, within the cumulative envelope; no fresh model-response retry.
 
-The original host's Docker socket became inaccessible after its 10-08-2026 reboot. A prospective root-backed private runtime on `skampere2` preserves the same headroom limits; exact host/storage and backend enforcement still require an execution manifest and live verification before controls. No shared data is pruned and no daemon permissions are changed.
+The original host's Docker socket became inaccessible after its 10-08-2026 reboot. A private root-backed runtime was provisioned on `skampere2` with the same headroom requirements. The original deadline remains 10-09-2026 10:50 PDT. Total processor use and remaining processor allowance are unknown because complete version-budget accounting was not established; they must not be reported as zero spent or a fresh allowance. Backend enforcement and the executable freeze remain prerequisites. No shared data was pruned and no daemon permissions were changed.
 
 ## Artifacts
 
@@ -38,6 +40,9 @@ The original host's Docker socket became inaccessible after its 10-08-2026 reboo
 - `scripts/diagnostic_runner.py`: disposable public-only container execution and typed receipts.
 - `scripts/control_runner.py`: complete control declaration, durable budgets, identity checks and backend observations; actual backend enforcement must be established separately.
 - `scripts/test_*.py`: synthetic deterministic checks; no model or real Docker calls.
-- `../results.md`: live status, with historical results kept separate.
+- `results.md`: version-3 evidence, missing denominators and blockers.
+- `CKPT_e06_v3.md`: preserved runtime, source archive, observer cleanup and continuation limits.
+- `results/supervision_blocked_10-08-2026.json`: published blocked receipt with all 16 official cells explicitly unmeasured.
+- `../results.md`: experiment status, with historical results kept separate.
 
-**TLDR-end:** [rl-4-code-verification: 06_swebench_lite_factor_feedback_matched_budget] Version 3 is authorized and being implemented; measured execution follows the executable freeze, verified funding/resource limits and unchanged validity gates.
+**TLDR-end:** [rl-4-code-verification: 06_swebench_lite_factor_feedback_matched_budget] Version 3 stopped before official admission with its coordinator allowance exhausted; the frozen design and all unmeasured cells remain intact.
