@@ -17,6 +17,8 @@
 | Frozen scorer adapter control | PASS | One bounded CPU scorer completed 14 files in about five minutes; it accepted expected gold/historical files and rejected empty, non-compiling, `sorry`, vacuous, and forbidden-native-decision controls. Owned receipt: `../../receipts/scorer_adapter_e09.json`. |
 | Two-turn adapter and loss/reward controls | IN PROGRESS | Terminal-only reward, feedback boundaries, action-mask rejection, exact-input cache, and frozen-scorer control have passed. No optimizer update or disposable checkpoint has been used. |
 | Validated judge route and live controls | PASS | Both H2 Sol high and H2 Opus 5.5 max completed 25/25 control cells and passed oracle/vacuous/blank/shuffled/half-deletion checks; 50 measured cells total. |
+| Judge-control cleanup | DONE | The collect-only service and tunnel were torn down after harvest; its claimed port is free. |
+| Isolated trainer runtime | IN PROGRESS | An experiment09-owned NeMo checkout at the frozen commit and pinned submodules is provisioning its separate vLLM actor environment. No GPU lease is held and it is not yet a usable trainer. |
 | 256-rollout train calibration | PENDING | 0/256 rollouts, 0/512 assistant responses measured. |
 | Frozen six-trajectory manifest | PENDING | Horizon not chosen. |
 | Training | PENDING | 0/6 trajectories; 0 optimizer updates. |
