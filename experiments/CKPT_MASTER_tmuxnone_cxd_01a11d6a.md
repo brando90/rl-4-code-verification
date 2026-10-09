@@ -2,9 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/CKPT_MASTER_tmuxnone_cxd_01a11d6a.md>
 
-**TLDR:** Brando approved automatic overnight model-improvement experiments on 10-08-2026. The factored-score reinforcement-learning adapter failed its actual probability-consistency gate before any optimizer update; its report and full missing-cell accounting are published. The warm-start study continues. The repair study exhausted its coordinator allocation before official admission and is now explicitly blocked.
+**TLDR:** Brando approved automatic overnight model-improvement experiments on 10-08-2026. The factored-score reinforcement-learning adapter failed its actual probability-consistency gate before any optimizer update; its report and full missing-cell accounting are published. The warm-start study continues, but its requested final owner handoff was rejected by its usage allowance before acknowledgment. Parent overnight supervision has reached its cutoff; the final report and consolidated missing-cell accounting are ready for publication. The repair study exhausted its coordinator allocation before official admission and is blocked.
 
-Created: 10-08-2026 16:28 PDT. Last updated: 10-09-2026 10:58 PDT. **Status:** learning adapter FAILED_TECHNICAL_GATE, report published and cleanup verified; warm-start supervision ACTIVE; repair allocation blocked.
+Created: 10-08-2026 16:28 PDT. Last updated: 10-09-2026 11:52 PDT. **Status:** parent final report prepared after cutoff; heartbeat pause pending publication. Learning adapter FAILED_TECHNICAL_GATE; repair allocation blocked; warm-start pipeline healthy, interactive owner allowance blocked.
 
 ## 1. Identity and recovery
 
@@ -110,23 +110,31 @@ At 22:12 PDT, parent independently reverified experiment09: terminal status unch
 
 At 10-09-2026 10:58 PDT the compact closure check found experiment09 unchanged: original owner/coordinator absent, zero registered children and task-watch cron entries, all 9/9 leases released, and the same terminal publication with scientific completion false. Experiment06 remained blocked at 3/3 launches with no active jobs/containers/observer; its original 10:50 PDT deadline elapsed without new execution. Warm-start validation remained 15/20 complete (16,200/21,600 trained-checkpoint cells; 17,280/22,680 with Base14B). Its pipeline PID 3371983 last ticked at 10:57:09, original owner PID 147453 remained alive, and the watchdog checked healthy at 10:45:03. No compute children, live leases, selection or test-runtime files existed. All eight devices had other users' processes, so admission was closed and 14B still awaited eight devices. The unchanged resource wait required no intervention and produced no new result or failure, so no native-owner continuation or user notification was needed. Only documentation changed since the passing source suite at `f91fd69`; exact diff and secret checks apply to this checkpoint.
 
-1. Preserve experiment09's verified terminal publication (`5d7b899`, `f588d05`), failed numerical gate, matrix and cleanup. No automatic new coordinator, sampler change or scientific admission; task-owned remote watch is retired.
-2. Continue the original warm-start owner through every admitted validation rung, frozen selection and conditional test/judge stages. Inspect output counts and devices, not just pipeline liveness.
-3. Preserve repair and completed phase-A terminal accounting; no new calls or relaunches. At learning/warm-start completion or deadline, reconcile full manifests and aligned item-by-factor matrices, publish results and clean only owned task monitors.
+1. Publish the final overnight report and parent accounting below, then pause the desktop heartbeat. Preserve the separately authorized warm-start pipeline, watchdog and leases; do not create a study runtime cap.
+2. Preserve experiment09's verified failed-gate terminal publication and experiment06's blocked receipt. Both original deadlines have elapsed; no relaunch, sampler change or new scientific admission.
+3. Interactive continuation through the original warm-start owner requires restored usage allowance. Do not purchase credits, change its model or claim the blocked final handoff succeeded. The independent pipeline can still execute its admitted finite stages as resources permit.
 
 The meeting image/interpretation remain in `meetings/oct_7_2026/item_factor_matrix_experiment_design.md`. The adopted executable design is experiment09. No additional human labels are required for its admitted work.
 
-**TLDR-end:** [rl-4-code-verification: 09_qwen3_1p7b_grpo_scsc_scalar_vs_factor_feedback_vbv1_d013] Factored-score model learning remains unmeasured because the actual adapter failed its probability gate before any optimizer update; preserve its explicit missing-cell accounting. The repair allocation is blocked, while warm-start evaluation continues.
+## 8. Final overnight observation after cutoff (10-09-2026)
+
+[Final report](09_qwen3_1p7b_grpo_scsc_scalar_vs_factor_feedback_vbv1_d013/expt_v1/results/overnight_10-09-2026/report.md) and [parent closure receipt](09_qwen3_1p7b_grpo_scsc_scalar_vs_factor_feedback_vbv1_d013/expt_v1/results/overnight_10-09-2026/supervision_closeout.json) consolidate the 11:43–11:50 PDT observations. The full warm-start validation population is **20,520/25,920 measured kernel-factor cells**, including 3,240 reused baseline cells; **5,400 missing** cells are the five trained 14B checkpoints. The new parent matrix enumerates every declared cell and leaves unknown coverage/full-score targets blank. Its generator verifies input digests, unique keys and denominators without model calls, checkpoint selection or test-content access. The existing learning matrix retains all **2,499** unmeasured validation/test cells. The repository suite passed **162 tests / four skipped in 16.58 seconds** this turn.
+
+Parent delivered a bounded observational brief to the same original warm-start owner at 11:43:50 PDT. Brief SHA-256 `03506521211095ad6934196f3133627747aee89d4f27e923d116ce02f5ddb9dc`; actual owner arguments still verify Fable 5.1/high, full access, session `d3968eac-37d1-4b77-b339-a69389689c9c`. The session immediately returned “You're out of usage credits. /model to switch models.” At 11:45:19 PDT, `overnight_final_observation_blocked_10-09-2026.json` recorded **OWNER_ALLOWANCE_BLOCKED_BEFORE_ACK**, no acknowledgment and no first useful action. The report therefore uses parent-verified published artifacts, not an owner finalization. No new owner/model, reset or credit purchase was attempted.
+
+Pipeline PID 3371983 remained live, with an 11:50:01 PDT tick; watchdog checked healthy at 11:45:03. Direct process/artifact checks found zero compute children, zero live leases, no selection and no test-runtime files. Device 1 was free and seven devices were occupied by others; 14B still requires eight available devices. Old completed-stage `active` fields are historical metadata, not evidence of live children. Preserve this independent pipeline/watchdog after the desktop heartbeat is paused. The finite response/training manifests remain unchanged, with no original overall wall-time or device-hour cap.
+
+The 11:46 PDT learning closure audit verified all original owner/coordinator/watcher processes absent, zero registered children/task cron entries, all nine leases released and all six aligned-artifact hashes matching the runtime/publication. The 11:48 PDT repair audit verified 3/3 launches spent, 0/16 controls, 0/8 author calls, 0/56 solver cells, no owner/jobs/containers/observer/cron, and the preserved 23-file archive digest unchanged. Neither study was relaunched. Effects on learned weights and repair remain unmeasured.
+
+**TLDR-end:** [rl-4-code-verification: 09_qwen3_1p7b_grpo_scsc_scalar_vs_factor_feedback_vbv1_d013] Factored-score model learning remains unmeasured because the adapter failed before optimization. The final overnight report closes parent supervision while preserving the independent warm-start study and every missing cell.
 **Snapshot:**
 ```text
-learning owner: gpt-6-astra / ultra; attempt 2/3 exited normally
-learning status: FAILED_TECHNICAL_GATE; watcher retired
-technical batch: 32 two-turn trajectories; 4077 assistant tokens
-probability replay: 4 outside-support actions; zero optimizer steps
-judge controls: 50/50 measured; all frozen category gates passed
-calibration: 0/256 rollouts; training: 0/6 trajectories
-validation: 0/945 cells; test: 0/1554 cells
-warm-start: 15/20 rungs; 16200/21600 trained-checkpoint cells
-overnight report cutoff: 10-09-2026 11:13:36 PDT
-repair v3: BLOCKED; official controls 0/16; solver cells 0/56
+learning: FAILED_TECHNICAL_GATE; optimizer updates 0
+learning validation: 0/945; test: 0/1554
+warm-start checkpoints: 15/20
+warm-start validation factors: 20520/25920; missing 5400
+warm-start owner handoff: allowance blocked before acknowledgment
+warm-start pipeline/watchdog: healthy and preserved
+repair: 3/3 launches spent; official controls 0/16; solver 0/56
+parent heartbeat: pause pending final report publication
 ```
