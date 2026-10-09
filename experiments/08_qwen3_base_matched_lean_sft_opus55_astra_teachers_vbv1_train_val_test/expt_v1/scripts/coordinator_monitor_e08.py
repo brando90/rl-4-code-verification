@@ -467,11 +467,11 @@ def drive(config, state, snapshot, storage):
         if receipt_valid(attempt, directory, candidate):
             attempt["status"] = "VERIFIED_COMPLETE"
             archive_incident(storage, state, incident, "VERIFIED_COMPLETE")
-            state.update(status="ARMED", serviced_key=snapshot["key"], incident=None)
-            # Result records which pipeline events were actually handled; an unseen event stays pending.
             completed = read(directory / "phase_result.json", {})
-            if completed.get("serviced_event_key") == event_snapshot(WORK)["key"]:
-                state["serviced_key"] = completed["serviced_event_key"]
+            # Honor the verified result even if this long-lived monitor uses an older event schema.
+            # The next tick compares its current snapshot, so an unseen event still stays pending.
+            state.update(status="ARMED", incident=None,
+                         serviced_key=completed.get("serviced_event_key") or snapshot["key"])
             break
         write(storage / "monitor_state.json", state)
     else:

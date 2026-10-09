@@ -152,7 +152,8 @@ def test_native_account_probe_harmless_fake_server(tmp_path, monkeypatch):
     assert set(result) == {"account/read", "account/rateLimits/read", "configRequirements/read", "model/list"}
 
 
-def test_finite_failover_uses_next_candidate_and_keeps_attempts(root, monkeypatch):
+@pytest.mark.parametrize("completed_key", [None, "updated-owner-event"])
+def test_finite_failover_uses_next_candidate_and_keeps_attempts(root, monkeypatch, completed_key):
     store = root / "owner_recovery"
     pipeline(root)
     monkeypatch.setattr(m, "REPO", root)
@@ -160,6 +161,10 @@ def test_finite_failover_uses_next_candidate_and_keeps_attempts(root, monkeypatc
     monkeypatch.setattr(m, "eligible", lambda *a: (True, "included"))
     def prepare(config, state, directory, snapshot):
         (directory / "prompt.md").write_text("fixed")
+        result = {"status": "COMPLETE", "incident_id": "fixture"}
+        if completed_key is not None:
+            result["serviced_event_key"] = completed_key
+        m.write(directory / "phase_result.json", result)
         return "hash"
     monkeypatch.setattr(m, "prepare_handoff", prepare)
     monkeypatch.setattr(m, "receipt_valid", lambda attempt, directory, candidate: candidate["id"] == "vals_codex")
@@ -173,11 +178,32 @@ def test_finite_failover_uses_next_candidate_and_keeps_attempts(root, monkeypatc
     state = {"incident": {"id": "fixture", "deadline_utc": (
         dt.datetime.now(dt.timezone.utc) + dt.timedelta(seconds=40)).isoformat(), "attempts": []}}
     incident = state["incident"]
+    # A long-lived monitor can still compute the old schema after its owner updates the source.
+    current = {"key": "event"}
+    monkeypatch.setattr(m, "event_snapshot", lambda *args: dict(current))
     m.drive({"candidates": candidates}, state, {"key": "event"}, store)
     assert state["status"] == "ARMED"
+    assert state["serviced_key"] == (completed_key or "event")
     assert len(incident["attempts"]) == 2
     assert incident["attempts"][0]["failure_class"] == "allowance"
     assert incident["attempts"][1]["status"] == "VERIFIED_COMPLETE"
+    archived = store / "incidents/fixture/receipt.json"
+    assert m.read(archived)["attempts"] == incident["attempts"]
+    archive_hash = m.digest(archived)
+
+    # The next cron invocation sees the owner's schema: exact completion must stay idle.
+    current["key"] = completed_key or "event"
+    calls = []
+    monkeypatch.setattr(m, "drive", lambda config, state, snapshot, storage: calls.append(snapshot))
+    assert m.tick({"enabled": True}, store) == "ARMED"
+    assert not calls
+
+    # A later unseen semantic state still creates a new incident; prior accounting is intact.
+    current["key"] = "genuinely-new-event"
+    m.tick({"enabled": True}, store)
+    assert calls == [{"key": "genuinely-new-event"}]
+    assert m.read(store / "monitor_state.json")["incident"]["event_key"] == "genuinely-new-event"
+    assert m.digest(archived) == archive_hash
 
 
 def test_expired_incident_does_not_reset_or_probe(root, monkeypatch):
