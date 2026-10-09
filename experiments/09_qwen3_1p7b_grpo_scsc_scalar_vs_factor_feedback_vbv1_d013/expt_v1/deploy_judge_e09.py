@@ -7,6 +7,8 @@ import os
 from pathlib import Path
 import sys
 
+sys.dont_write_bytecode = True  # Immutable experiment08 helper source reuse.
+
 ROOT = Path("/lfs/skampere1/0/brando9/rl4cv_e09")
 REPO = ROOT / "rl-4-code-verification"
 E08_SCRIPT = Path("/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/deploy_service_e08.py")

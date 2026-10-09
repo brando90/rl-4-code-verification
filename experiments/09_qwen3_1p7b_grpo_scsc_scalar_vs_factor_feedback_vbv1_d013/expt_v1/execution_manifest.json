@@ -1,0 +1,213 @@
+{
+  "actual_owner": {
+    "approval_policy": "never",
+    "client": "native Codex personal subscription",
+    "coordinator_attempt": 2,
+    "effort": "ultra",
+    "evidence": "results/recovery_attempt_2.json",
+    "model": "gpt-6-astra",
+    "sandbox": "danger-full-access"
+  },
+  "arms": {
+    "A": "Exact gated conjunction of IC_tests=IC_proofs=FSC=1",
+    "B": "Same gated factors, geometric-mean reward S",
+    "C": "Same S as B; disclose named factor vector in addition to identical scalar/compiler feedback"
+  },
+  "assistant_turns": 2,
+  "candidate_configuration_warning": "Private exact configuration preserved; 64-token disposable fixture is not the scientific 8192-token response cap. Optimizer, full-context and save/reload controls did not pass.",
+  "candidate_control_configuration_sha256": "f966151bd2ad522f075030aa3a5a24792a7ff36ce0f74062afc33d0f6e6a3a6f",
+  "chosen_horizon": null,
+  "counts": {
+    "before_after_rows": {
+      "declared": 2142,
+      "missing": 2142,
+      "paired_measured": 0
+    },
+    "calibration_responses": {
+      "declared": 512,
+      "measured": 0,
+      "missing": 512
+    },
+    "calibration_rollouts": {
+      "completed": 0,
+      "declared": 256,
+      "missing": 256
+    },
+    "main_training_responses": {
+      "admitted_denominator": null,
+      "maximum_plan": 12288,
+      "measured": 0
+    },
+    "test": {
+      "declared": 1554,
+      "measured": 0,
+      "missing": 1554
+    },
+    "training_trajectories": {
+      "admitted": 0,
+      "completed": 0,
+      "declared": 6,
+      "missing": 6
+    },
+    "validation": {
+      "declared": 945,
+      "measured": 0,
+      "missing": 945
+    }
+  },
+  "endpoint_hashes": {
+    "A_20261008": null,
+    "A_20261009": null,
+    "B_20261008": null,
+    "B_20261009": null,
+    "C_20261008": null,
+    "C_20261009": null
+  },
+  "feedback": "All arms receive S, H and capped compiler output; only C additionally receives named factors",
+  "frozen_for_main_training": false,
+  "held_out_source_or_outcomes_opened": false,
+  "identity_receipt_sha256": "263b3d98c198701c0a10d4e88a3ae50813e34600f415e7b2b4ab26f1de4a43ed",
+  "judge": {
+    "expected_train_eligibility_fraction": null,
+    "fixed_category_gates": "PASS both suites, not 50/50 expected-label accuracy",
+    "fixed_control_ratings_measured": 50,
+    "member_settings": [
+      "H2_sol_high",
+      "H2_opus55_max"
+    ],
+    "missing_required_rating_blocks_batch": true,
+    "observed_control_cost_usd": 3.0558,
+    "ratings_per_eligible_scientific_file": 6,
+    "route": "unchanged vb103_judge Valkyrie CLI, recorded Vals configuration",
+    "scientific_ratings": 0
+  },
+  "matrix_sha256": {
+    "aligned_task_factors.csv": "e14e4b4e023f098ffc2700e1220b41431331fa2c5381e48a94beead6dd13f192",
+    "aligned_task_factors.jsonl": "763920609685a79b84be11fc73beffc4267ad4b33c7dfed303672084ce3b1093",
+    "analysis.json": "b0bea36f8d0ef3ffc55f8c8c65c8b01a50397fb3aadd79c0e5615a436f7708f4",
+    "before_after.jsonl": "ae8cfbb0965365580216f908d84bcb25119ee3a632a5f5d493ab2f16a580f2fd",
+    "calibration_cells.jsonl": "a9a3048e0845b765d0969d6293be2e066b3d4476edc6f034420bb5c44a162f17",
+    "training_trajectories.json": "ddbe61918103531297297b833667cda652b7760c2da61b0b62dba3638a0ce238"
+  },
+  "no_learning_claim": true,
+  "optimizer_configuration_frozen_for_science": false,
+  "permitted_horizons": [
+    32,
+    16,
+    8
+  ],
+  "prompt_groups_per_update": 4,
+  "reason": "failed_probability_support_gate",
+  "regressions": null,
+  "reward_turns": [
+    0,
+    "chosen terminal reward"
+  ],
+  "run_id": "0c84fdc2-d5cf-4a04-9137-e214edbd8c36",
+  "run_identity": {
+    "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+    "deadline_utc": "2026-10-09T18:13:36.923954+00:00",
+    "expected_initial_revision": "7795054",
+    "host": "skampere1",
+    "initial_disk_free_bytes": 9190091956224,
+    "max_a100_device_hours": 32,
+    "max_coordinator_attempts": 3,
+    "max_devices": 2,
+    "max_new_owned_gib": 200,
+    "max_scorer_workers": 8,
+    "min_free_filesystem_fraction": 0.05,
+    "run_id": "0c84fdc2-d5cf-4a04-9137-e214edbd8c36",
+    "start_utc": "2026-10-09T02:13:36.923954+00:00"
+  },
+  "sampling": {
+    "max_new_tokens_per_turn": 8192,
+    "temperature": 0.6,
+    "top_k": 20,
+    "top_p": 0.95
+  },
+  "schema_version": 1,
+  "scientific_contract_sha256": "f7a8838e9ccec44727153628f789d083fd55972a4c0c0c4f9a2e9b5983d506c0",
+  "scientific_effects": null,
+  "seeds": [
+    20261008,
+    20261009
+  ],
+  "status": "NOT_ADMITTED_FAILED_TECHNICAL_GATE",
+  "train_tasks": 539,
+  "trajectories_per_prompt": 8,
+  "trajectory_manifest": {
+    "admitted_trajectories": 0,
+    "chosen_horizon": null,
+    "declared_trajectories": 6,
+    "main_response_upper_bound": 12288,
+    "note": "No horizon was admitted; the maximum plan is not a fabricated chosen denominator.",
+    "permitted_horizons": [
+      32,
+      16,
+      8
+    ],
+    "trajectories": [
+      {
+        "arm": "A",
+        "endpoint_sha256": null,
+        "error": "failed_probability_support_gate",
+        "horizon_updates": null,
+        "optimizer_updates": 0,
+        "responses": 0,
+        "seed": 20261008,
+        "status": "not_admitted"
+      },
+      {
+        "arm": "B",
+        "endpoint_sha256": null,
+        "error": "failed_probability_support_gate",
+        "horizon_updates": null,
+        "optimizer_updates": 0,
+        "responses": 0,
+        "seed": 20261008,
+        "status": "not_admitted"
+      },
+      {
+        "arm": "C",
+        "endpoint_sha256": null,
+        "error": "failed_probability_support_gate",
+        "horizon_updates": null,
+        "optimizer_updates": 0,
+        "responses": 0,
+        "seed": 20261008,
+        "status": "not_admitted"
+      },
+      {
+        "arm": "A",
+        "endpoint_sha256": null,
+        "error": "failed_probability_support_gate",
+        "horizon_updates": null,
+        "optimizer_updates": 0,
+        "responses": 0,
+        "seed": 20261009,
+        "status": "not_admitted"
+      },
+      {
+        "arm": "B",
+        "endpoint_sha256": null,
+        "error": "failed_probability_support_gate",
+        "horizon_updates": null,
+        "optimizer_updates": 0,
+        "responses": 0,
+        "seed": 20261009,
+        "status": "not_admitted"
+      },
+      {
+        "arm": "C",
+        "endpoint_sha256": null,
+        "error": "failed_probability_support_gate",
+        "horizon_updates": null,
+        "optimizer_updates": 0,
+        "responses": 0,
+        "seed": 20261009,
+        "status": "not_admitted"
+      }
+    ]
+  },
+  "written_utc": "2026-10-09T04:48:38.585229+00:00"
+}

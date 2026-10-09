@@ -1,0 +1,382 @@
+{
+  "actual_rollout_audit": {
+    "assistant_tokens": 4077,
+    "both_assistant_spans": true,
+    "prompt_feedback_loss_tokens": 0,
+    "status": "PASS",
+    "terminal_metadata_retained": true,
+    "trajectories": 32
+  },
+  "candidate_loss": {
+    "actual_optimizer_updates": 0,
+    "reference_kl_coefficient": 0,
+    "updates_per_fresh_batch": 1
+  },
+  "control": "real pinned NeMo two-turn rollout followed by old-policy recomputation",
+  "forbidden_workarounds_not_used": [
+    "sampling substitution",
+    "epsilon probability floor",
+    "sample deletion or replacement",
+    "relaxed tolerance",
+    "zero missing-FSC reward"
+  ],
+  "further_readonly_backend_diagnostic": {
+    "new_gpu_leases": 0,
+    "new_judge_calls": 0,
+    "new_responses": 0,
+    "reason": "Pinned VllmGenerationWorker exposes generate/generate_text, not a raw-logit or top24 read-only method. Native SamplingParams rejects max_tokens<1. A five-prefix zero-response raw-logit diagnostic would require new runtime instrumentation; not performed under the bounded diagnostic instruction.",
+    "source_sha256": {
+      "sampling_params.py": "d9ac95ca6ad8bfba8278b2a9e6bdb030f2364a122c967bc636d67449d83eb3af",
+      "vllm_worker.py": "082a1bdfb8e5071460e7897f592faba2ca9813a61b9d5d2aeb2c69dde1081610"
+    },
+    "status": "NOT_RUN_REQUIRES_NEW_INSTRUMENTATION"
+  },
+  "hashes": {
+    "technical_control/profile_scope_fix/batch_0.pt": "323c3a28626d2258b603514420f7211e274bec0914f93c08d03d11bfd6e96349",
+    "technical_control/profile_scope_fix/batch_0_audit.json": "4e70d241f9a5194afd2b20c9e131bf81e183899c75e4ef459c7902959fe550d1",
+    "technical_control/profile_scope_fix/failure.json": "4bdb8c16d5bc3b113d364951708e06d901326ce42cce6db1a2b2b763a434ff57",
+    "technical_control/profile_scope_fix/prospective_budget.json": "b9214634485cb0ae362173bed099b120c30a8ad87133cd0cea4db2d65972f44f",
+    "technical_control/profile_scope_fix/resolved_config.json": "f966151bd2ad522f075030aa3a5a24792a7ff36ce0f74062afc33d0f6e6a3a6f",
+    "technical_control/replay_probability_diagnostic/probability_diagnostic.json": "8f7f063696c30809248fdf68790c7500c073032554232f0fa6c8ade7e7d0182a",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_0.pt": "6c8d02771a0421509f0e98eba2f41df43c72779a852ab457634037d05bfe3600",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_1.pt": "8d5d81b2f0dc220a2fd00c5da4eddc72e17ea5afb5982db40818aa37d119a395",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_10.pt": "54eed9f46e4f1c8e67d73a2d89e9889ab7969af66ecfbcaa93af8681e2feedc1",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_11.pt": "84e232e4faa3223713bcc50b68461554966217c4d13c32c3f1c24e2e3c076af3",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_12.pt": "83ce489118a00dd4c6fee9cbf8c230825c9f4ae078b376e1e796a0c628f8f06a",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_13.pt": "bc7ab9482e6e7be973170203306fd43f9133950aaf2f596ee440b883dd43cccd",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_14.pt": "3ea7997f88276f2bfe7f66a2817c6af3a4725eb844dc65fd3dc470cb029875bf",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_15.pt": "7ff5ecb558061b72d756f66ea3f069aaa91fa94822cea584001fbed9d203a615",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_16.pt": "26eea624e2f50ffdcc9be1954b0a99e956a92110ce5e72f6b840e2a60b65828e",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_17.pt": "d34e01b5e23e61e08424d2520e8cb62ce484bce5e3968576411b2db4230e1144",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_18.pt": "4d1d8b9198fbc483160b0f83f7852b5d53af4f19f38e490e97b71479ce9ee726",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_19.pt": "6a6e79e10099865be5bc0b696a9af3b60190a68deceb5b3956df4f0532a6488e",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_2.pt": "a63ab8ecf3c1eb1f8bda31b4c2c8bb6b28230ef77b25f26647cb9972e48cea66",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_20.pt": "bbd65258f0c144535345e88e222ca06f037e2b6a8697d39e2c0c2606f1cd4f49",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_21.pt": "b3b89721025f322d9f032c0e11c6c16bf17bd6a07a72819d60f538ac397521e1",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_22.pt": "e0d62077c3f38b49ef82f3603c21c7bdec1b1a087309fac91486ce93fbfb2250",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_23.pt": "79fab84df57d8ba1b6635ee42f871c8961c13621a9a52c0022c72e7d95fa8535",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_24.pt": "788e0b4d97c5d5d40c566b46aae5ba097e3ab811d4ce5fdef84e24af1f877821",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_25.pt": "fb60bd2dd3ee07d92afa4acbca144c0bd6f3dfbd54242fd41d36bef9e9bdb305",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_26.pt": "cbfaca69894cb177ffb3594621663c5e32159afde8a8fd48361b8a558ab032b0",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_27.pt": "bd789010e53755167808585a84fe3afd0d66f272ca23e3a9835e335a7f06b775",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_28.pt": "69cda4073b83cdb55fdf85f15cbe3ff76a315fd385de6e2d495adc8ab6704b40",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_29.pt": "50e7bdd8b761980b4f8a11be3cce77b44ac06b861097e094e228082e382b2652",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_3.pt": "808b715ab0d5ba67944fdf56616d068f441b6feed0c64d53be7c931457720f33",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_30.pt": "f244c0f6da68eb0923b4215e3087d3cb303f0194f0db2b6f962f45b44942ec3a",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_31.pt": "d2bd2c6542df7c35f810fae73b35dc65773f494ef913b9152c9f72d7531bd8ca",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_4.pt": "122472277f4f19169ac4febfede42e70082144c82fc1fa4a0445cffca3665cbe",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_5.pt": "bbdc13b4f6080a5bb30653e80b4b56bf9b9da7f7fefdc3ce2e56347e8c4708fc",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_6.pt": "223a18686bbcffa4e22dd2ffaf35aeb221cfd355779bdfb066f7d6fd5c1aceb9",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_7.pt": "cfed64897d208bd8b244d89d65c46d06f348f1fb1ce2b5d58d30f85087c86550",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_8.pt": "63f0e90dbebce59445572495de2cdd4202562b6196234d9db735123fa2101f8d",
+    "technical_control/replay_probability_diagnostic/probability_diagnostics/microbatch_9.pt": "cbd5e70b057628f0c4f5831579829762036c0c295f5847b92981447128dfb36b",
+    "technical_control/replay_probability_diagnostic/resolved_config.json": "b576a9437ae91c29241a40bcbf3fbcf1d1a00a55e80209d3de900933b5f52638"
+  },
+  "interpretation": "Observed generation/recomputed truncated-policy support disagreement at unchanged weights. Backend finite-precision differences are a plausible cause, not a proven exclusive cause. This candidate is not admitted; no claim of intrinsic impossibility or of a negative learning effect.",
+  "learning_conclusion": null,
+  "not_passed": [
+    "current_policy_gradient_probability_control",
+    "disposable_optimizer_step",
+    "optimizer_rng_sampler_save_reload",
+    "post_update_generation_refit",
+    "full_context_optimizer_memory",
+    "on_policy_six_rating_transport",
+    "calibration_informativeness",
+    "full_pipeline_capacity"
+  ],
+  "probabilities": {
+    "assistant_tokens": 4077,
+    "finite_action_denominator": 4073,
+    "finite_actions_exceeding_logq_tolerance": 367,
+    "maximum_finite_absolute_logq_error": 0.740278959274292,
+    "mean_finite_absolute_logq_error": 0.01440234575420618,
+    "outside_recomputed_support": 4,
+    "permitted_support_mismatches": 0,
+    "prospective_absolute_logq_tolerance": 0.05,
+    "unsupported_action_details": [
+      {
+        "generation_logq": -3.368384599685669,
+        "microbatch": 13,
+        "recomputed_logq": null,
+        "recomputed_retained_count": 2,
+        "recomputed_status": "negative_infinity_outside_support",
+        "shifted_action_position": [
+          0,
+          39
+        ],
+        "target_rank_in_top24": 3,
+        "target_scaled_logit": 48.125,
+        "token_id": 23650
+      },
+      {
+        "generation_logq": -3.05464768409729,
+        "microbatch": 31,
+        "recomputed_logq": null,
+        "recomputed_retained_count": 3,
+        "recomputed_status": "negative_infinity_outside_support",
+        "shifted_action_position": [
+          0,
+          53
+        ],
+        "target_rank_in_top24": 4,
+        "target_scaled_logit": 53.75,
+        "token_id": 32
+      },
+      {
+        "generation_logq": -3.402249813079834,
+        "microbatch": 8,
+        "recomputed_logq": null,
+        "recomputed_retained_count": 3,
+        "recomputed_status": "negative_infinity_outside_support",
+        "shifted_action_position": [
+          0,
+          72
+        ],
+        "target_rank_in_top24": 4,
+        "target_scaled_logit": 51.875,
+        "token_id": 2176
+      },
+      {
+        "generation_logq": -3.753502130508423,
+        "microbatch": 9,
+        "recomputed_logq": null,
+        "recomputed_retained_count": 4,
+        "recomputed_status": "negative_infinity_outside_support",
+        "shifted_action_position": [
+          0,
+          78
+        ],
+        "target_rank_in_top24": 5,
+        "target_scaled_logit": 50.416664123535156,
+        "token_id": 2176
+      }
+    ]
+  },
+  "reason": "failed_probability_support_gate",
+  "replay": {
+    "input_is_exact_preserved_control_batch": true,
+    "loss_forbidden_under_diagnostic_flag": true,
+    "microbatches": 32,
+    "new_responses": 0,
+    "optimizer_updates": 0
+  },
+  "resource_deadline_exhausted": false,
+  "run_id": "0c84fdc2-d5cf-4a04-9137-e214edbd8c36",
+  "sampling": {
+    "temperature": 0.6,
+    "top_k": 20,
+    "top_p": 0.95
+  },
+  "saved_tensor_addendum": {
+    "duplicated_exact_prefix_target_groups": 126,
+    "example_generation_variation": [
+      {
+        "generation": -0.06452091783285141,
+        "row": 0,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.06452091783285141,
+        "row": 1,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 10,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 11,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 12,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 13,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 14,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 15,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 16,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 18,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 19,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.06452091783285141,
+        "row": 2,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 20,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 21,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 22,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 23,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 24,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 25,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 26,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 28,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 29,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.06452091783285141,
+        "row": 3,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 30,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 31,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.06452091783285141,
+        "row": 4,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.06452091783285141,
+        "row": 5,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.06452091783285141,
+        "row": 6,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.06452091783285141,
+        "row": 7,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 8,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      },
+      {
+        "generation": -0.05270036309957504,
+        "row": 9,
+        "span": 1,
+        "teacher": -0.06452178955078125
+      }
+    ],
+    "interpretation": "Stable teacher values but differing generation probabilities for identical saved token prefixes support scheduling/backend numerical variation; no causal mechanism or drop-in correction is established.",
+    "maximum_duplicate_generation_logq_spread": 0.24184495210647583,
+    "maximum_duplicate_teacher_logq_spread": 0.0,
+    "new_model_computation": false,
+    "span_counts": {
+      "1": {
+        "exceeding": 285,
+        "finite": 2044,
+        "unsupported": 4
+      },
+      "2": {
+        "exceeding": 82,
+        "finite": 2029,
+        "unsupported": 0
+      }
+    },
+    "teacher_normalization_reconstruction_max_error": 3.814697265625e-06
+  },
+  "schema_version": 1,
+  "scientific_admission": false,
+  "source_repository_control_commit": "c8cdf81",
+  "status": "FAILED_TECHNICAL_GATE",
+  "technical_responses": {
+    "generated": 64,
+    "post_update_refit_probe_generated": 0,
+    "prospective_maximum": 65
+  },
+  "written_utc": "2026-10-09T04:41:23.132909+00:00"
+}

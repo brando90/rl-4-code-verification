@@ -1,24 +1,36 @@
 {
-  "schema_version": 1,
-  "written_utc": "2026-10-09T02:27:00Z",
-  "run_id": "0c84fdc2-d5cf-4a04-9137-e214edbd8c36",
-  "route": "validated vb103_judge through Valkyrie CLI; existing private configuration referenced read-only",
-  "payer": "Vals-funded route required; live control receipt remains pending",
+  "charges": "unknown until route receipts; no free-cost assumption",
+  "expected_source": "must be measured from the fixed 256-rollout train calibration before any throughput forecast; no prior kernel-only audit is substituted",
+  "expected_train_fsc_eligibility_fraction": null,
   "fixed_controls": {
-    "logical_control_cells_expected": 25,
     "ensemble_members": 2,
-    "repeats_per_member": 1,
-    "maximum_constituent_ratings": 50
+    "logical_control_cells_expected": 25,
+    "maximum_constituent_ratings": 50,
+    "repeats_per_member": 1
   },
   "main_upper_bound": {
     "calibration_assistant_responses": 512,
-    "main_training_assistant_responses_at_32_updates": 12288,
     "evaluation_cells": 2499,
+    "main_training_assistant_responses_at_32_updates": 12288,
     "max_constituent_ratings_per_eligible_response": 6,
     "worst_case_constituent_ratings_excluding_controls": 91794
   },
-  "expected_train_fsc_eligibility_fraction": null,
-  "expected_source": "must be measured from the fixed 256-rollout train calibration before any throughput forecast; no prior kernel-only audit is substituted",
-  "charges": "unknown until route receipts; no free-cost assumption",
-  "verdict": "PRE-CALL ESTIMATE RECORDED"
+  "payer": "Vals-funded route required; live control receipt remains pending",
+  "post_control_observation": {
+    "billing_limit_or_credits_changed": false,
+    "control_category_gates": "PASS both frozen suites",
+    "expected_label_accuracy": null,
+    "expected_train_eligibility_fraction": null,
+    "measured_ratings": 50,
+    "new_scientific_ratings": 0,
+    "observed_cost_usd": 3.0558,
+    "payer_evidence_limit": "Recorded approved Vals-managed route; native constituent receipts do not independently expose payer/organization fields. Historical pre-call estimate below is preserved.",
+    "reason_no_forecast": "calibration not admitted",
+    "written_utc": "2026-10-09T04:48:38.585229+00:00"
+  },
+  "route": "validated vb103_judge through Valkyrie CLI; existing private configuration referenced read-only",
+  "run_id": "0c84fdc2-d5cf-4a04-9137-e214edbd8c36",
+  "schema_version": 1,
+  "verdict": "PRE-CALL ESTIMATE RECORDED",
+  "written_utc": "2026-10-09T02:27:00Z"
 }

@@ -7,6 +7,9 @@ import os
 from pathlib import Path
 import sys
 
+# Read-only source reuse must not create bytecode files in experiment08.
+sys.dont_write_bytecode = True
+
 E08 = Path("/lfs/skampere1/0/brando9/rl4cv_e08")
 BRIDGE = E08 / "rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/judge_rl4cv_e08.py"
 ROOT = Path("/lfs/skampere1/0/brando9/rl4cv_e09")

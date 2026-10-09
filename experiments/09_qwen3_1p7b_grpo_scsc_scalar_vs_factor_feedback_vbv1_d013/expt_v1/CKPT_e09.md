@@ -4,7 +4,7 @@
 
 **TLDR:** Brando approved automatic overnight experiments on 10-08-2026. Freeze and execute the three-arm exploratory comparison, preserving full factor semantics, common evaluation and cluster ownership.
 
-Created: 10-08-2026 19:01 PDT. Status: RUNNING PRE-FLIGHT.
+Created: 10-08-2026 19:01 PDT. Current status: **FAILED_TECHNICAL_GATE**, 10-08-2026. The historical updates below are retained; this paragraph and the terminal section supersede their running/pending status.
 
 Master: Codex thread `01a11d6a-30aa-7020-a672-6b34546fdeee`; checkpoint `experiments/CKPT_MASTER_tmuxnone_cxd_01a11d6a.md`. No training launched yet.
 
@@ -14,7 +14,17 @@ Verified 10-08-2026 19:51 PDT: source NeMo RL is exactly `c751f811217db7df0d4c94
 
 The validated judge control service was torn down at 2026-10-09T02:55:44Z after harvest; its port is free and no child remains. An experiment09-owned NeMo checkout is pinned at the required commit with its declared submodules initialized. Its isolated vLLM actor environment is provisioning; it is not yet a usable trainer and no GPU lease is held.
 
-Next: verify the isolated actor environment, finish the actual two-turn optimizer path and run the fixed 256-rollout calibration. Freeze horizon and all six trajectories before any main update or test outcome.
+Historical next action: verify the isolated actor environment, finish the actual two-turn optimizer path and run the fixed 256-rollout calibration. Superseded by the terminal gate below; no new admission.
+
+## Terminal gate — 10-08-2026
+
+Actual real rollout: 32 two-turn disposable trajectories, 64 short technical responses, 4,077 assistant tokens. Boundary/mask/terminal-only reward/final-metadata audit PASS. Old-policy calculation failed before optimization; exact-batch read-only replay found 4/4,077 out-of-support actions and 367/4,073 finite-action absolute log-probability errors above the prospective .05 tolerance (maximum .7402789593). Recomputed support permitted zero mismatches. The candidate is not admitted; no probability floor, sample deletion/replacement or sampler change was used.
+
+No optimizer/save-reload/refit or full-context memory gate passed. No horizon or main-training freeze exists. Calibration 0/256 rollouts, 0/512 responses; trajectories 0/6; validation 0/945; test 0/1554. All 2,499 aligned factor/strict-target rows and 2,142 before/after rows preserve nulls. Test source/outcomes remain unopened. This is a technical implementation failure, not a measured learning effect or failed differentiation gate. The original wall deadline/capacity is not exhausted; the one bounded integration's actual compatibility gate failed.
+
+Final checks: repository 158 passed/4 skipped; separate native adapter suite 42 passed. Ten initialization-manifest file hashes verified. Existing 14/14 scorer controls and both 25-rating judge suites were preserved, not rerun; 50 measured ratings cost $3.0558, not a 50/50 accuracy claim. On-policy compiler/judge service transport exists but was not admitted or live-verified.
+
+All owned leases released; reserved device-hours .553611; no registered child or run-tagged control remnant. Preserve the earlier unverified physical-device incident rather than claiming every attempt had verified identity. Whole-runtime plus conservatively charged whole uv cache about 51.4 GiB; original disk/deadline limits unchanged. Parent watchdog/lock/attempt ledger untouched. Published source snapshots distinguish failed control from diagnostic extension. See `../results.md`, `execution_manifest.json`, `results/technical_gate.json`, `results/resource_closeout.json` and `results/aligned/`. After publication, `results/terminal_receipt.json` and the private runtime `terminal_receipt.json` bind the actual results commit. Do not restart or launch follow-on training under this terminal run.
 
 ## Recovery attempt 2 — 10-08-2026 20:47 PDT
 

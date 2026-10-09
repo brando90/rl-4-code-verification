@@ -1,0 +1,94 @@
+{
+  "active_children": 0,
+  "active_gpu_leases": 0,
+  "attempt": 2,
+  "calibration_responses": 0,
+  "completed": 0,
+  "controls": {
+    "expected_train_eligibility_fraction": null,
+    "fixed_category_gates": "PASS both suites, not 50/50 expected-label accuracy",
+    "fixed_control_ratings_measured": 50,
+    "member_settings": [
+      "H2_sol_high",
+      "H2_opus55_max"
+    ],
+    "missing_required_rating_blocks_batch": true,
+    "observed_control_cost_usd": 3.0558,
+    "ratings_per_eligible_scientific_file": 6,
+    "route": "unchanged vb103_judge Valkyrie CLI, recorded Vals configuration",
+    "scientific_ratings": 0
+  },
+  "counts": {
+    "before_after_rows": {
+      "declared": 2142,
+      "missing": 2142,
+      "paired_measured": 0
+    },
+    "calibration_responses": {
+      "declared": 512,
+      "measured": 0,
+      "missing": 512
+    },
+    "calibration_rollouts": {
+      "completed": 0,
+      "declared": 256,
+      "missing": 256
+    },
+    "main_training_responses": {
+      "admitted_denominator": null,
+      "maximum_plan": 12288,
+      "measured": 0
+    },
+    "test": {
+      "declared": 1554,
+      "measured": 0,
+      "missing": 1554
+    },
+    "training_trajectories": {
+      "admitted": 0,
+      "completed": 0,
+      "declared": 6,
+      "missing": 6
+    },
+    "validation": {
+      "declared": 945,
+      "measured": 0,
+      "missing": 945
+    }
+  },
+  "declared": 6,
+  "gate_receipt": "/lfs/skampere1/0/brando9/rl4cv_e09/rl-4-code-verification/experiments/09_qwen3_1p7b_grpo_scsc_scalar_vs_factor_feedback_vbv1_d013/expt_v1/results/technical_gate.json",
+  "native_adapter_tests": {
+    "passed": 42
+  },
+  "not_completed": [
+    "current_policy_gradient_probability_control",
+    "disposable_optimizer_step",
+    "optimizer_rng_sampler_save_reload",
+    "post_update_generation_refit",
+    "full_context_optimizer_memory",
+    "on_policy_six_rating_transport",
+    "calibration_informativeness",
+    "full_pipeline_capacity"
+  ],
+  "original_deadline_exhausted": false,
+  "original_deadline_utc": "2026-10-09T18:13:36.923954+00:00",
+  "phase": "terminal_failed_technical_gate",
+  "publication_commit": "5d7b8990d6ef3af6939b3740f662c3d89af635ac",
+  "publication_commit_contains": "complete failed-gate results, reproducible evidence and full missing-cell matrices",
+  "publication_remote": "https://github.com/brando90/rl-4-code-verification",
+  "reason": "failed_probability_support_gate",
+  "reason_detail": "4/4077 generated actions outside recomputed old-policy support; 367/4073 finite actions exceed predeclared .05 absolute log-probability tolerance. No optimizer update admitted.",
+  "repository_tests": {
+    "passed": 158,
+    "skipped": 4
+  },
+  "reserved_device_hours": 0.553611111111111,
+  "run_id": "0c84fdc2-d5cf-4a04-9137-e214edbd8c36",
+  "scientific_completion": false,
+  "status": "FAILED_TECHNICAL_GATE",
+  "terminal_gate_not_scientific_completion": true,
+  "test_measured": 0,
+  "validation_measured": 0,
+  "written_utc": "2026-10-09T04:48:38.585229+00:00"
+}
