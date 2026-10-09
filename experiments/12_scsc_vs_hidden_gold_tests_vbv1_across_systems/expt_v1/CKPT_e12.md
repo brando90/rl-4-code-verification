@@ -5,7 +5,7 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 14:45 PDT
+**Last updated:** 10-09-2026 14:46 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
@@ -43,3 +43,5 @@
 - External status: `/lfs/skampere1/0/brando9/rl4cv_e12/STATUS_e12` = `BLOCKED: PROTOCOL section 6 aggregation mismatch in 7/11 systems`. Do not mark DONE: phase A remains unmeasured.
 
 - Deterministic verification: `make test` 188 passed / 24 skipped; experiment-local audit tests 6 passed; manifest cell uniqueness and all recorded source/script/forecast hashes PASS; `git diff --check` PASS.
+
+- PUBLISHED `c696725` to `origin/main` (10-09-2026 14:46 PDT): input audit, manifest, results and blocked state. Push confirmed; working tree clean afterward. Direct main publication follows the explicit repository/user instructions. No pending batch job. Final worker state remains BLOCKED, with the exact reproduction command above.
