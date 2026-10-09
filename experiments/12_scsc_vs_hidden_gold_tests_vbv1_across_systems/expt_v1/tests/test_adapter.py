@@ -78,3 +78,44 @@ end N
     mapping,_=map_symbols(suite['symbols'],candidate)
     assert repoint(suite['tests'][1],mapping)=='_root_.N.e12renamed0000.cycles = 0'
     assert signature(': List Nat → Nat')==signature('(xs : List Nat) : Nat')
+
+
+def test_a2_normalized_name_precedes_type():
+    suite=extract('def my_f (x : Nat) : Bool := true\nexample : my_f 1 = true := by decide\n')
+    mapping,diag=map_symbols(suite['symbols'],'def MyF (x : Nat) : Bool := false\n')
+    assert mapping=={'my_f':'MyF'} and diag[0]['step']==1
+
+
+def test_a2_agreement_gets_arguments_never_expected_values():
+    from adapter_e12 import argument_tuples
+    source='def f (xs : List Nat) (s : String) : String := s\nexample : f [1,2] "input" = "EXPECTED_ONLY" := by decide\n'
+    suite=extract(source)
+    assert argument_tuples(suite['symbols'][0],suite['tests'])==[['[1,2]','"input"']]
+    candidate='def a (xs : List Nat) (s : String) : String := s\ndef b (xs : List Nat) (s : String) : String := s\nexample : b [] "x" = "x" := rfl\n'
+    calls=[]
+    def agree(g,m,t):
+        calls.append(t);return {'agrees':True}
+    mapping,diag=map_symbols(suite['symbols'],candidate,suite['tests'],agree)
+    assert mapping=={'f':'b'} and diag[0]['step']==3
+    assert 'EXPECTED_ONLY' not in repr(calls)
+
+
+def test_a2_disagreement_uses_examples_then_theorems_and_rejects_ties():
+    suite=extract('def f (x : Nat) : Bool := true\nexample : f 1 = true := by decide\n')
+    source='def a (x : Nat) : Bool := true\ndef b (x : Nat) : Bool := false\n'
+    disagree=lambda *_:{'agrees':False}
+    mapping,diag=map_symbols(suite['symbols'],source,suite['tests'],disagree)
+    assert not mapping and diag[0]['reason']=='ambiguous_disagreeing'
+    source+='example : a 1 = true := rfl\nexample : b 1 = false := rfl\ntheorem selected : b 0 = false := rfl\n'
+    mapping,diag=map_symbols(suite['symbols'],source,suite['tests'],disagree)
+    assert mapping=={'f':'b'} and diag[0]['step']==4
+
+
+def test_mutation_keeps_only_one_body_token_change_and_removes_old_assertions():
+    from controls_e12 import remove_propositions,mutations
+    suite=extract(GOLD);stripped=remove_propositions(GOLD)
+    assert 'example' not in stripped and 'def fImp' in stripped and 'end Original' in stripped
+    changed,receipt=next(mutations(stripped,suite['symbols']))
+    a=receipt['offset'];old=receipt['old'];new=receipt['new']
+    assert changed==stripped[:a]+new+stripped[a+len(old):]
+    assert receipt['definition']=='Original.f'

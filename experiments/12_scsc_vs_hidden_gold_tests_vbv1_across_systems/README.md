@@ -75,6 +75,6 @@
 |---|---|
 | Design and frozen forecast | Done (10-09-2026) |
 | Input preflight under A1 | PASS: published values 11/11, joins pass, compile reproduction 100/100 |
-| Hidden-test extraction and adapter controls | BLOCKED: C1 591/591 tests passes; C2 2/50 tasks fails ≥95% recovery |
+| Hidden-test extraction and adapter controls | RUNNING under A2: all four controls rerun on the same 50 tasks; round-2 receipts retained |
 | Protocol lock | NOT LOCKED |
 | Evaluation and analysis | BLOCKED before lock; predictions untested |

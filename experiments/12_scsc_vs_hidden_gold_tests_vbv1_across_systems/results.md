@@ -4,7 +4,7 @@
 
 Experiment `12_scsc_vs_hidden_gold_tests_vbv1_across_systems` phase A passed Amendment A1 input checks and 100/100 compilation reproductions; gold reproduction passes 591/591 tests, but renamed-symbol recovery fails at 2/50 tasks (4%), blocking evaluation under PROTOCOL § 3 with zero model calls.
 
-**Status:** BLOCKED — renamed-symbol control C2 fails the ≥95% gate; no real candidate hidden-test outcomes.
+**Status:** RUNNING under prospective Amendment A2 (`a7c2ea2`). Round-2 failure retained below; all four round-3 controls pending. No real-candidate hidden outcomes.
 **Last updated:** 10-09-2026 15:24 PDT
 
 The smooth conjunctive score for code verification (SCSC) combines internal consistency of tests (IC_tests), internal consistency of proofs (IC_proofs), and formal specification coverage (FSC). Under the prospective [Amendment A1](PROTOCOL.md#8-amendment-a1-10-09-2026-master-before-any-hidden-test-outcome), the system score is the geometric mean of the three factor means over one common measured cohort. Published-value checks reproduce each source’s own convention.

@@ -11,8 +11,8 @@
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
 - **Worker:** Codex CLI 0.154.0, personal ChatGPT login, `gpt-6-astra` / high, host `skampere1`, tmux `oct9-codex-rl4cv-e12-hidden-gold-tests`; effective sandbox danger-full-access, approval never. Supersedes the Claude launch, which failed due to exhausted personal Claude credits.
 - **Frozen forecast:** `expt_v1/forecasts/e12_phase_a_forecast.json`, SHA-256 `b29b71b7166b80df653220ddddec4b865a622ef9abc1fa42c6c1e559b067b0c5`, frozen 2026-10-09T21:35:33Z at git head `e851c02`.
-- **State:** BLOCKED at PROTOCOL § 3 C2; renamed-symbol recovery 2/50 (4%) versus ≥95%. A1 input checks and gold reproduction PASS. Tracking issue #9; predictions untested.
-- **Next command:** `git pull --ff-only origin main`, then inspect any prospective protocol clarification before changing the adapter. Current gate reproduction: `PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/controls_e12.py` (cached receipts; expected exit 2). Do not lock or evaluate real candidates while C2 fails.
+- **State:** RUNNING under Amendment A2 (`a7c2ea2`); all three forecasts verified; round-2 controls archived unchanged.
+- **Next command:** `tail -n 3 /lfs/skampere1/0/brando9/rl4cv_e12/controls_round3.log`; active tmux window `e12-controls-r3`.
 
 ## Log
 
@@ -83,3 +83,17 @@
 - External status: `BLOCKED: PROTOCOL section 3 C2 renamed recovery 2/50 below 95%; identical-type alternatives violate unique-match requirement`. Status deliberately not DONE; experiment outcome remains unknown.
 
 - PUBLISHED `02b59d4` to `origin/main` (10-09-2026 15:25 PDT): corrected control receipts, direct Lean ambiguity witnesses, results and blocked continuation record. Pull-before-push and remote tracking equality verified; working tree clean after push; no control tmux window remains. Final worker state is BLOCKED, with no background experiment job.
+
+### 10-09-2026 15:36 PDT — Amendment A2 resume
+
+- Master reports prospective Amendment A2 at `a7c2ea2`, before protocol lock and real-candidate outcomes. Status RUNNING.
+- Next: pull main, read PROTOCOL § 9, verify original/A1/A2 forecasts, archive round-2 receipts unchanged, implement A2 mapping and rerun all four controls on the same 50 tasks. Preserve all expectations; lock only after all pass.
+- Shared host: retain two low-priority single-thread Lean workers; zero experiment model/judge calls.
+
+### 10-09-2026 15:40 PDT — round-3 control design frozen before outcomes
+
+- Same original 50 tasks; all four controls run for every task. Two nice-10 Lean workers, one Lean thread each, 600-second per-file timeout.
+- A2 implementation: normalized names, unique signature, candidate-to-candidate agreement on parsed hidden argument tuples only, candidate example/theorem reference counts, and per-symbol deciding step. No expected values enter the agreement probe.
+- C3 private copies omit example/theorem/lemma declarations so an intentionally changed implementation can compile. Enumerate single operator or literal edits within tested definition bodies in source order; retain the first compiling edit without reading hidden-test outcomes. Record every attempted edit and compilation.
+- C4 pairs each selected task with the next task in the frozen hash order, cyclically. Wrong-task source remains unchanged.
+- Round-2 receipt copied byte-for-byte to controls_e12_round2.json; old adapter/control source archived. Focused local tests: 17 passed.
