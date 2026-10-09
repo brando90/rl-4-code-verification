@@ -2,9 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/CKPT_MASTER_tmuxnone_cxd_01a11d6a.md>
 
-**TLDR:** Brando approved automatic overnight model-improvement experiments on 10-08-2026. The factored-score reinforcement-learning adapter failed its actual probability-consistency gate before any optimizer update; its report and full missing-cell accounting are published. The warm-start study continues, but its requested final owner handoff was rejected by its usage allowance before acknowledgment. Parent overnight supervision has reached its cutoff; the final report and consolidated missing-cell accounting are published in `a99e681`, and the desktop heartbeat is PAUSED. The repair study exhausted its coordinator allocation before official admission and is blocked.
+**TLDR:** Brando's 10-09-2026 instruction requires checkpointed handoff across eligible existing accounts when a coordinator hits a limit. Shared rules are published in agents-config `841c3f1`. The warm-start owner has now transferred from exhausted Claude to personal Codex **Astra/ultra**, with actual full access, hashed acknowledgment and useful commands verified. The independent warm-start pipeline remains healthy and the same-chat heartbeat is ACTIVE again. The learning adapter's failed gate and repair study's exhausted allocation remain closed; the published overnight report is historical evidence, not the end of the separately authorized warm-start study.
 
-Created: 10-08-2026 16:28 PDT. Last updated: 10-09-2026 11:54 PDT. **Status:** parent final report published; heartbeat PAUSED. Learning adapter FAILED_TECHNICAL_GATE; repair allocation blocked; warm-start pipeline healthy, interactive owner allowance blocked.
+Created: 10-08-2026 16:28 PDT. Last updated: 10-09-2026 13:00 PDT. **Status:** warm-start owner RESUMED_VERIFIED; durable coordinator-watch installation IN_PROGRESS; heartbeat ACTIVE. Learning adapter FAILED_TECHNICAL_GATE; repair allocation blocked.
 
 ## 1. Identity and recovery
 
@@ -98,7 +98,7 @@ Twenty-three unfinished owner files were preserved without publishing them as va
 
 The experiment09 ordinary-code watcher **`parent_watchdog_e09.py`** used two-minute/reboot cron, exclusive watcher lock, run/boot/PID/start identity checks, bounded recovery and no model polling. Its exact task-owned cron entries are now retired after verified terminal publication; preserved code and status are evidence, not an active watch. Updated source SHA-256 **`f9b6b676d87b9b432d64219ba751755996b36fb274148cf95ee6ae9badb067f8`** exposes pending mailbox state; 24 harmless tests passed locally and remotely, receipt `parent_watch_update_receipt.json`. The earlier observation-only watchdog remains preserved but stopped. Register detached drivers in `child_receipts.json` before directory changes. Healthy surviving children prevent automatic coordinator duplication. Authentication/allowance/model-access failure and exit-zero without terminal evidence require changed-evidence clearance. The launcher enforces the exclusive coordinator lock, original deadline and at most 3 attempts. Mere terminal-file presence is not scientific completion.
 
-Current-chat heartbeat **`overnight-factored-score-learning`** is **PAUSED**, confirmed 10-09-2026 11:54:04 PDT, after final report publication `a99e681`. The automation tool changed its status and readback verified the original prompt, 45-minute schedule and target chat unchanged. Remote experiment08 pipeline/watchdog remain active and independent; this closes only parent overnight supervision. No fourth repair owner, learning relaunch or unapproved follow-on study. A new user instruction is needed to resume this desktop monitor.
+Current-chat heartbeat **`overnight-factored-score-learning`** is **ACTIVE** again under Brando's new 10-09-2026 continuation instruction. The original 45-minute schedule and chat target are preserved; the prompt now supervises the current warm-start owner, full remaining manifest and cross-account recovery. It preserves the closed learning/repair outcomes and original study constraints. The historical pause at 11:54:04 PDT followed report publication `a99e681`; that report remains unchanged. Remote pipeline and coordinator recovery watches are separate from this desktop heartbeat; verify their actual installations. No email or other-chat messaging is authorized.
 
 SSH must use `-S none -o ControlMaster=no`; SCP uses `-o ControlPath=none -o ControlMaster=no`. Restore native remote shell with `/dfs/scratch0/brando9/.bashrc`; never assign HOME manually. At 20:10 PDT, skampere1 health passed relevant native-shell/authentication/LFS checks (about 8,523 GiB free, 85% used). DFS warned near 5% free and is not an experiment data destination; stale tool alternates remain irrelevant warnings, not permission to alter shared configuration.
 
@@ -110,9 +110,9 @@ At 22:12 PDT, parent independently reverified experiment09: terminal status unch
 
 At 10-09-2026 10:58 PDT the compact closure check found experiment09 unchanged: original owner/coordinator absent, zero registered children and task-watch cron entries, all 9/9 leases released, and the same terminal publication with scientific completion false. Experiment06 remained blocked at 3/3 launches with no active jobs/containers/observer; its original 10:50 PDT deadline elapsed without new execution. Warm-start validation remained 15/20 complete (16,200/21,600 trained-checkpoint cells; 17,280/22,680 with Base14B). Its pipeline PID 3371983 last ticked at 10:57:09, original owner PID 147453 remained alive, and the watchdog checked healthy at 10:45:03. No compute children, live leases, selection or test-runtime files existed. All eight devices had other users' processes, so admission was closed and 14B still awaited eight devices. The unchanged resource wait required no intervention and produced no new result or failure, so no native-owner continuation or user notification was needed. Only documentation changed since the passing source suite at `f91fd69`; exact diff and secret checks apply to this checkpoint.
 
-1. Final report and accounting are published in `a99e681`; the desktop heartbeat is confirmed PAUSED. Preserve the separately authorized warm-start pipeline, watchdog and leases; do not create a study runtime cap.
+1. Final overnight report and accounting remain published in `a99e681`. Continue the verified replacement warm-start owner and ACTIVE desktop heartbeat under the new instruction, preserving the independent pipeline and all study constraints.
 2. Preserve experiment09's verified failed-gate terminal publication and experiment06's blocked receipt. Both original deadlines have elapsed; no relaunch, sampler change or new scientific admission.
-3. Interactive continuation through the original warm-start owner requires restored usage allowance. Do not purchase credits, change its model or claim the blocked final handoff succeeded. The independent pipeline can still execute its admitted finite stages as resources permit.
+3. The original Claude handoff failed before acknowledgment; preserve that evidence. The new personal Codex owner is verified under section 9 and must finish its checkpoint reconciliation, persistent recovery monitor and remaining admitted study stages. Observe actual output and ownership before any additional transfer.
 
 The meeting image/interpretation remain in `meetings/oct_7_2026/item_factor_matrix_experiment_design.md`. The adopted executable design is experiment09. No additional human labels are required for its admitted work.
 
@@ -126,17 +126,32 @@ Pipeline PID 3371983 remained live, with an 11:50:01 PDT tick; watchdog checked 
 
 The 11:46 PDT learning closure audit verified all original owner/coordinator/watcher processes absent, zero registered children/task cron entries, all nine leases released and all six aligned-artifact hashes matching the runtime/publication. The 11:48 PDT repair audit verified 3/3 launches spent, 0/16 controls, 0/8 author calls, 0/56 solver cells, no owner/jobs/containers/observer/cron, and the preserved 23-file archive digest unchanged. Neither study was relaunched. Effects on learned weights and repair remain unmeasured.
 
-Publication `a99e681` was verified on remote main before the automation tool paused the desktop heartbeat at 10-09-2026 11:54:04 PDT. Post-pause inspection at 11:54:20 PDT found pipeline PID 3371983 alive with an 11:54:13 tick, 14B still waiting and selection pending at 15/20; the independent study/watchdog were preserved. No further overnight supervision is scheduled.
+Publication `a99e681` was verified on remote main before the automation tool paused the desktop heartbeat at 10-09-2026 11:54:04 PDT. Post-pause inspection at 11:54:20 PDT found pipeline PID 3371983 alive with an 11:54:13 tick, 14B still waiting and selection pending at 15/20; the independent study/watchdog were preserved. At that time no further overnight supervision was scheduled; section 9 records the later user-authorized resumption.
 
-**TLDR-end:** [rl-4-code-verification: 09_qwen3_1p7b_grpo_scsc_scalar_vs_factor_feedback_vbv1_d013] Factored-score model learning remains unmeasured because the adapter failed before optimization. The final overnight report closes parent supervision while preserving the independent warm-start study and every missing cell.
+## 9. Verified account handoff and resumed supervision (10-09-2026)
+
+**Policy:** agents-config `841c3f1fe5aa0fb59cb9b17aea87194acbcaa148` strengthens Rules 44/48/58, mirrors the visible reminder in both entry files and requires full candidate inventory, limit classification, checkpoint hashes, one writer and first useful output. Its validator checked 83 routes / 262 links with zero errors; all nine validator tests passed. The Mac native entry points and active cluster policy were inspected. The replacement read policy `2988831c0232e4d428598fd253d9c35b4d8d3c6b`, which additionally contains another owner's new Rule 67. Shared cluster dirty files unrelated to this work were preserved.
+
+**Verified transfer:** private runtime directory `skampere1:/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/`; incident `eadee9b1-62f6-4b90-b1d3-4fc313aed159`; named tmux `codex-rl4cv-e08-owner-recovery`; `owner.lock` serializes coordinators separately from the pipeline's short-lived lock. The guard gracefully stopped only exhausted Claude PID 147453/start_ticks 207875, preserving pipeline PID 3371983/start_ticks 1616401 on boot `83765e57-f5f3-4202-b7b4-18f1eb506043`.
+
+Stanford attempt 1 exited without a useful action. Although its launcher requested full access, native session `01a12235-4ced-78b3-89da-f42ea797618a` was read-only/on-request and could not execute. Native account requirements subsequently confirmed that full access/never are excluded by managed policy. No policy override was attempted; Stanford is ineligible for this role, not quota-exhausted. Its original prompt, guard, receipt and error are preserved.
+
+Personal Codex attempt 2 is **RESUMED_VERIFIED**: native session `01a12239-ba42-7313-8a85-6aa01477b5b6`, PID 2840250, actual **gpt-6-astra / ultra**, **danger-full-access / never**. Its acknowledgment at 12:53:35 PDT matched handoff SHA-256 `45fcb72f3a3a011ad30d95dad73b42428618d9cf41427b9e8472d80c392e9842`, adopted the unchanged pipeline and read the actual protocol/checkpoint/state. Parent verified native turn context, 19 successful shell commands and the old writer's absence at 12:55:19 PDT; receipt `parent_verified_handoff.json`. The personal account had 67% weekly included allowance remaining at the read-only inventory, ordinary usage allowed and no reached spend control; this is a snapshot, not a guarantee of completion capacity. Vals Codex is an independently verified fallback with 40% in its reported weekly window and no managed restrictions. Coordinator account choice never changes the Vals-funded scientific route.
+
+The account inventory version 3 digest is `bfb50a44eae5df5763baa4c4029fa18cd57178e9047facb817e6848fdd15e3a9`; it records exact commands, account/permission/allowance evidence and Stanford exclusion. The initial local account metadata is historical. Recovery preserves the original **13:57:58 PDT coordinator-incident deadline**, spent Stanford attempt and one attempt per selected candidate; personal was added using new verified evidence. This bounded coordinator phase does not impose a new overall experiment deadline. The guard preserves partial work and the independent pipeline on exit. A new ongoing coordinator monitor is being implemented by the verified owner; do not claim it installed until its ordinary-code fixtures, state and scheduling are verified.
+
+Scientific state remains **15/20 trained VeriBench V1 validation rungs**, 16,200/21,600 trained-checkpoint cells; 20,520/25,920 with all base comparisons. The five 14B rungs are missing; selection and test remain unadmitted. The pipeline/watchdog remain healthy while eight compatible devices are unavailable. The owner is correcting stale checkpoint summaries, checking dependent-stage execution and installing event-driven recovery. Do not restart completed measurements or count this successful coordinator handoff as scientific improvement. A read-only host survey at 12:55:43–12:55:48 PDT found no verified eight-device alternative: skampere2 H200 devices idle 0/8, skampere3 B200 devices idle 2/8, and mercury1/2 each idle 10/10 A4000 devices but only 16 GiB/device, with unchanged-configuration fit unverified. The frozen 14B configuration remains eight devices, tensor parallelism eight, bfloat16 and no CPU offloading. No migration or scientific-setting change was made. Automation readback verified ACTIVE, the original 45-minute schedule and the original chat target.
+
+**TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched supervised fine-tuning continues under a verified personal Codex owner after the Claude allowance failure. The shared handoff rule is published, the original pipeline is preserved and the desktop monitor is active again.
 **Snapshot:**
 ```text
-learning: FAILED_TECHNICAL_GATE; optimizer updates 0
-learning validation: 0/945; test: 0/1554
-warm-start checkpoints: 15/20
+shared handoff rule: agents-config 841c3f1
+current owner: personal Codex gpt-6-astra / ultra
+native session: 01a12239-ba42-7313-8a85-6aa01477b5b6
+actual permissions: danger-full-access / never
+handoff: RESUMED_VERIFIED; old Claude stopped
 warm-start validation factors: 20520/25920; missing 5400
-warm-start owner handoff: allowance blocked before acknowledgment
-warm-start pipeline/watchdog: healthy and preserved
-repair: 3/3 launches spent; official controls 0/16; solver 0/56
-parent heartbeat: PAUSED after report publication
+independent pipeline: preserved
+persistent coordinator monitor: implementation in progress
+parent heartbeat: ACTIVE
 ```
