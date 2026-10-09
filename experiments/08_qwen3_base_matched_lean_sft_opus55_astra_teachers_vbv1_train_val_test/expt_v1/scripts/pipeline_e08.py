@@ -108,12 +108,15 @@ def leases() -> dict:
     return GL.load()
 
 
-def active_leases(state: dict) -> dict[str, list[int]]:
-    """Every LIVE lease in the shared registry, ours or another owner's (experiment 09): not released, not expired, holder process alive."""
+def active_leases(state: dict, blocking_only: bool = False) -> dict[str, list[int]]:
+    """Every LIVE lease in the shared registry, ours or another owner's (experiment 09): not released, not expired, holder process alive.
+    blocking_only drops provisioning holds (no process behind them), which reserve devices from inference but never delay the 14B SFT."""
     out = {}
     for n, l in GL.live_leases().items():
         if l.get("owner", GL.E08_OWNER) == GL.E08_OWNER and state["stages"].get(n, {}).get("status") not in ("launched", "running"):
             continue    # our own lease whose stage is no longer live (released on the next observe)
+        if blocking_only and l.get("kind") == GL.HOLD_KIND:
+            continue
         out[n] = l["gpus"]
     return out
 
@@ -134,9 +137,14 @@ def release_lease(name: str) -> None:
 
 
 def device_view(state: dict, me: str | None = None) -> dict:
-    """free = idle and unleased; others = devices with other users' processes (never ours to take)."""
+    """free = idle and unleased; others = devices with other users' processes (never ours to take). Fails closed: on an unknown
+    GPU state nothing is free and nothing launches this tick."""
     me_user = os.environ.get("USER", "brando9")
-    table = gpu_table()
+    try:
+        table = gpu_table()
+    except GL.GpuStateUnknown as exc:
+        log(f"GPU state unknown, failing closed this tick: {exc}")
+        return {"free": [], "others": [], "leased": {}, "n_devices": 0, "unknown": str(exc)}
     leased = {g: n for n, gs in active_leases(state).items() for g in gs if n != me}
     return {"free": sorted(i for i, us in table.items() if not us and i not in leased), "others": sorted(i for i, us in table.items() if us - {me_user}),
             "leased": leased, "n_devices": len(table)}
@@ -340,8 +348,8 @@ def tick(state: dict, dry: bool) -> dict:
         if status in ("pending", "crashed", "waiting_gpu", "waiting_leases") and (size == "8B" or (exports_ok("8B") and train_log_ok("8B"))):
             dv = device_view(state, name)
             need = SFT_GPUS[size]
-            if size == "14B" and active_leases(state):
-                stage(state, name)["status"] = "waiting_leases"; stage(state, name)["devices"] = dv; stage(state, name)["waiting_on"] = active_leases(state)
+            if size == "14B" and active_leases(state, blocking_only=True):
+                stage(state, name)["status"] = "waiting_leases"; stage(state, name)["devices"] = dv; stage(state, name)["waiting_on"] = active_leases(state, blocking_only=True)
             elif len(dv["free"]) >= need:
                 launch(state, name, session, f"bash {S}/launch_sft_e08.sh {size} {','.join(map(str, dv['free'][:need]))}", dv["free"][:need], WORK / "ckpt" / f"driver_{size}.log", dry)
             else:
@@ -371,6 +379,8 @@ def tick(state: dict, dry: bool) -> dict:
                 if not v["gen_complete"]:
                     dv = device_view(state, name)
                     hold_for_14b = fourteen_pending and dv["n_devices"] - len(dv["others"]) >= 8
+                    if dv.get("unknown"):
+                        st["status"] = "waiting_gpu"; st["devices"] = dv; summary[name] = "waiting_gpu (GPU state unknown)"; continue
                     if fourteen_running or hold_for_14b or n_gen + launched_gen >= MAX_GEN or launched_gen >= 1 or len(dv["free"]) < shards:
                         st["status"] = "waiting_gpu"; st["devices"] = {"free": dv["free"], "others": dv["others"], "hold_for_14b": hold_for_14b}; summary[name] = "waiting_gpu"; continue
                     gpus = dv["free"][:shards]
