@@ -1,0 +1,350 @@
+{
+  "written_utc": "2026-10-09T21:42:59+00:00",
+  "forecast_verified": true,
+  "forecast_canonical_sha256": "b29b71b7166b80df653220ddddec4b865a622ef9abc1fa42c6c1e559b067b0c5",
+  "audit_script_sha256": "b76bd6976309ef203137922b5deb4ff4706cb2d8537246f804bdfc5d97f3112a",
+  "status": "BLOCKED",
+  "stop_rule": "PROTOCOL.md section 6: recomputed system SCSC must match the published value to 3 decimals",
+  "aggregation_mismatch_systems": [
+    "claude-opus-5-max",
+    "gpt-6-astra-high",
+    "gpt-5.6-sol-high",
+    "gpt-5.6-luna-high",
+    "gpt-6-luna-high",
+    "gemini-3.1-pro-high",
+    "qwen3.6-27b-thinking"
+  ],
+  "n_declared": 9856,
+  "file_missing_count": 2,
+  "file_missing_fraction": 0.00020292207792207794,
+  "file_missing_gate_passes": true,
+  "systems": [
+    {
+      "source_experiment": 103,
+      "system": "claude-opus-5-max",
+      "n_declared": 896,
+      "n_common_measured": 681,
+      "n_missing_factors": 215,
+      "factor_means_common_measured": {
+        "IC_tests": 0.6079295154185022,
+        "IC_proofs": 0.6074027457287369,
+        "FSC": 0.7365638766519824
+      },
+      "geometric_mean_of_factor_means_measured": 0.6479081833537454,
+      "geometric_mean_of_factor_means_all896": null,
+      "mean_per_cell_scsc_measured": 0.6048139210307024,
+      "published_scsc": 0.605,
+      "matches_published_three_decimals": false,
+      "mean_per_cell_matches_published_three_decimals": true,
+      "difference_geometric_minus_published": 0.042908183353745466,
+      "candidate_joins": {
+        "ambiguous": 20,
+        "bound": 700,
+        "located_without_recorded_hash": 176
+      },
+      "empty_candidate_files": 176
+    },
+    {
+      "source_experiment": 103,
+      "system": "gpt-6-astra-high",
+      "n_declared": 896,
+      "n_common_measured": 855,
+      "n_missing_factors": 41,
+      "factor_means_common_measured": {
+        "IC_tests": 0.5239766081871345,
+        "IC_proofs": 0.523706702654071,
+        "FSC": 0.9664327485380116
+      },
+      "geometric_mean_of_factor_means_measured": 0.6424764647480711,
+      "geometric_mean_of_factor_means_all896": null,
+      "mean_per_cell_scsc_measured": 0.5215504775659774,
+      "published_scsc": 0.522,
+      "matches_published_three_decimals": false,
+      "mean_per_cell_matches_published_three_decimals": true,
+      "difference_geometric_minus_published": 0.12047646474807105,
+      "candidate_joins": {
+        "ambiguous": 41,
+        "bound": 855
+      },
+      "empty_candidate_files": 0
+    },
+    {
+      "source_experiment": 103,
+      "system": "gpt-5.6-sol-high",
+      "n_declared": 896,
+      "n_common_measured": 889,
+      "n_missing_factors": 7,
+      "factor_means_common_measured": {
+        "IC_tests": 0.3880764904386952,
+        "IC_proofs": 0.3880764904386952,
+        "FSC": 0.9208661417322834
+      },
+      "geometric_mean_of_factor_means_measured": 0.5176192166005447,
+      "geometric_mean_of_factor_means_all896": null,
+      "mean_per_cell_scsc_measured": 0.38307545678149096,
+      "published_scsc": 0.383,
+      "matches_published_three_decimals": false,
+      "mean_per_cell_matches_published_three_decimals": true,
+      "difference_geometric_minus_published": 0.13461921660054466,
+      "candidate_joins": {
+        "ambiguous": 7,
+        "bound": 889
+      },
+      "empty_candidate_files": 0
+    },
+    {
+      "source_experiment": 103,
+      "system": "gpt-5.6-luna-high",
+      "n_declared": 896,
+      "n_common_measured": 890,
+      "n_missing_factors": 6,
+      "factor_means_common_measured": {
+        "IC_tests": 0.16292134831460675,
+        "IC_proofs": 0.16292134831460675,
+        "FSC": 0.8555056179775281
+      },
+      "geometric_mean_of_factor_means_measured": 0.28317807098317616,
+      "geometric_mean_of_factor_means_all896": null,
+      "mean_per_cell_scsc_measured": 0.15837442615904612,
+      "published_scsc": 0.158,
+      "matches_published_three_decimals": false,
+      "mean_per_cell_matches_published_three_decimals": true,
+      "difference_geometric_minus_published": 0.12517807098317615,
+      "candidate_joins": {
+        "ambiguous": 6,
+        "bound": 890
+      },
+      "empty_candidate_files": 0
+    },
+    {
+      "source_experiment": 103,
+      "system": "gpt-6-luna-high",
+      "n_declared": 896,
+      "n_common_measured": 888,
+      "n_missing_factors": 8,
+      "factor_means_common_measured": {
+        "IC_tests": 0.14301801801801803,
+        "IC_proofs": 0.1397643178893179,
+        "FSC": 0.8818693693693693
+      },
+      "geometric_mean_of_factor_means_measured": 0.26025381686214094,
+      "geometric_mean_of_factor_means_all896": null,
+      "mean_per_cell_scsc_measured": 0.14006465738277016,
+      "published_scsc": 0.14,
+      "matches_published_three_decimals": false,
+      "mean_per_cell_matches_published_three_decimals": true,
+      "difference_geometric_minus_published": 0.12025381686214093,
+      "candidate_joins": {
+        "ambiguous": 8,
+        "bound": 888
+      },
+      "empty_candidate_files": 0
+    },
+    {
+      "source_experiment": 103,
+      "system": "gemini-3.1-pro-high",
+      "n_declared": 896,
+      "n_common_measured": 889,
+      "n_missing_factors": 7,
+      "factor_means_common_measured": {
+        "IC_tests": 0.05736782902137233,
+        "IC_proofs": 0.05443515989072795,
+        "FSC": 0.8661417322834646
+      },
+      "geometric_mean_of_factor_means_measured": 0.13933031770707685,
+      "geometric_mean_of_factor_means_all896": null,
+      "mean_per_cell_scsc_measured": 0.05333033833630122,
+      "published_scsc": 0.053,
+      "matches_published_three_decimals": false,
+      "mean_per_cell_matches_published_three_decimals": true,
+      "difference_geometric_minus_published": 0.08633031770707686,
+      "candidate_joins": {
+        "ambiguous": 7,
+        "bound": 889
+      },
+      "empty_candidate_files": 0
+    },
+    {
+      "source_experiment": 103,
+      "system": "qwen3.6-27b-thinking",
+      "n_declared": 896,
+      "n_common_measured": 604,
+      "n_missing_factors": 292,
+      "factor_means_common_measured": {
+        "IC_tests": 0.0016556291390728477,
+        "IC_proofs": 0.0016556291390728477,
+        "FSC": 0.8994205298013245
+      },
+      "geometric_mean_of_factor_means_measured": 0.013509200260322714,
+      "geometric_mean_of_factor_means_all896": null,
+      "mean_per_cell_scsc_measured": 0.0015984923586185923,
+      "published_scsc": 0.002,
+      "matches_published_three_decimals": false,
+      "mean_per_cell_matches_published_three_decimals": true,
+      "difference_geometric_minus_published": 0.011509200260322714,
+      "candidate_joins": {
+        "ambiguous": 47,
+        "bound": 849
+      },
+      "empty_candidate_files": 0
+    },
+    {
+      "source_experiment": 102,
+      "system": "claude_code",
+      "n_declared": 896,
+      "n_common_measured": 896,
+      "n_missing_factors": 0,
+      "factor_means_common_measured": {
+        "IC_tests": 0.9776785714285714,
+        "IC_proofs": 0.977415892454955,
+        "FSC": 0.9641741071428571
+      },
+      "geometric_mean_of_factor_means_measured": 0.9730690343309752,
+      "geometric_mean_of_factor_means_all896": 0.9730690343309752,
+      "mean_per_cell_scsc_measured": 0.9650092339363364,
+      "published_scsc": 0.973069034330975,
+      "matches_published_three_decimals": true,
+      "mean_per_cell_matches_published_three_decimals": false,
+      "difference_geometric_minus_published": 2.220446049250313e-16,
+      "candidate_joins": {
+        "bound": 896
+      },
+      "empty_candidate_files": 0
+    },
+    {
+      "source_experiment": 102,
+      "system": "codex",
+      "n_declared": 896,
+      "n_common_measured": 896,
+      "n_missing_factors": 0,
+      "factor_means_common_measured": {
+        "IC_tests": 0.9988839285714286,
+        "IC_proofs": 0.9987244897959183,
+        "FSC": 0.9181919642857143
+      },
+      "geometric_mean_of_factor_means_measured": 0.9711762894679882,
+      "geometric_mean_of_factor_means_all896": 0.9711762894679882,
+      "mean_per_cell_scsc_measured": 0.9656998788368714,
+      "published_scsc": 0.971176289467988,
+      "matches_published_three_decimals": true,
+      "mean_per_cell_matches_published_three_decimals": false,
+      "difference_geometric_minus_published": 2.220446049250313e-16,
+      "candidate_joins": {
+        "bound": 895,
+        "file_missing": 1
+      },
+      "empty_candidate_files": 0
+    },
+    {
+      "source_experiment": 102,
+      "system": "leanstral",
+      "n_declared": 896,
+      "n_common_measured": 896,
+      "n_missing_factors": 0,
+      "factor_means_common_measured": {
+        "IC_tests": 0.5089285714285714,
+        "IC_proofs": 0.5342022746598639,
+        "FSC": 0.6526785714285714
+      },
+      "geometric_mean_of_factor_means_measured": 0.5619365835676113,
+      "geometric_mean_of_factor_means_all896": 0.5619365835676113,
+      "mean_per_cell_scsc_measured": 0.41625691489844996,
+      "published_scsc": 0.5619365835676118,
+      "matches_published_three_decimals": true,
+      "mean_per_cell_matches_published_three_decimals": false,
+      "difference_geometric_minus_published": -4.440892098500626e-16,
+      "candidate_joins": {
+        "bound": 895,
+        "file_missing": 1
+      },
+      "empty_candidate_files": 0
+    },
+    {
+      "source_experiment": 102,
+      "system": "baseline",
+      "n_declared": 896,
+      "n_common_measured": 896,
+      "n_missing_factors": 0,
+      "factor_means_common_measured": {
+        "IC_tests": 0.28683035714285715,
+        "IC_proofs": 0.2890625,
+        "FSC": 0.2936383928571429
+      },
+      "geometric_mean_of_factor_means_measured": 0.28982993237977456,
+      "geometric_mean_of_factor_means_all896": 0.28982993237977456,
+      "mean_per_cell_scsc_measured": 0.26579444079357833,
+      "published_scsc": 0.289829932379775,
+      "matches_published_three_decimals": true,
+      "mean_per_cell_matches_published_three_decimals": false,
+      "difference_geometric_minus_published": -4.440892098500626e-16,
+      "candidate_joins": {
+        "bound": 896
+      },
+      "empty_candidate_files": 564
+    }
+  ],
+  "sources": [
+    {
+      "path": "/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/results/summary.json",
+      "sha256": "67e37830d65323dd6ce756fe6683ec53b172ab391448ff117b66ebbc3e406e14"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/results.md",
+      "sha256": "12befdafc56ffd223cdbcb33e60dab1d5cb0c7a3c41af218a73bd18c66e6e0b7"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/veribench_vb103/experiments/102_rescore_vbv1_paper_fsc_with_validated_judge_rewrite_tmlr_icml/results/tables/validated_per_candidate.csv",
+      "sha256": "623edf3c15519f2e62d0957df3f223bbe52118f9ab5a19f458ede66fb1460408"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/veribench_vb103/experiments/102_rescore_vbv1_paper_fsc_with_validated_judge_rewrite_tmlr_icml/results/tables/VALIDATED_TABLES.json",
+      "sha256": "3dd8f331c21e5e99d8df36ee47a53a68d2e704eff16708700e06c1d652b185a0"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/vb100/paper_support/iclr2027/results/01_arm_convergence/per_task_factors_rerun.csv",
+      "sha256": "35f6ff31d1b452ff8065f86d948fbd83cc208645c859646fbd1d54d9b1e07f08"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/veribench_vb103/experiments/102_rescore_vbv1_paper_fsc_with_validated_judge_rewrite_tmlr_icml/results/input_inventory_tier1.json",
+      "sha256": "463395ce01eefa62bbc0a628d7d88af99e29f78dccc4b35657ef5e68c74804d1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/vb100/experiments/102_harden_tmlr_icml_papers_rescore_with_validated_fsc_judge/private/tier1_inputs/items.jsonl",
+      "sha256": "45b002644edce228456c081353ef3552b7f4def4bbdde8d2ba7362ea50f9fc36"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/veribench_vb103/experiments/102_rescore_vbv1_paper_fsc_with_validated_judge_rewrite_tmlr_icml/results/input_inventory_tier2.json",
+      "sha256": "c14302fdd358fe313acdb910c0e022b66c83a1e17c2e8d9c5b79c71e2462378a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/vb100/experiments/102_harden_tmlr_icml_papers_rescore_with_validated_fsc_judge/private/tier2_inputs/items.jsonl",
+      "sha256": "e7011388a0ef222021ebc69907763863057e3a6dab9b26f70090f29dfc084703"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/vb100/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/results/rerun_scored/claude_code_units.json",
+      "sha256": "478ebe39f631e419ff865a3de1e840444bbd1fcdde7c34bdf27343f78be3ffb8"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/vb100/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/results/rerun_scored/codex_units.json",
+      "sha256": "dd278990477965a0022421d02e78d36fe8b76e2994073c094ee971524788ff50"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/vb100/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/results/rerun_scored/leanstral_units.json",
+      "sha256": "266eb01879be1824974a2f1313afdc7227d92cd87f3652898ab8d1de69c707ac"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/vb100/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/results/rerun_scored/baseline_units.json",
+      "sha256": "99d8c0c105a596c4c13021bed8ad98c0fee7fd1534e6f1e83a382a0a257c4be6"
+    }
+  ],
+  "not_run": [
+    "100-candidate compilation reproduction (short-circuited by aggregation stop)",
+    "gold extraction",
+    "adapter controls",
+    "protocol lock",
+    "hidden evaluation",
+    "P1/P2/P3/G-A analyses",
+    "secondary panel evaluation"
+  ],
+  "uncertainty": "Deterministic census of supplied factor records, not a statistical estimate; confidence intervals and p-values not applicable."
+}
