@@ -2,9 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/CKPT_MASTER_tmuxnone_cxd_01a11d6a.md>
 
-**TLDR:** Brando's fewer-device/alternate-host request is being executed by the verified personal Codex Astra/ultra owner. The protocol permits GPU-layout changes, but the actual two-A100 probe exposed unsynchronized query/key normalization updates that depend on tensor partition count. That candidate is rejected for production; its two disposable optimizer updates and all failed/missing checks are retained, and its devices are released. The owner verified Mercury2’s pinned environment and is fixing disposable startup failures on eight smaller cards, with CPU offload and whole-decoder activation checkpointing to preserve the original tensor groups. Production remains unadmitted. The independent pipeline, coordinator monitor and same-chat heartbeat remain active; the failed learning adapter and blocked repair study stay closed.
+**TLDR:** The 14B resource investigation completed bounded disposable probes. Two A100s with CPU offload fit, but changing tensor partitions changes query/key normalization updates in the pinned implementation, so that route is rejected. Mercury2 with eight smaller A4000s preserves the original partitions and completed two full-length updates plus save/reload; its required third resumed update timed out, so production is not admitted there. All probe children and leases are released. The historical eight-A100 pipeline and its independent recovery watches remain active, waiting for capacity. The original study has zero scientific 14B updates, 15/20 trained rungs and 20,520/25,920 validation cells.
 
-Created: 10-08-2026 16:28 PDT. Last updated: 10-09-2026 14:11 PDT. **Status:** two-A100 probe REJECTED/CLEAN; Mercury2 environment VERIFIED; disposable startup recovery IN_PROGRESS; scientific 14B optimizer updates zero; owner RESUMED_VERIFIED; heartbeat ACTIVE. Learning adapter FAILED_TECHNICAL_GATE; repair allocation blocked.
+Created: 10-08-2026 16:28 PDT. Last updated: 10-09-2026 14:39 PDT. **Status:** two-A100 route REJECTED/CLEAN; Mercury2 route PARTIAL/NOT_ADMITTED/CLEAN; scientific 14B updates zero; original pipeline WAITING_GPU; resource owner VERIFIED_COMPLETE; coordinator monitor ARMED; heartbeat ACTIVE. Learning adapter FAILED_TECHNICAL_GATE; repair allocation blocked.
 
 ## 1. Identity and recovery
 
@@ -189,19 +189,39 @@ The first Mercury Ray cluster reported 160,252,572,057 bytes of object-store cap
 
 The owner safely reloaded the idle original pipeline at 14:03:16 PDT to use published layout admission. New PID **4005026/start_ticks 8095062**, original Skampere1 boot; first tick 14:03:21, all retry counters preserved. Source inspection found a prospective cross-host integration gap: the pipeline observes local tmux only, and a copied remote lease is classified stale by host/boot checks. Before Mercury production, the owner must implement/verify explicit cross-host ownership that suppresses a duplicate local 14B launch. Remote exports also need completed-transfer, digest and production-provenance verification before canonical publication, because the existing export predicate checks filenames/sizes only. Current disposable steps 2/3 remain outside canonical 14B checkpoint/export paths, which are empty; no duplicate production run or contaminated evaluation was observed. Findings were uploaded to the existing parent note; fresh owner acknowledgment is still required. No scientific 14B update or additional validation cell is claimed.
 
-**TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched supervised fine-tuning can use a verified smaller GPU layout under its existing protocol. The rejected two-A100 probe is cleaned up, and the owner is preparing Mercury2 with the original eight tensor groups. Production remains gated on measured feasibility.
+
+## 11. Resource-route outcome and remaining work (10-09-2026 14:38 PDT)
+
+The owner published the resource report and receipts in **`cb5c1ec` / merge `1cf27ef`**, independently fetched by the parent; unrelated subsequent experiment 12 documentation was preserved. Canonical evidence: [layout report](08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/layout_10-09-2026/README.md), [probe ledger](08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/layout_10-09-2026/probe_accounting.json), and [admission registry](08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/sft_layout_admission_14B.json).
+
+**Why eight:** 14,768,307,200 parameters with float32 weights, gradients and two Adam moments require approximately **220.065 GiB** before activations/compute copies. Eight-way sharding reduces that to 27.508 GiB per device; two-way needs 110.032 GiB without offload. Eight GPUs are therefore a resource choice, not an intrinsic 14B or protocol requirement. However, the actual pinned implementation's unsynchronized normalization gradients make changing the logical tensor partition count a mathematical change. Preserve eight logical head groups for this comparison; do not silently repair only 14B.
+
+**Measured Mercury execution:** attempt 3 used 114.577 seconds and failed with an actual device-memory error because its hook missed deserialized worker globals, retaining the old submodule checkpointing. Attempt 4 correctly installed whole-decoder wrappers on all 40 layers and completed two disposable updates with full 16384-token padded forwards. Training times were **124.020 and 121.506 seconds**; native checkpoint save took **27.126 seconds**, storing 177,249,587,197 bytes across 28 files. Peak reserved device memory was **14.471 GiB** and minimum available host memory **75.541 GiB**. These are two early steps, not stable whole-run throughput or a controlled hardware-speed comparison.
+
+Native reload matched **16/16 sampled embedding/query-projection hashes** and completed one full-length resumed backward per rank. The cumulative deadline interrupted the third optimizer update. Optimizer initialization at zero learning rate is excluded from scientific/update counts. The existing third-update admission criterion remains unmet; the registry marks Mercury pending. The untested remote-production supervisor was never launched. Remote ownership that excludes a duplicate local launch, durable checkpoint storage and verified export transfers remain integration requirements before any future admission.
+
+**Accounting/cleanup:** cumulative allocated accelerator window **1783.907/1800 seconds**, remaining **16.093 seconds**; total **8343.092 device-seconds**. No new allocation fits the remaining window; preserve every failed attempt and do not infer a reset. This phase bound is distinct from the original study, which has no overall wall/device-hour cap. The final runner ended at 14:24:28 PDT with no owned children and released leases. Parent independently verified all 10 Mercury cards idle and all 18 Skampere1 experiment leases plus all 4 Mercury probe leases released. At 14:26, Skampere1 had only A100 indices 1,2 idle; Skampere2 none; Skampere3 only B200 index 7; both Mercury hosts had 10 idle A4000s. The disposable checkpoint payload was removed at 14:26:48 after retaining complete file hashes and small native metadata; it is not a reusable production checkpoint.
+
+**Shared checkpoint limitation, not a new retrospective gate:** parent inspected retained native metadata at 14:29. All **80/80 query/key normalization weight keys** and **240/240 corresponding optimizer entries** have one saved chunk each, whereas the query-projection control has eight shards. Pinned PyTorch deduplicates identical metadata indices without comparing values and reloads by name/chunk overlap. This does not encode eight independently addressable normalization states. Gradient differences were observed, but pre/post normalization-weight and Adam-moment hashes were not captured, so actual numerical state drift is unmeasured. Ordinary sharded-weight sample matches do not establish full-state lossless restoration.
+
+The same native save/resume behavior is already used by the historical segmented training recipe. Protocol sections 8/14 permit recorded infrastructure changes while preserving its actual math and schedule. Therefore document this shared limitation without imposing a new historical-production hold or selectively correcting 14B. Preserve logical head/rank mapping, canonical state/key order, shard geometry and native rung/restart schedule; no migration-induced writer change has been demonstrated. Mercury remains pending under its previously declared third-update criterion and production-integration requirements. The detailed parent evidence and interpretation were uploaded to `owner_recovery/resource_request_10-09-2026/parent_findings.md`; upload is verified, but acknowledgment of this latest revision by the native owner is still pending. The prior 13:50 acknowledgment does not cover it.
+
+Parent independently ran `make test` on published `7011901`: **207 passed, five skipped in 26.28 seconds**. Native publication checks passed **204 / four skipped**; optional/platform tests explain the differing totals. Automation update/readback confirms ACTIVE, the unchanged 45-minute cadence and this chat, with the completed probe accounting and shared baseline limitation included.
+
+At **14:38:39 PDT**, the monitor accepted the resource owner's completed receipt, cleared its incident and reached **ARMED** with no owner. Parent verified the native owner process exited and pipeline PID 4005026 remained alive; its last recorded tick was 14:36:41. The final receipt confirms published output hashes, unchanged scientific retry counters, all probe leases released and the canonical continuation brief restored. Latest parent findings are retained for the next owner; they were not acknowledged during the completed phase.
+
+**Next actions:** retain the historical admitted route and live resource watcher; it can start the original 658-update/five-rung chain from pinned Base when eight suitable devices are available. Do not confuse a healthy watcher with active training. Keep Mercury as the most promising measured alternate host, without promoting it or extending the exhausted disposable allocation. Finish the existing finite study and held-out evaluation through the original owner when an admitted route is available. Full validation remains **20,520/25,920**, with **5,400 missing 14B cells**; no test selection or additional outcome is inferred from the resource probes.
+
+**TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched supervised fine-tuning remains queued on its admitted historical route; Mercury has demonstrated memory fit and two updates but has not passed its existing resume gate. Scientific settings and completed evidence are preserved.
 **Snapshot:**
 ```text
-prior recovery publication: 150dd84; monitor ARMED after owner exit
-current owner: personal Codex gpt-6-astra / ultra; full access
-native session: 01a1225e-4f78-7580-8109-7f8877a97033
-layout authority: PROTOCOL sections 8 and 14
-tested candidate: 2 A100 80GB with CPU offload; not admitted
-probe accounting: 1075.419/1800 accelerator seconds used; failed attempts retained
-14B scientific optimizer updates: 0
-warm-start validation factors: 20520/25920; missing 5400
-semantic check: 80/80 query/key gradient digests differ across ranks
-Mercury2: pinned environment verified; startup recovery, no training update
-production admission: pending verified equivalent layout
-parent heartbeat: ACTIVE; independent pipeline preserved
+published resource evidence: cb5c1ec / merge 1cf27ef
+historical production route: eight A100s; waiting for capacity
+Mercury: two disposable updates; resumed update incomplete
+probe window: 1783.907/1800 seconds; no reset
+probe children / active probe leases: 0 / 0
+scientific 14B updates: 0/658
+trained rungs: 15/20
+validation cells: 20520/25920; missing 5400
+selection / new held-out evaluation: not admitted
 ```
