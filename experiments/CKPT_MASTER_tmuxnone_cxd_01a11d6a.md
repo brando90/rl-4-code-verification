@@ -2,9 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/CKPT_MASTER_tmuxnone_cxd_01a11d6a.md>
 
-**TLDR:** Brando's fewer-device/alternate-host request is being executed by the verified personal Codex Astra/ultra owner. The protocol permits GPU-layout changes, but the actual two-A100 probe exposed unsynchronized query/key normalization updates that depend on tensor partition count. That candidate is rejected for production; its two disposable optimizer updates and all failed/missing checks are retained, and its devices are released. The owner is preparing Mercury2 with eight smaller cards, CPU offload and whole-decoder activation checkpointing to preserve the original tensor groups. Production remains unadmitted. The independent pipeline, coordinator monitor and same-chat heartbeat remain active; the failed learning adapter and blocked repair study stay closed.
+**TLDR:** Brando's fewer-device/alternate-host request is being executed by the verified personal Codex Astra/ultra owner. The protocol permits GPU-layout changes, but the actual two-A100 probe exposed unsynchronized query/key normalization updates that depend on tensor partition count. That candidate is rejected for production; its two disposable optimizer updates and all failed/missing checks are retained, and its devices are released. The owner verified Mercury2’s pinned environment and is fixing disposable startup failures on eight smaller cards, with CPU offload and whole-decoder activation checkpointing to preserve the original tensor groups. Production remains unadmitted. The independent pipeline, coordinator monitor and same-chat heartbeat remain active; the failed learning adapter and blocked repair study stay closed.
 
-Created: 10-08-2026 16:28 PDT. Last updated: 10-09-2026 14:00 PDT. **Status:** two-A100 probe REJECTED/CLEAN; Mercury2 environment PREPARING; scientific 14B optimizer updates zero; owner RESUMED_VERIFIED; heartbeat ACTIVE. Learning adapter FAILED_TECHNICAL_GATE; repair allocation blocked.
+Created: 10-08-2026 16:28 PDT. Last updated: 10-09-2026 14:11 PDT. **Status:** two-A100 probe REJECTED/CLEAN; Mercury2 environment VERIFIED; disposable startup recovery IN_PROGRESS; scientific 14B optimizer updates zero; owner RESUMED_VERIFIED; heartbeat ACTIVE. Learning adapter FAILED_TECHNICAL_GATE; repair allocation blocked.
 
 ## 1. Identity and recovery
 
@@ -182,6 +182,13 @@ At 13:58–13:59 PDT, real transfer processes were copying the pinned 29.55 GB B
 
 Layout admission and recovery wording were published in **`70e80e0` / merge `30f8f325520b49565366988aa8bfc3f68190085d`**. The owner restored the private monitor prompt/hash to the corrected canonical continuation brief. Native tests passed **204 / four skipped in 33.42 seconds**; parent independently pulled the merge and passed **207 / five skipped in 26.97 seconds**. Different optional/platform tests explain the differing suite totals. Further changes require their appropriate checks. Automation was updated to retain the observed normalization hazard and the Mercury route; its status remains ACTIVE.
 
+
+**Mercury startup receipts and integration checks (10-09-2026 14:05–14:10 PDT):** parent independently read the environment receipt: all **18/18** pinned model/tokenizer files match; torch 2.7.1+cu128, Transformers 4.55.4, Ray 2.46.0 and NeMo 0.4.0 import with the pinned parallelizer hash. The first actual Mercury probe began at 14:05:49 PDT under runner PID 2777556/start_ticks 1581765121, boot `020cc754-3fc9-4268-9afe-4e0c287a35a7`, using devices 0–7. It failed during initialization with duplicate-device collective bindings, before an optimizer update. Elapsed **78.302 seconds**, cumulative **1,066.330 seconds**; parent verified the failed receipt, empty owned-process list, released lease and idle devices. The owner attributed the failure to early diagnostic-hook imports and moved installation later; that remedy remains unverified until a successful live retry. A second attempt failed before worker initialization because its Unix socket path exceeded 107 bytes, taking **9.088 seconds**, cumulative **1,075.419 seconds**. Both receipts are retained; remaining probe allocation is **724.581 seconds**, not a fresh budget. Routine startup recovery remains with the same owner.
+
+The first Mercury Ray cluster reported 160,252,572,057 bytes of object-store capacity. A parent suggestion to use the supported task-local 8 GiB ceiling was uploaded, but consumption was not verified before this launch. Actual shared-memory usage remained small, so reserved capacity alone was not a checkpoint-capacity failure. Do not confuse the suggested ceiling with an applied setting or stop a healthy run on hypothetical committed usage. Future admission must check actual memory and saved/reloaded state.
+
+The owner safely reloaded the idle original pipeline at 14:03:16 PDT to use published layout admission. New PID **4005026/start_ticks 8095062**, original Skampere1 boot; first tick 14:03:21, all retry counters preserved. Source inspection found a prospective cross-host integration gap: the pipeline observes local tmux only, and a copied remote lease is classified stale by host/boot checks. Before Mercury production, the owner must implement/verify explicit cross-host ownership that suppresses a duplicate local 14B launch. Remote exports also need completed-transfer, digest and production-provenance verification before canonical publication, because the existing export predicate checks filenames/sizes only. Current disposable steps 2/3 remain outside canonical 14B checkpoint/export paths, which are empty; no duplicate production run or contaminated evaluation was observed. Findings were uploaded to the existing parent note; fresh owner acknowledgment is still required. No scientific 14B update or additional validation cell is claimed.
+
 **TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched supervised fine-tuning can use a verified smaller GPU layout under its existing protocol. The rejected two-A100 probe is cleaned up, and the owner is preparing Mercury2 with the original eight tensor groups. Production remains gated on measured feasibility.
 **Snapshot:**
 ```text
@@ -190,11 +197,11 @@ current owner: personal Codex gpt-6-astra / ultra; full access
 native session: 01a1225e-4f78-7580-8109-7f8877a97033
 layout authority: PROTOCOL sections 8 and 14
 tested candidate: 2 A100 80GB with CPU offload; not admitted
-first probe: stopped and cleaned; 988.028/1800 accelerator seconds used
+probe accounting: 1075.419/1800 accelerator seconds used; failed attempts retained
 14B scientific optimizer updates: 0
 warm-start validation factors: 20520/25920; missing 5400
 semantic check: 80/80 query/key gradient digests differ across ranks
-Mercury2: pinned environment transfer; next probe not yet admitted
+Mercury2: pinned environment verified; startup recovery, no training update
 production admission: pending verified equivalent layout
 parent heartbeat: ACTIVE; independent pipeline preserved
 ```
