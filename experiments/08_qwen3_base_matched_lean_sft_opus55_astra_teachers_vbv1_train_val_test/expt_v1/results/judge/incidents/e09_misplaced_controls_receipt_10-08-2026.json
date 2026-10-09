@@ -1,0 +1,39 @@
+{
+ "written_local": "10-08-2026 20:01 PDT",
+ "written_utc": "2026-10-09T03:01:59+00:00",
+ "owner": "experiment 08 (session d3968eac)",
+ "incident": "Before 19:31 PDT on 10-08-2026 an experiment 09 judge adapter imported experiment 08's judge driver without overriding its STATE path and recorded two FAILED control admissions (benchmark veribench-rl4cv-e09-controls, service unreachable) into experiment 08's judge state file. Experiment 09 commit 751a0f6 overrides bridge.STATE to its own results/state.json; the parent documents the incident in experiment 09's judge_admission_receipt.json. No experiment 08 judge admission has happened yet; no judge was invoked for this repair.",
+ "source_path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/state.json",
+ "source_sha256": "783111ade27d9432c274474cec8053191ba053b89926d5934ff16388a30cdfbe",
+ "source_bytes": 2847,
+ "source_mtime_utc": "2026-10-09T02:31:34+00:00",
+ "source_git_status": "untracked (never committed)",
+ "archive_path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/incidents/e09_misplaced_controls_state_10-08-2026.json",
+ "archive_sha256": "783111ade27d9432c274474cec8053191ba053b89926d5934ff16388a30cdfbe",
+ "records": {
+  "controls/H2_opus55_max": {
+   "benchmark": "veribench-rl4cv-e09-controls",
+   "suite_label": "rl4cv-e08-controls",
+   "config": "H2_opus55_max",
+   "phase": "admission_failed",
+   "returncode": 1,
+   "admitted_at": "2026-10-09T02:30:56+00:00",
+   "run_id": null,
+   "stderr_tail": "Error: Benchmark service 'veribench-rl4cv-e09-controls' is not reachable\n"
+  },
+  "controls/H2_sol_high": {
+   "benchmark": "veribench-rl4cv-e09-controls",
+   "suite_label": "rl4cv-e08-controls",
+   "config": "H2_sol_high",
+   "phase": "admission_failed",
+   "returncode": 1,
+   "admitted_at": "2026-10-09T02:30:33+00:00",
+   "run_id": null,
+   "stderr_tail": "Error: Benchmark service 'veribench-rl4cv-e09-controls' is not reachable\n"
+  }
+ },
+ "state_created_utc": "2026-10-09T02:30:33+00:00",
+ "provenance": "experiment 09 (benchmark name veribench-rl4cv-e09-controls; no experiment 08 benchmark is named rl4cv-e09)",
+ "repair": "exact bytes archived here (identical copy, same mtime); the misplaced file removed from expt_v1/results/judge/state.json so experiment 08's first control admission starts from a clean state; the orchestrator additionally ignores any judge-state record whose benchmark is not experiment 08's own",
+ "not_done": "no experiment 09 controls rerun, no judge invoked, no experiment 08 protocol change"
+}

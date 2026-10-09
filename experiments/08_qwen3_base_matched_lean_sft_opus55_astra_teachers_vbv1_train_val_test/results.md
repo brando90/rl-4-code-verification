@@ -4,9 +4,9 @@
 
 **TLDR:** The VeriBench V1 train / validation / test split (539 / 135 / 222 tasks, D-013) and the zero-call baselines are done. On the new validation split, Qwen3 Base's `kernel_binary` mixed-group share at G = 8 is 0.000 (1.7B), 0.022 (4B) and 0.000 (8B), all below the 0.05 gate. The SNAP worker has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity); lock 1 and the live teacher preflight are next.
 
-**Status:** RUNNING under the serialized orchestrator `expt_v1/scripts/pipeline_e08.py` (tmux `rl4cv-e08-pipeline`, guarded by the cron watchdog; started 10-08-2026 17:09 PDT): 1.7B and 4B SFT complete with validation rungs 12.5–75 % scored (1.7B) and 12.5–50 % scored + 75 % finishing (4B); the 100 % rungs are dispatched by the orchestrator; 8B SFT training on GPUs 0–3; 14B SFT waits for 8B's verified exports and all 8 idle devices (GPUs 4–5 currently hold another user's processes); selection runs only when all 20 rungs and Base 14B are valid; no selection yet
+**Status:** RUNNING under the serialized orchestrator `expt_v1/scripts/pipeline_e08.py` (tmux `rl4cv-e08-pipeline`, cron watchdog; verified 10-08-2026 20:02 PDT): 1.7B, 4B and 8B SFT complete (658 steps each, exports and token logs on schedule); validation ladder 8 / 20 rungs valid (1.7B 12.5–75 %, 4B 12.5–75 %; 8,640 / 8,640 scored cells) plus Base 14B; 1.7B 100 % scoring 7 / 8 shards, 4B 100 % 5 / 8; 8B 12.5 % and 25 % generated (1,080 / 1,080 rows each) and scoring; 8B 50 % and 75 % generating on GPUs 3 and 6; 8B 100 % waiting for a device; 14B SFT waits for 8 idle devices (other users hold several); no selection, test manifest or test evaluation yet. Judge state: an experiment 09 adapter incident wrote two failed e09 control-admission records into our judge state before 19:31 PDT; archived with SHA-256 under `expt_v1/results/judge/incidents/`, state path cleaned, orchestrator ignores foreign records
 
-**Last updated:** 10-08-2026 17:44 PDT (pipeline: validation ladder table)
+**Last updated:** 10-08-2026 20:02 PDT (worker: faithful progress line; judge-state isolation repair)
 
 ## Phases
 
