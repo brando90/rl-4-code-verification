@@ -6,13 +6,21 @@
 
 **Status:** RUNNING / WAITING under the serialized orchestrator `expt_v1/scripts/pipeline_e08.py` (tmux `rl4cv-e08-pipeline`, cron watchdog; verified 10-09-2026 13:20 PDT): 1.7B, 4B and 8B SFT complete; validation ladder 15 / 20 trained rungs valid (16,200 / 21,600 trained-checkpoint cells scored) plus Base 14B (1,080 / 1,080); the five 14B rungs are INCOMPLETE (0 / 1,080 each) because 14B production has not started. The historical layout uses tensor parallelism of eight; alternative layouts are admitted only after their actual training semantics and execution pass. All disposable probes ended and released their leases. Mercury's resume gate remains incomplete; selection BLOCKED; no test manifest, test generation, judging or test evaluation. Last pipeline publication of ladder results: `60ce8ce` (merged `f91fd69`).
 
-**Last updated:** 10-09-2026 14:30 PDT (bounded layout checks complete; no new production admission)
+**Last updated:** 10-09-2026 14:49 PDT (coordinator event repair; no new scientific cells)
 
 ## Smaller-device layout investigation (10-09-2026)
 
 The historical eight-device configuration is one admitted route, not a scientific prerequisite. Two A100s with CPU state offload fit and executed optimizer updates, but changing tensor parallelism changes the pinned query/key-normalization gradient semantics. Mercury2's eight 16-GiB A4000s preserve the eight tensor partitions; whole-decoder checkpointing completed two full-length updates, with 124.020/121.506-second training times and peak reserved memory14.471GiB/device. Its checkpoint restored16/16 sampled parameter hashes, but the cumulative probe boundary stopped the resumed update after one backward per rank. **No alternative was admitted; 14B production remains0/658.**
 
 The phase used1783.907/1800 accelerator-window seconds, preserving every failed attempt and all scientific retries. All probe leases/children are released. The pipeline now reads hash-verified layout admissions; it was safely reloaded while idle and can launch the historical route when available. The final survey has only skampere1 devices1,2 idle. Completed study evidence and all validation/selection/test settings remain unchanged. [Full decision, measured costs, numerical limits and exact receipts](expt_v1/results/layout_10-09-2026/README.md).
+
+## Coordinator event repair (10-09-2026 14:47 PDT)
+
+The first cron check after the resource owner finished reopened an already-serviced event: its long-running parent used the earlier event schema, while the owner computed the new schema containing the admission-registry hash. The monitor now honors the verified completion key and lets the next tick detect genuinely new events. Regression tests reproduce the failure and verify completion deduplication, new-event dispatch and preservation of archived attempts. Published fix: `6025ecc`, merged `aa3e7b2`; parent full suite **208 passed, five skipped**. The execution host passed all **24 monitor tests**, and an actual post-repair tick returned **ARMED** without starting a model owner.
+
+At 14:47:34 PDT the parent verified the completed phase and all 14 immutable output hashes, then reconciled the duplicate incident under monitor, owner and pipeline locks. Both failed account-read attempts remain archived as `SUPERSEDED_BY_VERIFIED_COMPLETION`; no replacement model owner or scientific call was launched. The original pipeline identity is unchanged, and the monitor returned to ARMED. A separate native diagnostic at 14:45 confirmed the personal account eligible with 62% weekly allowance remaining; this does not erase the earlier transient read failure. Private receipts: `$WORK/owner_recovery/monitor_diagnostic_10-09-2026/`.
+
+The continuation brief now requires the next owner to read and acknowledge the parent's updated checkpoint findings. Sampled embedding/query-projection agreement is not proof of lossless per-rank normalization-state restoration. The native deduplication limitation also belongs to the historical implementation, so it is documented without selectively changing 14B or imposing a new retrospective gate. Scientific counts remain **0/658 14B updates**, **15/20 trained rungs**, **20,520/25,920 validation cells**, with **5,400 missing**.
 
 ## Earlier coordinator recovery (10-09-2026 13:21 PDT)
 
@@ -212,4 +220,4 @@ Written 2026-10-09T07:58:33+00:00 by the pipeline from `expt_v1/results/validati
 
 - None blocking. Varun's math/code rows and warm-start checkpoints (D-105) would allow a math + code + Lean arm in a later version; ask him first.
 
-**TLDR-end:** [rl4cv: expt 08 matched Lean SFT warm start] Teachers, S and the matched SFT for 1.7B / 4B / 8B are done and all 15 of their validation rungs plus Base 14B are scored (17,280 / 17,280 generated cells); selection and the test split wait for the 14B SFT, which needs eight idle devices.
+**TLDR-end:** [rl4cv: expt 08 matched Lean SFT warm start] Teachers, S and the matched SFT for 1.7B / 4B / 8B are done and all 15 of their validation rungs plus Base 14B are scored (17,280 / 17,280 generated cells); selection and the test split wait for the 14B SFT, which currently has an admitted eight-A100 route waiting for capacity; the tested Mercury alternative remains unadmitted.
