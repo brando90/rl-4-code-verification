@@ -4,8 +4,10 @@
 
 Experiment `12_scsc_vs_hidden_gold_tests_vbv1_across_systems` phase A audited 11 systems × 896 VeriBench V1 tasks with zero model calls and stopped at the prespecified aggregation gate before hidden-test evaluation.
 
-**Status:** BLOCKED — PROTOCOL § 6 aggregation mismatch; evaluation has not begun.
-**Last updated:** 10-09-2026 14:44 PDT
+**Status:** RUNNING under Amendment A1 (`a50618e`); all 11 source-specific published aggregates reproduce, candidate-join gate passes (2/9,856 missing), 896 gold hashes verified; 100-file compile reproduction in progress.
+
+**Amendment A1 resume:** The historical audit below remains the pre-amendment receipt. Both forecasts verified; current [A1 input audit](expt_v1/results/aggregation_preflight_A1.json) and [A1 manifest](expt_v1/results/input_manifest_A1.json) supersede its blocked state. No hidden-test outcome yet.
+**Last updated:** 10-09-2026 14:56 PDT
 
 The smooth conjunctive score for code verification (SCSC) required by this protocol is the geometric mean of three factor means: internal consistency of tests (IC_tests), internal consistency of proofs (IC_proofs), and formal specification coverage (FSC). Experiment 103 instead publishes the mean of per-file SCSC on a measured subset. Those operations differ. Experiment 102 publishes the required geometric-of-means aggregate and reproduces correctly.
 

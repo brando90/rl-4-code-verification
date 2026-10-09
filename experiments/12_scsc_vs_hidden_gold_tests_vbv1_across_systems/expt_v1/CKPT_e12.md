@@ -5,13 +5,13 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 14:46 PDT
+**Last updated:** 10-09-2026 14:53 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
 - **Worker:** Codex CLI 0.154.0, personal ChatGPT login, `gpt-6-astra` / high, host `skampere1`, tmux `oct9-codex-rl4cv-e12-hidden-gold-tests`; effective sandbox danger-full-access, approval never. Supersedes the Claude launch, which failed due to exhausted personal Claude credits.
 - **Frozen forecast:** `expt_v1/forecasts/e12_phase_a_forecast.json`, SHA-256 `b29b71b7166b80df653220ddddec4b865a622ef9abc1fa42c6c1e559b067b0c5`, frozen 2026-10-09T21:35:33Z at git head `e851c02`.
-- **State:** BLOCKED at PROTOCOL § 6; tracking issue #9. No experiment process remains running.
+- **State:** RUNNING under prospective Amendment A1 (`a50618e`); tracking issue #9. Input checks and compile reproduction in progress.
 - **Next command (audit only):** `PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/audit_inputs_e12.py` (expected exit 2). Evaluation cannot resume until the master records a prospective aggregation/denominator resolution.
 
 ## Log
@@ -45,3 +45,10 @@
 - Deterministic verification: `make test` 188 passed / 24 skipped; experiment-local audit tests 6 passed; manifest cell uniqueness and all recorded source/script/forecast hashes PASS; `git diff --check` PASS.
 
 - PUBLISHED `c696725` to `origin/main` (10-09-2026 14:46 PDT): input audit, manifest, results and blocked state. Push confirmed; working tree clean afterward. Direct main publication follows the explicit repository/user instructions. No pending batch job. Final worker state remains BLOCKED, with the exact reproduction command above.
+
+### 10-09-2026 14:53 PDT — Amendment A1 resume
+
+- Pulled `a50618e`; read PROTOCOL § 8 and verified both frozen forecast hashes. Neither forecast edited.
+- Master authorizes source-specific published-score checks, measured-cohort system score, A1 missingness sensitivity and source-consistent recovery joins.
+- Status RUNNING; next: amend audit without overwriting pre-A1 receipts, run all section 1 checks including 100-file compilation reproduction; then extraction, controls, lock and full evaluation.
+- CPU budget: initially two concurrent Lean processes, nice priority 10; monitor shared-host load. Zero model/judge calls.
