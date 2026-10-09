@@ -5,7 +5,7 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 16:51 PDT
+**Last updated:** 10-09-2026 16:59 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
@@ -140,3 +140,5 @@
 - Round-5 first useful action verified: private candidate modules compiled and compiler logs written under `controls_round5/modules`; actual worker process alive. Repository verification completed: 197 passed / 24 skipped.
 
 - 10-09-2026 16:51 PDT round-5 milestone: 10/50 tasks; gold 122/122, renamed 10/10, mutants killed 9/10, wrong-task rejection 9/10. No timeouts in completed receipts; two low-priority Lean workers active. Published `2b36cfb` after merging concurrent experiment-10 work; merged repository tests 204 passed / 24 skipped. Next: finish controls, publish complete receipts, lock and push before any real-candidate outcome.
+
+- 10-09-2026 16:59 PDT round-5 midpoint: 26/50 tasks; gold 293/293, renamed 25/26, mutants killed 23/26, wrong-task rejection 25/26. The known heap rename failure is reproduced; all completed tasks have compiling mutants. All three forecasts reverified, and the archived round-2 receipt is byte-identical to `02b59d4`. No lock or real-candidate outcome; worker active. Last publication `8a44a67`.
