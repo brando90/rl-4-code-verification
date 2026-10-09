@@ -2,9 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/CKPT_MASTER_tmuxnone_cxd_01a11d6a.md>
 
-**TLDR:** Brando approved automatic overnight model-improvement experiments on 10-08-2026. The factored-score reinforcement-learning adapter failed its actual probability-consistency gate before any optimizer update; its report and full missing-cell accounting are published. The warm-start study continues, but its requested final owner handoff was rejected by its usage allowance before acknowledgment. Parent overnight supervision has reached its cutoff; the final report and consolidated missing-cell accounting are ready for publication. The repair study exhausted its coordinator allocation before official admission and is blocked.
+**TLDR:** Brando approved automatic overnight model-improvement experiments on 10-08-2026. The factored-score reinforcement-learning adapter failed its actual probability-consistency gate before any optimizer update; its report and full missing-cell accounting are published. The warm-start study continues, but its requested final owner handoff was rejected by its usage allowance before acknowledgment. Parent overnight supervision has reached its cutoff; the final report and consolidated missing-cell accounting are published in `a99e681`, and the desktop heartbeat is PAUSED. The repair study exhausted its coordinator allocation before official admission and is blocked.
 
-Created: 10-08-2026 16:28 PDT. Last updated: 10-09-2026 11:52 PDT. **Status:** parent final report prepared after cutoff; heartbeat pause pending publication. Learning adapter FAILED_TECHNICAL_GATE; repair allocation blocked; warm-start pipeline healthy, interactive owner allowance blocked.
+Created: 10-08-2026 16:28 PDT. Last updated: 10-09-2026 11:54 PDT. **Status:** parent final report published; heartbeat PAUSED. Learning adapter FAILED_TECHNICAL_GATE; repair allocation blocked; warm-start pipeline healthy, interactive owner allowance blocked.
 
 ## 1. Identity and recovery
 
@@ -98,7 +98,7 @@ Twenty-three unfinished owner files were preserved without publishing them as va
 
 The experiment09 ordinary-code watcher **`parent_watchdog_e09.py`** used two-minute/reboot cron, exclusive watcher lock, run/boot/PID/start identity checks, bounded recovery and no model polling. Its exact task-owned cron entries are now retired after verified terminal publication; preserved code and status are evidence, not an active watch. Updated source SHA-256 **`f9b6b676d87b9b432d64219ba751755996b36fb274148cf95ee6ae9badb067f8`** exposes pending mailbox state; 24 harmless tests passed locally and remotely, receipt `parent_watch_update_receipt.json`. The earlier observation-only watchdog remains preserved but stopped. Register detached drivers in `child_receipts.json` before directory changes. Healthy surviving children prevent automatic coordinator duplication. Authentication/allowance/model-access failure and exit-zero without terminal evidence require changed-evidence clearance. The launcher enforces the exclusive coordinator lock, original deadline and at most 3 attempts. Mere terminal-file presence is not scientific completion.
 
-Current-chat heartbeat **`overnight-factored-score-learning`** remains ACTIVE every 45 minutes. Its prompt now preserves the failed learning-adapter and blocked repair receipts without automatic relaunch, supervises the existing warm-start owner, and requires the final overnight report at/after 10-09-2026 11:13:36 PDT. Keep unchanged checks quiet; notify meaningful progress, failure, completion or required user action only. Publish that report and missing-cell accounting, then pause this heartbeat while preserving separately authorized healthy experiment08 work; an earlier final report/pause is allowed if every remaining supervised task needs concrete external intervention. The Mac/app must be available for desktop follow-ups; remote watchers are independent. No fourth repair owner or unapproved follow-on study.
+Current-chat heartbeat **`overnight-factored-score-learning`** is **PAUSED**, confirmed 10-09-2026 11:54:04 PDT, after final report publication `a99e681`. The automation tool changed its status and readback verified the original prompt, 45-minute schedule and target chat unchanged. Remote experiment08 pipeline/watchdog remain active and independent; this closes only parent overnight supervision. No fourth repair owner, learning relaunch or unapproved follow-on study. A new user instruction is needed to resume this desktop monitor.
 
 SSH must use `-S none -o ControlMaster=no`; SCP uses `-o ControlPath=none -o ControlMaster=no`. Restore native remote shell with `/dfs/scratch0/brando9/.bashrc`; never assign HOME manually. At 20:10 PDT, skampere1 health passed relevant native-shell/authentication/LFS checks (about 8,523 GiB free, 85% used). DFS warned near 5% free and is not an experiment data destination; stale tool alternates remain irrelevant warnings, not permission to alter shared configuration.
 
@@ -110,7 +110,7 @@ At 22:12 PDT, parent independently reverified experiment09: terminal status unch
 
 At 10-09-2026 10:58 PDT the compact closure check found experiment09 unchanged: original owner/coordinator absent, zero registered children and task-watch cron entries, all 9/9 leases released, and the same terminal publication with scientific completion false. Experiment06 remained blocked at 3/3 launches with no active jobs/containers/observer; its original 10:50 PDT deadline elapsed without new execution. Warm-start validation remained 15/20 complete (16,200/21,600 trained-checkpoint cells; 17,280/22,680 with Base14B). Its pipeline PID 3371983 last ticked at 10:57:09, original owner PID 147453 remained alive, and the watchdog checked healthy at 10:45:03. No compute children, live leases, selection or test-runtime files existed. All eight devices had other users' processes, so admission was closed and 14B still awaited eight devices. The unchanged resource wait required no intervention and produced no new result or failure, so no native-owner continuation or user notification was needed. Only documentation changed since the passing source suite at `f91fd69`; exact diff and secret checks apply to this checkpoint.
 
-1. Publish the final overnight report and parent accounting below, then pause the desktop heartbeat. Preserve the separately authorized warm-start pipeline, watchdog and leases; do not create a study runtime cap.
+1. Final report and accounting are published in `a99e681`; the desktop heartbeat is confirmed PAUSED. Preserve the separately authorized warm-start pipeline, watchdog and leases; do not create a study runtime cap.
 2. Preserve experiment09's verified failed-gate terminal publication and experiment06's blocked receipt. Both original deadlines have elapsed; no relaunch, sampler change or new scientific admission.
 3. Interactive continuation through the original warm-start owner requires restored usage allowance. Do not purchase credits, change its model or claim the blocked final handoff succeeded. The independent pipeline can still execute its admitted finite stages as resources permit.
 
@@ -126,6 +126,8 @@ Pipeline PID 3371983 remained live, with an 11:50:01 PDT tick; watchdog checked 
 
 The 11:46 PDT learning closure audit verified all original owner/coordinator/watcher processes absent, zero registered children/task cron entries, all nine leases released and all six aligned-artifact hashes matching the runtime/publication. The 11:48 PDT repair audit verified 3/3 launches spent, 0/16 controls, 0/8 author calls, 0/56 solver cells, no owner/jobs/containers/observer/cron, and the preserved 23-file archive digest unchanged. Neither study was relaunched. Effects on learned weights and repair remain unmeasured.
 
+Publication `a99e681` was verified on remote main before the automation tool paused the desktop heartbeat at 10-09-2026 11:54:04 PDT. Post-pause inspection at 11:54:20 PDT found pipeline PID 3371983 alive with an 11:54:13 tick, 14B still waiting and selection pending at 15/20; the independent study/watchdog were preserved. No further overnight supervision is scheduled.
+
 **TLDR-end:** [rl-4-code-verification: 09_qwen3_1p7b_grpo_scsc_scalar_vs_factor_feedback_vbv1_d013] Factored-score model learning remains unmeasured because the adapter failed before optimization. The final overnight report closes parent supervision while preserving the independent warm-start study and every missing cell.
 **Snapshot:**
 ```text
@@ -136,5 +138,5 @@ warm-start validation factors: 20520/25920; missing 5400
 warm-start owner handoff: allowance blocked before acknowledgment
 warm-start pipeline/watchdog: healthy and preserved
 repair: 3/3 launches spent; official controls 0/16; solver 0/56
-parent heartbeat: pause pending final report publication
+parent heartbeat: PAUSED after report publication
 ```

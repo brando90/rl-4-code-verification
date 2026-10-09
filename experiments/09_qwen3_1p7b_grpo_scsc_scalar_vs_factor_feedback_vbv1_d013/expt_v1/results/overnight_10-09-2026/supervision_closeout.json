@@ -1,8 +1,11 @@
 {
   "automation": {
+    "confirmed_utc": "2026-10-09T18:54:04.161000+00:00",
     "id": "overnight-factored-score-learning",
+    "prompt_and_schedule_preserved": true,
+    "report_published_first": true,
     "requested_after_publication": "PAUSED",
-    "status": "ACTIVE_PENDING_REPORT_PUBLICATION"
+    "status": "PAUSED"
   },
   "kind": "parent_final_overnight_observation_not_scientific_completion",
   "learning": {
@@ -21,6 +24,16 @@
     "learning_cleanup": "10-09-2026 11:46 PDT",
     "repair_cleanup": "10-09-2026 11:48 PDT",
     "warm_start": "10-09-2026 11:43-11:50 PDT"
+  },
+  "post_pause_observation": {
+    "14B": "waiting_gpu",
+    "observed_utc": "2026-10-09T18:54:20.602825+00:00",
+    "pipeline_alive": true,
+    "pipeline_last_tick_utc": "2026-10-09T18:54:13+00:00",
+    "pipeline_pid": 3371983,
+    "remote_study_preserved": true,
+    "selection": "pending (15/20 rungs valid)",
+    "watchdog_last_check_utc": "2026-10-09T18:45:03Z"
   },
   "published_input_sha256": {
     "experiments/06_swebench_lite_factor_feedback_matched_budget/expt_v3/results/supervision_blocked_10-08-2026.json": "0a006015aa420bcbbb6ffe32bf92468c1219cced7bda23236618e16863b080a0",
@@ -50,6 +63,7 @@
     "status": "BLOCKED_BEFORE_ADMISSION"
   },
   "report_cutoff_pdt": "10-09-2026 11:13:36 PDT",
+  "report_publication_commit": "a99e681ebd2fc9d4cea85b21a9f17fa0584558e3",
   "source_main_commit": "d413f507e1c777e772dfd1ea8d7e6a1b8dbacf68",
   "validation": {
     "accounting_join": "asserted full declared cells, manifest/source hashes, unique keys and blank unknowns",
