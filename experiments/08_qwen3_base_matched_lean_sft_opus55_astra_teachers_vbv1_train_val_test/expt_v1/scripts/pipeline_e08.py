@@ -533,6 +533,16 @@ def deployed(name: str, benchmark: str, pack: Path) -> bool:
     return r.returncode == 0
 
 
+def own_judge_runs(J: Path) -> dict:
+    """Judge-state records that belong to experiment 08 (benchmark prefix veribench-rl4cv-e08) and were actually admitted; foreign or failed
+    records (e.g. the experiment 09 adapter incident of 10-08-2026, archived under results/judge/incidents/) never count as our admissions."""
+    runs = (read_json(J / "state.json", {}) or {}).get("runs", {})
+    foreign = {k: v.get("benchmark") for k, v in runs.items() if not str(v.get("benchmark", "")).startswith("veribench-rl4cv-e08")}
+    if foreign:
+        log(f"judge state holds foreign records (ignored): {foreign}")
+    return {k: v for k, v in runs.items() if k not in foreign and v.get("phase") != "admission_failed"}
+
+
 def judge_phase(state: dict, sel: dict, summary: dict) -> None:
     """D-102 judging via the validated Valkyrie agent (vb103_judge; H2_sol_high + H2_opus55_max, 3 repeats, median then mean/5): controls first."""
     J, drv = RES / "judge", str(S / "judge_rl4cv_e08.py")
@@ -546,7 +556,7 @@ def judge_phase(state: dict, sel: dict, summary: dict) -> None:
                 summary["judge"] = "build-controls failed"; return
         if not deployed("judge-controls", "veribench-rl4cv-e08-controls", Path(ctl["pack_abs"])):
             summary["judge"] = "controls service unavailable"; return
-        runs = (read_json(J / "state.json", {}) or {}).get("runs", {})
+        runs = own_judge_runs(J)
         if not any(k.startswith("controls/") for k in runs):
             r = run([PY, drv, "admit", "--suite", "rl4cv-e08-controls", "--concurrency", "8"], timeout=1800); log(f"admit controls rc={r.returncode}: {r.stdout.strip()[-300:]}")
             summary["judge"] = "controls admitted"; return
@@ -568,7 +578,7 @@ def judge_phase(state: dict, sel: dict, summary: dict) -> None:
         publish([J / "judge_pack_test.json"], "Experiment 08 § 10: judge test pack built (every IC_tests = 1 cell + the 60-cell audit per system; 3 repeats × 2 members)")
     if not deployed("judge-test", "veribench-rl4cv-e08-test", Path(tp["pack_abs"])):
         summary["judge"] = "test service unavailable"; return
-    runs = (read_json(J / "state.json", {}) or {}).get("runs", {})
+    runs = own_judge_runs(J)
     systems = list(tp["per_system"])
     pending = [s for s in systems if not any(k.startswith(f"{s}/") for k in runs)]
     for s in pending:
