@@ -6,7 +6,7 @@
 
 **Status:** RUNNING under the serialized orchestrator `expt_v1/scripts/pipeline_e08.py` (tmux `rl4cv-e08-pipeline`, guarded by the cron watchdog; started 10-08-2026 17:09 PDT): 1.7B and 4B SFT complete with validation rungs 12.5–75 % scored (1.7B) and 12.5–50 % scored + 75 % finishing (4B); the 100 % rungs are dispatched by the orchestrator; 8B SFT training on GPUs 0–3; 14B SFT waits for 8B's verified exports and all 8 idle devices (GPUs 4–5 currently hold another user's processes); selection runs only when all 20 rungs and Base 14B are valid; no selection yet
 
-**Last updated:** 10-08-2026 17:09 PDT (worker: serialized continuation handed to the orchestrator)
+**Last updated:** 10-08-2026 17:44 PDT (pipeline: validation ladder table)
 
 ## Phases
 
@@ -167,7 +167,7 @@ Failure taxonomy (cells): Opus 5.5 {"kept": 1200, "no_lean": 437, "no_typecheck"
 
 ## Validation ladder (live; PROTOCOL § 9: 135 tasks × 8 samples per system; gates (a) extraction ≥ 972/1080, (b) capped ≤ 108/1080, (c) mixed `kernel_binary` tasks ≥ 7/135; p-val=n/a)
 
-Written 2026-10-09T00:07:18+00:00 by the pipeline from `expt_v1/results/validation_ladder.json` (per-task and per-cell CSVs under `expt_v1/results/ladder/`).
+Written 2026-10-09T00:44:30+00:00 by the pipeline from `expt_v1/results/validation_ladder.json` (per-task and per-cell CSVs under `expt_v1/results/ladder/`).
 
 | System | Status | Extraction | Capped | Mixed tasks (share; Wilson 95%) | Gates | pass@8 | mean pass | mean tokens |
 |---|---|---:|---:|---|---|---:|---:|---:|
@@ -188,7 +188,7 @@ Written 2026-10-09T00:07:18+00:00 by the pipeline from `expt_v1/results/validati
 | `sft_4B_f0p125` | COMPLETE | 43 / 1080 | 390 / 1080 | 4 / 135 (0.0296; [0.0116, 0.0737]) | fail | 0.0296 | 0.00556 | 7093.7 |
 | `sft_4B_f0p25` | COMPLETE | 724 / 1080 | 245 / 1080 | 21 / 135 (0.1556; [0.1041, 0.2261]) | fail | 0.1556 | 0.04167 | 5671.6 |
 | `sft_4B_f0p5` | COMPLETE | 845 / 1080 | 230 / 1080 | 22 / 135 (0.163; [0.1102, 0.2344]) | fail | 0.163 | 0.03889 | 5870.6 |
-| `sft_4B_f0p75` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
+| `sft_4B_f0p75` | COMPLETE | 916 / 1080 | 164 / 1080 | 21 / 135 (0.1556; [0.1041, 0.2261]) | fail | 0.1556 | 0.03704 | 5658.0 |
 | `sft_4B_f1p0` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
 | `sft_8B_f0p125` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
 | `sft_8B_f0p25` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
