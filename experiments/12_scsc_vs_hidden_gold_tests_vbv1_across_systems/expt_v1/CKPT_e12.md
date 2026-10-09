@@ -5,14 +5,14 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 14:53 PDT
+**Last updated:** 10-09-2026 15:04 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
 - **Worker:** Codex CLI 0.154.0, personal ChatGPT login, `gpt-6-astra` / high, host `skampere1`, tmux `oct9-codex-rl4cv-e12-hidden-gold-tests`; effective sandbox danger-full-access, approval never. Supersedes the Claude launch, which failed due to exhausted personal Claude credits.
 - **Frozen forecast:** `expt_v1/forecasts/e12_phase_a_forecast.json`, SHA-256 `b29b71b7166b80df653220ddddec4b865a622ef9abc1fa42c6c1e559b067b0c5`, frozen 2026-10-09T21:35:33Z at git head `e851c02`.
-- **State:** RUNNING under prospective Amendment A1 (`a50618e`); tracking issue #9. Input checks and compile reproduction in progress.
-- **Next command (audit only):** `PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/audit_inputs_e12.py` (expected exit 2). Evaluation cannot resume until the master records a prospective aggregation/denominator resolution.
+- **State:** RUNNING under prospective Amendment A1 (`a50618e`); tracking issue #9. Input checks PASS; gold and renamed-gold controls running.
+- **Next command:** `tail -n 5 /lfs/skampere1/0/brando9/rl4cv_e12/controls_round1.log`; resume `PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/controls_e12.py` only if its tmux job is no longer running.
 
 ## Log
 
@@ -52,3 +52,13 @@
 - Master authorizes source-specific published-score checks, measured-cohort system score, A1 missingness sensitivity and source-consistent recovery joins.
 - Status RUNNING; next: amend audit without overwriting pre-A1 receipts, run all section 1 checks including 100-file compilation reproduction; then extraction, controls, lock and full evaluation.
 - CPU budget: initially two concurrent Lean processes, nice priority 10; monitor shared-host load. Zero model/judge calls.
+
+### 10-09-2026 15:04 PDT — section 1 passes; controls running
+
+- A1 published values 11/11 reproduced; 9,856 primary cells retained; joins 9,678 hash-bound, 176 unique-path flagged, 2 absent, zero ambiguous. All 896 gold files match pinned git bytes.
+- 100-file frozen compilation sample: 100/100 agreement, gate ≥99%; 600-second cap, two nice-10 single-thread Lean workers, exact frozen grading project. Completed normally (exit 0).
+- Secondary snapshot: 33,984 cells / 33 systems, 28,584 factor-measured; all 5,400 missing factors explicit. No experiment-08 test candidate accessed.
+- Extracted/frozen 10,429 hidden tests from 881/896 references; 15 no_tests. No real candidate hidden-test evaluation.
+- Control sample: first 50 eligible tasks in sha256(rl4cv-e12-ctl: + task_id) order. Gold and globally renamed-gold copies compile in tmux window `e12-controls`; two workers, host-only output `/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1`.
+- Preliminary C2 mapping: 48/50 tasks have multiple compatible renamed definitions (functional/imperative twins); no tie-breaking added. Await actual C1/C2 receipts before gate verdict.
+- Live control progress: `results/controls_e12_progress.json`; final receipt `results/controls_e12.json`; terminal marker `/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1.exit`.

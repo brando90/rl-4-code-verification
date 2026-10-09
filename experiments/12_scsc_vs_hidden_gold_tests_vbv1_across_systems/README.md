@@ -74,7 +74,7 @@
 | Step | Status |
 |---|---|
 | Design and frozen forecast | Done (10-09-2026) |
-| Input preflight under A1 | Published values 11/11 reproduced; joins pass; 100-file compile check running |
-| Hidden-test extraction and adapter controls | Pending compile reproduction |
+| Input preflight under A1 | PASS: published values 11/11, joins pass, compile reproduction 100/100 |
+| Hidden-test extraction and adapter controls | 10,429 tests extracted; gold/renamed-gold controls running |
 | Protocol lock | NOT LOCKED |
 | Evaluation and analysis | Pending; predictions untested |
