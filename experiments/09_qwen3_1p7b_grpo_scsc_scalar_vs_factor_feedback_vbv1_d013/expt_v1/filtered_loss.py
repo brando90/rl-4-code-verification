@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import torch
+import os
 from nemo_rl.algorithms.interfaces import LossType
 from filtered_policy import selected_logprobs, SupportMismatch
 
@@ -32,6 +33,7 @@ class FilteredGRPOLoss:
     def __call__(self, next_token_logits, data, global_valid_seqs,
                  global_valid_toks, vocab_parallel_rank=None,
                  vocab_parallel_group=None, context_parallel_group=None):
+        assert not os.environ.get('E09_PROB_DIAGNOSTIC_DIR'), 'Read-only probability replay must never optimize'
         assert vocab_parallel_group is None and context_parallel_group is None
         assert data.get("seq_index") is None
         assert torch.all(data["sample_mask"] == 1), "No outcome-based sample removal"

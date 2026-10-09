@@ -70,3 +70,10 @@ def test_chunked_probabilities_and_gradients_match_dense():
     gs = torch.autograd.grad(sparse.sum(), z, retain_graph=True)[0]
     gd = torch.autograd.grad(dense.sum(), z)[0]
     assert torch.allclose(gs, gd, atol=1e-6)
+
+
+def test_read_only_probability_replay_cannot_enter_optimizer(monkeypatch):
+    scaled, data, loss_fn = fixture()
+    monkeypatch.setenv('E09_PROB_DIAGNOSTIC_DIR', '/unused/deterministic-test')
+    with pytest.raises(AssertionError, match='must never optimize'):
+        loss_fn(scaled, data, torch.tensor(2), torch.tensor(8))

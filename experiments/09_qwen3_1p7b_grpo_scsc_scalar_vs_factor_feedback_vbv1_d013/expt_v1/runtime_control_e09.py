@@ -53,6 +53,8 @@ def plumbing_scorer(metadata, candidate):
 
 
 def run(out):
+    # An object destructor after shutdown must not create/adopt another cluster.
+    os.environ['RAY_ENABLE_AUTO_CONNECT'] = '0'
     import ray
     import torch
     from omegaconf import OmegaConf
@@ -97,6 +99,7 @@ def run(out):
                              save_period=1, keep_top_k=1, metric_name=None)
     cfg.logger.update(log_dir=str(out / 'logs'), monitor_gpus=False)
     cfg.env = {}
+    diagnostic = os.environ.get('E09_PROB_DIAGNOSTIC_INPUT')
     config = OmegaConf.to_container(cfg, resolve=True)
     write_json(out / 'resolved_config.json', config)
     tokenizer = AutoTokenizer.from_pretrained(MODEL, local_files_only=True)
@@ -105,15 +108,18 @@ def run(out):
     for key in ('nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker',
                 'nemo_rl.models.generation.vllm.vllm_worker.VllmGenerationWorker'):
         ACTOR_ENVIRONMENT_REGISTRY[key] = str(ROOT / 'nemo_rl/.venv/bin/python')
-    ray.init(address='local', _temp_dir=os.environ['E09_RAY_DIR'],
-             num_cpus=4, num_gpus=1, include_dashboard=False,
-             object_store_memory=512 * 1024**2,
-             runtime_env={'env_vars': {k: os.environ[k] for k in (
+    actor_environment = {k: os.environ[k] for k in (
                  'PYTHONPATH', 'E09_FILTERED_POLICY', 'E09_GENERATION_SEED',
                  'VLLM_USE_FLASHINFER_SAMPLER', 'E09_IPC_DIR', 'E09_CONTROL_DIR',
                  'CUDA_DEVICE_ORDER', 'E09_LEASED_GPU_UUID',
                  'E09_DRIVER_PID', 'E09_DRIVER_START',
-                 'OMP_NUM_THREADS', 'MKL_NUM_THREADS', 'OPENBLAS_NUM_THREADS')}})
+                 'OMP_NUM_THREADS', 'MKL_NUM_THREADS', 'OPENBLAS_NUM_THREADS')}
+    if diagnostic:
+        actor_environment['E09_PROB_DIAGNOSTIC_DIR'] = str(out / 'probability_diagnostics')
+    ray.init(address='local', _temp_dir=os.environ['E09_RAY_DIR'],
+             num_cpus=4, num_gpus=1, include_dashboard=False,
+             object_store_memory=512 * 1024**2,
+             runtime_env={'env_vars': actor_environment})
     try:
         actor = ray.remote(TwoTurnLeanEnvironment).options(num_cpus=1).remote(
             arm='B', scorer=plumbing_scorer, tokenizer=tokenizer,
@@ -130,6 +136,23 @@ def run(out):
                             'loss_multiplier': 1., 'idx': i, 'task_name': 'e09_control', 'stop_strings': None})
         parts = setup(config, tokenizer, dataset, None)
         policy, generation, cluster, loader, val_loader, loss, logger, checkpointer, state, config = parts
+        if diagnostic:
+            frozen = torch.load(diagnostic, weights_only=False, map_location='cpu')
+            policy.prepare_for_lp_inference()
+            teacher = policy.get_logprobs(frozen['train_data'])['logprobs']
+            mask = frozen['train_data']['token_mask'].bool()
+            behavior = frozen['train_data']['generation_logprobs']
+            finite = torch.isfinite(teacher) & mask
+            errors = (teacher - behavior)[finite].abs()
+            write_json(out / 'probability_diagnostic.json', {
+                'new_responses': 0, 'optimizer_steps': 0, 'input_batch': diagnostic,
+                'assistant_tokens': int(mask.sum()),
+                'outside_support_actions': int((mask & ~torch.isfinite(teacher)).sum()),
+                'supported_actions_max_logq_error': float(errors.max()),
+                'supported_actions_mean_logq_error': float(errors.mean()),
+                'supported_actions_exceeding_frozen_tolerance': int((errors > .05).sum()),
+                'scientific_admission': False})
+            return
         grpo_train(policy, generation, loader, val_loader, tokenizer, loss,
                    {'e09_control': actor}, {}, logger, checkpointer, state, config)
         checkpoint = checkpointer.get_latest_checkpoint_path()
@@ -167,6 +190,8 @@ def run(out):
             'optimizer_save_reload_verified': True, 'full_context_verified': True,
             'technical_admission_pass': True})
     finally:
+        import ray._private.auto_init_hook
+        ray._private.auto_init_hook.enable_auto_connect = False
         ray.shutdown()
 
 
@@ -185,10 +210,12 @@ def main():
     out = ROOT / 'technical_control' / sys.argv[1]
     out.mkdir(parents=True, exist_ok=False)
     write_json(out / 'identity.json', child)
+    diagnostic = os.environ.get('E09_PROB_DIAGNOSTIC_INPUT')
     write_json(out / 'prospective_budget.json', {
         'written_utc': stamp(), 'max_devices': 1, 'reserved_device_hours': 1.0,
-        'disposable_optimizer_steps': 1, 'technical_responses_max': 65,
-        'technical_response_tokens_max': 4160, 'new_judge_calls': 0,
+        'disposable_optimizer_steps': 0 if diagnostic else 1, 'technical_responses_max': 0 if diagnostic else 65,
+        'technical_response_tokens_max': 0 if diagnostic else 4160, 'new_judge_calls': 0,
+        'replay_diagnostic_input': diagnostic,
         'new_data_estimate_gib': 30, 'new_data_run_limit_gib': 200,
         'scientific_sampler': {'temperature': .6, 'top_p': .95, 'top_k': 20},
         'generation_old_logq_absolute_tolerance': .05,
@@ -216,7 +243,8 @@ def main():
                 signal.alarm(min(3500, max(1, int((datetime.fromisoformat('2026-10-09T05:15:00+00:00') - datetime.now(timezone.utc)).total_seconds()))))
                 break
             print(f'WAITING_GPU {stamp()} {admission.get("reason")}', flush=True)
-            if datetime.now(timezone.utc) >= datetime.fromisoformat('2026-10-09T04:15:00+00:00'):
+            cutoff = '2026-10-09T05:00:00+00:00' if diagnostic else '2026-10-09T04:15:00+00:00'
+            if datetime.now(timezone.utc) >= datetime.fromisoformat(cutoff):
                 raise TimeoutError('No admitted device by prospective control-start cutoff 04:15 UTC')
             time.sleep(60)
         write_json(out / 'lease.json', lease)

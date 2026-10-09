@@ -57,6 +57,25 @@ def tensor_sample(value):
     return value.detach().reshape(-1)[:128].cpu().contiguous().view(torch.uint8).numpy().tobytes()
 
 
+def probability_diagnostic(logits, ids, batch, q, batch_idx):
+    """Read-only replay evidence, never eligible for an optimizer update."""
+    from filtered_policy import kept_mask
+    mask = batch['token_mask'][:, 1:].bool()
+    values = logits[:, :-1][mask].float()
+    targets = ids[:, 1:][mask]
+    teacher = q[mask]
+    behavior = batch['generation_logprobs'][:, 1:][mask]
+    kept = kept_mask(values)
+    top_values, top_ids = values.topk(24, dim=-1)
+    source = Path(os.environ['E09_PROB_DIAGNOSTIC_DIR'])
+    source.mkdir(exist_ok=True)
+    torch.save({'teacher_logq': teacher.cpu(), 'generation_logq': behavior.cpu(),
+                'targets': targets.cpu(), 'positions': mask.nonzero().cpu(),
+                'target_scaled_logits': values.gather(1, targets[:, None]).cpu(),
+                'top24_scaled_logits': top_values.cpu(), 'top24_token_ids': top_ids.cpu(),
+                'kept_count': kept.sum(-1).cpu()}, source / f'microbatch_{batch_idx}.pt')
+
+
 def sample_digest(model, optimizer=None):
     """Explicitly a deterministic sample digest, NOT an endpoint identity hash."""
     h = hashlib.sha256()
