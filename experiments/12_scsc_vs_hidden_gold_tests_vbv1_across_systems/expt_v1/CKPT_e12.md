@@ -5,7 +5,7 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 16:44 PDT
+**Last updated:** 10-09-2026 16:51 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
@@ -138,3 +138,5 @@
 - Added final mutation fallback after existing operator/numeric/string attempts: follow exact local qualified or same-namespace definition references from tested functions, enumerate reachable helpers in source order, and keep the first compiling single operator/literal edit. Test-only fixtures are not roots. Mutation choice never sees hidden outcomes. Prior successful choices remain unchanged.
 - Round 5 is rerunning all four controls on the same 50 tasks in `controls_round5`, two nice-10 single-thread Lean processes with 600-second caps. Mapping/extraction/inputs/thresholds unchanged, forecasts verified, protocol still unlocked, zero real-candidate outcomes. Local deterministic tests: 32 passed.
 - Round-5 first useful action verified: private candidate modules compiled and compiler logs written under `controls_round5/modules`; actual worker process alive. Repository verification completed: 197 passed / 24 skipped.
+
+- 10-09-2026 16:51 PDT round-5 milestone: 10/50 tasks; gold 122/122, renamed 10/10, mutants killed 9/10, wrong-task rejection 9/10. No timeouts in completed receipts; two low-priority Lean workers active. Published `2b36cfb` after merging concurrent experiment-10 work; merged repository tests 204 passed / 24 skipped. Next: finish controls, publish complete receipts, lock and push before any real-candidate outcome.

@@ -5,7 +5,7 @@
 Experiment `12_scsc_vs_hidden_gold_tests_vbv1_across_systems` phase A passed Amendment A1 input checks and 100/100 compilation reproductions; all four adapter controls are rerunning under prospective Amendment A2 with zero experiment model calls.
 
 **Status:** RUNNING under prospective Amendment A2 (`a7c2ea2`). Round-2 failure retained below; corrected round-5 controls running. No real-candidate hidden outcomes.
-**Last updated:** 10-09-2026 16:44 PDT
+**Last updated:** 10-09-2026 16:51 PDT
 
 The smooth conjunctive score for code verification (SCSC) combines internal consistency of tests (IC_tests), internal consistency of proofs (IC_proofs), and formal specification coverage (FSC). Under the prospective [Amendment A1](PROTOCOL.md#8-amendment-a1-10-09-2026-master-before-any-hidden-test-outcome), the system score is the geometric mean of the three factor means over one common measured cohort. Published-value checks reproduce each source’s own convention.
 
@@ -55,9 +55,9 @@ Complete round 3b is archived in [controls_e12_round3b.json](expt_v1/results/con
 
 Round 4 corrects extraction of literal input fixtures: a zero-argument alias with a closed literal body is expanded only when every occurrence is inside an implementation-call argument. Expected-result aliases, nonliteral bodies and constants directly under test are not expanded. This preserves the gold test’s fixed input instead of incorrectly re-pointing it to candidate data. No gold function body or definition enters a bridge. [Reconciliation](expt_v1/results/fixture_input_normalization.json) retains all 10,534 tests and original text, with 23 aliases / 70 tests / 10 tasks normalized; the same 50 control task IDs remain. C3 adds a string-literal fallback only after all existing operator/numeric edits fail to compile. Existing successful mutant selections do not change. All four controls rerun in full, with two low-priority Lean workers. [Current round-4 snapshot](expt_v1/results/controls_round4_status.json): 50/50 tasks; C1 591/591, C2 48/50, C3 43/49, C4 49/50. The string-repeat fallback now compiles and is detected.
 
-Round 4 is archived unchanged in [controls_e12_round4.json](expt_v1/results/controls_e12_round4.json). Its sole failed gate is the missing Floyd–Warshall mutant: both tested entry functions delegate to helpers and contain no direct operator/literal mutation. Round 5 adds a final reachable-helper fallback after all direct attempts, preserving source-order selection and every previously successful mutant choice; it reruns all four controls on all 50 tasks. Mapping, tests and expectations stay fixed.
+Round 4 is archived unchanged in [controls_e12_round4.json](expt_v1/results/controls_e12_round4.json). Its sole failed gate is the missing Floyd–Warshall mutant: both tested entry functions delegate to helpers and contain no direct operator/literal mutation. Round 5 adds a final reachable-helper fallback after all direct attempts, preserving source-order selection and every previously successful mutant choice; it reruns all four controls on all 50 tasks. Mapping, tests and expectations stay fixed. [Round-5 live snapshot](expt_v1/results/controls_round5_status.json): 10/50 tasks; gold 122/122, renamed 10/10, mutants killed 9/10, wrong-task rejection 9/10.
 
-The evaluator and analysis code are prepared, including A1/A2 sensitivities and per-step shares; neither has evaluated model hidden outcomes. The lock still requires all four controls to pass. Deterministic checks: 32 experiment-local tests pass, including synthetic statistics cases; repository suite 197 passed / 24 skipped.
+The evaluator and analysis code are prepared, including A1/A2 sensitivities and per-step shares; neither has evaluated model hidden outcomes. The lock still requires all four controls to pass. Deterministic checks: 32 experiment-local tests pass, including synthetic statistics cases; repository suite 204 passed / 24 skipped.
 
 ## Control result and structural blocker
 
@@ -96,6 +96,6 @@ PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_syst
 PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/controls_e12.py
 ```
 
-The completed round-2 control runner returns exit 2, preserving its failed gate. Compilation and control scripts preserve completed receipts on resume. Host-only logs and copied control sources are in `/lfs/skampere1/0/brando9/rl4cv_e12/`; no candidate source is committed. Verification so far: repository tests 197 passed / 24 skipped; experiment-local tests 32 passed.
+The completed round-2 control runner returns exit 2, preserving its failed gate. Compilation and control scripts preserve completed receipts on resume. Host-only logs and copied control sources are in `/lfs/skampere1/0/brando9/rl4cv_e12/`; no candidate source is committed. Verification so far: repository tests 204 passed / 24 skipped; experiment-local tests 32 passed.
 
 **TLDR-end:** [rl4cv: 12_scsc_vs_hidden_gold_tests_vbv1_across_systems] Hidden gold-test agreement is running the complete fixed control sample under A2 after passing input gates and 100/100 compilation reproductions. Round-2 failures remain archived; real-candidate outcomes and predictions remain unmeasured.
