@@ -202,6 +202,9 @@ def test_orchestrator_14b_gate_ignores_holds_but_inference_respects_them(tmp_pat
     spec = importlib.util.spec_from_file_location("pipeline_e08", SCRIPTS / "pipeline_e08.py")
     pl = importlib.util.module_from_spec(spec); spec.loader.exec_module(pl)
     hermetic(pl.GL, tmp_path)
+    pl.P = tmp_path; pl.STATE_PATH, pl.LOCK, pl.LEASES = tmp_path / "state.json", tmp_path / "lock", tmp_path / "leases.json"   # no writes outside tmp_path
+    logged = []
+    pl.log = logged.append                                                                   # capture the orchestrator's log instead of writing it
     d = {"e09-hold-x": {"owner": "e09", "kind": m.HOLD_KIND, "stage": m.HOLD_KIND, "gpus": [0, 1], "since": m.ts(NOW), "expires_utc": m.ts(NOW + timedelta(hours=2)), "released": False, "identity": None},
          "e09-real-y": {"owner": "e09", "kind": "trajectory", "stage": "trajectory", "gpus": [2], "since": m.ts(NOW), "expires_utc": m.ts(NOW + timedelta(hours=2)), "released": False, "identity": m.identity(ALIVE_PID)},
          "e09-dead-z": {"owner": "e09", "kind": "trajectory", "stage": "trajectory", "gpus": [3], "since": m.ts(NOW), "expires_utc": m.ts(NOW + timedelta(hours=2)), "released": False,
@@ -215,3 +218,5 @@ def test_orchestrator_14b_gate_ignores_holds_but_inference_respects_them(tmp_pat
     pl.gpu_table = lambda: (_ for _ in ()).throw(pl.GL.GpuStateUnknown("boom"))
     dv = pl.device_view(state)
     assert dv["free"] == [] and dv["unknown"]                                              # unknown state: nothing free
+    assert any("GPU state unknown, failing closed" in msg and "boom" in msg for msg in logged)
+    assert not (tmp_path / "pipeline.log").exists() and sorted(p.name for p in tmp_path.iterdir()) == ["leases.json"]   # nothing written beyond the registry
