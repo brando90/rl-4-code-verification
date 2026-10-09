@@ -5,7 +5,7 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 16:22 PDT
+**Last updated:** 10-09-2026 16:31 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
@@ -120,3 +120,6 @@
 
 - PUBLISHED `b1bb5d3` (merge preserving concurrent `08ee026`) with literal-input normalization and string-mutation fallback; remote push verified. All three forecasts reverified unchanged. Current code checks: 189 repository tests passed / 24 skipped; 29 local tests passed.
 - 10-09-2026 16:22 PDT round-4 milestone: 11/50 complete; gold 134/134, renamed 11/11, mutants 10/11, wrong-task rejection 10/11. String-repeat fallback compiles and is killed (first nine numeric/operator attempts failed compilation, tenth changed one string literal). Live counts: `results/controls_round4_status.json`; run remains active and unlocked.
+
+- 10-09-2026 16:31 PDT midpoint: 27/50 tasks; C1 305/305, C2 26/27, C3 24/27, C4 26/27. Every completed task now has a compiling mutant. Full cohort continues; no lock or model-output hidden evaluation. Last verified publication `db78fcd`; concurrent experiment-10 changes preserved and merged repository tests passed 197 / 24 skipped.
+- Third forecast canonical digest: A2 `674be36bb7a67d6a61f8cf85f2ddd2879792f604dbaa4e9919e21fdcddb3772a`; all three forecast verifications remain PASS.

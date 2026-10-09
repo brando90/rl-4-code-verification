@@ -5,13 +5,13 @@
 Experiment `12_scsc_vs_hidden_gold_tests_vbv1_across_systems` phase A passed Amendment A1 input checks and 100/100 compilation reproductions; all four adapter controls are rerunning under prospective Amendment A2 with zero experiment model calls.
 
 **Status:** RUNNING under prospective Amendment A2 (`a7c2ea2`). Round-2 failure retained below; corrected round-4 controls running. No real-candidate hidden outcomes.
-**Last updated:** 10-09-2026 16:22 PDT
+**Last updated:** 10-09-2026 16:31 PDT
 
 The smooth conjunctive score for code verification (SCSC) combines internal consistency of tests (IC_tests), internal consistency of proofs (IC_proofs), and formal specification coverage (FSC). Under the prospective [Amendment A1](PROTOCOL.md#8-amendment-a1-10-09-2026-master-before-any-hidden-test-outcome), the system score is the geometric mean of the three factor means over one common measured cohort. Published-value checks reproduce each source’s own convention.
 
 | Step | Status | Evidence |
 |---|---|---|
-| Both frozen forecasts | PASS | Original `b29b71b7…`; A1 `81df7de2…`; both unchanged and verified |
+| All three frozen forecasts | PASS | Original `b29b71b7…`; A1 `81df7de2…`; A2 `674be36b…`; all unchanged and verified |
 | Published values | PASS, 11/11 | [A1 source-convention audit](expt_v1/results/aggregation_preflight_A1.json) |
 | Primary joins | PASS | 9,678 hash-bound + 176 unique-path flagged + 2 missing = 9,856; zero ambiguous |
 | Gold reference pin | PASS, 896/896 | Every file byte-identical to git pin `c11b99badfa386fd26810b208eef1eb8dc9f6806` |
@@ -52,7 +52,7 @@ Round 3 keeps the same 50 tasks and runs all four controls. Historical intermedi
 
 Complete round 3b is archived in [controls_e12_round3b.json](expt_v1/results/controls_e12_round3b.json): C1 591/591; C2 47/50; C3 42/48 compiling mutants (two unavailable); C4 49/50. The three renamed failures were max/min heap operations, increment/decrement counter operations, and Floyd–Warshall input graphs incorrectly treated as implementations.
 
-Round 4 corrects extraction of literal input fixtures: a zero-argument alias with a closed literal body is expanded only when every occurrence is inside an implementation-call argument. Expected-result aliases, nonliteral bodies and constants directly under test are not expanded. This preserves the gold test’s fixed input instead of incorrectly re-pointing it to candidate data. No gold function body or definition enters a bridge. [Reconciliation](expt_v1/results/fixture_input_normalization.json) retains all 10,534 tests and original text, with 23 aliases / 70 tests / 10 tasks normalized; the same 50 control task IDs remain. C3 adds a string-literal fallback only after all existing operator/numeric edits fail to compile. Existing successful mutant selections do not change. All four controls rerun in full, with two low-priority Lean workers. [Current round-4 snapshot](expt_v1/results/controls_round4_status.json): 11/50 tasks; C1 134/134, C2 11/11, C3 10/11, C4 10/11. The string-repeat fallback now compiles and is detected.
+Round 4 corrects extraction of literal input fixtures: a zero-argument alias with a closed literal body is expanded only when every occurrence is inside an implementation-call argument. Expected-result aliases, nonliteral bodies and constants directly under test are not expanded. This preserves the gold test’s fixed input instead of incorrectly re-pointing it to candidate data. No gold function body or definition enters a bridge. [Reconciliation](expt_v1/results/fixture_input_normalization.json) retains all 10,534 tests and original text, with 23 aliases / 70 tests / 10 tasks normalized; the same 50 control task IDs remain. C3 adds a string-literal fallback only after all existing operator/numeric edits fail to compile. Existing successful mutant selections do not change. All four controls rerun in full, with two low-priority Lean workers. [Current round-4 snapshot](expt_v1/results/controls_round4_status.json): 27/50 tasks; C1 305/305, C2 26/27, C3 24/27, C4 26/27. The string-repeat fallback now compiles and is detected.
 
 The evaluator and analysis code are prepared, including A1/A2 sensitivities and per-step shares; neither has evaluated model hidden outcomes. The lock still requires all four controls to pass. Deterministic checks: 29 experiment-local tests pass, including synthetic statistics cases; repository suite 189 passed / 24 skipped.
 
