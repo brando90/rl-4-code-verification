@@ -1,7 +1,8 @@
-"""Unit tests for experiment 10's promotion-gate replay (pair statistics, selection, weighted ranks, dyadic bootstrap)."""
+"""Unit tests for experiment 10's promotion-policy replay, including the reviewers' deterministic counterexamples."""
 
 from __future__ import annotations
 
+import argparse
 import gzip
 import importlib.util
 import json
@@ -26,8 +27,11 @@ def e10():
 
 def _matrix(e10, r, g, tf, tk):
     r, g, tf, tk = (np.asarray(x, float) for x in (r, g, tf, tk))
-    return e10.Matrix([f"s{i}" for i in range(r.shape[0])], [f"t{j}" for j in range(r.shape[1])],
-                      r, g, g * tf, g * tk)
+    return e10.Matrix([f"s{i}" for i in range(r.shape[0])], [f"t{j}" for j in range(r.shape[1])], r, g, g * tf, g * tk)
+
+
+def _write_cells(path, rows):
+    path.write_bytes(gzip.compress("\n".join(json.dumps(r) for r in rows).encode()))
 
 
 def test_pair_statistics_by_hand(e10):
@@ -38,59 +42,54 @@ def test_pair_statistics_by_hand(e10):
     tk = [[1, 1, 1, 1], [1, 0.5, 1, 1], [1, 1, 0, 0.5]]
     m = _matrix(e10, r, g, tf, tk)
     pt = e10.pair_tensors(m)
-    gains = (1 - m.r) @ m.r.T
-    losses = m.r @ (1 - m.r).T
-    assert gains[0, 1] == 2 and losses[0, 1] == 2  # s0 -> s1: fixes t2, t3; breaks t0, t1
-    # Total drop s0 -> s1 over (g, g*tf, g*tk): t0 tf 1->0 = 1; t1 tk 1->0.5 = 0.5; t2, t3 none.
-    assert float(pt.drop_total[0, 1].sum()) == pytest.approx(1.5)
-    # Hidden (jointly unresolved) s0 -> s2: t2 gate lost (1,0,1)->(0,0,0) = 2; t3 tk 1->0.5 = 0.5.
-    assert float(pt.drop_hidden[0, 2].sum()) == pytest.approx(2.5)
+    gains, losses = (1 - m.r) @ m.r.T, m.r @ (1 - m.r).T
+    assert gains[0, 1] == 2 and losses[0, 1] == 2
+    assert float(pt.drop_total[0, 1].sum()) == pytest.approx(1.5)  # t0 tf 1->0; t1 tk 1->0.5
+    assert float(pt.drop_hidden[0, 2].sum()) == pytest.approx(2.5)  # t2 gate lost (1,0,1)->0; t3 tk 1->0.5
     assert float(pt.drop_keep_hidden[0, 2].sum()) == pytest.approx(1.5)
     assert float(pt.drop_gate_loss[0, 2].sum()) == pytest.approx(2.0)
-    # s1 -> s2 on t2: s1 resolved t2, so that drop (1,1,1)->(0,0,0) = 3 is a flip, not hidden; the only hidden
-    # drop is t1 (jointly unresolved): FAIL_TO_PASS 1 -> 0 = 1.
-    assert float(pt.drop_gate_loss[1, 2].sum()) == pytest.approx(3.0)
-    assert float(pt.drop_hidden[1, 2].sum()) == pytest.approx(1.0)
+    assert float(pt.drop_gate_loss[1, 2].sum()) == pytest.approx(3.0)  # a flip (s1 resolved t2), so not hidden
+    assert float(pt.drop_hidden[1, 2].sum()) == pytest.approx(1.0)  # only t1 (jointly unresolved): tf 1 -> 0
 
 
 def test_split_pairs_counts_on_validation_half(e10):
     rng = np.random.default_rng(0)
     r = (rng.random((5, 20)) < 0.5).astype(float)
     g = np.ones_like(r)
-    tf = np.where(r == 1, 1.0, rng.random(r.shape))
-    tk = np.where(r == 1, 1.0, rng.random(r.shape))
-    m = _matrix(e10, r, g, tf, tk)
+    m = _matrix(e10, r, g, np.where(r == 1, 1.0, rng.random(r.shape)), np.where(r == 1, 1.0, rng.random(r.shape)))
     pt = e10.pair_tensors(m)
     val = np.zeros(20, bool)
     val[:10] = True
     st = e10.split_pairs(m, pt, val, near_max_gain=2)
-    rv = r[:, :10]
-    assert np.array_equal(st["gains_v"], (1 - rv) @ rv.T)
-    assert np.array_equal(st["losses_v"], rv @ (1 - rv).T)
+    rv, rt = r[:, :10], r[:, 10:]
+    assert np.array_equal(st["gains_v"], (1 - rv) @ rv.T) and np.array_equal(st["losses_v"], rv @ (1 - rv).T)
     assert np.allclose(st["trm_v"], pt.drop_total[:, :, :10].sum(-1) / 10)
-    rt = r[:, 10:]
     assert np.allclose(st["dpass_t"], ((1 - rt) @ rt.T - rt @ (1 - rt).T) / 10)
     assert not st["eligible"][np.arange(5), np.arange(5)].any()
     assert (st["net_v"][st["near"]] <= 2).all() and (st["net_v"][st["near"]] > 0).all()
 
 
-def test_select_prefix_matches_floor_and_respects_order(e10):
-    order = np.array([3, 0, 4, 1, 2])
-    keep = e10.select_prefix(order, np.ones((1, 5)), 0.5)
-    assert keep[0].tolist() == [True, False, False, True, False]  # first floor(2.5)=2 of the order: 3, 0
-    w = np.array([[0.0, 1.0, 1.0, 2.0, 1.0]])
-    keep = e10.select_prefix(order, w, 0.5)  # total 5, budget 2.5: 3 (w2) then 0 (w0) then 4 (w1) -> 3 > 2.5 stops
-    assert keep[0].tolist() == [True, False, False, True, False]
+def test_selected_weights_identity_keeps_floor_qn_whole_pairs(e10):
+    kept = e10.selected_weights(np.array([3, 0, 4, 1, 2]), np.ones((1, 5)), 0.5)
+    assert kept[0].tolist() == [1.0, 0.0, 0.0, 1.0, 0.0]  # first floor(2.5) = 2 of the order: 3, 0
 
 
-def test_weighted_ranks_ones_and_duplication(e10):
+def test_selected_weights_match_across_orders_under_bootstrap_weights(e10):
+    # Reviewer counterexample: weights [2, 1, 0], q = 0.5; an indivisible prefix kept 0 for one order and 1 for another.
+    w = np.array([[2.0, 1.0, 0.0]])
+    for order in ([0, 1, 2], [1, 0, 2], [2, 1, 0], [2, 0, 1]):
+        kept = e10.selected_weights(np.array(order), w, 0.5)
+        assert kept.sum() == pytest.approx(1.0)  # floor(0.5 * 3) for every policy order
+        assert (kept <= w + 1e-12).all() and (kept >= 0).all()
+
+
+def test_weighted_ranks_ones_duplication_and_empty(e10):
     x = np.array([3.0, 1.0, 2.0, 2.0, 5.0])
-    ranks = e10.weighted_ranks(x, np.ones((1, 5)))[0]
-    assert ranks.tolist() == [3.5, 0.5, 2.0, 2.0, 4.5]  # midpoint ranks (0-based + 0.5), ties averaged
+    assert e10.weighted_ranks(x, np.ones((1, 5)))[0].tolist() == [3.5, 0.5, 2.0, 2.0, 4.5]
     w = np.array([[2.0, 1.0, 1.0, 1.0, 1.0]])
-    dup = np.r_[x, x[0]]
-    rd = e10.weighted_ranks(dup, np.ones((1, 6)))[0]
-    assert pytest.approx(e10.weighted_ranks(x, w)[0][0]) == rd[0]
+    rd = e10.weighted_ranks(np.r_[x, x[0]], np.ones((1, 6)))[0]
+    assert e10.weighted_ranks(x, w)[0][0] == pytest.approx(rd[0])
+    assert e10.weighted_ranks(np.array([]), np.ones((3, 0))).shape == (3, 0)
 
 
 def test_weighted_partial_corr_equals_duplicated_data(e10):
@@ -103,44 +102,106 @@ def test_weighted_partial_corr_equals_duplicated_data(e10):
     weighted = e10.weighted_partial_corr(y, z, [c1, c2], counts[None, :])[0]
     rep = np.repeat(np.arange(n), counts.astype(int))
     dup = e10.weighted_partial_corr(y[rep], z[rep], [c1[rep], c2[rep]], np.ones((1, len(rep))))[0]
-    assert pytest.approx(weighted, abs=1e-9) == dup
-    assert -1 <= weighted <= 1
+    assert weighted == pytest.approx(dup, abs=1e-9) and -1 <= weighted <= 1
+
+
+def test_partial_corr_defined_for_nearly_collinear_but_well_posed_design(e10):
+    # Reviewer counterexample: covariate ranks differing by one adjacent swap; the design is fine (cond ~ 2e5)
+    # although the normal matrix's condition is ~4e10. The correlation must be defined.
+    rng = np.random.default_rng(2)
+    n = 3000
+    c1 = np.arange(n, dtype=float)
+    c2 = c1.copy()
+    c2[[10, 11]] = c2[[11, 10]]
+    y = c1 / n + rng.normal(0, 0.3, n)
+    z = 0.6 * y + rng.normal(0, 0.3, n)
+    val = e10.weighted_partial_corr(y, z, [c1, c2], np.ones((1, n)))[0]
+    assert np.isfinite(val) and 0 < val < 1
+
+
+def test_partial_corr_undefined_for_exactly_collinear_design(e10):
+    rng = np.random.default_rng(3)
+    c = rng.random(100)
+    val = e10.weighted_partial_corr(rng.random(100), rng.random(100), [c, c], np.ones((1, 100)))[0]
+    assert np.isnan(val)
+
+
+def test_aggregate_family_uses_common_support_and_invalidates_draws(e10):
+    # Reviewer counterexample: splits [[.2, .8], [.4, NaN]] (columns: point, draw). Point = .3 on both splits;
+    # the draw is invalid (undefined on an admitted split), not silently averaged over one split.
+    out = e10.aggregate_family({"x": [np.array([0.2, 0.8]), np.array([0.4, np.nan])]}, 2)
+    assert out["members"]["x"]["estimate"] == pytest.approx(0.3)
+    assert out["draws_valid"] == 0 and out["draws_total"] == 1
+    assert out["status"].startswith("inconclusive")
+    # A member undefined at the point estimate removes that split for the whole family.
+    out = e10.aggregate_family({"a": [np.array([0.1]), np.array([0.3])], "b": [np.array([1.0]), np.array([np.nan])]}, 2)
+    assert out["splits_admitted"] == 1 and out["members"]["a"]["estimate"] == pytest.approx(0.1)
+
+
+def test_zero_denominators_are_undefined_not_zero(e10):
+    out = e10._ratio(np.array([0.0, 1.0]), np.array([0.0, 2.0]))
+    assert np.isnan(out[0]) and out[1] == 0.5
+
+
+def test_unstratified_risk_policies_have_no_gain_preference(e10):
+    # Reviewer counterexample: equal penalties, gains [1, 2], ascending hashes [0, 1] -> order follows the hash.
+    st = {"net_v": np.array([[1, 2]]), "dscs_v": np.zeros((1, 2)), "losses_v": np.zeros((1, 2)),
+          "trm_v": np.zeros((1, 2)), "hrm_v": np.zeros((1, 2))}
+    orders = e10.policy_orders(st, np.array([0, 1]), np.array([[0.0, 1.0]]))
+    assert orders["S2"].tolist() == [0, 1] and orders["S3"].tolist() == [0, 1]
+    assert orders["S0plus"].tolist() == [1, 0]  # the stricter scalar rule still prefers the larger gain
 
 
 def test_bootstrap_weights_are_products_of_multiplicities(e10):
     w = e10.bootstrap_weights(6, 3, seed=7)
-    assert w.shape == (4, 6, 6)
-    assert np.all(w[0] == 1)
-    rng = np.random.default_rng(7)
-    m = rng.multinomial(6, np.full(6, 1 / 6), size=3)
+    assert w.shape == (4, 6, 6) and np.all(w[0] == 1)
+    m = np.random.default_rng(7).multinomial(6, np.full(6, 1 / 6), size=3)
     assert np.array_equal(w[1:], m[:, :, None] * m[:, None, :])
 
 
-def test_binary_gate_rejects_fix3_break2_that_scalar_promotes(e10):
-    # Incumbent solves tasks 0-1; candidate A fixes 2-4 and breaks 0-1 (net +1); candidate B fixes task 2 only (net +1).
+def test_binary_policy_ranks_zero_loss_candidate_first(e10):
     r = np.array([[1, 1, 0, 0, 0, 0], [0, 0, 1, 1, 1, 0], [1, 1, 1, 0, 0, 0]], float)
-    g = np.ones_like(r)
-    m = _matrix(e10, r, g, r, np.ones_like(r))
-    pt = e10.pair_tensors(m)
-    st = e10.split_pairs(m, pt, np.array([True] * 5 + [False]), near_max_gain=5)
+    m = _matrix(e10, r, np.ones_like(r), r, np.ones_like(r))
+    st = e10.split_pairs(m, e10.pair_tensors(m), np.array([True] * 5 + [False]), near_max_gain=5)
     idx = np.flatnonzero(st["near"].ravel())
     pairs = [(int(st["inc"].ravel()[i]), int(st["cand"].ravel()[i])) for i in idx]
-    assert (0, 1) in pairs and (0, 2) in pairs
     orders = e10.policy_orders(st, idx, e10.pair_hash(m.systems))
-    first_s2 = pairs[orders["S2"][0]]
-    assert first_s2 == (0, 2)  # binary non-regression ranks the zero-loss candidate first
+    assert pairs[orders["S2"][0]] == (0, 2)  # fix-3-break-2 (0 -> 1) is ranked after the zero-loss candidate
 
 
-def test_load_matrix_rejects_wrong_hash_and_reads_gated_factors(tmp_path, e10):
-    rows = []
-    for s in ("a", "b"):
-        for t in ("x", "y"):
-            gate = 0 if (s, t) == ("b", "y") else 1
-            rows.append({"submission": s, "instance_id": t, "included": True, "common_cohort": True, "gate": gate,
-                         "t_fix": None if gate == 0 else 0.5, "t_keep": None if gate == 0 else 1.0, "resolved": False})
+def test_load_matrix_validation(tmp_path, e10):
+    def rows(**over):
+        base = []
+        for s in ("a", "b"):
+            for t in ("x", "y"):
+                gate = 0 if (s, t) == ("b", "y") else 1
+                base.append({"submission": s, "instance_id": t, "included": True, "common_cohort": True, "gate": gate,
+                             "t_fix": None if gate == 0 else 0.5, "t_keep": None if gate == 0 else 1.0, "resolved": False})
+        base[0].update(over)
+        return base
     p = tmp_path / "cells.jsonl.gz"
-    p.write_bytes(gzip.compress("\n".join(json.dumps(r) for r in rows).encode()))
+    _write_cells(p, rows())
     with pytest.raises(SystemExit):
         e10.load_matrix(p, expect_sha="0" * 64)
     m = e10.load_matrix(p, expect_sha=None)
     assert m.gf.tolist() == [[0.5, 0.5], [0.5, 0.0]] and m.g.tolist() == [[1, 1], [1, 0]]
+    for bad in ({"resolved": None}, {"gate": None}, {"gate": True}, {"t_fix": 1.5}, {"t_keep": float("nan")}):
+        _write_cells(p, rows(**bad))
+        with pytest.raises(SystemExit):
+            e10.load_matrix(p, expect_sha=None)
+    _write_cells(p, rows() + [rows()[0]])
+    with pytest.raises(SystemExit):
+        e10.load_matrix(p, expect_sha=None)
+
+
+def test_empty_population_is_degenerate_not_a_crash(tmp_path, e10):
+    # Reviewer counterexample: 4 systems x 424 all-unresolved tasks crashed in weighted_ranks before the rule ran.
+    rows = [{"submission": f"s{i}", "instance_id": f"t{j:03d}", "included": True, "common_cohort": True, "gate": 1,
+             "t_fix": 0.0, "t_keep": 1.0, "resolved": False} for i in range(4) for j in range(424)]
+    p = tmp_path / "empty.jsonl.gz"
+    _write_cells(p, rows)
+    args = argparse.Namespace(per_cell=str(p), expect_sha=None, sensitivity="none", splits=3, draws=5,
+                              split_seed=1, boot_seed=2, near_band=0.05, q=[0.5], min_pairs=200, workers=1, out="unused")
+    res = e10.run(args)
+    near = res["populations"]["near"]
+    assert near["splits_degenerate"] == 3 and near["status"].startswith("inconclusive")

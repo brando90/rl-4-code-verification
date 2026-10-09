@@ -12,7 +12,7 @@ import gzip
 import hashlib
 import json
 import math
-import sys
+import multiprocessing as mp
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -24,8 +24,16 @@ REPO = HERE.parents[2]
 PER_CELL = REPO / "experiments/07_scs4c_vs_pass1_swebench_across_models/expt_v1/results/per_cell_e07.jsonl.gz"
 PER_CELL_SHA256 = "f064c3951860cf4d88879e7c3b81ec42c8b42780923c61198c71f98dc6463a4d"
 DRIFT = HERE / "inputs/test_list_drift_e07.json"
-POLICIES = ("S0plus", "S1", "S2", "S3", "R0", "R1", "R2", "R3", "R3h")
 STRATIFIED = ("R0", "R1", "R2", "R3", "R3h")
+UNSTRATIFIED = ("S0plus", "S1", "S2", "S3")
+POLICIES = UNSTRATIFIED + STRATIFIED
+CONTRASTS = (("R0", "R2"), ("R2", "R3"), ("R0", "R3"), ("R0", "R3h"), ("R0", "R1"),
+             ("S0plus", "R3"), ("S0plus", "R2"), ("S0plus", "S3"), ("S2", "S3"), ("S0plus", "S2"), ("S0plus", "S1"))
+EXPECTED_SHAPE = {"none": (164, 424), "matched_test_lists": (164, 420)}
+COND_MAX = 1e10  # weighted design-matrix condition number limit (PROTOCOL H2)
+RESID_TOL = 1e-12  # relative residual sum of squares at or below which a residual variance counts as zero
+MIN_PRED_PAIRS = 50  # minimum fit and evaluation pairs for the predictive comparison (PROTOCOL H2c)
+MIN_SUPPORT = 0.90  # minimum share of admitted splits and of valid bootstrap draws (PROTOCOL statistics)
 
 
 @dataclass
@@ -40,30 +48,48 @@ class Matrix:
     gk: np.ndarray
 
 
+def _fraction(x, what: str) -> float:
+    if isinstance(x, bool) or not isinstance(x, (int, float)) or not math.isfinite(x) or not 0.0 <= x <= 1.0:
+        raise SystemExit(f"STOP: {what} must be a finite fraction in [0, 1], got {x!r}")
+    return float(x)
+
+
 def load_matrix(path: Path = PER_CELL, expect_sha: str | None = PER_CELL_SHA256, drop_tasks: frozenset = frozenset()) -> Matrix:
-    """Load the included-system, common-cohort cells of experiment 07 (stop rule: exact identity and counts)."""
+    """Load the included-system, common-cohort cells of experiment 07 with complete-evidence checks (stop rules)."""
     raw = path.read_bytes()
     if expect_sha is not None and hashlib.sha256(raw).hexdigest() != expect_sha:
         raise SystemExit(f"STOP: input SHA-256 mismatch for {path}")
     rows = [json.loads(line) for line in gzip.decompress(raw).decode().splitlines() if line.strip()]
     cells = [x for x in rows if x["included"] and x["common_cohort"] and x["instance_id"] not in drop_tasks]
-    systems = sorted({x["submission"] for x in cells})
-    tasks = sorted({x["instance_id"] for x in cells})
+    keys = [(x["submission"], x["instance_id"]) for x in cells]
+    if len(set(keys)) != len(keys):
+        raise SystemExit("STOP: duplicate system/task cells")
+    systems = sorted({k[0] for k in keys})
+    tasks = sorted({k[1] for k in keys})
     si = {s: i for i, s in enumerate(systems)}
     ti = {t: j for j, t in enumerate(tasks)}
     shape = (len(systems), len(tasks))
     r, g, gf, gk = (np.full(shape, np.nan) for _ in range(4))
     for x in cells:
         i, j = si[x["submission"]], ti[x["instance_id"]]
-        gate = x["gate"]
-        if gate is None:
-            raise SystemExit(f"STOP: unmeasured cohort cell {x['submission']} {x['instance_id']}")
-        r[i, j] = float(bool(x["resolved"]))
+        gate, res = x["gate"], x["resolved"]
+        if isinstance(gate, bool) or gate not in (0, 1):
+            raise SystemExit(f"STOP: gate must be 0 or 1 for {x['submission']} {x['instance_id']}, got {gate!r}")
+        if not isinstance(res, bool):
+            raise SystemExit(f"STOP: resolved must be true/false for {x['submission']} {x['instance_id']}, got {res!r}")
+        r[i, j] = float(res)
         g[i, j] = float(gate)
-        gf[i, j] = 0.0 if gate == 0 else float(x["t_fix"])
-        gk[i, j] = 0.0 if gate == 0 else float(x["t_keep"])
-    if np.isnan(r).any() or np.isnan(gf).any() or np.isnan(gk).any():
-        raise SystemExit("STOP: incomplete systems x tasks matrix")
+        if gate == 0:
+            for key in ("t_fix", "t_keep"):
+                if x[key] is not None:
+                    _fraction(x[key], f"{key} {x['submission']} {x['instance_id']}")
+            gf[i, j] = gk[i, j] = 0.0
+        else:
+            gf[i, j] = _fraction(x["t_fix"], f"t_fix {x['submission']} {x['instance_id']}")
+            gk[i, j] = _fraction(x["t_keep"], f"t_keep {x['submission']} {x['instance_id']}")
+    for name, arr in (("resolved", r), ("gate", g), ("gated t_fix", gf), ("gated t_keep", gk)):
+        if not np.isfinite(arr).all():
+            raise SystemExit(f"STOP: incomplete systems x tasks matrix ({name})")
     return Matrix(systems, tasks, r, g, gf, gk)
 
 
@@ -82,7 +108,7 @@ class PairTensors:
     """Per-pair, per-task quantities precomputed once over all tasks (incumbent axis 0, candidate axis 1)."""
 
     drop_total: np.ndarray  # sum over (g, gf, gk) of max(0, inc - cand), shape (S, S, T)
-    drop_hidden: np.ndarray  # drop_total on jointly unresolved items
+    drop_hidden: np.ndarray  # drop_total on items jointly unresolved by incumbent and candidate
     drop_keep_hidden: np.ndarray  # max(0, gk_inc - gk_cand) on jointly unresolved items
     drop_gate_loss: np.ndarray  # drop_total on items where the incumbent's gate is 1 and the candidate's is 0
 
@@ -119,12 +145,12 @@ def system_summary(m: Matrix, cols: np.ndarray) -> dict[str, np.ndarray]:
 
 
 def split_pairs(m: Matrix, pt: PairTensors, val: np.ndarray, near_max_gain: int) -> dict[str, np.ndarray]:
-    """All pair statistics for one split, flattened over eligible pairs (incumbent != candidate, net gain > 0)."""
+    """All pair statistics for one split as S x S arrays (incumbent rows, candidate columns)."""
     vi, ti = np.flatnonzero(val), np.flatnonzero(~val)
     nv, nt = len(vi), len(ti)
     rv, rt = m.r[:, vi], m.r[:, ti]
-    gains_v = (1 - rv) @ rv.T  # [inc, cand]: tasks the candidate gains
-    losses_v = rv @ (1 - rv).T  # [inc, cand]: tasks the candidate loses
+    gains_v = (1 - rv) @ rv.T
+    losses_v = rv @ (1 - rv).T
     losses_t = rt @ (1 - rt).T
     gains_t = (1 - rt) @ rt.T
     net_v = gains_v - losses_v
@@ -135,11 +161,11 @@ def split_pairs(m: Matrix, pt: PairTensors, val: np.ndarray, near_max_gain: int)
     hrm = (flat(pt.drop_hidden) @ vmask).reshape(s, s) / nv
     krm = (flat(pt.drop_keep_hidden) @ vmask).reshape(s, s) / nv
     glm = (flat(pt.drop_gate_loss) @ vmask).reshape(s, s) / nv
-    sv, st = system_summary(m, vi), system_summary(m, ti)
+    sv = system_summary(m, vi)
     inc, cand = np.meshgrid(np.arange(s), np.arange(s), indexing="ij")
     eligible = (inc != cand) & (net_v > 0)
     near = eligible & (net_v <= near_max_gain)
-    out = {
+    return {
         "inc": inc, "cand": cand, "net_v": net_v, "gains_v": gains_v, "losses_v": losses_v,
         "dpass_v": net_v / nv, "dscs_v": sv["scs"][cand] - sv["scs"][inc],
         "trm_v": trm, "hrm_v": hrm, "krm_v": krm, "glm_v": glm,
@@ -148,28 +174,36 @@ def split_pairs(m: Matrix, pt: PairTensors, val: np.ndarray, near_max_gain: int)
         "losses_t": losses_t, "lossfrac_t": losses_t / nt, "dpass_t": (gains_t - losses_t) / nt,
         "eligible": eligible, "near": near,
     }
-    return out
 
 
-def select_prefix(order: np.ndarray, weights: np.ndarray, q: float) -> np.ndarray:
-    """Selection mask over pairs: keep a sorted prefix whose cumulative weight is <= q * total (rows = draws)."""
-    w_sorted = weights[..., order]
-    cum = np.cumsum(w_sorted, axis=-1)
-    keep_sorted = cum <= q * w_sorted.sum(-1, keepdims=True) + 1e-9
-    keep = np.zeros_like(keep_sorted)
-    np.put_along_axis(keep, np.broadcast_to(order, keep_sorted.shape), keep_sorted, axis=-1)
-    return keep
+def selected_weights(order: np.ndarray, weights: np.ndarray, q: float) -> np.ndarray:
+    """Selected weight per pair: the sorted prefix keeps exactly floor(q * total weight), the boundary pair partially.
+
+    With identity weights this keeps floor(q * N) whole pairs; with bootstrap multiplicities every policy retains
+    the same weight, so ranked policies stay matched (PROTOCOL H3). Rows of ``weights`` are bootstrap draws.
+    """
+    w_sorted = weights[..., order].astype(np.float64)
+    budget = np.floor(q * w_sorted.sum(-1, keepdims=True) + 1e-9)
+    before = np.cumsum(w_sorted, axis=-1) - w_sorted
+    kept_sorted = np.clip(budget - before, 0.0, w_sorted)
+    kept = np.zeros_like(kept_sorted)
+    np.put_along_axis(kept, np.broadcast_to(order, kept_sorted.shape), kept_sorted, axis=-1)
+    return kept
 
 
 def policy_orders(st: dict[str, np.ndarray], idx: np.ndarray, hkey: np.ndarray) -> dict[str, np.ndarray]:
-    """Sort orders (positions into idx) for each ranked screening policy; ties broken by the pair hash."""
+    """Sort orders (positions into idx) for each ranked policy; ties broken by the outcome-independent pair hash.
+
+    Stratified policies (R*) sort by validation net gain first, so selection within each stratum is by the policy
+    key; unstratified risk policies (S2, S3) rank by risk alone with no gain preference.
+    """
     net = st["net_v"].ravel()[idx]
     h = hkey.ravel()[idx]
     return {
         "S0plus": np.lexsort((h, -net)),
         "S1": np.lexsort((h, -st["dscs_v"].ravel()[idx])),
-        "S2": np.lexsort((h, -net, st["losses_v"].ravel()[idx])),
-        "S3": np.lexsort((h, -net, st["trm_v"].ravel()[idx])),
+        "S2": np.lexsort((h, st["losses_v"].ravel()[idx])),
+        "S3": np.lexsort((h, st["trm_v"].ravel()[idx])),
         "R0": np.lexsort((h, net)),
         "R1": np.lexsort((h, -st["dscs_v"].ravel()[idx], net)),
         "R2": np.lexsort((h, st["losses_v"].ravel()[idx], net)),
@@ -180,9 +214,11 @@ def policy_orders(st: dict[str, np.ndarray], idx: np.ndarray, hkey: np.ndarray) 
 
 def weighted_ranks(x: np.ndarray, w: np.ndarray) -> np.ndarray:
     """Weighted average ranks (ties share the midpoint of their cumulative weight), vectorized over draws (rows of w)."""
+    if x.size == 0:
+        return np.zeros((w.shape[0], 0))
     order = np.argsort(x, kind="stable")
     xs = x[order]
-    ws = w[:, order]
+    ws = w[:, order].astype(np.float64)
     cum = np.cumsum(ws, axis=1)
     starts = np.r_[0, np.flatnonzero(np.diff(xs)) + 1]
     ends = np.r_[starts[1:], len(xs)]
@@ -196,93 +232,96 @@ def weighted_ranks(x: np.ndarray, w: np.ndarray) -> np.ndarray:
 
 
 def weighted_partial_corr(y: np.ndarray, z: np.ndarray, covs: list[np.ndarray], w: np.ndarray) -> np.ndarray:
-    """Weighted partial Spearman correlation of y and z given covs, per draw; NaN when undefined."""
+    """Weighted partial Spearman correlation of y and z given covs, per draw (float64 weighted least squares).
+
+    Uses the singular value decomposition of the weighted design sqrt(w) * X; undefined (NaN) when that design's
+    condition number is >= COND_MAX or a residual sum of squares is <= RESID_TOL times its total.
+    """
+    w = w.astype(np.float64)
+    out = np.full(w.shape[0], np.nan)
+    if y.size < len(covs) + 3:
+        return out
     total = w.sum(1, keepdims=True)
     total = np.where(total > 0, total, 1.0)
     ry, rz = weighted_ranks(y, w) / total, weighted_ranks(z, w) / total
-    X = np.stack([np.ones_like(ry)] + [weighted_ranks(c, w) / total for c in covs], -1)  # draws x n x p
-    XtW = X * w[..., None]
-    A = np.einsum("bnp,bnq->bpq", XtW, X)
-    out = np.full(w.shape[0], np.nan)
-    ok = np.linalg.cond(A) < 1e10
-    if not ok.any():
-        return out
-    Ai = np.linalg.inv(A[ok])
+    X = np.stack([np.ones_like(ry)] + [weighted_ranks(c, w) / total for c in covs], -1)
+    sw = np.sqrt(w)
+    U, s, _ = np.linalg.svd(X * sw[..., None], full_matrices=False)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        cond = np.where(s[:, -1] > 0, s[:, 0] / s[:, -1], np.inf)
+    ok = cond < COND_MAX
+
     def resid(v):
-        beta = np.einsum("bpq,bq->bp", Ai, np.einsum("bnp,bn->bp", XtW[ok], v[ok]))
-        return v[ok] - np.einsum("bnp,bp->bn", X[ok], beta)
-    ey, ez = resid(ry), resid(rz)
-    ww = w[ok]
-    sw = ww.sum(1)
-    my, mz = (ww * ey).sum(1) / sw, (ww * ez).sum(1) / sw
-    cov = (ww * (ey - my[:, None]) * (ez - mz[:, None])).sum(1)
-    vy = (ww * (ey - my[:, None]) ** 2).sum(1)
-    vz = (ww * (ez - mz[:, None]) ** 2).sum(1)
+        vw = v * sw
+        return vw - np.einsum("bnp,bp->bn", U, np.einsum("bnp,bn->bp", U, vw)), (vw ** 2).sum(1)
+
+    ey, ny = resid(ry)
+    ez, nz = resid(rz)
+    vy, vz = (ey ** 2).sum(1), (ez ** 2).sum(1)
+    ok &= (vy > RESID_TOL * np.maximum(ny, 1e-300)) & (vz > RESID_TOL * np.maximum(nz, 1e-300))
     with np.errstate(invalid="ignore", divide="ignore"):
-        out[ok] = np.where((vy > 1e-12) & (vz > 1e-12), cov / np.sqrt(vy * vz), np.nan)
+        out[ok] = ((ey * ez).sum(1) / np.sqrt(vy * vz))[ok]
     return out
 
 
+def _ratio(num: np.ndarray, den: np.ndarray) -> np.ndarray:
+    """num / den with NaN where the denominator is zero (an undefined conditional rate, never a fake zero)."""
+    with np.errstate(invalid="ignore", divide="ignore"):
+        return np.where(den > 0, num / np.where(den > 0, den, 1.0), np.nan)
+
+
 def split_statistics(st: dict[str, np.ndarray], pop: str, hkey: np.ndarray, wpair: np.ndarray, qs: tuple[float, ...]) -> dict:
-    """All per-split estimands for one population under pair weights wpair (draws x S x S); row 0 may be all ones."""
+    """Per-split estimands for one population under pair weights wpair (draws x S x S; row 0 is the identity)."""
     idx = np.flatnonzero(st[pop].ravel())
     n = len(idx)
-    w = wpair.reshape(wpair.shape[0], -1)[:, idx]
+    w = wpair.reshape(wpair.shape[0], -1)[:, idx].astype(np.float64)
     harm = (st["dpass_t"].ravel()[idx] < 0).astype(float)
     anyloss = (st["losses_t"].ravel()[idx] >= 1).astype(float)
     lossf = st["lossfrac_t"].ravel()[idx]
     dpt = st["dpass_t"].ravel()[idx]
     good = (dpt > 0).astype(float)
     sw = w.sum(1)
-    res = {"n_pairs": n, "weight_total": sw}
-    with np.errstate(invalid="ignore", divide="ignore"):
-        res["H1"] = {
-            "hpr": (w * harm).sum(1) / sw, "share_any_loss": (w * anyloss).sum(1) / sw,
-            "mean_lossfrac": (w * lossf).sum(1) / sw, "mean_dpass_t": (w * dpt).sum(1) / sw,
-        }
-        cov3 = [st["losses_v"].ravel()[idx], st["gains_v"].ravel()[idx], st["p1_inc_v"].ravel()[idx]]
-        marg = [st["marg"].reshape(-1, 6)[idx, k] for k in range(6)]
-        specs = {
-            "hrm": (st["hrm_v"].ravel()[idx], cov3),
-            "krm": (st["krm_v"].ravel()[idx], cov3),
-            "hrm_with_marginals": (st["hrm_v"].ravel()[idx], cov3 + marg),
-            "trm_given_gain_p1": (st["trm_v"].ravel()[idx], cov3[1:]),
-        }
-        chunk = max(1, int(4e7 // max(1, n * 11)))
-        res["H2"] = {k: np.concatenate([weighted_partial_corr(x, lossf, cv, w[b:b + chunk]) for b in range(0, w.shape[0], chunk)])
-                     for k, (x, cv) in specs.items()}
-        orders = policy_orders(st, idx, hkey)
-        res["H3"] = {}
-        for q in qs:
-            per = {}
-            net_idx = st["net_v"].ravel()[idx]
-            for name, order in orders.items():
-                if name in STRATIFIED:
-                    sel = np.zeros_like(w, dtype=bool)
-                    for k in np.unique(net_idx):
-                        sub = order[net_idx[order] == k]  # this stratum, in policy order
-                        local = select_prefix(np.arange(len(sub)), w[:, sub], q)
-                        sel[:, sub] = local
-                else:
-                    sel = select_prefix(order, w, q)
-                ws = w * sel
-                sws = ws.sum(1)
-                per[name] = {
-                    "hpr": (ws * harm).sum(1) / sws, "mean_lossfrac": (ws * lossf).sum(1) / sws,
-                    "mean_dpass_t": (ws * dpt).sum(1) / sws,
-                    "recall": (ws * good).sum(1) / np.maximum((w * good).sum(1), 1e-12),
-                    "rate": sws / sw,
-                }
-            res["H3"][q] = per
-        # Deployable rule (descriptive): strict scalar gain and zero observed binary losses on validation.
-        d2 = (st["losses_v"].ravel()[idx] == 0).astype(float)
-        wd = w * d2
-        res["deploy_zero_loss"] = {"acceptance": wd.sum(1) / sw, "hpr": (wd * harm).sum(1) / np.maximum(wd.sum(1), 1e-12),
-                                   "n_accepted_unweighted": int(d2.sum())}
+    res = {"n_pairs": n}
+    res["H1"] = {"hpr": _ratio((w * harm).sum(1), sw), "share_any_loss": _ratio((w * anyloss).sum(1), sw),
+                 "mean_lossfrac": _ratio((w * lossf).sum(1), sw), "mean_dpass_t": _ratio((w * dpt).sum(1), sw)}
+    cov3 = [st["losses_v"].ravel()[idx], st["gains_v"].ravel()[idx], st["p1_inc_v"].ravel()[idx]]
+    marg = [st["marg"].reshape(-1, 6)[idx, k] for k in range(6)]
+    specs = {
+        "hrm": (st["hrm_v"].ravel()[idx], cov3),
+        "krm": (st["krm_v"].ravel()[idx], cov3),
+        "hrm_with_marginals": (st["hrm_v"].ravel()[idx], cov3 + marg),
+        "trm_given_gain_p1": (st["trm_v"].ravel()[idx], cov3[1:]),
+    }
+    chunk = max(1, int(2e7 // max(1, n * 11)))
+    res["H2"] = {k: np.concatenate([weighted_partial_corr(x, lossf, cv, w[b:b + chunk]) for b in range(0, w.shape[0], chunk)])
+                 for k, (x, cv) in specs.items()}
+    orders = policy_orders(st, idx, hkey)
+    net_idx = st["net_v"].ravel()[idx]
+    total_good = (w * good).sum(1)
+    res["H3"] = {}
+    for q in qs:
+        per = {}
+        for name, order in orders.items():
+            if name in STRATIFIED:
+                kept = np.zeros_like(w)
+                for k in np.unique(net_idx):
+                    sub = order[net_idx[order] == k]  # this stratum, in policy order
+                    kept[:, sub] = selected_weights(np.arange(len(sub)), w[:, sub], q)
+            else:
+                kept = selected_weights(order, w, q)
+            sk = kept.sum(1)
+            per[name] = {"hpr": _ratio((kept * harm).sum(1), sk), "mean_lossfrac": _ratio((kept * lossf).sum(1), sk),
+                         "mean_dpass_t": _ratio((kept * dpt).sum(1), sk),
+                         "recall": _ratio((kept * good).sum(1), total_good), "rate": _ratio(sk, sw)}
+        res["H3"][q] = per
+    zero_loss = (st["losses_v"].ravel()[idx] == 0).astype(float)
+    wd = w * zero_loss
+    res["deploy_zero_loss"] = {"acceptance": _ratio(wd.sum(1), sw), "hpr": _ratio((wd * harm).sum(1), wd.sum(1)),
+                               "n_accepted_unweighted": int(zero_loss.sum())}
     return res
 
 
-def predictive_comparison(st: dict[str, np.ndarray], pop: str, rng: np.random.Generator) -> dict[str, float]:
+def predictive_comparison(st: dict[str, np.ndarray], pop: str, rng: np.random.Generator) -> dict:
     """Endpoint-disjoint out-of-sample R^2 of binary-only, +marginals, +matrix models for held-out loss fraction."""
     s = st["inc"].shape[0]
     half = rng.permutation(s)[: s // 2]
@@ -296,110 +335,168 @@ def predictive_comparison(st: dict[str, np.ndarray], pop: str, rng: np.random.Ge
     marg = [st["marg"][..., k] for k in range(6)]
     matrix = [st["hrm_v"], st["krm_v"], st["trm_v"], st["glm_v"]]
     out = {"n_fit": int(fit.sum()), "n_eval": int(ev.sum())}
-    if fit.sum() < 50 or ev.sum() < 50:
+    if fit.sum() < MIN_PRED_PAIRS or ev.sum() < MIN_PRED_PAIRS:
         return {**out, "M0": math.nan, "M1": math.nan, "M2": math.nan}
     for name, feats in (("M0", base), ("M1", base + marg), ("M2", base + marg + matrix)):
         Xf = np.column_stack([np.ones(fit.sum())] + [f[fit] for f in feats])
         Xe = np.column_stack([np.ones(ev.sum())] + [f[ev] for f in feats])
         beta, *_ = np.linalg.lstsq(Xf, y[fit], rcond=None)
-        pred = Xe @ beta
-        ss_res = ((y[ev] - pred) ** 2).sum()
+        ss_res = ((y[ev] - Xe @ beta) ** 2).sum()
         ss_tot = ((y[ev] - y[ev].mean()) ** 2).sum()
         out[name] = float(1 - ss_res / ss_tot) if ss_tot > 0 else math.nan
     return out
 
 
 def bootstrap_weights(n_systems: int, n_draws: int, seed: int) -> np.ndarray:
-    """Dyadic system-bootstrap pair weights m_i * m_j (self pairs excluded later by eligibility), draw 0 = identity."""
+    """Dyadic system-bootstrap pair weights m_i * m_j, draw 0 = identity (self pairs are excluded by eligibility)."""
     rng = np.random.default_rng(seed)
     m = np.ones((n_draws + 1, n_systems))
     m[1:] = rng.multinomial(n_systems, np.full(n_systems, 1 / n_systems), size=n_draws)
     return m[:, :, None] * m[:, None, :]
 
 
-def summarize(values: np.ndarray) -> dict:
-    """Point estimate (draw 0) with a percentile interval over bootstrap draws 1..B (NaN-aware)."""
-    point = float(values[0])
-    boot = values[1:]
-    boot = boot[np.isfinite(boot)]
-    lo, hi = (np.percentile(boot, [2.5, 97.5]).tolist() if len(boot) >= 20 else [math.nan, math.nan])
-    return {"estimate": point, "lo": lo, "hi": hi, "draws_defined": int(len(boot))}
+def aggregate_family(values: dict[str, list[np.ndarray]], n_splits_considered: int) -> dict:
+    """Split-average estimands on one common split support with draw invalidation (PROTOCOL statistics).
+
+    A split is admitted for the family if every member is defined at the point estimate (draw 0). A bootstrap draw
+    is valid only if every member is defined on every admitted split; invalid draws are dropped and counted.
+    """
+    names = list(values)
+    stacks = {k: np.stack(values[k]) for k in names}  # splits x draws
+    admitted = np.all([np.isfinite(stacks[k][:, 0]) for k in names], axis=0)
+    n_adm = int(admitted.sum())
+    out = {"splits_considered": n_splits_considered, "splits_admitted": n_adm}
+    if n_adm == 0:
+        return {**out, "status": "undefined: no admitted split", "members": {}}
+    adm = {k: v[admitted] for k, v in stacks.items()}
+    n_draws = adm[names[0]].shape[1] - 1
+    valid = np.all([np.isfinite(adm[k][:, 1:]).all(0) for k in names], axis=0) if n_draws else np.zeros(0, bool)
+    out["draws_valid"] = int(valid.sum())
+    out["draws_total"] = n_draws
+    coverage_ok = n_adm >= MIN_SUPPORT * n_splits_considered and (n_draws == 0 or valid.sum() >= MIN_SUPPORT * n_draws)
+    out["status"] = "ok" if coverage_ok else "inconclusive: insufficient split or draw support"
+    members = {}
+    for k in names:
+        entry = {"estimate": float(adm[k][:, 0].mean()), "split_5_95": np.percentile(adm[k][:, 0], [5, 95]).tolist()}
+        if n_draws > 0:
+            boot = adm[k][:, 1:][:, valid].mean(0)
+            entry["lo"], entry["hi"] = (np.percentile(boot, [2.5, 97.5]).tolist() if len(boot) >= 20 else [math.nan, math.nan])
+        members[k] = entry
+    out["members"] = members
+    return out
+
+
+_STATE: dict = {}
+
+
+def _worker_init(args_dict: dict) -> None:
+    """Per-process state: matrix, tensors, hash keys, splits and bootstrap weights (rebuilt deterministically)."""
+    a = argparse.Namespace(**args_dict)
+    drop = frozenset(json.loads(DRIFT.read_text())["tasks"]) if a.sensitivity == "matched_test_lists" else frozenset()
+    m = load_matrix(Path(a.per_cell), a.expect_sha, drop)
+    _STATE.update(a=a, m=m, pt=pair_tensors(m), hkey=pair_hash(m.systems),
+                  splits=make_splits(len(m.tasks), a.splits, a.split_seed),
+                  near_max=int(math.floor(a.near_band * (len(m.tasks) // 2))),
+                  wpair=bootstrap_weights(len(m.systems), a.draws, a.boot_seed).astype(np.float32))
+
+
+def _run_split(si: int) -> dict:
+    """Statistics for one split for both populations; degenerate splits are recorded before any computation."""
+    a, m = _STATE["a"], _STATE["m"]
+    st = split_pairs(m, _STATE["pt"], _STATE["splits"][si], _STATE["near_max"])
+    out = {"split": si}
+    for pop, min_pairs, weights in (("near", a.min_pairs, _STATE["wpair"]), ("eligible", 1, _STATE["wpair"][:1])):
+        n = int(st[pop].sum())
+        if n < min_pairs:
+            out[pop] = {"degenerate": True, "n_pairs": n}
+            continue
+        res = split_statistics(st, pop, _STATE["hkey"], weights, tuple(a.q))
+        res["pred"] = predictive_comparison(st, pop, np.random.default_rng([a.split_seed, si, 1 if pop == "near" else 2]))
+        res["degenerate"] = False
+        out[pop] = res
+    return out
 
 
 def run(args: argparse.Namespace) -> dict:
-    """Full replay: splits x draws, then split-averaged estimands with dyadic-bootstrap intervals."""
+    """Full replay over all splits (optionally in parallel), then family-wise aggregation."""
     t0 = time.time()
-    drop = frozenset(json.loads(DRIFT.read_text())["tasks"]) if args.sensitivity == "matched_test_lists" else frozenset()
-    m = load_matrix(Path(args.per_cell), args.expect_sha, drop)
-    if args.sensitivity == "none" and (len(m.systems), len(m.tasks)) != (164, 424):
-        raise SystemExit(f"STOP: expected 164 x 424, got {len(m.systems)} x {len(m.tasks)}")
-    pt = pair_tensors(m)
-    hkey = pair_hash(m.systems)
-    splits = make_splits(len(m.tasks), args.splits, args.split_seed)
-    near_max = int(math.floor(args.near_band * (len(m.tasks) // 2)))
-    wpair = bootstrap_weights(len(m.systems), args.draws, args.boot_seed).astype(np.float32)
-    qs = tuple(args.q)
-    pops = ("near", "eligible")
-    acc = {p: [] for p in pops}
-    pred = {p: [] for p in pops}
-    degenerate = {p: 0 for p in pops}
-    rng_pred = np.random.default_rng(args.split_seed + 1)
-    for si in range(args.splits):
-        st = split_pairs(m, pt, splits[si], near_max)
-        for p in pops:
-            res = split_statistics(st, p, hkey, wpair if p == "near" else wpair[:1], qs)
-            if res["n_pairs"] < args.min_pairs:
-                degenerate[p] += 1
-                continue
-            acc[p].append(res)
-            pred[p].append(predictive_comparison(st, p, rng_pred))
-        if args.progress and (si + 1) % max(1, args.splits // 20) == 0:
-            print(f"split {si + 1}/{args.splits} {time.time() - t0:.0f}s", file=sys.stderr, flush=True)
-    out = {"settings": vars(args), "systems": len(m.systems), "tasks": len(m.tasks), "near_max_net_gain": near_max,
-           "splits_degenerate": degenerate, "populations": {}}
-    for p in pops:
-        rs = acc[p]
+    _worker_init(vars(args))
+    m = _STATE["m"]
+    expected = EXPECTED_SHAPE.get(args.sensitivity)
+    if args.expect_sha is not None and expected and (len(m.systems), len(m.tasks)) != expected:
+        raise SystemExit(f"STOP: expected {expected}, got {(len(m.systems), len(m.tasks))}")
+    if args.sensitivity == "matched_test_lists" and len(json.loads(DRIFT.read_text())["tasks"]) != 4:
+        raise SystemExit("STOP: the drift sensitivity must drop exactly the 4 declared tasks")
+    if args.workers > 1:
+        with mp.get_context("fork").Pool(args.workers, initializer=_worker_init, initargs=(vars(args),)) as pool:
+            per_split = pool.map(_run_split, range(args.splits), chunksize=max(1, args.splits // (args.workers * 8)))
+    else:
+        per_split = [_run_split(si) for si in range(args.splits)]
+    out = {"settings": vars(args), "systems": len(m.systems), "tasks": len(m.tasks),
+           "near_max_net_gain": _STATE["near_max"], "populations": {}}
+    for pop in ("near", "eligible"):
+        rs = [r[pop] for r in per_split if not r[pop]["degenerate"]]
+        degenerate = args.splits - len(rs)
+        pop_out = {"splits_degenerate": degenerate, "splits_used": len(rs), "status": "ok"}
+        if pop == "near" and degenerate > 0.10 * args.splits:
+            pop_out["status"] = "inconclusive: more than 10% of splits degenerate"
         if not rs:
-            out["populations"][p] = {"status": "inconclusive: no non-degenerate split"}
+            pop_out["status"] = "inconclusive: no non-degenerate split"
+            out["populations"][pop] = pop_out
             continue
-        mean_over_splits = lambda f: np.nanmean(np.stack([f(r) for r in rs]), axis=0)  # noqa: E731
-        split_pct = lambda f: np.nanpercentile(np.stack([f(r)[0] for r in rs]), [5, 95]).tolist()  # noqa: E731
-        pop = {"splits_used": len(rs), "pairs_per_split_median": float(np.median([r["n_pairs"] for r in rs]))}
-        pop["H1"] = {k: {**summarize(mean_over_splits(lambda r, k=k: r["H1"][k])), "split_5_95": split_pct(lambda r, k=k: r["H1"][k])}
-                     for k in rs[0]["H1"]}
-        pop["H2"] = {k: {**summarize(mean_over_splits(lambda r, k=k: r["H2"][k])), "split_5_95": split_pct(lambda r, k=k: r["H2"][k])}
-                     for k in rs[0]["H2"]}
-        pop["H3"] = {}
-        for q in qs:
-            per = {}
+        n = len(rs)
+        pop_out["pairs_per_split_median"] = float(np.median([r["n_pairs"] for r in rs]))
+        pop_out["H1"] = aggregate_family({k: [r["H1"][k] for r in rs] for k in rs[0]["H1"]}, n)
+        pop_out["H2"] = {k: aggregate_family({k: [r["H2"][k] for r in rs]}, n) for k in rs[0]["H2"]}
+        pop_out["H3"] = {}
+        for q in args.q:
+            fam = {}
             for name in POLICIES:
-                per[name] = {k: summarize(mean_over_splits(lambda r, k=k, n=name, q=q: r["H3"][q][n][k])) for k in rs[0]["H3"][q][name]}
-            contrasts = {}
-            for a, b in (("R0", "R2"), ("R2", "R3"), ("R0", "R3"), ("R0", "R3h"), ("R0", "R1"),
-                         ("S0plus", "R3"), ("S0plus", "R2"), ("S0plus", "S3"), ("S2", "S3"), ("S0plus", "S2"), ("S0plus", "S1")):
-                d = mean_over_splits(lambda r, a=a, b=b, q=q: r["H3"][q][a]["hpr"] - r["H3"][q][b]["hpr"])
-                ha = mean_over_splits(lambda r, a=a, q=q: r["H3"][q][a]["hpr"])
-                with np.errstate(invalid="ignore", divide="ignore"):
-                    rel = np.where(ha > 0, d / ha, np.nan)
-                gain = mean_over_splits(lambda r, a=a, b=b, q=q: r["H3"][q][b]["mean_dpass_t"] - r["H3"][q][a]["mean_dpass_t"])
-                contrasts[f"{a}_minus_{b}"] = {"hpr_abs_reduction": summarize(d), "hpr_rel_reduction": summarize(rel),
-                                               "mean_dpass_t_gain_of_second": summarize(gain)}
-            per["contrasts"] = contrasts
-            pop["H3"][str(q)] = per
-        pop["deploy_zero_loss"] = {k: summarize(mean_over_splits(lambda r, k=k: r["deploy_zero_loss"][k]))
-                                   for k in ("acceptance", "hpr")}
-        pop["deploy_zero_loss"]["n_accepted_per_split_median"] = float(np.median([r["deploy_zero_loss"]["n_accepted_unweighted"] for r in rs]))
-        pr = pred[p]
-        pop["H2_predictive"] = {
-            k: {"median": float(np.nanmedian([x[k] for x in pr])), "split_5_95": np.nanpercentile([x[k] for x in pr], [5, 95]).tolist()}
-            for k in ("M0", "M1", "M2")
+                for k in ("hpr", "mean_dpass_t"):
+                    fam[f"{name}.{k}"] = [r["H3"][q][name][k] for r in rs]
+            for a_, b_ in CONTRASTS:
+                fam[f"{a_}-{b_}.hpr_abs_reduction"] = [r["H3"][q][a_]["hpr"] - r["H3"][q][b_]["hpr"] for r in rs]
+                fam[f"{a_}-{b_}.dpass_gain_of_second"] = [r["H3"][q][b_]["mean_dpass_t"] - r["H3"][q][a_]["mean_dpass_t"] for r in rs]
+            aux = {f"{name}.{k}": [r["H3"][q][name][k] for r in rs] for name in POLICIES for k in ("mean_lossfrac", "rate")}
+            recall = {f"{name}.recall": [r["H3"][q][name]["recall"] for r in rs] for name in POLICIES}
+            pop_out["H3"][str(q)] = {"main": aggregate_family(fam, n), "aux": aggregate_family(aux, n),
+                                     "recall": aggregate_family(recall, n)}
+        pop_out["deploy_zero_loss"] = {
+            "acceptance": aggregate_family({"acceptance": [r["deploy_zero_loss"]["acceptance"] for r in rs]}, n),
+            "hpr_given_accepted": aggregate_family({"hpr": [r["deploy_zero_loss"]["hpr"] for r in rs]}, n),
+            "n_accepted_per_split_median": float(np.median([r["deploy_zero_loss"]["n_accepted_unweighted"] for r in rs])),
         }
-        d21 = np.array([x["M2"] - x["M1"] for x in pr])
-        pop["H2_predictive"]["M2_minus_M1"] = {"median": float(np.nanmedian(d21)), "share_positive": float(np.nanmean(d21 > 0)),
-                                               "split_5_95": np.nanpercentile(d21, [5, 95]).tolist()}
-        out["populations"][p] = pop
+        pr = [r["pred"] for r in rs]
+        pred = {"attempted_splits": len(pr), "n_fit_median": float(np.median([x["n_fit"] for x in pr])),
+                "n_eval_median": float(np.median([x["n_eval"] for x in pr]))}
+        for k in ("M0", "M1", "M2"):
+            v = np.array([x[k] for x in pr], float)
+            v = v[np.isfinite(v)]
+            pred[k] = {"defined_splits": int(len(v)), "median": float(np.median(v)) if len(v) else None,
+                       "split_5_95": np.percentile(v, [5, 95]).tolist() if len(v) else None}
+        d = np.array([x["M2"] - x["M1"] for x in pr], float)
+        d = d[np.isfinite(d)]
+        pred["M2_minus_M1"] = {"defined_splits": int(len(d)), "median": float(np.median(d)) if len(d) else None,
+                               "share_positive": float((d > 0).mean()) if len(d) else None,
+                               "split_5_95": np.percentile(d, [5, 95]).tolist() if len(d) else None}
+        pop_out["H2_predictive"] = pred
+        out["populations"][pop] = pop_out
     out["runtime_s"] = round(time.time() - t0, 1)
     return out
+
+
+def relative_reductions(result: dict) -> None:
+    """Add relative HPR reductions (absolute reduction / comparator HPR, point estimates) on the same support."""
+    for pop in result["populations"].values():
+        for qd in pop.get("H3", {}).values():
+            mem = qd["main"].get("members", {})
+            for a_, b_ in CONTRASTS:
+                ha, d = mem.get(f"{a_}.hpr"), mem.get(f"{a_}-{b_}.hpr_abs_reduction")
+                key = f"{a_}-{b_}.hpr_rel_reduction"
+                if ha and d and ha["estimate"] > 0:
+                    mem[key] = {"estimate": d["estimate"] / ha["estimate"], "note": "point estimate (ratio of split averages)"}
+                else:
+                    mem[key] = {"estimate": None, "note": "undefined: comparator harmful promotion rate is zero or missing"}
 
 
 def main(argv=None) -> None:
@@ -414,15 +511,17 @@ def main(argv=None) -> None:
     ap.add_argument("--near-band", type=float, default=0.05)
     ap.add_argument("--q", type=float, nargs="+", default=[0.5, 0.25, 0.75])
     ap.add_argument("--min-pairs", type=int, default=200)
+    ap.add_argument("--workers", type=int, default=1)
     ap.add_argument("--out", required=True)
-    ap.add_argument("--progress", action="store_true")
     args = ap.parse_args(argv)
     if args.expect_sha in ("", "none"):
         args.expect_sha = None
     res = run(args)
+    relative_reductions(res)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(res, indent=1, default=float) + "\n")
-    print(json.dumps({"out": args.out, "runtime_s": res["runtime_s"], "degenerate": res["splits_degenerate"]}))
+    print(json.dumps({"out": args.out, "runtime_s": res["runtime_s"],
+                      "degenerate": {p: v.get("splits_degenerate") for p, v in res["populations"].items()}}))
 
 
 if __name__ == "__main__":

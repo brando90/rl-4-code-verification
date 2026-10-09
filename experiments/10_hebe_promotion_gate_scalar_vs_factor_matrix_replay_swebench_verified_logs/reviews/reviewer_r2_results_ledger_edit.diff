@@ -1,0 +1,50 @@
+diff --git a/experiments/10_hebe_promotion_gate_scalar_vs_factor_matrix_replay_swebench_verified_logs/results.md b/experiments/10_hebe_promotion_gate_scalar_vs_factor_matrix_replay_swebench_verified_logs/results.md
+index 4890292..94852b7 100644
+--- a/experiments/10_hebe_promotion_gate_scalar_vs_factor_matrix_replay_swebench_verified_logs/results.md
++++ b/experiments/10_hebe_promotion_gate_scalar_vs_factor_matrix_replay_swebench_verified_logs/results.md
+@@ -2,20 +2,21 @@
+ 
+ **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/10_hebe_promotion_gate_scalar_vs_factor_matrix_replay_swebench_verified_logs/results.md>
+ 
+-**TLDR:** No real-data statistic has been computed yet. Protocol revision 2 applies the GPT-6 Astra (effort ultra) review, and the analysis code passes 8 unit tests plus synthetic signal, null and coverage checks. A replacement Claude Fable 5.1 review is pending before the lock.
++**TLDR:** Revision 2 is not ready to lock: the completed Codex protocol/code review found 3 blocking, 5 major and 1 minor issue despite 8/8 existing tests passing. Only synthetic checks were run; real-data analysis remains NOT STARTED.
+ 
+-**Status:** LOCK CANDIDATE (10-09-2026).
++**Status:** LOCK BLOCKED — revision 2 review completed (10-09-2026); fixes pending.
+ 
+-**Last updated:** 10-09-2026.
++**Last updated:** 10-09-2026 16:32 PDT.
+ 
+ | Stage | State | Evidence |
+ |---|---|---|
+ | Design and protocol revision 1 | DONE | commit `769ade0` |
+-| GPT-6 Astra (effort ultra) design review | DONE (15 findings, all addressed in revision 2) | [reviews/design_review_gpt6_astra_ultra_10-09-2026.md](reviews/design_review_gpt6_astra_ultra_10-09-2026.md) |
++| GPT-6 Astra (effort ultra) design review | DONE (15 findings; revision 2 response reviewed below, with remaining gaps) | [reviews/design_review_gpt6_astra_ultra_10-09-2026.md](reviews/design_review_gpt6_astra_ultra_10-09-2026.md) |
+ | Claude Fable 5.1 design review | ATTEMPT 1 DIED (out of usage credits on the personal account, 10:18 PDT, no file written); attempt 2 on another account pending | — |
+ | Protocol revision 2 | DONE | [PROTOCOL.md](PROTOCOL.md) |
+-| Analysis code and unit tests | DONE (8/8 pass) | `expt_v1/analyze_e10.py`, `tests/test_e10_replay.py` |
++| Analysis code and unit tests | EXISTING TESTS PASS (8/8); review defects pending | `expt_v1/analyze_e10.py`, `tests/test_e10_replay.py` |
+ | Synthetic checks | DONE | `expt_v1/results/synthetic/` |
++| Codex protocol/code revision 2 review | DONE: 3 blocking, 5 major, 1 minor | [Findings report](reviews/review_gpt6_astra_ultra_protocol_r2_and_code_10-09-2026.md); [local checkpoint](../../CKPT_codex-rl4cv-e10-review-r2.md) |
+ | Lock and frozen forecast | NOT STARTED | — |
+ | Phase A replay on real data | NOT STARTED | — |
+ | Phase B (real AlphaHebe records) | WAITING on the AlphaHebe team's export | — |
+@@ -39,3 +40,18 @@ Data comes from `expt_v1/synthetic_e10.py`: 164 systems × 424 tasks, 20 splits
+ ## Deviations and open questions
+ 
+ - **10-09-2026, review worktree removal:** removing the GPT-6 reviewer's worktree with `--force` discarded its checkpoint file (`CKPT_codex-rl4cv-e10-e11-design-review.md`) and an edit it had made to that worktree's copy of this ledger. The review file itself had been copied first and is unchanged.
++
++## Protocol/code revision 2 review (10-09-2026)
++
++**Status:** REVIEW COMPLETE; lock blocked by findings at commit `94cb414`, without reading real outcomes. The user's task message expressly authorizes this ledger and the workdir checkpoint in addition to the runbook's one findings file. All three stay local; the runbook forbids commit/push.
++
++- Runtime verified: `gpt-6-astra`, effort `ultra`, Codex default profile, full access and approval never.
++- Deterministic unit suite: **8/8 passed**, 1.56 s, using the runbook's isolated uv alternative (supplied Python lacks pytest).
++- Synthetic counterexamples confirmed unequal weighted acceptance, empty-population crash, zero-acceptance harm reported as zero, changing undefined-split support, and a design-condition threshold mismatch. These are constructed correctness examples, not experiment effects or statistical tests.
++- Bounded runtime check: generated signal seed 1, 164 systems × 424 tasks, one split × 1,000 system-bootstrap draws, all three retention fractions. Analysis took 4.8 s; process maximum resident memory was 1,559,412,736 bytes. Linear extrapolation is about 80 minutes for 1,000 splits, not a measured full-run duration; accumulation adds roughly a gigabyte and full-run peak remains unmeasured.
++- Findings: unmatched bootstrap selections, varying defined-split support, empty-population crash/degeneracy rule, condition-number mismatch, undefined denominators, incomplete-evidence/drift guards, unregistered comparator ties, overclaimed negative verdicts/stale documentation, and missing split ranges.
++- Existing synthetic signal evidence (164 × 424, 20 splits, 100 system-bootstrap draws): factor-versus-binary harmful-rate reduction 0.01052 [−0.00959, 0.03934] p-val=n/a; factor-versus-scalar 0.01475 [−0.00773, 0.03385] p-val=n/a. These conditional 95% intervals cross zero. Real-data power is not established; no real-data estimate was computed.
++- Earlier blocking finding 1 is addressed in protocol text; 7 is substantially addressed with remaining implementation/interpretation gaps. Findings 10/11 remain separate live-study requirements, not completed evidence-path or leakage audits. Current issue changes were not verified.
++- Review-only deliverable: no fixes applied, no lock/forecast created, no commit or push. Reviewed source files remain byte-identical to the input commit.
++
++**TLDR-end:** [rl4cv: promotion-policy review] The review of `10_hebe_promotion_gate_scalar_vs_factor_matrix_replay_swebench_verified_logs` is complete with 9 findings; revision 2 remains unlocked pending fixes.
