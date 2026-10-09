@@ -17,6 +17,10 @@ SCORE_PY="$SCORER/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/scripts/sc
 LAKE_DIR="$WORK/grading/lean_src"
 GOLD_DIR="$SCORER/veribench_dataset/lean_src/veribench"
 case "$SPLIT" in validation) IDS="$EXP/expt_v1/results/split/vbv1_validation_task_ids.txt"; N_TASKS=135 ;; test) IDS="$EXP/expt_v1/results/split/vbv1_test_task_ids.txt"; N_TASKS=222 ;; *) echo "bad split" >&2; exit 2 ;; esac
+# This fresh process reads the current guard even when the adopted pipeline predates a recovery fix.
+if [ "$SPLIT" = test ]; then
+  "$REPO/.venv/bin/python" "$EXP/expt_v1/scripts/test_admission_e08.py" "$LABEL" "$MODEL" "$REV"
+fi
 OUT="$WORK/ladder/$SPLIT"; mkdir -p "$OUT/raw" "$OUT/jobs" "$OUT/scores" "$OUT/scored" "$OUT/summaries" "$OUT/ids" "$OUT/logs"
 BATCH="${BATCH:-1024}"; SCORE_PAR="${SCORE_PAR:-4}"; STAGGER_S="${STAGGER_S:-180}"
 export PYTHONPATH="$REPO/src" VERIBENCH_ROOT="$REPO/external/veribench" HF_HOME="$WORK/cache/huggingface" HF_HUB_OFFLINE=1 PATH="/usr/local/cuda-12.8/bin:$HOME/.elan/bin:$PATH"

@@ -1,0 +1,89 @@
+{
+  "effort": "ultra",
+  "evidence_paths": [
+    "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/ack.json",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/artifact_check.json",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/reused_validation_check.json",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/downstream_gate_check.json",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/feasibility_and_delegate.json",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_install.json"
+  ],
+  "experiment": "08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test",
+  "handoff_sha256": "45fcb72f3a3a011ad30d95dad73b42428618d9cf41427b9e8472d80c392e9842",
+  "input_project_revision": "bff30a0f2871f250b5c118edb9972a278c1fb0cd",
+  "judge_identity_limit": "Frozen request envelope and no-fallback metadata verifiable; provider-returned model/effort fields absent from validated transport.",
+  "last_tick": "2026-10-09T20:13:26+00:00",
+  "model": "gpt-6-astra",
+  "monitor": {
+    "attempts_per_candidate_per_incident": 1,
+    "cadence_minutes": 5,
+    "candidate_order": [
+      "personal_codex",
+      "vals_codex"
+    ],
+    "coordinator_incident_minutes": 70,
+    "excluded_stanford": "managed restrictions prohibit required permissions",
+    "initial_cron_observed_utc": "2026-10-09T20:10:12.710424+00:00",
+    "install_receipt": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_install.json",
+    "installed": true,
+    "manifest_path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_manifest.json",
+    "original_cron_lines_preserved": 8,
+    "original_incident_attempts_and_deadline_preserved": true,
+    "provider_failover_test": "harmless local fixtures; no model probes",
+    "reboot": true,
+    "scientific_runtime_cap_added": false,
+    "state_path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_state.json"
+  },
+  "native_session_id": "01a12239-ba42-7313-8a85-6aa01477b5b6",
+  "new_measured_model_calls_in_phase": 0,
+  "new_test_generation_exists": false,
+  "observed_utc": "2026-10-09T20:15:15.805620+00:00",
+  "permissions": {
+    "approval_policy": "never",
+    "sandbox_mode": "danger-full-access"
+  },
+  "phase": "coordinator recovery; scientific study still pending",
+  "pipeline_identity": {
+    "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+    "pid": 3371983,
+    "ppid": 3371970,
+    "session": 3371970,
+    "start_ticks": 1616401
+  },
+  "pipeline_restarted": false,
+  "policy_revision": "2988831c0232e4d428598fd253d9c35b4d8d3c6b",
+  "required_historical_policy_revision": "841c3f1fe5aa0fb59cb9b17aea87194acbcaa148",
+  "scientific_blocker": "14B frozen training needs eight idle devices; five trained rungs pending",
+  "selection_exists": false,
+  "source_sha256": {
+    "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py": "2e93e27b015cbfcabdd38b1861a0fb0f4e97496e48c06bd70fb70490e51e3e11",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/judge_rl4cv_e08.py": "5238551671e9eee3041c7e07060dc6b0011056be68ea769dc51a37bfadea9127",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/run_ladder_e08.sh": "4d1f89a9bc9f71f03a347d299deda8c2c2cbe449179892f06aedd8f474ac5836",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/test_admission_e08.py": "227ccfcb35d501a6ef8f96b74b1d69467820bc63aad46837abc8ed8448e577dc"
+  },
+  "tests": {
+    "actual_test_admission_guard": "rejected before any test content/output",
+    "judge_cli_help": "pass",
+    "log_sha256": "33988209eb547236701e7a2f20cd0e91ff5a99fc729a1d41c977916d5b2ed61f",
+    "passed": 192,
+    "skip_reasons": [
+      "three existing experiment-09 torch-dependent tests in test-only environment",
+      "one existing scipy-dependent correlation test"
+    ],
+    "skipped": 4
+  },
+  "trained_checkpoints": {
+    "complete": 15,
+    "declared": 20
+  },
+  "validation_cells": {
+    "full_declared": 25920,
+    "full_scored": 20520,
+    "missing": 5400,
+    "new_declared": 22680,
+    "new_scored": 17280,
+    "reused_scored": 3240,
+    "trained_declared": 21600,
+    "trained_scored": 16200
+  }
+}

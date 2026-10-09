@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import base64
 import csv
+import fcntl
 import hashlib
 import json
 import os
@@ -247,7 +248,18 @@ def judge_config(name: str) -> dict:
     return json.loads((X100 / f"configs/{name}.json").read_text())
 
 
+def request_benchmark(spec: dict, name: str) -> str:
+    return f"rl4cv-e08-judge-{spec['benchmark']}-{(spec['system'] or 'controls')}-{name}"[:120]
+
+
 def admit(suite: str, configs: list[str], concurrency: int) -> int:
+    RESULTS.mkdir(parents=True, exist_ok=True)
+    with (RESULTS / "admission.lock").open("a") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        return _admit_locked(suite, configs, concurrency)
+
+
+def _admit_locked(suite: str, configs: list[str], concurrency: int) -> int:
     spec = suite_spec(suite)
     pack = read_json(spec["pack_receipt"])
     assert pack and pack.get("verdict") == "PASS", f"{suite}: pack verdict is not PASS"
@@ -258,13 +270,20 @@ def admit(suite: str, configs: list[str], concurrency: int) -> int:
         ids_file.write_text("".join(c["task_id"] + "\n" for c in pack["control_cells"]))
     n_tasks = len(read_ids(ids_file))
     state = load_state()
+    failed = False
     for name in configs:
         key = spec["key_prefix"] + name
         if key in state["runs"] and state["runs"][key].get("run_id"):
             print(f"{key}: already admitted as {state['runs'][key]['run_id']}; refusing to re-admit")
             continue
+        if key in state["runs"]:
+            # A missing run identifier does not prove the service admitted no requests.
+            # Preserve the entry, including "admitting" after an abrupt client exit.
+            print(f"{key}: prior admission has no verified run id; receipt recovery required, not re-admitting")
+            failed = True
+            continue
         cfg = judge_config(name)
-        kwargs = {"judge_config": name, "max_tokens": str(cfg["max_tokens"]), "benchmark": f"rl4cv-e08-judge-{spec['benchmark']}-{(spec['system'] or 'controls')}-{name}"[:120]}
+        kwargs = {"judge_config": name, "max_tokens": str(cfg["max_tokens"]), "benchmark": request_benchmark(spec, name)}
         if cfg.get("reasoning_effort"):
             kwargs["reasoning_effort"] = cfg["reasoning_effort"]
         if cfg.get("compute_effort"):
@@ -280,13 +299,14 @@ def admit(suite: str, configs: list[str], concurrency: int) -> int:
         result = cli(args)
         found = UUID_RE.findall(result.stdout + result.stderr)
         if result.returncode or not found:
-            entry.update(phase="admission_failed", returncode=result.returncode, stderr_tail=(result.stderr or result.stdout or "")[-800:])
+            failed = True
+            entry.update(phase="admission_failed", retry_blocked=True, returncode=result.returncode, stderr_tail=(result.stderr or result.stdout or "")[-800:])
             print(f"{key}: ADMISSION FAILED rc={result.returncode}\n{(result.stderr or result.stdout or '')[-600:]}")
         else:
             entry.update(phase="running", run_id=found[0])
             print(f"{key}: run_id={found[0]} over {n_tasks} cells at concurrency {concurrency}")
         save_state(state)
-    return 0
+    return 1 if failed else 0
 
 
 def poll() -> int:
@@ -352,12 +372,16 @@ def harvest(suite: str, configs: list[str]) -> int:
             cands = sorted(artifacts.glob(f"{spec['benchmark']}*.json"))
             rows = rows_of(cands[0]) if cands else {}
         receipts = {}
+        duplicate_receipts = []
         for path in sorted(artifacts.rglob("receipt.json")):
             try:
                 receipt = json.loads(path.read_text())
             except json.JSONDecodeError:
                 continue
-            receipts[receipt.get("task_id") or path.parent.name] = receipt
+            receipt_id = receipt.get("task_id") or path.parent.name
+            if receipt_id in receipts:
+                duplicate_receipts.append(receipt_id)
+            receipts[receipt_id] = receipt
         cells, charges = [], 0.0
         for task_id, meta in sorted(pack_cells.items()):
             row, receipt = rows.get(task_id, {}), receipts.get(task_id, {})
@@ -365,13 +389,18 @@ def harvest(suite: str, configs: list[str]) -> int:
                     "task_id_vb": meta.get("task_id_vb", meta.get("task")), "sample_idx": meta.get("sample_idx"), "is_audit_only": meta.get("is_audit_only"), "config": name,
                     "agent_status": receipt.get("status"), "requests_sent": receipt.get("requests_sent"), "cost_usd": receipt.get("cost_usd"), "prompt_sha256_served": receipt.get("prompt_sha256"),
                     "prompt_hash_matches": (receipt.get("prompt_sha256") == meta["prompt_sha256"]) if receipt.get("prompt_sha256") else None, "error_type": receipt.get("error_type")}
+            cell["transport_receipt"] = {k: receipt[k] for k in (
+                "selector", "judge_config", "benchmark", "config", "wire_provider_config",
+                "fallback", "system_sha256", "user_sha256", "prompt_sha256", "expected",
+                "requests_sent", "status") if k in receipt}
+            cell["transport_matches"] = transport_matches(receipt, meta, judge_config(name), name, request_benchmark(spec, name))
             charges += cell["cost_usd"] or 0.0
             blob_b64 = row.get("solution_b64")
             if blob_b64:
                 text = base64.b64decode(blob_b64).decode("utf-8", errors="replace")
                 try:
                     raw_score, norm, verdict = prompts.parse(judge_config(name)["rubric"], text)
-                    cell.update(status="measured", score_raw=raw_score, score=norm, base_score=verdict.get("base_score"))
+                    cell.update(status="measured" if cell["transport_matches"] else "unmeasured_transport", score_raw=raw_score, score=norm, base_score=verdict.get("base_score"))
                 except ValueError as exc:
                     cell.update(status="parse_error", error=str(exc)[:200])
             else:
@@ -380,7 +409,10 @@ def harvest(suite: str, configs: list[str]) -> int:
         counts: dict[str, int] = {}
         for cell in cells:
             counts[cell["status"]] = counts.get(cell["status"], 0) + 1
-        out = {"written_utc": stamp(), "suite": suite, "config": name, "run_id": entry["run_id"], "n_cells": len(cells), "status_counts": counts, "charges_usd": round(charges, 4), "cells": cells}
+        out = {"written_utc": stamp(), "suite": suite, "config": name, "run_id": entry["run_id"], "n_cells": len(cells), "status_counts": counts, "charges_usd": round(charges, 4), "cells": cells,
+               "receipt_inventory": {"missing": sorted(set(pack_cells) - set(receipts)),
+                                     "extra": sorted(set(receipts) - set(pack_cells)),
+                                     "duplicates": sorted(set(duplicate_receipts))}}
         write_json(RESULTS / "harvests" / f"cells_{key.replace('/', '__')}.json", out)
         entry.update(harvested_at=stamp(), status_counts=counts, charges_usd=round(charges, 4))
         save_state(state)
@@ -388,26 +420,68 @@ def harvest(suite: str, configs: list[str]) -> int:
     return 0
 
 
+
+def transport_matches(receipt: dict, meta: dict, cfg: dict, name: str, benchmark: str) -> bool:
+    """Verify the frozen request envelope and returned no-fallback receipt, not an invented response identity."""
+    wanted = {"max_tokens": cfg["max_tokens"]}
+    for key in ("compute_effort", "reasoning_effort"):
+        if cfg.get(key):
+            wanted[key] = cfg[key]
+    expected = receipt.get("expected") or {}
+    hashes = all(receipt.get(f"{k}_sha256") and receipt[f"{k}_sha256"] == expected.get(k)
+                 for k in ("system", "user", "prompt"))
+    requests = receipt.get("requests_sent")
+    return bool(
+        receipt.get("selector") == cfg["selector"] and receipt.get("judge_config") == name
+        and receipt.get("benchmark") == benchmark and receipt.get("config") == wanted
+        and receipt.get("status") == "measured" and "fallback" in receipt and receipt["fallback"] is None
+        and hashes and receipt["prompt_sha256"] == meta["prompt_sha256"]
+        and isinstance(requests, int) and not isinstance(requests, bool) and 1 <= requests <= 2
+        and (not cfg.get("compute_effort") or (receipt.get("wire_provider_config") or {}).get("fallback_models") == []))
+
+
+
 def controls_check() -> int:
-    out = {"written_utc": stamp(), "configs": {}, "verdict": "PASS"}
+    pack = read_json(RESULTS / "judge_pack_controls.json", {})
+    declared = pack.get("control_cells", [])
+    wanted = {c["task_id"]: c for c in declared}
+    pack_ok = (bool(wanted) and len(wanted) == len(declared)
+               and pack.get("verdict") == "PASS" and pack.get("rubric") == RUBRIC
+               and pack.get("rubric_fingerprint") == prompts.rubric_fingerprint(RUBRIC))
+    out = {"written_utc": stamp(), "configs": {}, "verdict": "PASS" if pack_ok else "FAIL",
+           "pack_matches_frozen_rubric": pack_ok,
+           "identity_evidence": "Frozen request envelope and returned no-fallback receipt; provider-returned model/effort fields are unavailable in the validated bundle."}
     for name in CONFIGS:
         h = read_json(RESULTS / "harvests" / f"cells_controls__{name}.json")
         if not h:
             out["configs"][name] = {"missing": True}
             out["verdict"] = "FAIL"
             continue
+        cells_by_id = {c["task_id"]: c for c in h["cells"]}
+        inventory = h.get("receipt_inventory")
+        exact = (len(cells_by_id) == len(h["cells"]) == len(wanted) and set(cells_by_id) == set(wanted)
+                 and inventory == {"missing": [], "extra": [], "duplicates": []})
+        transport_ok = exact and all(
+            c["status"] == "measured"
+            and transport_matches(c.get("transport_receipt", {}), wanted[c["task_id"]],
+                                  judge_config(name), name, request_benchmark(suite_spec("rl4cv-e08-controls"), name))
+            for c in h["cells"])
+        if not transport_ok:
+            out["verdict"] = "FAIL"
         per_kind = {}
         for kind, (rule, min_frac) in CONTROL_EXPECTATIONS.items():
-            cells = [c for c in h["cells"] if c["kind"] == kind]
+            declared_kind = [c for c in declared if c["kind"] == kind]
+            cells = [cells_by_id[c["task_id"]] for c in declared_kind if c["task_id"] in cells_by_id]
             measured = [c for c in cells if c["status"] == "measured"]
             ok = [c for c in measured if _control_ok(kind, c["score_raw"])]
-            frac = len(ok) / len(measured) if measured else None
-            per_kind[kind] = {"rule": rule, "min_fraction": min_frac, "n": len(cells), "measured": len(measured), "ok": len(ok), "fraction": round(frac, 3) if frac is not None else None,
-                              "pass": bool(measured) and frac >= min_frac, "scores": [c["score_raw"] for c in measured]}
+            frac = len(ok) / len(declared_kind) if declared_kind else None
+            per_kind[kind] = {"rule": rule, "min_fraction": min_frac, "n": len(declared_kind), "measured": len(measured), "ok": len(ok), "fraction": round(frac, 3) if frac is not None else None,
+                              "pass": bool(declared_kind) and len(measured) == len(declared_kind) and frac >= min_frac, "scores": [c["score_raw"] for c in measured]}
             if not per_kind[kind]["pass"]:
                 out["verdict"] = "FAIL"
         out["configs"][name] = {"run_id": h["run_id"], "charges_usd": h["charges_usd"], "status_counts": h["status_counts"], "per_kind": per_kind,
-                                "delivered": {"selector": judge_config(name)["selector"], "effort": judge_config(name).get("compute_effort") or judge_config(name).get("reasoning_effort"),
+                                "exact_receipt_inventory": exact, "transport_matches": transport_ok,
+                                "expected_envelope": {"selector": judge_config(name)["selector"], "effort": judge_config(name).get("compute_effort") or judge_config(name).get("reasoning_effort"),
                                               "max_tokens": judge_config(name)["max_tokens"], "rubric": judge_config(name)["rubric"]}}
     write_json(RESULTS / "controls_check.json", out)
     print(json.dumps({"verdict": out["verdict"], **{n: {k: v["fraction"] for k, v in c.get("per_kind", {}).items()} for n, c in out["configs"].items()}}))
@@ -437,13 +511,13 @@ def fsc(system: str) -> int:
         reps = {c: members[c].get(key, []) for c in CONFIGS}
         medians = {c: statistics.median(v) for c, v in reps.items() if v}
         complete = all(len(reps[c]) == len(REPEATS) for c in CONFIGS)
-        value = statistics.fmean(medians.values()) / 5.0 if len(medians) == len(CONFIGS) else None
+        value = statistics.fmean(medians.values()) / 5.0 if complete else None
         per_cell[f"{key[0]}#{key[1]}"] = {"task_id": key[0], "sample_idx": key[1], "FSC": value, "member_medians_0_5": medians, "repeats_measured": {c: len(v) for c, v in reps.items()},
                                            "complete_3x2": complete, "is_audit_only": m["is_audit_only"]}
     out = {"written_utc": stamp(), "system": system, "configs": list(CONFIGS), "repeats": list(REPEATS), "n_files": len(per_cell), "n_ratings_declared": n_ratings_declared,
            "n_ratings_measured": n_measured, "n_files_with_fsc": sum(1 for v in per_cell.values() if v["FSC"] is not None),
            "n_files_complete_3x2": sum(1 for v in per_cell.values() if v["complete_3x2"]), "charges_usd": round(charges, 4),
-           "rule": "member median over measured repeats (declared 3), FSC = mean of the two member medians / 5; a file with a member lacking any measured rating has unknown FSC",
+           "rule": "median of all 3 declared ratings per member, FSC = mean of the two member medians / 5; any missing rating leaves FSC unknown",
            "cells": per_cell}
     write_json(RESULTS / f"fsc_{system}.json", out)
     print(json.dumps({k: out[k] for k in ("system", "n_files", "n_ratings_declared", "n_ratings_measured", "n_files_with_fsc", "n_files_complete_3x2", "charges_usd")}))

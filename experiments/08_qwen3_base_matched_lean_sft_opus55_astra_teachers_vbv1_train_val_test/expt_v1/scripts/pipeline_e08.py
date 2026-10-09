@@ -216,7 +216,7 @@ def ladder_valid(lab: str, split: str) -> dict:
         if len(csvs) == 1 and sum(1 for _ in csv.DictReader(csvs[0].open(encoding="utf-8"))) == n_tasks:
             v["shards_ok"] += 1
     v["gen_complete"] = v["gen_rows"] == n_tasks * G
-    v["valid"] = v["rows"] == v["distinct"] == n_tasks * G and v["unscored"] == 0 and v["shards_ok"] == G
+    v["valid"] = v["rows"] == v["distinct"] == n_tasks * G and v["unscored"] == 0 and v["shards_ok"] == G and v["gen_complete"]
     return v
 
 
