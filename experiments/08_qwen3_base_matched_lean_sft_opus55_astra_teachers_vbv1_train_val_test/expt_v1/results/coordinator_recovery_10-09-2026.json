@@ -6,13 +6,16 @@
     "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/reused_validation_check.json",
     "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/downstream_gate_check.json",
     "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/feasibility_and_delegate.json",
-    "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_install.json"
+    "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_install.json",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/final_artifact_check.json",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/publication.json",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/phase_result.json"
   ],
   "experiment": "08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test",
   "handoff_sha256": "45fcb72f3a3a011ad30d95dad73b42428618d9cf41427b9e8472d80c392e9842",
   "input_project_revision": "bff30a0f2871f250b5c118edb9972a278c1fb0cd",
   "judge_identity_limit": "Frozen request envelope and no-fallback metadata verifiable; provider-returned model/effort fields absent from validated transport.",
-  "last_tick": "2026-10-09T20:13:26+00:00",
+  "last_tick": "2026-10-09T20:19:41+00:00",
   "model": "gpt-6-astra",
   "monitor": {
     "attempts_per_candidate_per_incident": 1,
@@ -29,15 +32,17 @@
     "manifest_path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_manifest.json",
     "original_cron_lines_preserved": 8,
     "original_incident_attempts_and_deadline_preserved": true,
+    "post_owner_exit_transition": "pending owner exit; deterministic fixtures passed",
     "provider_failover_test": "harmless local fixtures; no model probes",
     "reboot": true,
+    "scheduled_owner_observations": 3,
     "scientific_runtime_cap_added": false,
     "state_path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_state.json"
   },
   "native_session_id": "01a12239-ba42-7313-8a85-6aa01477b5b6",
   "new_measured_model_calls_in_phase": 0,
   "new_test_generation_exists": false,
-  "observed_utc": "2026-10-09T20:15:15.805620+00:00",
+  "observed_utc": "2026-10-09T20:20:27.002547+00:00",
   "permissions": {
     "approval_policy": "never",
     "sandbox_mode": "danger-full-access"
@@ -52,8 +57,22 @@
   },
   "pipeline_restarted": false,
   "policy_revision": "2988831c0232e4d428598fd253d9c35b4d8d3c6b",
+  "publication": {
+    "implementation_commit": "4fa224e92c038b94f917b531fb8fd2506471c2ab",
+    "merged_published_commit": "03520a57baed48c8d8b6971ea326fa9e0efc2ce1",
+    "owned_diff_sha256": "ad336a8994a6503cb0201afeb23a95297d3b77088bfd22df6683112249cb1607",
+    "published_utc": "2026-10-09T20:20:10.779583+00:00",
+    "test_log_sha256": "58bb5b252ab77013d32f5bced020f2dd91f58d8c7bb4112bf2d5389bae13d83f",
+    "tests": {
+      "passed": 192,
+      "skipped": 4
+    },
+    "verified_remote_main": "03520a57baed48c8d8b6971ea326fa9e0efc2ce1",
+    "working_tree_clean": true
+  },
   "required_historical_policy_revision": "841c3f1fe5aa0fb59cb9b17aea87194acbcaa148",
   "scientific_blocker": "14B frozen training needs eight idle devices; five trained rungs pending",
+  "scientific_study_complete": false,
   "selection_exists": false,
   "source_sha256": {
     "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py": "2e93e27b015cbfcabdd38b1861a0fb0f4e97496e48c06bd70fb70490e51e3e11",
@@ -64,7 +83,8 @@
   "tests": {
     "actual_test_admission_guard": "rejected before any test content/output",
     "judge_cli_help": "pass",
-    "log_sha256": "33988209eb547236701e7a2f20cd0e91ff5a99fc729a1d41c977916d5b2ed61f",
+    "log_path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/make_test_merged.log",
+    "log_sha256": "58bb5b252ab77013d32f5bced020f2dd91f58d8c7bb4112bf2d5389bae13d83f",
     "passed": 192,
     "skip_reasons": [
       "three existing experiment-09 torch-dependent tests in test-only environment",
