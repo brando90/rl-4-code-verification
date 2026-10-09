@@ -1,0 +1,1598 @@
+{
+ "gates": {
+  "capped_max_share": 0.1,
+  "extraction_min_share": 0.9,
+  "mixed_min_share": 0.05,
+  "p_val": "n/a (prespecified point-estimate gate)"
+ },
+ "manifest_sha256": "2f932a0736d95b5db9d1c3a613d06c73e66def79c5c98a966f9967d11a1aa45e",
+ "n_tasks": 135,
+ "samples_per_task": 8,
+ "split": "validation",
+ "systems": {
+  "base14b": {
+   "cells_csv": "results/ladder/base14b_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.00833,
+    "mean_generated_tokens": 2000.6,
+    "mean_pass_rate": 0.00833,
+    "mean_proof_fraction": 0.00833,
+    "n_tasks_with_diversity": 135,
+    "pass_at_8_share": 0.0519,
+    "within_task_diversity_mean_pairwise_jaccard": 0.144
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 1010,
+     "of": 1080,
+     "pass": true,
+     "share": 0.9352,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 77,
+     "of": 1080,
+     "pass": true,
+     "share": 0.0713,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 7,
+     "of": 135,
+     "pass": true,
+     "share": 0.0519,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0253,
+      0.1032
+     ]
+    },
+    "complete": true,
+    "n_declared": 1080,
+    "n_known": 1080,
+    "pass": true
+   },
+   "notes": {
+    "duplicates_rejected": 0,
+    "extras_rejected": 0,
+    "missing": [],
+    "n_missing": 0,
+    "n_unparseable_theorem_types": 0,
+    "n_vacuous_cells": 5,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_base14b_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/base14b_validation_per_task.csv",
+   "split": "validation",
+   "status": "COMPLETE",
+   "system": {
+    "in_test": true,
+    "label": "base14b",
+    "model": "Qwen/Qwen3-14B-Base",
+    "revision": "0b0bd3732e2c374d483664439ea334928b65f304",
+    "role": "base",
+    "size": "14B",
+    "snapshot": "/lfs/skampere1/0/brando9/rl4cv_e08/cache/huggingface/hub/models--Qwen--Qwen3-14B-Base/snapshots/0b0bd3732e2c374d483664439ea334928b65f304",
+    "source": "e08",
+    "weights_all_lfs_match": true
+   }
+  },
+  "base_1p7B_e05": {
+   "cells_csv": "results/ladder/base_1p7B_e05_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.00093,
+    "mean_generated_tokens": 7945.7,
+    "mean_pass_rate": 0.0,
+    "mean_proof_fraction": 0.00093,
+    "n_tasks_with_diversity": 133,
+    "pass_at_8_share": 0.0,
+    "within_task_diversity_mean_pairwise_jaccard": 0.1054
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 601,
+     "of": 1080,
+     "pass": false,
+     "share": 0.5565,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 658,
+     "of": 1080,
+     "pass": false,
+     "share": 0.6093,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 0,
+     "of": 135,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0,
+      0.0277
+     ]
+    },
+    "complete": true,
+    "n_declared": 1080,
+    "n_known": 1080,
+    "pass": false
+   },
+   "notes": {
+    "duplicates_rejected": 0,
+    "extras_rejected": 0,
+    "missing": [],
+    "n_missing": 0,
+    "n_unparseable_theorem_types": 0,
+    "n_vacuous_cells": 18,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e05/out/scored/scored_qwen3-1.7b-base_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/base_1p7B_e05_validation_per_task.csv",
+   "split": "validation",
+   "status": "COMPLETE",
+   "system": {
+    "e05_label": "qwen3-1.7b-base",
+    "in_test": true,
+    "label": "base_1p7B_e05",
+    "model": "Qwen/Qwen3-1.7B-Base",
+    "note": "experiment 05 receipts restricted to the split; kernel factors preserved, non-vacuity screen recomputed into experiment 08 receipts",
+    "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+    "role": "base",
+    "size": "1.7B",
+    "source": "e05"
+   }
+  },
+  "base_4B_e05": {
+   "cells_csv": "results/ladder/base_4B_e05_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.00463,
+    "mean_generated_tokens": 2242.3,
+    "mean_pass_rate": 0.00278,
+    "mean_proof_fraction": 0.00278,
+    "n_tasks_with_diversity": 135,
+    "pass_at_8_share": 0.0222,
+    "within_task_diversity_mean_pairwise_jaccard": 0.1995
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 913,
+     "of": 1080,
+     "pass": false,
+     "share": 0.8454,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 108,
+     "of": 1080,
+     "pass": true,
+     "share": 0.1,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 3,
+     "of": 135,
+     "pass": false,
+     "share": 0.0222,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0076,
+      0.0633
+     ]
+    },
+    "complete": true,
+    "n_declared": 1080,
+    "n_known": 1080,
+    "pass": false
+   },
+   "notes": {
+    "duplicates_rejected": 0,
+    "extras_rejected": 0,
+    "missing": [],
+    "n_missing": 0,
+    "n_unparseable_theorem_types": 0,
+    "n_vacuous_cells": 12,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e05/out/scored/scored_qwen3-4b-base_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/base_4B_e05_validation_per_task.csv",
+   "split": "validation",
+   "status": "COMPLETE",
+   "system": {
+    "e05_label": "qwen3-4b-base",
+    "in_test": true,
+    "label": "base_4B_e05",
+    "model": "Qwen/Qwen3-4B-Base",
+    "note": "experiment 05 receipts restricted to the split; kernel factors preserved, non-vacuity screen recomputed into experiment 08 receipts",
+    "revision": "906bfd4b4dc7f14ee4320094d8b41684abff8539",
+    "role": "base",
+    "size": "4B",
+    "source": "e05"
+   }
+  },
+  "base_8B_e05": {
+   "cells_csv": "results/ladder/base_8B_e05_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.0,
+    "mean_generated_tokens": 2533.3,
+    "mean_pass_rate": 0.0,
+    "mean_proof_fraction": 0.0,
+    "n_tasks_with_diversity": 135,
+    "pass_at_8_share": 0.0,
+    "within_task_diversity_mean_pairwise_jaccard": 0.1553
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 930,
+     "of": 1080,
+     "pass": false,
+     "share": 0.8611,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 142,
+     "of": 1080,
+     "pass": false,
+     "share": 0.1315,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 0,
+     "of": 135,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0,
+      0.0277
+     ]
+    },
+    "complete": true,
+    "n_declared": 1080,
+    "n_known": 1080,
+    "pass": false
+   },
+   "notes": {
+    "duplicates_rejected": 0,
+    "extras_rejected": 0,
+    "missing": [],
+    "n_missing": 0,
+    "n_unparseable_theorem_types": 1,
+    "n_vacuous_cells": 28,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e05/out/scored/scored_qwen3-8b-base_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/base_8B_e05_validation_per_task.csv",
+   "split": "validation",
+   "status": "COMPLETE",
+   "system": {
+    "e05_label": "qwen3-8b-base",
+    "in_test": true,
+    "label": "base_8B_e05",
+    "model": "Qwen/Qwen3-8B-Base",
+    "note": "experiment 05 receipts restricted to the split; kernel factors preserved, non-vacuity screen recomputed into experiment 08 receipts",
+    "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4",
+    "role": "base",
+    "size": "8B",
+    "source": "e05"
+   }
+  },
+  "sft_14B_f0p125": {
+   "cells_csv": "results/ladder/sft_14B_f0p125_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.0,
+    "mean_generated_tokens": 0.0,
+    "mean_pass_rate": 0.0,
+    "mean_proof_fraction": 0.0,
+    "n_tasks_with_diversity": 0,
+    "pass_at_8_share": 0.0,
+    "within_task_diversity_mean_pairwise_jaccard": null
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 0,
+     "of": 135,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0,
+      0.0277
+     ]
+    },
+    "complete": false,
+    "n_declared": 1080,
+    "n_known": 0,
+    "pass": false
+   },
+   "notes": {
+    "missing_file": true,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_14B_f0p125_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_14B_f0p125_validation_per_task.csv",
+   "split": "validation",
+   "status": "INCOMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 720775,
+    "exported": false,
+    "fraction": "0.125",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_82",
+    "in_test": true,
+    "label": "sft_14B_f0p125",
+    "role": "trained",
+    "size": "14B",
+    "source": "e08",
+    "step": 82,
+    "weights_sha256_manifest": null
+   }
+  },
+  "sft_14B_f0p25": {
+   "cells_csv": "results/ladder/sft_14B_f0p25_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.0,
+    "mean_generated_tokens": 0.0,
+    "mean_pass_rate": 0.0,
+    "mean_proof_fraction": 0.0,
+    "n_tasks_with_diversity": 0,
+    "pass_at_8_share": 0.0,
+    "within_task_diversity_mean_pairwise_jaccard": null
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 0,
+     "of": 135,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0,
+      0.0277
+     ]
+    },
+    "complete": false,
+    "n_declared": 1080,
+    "n_known": 0,
+    "pass": false
+   },
+   "notes": {
+    "missing_file": true,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_14B_f0p25_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_14B_f0p25_validation_per_task.csv",
+   "split": "validation",
+   "status": "INCOMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 1442549,
+    "exported": false,
+    "fraction": "0.25",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_164",
+    "in_test": true,
+    "label": "sft_14B_f0p25",
+    "role": "trained",
+    "size": "14B",
+    "source": "e08",
+    "step": 164,
+    "weights_sha256_manifest": null
+   }
+  },
+  "sft_14B_f0p5": {
+   "cells_csv": "results/ladder/sft_14B_f0p5_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.0,
+    "mean_generated_tokens": 0.0,
+    "mean_pass_rate": 0.0,
+    "mean_proof_fraction": 0.0,
+    "n_tasks_with_diversity": 0,
+    "pass_at_8_share": 0.0,
+    "within_task_diversity_mean_pairwise_jaccard": null
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 0,
+     "of": 135,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0,
+      0.0277
+     ]
+    },
+    "complete": false,
+    "n_declared": 1080,
+    "n_known": 0,
+    "pass": false
+   },
+   "notes": {
+    "missing_file": true,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_14B_f0p5_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_14B_f0p5_validation_per_task.csv",
+   "split": "validation",
+   "status": "INCOMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 2884708,
+    "exported": false,
+    "fraction": "0.5",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_334",
+    "in_test": true,
+    "label": "sft_14B_f0p5",
+    "role": "trained",
+    "size": "14B",
+    "source": "e08",
+    "step": 334,
+    "weights_sha256_manifest": null
+   }
+  },
+  "sft_14B_f0p75": {
+   "cells_csv": "results/ladder/sft_14B_f0p75_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.0,
+    "mean_generated_tokens": 0.0,
+    "mean_pass_rate": 0.0,
+    "mean_proof_fraction": 0.0,
+    "n_tasks_with_diversity": 0,
+    "pass_at_8_share": 0.0,
+    "within_task_diversity_mean_pairwise_jaccard": null
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 0,
+     "of": 135,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0,
+      0.0277
+     ]
+    },
+    "complete": false,
+    "n_declared": 1080,
+    "n_known": 0,
+    "pass": false
+   },
+   "notes": {
+    "missing_file": true,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_14B_f0p75_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_14B_f0p75_validation_per_task.csv",
+   "split": "validation",
+   "status": "INCOMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 4318781,
+    "exported": false,
+    "fraction": "0.75",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_497",
+    "in_test": true,
+    "label": "sft_14B_f0p75",
+    "role": "trained",
+    "size": "14B",
+    "source": "e08",
+    "step": 497,
+    "weights_sha256_manifest": null
+   }
+  },
+  "sft_14B_f1p0": {
+   "cells_csv": "results/ladder/sft_14B_f1p0_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.0,
+    "mean_generated_tokens": 0.0,
+    "mean_pass_rate": 0.0,
+    "mean_proof_fraction": 0.0,
+    "n_tasks_with_diversity": 0,
+    "pass_at_8_share": 0.0,
+    "within_task_diversity_mean_pairwise_jaccard": null
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 0,
+     "of": 135,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0,
+      0.0277
+     ]
+    },
+    "complete": false,
+    "n_declared": 1080,
+    "n_known": 0,
+    "pass": false
+   },
+   "notes": {
+    "missing_file": true,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_14B_f1p0_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_14B_f1p0_validation_per_task.csv",
+   "split": "validation",
+   "status": "INCOMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 5752936,
+    "exported": false,
+    "fraction": "1.0",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_658",
+    "in_test": true,
+    "label": "sft_14B_f1p0",
+    "role": "trained",
+    "size": "14B",
+    "source": "e08",
+    "step": 658,
+    "weights_sha256_manifest": null
+   }
+  },
+  "sft_1p7B_f0p125": {
+   "cells_csv": "results/ladder/sft_1p7B_f0p125_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.0037,
+    "mean_generated_tokens": 8394.6,
+    "mean_pass_rate": 0.0037,
+    "mean_proof_fraction": 0.0037,
+    "n_tasks_with_diversity": 17,
+    "pass_at_8_share": 0.0222,
+    "within_task_diversity_mean_pairwise_jaccard": 0.078
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 66,
+     "of": 1080,
+     "pass": false,
+     "share": 0.0611,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 608,
+     "of": 1080,
+     "pass": false,
+     "share": 0.563,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 3,
+     "of": 135,
+     "pass": false,
+     "share": 0.0222,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0076,
+      0.0633
+     ]
+    },
+    "complete": true,
+    "n_declared": 1080,
+    "n_known": 1080,
+    "pass": false
+   },
+   "notes": {
+    "duplicates_rejected": 0,
+    "extras_rejected": 0,
+    "missing": [],
+    "n_missing": 0,
+    "n_unparseable_theorem_types": 0,
+    "n_vacuous_cells": 0,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_1p7B_f0p125_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_1p7B_f0p125_validation_per_task.csv",
+   "split": "validation",
+   "status": "COMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 720775,
+    "exported": true,
+    "fraction": "0.125",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/1.7B/hf/step_82",
+    "in_test": true,
+    "label": "sft_1p7B_f0p125",
+    "role": "trained",
+    "size": "1.7B",
+    "source": "e08",
+    "step": 82,
+    "weights_sha256_manifest": "e275336c6b2cea4285f955e7017c08bc53d589a666fab739819614eacfe16732"
+   }
+  },
+  "sft_1p7B_f0p25": {
+   "cells_csv": "results/ladder/sft_1p7B_f0p25_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.00093,
+    "mean_generated_tokens": 7205.3,
+    "mean_pass_rate": 0.00093,
+    "mean_proof_fraction": 0.00093,
+    "n_tasks_with_diversity": 13,
+    "pass_at_8_share": 0.0074,
+    "within_task_diversity_mean_pairwise_jaccard": 0.0795
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 79,
+     "of": 1080,
+     "pass": false,
+     "share": 0.0731,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 387,
+     "of": 1080,
+     "pass": false,
+     "share": 0.3583,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 1,
+     "of": 135,
+     "pass": false,
+     "share": 0.0074,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0013,
+      0.0408
+     ]
+    },
+    "complete": true,
+    "n_declared": 1080,
+    "n_known": 1080,
+    "pass": false
+   },
+   "notes": {
+    "duplicates_rejected": 0,
+    "extras_rejected": 0,
+    "missing": [],
+    "n_missing": 0,
+    "n_unparseable_theorem_types": 0,
+    "n_vacuous_cells": 1,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_1p7B_f0p25_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_1p7B_f0p25_validation_per_task.csv",
+   "split": "validation",
+   "status": "COMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 1442549,
+    "exported": true,
+    "fraction": "0.25",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/1.7B/hf/step_164",
+    "in_test": true,
+    "label": "sft_1p7B_f0p25",
+    "role": "trained",
+    "size": "1.7B",
+    "source": "e08",
+    "step": 164,
+    "weights_sha256_manifest": "a364f08192ef3547a2d24948a340bc779c55926be7ce07040b5e4ca6ffdd1789"
+   }
+  },
+  "sft_1p7B_f0p5": {
+   "cells_csv": "results/ladder/sft_1p7B_f0p5_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.01759,
+    "mean_generated_tokens": 5984.3,
+    "mean_pass_rate": 0.01759,
+    "mean_proof_fraction": 0.01759,
+    "n_tasks_with_diversity": 126,
+    "pass_at_8_share": 0.0815,
+    "within_task_diversity_mean_pairwise_jaccard": 0.0847
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 834,
+     "of": 1080,
+     "pass": false,
+     "share": 0.7722,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 245,
+     "of": 1080,
+     "pass": false,
+     "share": 0.2269,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 11,
+     "of": 135,
+     "pass": true,
+     "share": 0.0815,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0461,
+      0.14
+     ]
+    },
+    "complete": true,
+    "n_declared": 1080,
+    "n_known": 1080,
+    "pass": false
+   },
+   "notes": {
+    "duplicates_rejected": 0,
+    "extras_rejected": 0,
+    "missing": [],
+    "n_missing": 0,
+    "n_unparseable_theorem_types": 0,
+    "n_vacuous_cells": 4,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_1p7B_f0p5_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_1p7B_f0p5_validation_per_task.csv",
+   "split": "validation",
+   "status": "COMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 2884708,
+    "exported": true,
+    "fraction": "0.5",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/1.7B/hf/step_334",
+    "in_test": true,
+    "label": "sft_1p7B_f0p5",
+    "role": "trained",
+    "size": "1.7B",
+    "source": "e08",
+    "step": 334,
+    "weights_sha256_manifest": "48b2f20ee93548948069268cead281fda568eda35e2eec7558848eb0f335a255"
+   }
+  },
+  "sft_1p7B_f0p75": {
+   "cells_csv": "results/ladder/sft_1p7B_f0p75_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.04074,
+    "mean_generated_tokens": 5896.9,
+    "mean_pass_rate": 0.04074,
+    "mean_proof_fraction": 0.04074,
+    "n_tasks_with_diversity": 126,
+    "pass_at_8_share": 0.1185,
+    "within_task_diversity_mean_pairwise_jaccard": 0.0892
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 875,
+     "of": 1080,
+     "pass": false,
+     "share": 0.8102,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 205,
+     "of": 1080,
+     "pass": false,
+     "share": 0.1898,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 16,
+     "of": 135,
+     "pass": true,
+     "share": 0.1185,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0743,
+      0.1839
+     ]
+    },
+    "complete": true,
+    "n_declared": 1080,
+    "n_known": 1080,
+    "pass": false
+   },
+   "notes": {
+    "duplicates_rejected": 0,
+    "extras_rejected": 0,
+    "missing": [],
+    "n_missing": 0,
+    "n_unparseable_theorem_types": 0,
+    "n_vacuous_cells": 3,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_1p7B_f0p75_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_1p7B_f0p75_validation_per_task.csv",
+   "split": "validation",
+   "status": "COMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 4318781,
+    "exported": true,
+    "fraction": "0.75",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/1.7B/hf/step_497",
+    "in_test": true,
+    "label": "sft_1p7B_f0p75",
+    "role": "trained",
+    "size": "1.7B",
+    "source": "e08",
+    "step": 497,
+    "weights_sha256_manifest": "0f28d227a88dd29ad0e163fdd54b162e9efb45ce70e62e24bb1ae2451f51570b"
+   }
+  },
+  "sft_1p7B_f1p0": {
+   "cells_csv": "results/ladder/sft_1p7B_f1p0_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.0,
+    "mean_generated_tokens": 0.0,
+    "mean_pass_rate": 0.0,
+    "mean_proof_fraction": 0.0,
+    "n_tasks_with_diversity": 0,
+    "pass_at_8_share": 0.0,
+    "within_task_diversity_mean_pairwise_jaccard": null
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 0,
+     "of": 135,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0,
+      0.0277
+     ]
+    },
+    "complete": false,
+    "n_declared": 1080,
+    "n_known": 0,
+    "pass": false
+   },
+   "notes": {
+    "missing_file": true,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_1p7B_f1p0_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_1p7B_f1p0_validation_per_task.csv",
+   "split": "validation",
+   "status": "INCOMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 5752936,
+    "exported": true,
+    "fraction": "1.0",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/1.7B/hf/step_658",
+    "in_test": true,
+    "label": "sft_1p7B_f1p0",
+    "role": "trained",
+    "size": "1.7B",
+    "source": "e08",
+    "step": 658,
+    "weights_sha256_manifest": "925d110f5a598d18cc9160f0758c5c64d1097956cb4db3057c9ade82ca6fafb4"
+   }
+  },
+  "sft_4B_f0p125": {
+   "cells_csv": "results/ladder/sft_4B_f0p125_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.00556,
+    "mean_generated_tokens": 7093.7,
+    "mean_pass_rate": 0.00556,
+    "mean_proof_fraction": 0.00556,
+    "n_tasks_with_diversity": 6,
+    "pass_at_8_share": 0.0296,
+    "within_task_diversity_mean_pairwise_jaccard": 0.1302
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 43,
+     "of": 1080,
+     "pass": false,
+     "share": 0.0398,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 390,
+     "of": 1080,
+     "pass": false,
+     "share": 0.3611,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 4,
+     "of": 135,
+     "pass": false,
+     "share": 0.0296,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0116,
+      0.0737
+     ]
+    },
+    "complete": true,
+    "n_declared": 1080,
+    "n_known": 1080,
+    "pass": false
+   },
+   "notes": {
+    "duplicates_rejected": 0,
+    "extras_rejected": 0,
+    "missing": [],
+    "n_missing": 0,
+    "n_unparseable_theorem_types": 0,
+    "n_vacuous_cells": 0,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_4B_f0p125_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_4B_f0p125_validation_per_task.csv",
+   "split": "validation",
+   "status": "COMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 720775,
+    "exported": true,
+    "fraction": "0.125",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_82",
+    "in_test": true,
+    "label": "sft_4B_f0p125",
+    "role": "trained",
+    "size": "4B",
+    "source": "e08",
+    "step": 82,
+    "weights_sha256_manifest": "f66eb1f5a1f5cd19655c283b5e487688600a80ce9d466a5ae45dae5a1eebad87"
+   }
+  },
+  "sft_4B_f0p25": {
+   "cells_csv": "results/ladder/sft_4B_f0p25_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.04167,
+    "mean_generated_tokens": 5671.6,
+    "mean_pass_rate": 0.04167,
+    "mean_proof_fraction": 0.04167,
+    "n_tasks_with_diversity": 131,
+    "pass_at_8_share": 0.1556,
+    "within_task_diversity_mean_pairwise_jaccard": 0.0912
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 724,
+     "of": 1080,
+     "pass": false,
+     "share": 0.6704,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 245,
+     "of": 1080,
+     "pass": false,
+     "share": 0.2269,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 21,
+     "of": 135,
+     "pass": true,
+     "share": 0.1556,
+     "threshold": 0.05,
+     "wilson95": [
+      0.1041,
+      0.2261
+     ]
+    },
+    "complete": true,
+    "n_declared": 1080,
+    "n_known": 1080,
+    "pass": false
+   },
+   "notes": {
+    "duplicates_rejected": 0,
+    "extras_rejected": 0,
+    "missing": [],
+    "n_missing": 0,
+    "n_unparseable_theorem_types": 0,
+    "n_vacuous_cells": 0,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_4B_f0p25_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_4B_f0p25_validation_per_task.csv",
+   "split": "validation",
+   "status": "COMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 1442549,
+    "exported": true,
+    "fraction": "0.25",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_164",
+    "in_test": true,
+    "label": "sft_4B_f0p25",
+    "role": "trained",
+    "size": "4B",
+    "source": "e08",
+    "step": 164,
+    "weights_sha256_manifest": "62f0a8787a048e83b525bbfe6725898c37e63d08d5afdf7fba4a36cea4aa97e1"
+   }
+  },
+  "sft_4B_f0p5": {
+   "cells_csv": "results/ladder/sft_4B_f0p5_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.03889,
+    "mean_generated_tokens": 5870.6,
+    "mean_pass_rate": 0.03889,
+    "mean_proof_fraction": 0.03889,
+    "n_tasks_with_diversity": 132,
+    "pass_at_8_share": 0.163,
+    "within_task_diversity_mean_pairwise_jaccard": 0.0866
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 845,
+     "of": 1080,
+     "pass": false,
+     "share": 0.7824,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 230,
+     "of": 1080,
+     "pass": false,
+     "share": 0.213,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 22,
+     "of": 135,
+     "pass": true,
+     "share": 0.163,
+     "threshold": 0.05,
+     "wilson95": [
+      0.1102,
+      0.2344
+     ]
+    },
+    "complete": true,
+    "n_declared": 1080,
+    "n_known": 1080,
+    "pass": false
+   },
+   "notes": {
+    "duplicates_rejected": 0,
+    "extras_rejected": 0,
+    "missing": [],
+    "n_missing": 0,
+    "n_unparseable_theorem_types": 0,
+    "n_vacuous_cells": 2,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_4B_f0p5_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_4B_f0p5_validation_per_task.csv",
+   "split": "validation",
+   "status": "COMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 2884708,
+    "exported": true,
+    "fraction": "0.5",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_334",
+    "in_test": true,
+    "label": "sft_4B_f0p5",
+    "role": "trained",
+    "size": "4B",
+    "source": "e08",
+    "step": 334,
+    "weights_sha256_manifest": "6f1eb7711b91f14dfc8f672bfdad8d708dae898bd3a708b6b62080a2685e641b"
+   }
+  },
+  "sft_4B_f0p75": {
+   "cells_csv": "results/ladder/sft_4B_f0p75_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.0,
+    "mean_generated_tokens": 0.0,
+    "mean_pass_rate": 0.0,
+    "mean_proof_fraction": 0.0,
+    "n_tasks_with_diversity": 0,
+    "pass_at_8_share": 0.0,
+    "within_task_diversity_mean_pairwise_jaccard": null
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 0,
+     "of": 135,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0,
+      0.0277
+     ]
+    },
+    "complete": false,
+    "n_declared": 1080,
+    "n_known": 0,
+    "pass": false
+   },
+   "notes": {
+    "missing_file": true,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_4B_f0p75_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_4B_f0p75_validation_per_task.csv",
+   "split": "validation",
+   "status": "INCOMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 4318781,
+    "exported": true,
+    "fraction": "0.75",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_497",
+    "in_test": true,
+    "label": "sft_4B_f0p75",
+    "role": "trained",
+    "size": "4B",
+    "source": "e08",
+    "step": 497,
+    "weights_sha256_manifest": "a9b5e3d1d63099d26c8c9b7a057e09a8b481b9ba948ed7d3ee75e3c9df8f3c61"
+   }
+  },
+  "sft_4B_f1p0": {
+   "cells_csv": "results/ladder/sft_4B_f1p0_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.0,
+    "mean_generated_tokens": 0.0,
+    "mean_pass_rate": 0.0,
+    "mean_proof_fraction": 0.0,
+    "n_tasks_with_diversity": 0,
+    "pass_at_8_share": 0.0,
+    "within_task_diversity_mean_pairwise_jaccard": null
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 0,
+     "of": 135,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0,
+      0.0277
+     ]
+    },
+    "complete": false,
+    "n_declared": 1080,
+    "n_known": 0,
+    "pass": false
+   },
+   "notes": {
+    "missing_file": true,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_4B_f1p0_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_4B_f1p0_validation_per_task.csv",
+   "split": "validation",
+   "status": "INCOMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 5752936,
+    "exported": true,
+    "fraction": "1.0",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_658",
+    "in_test": true,
+    "label": "sft_4B_f1p0",
+    "role": "trained",
+    "size": "4B",
+    "source": "e08",
+    "step": 658,
+    "weights_sha256_manifest": "c0588065bf8019c11bbe1404431d2cc57cbd5bc656890d1b1b105b9239108120"
+   }
+  },
+  "sft_8B_f0p125": {
+   "cells_csv": "results/ladder/sft_8B_f0p125_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.0,
+    "mean_generated_tokens": 0.0,
+    "mean_pass_rate": 0.0,
+    "mean_proof_fraction": 0.0,
+    "n_tasks_with_diversity": 0,
+    "pass_at_8_share": 0.0,
+    "within_task_diversity_mean_pairwise_jaccard": null
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 0,
+     "of": 135,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0,
+      0.0277
+     ]
+    },
+    "complete": false,
+    "n_declared": 1080,
+    "n_known": 0,
+    "pass": false
+   },
+   "notes": {
+    "missing_file": true,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_8B_f0p125_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_8B_f0p125_validation_per_task.csv",
+   "split": "validation",
+   "status": "INCOMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 720775,
+    "exported": false,
+    "fraction": "0.125",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_82",
+    "in_test": true,
+    "label": "sft_8B_f0p125",
+    "role": "trained",
+    "size": "8B",
+    "source": "e08",
+    "step": 82,
+    "weights_sha256_manifest": null
+   }
+  },
+  "sft_8B_f0p25": {
+   "cells_csv": "results/ladder/sft_8B_f0p25_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.0,
+    "mean_generated_tokens": 0.0,
+    "mean_pass_rate": 0.0,
+    "mean_proof_fraction": 0.0,
+    "n_tasks_with_diversity": 0,
+    "pass_at_8_share": 0.0,
+    "within_task_diversity_mean_pairwise_jaccard": null
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 0,
+     "of": 135,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0,
+      0.0277
+     ]
+    },
+    "complete": false,
+    "n_declared": 1080,
+    "n_known": 0,
+    "pass": false
+   },
+   "notes": {
+    "missing_file": true,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_8B_f0p25_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_8B_f0p25_validation_per_task.csv",
+   "split": "validation",
+   "status": "INCOMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 1442549,
+    "exported": false,
+    "fraction": "0.25",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_164",
+    "in_test": true,
+    "label": "sft_8B_f0p25",
+    "role": "trained",
+    "size": "8B",
+    "source": "e08",
+    "step": 164,
+    "weights_sha256_manifest": null
+   }
+  },
+  "sft_8B_f0p5": {
+   "cells_csv": "results/ladder/sft_8B_f0p5_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.0,
+    "mean_generated_tokens": 0.0,
+    "mean_pass_rate": 0.0,
+    "mean_proof_fraction": 0.0,
+    "n_tasks_with_diversity": 0,
+    "pass_at_8_share": 0.0,
+    "within_task_diversity_mean_pairwise_jaccard": null
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 0,
+     "of": 135,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0,
+      0.0277
+     ]
+    },
+    "complete": false,
+    "n_declared": 1080,
+    "n_known": 0,
+    "pass": false
+   },
+   "notes": {
+    "missing_file": true,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_8B_f0p5_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_8B_f0p5_validation_per_task.csv",
+   "split": "validation",
+   "status": "INCOMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 2884708,
+    "exported": false,
+    "fraction": "0.5",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_334",
+    "in_test": true,
+    "label": "sft_8B_f0p5",
+    "role": "trained",
+    "size": "8B",
+    "source": "e08",
+    "step": 334,
+    "weights_sha256_manifest": null
+   }
+  },
+  "sft_8B_f0p75": {
+   "cells_csv": "results/ladder/sft_8B_f0p75_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.0,
+    "mean_generated_tokens": 0.0,
+    "mean_pass_rate": 0.0,
+    "mean_proof_fraction": 0.0,
+    "n_tasks_with_diversity": 0,
+    "pass_at_8_share": 0.0,
+    "within_task_diversity_mean_pairwise_jaccard": null
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 0,
+     "of": 135,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0,
+      0.0277
+     ]
+    },
+    "complete": false,
+    "n_declared": 1080,
+    "n_known": 0,
+    "pass": false
+   },
+   "notes": {
+    "missing_file": true,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_8B_f0p75_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_8B_f0p75_validation_per_task.csv",
+   "split": "validation",
+   "status": "INCOMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 4318781,
+    "exported": false,
+    "fraction": "0.75",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_497",
+    "in_test": true,
+    "label": "sft_8B_f0p75",
+    "role": "trained",
+    "size": "8B",
+    "source": "e08",
+    "step": 497,
+    "weights_sha256_manifest": null
+   }
+  },
+  "sft_8B_f1p0": {
+   "cells_csv": "results/ladder/sft_8B_f1p0_validation_cells.csv",
+   "diagnostics": {
+    "all_pass_share": 0.0,
+    "ic_tests_rate": 0.0,
+    "mean_generated_tokens": 0.0,
+    "mean_pass_rate": 0.0,
+    "mean_proof_fraction": 0.0,
+    "n_tasks_with_diversity": 0,
+    "pass_at_8_share": 0.0,
+    "within_task_diversity_mean_pairwise_jaccard": null
+   },
+   "gates": {
+    "a_extraction": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.9
+    },
+    "b_capped": {
+     "n": 0,
+     "of": 0,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.1
+    },
+    "c_mixed": {
+     "n": 0,
+     "of": 135,
+     "pass": false,
+     "share": 0.0,
+     "threshold": 0.05,
+     "wilson95": [
+      0.0,
+      0.0277
+     ]
+    },
+    "complete": false,
+    "n_declared": 1080,
+    "n_known": 0,
+    "pass": false
+   },
+   "notes": {
+    "missing_file": true,
+    "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_8B_f1p0_g8.jsonl"
+   },
+   "per_task_csv": "results/ladder/sft_8B_f1p0_validation_per_task.csv",
+   "split": "validation",
+   "status": "INCOMPLETE",
+   "system": {
+    "cumulative_assistant_tokens": 5752936,
+    "exported": false,
+    "fraction": "1.0",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_658",
+    "in_test": true,
+    "label": "sft_8B_f1p0",
+    "role": "trained",
+    "size": "8B",
+    "source": "e08",
+    "step": 658,
+    "weights_sha256_manifest": null
+   }
+  }
+ },
+ "written_utc": "2026-10-09T00:07:18+00:00"
+}

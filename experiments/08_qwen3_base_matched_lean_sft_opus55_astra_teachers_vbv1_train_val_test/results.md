@@ -6,7 +6,7 @@
 
 **Status:** RUNNING (recovered after the skampere1 reboot of 10-08-2026 15:34 PDT; 1.7B and 4B SFT complete with validation rungs 12.5 / 25 / 50 % scored and 75 % rescoring; 8B and 14B SFT restarted from Base on GPUs 0–3 / 4–7; no selection yet)
 
-**Last updated:** 10-08-2026 16:14 PDT (worker, post-reboot recovery; `$WORK/recovery_ack_10-08-2026.json`)
+**Last updated:** 10-08-2026 17:07 PDT (pipeline: validation ladder table)
 
 ## Phases
 
@@ -164,6 +164,37 @@ Failure taxonomy (cells): Opus 5.5 {"kept": 1200, "no_lean": 437, "no_typecheck"
 **S (§ 7):** |S| = 1315 examples over 476 distinct train tasks (Opus 798, Astra 517); exclusions {"over_length_cap": 4, "per_teacher_cap": 685} (the per-teacher cap of 2 distinct files is the rule, not a loss); per-task example counts {"0": 63, "1": 29, "2": 185, "3": 132, "4": 130}. Assistant tokens (template-inserted prefix + response + `<|im_end|>\n`): total 5,751,621, mean 4373.9, median 4296, p10 2213, p90 6623, max 12070; prompt tokens total 4,617,702 (mean 3511.6). Against the README estimate (1,100–1,600 examples, 4–6.5M assistant tokens): realized 1,315 examples and 5.75M assistant tokens, inside the upper scenario. Manifest (ids, hashes, token counts, no contents): `expt_v1/results/sft_set_manifest.csv`; stats `sft_set_stats.json`; the JSONL stays on the host.
 
 **Lock-2 static checks (§ 12):** rendering prefix and mask on every example under all four tokenizers: 1315 / 1315 PASS (`template_check_examples.json`); NeMo RL's own formatter reproduces the evaluation prompt and the loss span (`<think>\n\n</think>\n\n` + response + `<|im_end|>\n` + `<|endoftext|>`) on every example with identical ids across sizes (`sft_schedule.json`, verdict PASS). Schedule: 658 steps of global batch 2 (|S| odd → one fully loss-masked padding slot in the last step), warmup W = 20 then cosine over 638; loss-token total 5,752,936; checkpoints at steps [82, 164, 334, 497, 658] (12.5 / 25 / 50 / 75 / 100 %, overshoot 1,658 / 4,315 / 8,240 / 4,079 / 0 tokens). Configs `expt_v1/configs/e08_sft_<size>.yaml` derive from Varun's with every difference listed in `sft_config_diff.md` (declared: `add_generation_prompt true` so the loss span excludes the generation prompt; openai_format adapter for the system message; SFT-time validation and Weights & Biases off; segment-and-resume checkpoints; GPU layout per size).
+
+## Validation ladder (live; PROTOCOL § 9: 135 tasks × 8 samples per system; gates (a) extraction ≥ 972/1080, (b) capped ≤ 108/1080, (c) mixed `kernel_binary` tasks ≥ 7/135; p-val=n/a)
+
+Written 2026-10-09T00:07:18+00:00 by the pipeline from `expt_v1/results/validation_ladder.json` (per-task and per-cell CSVs under `expt_v1/results/ladder/`).
+
+| System | Status | Extraction | Capped | Mixed tasks (share; Wilson 95%) | Gates | pass@8 | mean pass | mean tokens |
+|---|---|---:|---:|---|---|---:|---:|---:|
+| `base14b` | COMPLETE | 1010 / 1080 | 77 / 1080 | 7 / 135 (0.0519; [0.0253, 0.1032]) | PASS | 0.0519 | 0.00833 | 2000.6 |
+| `base_1p7B_e05` | COMPLETE | 601 / 1080 | 658 / 1080 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 7945.7 |
+| `base_4B_e05` | COMPLETE | 913 / 1080 | 108 / 1080 | 3 / 135 (0.0222; [0.0076, 0.0633]) | fail | 0.0222 | 0.00278 | 2242.3 |
+| `base_8B_e05` | COMPLETE | 930 / 1080 | 142 / 1080 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 2533.3 |
+| `sft_14B_f0p125` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
+| `sft_14B_f0p25` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
+| `sft_14B_f0p5` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
+| `sft_14B_f0p75` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
+| `sft_14B_f1p0` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
+| `sft_1p7B_f0p125` | COMPLETE | 66 / 1080 | 608 / 1080 | 3 / 135 (0.0222; [0.0076, 0.0633]) | fail | 0.0222 | 0.0037 | 8394.6 |
+| `sft_1p7B_f0p25` | COMPLETE | 79 / 1080 | 387 / 1080 | 1 / 135 (0.0074; [0.0013, 0.0408]) | fail | 0.0074 | 0.00093 | 7205.3 |
+| `sft_1p7B_f0p5` | COMPLETE | 834 / 1080 | 245 / 1080 | 11 / 135 (0.0815; [0.0461, 0.14]) | fail | 0.0815 | 0.01759 | 5984.3 |
+| `sft_1p7B_f0p75` | COMPLETE | 875 / 1080 | 205 / 1080 | 16 / 135 (0.1185; [0.0743, 0.1839]) | fail | 0.1185 | 0.04074 | 5896.9 |
+| `sft_1p7B_f1p0` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
+| `sft_4B_f0p125` | COMPLETE | 43 / 1080 | 390 / 1080 | 4 / 135 (0.0296; [0.0116, 0.0737]) | fail | 0.0296 | 0.00556 | 7093.7 |
+| `sft_4B_f0p25` | COMPLETE | 724 / 1080 | 245 / 1080 | 21 / 135 (0.1556; [0.1041, 0.2261]) | fail | 0.1556 | 0.04167 | 5671.6 |
+| `sft_4B_f0p5` | COMPLETE | 845 / 1080 | 230 / 1080 | 22 / 135 (0.163; [0.1102, 0.2344]) | fail | 0.163 | 0.03889 | 5870.6 |
+| `sft_4B_f0p75` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
+| `sft_4B_f1p0` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
+| `sft_8B_f0p125` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
+| `sft_8B_f0p25` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
+| `sft_8B_f0p5` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
+| `sft_8B_f0p75` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
+| `sft_8B_f1p0` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
 
 ## Open questions for Brando
 
