@@ -18,9 +18,13 @@ import json
 import os
 import re
 import subprocess
+import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import gpu_lease_e08 as GL  # noqa: E402  shared GPU-admission interface (registry, lock, identities, policy)
 
 REPO = Path(__file__).resolve().parents[4]
 EXP = Path(__file__).resolve().parents[2]          # experiments/08_.../ (results.md lives here)
@@ -97,34 +101,27 @@ def descendants(pid) -> list[tuple[str, str]]:
     return re.findall(r"([a-zA-Z0-9_.+-]+)\((\d+)\)", r.stdout)[1:] if r.returncode == 0 else []
 
 
-def gpu_table() -> dict[int, set[str]]:
-    """index -> users of compute processes on that device (empty set = idle)."""
-    idx = {}
-    for line in run(["nvidia-smi", "--query-gpu=index,uuid", "--format=csv,noheader"]).stdout.splitlines():
-        if "," in line:
-            i, u = [x.strip() for x in line.split(",")]
-            idx[u] = int(i)
-    out = {i: set() for i in idx.values()}
-    for line in run(["nvidia-smi", "--query-compute-apps=gpu_uuid,pid", "--format=csv,noheader"]).stdout.splitlines():
-        if "," not in line:
-            continue
-        u, pid = [x.strip() for x in line.split(",")]
-        if u in idx:
-            out[idx[u]].add(run(["ps", "-o", "user=", "-p", pid]).stdout.strip() or "?")
-    return out
+gpu_table = GL.gpu_table
 
 
 def leases() -> dict:
-    return read_json(LEASES, {}) or {}
+    return GL.load()
 
 
 def active_leases(state: dict) -> dict[str, list[int]]:
-    return {n: l["gpus"] for n, l in leases().items() if not l.get("released") and state["stages"].get(n, {}).get("status") in ("launched", "running")}
+    """Every LIVE lease in the shared registry, ours or another owner's (experiment 09): not released, not expired, holder process alive."""
+    out = {}
+    for n, l in GL.live_leases().items():
+        if l.get("owner", GL.E08_OWNER) == GL.E08_OWNER and state["stages"].get(n, {}).get("status") not in ("launched", "running"):
+            continue    # our own lease whose stage is no longer live (released on the next observe)
+        out[n] = l["gpus"]
+    return out
 
 
-def take_lease(name: str, gpus: list[int]) -> None:
+def take_lease(name: str, gpus: list[int], pid=None, kind: str = "inference") -> None:
     d = leases()
-    d[name] = {"gpus": gpus, "since": ts(), "released": False}
+    d[name] = {"owner": GL.E08_OWNER, "stage": name, "kind": kind, "gpus": gpus, "cuda_visible_devices": ",".join(map(str, gpus)), "since": ts(), "expires_utc": None,
+               "boundary": "stage end (resumable launcher; lease released when the merged generation exists or the stage finishes)", "identity": GL.identity(pid), "released": False, "released_at": None}
     write_json(LEASES, d)
 
 
@@ -281,15 +278,16 @@ def launch(state: dict, name: str, session: str, cmd: str, gpus, log_path: Path,
         st["status"] = "critical"; return False
     if dry:
         log(f"DRY would launch {name} in {session} gpus={gpus}: {cmd[:200]}"); st["would_launch"] = cmd; return False
-    if gpus:
-        take_lease(name, gpus)
     log_path.parent.mkdir(parents=True, exist_ok=True)
     exit_file = P / f"{name}.exit"
     exit_file.unlink(missing_ok=True)
     r = run(["tmux", "new-session", "-d", "-s", session, f"{cmd} >> {log_path} 2>&1; echo $? > {exit_file}"])
     if r.returncode:
-        st.update(status="launch_failed", error=r.stderr[-200:]); release_lease(name); log(f"launch failed {name}: {r.stderr[-200:]}"); return False
-    st.update(status="launched", session=session, launched_at=ts(), log=str(log_path), gpus=gpus or [], pane_pid=pane_pid(session), cmd=cmd, watch=watch_globs(name))
+        st.update(status="launch_failed", error=r.stderr[-200:]); log(f"launch failed {name}: {r.stderr[-200:]}"); return False
+    pid = pane_pid(session)
+    if gpus:
+        take_lease(name, gpus, pid=pid, kind="sft" if name.startswith("sft_") else "inference")
+    st.update(status="launched", session=session, launched_at=ts(), log=str(log_path), gpus=gpus or [], pane_pid=pid, cmd=cmd, watch=watch_globs(name))
     log(f"LAUNCH {name} in {session} gpus={gpus}: {cmd[:200]}")
     return True
 
@@ -343,7 +341,7 @@ def tick(state: dict, dry: bool) -> dict:
             dv = device_view(state, name)
             need = SFT_GPUS[size]
             if size == "14B" and active_leases(state):
-                stage(state, name)["status"] = "waiting_leases"; stage(state, name)["devices"] = dv
+                stage(state, name)["status"] = "waiting_leases"; stage(state, name)["devices"] = dv; stage(state, name)["waiting_on"] = active_leases(state)
             elif len(dv["free"]) >= need:
                 launch(state, name, session, f"bash {S}/launch_sft_e08.sh {size} {','.join(map(str, dv['free'][:need]))}", dv["free"][:need], WORK / "ckpt" / f"driver_{size}.log", dry)
             else:
@@ -409,6 +407,11 @@ def tick(state: dict, dry: bool) -> dict:
                 state["stages"][n]["published"] = True
         if all_valid and not logs_ok:
             log("CRITICAL selection blocked: a training log does not match the frozen schedule (PROTOCOL § 8)")
+    try:
+        adm = GL.write_admission()
+        summary["e09_admission"] = f"{adm['admission']} ({adm.get('candidate_devices', [])})"
+    except Exception as exc:  # noqa: BLE001
+        log(f"admission write failed: {exc!r}")
     summary["selection"] = sel.get("verdict") if sel else ("ready" if all_valid else f"pending ({n_valid}/20 rungs valid)")
     # 4. Test phase only after a committed selection.
     if sel and sel.get("verdict") in ("RL-READY", "PARTIAL"):
@@ -636,7 +639,7 @@ def main() -> int:
             if "sft_8B" not in state["stages"] and session_alive("rl4cv-e08-sft-8B"):
                 state["stages"]["sft_8B"] = {"retries": 0, "session": "rl4cv-e08-sft-8B", "status": "running", "log": str(WORK / "ckpt" / "driver_8B.log"), "adopted": True,
                                              "watch": watch_globs("sft_8B")}
-                take_lease("sft_8B", [0, 1, 2, 3])
+                take_lease("sft_8B", [0, 1, 2, 3], pid=pane_pid("rl4cv-e08-sft-8B"), kind="sft")
             try:
                 summary = tick(state, a.dry)
             except Exception as exc:  # noqa: BLE001 keep the loop alive and record the failure
