@@ -7,7 +7,7 @@
 - **Primary question:** at the same validation gain, does per-item information pick safer promotions than the scalar score? Binary losses and factor regressions are each tested, with three policies that promote the same validation-gain distribution.
 - **Lock order:** the protocol is locked, and its predictions frozen with `rl4cv.forecast.freeze_forecast`, before any statistic is computed on the real data.
 
-**Status:** LOCK CANDIDATE, revision 3 (10-09-2026). Reviews, all in [`reviews/`](reviews/):
+**Status:** LOCKED, revision 3 (10-09-2026 16:43 PDT; forecast `expt_v1/forecasts/e10_forecast.json`, SHA-256 `e4eccd8b…3c23`). Reviews, all in [`reviews/`](reviews/):
 
 - **GPT-6 Astra (effort ultra), design review of revision 1:** 15 findings, applied in revision 2.
 - **GPT-6 Astra (effort ultra), protocol-and-code review of revision 2:** 3 blocking, 5 major and 1 minor findings. All are fixed in revision 3, and each deterministic counterexample is now a regression test in `tests/test_e10_replay.py` (15 tests pass).
