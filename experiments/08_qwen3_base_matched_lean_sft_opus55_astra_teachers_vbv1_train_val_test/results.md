@@ -6,7 +6,7 @@
 
 **Status:** RUNNING under the serialized orchestrator `expt_v1/scripts/pipeline_e08.py` (tmux `rl4cv-e08-pipeline`, cron watchdog; verified 10-08-2026 20:02 PDT): 1.7B, 4B and 8B SFT complete (658 steps each, exports and token logs on schedule); validation ladder 8 / 20 rungs valid (1.7B 12.5–75 %, 4B 12.5–75 %; 8,640 / 8,640 scored cells) plus Base 14B; 1.7B 100 % scoring 7 / 8 shards, 4B 100 % 5 / 8; 8B 12.5 % and 25 % generated (1,080 / 1,080 rows each) and scoring; 8B 50 % and 75 % generating on GPUs 3 and 6; 8B 100 % waiting for a device; 14B SFT waits for 8 idle devices (other users hold several); no selection, test manifest or test evaluation yet. Judge state: an experiment 09 adapter incident wrote two failed e09 control-admission records into our judge state before 19:31 PDT; archived with SHA-256 under `expt_v1/results/judge/incidents/`, state path cleaned, orchestrator ignores foreign records
 
-**Last updated:** 10-08-2026 22:12 PDT (pipeline: validation ladder table)
+**Last updated:** 10-08-2026 23:45 PDT (pipeline: validation ladder table)
 
 ## Phases
 
@@ -167,7 +167,7 @@ Failure taxonomy (cells): Opus 5.5 {"kept": 1200, "no_lean": 437, "no_typecheck"
 
 ## Validation ladder (live; PROTOCOL § 9: 135 tasks × 8 samples per system; gates (a) extraction ≥ 972/1080, (b) capped ≤ 108/1080, (c) mixed `kernel_binary` tasks ≥ 7/135; p-val=n/a)
 
-Written 2026-10-09T05:12:52+00:00 by the pipeline from `expt_v1/results/validation_ladder.json` (per-task and per-cell CSVs under `expt_v1/results/ladder/`).
+Written 2026-10-09T06:45:48+00:00 by the pipeline from `expt_v1/results/validation_ladder.json` (per-task and per-cell CSVs under `expt_v1/results/ladder/`).
 
 | System | Status | Extraction | Capped | Mixed tasks (share; Wilson 95%) | Gates | pass@8 | mean pass | mean tokens |
 |---|---|---:|---:|---|---|---:|---:|---:|
@@ -192,7 +192,7 @@ Written 2026-10-09T05:12:52+00:00 by the pipeline from `expt_v1/results/validati
 | `sft_4B_f1p0` | COMPLETE | 946 / 1080 | 134 / 1080 | 32 / 135 (0.237; [0.1732, 0.3154]) | fail | 0.2444 | 0.09259 | 5022.7 |
 | `sft_8B_f0p125` | COMPLETE | 504 / 1080 | 247 / 1080 | 10 / 135 (0.0741; [0.0407, 0.131]) | fail | 0.0741 | 0.01296 | 5586.3 |
 | `sft_8B_f0p25` | COMPLETE | 929 / 1080 | 150 / 1080 | 23 / 135 (0.1704; [0.1163, 0.2427]) | fail | 0.1704 | 0.06944 | 5253.6 |
-| `sft_8B_f0p5` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
+| `sft_8B_f0p5` | COMPLETE | 934 / 1080 | 146 / 1080 | 29 / 135 (0.2148; [0.1539, 0.2915]) | fail | 0.2148 | 0.0713 | 5200.8 |
 | `sft_8B_f0p75` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
 | `sft_8B_f1p0` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
 
