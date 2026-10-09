@@ -77,4 +77,4 @@
 | Input preflight under A1 | PASS: published values 11/11, joins pass, compile reproduction 100/100 |
 | Hidden-test extraction and adapter controls | RUNNING under A2: all four controls rerun on the same 50 tasks; round-2 receipts retained |
 | Protocol lock | NOT LOCKED |
-| Evaluation and analysis | BLOCKED before lock; predictions untested |
+| Evaluation and analysis | Pending all four controls and lock; predictions untested |
