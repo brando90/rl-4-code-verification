@@ -16,7 +16,7 @@ These are Zhanke ("Andrew") Zhou's agent systems; Brando co-authored both. Detai
 
 - **AlphaApollo solves.** It runs a model with tools, applies turn-level RL and refines answers in a propose–judge–update loop with memory ([arXiv:2510.06261](https://arxiv.org/abs/2510.06261); the PDF is in `docs/related_work/`).
 - **AlphaDiana measures.** Its harness-aware evaluation runs the same benchmark across models × harnesses (DirectLLM, OpenClaw, OpenCode, ZeroClaw), with full traces and failure attribution ([github.com/tmlr-group/AlphaDiana](https://github.com/tmlr-group/AlphaDiana)).
-- **Hippie (planned) improves.** It would edit Apollo's model or harness using Diana's measurements. Our factorized smooth scores (SCSC/SCS4CV, SCS4C) are the proposed signal. Experiments 04, 06 and 07 test whether they track or improve pass@1 on VeriBench and SWE-bench.
+- **Hebe (planned) improves.** It would edit Apollo's model or harness using Diana's measurements. Our factorized smooth scores (SCSC/SCS4CV, SCS4C) are the proposed signal. Experiments 04, 06 and 07 test whether they track or improve pass@1 on VeriBench and SWE-bench.
 - **Their quick starts put provider keys in `.env`.** Here, model calls still follow D-108 (Valkyrie) or D-101 (self-hosted).
 
 ## Scientific integrity

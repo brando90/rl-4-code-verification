@@ -1,4 +1,4 @@
-# Action items: Apollo–Diana–Hippie self-improvement loop call (10-08-2026)
+# Action items: Apollo–Diana–Hebe self-improvement loop call (10-08-2026)
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/meetings/oct_7_2026/action_items.md>
 
