@@ -17,6 +17,7 @@ def hermetic(m, tmp_path):
     m.hostname = lambda: "host-test"
     m.proc_start = lambda pid: {ALIVE_PID: "777"}.get(int(pid))
     m.ME_USER = "brando9"
+    m.now_utc = lambda: NOW          # frozen clock: leases created at NOW never expire as wall time passes
     return m
 
 
