@@ -107,3 +107,5 @@
 - A2 milestone published `9c8cb5b`. Corrected attempt 3b verified active with actual Lean outputs; first four tasks C1 42/42, C2 4/4, C3 4/4 compiling mutants killed, C4 3/4 rejected.
 - Evaluation/analysis implementation prepared but not executed on candidate outcomes; fixed denominator 43,840 cells, 5,434 recorded compiling candidates before excluding no-test tasks. A2 sensitivity retains only cells whose mappings all used steps 1–2.
 - Local isolated analysis environment `/lfs/skampere1/0/brando9/rl4cv_e12/.venv`: numpy 2.5.3, scipy 1.18.1, pytest 9.1.1. Focused tests 25 passed; make test 189 passed / 24 skipped.
+
+- Live attempt-3b milestone 10-09-2026 15:57 PDT: 22/50 tasks complete; C1 224/224; C2 22/22; C3 20/21; C4 21/22. String-repeat mutant construction requires a string-literal fallback after existing edits exhaust; no mutant will be chosen using hidden results. Current full round continues unchanged before the corrective rerun. Repository tests 189 passed / 24 skipped; local tests 25 passed.
