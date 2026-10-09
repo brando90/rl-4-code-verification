@@ -5,7 +5,7 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 15:24 PDT
+**Last updated:** 10-09-2026 15:25 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
@@ -81,3 +81,5 @@
 - Both frozen forecasts verified unchanged before reading results. No real model-output hidden tests run; zero experiment model/judge calls, zero GPU use, no sealed data. Input compilation sample remains 100/100; source convention check 11/11.
 - Deterministic verification: make test **189 passed / 24 skipped**; experiment-local tests **13 passed** in the preceding code milestone. Direct Lean ambiguity certificate exit 0. Two nice-10 single-thread Lean workers completed and exited; no remaining batch job.
 - External status: `BLOCKED: PROTOCOL section 3 C2 renamed recovery 2/50 below 95%; identical-type alternatives violate unique-match requirement`. Status deliberately not DONE; experiment outcome remains unknown.
+
+- PUBLISHED `02b59d4` to `origin/main` (10-09-2026 15:25 PDT): corrected control receipts, direct Lean ambiguity witnesses, results and blocked continuation record. Pull-before-push and remote tracking equality verified; working tree clean after push; no control tmux window remains. Final worker state is BLOCKED, with no background experiment job.
