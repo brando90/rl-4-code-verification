@@ -119,3 +119,16 @@ def test_mutation_keeps_only_one_body_token_change_and_removes_old_assertions():
     a=receipt['offset'];old=receipt['old'];new=receipt['new']
     assert changed==stripped[:a]+new+stripped[a+len(old):]
     assert receipt['definition']=='Original.f'
+
+
+def test_mutant_copy_has_no_orphan_docstring_before_end():
+    from controls_e12 import remove_propositions
+    source="namespace N\ndef f (x : Nat) : Bool := true\n/-- Unit check. -/\nexample : f 0 = true := rfl\nend N\n"
+    stripped=remove_propositions(source)
+    assert '/--' not in stripped and 'example' not in stripped and 'end N' in stripped
+
+
+def test_argument_arrays_and_field_suffixes():
+    from adapter_e12 import atom_at
+    assert atom_at('#[1, 2].toList 7',0)==('#[1, 2].toList',14)
+    assert atom_at('[1, 2].reverse 7',0)==('[1, 2].reverse',14)

@@ -65,6 +65,7 @@ def atom_at(source, pos):
     while pos < len(source) and source[pos].isspace(): pos += 1
     start = pos
     if pos >= len(source): return None
+    if source.startswith('#[', pos): pos += 1
     if source[pos] in '([{':
         stack = []; quoted = False
         while pos < len(source):
@@ -76,7 +77,11 @@ def atom_at(source, pos):
             elif c in '([{': stack.append(c)
             elif c in ')]}':
                 if not stack or '([{'.index(stack.pop()) != ')]}'.index(c): return None
-                if not stack: return source[start:pos+1], pos+1
+                if not stack:
+                    pos += 1
+                    suffix = re.match(r'(?:\.[A-Za-z_][\w]*)*', source[pos:]).group()
+                    pos += len(suffix)
+                    return source[start:pos], pos
             pos += 1
         return None
     match = re.match(r'"(?:\\.|[^"\\])*"|-?(?:0x[0-9A-Fa-f]+|[0-9]+)|[A-Za-z_][\w\'.]*', source[pos:])

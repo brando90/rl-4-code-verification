@@ -5,14 +5,14 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 15:25 PDT
+**Last updated:** 10-09-2026 15:49 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
 - **Worker:** Codex CLI 0.154.0, personal ChatGPT login, `gpt-6-astra` / high, host `skampere1`, tmux `oct9-codex-rl4cv-e12-hidden-gold-tests`; effective sandbox danger-full-access, approval never. Supersedes the Claude launch, which failed due to exhausted personal Claude credits.
 - **Frozen forecast:** `expt_v1/forecasts/e12_phase_a_forecast.json`, SHA-256 `b29b71b7166b80df653220ddddec4b865a622ef9abc1fa42c6c1e559b067b0c5`, frozen 2026-10-09T21:35:33Z at git head `e851c02`.
 - **State:** RUNNING under Amendment A2 (`a7c2ea2`); all three forecasts verified; round-2 controls archived unchanged.
-- **Next command:** `tail -n 3 /lfs/skampere1/0/brando9/rl4cv_e12/controls_round3.log`; active tmux window `e12-controls-r3`.
+- **Next command:** `tail -n 3 /lfs/skampere1/0/brando9/rl4cv_e12/controls_round3b.log`; active tmux window `e12-controls-r3b`.
 
 ## Log
 
@@ -97,3 +97,13 @@
 - C3 private copies omit example/theorem/lemma declarations so an intentionally changed implementation can compile. Enumerate single operator or literal edits within tested definition bodies in source order; retain the first compiling edit without reading hidden-test outcomes. Record every attempted edit and compilation.
 - C4 pairs each selected task with the next task in the frozen hash order, cyclically. Wrong-task source remains unchanged.
 - Round-2 receipt copied byte-for-byte to controls_e12_round2.json; old adapter/control source archived. Focused local tests: 17 passed.
+
+### 10-09-2026 15:45 PDT — round-3 construction correction
+
+- Attempt 3a stopped after a reproducible mutant-construction error: deleting theorem/example commands left orphan documentation comments before `end`, preventing compilation. Preserved partial receipts as `controls_e12_round3a_partial.json`, private sources/logs in `controls_round3`, implementation commit `9c8cb5b`. Only this runner and its verified process descendants were terminated.
+- Fixed by masking comments in private mutant copies before deleting proof declarations. Added array literals and field suffixes to argument parsing; expected values still excluded from comparison probes. Focused tests 19/19.
+- Attempt 3b reruns all four controls on every original selected task with fresh private receipts in `controls_round3b`; no task/pair/mutation-order/threshold changes. First 3a wrong-task acceptance remains recorded; it is an equality-check pair.
+
+- A2 milestone published `9c8cb5b`. Corrected attempt 3b verified active with actual Lean outputs; first four tasks C1 42/42, C2 4/4, C3 4/4 compiling mutants killed, C4 3/4 rejected.
+- Evaluation/analysis implementation prepared but not executed on candidate outcomes; fixed denominator 43,840 cells, 5,434 recorded compiling candidates before excluding no-test tasks. A2 sensitivity retains only cells whose mappings all used steps 1–2.
+- Local isolated analysis environment `/lfs/skampere1/0/brando9/rl4cv_e12/.venv`: numpy 2.5.3, scipy 1.18.1, pytest 9.1.1. Focused tests 25 passed; make test 189 passed / 24 skipped.

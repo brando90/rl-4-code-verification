@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/results.md>
 
-Experiment `12_scsc_vs_hidden_gold_tests_vbv1_across_systems` phase A passed Amendment A1 input checks and 100/100 compilation reproductions; gold reproduction passes 591/591 tests, but renamed-symbol recovery fails at 2/50 tasks (4%), blocking evaluation under PROTOCOL § 3 with zero model calls.
+Experiment `12_scsc_vs_hidden_gold_tests_vbv1_across_systems` phase A passed Amendment A1 input checks and 100/100 compilation reproductions; all four adapter controls are rerunning under prospective Amendment A2 with zero experiment model calls.
 
 **Status:** RUNNING under prospective Amendment A2 (`a7c2ea2`). Round-2 failure retained below; all four round-3 controls pending. No real-candidate hidden outcomes.
-**Last updated:** 10-09-2026 15:24 PDT
+**Last updated:** 10-09-2026 15:49 PDT
 
 The smooth conjunctive score for code verification (SCSC) combines internal consistency of tests (IC_tests), internal consistency of proofs (IC_proofs), and formal specification coverage (FSC). Under the prospective [Amendment A1](PROTOCOL.md#8-amendment-a1-10-09-2026-master-before-any-hidden-test-outcome), the system score is the geometric mean of the three factor means over one common measured cohort. Published-value checks reproduce each source’s own convention.
 
@@ -18,9 +18,9 @@ The smooth conjunctive score for code verification (SCSC) combines internal cons
 | Compilation reproduction | PASS, 100/100 | [Frozen sample](expt_v1/results/compile_selection_A1.json), [compiler receipts](expt_v1/results/compile_reproduction_A1.json); gate ≥99/100 |
 | Secondary inventory | FROZEN | 33,984 cells, 33 systems; [manifest](expt_v1/results/secondary_manifest_A1.json) |
 | Hidden-test extraction | DONE | 10,534 tests from 882/896 tasks; 14 `no_tests` tasks listed in [manifest](expt_v1/results/hidden_tests_manifest.json) |
-| Gold control C1 | PASS, 591/591 tests (100%) | All 50 tasks pass completely; required ≥98% |
-| Renamed-gold control C2 | FAIL, 2/50 tasks (4%) | Required ≥95%; all 50 renamed modules compile, 48 have ambiguous mappings; [receipts](expt_v1/results/controls_e12.json) |
-| Mutated / wrong-task controls C3/C4 | NOT RUN | Worker short-circuited after structural C2 failure; these gates remain unresolved |
+| Round-2 gold control C1 | PASS, 591/591 tests (100%) | All 50 tasks pass completely; required ≥98% |
+| Round-2 renamed-gold control C2 | FAIL, 2/50 tasks (4%); superseded prospectively by A2 | Required ≥95%; all 50 renamed modules compile, 48 have ambiguous mappings; [receipts](expt_v1/results/controls_e12.json) |
+| Round-3 controls C1–C4 | RUNNING | Corrected attempt 3b; same 50 tasks, all four controls, expectations unchanged |
 | Protocol lock and real candidate evaluation | NOT STARTED | All adapter controls must pass first |
 
 ## Factor inputs under A1
@@ -43,6 +43,14 @@ These are existing inputs, not hidden-test results. The seven experiment-103 row
 
 The two missing files are Codex `cs_set/floyd_warshall` and Leanstral `cs_set/binary_search`: 2/9,856 = 0.0203%, below A1.4’s 5% missing-plus-ambiguous gate. The 564 empty baseline outputs remain present. These are deterministic census/arithmetic checks; confidence intervals and p-values are not applicable (`p-val=n/a`).
 
+## Amendment A2 execution
+
+The master resolved the round-2 unique-type conflict prospectively in `a7c2ea2`. All three frozen forecasts verify; the original and A1 files are unchanged. The A2 adapter compares compatible candidate definitions with each other on hidden argument tuples only, then uses the candidate’s own example/theorem reference counts as specified. Every mapping records its deciding step. The original round-2 receipt is preserved byte-for-byte as [controls_e12_round2.json](expt_v1/results/controls_e12_round2.json).
+
+Round 3 keeps the same 50 tasks and runs all four controls. Attempt 3a was stopped on a mutant-copy construction error: proof deletion left orphan documentation comments. [Partial receipts](expt_v1/results/controls_e12_round3a_partial.json) are retained. Corrected attempt 3b masks comments in private mutant copies and reruns the entire sample. No expected value is used to select a mapping or mutation. Mutants use the first compiling single operator/literal edit in source order; wrong-task pairs use the next selected task cyclically, fixed before results. A semantically equivalent equality-check pair was accepted in C4 and remains a recorded failure of that control.
+
+The evaluator and analysis code are prepared, including A1/A2 sensitivities and per-step shares; neither has evaluated model hidden outcomes. The lock still requires all four controls to pass. Deterministic checks: 25 experiment-local tests pass, including synthetic statistics cases; repository suite 189 passed / 24 skipped.
+
 ## Control result and structural blocker
 
 The hidden suites contain only extracted statements and symbol metadata; bridges import candidate modules and evaluate the re-pointed propositions, without gold implementations. The 100-file compile sample and all control selections were fixed before their results. Original references, candidates and factors remain unchanged; renamed controls are private copies.
@@ -56,11 +64,11 @@ MyFreeLiveHandle.e12renamed0000 (live : ℕ) : Bool
 MyFreeLiveHandle.e12renamed0001 (live : ℕ) : Bool
 ```
 
-No tie-breaking by source order, body contents, naming conventions or hidden-test success has been introduced. The protocol remains **NOT LOCKED**. Continuation requires a prospective protocol clarification defining how equivalent or same-type implementation alternatives are handled, while preserving the failed C2 result and the original thresholds. An implementation-only change that preserves strict uniqueness cannot fix these witnesses. The worker has not chosen or enacted that scientific change.
+No tie-breaking by source order, body contents, naming conventions or hidden-test success has been introduced. The protocol remains **NOT LOCKED**. At round 2, continuation required a prospective clarification; Amendment A2 now supplies it while preserving the failed receipt and thresholds. An implementation-only change that preserves strict uniqueness cannot fix these witnesses. The master supplied A2 before any real-candidate outcome.
 
 Round 1 is preserved: gold self-tests 570/590 (96.61%); renamed recovery 1/47 gold-passing tasks (2.13%). [Round-1 receipts](expt_v1/results/controls_e12_round1.json) remain unchanged. Round 2 fixed equation-definition parsing, projection renaming and structural `Except` equality. It retains all 10,429 original extracted statements and adds 105 previously missed statements, before any real-candidate hidden outcome. The current extraction contains 10,534 tests on 882 tasks, with 14 `no_tests` tasks.
 
-**Incomplete runbook work:** the worker stopped before C3/C4 because the independent C2 requirement cannot pass under the current rule. This is a documented short-circuit, not a claim that PROTOCOL § 3 specifies sequential controls. C3/C4, protocol lock, all real-candidate evaluations and all analyses remain required after the blocker is resolved. External status is `BLOCKED`, not `DONE`.
+**Incomplete runbook work:** the worker stopped before C3/C4 because the independent C2 requirement cannot pass under the current rule. This is a documented short-circuit, not a claim that PROTOCOL § 3 specifies sequential controls. C3/C4, protocol lock, all real-candidate evaluations and all analyses remain required after the blocker is resolved. This historical stop is resolved by A2; current external status is `RUNNING`.
 
 ## Secondary panels and outstanding analyses
 
@@ -82,4 +90,4 @@ PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_syst
 
 The completed round-2 control runner returns exit 2, preserving its failed gate. Compilation and control scripts preserve completed receipts on resume. Host-only logs and copied control sources are in `/lfs/skampere1/0/brando9/rl4cv_e12/`; no candidate source is committed. Verification so far: repository tests 189 passed / 24 skipped; experiment-local tests 13 passed.
 
-**TLDR-end:** [rl4cv: 12_scsc_vs_hidden_gold_tests_vbv1_across_systems] Hidden gold-test agreement cleared A1 input checks and 100/100 compilation reproductions, but renamed-symbol recovery fails at 2/50 against ≥95%. Evaluation remains blocked by identical-type alternatives under the unique-match rule; predictions are untested.
+**TLDR-end:** [rl4cv: 12_scsc_vs_hidden_gold_tests_vbv1_across_systems] Hidden gold-test agreement is running the complete fixed control sample under A2 after passing input gates and 100/100 compilation reproductions. Round-2 failures remain archived; real-candidate outcomes and predictions remain unmeasured.

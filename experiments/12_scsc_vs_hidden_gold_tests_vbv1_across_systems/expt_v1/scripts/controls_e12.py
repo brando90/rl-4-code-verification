@@ -9,11 +9,12 @@ from extract_hidden_tests import PHASE
 from runtime_e12 import Runtime
 from rl4cv.forecast import verify_forecast
 
-WORK=Path('/lfs/skampere1/0/brando9/rl4cv_e12/controls_round3')
+WORK=Path('/lfs/skampere1/0/brando9/rl4cv_e12/controls_round3b')
 
 
 def remove_propositions(source):
-    events=list(TOP.finditer(strip_comments(source)));remove=[]
+    source=strip_comments(source)  # Remove orphan docstrings together with proof declarations.
+    events=list(TOP.finditer(source));remove=[]
     for i,m in enumerate(events):
         if m.group(1) in ('example','theorem','lemma'):
             remove.append((m.start(),events[i+1].start() if i+1<len(events) else len(source)))
@@ -76,7 +77,7 @@ def report(rows,selected):
       'C2':{'n_C1_passing_tasks':len(eligible),'n_recovered':recovered,'fraction':recovered/len(eligible) if eligible else None,'threshold':.95,'passes':complete and len(eligible)>0 and recovered>=.95*len(eligible)},
       'C3':{'n_compiling_mutants':mutants,'n_killed':killed,'fraction':killed/mutants if mutants else None,'threshold':.60,'passes':complete and mutants>=50 and killed>=.60*mutants},
       'C4':{'n_pairs':len(rows),'n_rejected':rejected,'fraction':rejected/len(rows) if rows else None,'threshold':.95,'passes':complete and rejected>=.95*len(rows)}}
-    return {'round':3,'n_selected':len(selected),'n_completed':len(rows),'complete':complete,**controls,
+    return {'round':3,'attempt':'3b','n_selected':len(selected),'n_completed':len(rows),'complete':complete,**controls,
             'all_controls_pass':all(c['passes'] for c in controls.values()),
             'selected_tasks':[r['task_id'] for r in selected],'rows':sorted(rows,key=lambda r:r['task_id']),
             'source_hashes':{f:hashlib.sha256((PHASE/'scripts'/f).read_bytes()).hexdigest() for f in ['extract_hidden_tests.py','adapter_e12.py','runtime_e12.py','controls_e12.py']}}
