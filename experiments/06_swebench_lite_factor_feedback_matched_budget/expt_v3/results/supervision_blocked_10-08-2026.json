@@ -1,0 +1,240 @@
+{
+  "continuation": "Preserve the original deadline and attempt cap. Do not start a fourth model coordinator, reset budgets, or execute measured cells. Unfinished source is privately archived; deterministic repairs and a revised explicit authorization can be considered without treating this receipt as admission.",
+  "coordinator": {
+    "active_owned_containers": 0,
+    "alive_at_verification": false,
+    "attempts_limit": 3,
+    "attempts_used": 3,
+    "cause_is_authentication_or_quota_failure": false,
+    "configured_max_turns": 90,
+    "effective_permission": "bypassPermissions",
+    "effort": "high",
+    "exit_at_utc": "2026-10-09T02:34:21.154612+00:00",
+    "exit_code": 1,
+    "further_launch_authorized": false,
+    "model": "claude-sonnet-5",
+    "native_error": "Reached maximum number of turns (90)",
+    "native_result_subtype": "error_max_turns",
+    "native_session": "ce1f226b-000e-4413-adc8-5030d07dfee6",
+    "reported_num_turns": 91,
+    "surviving_scientific_children": 0
+  },
+  "deterministic_verification": {
+    "backend_clean_environment": "Read-only observe command fails at import: ModuleNotFoundError: requests. The backend venv also lacks pygments needed by pytest when PYTHONPATH is unset.",
+    "failure_scope": "Excessive nesting is rejected with a different reason under this Python runtime. Required deterministic checks are not all passing.",
+    "repository": {
+      "failed": 0,
+      "passed": 113,
+      "skipped": 11
+    },
+    "runtime": "Python 3.12, /tmp/rl4cv_maintest_venv/bin/python3, PYTHONPATH unset",
+    "v3": {
+      "failed": 2,
+      "passed": 146
+    },
+    "v3_failures": [
+      "test_diagnostic_runner.py::test_malformed_typed_receipt_fails_closed (deep nesting case)",
+      "test_diagnostic_validator.py::test_excessive_json_nesting_and_integer_size_are_stable_rejections"
+    ],
+    "verification_receipt_sha256": "2ab7f4036544e4b829e8f8b8718c4600a0373fc1f5e50f6e0fb2c595e5a0a9e7"
+  },
+  "experiment": "06_swebench_lite_factor_feedback_matched_budget",
+  "frozen_input_pins": {
+    "dataset_revision": "6ec7bb89b9342f664a54a6e0a6ea6501d3437cc2",
+    "harness_commit": "f7bbbb2ccdf479001d6467c9e34af59e44a840f9",
+    "independent_execution_verification": "INCOMPLETE; metadata pins are preserved, not evidence of admitted execution",
+    "public_panel_sha256": "68dc55c9a0ea1bf7191fe23dd28fbc0a655f0a718a2dc487bbedb72b638bba46"
+  },
+  "host": "skampere2",
+  "immutable_limits": {
+    "cpus_per_container": 4,
+    "docker_headroom_gib": 100,
+    "elapsed_hours_maximum": 18,
+    "max_containers": 2,
+    "memory_gib_per_container": 8,
+    "original_deadline_utc": "2026-10-09T17:50:03.462222+00:00",
+    "original_start_utc": "2026-10-08T23:50:03.462222+00:00",
+    "owned_docker_gib": 120,
+    "owned_scratch_gib": 120,
+    "processor_hours_maximum": 160,
+    "remaining_processor_hours": null,
+    "resource_accounting_note": "No verified shared ledger accounts for setup, image pulls, non-admitted smoke runs and later stages. Unknown is not zero or an unused allowance.",
+    "scratch_headroom_gib": 1024,
+    "total_processor_hours_spent": null
+  },
+  "interpretation": "Infrastructure/coordinator blockage before official admission, not a failed scientific validity gate or evidence that factor feedback helps or hurts repair.",
+  "monitoring": {
+    "automatic_restart_enabled": false,
+    "email_sent": false,
+    "latest_verified_state": "BLOCKED_COORDINATOR_ATTEMPTS_EXHAUSTED",
+    "model_calls": false,
+    "observer_path": "/var/tmp/brando9-rl4cv-e06-v3/supervision/observer.py",
+    "observer_tests_passed": 10,
+    "owner_ack_updated": true,
+    "owner_mailbox_adopted": true,
+    "reboot_behavior": "Cron observation installed; actual reboot not tested. No scientific job is running.",
+    "scope": "Read-only observer and deadline alert, not authoritative experiment enforcement."
+  },
+  "non_admitted_preflight": {
+    "admission_note": "These preflights ran outside the official runner, retain their original evidence and do not count as valid official controls. The subsequently corrected source has no verified admitted execution.",
+    "observed_real_test_executions": 5,
+    "post_fix_actual_limits": {
+      "Memory": 8589934592,
+      "NanoCpus": 4000000000,
+      "e06v3": "1",
+      "e06v3_run": "smoke3-empty"
+    },
+    "post_fix_container_id": "e91b31dd74980cedebbfa27c9d725b4e36f415b0435b910345ea570ad68089bf",
+    "post_fix_observer_result": "OBSERVER_FAILED: inspect_container() received unsupported size=True",
+    "post_fix_run_id": "smoke3-empty",
+    "post_fix_test_runtime_seconds": 5.383473634719849,
+    "smoke3_gold_result_observed": false,
+    "unbounded_actual_limits": {
+      "Memory": 0,
+      "NanoCpus": 0,
+      "ownership_labels_present": false
+    },
+    "unbounded_executions_observed": 4,
+    "unbounded_run_ids": [
+      "smoke-eval-empty",
+      "smoke-eval-gold",
+      "smoke2-empty",
+      "smoke2-gold"
+    ]
+  },
+  "original_runtime": "/var/tmp/brando9-rl4cv-e06-v3",
+  "pending_implementation": {
+    "owner_changes": "Direct bounded container creation and inspection; true Git tree identities; empty-patch skip; digest/provenance documents; corrected Docker size-list API; supplemental read-only watchdog.",
+    "preserved_file_count": 23,
+    "private_archive_path": "/var/tmp/brando9-rl4cv-e06-v3/supervision/pending_owner_changes_10-08-2026.tar.gz",
+    "private_archive_sha256": "cc6c35bb5cd888925d9813de56af9b529ca8525a2d4d711e43b91c0a2ac0d4d1",
+    "published_as_validated_source": false,
+    "remaining_admission_blockers": [
+      "No verified cumulative version-budget ledger covering all setup and attempts.",
+      "No demonstrated bound/cancellation for daemon-side image pulls after an outer process exits.",
+      "Owned scratch accounting covers only the control state directory and does not establish a complete bound over setup/runtime data.",
+      "Runtime dependencies are not self-contained; required tests have two failures.",
+      "Image verification does not fail closed when RepoDigests is empty; source/provenance and frozen execution identity still require independent acceptance checks.",
+      "No fresh non-dryrun execution manifest or completed official control receipt exists.",
+      "Measured Vals-funded Valkyrie route and downstream admission gates remain unverified."
+    ],
+    "source_hash_manifest_path": "/var/tmp/brando9-rl4cv-e06-v3/supervision/pending_owner_changes_manifest.json"
+  },
+  "recorded_at_local": "10-08-2026 20:02:59 PDT",
+  "recorded_at_utc": "2026-10-09T03:02:59.948126+00:00",
+  "schema_version": 1,
+  "scientific_progress": {
+    "author_calls_completed": 0,
+    "author_calls_conditionally_planned": 8,
+    "controls": [
+      {
+        "endpoint": null,
+        "instance_id": "sqlfluff__sqlfluff-1763",
+        "kind": "gold",
+        "status": "NOT_ADMITTED"
+      },
+      {
+        "endpoint": null,
+        "instance_id": "sqlfluff__sqlfluff-1763",
+        "kind": "empty",
+        "status": "NOT_ADMITTED"
+      },
+      {
+        "endpoint": null,
+        "instance_id": "pvlib__pvlib-python-1606",
+        "kind": "gold",
+        "status": "NOT_ADMITTED"
+      },
+      {
+        "endpoint": null,
+        "instance_id": "pvlib__pvlib-python-1606",
+        "kind": "empty",
+        "status": "NOT_ADMITTED"
+      },
+      {
+        "endpoint": null,
+        "instance_id": "sqlfluff__sqlfluff-2419",
+        "kind": "gold",
+        "status": "NOT_ADMITTED"
+      },
+      {
+        "endpoint": null,
+        "instance_id": "sqlfluff__sqlfluff-2419",
+        "kind": "empty",
+        "status": "NOT_ADMITTED"
+      },
+      {
+        "endpoint": null,
+        "instance_id": "marshmallow-code__marshmallow-1343",
+        "kind": "gold",
+        "status": "NOT_ADMITTED"
+      },
+      {
+        "endpoint": null,
+        "instance_id": "marshmallow-code__marshmallow-1343",
+        "kind": "empty",
+        "status": "NOT_ADMITTED"
+      },
+      {
+        "endpoint": null,
+        "instance_id": "pvlib__pvlib-python-1707",
+        "kind": "gold",
+        "status": "NOT_ADMITTED"
+      },
+      {
+        "endpoint": null,
+        "instance_id": "pvlib__pvlib-python-1707",
+        "kind": "empty",
+        "status": "NOT_ADMITTED"
+      },
+      {
+        "endpoint": null,
+        "instance_id": "pvlib__pvlib-python-1154",
+        "kind": "gold",
+        "status": "NOT_ADMITTED"
+      },
+      {
+        "endpoint": null,
+        "instance_id": "pvlib__pvlib-python-1154",
+        "kind": "empty",
+        "status": "NOT_ADMITTED"
+      },
+      {
+        "endpoint": null,
+        "instance_id": "pvlib__pvlib-python-1072",
+        "kind": "gold",
+        "status": "NOT_ADMITTED"
+      },
+      {
+        "endpoint": null,
+        "instance_id": "pvlib__pvlib-python-1072",
+        "kind": "empty",
+        "status": "NOT_ADMITTED"
+      },
+      {
+        "endpoint": null,
+        "instance_id": "pydicom__pydicom-1139",
+        "kind": "gold",
+        "status": "NOT_ADMITTED"
+      },
+      {
+        "endpoint": null,
+        "instance_id": "pydicom__pydicom-1139",
+        "kind": "empty",
+        "status": "NOT_ADMITTED"
+      }
+    ],
+    "controls_admitted": 0,
+    "controls_declared": 16,
+    "controls_validly_completed": 0,
+    "measured_valkyrie_payer_route": "NOT_VERIFIED; no measured calls admitted",
+    "pair_gate": "NOT_MEASURED",
+    "pair_gate_threshold": "at least 6 of 8",
+    "solver_cells_completed": 0,
+    "solver_cells_conditionally_planned": 56,
+    "valid_pairs": null
+  },
+  "source_project_commit": "572e28fa173897877e76b4882c20eefd5d259118",
+  "status": "BLOCKED_BEFORE_ADMISSION",
+  "version": 3
+}
