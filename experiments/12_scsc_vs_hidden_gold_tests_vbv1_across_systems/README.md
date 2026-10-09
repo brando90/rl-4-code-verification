@@ -74,6 +74,7 @@
 | Step | Status |
 |---|---|
 | Design and frozen forecast | Done (10-09-2026) |
-| Hidden-test extraction and adapter controls | Pending (worker) |
-| Protocol lock | Pending |
-| Evaluation and analysis | Pending |
+| Input aggregation preflight | BLOCKED: 7/11 systems fail PROTOCOL § 6; see [results](results.md) |
+| Hidden-test extraction and adapter controls | Not run after mandatory preflight stop |
+| Protocol lock | NOT LOCKED |
+| Evaluation and analysis | Not run; predictions untested |
