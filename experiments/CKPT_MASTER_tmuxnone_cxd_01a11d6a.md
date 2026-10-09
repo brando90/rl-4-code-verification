@@ -4,7 +4,7 @@
 
 **TLDR:** Brando approved automatic overnight model-improvement experiments on 10-08-2026. The factored-score reinforcement-learning adapter failed its actual probability-consistency gate before any optimizer update; its report and full missing-cell accounting are published. The warm-start study continues. The repair study exhausted its coordinator allocation before official admission and is now explicitly blocked.
 
-Created: 10-08-2026 16:28 PDT. Last updated: 10-09-2026 01:16 PDT. **Status:** learning adapter FAILED_TECHNICAL_GATE, report published and cleanup verified; warm-start supervision ACTIVE; repair allocation blocked.
+Created: 10-08-2026 16:28 PDT. Last updated: 10-09-2026 01:58 PDT. **Status:** learning adapter FAILED_TECHNICAL_GATE, report published and cleanup verified; warm-start supervision ACTIVE; repair allocation blocked.
 
 ## 1. Identity and recovery
 
@@ -108,7 +108,7 @@ Parent pulled main through `f91fd69` and ran `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 m
 
 At 22:12 PDT, parent independently reverified experiment09: terminal status unchanged, original owner/coordinator absent, zero registered children, zero task-watch cron entries, all 9/9 leases released, all published matrix hashes matching and clean remote worktree. Experiment06's blocked receipt and archive were also unchanged, with no owner, scientific children, owned containers or observer. These closure checks made no mutations or new model calls. The original experiment08 owner needs no recovery at this checkpoint.
 
-At 10-09-2026 01:12 PDT the compact closure check again found experiment09's original owner/coordinator absent, zero registered children and task-watch cron entries, and its same terminal publication with scientific completion false. Experiment06 remained blocked at 3/3 launches with no active jobs/containers/observer. No execution recovery was needed. Warm-start validation advanced from 14/20 to 15/20 complete rungs, finishing all three smaller sizes; the only remaining training/validation dependency is eight-device availability for 14B. This is scoring progress, not a held-out model-improvement result.
+At 10-09-2026 01:57 PDT the compact closure check found experiment09 unchanged: original owner/coordinator absent, zero registered children and task-watch cron entries, all 9/9 leases released, and the same terminal publication with scientific completion false. Experiment06 remained blocked at 3/3 launches with no active jobs/containers/observer. Warm-start validation remained 15/20 complete (16,200/21,600 trained-checkpoint cells; 17,280/22,680 with Base14B). Its pipeline PID 3371983 had a 01:55:55 tick, original owner PID 147453 remained alive, and the watchdog checked healthy at 01:45:02. No compute children, live leases, selection or test-runtime files existed. Devices 3/6/7 remained idle; 14B still awaited eight devices. No new result, failure or intervention was indicated, so no native-owner continuation or user notification was needed. Only documentation changed since the passing source suite at `f91fd69`; exact diff and secret checks apply to this checkpoint.
 
 1. Preserve experiment09's verified terminal publication (`5d7b899`, `f588d05`), failed numerical gate, matrix and cleanup. No automatic new coordinator, sampler change or scientific admission; task-owned remote watch is retired.
 2. Continue the original warm-start owner through every admitted validation rung, frozen selection and conditional test/judge stages. Inspect output counts and devices, not just pipeline liveness.
