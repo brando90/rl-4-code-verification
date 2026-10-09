@@ -15,7 +15,17 @@ spec.loader.exec_module(m)
 
 
 @pytest.fixture
-def root(tmp_path, monkeypatch):
+def process_identity(monkeypatch):
+    """Supply identity evidence to logic tests without consulting the host's /proc."""
+    current = {"pid": os.getpid(), "start_ticks": 100, "boot_id": "fixture-boot",
+               "ppid": os.getppid(), "session": os.getpid()}
+    monkeypatch.setattr(m, "boot", lambda: current["boot_id"])
+    monkeypatch.setattr(m, "identity", lambda pid: dict(current) if pid == current["pid"] else None)
+    return current
+
+
+@pytest.fixture
+def root(tmp_path, monkeypatch, process_identity):
     (tmp_path / "owner_recovery").mkdir()
     (tmp_path / "pipeline").mkdir()
     monkeypatch.setattr(m, "WORK", tmp_path)
@@ -50,6 +60,15 @@ def test_failure_classification(error, kind):
     assert m.classify([error]) == kind
 
 
+def test_process_identity_fencing_logic(process_identity):
+    assert m.alive(process_identity)
+    assert not m.alive(dict(process_identity, start_ticks=process_identity["start_ticks"] + 1))
+    assert not m.alive(dict(process_identity, boot_id="old-boot"))
+    assert not m.alive(dict(process_identity, pid=process_identity["pid"] + 1))
+    assert not m.alive(None)
+
+
+@pytest.mark.skipif(sys.platform != "linux", reason="integration requires Linux /proc process identity")
 def test_process_identity_fences_pid_reuse():
     actual = m.identity(os.getpid())
     assert m.alive(actual)
@@ -89,8 +108,11 @@ def test_live_owner_and_children_prevent_replacement(root, monkeypatch):
     store = root / "owner_recovery"
     m.write(store / "monitor_state.json", {"status": "ARMED", "serviced_key": "old",
                                          "owner": m.identity(os.getpid())})
+    child = dict(m.identity(os.getpid()), pid=os.getpid() + 1, ppid=os.getpid())
+    monkeypatch.setattr(m, "descendants", lambda owner: [child])
     monkeypatch.setattr(m, "drive", lambda *a: pytest.fail("duplicate coordinator"))
     assert m.tick({"enabled": True}, store) == "OWNER_ACTIVE"
+    assert m.read(store / "monitor_state.json")["survivors"] == [child]
 
 
 def test_stop_blocks_launch(root, monkeypatch):
