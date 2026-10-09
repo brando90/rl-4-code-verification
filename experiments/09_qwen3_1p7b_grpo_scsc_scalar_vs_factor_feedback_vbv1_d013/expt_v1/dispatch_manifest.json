@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "PREPARED",
+  "status": "TECHNICAL_INTEGRATION_IN_PROGRESS",
   "host": "skampere1",
   "runtime": "/lfs/skampere1/0/brando9/rl4cv_e09",
   "coordinator": {
@@ -18,8 +18,19 @@
   "max_scorer_workers": 8,
   "max_new_owned_gib": 200,
   "min_free_filesystem_fraction": 0.05,
-  "start_utc": null,
-  "deadline_utc": null,
+  "start_utc": "2026-10-09T02:13:36.923954+00:00",
+  "deadline_utc": "2026-10-09T18:13:36.923954+00:00",
+  "recovery": {
+    "attempt": 2,
+    "run_id": "0c84fdc2-d5cf-4a04-9137-e214edbd8c36",
+    "actual_model": "gpt-6-astra",
+    "actual_effort": "ultra",
+    "approval_policy": "never",
+    "sandbox_policy": "danger-full-access",
+    "evidence": "results/recovery_attempt_2.json and native session turn_context",
+    "historical_requested_coordinator_preserved_above": true,
+    "scientific_manifest_frozen": false
+  },
   "model_under_training": "Qwen3 Base1.7B, experiment 08 fullstep 658 SFT export; exact hash pending preflight",
   "judge": "D-102 vb103_judge on Vals Valkyrie, unchanged scientific settings",
   "training_trajectories": 6,

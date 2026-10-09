@@ -1,0 +1,40 @@
+{
+  "run_id": "0c84fdc2-d5cf-4a04-9137-e214edbd8c36",
+  "attempt": 2,
+  "written_utc": "2026-10-09T03:15:46Z",
+  "session": "01a11e70-91cc-72c1-8ab7-a9dfe8494a3e",
+  "actual_model": "gpt-6-astra",
+  "actual_effort": "ultra",
+  "approval_policy": "never",
+  "sandbox_policy": "danger-full-access",
+  "evidence": "Latest native session turn_context; actual coordinator argv; useful tool action at 2026-10-09T03:14:58Z",
+  "coordinator": {
+    "pid": 3559408,
+    "start_ticks": "1683853",
+    "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043"
+  },
+  "host": "skampere1.stanford.edu",
+  "revision": "1ef583d1e55552afecdfb005abcfa1640eac95e6",
+  "first_useful_action": "Refreshed agents-config and inspected supervisor handoff, original run limits and live process state",
+  "deadline_utc": "2026-10-09T18:13:36.923954+00:00",
+  "parent_watchdog_sha256": "f9b6b676d87b9b432d64219ba751755996b36fb274148cf95ee6ae9badb067f8",
+  "usage": {
+    "source": "parent verified desktop",
+    "weekly_remaining_fraction": 0.86,
+    "remote_exact_remaining": null,
+    "new_charges_enabled": false,
+    "finishing_reserve": "Retain 25% of observed allowance when measurable; no new expensive work at verified 10% remaining"
+  },
+  "children": {
+    "old_uv_pid": 3293058,
+    "old_uv_alive": false,
+    "active_compilers_found": 0,
+    "adopted": []
+  },
+  "technical_budget": {
+    "deadline_utc": "2026-10-09T05:15:00Z",
+    "reason": "Bound one owned sampler/optimizer integration attempt to two hours, retain at least thirteen hours of original window for calibration, six trajectories, evaluation, and finalization",
+    "finalization_reserve_seconds": 3600
+  },
+  "complete": false
+}

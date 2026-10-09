@@ -1,0 +1,175 @@
+diff --git a/nemo_rl/algorithms/grpo.py b/nemo_rl/algorithms/grpo.py
+index 269cfbdd4..e112f374d 100644
+--- a/nemo_rl/algorithms/grpo.py
++++ b/nemo_rl/algorithms/grpo.py
+@@ -493,0 +494 @@ def setup(
++        init_reference_model=not (os.environ.get("E09_FILTERED_POLICY") == "1" and loss_config["reference_policy_kl_penalty"] == 0),
+@@ -520 +521,7 @@ def setup(
+-    loss_fn = ClippedPGLossFn(loss_config)
++    if os.environ.get("E09_FILTERED_POLICY") == "1":
++        from filtered_loss import FilteredGRPOLoss
++        assert not grpo_config["async_grpo"]["enabled"]
++        assert policy_config["train_global_batch_size"] == grpo_config["num_prompts_per_step"] * grpo_config["num_generations_per_prompt"]
++        loss_fn = FilteredGRPOLoss(loss_config)
++    else:
++        loss_fn = ClippedPGLossFn(loss_config)
+@@ -1111,0 +1119,4 @@ def grpo_train(
++                    if os.environ.get("E09_CONTROL_DIR"):
++                        from runtime_audit import record_batch
++                        record_batch(repeated_batch, train_data, tokenizer, total_steps)
++
+@@ -1119,3 +1130,7 @@ def grpo_train(
+-                    reference_logprobs = policy.get_reference_policy_logprobs(
+-                        train_data
+-                    )["reference_logprobs"]
++                    if os.environ.get("E09_FILTERED_POLICY") == "1":
++                        assert master_config["loss_fn"]["reference_policy_kl_penalty"] == 0
++                        reference_logprobs = torch.zeros_like(fprop_logprobs)
++                    else:
++                        reference_logprobs = policy.get_reference_policy_logprobs(
++                            train_data
++                        )["reference_logprobs"]
+diff --git a/nemo_rl/experience/rollouts.py b/nemo_rl/experience/rollouts.py
+index a32c37499..ba743c319 100644
+--- a/nemo_rl/experience/rollouts.py
++++ b/nemo_rl/experience/rollouts.py
+@@ -19,0 +20,2 @@ import copy
++import hashlib
++import os
+@@ -66,0 +69,5 @@ def generate_responses(
++    if os.environ.get("E09_FILTERED_POLICY") == "1":
++        generation_input_data["e09_seeds"] = [
++            int.from_bytes(hashlib.sha256(f"{m['rollout_id']}:{m.get('turn', 0)}".encode()).digest()[:4], "big")
++            for m in batch["extra_env_info"]
++        ]
+@@ -102,0 +110,7 @@ def generate_responses(
++        if os.environ.get("E09_FILTERED_POLICY") == "1":
++            ids = assistant_message["token_ids"]
++            if not len(ids):
++                raise RuntimeError("experiment09: missing assistant response")
++            metadata = dict(batch["extra_env_info"][i])
++            metadata.update(last_generated_token_id=int(ids[-1]), generated_tokens=len(ids))
++            batch["extra_env_info"][i] = metadata
+@@ -350,0 +365,5 @@ def run_multi_turn_rollout(
++    if os.environ.get("E09_FILTERED_POLICY") == "1":
++        current_batch["extra_env_info"] = [
++            {**m, "rollout_id": f"{m['seed']}:{m['schedule_index']}:{i % 8}"}
++            for i, m in enumerate(current_batch["extra_env_info"])
++        ]
+@@ -433,0 +453,3 @@ def run_multi_turn_rollout(
++        if os.environ.get("E09_FILTERED_POLICY") == "1":
++            for i, global_idx in enumerate(active_indices.tolist()):
++                current_batch["extra_env_info"][global_idx] = env_output.metadata[i]
+@@ -509,0 +532,3 @@ def run_multi_turn_rollout(
++    if os.environ.get("E09_FILTERED_POLICY") == "1":
++        if sample_truncated.any() or any(m.get("turn") != 2 for m in current_batch["extra_env_info"]):
++            raise RuntimeError("experiment09: incomplete two-turn batch; optimizer blocked")
+diff --git a/nemo_rl/models/generation/vllm/vllm_backend.py b/nemo_rl/models/generation/vllm/vllm_backend.py
+index 0bf2b224d..94a6ca4a0 100644
+--- a/nemo_rl/models/generation/vllm/vllm_backend.py
++++ b/nemo_rl/models/generation/vllm/vllm_backend.py
+@@ -14,0 +15 @@ import gc
++import os
+@@ -69,0 +71,2 @@ class VllmInternalWorkerExtension:
++        if os.environ.get("E09_FILTERED_POLICY") == "1":
++            return f"ipc://{os.environ['E09_IPC_DIR']}/{self.report_device_id()}.sock"
+diff --git a/nemo_rl/models/generation/vllm/vllm_generation.py b/nemo_rl/models/generation/vllm/vllm_generation.py
+index 5dcc7eaf2..0eec92df6 100644
+--- a/nemo_rl/models/generation/vllm/vllm_generation.py
++++ b/nemo_rl/models/generation/vllm/vllm_generation.py
+@@ -93 +93,6 @@ class VllmGeneration(GenerationInterface):
+-        if top_k is not None and top_k != -1 and top_k < TOP_K_THRESHOLD:
++        e09_filtered = os.environ.get("E09_FILTERED_POLICY") == "1"
++        if e09_filtered:
++            assert (top_k, self.cfg.get("top_p"), self.cfg["temperature"]) == (20, .95, .6)
++            assert self.model_parallel_size == 1 and self.dp_size == 1
++            assert os.environ.get("VLLM_USE_FLASHINFER_SAMPLER") == "0"
++        if not e09_filtered and top_k is not None and top_k != -1 and top_k < TOP_K_THRESHOLD:
+@@ -105 +110 @@ class VllmGeneration(GenerationInterface):
+-        if top_p < TOP_P_THRESHOLD:
++        if not e09_filtered and top_p < TOP_P_THRESHOLD:
+diff --git a/nemo_rl/models/generation/vllm/vllm_worker.py b/nemo_rl/models/generation/vllm/vllm_worker.py
+index 1a610ca3c..938324748 100644
+--- a/nemo_rl/models/generation/vllm/vllm_worker.py
++++ b/nemo_rl/models/generation/vllm/vllm_worker.py
+@@ -95,0 +96,2 @@ class BaseVllmGenerationWorker:
++            if os.environ.get("E09_FILTERED_POLICY") == "1":
++                env_vars["VLLM_CACHE_ROOT"] = os.path.join(os.environ['E09_IPC_DIR'], 'vllm_cache')
+@@ -290 +292,2 @@ class BaseVllmGenerationWorker:
+-            _patch_vllm_sampler()
++            if os.environ.get("E09_FILTERED_POLICY") != "1":
++                _patch_vllm_sampler()
+@@ -307,0 +311,7 @@ class BaseVllmGenerationWorker:
++        if os.environ.get("E09_FILTERED_POLICY") == "1":
++            assert os.environ.get("CUDA_DEVICE_ORDER") == "PCI_BUS_ID"
++            from device_guard import verify_exclusive_device
++            verify_exclusive_device()
++            actual_uuid = str(torch.cuda.get_device_properties(0).uuid)
++            assert actual_uuid.removeprefix('GPU-').lower() == os.environ['E09_LEASED_GPU_UUID'].removeprefix('GPU-').lower(), 'Lease/device identity mismatch'
++            print(f'E09_GENERATION_DEVICE_VERIFIED {actual_uuid}', flush=True)
+@@ -396 +406 @@ class BaseVllmGenerationWorker:
+-            seed=seed,
++            seed=int(os.environ["E09_GENERATION_SEED"]) if os.environ.get("E09_FILTERED_POLICY") == "1" else seed,
+@@ -550,0 +561,10 @@ class VllmGenerationWorker(BaseVllmGenerationWorker):
++        if os.environ.get("E09_FILTERED_POLICY") == "1":
++            import copy
++            assert "e09_seeds" in data and len(data["e09_seeds"]) == len(prompts)
++            per_request_params = []
++            for seed in data["e09_seeds"]:
++                parameters = copy.deepcopy(sampling_params)
++                parameters.seed = int(seed)
++                per_request_params.append(parameters)
++            sampling_params = per_request_params
++
+@@ -589,0 +610,3 @@ class VllmGenerationWorker(BaseVllmGenerationWorker):
++            if os.environ.get("E09_FILTERED_POLICY") == "1":
++                assert generation.logprobs is not None and len(generation.logprobs) == len(generated_tokens)
++                assert all(row is not None and token in row for row, token in zip(generation.logprobs, generated_tokens)), 'Missing generated action log q'
+@@ -595,3 +618 @@ class VllmGenerationWorker(BaseVllmGenerationWorker):
+-                            full_logprobs[position] = next(iter(logprob_dict.items()))[
+-                                1
+-                            ].logprob
++                            full_logprobs[position] = logprob_dict[generated_tokens[idx]].logprob
+@@ -598,0 +620,2 @@ class VllmGenerationWorker(BaseVllmGenerationWorker):
++                    if os.environ.get("E09_FILTERED_POLICY") == "1":
++                        raise
+diff --git a/nemo_rl/models/policy/dtensor_policy_worker.py b/nemo_rl/models/policy/dtensor_policy_worker.py
+index ce25e6c05..d200033de 100644
+--- a/nemo_rl/models/policy/dtensor_policy_worker.py
++++ b/nemo_rl/models/policy/dtensor_policy_worker.py
+@@ -162,0 +163,7 @@ class DTensorPolicyWorker:
++        if os.environ.get("E09_FILTERED_POLICY") == "1":
++            assert os.environ.get("CUDA_DEVICE_ORDER") == "PCI_BUS_ID"
++            from device_guard import verify_exclusive_device
++            verify_exclusive_device()
++            actual_uuid = str(torch.cuda.get_device_properties(0).uuid)
++            assert actual_uuid.removeprefix('GPU-').lower() == os.environ['E09_LEASED_GPU_UUID'].removeprefix('GPU-').lower(), 'Lease/device identity mismatch'
++            print(f'E09_TRAINING_DEVICE_VERIFIED {actual_uuid}', flush=True)
+@@ -474,0 +482,2 @@ class DTensorPolicyWorker:
++        if os.environ.get("E09_FILTERED_POLICY") == "1":
++            return logits.float() / self.cfg["generation"]["temperature"]
+@@ -855,0 +865,3 @@ class DTensorPolicyWorker:
++                    if os.environ.get("E09_CONTROL_DIR"):
++                        from runtime_audit import before_step
++                        before_step(self, num_global_batches)
+@@ -856,0 +869,3 @@ class DTensorPolicyWorker:
++                    if os.environ.get("E09_CONTROL_DIR"):
++                        from runtime_audit import after_step
++                        after_step(self)
+@@ -1053 +1068,8 @@ class DTensorPolicyWorker:
+-                    if self.cp_size > 1:
++                    if os.environ.get("E09_FILTERED_POLICY") == "1":
++                        from filtered_policy import selected_logprobs
++                        assert self.cp_size == 1 and not self.enable_seq_packing
++                        assert not isinstance(logits, DTensor)
++                        token_logprobs = selected_logprobs(
++                            logits[:, :-1], input_ids[:, 1:],
++                            lp_batch["token_mask"][:, 1:], chunk_size=16)
++                    elif self.cp_size > 1:
+@@ -1699,0 +1722,2 @@ class DTensorPolicyWorker:
++        if os.environ.get("E09_FILTERED_POLICY") == "1":
++            return f"ipc://{os.environ['E09_IPC_DIR']}/{self.report_device_id()}.sock"
+@@ -1904,0 +1929,3 @@ class DTensorPolicyWorker:
++        if os.environ.get("E09_CONTROL_DIR") and optimizer_path:
++            from runtime_audit import save_rng_and_verify_reload
++            save_rng_and_verify_reload(self, weights_path, optimizer_path)
