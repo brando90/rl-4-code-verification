@@ -1,0 +1,254 @@
+{
+ "charges_usd_reported_total": 3067.9002,
+ "decision": {
+  "rule": "SUFFICIENT if kept pairs >= 1024 and distinct tasks >= 512; INSUFFICIENT if kept pairs < 300; else PARTIAL; UNRESOLVED when the missing-outcome bounds fall on different sides of a threshold",
+  "unmeasured_cells_total": 42,
+  "verdict": "PARTIAL",
+  "verdict_all_unmeasured_fail": "PARTIAL",
+  "verdict_all_unmeasured_succeed": "PARTIAL"
+ },
+ "declared_cells": 2910,
+ "n_declared_tasks": 970,
+ "n_teachers": 3,
+ "per_teacher": {
+  "anthropic": {
+   "charges_usd_reported": 499.7964,
+   "declared": 970,
+   "failure_taxonomy": {
+    "forbidden_axiom": 0,
+    "kept": 55,
+    "no_example": 0,
+    "no_lean": 893,
+    "no_theorem": 0,
+    "no_typecheck": 9,
+    "unmeasured": 13,
+    "unproved_theorem": 0,
+    "unscored": 0,
+    "vacuous_theorem": 0
+   },
+   "generated_tokens_mean": 6509.471264367816,
+   "incomplete_cells": 26,
+   "kept": 55,
+   "kept_file_tokens_qwen3": {
+    "max": 8661,
+    "mean": 4959.872727272727,
+    "median": 4662,
+    "min": 2624,
+    "n": 55
+   },
+   "kept_pre_screen": 55,
+   "kept_theorems_per_file": {
+    "max": 40,
+    "mean": 20.327272727272728,
+    "median": 19,
+    "min": 10
+   },
+   "kwargs": {
+    "addendum": "vbv1",
+    "benchmark": "rl4cv-e02a-v3-mbpp",
+    "compute_effort": "max",
+    "max_tokens": "128000"
+   },
+   "label": "Claude Fable 5.1 (`anthropic/claude-fable-5-1-no-fallback`, compute_effort max)",
+   "measured": 957,
+   "measured_cell_yield": 0.05747126436781609,
+   "measured_cell_yield_wilson95": [
+    0.04441835672529509,
+    0.07406264529185294
+   ],
+   "missing_outcome_bounds": {
+    "all_unmeasured_fail": 0.05670103092783505,
+    "all_unmeasured_succeed": 0.07010309278350516
+   },
+   "model_error_cells": 870,
+   "observed_yield": 0.05670103092783505,
+   "run_id": "1331991a-17cc-4e56-8c59-eac2b1f65799",
+   "screen_excluded": 0,
+   "selector": "anthropic/claude-fable-5-1-no-fallback",
+   "truncated_cells": 26,
+   "unmeasured": 13,
+   "unmeasured_task_ids": [
+    "mbpp__task_16",
+    "mbpp__task_162",
+    "mbpp__task_182",
+    "mbpp__task_185",
+    "mbpp__task_186",
+    "mbpp__task_187",
+    "mbpp__task_189",
+    "mbpp__task_218",
+    "mbpp__task_240",
+    "mbpp__task_270",
+    "mbpp__task_42",
+    "mbpp__task_61",
+    "mbpp__task_618"
+   ]
+  },
+  "google": {
+   "charges_usd_reported": 568.2427,
+   "declared": 970,
+   "failure_taxonomy": {
+    "forbidden_axiom": 0,
+    "kept": 150,
+    "no_example": 0,
+    "no_lean": 0,
+    "no_theorem": 0,
+    "no_typecheck": 806,
+    "unmeasured": 14,
+    "unproved_theorem": 0,
+    "unscored": 0,
+    "vacuous_theorem": 0
+   },
+   "generated_tokens_mean": 5698.707112970711,
+   "incomplete_cells": 0,
+   "kept": 150,
+   "kept_file_tokens_qwen3": {
+    "max": 14524,
+    "mean": 4146.766666666666,
+    "median": 3635.0,
+    "min": 1646,
+    "n": 150
+   },
+   "kept_pre_screen": 150,
+   "kept_theorems_per_file": {
+    "max": 47,
+    "mean": 14.846666666666666,
+    "median": 13.0,
+    "min": 7
+   },
+   "kwargs": {
+    "addendum": "vbv1",
+    "benchmark": "rl4cv-e02a-v3-mbpp",
+    "max_tokens": "128000",
+    "reasoning_effort": "high",
+    "temperature": "1.0"
+   },
+   "label": "Gemini 4 Argon (`google/gemini-4-argon`, reasoning_effort high, T 1.0)",
+   "measured": 956,
+   "measured_cell_yield": 0.15690376569037656,
+   "measured_cell_yield_wilson95": [
+    0.13522665267554834,
+    0.18132714485889845
+   ],
+   "missing_outcome_bounds": {
+    "all_unmeasured_fail": 0.15463917525773196,
+    "all_unmeasured_succeed": 0.16907216494845362
+   },
+   "model_error_cells": 0,
+   "observed_yield": 0.15463917525773196,
+   "run_id": "2b3e9d64-5dd9-46e4-8e6a-1225c0c31097",
+   "screen_excluded": 0,
+   "selector": "google/gemini-4-argon",
+   "truncated_cells": 0,
+   "unmeasured": 14,
+   "unmeasured_task_ids": [
+    "mbpp__task_29",
+    "mbpp__task_291",
+    "mbpp__task_37",
+    "mbpp__task_371",
+    "mbpp__task_39",
+    "mbpp__task_395",
+    "mbpp__task_398",
+    "mbpp__task_408",
+    "mbpp__task_530",
+    "mbpp__task_531",
+    "mbpp__task_537",
+    "mbpp__task_556",
+    "mbpp__task_605",
+    "mbpp__task_71"
+   ]
+  },
+  "openai": {
+   "charges_usd_reported": 1999.8611,
+   "declared": 970,
+   "failure_taxonomy": {
+    "forbidden_axiom": 0,
+    "kept": 382,
+    "no_example": 0,
+    "no_lean": 0,
+    "no_theorem": 0,
+    "no_typecheck": 573,
+    "unmeasured": 15,
+    "unproved_theorem": 0,
+    "unscored": 0,
+    "vacuous_theorem": 0
+   },
+   "generated_tokens_mean": 5141.179057591623,
+   "incomplete_cells": 0,
+   "kept": 382,
+   "kept_file_tokens_qwen3": {
+    "max": 16168,
+    "mean": 4248.2303664921465,
+    "median": 3940.5,
+    "min": 1345,
+    "n": 382
+   },
+   "kept_pre_screen": 382,
+   "kept_theorems_per_file": {
+    "max": 41,
+    "mean": 14.612565445026178,
+    "median": 12.0,
+    "min": 4
+   },
+   "kwargs": {
+    "addendum": "vbv1",
+    "benchmark": "rl4cv-e02a-v3-mbpp",
+    "max_tokens": "128000",
+    "reasoning_effort": "max"
+   },
+   "label": "GPT-6 Astra (`openai/gpt-6-astra-max`, reasoning_effort max)",
+   "measured": 955,
+   "measured_cell_yield": 0.4,
+   "measured_cell_yield_wilson95": [
+    0.369389579430611,
+    0.43141169147509617
+   ],
+   "missing_outcome_bounds": {
+    "all_unmeasured_fail": 0.3938144329896907,
+    "all_unmeasured_succeed": 0.4092783505154639
+   },
+   "model_error_cells": 0,
+   "observed_yield": 0.3938144329896907,
+   "run_id": "6ecd7da9-46b3-44a1-9f6a-90ab0b1ef483",
+   "screen_excluded": 0,
+   "selector": "openai/gpt-6-astra-max",
+   "truncated_cells": 0,
+   "unmeasured": 15,
+   "unmeasured_task_ids": [
+    "mbpp__task_151",
+    "mbpp__task_16",
+    "mbpp__task_160",
+    "mbpp__task_178",
+    "mbpp__task_192",
+    "mbpp__task_195",
+    "mbpp__task_196",
+    "mbpp__task_211",
+    "mbpp__task_247",
+    "mbpp__task_333",
+    "mbpp__task_550",
+    "mbpp__task_617",
+    "mbpp__task_706",
+    "mbpp__task_71",
+    "mbpp__task_714"
+   ]
+  }
+ },
+ "tokenizer": "/lfs/skampere1/0/brando9/.cache/huggingface/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1/tokenizer.json",
+ "union": {
+  "distinct_tasks_kept": 455,
+  "kept_pairs": 587,
+  "kept_pairs_pre_screen": 587,
+  "overlap": {
+   "all_three": 25,
+   "anthropic&google": 30,
+   "anthropic&openai": 37,
+   "openai&google": 90
+  },
+  "screen_excluded_pairs": 0,
+  "tasks_kept_by_k_teachers": {
+   "1": 348,
+   "2": 82,
+   "3": 25
+  }
+ },
+ "written_utc": "2026-10-09T01:44:55+00:00"
+}
