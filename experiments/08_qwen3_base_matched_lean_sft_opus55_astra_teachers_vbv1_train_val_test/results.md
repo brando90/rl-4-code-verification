@@ -4,9 +4,9 @@
 
 **TLDR:** The VeriBench V1 train / validation / test split (539 / 135 / 222 tasks, D-013) and the zero-call baselines are done. On the new validation split, Qwen3 Base's `kernel_binary` mixed-group share at G = 8 is 0.000 (1.7B), 0.022 (4B) and 0.000 (8B), all below the 0.05 gate. The SNAP worker has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity); lock 1 and the live teacher preflight are next.
 
-**Status:** RUNNING (recovered after the skampere1 reboot of 10-08-2026 15:34 PDT; 1.7B and 4B SFT complete with validation rungs 12.5 / 25 / 50 % scored and 75 % rescoring; 8B and 14B SFT restarted from Base on GPUs 0–3 / 4–7; no selection yet)
+**Status:** RUNNING under the serialized orchestrator `expt_v1/scripts/pipeline_e08.py` (tmux `rl4cv-e08-pipeline`, guarded by the cron watchdog; started 10-08-2026 17:09 PDT): 1.7B and 4B SFT complete with validation rungs 12.5–75 % scored (1.7B) and 12.5–50 % scored + 75 % finishing (4B); the 100 % rungs are dispatched by the orchestrator; 8B SFT training on GPUs 0–3; 14B SFT waits for 8B's verified exports and all 8 idle devices (GPUs 4–5 currently hold another user's processes); selection runs only when all 20 rungs and Base 14B are valid; no selection yet
 
-**Last updated:** 10-08-2026 17:07 PDT (pipeline: validation ladder table)
+**Last updated:** 10-08-2026 17:09 PDT (worker: serialized continuation handed to the orchestrator)
 
 ## Phases
 
@@ -19,9 +19,9 @@
 | Teacher runs (4,312 cells) | DONE (10-08-2026): 4,312 / 4,312 terminal; measured 3,827; kept 2,004; charges 5,111.94 USD | `expt_v1/results/runs_state.json`, `results/receipts/preflight/` |
 | Scoring, screen, SFT set S | DONE (10-08-2026): |S| = 1315 over 476 tasks, 5.75M assistant tokens | `expt_v1/results/scored_cells.jsonl`, `generated_lean_screen.json`, `sft_set_manifest.csv`, `sft_set_stats.json`, `teacher_analysis.json` |
 | Lock 2 preflight and lock | DONE (10-08-2026): lock 2 at `d1c101a` (lock commit `9995821`); dry run PASS (val loss on the fixed 16 examples 0.6283 → 0.5886, loss tokens = rendered spans, export loads in vLLM); framework NeMo RL | `expt_v1/results/sft_schedule.json`, `sft_config_diff.md`, `dry_run_e08.json` |
-| Matched SFT, 4 sizes × 5 checkpoints | IN PROGRESS: 1.7B and 4B DONE (658 steps each, 5 rungs exported, token logs on schedule); 8B (GPUs 0–3) and 14B (GPUs 4–7) restarted from Base after the reboot (8B had no checkpoint yet) | `expt_v1/results/train_logs/sft_{1p7B,4B}_steps.csv`, `$WORK/ckpt/<size>/` (host) |
-| Validation ladder and selection | IN PROGRESS: Base 14B DONE; 1.7B and 4B rungs 12.5 / 25 / 50 % scored (1,080 / 1,080 cells each), 75 % generated (1,080 rows) and rescoring the interrupted shards, 100 % not generated; 8B / 14B after their SFT; selection only when all four sizes are complete | `expt_v1/results/validation_ladder_base14b.json`, `expt_v1/results/ladder_manifest.json`, host `$WORK/ladder/validation/` |
-| Test evaluation | PENDING | — |
+| Matched SFT, 4 sizes × 5 checkpoints | IN PROGRESS: 1.7B and 4B DONE (658 steps each, 5 rungs exported, token logs on schedule); 8B training on GPUs 0–3 (restarted from Base after the reboot); 14B queued by the orchestrator for all 8 devices (TP 8) once 8B's exports and training log validate and no inference stage holds a device lease | `expt_v1/results/train_logs/sft_{1p7B,4B}_steps.csv`, `$WORK/ckpt/<size>/` (host) |
+| Validation ladder and selection | IN PROGRESS (orchestrator-owned): Base 14B DONE; 1.7B rungs 12.5–75 % and 4B rungs 12.5–50 % valid (1,080 / 1,080 scored cells and 8 complete shards each); 4B 75 % finishing its interrupted shards; 100 % rungs dispatched as devices free; 8B / 14B rungs after their verified exports; selection (`selection.json`, committed before any test generation) only when all 20 rungs and Base 14B are valid and all four training logs match the schedule; live table below | `expt_v1/results/validation_ladder_base14b.json`, `expt_v1/results/ladder_manifest.json`, host `$WORK/ladder/validation/` |
+| Test evaluation | PENDING (orchestrator: test manifest frozen from the committed selection → generation → kernel factors → judge route controls → D-102 judging → `analyze_test.py`) | — |
 
 ## D-013 split
 
