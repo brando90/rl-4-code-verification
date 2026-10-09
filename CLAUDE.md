@@ -10,6 +10,15 @@ This file holds the project rules for **rl-4-code-verification** for every agent
 - **Paper:** "Which Environments Should LLMs Learn From? Predicting RL Utility Across Scale".
 - **Plans and decisions:** `docs/PLAN.md` holds the plan; `docs/DECISIONS.md` holds the decisions, including the open ones only Brando can make.
 
+## Related systems: AlphaApollo and AlphaDiana
+
+These are Zhanke ("Andrew") Zhou's agent systems; Brando co-authored both. Details, papers and sources are in `docs/related_work/README.md`.
+
+- **AlphaApollo solves.** It runs a model with tools, applies turn-level RL and refines answers in a propose–judge–update loop with memory ([arXiv:2510.06261](https://arxiv.org/abs/2510.06261); the PDF is in `docs/related_work/`).
+- **AlphaDiana measures.** Its harness-aware evaluation runs the same benchmark across models × harnesses (DirectLLM, OpenClaw, OpenCode, ZeroClaw), with full traces and failure attribution ([github.com/tmlr-group/AlphaDiana](https://github.com/tmlr-group/AlphaDiana)).
+- **Hebe (planned) improves.** It would edit Apollo's model or harness using Diana's measurements. Our factorized smooth scores (SCSC/SCS4CV, SCS4C) are the proposed signal. Experiments 04, 06 and 07 test whether they track or improve pass@1 on VeriBench and SWE-bench.
+- **Their quick starts put provider keys in `.env`.** Here, model calls still follow D-108 (Valkyrie) or D-101 (self-hosted).
+
 ## Scientific integrity
 
 - **VeriBench V1's test split is held out (D-013, Brando, 10-07-2026).** `rl4cv.splits` splits VeriBench V1 into train 539, validation 135 and test 222. The manifest is in `experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/split/`. Near-duplicates and security safe/vulnerable pairs never straddle splits.

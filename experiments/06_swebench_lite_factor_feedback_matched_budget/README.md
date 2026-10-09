@@ -43,7 +43,7 @@ expt_v1/scripts/               deterministic preparation and analysis
 expt_v1/results/               published manifests and result receipts
 ```
 
-Dependencies are the pinned SWE-bench harness and dataset, isolated Docker execution, authenticated subscription command-line model access, and a verified public-only feedback path. No Qwen evaluation result is required. The existing experiment04 worker and Qwen worker retain their own checkouts and jobs.
+Dependencies are the pinned SWE-bench harness and dataset, isolated Docker execution, verified Vals-funded Valkyrie model access, and a verified public-only feedback path. No Qwen evaluation result is required. The existing experiment04 worker and Qwen worker retain their own checkouts and jobs.
 
 | Stage | Status | Evidence |
 |---|---|---|
@@ -55,6 +55,8 @@ Dependencies are the pinned SWE-bench harness and dataset, isolated Docker execu
 | Proposed 24-task test confirmation | Planned | New frozen version after validation |
 | Environment scaling or reinforcement learning | Planned | Separate forecast and training budget required |
 
-See [live results](results.md), [protocol](PROTOCOL.md) and [execution prompt](expt_v1/cc.md).
+See [live results](results.md), the [version-3 protocol](expt_v3/PROTOCOL.md) and [current execution prompt](expt_v3/cc.md).
 
-The bounded version 2 execution has ended. [Version 3](expt_v3/README.md) is a concrete proposal, with zero current additional call admission. It retains the eight-task validation panel and requests a new explicit resource/call envelope before repairing environments or generating new checks. No owned experiment is currently running.
+The bounded version-2 execution has ended. Brando authorized [version 3](expt_v3/README.md) on 10-08-2026. Implementation and one Claude Fable 5.1 maximum-effort review are complete; review corrections passed deterministic verification. A dedicated root-backed runtime is provisioned on skampere2. The actual bounded evaluator backend, shared resource ledger, executable freeze and Vals-funded response route remain prerequisites for measured execution; no version-3 control or response has been measured.
+
+The factor interpretation remains central: compare equal-budget repair with ordinary logs, the aggregate alone, and the aggregate plus its component vector. The retrospective ranking result in experiment07 does not determine this actionability result. Brando reiterated on 10-08-2026 that the score is both partial-credit and decomposed, with the latter intended to guide development decisions (meeting record: `experiments/meetings/oct_7_2026/transcription.md`).

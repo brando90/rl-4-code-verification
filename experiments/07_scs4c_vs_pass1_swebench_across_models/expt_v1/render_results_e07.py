@@ -71,7 +71,7 @@ def h2_table(h2: dict) -> list[str]:
         p = r["delta_p05_p95"]
         rows.append(f"| {r['n_A']} | {r['n_B']} | {r['defined']}/{r['splits']} | {f3(r['delta_median'])} | "
                     f"{'undefined' if p is None else f'[{p[0]:+.3f}, {p[1]:+.3f}]'} | {r['positive_splits']} | "
-                    f"{'undefined' if r['share_delta_positive'] is None else f'{r['share_delta_positive']:.3f}'} | "
+                    f"{'undefined' if r['share_delta_positive'] is None else format(r['share_delta_positive'], '.3f')} | "
                     f"{f3(r['spearman_scs4c_A_vs_pass1_B_median'])} | {f3(r['spearman_pass1_A_vs_pass1_B_median'])} |")
     return rows
 

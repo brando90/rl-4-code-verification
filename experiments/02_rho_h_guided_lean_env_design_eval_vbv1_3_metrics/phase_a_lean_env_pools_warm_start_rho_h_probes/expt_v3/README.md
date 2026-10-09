@@ -65,7 +65,7 @@ Draft; the exact teacher agents, prompt bytes and scoring adapter are fixed in `
 |---|---|
 | Design | Done (10-07-2026), one Codex light-QA round, 7 findings fixed |
 | D-108 exception (single-call teachers) | Approved by Brando 10-07-2026 ([D-014](../../../../docs/DECISIONS.md)) |
-| Protocol lock | Pending (after the preflight) |
-| Source build and screens | Pending |
-| Teacher runs | Pending |
-| Scoring, analysis, verdict | Pending |
+| Protocol lock | Locked 10-08-2026 00:09 UTC at commit `879eefbb…` |
+| Source build and screens | Done 10-07-2026: 970 of 974 MBPP tasks, 0 screen hits |
+| Teacher runs | Done 10-08-2026: 3 × 970 cells; unmeasured 13 / 15 / 14 (anthropic / openai / google) |
+| Scoring, analysis, verdict | Done 10-09-2026: **PARTIAL**, 587 kept pairs over 455 tasks (anthropic 55 / openai 382 / google 150); see [results.md](results.md) |

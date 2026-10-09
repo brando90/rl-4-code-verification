@@ -61,9 +61,15 @@ def main() -> None:
     if tok_path:
         from tokenizers import Tokenizer
         tokenizer = Tokenizer.from_file(tok_path)
+    # A cell is measured when a model response arrived (agent status measured / incomplete / model_error). A cell whose single
+    # request timed out with no response (`unmeasured_infra`) or that never produced a receipt is unmeasured: it stays in the
+    # denominator, is reported in the taxonomy as `unmeasured`, and is never counted as a model failure.
+    UNMEASURED_STATUSES = {"unmeasured_infra", "missing", None}
     by_teacher: dict[str, list[dict]] = defaultdict(list)
     for r in rows:
         if r["task_id"] in declared_set:
+            if r.get("status") in UNMEASURED_STATUSES:
+                r = dict(r, served=False, failure_class="unmeasured")
             by_teacher[r["teacher"]].append(r)
     per_teacher, kept_pairs_pre, kept_pairs_post = {}, [], []
     for t in TEACHER_ORDER:
@@ -97,7 +103,10 @@ def main() -> None:
             "measured_cell_yield_wilson95": [lo, hi] if n_meas else None,
             "missing_outcome_bounds": {"all_unmeasured_fail": n_kept / n_declared, "all_unmeasured_succeed": (n_kept + n_unm) / n_declared},
             "failure_taxonomy": {k: classes.get(k, 0) for k in CLASSES},
-            "truncated_cells": sum(1 for c in cells if c.get("truncated")),
+            # Output-limit truncations among cells that returned content (a provider `model_error` is counted under no_lean, not here).
+            "truncated_cells": sum(1 for c in cells if c.get("truncated") and c.get("status") in ("measured", "incomplete")),
+            "model_error_cells": sum(1 for c in cells if c.get("status") == "model_error"),
+            "incomplete_cells": sum(1 for c in cells if c.get("status") == "incomplete"),
             "kept_file_tokens_qwen3": {"n": len(lengths), "mean": statistics.fmean(lengths) if lengths else None, "median": statistics.median(lengths) if lengths else None,
                                        "min": min(lengths) if lengths else None, "max": max(lengths) if lengths else None},
             "kept_theorems_per_file": {"mean": statistics.fmean(n_thms) if n_thms else None, "median": statistics.median(n_thms) if n_thms else None,
@@ -150,12 +159,12 @@ def main() -> None:
     for cls in CLASSES:
         md.append(f"| {cls} | " + " | ".join(str(per_teacher[t]["failure_taxonomy"][cls]) for t in TEACHER_ORDER) + " |")
     md.append("")
-    md.append("| Teacher | Kept files | Qwen3 tokens mean / median / min / max | Theorems per kept file mean / median / min / max | Truncated cells |")
-    md.append("|---|---|---|---|---|")
+    md.append("| Teacher | Kept files | Qwen3 tokens mean / median / min / max | Theorems per kept file mean / median / min / max | Non-clean finish among responded cells | Provider model_error cells | Incomplete cells |")
+    md.append("|---|---|---|---|---|---|---|")
     for t in TEACHER_ORDER:
         p, L, T = per_teacher[t], per_teacher[t]["kept_file_tokens_qwen3"], per_teacher[t]["kept_theorems_per_file"]
         md.append(f"| {t} | {p['kept']} | " + (f"{L['mean']:.0f} / {L['median']:.0f} / {L['min']} / {L['max']}" if L["n"] else "n/a")
-                  + " | " + (f"{T['mean']:.2f} / {T['median']} / {T['min']} / {T['max']}" if T["mean"] is not None else "n/a") + f" | {p['truncated_cells']} |")
+                  + " | " + (f"{T['mean']:.2f} / {T['median']} / {T['min']} / {T['max']}" if T["mean"] is not None else "n/a") + f" | {p['truncated_cells']} | {p['model_error_cells']} | {p['incomplete_cells']} |")
     a.md_out.write_text("\n".join(md) + "\n", encoding="utf-8")
     print(json.dumps({"kept_pairs": n_pairs, "distinct_tasks": n_tasks, "verdict": verdict, "per_teacher_kept": {t: per_teacher[t]["kept"] for t in TEACHER_ORDER},
                       "unmeasured": {t: per_teacher[t]["unmeasured"] for t in TEACHER_ORDER}, "charges": out["charges_usd_reported_total"]}))
