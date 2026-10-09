@@ -1,8 +1,8 @@
-# Fathom transcript: Apollo–Diana–Hippie self-improvement loop call (10-08-2026)
+# Fathom transcript: Apollo–Diana–Hebe self-improvement loop call (10-08-2026)
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/meetings/oct_7_2026/transcription.md>
 
-**TLDR:** The full verbatim Fathom transcript of Brando's in-person whiteboard meeting about the Apollo (solve) → Diana (measure) → Hippie (improve) loop, factorized metrics and regressions. Fathom returned it as one segment that starts at 00:08 and labels every word "Brando Miranda", so the several speakers are not separated. The meeting page with provenance is [oct_7_2026.md](oct_7_2026.md).
+**TLDR:** The full verbatim Fathom transcript of Brando's in-person whiteboard meeting about the Apollo (solve) → Diana (measure) → Hebe (improve) loop, factorized metrics and regressions. Fathom returned it as one segment that starts at 00:08 and labels every word "Brando Miranda", so the several speakers are not separated. The meeting page with provenance is [oct_7_2026.md](oct_7_2026.md).
 
 - **Recording:** [Fathom share link](https://fathom.video/share/EaKRV6S18oFxvrqwg7qCR4u4Jr3fkvJp) · call <https://fathom.video/calls/855071170> · recording_id 191183027 · Fathom title "Impromptu Call".
 - **Speech recognition:** Fathom's spellings are kept, for example "VariBench"/"VaryBench" for VeriBench and "sweep bench"/"SweetBench"/"SreeBench" for SWE-bench.

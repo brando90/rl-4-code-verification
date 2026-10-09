@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/docs/related_work/README.md>
 
-**TLDR:** AlphaApollo and AlphaDiana are agent systems from Zhanke ("Andrew") Zhou's TMLR Group at Hong Kong Baptist University, and Brando co-authored both. AlphaApollo *solves*: it runs a model with tools, applies turn-level RL and refines answers in a propose–judge–update loop. AlphaDiana *measures*: it runs one benchmark across swappable models and harnesses and records full traces. A planned third system, Hippie, would *improve* Apollo from Diana's measurements. This repository's factorized smooth scores (SCSC, also called SCS4CV, and SCS4C) are Brando's proposal for the signal that tells Hippie what to fix.
+**TLDR:** AlphaApollo and AlphaDiana are agent systems from Zhanke ("Andrew") Zhou's TMLR Group at Hong Kong Baptist University, and Brando co-authored both. AlphaApollo *solves*: it runs a model with tools, applies turn-level RL and refines answers in a propose–judge–update loop. AlphaDiana *measures*: it runs one benchmark across swappable models and harnesses and records full traces. A planned third system, Hebe, would *improve* Apollo from Diana's measurements. This repository's factorized smooth scores (SCSC, also called SCS4CV, and SCS4C) are Brando's proposal for the signal that tells Hippie what to fix.
 
 Sources checked on 10-08-2026. Zhou's homepage is <https://andrewzhou924.github.io/>.
 
@@ -31,11 +31,11 @@ Sources checked on 10-08-2026. Zhou's homepage is <https://andrewzhou924.github.
   - **Failure attribution:** each trajectory's success or failure is attributed to reasoning, tool use, execution, state, budget, recovery or verification. These are semantic labels, not numeric factors.
   - **Reporting:** Pass@k and Avg@k with the configured sample count; compare only rows with the same runtime and evaluation contract.
 
-## Hippie: improve (planned)
+## Hebe: improve (planned)
 
-Source: the [10-08-2026 meeting](../../experiments/meetings/oct_7_2026/oct_7_2026.md). Fathom spells the name "Alpha Hippie"; the correct spelling is unconfirmed.
+Source: the [10-08-2026 meeting](../../experiments/meetings/oct_7_2026/oct_7_2026.md). The [whiteboard photo](../../experiments/meetings/oct_7_2026/self_improving_with_factored_decomposed_smooth_metric_meeting_pic.jpeg) writes the improver as "f_Hebe" (an improver model, Qwen3.6 30B A3B); Fathom transcribed the name as "Alpha Hippie" and "Hibi".
 
-- **Loop:** Apollo produces trajectories, Diana measures them, and Hippie edits either the model (post-training, for example Brando's coauthored [CoDaPO](https://arxiv.org/abs/2606.07950), ICML 2026) or the harness code.
+- **Loop:** Apollo produces trajectories, Diana measures them, and Hebe edits either the model (post-training, for example Brando's coauthored [CoDaPO](https://arxiv.org/abs/2606.07950), ICML 2026) or the harness code.
 - **Open problems raised:**
   - Localizing an error to the model or to the harness.
   - Regressions: an edit that fixes some tasks breaks others.

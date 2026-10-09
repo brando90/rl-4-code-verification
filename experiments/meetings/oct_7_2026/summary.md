@@ -1,8 +1,8 @@
-# Fathom AI summary: Apollo–Diana–Hippie self-improvement loop call (10-08-2026)
+# Fathom AI summary: Apollo–Diana–Hebe self-improvement loop call (10-08-2026)
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/meetings/oct_7_2026/summary.md>
 
-**TLDR:** Fathom's own AI summary of the meeting, verbatim. It covers the proposed Apollo → Diana → Alpha Hippie loop, Brando's factorized geometric-mean metric for localizing errors, and accepting only edits that regress no task. It is Fathom's paraphrase; the [transcript](transcription.md) is the primary record.
+**TLDR:** Fathom's own AI summary of the meeting, verbatim. It covers the proposed Apollo → Diana → Hebe loop (Fathom: "Alpha Hippie"), Brando's factorized geometric-mean metric for localizing errors, and accepting only edits that regress no task. It is Fathom's paraphrase; the [transcript](transcription.md) is the primary record.
 
 - **Verbatim check:** 5603 bytes, sha256 `d5a5941ebf65902f8c8b7ba69a77313350d320f904e7575fd48bc81c72864483`.
 
