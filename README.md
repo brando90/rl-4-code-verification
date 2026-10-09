@@ -21,6 +21,7 @@ Details: [docs/PLAN.md](docs/PLAN.md).
 ([docs/FACTS_veribench_baselines.md](docs/FACTS_veribench_baselines.md))
 
 - **Small models are unmeasured.** No model at or below 14B has ever been evaluated on VeriBench. The smallest Qwen solver run (Qwen3.6-27B) scored SCSC 0.002, because almost none of its output compiled.
+- **Version names.** VBV1 is the original VeriBench (896 tasks), VBV2 the private VeriSoftBench-derived tasks, and VBV3 VeriBench-Infinity (`brando90/veribench-dt`); the full glossary is in `CLAUDE.md`.
 - **Frontier agents are nearly saturated on the kernel factors.** They score IC_tests and IC_proofs of about 0.98–1.0 on VeriBench V1. FSC is their lowest factor (0.90–0.96 raw, lower on VBV2).
 - **The FSC judge is lenient.** It is lenient on partial coverage, and it scores files that do not compile. FSC is therefore always gated on compilation here.
 

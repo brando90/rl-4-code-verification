@@ -16,7 +16,7 @@ These are Zhanke ("Andrew") Zhou's agent systems; Brando co-authored both. Detai
 
 - **AlphaApollo solves.** It runs a model with tools, applies turn-level RL and refines answers in a propose–judge–update loop with memory ([arXiv:2510.06261](https://arxiv.org/abs/2510.06261); the PDF is in `docs/related_work/`).
 - **AlphaDiana measures.** Its harness-aware evaluation runs the same benchmark across models × harnesses (DirectLLM, OpenClaw, OpenCode, ZeroClaw), with full traces and failure attribution ([github.com/tmlr-group/AlphaDiana](https://github.com/tmlr-group/AlphaDiana)).
-- **Hebe (planned) improves.** It would edit Apollo's model or harness using Diana's measurements. Our factorized smooth scores (SCSC/SCS4CV, SCS4C) are the proposed signal. Experiments 04, 06 and 07 test whether they track or improve pass@1 on VeriBench and SWE-bench.
+- **Hebe improves** (in development, private `AndrewZhou924/AlphaHebe-dev`, cloned at `~/AlphaHebe-dev`). It edits Apollo's model or harness using Diana's measurements and promotes an edit only after an independent held-out check. Our factorized smooth scores (SCSC/SCS4CV, SCS4C) are the proposed signal. Experiments 04, 06 and 07 test whether they track or improve pass@1 on VeriBench and SWE-bench; 10 and 11 test whether the per-item factor matrix guides Hebe's feedback and promotion.
 - **Their quick starts put provider keys in `.env`.** Here, model calls still follow D-108 (Valkyrie) or D-101 (self-hosted).
 
 ## Scientific integrity
@@ -28,6 +28,7 @@ These are Zhanke ("Andrew") Zhou's agent systems; Brando co-authored both. Detai
   - Experiments locked before D-013 (01–07, 02A v3) keep their recorded rule: all of VeriBench held out.
   - Every training pool passes the exact-hash and word-5-gram screens in `docs/DATASETS.md` (`rl4cv.screens`) before use, against at least the validation and test splits for protocols adopting D-013; older locked protocols still screen against all 896 tasks.
   - HumanEval-derived external data is excluded (it overlaps VeriBench `humaneval_set`). VeriSoftBench-derived data is excluded whenever VBV2 is a panel.
+- **VeriBench versions (Brando, 10-09-2026).** VBV1 is the original VeriBench (`brando90/veribench`: 896 Python-to-Lean tasks, core 614 plus IndustrySet 282). VBV2 is the private VeriSoftBench-derived task set built in VeriBench experiments 91 and 97 (VBV2.1 is experiment 99). VBV3 is VeriBench-Infinity (`brando90/veribench-dt`, paper `paper_latex/ICLR_2027_VeriBench_Infty/`). It has 24 source tasks with correct and intentionally incorrect Python variants, three frozen agent stages and kernel-checked comparison against the gold reference. Name the version beside every VeriBench number.
 - **VeriBench numbers follow VeriBench's evaluation rules.**
   - SCSC = (IC_tests · IC_proofs · FSC)^(1/3) is the only aggregate, always shown with its three factors and n. For new official summaries, D-009 uses the geometric mean of the three factor means on one common measured cohort; mean per-file SCSC is diagnostic only. Core 614 and IndustrySet 282 are reported separately (on the D-013 test split: core 152, IndustrySet 70).
   - Scoring uses the pinned frozen scorer (`external/deps.lock.json`: `veribench_scorer`) with `--skip-tc`.

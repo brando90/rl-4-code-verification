@@ -1,0 +1,105 @@
+{
+  "automation": {
+    "confirmed_utc": "2026-10-09T18:54:04.161000+00:00",
+    "id": "overnight-factored-score-learning",
+    "prompt_and_schedule_preserved": true,
+    "report_published_first": true,
+    "requested_after_publication": "PAUSED",
+    "status": "PAUSED"
+  },
+  "kind": "parent_final_overnight_observation_not_scientific_completion",
+  "learning": {
+    "former_owned_processes_absent": true,
+    "optimizer_updates": 0,
+    "published_aligned_artifacts_verified": 6,
+    "registered_children": 0,
+    "relaunch_authorized": false,
+    "released_leases": 9,
+    "scientific_completion": false,
+    "status": "FAILED_TECHNICAL_GATE",
+    "task_watch_cron_entries": 0,
+    "total_leases": 9
+  },
+  "observations_pdt": {
+    "learning_cleanup": "10-09-2026 11:46 PDT",
+    "repair_cleanup": "10-09-2026 11:48 PDT",
+    "warm_start": "10-09-2026 11:43-11:50 PDT"
+  },
+  "post_pause_observation": {
+    "14B": "waiting_gpu",
+    "observed_utc": "2026-10-09T18:54:20.602825+00:00",
+    "pipeline_alive": true,
+    "pipeline_last_tick_utc": "2026-10-09T18:54:13+00:00",
+    "pipeline_pid": 3371983,
+    "remote_study_preserved": true,
+    "selection": "pending (15/20 rungs valid)",
+    "watchdog_last_check_utc": "2026-10-09T18:45:03Z"
+  },
+  "published_input_sha256": {
+    "experiments/06_swebench_lite_factor_feedback_matched_budget/expt_v3/results/supervision_blocked_10-08-2026.json": "0a006015aa420bcbbb6ffe32bf92468c1219cced7bda23236618e16863b080a0",
+    "experiments/09_qwen3_1p7b_grpo_scsc_scalar_vs_factor_feedback_vbv1_d013/expt_v1/results/technical_gate.json": "29adc8bc70d7fc990e7092a1592a388d7273987db217f9fe46b77cdbbf518d52",
+    "experiments/09_qwen3_1p7b_grpo_scsc_scalar_vs_factor_feedback_vbv1_d013/expt_v1/results/terminal_receipt.json": "71122b95d8ba2691ff04e7faa09bb9859f44bce3f50e8bdc18fc10f493514ef8"
+  },
+  "remote_receipt_sha256": {
+    "skampere1:/lfs/skampere1/0/brando9/rl4cv_e08/overnight_final_observation_blocked_10-09-2026.json": "ad389dfdf44a4914e10dac8bd3027317fc3343ac91267a2433446c22826b5024",
+    "skampere1:/lfs/skampere1/0/brando9/rl4cv_e08/overnight_final_observation_dispatch_10-09-2026.json": "9622c7a492f93b6c7948099cd6de164b9c1960c4c101a24ae704c1ce5520301e",
+    "skampere1:/lfs/skampere1/0/brando9/rl4cv_e08/pipeline/state.json": "3be7c5506e14af131ca9c735e1e9b056c15e6785e01f116fe135f012e0f9bb95",
+    "skampere1:/lfs/skampere1/0/brando9/rl4cv_e08/watchdog/status.json": "7a4a0784da6304362ad723eaaee0cd7e6dab5f4b23ec490beb856db52aab9de3"
+  },
+  "repair": {
+    "active_owned_jobs_containers_observers": 0,
+    "archive_files": 23,
+    "archive_sha256": "cc6c35bb5cd888925d9813de56af9b529ca8525a2d4d711e43b91c0a2ac0d4d1",
+    "author_calls_declared": 8,
+    "author_calls_measured": 0,
+    "launch_limit": 3,
+    "launches_used": 3,
+    "official_controls_declared": 16,
+    "official_controls_measured": 0,
+    "original_deadline_pdt": "10-09-2026 10:50 PDT",
+    "relaunch_authorized": false,
+    "solver_cells_declared": 56,
+    "solver_cells_measured": 0,
+    "status": "BLOCKED_BEFORE_ADMISSION"
+  },
+  "report_cutoff_pdt": "10-09-2026 11:13:36 PDT",
+  "report_publication_commit": "a99e681ebd2fc9d4cea85b21a9f17fa0584558e3",
+  "source_main_commit": "d413f507e1c777e772dfd1ea8d7e6a1b8dbacf68",
+  "validation": {
+    "accounting_join": "asserted full declared cells, manifest/source hashes, unique keys and blank unknowns",
+    "repository_tests_passed": 162,
+    "repository_tests_seconds": 16.58,
+    "repository_tests_skipped": 4
+  },
+  "warm_start": {
+    "accounting": "warm_start_accounting.json",
+    "brief_sha256": "03506521211095ad6934196f3133627747aee89d4f27e923d116ce02f5ddb9dc",
+    "compute_children": 0,
+    "free_devices": [
+      1
+    ],
+    "live_leases": 0,
+    "new_owner_or_model_launched": false,
+    "overall_study_device_hour_cap": null,
+    "overall_study_wall_time_cap": null,
+    "owner_acknowledgment": false,
+    "owner_effort": "high",
+    "owner_first_useful_action_verified": false,
+    "owner_full_access": true,
+    "owner_handoff_error": "You're out of usage credits. /model to switch models.",
+    "owner_handoff_status": "OWNER_ALLOWANCE_BLOCKED_BEFORE_ACK",
+    "owner_model": "claude-fable-5-1",
+    "owner_pid": 147453,
+    "owner_session": "d3968eac-37d1-4b77-b339-a69389689c9c",
+    "pipeline_last_tick_utc": "2026-10-09T18:50:01+00:00",
+    "pipeline_pid": 3371983,
+    "pipeline_watchdog_preserved": true,
+    "required_devices": 8,
+    "selection_admitted": false,
+    "study_preserved": true,
+    "test_runtime_files": 0,
+    "watchdog_last_check_utc": "2026-10-09T18:45:03Z",
+    "watchdog_state": "running"
+  },
+  "written_utc": "2026-10-09T18:52:21.719796+00:00"
+}

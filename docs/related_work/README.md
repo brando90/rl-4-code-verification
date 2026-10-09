@@ -31,9 +31,9 @@ Sources checked on 10-08-2026. Zhou's homepage is <https://andrewzhou924.github.
   - **Failure attribution:** each trajectory's success or failure is attributed to reasoning, tool use, execution, state, budget, recovery or verification. These are semantic labels, not numeric factors.
   - **Reporting:** Pass@k and Avg@k with the configured sample count; compare only rows with the same runtime and evaluation contract.
 
-## Hebe: improve (planned)
+## Hebe: improve (in development)
 
-Source: the [10-08-2026 meeting](../../experiments/meetings/oct_7_2026/oct_7_2026.md). The [whiteboard photo](../../experiments/meetings/oct_7_2026/self_improving_with_factored_decomposed_smooth_metric_meeting_pic.jpeg) writes the improver as "f_Hebe" (an improver model, Qwen3.6 30B A3B); Fathom transcribed the name as "Alpha Hippie" and "Hibi".
+Code: private [`AndrewZhou924/AlphaHebe-dev`](https://github.com/AndrewZhou924/AlphaHebe-dev) (Brando has push and triage access; checked at `f89294e`, 09-18-2026). It optimizes agent artifacts (prompts, workflows, harness source) with bounded mutation, keeps search feedback separate from an independent held-out promotion check, and records every version; it runs AlphaDiana-dev as a pinned submodule (`3bdbb66`) and uses AlphaApollo-v3-dev only for optional SFT/GRPO. Today it promotes on any scalar improvement (`control/promotion.py`) and gives optimizers one score per task (`integrations/diana/search_feedback.py`). Source: the [10-08-2026 meeting](../../experiments/meetings/oct_7_2026/oct_7_2026.md). The [whiteboard photo](../../experiments/meetings/oct_7_2026/self_improving_with_factored_decomposed_smooth_metric_meeting_pic.jpeg) writes the improver as "f_Hebe" (an improver model, Qwen3.6 30B A3B); Fathom transcribed the name as "Alpha Hippie" and "Hibi".
 
 - **Loop:** Apollo produces trajectories, Diana measures them, and Hebe edits either the model (post-training, for example Brando's coauthored [CoDaPO](https://arxiv.org/abs/2606.07950), ICML 2026) or the harness code.
 - **Open problems raised:**
@@ -50,6 +50,8 @@ Source: the [10-08-2026 meeting](../../experiments/meetings/oct_7_2026/oct_7_202
 |---|---|
 | Does a factorized smooth score track the downstream metric (pass@1) across systems, and does its partial credit carry extra signal? | [07_scs4c_vs_pass1_swebench_across_models](../../experiments/07_scs4c_vs_pass1_swebench_across_models/README.md) (phase A: public SWE-bench Verified logs; phases B–C: a gold-patch differential factor on SWE-Bench Pro Verified and SCS4C as an RL reward) |
 | Does decomposed feedback improve real issue resolution at a fixed repair budget? | [06_swebench_lite_factor_feedback_matched_budget](../../experiments/06_swebench_lite_factor_feedback_matched_budget/README.md) |
+| With zero model calls, does a per-item factor matrix predict held-out regressions beyond pass/fail, and does a factor-matrix promotion gate beat AlphaHebe's scalar gate? | [10_hebe_promotion_gate_scalar_vs_factor_matrix_replay_swebench_verified_logs](../../experiments/10_hebe_promotion_gate_scalar_vs_factor_matrix_replay_swebench_verified_logs/README.md) |
+| In the live AlphaHebe loop, do factor feedback and a non-regression gate improve the self-improved harness (2×2)? | [11_hebe_gepa_factor_feedback_and_nonregression_gate_2x2_swebench_verified](../../experiments/11_hebe_gepa_factor_feedback_and_nonregression_gate_2x2_swebench_verified/README.md) |
 | Does access to VeriBench's three SCSC factors improve repair or training decisions? | [04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2](../../experiments/04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/README.md) |
 
 How the vocabularies line up:
