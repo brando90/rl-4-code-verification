@@ -132,3 +132,45 @@ def test_argument_arrays_and_field_suffixes():
     from adapter_e12 import atom_at
     assert atom_at('#[1, 2].toList 7',0)==('#[1, 2].toList',14)
     assert atom_at('[1, 2].reverse 7',0)==('[1, 2].reverse',14)
+
+
+def test_literal_input_fixture_is_preserved_as_data_not_mapped_as_code():
+    source='''def f (xs : List Nat) : Nat := xs.length
+def graph : List Nat := [1, 2, 3]
+example : f graph = 3 := by decide
+'''
+    suite=extract(source)
+    assert suite['n_tests']==1 and suite['tests'][0]['statement']=='f ([1, 2, 3]) = 3'
+    assert [s['full_name'] for s in suite['symbols']]==['f']
+    assert suite['tests'][0]['statement_before_fixture_expansion']=='f graph = 3'
+    assert suite['literal_input_fixtures']=={'graph':'[1, 2, 3]'}
+
+
+def test_expected_alias_and_nonliteral_function_body_are_not_expanded():
+    source='''def f (x : Nat) : Nat := x
+def expected : Nat := 2
+def computed : Nat := 1 + 1
+example : f 2 = expected := rfl
+example : f computed = 2 := rfl
+'''
+    suite=extract(source)
+    assert not suite['literal_input_fixtures']
+    assert len(suite['symbols'])==3
+
+
+def test_constant_under_direct_test_is_not_treated_as_input_fixture():
+    source='''def f (x : Nat) : Nat := x
+def value : Nat := 2
+example : f value = 2 := rfl
+example : value = 2 := rfl
+'''
+    suite=extract(source)
+    assert not suite['literal_input_fixtures']
+
+
+def test_string_mutation_fallback_changes_one_literal_only():
+    from controls_e12 import mutations,remove_propositions
+    source='def f (s : String) : String := ""\nexample : f "x" = "" := rfl\n'
+    suite=extract(source);base=remove_propositions(source);items=list(mutations(base,suite['symbols']))
+    assert len(items)==1 and items[0][1]['fallback']=='string_literal'
+    assert '"e12_mutant"' in items[0][0]

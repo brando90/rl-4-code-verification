@@ -3,14 +3,14 @@ import hashlib
 import json
 from pathlib import Path
 
-from controls_e12 import PHASE, WORK, lean
+from controls_e12_round2 import PHASE, WORK, lean
 from rl4cv.forecast import verify_forecast
 
 
 def main():
-    for name in ('e12_phase_a_forecast', 'e12_phase_a_forecast_amendment_A1'):
+    for name in ('e12_phase_a_forecast', 'e12_phase_a_forecast_amendment_A1', 'e12_phase_a_forecast_amendment_A2'):
         assert verify_forecast(PHASE / 'forecasts' / (name + '.json'))
-    controls = json.loads((PHASE / 'results/controls_e12.json').read_text())
+    controls = json.loads((PHASE / 'results/controls_e12_round2.json').read_text())
     assert controls['complete'] and controls['n_selected'] == 50
     rows = {row['task_id']: row for row in controls['rows']}
     witnesses = []
@@ -45,7 +45,7 @@ def main():
         witness['lean_checks'] = [left, right]
     report = {'witnesses': witnesses, 'compiler_receipt': receipt,
               'probe_sha256': hashlib.sha256(source.encode()).hexdigest(),
-              'controls_sha256': hashlib.sha256((PHASE / 'results/controls_e12.json').read_bytes()).hexdigest(),
+              'controls_sha256': hashlib.sha256((PHASE / 'results/controls_e12_round2.json').read_bytes()).hexdigest(),
               'three_exact_type_ambiguities_confirmed': True,
               'max_recoverable_with_these_three_failures': 47, 'n_tasks': 50,
               'required_recovered_at_95_percent': 48}

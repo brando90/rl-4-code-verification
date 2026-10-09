@@ -107,13 +107,16 @@ def extract(source):
         if not references:reason=reason or 'no_gold_implementation_symbol'
         if reason:excluded.append({**row,'reason':reason});continue
         tests.append({**row,'symbols':references,'symbol_suffixes':suffixes})
+    # Literal fixture aliases are fixed inputs, not implementations to re-point.
+    from fixture_inputs_e12 import expand_fixture_inputs
+    tests,fixtures=expand_fixture_inputs(source,defs,tests)
     used={n for t in tests for n in t['symbols'].values()}
     return {'tests':tests,'symbols':[r for r in defs if r['full_name'] in used],
-            'excluded':excluded,'n_tests':len(tests),'status':'tests' if tests else 'no_tests'}
+            'literal_input_fixtures':fixtures,'excluded':excluded,'n_tests':len(tests),'status':'tests' if tests else 'no_tests'}
 
 
 def main():
-    for name in ('e12_phase_a_forecast','e12_phase_a_forecast_amendment_A1'):
+    for name in ('e12_phase_a_forecast','e12_phase_a_forecast_amendment_A1','e12_phase_a_forecast_amendment_A2'):
         assert verify_forecast(PHASE/'forecasts'/(name+'.json'))
     gate=json.loads((PHASE/'results/compile_reproduction_A1.json').read_text());assert gate['passes']
     inputs=json.loads((PHASE/'results/input_manifest_A1.json').read_text());tasks=[]
@@ -123,6 +126,7 @@ def main():
         suite=hashlib.sha256(json.dumps(result['tests'],sort_keys=True,separators=(',',':')).encode()).hexdigest()
         tasks.append({**gold,**result,'suite_sha256':suite})
     report={'extraction_script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+            'fixture_expander_sha256':hashlib.sha256((PHASE/'scripts/fixture_inputs_e12.py').read_bytes()).hexdigest(),
             'n_tasks':len(tasks),'n_tests':sum(r['n_tests'] for r in tasks),
             'no_tests':[r['task_id'] for r in tasks if not r['n_tests']], 'tasks':tasks}
     dest=PHASE/'results/hidden_tests_manifest.json'

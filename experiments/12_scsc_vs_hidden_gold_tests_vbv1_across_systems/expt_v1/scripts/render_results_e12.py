@@ -45,6 +45,10 @@ def main():
       '| Statistic | Estimate | 95% task bootstrap | 95% system bootstrap sensitivity |','|---|---:|---|---|']
     for metric in ['pearson','spearman','kendall_tau_b','mean_score','mean_hidden','bias_score_minus_hidden','mean_absolute_difference']:
         lines.append(f"| {metric} | {num(p1[metric])} | {ci(p1['task_bootstrap_95'][metric])} | {ci(p1['system_bootstrap_95'][metric])} |")
+    lines+=['','Descriptive system correlations (no additional verdicts):','',
+            '| Pair | Pearson | Spearman | Kendall τ-b |','|---|---:|---:|---:|']
+    for label,stats in [('SCSC versus graded hidden rate',p1['graded_outcome']), *[(f+' versus hidden all-pass',v) for f,v in p1['factor_correlations'].items()]]:
+        lines.append(f"| {label} | {num(stats['pearson'])} | {num(stats['spearman'])} | {num(stats['kendall_tau_b'])} |")
     lines+=['','Positive bias means SCSC exceeds the hidden all-tests-pass rate. A1 computes the geometric mean of factor means over each system’s common measured factor cohort; hidden means use that cohort minus unavailable hidden outcomes and no-test tasks. These denominators are reported separately.','',
       '## Primary systems','',
       '| System | Factors measured / declared | IC_tests | IC_proofs | FSC | SCSC | Compile | Applicable / compiling | P1 hidden mean (n) | Full hidden bounds |',
@@ -66,6 +70,14 @@ def main():
     lines+=['','Mapping steps: 1 normalized name; 2 unique compatible type; 3 candidate definitions agree on hidden argument tuples; 4 candidate example/theorem reference counts resolve disagreement or undecidability. Hidden expected values never decide a mapping.','',
       '| Mapping step | Symbols | Share of mapped symbols |','|---|---:|---:|']
     for step,count in result['mapping_steps']['counts'].items():lines.append(f"| {step} | {count} | {num(result['mapping_steps']['shares'][step])} |")
+    lines+=['','Per-system discrimination (area reported only when both classes have at least 10 cells):','',
+            '| System | Pass / fail cells | Area |','|---|---:|---:|']
+    for system,stats in p23['per_system'].items():
+        lines.append(f"| {system} | {stats['n_pass']}/{stats['n_fail']} | {num(stats['auc'])} |")
+    lines+=['','Factor discrimination, descriptive:','',
+            '| Factor | Cells | Area on within-system ranks | Within-system Spearman with graded rate |','|---|---:|---:|---:|']
+    for factor,stats in p23['factor_descriptives'].items():
+        lines.append(f"| {factor} | {stats['n_cells']} | {num(stats['auc'])} | {num(stats['spearman_within_system'])} |")
     lines+=['','## Secondary panels','',
       'These are descriptive saved-output panels. Experiment 08 uses validation only; its test split and sealed experiments 107/109 were not accessed.','',
       '| Panel / system | Declared | IC_tests | IC_proofs | Kernel rate (n) | Hidden all-pass (observed n) | Hidden among kernel-verified (observed n / verified) |',
@@ -82,7 +94,7 @@ def main():
     lines+=['','## Validation, provenance and limitations','',
       'A1 reproduced all 11 published source aggregates under their own conventions and all 100 sampled compile statuses. Primary joins retain 9,678 hash-bound cells, 176 flagged unique paths, and two missing files. The extraction contains 10,534 tests on 882/896 gold tasks; 14 tasks have no extractable tests.','',
       f"Final controls: C1 {controls['C1']['n_pass']}/{controls['C1']['n_tests']} tests; C2 {controls['C2']['n_recovered']}/{controls['C2']['n_C1_passing_tasks']} recovered tasks; C3 {controls['C3']['n_killed']}/{controls['C3']['n_compiling_mutants']} compiling mutants detected; C4 {controls['C4']['n_rejected']}/{controls['C4']['n_pairs']} wrong-task pairs rejected. Thresholds remain 98%, 95%, 60%, 95% respectively. These are deterministic checks on the fixed 50-task sample, p-val=n/a.",'',
-      'Historical failures and implementation corrections remain in [the checkpoint](expt_v1/CKPT_e12.md), with round-1/2 and partial round-3 receipts. A1 resolved aggregation conventions; A2 resolved identical-type alternatives before the protocol lock or any real-candidate hidden outcome. Candidate and gold source files and factors were never edited. All three forecasts remain frozen.','',
+      'Historical failures and implementation corrections remain in [the checkpoint](expt_v1/CKPT_e12.md), with round-1/2/3 receipts. A1 resolved aggregation conventions; A2 resolved identical-type alternatives before the protocol lock or any real-candidate hidden outcome. The extractor expands only closed literal aliases used exclusively as test inputs; all 10,534 tests and their expected values are retained. Candidate and gold source files and factors were never edited. All three forecasts remain frozen.','',
       'The outcome is finite-test success, not a proof of full program correctness or a human acceptance rating. Missing applicability is bounded rather than silently scored zero. Core and IndustrySet results, missing-factor sensitivity and unambiguous-mapping sensitivity are descriptive and do not replace the frozen verdicts. Next versions cover hidden proofs and the agent-spec v8 panel.','',
       '**TLDR-end:** [rl4cv: 12_scsc_vs_hidden_gold_tests_vbv1_across_systems] Hidden gold-test agreement is fully measured under the frozen protocol and amendments; '+verdict+'.','']
     (PHASE.parent/'results.md').write_text('\n'.join(lines))

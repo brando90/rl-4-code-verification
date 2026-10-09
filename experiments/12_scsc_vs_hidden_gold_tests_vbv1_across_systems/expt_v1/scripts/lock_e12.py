@@ -20,7 +20,7 @@ def main():
     assert not subprocess.check_output(['git','status','--porcelain','--',str(PHASE/'scripts')],text=True).strip()
     protocol=PHASE.parent/'PROTOCOL.md';text=protocol.read_text();assert '**Lock line:** `NOT LOCKED`' in text
     timestamp=datetime.now(timezone.utc).isoformat()
-    line=f'**Lock line:** `LOCKED {timestamp} at commit {commit}` — all four round-3 A2 controls pass; exact adapter and input hashes in `expt_v1/results/protocol_lock.json`. No real-candidate hidden outcome exists at lock.'
+    line=f'**Lock line:** `LOCKED {timestamp} at commit {commit}` — all four round-{controls["round"]} A2 controls pass; exact adapter and input hashes in `expt_v1/results/protocol_lock.json`. No real-candidate hidden outcome exists at lock.'
     lines=text.splitlines();lines=[line if item.startswith('**Lock line:**') else item for item in lines]
     record={'timestamp_utc':timestamp,'code_commit':commit,'control_round':controls['round'],
             'source_hashes':controls['source_hashes'],'forecast_file_hashes':forecasts,

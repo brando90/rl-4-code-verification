@@ -5,14 +5,14 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 15:49 PDT
+**Last updated:** 10-09-2026 16:16 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
 - **Worker:** Codex CLI 0.154.0, personal ChatGPT login, `gpt-6-astra` / high, host `skampere1`, tmux `oct9-codex-rl4cv-e12-hidden-gold-tests`; effective sandbox danger-full-access, approval never. Supersedes the Claude launch, which failed due to exhausted personal Claude credits.
 - **Frozen forecast:** `expt_v1/forecasts/e12_phase_a_forecast.json`, SHA-256 `b29b71b7166b80df653220ddddec4b865a622ef9abc1fa42c6c1e559b067b0c5`, frozen 2026-10-09T21:35:33Z at git head `e851c02`.
 - **State:** RUNNING under Amendment A2 (`a7c2ea2`); all three forecasts verified; round-2 controls archived unchanged.
-- **Next command:** `tail -n 3 /lfs/skampere1/0/brando9/rl4cv_e12/controls_round3b.log`; active tmux window `e12-controls-r3b`.
+- **Next command:** `tail -n 3 /lfs/skampere1/0/brando9/rl4cv_e12/controls_round4.log`; active tmux window `e12-controls-r4`.
 
 ## Log
 
@@ -109,3 +109,11 @@
 - Local isolated analysis environment `/lfs/skampere1/0/brando9/rl4cv_e12/.venv`: numpy 2.5.3, scipy 1.18.1, pytest 9.1.1. Focused tests 25 passed; make test 189 passed / 24 skipped.
 
 - Live attempt-3b milestone 10-09-2026 15:57 PDT: 22/50 tasks complete; C1 224/224; C2 22/22; C3 20/21; C4 21/22. String-repeat mutant construction requires a string-literal fallback after existing edits exhaust; no mutant will be chosen using hidden results. Current full round continues unchanged before the corrective rerun. Repository tests 189 passed / 24 skipped; local tests 25 passed.
+
+### 10-09-2026 16:16 PDT — complete round 3b archived; corrected round 4
+
+- All 50 tasks completed all four controls: C1 591/591, C2 47/50 (fails ≥95%), C3 42/48 compiling mutants killed (rate passes, but two missing mutants fail the ≥50-task requirement), C4 49/50 (passes ≥95%). Full receipts archived unchanged as `controls_e12_round3b.json`; extraction/selection archived before corrections.
+- C2 failures: heap max/min operations; counter increment/decrement operations; Floyd–Warshall graph input aliases incorrectly treated as implementation symbols. The first two are A2 step-4 choices and remain failures; no rule or threshold changed.
+- Extraction correction under PROTOCOL § 2 / § 3: closed literal aliases used exclusively inside implementation-call argument positions become their original literal input data. Never expand an expected-result alias, nonliteral body, or constant directly under test. No function body or gold definition enters a bridge. All 10,534 statements are retained, including original text in changed rows; expected expressions unchanged. Exactly 23 aliases across 10 tasks / 70 tests normalized. Original 50 control task IDs unchanged; reconciliation in `fixture_input_normalization.json`.
+- C3 correction: after existing numeric/operator edits exhaust without compiling, try single string-literal edits in source order. Never choose an edit based on hidden-test success. This covers string repetition and path concatenation; successful existing selections stay the same.
+- Round 4 reruns C1–C4 on every original selected task, fresh private receipts in `controls_round4`, two nice-10 single-thread Lean processes, 600-second cap. No real-candidate outcome, protocol still unlocked; all three forecasts preserved. Focused tests 29 passed.

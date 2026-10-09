@@ -9,7 +9,7 @@ from extract_hidden_tests import PHASE
 from runtime_e12 import Runtime
 from rl4cv.forecast import verify_forecast
 
-WORK=Path('/lfs/skampere1/0/brando9/rl4cv_e12/controls_round3b')
+WORK=Path('/lfs/skampere1/0/brando9/rl4cv_e12/controls_round4')
 
 
 def remove_propositions(source):
@@ -36,6 +36,17 @@ def mutations(source,symbols):
             if new is None:continue
             offset=d['body_start']+m.start()
             yield source[:offset]+new+source[offset+len(old):],{'definition':d['full_name'],'offset':offset,'old':old,'new':new}
+
+
+    # Deterministic fallback after all numeric/operator edits: one string literal.
+    # It is reached only if no preceding edit compiles, never because a test survives.
+    literal_source=strip_comments(source)
+    for d in defs:
+        if d['full_name'] not in names:continue
+        end=min([m.start() for m in events if m.start()>d['start']] or [len(source)])
+        for m in re.finditer(r'"(?:\\.|[^"\\])*"',literal_source[d['body_start']:end]):
+            old=m.group();new='"e12_mutant'+old[1:];offset=d['body_start']+m.start()
+            yield source[:offset]+new+source[offset+len(old):],{'definition':d['full_name'],'offset':offset,'old':old,'new':new,'fallback':'string_literal'}
 
 
 def check(pair):
@@ -77,10 +88,10 @@ def report(rows,selected):
       'C2':{'n_C1_passing_tasks':len(eligible),'n_recovered':recovered,'fraction':recovered/len(eligible) if eligible else None,'threshold':.95,'passes':complete and len(eligible)>0 and recovered>=.95*len(eligible)},
       'C3':{'n_compiling_mutants':mutants,'n_killed':killed,'fraction':killed/mutants if mutants else None,'threshold':.60,'passes':complete and mutants>=50 and killed>=.60*mutants},
       'C4':{'n_pairs':len(rows),'n_rejected':rejected,'fraction':rejected/len(rows) if rows else None,'threshold':.95,'passes':complete and rejected>=.95*len(rows)}}
-    return {'round':3,'attempt':'3b','n_selected':len(selected),'n_completed':len(rows),'complete':complete,**controls,
+    return {'round':4,'attempt':'4','n_selected':len(selected),'n_completed':len(rows),'complete':complete,**controls,
             'all_controls_pass':all(c['passes'] for c in controls.values()),
             'selected_tasks':[r['task_id'] for r in selected],'rows':sorted(rows,key=lambda r:r['task_id']),
-            'source_hashes':{f:hashlib.sha256((PHASE/'scripts'/f).read_bytes()).hexdigest() for f in ['extract_hidden_tests.py','adapter_e12.py','runtime_e12.py','controls_e12.py']}}
+            'source_hashes':{f:hashlib.sha256((PHASE/'scripts'/f).read_bytes()).hexdigest() for f in ['extract_hidden_tests.py','fixture_inputs_e12.py','adapter_e12.py','runtime_e12.py','controls_e12.py']}}
 
 
 def main():
