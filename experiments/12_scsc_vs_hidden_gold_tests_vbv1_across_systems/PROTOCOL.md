@@ -91,6 +91,19 @@ The worker's input preflight stopped at § 6's published-value check: 4/11 syste
   - § 6's 5% stop rule now counts `file_missing` plus `join_ambiguous`.
 - **A1.5 Splits.** P1 stays pooled over 896 tasks. Core 614 and IndustrySet 282 are also reported separately (project `CLAUDE.md`), as descriptives.
 
+## 9. Amendment A2 (10-09-2026, master; before the lock and before any real-candidate outcome)
+
+Control round 2 (`expt_v1/results/controls_e12.json`, commit `02b59d4`) passed C1: 591/591 tests on 50/50 tasks. C2 failed, recovering 2/50 tasks against ≥ 95%. Gold files often define functional and imperative twins, or helpers, with exactly the same type (Lean-checked witnesses: `expt_v1/results/ambiguity_witnesses.json`). Once every name is changed, § 3's "unique same-arity compatible type" rule cannot choose between them. The C2 expectation stays at 95%. The fix is to the adapter's mapping rule, frozen here before the lock. It uses only the candidate's own code and the hidden tests' *inputs*, never the hidden tests' expected values, so the mapping cannot be chosen by outcome.
+
+- **A2.1 Mapping order** (replaces § 3's three steps):
+  1. The same name after namespace stripping and normalization (case-insensitive, `_` ignored).
+  2. Otherwise the set S of candidate definitions with the same arity whose type unifies with the gold symbol's type under the allowed literal re-elaboration. If |S| = 1, map to it.
+  3. If |S| > 1, evaluate every member of S on every argument tuple to which the task's hidden tests apply the gold symbol, and compare members with each other (`decide (a args = b args)`). Do not compare against expected values. If all members agree on all tuples, the choice is immaterial: map to the canonical member, which is the one most often referenced by the candidate's own `example` declarations, with ties broken by first position in the file.
+  4. If members disagree (or a comparison is undecidable or times out), map to the member most often referenced by the candidate's own `example` declarations, with ties broken by references in its theorems. A tie that remains is `not_applicable` with reason `ambiguous_disagreeing`.
+  5. Record for every mapped symbol which step chose it, |S| and the agreement result.
+- **A2.2 Controls.** Run all four controls (C1–C4) on the same 50 prescribed tasks with the same expectations, including C2's added requirement that every re-pointed test passes. Archive round 2's receipts unchanged. All four must pass before the lock. The worker's earlier short-circuit (C3 and C4 not run) is recorded as a deviation.
+- **A2.3 Reporting.** Report the share of real-candidate mappings decided at each step. Report P2 and P3 also restricted to cells mapped at steps 1–2 (unambiguous), as a sensitivity analysis.
+
 ## 7. Not in phase A
 
 Hidden **proofs** (`reference_obligations_proved` with a fixed prover budget), Python-side differential tests, the agent-spec v8 fresh panel, and human acceptance ratings are later versions.
