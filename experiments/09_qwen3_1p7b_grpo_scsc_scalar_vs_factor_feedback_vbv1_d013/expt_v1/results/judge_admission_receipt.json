@@ -1,0 +1,12 @@
+{
+  "written_utc": "2026-10-09T02:31:34Z",
+  "phase": "live_control_admission",
+  "outcome": "BLOCKED_BEFORE_ANY_JUDGE_RATING",
+  "logical_controls": 25,
+  "constituent_ratings_declared": 50,
+  "attempted_members": ["H2_sol_high", "H2_opus55_max"],
+  "native_error": "Benchmark service veribench-rl4cv-e09-controls is not reachable",
+  "charges": "unknown; no run identifier was returned and no task receipt exists",
+  "recovery": "inspect and create only an experiment09-owned service using the validated Valkyrie CLI; do not retry these same requests until the service exists",
+  "e08_isolation_incident": "The first wrapper import used the frozen bridge's module-initialized state path, recording the two failed admissions in experiment08's state.json. No judge run identifier or task result was created. The wrapper now overrides STATE to the experiment09-owned receipt path; do not edit the other owner's file."
+}

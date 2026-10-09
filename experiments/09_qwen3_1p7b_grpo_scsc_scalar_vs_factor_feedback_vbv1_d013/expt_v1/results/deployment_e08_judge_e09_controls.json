@@ -1,0 +1,73 @@
+{
+  "agent_client_timeout_s": 3000,
+  "agent_timeout_s": 6600,
+  "benchmark": "veribench-rl4cv-e09-controls",
+  "control_pack": true,
+  "deployed_utc": "2026-10-09T02:35:18+00:00",
+  "grade_mode": "collect_only (VB_COLLECT_ONLY=1)",
+  "host": "skampere1.stanford.edu",
+  "inference_calls": 0,
+  "local_health": 200,
+  "local_unauthenticated_health": 401,
+  "pack_dir": "/lfs/skampere1/0/brando9/rl4cv_e09/rl-4-code-verification/external/veribench/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/judge_e09/packs/judge_rl4cv_e08_controls",
+  "pack_task_count": 25,
+  "per_task_limit_local": {
+    "agent_timeout_s": {
+      "judge__ctl_blank_cs_set__bellman_ford__r1": 6600.0,
+      "judge__ctl_oracle_humaneval_set__humaneval_0_hascloseelements__r1": 6600.0,
+      "judge__ctl_vacuous_security_set__security_6858__safe__0_unsafecopy_safe__r1": 6600.0
+    },
+    "limit_ok": true,
+    "required_min_s": 6600,
+    "sampled_task_ids": [
+      "judge__ctl_blank_cs_set__bellman_ford__r1",
+      "judge__ctl_oracle_humaneval_set__humaneval_0_hascloseelements__r1",
+      "judge__ctl_vacuous_security_set__security_6858__safe__0_unsafecopy_safe__r1"
+    ],
+    "verify_task_ids_response": {
+      "task_ids": [
+        "judge__ctl_blank_cs_set__bellman_ford__r1",
+        "judge__ctl_oracle_humaneval_set__humaneval_0_hascloseelements__r1",
+        "judge__ctl_vacuous_security_set__security_6858__safe__0_unsafecopy_safe__r1"
+      ]
+    }
+  },
+  "per_task_limit_tunnel": {
+    "agent_timeout_s": {
+      "judge__ctl_blank_cs_set__bellman_ford__r1": 6600.0,
+      "judge__ctl_oracle_humaneval_set__humaneval_0_hascloseelements__r1": 6600.0,
+      "judge__ctl_vacuous_security_set__security_6858__safe__0_unsafecopy_safe__r1": 6600.0
+    },
+    "limit_ok": true,
+    "required_min_s": 6600,
+    "sampled_task_ids": [
+      "judge__ctl_blank_cs_set__bellman_ford__r1",
+      "judge__ctl_oracle_humaneval_set__humaneval_0_hascloseelements__r1",
+      "judge__ctl_vacuous_security_set__security_6858__safe__0_unsafecopy_safe__r1"
+    ],
+    "verify_task_ids_response": {
+      "task_ids": [
+        "judge__ctl_blank_cs_set__bellman_ford__r1",
+        "judge__ctl_oracle_humaneval_set__humaneval_0_hascloseelements__r1",
+        "judge__ctl_vacuous_security_set__security_6858__safe__0_unsafecopy_safe__r1"
+      ]
+    }
+  },
+  "port": 9741,
+  "port_claim": "9740-9759",
+  "sandbox_lean": "none (VB_NO_COMPILER=1)",
+  "service_dir": "/lfs/skampere1/0/brando9/rl4cv_e09/rl-4-code-verification/external/veribench/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/scripts/vb_service_single_call",
+  "service_files_sha256": {
+    "main.py": "ec197ee3b93ca597ca03cfa7bde6da5b0b348c2e4d46d32e1cdd19ff18d77b12",
+    "single_call_service.py": "985009a7875bc7a5a485cb88e5f2a2a36cd45bccb2382fe6b21394823a674fba",
+    "veribench_valkyrie_service.py": "e65d77ddf97b07ddb3c194754a22bbd87ae6e41a7d8076ee79560a23049fd2b7"
+  },
+  "service_pid": 2861895,
+  "tunnel_health": 200,
+  "tunnel_pid": 2862506,
+  "tunnel_unauthenticated_health": 401,
+  "tunnel_url": "recorded in $WORK/private/deployment.json (not published)",
+  "tunnel_version_status": 200,
+  "valkyrie_config": "/lfs/skampere1/0/brando9/rl4cv_e09/private/valkyrie.yaml",
+  "veribench_checkout": "c11b99badfa386fd26810b208eef1eb8dc9f6806"
+}

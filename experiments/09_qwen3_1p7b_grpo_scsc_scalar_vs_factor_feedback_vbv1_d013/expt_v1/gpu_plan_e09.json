@@ -1,0 +1,11 @@
+{
+  "written_utc": "2026-10-09T02:37:00Z",
+  "phase": "one_device_read_only_preflight",
+  "lease_request": {"devices": 1, "requested_gpu": 3, "ttl_hours": 0.5, "boundary": "complete Qwen load/context/one-forward check; release immediately"},
+  "estimated_vram_gib": "4-12 for 1.7B bfloat16 weights plus forward activations; no optimizer or generation cache",
+  "expected_utilization": "brief compute-bound forward after CPU/IO model load; no compiler workers and no rollout generation",
+  "estimated_duration_minutes": 10,
+  "device_hour_budget_reserved": 0.5,
+  "reason": "validate local Qwen model/template context and GPU compatibility before any NeMo rollout or optimizer update",
+  "status": "PENDING_LEASE"
+}
