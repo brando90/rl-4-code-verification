@@ -1,0 +1,9 @@
+# TLDR: Output of lean_partial_credit_probe.lean under leanprover/lean4:v4.22.0 (run 10-09-2026 on Brando's Mac).
+$ lean lean_partial_credit_probe.lean
+lean_partial_credit_probe.lean:5:41: error: unsolved goals
+a : Nat
+⊢ False
+'good' depends on axioms: [propext]
+'bad' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'after' does not depend on any axioms
+exit code: 1
