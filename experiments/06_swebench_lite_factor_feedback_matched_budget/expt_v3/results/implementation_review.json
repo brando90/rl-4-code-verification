@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "review_date": "10-08-2026",
+  "reviewer_model": "claude-fable-5-1",
+  "reviewer_effort": "max",
+  "metadata_evidence": "Claude Code stream-json init reports claude-fable-5-1 and bypassPermissions; process launcher passes --effort max; assistant messages report same model",
+  "reviewer_session": "f5277f33-7133-4c87-ad20-3e84eae82df8",
+  "classification": "one user-authorized light opposite-company review, first implementation only",
+  "original_base": "e6f31b836c976923020af33a0e3ce850b41f317b",
+  "reviewer_verdict": "PASS as first implementation, with five major issues required before executable freeze",
+  "critical_findings": 0,
+  "major_findings": 5,
+  "reconciliation_status": "FIXED; deterministic checks passed; backend execution still blocked pending real integration",
+  "source_snapshot": {
+    "created_utc": "2026-10-08T16:52:48.979975-07:00",
+    "original_base": "e6f31b836c976923020af33a0e3ce850b41f317b",
+    "files": {
+      "experiments/06_swebench_lite_factor_feedback_matched_budget/expt_v3/PROTOCOL.md": "1c103786c7f988e85afe559be92a07ae94dd87047adb5d9b570154c32eda9763",
+      "experiments/06_swebench_lite_factor_feedback_matched_budget/expt_v3/README.md": "34cda5240131d94c434ea5679afcee1e19e84f253ae9944062e844353256745e",
+      "experiments/06_swebench_lite_factor_feedback_matched_budget/expt_v3/cc.md": "ac4a9ecc744884e799ac96dc59bc04767951c8765cd92104b9024b63800e2239",
+      "experiments/06_swebench_lite_factor_feedback_matched_budget/expt_v3/diagnostic_author_prompt.txt": "70a25c4a5e09b7f0818e20cf335afec82cf78b69a39ca4552b57f590bfdefbb3",
+      "experiments/06_swebench_lite_factor_feedback_matched_budget/expt_v3/scripts/control_runner.py": "b17afaed8e2774bc4056b67e36c6dd8798f47d9da4d41775e35f72a05e3e0345",
+      "experiments/06_swebench_lite_factor_feedback_matched_budget/expt_v3/scripts/diagnostic_runner.py": "15c94acbaac945b19d96dce674a58bcf3c7f71560ddb570a4811c8241ff29376",
+      "experiments/06_swebench_lite_factor_feedback_matched_budget/expt_v3/scripts/diagnostic_validator.py": "d570597f22854ce159d8e75c5fc218c2d095d6f33d16a8c20a8321e79126b8a9",
+      "experiments/06_swebench_lite_factor_feedback_matched_budget/expt_v3/scripts/test_control_runner.py": "88048d28f88eb5e4f492c150b9511ee108d6b726abbb3f59ead6ef88ffd9cb6e",
+      "experiments/06_swebench_lite_factor_feedback_matched_budget/expt_v3/scripts/test_diagnostic_runner.py": "665aff8dec797a4a82823cb7ca1e3253ad37f52446d9b3b8107f9e4f51cff48c",
+      "experiments/06_swebench_lite_factor_feedback_matched_budget/expt_v3/scripts/test_diagnostic_validator.py": "437e3233498048382d502932d86dc76b5a0da6634f9755b451c8a457cf1ac2ca",
+      "experiments/06_swebench_lite_factor_feedback_matched_budget/results.md": "28ab512970ffcf47abf1d50f08ee51d2457972b93692f24d2e8f9989563fb2a9",
+      "experiments/07_scs4c_vs_pass1_swebench_across_models/expt_v1/render_results_e07.py": "44fb117c9b734ea9f8e72d6b74c9d138f0c933edbf8561b5d7cf5327ea10d264",
+      "experiments/CKPT_MASTER_tmuxnone_cxd_01a11d6a.md": "d2ded52132c228d6733604e05c8418e45dd64ab67c27e9e5134dbf3a14396c3b",
+      "experiments/README.md": "a7d3d8bf324c70c7cf5b0729a611295152a29de15190ed05e9e796b8193af8e6"
+    },
+    "repository_tests": "120 passed",
+    "version3_tests": "121 passed; fake execution only; no Docker or model calls"
+  },
+  "findings": {
+    "M1": "Observer timeout kills healthy phase without eligible retry",
+    "M2": "Immediate repeated attempts can starve later first attempts",
+    "M3": "Blanket ImportError matching confuses valid test failure with environment failure",
+    "M4": "Disabled pytest plugin autoload conflicts with public test fixtures",
+    "M5": "Backend-declared enforcement evidence is not independently established"
+  },
+  "coverage_limits": [
+    "No real Docker execution",
+    "Actual backend, environment repair, public context and Valkyrie route unfinished",
+    "Shared version resource ledger across all stages unfinished"
+  ],
+  "automatic_rereview": false,
+  "post_fix_targeted_tests": {
+    "passed": 148,
+    "failed": 0,
+    "execution": "synthetic/fake Docker only"
+  },
+  "fixes": {
+    "M1": "Bounded observer infrastructure failures are eligible for one retry",
+    "M2": "Every first attempt precedes infrastructure retries; deterministic failures are not retried",
+    "M3": "Require typed completed/collection/setup/termination evidence; valid in-test ImportError remains an endpoint",
+    "M4": "Freeze and verify exact image/interpreter pytest plugin inventory before autoload",
+    "M5": "Hash-bound frozen enforcement artifact; actual backend remains a separate inspected integration prerequisite",
+    "minor": "Preserve measured endpoint on cleanup failure while blocking admission; reserve combined shared-device storage; record stale directories; explicit Docker route; exact prompt bytes; encoded argv bounds; gold/empty tree identities; stale documents corrected"
+  },
+  "post_fix_repository_tests": {
+    "passed": 124,
+    "failed": 0
+  }
+}
