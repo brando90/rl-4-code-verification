@@ -28,6 +28,10 @@ def signature(header):
     if not result or '\n' in result or re.search(r'\b(?:where|termination_by)\b',result):return None
     result=re.sub(r'\b(?:Nat|Int|UInt8|UInt16|UInt32|UInt64)\b','NUM',result)
     result=IDENT.sub(lambda m:renames.get(m.group(),m.group()),result)
+    # Equation-style definitions spell their explicit telescope with arrows.
+    arrows=[s.strip() for s in result.split('→')]
+    if len(arrows)>1:
+        types.extend(arrows[:-1]);result=arrows[-1]
     return (tuple(types),' '.join(result.split()))
 
 
@@ -54,12 +58,14 @@ def repoint(test,mapping):
     # Token-level replacement avoids prefix collisions and never touches quoted string literals.
     pieces=re.split(r'("(?:\\.|[^"\\])*")',test['statement'])
     for i in range(0,len(pieces),2):
-        pieces[i]=IDENT.sub(lambda m:('_root_.'+mapping[test['symbols'][m.group()]]) if m.group() in test['symbols'] else m.group(),pieces[i])
+        pieces[i]=IDENT.sub(lambda m:('_root_.'+mapping[test['symbols'][m.group()]]+test.get('symbol_suffixes',{}).get(m.group(),'')) if m.group() in test['symbols'] else m.group(),pieces[i])
     return ''.join(pieces)
 
 
 def bridge(module,tests,mapping):
-    lines=['import Mathlib',f'import {module}']
+    # Lean 4.22 has no generic Except decidable equality. This structural comparator
+    # evaluates equality of the whole value; it neither unwraps results nor adds assumptions.
+    lines=['import Mathlib',f'import {module}', 'deriving instance DecidableEq for Except']
     for i,test in enumerate(tests):
         statement=repoint(test,mapping)
         if statement is not None:
@@ -74,6 +80,6 @@ def renamed_control(source,symbols):
     # examples and comments preserves meaning; no original candidate/reference file is edited.
     def replace(m):
         name=m.group();parts=name.split('.')
-        if parts[-1] in substitutions:parts[-1]=substitutions[parts[-1]]
+        parts=[substitutions.get(part,part) for part in parts]
         return '.'.join(parts)
     return IDENT.sub(replace,source),substitutions

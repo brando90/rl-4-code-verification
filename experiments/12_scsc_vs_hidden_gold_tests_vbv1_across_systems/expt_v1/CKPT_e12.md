@@ -5,14 +5,14 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 15:04 PDT
+**Last updated:** 10-09-2026 15:15 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
 - **Worker:** Codex CLI 0.154.0, personal ChatGPT login, `gpt-6-astra` / high, host `skampere1`, tmux `oct9-codex-rl4cv-e12-hidden-gold-tests`; effective sandbox danger-full-access, approval never. Supersedes the Claude launch, which failed due to exhausted personal Claude credits.
 - **Frozen forecast:** `expt_v1/forecasts/e12_phase_a_forecast.json`, SHA-256 `b29b71b7166b80df653220ddddec4b865a622ef9abc1fa42c6c1e559b067b0c5`, frozen 2026-10-09T21:35:33Z at git head `e851c02`.
 - **State:** RUNNING under prospective Amendment A1 (`a50618e`); tracking issue #9. Input checks PASS; gold and renamed-gold controls running.
-- **Next command:** `tail -n 5 /lfs/skampere1/0/brando9/rl4cv_e12/controls_round1.log`; resume `PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/controls_e12.py` only if its tmux job is no longer running.
+- **Next command:** `tail -n 5 /lfs/skampere1/0/brando9/rl4cv_e12/controls_round2.log`; resume `PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/controls_e12.py` only if its tmux job is no longer running.
 
 ## Log
 
@@ -62,3 +62,12 @@
 - Control sample: first 50 eligible tasks in sha256(rl4cv-e12-ctl: + task_id) order. Gold and globally renamed-gold copies compile in tmux window `e12-controls`; two workers, host-only output `/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1`.
 - Preliminary C2 mapping: 48/50 tasks have multiple compatible renamed definitions (functional/imperative twins); no tie-breaking added. Await actual C1/C2 receipts before gate verdict.
 - Live control progress: `results/controls_e12_progress.json`; final receipt `results/controls_e12.json`; terminal marker `/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1.exit`.
+
+### 10-09-2026 15:13 PDT — control round 1 archived; corrective round 2
+
+- Round 1 completed all 50 tasks: C1 570/590 tests passing (96.61%, below 98%); C2 recovered 1/47 C1-passing tasks (2.13%, below 95%). Full receipts and original extraction/selection archived with `_round1` suffixes.
+- Fixed equation-style definitions without `:=`, field-projection token re-pointing/renaming, and generic structural `DecidableEq` for `Except` in the evaluator. The comparator evaluates the entire returned value, without unwrapping, hypotheses, or gold implementation code. Focused actual Lean check returned true for equal Except values and false for unequal values.
+- New extraction includes previously missed statements, without dropping any old tests. Prescribed first-50 control task IDs are unchanged. No real-candidate hidden outcome exists, and protocol is not locked. Both forecasts remain untouched.
+- Rerun all C1/C2 controls on the same 50 tasks in private `controls_round2`; C2 recovery additionally requires all re-pointed tests to pass (guards against a complete but wrong mapping). C3/C4 stay pending the admission gates.
+
+- Round-2 launch verified: first four tasks 42/42 gold tests pass, renamed recovery 0/4 due to identical-type alternatives. Current extraction 10,534 tests / 882 tasks (14 no_tests), same 50 control task IDs, all previous test statements preserved. Local tests 13/13 and make test 189 passed / 24 skipped.

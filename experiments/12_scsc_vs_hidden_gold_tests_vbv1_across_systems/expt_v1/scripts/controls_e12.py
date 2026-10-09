@@ -14,7 +14,7 @@ from compile_reproduction import LAKE, LAKE_BIN
 from extract_hidden_tests import PHASE
 from rl4cv.forecast import verify_forecast
 
-WORK=Path('/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1')
+WORK=Path('/lfs/skampere1/0/brando9/rl4cv_e12/controls_round2')
 
 
 def lean(path,extra=()):
@@ -58,8 +58,8 @@ def check(row):
 def report(rows,selected):
     ntests=sum(r['n_tests'] for r in rows);passed=sum(r['C1']['n_pass'] for r in rows)
     c1passed=[r for r in rows if r['C1']['all_pass']]
-    c2success=sum(r['C2']['all_symbols_mapped'] and r['C2']['compile']['status']=='ok' for r in c1passed)
-    return {'round':1,'n_selected':len(selected),'n_completed':len(rows),'complete':len(rows)==len(selected),
+    c2success=sum(r['C2']['all_symbols_mapped'] and r['C2']['compile']['status']=='ok' and r['C2']['all_pass'] for r in c1passed)
+    return {'round':2,'n_selected':len(selected),'n_completed':len(rows),'complete':len(rows)==len(selected),
             'C1':{'n_tests':ntests,'n_pass':passed,'fraction':passed/ntests if ntests else None,'threshold':.98,
                   'passes':len(rows)==len(selected) and passed>=.98*ntests},
             'C2':{'n_C1_passing_tasks':len(c1passed),'n_recovered':c2success,

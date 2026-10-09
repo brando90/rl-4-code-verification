@@ -56,3 +56,25 @@ def test_renamed_twins_are_ambiguous_not_arbitrarily_assigned():
 def test_free_section_variables_are_not_hidden_tests():
     suite=extract('variable (x : Nat)\ndef f (n : Nat) : Nat := n\nexample : f x = x := rfl\n')
     assert suite['n_tests']==0
+
+
+def test_equation_definitions_and_field_projection_repointing():
+    source='''namespace N
+structure State where
+  cycles : Nat
+def initState : State := { cycles := 0 }
+def count : List Nat → Nat
+  | [] => 0
+  | _ :: xs => 1 + count xs
+example : count [1,2] = 2 := by decide
+example : initState.cycles = 0 := rfl
+end N
+'''
+    suite=extract(source)
+    assert suite['n_tests']==2
+    assert {s['full_name'] for s in suite['symbols']}=={'N.initState','N.count'}
+    candidate,_=renamed_control(source,suite['symbols'])
+    assert 'e12renamed0000.cycles' in candidate
+    mapping,_=map_symbols(suite['symbols'],candidate)
+    assert repoint(suite['tests'][1],mapping)=='_root_.N.e12renamed0000.cycles = 0'
+    assert signature(': List Nat → Nat')==signature('(xs : List Nat) : Nat')

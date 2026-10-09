@@ -1,0 +1,6998 @@
+{
+ "round": 1,
+ "n_selected": 50,
+ "n_completed": 50,
+ "complete": true,
+ "C1": {
+  "n_tests": 590,
+  "n_pass": 570,
+  "fraction": 0.9661016949152542,
+  "threshold": 0.98,
+  "passes": false
+ },
+ "C2": {
+  "n_C1_passing_tasks": 47,
+  "n_recovered": 1,
+  "fraction": 0.02127659574468085,
+  "threshold": 0.95,
+  "passes": false
+ },
+ "C3": {
+  "status": "NOT_RUN_PENDING_C1_C2_ADMISSION"
+ },
+ "C4": {
+  "status": "NOT_RUN_PENDING_C1_C2_ADMISSION"
+ },
+ "selected_tasks": [
+  "memory_bugs_set_synthetic__my_free_live_handle",
+  "crypto_set_real__my_erc20_capped_mint_supply",
+  "security_set__security_6858__safe__101_unsafeforkedtransparencylog_safe",
+  "security_set__security_6858__safe__28_unsafesameorigin_safe",
+  "security_set__security_6858__safe__14_unsafeserviceauth_safe",
+  "easy_set__15_myrepeatstring",
+  "security_set__security_6858__vulnerabilities__32_unsafeleakingcompare",
+  "security_set__security_6858__safe__90_unsafeipspoofing_safe",
+  "security_set__security_6858__vulnerabilities__69_unsafequerywhitelist",
+  "memory_bugs_set_synthetic__my_guard_page_hit",
+  "easy_set__30_longest_valid_parentheses",
+  "medical_oss_set_real__my_temp_target_active",
+  "crypto_set_synthetic__my_aes_gcm_nonce_counter_accept",
+  "crypto_set_real__my_hkdf_expand_block_count",
+  "realcode_set__22_shlex_join",
+  "security_set__security_6858__vulnerabilities__96_unsafetlsrenegotiation",
+  "memory_bugs_set_synthetic__my_capability_use_allowed",
+  "os_embedded_set_real__my_threadx_timer_should_fire",
+  "security_set__security_6858__vulnerabilities__130_unsafebitlockerbios",
+  "hypervisor_set_real__my_seccomp_compare_real",
+  "security_set__security_python__safe__0_no_shell_injection_safe",
+  "crypto_set_real__my_hmac_truncated_tag_valid",
+  "cs_set__heapsort_max_heapify",
+  "security_set__security_6858__safe__1_unsafemultiply_safe",
+  "security_set__security_6858__safe__99_unsafehardcodedkey_safe",
+  "gov_cert_set_synthetic__my_gps_drift_budget",
+  "security_set__security_6858__safe__157_unsafesslfinishedmac_safe",
+  "security_set__security_6858__safe__4_unsafecounter_safe",
+  "security_set__security_6858__safe__33_unsafepaddingoracle_safe",
+  "humaneval_set__humaneval_6_parse_nested_parens",
+  "security_set__security_6858__vulnerabilities__52_unsafechrootescape",
+  "easy_set__9_myoddsumparity",
+  "memory_bugs_set_synthetic__my_pointer_aligned",
+  "security_set__security_6858__vulnerabilities__60_unsafebroadcasteavesdrop",
+  "security_set__security_6858__vulnerabilities__96_unsafekeyserver",
+  "easy_set__29_longest_common_prefix",
+  "os_embedded_set_synthetic__my_wait_queue_should_wake",
+  "security_set__security_6858__vulnerabilities__93_unsafecertrevoke",
+  "hardware_set_synthetic__my_fifo_push_level",
+  "security_set__security_6858__safe__70_unsafefdleak_safe",
+  "security_set__security_6858__vulnerabilities__137_unsafehmaclength",
+  "humaneval_set__humaneval_1_separate_paren_groups",
+  "crypto_set_real__my_pkcs7_unpad_valid",
+  "security_set__security_6858__vulnerabilities__105_unsafednsamplification",
+  "cs_set__floyd_warshall",
+  "security_set__security_6858__vulnerabilities__88_unsafebgproute",
+  "security_set__security_6858__vulnerabilities__14_unsafeserviceauth",
+  "humaneval_set__humaneval_52_below_threshold",
+  "security_set__security_6858__safe__105_unsafephishingvalidcert_safe",
+  "medical_oss_set_synthetic__my_correction_needed"
+ ],
+ "rows": [
+  {
+   "task_id": "crypto_set_real__my_erc20_capped_mint_supply",
+   "n_tests": 7,
+   "gold_sha256": "c2074412d0ea10d6692e2014866750dd02b16f927837bc69bb0228fc58b14c3d",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.445047429995611,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1cdc15a9b71e7ae508105.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MyErc20CappedMintSupply.myErc20CappedMintSupply": "MyErc20CappedMintSupply.myErc20CappedMintSupply",
+     "MyErc20CappedMintSupply.myErc20CappedMintSupplyImp": "MyErc20CappedMintSupply.myErc20CappedMintSupplyImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MyErc20CappedMintSupply.myErc20CappedMintSupply",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "MyErc20CappedMintSupply.myErc20CappedMintSupply"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MyErc20CappedMintSupply.myErc20CappedMintSupplyImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "MyErc20CappedMintSupply.myErc20CappedMintSupplyImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "c2074412d0ea10d6692e2014866750dd02b16f927837bc69bb0228fc58b14c3d",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1cdc15a9b71e7ae508105.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.570146710000699,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1cdc15a9b71e7ae508105_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true
+     }
+    },
+    "n_applicable": 7,
+    "n_pass": 7,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.417020442997455,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2cdc15a9b71e7ae508105.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MyErc20CappedMintSupply.myErc20CappedMintSupply",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "MyErc20CappedMintSupply.e12renamed0000",
+       "MyErc20CappedMintSupply.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MyErc20CappedMintSupply.myErc20CappedMintSupplyImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "MyErc20CappedMintSupply.e12renamed0000",
+       "MyErc20CappedMintSupply.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "5369d6547cd5fcf183913eefc787fb2d956fca3ec7bd60057f85ad594f022762",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2cdc15a9b71e7ae508105.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "myErc20CappedMintSupply": "e12renamed0000",
+    "myErc20CappedMintSupplyImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "crypto_set_real__my_hkdf_expand_block_count",
+   "n_tests": 8,
+   "gold_sha256": "2fd962f49c436bd0d7e81f23dadb0596fc93869f29441d4981b956d16f177b62",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.799139121998451,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1ff57968b0012fd615298.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MyHkdfExpandBlockCount.myHkdfExpandBlockCount": "MyHkdfExpandBlockCount.myHkdfExpandBlockCount",
+     "MyHkdfExpandBlockCount.myHkdfExpandBlockCountImp": "MyHkdfExpandBlockCount.myHkdfExpandBlockCountImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MyHkdfExpandBlockCount.myHkdfExpandBlockCount",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "MyHkdfExpandBlockCount.myHkdfExpandBlockCount"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MyHkdfExpandBlockCount.myHkdfExpandBlockCountImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "MyHkdfExpandBlockCount.myHkdfExpandBlockCountImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "2fd962f49c436bd0d7e81f23dadb0596fc93869f29441d4981b956d16f177b62",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1ff57968b0012fd615298.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.037259709002683,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1ff57968b0012fd615298_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true
+     }
+    },
+    "n_applicable": 8,
+    "n_pass": 8,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.6391231669986155,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2ff57968b0012fd615298.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MyHkdfExpandBlockCount.myHkdfExpandBlockCount",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "MyHkdfExpandBlockCount.e12renamed0000",
+       "MyHkdfExpandBlockCount.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MyHkdfExpandBlockCount.myHkdfExpandBlockCountImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "MyHkdfExpandBlockCount.e12renamed0000",
+       "MyHkdfExpandBlockCount.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "e3405e84cf65f5a3c7c9bf3b981e59cfda3b30b0883c050667b78d19041c4a61",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2ff57968b0012fd615298.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "myHkdfExpandBlockCount": "e12renamed0000",
+    "myHkdfExpandBlockCountImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "crypto_set_real__my_hmac_truncated_tag_valid",
+   "n_tests": 7,
+   "gold_sha256": "5b31459defb824a9dbefd30a4a0fa09cdcd214e55798d5f0735dd364a8a0f92e",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.453834268002538,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C17ea4cac0a2312160f4af.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MyHmacTruncatedTagValid.myHmacTruncatedTagValid": "MyHmacTruncatedTagValid.myHmacTruncatedTagValid",
+     "MyHmacTruncatedTagValid.myHmacTruncatedTagValidImp": "MyHmacTruncatedTagValid.myHmacTruncatedTagValidImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MyHmacTruncatedTagValid.myHmacTruncatedTagValid",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyHmacTruncatedTagValid.myHmacTruncatedTagValid"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MyHmacTruncatedTagValid.myHmacTruncatedTagValidImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyHmacTruncatedTagValid.myHmacTruncatedTagValidImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "5b31459defb824a9dbefd30a4a0fa09cdcd214e55798d5f0735dd364a8a0f92e",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C17ea4cac0a2312160f4af.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.312989975995151,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C17ea4cac0a2312160f4af_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true
+     }
+    },
+    "n_applicable": 7,
+    "n_pass": 7,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.580434882998816,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C27ea4cac0a2312160f4af.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MyHmacTruncatedTagValid.myHmacTruncatedTagValid",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyHmacTruncatedTagValid.e12renamed0000",
+       "MyHmacTruncatedTagValid.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MyHmacTruncatedTagValid.myHmacTruncatedTagValidImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyHmacTruncatedTagValid.e12renamed0000",
+       "MyHmacTruncatedTagValid.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "0d4e911d86306038724e1272836d40db802176b8236191b30a969f7b586a5406",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C27ea4cac0a2312160f4af.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "myHmacTruncatedTagValid": "e12renamed0000",
+    "myHmacTruncatedTagValidImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "crypto_set_real__my_pkcs7_unpad_valid",
+   "n_tests": 8,
+   "gold_sha256": "ffaea8a712bfd11de64bb8ec2831dcd90e890c607accd7726dbbb1249ecaf09f",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.702666803001193,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1d07fdad8b40c991760ae.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MyPkcs7UnpadValid.myPkcs7UnpadValid": "MyPkcs7UnpadValid.myPkcs7UnpadValid",
+     "MyPkcs7UnpadValid.myPkcs7UnpadValidImp": "MyPkcs7UnpadValid.myPkcs7UnpadValidImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MyPkcs7UnpadValid.myPkcs7UnpadValid",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyPkcs7UnpadValid.myPkcs7UnpadValid"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MyPkcs7UnpadValid.myPkcs7UnpadValidImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyPkcs7UnpadValid.myPkcs7UnpadValidImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "ffaea8a712bfd11de64bb8ec2831dcd90e890c607accd7726dbbb1249ecaf09f",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1d07fdad8b40c991760ae.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.083096597008989,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1d07fdad8b40c991760ae_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true
+     }
+    },
+    "n_applicable": 8,
+    "n_pass": 8,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.932544744995539,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2d07fdad8b40c991760ae.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MyPkcs7UnpadValid.myPkcs7UnpadValid",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyPkcs7UnpadValid.e12renamed0000",
+       "MyPkcs7UnpadValid.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MyPkcs7UnpadValid.myPkcs7UnpadValidImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyPkcs7UnpadValid.e12renamed0000",
+       "MyPkcs7UnpadValid.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "e9b61ffa722455d1a624b179742663d0f0656a76461c6d656c0a3693c3e3c023",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2d07fdad8b40c991760ae.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "myPkcs7UnpadValid": "e12renamed0000",
+    "myPkcs7UnpadValidImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "crypto_set_synthetic__my_aes_gcm_nonce_counter_accept",
+   "n_tests": 7,
+   "gold_sha256": "22b94405b5c358532cee1bddcbe5e4144eeb0c9f79a96623c7e6af844348147f",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.396759274008218,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C14de330787c9c997664bc.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MyAesGcmNonceCounterAccept.myAesGcmNonceCounterAccept": "MyAesGcmNonceCounterAccept.myAesGcmNonceCounterAccept",
+     "MyAesGcmNonceCounterAccept.myAesGcmNonceCounterAcceptImp": "MyAesGcmNonceCounterAccept.myAesGcmNonceCounterAcceptImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MyAesGcmNonceCounterAccept.myAesGcmNonceCounterAccept",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyAesGcmNonceCounterAccept.myAesGcmNonceCounterAccept"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MyAesGcmNonceCounterAccept.myAesGcmNonceCounterAcceptImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyAesGcmNonceCounterAccept.myAesGcmNonceCounterAcceptImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "22b94405b5c358532cee1bddcbe5e4144eeb0c9f79a96623c7e6af844348147f",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C14de330787c9c997664bc.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.805628806003369,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C14de330787c9c997664bc_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true
+     }
+    },
+    "n_applicable": 7,
+    "n_pass": 7,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.57513741600269,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C24de330787c9c997664bc.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MyAesGcmNonceCounterAccept.myAesGcmNonceCounterAccept",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyAesGcmNonceCounterAccept.e12renamed0000",
+       "MyAesGcmNonceCounterAccept.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MyAesGcmNonceCounterAccept.myAesGcmNonceCounterAcceptImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyAesGcmNonceCounterAccept.e12renamed0000",
+       "MyAesGcmNonceCounterAccept.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "82a40f4088abc4f1e148fb96b39947726cca4fb9c82520dcc6e910401713c012",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C24de330787c9c997664bc.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "myAesGcmNonceCounterAccept": "e12renamed0000",
+    "myAesGcmNonceCounterAcceptImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "cs_set__floyd_warshall",
+   "n_tests": 12,
+   "gold_sha256": "35305e0c3f21b942e9f03ae09b63ff70a0c15be5cf260d56e7f1bb15b1d1392a",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.055420602991944,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C18398c77536a7e0636b57.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "FloydWarshall.floydWarshall": "FloydWarshall.floydWarshall",
+     "FloydWarshall.g1": "FloydWarshall.g1",
+     "FloydWarshall.g2": "FloydWarshall.g2",
+     "FloydWarshall.floydWarshallImp": "FloydWarshall.floydWarshallImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "FloydWarshall.floydWarshall",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "List Edge"
+       ],
+       "Option DistanceMatrix"
+      ],
+      "candidates": [
+       "FloydWarshall.floydWarshall"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "FloydWarshall.g1",
+      "rule": "same_name",
+      "signature": [
+       [],
+       "List Edge"
+      ],
+      "candidates": [
+       "FloydWarshall.g1"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "FloydWarshall.g2",
+      "rule": "same_name",
+      "signature": [
+       [],
+       "List Edge"
+      ],
+      "candidates": [
+       "FloydWarshall.g2"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "FloydWarshall.floydWarshallImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "List Edge"
+       ],
+       "Option DistanceMatrix"
+      ],
+      "candidates": [
+       "FloydWarshall.floydWarshallImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "35305e0c3f21b942e9f03ae09b63ff70a0c15be5cf260d56e7f1bb15b1d1392a",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C18398c77536a7e0636b57.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.446621084003709,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C18398c77536a7e0636b57_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true
+     }
+    },
+    "n_applicable": 12,
+    "n_pass": 12,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.7393554910086095,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C28398c77536a7e0636b57.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "FloydWarshall.floydWarshall",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "List Edge"
+       ],
+       "Option DistanceMatrix"
+      ],
+      "candidates": [
+       "FloydWarshall.e12renamed0000",
+       "FloydWarshall.e12renamed0003"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "FloydWarshall.g1",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [],
+       "List Edge"
+      ],
+      "candidates": [
+       "FloydWarshall.e12renamed0001",
+       "FloydWarshall.e12renamed0002"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "FloydWarshall.g2",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [],
+       "List Edge"
+      ],
+      "candidates": [
+       "FloydWarshall.e12renamed0001",
+       "FloydWarshall.e12renamed0002"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "FloydWarshall.floydWarshallImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "List Edge"
+       ],
+       "Option DistanceMatrix"
+      ],
+      "candidates": [
+       "FloydWarshall.e12renamed0000",
+       "FloydWarshall.e12renamed0003"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "dbfb6b29a941ec5d43bd13f6b74f32634ec52199e094ead2bad4ef3ef21b0503",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C28398c77536a7e0636b57.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "floydWarshall": "e12renamed0000",
+    "g1": "e12renamed0001",
+    "g2": "e12renamed0002",
+    "floydWarshallImp": "e12renamed0003"
+   }
+  },
+  {
+   "task_id": "cs_set__heapsort_max_heapify",
+   "n_tests": 31,
+   "gold_sha256": "a93692c9852ddc26d7a41acd5bde8245df24a55b19f6c5f4c3b21f868e7a4bc8",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 37.07666597599746,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1e9541a37f976eb0931f8.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MaxHeapify.maxHeapify": "MaxHeapify.maxHeapify",
+     "MaxHeapify.minHeapify": "MaxHeapify.minHeapify",
+     "MaxHeapify.isMaxHeap": "MaxHeapify.isMaxHeap",
+     "MaxHeapify.maxHeapifyImp": "MaxHeapify.maxHeapifyImp",
+     "MaxHeapify.minHeapifyImp": "MaxHeapify.minHeapifyImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MaxHeapify.maxHeapify",
+      "rule": "same_name",
+      "signature": [
+       [
+        "Array NUM",
+        "NUM",
+        "NUM",
+        "NUM := v1"
+       ],
+       "Array NUM"
+      ],
+      "candidates": [
+       "MaxHeapify.maxHeapify"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MaxHeapify.minHeapify",
+      "rule": "same_name",
+      "signature": [
+       [
+        "Array NUM",
+        "NUM",
+        "NUM",
+        "NUM := v1"
+       ],
+       "Array NUM"
+      ],
+      "candidates": [
+       "MaxHeapify.minHeapify"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MaxHeapify.isMaxHeap",
+      "rule": "same_name",
+      "signature": [
+       [
+        "Array NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MaxHeapify.isMaxHeap"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MaxHeapify.maxHeapifyImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "Array NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Array NUM"
+      ],
+      "candidates": [
+       "MaxHeapify.maxHeapifyImp"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MaxHeapify.minHeapifyImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "Array NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Array NUM"
+      ],
+      "candidates": [
+       "MaxHeapify.minHeapifyImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "a93692c9852ddc26d7a41acd5bde8245df24a55b19f6c5f4c3b21f868e7a4bc8",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1e9541a37f976eb0931f8.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 10.155033420000109,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1e9541a37f976eb0931f8_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true,
+      "14": true,
+      "15": true,
+      "16": true,
+      "17": true,
+      "18": true,
+      "19": true,
+      "20": true,
+      "21": true,
+      "22": true,
+      "23": true,
+      "24": true,
+      "25": true,
+      "26": true,
+      "27": true,
+      "28": true,
+      "29": true,
+      "30": true
+     }
+    },
+    "n_applicable": 31,
+    "n_pass": 31,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 37.093871510995086,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2e9541a37f976eb0931f8.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MaxHeapify.maxHeapify",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "Array NUM",
+        "NUM",
+        "NUM",
+        "NUM := v1"
+       ],
+       "Array NUM"
+      ],
+      "candidates": [
+       "MaxHeapify.e12renamed0000",
+       "MaxHeapify.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MaxHeapify.minHeapify",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "Array NUM",
+        "NUM",
+        "NUM",
+        "NUM := v1"
+       ],
+       "Array NUM"
+      ],
+      "candidates": [
+       "MaxHeapify.e12renamed0000",
+       "MaxHeapify.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MaxHeapify.isMaxHeap",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "Array NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MaxHeapify.e12renamed0002",
+       "MaxHeapify.isMinHeap"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MaxHeapify.maxHeapifyImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "Array NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Array NUM"
+      ],
+      "candidates": [
+       "MaxHeapify.swapAt",
+       "MaxHeapify.e12renamed0003",
+       "MaxHeapify.e12renamed0004"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MaxHeapify.minHeapifyImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "Array NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Array NUM"
+      ],
+      "candidates": [
+       "MaxHeapify.swapAt",
+       "MaxHeapify.e12renamed0003",
+       "MaxHeapify.e12renamed0004"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "b0198259328f2f0b55f2c38461c9e53daa1b2d927e9cc55072d123c942782740",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2e9541a37f976eb0931f8.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "maxHeapify": "e12renamed0000",
+    "minHeapify": "e12renamed0001",
+    "isMaxHeap": "e12renamed0002",
+    "maxHeapifyImp": "e12renamed0003",
+    "minHeapifyImp": "e12renamed0004"
+   }
+  },
+  {
+   "task_id": "easy_set__15_myrepeatstring",
+   "n_tests": 12,
+   "gold_sha256": "35948e79ea9647b4dfb58871c241ce8e6c39ad077f03d1e962746d1e1d15e5e8",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.911818476990447,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C11b9dc0125536d7be8302.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MyRepeatString.myRepeatString": "MyRepeatString.myRepeatString",
+     "MyRepeatString.myRepeatStringImp": "MyRepeatString.myRepeatStringImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MyRepeatString.myRepeatString",
+      "rule": "same_name",
+      "signature": [
+       [
+        "String",
+        "NUM"
+       ],
+       "String"
+      ],
+      "candidates": [
+       "MyRepeatString.myRepeatString"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MyRepeatString.myRepeatStringImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "String",
+        "NUM"
+       ],
+       "String"
+      ],
+      "candidates": [
+       "MyRepeatString.myRepeatStringImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "35948e79ea9647b4dfb58871c241ce8e6c39ad077f03d1e962746d1e1d15e5e8",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C11b9dc0125536d7be8302.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.834698880993528,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C11b9dc0125536d7be8302_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true
+     }
+    },
+    "n_applicable": 12,
+    "n_pass": 12,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.619334610993974,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C21b9dc0125536d7be8302.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MyRepeatString.myRepeatString",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "String",
+        "NUM"
+       ],
+       "String"
+      ],
+      "candidates": [
+       "MyRepeatString.e12renamed0000",
+       "MyRepeatString.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MyRepeatString.myRepeatStringImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "String",
+        "NUM"
+       ],
+       "String"
+      ],
+      "candidates": [
+       "MyRepeatString.e12renamed0000",
+       "MyRepeatString.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "b7aa663480c9f77fb6bbddee4b2a8edd33c78c53552f4fe4e95ecd0254f892a3",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C21b9dc0125536d7be8302.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "myRepeatString": "e12renamed0000",
+    "myRepeatStringImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "easy_set__29_longest_common_prefix",
+   "n_tests": 12,
+   "gold_sha256": "4bf19fe62147a57726d49b28e1601597c5a436c7da1d2b522f705173d15769e1",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 12.886989055012236,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C16eb7d50c7f8f9a96998a.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "LongestCommonPrefix.longestCommonPrefix": "LongestCommonPrefix.longestCommonPrefix",
+     "LongestCommonPrefix.longestCommonPrefixImp": "LongestCommonPrefix.longestCommonPrefixImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "LongestCommonPrefix.longestCommonPrefix",
+      "rule": "same_name",
+      "signature": [
+       [
+        "List String"
+       ],
+       "String"
+      ],
+      "candidates": [
+       "LongestCommonPrefix.longestCommonPrefix"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "LongestCommonPrefix.longestCommonPrefixImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "List String"
+       ],
+       "String"
+      ],
+      "candidates": [
+       "LongestCommonPrefix.longestCommonPrefixImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "4bf19fe62147a57726d49b28e1601597c5a436c7da1d2b522f705173d15769e1",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C16eb7d50c7f8f9a96998a.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.207778512994992,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C16eb7d50c7f8f9a96998a_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true
+     }
+    },
+    "n_applicable": 12,
+    "n_pass": 12,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "error",
+     "returncode": 1,
+     "seconds": 9.691026967993821,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C26eb7d50c7f8f9a96998a.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "LongestCommonPrefix.longestCommonPrefix",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "List String"
+       ],
+       "String"
+      ],
+      "candidates": [
+       "LongestCommonPrefix.e12renamed0000",
+       "LongestCommonPrefix.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "LongestCommonPrefix.longestCommonPrefixImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "List String"
+       ],
+       "String"
+      ],
+      "candidates": [
+       "LongestCommonPrefix.e12renamed0000",
+       "LongestCommonPrefix.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "5f98503cca0798a83f15541c6f9d37ebabf7c755ecf3a41216af8d0b9219148f",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C26eb7d50c7f8f9a96998a.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "longestCommonPrefix": "e12renamed0000",
+    "longestCommonPrefixImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "easy_set__30_longest_valid_parentheses",
+   "n_tests": 12,
+   "gold_sha256": "432c8ec69737501efa1dc614cffb57a1d18c1fda833bf652e69ad2236b571641",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 18.348683467003866,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1ad0913c97eeec611dfaa.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "ValidParentheses.longestValidParentheses": "ValidParentheses.longestValidParentheses",
+     "ValidParentheses.longestValidParenthesesImp": "ValidParentheses.longestValidParenthesesImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "ValidParentheses.longestValidParentheses",
+      "rule": "same_name",
+      "signature": [
+       [
+        "String"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "ValidParentheses.longestValidParentheses"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "ValidParentheses.longestValidParenthesesImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "String"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "ValidParentheses.longestValidParenthesesImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "432c8ec69737501efa1dc614cffb57a1d18c1fda833bf652e69ad2236b571641",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1ad0913c97eeec611dfaa.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.4336973979952745,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1ad0913c97eeec611dfaa_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true
+     }
+    },
+    "n_applicable": 12,
+    "n_pass": 12,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 18.634631557011744,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2ad0913c97eeec611dfaa.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "ValidParentheses.longestValidParentheses",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "String"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "ValidParentheses.e12renamed0000",
+       "ValidParentheses.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "ValidParentheses.longestValidParenthesesImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "String"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "ValidParentheses.e12renamed0000",
+       "ValidParentheses.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "add4de4c0bca44313ea6ca9dc6ee585ae0ec37113def035541c32681da2af882",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2ad0913c97eeec611dfaa.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "longestValidParentheses": "e12renamed0000",
+    "longestValidParenthesesImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "easy_set__9_myoddsumparity",
+   "n_tests": 12,
+   "gold_sha256": "1c94b2d5c89f3803f3fb5679ded325eba60878aefa895874d2c1d8187ce2be8a",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.440529211002286,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1f3de769fec612a53b988.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MyOddSumParity.myOddSumParity": "MyOddSumParity.myOddSumParity",
+     "MyOddSumParity.myOddSumParityImp": "MyOddSumParity.myOddSumParityImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MyOddSumParity.myOddSumParity",
+      "rule": "same_name",
+      "signature": [
+       [
+        "List NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "MyOddSumParity.myOddSumParity"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MyOddSumParity.myOddSumParityImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "List NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "MyOddSumParity.myOddSumParityImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "1c94b2d5c89f3803f3fb5679ded325eba60878aefa895874d2c1d8187ce2be8a",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1f3de769fec612a53b988.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.414231123999343,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1f3de769fec612a53b988_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true
+     }
+    },
+    "n_applicable": 12,
+    "n_pass": 12,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.532357698990381,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2f3de769fec612a53b988.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MyOddSumParity.myOddSumParity",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "List NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "MyOddSumParity.e12renamed0000",
+       "MyOddSumParity.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MyOddSumParity.myOddSumParityImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "List NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "MyOddSumParity.e12renamed0000",
+       "MyOddSumParity.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "bb83af6795aba88ee340692c0753acc2aedb76d174e0403bb361e68879d829ef",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2f3de769fec612a53b988.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "myOddSumParity": "e12renamed0000",
+    "myOddSumParityImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "gov_cert_set_synthetic__my_gps_drift_budget",
+   "n_tests": 8,
+   "gold_sha256": "d775cc04d402b6d6033ffd5694ac91179c2bc5ab18e9de2986857f15eaece778",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 1.4166363629919942,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1adaa93aee632a9dfb27f.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MyGpsDriftBudget.myGpsDriftBudget": "MyGpsDriftBudget.myGpsDriftBudget",
+     "MyGpsDriftBudget.myGpsDriftBudgetImp": "MyGpsDriftBudget.myGpsDriftBudgetImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MyGpsDriftBudget.myGpsDriftBudget",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyGpsDriftBudget.myGpsDriftBudget"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MyGpsDriftBudget.myGpsDriftBudgetImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyGpsDriftBudget.myGpsDriftBudgetImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "d775cc04d402b6d6033ffd5694ac91179c2bc5ab18e9de2986857f15eaece778",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1adaa93aee632a9dfb27f.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.592116587999044,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1adaa93aee632a9dfb27f_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true
+     }
+    },
+    "n_applicable": 8,
+    "n_pass": 8,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 1.3712179199937964,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2adaa93aee632a9dfb27f.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MyGpsDriftBudget.myGpsDriftBudget",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyGpsDriftBudget.e12renamed0000",
+       "MyGpsDriftBudget.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MyGpsDriftBudget.myGpsDriftBudgetImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyGpsDriftBudget.e12renamed0000",
+       "MyGpsDriftBudget.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "c6dd7470670d3d04cc13f6936c87a92b97e657065e68066b6268e5d2e3b47963",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2adaa93aee632a9dfb27f.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "myGpsDriftBudget": "e12renamed0000",
+    "myGpsDriftBudgetImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "hardware_set_synthetic__my_fifo_push_level",
+   "n_tests": 6,
+   "gold_sha256": "ac9a64abb842fe7289f848fe8c192e8f278be3423de153507ac0e9613f71a50f",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 1.1989336469996488,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1eb9942b40112d4bc829b.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MyFifoPushLevel.myFifoPushLevel": "MyFifoPushLevel.myFifoPushLevel",
+     "MyFifoPushLevel.myFifoPushLevelImp": "MyFifoPushLevel.myFifoPushLevelImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MyFifoPushLevel.myFifoPushLevel",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "Bool"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "MyFifoPushLevel.myFifoPushLevel"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MyFifoPushLevel.myFifoPushLevelImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "Bool"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "MyFifoPushLevel.myFifoPushLevelImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "ac9a64abb842fe7289f848fe8c192e8f278be3423de153507ac0e9613f71a50f",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1eb9942b40112d4bc829b.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.449505001000944,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1eb9942b40112d4bc829b_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true
+     }
+    },
+    "n_applicable": 6,
+    "n_pass": 6,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 1.2087543580128113,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2eb9942b40112d4bc829b.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MyFifoPushLevel.myFifoPushLevel",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "Bool"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "MyFifoPushLevel.e12renamed0000",
+       "MyFifoPushLevel.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MyFifoPushLevel.myFifoPushLevelImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "Bool"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "MyFifoPushLevel.e12renamed0000",
+       "MyFifoPushLevel.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "2814422ef94a3848986da70415953ceab6d46336c3ba2de5e43e47f0966f89ca",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2eb9942b40112d4bc829b.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "myFifoPushLevel": "e12renamed0000",
+    "myFifoPushLevelImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "humaneval_set__humaneval_1_separate_paren_groups",
+   "n_tests": 13,
+   "gold_sha256": "da7cee63e4ce2488bdc7f97422313e78bcfa4fdcaf2f7e9007ccd9f453f8f516",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 9.235417781004799,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1d49ab6cefcc9b8fe1585.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "SeparateParenGroups.separateParenGroups": "SeparateParenGroups.separateParenGroups",
+     "SeparateParenGroups.separateParenGroupsImp": "SeparateParenGroups.separateParenGroupsImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "SeparateParenGroups.separateParenGroups",
+      "rule": "same_name",
+      "signature": [
+       [
+        "String"
+       ],
+       "List String"
+      ],
+      "candidates": [
+       "SeparateParenGroups.separateParenGroups"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SeparateParenGroups.separateParenGroupsImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "String"
+       ],
+       "List String"
+      ],
+      "candidates": [
+       "SeparateParenGroups.separateParenGroupsImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "da7cee63e4ce2488bdc7f97422313e78bcfa4fdcaf2f7e9007ccd9f453f8f516",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1d49ab6cefcc9b8fe1585.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.564564559012069,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1d49ab6cefcc9b8fe1585_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true
+     }
+    },
+    "n_applicable": 13,
+    "n_pass": 13,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "error",
+     "returncode": 1,
+     "seconds": 9.058571294008289,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2d49ab6cefcc9b8fe1585.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "SeparateParenGroups.separateParenGroups",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "String"
+       ],
+       "List String"
+      ],
+      "candidates": [
+       "SeparateParenGroups.e12renamed0000",
+       "SeparateParenGroups.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "SeparateParenGroups.separateParenGroupsImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "String"
+       ],
+       "List String"
+      ],
+      "candidates": [
+       "SeparateParenGroups.e12renamed0000",
+       "SeparateParenGroups.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "a89458eeded522525feacf3dbb1b6c81dd27f7d7bcf20c6af88793541a240bee",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2d49ab6cefcc9b8fe1585.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "separateParenGroups": "e12renamed0000",
+    "separateParenGroupsImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "humaneval_set__humaneval_52_below_threshold",
+   "n_tests": 17,
+   "gold_sha256": "73666730122a1c5a14147e040e0f14b00d5b2f50fb3368f53c25867ffd08102a",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 8.264012237996212,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C16f27080e1d717ee1720a.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "Humaneval52_BelowThreshold.belowThreshold": "Humaneval52_BelowThreshold.belowThreshold",
+     "Humaneval52_BelowThreshold.belowThresholdImp": "Humaneval52_BelowThreshold.belowThresholdImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "Humaneval52_BelowThreshold.belowThreshold",
+      "rule": "same_name",
+      "signature": [
+       [
+        "List NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "Humaneval52_BelowThreshold.belowThreshold"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "Humaneval52_BelowThreshold.belowThresholdImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "List NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "Humaneval52_BelowThreshold.belowThresholdImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "73666730122a1c5a14147e040e0f14b00d5b2f50fb3368f53c25867ffd08102a",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C16f27080e1d717ee1720a.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.89403329299239,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C16f27080e1d717ee1720a_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true,
+      "14": true,
+      "15": true,
+      "16": true
+     }
+    },
+    "n_applicable": 17,
+    "n_pass": 17,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "error",
+     "returncode": 1,
+     "seconds": 8.654795191003359,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C26f27080e1d717ee1720a.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "Humaneval52_BelowThreshold.belowThreshold",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "List NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "Humaneval52_BelowThreshold.e12renamed0000",
+       "Humaneval52_BelowThreshold.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "Humaneval52_BelowThreshold.belowThresholdImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "List NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "Humaneval52_BelowThreshold.e12renamed0000",
+       "Humaneval52_BelowThreshold.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "d8d8da8e41d8f7e4cd8e36d8d28e81728942b726504ba101748fa248c8bf6e39",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C26f27080e1d717ee1720a.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "belowThreshold": "e12renamed0000",
+    "belowThresholdImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "humaneval_set__humaneval_6_parse_nested_parens",
+   "n_tests": 14,
+   "gold_sha256": "9e956b03ce59e4ab7a7f6672cfcc5c62eeea04717b146ac60939ed45db5ee72b",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 9.021884595989832,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C19b9b4fa7165033aa96ed.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "ParseNestedParens.parseNestedParens": "ParseNestedParens.parseNestedParens",
+     "ParseNestedParens.parseNestedParensImp": "ParseNestedParens.parseNestedParensImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "ParseNestedParens.parseNestedParens",
+      "rule": "same_name",
+      "signature": [
+       [
+        "String"
+       ],
+       "List NUM"
+      ],
+      "candidates": [
+       "ParseNestedParens.parseNestedParens"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "ParseNestedParens.parseNestedParensImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "String"
+       ],
+       "List NUM"
+      ],
+      "candidates": [
+       "ParseNestedParens.parseNestedParensImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "9e956b03ce59e4ab7a7f6672cfcc5c62eeea04717b146ac60939ed45db5ee72b",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C19b9b4fa7165033aa96ed.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.4701838189939735,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C19b9b4fa7165033aa96ed_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true
+     }
+    },
+    "n_applicable": 14,
+    "n_pass": 14,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 8.987227602992789,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C29b9b4fa7165033aa96ed.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "ParseNestedParens.parseNestedParens",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "String"
+       ],
+       "List NUM"
+      ],
+      "candidates": [
+       "ParseNestedParens.e12renamed0000",
+       "ParseNestedParens.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "ParseNestedParens.parseNestedParensImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "String"
+       ],
+       "List NUM"
+      ],
+      "candidates": [
+       "ParseNestedParens.e12renamed0000",
+       "ParseNestedParens.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "1bb12d2a4421c451b1be66817dadf18973ff6826d54b3c8171acf4cb618a87c7",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C29b9b4fa7165033aa96ed.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "parseNestedParens": "e12renamed0000",
+    "parseNestedParensImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "hypervisor_set_real__my_seccomp_compare_real",
+   "n_tests": 7,
+   "gold_sha256": "bc0172a6a924d5d5b7e3a15bb636e2af863dec022a27e7c2fa2cba7c90555db0",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 1.287044626995339,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C13c2d9f22f53115b625ba.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MySeccompCompareReal.mySeccompCompareReal": "MySeccompCompareReal.mySeccompCompareReal",
+     "MySeccompCompareReal.mySeccompCompareRealImp": "MySeccompCompareReal.mySeccompCompareRealImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MySeccompCompareReal.mySeccompCompareReal",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MySeccompCompareReal.mySeccompCompareReal"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MySeccompCompareReal.mySeccompCompareRealImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MySeccompCompareReal.mySeccompCompareRealImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "bc0172a6a924d5d5b7e3a15bb636e2af863dec022a27e7c2fa2cba7c90555db0",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C13c2d9f22f53115b625ba.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.146016466998844,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C13c2d9f22f53115b625ba_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true
+     }
+    },
+    "n_applicable": 7,
+    "n_pass": 7,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 1.3489211179985432,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C23c2d9f22f53115b625ba.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MySeccompCompareReal.mySeccompCompareReal",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MySeccompCompareReal.e12renamed0000",
+       "MySeccompCompareReal.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MySeccompCompareReal.mySeccompCompareRealImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MySeccompCompareReal.e12renamed0000",
+       "MySeccompCompareReal.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "ba8f2787f6fd273308228af5b772561541c76bdb0099744464e1254243dfdba6",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C23c2d9f22f53115b625ba.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "mySeccompCompareReal": "e12renamed0000",
+    "mySeccompCompareRealImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "medical_oss_set_real__my_temp_target_active",
+   "n_tests": 5,
+   "gold_sha256": "683952bbfaf3a72db8a21ba69b433d28d464e1210a6b59c0e72bf2660438df4e",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 1.3708162199909566,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C17a6eacd3d6000b4cec68.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MyTempTargetActive.myTempTargetActive": "MyTempTargetActive.myTempTargetActive",
+     "MyTempTargetActive.myTempTargetActiveImp": "MyTempTargetActive.myTempTargetActiveImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MyTempTargetActive.myTempTargetActive",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "Bool"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyTempTargetActive.myTempTargetActive"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MyTempTargetActive.myTempTargetActiveImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "Bool"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyTempTargetActive.myTempTargetActiveImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "683952bbfaf3a72db8a21ba69b433d28d464e1210a6b59c0e72bf2660438df4e",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C17a6eacd3d6000b4cec68.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.384141702001216,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C17a6eacd3d6000b4cec68_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true
+     }
+    },
+    "n_applicable": 5,
+    "n_pass": 5,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 1.3571130619966425,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C27a6eacd3d6000b4cec68.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MyTempTargetActive.myTempTargetActive",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "Bool"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyTempTargetActive.e12renamed0000",
+       "MyTempTargetActive.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MyTempTargetActive.myTempTargetActiveImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "Bool"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyTempTargetActive.e12renamed0000",
+       "MyTempTargetActive.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "3c9a2ff0ae7db4c6307f2f8e2e0bff1f1af6843a3aeaf44d1fefe2ac8070cdae",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C27a6eacd3d6000b4cec68.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "myTempTargetActive": "e12renamed0000",
+    "myTempTargetActiveImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "medical_oss_set_synthetic__my_correction_needed",
+   "n_tests": 5,
+   "gold_sha256": "3e6be225491ab99a44d68563f6937c07369a2bf954551bfaf2eb7305a872c8a8",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 1.2994980990042677,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1c7d108bd5ed38bb4931a.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MyCorrectionNeeded.myCorrectionNeeded": "MyCorrectionNeeded.myCorrectionNeeded",
+     "MyCorrectionNeeded.myCorrectionNeededImp": "MyCorrectionNeeded.myCorrectionNeededImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MyCorrectionNeeded.myCorrectionNeeded",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyCorrectionNeeded.myCorrectionNeeded"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MyCorrectionNeeded.myCorrectionNeededImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyCorrectionNeeded.myCorrectionNeededImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "3e6be225491ab99a44d68563f6937c07369a2bf954551bfaf2eb7305a872c8a8",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1c7d108bd5ed38bb4931a.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.226987725996878,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1c7d108bd5ed38bb4931a_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true
+     }
+    },
+    "n_applicable": 5,
+    "n_pass": 5,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 1.2173506539984373,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2c7d108bd5ed38bb4931a.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MyCorrectionNeeded.myCorrectionNeeded",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyCorrectionNeeded.e12renamed0000",
+       "MyCorrectionNeeded.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MyCorrectionNeeded.myCorrectionNeededImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyCorrectionNeeded.e12renamed0000",
+       "MyCorrectionNeeded.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "dde31cd8880185ce4b2350520185ff062d3928a5f5b9846ccd1c50e5f070c263",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2c7d108bd5ed38bb4931a.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "myCorrectionNeeded": "e12renamed0000",
+    "myCorrectionNeededImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "memory_bugs_set_synthetic__my_capability_use_allowed",
+   "n_tests": 7,
+   "gold_sha256": "480a1a3722d29c15413ec514e6bec2f9a4786f99b706bd459c0e8e9304b5ceb2",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 4.363492054006201,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C112b4c0a8d35162d1f543.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MyCapabilityUseAllowed.my_capability_use_allowed": "MyCapabilityUseAllowed.my_capability_use_allowed",
+     "MyCapabilityUseAllowed.my_capability_use_allowedImp": "MyCapabilityUseAllowed.my_capability_use_allowedImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MyCapabilityUseAllowed.my_capability_use_allowed",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyCapabilityUseAllowed.my_capability_use_allowed"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MyCapabilityUseAllowed.my_capability_use_allowedImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyCapabilityUseAllowed.my_capability_use_allowedImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "480a1a3722d29c15413ec514e6bec2f9a4786f99b706bd459c0e8e9304b5ceb2",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C112b4c0a8d35162d1f543.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.997553023000364,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C112b4c0a8d35162d1f543_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true
+     }
+    },
+    "n_applicable": 7,
+    "n_pass": 7,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 4.248537577004754,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C212b4c0a8d35162d1f543.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MyCapabilityUseAllowed.my_capability_use_allowed",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyCapabilityUseAllowed.e12renamed0000",
+       "MyCapabilityUseAllowed.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MyCapabilityUseAllowed.my_capability_use_allowedImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyCapabilityUseAllowed.e12renamed0000",
+       "MyCapabilityUseAllowed.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "69a1d4fc1067e0c5a2ad8358837c5ba510cbd8df94654b70d63b4429f3e4c175",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C212b4c0a8d35162d1f543.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "my_capability_use_allowed": "e12renamed0000",
+    "my_capability_use_allowedImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "memory_bugs_set_synthetic__my_free_live_handle",
+   "n_tests": 7,
+   "gold_sha256": "72dc7b0f40c84b90e0edd6f8040ae52db852f07c2c3c8700f13cd82f47e75a58",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 4.166161840999848,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C19376968b948d6fb5bf98.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MyFreeLiveHandle.my_free_live_handle": "MyFreeLiveHandle.my_free_live_handle",
+     "MyFreeLiveHandle.my_free_live_handleImp": "MyFreeLiveHandle.my_free_live_handleImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MyFreeLiveHandle.my_free_live_handle",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyFreeLiveHandle.my_free_live_handle"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MyFreeLiveHandle.my_free_live_handleImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyFreeLiveHandle.my_free_live_handleImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "72dc7b0f40c84b90e0edd6f8040ae52db852f07c2c3c8700f13cd82f47e75a58",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C19376968b948d6fb5bf98.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.489133753988426,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C19376968b948d6fb5bf98_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true
+     }
+    },
+    "n_applicable": 7,
+    "n_pass": 7,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 4.243336341998656,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C29376968b948d6fb5bf98.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MyFreeLiveHandle.my_free_live_handle",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyFreeLiveHandle.e12renamed0000",
+       "MyFreeLiveHandle.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MyFreeLiveHandle.my_free_live_handleImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyFreeLiveHandle.e12renamed0000",
+       "MyFreeLiveHandle.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "14c3f6741a4789bc7225d0104cdabc55c7a2946fabbd1d6e79a15060115d15be",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C29376968b948d6fb5bf98.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "my_free_live_handle": "e12renamed0000",
+    "my_free_live_handleImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "memory_bugs_set_synthetic__my_guard_page_hit",
+   "n_tests": 10,
+   "gold_sha256": "5dc79eec26e549eed0dac5162a5157aa53c17d69fbb148a6cd88aa780d723498",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 4.079025636994629,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1f8e1e993ae199b25e847.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MyGuardPageHit.myGuardPageHit": "MyGuardPageHit.myGuardPageHit",
+     "MyGuardPageHit.myGuardPageHitImp": "MyGuardPageHit.myGuardPageHitImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MyGuardPageHit.myGuardPageHit",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyGuardPageHit.myGuardPageHit"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MyGuardPageHit.myGuardPageHitImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyGuardPageHit.myGuardPageHitImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "5dc79eec26e549eed0dac5162a5157aa53c17d69fbb148a6cd88aa780d723498",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1f8e1e993ae199b25e847.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.219397505992674,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1f8e1e993ae199b25e847_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true
+     }
+    },
+    "n_applicable": 10,
+    "n_pass": 10,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 4.065122721003718,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2f8e1e993ae199b25e847.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MyGuardPageHit.myGuardPageHit",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyGuardPageHit.e12renamed0000",
+       "MyGuardPageHit.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MyGuardPageHit.myGuardPageHitImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyGuardPageHit.e12renamed0000",
+       "MyGuardPageHit.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "20ed06a93fd2a9a0a4fbd2bec7f3cf72bd87959b6e706bc9c15568e5b32837a0",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2f8e1e993ae199b25e847.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "myGuardPageHit": "e12renamed0000",
+    "myGuardPageHitImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "memory_bugs_set_synthetic__my_pointer_aligned",
+   "n_tests": 11,
+   "gold_sha256": "ba31853ddec3050f7121a38dd640155fcbcfed46d8d605838c5f311974f05976",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 4.263631167996209,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1b588f3897dcf8e96199e.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MyPointerAligned.myPointerAligned": "MyPointerAligned.myPointerAligned",
+     "MyPointerAligned.myPointerAlignedImp": "MyPointerAligned.myPointerAlignedImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MyPointerAligned.myPointerAligned",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyPointerAligned.myPointerAligned"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MyPointerAligned.myPointerAlignedImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyPointerAligned.myPointerAlignedImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "ba31853ddec3050f7121a38dd640155fcbcfed46d8d605838c5f311974f05976",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1b588f3897dcf8e96199e.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.768831673005479,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1b588f3897dcf8e96199e_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true
+     }
+    },
+    "n_applicable": 11,
+    "n_pass": 11,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 4.3564019610057585,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2b588f3897dcf8e96199e.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MyPointerAligned.myPointerAligned",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyPointerAligned.e12renamed0000",
+       "MyPointerAligned.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MyPointerAligned.myPointerAlignedImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyPointerAligned.e12renamed0000",
+       "MyPointerAligned.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "37df9c2e9ae303616fb03ea3aa781bd63db7d956b5cee97f5d1faa31bd02de55",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2b588f3897dcf8e96199e.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "myPointerAligned": "e12renamed0000",
+    "myPointerAlignedImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "os_embedded_set_real__my_threadx_timer_should_fire",
+   "n_tests": 7,
+   "gold_sha256": "ada6975df3549f65c07be2ae9b5d3f36f696796e6728ee2eabf4afe831ff0cc3",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.728053865997936,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C142941041e31fb66699c8.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MyThreadxTimerShouldFire.myThreadxTimerShouldFire": "MyThreadxTimerShouldFire.myThreadxTimerShouldFire",
+     "MyThreadxTimerShouldFire.myThreadxTimerShouldFireImp": "MyThreadxTimerShouldFire.myThreadxTimerShouldFireImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MyThreadxTimerShouldFire.myThreadxTimerShouldFire",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "Bool"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyThreadxTimerShouldFire.myThreadxTimerShouldFire"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MyThreadxTimerShouldFire.myThreadxTimerShouldFireImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "Bool"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyThreadxTimerShouldFire.myThreadxTimerShouldFireImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "ada6975df3549f65c07be2ae9b5d3f36f696796e6728ee2eabf4afe831ff0cc3",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C142941041e31fb66699c8.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.604238444997463,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C142941041e31fb66699c8_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true
+     }
+    },
+    "n_applicable": 7,
+    "n_pass": 7,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.443964774996857,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C242941041e31fb66699c8.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MyThreadxTimerShouldFire.myThreadxTimerShouldFire",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "Bool"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyThreadxTimerShouldFire.e12renamed0000",
+       "MyThreadxTimerShouldFire.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MyThreadxTimerShouldFire.myThreadxTimerShouldFireImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "Bool"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyThreadxTimerShouldFire.e12renamed0000",
+       "MyThreadxTimerShouldFire.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "98d5a376ca6868f8fd456f381339318be58379b71c32165381d4ef0353b90139",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C242941041e31fb66699c8.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "myThreadxTimerShouldFire": "e12renamed0000",
+    "myThreadxTimerShouldFireImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "os_embedded_set_synthetic__my_wait_queue_should_wake",
+   "n_tests": 8,
+   "gold_sha256": "90a1f5dff0c0c3b7fb8ed383f9f81076763594dfdb468434851913747689de1a",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.364417849996244,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1a3ec90dedf44174f291d.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "MyWaitQueueShouldWake.myWaitQueueShouldWake": "MyWaitQueueShouldWake.myWaitQueueShouldWake",
+     "MyWaitQueueShouldWake.myWaitQueueShouldWakeImp": "MyWaitQueueShouldWake.myWaitQueueShouldWakeImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "MyWaitQueueShouldWake.myWaitQueueShouldWake",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "Bool"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyWaitQueueShouldWake.myWaitQueueShouldWake"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "MyWaitQueueShouldWake.myWaitQueueShouldWakeImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "Bool"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyWaitQueueShouldWake.myWaitQueueShouldWakeImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "90a1f5dff0c0c3b7fb8ed383f9f81076763594dfdb468434851913747689de1a",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1a3ec90dedf44174f291d.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.114016564009944,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1a3ec90dedf44174f291d_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true
+     }
+    },
+    "n_applicable": 8,
+    "n_pass": 8,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.828838232991984,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2a3ec90dedf44174f291d.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "MyWaitQueueShouldWake.myWaitQueueShouldWake",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "Bool"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyWaitQueueShouldWake.e12renamed0000",
+       "MyWaitQueueShouldWake.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "MyWaitQueueShouldWake.myWaitQueueShouldWakeImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "Bool"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "MyWaitQueueShouldWake.e12renamed0000",
+       "MyWaitQueueShouldWake.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "b64bb7f7fd1a6d031c7143d604f3dacb45915a79b0d149a377636875970a9a8c",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2a3ec90dedf44174f291d.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "myWaitQueueShouldWake": "e12renamed0000",
+    "myWaitQueueShouldWakeImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "realcode_set__22_shlex_join",
+   "n_tests": 5,
+   "gold_sha256": "a6293de55eb70deb1d9e813a5b05c29ab3819d1d8cf3d84110b85f8e81a263bb",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 2.3432796060078545,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C19a0b0fb71824d6a198a2.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "ShlexJoin.join_imp": "ShlexJoin.join_imp",
+     "ShlexJoin.testEq": "ShlexJoin.testEq"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "ShlexJoin.join_imp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "List String"
+       ],
+       "String"
+      ],
+      "candidates": [
+       "ShlexJoin.join_imp"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "ShlexJoin.testEq",
+      "rule": "same_name",
+      "signature": [
+       [
+        "String",
+        "String"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "ShlexJoin.testEq"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "a6293de55eb70deb1d9e813a5b05c29ab3819d1d8cf3d84110b85f8e81a263bb",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C19a0b0fb71824d6a198a2.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.362069884009543,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C19a0b0fb71824d6a198a2_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true
+     }
+    },
+    "n_applicable": 5,
+    "n_pass": 5,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 2.3845720700046513,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C29a0b0fb71824d6a198a2.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "ShlexJoin.testEq": "ShlexJoin.e12renamed0001"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "ShlexJoin.join_imp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "List String"
+       ],
+       "String"
+      ],
+      "candidates": [
+       "ShlexJoin.join_func",
+       "ShlexJoin.e12renamed0000"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "ShlexJoin.testEq",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "String",
+        "String"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "ShlexJoin.e12renamed0001"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "a6c7ac7d923d4c48ea81c011de3fb579f95999fd9495c8c7996271ebd53d7b18",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C29a0b0fb71824d6a198a2.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 5.890909819994704,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C29a0b0fb71824d6a198a2_Bridge.log",
+     "outputs": {}
+    },
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "join_imp": "e12renamed0000",
+    "testEq": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__safe__101_unsafeforkedtransparencylog_safe",
+   "n_tests": 14,
+   "gold_sha256": "cccd0fdbe7d1c2e0ff24689fe6e710b42a0f55d125ab0624a863cde8275b6301",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 5.873641022000811,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1667d683dce9966d9a377.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "SafeForkedTransparencyLog.safeForkAccept": "SafeForkedTransparencyLog.safeForkAccept",
+     "SafeForkedTransparencyLog.safeForkAcceptImp": "SafeForkedTransparencyLog.safeForkAcceptImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeForkedTransparencyLog.safeForkAccept",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeForkedTransparencyLog.safeForkAccept"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeForkedTransparencyLog.safeForkAcceptImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeForkedTransparencyLog.safeForkAcceptImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "cccd0fdbe7d1c2e0ff24689fe6e710b42a0f55d125ab0624a863cde8275b6301",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1667d683dce9966d9a377.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.667843265997362,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1667d683dce9966d9a377_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true
+     }
+    },
+    "n_applicable": 14,
+    "n_pass": 14,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 5.722362959000748,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2667d683dce9966d9a377.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeForkedTransparencyLog.safeForkAccept",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeForkedTransparencyLog.e12renamed0000",
+       "SafeForkedTransparencyLog.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "SafeForkedTransparencyLog.safeForkAcceptImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeForkedTransparencyLog.e12renamed0000",
+       "SafeForkedTransparencyLog.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "755f34323045fb2d7c48ae711cedc730704ae736bbf9d4bdf18bafccc4bdb3c1",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2667d683dce9966d9a377.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "safeForkAccept": "e12renamed0000",
+    "safeForkAcceptImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__safe__105_unsafephishingvalidcert_safe",
+   "n_tests": 14,
+   "gold_sha256": "883aa5ab53cd3c202c12943d9bf4c2fdf0e99b1aef079d9ed4c74d67776c6ea8",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.797721103997901,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1682a1320123692977896.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "SafePhishingValidCert.safePhishingCertCheck": "SafePhishingValidCert.safePhishingCertCheck",
+     "SafePhishingValidCert.safePhishingCertCheckImp": "SafePhishingValidCert.safePhishingCertCheckImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "SafePhishingValidCert.safePhishingCertCheck",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafePhishingValidCert.safePhishingCertCheck"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafePhishingValidCert.safePhishingCertCheckImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafePhishingValidCert.safePhishingCertCheckImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "883aa5ab53cd3c202c12943d9bf4c2fdf0e99b1aef079d9ed4c74d67776c6ea8",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1682a1320123692977896.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.977685442005168,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1682a1320123692977896_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true
+     }
+    },
+    "n_applicable": 14,
+    "n_pass": 14,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.74152216600487,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2682a1320123692977896.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "SafePhishingValidCert.safePhishingCertCheck",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafePhishingValidCert.e12renamed0000",
+       "SafePhishingValidCert.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "SafePhishingValidCert.safePhishingCertCheckImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafePhishingValidCert.e12renamed0000",
+       "SafePhishingValidCert.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "72d81c2961f8886c4e160ef86f08409eff9f154020d5c13c3a3bd61cd53f39f4",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2682a1320123692977896.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "safePhishingCertCheck": "e12renamed0000",
+    "safePhishingCertCheckImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__safe__14_unsafeserviceauth_safe",
+   "n_tests": 14,
+   "gold_sha256": "b04e555646fa9cec587dd49b4ee6f1fdaec46c904c43bcfc1a9bf579ed7babaa",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 8.37965431100747,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C18260bc2d05e8aad0ec18.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "SafeServiceAuth.safeServiceAuth": "SafeServiceAuth.safeServiceAuth",
+     "SafeServiceAuth.safeServiceAuthImp": "SafeServiceAuth.safeServiceAuthImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeServiceAuth.safeServiceAuth",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "List (NUM \u00d7 List NUM)",
+        "List (NUM \u00d7 String)"
+       ],
+       "Option String"
+      ],
+      "candidates": [
+       "SafeServiceAuth.safeServiceAuth"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeServiceAuth.safeServiceAuthImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "List (NUM \u00d7 List NUM)",
+        "List (NUM \u00d7 String)"
+       ],
+       "Option String"
+      ],
+      "candidates": [
+       "SafeServiceAuth.safeServiceAuthImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "b04e555646fa9cec587dd49b4ee6f1fdaec46c904c43bcfc1a9bf579ed7babaa",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C18260bc2d05e8aad0ec18.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.414667482007644,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C18260bc2d05e8aad0ec18_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true
+     }
+    },
+    "n_applicable": 14,
+    "n_pass": 14,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 8.194333398001618,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C28260bc2d05e8aad0ec18.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeServiceAuth.safeServiceAuth",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "List (NUM \u00d7 List NUM)",
+        "List (NUM \u00d7 String)"
+       ],
+       "Option String"
+      ],
+      "candidates": [
+       "SafeServiceAuth.e12renamed0000",
+       "SafeServiceAuth.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "SafeServiceAuth.safeServiceAuthImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "List (NUM \u00d7 List NUM)",
+        "List (NUM \u00d7 String)"
+       ],
+       "Option String"
+      ],
+      "candidates": [
+       "SafeServiceAuth.e12renamed0000",
+       "SafeServiceAuth.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "4a7f4d19baddc82b9be3eb99025307697aff67b02ec3007dbdfb1f10992d804d",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C28260bc2d05e8aad0ec18.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "safeServiceAuth": "e12renamed0000",
+    "safeServiceAuthImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__safe__157_unsafesslfinishedmac_safe",
+   "n_tests": 12,
+   "gold_sha256": "e9eb0d346617b30421eadb389b5f4786b118d15b665b7d9378c816c48d1ec947",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.953282093003509,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1e3d229d93a18dccc6887.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "SafeSSLFinishedMAC.finishedMAC": "SafeSSLFinishedMAC.finishedMAC",
+     "SafeSSLFinishedMAC.safeSSLFinishedCheck": "SafeSSLFinishedMAC.safeSSLFinishedCheck",
+     "SafeSSLFinishedMAC.safeSSLFinishedCheckImp": "SafeSSLFinishedMAC.safeSSLFinishedCheckImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeSSLFinishedMAC.finishedMAC",
+      "rule": "same_name",
+      "signature": [
+       [
+        "List NUM",
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "SafeSSLFinishedMAC.finishedMAC"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeSSLFinishedMAC.safeSSLFinishedCheck",
+      "rule": "same_name",
+      "signature": [
+       [
+        "List NUM",
+        "NUM",
+        "NUM",
+        "Bool"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeSSLFinishedMAC.safeSSLFinishedCheck"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeSSLFinishedMAC.safeSSLFinishedCheckImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "List NUM",
+        "NUM",
+        "NUM",
+        "Bool"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeSSLFinishedMAC.safeSSLFinishedCheckImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "e9eb0d346617b30421eadb389b5f4786b118d15b665b7d9378c816c48d1ec947",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1e3d229d93a18dccc6887.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.366360967003857,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1e3d229d93a18dccc6887_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true
+     }
+    },
+    "n_applicable": 12,
+    "n_pass": 12,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.090410342992982,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2e3d229d93a18dccc6887.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "SafeSSLFinishedMAC.finishedMAC": "SafeSSLFinishedMAC.e12renamed0000"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeSSLFinishedMAC.finishedMAC",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "List NUM",
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "SafeSSLFinishedMAC.e12renamed0000"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeSSLFinishedMAC.safeSSLFinishedCheck",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "List NUM",
+        "NUM",
+        "NUM",
+        "Bool"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeSSLFinishedMAC.e12renamed0001",
+       "SafeSSLFinishedMAC.e12renamed0002"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "SafeSSLFinishedMAC.safeSSLFinishedCheckImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "List NUM",
+        "NUM",
+        "NUM",
+        "Bool"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeSSLFinishedMAC.e12renamed0001",
+       "SafeSSLFinishedMAC.e12renamed0002"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "63174202920e95e3723d4bd7697deaef8a9ee37b084ec829074bede8e851e58d",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2e3d229d93a18dccc6887.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 5.758243731994298,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C2e3d229d93a18dccc6887_Bridge.log",
+     "outputs": {}
+    },
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "finishedMAC": "e12renamed0000",
+    "safeSSLFinishedCheck": "e12renamed0001",
+    "safeSSLFinishedCheckImp": "e12renamed0002"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__safe__1_unsafemultiply_safe",
+   "n_tests": 13,
+   "gold_sha256": "697cdaef55df98c193bcd20577f8a940d4458f46ce04d0383d9a8920a52aa1a0",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 8.64713288799976,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1edc36fb9ef6359edad6e.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "SafeIntegerOverflow.safeMultiply": "SafeIntegerOverflow.safeMultiply",
+     "SafeIntegerOverflow.safeMultiplyImp": "SafeIntegerOverflow.safeMultiplyImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeIntegerOverflow.safeMultiply",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Except String NUM"
+      ],
+      "candidates": [
+       "SafeIntegerOverflow.safeMultiply"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeIntegerOverflow.safeMultiplyImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Except String NUM"
+      ],
+      "candidates": [
+       "SafeIntegerOverflow.safeMultiplyImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "697cdaef55df98c193bcd20577f8a940d4458f46ce04d0383d9a8920a52aa1a0",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1edc36fb9ef6359edad6e.lean",
+    "evaluation": {
+     "status": "error",
+     "returncode": 1,
+     "seconds": 6.864231268991716,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1edc36fb9ef6359edad6e_Bridge.log",
+     "outputs": {
+      "4": true,
+      "6": true,
+      "7": true,
+      "10": true,
+      "12": true
+     }
+    },
+    "n_applicable": 5,
+    "n_pass": 5,
+    "all_pass": false
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 9.027110678012832,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2edc36fb9ef6359edad6e.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeIntegerOverflow.safeMultiply",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Except String NUM"
+      ],
+      "candidates": [
+       "SafeIntegerOverflow.e12renamed0000",
+       "SafeIntegerOverflow.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "SafeIntegerOverflow.safeMultiplyImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Except String NUM"
+      ],
+      "candidates": [
+       "SafeIntegerOverflow.e12renamed0000",
+       "SafeIntegerOverflow.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "88f6212b3a94b28c6b9dc9bfb6b315f165836d8c659c99eace3b35e1669acfc2",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2edc36fb9ef6359edad6e.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "safeMultiply": "e12renamed0000",
+    "safeMultiplyImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__safe__28_unsafesameorigin_safe",
+   "n_tests": 14,
+   "gold_sha256": "7705660d39292dab2043226d9ed7e0cc175505c935c3c093fe5b4392fc1a5839",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.301422892996925,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1a23022fd6fed18de4038.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "SafeSameOrigin.safeSameOrigin": "SafeSameOrigin.safeSameOrigin",
+     "SafeSameOrigin.safeSameOriginImp": "SafeSameOrigin.safeSameOriginImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeSameOrigin.safeSameOrigin",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeSameOrigin.safeSameOrigin"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeSameOrigin.safeSameOriginImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeSameOrigin.safeSameOriginImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "7705660d39292dab2043226d9ed7e0cc175505c935c3c093fe5b4392fc1a5839",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1a23022fd6fed18de4038.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 8.27267983800266,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1a23022fd6fed18de4038_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true
+     }
+    },
+    "n_applicable": 14,
+    "n_pass": 14,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.528970294006285,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2a23022fd6fed18de4038.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeSameOrigin.safeSameOrigin",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeSameOrigin.e12renamed0000",
+       "SafeSameOrigin.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "SafeSameOrigin.safeSameOriginImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeSameOrigin.e12renamed0000",
+       "SafeSameOrigin.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "01b456ea4bcd7c6e2f1f48fce2c54daba51705d059c30d4775923bc65a6680af",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2a23022fd6fed18de4038.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "safeSameOrigin": "e12renamed0000",
+    "safeSameOriginImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__safe__33_unsafepaddingoracle_safe",
+   "n_tests": 14,
+   "gold_sha256": "618a4acc45cedffcc0f6eb3f80708e401946f363a2f74c274a4438275cd22579",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.940764049999416,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1e0599e1d6608ac8a6561.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "SafePaddingCheck.safePaddingCheck": "SafePaddingCheck.safePaddingCheck",
+     "SafePaddingCheck.safePaddingCheckImp": "SafePaddingCheck.safePaddingCheckImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "SafePaddingCheck.safePaddingCheck",
+      "rule": "same_name",
+      "signature": [
+       [
+        "List NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafePaddingCheck.safePaddingCheck"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafePaddingCheck.safePaddingCheckImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "List NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafePaddingCheck.safePaddingCheckImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "618a4acc45cedffcc0f6eb3f80708e401946f363a2f74c274a4438275cd22579",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1e0599e1d6608ac8a6561.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.353102850000141,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1e0599e1d6608ac8a6561_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true
+     }
+    },
+    "n_applicable": 14,
+    "n_pass": 14,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.142831142991781,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2e0599e1d6608ac8a6561.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "SafePaddingCheck.safePaddingCheck",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "List NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafePaddingCheck.e12renamed0000",
+       "SafePaddingCheck.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "SafePaddingCheck.safePaddingCheckImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "List NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafePaddingCheck.e12renamed0000",
+       "SafePaddingCheck.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "6feb059f26a008508c35e7916277810a2c4aa18c7cad95887eddc124040adae4",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2e0599e1d6608ac8a6561.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "safePaddingCheck": "e12renamed0000",
+    "safePaddingCheckImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__safe__4_unsafecounter_safe",
+   "n_tests": 13,
+   "gold_sha256": "9264250e484cccdc37e893219b39bd740195512105c5bd6d188f43c79a35983e",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.283735702003469,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1996b5d92bf736d4efe60.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "SafeCounter.newCounter": "SafeCounter.newCounter",
+     "SafeCounter.getValue": "SafeCounter.getValue",
+     "SafeCounter.atomicIncrement": "SafeCounter.atomicIncrement",
+     "SafeCounter.atomicDecrement": "SafeCounter.atomicDecrement",
+     "SafeCounter.atomicIncrementNImp": "SafeCounter.atomicIncrementNImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeCounter.newCounter",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "Counter"
+      ],
+      "candidates": [
+       "SafeCounter.newCounter"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeCounter.getValue",
+      "rule": "same_name",
+      "signature": [
+       [
+        "Counter"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "SafeCounter.getValue"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeCounter.atomicIncrement",
+      "rule": "same_name",
+      "signature": [
+       [
+        "Counter"
+       ],
+       "Counter"
+      ],
+      "candidates": [
+       "SafeCounter.atomicIncrement"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeCounter.atomicDecrement",
+      "rule": "same_name",
+      "signature": [
+       [
+        "Counter"
+       ],
+       "Counter"
+      ],
+      "candidates": [
+       "SafeCounter.atomicDecrement"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeCounter.atomicIncrementNImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "Counter"
+       ],
+       "Counter"
+      ],
+      "candidates": [
+       "SafeCounter.atomicIncrementNImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "9264250e484cccdc37e893219b39bd740195512105c5bd6d188f43c79a35983e",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1996b5d92bf736d4efe60.lean",
+    "evaluation": {
+     "status": "error",
+     "returncode": 1,
+     "seconds": 6.85292432399001,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1996b5d92bf736d4efe60_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "4": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true
+     }
+    },
+    "n_applicable": 8,
+    "n_pass": 8,
+    "all_pass": false
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.287613294000039,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2996b5d92bf736d4efe60.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "SafeCounter.newCounter": "SafeCounter.e12renamed0000",
+     "SafeCounter.getValue": "SafeCounter.e12renamed0001",
+     "SafeCounter.atomicIncrementNImp": "SafeCounter.e12renamed0004"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeCounter.newCounter",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "Counter"
+      ],
+      "candidates": [
+       "SafeCounter.e12renamed0000"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeCounter.getValue",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "Counter"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "SafeCounter.e12renamed0001"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeCounter.atomicIncrement",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "Counter"
+       ],
+       "Counter"
+      ],
+      "candidates": [
+       "SafeCounter.e12renamed0002",
+       "SafeCounter.e12renamed0003"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "SafeCounter.atomicDecrement",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "Counter"
+       ],
+       "Counter"
+      ],
+      "candidates": [
+       "SafeCounter.e12renamed0002",
+       "SafeCounter.e12renamed0003"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "SafeCounter.atomicIncrementNImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "Counter"
+       ],
+       "Counter"
+      ],
+      "candidates": [
+       "SafeCounter.e12renamed0004"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "d43eedc140403bd0e07a75d760bc6060e3d88afe0f56791832f875cb91d2e673",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2996b5d92bf736d4efe60.lean",
+    "evaluation": {
+     "status": "error",
+     "returncode": 1,
+     "seconds": 6.1328720550081925,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C2996b5d92bf736d4efe60_Bridge.log",
+     "outputs": {
+      "2": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true
+     }
+    },
+    "n_applicable": 5,
+    "n_pass": 5,
+    "all_pass": false
+   },
+   "rename_map": {
+    "newCounter": "e12renamed0000",
+    "getValue": "e12renamed0001",
+    "atomicIncrement": "e12renamed0002",
+    "atomicDecrement": "e12renamed0003",
+    "atomicIncrementNImp": "e12renamed0004"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__safe__70_unsafefdleak_safe",
+   "n_tests": 14,
+   "gold_sha256": "c93e42700804fba0132f0168c5aa299e35732f27aea63cb91383fb29869f2f5a",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.0555774140084395,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1574b106258b5b214365b.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "SafeFdInherit.safeFdInherit": "SafeFdInherit.safeFdInherit",
+     "SafeFdInherit.safeFdInheritImp": "SafeFdInherit.safeFdInheritImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeFdInherit.safeFdInherit",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "List NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeFdInherit.safeFdInherit"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeFdInherit.safeFdInheritImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "List NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeFdInherit.safeFdInheritImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "c93e42700804fba0132f0168c5aa299e35732f27aea63cb91383fb29869f2f5a",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1574b106258b5b214365b.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.277581886999542,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1574b106258b5b214365b_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true
+     }
+    },
+    "n_applicable": 14,
+    "n_pass": 14,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.046638141997391,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2574b106258b5b214365b.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeFdInherit.safeFdInherit",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "List NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeFdInherit.e12renamed0000",
+       "SafeFdInherit.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "SafeFdInherit.safeFdInheritImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "List NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeFdInherit.e12renamed0000",
+       "SafeFdInherit.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "8ad08c3e8ee5f2b676013394929ae0d417f42ed0feb7be6ae22c1d89256dc901",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2574b106258b5b214365b.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "safeFdInherit": "e12renamed0000",
+    "safeFdInheritImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__safe__90_unsafeipspoofing_safe",
+   "n_tests": 16,
+   "gold_sha256": "0eea2cb58ed84fd3fc394eb65e4a8755797f80be6a8fda82a83c6104839ad313",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.203932160002296,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1c6a24a335e828f9c3f97.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "SafeIpSpoofing.safeIpSpoofing": "SafeIpSpoofing.safeIpSpoofing",
+     "SafeIpSpoofing.safeIpSpoofingImp": "SafeIpSpoofing.safeIpSpoofingImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeIpSpoofing.safeIpSpoofing",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool \u00d7 NUM"
+      ],
+      "candidates": [
+       "SafeIpSpoofing.safeIpSpoofing"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeIpSpoofing.safeIpSpoofingImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool \u00d7 NUM"
+      ],
+      "candidates": [
+       "SafeIpSpoofing.safeIpSpoofingImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "0eea2cb58ed84fd3fc394eb65e4a8755797f80be6a8fda82a83c6104839ad313",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1c6a24a335e828f9c3f97.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.956141449001734,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1c6a24a335e828f9c3f97_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true,
+      "14": true,
+      "15": true
+     }
+    },
+    "n_applicable": 16,
+    "n_pass": 16,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.993277908986784,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2c6a24a335e828f9c3f97.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeIpSpoofing.safeIpSpoofing",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool \u00d7 NUM"
+      ],
+      "candidates": [
+       "SafeIpSpoofing.e12renamed0000",
+       "SafeIpSpoofing.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "SafeIpSpoofing.safeIpSpoofingImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool \u00d7 NUM"
+      ],
+      "candidates": [
+       "SafeIpSpoofing.e12renamed0000",
+       "SafeIpSpoofing.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "ba0d0e3385d9d6448aaff17027bcc6030f83991645d7d4a776ee39413a3692d5",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2c6a24a335e828f9c3f97.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "safeIpSpoofing": "e12renamed0000",
+    "safeIpSpoofingImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__safe__99_unsafehardcodedkey_safe",
+   "n_tests": 17,
+   "gold_sha256": "679e5ebe984514a43acbdad2b66fb9e66f5043eac6d75cd0ec360100c0e0f296",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.671488883002894,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1bd77b34118f49657196b.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "SafeHardcodedKey.deriveDeviceKey": "SafeHardcodedKey.deriveDeviceKey",
+     "SafeHardcodedKey.safeDecrypt": "SafeHardcodedKey.safeDecrypt",
+     "SafeHardcodedKey.deriveDeviceKeyImp": "SafeHardcodedKey.deriveDeviceKeyImp",
+     "SafeHardcodedKey.safeDecryptImp": "SafeHardcodedKey.safeDecryptImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeHardcodedKey.deriveDeviceKey",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "SafeHardcodedKey.deriveDeviceKey"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeHardcodedKey.safeDecrypt",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "SafeHardcodedKey.safeDecrypt"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeHardcodedKey.deriveDeviceKeyImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "SafeHardcodedKey.deriveDeviceKeyImp"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeHardcodedKey.safeDecryptImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "SafeHardcodedKey.safeDecryptImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "679e5ebe984514a43acbdad2b66fb9e66f5043eac6d75cd0ec360100c0e0f296",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1bd77b34118f49657196b.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 8.611830244000885,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1bd77b34118f49657196b_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true,
+      "14": true,
+      "15": true,
+      "16": true
+     }
+    },
+    "n_applicable": 17,
+    "n_pass": 17,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.302766289998544,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2bd77b34118f49657196b.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeHardcodedKey.deriveDeviceKey",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "SafeHardcodedKey.e12renamed0000",
+       "SafeHardcodedKey.e12renamed0002"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "SafeHardcodedKey.safeDecrypt",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "SafeHardcodedKey.e12renamed0001",
+       "SafeHardcodedKey.e12renamed0003"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "SafeHardcodedKey.deriveDeviceKeyImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "SafeHardcodedKey.e12renamed0000",
+       "SafeHardcodedKey.e12renamed0002"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "SafeHardcodedKey.safeDecryptImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "NUM"
+      ],
+      "candidates": [
+       "SafeHardcodedKey.e12renamed0001",
+       "SafeHardcodedKey.e12renamed0003"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "eaeabb00a3ba0d7ad6b1fe860701536e64587925e8debf301e3564c5b5887a09",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2bd77b34118f49657196b.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "deriveDeviceKey": "e12renamed0000",
+    "safeDecrypt": "e12renamed0001",
+    "deriveDeviceKeyImp": "e12renamed0002",
+    "safeDecryptImp": "e12renamed0003"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__vulnerabilities__105_unsafednsamplification",
+   "n_tests": 15,
+   "gold_sha256": "e625ac5f20965ca9e780d20129ac566f77b621dcbc92d053ab2b6ef1478db1f0",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.061152932001278,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1a48640383629aacc433a.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "UnsafeDnsAmplification.unsafeDnsAmplification": "UnsafeDnsAmplification.unsafeDnsAmplification",
+     "UnsafeDnsAmplification.unsafeDnsAmplificationImp": "UnsafeDnsAmplification.unsafeDnsAmplificationImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeDnsAmplification.unsafeDnsAmplification",
+      "rule": "same_name",
+      "signature": [
+       [
+        "Bool",
+        "NUM",
+        "NUM"
+       ],
+       "Bool \u00d7 NUM"
+      ],
+      "candidates": [
+       "UnsafeDnsAmplification.unsafeDnsAmplification"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "UnsafeDnsAmplification.unsafeDnsAmplificationImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "Bool",
+        "NUM",
+        "NUM"
+       ],
+       "Bool \u00d7 NUM"
+      ],
+      "candidates": [
+       "UnsafeDnsAmplification.unsafeDnsAmplificationImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "e625ac5f20965ca9e780d20129ac566f77b621dcbc92d053ab2b6ef1478db1f0",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1a48640383629aacc433a.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.92672418600705,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1a48640383629aacc433a_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true,
+      "14": true
+     }
+    },
+    "n_applicable": 15,
+    "n_pass": 15,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.382921037991764,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2a48640383629aacc433a.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeDnsAmplification.unsafeDnsAmplification",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "Bool",
+        "NUM",
+        "NUM"
+       ],
+       "Bool \u00d7 NUM"
+      ],
+      "candidates": [
+       "UnsafeDnsAmplification.e12renamed0000",
+       "UnsafeDnsAmplification.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "UnsafeDnsAmplification.unsafeDnsAmplificationImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "Bool",
+        "NUM",
+        "NUM"
+       ],
+       "Bool \u00d7 NUM"
+      ],
+      "candidates": [
+       "UnsafeDnsAmplification.e12renamed0000",
+       "UnsafeDnsAmplification.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "be3ecc2e9028ef330b8b45f32c3ed8f46ea80e260675c368d7163135b29329b3",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2a48640383629aacc433a.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "unsafeDnsAmplification": "e12renamed0000",
+    "unsafeDnsAmplificationImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__vulnerabilities__130_unsafebitlockerbios",
+   "n_tests": 14,
+   "gold_sha256": "88979a91d2d980d129231da07dc7b5416a44cc1787bf719e32d9854db9dad26a",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 5.903446862997953,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1e63857544a58ccae0ac7.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "UnsafeBitlockerBIOS.unsafeBitlockerBIOS": "UnsafeBitlockerBIOS.unsafeBitlockerBIOS",
+     "UnsafeBitlockerBIOS.unsafeBitlockerBIOSImp": "UnsafeBitlockerBIOS.unsafeBitlockerBIOSImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeBitlockerBIOS.unsafeBitlockerBIOS",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeBitlockerBIOS.unsafeBitlockerBIOS"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "UnsafeBitlockerBIOS.unsafeBitlockerBIOSImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeBitlockerBIOS.unsafeBitlockerBIOSImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "88979a91d2d980d129231da07dc7b5416a44cc1787bf719e32d9854db9dad26a",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1e63857544a58ccae0ac7.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.162177008998697,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1e63857544a58ccae0ac7_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true
+     }
+    },
+    "n_applicable": 14,
+    "n_pass": 14,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.27252890400996,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2e63857544a58ccae0ac7.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeBitlockerBIOS.unsafeBitlockerBIOS",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeBitlockerBIOS.e12renamed0000",
+       "UnsafeBitlockerBIOS.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "UnsafeBitlockerBIOS.unsafeBitlockerBIOSImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeBitlockerBIOS.e12renamed0000",
+       "UnsafeBitlockerBIOS.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "58a76979a65599a868756d27a986e9e28b8afbee29868accbdc76ca8dd07a7db",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2e63857544a58ccae0ac7.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "unsafeBitlockerBIOS": "e12renamed0000",
+    "unsafeBitlockerBIOSImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__vulnerabilities__137_unsafehmaclength",
+   "n_tests": 14,
+   "gold_sha256": "a90c39c63b6f8876284ee467fb102666b0f862064777be69f9f190c48facbda2",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.585530604002997,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1601545f75bb65af20340.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "UnsafeHMACLength.unsafeHMACVerify": "UnsafeHMACLength.unsafeHMACVerify",
+     "UnsafeHMACLength.unsafeHMACVerifyImp": "UnsafeHMACLength.unsafeHMACVerifyImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeHMACLength.unsafeHMACVerify",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeHMACLength.unsafeHMACVerify"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "UnsafeHMACLength.unsafeHMACVerifyImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeHMACLength.unsafeHMACVerifyImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "a90c39c63b6f8876284ee467fb102666b0f862064777be69f9f190c48facbda2",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1601545f75bb65af20340.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.803080266996403,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1601545f75bb65af20340_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true
+     }
+    },
+    "n_applicable": 14,
+    "n_pass": 14,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.293197691993555,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2601545f75bb65af20340.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeHMACLength.unsafeHMACVerify",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeHMACLength.e12renamed0000",
+       "UnsafeHMACLength.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "UnsafeHMACLength.unsafeHMACVerifyImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeHMACLength.e12renamed0000",
+       "UnsafeHMACLength.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "99e455fa664ccadcddfa36da4d773cd65d131f0994cb766f324da04845f85187",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2601545f75bb65af20340.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "unsafeHMACVerify": "e12renamed0000",
+    "unsafeHMACVerifyImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__vulnerabilities__14_unsafeserviceauth",
+   "n_tests": 14,
+   "gold_sha256": "bcea320f58dd8f8b03716a5c96213bf1e02c846f01f2587112e6e97d4610a67e",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 8.267387989995768,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C19de430eee364f543aff0.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "UnsafeServiceAuth.unsafeServiceAuth": "UnsafeServiceAuth.unsafeServiceAuth",
+     "UnsafeServiceAuth.unsafeServiceAuthImp": "UnsafeServiceAuth.unsafeServiceAuthImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeServiceAuth.unsafeServiceAuth",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "List (NUM \u00d7 String)"
+       ],
+       "Option String"
+      ],
+      "candidates": [
+       "UnsafeServiceAuth.unsafeServiceAuth"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "UnsafeServiceAuth.unsafeServiceAuthImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "List (NUM \u00d7 String)"
+       ],
+       "Option String"
+      ],
+      "candidates": [
+       "UnsafeServiceAuth.unsafeServiceAuthImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "bcea320f58dd8f8b03716a5c96213bf1e02c846f01f2587112e6e97d4610a67e",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C19de430eee364f543aff0.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 8.072088528002496,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C19de430eee364f543aff0_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true
+     }
+    },
+    "n_applicable": 14,
+    "n_pass": 14,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 8.33426583999244,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C29de430eee364f543aff0.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeServiceAuth.unsafeServiceAuth",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "List (NUM \u00d7 String)"
+       ],
+       "Option String"
+      ],
+      "candidates": [
+       "UnsafeServiceAuth.e12renamed0000",
+       "UnsafeServiceAuth.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "UnsafeServiceAuth.unsafeServiceAuthImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "List (NUM \u00d7 String)"
+       ],
+       "Option String"
+      ],
+      "candidates": [
+       "UnsafeServiceAuth.e12renamed0000",
+       "UnsafeServiceAuth.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "5ade240d60200277cb225ccbc9785327b2a45e4254007e2af161a796ed5ac0b5",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C29de430eee364f543aff0.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "unsafeServiceAuth": "e12renamed0000",
+    "unsafeServiceAuthImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__vulnerabilities__32_unsafeleakingcompare",
+   "n_tests": 13,
+   "gold_sha256": "3c89ba94ebdcfad745e233f36da8c128005082bba24797711d931ac34939783c",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.006040811000275,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C17a29483ef51d545a000d.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "UnsafeLeakingCompare.initState": "UnsafeLeakingCompare.initState",
+     "UnsafeLeakingCompare.unsafeLeakingCompareImp": "UnsafeLeakingCompare.unsafeLeakingCompareImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeLeakingCompare.initState",
+      "rule": "same_name",
+      "signature": [
+       [],
+       "MachineState"
+      ],
+      "candidates": [
+       "UnsafeLeakingCompare.initState"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "UnsafeLeakingCompare.unsafeLeakingCompareImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "List NUM",
+        "List NUM"
+       ],
+       "NUM \u00d7 Bool"
+      ],
+      "candidates": [
+       "UnsafeLeakingCompare.unsafeLeakingCompareImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "3c89ba94ebdcfad745e233f36da8c128005082bba24797711d931ac34939783c",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C17a29483ef51d545a000d.lean",
+    "evaluation": {
+     "status": "error",
+     "returncode": 1,
+     "seconds": 6.7724900229950435,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C17a29483ef51d545a000d_Bridge.log",
+     "outputs": {
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true
+     }
+    },
+    "n_applicable": 6,
+    "n_pass": 6,
+    "all_pass": false
+   },
+   "C2": {
+    "compile": {
+     "status": "error",
+     "returncode": 1,
+     "seconds": 6.127765930010355,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C27a29483ef51d545a000d.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "UnsafeLeakingCompare.initState": "UnsafeLeakingCompare.e12renamed0000",
+     "UnsafeLeakingCompare.unsafeLeakingCompareImp": "UnsafeLeakingCompare.e12renamed0001"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeLeakingCompare.initState",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [],
+       "MachineState"
+      ],
+      "candidates": [
+       "UnsafeLeakingCompare.e12renamed0000"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "UnsafeLeakingCompare.unsafeLeakingCompareImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "List NUM",
+        "List NUM"
+       ],
+       "NUM \u00d7 Bool"
+      ],
+      "candidates": [
+       "UnsafeLeakingCompare.e12renamed0001"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "671bd759e3a9ae3153638b55dda8d2efcf5cf23053392403bb360cf861ab1b5d",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C27a29483ef51d545a000d.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "initState": "e12renamed0000",
+    "unsafeLeakingCompareImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__vulnerabilities__52_unsafechrootescape",
+   "n_tests": 14,
+   "gold_sha256": "43c8066b4052eda0bea7df06af0f9acbdd1d59f758fc76f68f01626dc3eccb89",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.064486875999137,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C11f50d63479c31cff2fac.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "UnsafeChrootEscape.unsafeChrootResolve": "UnsafeChrootEscape.unsafeChrootResolve",
+     "UnsafeChrootEscape.unsafeChrootResolveImp": "UnsafeChrootEscape.unsafeChrootResolveImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeChrootEscape.unsafeChrootResolve",
+      "rule": "same_name",
+      "signature": [
+       [
+        "String",
+        "String"
+       ],
+       "String"
+      ],
+      "candidates": [
+       "UnsafeChrootEscape.unsafeChrootResolve"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "UnsafeChrootEscape.unsafeChrootResolveImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "String",
+        "String"
+       ],
+       "String"
+      ],
+      "candidates": [
+       "UnsafeChrootEscape.unsafeChrootResolveImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "43c8066b4052eda0bea7df06af0f9acbdd1d59f758fc76f68f01626dc3eccb89",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C11f50d63479c31cff2fac.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.6794325609953376,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C11f50d63479c31cff2fac_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true
+     }
+    },
+    "n_applicable": 14,
+    "n_pass": 14,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.833032309994451,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C21f50d63479c31cff2fac.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeChrootEscape.unsafeChrootResolve",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "String",
+        "String"
+       ],
+       "String"
+      ],
+      "candidates": [
+       "UnsafeChrootEscape.e12renamed0000",
+       "UnsafeChrootEscape.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "UnsafeChrootEscape.unsafeChrootResolveImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "String",
+        "String"
+       ],
+       "String"
+      ],
+      "candidates": [
+       "UnsafeChrootEscape.e12renamed0000",
+       "UnsafeChrootEscape.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "7c056adafaf6cea828d342db4f7e9cd5eb41f8dd4e2a32620ef3195bce016ae3",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C21f50d63479c31cff2fac.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "unsafeChrootResolve": "e12renamed0000",
+    "unsafeChrootResolveImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__vulnerabilities__60_unsafebroadcasteavesdrop",
+   "n_tests": 14,
+   "gold_sha256": "8bed8bbf7ba11f21055a23b08da59fa0e86879d520d0aa6cc9ff98b91c918796",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.308776378005859,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1d4206f6c11f2c0945137.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "UnsafeBroadcastEavesdrop.unsafeBroadcastSend": "UnsafeBroadcastEavesdrop.unsafeBroadcastSend",
+     "UnsafeBroadcastEavesdrop.unsafeBroadcastSendImp": "UnsafeBroadcastEavesdrop.unsafeBroadcastSendImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeBroadcastEavesdrop.unsafeBroadcastSend",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "List NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeBroadcastEavesdrop.unsafeBroadcastSend"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "UnsafeBroadcastEavesdrop.unsafeBroadcastSendImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "List NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeBroadcastEavesdrop.unsafeBroadcastSendImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "8bed8bbf7ba11f21055a23b08da59fa0e86879d520d0aa6cc9ff98b91c918796",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1d4206f6c11f2c0945137.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 8.05111608900188,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1d4206f6c11f2c0945137_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true
+     }
+    },
+    "n_applicable": 14,
+    "n_pass": 14,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.5229041970014805,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2d4206f6c11f2c0945137.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeBroadcastEavesdrop.unsafeBroadcastSend",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "List NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeBroadcastEavesdrop.e12renamed0000",
+       "UnsafeBroadcastEavesdrop.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "UnsafeBroadcastEavesdrop.unsafeBroadcastSendImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "List NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeBroadcastEavesdrop.e12renamed0000",
+       "UnsafeBroadcastEavesdrop.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "a4ad0e020de06185b458113ed100308f435c044cba1b961a8159a09c57351fe3",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2d4206f6c11f2c0945137.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "unsafeBroadcastSend": "e12renamed0000",
+    "unsafeBroadcastSendImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__vulnerabilities__69_unsafequerywhitelist",
+   "n_tests": 14,
+   "gold_sha256": "ee1fb065c6602549fae31d872268a3b19db8ddfd001eaac67ac31a88723cf21b",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.134949144994607,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1c36d7ba0731246bfa2ee.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "UnsafeQueryWhitelist.unsafeQueryCheck": "UnsafeQueryWhitelist.unsafeQueryCheck",
+     "UnsafeQueryWhitelist.unsafeQueryCheckImp": "UnsafeQueryWhitelist.unsafeQueryCheckImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeQueryWhitelist.unsafeQueryCheck",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "List (NUM \u00d7 NUM)"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeQueryWhitelist.unsafeQueryCheck"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "UnsafeQueryWhitelist.unsafeQueryCheckImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "List (NUM \u00d7 NUM)"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeQueryWhitelist.unsafeQueryCheckImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "ee1fb065c6602549fae31d872268a3b19db8ddfd001eaac67ac31a88723cf21b",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1c36d7ba0731246bfa2ee.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.931663006005692,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1c36d7ba0731246bfa2ee_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true
+     }
+    },
+    "n_applicable": 14,
+    "n_pass": 14,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.669365691006533,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2c36d7ba0731246bfa2ee.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeQueryWhitelist.unsafeQueryCheck",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "List (NUM \u00d7 NUM)"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeQueryWhitelist.e12renamed0000",
+       "UnsafeQueryWhitelist.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "UnsafeQueryWhitelist.unsafeQueryCheckImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM",
+        "List (NUM \u00d7 NUM)"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeQueryWhitelist.e12renamed0000",
+       "UnsafeQueryWhitelist.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "b0a61a23ff032bf797d84f4e778969360c9ed95fa6a9764038fd024a65d38d54",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2c36d7ba0731246bfa2ee.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "unsafeQueryCheck": "e12renamed0000",
+    "unsafeQueryCheckImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__vulnerabilities__88_unsafebgproute",
+   "n_tests": 14,
+   "gold_sha256": "ee18c841be344a6a173a696559b3ff6ae7aad312de4014e49dab505ad9eab567",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.223089169987361,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1fe41b430e3871ba1ab32.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "UnsafeBGPRoute.unsafeBGPRoute": "UnsafeBGPRoute.unsafeBGPRoute",
+     "UnsafeBGPRoute.unsafeBGPRouteImp": "UnsafeBGPRoute.unsafeBGPRouteImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeBGPRoute.unsafeBGPRoute",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeBGPRoute.unsafeBGPRoute"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "UnsafeBGPRoute.unsafeBGPRouteImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeBGPRoute.unsafeBGPRouteImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "ee18c841be344a6a173a696559b3ff6ae7aad312de4014e49dab505ad9eab567",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1fe41b430e3871ba1ab32.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.243584058000124,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1fe41b430e3871ba1ab32_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true
+     }
+    },
+    "n_applicable": 14,
+    "n_pass": 14,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.4244572579918895,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2fe41b430e3871ba1ab32.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeBGPRoute.unsafeBGPRoute",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeBGPRoute.e12renamed0000",
+       "UnsafeBGPRoute.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "UnsafeBGPRoute.unsafeBGPRouteImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeBGPRoute.e12renamed0000",
+       "UnsafeBGPRoute.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "ffc43d4f9c09dc692bd71813db50b4ae0b664898b87b68fcea743c57c512c7ed",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2fe41b430e3871ba1ab32.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "unsafeBGPRoute": "e12renamed0000",
+    "unsafeBGPRouteImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__vulnerabilities__93_unsafecertrevoke",
+   "n_tests": 14,
+   "gold_sha256": "e8e46420f233f780f4296c62e937b3a9624a702937be25a82645b6d7ae9dc05c",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.269853719000821,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1504eb2e9992ca8fd057d.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "UnsafeCertRevoke.unsafeCertRevoke": "UnsafeCertRevoke.unsafeCertRevoke",
+     "UnsafeCertRevoke.unsafeCertRevokeImp": "UnsafeCertRevoke.unsafeCertRevokeImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeCertRevoke.unsafeCertRevoke",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "List NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeCertRevoke.unsafeCertRevoke"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "UnsafeCertRevoke.unsafeCertRevokeImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "List NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeCertRevoke.unsafeCertRevokeImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "e8e46420f233f780f4296c62e937b3a9624a702937be25a82645b6d7ae9dc05c",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1504eb2e9992ca8fd057d.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.534139234005124,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1504eb2e9992ca8fd057d_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true
+     }
+    },
+    "n_applicable": 14,
+    "n_pass": 14,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.337880637001945,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2504eb2e9992ca8fd057d.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeCertRevoke.unsafeCertRevoke",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "List NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeCertRevoke.e12renamed0000",
+       "UnsafeCertRevoke.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "UnsafeCertRevoke.unsafeCertRevokeImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "List NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeCertRevoke.e12renamed0000",
+       "UnsafeCertRevoke.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "22cfccee7a2b6d243ab92b12e5b4ee5425670cda643dffc9582db01c2c9c8505",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2504eb2e9992ca8fd057d.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "unsafeCertRevoke": "e12renamed0000",
+    "unsafeCertRevokeImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__vulnerabilities__96_unsafekeyserver",
+   "n_tests": 14,
+   "gold_sha256": "2f16ac9602ad427f278b51a35628ede7579a4ef926c1c2ec5919da4203b14eaf",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.420443544004229,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C188d1cef678c7d23de6bd.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "UnsafeKeyServer.unsafeKeyServerAccept": "UnsafeKeyServer.unsafeKeyServerAccept",
+     "UnsafeKeyServer.unsafeKeyServerAcceptImp": "UnsafeKeyServer.unsafeKeyServerAcceptImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeKeyServer.unsafeKeyServerAccept",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeKeyServer.unsafeKeyServerAccept"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "UnsafeKeyServer.unsafeKeyServerAcceptImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeKeyServer.unsafeKeyServerAcceptImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "2f16ac9602ad427f278b51a35628ede7579a4ef926c1c2ec5919da4203b14eaf",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C188d1cef678c7d23de6bd.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.642539697990287,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C188d1cef678c7d23de6bd_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true
+     }
+    },
+    "n_applicable": 14,
+    "n_pass": 14,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.2696798630058765,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C288d1cef678c7d23de6bd.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeKeyServer.unsafeKeyServerAccept",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeKeyServer.e12renamed0000",
+       "UnsafeKeyServer.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "UnsafeKeyServer.unsafeKeyServerAcceptImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeKeyServer.e12renamed0000",
+       "UnsafeKeyServer.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "5008338b9eed341315bba34280763a471d7f23c4632dd789c4ffb659d4d769b0",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C288d1cef678c7d23de6bd.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "unsafeKeyServerAccept": "e12renamed0000",
+    "unsafeKeyServerAcceptImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_6858__vulnerabilities__96_unsafetlsrenegotiation",
+   "n_tests": 13,
+   "gold_sha256": "4f980f04ff06d3d9abc404941c5ced5f3a17642da8a663ba84d9dc338b346a4b",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.353356453997549,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1077607b41ec0185a4036.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "UnsafeTlsRenegotiation.unsafeTlsRenegotiation": "UnsafeTlsRenegotiation.unsafeTlsRenegotiation",
+     "UnsafeTlsRenegotiation.unsafeTlsRenegotiationImp": "UnsafeTlsRenegotiation.unsafeTlsRenegotiationImp"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeTlsRenegotiation.unsafeTlsRenegotiation",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeTlsRenegotiation.unsafeTlsRenegotiation"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "UnsafeTlsRenegotiation.unsafeTlsRenegotiationImp",
+      "rule": "same_name",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeTlsRenegotiation.unsafeTlsRenegotiationImp"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "4f980f04ff06d3d9abc404941c5ced5f3a17642da8a663ba84d9dc338b346a4b",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C1077607b41ec0185a4036.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 7.9873899609956425,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C1077607b41ec0185a4036_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true
+     }
+    },
+    "n_applicable": 13,
+    "n_pass": 13,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.065717637000489,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2077607b41ec0185a4036.log",
+     "outputs": {}
+    },
+    "mapping": {},
+    "diagnostics": [
+     {
+      "gold_symbol": "UnsafeTlsRenegotiation.unsafeTlsRenegotiation",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeTlsRenegotiation.e12renamed0000",
+       "UnsafeTlsRenegotiation.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     },
+     {
+      "gold_symbol": "UnsafeTlsRenegotiation.unsafeTlsRenegotiationImp",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "NUM",
+        "NUM"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "UnsafeTlsRenegotiation.e12renamed0000",
+       "UnsafeTlsRenegotiation.e12renamed0001"
+      ],
+      "status": "ambiguous"
+     }
+    ],
+    "all_symbols_mapped": false,
+    "candidate_sha256": "dff4e6c065e371996dcee56946094c7767e86a07a293977f134994199908c335",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C2077607b41ec0185a4036.lean",
+    "n_applicable": 0,
+    "n_pass": 0,
+    "all_pass": false
+   },
+   "rename_map": {
+    "unsafeTlsRenegotiation": "e12renamed0000",
+    "unsafeTlsRenegotiationImp": "e12renamed0001"
+   }
+  },
+  {
+   "task_id": "security_set__security_python__safe__0_no_shell_injection_safe",
+   "n_tests": 10,
+   "gold_sha256": "84d0028ed44db3a68020ae5b5f62fc6b85bc5e3a54465ca088410903b13ab7d5",
+   "C1": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.7933571559988195,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C17b34a3bfc59899b1c857.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "SafeLS.listFilesSafe": "SafeLS.listFilesSafe",
+     "SafeLS.check_pure": "SafeLS.check_pure"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeLS.listFilesSafe",
+      "rule": "same_name",
+      "signature": [
+       [
+        "String"
+       ],
+       "Command"
+      ],
+      "candidates": [
+       "SafeLS.listFilesSafe"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeLS.check_pure",
+      "rule": "same_name",
+      "signature": [
+       [
+        "String \u2192 Command"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeLS.check_pure"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "84d0028ed44db3a68020ae5b5f62fc6b85bc5e3a54465ca088410903b13ab7d5",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C17b34a3bfc59899b1c857.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.887208354994073,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C17b34a3bfc59899b1c857_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true
+     }
+    },
+    "n_applicable": 10,
+    "n_pass": 10,
+    "all_pass": true
+   },
+   "C2": {
+    "compile": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.575053723005112,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C27b34a3bfc59899b1c857.log",
+     "outputs": {}
+    },
+    "mapping": {
+     "SafeLS.listFilesSafe": "SafeLS.e12renamed0000",
+     "SafeLS.check_pure": "SafeLS.e12renamed0001"
+    },
+    "diagnostics": [
+     {
+      "gold_symbol": "SafeLS.listFilesSafe",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "String"
+       ],
+       "Command"
+      ],
+      "candidates": [
+       "SafeLS.e12renamed0000"
+      ],
+      "status": "mapped"
+     },
+     {
+      "gold_symbol": "SafeLS.check_pure",
+      "rule": "unique_compatible_signature",
+      "signature": [
+       [
+        "String \u2192 Command"
+       ],
+       "Bool"
+      ],
+      "candidates": [
+       "SafeLS.e12renamed0001"
+      ],
+      "status": "mapped"
+     }
+    ],
+    "all_symbols_mapped": true,
+    "candidate_sha256": "5af9695c5895a1e1eb27f64b733c0e88800525bb65ad290a2409ba09d732a632",
+    "candidate_path": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/modules/E12C27b34a3bfc59899b1c857.lean",
+    "evaluation": {
+     "status": "ok",
+     "returncode": 0,
+     "seconds": 6.880351219006116,
+     "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round1/E12C27b34a3bfc59899b1c857_Bridge.log",
+     "outputs": {
+      "0": true,
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true
+     }
+    },
+    "n_applicable": 10,
+    "n_pass": 10,
+    "all_pass": true
+   },
+   "rename_map": {
+    "listFilesSafe": "e12renamed0000",
+    "check_pure": "e12renamed0001"
+   }
+  }
+ ],
+ "source_hashes": {
+  "extract_hidden_tests.py": "9057271954a2f6ebd40ab71667db5be3510613e97303c9388b4bd8d391c8fed8",
+  "adapter_e12.py": "f9cfc203c271b8038cb8b90834d2ea9ab3ac24923a041498301207651205c649",
+  "controls_e12.py": "af454796d6c6e79e45c79ecfa0651a6e132b6a9ab3ce1dabdb9b98359c98458f"
+ }
+}

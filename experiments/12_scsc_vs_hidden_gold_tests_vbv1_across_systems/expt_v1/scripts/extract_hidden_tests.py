@@ -64,12 +64,16 @@ def declarations(source):
             continue
         end=header_end(clean,m.end())
         next_start=events[idx+1].start() if idx+1<len(events) else len(clean)
+        equation_body=None
+        if (end is None or end>=next_start) and kind in ('def','abbrev'):
+            equation_body=re.search(r'\n[ \t]*\|',clean[m.end():next_start])
+            if equation_body:end=m.end()+equation_body.start()
         if end is None or end>=next_start:continue
         header=clean[m.end():end].strip()
         if kind in ('def','abbrev') and name_match:
             name=name_match.group();full=('.'.join([ns,name]) if ns else name).removeprefix('_root_.')
             defs.append({'name':name,'full_name':full,'namespace':ns,'header':header[len(name):].strip(),
-                         'start':m.start(),'body_start':end+2,'end':next_start})
+                         'start':m.start(),'body_start':end if equation_body else end+2,'end':next_start})
         elif kind=='example' and header.startswith(':'):
             examples.append({'statement':header[1:].strip(),'namespace':ns,'line':clean.count('\n',0,m.start())+1})
     return defs,examples
@@ -88,15 +92,21 @@ def extract(source):
         reason=None
         if any(c in s for c in ('∀','∃','→','↔')) or re.search(r'\b(forall|fun|let|by)\b',s):reason='not_ground_computational_shape'
         elif variables.intersection(tokens):reason='section_variable'
-        references={}
+        references={};suffixes={}
         for token in tokens:
             parts=row['namespace'].split('.') if row['namespace'] else []
-            options=['.'.join(parts[:i]+[token]) for i in range(len(parts),-1,-1)]
-            match=next((n for n in options if n in by_name),None)
-            if match:references[token]=match
+            token_parts=token.split('.')
+            for count in range(len(token_parts),0,-1):
+                prefix='.'.join(token_parts[:count])
+                options=['.'.join(parts[:i]+[prefix]) for i in range(len(parts),-1,-1)]
+                match=next((n for n in options if n in by_name),None)
+                if match:
+                    references[token]=match
+                    suffixes[token]='.'+'.'.join(token_parts[count:]) if count<len(token_parts) else ''
+                    break
         if not references:reason=reason or 'no_gold_implementation_symbol'
         if reason:excluded.append({**row,'reason':reason});continue
-        tests.append({**row,'symbols':references})
+        tests.append({**row,'symbols':references,'symbol_suffixes':suffixes})
     used={n for t in tests for n in t['symbols'].values()}
     return {'tests':tests,'symbols':[r for r in defs if r['full_name'] in used],
             'excluded':excluded,'n_tests':len(tests),'status':'tests' if tests else 'no_tests'}
