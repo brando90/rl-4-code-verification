@@ -4,7 +4,7 @@
 
 **TLDR:** Resumable state of experiment 08. The master finished the zero-call design steps; the SNAP worker (tmux `rl4cv-e08-worker` on `skampere1`) has finished every zero-call lock-1 check (served pack, scorer adapter, tokenizer template, service, route identity) and is locking PROTOCOL §§ 1–7 before the 8-call live teacher preflight. `$WORK/CKPT_rl4cv-e08-worker.md` is a symlink to this file.
 
-**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-08-2026 16:15 PDT (worker).
+**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-08-2026 17:09 PDT (worker).
 
 ## State
 
@@ -83,11 +83,13 @@
 
 - **10-08-2026 16:15 PDT — 14B launch on 4 GPUs failed twice with `ResourceInsufficientError` (first attempt, then the watchdog's one relaunch): the frozen `e08_sft_14B.yaml` declares `cluster.gpus_per_node 8` / tensor parallel 8, so it needs all 8 GPUs. Corrected plan: 14B runs after 8B on GPUs 0–7 (TP 8) via `$WORK/wait_then_launch_14b.sh` in tmux `rl4cv-e08-sft-14B` (waits for `ckpt/8B/hf/step_658/SHA256SUMS`); nothing was trained or exported by the failed attempts (`driver_14B_failed_4gpu.log`). 8B at ~6.5 s/step → ~1.5–2 h including exports.
 
+- **10-08-2026 17:09 PDT — Serialized continuation (parent audit follow-up).** The remaining pipeline is now owned by `expt_v1/scripts/pipeline_e08.py` (tmux `rl4cv-e08-pipeline`, 120 s ticks under `$WORK/pipeline/lock`, which the cron watchdog also takes before any recovery; state `$WORK/pipeline/state.json`, leases `$WORK/pipeline/leases.json`, log `$WORK/pipeline/pipeline.log`). It validates real artifacts (exports with `SHA256SUMS` + `config.json` + tokenizer, training log matching the frozen schedule; scored files with exactly 1,080 / 1,776 distinct scored rows and 8 complete shards; `selection.json` committed and unmodified), dispatches stages under device leases (never a device with any compute process; 14B only with no active lease and 8 idle devices; no new inference while our own inference is the only thing blocking 14B), reports active / waiting / stale by real children and watched-file freshness, relaunches a crashed stage once, publishes after `make test`, and runs selection → test manifest → test generation → kernel factors → judge controls → judging → `analyze_test.py` → final tables. Runtime handover: the sleeping 8B-then-14B waiter session was retired (it never launched); `jobs.tsv` now holds one row (the orchestrator, freshness `state.json:900`); watchdog self-test PASS; 1.7B 75 % rung finished 17:02 PDT and validated; the orchestrator launched the 1.7B 100 % rung on GPU 6 at 17:06 PDT and published the ladder table into `results.md` (first publish was committed but not pushed because `make test` ran without `.venv` on PATH; fixed, orchestrator restarted 17:1x PDT). GPUs 4–5 are held by another user's processes; 14B cannot start until they are idle. Ack: `$WORK/finish_followup_ack.json`.
+
 ## Next command (worker)
 
 ```bash
 source /lfs/skampere1/0/brando9/rl4cv_e08/env_e08.sh
-# watch: tail $WORK/ckpt/driver_1.7B.log $WORK/ckpt/driver_4B.log ; nvidia-smi
-# when GPUs free: tmux new -d -s rl4cv-e08-sft-8B "bash $EXP/expt_v1/scripts/launch_sft_e08.sh 8B <4 gpu ids>" ; same for 14B with 8 ids
-# per finished size: python extract_train_logs_e08.py --tb-dir $WORK/ckpt/<size>/logs --size <size> --out-csv $EXP/expt_v1/results/train_logs/<size>.csv --out-json ...; then run_ladder_e08.sh validation <label> $WORK/ckpt/<size>/hf/step_<k> local <gpus> [tp]
+# orchestrator status: cat $WORK/pipeline/state.json | python3 -c 'import json,sys; print(json.load(sys.stdin)["summary"])' ; tail $WORK/pipeline/pipeline.log
+# if its tmux session is gone the cron watchdog relaunches it once; manual: tmux new -d -s rl4cv-e08-pipeline "cd $REPO && .venv/bin/python $EXP/expt_v1/scripts/pipeline_e08.py >> $WORK/pipeline/driver.log 2>&1"
+# terminal receipt: $WORK/pipeline/DONE ; then finalize experiments/README.md row 08, judge teardown, port claim and cron lines
 ```

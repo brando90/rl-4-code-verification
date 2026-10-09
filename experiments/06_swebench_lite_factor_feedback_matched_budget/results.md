@@ -2,10 +2,16 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/06_swebench_lite_factor_feedback_matched_budget/results.md>
 
-**TLDR:** The bounded validation run is finished and repair remains blocked: public diagnostics passed 1/8 structural checks, and only 2/8 tasks have valid official control pairs, each below the frozen 6/8 engineering gate. No repair effect was measured.
+**TLDR:** Version 3 implementation is authorized and tested; real execution remains gated on a bounded backend and validated environments. The historical validation found 1/8 usable diagnostic structures and 2/8 valid control pairs, below both 6/8 gates. No repair effect is measured.
 
-**Status:** BLOCKED: NEW VERSION AND EXPLICIT CALL/RESOURCE ADMISSION REQUIRED
-**Last updated:** 10-06-2026 01:38 PDT
+**Status:** VERSION 3 IMPLEMENTATION AUTHORIZED; EXECUTABLE FREEZE PENDING
+**Last updated:** 10-08-2026 18:38 PDT
+
+## Current version 3
+
+Brando authorized automatic work on 10-08-2026. The [new protocol](expt_v3/PROTOCOL.md) admits environment validation and a conditional complete repair comparison through Vals-funded Valkyrie. The diagnostic transport, isolated runner and official-control wrapper pass 148 synthetic tests; the repository suite passes 124. One Claude Fable 5.1 maximum-effort review found five major issues, now fixed and deterministically verified ([review reconciliation](expt_v3/results/implementation_review.json)). No real container/control or model outcome has been measured. After `skampere1` lost Docker access on reboot, a private root-backed runtime was provisioned on `skampere2` with unchanged resource floors ([preflight](expt_v3/results/host_preflight.json)). The real bounded evaluator backend, shared version budget ledger, environment repair, executable freeze and verified response route remain execution prerequisites. All version-2 evidence below remains historical and unchanged.
+
+## Historical version 1 and 2 closeout (10-06-2026)
 
 | Stage | State | Evidence |
 |---|---|---|
@@ -31,6 +37,6 @@ Container limits of four processors/eight gibibytes and a 1,800-second test time
 
 No resolution-rate improvement, cost advantage or training result has been measured. All 56 solver cells and 24 final-condition cells remain missing. Both reserved Vals coordinator attempts have ended; no replacement or additional model call is admitted. The worker's cluster `make test` invocation failed because `python` was absent from its command path; the parent subsequently passed the repository suite locally with the available VeriBench checkout (35 passed, none skipped). Raw evaluator material remains in private remote storage.
 
-[p 10/10] The concrete [version 3 proposal](expt_v3/README.md) repairs environment validation and prospectively freezes diagnostic transport before any new call. It requests at most eight new diagnostic-author responses and conditionally the original-size 56-response repair comparison under a newly admitted resource envelope. Current additional admission is zero; the proposed 24-task test panel and training remain separate.
+[p 10/10] The concrete [version 3 proposal](expt_v3/README.md) repairs environment validation and prospectively freezes diagnostic transport before any new call. It requests at most eight new diagnostic-author responses and conditionally the original-size 56-response repair comparison under a newly admitted resource envelope. That historical zero-admission state was superseded by the 10-08-2026 version-3 authorization above; the proposed 24-task test panel and training remain separate.
 
-**TLDR-end:** [rl-4-code-verification: 06_swebench_lite_factor_feedback_matched_budget] The bounded factor-feedback validation is published with both failed gates and all missing cells; version 3 is prepared but not admitted.
+**TLDR-end:** [rl-4-code-verification: 06_swebench_lite_factor_feedback_matched_budget] The earlier bounded validation retains both failed gates and all missing cells; version 3 is authorized and being implemented, with no new measured repair result.

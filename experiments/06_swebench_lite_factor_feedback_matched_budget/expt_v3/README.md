@@ -1,62 +1,43 @@
-# Version 3 proposal: validate environments before factor-feedback repair
+# Version 3: validate environments before factor-feedback repair
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/06_swebench_lite_factor_feedback_matched_budget/expt_v3/README.md>
 
-**TLDR:** Prepare a new validation experiment that fixes the measurement path before testing whether decomposed feedback improves independent issue resolution. This is a draft proposal, not an admitted run: no further model calls, evaluator retries or training are authorized by this file. Preserve the version 2 failures and all eight selected tasks.
+**TLDR:** Brando authorized automatic implementation and execution on 10-08-2026. Validate the unchanged eight-task panel with repaired public dependency environments and strict diagnostic transport, then run the complete matched repair comparison only if the validity gates pass. No version-3 measurement has started.
 
-Created: 10-06-2026. Status: DRAFT, NOT FROZEN, NOT ADMITTED.
+Created: 10-06-2026. Updated: 10-08-2026. **Status:** IMPLEMENTATION AUTHORIZED; EXECUTABLE FREEZE PENDING.
 
-## Decision and scientific scope
+## Why this version exists
 
-[p 10/10] Repair evaluator environments and diagnostic transport first. Version 2 has only 2/8 valid official control pairs against its 6/8 engineering threshold, and 1/8 structurally accepted diagnostic bundles against its separate 6/8 threshold. Seven control cells aborted during imports, two have ambiguous fixture failures and two unchanged-base cells exhausted retries. These failures prevent a meaningful repair comparison. Details and immutable evidence hashes are in the [control audit](../expt_v2/results/official_evaluator_controls.md) and [diagnostic audit](../expt_v2/results/diagnostic_rejection_audit.md).
+Version 2 produced only 2/8 valid gold/empty control pairs and 1/8 structurally accepted diagnostic bundles, below the separate 6/8 engineering gates. Seven control cells aborted on imports, two have ambiguous fixture failures, and two empty-patch cells exhausted retries. The exact parser also lacked a prospectively frozen implementation hash. Those failures remain in the [official-control audit](../expt_v2/results/official_evaluator_controls.md) and [diagnostic audit](../expt_v2/results/diagnostic_rejection_audit.md); this version never overwrites them.
 
-The question remains whether separate factors guide better edits at a matched budget and improve the hidden official endpoint. Increasing the geometric mean alone does not establish this claim. The factors are execution viability, preservation of public regression tests and public issue-check success; they are a coding proxy, not VeriBench's Smooth Conjunctive Score for Code verification (SCSC).
+The research question is whether decomposed public feedback improves independent official issue resolution at a matched repair budget. Raising the public geometric mean alone does not answer it. The three components are execution viability, public regression preservation and public issue-check success. This is a coding diagnostic, distinct from VeriBench's Smooth Conjunctive Score for Code verification (SCSC).
 
-The eight-task panel is development/validation only. Its earlier outcomes have been inspected; neither environment repair nor a second validation pass is an untouched test result. Do not replace difficult tasks or claim this version was preregistered before the version 2 evidence. Later confirmation requires an independently frozen test panel.
+## Current plan and admission
 
-## Stage 0: explicit admission and reproducible setup
+The [new protocol](PROTOCOL.md) is authoritative; the [remote runbook](cc.md) defines execution and recovery. The original 10-06-2026 proposal remains in Git history. The new authorization replaces its former zero allowance, and project decision D-108 requires Vals-funded Valkyrie for every measured response. Personal subscriptions may coordinate, implement and review only.
 
-Before any execution, freeze a new protocol and machine-readable manifest with:
+1. Freeze public dependency environments and an audited empty-patch adapter; run all 16 new official gold/empty controls. At least 6/8 pairs must have valid gold-resolved/empty-unresolved outcomes.
+2. Freeze the exact prompt, structured-argument validator, isolated runner, public contexts and client contract. Make one diagnostic-author call per task, at most eight. Invalid responses are retained without salvage or replacement. Structural acceptance and actual base behavior are separate measurements.
+3. Require at least six of the same eight tasks to have both valid official controls and usable public diagnostics. If the gate closes, report its measured denominator and retain unused solver allowance.
+4. Otherwise freeze and complete all 56 solver cells: eight shared initial patches plus three feedback conditions × two repair responses × eight tasks. Evaluate the eight initial and 24 final patches only after they are immutable; report paired differences, uncertainty, missingness bounds and actual costs.
 
-- The unchanged eight-task public panel SHA-256 `68dc55c9a0ea1bf7191fe23dd28fbc0a655f0a718a2dc487bbedb72b638bba46`, dataset revision `6ec7bb89b9342f664a54a6e0a6ea6501d3437cc2`, harness commit `f7bbbb2ccdf479001d6467c9e34af59e44a840f9`, exact base commits and all original null cells.
-- A separate runtime, fresh run identifiers including version/task/condition/patch hash, exact runner source hashes, dependency inventories and container image digests. No source, gold patch or official test may be edited. Any necessary harness/dependency change is an explicit prospective delta; grading/test bytes must remain identical.
-- A verified authenticated subscription route, actual client/model/effort and enforceable tool/output/wall limits. Proposed scientific model remains `claude-sonnet-5` at medium effort. Never substitute from quota pressure after admission. No provider-key clients or new charges.
-- A named full-access remote owner, one writer, an ordinary-code supervisor, completion and failure receipts, and a newly approved coordinator allowance. The old second/final Vals attempt has ended and supplies no automatic launch reserve.
+The eight tasks remain development/validation data whose earlier outcomes were inspected. A later 24-task test confirmation needs a separately frozen version and does not depend on obtaining a positive pilot effect. No test confirmation or training is added implicitly to this version.
 
-## Stage 1: environment validity before model calls
+## Execution bounds
 
-Use a setup-only sandbox to establish compatible dependency versions from the pinned public repository's own installation metadata. Record exact package versions, image digests, install commands and changes. For the import-abort family, verify package imports and ordinary public test collection before official controls. For the fixture-error family, determine whether the installed test runner supports the public repository's fixture convention; the current attribution is provisional. Do not repair tests, change expected outcomes, or derive public check content from evaluator logs.
+No graphics processors. Maximum two containers × four processors × eight gibibytes, 160 processor-hours, 18 elapsed hours from admitted remote setup/control execution, and 120 gibibytes each of new owned Docker and scratch data. Preserve 100 gibibytes Docker-root headroom and one tebibyte at the actual scratch filesystem, jointly accounting for shared devices. Enforce build/cell timeouts and exact owned-resource cleanup. At most one identical deterministic infrastructure retry per cell, within the cumulative envelope; no fresh model-response retry.
 
-Freeze the resulting environment and empty-patch adapter before the new 16-cell gold/unchanged-base control panel. The adapter must preserve the exact base tree, admit a truly empty prediction, skip only absent candidate-patch application, and leave official test application/parser/grading bytes unchanged. No marker file. Record base-tree hashes before and after. Preserve the old two exhausted cells; new measurements belong only to the separately admitted version.
+The original host's Docker socket became inaccessible after its 10-08-2026 reboot. A prospective root-backed private runtime on `skampere2` preserves the same headroom limits; exact host/storage and backend enforcement still require an execution manifest and live verification before controls. No shared data is pruned and no daemon permissions are changed.
 
-Require matching report identity, report/log hashes, observed test completion and a valid environment before interpreting a Boolean endpoint. Import/setup/collection failures, ambiguous fixture errors and absent reports remain null. A valid test failure remains false. Inspect all eight tasks, preserve every receipt, and require at least six valid gold-resolved/empty-unresolved pairs. If fewer than six pass, stop before author calls and publish the failure.
+## Artifacts
 
-## Stage 2: prospectively freeze the public-check author and validator
+- `PROTOCOL.md`: authorized scientific design, gates and resource envelope.
+- `cc.md`: self-contained remote execution and recovery instructions.
+- `diagnostic_author_prompt.txt`: bare structured-response transport contract.
+- `scripts/diagnostic_validator.py`: deterministic structural acceptance and hashes.
+- `scripts/diagnostic_runner.py`: disposable public-only container execution and typed receipts.
+- `scripts/control_runner.py`: complete control declaration, durable budgets, identity checks and backend observations; actual backend enforcement must be established separately.
+- `scripts/test_*.py`: synthetic deterministic checks; no model or real Docker calls.
+- `../results.md`: live status, with historical results kept separate.
 
-Build a public-only author context from the same sealed base/issue projection. Do not use official changed-file lists, test identities or previous reference outcomes to author or select checks. Fresh tool-free invocations must have no evaluator files, inherited repository prompts, plugins, shell or network tools. Verify isolation on the actual client and retain the earlier period of permissive evaluator directory traversal as a caveat; permissions alone do not prove historical non-access.
-
-Before author calls, commit exact prompt, transport schema, parser, synthetic test fixtures, command runner and hashes. Remove the inherited instruction requesting a unified diff from this check-author prompt. Use structured argument lists and explicit check identifiers with fixed regression/issue membership. Support quoted Python programs through argument parsing without shell evaluation; do not reject safe code merely because it contains a semicolon. Restrict execution using the sandbox and explicit allowed entry points, not a character filter alone. Reject ambiguous extra response material deterministically; never manually salvage selected responses.
-
-Each issue check must contain an assertion whose exit status distinguishes a behavioral violation. Printing a value is insufficient. Each public regression check must pass on the unchanged public base; issue checks must reproduce the issue as an assertion failure, not an import/collection error. Declare nonempty denominators and freeze all check bytes before solver generation. Test transport and failure classification using authored synthetic fixtures before spending any author call.
-
-Proposed budget: one fresh author response per task, at most eight total, with no model-response retries or replacement tasks. Invalid bundles stay invalid. Structural acceptance is recorded separately from public execution and behavioral validity. Require at least six tasks with both usable public diagnostics and valid official controls; a weaker aggregate count across disjoint task subsets does not pass. Do not alter authored checks after observing gold or official outcomes. Failures close the gate and preserve unused solver allowance.
-
-## Stage 3: conditional full matched-budget comparison
-
-Only after stages 0–2 pass, freeze the complete executable 56-response manifest: eight shared initial patches, three feedback conditions (ordinary logs, scalar, scalar plus components), two repair responses per condition/task. Preserve every declared cell, including inapplicable tasks as explicit missing outcomes. Reuse the same initial patch across conditions, reset repository/container state, charge all diagnostic computation to every condition and record actual costs alongside identical caps.
-
-Keep the root protocol's metrics, missingness conventions, paired contrasts, task-level uncertainty analysis and feedback-space limits. Freeze all patches before official evaluation; score eight shared initial patches and 24 final patches under unique identities. Public diagnostics never receive official results. Report measured/declared/missing denominators, paired differences with 95% task-bootstrap intervals, exact paired-swap tests, and bounds over missing tasks. Eight tasks support an exploratory validation finding, not broad superiority.
-
-## Proposed envelope requiring approval
-
-Current additional allowance is **zero**. The proposal requests at most **8 new diagnostic-author responses plus 56 conditional solver responses**, through an existing subscription only. It requests a separate ceiling of 160 processor-hours, 18 elapsed hours, zero graphics processors, maximum two containers with four processors/eight gibibytes each, and maximum 120 gibibytes each of new Docker and scratch data. These are ceilings, not measured runtime forecasts. Unused version 2 allowance does not automatically transfer. No test-panel, training, judge, reference-generation or extra coordinator calls are included implicitly.
-
-Implement and test outer build/cell/process-tree timeouts, the 1,800-second test timeout, cumulative container processor accounting, a run deadline and per-owned-resource storage accounting before any control. Preserve at least 100 gibibytes free at Docker root and one tebibyte scratch. Bound builds as well as evaluation containers. Never prune shared resources. Admit a cell only when its worst-case allocation plus capture/teardown reserve fits the remaining ceiling. Record pre-receipt failures and retries; at most one identical infrastructure retry per cell within this new envelope, never a fresh model sample. No retries from version 2 are relabeled as unused.
-
-## After this version
-
-[p 8/10] A 24-task test confirmation is conditional on valid measurement, not a positive eight-task effect, and needs its own frozen protocol and budget. Terminal-Bench remains a separate future study because its task families need different diagnostic definitions and environment controls. Neither expansion is currently admitted.
-
-[p 7/10] Connect environment design to Varun's usable-signal-density/effective-coverage work only after a valid endpoint exists. Screen external training tasks, verify exact executable training code and model revisions, measure pretraining signal probes, obtain numeric law coefficients and freeze a forecast before reading training outcomes. No coefficient, throughput estimate or forecast may be invented. The current Lean [readiness manifest](../../02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_b_prospective_2x2_forecast_check/expt_v2/results/training_readiness_manifest_2026-10-06.json) remains not admitted.
-
-**TLDR-end:** [rl-4-code-verification: 06_swebench_lite_factor_feedback_matched_budget] The next repair experiment has a concrete gated design and proposed ceilings; author, evaluator and repair execution require new explicit admission, and training remains outside this request.
+**TLDR-end:** [rl-4-code-verification: 06_swebench_lite_factor_feedback_matched_budget] Version 3 is authorized and being implemented; measured execution follows the executable freeze, verified funding/resource limits and unchanged validity gates.

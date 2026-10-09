@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "status": "PREPARED_NOT_LAUNCHED",
+  "host": "skampere2",
+  "runtime": "/lfs/skampere2/0/brando9/rl4cv_e06_v3",
+  "real_runtime": "/var/tmp/brando9-rl4cv-e06-v3",
+  "tmux_session": "codex-rl4cv-e06-v3",
+  "coordinator": {
+    "client": "codex-vals",
+    "requested_model": "gpt-5.6-terra",
+    "requested_effort": "high",
+    "actual_model": null,
+    "actual_effort": null,
+    "permission_flag": "--dangerously-bypass-approvals-and-sandbox",
+    "subscription_allowance": "unknown; retain finalization reserve; no extra purchases"
+  },
+  "scientific_model": {
+    "id": "claude-sonnet-5",
+    "effort": "medium",
+    "route": "Vals-funded Valkyrie only",
+    "route_verified": false,
+    "fallback": null
+  },
+  "start_utc": "2026-10-08T23:50:03.462222+00:00",
+  "deadline_utc": "2026-10-09T17:50:03.462222+00:00",
+  "budgets": {
+    "max_author_responses": 8,
+    "max_solver_responses": 56,
+    "max_containers": 2,
+    "cpus_per_container": 4,
+    "gib_per_container": 8,
+    "cpu_hours": 160,
+    "elapsed_hours": 18,
+    "new_docker_gib": 120,
+    "new_scratch_gib": 120,
+    "gpu_count": 0
+  },
+  "verification": {
+    "synthetic_targeted_tests_passed": 148,
+    "repository_tests_passed": 124,
+    "real_controls_run": 0,
+    "measured_model_responses": 0
+  },
+  "runbook": "cc.md",
+  "next": "Complete real bounded backend, freeze, all 16 controls; only then conditional diagnostics and repair cells"
+}
