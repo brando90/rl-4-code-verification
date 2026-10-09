@@ -1,0 +1,209 @@
+{
+  "status": "FAILED",
+  "steps": [
+    {
+      "target": 2,
+      "exit": 1,
+      "seconds": 78.20688390359282,
+      "log": "/lfs/mercury2/0/brando9/rl4cv_e08_layout/to_step_2.log",
+      "sha256": "d150f6dfce2ce1768f7cc5f3a39dc05bf630e9579b4f382e8ac2e5650bd8de37",
+      "cleanup": {
+        "term_identities": [],
+        "kill_pids": [],
+        "remaining_owned_identities": []
+      }
+    }
+  ],
+  "devices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "prior_probe_seconds": 988.02798,
+  "budget_seconds": 811.972,
+  "cleanup_reserve_seconds": 20,
+  "task_tag": "e08-mercury-disposable-8339e1ac-9675-4e2c-b609-552c1b436a12",
+  "identity": {
+    "pid": 2777556,
+    "pid_start": "1581765121",
+    "ppid": 2385445,
+    "state": "R",
+    "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+    "host": "mercury2.stanford.edu"
+  },
+  "script_sha256": "ccf40d7391ca150e6241255eb1f625cff3028e94672e621a56fb6ef64362cc94",
+  "started_utc": "2026-10-09T21:05:48.728189+00:00",
+  "cpu_environment_check": {
+    "status": "PASS",
+    "receipt": "/lfs/mercury2/0/brando9/rl4cv_e08_layout/environment_receipt.json",
+    "sha256": "919a70437e9be89cb2497c2b02247c5662a2880beb8461cbee2a605e860416fe"
+  },
+  "input_hashes": {
+    "/lfs/mercury2/0/brando9/rl4cv_e08_layout/probe.yaml": "bfb12ec8cdd3002b2e916c7a12d912ba00161d90097d3663d04d7b641d97084a",
+    "/lfs/mercury2/0/brando9/rl4cv_e08_layout/hooks/sitecustomize.py": "3f4dc8a209aaac59463b16c71b76d578de44d7a9afdafe9e6014af115e4cf16c",
+    "/lfs/mercury2/0/brando9/rl4cv_e08_layout/hooks/e08_whole_layer.py": "702ce20aa2c538c9756dbc2760a1aa9f5f86fde34a635b846bb70d4e66de90af",
+    "/lfs/mercury2/0/brando9/rl4cv_e08_layout/train6.jsonl": "a50ab41bac852d327b9cb38554c3096a31a3b6d2dd2ba560403f50288dd05e16",
+    "/lfs/mercury2/0/brando9/rl4cv_e08_layout/s_v1_val_dummy.jsonl": "1f98798e87e4ce70edbcb08c2edff535dbf459750a141548e34fdb18d008d471"
+  },
+  "preallocation_survey": {
+    "time": 1791579949.0728672,
+    "utc": "2026-10-09T21:05:49.072877+00:00",
+    "gpus": {
+      "0": [
+        "0",
+        "GPU-4cdf8223-cd3c-4c19-fe22-dd070b82e697",
+        "1",
+        "15985",
+        "0",
+        "0"
+      ],
+      "1": [
+        "1",
+        "GPU-87a5b8eb-3e08-4391-6434-e73da2a03519",
+        "1",
+        "15985",
+        "0",
+        "0"
+      ],
+      "2": [
+        "2",
+        "GPU-7bdfad44-6464-62f2-04e0-6c29a8291843",
+        "1",
+        "15985",
+        "0",
+        "0"
+      ],
+      "3": [
+        "3",
+        "GPU-e31683e6-fc20-8f3b-2cf0-4d398d6047b6",
+        "1",
+        "15985",
+        "0",
+        "0"
+      ],
+      "4": [
+        "4",
+        "GPU-bf3ee2ff-4e0d-ee15-2c3d-109d6b729f1c",
+        "1",
+        "15985",
+        "0",
+        "0"
+      ],
+      "5": [
+        "5",
+        "GPU-57095f96-4e72-a693-4f6b-e6a64287a3aa",
+        "1",
+        "15985",
+        "0",
+        "0"
+      ],
+      "6": [
+        "6",
+        "GPU-c1d20954-a0d3-0071-024a-722941972831",
+        "1",
+        "15985",
+        "0",
+        "0"
+      ],
+      "7": [
+        "7",
+        "GPU-ad340bcc-5ba4-cf96-39ee-de2ff56866fe",
+        "1",
+        "15985",
+        "0",
+        "0"
+      ],
+      "8": [
+        "8",
+        "GPU-6ca80fde-45a7-8f9b-3078-41832ab6982b",
+        "1",
+        "15985",
+        "0",
+        "0"
+      ],
+      "9": [
+        "9",
+        "GPU-c5e6f79d-9f61-30d4-2216-c216ab782616",
+        "1",
+        "15985",
+        "0",
+        "0"
+      ]
+    },
+    "compute_processes": [],
+    "host_memory": {
+      "MemTotal_bytes": 540655579136,
+      "MemAvailable_bytes": 526918377472,
+      "SwapFree_bytes": 16384,
+      "Shmem_bytes": 11464704
+    },
+    "load": "1.00 1.36 0.95 2/3285 2777609",
+    "cpu_pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=231362144964\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+    "cpu_times": "cpu  5168537584 13211694 762439091 145676214295 81663492 0 15868282 0 0 0",
+    "owned": []
+  },
+  "started_epoch": 1791579949.1213634,
+  "deadline_epoch": 1791580761.0933635,
+  "lease": {
+    "owner": "e08-mercury-disposable-8339e1ac-9675-4e2c-b609-552c1b436a12",
+    "kind": "disposable-tp8-cpu-offload-whole-layer-checkpoint",
+    "gpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "identity": {
+      "pid": 2777556,
+      "pid_start": "1581765121",
+      "ppid": 2385445,
+      "state": "R",
+      "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+      "host": "mercury2.stanford.edu"
+    },
+    "since": "2026-10-09T21:05:49.121418+00:00",
+    "expires_epoch": 1791580761.093432,
+    "released": false,
+    "prior_probe_seconds": 988.02798,
+    "budget_seconds": 811.972
+  },
+  "pending_command": [
+    "/lfs/mercury2/0/brando9/rl4cv_e08_layout/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python",
+    "-u",
+    "/lfs/mercury2/0/brando9/rl4cv_e08_layout/nemo_rl/examples/run_sft.py",
+    "--config",
+    "/lfs/mercury2/0/brando9/rl4cv_e08_layout/probe.yaml",
+    "sft.max_num_steps=2"
+  ],
+  "driver": {
+    "identity": {
+      "pid": 2777618,
+      "pid_start": "1581765166",
+      "ppid": 2777556,
+      "state": "R",
+      "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+      "host": "mercury2.stanford.edu"
+    },
+    "target_step": 2
+  },
+  "final_cleanup": {
+    "term_identities": [],
+    "kill_pids": [],
+    "remaining_owned_identities": []
+  },
+  "remaining_owned_pids": [],
+  "elapsed_seconds": 78.3024847432971,
+  "cumulative_probe_seconds": 1066.330464743297,
+  "device_seconds": 626.4198779463768,
+  "finished_utc": "2026-10-09T21:07:07.423850+00:00",
+  "lease_released": true
+}

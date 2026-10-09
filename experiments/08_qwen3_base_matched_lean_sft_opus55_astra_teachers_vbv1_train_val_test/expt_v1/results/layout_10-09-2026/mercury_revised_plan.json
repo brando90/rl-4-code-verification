@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "created_utc": "2026-10-09T20:55:04.667968+00:00",
+  "supersedes_resource_shape_only": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/layout_10-09-2026/feasibility_plan.json",
+  "reason": "Actual TP2 query/key gradient semantics differ by head partitions; preserve TP8 on available smaller cards. Unchanged submodule activation checkpointing has25GiB/rank saved-input floor and cannot fit16GiB; whole-layer checkpointing is expressly permitted by PROTOCOL8/14.",
+  "candidate": {
+    "host": "mercury2",
+    "devices": 8,
+    "tensor_parallel": 8,
+    "data_parallel": 1,
+    "cpu_offload": true,
+    "activation_checkpointing": "whole decoder layer after TP and inside FSDP2; bf16 saved inputs",
+    "threads_per_rank": 4,
+    "compute_threads_total": 32,
+    "host_checkpoint_path": "/dev/shm/rl4cv_e08_layout_8339",
+    "production_storage": "/dfs/scratch0/brando9/rl4cv_e08_layout_10-09-2026/production"
+  },
+  "accounting": {
+    "original_tp2_elapsed_seconds": 988.027979850769,
+    "original_tp2_device_seconds": 1976.055959701538,
+    "cumulative_window_limit_seconds": 1800,
+    "remaining_window_seconds": 811.972020149231,
+    "no_reset": true,
+    "max_new_concurrent_devices": 8,
+    "previously_used_devices": "skampere1:0,1; released",
+    "new_distinct_devices": 8,
+    "total_distinct_devices_across_both_shapes": 10,
+    "new_runtime_must_end_before_remaining_window_minus_cleanup_seconds": 20
+  },
+  "prospective_pass_criteria": {
+    "pins": "same Base/tokenizer hashes, data/order/masks/globalbatch2/micro1,sequence16384,bf16compute/FP32masters,reductions,AdamW,seed,schedule,rungs; same TP8/DP1 and exact existing TP plan, no q/k norm or clipping repair",
+    "checkpoint_change": "only four submodule wrappers replaced by one decoder wrapper; hash-verified runtime copy; source files unmodified; dropout0.0; preserve RNG state",
+    "execution": "2 fresh full-length updates, native weights/optimizer/scheduler/dataloader checkpoint; resume update3. Disable second disposable save only to avoid two165GiB checkpoints in tmpfs; production keeps all five rungs.",
+    "numerical": "same previously frozen CPU/CUDA AdamW sample rtol1e-5 atol1e-7; exact expected assistant tokens8837/14076/7405; finite positive losses/norms, exact schedule; inspect initial/resume sample values/state",
+    "device_peak_reserved_GiB": 15.0,
+    "host_resident_plus_tmpfs_GiB": 470,
+    "minimum_host_MemAvailable_GiB": 20,
+    "mean_full_step_limit_seconds": 600,
+    "scope": "Infrastructure evidence only. No production unless every admission passes. No production overall wall-time cap."
+  },
+  "estimated_GiB": {
+    "saved_checkpoint_inputs_per_device": 6.25,
+    "bf16_weight_shards_per_device": 3.439,
+    "fp32_logits_per_device": 1.159,
+    "initialization_device_before_overhead": 9.775,
+    "host_training_states": 220.065,
+    "one_RAM_checkpoint": 165.049,
+    "five_native_plus_five_FP32_exports": 1100.325
+  },
+  "alternatives": "2 B200s currently free but TP2 semantics unresolved; no H200 idle; skampere1 only3 A100 idle; Mercury1 lower RAM and bus topology similar.",
+  "measured_before_this_plan": "No Mercury device allocation; source bounds and read-only resource survey only; CPU-only file transfer in progress."
+}

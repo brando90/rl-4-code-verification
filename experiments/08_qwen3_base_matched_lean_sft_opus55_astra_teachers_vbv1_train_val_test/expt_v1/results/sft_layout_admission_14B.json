@@ -17,15 +17,63 @@
     },
     {
       "id": "tp2_cpu_offload",
-      "status": "pending",
+      "status": "blocked",
       "gpus": 2,
       "tensor_parallel_size": 2,
       "cpu_offload": true,
       "config": "configs/e08_sft_14B_tp2_offload_candidate.yaml",
       "config_sha256": "bfc9842eca75fdbc83969dbe292c3dc1be3a53d23c4e531a89ffce5164ae1838",
       "admission_kind": "prospective_layout",
-      "reason": "Disposable feasibility, checkpoint resume and TP-dependent normalization semantics pending.",
-      "evidence": {}
+      "reason": "Qwen3 query/key normalization has TP-partition-dependent gradients in pinned worker. 80/80 q/k parameters had different gradient hashes across two ranks. Changing TP8 to TP2 is not justified by ordinary floating-point variance.",
+      "evidence": {
+        "checks": {
+          "static_invariants": "PASS",
+          "execution": "INCOMPLETE",
+          "numerics": "SAMPLE_PASS",
+          "resume": "NOT_RUN",
+          "performance": "ONE_FULL_STEP_ONLY",
+          "semantic_equivalence": "FAIL"
+        },
+        "files": [
+          {
+            "path": "results/layout_10-09-2026/tp2_execution_summary.json",
+            "sha256": "9859f25f5ec95f2d7f6b3f7d38cefc0ae4a15cc972be49f69e0fc96dda21ab5d"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tp8_mercury_cpu_offload",
+      "status": "pending",
+      "host": "mercury2",
+      "gpus": 8,
+      "tensor_parallel_size": 8,
+      "cpu_offload": true,
+      "activation_checkpointing": "whole_decoder",
+      "config": "configs/e08_sft_14B_tp8_mercury_offload_candidate.yaml",
+      "config_sha256": "fe01f147f084e9b956b1b5cb32a134ec525ba8b19be9cec193ea65dbc278b057",
+      "admission_kind": "prospective_layout",
+      "reason": "Two full-lengthupdates/save and16/16restoredparameter samples passed; cumulativeprobe limit interruptedresumedthirdoptimizerupdate. Fullresume gate and a testedremoteproductionadapter remain required. Neverlaunchfromdisposablecheckpoint.",
+      "evidence": {
+        "checks": {
+          "static_invariants": "PASS",
+          "execution": "INCOMPLETE",
+          "numerics": "OBSERVED_SAMPLES_PASS",
+          "resume": "INCOMPLETE",
+          "performance": "TWO_STEPS_PASS",
+          "semantic_equivalence": "TP8_SOURCE_AND_ACTUAL_WRAPPER_MATCH"
+        },
+        "files": [
+          {
+            "path": "results/layout_10-09-2026/mercury_execution_summary.json",
+            "sha256": "868b15213630d922725b644732ec819679c45bcc965c82982e294cae9b9af3ca"
+          }
+        ]
+      }
     }
-  ]
+  ],
+  "probe_accounting": {
+    "path": "results/layout_10-09-2026/probe_accounting.json",
+    "sha256": "e403a4c38b4b3f0ca421a66dad12783cb9535fb4418388b0320470ddf3ead5ca"
+  }
 }

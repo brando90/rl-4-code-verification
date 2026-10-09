@@ -1,0 +1,327 @@
+{
+  "route": "tp2_cpu_offload",
+  "verdict": "NOT_ADMITTED",
+  "reason": "Qwen3 query/key normalization has TP-partition-dependent gradients in pinned worker. 80/80 q/k parameters had different gradient hashes across two ranks. Changing TP8 to TP2 is not justified by ordinary floating-point variance.",
+  "execution": {
+    "started_utc": "2026-10-09T20:37:53.291271+00:00",
+    "started_epoch": 1791578273.2912629,
+    "deadline_epoch": 1791580073.2912629,
+    "identity": {
+      "pid": 3613151,
+      "pid_start": "7942754",
+      "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+      "host": "skampere1.stanford.edu"
+    },
+    "steps": [
+      {
+        "target": 2,
+        "exit": 134,
+        "seconds": 983.8241586685181,
+        "log": "/lfs/skampere1/0/brando9/rl4cv_e08/layout_probe_10-09-2026/to_step_2.log",
+        "sha256": "a7ec677be8ae1d46cdc6eb9c2674e88f03ab884b096fb80179905392648b750c"
+      }
+    ],
+    "devices": [
+      0,
+      1
+    ],
+    "status": "FAILED",
+    "budget_seconds": 1800,
+    "driver": {
+      "pid": 3613764,
+      "identity": {
+        "pid": 3613764,
+        "pid_start": "7942872",
+        "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+        "host": "skampere1.stanford.edu"
+      },
+      "target_step": 2
+    },
+    "cleanup_pids": [],
+    "remaining_owned_pids": [],
+    "elapsed_seconds": 988.027979850769,
+    "device_seconds": 1976.055959701538,
+    "finished_utc": "2026-10-09T20:54:21.319249+00:00"
+  },
+  "workers": [
+    {
+      "rank": 1,
+      "optimizer_updates": 2,
+      "backward_counts": [
+        2,
+        4
+      ],
+      "forward_shapes": [
+        [
+          1,
+          16384
+        ],
+        [
+          1,
+          16384
+        ],
+        [
+          1,
+          16384
+        ],
+        [
+          1,
+          16384
+        ]
+      ],
+      "optimizer_seconds": [
+        189.8121409729938,
+        90.06663077398844
+      ],
+      "states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        },
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moments": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ],
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "numerical_samples": [
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true
+          },
+          {
+            "name": "model.layers.0.self_attn._checkpoint_wrapped_module.q_proj.weight",
+            "max_abs_error": 0.0,
+            "pass": true
+          }
+        ],
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true
+          },
+          {
+            "name": "model.layers.0.self_attn._checkpoint_wrapped_module.q_proj.weight",
+            "max_abs_error": 0.0,
+            "pass": true
+          }
+        ]
+      ],
+      "peak_cuda_allocated_GiB": 41.165571212768555,
+      "peak_cuda_reserved_GiB": 59.083984375,
+      "peak_RSS_GiB": 115.31532669067383,
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/layout_probe_10-09-2026/observations/worker_3628801.jsonl",
+      "sha256": "de3d5219c5356697ee80b3ba46c1df0ceae107aa8ec91d71d38a3d00fb922cb1"
+    },
+    {
+      "rank": 0,
+      "optimizer_updates": 2,
+      "backward_counts": [
+        2,
+        4
+      ],
+      "forward_shapes": [
+        [
+          1,
+          16384
+        ],
+        [
+          1,
+          16384
+        ],
+        [
+          1,
+          16384
+        ],
+        [
+          1,
+          16384
+        ]
+      ],
+      "optimizer_seconds": [
+        160.2765525779978,
+        82.47973177599488
+      ],
+      "states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        },
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moments": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ],
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "numerical_samples": [
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true
+          },
+          {
+            "name": "model.layers.0.self_attn._checkpoint_wrapped_module.q_proj.weight",
+            "max_abs_error": 0.0,
+            "pass": true
+          }
+        ],
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 4.656612873077393e-10,
+            "pass": true
+          },
+          {
+            "name": "model.layers.0.self_attn._checkpoint_wrapped_module.q_proj.weight",
+            "max_abs_error": 9.094947017729282e-13,
+            "pass": true
+          }
+        ]
+      ],
+      "peak_cuda_allocated_GiB": 41.165571212768555,
+      "peak_cuda_reserved_GiB": 58.943359375,
+      "peak_RSS_GiB": 115.64112091064453,
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/layout_probe_10-09-2026/observations/worker_3628915.jsonl",
+      "sha256": "aabcc94097660408bb5cb2a5d2a083914658fc0e19092326027a6f81b7574fe4"
+    }
+  ],
+  "native_logged_metrics": {
+    "train/loss": [
+      {
+        "step": 1,
+        "value": 0.45802628993988037
+      }
+    ],
+    "train/grad_norm": [
+      {
+        "step": 1,
+        "value": 2.166297435760498
+      }
+    ],
+    "train/num_unmasked_tokens": [
+      {
+        "step": 1,
+        "value": 8837.0
+      }
+    ],
+    "train/num_valid_samples": [
+      {
+        "step": 1,
+        "value": 2.0
+      }
+    ],
+    "train/lr": [
+      {
+        "step": 1,
+        "value": 9.999999974752427e-07
+      }
+    ],
+    "train/global_valid_seqs": [
+      {
+        "step": 1,
+        "value": 2.0
+      }
+    ],
+    "train/global_valid_toks": [
+      {
+        "step": 1,
+        "value": 8837.0
+      }
+    ],
+    "timing/train/data_processing": [
+      {
+        "step": 1,
+        "value": 0.002157405950129032
+      }
+    ],
+    "timing/train/policy_training": [
+      {
+        "step": 1,
+        "value": 372.2610778808594
+      }
+    ],
+    "timing/train/total_step_time": [
+      {
+        "step": 1,
+        "value": 372.26416015625
+      }
+    ],
+    "timing/train/valid_tokens_per_sec_per_gpu": [
+      {
+        "step": 1,
+        "value": 11.86925983428955
+      }
+    ]
+  },
+  "native_update_limitations": "Two optimizer updates per rank observed; first full step logged. Deliberate semantic stop while native step2 checkpoint was partial; no completed checkpoint or resume; no production reuse.",
+  "numerical_tolerance": {
+    "rtol": 1e-05,
+    "atol": 1e-07,
+    "meaning": "CPU/CUDA optimizer samples only; not a proof of TP-layout gradient equivalence"
+  },
+  "checks": {
+    "static_invariants": "PASS",
+    "execution": "INCOMPLETE",
+    "numerics": "SAMPLE_PASS",
+    "resume": "NOT_RUN",
+    "performance": "ONE_FULL_STEP_ONLY",
+    "semantic_equivalence": "FAIL"
+  },
+  "host_load": "Approximately756/128 logical CPUs initially; allocation8threads/rank,16total. CPU contention makes372.264s first fullstep unsuitable as a stable long-run estimate.",
+  "evidence_files": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/layout_probe_10-09-2026/source_semantics.json",
+      "sha256": "7909b9893992e385fd8b65496fa40391e276de575e1002fe5ef0ceaf1b68089f"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/layout_probe_10-09-2026/semantic_stop.json",
+      "sha256": "e8be0a9874867b6a6c800fbca635d4213028586254e3b5a0ab7748144115e904"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/layout_probe_10-09-2026/to_step_2.log",
+      "sha256": "a7ec677be8ae1d46cdc6eb9c2674e88f03ab884b096fb80179905392648b750c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/layout_probe_10-09-2026/resources.jsonl",
+      "sha256": "6a05afad2576308cf26050ad6663053e38d05522c451f93897d4feab3a4868bb"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/layout_probe_10-09-2026/run_probe_attempt1.py",
+      "sha256": "ea36f7d1866937ca285cb3494c8eef329e12f69942a1f93ff4b1ac50295a7a88"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/layout_probe_10-09-2026/probe.yaml",
+      "sha256": "8c2a603a057725b3390f376c47e8c915e2fde8d34e3c86f49cb8cfd1ba35b330"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/layout_probe_10-09-2026/tensorboard_metrics.json",
+      "sha256": "dc6f373ba345c6312bc426dfa89671cfdc8f3d426512a08abe56c21935f665ad"
+    }
+  ]
+}

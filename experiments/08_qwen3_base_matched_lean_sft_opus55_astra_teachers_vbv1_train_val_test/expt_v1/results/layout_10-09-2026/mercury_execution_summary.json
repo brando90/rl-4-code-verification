@@ -1,0 +1,2494 @@
+{
+  "schema": 1,
+  "date": "10-09-2026",
+  "verdict": "NOT_ADMITTED_RESUME_INCOMPLETE",
+  "candidate": "mercury2,8xRTX_A4000_16GB,TP8/DP1,CPUstateoffload,whole_decoder_checkpointing",
+  "production_updates": 0,
+  "execution": {
+    "status": "TIMEOUT",
+    "steps": [
+      {
+        "target": 2,
+        "exit": 0,
+        "seconds": 368.3874273840338,
+        "log": "/lfs/mercury2/0/brando9/rl4cv_e08_layout/to_step_2_attempt4.log",
+        "sha256": "230287cc387d0b1405b0d01992f8a78e3a79bac4fd36414e6e3db2b386204d70",
+        "cleanup": {
+          "term_identities": [],
+          "kill_pids": [],
+          "remaining_owned_identities": []
+        }
+      },
+      {
+        "target": 3,
+        "exit": -6,
+        "seconds": 225.4337450787425,
+        "log": "/lfs/mercury2/0/brando9/rl4cv_e08_layout/to_step_3_attempt4.log",
+        "sha256": "fd6d2ccaea595cda1fd26c0ff21e276456481becbf01fcaac86a8989a3b0691e",
+        "cleanup": {
+          "term_identities": [
+            {
+              "pid": 2844800,
+              "pid_start": "1581854509",
+              "ppid": 2824286,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2844985,
+              "pid_start": "1581855274",
+              "ppid": 2844800,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845124,
+              "pid_start": "1581855305",
+              "ppid": 2844800,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845125,
+              "pid_start": "1581855313",
+              "ppid": 2844800,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845192,
+              "pid_start": "1581855400",
+              "ppid": 2844800,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845214,
+              "pid_start": "1581855403",
+              "ppid": 2844800,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845298,
+              "pid_start": "1581855505",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845300,
+              "pid_start": "1581855505",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845339,
+              "pid_start": "1581855511",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845340,
+              "pid_start": "1581855512",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845341,
+              "pid_start": "1581855512",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845342,
+              "pid_start": "1581855512",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845343,
+              "pid_start": "1581855512",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845344,
+              "pid_start": "1581855513",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845345,
+              "pid_start": "1581855513",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845346,
+              "pid_start": "1581855513",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845347,
+              "pid_start": "1581855513",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845348,
+              "pid_start": "1581855513",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845349,
+              "pid_start": "1581855514",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845350,
+              "pid_start": "1581855514",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845351,
+              "pid_start": "1581855514",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845352,
+              "pid_start": "1581855514",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845353,
+              "pid_start": "1581855515",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845354,
+              "pid_start": "1581855515",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845355,
+              "pid_start": "1581855515",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845356,
+              "pid_start": "1581855515",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845357,
+              "pid_start": "1581855516",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845358,
+              "pid_start": "1581855521",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845359,
+              "pid_start": "1581855521",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845361,
+              "pid_start": "1581855521",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845362,
+              "pid_start": "1581855522",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845363,
+              "pid_start": "1581855522",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845364,
+              "pid_start": "1581855522",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845365,
+              "pid_start": "1581855522",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845366,
+              "pid_start": "1581855523",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845367,
+              "pid_start": "1581855523",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845368,
+              "pid_start": "1581855523",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845369,
+              "pid_start": "1581855523",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845370,
+              "pid_start": "1581855524",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845371,
+              "pid_start": "1581855524",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845372,
+              "pid_start": "1581855524",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845373,
+              "pid_start": "1581855524",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845374,
+              "pid_start": "1581855524",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845376,
+              "pid_start": "1581855525",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845377,
+              "pid_start": "1581855525",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845378,
+              "pid_start": "1581855525",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845379,
+              "pid_start": "1581855526",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845380,
+              "pid_start": "1581855526",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845381,
+              "pid_start": "1581855526",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845382,
+              "pid_start": "1581855526",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845383,
+              "pid_start": "1581855527",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845384,
+              "pid_start": "1581855527",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845385,
+              "pid_start": "1581855527",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845386,
+              "pid_start": "1581855528",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845387,
+              "pid_start": "1581855528",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845388,
+              "pid_start": "1581855528",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845389,
+              "pid_start": "1581855529",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845390,
+              "pid_start": "1581855529",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845391,
+              "pid_start": "1581855529",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845392,
+              "pid_start": "1581855530",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845393,
+              "pid_start": "1581855530",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845394,
+              "pid_start": "1581855530",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845395,
+              "pid_start": "1581855531",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845396,
+              "pid_start": "1581855531",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845397,
+              "pid_start": "1581855531",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845398,
+              "pid_start": "1581855532",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845400,
+              "pid_start": "1581855532",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845403,
+              "pid_start": "1581855532",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845404,
+              "pid_start": "1581855533",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845405,
+              "pid_start": "1581855533",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845406,
+              "pid_start": "1581855533",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845407,
+              "pid_start": "1581855534",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845408,
+              "pid_start": "1581855534",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845409,
+              "pid_start": "1581855534",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845410,
+              "pid_start": "1581855535",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845412,
+              "pid_start": "1581855535",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845415,
+              "pid_start": "1581855535",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845416,
+              "pid_start": "1581855536",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845417,
+              "pid_start": "1581855536",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845418,
+              "pid_start": "1581855536",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845445,
+              "pid_start": "1581855537",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845446,
+              "pid_start": "1581855537",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845447,
+              "pid_start": "1581855537",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845448,
+              "pid_start": "1581855538",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845450,
+              "pid_start": "1581855538",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845451,
+              "pid_start": "1581855539",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845452,
+              "pid_start": "1581855539",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845453,
+              "pid_start": "1581855540",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845639,
+              "pid_start": "1581855548",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845645,
+              "pid_start": "1581855549",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845659,
+              "pid_start": "1581855550",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845738,
+              "pid_start": "1581855551",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845807,
+              "pid_start": "1581855551",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845839,
+              "pid_start": "1581855552",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2845946,
+              "pid_start": "1581855553",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2850739,
+              "pid_start": "1581855673",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2850740,
+              "pid_start": "1581855674",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2851140,
+              "pid_start": "1581855767",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2851144,
+              "pid_start": "1581855774",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2851148,
+              "pid_start": "1581855781",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2851149,
+              "pid_start": "1581855789",
+              "ppid": 2845192,
+              "state": "R",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2851153,
+              "pid_start": "1581855797",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2851157,
+              "pid_start": "1581855805",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2851161,
+              "pid_start": "1581855813",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2851165,
+              "pid_start": "1581855821",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2852011,
+              "pid_start": "1581856355",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2852021,
+              "pid_start": "1581856389",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2852026,
+              "pid_start": "1581856419",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2852030,
+              "pid_start": "1581856436",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2852037,
+              "pid_start": "1581856450",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2852048,
+              "pid_start": "1581856493",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2852049,
+              "pid_start": "1581856494",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2852050,
+              "pid_start": "1581856494",
+              "ppid": 2845192,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            },
+            {
+              "pid": 2857115,
+              "pid_start": "1581869352",
+              "ppid": 2844800,
+              "state": "S",
+              "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+              "host": "mercury2.stanford.edu"
+            }
+          ],
+          "kill_pids": [
+            2844800,
+            2844985,
+            2845124,
+            2845192,
+            2845300,
+            2852011,
+            2852021,
+            2852026,
+            2852030,
+            2852037,
+            2852048,
+            2852049,
+            2852050
+          ],
+          "remaining_owned_identities": []
+        }
+      }
+    ],
+    "devices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "prior_probe_seconds": 1189.9956840518862,
+    "budget_seconds": 610.0043159481138,
+    "cleanup_reserve_seconds": 20,
+    "task_tag": "e08-mercury-disposable-8339e1ac-9675-4e2c-b609-552c1b436a12-attempt4",
+    "identity": {
+      "pid": 2824286,
+      "pid_start": "1581817623",
+      "ppid": 2385445,
+      "state": "R",
+      "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+      "host": "mercury2.stanford.edu"
+    },
+    "script_sha256": "cbe9ea6088658113dcb434388dcf7daf55c9e3402a7eb116be3c961a8df1af13",
+    "started_utc": "2026-10-09T21:14:33.759640+00:00",
+    "cpu_environment_check": {
+      "status": "PASS",
+      "receipt": "/lfs/mercury2/0/brando9/rl4cv_e08_layout/environment_receipt.json",
+      "sha256": "919a70437e9be89cb2497c2b02247c5662a2880beb8461cbee2a605e860416fe"
+    },
+    "input_hashes": {
+      "/lfs/mercury2/0/brando9/rl4cv_e08_layout/probe_attempt4.yaml": "d813f2ca70b3e8e246bfda092784d7c0dd6d0e8fb5ad51724cc1549c9fe293e3",
+      "/lfs/mercury2/0/brando9/rl4cv_e08_layout/hooks_attempt4/sitecustomize.py": "d21634db002280999ba541fb9c05e4c0442cbdef8beb2bc25653050aafa8d93a",
+      "/lfs/mercury2/0/brando9/rl4cv_e08_layout/hooks_attempt4/e08_whole_layer.py": "09b56a3f73142c49a6a612bffda04d59557c44828b8a95b85fd1ca86c1b1cb37",
+      "/lfs/mercury2/0/brando9/rl4cv_e08_layout/train6.jsonl": "a50ab41bac852d327b9cb38554c3096a31a3b6d2dd2ba560403f50288dd05e16",
+      "/lfs/mercury2/0/brando9/rl4cv_e08_layout/s_v1_val_dummy.jsonl": "1f98798e87e4ce70edbcb08c2edff535dbf459750a141548e34fdb18d008d471"
+    },
+    "preallocation_survey": {
+      "time": 1791580474.119215,
+      "utc": "2026-10-09T21:14:34.119224+00:00",
+      "gpus": {
+        "0": [
+          "0",
+          "GPU-4cdf8223-cd3c-4c19-fe22-dd070b82e697",
+          "1",
+          "15985",
+          "0",
+          "0"
+        ],
+        "1": [
+          "1",
+          "GPU-87a5b8eb-3e08-4391-6434-e73da2a03519",
+          "1",
+          "15985",
+          "0",
+          "0"
+        ],
+        "2": [
+          "2",
+          "GPU-7bdfad44-6464-62f2-04e0-6c29a8291843",
+          "1",
+          "15985",
+          "0",
+          "0"
+        ],
+        "3": [
+          "3",
+          "GPU-e31683e6-fc20-8f3b-2cf0-4d398d6047b6",
+          "1",
+          "15985",
+          "0",
+          "0"
+        ],
+        "4": [
+          "4",
+          "GPU-bf3ee2ff-4e0d-ee15-2c3d-109d6b729f1c",
+          "1",
+          "15985",
+          "0",
+          "0"
+        ],
+        "5": [
+          "5",
+          "GPU-57095f96-4e72-a693-4f6b-e6a64287a3aa",
+          "1",
+          "15985",
+          "0",
+          "0"
+        ],
+        "6": [
+          "6",
+          "GPU-c1d20954-a0d3-0071-024a-722941972831",
+          "1",
+          "15985",
+          "0",
+          "0"
+        ],
+        "7": [
+          "7",
+          "GPU-ad340bcc-5ba4-cf96-39ee-de2ff56866fe",
+          "1",
+          "15985",
+          "0",
+          "0"
+        ],
+        "8": [
+          "8",
+          "GPU-6ca80fde-45a7-8f9b-3078-41832ab6982b",
+          "1",
+          "15985",
+          "0",
+          "0"
+        ],
+        "9": [
+          "9",
+          "GPU-c5e6f79d-9f61-30d4-2216-c216ab782616",
+          "1",
+          "15985",
+          "0",
+          "0"
+        ]
+      },
+      "compute_processes": [],
+      "host_memory": {
+        "MemTotal_bytes": 540655579136,
+        "MemAvailable_bytes": 526563483648,
+        "SwapFree_bytes": 8192,
+        "Shmem_bytes": 11460608
+      },
+      "load": "1.48 3.26 2.27 1/3282 2824296",
+      "cpu_pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=231364160801\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+      "cpu_times": "cpu  5168579058 13268423 762487622 145681073290 81676230 0 15870337 0 0 0",
+      "owned": []
+    },
+    "started_epoch": 1791580474.161411,
+    "deadline_epoch": 1791581084.1657271,
+    "lease": {
+      "owner": "e08-mercury-disposable-8339e1ac-9675-4e2c-b609-552c1b436a12-attempt4",
+      "kind": "disposable-tp8-cpu-offload-whole-layer-checkpoint",
+      "gpus": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "identity": {
+        "pid": 2824286,
+        "pid_start": "1581817623",
+        "ppid": 2385445,
+        "state": "R",
+        "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+        "host": "mercury2.stanford.edu"
+      },
+      "since": "2026-10-09T21:14:34.161465+00:00",
+      "expires_epoch": 1791581084.165796,
+      "released": false,
+      "prior_probe_seconds": 1189.9956840518862,
+      "budget_seconds": 610.0043159481138
+    },
+    "pending_command": [
+      "/lfs/mercury2/0/brando9/rl4cv_e08_layout/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python",
+      "-u",
+      "/lfs/mercury2/0/brando9/rl4cv_e08_layout/nemo_rl/examples/run_sft.py",
+      "--config",
+      "/lfs/mercury2/0/brando9/rl4cv_e08_layout/probe_attempt4.yaml",
+      "sft.max_num_steps=3",
+      "checkpointing.enabled=false"
+    ],
+    "driver": {
+      "identity": {
+        "pid": 2844800,
+        "pid_start": "1581854509",
+        "ppid": 2824286,
+        "state": "R",
+        "boot_id": "020cc754-3fc9-4268-9afe-4e0c287a35a7",
+        "host": "mercury2.stanford.edu"
+      },
+      "target_step": 3
+    },
+    "final_cleanup": {
+      "term_identities": [],
+      "kill_pids": [],
+      "remaining_owned_identities": []
+    },
+    "remaining_owned_pids": [],
+    "elapsed_seconds": 593.9117828644812,
+    "cumulative_probe_seconds": 1783.9074669163674,
+    "device_seconds": 4751.29426291585,
+    "finished_utc": "2026-10-09T21:24:28.073204+00:00",
+    "lease_released": true
+  },
+  "budget_ledger": "probe_accounting.json",
+  "logical_fresh_optimizer_updates": 2,
+  "resumed_optimizer_updates": 0,
+  "resumed_full_length_backwards_per_rank": 1,
+  "workers": [
+    {
+      "rank": 6,
+      "pid": 2852050,
+      "native_training_optimizer_calls": 0,
+      "native_zero_lr_optimizer_initialization_calls": 1,
+      "completed_backwards": 1,
+      "parameter_gradient_states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moment_states": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "peak_reserved_GiB": 10.330078125,
+      "peak_allocated_GiB": 9.777340412139893,
+      "peak_RSS_GiB": 29.615482330322266,
+      "optimizer_seconds": [
+        12.800685150548816
+      ],
+      "sample_comparisons": [
+        [
+          {
+            "name": "unknown",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "cbe0dfa9f1c65f38d31b440011cc754f35e57a748af5e92abc145e68b410dd6c"
+          },
+          {
+            "name": "unknown",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "009bfba2d423cccc4c1fed7a3ae86e4cc0ac26f9007aa2f896803c369fcefc42"
+          }
+        ]
+      ],
+      "source_sha256": "5aaaecb45d2ac44435bf5caecfa93b79b40e92943d26f1a6947276d011e79a11"
+    },
+    {
+      "rank": 4,
+      "pid": 2852021,
+      "native_training_optimizer_calls": 0,
+      "native_zero_lr_optimizer_initialization_calls": 1,
+      "completed_backwards": 1,
+      "parameter_gradient_states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moment_states": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "peak_reserved_GiB": 10.330078125,
+      "peak_allocated_GiB": 9.777340412139893,
+      "peak_RSS_GiB": 29.595813751220703,
+      "optimizer_seconds": [
+        13.152614586055279
+      ],
+      "sample_comparisons": [
+        [
+          {
+            "name": "unknown",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "49d8f618335ac341af75191928497d344a4e28129d39e5779af58665026625f2"
+          },
+          {
+            "name": "unknown",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "2255964ecbc19a8021cbabab030c9fcbc4e06e414cdcf30fe7f3625392cb0cbf"
+          }
+        ]
+      ],
+      "source_sha256": "febff36b43ecc42d93993c85f60a03d7020eaa47363d780e039e749ac0ac5bfe"
+    },
+    {
+      "rank": 4,
+      "pid": 2831512,
+      "native_training_optimizer_calls": 2,
+      "native_zero_lr_optimizer_initialization_calls": 0,
+      "completed_backwards": 4,
+      "parameter_gradient_states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        },
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moment_states": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ],
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "peak_reserved_GiB": 14.470703125,
+      "peak_allocated_GiB": 10.899946212768555,
+      "peak_RSS_GiB": 31.019927978515625,
+      "optimizer_seconds": [
+        15.392602801322937,
+        9.856779577210546
+      ],
+      "sample_comparisons": [
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "546896423ac4cc63a6860d68450282c584ade775ead805871e7786f55a241892"
+          },
+          {
+            "name": "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "fd9a965dbf1aee1b457f48b245026c35d1a5f737d4b2f518108470486be9b0a1"
+          }
+        ],
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "49d8f618335ac341af75191928497d344a4e28129d39e5779af58665026625f2"
+          },
+          {
+            "name": "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "2255964ecbc19a8021cbabab030c9fcbc4e06e414cdcf30fe7f3625392cb0cbf"
+          }
+        ]
+      ],
+      "source_sha256": "3121325066418c526dcc2913507c469665db3baf772cf73350150aa64692b11c"
+    },
+    {
+      "rank": 0,
+      "pid": 2852011,
+      "native_training_optimizer_calls": 0,
+      "native_zero_lr_optimizer_initialization_calls": 1,
+      "completed_backwards": 1,
+      "parameter_gradient_states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moment_states": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "peak_reserved_GiB": 10.33203125,
+      "peak_allocated_GiB": 9.777340412139893,
+      "peak_RSS_GiB": 57.73829650878906,
+      "optimizer_seconds": [
+        13.653854675590992
+      ],
+      "sample_comparisons": [
+        [
+          {
+            "name": "unknown",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "410c31a054d549d413f13270b4e52629cb69c97bc8870d940319617ed882473e"
+          },
+          {
+            "name": "unknown",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "3e8bc87c327f4d0926beecbf755dab108878757bf2960317366343210fe48e29"
+          }
+        ]
+      ],
+      "source_sha256": "42806f1e3739aa24cc7aad5825b0b8f4246f418038d023da4cd55726a81f842f"
+    },
+    {
+      "rank": 1,
+      "pid": 2831479,
+      "native_training_optimizer_calls": 2,
+      "native_zero_lr_optimizer_initialization_calls": 0,
+      "completed_backwards": 4,
+      "parameter_gradient_states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        },
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moment_states": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ],
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "peak_reserved_GiB": 14.470703125,
+      "peak_allocated_GiB": 10.899946212768555,
+      "peak_RSS_GiB": 30.97671127319336,
+      "optimizer_seconds": [
+        15.249796146526933,
+        8.663288624957204
+      ],
+      "sample_comparisons": [
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "898aaf15249516a13c58754de1037b2b5efce0356b8a09fe4409db1b4c4897cd"
+          },
+          {
+            "name": "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "05e9efffff78fc692722ea31d887b75a201f898a5fe0bf5591f9dc3e941ae94e"
+          }
+        ],
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "e7c13c53d56c2d2e8e5de0d72d6d8a2ec76198f87b6899946587d4f268ba644a"
+          },
+          {
+            "name": "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "8802e0f542a9159837e4556cf9a51c9bf97b69b39b66b4a3e01dac4dd69408f3"
+          }
+        ]
+      ],
+      "source_sha256": "e85c50c9cfa59e24336aa4fc5e49e287bc695ca26465c0ba1855628809557af8"
+    },
+    {
+      "rank": 6,
+      "pid": 2831505,
+      "native_training_optimizer_calls": 2,
+      "native_zero_lr_optimizer_initialization_calls": 0,
+      "completed_backwards": 4,
+      "parameter_gradient_states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        },
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moment_states": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ],
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "peak_reserved_GiB": 14.470703125,
+      "peak_allocated_GiB": 10.899946212768555,
+      "peak_RSS_GiB": 31.130290985107422,
+      "optimizer_seconds": [
+        15.14919694699347,
+        7.983966948464513
+      ],
+      "sample_comparisons": [
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "03e71b8d3fa25cebce692b5b01a050bb11e1315b0a955e61cdba811e74ca3dbd"
+          },
+          {
+            "name": "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "847ce4f08cbca6429aacfbfa3a853b4be53c652f44b4ad6cc6efe0db81aa5713"
+          }
+        ],
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "cbe0dfa9f1c65f38d31b440011cc754f35e57a748af5e92abc145e68b410dd6c"
+          },
+          {
+            "name": "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "009bfba2d423cccc4c1fed7a3ae86e4cc0ac26f9007aa2f896803c369fcefc42"
+          }
+        ]
+      ],
+      "source_sha256": "0e567f591ea800b4a133a083337cb0279278fc1fc6fd489897d8005e64e7c0a9"
+    },
+    {
+      "rank": 1,
+      "pid": 2852026,
+      "native_training_optimizer_calls": 0,
+      "native_zero_lr_optimizer_initialization_calls": 1,
+      "completed_backwards": 1,
+      "parameter_gradient_states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moment_states": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "peak_reserved_GiB": 10.330078125,
+      "peak_allocated_GiB": 9.777340412139893,
+      "peak_RSS_GiB": 29.597198486328125,
+      "optimizer_seconds": [
+        12.868976291269064
+      ],
+      "sample_comparisons": [
+        [
+          {
+            "name": "unknown",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "e7c13c53d56c2d2e8e5de0d72d6d8a2ec76198f87b6899946587d4f268ba644a"
+          },
+          {
+            "name": "unknown",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "8802e0f542a9159837e4556cf9a51c9bf97b69b39b66b4a3e01dac4dd69408f3"
+          }
+        ]
+      ],
+      "source_sha256": "3bd8caffca16a762fe58d2a177ad924f2d33134d761b387b66885a757b8ed019"
+    },
+    {
+      "rank": 5,
+      "pid": 2852049,
+      "native_training_optimizer_calls": 0,
+      "native_zero_lr_optimizer_initialization_calls": 1,
+      "completed_backwards": 1,
+      "parameter_gradient_states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moment_states": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "peak_reserved_GiB": 10.330078125,
+      "peak_allocated_GiB": 9.777340412139893,
+      "peak_RSS_GiB": 29.65137481689453,
+      "optimizer_seconds": [
+        12.769704667851329
+      ],
+      "sample_comparisons": [
+        [
+          {
+            "name": "unknown",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "616fa81fffe5d6765a54a4a0f92e09f5f841ef1865448f049e35279f4cc8ecd1"
+          },
+          {
+            "name": "unknown",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "06904493f4dab59163ee06586ee3bbb17c5f396de7b7a637fbc279f01d99bd64"
+          }
+        ]
+      ],
+      "source_sha256": "7961424aed0c5c91cc89cabfebd3140d6f1c9559325445cb34cf131f574c87ae"
+    },
+    {
+      "rank": 7,
+      "pid": 2852048,
+      "native_training_optimizer_calls": 0,
+      "native_zero_lr_optimizer_initialization_calls": 1,
+      "completed_backwards": 1,
+      "parameter_gradient_states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moment_states": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "peak_reserved_GiB": 10.330078125,
+      "peak_allocated_GiB": 9.777340412139893,
+      "peak_RSS_GiB": 29.655715942382812,
+      "optimizer_seconds": [
+        12.940690429881215
+      ],
+      "sample_comparisons": [
+        [
+          {
+            "name": "unknown",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "17c6cc6c12eec313bb56cb8247ee3f24724c6f3b79105306dc3e83a034d923e9"
+          },
+          {
+            "name": "unknown",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "342d12a4ef1142f0a80bb18c0375beaa815530bdb930e36695a3e0af670ac72a"
+          }
+        ]
+      ],
+      "source_sha256": "68ce632896af2a302102dfbd62c0b514d682e406ac36a791698aacd444c397ba"
+    },
+    {
+      "rank": 3,
+      "pid": 2852030,
+      "native_training_optimizer_calls": 0,
+      "native_zero_lr_optimizer_initialization_calls": 1,
+      "completed_backwards": 1,
+      "parameter_gradient_states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moment_states": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "peak_reserved_GiB": 10.330078125,
+      "peak_allocated_GiB": 9.777340412139893,
+      "peak_RSS_GiB": 29.60657501220703,
+      "optimizer_seconds": [
+        12.57515531219542
+      ],
+      "sample_comparisons": [
+        [
+          {
+            "name": "unknown",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "a494856fb9d78e19ff0ff0537ecb697b7f9e8f12807fcb8e827dd7ba094a0ee6"
+          },
+          {
+            "name": "unknown",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "2e6486ec27315ab15c899ded73b0cfc8ebecea24f7dd989213b53a80d65f49b1"
+          }
+        ]
+      ],
+      "source_sha256": "219c9452db3d00b3f610f7d8c5b5c27f627af0d8cae52a51eae8eaaa9ab0bb32"
+    },
+    {
+      "rank": 7,
+      "pid": 2831513,
+      "native_training_optimizer_calls": 2,
+      "native_zero_lr_optimizer_initialization_calls": 0,
+      "completed_backwards": 4,
+      "parameter_gradient_states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        },
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moment_states": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ],
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "peak_reserved_GiB": 14.470703125,
+      "peak_allocated_GiB": 10.899946212768555,
+      "peak_RSS_GiB": 30.919654846191406,
+      "optimizer_seconds": [
+        14.91182217746973,
+        9.968406025320292
+      ],
+      "sample_comparisons": [
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "0d181d6150835e9000558fa51df7d43fa13162f83726da37973ca9a573a17e8c"
+          },
+          {
+            "name": "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "224112372bac84a7c8a544a5ff2243fdaa91a208424e3241a01d5065b2f6c08a"
+          }
+        ],
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "17c6cc6c12eec313bb56cb8247ee3f24724c6f3b79105306dc3e83a034d923e9"
+          },
+          {
+            "name": "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "342d12a4ef1142f0a80bb18c0375beaa815530bdb930e36695a3e0af670ac72a"
+          }
+        ]
+      ],
+      "source_sha256": "99ed080d632118b925ae14449171ad85e811f8ce55e338e4a3ca2dbac658afdc"
+    },
+    {
+      "rank": 0,
+      "pid": 2831507,
+      "native_training_optimizer_calls": 2,
+      "native_zero_lr_optimizer_initialization_calls": 0,
+      "completed_backwards": 4,
+      "parameter_gradient_states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        },
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moment_states": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ],
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "peak_reserved_GiB": 14.470703125,
+      "peak_allocated_GiB": 10.899946212768555,
+      "peak_RSS_GiB": 57.73702621459961,
+      "optimizer_seconds": [
+        15.034724740311503,
+        7.8462336249649525
+      ],
+      "sample_comparisons": [
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "3ac6d1b9c37c854ad64132ae244f1391aeea4f8c0c13a7637fea6061c9cdc85c"
+          },
+          {
+            "name": "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "b15c907a2be884074d597c07d6eea2f7354496f49e5874937499ffb16c7a94bb"
+          }
+        ],
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "410c31a054d549d413f13270b4e52629cb69c97bc8870d940319617ed882473e"
+          },
+          {
+            "name": "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight",
+            "max_abs_error": 4.547473508864641e-13,
+            "pass": true,
+            "actual_sha256": "3e8bc87c327f4d0926beecbf755dab108878757bf2960317366343210fe48e29"
+          }
+        ]
+      ],
+      "source_sha256": "acd65cf0edc0e7fc34c82bd6c0a574d2ace5b7048e37a6f3e1a11d79ff423bb1"
+    },
+    {
+      "rank": 2,
+      "pid": 2831497,
+      "native_training_optimizer_calls": 2,
+      "native_zero_lr_optimizer_initialization_calls": 0,
+      "completed_backwards": 4,
+      "parameter_gradient_states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        },
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moment_states": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ],
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "peak_reserved_GiB": 14.470703125,
+      "peak_allocated_GiB": 10.899946212768555,
+      "peak_RSS_GiB": 30.79690170288086,
+      "optimizer_seconds": [
+        11.691415911540389,
+        7.264932136982679
+      ],
+      "sample_comparisons": [
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "d2a9e079a78dea14a40feb87407be10610d588a76a1a96c92302f4594c042eb5"
+          },
+          {
+            "name": "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "6b60227e42fb510afe1ffec350cd672846cb6a3b8a595d55187cd23ef2127ad3"
+          }
+        ],
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "46e2add91784284717abe628833d85913cf87338f172597da2e1cf8ffd863dc9"
+          },
+          {
+            "name": "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight",
+            "max_abs_error": 9.313225746154785e-10,
+            "pass": true,
+            "actual_sha256": "f236c39f35ee5ccc92d4e4526cf9b17e0edc7e4e97400ec16f1a551877849148"
+          }
+        ]
+      ],
+      "source_sha256": "54b75328b5e6c5b0dfc76542e497fbc3aba8f40cfdf349ad655593874919a0a0"
+    },
+    {
+      "rank": 5,
+      "pid": 2831508,
+      "native_training_optimizer_calls": 2,
+      "native_zero_lr_optimizer_initialization_calls": 0,
+      "completed_backwards": 4,
+      "parameter_gradient_states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        },
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moment_states": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ],
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "peak_reserved_GiB": 14.470703125,
+      "peak_allocated_GiB": 10.899946212768555,
+      "peak_RSS_GiB": 31.05172348022461,
+      "optimizer_seconds": [
+        16.968086041510105,
+        15.888969078660011
+      ],
+      "sample_comparisons": [
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "acbdb6e8e73cad3f392b92f3a5f3cb0b0693e04684f48c1ac171af3856811cd1"
+          },
+          {
+            "name": "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "9d1715418977d478a41067552100f60b4d42c66cfd681a9be779557d4e05949a"
+          }
+        ],
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "616fa81fffe5d6765a54a4a0f92e09f5f841ef1865448f049e35279f4cc8ecd1"
+          },
+          {
+            "name": "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "06904493f4dab59163ee06586ee3bbb17c5f396de7b7a637fbc279f01d99bd64"
+          }
+        ]
+      ],
+      "source_sha256": "649614ee6a87e17a1cf4e2836f44547b4ae2baf65c92efb1a129984ecfd137bc"
+    },
+    {
+      "rank": 2,
+      "pid": 2852037,
+      "native_training_optimizer_calls": 0,
+      "native_zero_lr_optimizer_initialization_calls": 1,
+      "completed_backwards": 1,
+      "parameter_gradient_states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moment_states": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "peak_reserved_GiB": 10.330078125,
+      "peak_allocated_GiB": 9.777340412139893,
+      "peak_RSS_GiB": 29.555805206298828,
+      "optimizer_seconds": [
+        12.866851706057787
+      ],
+      "sample_comparisons": [
+        [
+          {
+            "name": "unknown",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "46e2add91784284717abe628833d85913cf87338f172597da2e1cf8ffd863dc9"
+          },
+          {
+            "name": "unknown",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "f236c39f35ee5ccc92d4e4526cf9b17e0edc7e4e97400ec16f1a551877849148"
+          }
+        ]
+      ],
+      "source_sha256": "dada3f2f1a85e78683f983c5e8c90b18743ea0217bcbaa0cebbb2962d3833241"
+    },
+    {
+      "rank": 3,
+      "pid": 2831495,
+      "native_training_optimizer_calls": 2,
+      "native_zero_lr_optimizer_initialization_calls": 0,
+      "completed_backwards": 4,
+      "parameter_gradient_states": [
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        },
+        {
+          "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+        }
+      ],
+      "moment_states": [
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ],
+        [
+          [
+            "cpu",
+            "torch.float32"
+          ]
+        ]
+      ],
+      "peak_reserved_GiB": 14.470703125,
+      "peak_allocated_GiB": 10.899946212768555,
+      "peak_RSS_GiB": 30.997554779052734,
+      "optimizer_seconds": [
+        11.256818104535341,
+        7.385665884241462
+      ],
+      "sample_comparisons": [
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "38d79389e8fa3c481a9345026d9c1537d7a75d12c804a7e11119f27b7462cc23"
+          },
+          {
+            "name": "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight",
+            "max_abs_error": 9.094947017729282e-13,
+            "pass": true,
+            "actual_sha256": "78ff12e107b363cb45012d8ceb7fba083a28ca2bb4e41b9406fc0e55c84ec7c4"
+          }
+        ],
+        [
+          {
+            "name": "model.embed_tokens.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "a494856fb9d78e19ff0ff0537ecb697b7f9e8f12807fcb8e827dd7ba094a0ee6"
+          },
+          {
+            "name": "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight",
+            "max_abs_error": 0.0,
+            "pass": true,
+            "actual_sha256": "2e6486ec27315ab15c899ded73b0cfc8ebecea24f7dd989213b53a80d65f49b1"
+          }
+        ]
+      ],
+      "source_sha256": "bbfa844c36dcafd3b9494585372f70437ad67158dfea87886ee53044be2a5883"
+    }
+  ],
+  "native_metrics": {
+    "exp_004": {
+      "train/loss": [
+        {
+          "step": 1,
+          "value": 0.45817822217941284
+        },
+        {
+          "step": 2,
+          "value": 0.37434375286102295
+        }
+      ],
+      "train/grad_norm": [
+        {
+          "step": 1,
+          "value": 2.2707908153533936
+        },
+        {
+          "step": 2,
+          "value": 1.8795242309570312
+        }
+      ],
+      "train/num_unmasked_tokens": [
+        {
+          "step": 1,
+          "value": 8837.0
+        },
+        {
+          "step": 2,
+          "value": 14076.0
+        }
+      ],
+      "train/num_valid_samples": [
+        {
+          "step": 1,
+          "value": 2.0
+        },
+        {
+          "step": 2,
+          "value": 2.0
+        }
+      ],
+      "train/lr": [
+        {
+          "step": 1,
+          "value": 9.999999974752427e-07
+        },
+        {
+          "step": 2,
+          "value": 1.950000068973168e-06
+        }
+      ],
+      "train/global_valid_seqs": [
+        {
+          "step": 1,
+          "value": 2.0
+        },
+        {
+          "step": 2,
+          "value": 2.0
+        }
+      ],
+      "train/global_valid_toks": [
+        {
+          "step": 1,
+          "value": 8837.0
+        },
+        {
+          "step": 2,
+          "value": 14076.0
+        }
+      ],
+      "timing/train/data_processing": [
+        {
+          "step": 1,
+          "value": 0.0025359448045492172
+        },
+        {
+          "step": 2,
+          "value": 0.0022634435445070267
+        }
+      ],
+      "timing/train/policy_training": [
+        {
+          "step": 1,
+          "value": 124.02044677734375
+        },
+        {
+          "step": 2,
+          "value": 121.50556182861328
+        }
+      ],
+      "timing/train/total_step_time": [
+        {
+          "step": 1,
+          "value": 124.02371978759766
+        },
+        {
+          "step": 2,
+          "value": 148.6348876953125
+        }
+      ],
+      "timing/train/valid_tokens_per_sec_per_gpu": [
+        {
+          "step": 1,
+          "value": 8.906562805175781
+        },
+        {
+          "step": 2,
+          "value": 11.837732315063477
+        }
+      ],
+      "timing/train/checkpointing": [
+        {
+          "step": 2,
+          "value": 27.126087188720703
+        }
+      ]
+    }
+  },
+  "resume_parameter_samples": {
+    "comparisons": [
+      {
+        "rank": 0,
+        "samples_match": true,
+        "expected": {
+          "model.embed_tokens.weight": "410c31a054d549d413f13270b4e52629cb69c97bc8870d940319617ed882473e",
+          "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight": "3e8bc87c327f4d0926beecbf755dab108878757bf2960317366343210fe48e29"
+        },
+        "actual": {
+          "model.embed_tokens.weight": "410c31a054d549d413f13270b4e52629cb69c97bc8870d940319617ed882473e",
+          "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight": "3e8bc87c327f4d0926beecbf755dab108878757bf2960317366343210fe48e29"
+        },
+        "resumed_completed_backwards": 1,
+        "resumed_training_optimizer_calls": 0
+      },
+      {
+        "rank": 1,
+        "samples_match": true,
+        "expected": {
+          "model.embed_tokens.weight": "e7c13c53d56c2d2e8e5de0d72d6d8a2ec76198f87b6899946587d4f268ba644a",
+          "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight": "8802e0f542a9159837e4556cf9a51c9bf97b69b39b66b4a3e01dac4dd69408f3"
+        },
+        "actual": {
+          "model.embed_tokens.weight": "e7c13c53d56c2d2e8e5de0d72d6d8a2ec76198f87b6899946587d4f268ba644a",
+          "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight": "8802e0f542a9159837e4556cf9a51c9bf97b69b39b66b4a3e01dac4dd69408f3"
+        },
+        "resumed_completed_backwards": 1,
+        "resumed_training_optimizer_calls": 0
+      },
+      {
+        "rank": 2,
+        "samples_match": true,
+        "expected": {
+          "model.embed_tokens.weight": "46e2add91784284717abe628833d85913cf87338f172597da2e1cf8ffd863dc9",
+          "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight": "f236c39f35ee5ccc92d4e4526cf9b17e0edc7e4e97400ec16f1a551877849148"
+        },
+        "actual": {
+          "model.embed_tokens.weight": "46e2add91784284717abe628833d85913cf87338f172597da2e1cf8ffd863dc9",
+          "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight": "f236c39f35ee5ccc92d4e4526cf9b17e0edc7e4e97400ec16f1a551877849148"
+        },
+        "resumed_completed_backwards": 1,
+        "resumed_training_optimizer_calls": 0
+      },
+      {
+        "rank": 3,
+        "samples_match": true,
+        "expected": {
+          "model.embed_tokens.weight": "a494856fb9d78e19ff0ff0537ecb697b7f9e8f12807fcb8e827dd7ba094a0ee6",
+          "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight": "2e6486ec27315ab15c899ded73b0cfc8ebecea24f7dd989213b53a80d65f49b1"
+        },
+        "actual": {
+          "model.embed_tokens.weight": "a494856fb9d78e19ff0ff0537ecb697b7f9e8f12807fcb8e827dd7ba094a0ee6",
+          "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight": "2e6486ec27315ab15c899ded73b0cfc8ebecea24f7dd989213b53a80d65f49b1"
+        },
+        "resumed_completed_backwards": 1,
+        "resumed_training_optimizer_calls": 0
+      },
+      {
+        "rank": 4,
+        "samples_match": true,
+        "expected": {
+          "model.embed_tokens.weight": "49d8f618335ac341af75191928497d344a4e28129d39e5779af58665026625f2",
+          "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight": "2255964ecbc19a8021cbabab030c9fcbc4e06e414cdcf30fe7f3625392cb0cbf"
+        },
+        "actual": {
+          "model.embed_tokens.weight": "49d8f618335ac341af75191928497d344a4e28129d39e5779af58665026625f2",
+          "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight": "2255964ecbc19a8021cbabab030c9fcbc4e06e414cdcf30fe7f3625392cb0cbf"
+        },
+        "resumed_completed_backwards": 1,
+        "resumed_training_optimizer_calls": 0
+      },
+      {
+        "rank": 5,
+        "samples_match": true,
+        "expected": {
+          "model.embed_tokens.weight": "616fa81fffe5d6765a54a4a0f92e09f5f841ef1865448f049e35279f4cc8ecd1",
+          "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight": "06904493f4dab59163ee06586ee3bbb17c5f396de7b7a637fbc279f01d99bd64"
+        },
+        "actual": {
+          "model.embed_tokens.weight": "616fa81fffe5d6765a54a4a0f92e09f5f841ef1865448f049e35279f4cc8ecd1",
+          "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight": "06904493f4dab59163ee06586ee3bbb17c5f396de7b7a637fbc279f01d99bd64"
+        },
+        "resumed_completed_backwards": 1,
+        "resumed_training_optimizer_calls": 0
+      },
+      {
+        "rank": 6,
+        "samples_match": true,
+        "expected": {
+          "model.embed_tokens.weight": "cbe0dfa9f1c65f38d31b440011cc754f35e57a748af5e92abc145e68b410dd6c",
+          "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight": "009bfba2d423cccc4c1fed7a3ae86e4cc0ac26f9007aa2f896803c369fcefc42"
+        },
+        "actual": {
+          "model.embed_tokens.weight": "cbe0dfa9f1c65f38d31b440011cc754f35e57a748af5e92abc145e68b410dd6c",
+          "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight": "009bfba2d423cccc4c1fed7a3ae86e4cc0ac26f9007aa2f896803c369fcefc42"
+        },
+        "resumed_completed_backwards": 1,
+        "resumed_training_optimizer_calls": 0
+      },
+      {
+        "rank": 7,
+        "samples_match": true,
+        "expected": {
+          "model.embed_tokens.weight": "17c6cc6c12eec313bb56cb8247ee3f24724c6f3b79105306dc3e83a034d923e9",
+          "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight": "342d12a4ef1142f0a80bb18c0375beaa815530bdb930e36695a3e0af670ac72a"
+        },
+        "actual": {
+          "model.embed_tokens.weight": "17c6cc6c12eec313bb56cb8247ee3f24724c6f3b79105306dc3e83a034d923e9",
+          "model.layers.0._checkpoint_wrapped_module.self_attn.q_proj.weight": "342d12a4ef1142f0a80bb18c0375beaa815530bdb930e36695a3e0af670ac72a"
+        },
+        "resumed_completed_backwards": 1,
+        "resumed_training_optimizer_calls": 0
+      }
+    ],
+    "verdict": "PARAMETER_SAMPLES_PASS",
+    "full_resume_update": "INCOMPLETE"
+  },
+  "device_binding": "8/8 ranks observed uniqueCUDA_VISIBLE_DEVICES0..7; no foreign process displacement",
+  "actual_checkpoint_inputs": [
+    {
+      "rank": 6,
+      "dtype": "torch.bfloat16",
+      "shape": [
+        1,
+        16384,
+        5120
+      ],
+      "device": "cuda:0"
+    },
+    {
+      "rank": 4,
+      "dtype": "torch.bfloat16",
+      "shape": [
+        1,
+        16384,
+        5120
+      ],
+      "device": "cuda:0"
+    },
+    {
+      "rank": 4,
+      "dtype": "torch.bfloat16",
+      "shape": [
+        1,
+        16384,
+        5120
+      ],
+      "device": "cuda:0"
+    },
+    {
+      "rank": 0,
+      "dtype": "torch.bfloat16",
+      "shape": [
+        1,
+        16384,
+        5120
+      ],
+      "device": "cuda:0"
+    },
+    {
+      "rank": 1,
+      "dtype": "torch.bfloat16",
+      "shape": [
+        1,
+        16384,
+        5120
+      ],
+      "device": "cuda:0"
+    },
+    {
+      "rank": 6,
+      "dtype": "torch.bfloat16",
+      "shape": [
+        1,
+        16384,
+        5120
+      ],
+      "device": "cuda:0"
+    },
+    {
+      "rank": 1,
+      "dtype": "torch.bfloat16",
+      "shape": [
+        1,
+        16384,
+        5120
+      ],
+      "device": "cuda:0"
+    },
+    {
+      "rank": 5,
+      "dtype": "torch.bfloat16",
+      "shape": [
+        1,
+        16384,
+        5120
+      ],
+      "device": "cuda:0"
+    },
+    {
+      "rank": 7,
+      "dtype": "torch.bfloat16",
+      "shape": [
+        1,
+        16384,
+        5120
+      ],
+      "device": "cuda:0"
+    },
+    {
+      "rank": 3,
+      "dtype": "torch.bfloat16",
+      "shape": [
+        1,
+        16384,
+        5120
+      ],
+      "device": "cuda:0"
+    },
+    {
+      "rank": 7,
+      "dtype": "torch.bfloat16",
+      "shape": [
+        1,
+        16384,
+        5120
+      ],
+      "device": "cuda:0"
+    },
+    {
+      "rank": 0,
+      "dtype": "torch.bfloat16",
+      "shape": [
+        1,
+        16384,
+        5120
+      ],
+      "device": "cuda:0"
+    },
+    {
+      "rank": 2,
+      "dtype": "torch.bfloat16",
+      "shape": [
+        1,
+        16384,
+        5120
+      ],
+      "device": "cuda:0"
+    },
+    {
+      "rank": 5,
+      "dtype": "torch.bfloat16",
+      "shape": [
+        1,
+        16384,
+        5120
+      ],
+      "device": "cuda:0"
+    },
+    {
+      "rank": 2,
+      "dtype": "torch.bfloat16",
+      "shape": [
+        1,
+        16384,
+        5120
+      ],
+      "device": "cuda:0"
+    },
+    {
+      "rank": 3,
+      "dtype": "torch.bfloat16",
+      "shape": [
+        1,
+        16384,
+        5120
+      ],
+      "device": "cuda:0"
+    }
+  ],
+  "host_memory": {
+    "total_GiB": 503.5247459411621,
+    "minimum_available_GiB": 75.5408821105957,
+    "max_shmem_GiB": 165.30524444580078,
+    "max_total_minus_available_GiB": 427.9838638305664,
+    "threads_per_rank": 4,
+    "allocated_compute_threads": 32,
+    "logical_CPUs": 96
+  },
+  "checks": {
+    "static_invariants": "PASS",
+    "execution": "INCOMPLETE",
+    "numerics": "OBSERVED_SAMPLES_PASS",
+    "resume": "INCOMPLETE",
+    "performance": "TWO_STEPS_PASS",
+    "semantic_equivalence": "TP8_SOURCE_AND_ACTUAL_WRAPPER_MATCH"
+  },
+  "numerical_limitations": "CPU/CUDAAdamW checks cover2parameter samples2048elements each/rank/update, rtol1e-5atol1e-7; no claim of full-trajectory or bitwise equivalence. SameTP8 avoids the measuredTP2head-partition mismatch. Resumed fulloptimizerupdate/token7405 has not been validated.",
+  "performance_limitations": "Two logical full-length trainingsteps on one sharedhost;124.020/121.506s policytraining. NativeRAMcheckpoint27.126s excludes sharedfilesystem production write latency. No confidence interval or long-run extrapolation claimed.",
+  "attempt_failures": {
+    "attempt1": "NCCLduplicateGPU beforetraining from eager model import in startuphook;78.302s.",
+    "attempt2": "RayUNIXsocketpath>107bytes;9.088s; no workertraining.",
+    "attempt3": "8correctdevicebindings, but modulepatch misseddeserializedworker globals; originalsubmodulecheckpoint path hitrealCUDAOOM13.50GiBallocated,812.08MiBcached,320MiBallocationrequested.114.577s.",
+    "attempt4": "ActualwholedecoderBF16path succeeded2updates/save; resumedweights/optimizer/dataloader, exact16/16parameterhashsamples,1backward/rank; boundedtimer stopped beforethirdoptimizerupdate."
+  },
+  "evidence_files": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/layout_probe_10-09-2026/mercury/attempt4/to_step_2_attempt4.log",
+      "sha256": "230287cc387d0b1405b0d01992f8a78e3a79bac4fd36414e6e3db2b386204d70"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/layout_probe_10-09-2026/mercury/attempt4/to_step_3_attempt4.log",
+      "sha256": "fd6d2ccaea595cda1fd26c0ff21e276456481becbf01fcaac86a8989a3b0691e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/layout_probe_10-09-2026/mercury/attempt4/resources_attempt4.jsonl",
+      "sha256": "a7c7a411647b06bb8618d724ad366df5010ebceebe357f2d7260d030cc022279"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/layout_probe_10-09-2026/mercury/attempt4/resume_samples.json",
+      "sha256": "34aad5f6529c8b34f545e8fb1607d2a5e2583adb6f1f50f55d33545d04ac895e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/layout_probe_10-09-2026/mercury/attempt4/tensorboard_metrics.json",
+      "sha256": "bdd185789a00469fa1ac399e8fb4ff225698bbfa81c0eac5901f9b3d625e5cfc"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/layout_probe_10-09-2026/mercury/attempt4/nemo_source_check.json",
+      "sha256": "3b69cb3a3ef789003f0158e54a86a2c3991a444b843d8e7f8d86aec5edf06f49"
+    }
+  ]
+}

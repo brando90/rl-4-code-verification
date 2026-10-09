@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "phase_incident": "8339e1ac-9675-4e2c-b609-552c1b436a12",
+  "cumulative_accelerator_window_limit_seconds": 1800,
+  "spent_seconds": 1783.9074669163674,
+  "remaining_seconds": 16.09253308363259,
+  "device_seconds": 8343.091856226325,
+  "attempts": [
+    {
+      "attempt": "skampere1_tp2",
+      "devices": 2,
+      "status": "FAILED",
+      "seconds": 988.027979850769,
+      "device_seconds": 1976.055959701538,
+      "owned_children_remaining": [],
+      "lease_released": true
+    },
+    {
+      "attempt": "mercury_attempt1",
+      "devices": 8,
+      "status": "FAILED",
+      "seconds": 78.3024847432971,
+      "device_seconds": 626.4198779463768,
+      "owned_children_remaining": [],
+      "lease_released": true
+    },
+    {
+      "attempt": "mercury_attempt2",
+      "devices": 8,
+      "status": "FAILED",
+      "seconds": 9.088251980021596,
+      "device_seconds": 72.70601584017277,
+      "owned_children_remaining": [],
+      "lease_released": true
+    },
+    {
+      "attempt": "mercury_attempt3",
+      "devices": 8,
+      "status": "FAILED",
+      "seconds": 114.57696747779846,
+      "device_seconds": 916.6157398223877,
+      "owned_children_remaining": [],
+      "lease_released": true
+    },
+    {
+      "attempt": "mercury_attempt4",
+      "devices": 8,
+      "status": "TIMEOUT",
+      "seconds": 593.9117828644812,
+      "device_seconds": 4751.29426291585,
+      "owned_children_remaining": [],
+      "lease_released": true
+    }
+  ],
+  "future_rule": "Never reset these receipts/counters. Remaining16seconds cannot complete a fresh native resume. No further disposable accelerator allocation in this phase; new scope/allowance must be explicit and prospective.",
+  "production_budget": "Original658updates/five-rung finite manifest unchanged; no invented overall production wall-time cap."
+}

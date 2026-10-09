@@ -1,0 +1,8 @@
+{
+  "created_utc": "2026-10-09T21:14:03.114000+00:00",
+  "prior_seconds": 1189.9956840518862,
+  "remaining_seconds": 610.0043159481138,
+  "previous_result": "Attempt3 corrected8distinctGPUbindings but firstforwardOOM at13.50GiBallocated,812.08MiBcached,320MiBrequest. Trace stillusesoriginalpost_attention_layernormcheckpoint, no decodercheckpoint event; wholedecoder candidate was not executed.",
+  "fix": "Bind admitted parallelizer into actual calling DTensorPolicyWorker constructor globals afterRayassignment. Module-only patch missed deserialized actor globals. Add explicit binding and actualdecoderinput evidence.",
+  "criteria": "Same original Mercury numerical/sequence/memory/save-resume criteria; no outputs or failures removed, no budgetreset."
+}

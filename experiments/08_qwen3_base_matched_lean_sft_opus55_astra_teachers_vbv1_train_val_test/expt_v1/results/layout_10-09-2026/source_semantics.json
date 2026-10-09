@@ -1,0 +1,55 @@
+{
+  "utc": "2026-10-09T20:43:24.309913+00:00",
+  "source_hashes": {
+    "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/nemo_rl/models/policy/dtensor_policy_worker.py": "0335e0e55102a9de5e13b8423770101266d1ac163cf41acf90d1b262472985d6",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/nemo_rl/models/dtensor/parallelize.py": "366965e7d9b6360fdd845b559f8b46ce17845088dbf4e12626c0e23192dd37bd",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/nemo_rl/algorithms/loss_functions.py": "818e47270e67de697f624a85e535f7df75b41457080d64985d3353dadb866871",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/nemo_rl/utils/native_checkpoint.py": "c3c9537bf14e25972b64acc9889e8ee1629c7acb70517b9bd139e4393a9a96d1",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/distributed/fsdp/_fully_shard/_fsdp_collectives.py": "aacd0108ad6142012858d42ab16411ad7dd9b277d6d0df843a0815123165d58b",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/distributed/fsdp/_fully_shard/_fsdp_param.py": "562a9c88be2421121d82748b3b2c1d5b735099ac875537cd324c748722e7db27",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py": "2d4441e36b40799b05ab514d8774b12e15fd5412699d444509b0a610ce23c9b8",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/distributed/tensor/parallel/style.py": "58af4a8be3a9cd1b09865bf54527e2648630794f715c73243cd6e47dbb10196c"
+  },
+  "native_worker": "DTensorPolicyWorker; config _v2 defaults false; uses FSDP2",
+  "offload": "CPUOffloadPolicy(pin_memory=False); float32 parameters/gradients/moments; bf16 compute; float32 reductions",
+  "accumulation": "one zero_grad before two microbatches; installed torch CPU gradient accumulation blocks copy when previous gradient exists then adds; actual two backwards observed per rank",
+  "semantics": "Qwen3 non-sequence-parallel plan omits q_norm/k_norm. Their per-rank head-sharded inputs produce different local gradients. Parameters carry dp_cp-only mesh (size1) and no TP reduction. Native clipping also sums replicated contributions over TP ranks. Therefore TP2 to historical TP8 equivalence is unresolved, beyond an ordinary floating-point claim. No arithmetic change or production admission is made.",
+  "first_full_length_update": {
+    "qk_parameters": 80,
+    "different_rank_gradient_hashes": 80,
+    "first_q_norm": {
+      "rank0": 0.0009086703648790717,
+      "rank1": 0.0014217754360288382
+    },
+    "rank0": {
+      "event": "before_optimizer",
+      "time": 1791578544.9403183,
+      "pid": 3628915,
+      "rank": 0,
+      "backward_count": 2,
+      "states": {
+        "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+      },
+      "lr": 1.0000000000000002e-06,
+      "threads": 8,
+      "peak_cuda_allocated": 44201195520,
+      "peak_cuda_reserved": 63289950208,
+      "max_rss_kib": 61232332
+    },
+    "rank1": {
+      "event": "before_optimizer",
+      "time": 1791578559.6360605,
+      "pid": 3628801,
+      "rank": 1,
+      "backward_count": 2,
+      "states": {
+        "('cpu', 'torch.float32', 'cpu', 'torch.float32')": 443
+      },
+      "lr": 1.0000000000000002e-06,
+      "threads": 8,
+      "peak_cuda_allocated": 44201195520,
+      "peak_cuda_reserved": 63440945152,
+      "max_rss_kib": 61239360
+    }
+  }
+}
