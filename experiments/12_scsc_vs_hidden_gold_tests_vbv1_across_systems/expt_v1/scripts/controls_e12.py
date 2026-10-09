@@ -7,9 +7,10 @@ import re
 from adapter_e12 import TOP, renamed_control, strip_comments, declarations
 from extract_hidden_tests import PHASE
 from runtime_e12 import Runtime
+from mutation_helpers_e12 import reachable_helpers
 from rl4cv.forecast import verify_forecast
 
-WORK=Path('/lfs/skampere1/0/brando9/rl4cv_e12/controls_round4')
+WORK=Path('/lfs/skampere1/0/brando9/rl4cv_e12/controls_round5')
 
 
 def remove_propositions(source):
@@ -22,7 +23,7 @@ def remove_propositions(source):
     return source
 
 
-def mutations(source,symbols):
+def mutations(source,symbols,include_helpers=True):
     """Enumerate single operator/literal mutations in tested implementation bodies, by source position."""
     clean=strip_comments(source);clean=re.sub(r'"(?:\\.|[^"\\])*"',lambda m:' '*len(m.group()),clean)
     defs,_=declarations(source);events=list(TOP.finditer(clean));names={s['full_name'] for s in symbols}
@@ -47,6 +48,13 @@ def mutations(source,symbols):
         for m in re.finditer(r'"(?:\\.|[^"\\])*"',literal_source[d['body_start']:end]):
             old=m.group();new='"e12_mutant'+old[1:];offset=d['body_start']+m.start()
             yield source[:offset]+new+source[offset+len(old):],{'definition':d['full_name'],'offset':offset,'old':old,'new':new,'fallback':'string_literal'}
+
+    # Final fallback: implementation dependencies in source order; never fixtures
+    # merely supplied by tests. Earlier successful mutant choices stay unchanged.
+    if include_helpers:
+        helpers=reachable_helpers(source,symbols)
+        for mutant,metadata in mutations(source,helpers,include_helpers=False):
+            yield mutant,{**metadata,'fallback':'reachable_helper'}
 
 
 def check(pair):
@@ -88,10 +96,10 @@ def report(rows,selected):
       'C2':{'n_C1_passing_tasks':len(eligible),'n_recovered':recovered,'fraction':recovered/len(eligible) if eligible else None,'threshold':.95,'passes':complete and len(eligible)>0 and recovered>=.95*len(eligible)},
       'C3':{'n_compiling_mutants':mutants,'n_killed':killed,'fraction':killed/mutants if mutants else None,'threshold':.60,'passes':complete and mutants>=50 and killed>=.60*mutants},
       'C4':{'n_pairs':len(rows),'n_rejected':rejected,'fraction':rejected/len(rows) if rows else None,'threshold':.95,'passes':complete and rejected>=.95*len(rows)}}
-    return {'round':4,'attempt':'4','n_selected':len(selected),'n_completed':len(rows),'complete':complete,**controls,
+    return {'round':5,'attempt':'5','n_selected':len(selected),'n_completed':len(rows),'complete':complete,**controls,
             'all_controls_pass':all(c['passes'] for c in controls.values()),
             'selected_tasks':[r['task_id'] for r in selected],'rows':sorted(rows,key=lambda r:r['task_id']),
-            'source_hashes':{f:hashlib.sha256((PHASE/'scripts'/f).read_bytes()).hexdigest() for f in ['extract_hidden_tests.py','fixture_inputs_e12.py','adapter_e12.py','runtime_e12.py','controls_e12.py']}}
+            'source_hashes':{f:hashlib.sha256((PHASE/'scripts'/f).read_bytes()).hexdigest() for f in ['extract_hidden_tests.py','fixture_inputs_e12.py','adapter_e12.py','runtime_e12.py','controls_e12.py','mutation_helpers_e12.py']}}
 
 
 def main():

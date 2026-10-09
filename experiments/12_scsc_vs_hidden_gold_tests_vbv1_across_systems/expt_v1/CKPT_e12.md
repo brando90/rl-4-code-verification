@@ -5,14 +5,14 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 16:39 PDT
+**Last updated:** 10-09-2026 16:44 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
 - **Worker:** Codex CLI 0.154.0, personal ChatGPT login, `gpt-6-astra` / high, host `skampere1`, tmux `oct9-codex-rl4cv-e12-hidden-gold-tests`; effective sandbox danger-full-access, approval never. Supersedes the Claude launch, which failed due to exhausted personal Claude credits.
 - **Frozen forecast:** `expt_v1/forecasts/e12_phase_a_forecast.json`, SHA-256 `b29b71b7166b80df653220ddddec4b865a622ef9abc1fa42c6c1e559b067b0c5`, frozen 2026-10-09T21:35:33Z at git head `e851c02`.
 - **State:** RUNNING under Amendment A2 (`a7c2ea2`); all three forecasts verified; round-2 controls archived unchanged.
-- **Next command:** `tail -n 3 /lfs/skampere1/0/brando9/rl4cv_e12/controls_round4.log`; active tmux window `e12-controls-r4`.
+- **Next command:** `tail -n 3 /lfs/skampere1/0/brando9/rl4cv_e12/controls_round5.log`; active tmux window `e12-controls-r5`.
 
 ## Log
 
@@ -130,3 +130,11 @@
 - Evaluator now preserves logs and retries once only for a signaled infrastructure failure; timeouts and ordinary Lean errors are not retried. Interrupted trailing JSONL writes are archived before safe truncation; malformed committed records stop the run. Fatal future errors cancel queued work promptly.
 - Deterministic checks: 31 experiment-local tests passed; 197 repository tests passed / 24 skipped. No control implementation or frozen input changed.
 - Hourly shared-instruction refresh reached `1b35660`; read new Rule 69. Existing liveness checks include process/window existence, exit markers, progress age and log errors rather than completion-only polling.
+
+### 10-09-2026 16:44 PDT — round 4 complete; helper-mutation fallback
+
+- Round 4 completed C1 591/591 PASS, C2 48/50 (96%) PASS, C3 43/49 kills (87.76%) with only 49 compiling mutants FAIL, C4 49/50 (98%) PASS. Archived byte-identical receipt `controls_e12_round4.json`, SHA-256 `6b4ddbeb681672bac235c0b27997f1d39283ff73122bf1a948212385ed7c3fb3`. Exit 2.
+- Floyd–Warshall now recovers all renamed tests with the original literal graph inputs preserved. Its tested functions delegate computation to helper definitions and contain no direct mutable operator/literal, so round 4 attempted no mutant. This is a construction failure, not a failed detection result.
+- Added final mutation fallback after existing operator/numeric/string attempts: follow exact local qualified or same-namespace definition references from tested functions, enumerate reachable helpers in source order, and keep the first compiling single operator/literal edit. Test-only fixtures are not roots. Mutation choice never sees hidden outcomes. Prior successful choices remain unchanged.
+- Round 5 is rerunning all four controls on the same 50 tasks in `controls_round5`, two nice-10 single-thread Lean processes with 600-second caps. Mapping/extraction/inputs/thresholds unchanged, forecasts verified, protocol still unlocked, zero real-candidate outcomes. Local deterministic tests: 32 passed.
+- Round-5 first useful action verified: private candidate modules compiled and compiler logs written under `controls_round5/modules`; actual worker process alive. Repository verification completed: 197 passed / 24 skipped.
