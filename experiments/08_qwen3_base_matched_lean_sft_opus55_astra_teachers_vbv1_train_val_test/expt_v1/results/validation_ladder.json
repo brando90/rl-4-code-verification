@@ -5,7 +5,7 @@
   "mixed_min_share": 0.05,
   "p_val": "n/a (prespecified point-estimate gate)"
  },
- "manifest_sha256": "0b2dd6cffd0230b1b2b9d7bf4facbabc2772068b94afe76206e03fd8c9053acb",
+ "manifest_sha256": "14d0871933d8119f9bce9015d330c97316a5fbc112d4e88f26d7af95e2c2e9f8",
  "n_tasks": 135,
  "samples_per_task": 8,
  "split": "validation",
@@ -1568,52 +1568,57 @@
    "cells_csv": "results/ladder/sft_8B_f1p0_validation_cells.csv",
    "diagnostics": {
     "all_pass_share": 0.0,
-    "ic_tests_rate": 0.0,
-    "mean_generated_tokens": 0.0,
-    "mean_pass_rate": 0.0,
-    "mean_proof_fraction": 0.0,
-    "n_tasks_with_diversity": 0,
-    "pass_at_8_share": 0.0,
-    "within_task_diversity_mean_pairwise_jaccard": null
+    "ic_tests_rate": 0.0963,
+    "mean_generated_tokens": 4913.8,
+    "mean_pass_rate": 0.0963,
+    "mean_proof_fraction": 0.0963,
+    "n_tasks_with_diversity": 132,
+    "pass_at_8_share": 0.237,
+    "within_task_diversity_mean_pairwise_jaccard": 0.1127
    },
    "gates": {
     "a_extraction": {
-     "n": 0,
-     "of": 0,
-     "pass": false,
-     "share": 0.0,
+     "n": 974,
+     "of": 1080,
+     "pass": true,
+     "share": 0.9019,
      "threshold": 0.9
     },
     "b_capped": {
-     "n": 0,
-     "of": 0,
-     "pass": false,
-     "share": 0.0,
+     "n": 106,
+     "of": 1080,
+     "pass": true,
+     "share": 0.0981,
      "threshold": 0.1
     },
     "c_mixed": {
-     "n": 0,
+     "n": 32,
      "of": 135,
-     "pass": false,
-     "share": 0.0,
+     "pass": true,
+     "share": 0.237,
      "threshold": 0.05,
      "wilson95": [
-      0.0,
-      0.0277
+      0.1732,
+      0.3154
      ]
     },
-    "complete": false,
+    "complete": true,
     "n_declared": 1080,
-    "n_known": 0,
-    "pass": false
+    "n_known": 1080,
+    "pass": true
    },
    "notes": {
-    "missing_file": true,
+    "duplicates_rejected": 0,
+    "extras_rejected": 0,
+    "missing": [],
+    "n_missing": 0,
+    "n_unparseable_theorem_types": 0,
+    "n_vacuous_cells": 1,
     "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_8B_f1p0_g8.jsonl"
    },
    "per_task_csv": "results/ladder/sft_8B_f1p0_validation_per_task.csv",
    "split": "validation",
-   "status": "INCOMPLETE",
+   "status": "COMPLETE",
    "system": {
     "cumulative_assistant_tokens": 5752936,
     "exported": true,
@@ -1629,5 +1634,5 @@
    }
   }
  },
- "written_utc": "2026-10-09T07:23:32+00:00"
+ "written_utc": "2026-10-09T07:58:33+00:00"
 }
