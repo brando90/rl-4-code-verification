@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "status": "PREPARED",
+  "host": "skampere1",
+  "runtime": "/lfs/skampere1/0/brando9/rl4cv_e09",
+  "coordinator": {
+    "requested_client": "codex personal",
+    "requested_model": "gpt-5.6-terra",
+    "requested_effort": "high",
+    "actual_model": null,
+    "permissions": "--dangerously-bypass-approvals-and-sandbox",
+    "usage_evidence": "Local desktop Codex Pro weekly 97% remaining observed 10-08-2026; target profile identity/budget must be verified. No credit redemption or purchase.",
+    "fallback": "Claude subscription Sonnet 5/high only after target verification, same one-writer scientific contract"
+  },
+  "max_elapsed_hours": 16,
+  "max_a100_device_hours": 32,
+  "max_devices": 2,
+  "max_scorer_workers": 8,
+  "max_new_owned_gib": 200,
+  "min_free_filesystem_fraction": 0.05,
+  "start_utc": null,
+  "deadline_utc": null,
+  "model_under_training": "Qwen3 Base1.7B, experiment 08 fullstep 658 SFT export; exact hash pending preflight",
+  "judge": "D-102 vb103_judge on Vals Valkyrie, unchanged scientific settings",
+  "training_trajectories": 6,
+  "main_responses_upper_bound": 12288,
+  "calibration_responses": 512,
+  "evaluation_cells": 2499,
+  "max_judge_ratings_per_eligible_response": 6,
+  "horizon_selection": "largest of 32/16/8 predicted to fit from full-pipeline calibration throughput, before main training",
+  "measured_training_updates": 0,
+  "human_authorization": "10-08-2026 user explicitly approved overnight model-improvement experiments, RL/GRPO/CoDaPO examples"
+}
