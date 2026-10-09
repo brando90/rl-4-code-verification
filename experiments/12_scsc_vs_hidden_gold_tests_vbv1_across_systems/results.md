@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/results.md>
 
-Experiment `12_scsc_vs_hidden_gold_tests_vbv1_across_systems` phase A passed Amendment A1 input checks and 100/100 compilation reproductions; corrected gold and renamed-gold adapter controls are running with zero model calls.
+Experiment `12_scsc_vs_hidden_gold_tests_vbv1_across_systems` phase A passed Amendment A1 input checks and 100/100 compilation reproductions; gold reproduction passes 591/591 tests, but renamed-symbol recovery fails at 2/50 tasks (4%), blocking evaluation under PROTOCOL § 3 with zero model calls.
 
-**Status:** RUNNING — adapter admission controls; no real candidate hidden-test outcomes.
-**Last updated:** 10-09-2026 15:15 PDT
+**Status:** BLOCKED — renamed-symbol control C2 fails the ≥95% gate; no real candidate hidden-test outcomes.
+**Last updated:** 10-09-2026 15:24 PDT
 
 The smooth conjunctive score for code verification (SCSC) combines internal consistency of tests (IC_tests), internal consistency of proofs (IC_proofs), and formal specification coverage (FSC). Under the prospective [Amendment A1](PROTOCOL.md#8-amendment-a1-10-09-2026-master-before-any-hidden-test-outcome), the system score is the geometric mean of the three factor means over one common measured cohort. Published-value checks reproduce each source’s own convention.
 
@@ -18,8 +18,9 @@ The smooth conjunctive score for code verification (SCSC) combines internal cons
 | Compilation reproduction | PASS, 100/100 | [Frozen sample](expt_v1/results/compile_selection_A1.json), [compiler receipts](expt_v1/results/compile_reproduction_A1.json); gate ≥99/100 |
 | Secondary inventory | FROZEN | 33,984 cells, 33 systems; [manifest](expt_v1/results/secondary_manifest_A1.json) |
 | Hidden-test extraction | DONE | 10,534 tests from 882/896 tasks; 14 `no_tests` tasks listed in [manifest](expt_v1/results/hidden_tests_manifest.json) |
-| Gold / renamed-gold controls | RUNNING | First 50 eligible tasks in prescribed hash order; two low-priority Lean processes |
-| Mutated / wrong-task controls | PENDING | Require resolving the gold/renamed-gold admission gates |
+| Gold control C1 | PASS, 591/591 tests (100%) | All 50 tasks pass completely; required ≥98% |
+| Renamed-gold control C2 | FAIL, 2/50 tasks (4%) | Required ≥95%; all 50 renamed modules compile, 48 have ambiguous mappings; [receipts](expt_v1/results/controls_e12.json) |
+| Mutated / wrong-task controls C3/C4 | NOT RUN | Worker short-circuited after structural C2 failure; these gates remain unresolved |
 | Protocol lock and real candidate evaluation | NOT STARTED | All adapter controls must pass first |
 
 ## Factor inputs under A1
@@ -42,11 +43,24 @@ These are existing inputs, not hidden-test results. The seven experiment-103 row
 
 The two missing files are Codex `cs_set/floyd_warshall` and Leanstral `cs_set/binary_search`: 2/9,856 = 0.0203%, below A1.4’s 5% missing-plus-ambiguous gate. The 564 empty baseline outputs remain present. These are deterministic census/arithmetic checks; confidence intervals and p-values are not applicable (`p-val=n/a`).
 
-## Control implementation and potential ambiguity
+## Control result and structural blocker
 
 The hidden suites contain only extracted statements and symbol metadata; bridges import candidate modules and evaluate the re-pointed propositions, without gold implementations. The 100-file compile sample and all control selections were fixed before their results. Original references, candidates and factors remain unchanged; renamed controls are private copies.
 
-The preliminary mapping check finds ambiguous compatible signatures on 48/50 selected renamed-gold tasks. Most expose a functional and an imperative implementation with the same argument and result types. The adapter preserves the rule requiring a **unique** compatible definition; it does not break ties by source order, body contents, naming conventions, or hidden-test success. Round 1 completed: gold self-tests 570/590 (96.61%, below 98%); renamed recovery 1/47 gold-passing tasks (2.13%, below 95%). [Round-1 receipts](expt_v1/results/controls_e12_round1.json) remain unchanged. Equation-definition parsing, projection renaming and structural `Except` equality are corrected in round 2, which reruns the same 50 tasks. All 10,429 original statements are preserved and 105 previously missed statements are added. The updated extraction occurred before any real-candidate hidden outcome. The distinct unique-type ambiguity remains.
+The corrected round uses the same first 50 tasks in the prescribed hash order. C1 passes **591/591 extracted tests (100%)**, across **50/50 tasks**; C2 recovers **2/50 tasks (4%)**, below PROTOCOL § 3’s **95%** threshold. All 50 renamed modules compile, and both fully mapped renamed tasks pass every test. The other 48 tasks have multiple compatible definitions. These are deterministic checks on the fixed control sample; no sampling interval or significance test is used (`p-val=n/a`).
+
+This is a conflict between the stipulated control and the permitted mapping rule. Most references expose functional and imperative implementations with identical argument/result types. After all implementation names are replaced, the adapter must reject both as ambiguous under “the unique candidate definition.” A stronger type unifier cannot resolve identical types. [Direct Lean checks](expt_v1/results/ambiguity_witnesses.json) confirm this independently of the adapter parser for three selected tasks. Three unavoidable failures alone cap recovery at 47/50 = 94%, below the required 48/50 = 96% integer cutoff. For example:
+
+```lean
+MyFreeLiveHandle.e12renamed0000 (live : ℕ) : Bool
+MyFreeLiveHandle.e12renamed0001 (live : ℕ) : Bool
+```
+
+No tie-breaking by source order, body contents, naming conventions or hidden-test success has been introduced. The protocol remains **NOT LOCKED**. Continuation requires a prospective protocol clarification defining how equivalent or same-type implementation alternatives are handled, while preserving the failed C2 result and the original thresholds. An implementation-only change that preserves strict uniqueness cannot fix these witnesses. The worker has not chosen or enacted that scientific change.
+
+Round 1 is preserved: gold self-tests 570/590 (96.61%); renamed recovery 1/47 gold-passing tasks (2.13%). [Round-1 receipts](expt_v1/results/controls_e12_round1.json) remain unchanged. Round 2 fixed equation-definition parsing, projection renaming and structural `Except` equality. It retains all 10,429 original extracted statements and adds 105 previously missed statements, before any real-candidate hidden outcome. The current extraction contains 10,534 tests on 882 tasks, with 14 `no_tests` tasks.
+
+**Incomplete runbook work:** the worker stopped before C3/C4 because the independent C2 requirement cannot pass under the current rule. This is a documented short-circuit, not a claim that PROTOCOL § 3 specifies sequential controls. C3/C4, protocol lock, all real-candidate evaluations and all analyses remain required after the blocker is resolved. External status is `BLOCKED`, not `DONE`.
 
 ## Secondary panels and outstanding analyses
 
@@ -66,6 +80,6 @@ PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_syst
 PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/controls_e12.py
 ```
 
-Compilation and control scripts preserve completed receipts on resume. Host-only logs and copied control sources are in `/lfs/skampere1/0/brando9/rl4cv_e12/`; no candidate source is committed. Verification so far: repository tests 189 passed / 24 skipped; experiment-local tests 13 passed.
+The completed round-2 control runner returns exit 2, preserving its failed gate. Compilation and control scripts preserve completed receipts on resume. Host-only logs and copied control sources are in `/lfs/skampere1/0/brando9/rl4cv_e12/`; no candidate source is committed. Verification so far: repository tests 189 passed / 24 skipped; experiment-local tests 13 passed.
 
-**TLDR-end:** [rl4cv: 12_scsc_vs_hidden_gold_tests_vbv1_across_systems] Hidden gold-test agreement has cleared A1 input gates and reproduced all 100 compile statuses. The gold/renamed-gold controls are checking whether the permitted mechanical adapter can satisfy its admission requirements.
+**TLDR-end:** [rl4cv: 12_scsc_vs_hidden_gold_tests_vbv1_across_systems] Hidden gold-test agreement cleared A1 input checks and 100/100 compilation reproductions, but renamed-symbol recovery fails at 2/50 against ≥95%. Evaluation remains blocked by identical-type alternatives under the unique-match rule; predictions are untested.

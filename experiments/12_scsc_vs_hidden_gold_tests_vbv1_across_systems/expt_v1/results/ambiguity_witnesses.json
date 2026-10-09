@@ -1,0 +1,59 @@
+{
+  "witnesses": [
+    {
+      "task_id": "memory_bugs_set_synthetic__my_free_live_handle",
+      "gold_symbol": "MyFreeLiveHandle.my_free_live_handle",
+      "alternatives": [
+        "MyFreeLiveHandle.e12renamed0000",
+        "MyFreeLiveHandle.e12renamed0001"
+      ],
+      "module": "E12C29376968b948d6fb5bf98",
+      "candidate_sha256": "14c3f6741a4789bc7225d0104cdabc55c7a2946fabbd1d6e79a15060115d15be",
+      "lean_checks": [
+        "MyFreeLiveHandle.e12renamed0000 (live : \u2115) : Bool",
+        "MyFreeLiveHandle.e12renamed0001 (live : \u2115) : Bool"
+      ]
+    },
+    {
+      "task_id": "crypto_set_real__my_erc20_capped_mint_supply",
+      "gold_symbol": "MyErc20CappedMintSupply.myErc20CappedMintSupply",
+      "alternatives": [
+        "MyErc20CappedMintSupply.e12renamed0000",
+        "MyErc20CappedMintSupply.e12renamed0001"
+      ],
+      "module": "E12C2cdc15a9b71e7ae508105",
+      "candidate_sha256": "5369d6547cd5fcf183913eefc787fb2d956fca3ec7bd60057f85ad594f022762",
+      "lean_checks": [
+        "MyErc20CappedMintSupply.e12renamed0000 (supply amount cap : \u2115) : \u2115",
+        "MyErc20CappedMintSupply.e12renamed0001 (supply amount cap : \u2115) : \u2115"
+      ]
+    },
+    {
+      "task_id": "security_set__security_6858__safe__101_unsafeforkedtransparencylog_safe",
+      "gold_symbol": "SafeForkedTransparencyLog.safeForkAccept",
+      "alternatives": [
+        "SafeForkedTransparencyLog.e12renamed0000",
+        "SafeForkedTransparencyLog.e12renamed0001"
+      ],
+      "module": "E12C2667d683dce9966d9a377",
+      "candidate_sha256": "755f34323045fb2d7c48ae711cedc730704ae736bbf9d4bdf18bafccc4bdb3c1",
+      "lean_checks": [
+        "SafeForkedTransparencyLog.e12renamed0000 (aliceView bobView : \u2115) : Bool",
+        "SafeForkedTransparencyLog.e12renamed0001 (a b : \u2115) : Bool"
+      ]
+    }
+  ],
+  "compiler_receipt": {
+    "status": "ok",
+    "returncode": 0,
+    "seconds": 5.759550433998811,
+    "log": "/lfs/skampere1/0/brando9/rl4cv_e12/controls_round2/AmbiguityWitness.log",
+    "outputs": {}
+  },
+  "probe_sha256": "560ff7a6f8173e52656f23171bee73fa903938eeaab8ade36f992fa8fd7c2719",
+  "controls_sha256": "d5892ddf37d0fa8eb27406d8a0c39a597d5c92eb9a0ca34a15f1ce556a443a41",
+  "three_exact_type_ambiguities_confirmed": true,
+  "max_recoverable_with_these_three_failures": 47,
+  "n_tasks": 50,
+  "required_recovered_at_95_percent": 48
+}

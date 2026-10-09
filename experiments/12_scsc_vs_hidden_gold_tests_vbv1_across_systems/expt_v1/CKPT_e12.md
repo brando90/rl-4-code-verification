@@ -5,14 +5,14 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 15:15 PDT
+**Last updated:** 10-09-2026 15:24 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
 - **Worker:** Codex CLI 0.154.0, personal ChatGPT login, `gpt-6-astra` / high, host `skampere1`, tmux `oct9-codex-rl4cv-e12-hidden-gold-tests`; effective sandbox danger-full-access, approval never. Supersedes the Claude launch, which failed due to exhausted personal Claude credits.
 - **Frozen forecast:** `expt_v1/forecasts/e12_phase_a_forecast.json`, SHA-256 `b29b71b7166b80df653220ddddec4b865a622ef9abc1fa42c6c1e559b067b0c5`, frozen 2026-10-09T21:35:33Z at git head `e851c02`.
-- **State:** RUNNING under prospective Amendment A1 (`a50618e`); tracking issue #9. Input checks PASS; gold and renamed-gold controls running.
-- **Next command:** `tail -n 5 /lfs/skampere1/0/brando9/rl4cv_e12/controls_round2.log`; resume `PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/controls_e12.py` only if its tmux job is no longer running.
+- **State:** BLOCKED at PROTOCOL § 3 C2; renamed-symbol recovery 2/50 (4%) versus ≥95%. A1 input checks and gold reproduction PASS. Tracking issue #9; predictions untested.
+- **Next command:** `git pull --ff-only origin main`, then inspect any prospective protocol clarification before changing the adapter. Current gate reproduction: `PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/controls_e12.py` (cached receipts; expected exit 2). Do not lock or evaluate real candidates while C2 fails.
 
 ## Log
 
@@ -71,3 +71,13 @@
 - Rerun all C1/C2 controls on the same 50 tasks in private `controls_round2`; C2 recovery additionally requires all re-pointed tests to pass (guards against a complete but wrong mapping). C3/C4 stay pending the admission gates.
 
 - Round-2 launch verified: first four tasks 42/42 gold tests pass, renamed recovery 0/4 due to identical-type alternatives. Current extraction 10,534 tests / 882 tasks (14 no_tests), same 50 control task IDs, all previous test statements preserved. Local tests 13/13 and make test 189 passed / 24 skipped.
+
+### 10-09-2026 15:24 PDT — corrected controls complete; C2 structural blocker
+
+- Round 2 completed all 50 prescribed tasks, exit 2: C1 **591/591 tests (100%), 50/50 tasks pass**; C2 **2/50 tasks (4%)**, below ≥95%. All 50 renamed modules compile; 48 have ambiguous mapping. No timeouts or infrastructure failures.
+- Lean itself confirmed identical types for two renamed alternatives on each of three tasks (`results/ambiguity_witnesses.json`); these three alone force ≤47/50 recovery under strict uniqueness, below the 48/50 integer threshold. Full control receipts: `results/controls_e12.json`; code and input hashes retained.
+- Blocking requirement: PROTOCOL § 3 maps by a unique same-arity compatible type after names change. Functional/imperative twins have exactly the same type. No compliant parser/type-unifier fix can choose uniquely; no arbitrary tie-break or threshold relaxation was introduced. A prospective master clarification is needed to define how such alternatives are treated; original forecasts and failed receipts must stay intact.
+- C3/C4 were not run after the C2 failure. This worker short-circuit is a deviation from completing all four controls, explicitly recorded in results.md; it is not a protocol-defined sequential gate. Full evaluation, Core/IndustrySet analysis, A1 sensitivity, P1/P2/P3/G-A, disagreement inspection, and final DONE remain outstanding behind the lock.
+- Both frozen forecasts verified unchanged before reading results. No real model-output hidden tests run; zero experiment model/judge calls, zero GPU use, no sealed data. Input compilation sample remains 100/100; source convention check 11/11.
+- Deterministic verification: make test **189 passed / 24 skipped**; experiment-local tests **13 passed** in the preceding code milestone. Direct Lean ambiguity certificate exit 0. Two nice-10 single-thread Lean workers completed and exited; no remaining batch job.
+- External status: `BLOCKED: PROTOCOL section 3 C2 renamed recovery 2/50 below 95%; identical-type alternatives violate unique-match requirement`. Status deliberately not DONE; experiment outcome remains unknown.
