@@ -1,36 +1,37 @@
 {
   "round": 4,
   "n_selected": 50,
-  "n_completed": 27,
+  "n_completed": 41,
   "complete": false,
   "C1": {
-    "n_tests": 305,
-    "n_pass": 305,
+    "n_tests": 479,
+    "n_pass": 479,
     "fraction": 1.0,
     "threshold": 0.98,
     "passes": false
   },
   "C2": {
-    "n_C1_passing_tasks": 27,
-    "n_recovered": 26,
-    "fraction": 0.9629629629629629,
+    "n_C1_passing_tasks": 41,
+    "n_recovered": 39,
+    "fraction": 0.9512195121951219,
     "threshold": 0.95,
     "passes": false
   },
   "C3": {
-    "n_compiling_mutants": 27,
-    "n_killed": 24,
-    "fraction": 0.8888888888888888,
+    "n_compiling_mutants": 41,
+    "n_killed": 37,
+    "fraction": 0.9024390243902439,
     "threshold": 0.6,
     "passes": false
   },
   "C4": {
-    "n_pairs": 27,
-    "n_rejected": 26,
-    "fraction": 0.9629629629629629,
+    "n_pairs": 41,
+    "n_rejected": 40,
+    "fraction": 0.975609756097561,
     "threshold": 0.95,
     "passes": false
   },
+  "all_controls_pass": false,
   "source_hashes": {
     "extract_hidden_tests.py": "02b20ec56c6a0930bdd94e12d28ac32031e8e7f80d0e8724e6ace2531a6d45ba",
     "fixture_inputs_e12.py": "7956e514b63ab4d99fa71dd802a8268c9b90aa4d8cf865b8300f380f8a9ed6c1",
@@ -38,5 +39,5 @@
     "runtime_e12.py": "aec87f94083f24b2a3a4c81597d5cb5e995d506a4189a83c10c98dc54e3ec537",
     "controls_e12.py": "447eecee34aba52746a97497ec8decff72b5a755c4023b332d6dd6986d3b18e0"
   },
-  "snapshot_time": "10-09-2026 16:31 PDT"
+  "snapshot_time": "10-09-2026 16:39 PDT"
 }

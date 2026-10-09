@@ -5,7 +5,7 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 16:31 PDT
+**Last updated:** 10-09-2026 16:39 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
@@ -123,3 +123,10 @@
 
 - 10-09-2026 16:31 PDT midpoint: 27/50 tasks; C1 305/305, C2 26/27, C3 24/27, C4 26/27. Every completed task now has a compiling mutant. Full cohort continues; no lock or model-output hidden evaluation. Last verified publication `db78fcd`; concurrent experiment-10 changes preserved and merged repository tests passed 197 / 24 skipped.
 - Third forecast canonical digest: A2 `674be36bb7a67d6a61f8cf85f2ddd2879792f604dbaa4e9919e21fdcddb3772a`; all three forecast verifications remain PASS.
+
+### 10-09-2026 16:39 PDT — pre-lock recovery verification
+
+- Round 4 active: 41/50 tasks; C1 479/479, C2 39/41, C3 37/41, C4 40/41. All completed tasks have compiling mutants. Two low-priority workers remain alive. Protocol not locked; no real-candidate hidden outcome.
+- Evaluator now preserves logs and retries once only for a signaled infrastructure failure; timeouts and ordinary Lean errors are not retried. Interrupted trailing JSONL writes are archived before safe truncation; malformed committed records stop the run. Fatal future errors cancel queued work promptly.
+- Deterministic checks: 31 experiment-local tests passed; 197 repository tests passed / 24 skipped. No control implementation or frozen input changed.
+- Hourly shared-instruction refresh reached `1b35660`; read new Rule 69. Existing liveness checks include process/window existence, exit markers, progress age and log errors rather than completion-only polling.
