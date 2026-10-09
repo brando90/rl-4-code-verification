@@ -7,10 +7,12 @@
 - **Primary question:** at the same validation gain, does per-item information pick safer promotions than the scalar score? Binary losses and factor regressions are each tested, with three policies that promote the same validation-gain distribution.
 - **Lock order:** the protocol is locked, and its predictions frozen with `rl4cv.forecast.freeze_forecast`, before any statistic is computed on the real data.
 
-**Status:** LOCK CANDIDATE, revision 2 (10-09-2026). It applies the GPT-6 Astra (effort ultra) design review in [`reviews/`](reviews/) and the synthetic checks below.
+**Status:** LOCKED, revision 3 (10-09-2026 16:43 PDT; forecast `expt_v1/forecasts/e10_forecast.json`, SHA-256 `e4eccd8b…3c23`). Reviews, all in [`reviews/`](reviews/):
 
-- The Claude Fable 5.1 review of revision 1 did not finish (out of usage credits at 10:18 PDT). A replacement Fable review of this revision runs on another account before the lock.
-- The lock is the commit that adds `expt_v1/forecasts/e10_forecast.json`.
+- **GPT-6 Astra (effort ultra), design review of revision 1:** 15 findings, applied in revision 2.
+- **GPT-6 Astra (effort ultra), protocol-and-code review of revision 2:** 3 blocking, 5 major and 1 minor findings. All are fixed in revision 3, and each deterministic counterexample is now a regression test in `tests/test_e10_replay.py` (15 tests pass).
+- **Claude Fable 5.1: no review.** The revision 1 attempt died out of usage credits on the personal account (10:18 PDT). On 10-09-2026 the Stanford account answered "Usage credits are required for this model" and the Vals account "individual spend limit". No credits were bought.
+- **The lock** is the commit that adds `expt_v1/forecasts/e10_forecast.json`.
 
 ## What was seen before the lock
 
@@ -118,12 +120,12 @@ Within each split and each validation net-gain stratum k ∈ {1, …, 10} of P_n
 
 **Unstratified comparators** (keep the q fraction of all P_near pairs):
 
-- S0+: largest net_V, the "just be stricter" rule;
+- S0+: largest net_V, the "just be stricter" rule (ties broken by the hash);
 - S1: largest ΔSCS_V;
 - S2: smallest losses_V;
 - S3: smallest TRM_V.
 
-The last two (S2, S3) rank by regression risk while ignoring gain size; they are reported but are not fair information tests.
+The last two (S2, S3) rank by regression risk alone, ties broken by the hash with no gain preference; they are reported but are not fair information tests.
 
 **Outcomes per policy:**
 
@@ -153,12 +155,38 @@ The last two (S2, S3) rank by regression risk while ignoring gain size; they are
    - C_fac0 > 0 with its interval excluding 0;
    - the utility guard passes against R2 and R0.
 2. **Binary gate.** Otherwise, recommend binary per-item non-regression iff C_bin > 0 with its interval excluding 0 and the utility guard passes against R0.
-3. **Neither.** Otherwise, per-item information does not pick safer promotions at equal validation gain on public system pairs, and the factor feedback question moves to experiment 11 without a gate claim.
+3. **No recommendation.** Otherwise: "superiority or retained utility not established", with one or more reason codes:
+   - `interval_includes_zero` (insufficient precision);
+   - `utility_guard_failed` (safer, but costs gain);
+   - `undefined_or_inconclusive_support`.
+
+   This is not evidence that per-item information has no value. The factor-feedback question moves to experiment 11 without a gate claim.
+   - **Power is not established.** On the synthetic signal set (20 splits × 100 draws), C_fac was 0.0105 [−0.0096, 0.0393] and C_fac0 0.0148 [−0.0077, 0.0339]; both intervals cross 0.
+   - **A positive ranking result** justifies building a fixed-threshold candidate gate, whose calibration is frozen separately before any live use. Public-system pairs do not establish safety for adaptive live edits.
 4. **Practical comparison (reported).** A 20% relative HPR reduction versus S0+, as GPT-6 suggested, is a practical target, not evidence of a true reduction of at least 20%.
 
 **Deployable rule (descriptive):** the share of P_near and P_pos pairs that a strict per-candidate rule would accept, and its HPR. The rule is net_V ≥ 1 and losses_V = 0, rejecting on any incomplete evidence. It is reported at its natural acceptance rate and not forced to q.
 
 ## Statistics
+
+**Conventions frozen in revision 3** (from the second GPT-6 review):
+
+- **Matched selection.** Within each stratum (or over all of P_near for unstratified policies), every policy retains exactly floor(q × W) weight, where W is the stratum's total pair weight. Pairs are taken in policy order; the boundary pair contributes only part of its replicated weight. With identity weights this keeps floor(q × N) whole pairs. Outcomes are weighted by the retained weights.
+- **Common split support.** Statistics are grouped into families:
+  - H1;
+  - each H2 correlation;
+  - for each q: all policies' HPR and mean Δpass1_E plus every contrast;
+  - for each q: the auxiliary outcomes;
+  - for each q: recall;
+  - the deployable rule's acceptance;
+  - the deployable rule's conditional HPR.
+
+  A split is admitted to a family only if every member is defined at the point estimate. A bootstrap draw is valid only if every member is defined on every admitted split; invalid draws are dropped and counted. Estimates are ordinary means over admitted splits. A family whose admitted splits are fewer than 90% of the non-degenerate splits, or whose valid draws are fewer than 90% of draws, is reported as **inconclusive (insufficient support)**.
+- **Undefined denominators.** A conditional rate with a zero denominator is undefined, never zero. Examples: HPR when nothing is accepted, recall when no pair has Δpass1_E > 0. The accepted and positive counts are reported.
+- **H2 numerics.** Float64 weighted least squares through the singular value decomposition of the weighted design √w·X.
+  - The correlation is undefined when that design's condition number is ≥ 10¹⁰, or when a residual sum of squares is ≤ 10⁻¹² times its total.
+  - H2(c) needs at least 50 fitting and 50 evaluation pairs; positive shares count only defined comparisons, and defined and attempted counts are reported.
+- **Degenerate splits.** P_near needs at least 200 pairs per split. P_pos excludes only empty splits. Pair counts are checked before any statistic is computed.
 
 - **Bootstrap:** a dyadic system bootstrap with B = 1,000 draws, seed `20261010`, over the same 1,000 splits.
   - Each draw resamples the 164 systems with replacement; pair (I, C) between distinct original systems gets weight m_I·m_C. Self pairs never occur.
@@ -170,8 +198,13 @@ The last two (S2, S3) rank by regression risk while ignoring gain size; they are
 
 ## Validity checks and stop rules
 
-- An input SHA-256 mismatch, or failure to reproduce 164 × 424, stops the analysis.
-- An unmeasured or incomplete cohort cell stops the analysis.
+- An input SHA-256 mismatch, or failure to reproduce 164 × 424, stops the analysis. In the drift sensitivity, failure to reproduce 164 × 420, or a drop of anything other than the 4 declared tasks, stops it.
+- Any of these stops the analysis:
+  - an unmeasured or incomplete cohort cell;
+  - a duplicate system/task key;
+  - a `resolved` value that is not true or false;
+  - a gate that is not 0 or 1;
+  - a t_fix or t_keep outside [0, 1] where the gate is 1.
 - Policies, q, populations, covariates and seeds are fixed. Any change is a new `expt_v2` with a new lock; retrospective rankings cannot retune this test.
 
 ## Phase B (separate admission)
