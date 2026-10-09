@@ -4,7 +4,7 @@
 
 **TLDR:** Experiment 02A v3 (frontier teachers → kernel-verified Lean on 970 screened MBPP tasks, one single-call per (task, teacher) through Vals Valkyrie, frozen VeriBench scorer): **PARTIAL** — 587 kept (task, teacher) pairs over 455 distinct tasks of 970 (anthropic 55 / openai 382 / google 150; thresholds 1,024 pairs and 512 tasks for SUFFICIENT, 300 pairs for INSUFFICIENT), 42 of 2910 cells unmeasured. The Lean SFT set has 587 (prompt, file) pairs on the host; every count below carries its denominator.
 
-**Status:** DONE (10-09-2026 01:44 UTC). Teacher runs, re-send, scoring, generated-Lean screen, analysis and SFT assembly complete; verdict **PARTIAL**.
+**Status:** DONE (10-09-2026 01:46 UTC). Teacher runs, re-send, scoring, generated-Lean screen, analysis and SFT assembly complete; verdict **PARTIAL**.
 
 | Step | Status | Evidence |
 |---|---|---|
@@ -77,7 +77,7 @@ Experiment 02A v3 (frontier teachers → kernel-verified Lean on 970 screened MB
 
 **PARTIAL** (rule: SUFFICIENT if kept pairs >= 1024 and distinct tasks >= 512; INSUFFICIENT if kept pairs < 300; else PARTIAL; UNRESOLVED when the missing-outcome bounds fall on different sides of a threshold). All-unmeasured-fail verdict PARTIAL; all-unmeasured-succeed verdict PARTIAL. Union kept pairs 587 (threshold 1,024 / 300), distinct tasks 455 (threshold 512); tasks kept by k teachers: {'1': 348, '2': 82, '3': 25}; pairwise overlap {'all_three': 25, 'anthropic&google': 30, 'anthropic&openai': 37, 'openai&google': 90}.
 
-What this means for the warm start: the kept pairs are the Lean SFT part available by this route today. The hypothesis ("the Anthropic and OpenAI teachers each keep at least 40% of the screened tasks") is not supported on observed yields (anthropic 0.057, openai 0.394, google 0.155). The Anthropic teacher at the locked `compute_effort max` exhausted the registry's 128,000-token output ceiling on 893 of 970 cells (the same provider-side behaviour experiment 103 recorded for Claude Opus 5 at max); a lower effort or a vendor agent is a separately recorded condition for a later version, not a recovery pass.
+What this means for the warm start: the kept pairs are the Lean SFT part available by this route today. The hypothesis ("the Anthropic and OpenAI teachers each keep at least 40% of the screened tasks") is not supported on observed yields (anthropic 0.057, openai 0.394, google 0.155). The Anthropic teacher at the locked `compute_effort max` returned a provider `MaxOutputTokensExceededError` (the registry's 128,000-token output ceiling exhausted without a completion) on 870 of 970 cells and a completion with no Lean block on 26 more (the same provider-side behaviour experiment 103 recorded for Claude Opus 5 at max); a lower effort or a vendor agent is a separately recorded condition for a later version, not a recovery pass.
 
 ### Deviations and observations (recorded, none changes a locked scientific setting)
 
