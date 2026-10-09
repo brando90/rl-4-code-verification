@@ -5,7 +5,7 @@
   "mixed_min_share": 0.05,
   "p_val": "n/a (prespecified point-estimate gate)"
  },
- "manifest_sha256": "d6e2115a943bdcc947a1a818d94a927044a0c3de015f6eb62fd0772ea3fc9dbf",
+ "manifest_sha256": "2d638da5f6c1a6f4e44f0b2df0bb97f4ed80e7fe8447aa29ab9e72eebabd7070",
  "n_tasks": 135,
  "samples_per_task": 8,
  "split": "validation",
@@ -878,52 +878,57 @@
    "cells_csv": "results/ladder/sft_1p7B_f1p0_validation_cells.csv",
    "diagnostics": {
     "all_pass_share": 0.0,
-    "ic_tests_rate": 0.0,
-    "mean_generated_tokens": 0.0,
-    "mean_pass_rate": 0.0,
-    "mean_proof_fraction": 0.0,
-    "n_tasks_with_diversity": 0,
-    "pass_at_8_share": 0.0,
-    "within_task_diversity_mean_pairwise_jaccard": null
+    "ic_tests_rate": 0.04907,
+    "mean_generated_tokens": 5369.9,
+    "mean_pass_rate": 0.04907,
+    "mean_proof_fraction": 0.04907,
+    "n_tasks_with_diversity": 127,
+    "pass_at_8_share": 0.1481,
+    "within_task_diversity_mean_pairwise_jaccard": 0.1052
    },
    "gates": {
     "a_extraction": {
-     "n": 0,
-     "of": 0,
+     "n": 897,
+     "of": 1080,
      "pass": false,
-     "share": 0.0,
+     "share": 0.8306,
      "threshold": 0.9
     },
     "b_capped": {
-     "n": 0,
-     "of": 0,
+     "n": 184,
+     "of": 1080,
      "pass": false,
-     "share": 0.0,
+     "share": 0.1704,
      "threshold": 0.1
     },
     "c_mixed": {
-     "n": 0,
+     "n": 20,
      "of": 135,
-     "pass": false,
-     "share": 0.0,
+     "pass": true,
+     "share": 0.1481,
      "threshold": 0.05,
      "wilson95": [
-      0.0,
-      0.0277
+      0.098,
+      0.2178
      ]
     },
-    "complete": false,
+    "complete": true,
     "n_declared": 1080,
-    "n_known": 0,
+    "n_known": 1080,
     "pass": false
    },
    "notes": {
-    "missing_file": true,
+    "duplicates_rejected": 0,
+    "extras_rejected": 0,
+    "missing": [],
+    "n_missing": 0,
+    "n_unparseable_theorem_types": 0,
+    "n_vacuous_cells": 1,
     "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_1p7B_f1p0_g8.jsonl"
    },
    "per_task_csv": "results/ladder/sft_1p7B_f1p0_validation_per_task.csv",
    "split": "validation",
-   "status": "INCOMPLETE",
+   "status": "COMPLETE",
    "system": {
     "cumulative_assistant_tokens": 5752936,
     "exported": true,
@@ -1330,7 +1335,7 @@
    "status": "INCOMPLETE",
    "system": {
     "cumulative_assistant_tokens": 720775,
-    "exported": false,
+    "exported": true,
     "fraction": "0.125",
     "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_82",
     "in_test": true,
@@ -1339,7 +1344,7 @@
     "size": "8B",
     "source": "e08",
     "step": 82,
-    "weights_sha256_manifest": null
+    "weights_sha256_manifest": "88e57ca1c6d89b97247e4e6778096f31163b050d3dba05a8c112b39aec3549ba"
    }
   },
   "sft_8B_f0p25": {
@@ -1394,7 +1399,7 @@
    "status": "INCOMPLETE",
    "system": {
     "cumulative_assistant_tokens": 1442549,
-    "exported": false,
+    "exported": true,
     "fraction": "0.25",
     "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_164",
     "in_test": true,
@@ -1403,7 +1408,7 @@
     "size": "8B",
     "source": "e08",
     "step": 164,
-    "weights_sha256_manifest": null
+    "weights_sha256_manifest": "7a73ac9adda5e3cacbb917888ea3610b465bbf0979411d56689e4d6b70a8b73d"
    }
   },
   "sft_8B_f0p5": {
@@ -1458,7 +1463,7 @@
    "status": "INCOMPLETE",
    "system": {
     "cumulative_assistant_tokens": 2884708,
-    "exported": false,
+    "exported": true,
     "fraction": "0.5",
     "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_334",
     "in_test": true,
@@ -1467,7 +1472,7 @@
     "size": "8B",
     "source": "e08",
     "step": 334,
-    "weights_sha256_manifest": null
+    "weights_sha256_manifest": "00a3e2790997af1cc490fcb5f959d5cd2b54a6c44d1d965dd0594fb0f788ab0f"
    }
   },
   "sft_8B_f0p75": {
@@ -1522,7 +1527,7 @@
    "status": "INCOMPLETE",
    "system": {
     "cumulative_assistant_tokens": 4318781,
-    "exported": false,
+    "exported": true,
     "fraction": "0.75",
     "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_497",
     "in_test": true,
@@ -1531,7 +1536,7 @@
     "size": "8B",
     "source": "e08",
     "step": 497,
-    "weights_sha256_manifest": null
+    "weights_sha256_manifest": "dc78e495493fb30c4db6df01a450c68c311f4a9c8986e62d77ed794a0b2d3abc"
    }
   },
   "sft_8B_f1p0": {
@@ -1586,7 +1591,7 @@
    "status": "INCOMPLETE",
    "system": {
     "cumulative_assistant_tokens": 5752936,
-    "exported": false,
+    "exported": true,
     "fraction": "1.0",
     "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_658",
     "in_test": true,
@@ -1595,9 +1600,9 @@
     "size": "8B",
     "source": "e08",
     "step": 658,
-    "weights_sha256_manifest": null
+    "weights_sha256_manifest": "3085508bfd29932193b556c2f769eabe83b26e2d96dd59ef7412cfbcbf8f397d"
    }
   }
  },
- "written_utc": "2026-10-09T00:44:30+00:00"
+ "written_utc": "2026-10-09T03:36:19+00:00"
 }
