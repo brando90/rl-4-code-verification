@@ -2,9 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/CKPT_MASTER_tmuxnone_cxd_01a11d6a.md>
 
-**TLDR:** Brando's 10-09-2026 resource-routing request is being executed by a verified personal Codex Astra/ultra owner. The protocol explicitly permits GPU-layout changes: eight devices were the historical implementation choice, not a scientific requirement. The owner has started a bounded two-A100 feasibility probe with CPU offload; production admission and optimizer progress remain unverified. Preserve the original matched training recipe and all completed evidence. The previous account-recovery implementation is published through `150dd84`; independent pipeline, coordinator monitor and same-chat heartbeat remain active. The failed learning adapter and blocked repair study remain closed.
+**TLDR:** Brando's 10-09-2026 resource-routing request is being executed by a verified personal Codex Astra/ultra owner. The protocol explicitly permits GPU-layout changes: eight devices were the historical implementation choice, not a scientific requirement. The bounded two-A100 CPU-offload probe completed its first disposable optimizer update, but all 80 query/key normalization gradients differ across its ranks. The source confirms these parameters lack synchronization across tensor ranks, so the smaller layout is not admitted as mathematically equivalent. The next compatibility-preserving candidate retains eight tensor partitions on Mercury2 with host offload and shared scratch; fit remains unverified. Preserve the original matched training recipe and all completed evidence. The previous account-recovery implementation is published through `150dd84`; independent pipeline, coordinator monitor and same-chat heartbeat remain active. The failed learning adapter and blocked repair study remain closed.
 
-Created: 10-08-2026 16:28 PDT. Last updated: 10-09-2026 13:40 PDT. **Status:** warm-start layout probe STARTED, scientific admission pending; owner RESUMED_VERIFIED; prior recovery phase COMPLETE/PUBLISHED; heartbeat ACTIVE. Learning adapter FAILED_TECHNICAL_GATE; repair allocation blocked.
+Created: 10-08-2026 16:28 PDT. Last updated: 10-09-2026 13:46 PDT. **Status:** warm-start layout probe RUNNING, first disposable update observed, semantic compatibility unresolved; owner RESUMED_VERIFIED; prior recovery phase COMPLETE/PUBLISHED; heartbeat ACTIVE. Learning adapter FAILED_TECHNICAL_GATE; repair allocation blocked.
 
 ## 1. Identity and recovery
 
@@ -166,17 +166,25 @@ The full scientific accounting remains **15/20 trained rungs, 16,200/21,600 trai
 
 Parent's macOS suite on `150dd84` exposed nine new monitor tests that assumed Linux `/proc`. The owned portability patch uses process-identity fixtures for logic tests and retains the real Linux integration test with a platform annotation; isolated checks passed 22 / one skipped, and the full parent suite passed **196 / five skipped in 26.09 seconds**. No Linux production source was changed. Exact staged diff and secret inspection still precede publication.
 
-**TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched supervised fine-tuning can use a verified smaller GPU layout under its existing protocol. A two-A100 offload probe is running; production admission awaits the recorded correctness and performance checks.
+**Measured layout hazard and next route (13:43–13:46 PDT):** parent independently compared the saved first accumulated backward observations: **80/80 named query/key normalization tensors have different gradient digests across ranks**. Layer 0 query-normalization gradient norms were 0.0009086703648790717 and 0.0014217754360288382. The pinned non-sequence-parallel plan omits synchronization for these parameters; changing the number of head groups therefore changes their gradients and optimizer states, beyond floating-point roundoff. Reweighting replicated clipping contributions alone cannot establish compatibility. The owner has retained this issue as an admission gate. At 13:46:02 both ranks had completed the first disposable optimizer update and entered the next full-length forward; the sampled CPU/device AdamW comparisons on rank 0 had zero observed difference, with CPU optimizer time 160.277 seconds and peak reserved GPU memory about 58.94 GiB. Those limited checks do not resolve the separate layout hazard or establish full feasibility.
+
+Read-only fallback inspection found **Mercury2** has ten unoccupied A4000 16GB cards, 490.56 GiB available host RAM and low CPU load; eight-way tensor parallelism with CPU offload retains the historical head groups. This is a candidate, not an admitted run. Existing writable **`/dfs/scratch0/brando9` has approximately 4,238 GiB free**, addressing the local scratch shortage. All card pairs report peer read/write support. Initialization may hold eight full 55 GiB copies before sharding, so its peak and lifetimes must be checked; the pinned training environment must be rebuilt with its exact versions rather than copied with its broken `/usr/bin/python3.12` link. The 1 Gb/s network implies at least 3.94 minutes for the 29.55 GB Base cache and at least 71.6 minutes per 500 GiB of checkpoint traffic. Preserve the finite manifest, account for shared storage and verify actual throughput. Skampere3 now has two idle B200s, which help memory but not the tensor-group semantics issue by themselves. The exact evidence and parent note are in `owner_recovery/resource_request_10-09-2026/mercury_contingency.json` (SHA-256 `a9005b420a9f17d34d8da7dc665b85ef5d6e47a80e768335dbc01b7ede9ce204`) and `parent_findings.md`; upload was verified, but native-owner consumption is not yet established. Evaluate this route through the existing owner, with a prospective revised resource shape and preserved spent probe accounting; do not use it to waive the failed smaller-layout semantics.
+
+Parent published the correction and portable monitor checks in **`f9aa8e35255e2b045bb8d2d1188b8de181c6e0e6`**, verified on remote main. The owner remains the sole runtime implementation writer.
+
+**TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched supervised fine-tuning can use a verified smaller GPU layout under its existing protocol. The two-A100 probe has exposed tensor-layout-dependent normalization updates; production remains unadmitted while the owner evaluates a route preserving the original groups.
 **Snapshot:**
 ```text
 prior recovery publication: 150dd84; monitor ARMED after owner exit
 current owner: personal Codex gpt-6-astra / ultra; full access
 native session: 01a1225e-4f78-7580-8109-7f8877a97033
 layout authority: PROTOCOL sections 8 and 14
-candidate: 2 A100 80GB; CPU offload; tensor parallelism 2
+tested candidate: 2 A100 80GB with CPU offload; not admitted
 probe: started 13:37:53 PDT; cumulative 30-minute accelerator window
 14B scientific optimizer updates: 0
 warm-start validation factors: 20520/25920; missing 5400
-production admission: pending probe
+semantic check: 80/80 query/key gradient digests differ across ranks
+next candidate: Mercury2, 8 A4000s plus CPU offload and shared scratch
+production admission: pending verified equivalent layout
 parent heartbeat: ACTIVE; independent pipeline preserved
 ```
