@@ -1,0 +1,22 @@
+{
+  "written_utc": "2026-10-09T03:43:00Z",
+  "phase": "disposable_runtime_control",
+  "leased_device": 7,
+  "verified_cuda_uuid": "71a581cf-2704-6ea4-2c9e-423a07a674da",
+  "lease_id": "e09-20261009T033649Z-7",
+  "lease_granted_utc": "2026-10-09T03:36:49+00:00",
+  "other_user_process": {"pid": 3856095, "comm": "VLLM::EngineCor", "started_utc": "2026-10-09T03:37:29Z", "owned_by_experiment09": false},
+  "native_error_free_gib": 33.4,
+  "native_error_requested_gib": 35.66,
+  "lease_released_utc": "2026-10-09T03:38:10+00:00",
+  "bounded_identical_contention_retry": {
+    "lease_id": "e09-20261009T034052Z-7",
+    "granted_utc": "2026-10-09T03:40:52+00:00",
+    "native_error_free_gib": 35.27,
+    "result": "engine initialization failed again before model generation"
+  },
+  "action": "Preserve all healthy foreign jobs. No lowering memory utilization to share a resident user's GPU. No more identical engine retries for this incident; require fresh stable physical-device availability and a pre-engine occupancy guard.",
+  "new_responses": 0,
+  "optimizer_updates": 0,
+  "new_judge_calls": 0
+}

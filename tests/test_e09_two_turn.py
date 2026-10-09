@@ -9,6 +9,7 @@ import pytest
 from rl4cv.rewards import ScoredResponse
 
 ROOT = Path(__file__).resolve().parents[1] / "experiments/09_qwen3_1p7b_grpo_scsc_scalar_vs_factor_feedback_vbv1_d013/expt_v1"
+sys.path.insert(0, str(ROOT))
 
 def load(name: str):
     spec = importlib.util.spec_from_file_location(name, ROOT / f"{name}.py"); assert spec and spec.loader
@@ -23,7 +24,10 @@ def good(fsc=0.5):
 def measured(answer):
     return env.MeasuredAnswer(answer, "compile note", "measured")
 
-def test_first_turn_zero_second_turn_only_and_final_file_only():
+def test_first_turn_zero_second_turn_only_and_final_file_only(monkeypatch):
+    # The pure environment unit test is intentionally independent of whether the
+    # optional real NeMo runtime is installed. Separate runtime tests use it.
+    monkeypatch.setattr(env, "EnvironmentReturn", None)
     seen = []
     def scorer(meta, text): seen.append(text); return measured(good(0.5))
     subject = env.TwoTurnLeanEnvironment("B", scorer)
