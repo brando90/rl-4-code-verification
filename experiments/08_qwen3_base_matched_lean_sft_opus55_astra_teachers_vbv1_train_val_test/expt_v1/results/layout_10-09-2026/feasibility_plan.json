@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "created_utc": "2026-10-09T20:36:15.753518+00:00",
+  "incident_id": "8339e1ac-9675-4e2c-b609-552c1b436a12",
+  "status": "PROSPECTIVE",
+  "candidate": {
+    "host": "skampere1",
+    "devices": 2,
+    "tensor_parallel": 2,
+    "data_parallel": 1,
+    "cpu_offload": true,
+    "threads_per_rank": 8,
+    "total_compute_threads": 16
+  },
+  "budget": {
+    "max_distinct_devices": 2,
+    "cumulative_accelerator_window_seconds": 1800,
+    "cumulative_device_seconds": 3600,
+    "spent_seconds": 0,
+    "production_exempt_after_admission": true
+  },
+  "memory_estimate_gib": {
+    "parameters": 14768307200,
+    "fp32_weights_grads_adam_total": 220.06492614746094,
+    "no_offload_per_device_tp2": 110.03246307373047,
+    "no_offload_per_device_tp4": 55.016231536865234,
+    "host_state_total_offload": 220.06492614746094,
+    "bf16_parameters_per_device_tp2": 13.754057884216309,
+    "device_activations_buffers": "unmeasured; full-length probe required",
+    "host_peak_budget": 650
+  },
+  "experiments": [
+    "train-only full 14B pinned Base, first six frozen examples, two full-length accumulated updates then save; resume to third update; all outputs disposable",
+    "sample actual CPU AdamW update against CUDA float32 AdamW with exact same pre-update values, gradients, moments and settings"
+  ],
+  "pass_criteria": {
+    "invariants": "exact config allowlist only; pinned weights/tokenizer and all rendered token/mask/batch hashes; full denominator 1315+pad; 658 updates; rungs 82/164/334/497/658; same schedule and loss normalization",
+    "semantics": "CPU gradient accumulation must add both microbatches; TP-dependent replicated parameter gradient/clipping behavior must be resolved before production admission, not dismissed as floating point",
+    "execution": "2 fresh full-length=16384 updates plus checkpoint resume to update3; two microbatches/update; CPU FP32 masters/gradients/moments and bf16 compute, finite positive loss and gradient norm, exact real assistant tokens, schedule values and save/resume states",
+    "numerical": "sample actual CPU versus CUDA AdamW updates rtol=1e-5 atol=1e-7, finite values; resume tensor/state equality on load; no promise of bitwise training trajectories",
+    "memory": "peak CUDA reserved <=77 GiB each; peak aggregate resident host memory <=650 GiB; no OOM",
+    "performance": "record initialization, full-length step, CPU optimizer and checkpoint times; mean completed full-length update <=600 seconds under 16 total worker threads; conservative full 658-update extrapolation reported, no production wall-time cap"
+  },
+  "stop": "stop on failed scientific invariant or unrecoverable execution failure; preserve every attempt and cumulative accounting; release only owned devices/processes; no production checkpoint reuse",
+  "source_hazards": [
+    "Native TP plan leaves Qwen3 q_norm/k_norm outside TP sharding/synchronization; examine actual placement and gradients before admission",
+    "Native gradient norm sums TP replicated contributions; config equality alone is insufficient"
+  ],
+  "unchanged": [
+    "PROTOCOL.md historical bytes",
+    "completed 1.7B/4B/8B and baselines",
+    "data and model revisions",
+    "generation/evaluation/judging",
+    "retry counters",
+    "parent master checkpoint"
+  ]
+}

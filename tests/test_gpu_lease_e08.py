@@ -220,3 +220,12 @@ def test_orchestrator_14b_gate_ignores_holds_but_inference_respects_them(tmp_pat
     assert dv["free"] == [] and dv["unknown"]                                              # unknown state: nothing free
     assert any("GPU state unknown, failing closed" in msg and "boom" in msg for msg in logged)
     assert not (tmp_path / "pipeline.log").exists() and sorted(p.name for p in tmp_path.iterdir()) == ["leases.json"]   # nothing written beyond the registry
+
+
+def test_admission_uses_actual_admitted_layout_size(tmp_path):
+    m = load(tmp_path)
+    ctx = dict(CTX_14B_PENDING, required_devices=2)
+    a = m.admission("e09", TABLE_OTHER_USER, ctx, {}, NOW, me_user="brando9")
+    assert a["admission"] == "closed"
+    assert a["fourteen_b"]["required_devices"] == 2
+    assert a["fourteen_b"]["can_run_now_or_soon"]

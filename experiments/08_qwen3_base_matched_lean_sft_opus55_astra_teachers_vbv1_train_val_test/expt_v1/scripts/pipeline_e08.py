@@ -3,7 +3,7 @@
 with the host watchdog, it validates ACTUAL artifacts (exported checkpoints with hash manifests plus a training log that matches the frozen token
 schedule; scored ladder files with exactly 135 × 8 or 222 × 8 distinct scored rows and 8 complete scorer shards; a committed `selection.json`),
 dispatches the next ready stages into named tmux sessions under GPU leases (a device with any compute process, or leased by another stage, is never
-used; the 14B SFT gets all 8 devices only when no inference stage holds a lease, and no new inference starts while the only thing blocking 14B is our
+used; the 14B SFT uses a hash-verified admitted layout, and no new inference starts while the only thing blocking 14B is our
 own inference), distinguishes active from waiting or stale stages by real child processes and output freshness, relaunches a crashed stage once
 (all launchers resume and never regenerate a finished cell), and after all 20 validation rungs plus Base 14B are valid runs the frozen selection,
 commits it, and only then runs the conditional test generation, judge route controls and judging (D-102, Vals-funded Valkyrie route, frozen
@@ -24,6 +24,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import sft_layout_e08 as SL
 import gpu_lease_e08 as GL  # noqa: E402  shared GPU-admission interface (registry, lock, identities, policy)
 
 REPO = Path(__file__).resolve().parents[4]
@@ -37,7 +38,7 @@ STATE_PATH, LOCK, LEASES = P / "state.json", P / "lock", P / "leases.json"
 PY = str(REPO / ".venv" / "bin" / "python")
 SIZES = ("1.7B", "4B", "8B", "14B")
 FRACTIONS = ("0.125", "0.25", "0.5", "0.75", "1.0")
-SFT_GPUS = {"8B": 4, "14B": 8}
+SFT_GPUS = {"8B": 4}
 N_VAL, N_TEST, G = 135, 222, 8
 FRESH_S = 3600                 # live session whose log has not changed for an hour -> reported stale (never killed)
 MAX_RETRY = 1
@@ -338,7 +339,7 @@ def observe(state: dict, name: str, done: bool) -> str:
 # ----------------------------------------------------------------------------------------------- the tick
 def tick(state: dict, dry: bool) -> dict:
     summary, launched_gen = {}, 0
-    # 1. SFT chains: 8B adopted from its live session; 14B only after 8B's verified exports, with no active lease and 8 idle devices.
+    # 1. SFT chains: 8B adopted from its live session; 14B only after 8B's verified exports, with idle leased devices for an admitted layout.
     for size in ("8B", "14B"):
         name, session = f"sft_{size}", f"rl4cv-e08-sft-{size}"
         ensure_train_log(size)
@@ -347,13 +348,16 @@ def tick(state: dict, dry: bool) -> dict:
             stage(state, name)["status"] = "critical"; log(f"CRITICAL {name}: exports present but the training log does not match the frozen schedule")
         if status in ("pending", "crashed", "waiting_gpu", "waiting_leases") and (size == "8B" or (exports_ok("8B") and train_log_ok("8B"))):
             dv = device_view(state, name)
-            need = SFT_GPUS[size]
-            if size == "14B" and active_leases(state, blocking_only=True):
-                stage(state, name)["status"] = "waiting_leases"; stage(state, name)["devices"] = dv; stage(state, name)["waiting_on"] = active_leases(state, blocking_only=True)
-            elif len(dv["free"]) >= need:
-                launch(state, name, session, f"bash {S}/launch_sft_e08.sh {size} {','.join(map(str, dv['free'][:need]))}", dv["free"][:need], WORK / "ckpt" / f"driver_{size}.log", dry)
+            layout = SL.choose_layout(len(dv["free"]), SL.run_layout_id(WORK / "ckpt/14B")) if size == "14B" else None
+            need = layout["gpus"] if layout else (SL.required_devices(WORK / "ckpt/14B") if size == "14B" else SFT_GPUS[size])
+            if size == "14B":
+                stage(state, name)["layout_admission"] = {"required_devices": need, "selected": layout["id"] if layout else None,
+                                                        "registry_sha256": SL.digest(SL.REGISTRY)}
+            if len(dv["free"]) >= need:
+                launch(state, name, session, (f"E08_SFT_LAYOUT_ID={layout['id']} " if layout else "") + f"bash {S}/launch_sft_e08.sh {size} {','.join(map(str, dv['free'][:need]))}", dv["free"][:need], WORK / "ckpt" / f"driver_{size}.log", dry)
             else:
-                stage(state, name)["status"] = "waiting_gpu"; stage(state, name)["devices"] = dv
+                stage(state, name)["status"] = "waiting_leases" if active_leases(state, blocking_only=True) else "waiting_gpu"
+                stage(state, name)["devices"] = dv
         summary[name] = stage(state, name)["status"]
     for size in ("1.7B", "4B"):
         summary[f"sft_{size}"] = "done" if exports_ok(size) and train_log_ok(size) else "INCOMPLETE"
@@ -378,7 +382,7 @@ def tick(state: dict, dry: bool) -> dict:
                 gpus = None
                 if not v["gen_complete"]:
                     dv = device_view(state, name)
-                    hold_for_14b = fourteen_pending and dv["n_devices"] - len(dv["others"]) >= 8
+                    hold_for_14b = fourteen_pending and dv["n_devices"] - len(dv["others"]) >= SL.required_devices(WORK / "ckpt/14B")
                     if dv.get("unknown"):
                         st["status"] = "waiting_gpu"; st["devices"] = dv; summary[name] = "waiting_gpu (GPU state unknown)"; continue
                     if fourteen_running or hold_for_14b or n_gen + launched_gen >= MAX_GEN or launched_gen >= 1 or len(dv["free"]) < shards:

@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "size": "14B",
+  "protocol_sha256": "f6c1f85c4d165d3d6706151105a47b92a3a08fa6c66fc6e85ffcb7bd52df27ce",
+  "schedule_sha256": "e0d6d896a1f4c085629ac90dc8fda9c52e6e5bf511a5a8b42fb30c769e575f8b",
+  "routes": [
+    {
+      "id": "historical_tp8",
+      "status": "admitted",
+      "gpus": 8,
+      "tensor_parallel_size": 8,
+      "cpu_offload": false,
+      "config": "configs/e08_sft_14B.yaml",
+      "config_sha256": "4244709493df989ebae42a5a0fa05d698b3d8cbb32eec2138db9be4235dd91f3",
+      "admission_kind": "historical_protocol",
+      "reason": "Existing lock-2 configuration; preserved as one route, not a scientific eight-device requirement."
+    },
+    {
+      "id": "tp2_cpu_offload",
+      "status": "pending",
+      "gpus": 2,
+      "tensor_parallel_size": 2,
+      "cpu_offload": true,
+      "config": "configs/e08_sft_14B_tp2_offload_candidate.yaml",
+      "config_sha256": "bfc9842eca75fdbc83969dbe292c3dc1be3a53d23c4e531a89ffce5164ae1838",
+      "admission_kind": "prospective_layout",
+      "reason": "Disposable feasibility, checkpoint resume and TP-dependent normalization semantics pending.",
+      "evidence": {}
+    }
+  ]
+}

@@ -184,6 +184,9 @@ def event_snapshot(work):
             errors["judge_admission:" + key] = entry["phase"]
     retry = {k: s.get("retries", 0) for k, s in stages.items() if s.get("retries", 0)}
     event = {"phase": phase, "errors": errors, "pipeline_health": health, "stage_retries": retry}
+    layout = EXP / "expt_v1/results/sft_layout_admission_14B.json"
+    if layout.exists():
+        event["sft_layout_admission_sha256"] = digest(layout)
     key = hashlib.sha256(json.dumps(event, sort_keys=True).encode()).hexdigest()
     return {"key": key, "event": event, "observed_utc": now(), "pipeline": current,
             "last_tick": p.get("last_tick"), "summary": summary}

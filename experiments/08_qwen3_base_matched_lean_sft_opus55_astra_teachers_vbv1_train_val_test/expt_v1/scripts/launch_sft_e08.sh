@@ -28,6 +28,12 @@ export E08_TRAIN_JSONL="${E08_TRAIN_JSONL_OVERRIDE:-$WORK/sft/s_v1_nemo.jsonl}" 
 unset PYTHONPATH
 mkdir -p "$E08_CHECKPOINT_DIR" "$E08_LOG_DIR" "$E08_TENSORBOARD_DIR" "$ROOT/hf" "$ROOT/driver_logs"
 CONFIG="$EXP/expt_v1/configs/e08_sft_${SIZE}.yaml"
+if [ "$SIZE" = 14B ]; then
+  IFS=',' read -ra VISIBLE <<< "$GPUS"
+  LAYOUT_ARGS=()
+  [ -z "${E08_SFT_LAYOUT_ID:-}" ] || LAYOUT_ARGS=(--layout-id "$E08_SFT_LAYOUT_ID")
+  CONFIG="$("$REPO/.venv/bin/python" "$EXP/expt_v1/scripts/sft_layout_e08.py" --gpus "${#VISIBLE[@]}" --root "$ROOT" "${LAYOUT_ARGS[@]}")" || exit 2
+fi
 ts() { date -u +%FT%TZ; }
 test -d "$E08_MODEL_PATH" || { echo "model snapshot missing: $E08_MODEL_PATH" >&2; exit 2; }
 test -f "$E08_TRAIN_JSONL" || { echo "train jsonl missing: $E08_TRAIN_JSONL" >&2; exit 2; }

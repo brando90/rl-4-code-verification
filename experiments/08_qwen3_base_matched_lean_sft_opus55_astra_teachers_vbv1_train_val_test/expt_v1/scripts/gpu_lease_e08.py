@@ -7,7 +7,7 @@ FAILS CLOSED: any nvidia-smi failure, timeout, malformed row or unresolved proce
 bounded `hold` (kind preflight-hold, no process identity, <= 4 h) lets an owner reserve devices while provisioning; it never blocks 14B and is
 superseded by that owner's first real `request`. Policy
 (`admission`): experiment 09 may hold at most 2 devices for at most 16 h and 32 device-hours in total, and only while experiment 08's 14B SFT cannot
-genuinely run (8B not finished, 14B done or already running, or other users' jobs leave fewer than 8 devices); once all 8 devices are free of other
+genuinely run (8B not finished, 14B done or already running, or other users' jobs leave fewer devices than the admitted 14B layout); once the admitted layout's devices are free of other
 users and 14B is pending, new experiment 09 admission closes and admitted work finishes at its own boundary; nothing is ever preempted or killed.
 Usage: gpu_lease_e08.py status | admission | request --owner e09 --n 2 --kind trajectory --ttl-hours 16 --pid <driver pid> --boundary "<text>" |
 release --lease-id <id> | heartbeat --lease-id <id>. Exit 0 = granted/ok, 3 = denied (JSON reason on stdout). Zero model calls."""
@@ -158,7 +158,7 @@ def e08_context() -> dict:
     """Artifact facts the policy needs (imported lazily from the orchestrator; file checks only)."""
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     import pipeline_e08 as pl  # noqa: E402
-    return {"eight_done": pl.exports_ok("8B") and pl.train_log_ok("8B"), "fourteen_done": pl.exports_ok("14B")}
+    return {"eight_done": pl.exports_ok("8B") and pl.train_log_ok("8B"), "fourteen_done": pl.exports_ok("14B"), "required_devices": pl.SL.required_devices(WORK / "ckpt/14B")}
 
 
 def pipeline_fresh() -> dict:
@@ -218,17 +218,18 @@ def admission(owner: str = "e09", table: dict | None = None, ctx: dict | None = 
     idle_unleased = sorted(i for i, us in table.items() if not us and i not in leased)
     fourteen_live = any(v.get("stage") == "sft_14B" for v in live.values())
     fourteen_pending = ctx["eight_done"] and not ctx["fourteen_done"] and not fourteen_live
-    fourteen_can_run = fourteen_pending and len(table) - len(others) >= 8
+    required = ctx.get("required_devices", 8)  # legacy callers retain historical admission
+    fourteen_can_run = fourteen_pending and len(table) - len(others) >= required
     held = sorted(g for v in live.values() if v.get("owner") == owner for g in v["gpus"])
     used_h = budget_used_hours(d, owner, now)
     out = {"checked_utc": ts(now), "owner": owner, "devices_with_other_users": others, "idle_unleased_devices": idle_unleased, "live_leases": {k: {"owner": v.get("owner"), "stage": v.get("stage"), "gpus": v["gpus"], "expires_utc": v.get("expires_utc")} for k, v in live.items()},
-           "fourteen_b": {"pending": fourteen_pending, "running": fourteen_live, "can_run_now_or_soon": fourteen_can_run, "eight_done": ctx["eight_done"], "fourteen_done": ctx["fourteen_done"]},
+           "fourteen_b": {"pending": fourteen_pending, "running": fourteen_live, "required_devices": required, "can_run_now_or_soon": fourteen_can_run, "eight_done": ctx["eight_done"], "fourteen_done": ctx["fourteen_done"]},
            "owner_devices_held": held, "owner_budget_device_hours_used": used_h, "limits": lim}
     if fourteen_can_run:
         if withdraw_holds(d, now, "14B genuinely admissible"):
             save(d)
             out["holds_withdrawn"] = True
-        out.update(admission="closed", reason="experiment 08's 14B SFT (all 8 devices, TP 8) can genuinely run: 8B is finished and no other user's job blocks the 8-device reservation; admitted work finishes at its boundary, no new admission")
+        out.update(admission="closed", reason=f"experiment 08's admitted 14B SFT layout ({required} devices) can run: 8B is finished and other users leave the required devices; admitted work finishes at its boundary")
     elif len(held) >= lim["max_devices"]:
         out.update(admission="closed", reason=f"owner already holds {len(held)} device(s) (limit {lim['max_devices']})")
     elif used_h >= lim["budget_device_hours"]:
