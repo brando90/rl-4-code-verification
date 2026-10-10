@@ -4,8 +4,8 @@
 
 **TLDR:** One Astra/ultra review is reconciled; the executable phase-0 handoff reuses verified source/strict-control receipts. This checkpoint records a publishable plan phase, not experiment completion.
 
-Created: 10-09-2026. Last updated: 10-09-2026 21:26:30 PDT
-Status: RUNNING — publication in progress; historical factor scoring and training gated.
+Created: 10-09-2026. Last updated: 10-09-2026 21:34:22 PDT
+Status: RUNNING — reviewed design/control phase landed; historical factor scoring and training gated.
 
 Original base/input HEAD: `be43d3a8fcd9a1df5b77058be516821f3a7629d0`. Owner: `rl4cv13-review-10-09`, sole writer of `/lfs/skampere1/0/brando9/recovery_rl4cv13/repo` until terminal receipt. Branch: `recovery/rl4cv13-plans`. Actual reviewer: `gpt-6-astra` / `ultra`, session `01a123fd-3adf-7133-b95c-cf293feed08d`, full access/approval never verified in native turn metadata.
 
@@ -24,3 +24,9 @@ env -u PYTHONPATH /lfs/skampere1/0/brando9/agent-recovery-10-09-2026/workers/rl4
 ```
 
 Then implement the missing declaration adapter and sealed full historical equality audit, freeze L1/F0/F1, and execute admitted CPU work in a new named session/watch. L1 admits reproduction before requiring it for G0/G1. Training remains blocked until its separate LP/L2 sequence, coverage controls, measured resources and valid devices pass. Root sends deduplicated recovery notifications. Primitive watcher had no reboot persistence or automatic account failover.
+
+## Verified landing
+
+LANDED ef1c612d73f8c7b231ea94dd3baa0a14d21c282b https://github.com/brando90/rl-4-code-verification/pull/10 10-09-2026 21:34:22 PDT
+
+Verified branch head `7ecc28ddafe0a473463d81e3dd16aed784ed3fc3`; GitHub reports MERGED. Rebase range-diff retained the one patch unchanged; owned-path diff against merged main is empty. Post-rebase `make test`: 226 passed, 21 conditional skips; `git diff --check` and the phase-0 handoff verifier passed. Root owns notifications and the next phase after receipt; this phase does not complete the experiment.
