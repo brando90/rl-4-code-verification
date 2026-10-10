@@ -5,7 +5,7 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 20:28 PDT
+**Last updated:** 10-09-2026 21:06 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
@@ -175,3 +175,5 @@
 
 - 10-09-2026 20:28 PDT evaluation milestone: 1,250/5,386 unique jobs; 39,704/43,840 cell records. 1,254 candidate receipts: 0 timeouts, 0 infrastructure retries. All three forecasts and every locked source/input hash reverified. Process/exit/log monitor checked separately before publication. Last publication `ca0d73b`. Continue the unchanged full cohort; analyses and manual disagreements remain pending.
 - Shared-instruction refresh at 20:25 PDT was unchanged (`a2e2cfc`). Host load averages 495.55 / 503.49 / 514.81; two priority-10 single-thread Lean workers retained.
+
+- 10-09-2026 21:06 PDT evaluation milestone: 1,500/5,386 unique jobs; 39,954/43,840 cell records. 1,506 candidate receipts: 0 timeouts, 0 infrastructure retries. All three forecasts and every locked source/input hash reverified. Process/exit/log monitor checked separately before publication. Last publication `be43d3a`. Continue the unchanged full cohort; analyses and manual disagreements remain pending.
