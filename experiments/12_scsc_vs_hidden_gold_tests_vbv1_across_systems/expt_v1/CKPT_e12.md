@@ -5,14 +5,14 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 17:13 PDT
+**Last updated:** 10-09-2026 17:14 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
 - **Worker:** Codex CLI 0.154.0, personal ChatGPT login, `gpt-6-astra` / high, host `skampere1`, tmux `oct9-codex-rl4cv-e12-hidden-gold-tests`; effective sandbox danger-full-access, approval never. Supersedes the Claude launch, which failed due to exhausted personal Claude credits.
 - **Frozen forecast:** `expt_v1/forecasts/e12_phase_a_forecast.json`, SHA-256 `b29b71b7166b80df653220ddddec4b865a622ef9abc1fa42c6c1e559b067b0c5`, frozen 2026-10-09T21:35:33Z at git head `e851c02`.
 - **State:** RUNNING under Amendment A2 (`a7c2ea2`); all three forecasts verified; round-2 controls archived unchanged.
-- **Next command:** publish complete controls, then `PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/lock_e12.py`; commit/push lock before `evaluate_e12.py`.
+- **Next command:** after pushing the lock, launch `PYTHONPATH=src python3 -u experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/evaluate_e12.py` in tmux window `e12-evaluate`; watch `/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2.log` and process liveness.
 
 ## Log
 
@@ -149,3 +149,9 @@
 - Only outcome change from complete round 4 is Floyd–Warshall C3: fourth attempted edit, `optAdd` addition changed to subtraction, compiled and 4/12 hidden tests failed. All prior controls/mutant choices unchanged. Same normalized graph inputs preserved.
 - All six implementation hashes match the receipts; selection equals the frozen 50 tasks; all three forecast verifications PASS; real-candidate outcome file absent. Protocol remains unlocked pending publication of this milestone, then lock and push before evaluation.
 - Deterministic verification remains 32 local tests and 204 repository tests passed / 24 skipped. No source change since those checks. Two control workers have exited; status remains RUNNING for the full evaluation/analysis phase.
+
+### 10-09-2026 17:14 PDT — protocol LOCKED before real-candidate outcomes
+
+- Complete controls published as `a1d985c`; local and remote main matched. Lock timestamp `2026-10-10T00:13:36.605087+00:00`, code commit `a1d985c82a8ad85b866f88aaea9a951394078319`. Adapter/extractor/runtime/control hashes and all exact input hashes recorded in `results/protocol_lock.json`; all three forecasts verified.
+- The lock commit must be pushed before the evaluation command starts. No `cells_e12.jsonl` exists at lock. Full declared evaluation set remains 43,840 cells (9,856 primary + 33,984 secondary); each missing/noncompiling/no-test cell stays explicit. Compiling applicable candidates run with two nice-10 single-thread Lean workers; 600-second per-invocation timeout and at most one identical infrastructure retry.
+- Outstanding: full candidate evaluation, paired task-bootstrap analyses (10,000 draws, seed 20261009), A1/A2 sensitivities, Core/IndustrySet descriptives, 20 manual disagreements, final publication and DONE.

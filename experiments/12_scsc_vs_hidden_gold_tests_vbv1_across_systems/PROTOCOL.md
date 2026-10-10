@@ -4,7 +4,7 @@
 
 **TLDR:** This fixes the inputs, the hidden-test extraction, the adapter and its controls, the cell outcomes, the analyses and the stop rules for comparing SCSC with hidden gold-reference tests. The predictions were frozen on 10-09-2026 before any hidden-test outcome existed; this document is locked after the adapter controls pass and before any real candidate file is evaluated.
 
-**Lock line:** `NOT LOCKED` — the worker replaces this with `LOCKED <UTC> at commit <hash>` after § 3's controls pass and before § 4 touches a real candidate. Any later change is a new version (`expt_v2`).
+**Lock line:** `LOCKED 2026-10-10T00:13:36.605087+00:00 at commit a1d985c82a8ad85b866f88aaea9a951394078319` — all four round-5 A2 controls pass; exact adapter and input hashes in `expt_v1/results/protocol_lock.json`. No real-candidate hidden outcome exists at lock. Any later change is a new version (`expt_v2`).
 
 ## 1. Inputs (pinned; read-only)
 

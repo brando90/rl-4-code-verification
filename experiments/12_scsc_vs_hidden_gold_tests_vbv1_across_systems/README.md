@@ -76,5 +76,5 @@
 | Design and frozen forecast | Done (10-09-2026) |
 | Input preflight under A1 | PASS: published values 11/11, joins pass, compile reproduction 100/100 |
 | Hidden-test extraction and adapter controls | PASS under A2: C1 591/591, C2 48/50, C3 44/50, C4 49/50; all original 50 tasks |
-| Protocol lock | NOT LOCKED |
-| Evaluation and analysis | Pending protocol lock and publication; all four controls pass, predictions untested |
+| Protocol lock | LOCKED 10-09-2026 after all four controls pass; code `a1d985c` |
+| Evaluation and analysis | Ready after lock publication; 43,840 frozen cells, predictions untested |

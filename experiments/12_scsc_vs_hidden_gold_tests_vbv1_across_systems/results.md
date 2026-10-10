@@ -4,8 +4,8 @@
 
 Experiment `12_scsc_vs_hidden_gold_tests_vbv1_across_systems` phase A passed Amendment A1 input checks and 100/100 compilation reproductions; all four adapter controls passed under prospective Amendment A2 with zero experiment model calls.
 
-**Status:** RUNNING under prospective Amendment A2 (`a7c2ea2`). Round-2 failure retained below; round-5 controls PASS; protocol lock is next. No real-candidate hidden outcomes.
-**Last updated:** 10-09-2026 17:13 PDT
+**Status:** RUNNING under prospective Amendment A2 (`a7c2ea2`). Round-2 failure retained below; round-5 controls PASS; protocol LOCKED; evaluation starts after lock publication. No real-candidate hidden outcomes at lock.
+**Last updated:** 10-09-2026 17:14 PDT
 
 The smooth conjunctive score for code verification (SCSC) combines internal consistency of tests (IC_tests), internal consistency of proofs (IC_proofs), and formal specification coverage (FSC). Under the prospective [Amendment A1](PROTOCOL.md#8-amendment-a1-10-09-2026-master-before-any-hidden-test-outcome), the system score is the geometric mean of the three factor means over one common measured cohort. Published-value checks reproduce each source’s own convention.
 
@@ -23,7 +23,8 @@ The smooth conjunctive score for code verification (SCSC) combines internal cons
 | Round-3b controls C1–C4 | COMPLETE, failed admission | C1 591/591; C2 47/50; C3 42/48 with two unavailable mutants; C4 49/50 |
 | Round-4 controls C1–C4 | COMPLETE, failed admission | C1 591/591; C2 48/50; C3 43/49 with one unavailable mutant; C4 49/50 |
 | Round-5 controls C1–C4 | PASS, all 50 tasks | C1 591/591; C2 48/50; C3 44/50; C4 49/50; [full receipts](expt_v1/results/controls_e12.json) |
-| Protocol lock and real candidate evaluation | NOT STARTED | All adapter controls must pass first |
+| Protocol lock | LOCKED | Code `a1d985c`; [exact hashes](expt_v1/results/protocol_lock.json); before real-candidate outcomes |
+| Real candidate evaluation | READY | Full 43,840-cell frozen set; launch after lock publication |
 
 ## Factor inputs under A1
 
@@ -72,7 +73,7 @@ MyFreeLiveHandle.e12renamed0000 (live : ℕ) : Bool
 MyFreeLiveHandle.e12renamed0001 (live : ℕ) : Bool
 ```
 
-At round 2, no tie-breaking by source order, body contents, naming conventions or hidden-test success had been introduced. The protocol remains **NOT LOCKED**. At round 2, continuation required a prospective clarification; Amendment A2 now supplies it while preserving the failed receipt and thresholds. An implementation-only change that preserves strict uniqueness cannot fix these witnesses. The master supplied A2 before any real-candidate outcome.
+At round 2, no tie-breaking by source order, body contents, naming conventions or hidden-test success had been introduced. The protocol was **NOT LOCKED** at that historical stop. At round 2, continuation required a prospective clarification; Amendment A2 now supplies it while preserving the failed receipt and thresholds. An implementation-only change that preserves strict uniqueness cannot fix these witnesses. The master supplied A2 before any real-candidate outcome.
 
 Round 1 is preserved: gold self-tests 570/590 (96.61%); renamed recovery 1/47 gold-passing tasks (2.13%). [Round-1 receipts](expt_v1/results/controls_e12_round1.json) remain unchanged. Round 2 fixed equation-definition parsing, projection renaming and structural `Except` equality. It retains all 10,429 original extracted statements and adds 105 previously missed statements, before any real-candidate hidden outcome. The current extraction contains 10,534 tests on 882 tasks, with 14 `no_tests` tasks.
 
@@ -98,4 +99,4 @@ PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_syst
 
 The completed round-2 control runner returns exit 2, preserving its failed gate. Compilation and control scripts preserve completed receipts on resume. Host-only logs and copied control sources are in `/lfs/skampere1/0/brando9/rl4cv_e12/`; no candidate source is committed. Verification so far: repository tests 204 passed / 24 skipped; experiment-local tests 32 passed.
 
-**TLDR-end:** [rl4cv: 12_scsc_vs_hidden_gold_tests_vbv1_across_systems] Hidden gold-test agreement is running the complete fixed control sample under A2 after passing input gates and 100/100 compilation reproductions. Round-2 failures remain archived; real-candidate outcomes and predictions remain unmeasured.
+**TLDR-end:** [rl4cv: 12_scsc_vs_hidden_gold_tests_vbv1_across_systems] Hidden gold-test agreement passed all four A2 controls and is locked before real-candidate outcomes. Evaluation and frozen prediction analyses are next.
