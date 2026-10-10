@@ -5,14 +5,14 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-10-2026 05:20 PDT
+**Last updated:** 10-10-2026 05:21 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
 - **Worker:** Codex CLI 0.154.0, personal ChatGPT login, `gpt-6-astra` / high, host `skampere1`, tmux `oct9-codex-rl4cv-e12-hidden-gold-tests`; effective sandbox danger-full-access, approval never. Supersedes the Claude launch, which failed due to exhausted personal Claude credits.
 - **Frozen forecast:** `expt_v1/forecasts/e12_phase_a_forecast.json`, SHA-256 `b29b71b7166b80df653220ddddec4b865a622ef9abc1fa42c6c1e559b067b0c5`, frozen 2026-10-09T21:35:33Z at git head `e851c02`.
-- **State:** analysis and all 20 inspections COMPLETE under A2; final report and verification ready, final publication in progress. All forecasts and locked sources/inputs unchanged.
-- **Next command:** commit the explicit final report/artifact/README paths, pull before push, verify origin/main; write external STATUS_e12=DONE and publish the final handoff receipt. No experiment jobs remain.
+- **State:** DONE. Final report published as `ef82eb7`; all 43,840 cells and 20 inspections complete; all three predictions hold with documented adapter limitations. External STATUS_e12 is DONE.
+- **Next command:** none for phase A. Master: read `../results.md` and `results/disagreements_e12.json`; preserve expt_v1 and plan a corrected prospective adapter version, then hidden proofs and agent-spec v8.
 
 ## Log
 
@@ -248,3 +248,5 @@ Report presentation prepared while evaluation continues: expose primary and seco
 - **Post-lock limitation:** the frozen identifier lexer omits question-mark suffixes and merges some core/wrapper names, affecting direct-name selection and reference counts. Other helpers can also win A2 step 4; partial type applicability sets all-pass false without any false evaluated test. No locked code, candidate, score, forecast or outcome was changed. Interpret the successful predictions as association with this implemented pipeline, not an error-free semantic-correctness instrument. Repair and prospectively validate in expt_v2; do not overwrite expt_v1.
 - Deterministic verification: `make test` 237 passed/24 skipped (197.25 s), local experiment tests 32 passed (1.07 s), renderer syntax and diff whitespace pass. Final verification artifact checks all 3 forecasts, all 6 locked sources, all 5 inputs, output digest and all inspection evidence hashes. Final progress snapshots retained privately in `final_progress_archives/`.
 - Published analysis milestone `621b288` is on origin/main. Final results/README/index and inspection artifacts prepared for publication. Master next version: corrected adapter and explicit entry point, then hidden proofs and agent-spec v8. No further phase-A experiments or jobs remain.
+
+- 10-10-2026 05:21 PDT — DONE: final report, all summaries, inspection hashes and README/index updates published in `ef82eb726fb1b6a6fd46c6517a8bb813acfcfae7`; remote main independently verified with `git ls-remote`. Wrote `/lfs/skampere1/0/brando9/rl4cv_e12/STATUS_e12` = `DONE`. Evaluation and analysis have both exited 0; no experiment job remains. All three forecasts verified again. This final handoff receipt is the only subsequent change. Phase A is complete; the documented post-lock lexer/mapping limitations require a new prospective version rather than editing this record.
