@@ -12,10 +12,10 @@ The plan has three phases:
 - **Phase 1:** fit and validate a conjunctive item response theory (IRT) model that predicts held-out pass@1 and pass@k.
 - **Phase 2:** run four RL arms from the Qwen3-4B SFT checkpoint: strict reward, SCSC-style factored reward, IRT-guided reward and prompt sampling, and a placebo dense reward.
 
-Status: **RECOVERY PREPARATION 10-09-2026; nothing run; [PROTOCOL.md](PROTOCOL.md) is a draft, not locked.** A detailed prospective plan and deterministic partial-credit control contract are in [`expt_v1/`](expt_v1/); the requested single `gpt-6-astra` / ultra review is reconciled in `expt_v1/REVIEW.md`; measurement and training still require their recorded gates.
+Status: **RUNNING 10-09-2026: reviewed plans and parser adapter published; the complete 21,504-cell opaque historical equality audit is executing under frozen L1/F0/F1 bindings.** The requested single `gpt-6-astra` / ultra review is reconciled in `expt_v1/REVIEW.md`. See the live [ledger](expt_v1/results.md), [checkpoint](expt_v1/CKPT_e13.md) and append-only [metadata erratum](expt_v1/locks/L1_audit_v2_metadata_erratum.json). Factor fitting and training remain gated.
 
 - **Created:** 10-09-2026 by Claude Code (`claude-opus-5-5`) for Brando.
-- **Owner:** recovery master; current plan reconciliation by `rl4cv13-review-10-09`.
+- **Owner:** recovery master; ordinary execution in `codex-rl4cv13-opaque-reproduction`, observed by `codex-rl4cv13-audit-root-observer-v2`.
 - **Terms:**
   - An *arm* is one condition being compared.
   - *Strict* is `kernel_binary`: the file typechecks, has at least one example, states at least one theorem, every stated theorem is a proved theorem with allowed axioms, and none is vacuous.
@@ -72,7 +72,7 @@ The reward fractions remain vulnerable to padding and dropping hard statements. 
 
 ## Status and next admitted work
 
-Phase: reviewed plan and deterministic controls; experiment incomplete. Run the exact CPU control/preparation command in [RUNBOOK.md](expt_v1/RUNBOOK.md); the machine-readable handoff is [PHASE0_READY.json](expt_v1/PHASE0_READY.json). Authored strict controls are distinct from the pending declaration adapter and complete historical reproduction.
+Phase: opaque historical equality reproduction running; experiment incomplete. Continue the named process and observer in the [checkpoint](expt_v1/CKPT_e13.md), without restarting the completed controls or duplicating the audit. The adapter passed 30 authored controls; implementation tests passed 233 with 24 skips. The frozen lock has a disclosed duplicate hash-field conflict; its correct adapter field matches the active source. Complete probe-evidence retention for later factor measurement remains a separate implementation requirement under [PROTOCOL.md](PROTOCOL.md).
 
 The ladder declares 25,920 validation cells, with 20,520 available and 5,400 missing from five 14B checkpoints. Preserve those missing cells and reuse overlapping historical base outputs once. Full historical test equality checks use an opaque locked audit; test outcomes cannot enter model fitting.
 
