@@ -4,7 +4,7 @@
 
 **TLDR:** One Astra/ultra review is reconciled; the executable phase-0 handoff reuses verified source/strict-control receipts. This checkpoint records a publishable plan phase, not experiment completion.
 
-Created: 10-09-2026. Last updated: 10-09-2026 22:50:40 PDT
+Created: 10-09-2026. Last updated: 10-09-2026 23:00:34 PDT
 Status: RUNNING — adapter landed; sealed equality reproduction is executing; training remains gated.
 
 Original base/input HEAD: `be43d3a8fcd9a1df5b77058be516821f3a7629d0`. Current coordination/publication owner: recovery master `deploy_16e6b761a004445db113437e27f45456`. The prior Terra/high implementation worker exited 0; its native thread `01a1241d-1151-7ed0-85ba-72f9e93c9e7d` is retained. The ordinary audit owns computation; publication uses an isolated integration checkout so active source bytes remain unchanged. Historical plan reviewer: `gpt-6-astra` / `ultra`, session `01a123fd-3adf-7133-b95c-cf293feed08d`, full access/approval never verified in native turn metadata.
@@ -48,3 +48,7 @@ Exact continuation: read the sanitized `receipts/rl4cv13_audit.json` and observe
 Pre-rebase publication plan: owned branch `recovery/rl4cv13-opaque-audit-10-09`; backup `backup-rl4cv13-opaque-audit-10-09`; old base `7014bae8229266c643da8bf192e0a2b3cb8329d5`; fetched main `39f41e6a268ac84e8c39025c475d59a41099beb8`. Preserve concurrent experiment12 documentation. Rebase only isolated integration checkout, compare range-diff and exact owned-path bytes, then repeat deterministic checks before guarded publication.
 
 Integration refresh 10-09-2026 22:55:43 PDT: main advanced with experiment12 documentation only. Before second rebase, backup `backup-rl4cv13-opaque-audit-2256`; old merge base `39f41e6a268ac84e8c39025c475d59a41099beb8`; fetched main `e5c2b4002c03199e2508aeefd9e16c59e47e268d`. The first rebased full suite passed233/24, exit0 in190.93seconds. Preserve all21ownedpaths exactly across this second integration.
+
+LANDED 465225ea38f3b2f2a0729fea01809d857875582a https://github.com/brando90/rl-4-code-verification/pull/12 10-09-2026 23:00:34 PDT
+
+The implementation phase is merged and all21owned paths exactly match verified head2efdf8c0c8b5da01ce60b9909bcb1052500f75f4. Final post-rebase `make test`:233 passed/24 skipped, exit0 (193.57seconds). Six canonical audit bindings and four active runtime scientific files were checked byte-for-byte. Scientific audit remains RUNNING: 170/21,504 processed at 2026-10-10T06:00:30+00:00; equality PENDING. Original scientific gates, immutable metadata erratum and full diagnostic-retention limitation remain. Parent owns notifications.
