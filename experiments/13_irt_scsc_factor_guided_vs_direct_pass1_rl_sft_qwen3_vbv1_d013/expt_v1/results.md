@@ -4,7 +4,7 @@
 
 **TLDR:** The single pinned design review is reconciled, 20,520 validation source hashes match, and 15 authored strict controls are reconciled against the actual scorer. Historical factor measurements, item response models and reinforcement-learning training remain unexecuted and gated.
 
-Created: 10-09-2026. Last updated: 10-09-2026 21:34:22 PDT
+Created: 10-09-2026. Last updated: 10-09-2026 22:07:00 PDT
 Status: RUNNING — design/control phase complete; experiment incomplete.
 
 | Activity | Declared denominator | Observed outcome | Meaning |
@@ -19,6 +19,8 @@ Status: RUNNING — design/control phase complete; experiment incomplete.
 | Training / selected test evaluation | not admitted | zero new updates/evaluations | no resource plan or current allocation |
 
 Counts above are exhaustive deterministic receipts, `p-val=n/a`; no efficacy statistic or uncertainty interval is implied. The printed-error control has Lean compile exit zero but a failed frozen kernel probe, so strict is zero. Its first failure is a wrong authored expectation, not a reason to loosen the oracle. Raw compile logs/parsed axiom evidence remain private; complete raw probe retention is still required for the declaration adapter.
+
+10-09-2026 22:07 PDT recovery update: parser-backed `DeclarationProbe.lean` and `declaration_adapter.py` passed 30 controls in 166.96 seconds using pinned Lean v4.22.0, the frozen compiler and kernel probes. L1 (`3561c7db…`) and F0/F1 (`7fa69649…`, `a7a55b06…`) are frozen before any historical factor execution. The required opaque 21,504-cell equality audit is unimplemented, so no historical comparison, G0/G1, item-response fit or training is claimed.
 
 Canonical next unit: `PHASE0_READY.json` and `RUNBOOK.md`. Train/validation/test separation, the original failed technical gate in `09_qwen3_1p7b_grpo_scsc_scalar_vs_factor_feedback_vbv1_d013`, and the exhausted layout allowance/no transferable lease in `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test` remain binding. The known partial-reward gaming vulnerability is recorded, with mutation/coverage controls and a frozen pilot stop rule; it is not claimed solved.
 
