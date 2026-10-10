@@ -1,37 +1,37 @@
 {
   "round": 5,
   "n_selected": 50,
-  "n_completed": 26,
-  "complete": false,
+  "n_completed": 50,
+  "complete": true,
   "C1": {
-    "n_tests": 293,
-    "n_pass": 293,
+    "n_tests": 591,
+    "n_pass": 591,
     "fraction": 1.0,
     "threshold": 0.98,
-    "passes": false
+    "passes": true
   },
   "C2": {
-    "n_C1_passing_tasks": 26,
-    "n_recovered": 25,
-    "fraction": 0.9615384615384616,
+    "n_C1_passing_tasks": 50,
+    "n_recovered": 48,
+    "fraction": 0.96,
     "threshold": 0.95,
-    "passes": false
+    "passes": true
   },
   "C3": {
-    "n_compiling_mutants": 26,
-    "n_killed": 23,
-    "fraction": 0.8846153846153846,
+    "n_compiling_mutants": 50,
+    "n_killed": 44,
+    "fraction": 0.88,
     "threshold": 0.6,
-    "passes": false
+    "passes": true
   },
   "C4": {
-    "n_pairs": 26,
-    "n_rejected": 25,
-    "fraction": 0.9615384615384616,
+    "n_pairs": 50,
+    "n_rejected": 49,
+    "fraction": 0.98,
     "threshold": 0.95,
-    "passes": false
+    "passes": true
   },
-  "all_controls_pass": false,
+  "all_controls_pass": true,
   "source_hashes": {
     "extract_hidden_tests.py": "02b20ec56c6a0930bdd94e12d28ac32031e8e7f80d0e8724e6ace2531a6d45ba",
     "fixture_inputs_e12.py": "7956e514b63ab4d99fa71dd802a8268c9b90aa4d8cf865b8300f380f8a9ed6c1",
@@ -40,5 +40,5 @@
     "controls_e12.py": "536a70569f776930c057b4e475b4d50ef7e4da7ba757c9cb77286f0a720753c9",
     "mutation_helpers_e12.py": "e80d0ee2d29fe0f8f015ed14fe08152d5f5f70a45f0635210755b7bafb42c75e"
   },
-  "snapshot_time": "10-09-2026 16:59 PDT"
+  "snapshot_time": "10-09-2026 17:13 PDT"
 }

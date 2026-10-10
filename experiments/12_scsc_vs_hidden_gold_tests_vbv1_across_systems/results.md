@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/results.md>
 
-Experiment `12_scsc_vs_hidden_gold_tests_vbv1_across_systems` phase A passed Amendment A1 input checks and 100/100 compilation reproductions; all four adapter controls are rerunning under prospective Amendment A2 with zero experiment model calls.
+Experiment `12_scsc_vs_hidden_gold_tests_vbv1_across_systems` phase A passed Amendment A1 input checks and 100/100 compilation reproductions; all four adapter controls passed under prospective Amendment A2 with zero experiment model calls.
 
-**Status:** RUNNING under prospective Amendment A2 (`a7c2ea2`). Round-2 failure retained below; corrected round-5 controls running. No real-candidate hidden outcomes.
-**Last updated:** 10-09-2026 16:59 PDT
+**Status:** RUNNING under prospective Amendment A2 (`a7c2ea2`). Round-2 failure retained below; round-5 controls PASS; protocol lock is next. No real-candidate hidden outcomes.
+**Last updated:** 10-09-2026 17:13 PDT
 
 The smooth conjunctive score for code verification (SCSC) combines internal consistency of tests (IC_tests), internal consistency of proofs (IC_proofs), and formal specification coverage (FSC). Under the prospective [Amendment A1](PROTOCOL.md#8-amendment-a1-10-09-2026-master-before-any-hidden-test-outcome), the system score is the geometric mean of the three factor means over one common measured cohort. Published-value checks reproduce each source’s own convention.
 
@@ -22,7 +22,7 @@ The smooth conjunctive score for code verification (SCSC) combines internal cons
 | Round-2 renamed-gold control C2 | FAIL, 2/50 tasks (4%); superseded prospectively by A2 | Required ≥95%; all 50 renamed modules compile, 48 have ambiguous mappings; [round-2 receipts](expt_v1/results/controls_e12_round2.json) |
 | Round-3b controls C1–C4 | COMPLETE, failed admission | C1 591/591; C2 47/50; C3 42/48 with two unavailable mutants; C4 49/50 |
 | Round-4 controls C1–C4 | COMPLETE, failed admission | C1 591/591; C2 48/50; C3 43/49 with one unavailable mutant; C4 49/50 |
-| Round-5 controls C1–C4 | RUNNING | Same 50 tasks; helper-mutation fallback; all expectations unchanged |
+| Round-5 controls C1–C4 | PASS, all 50 tasks | C1 591/591; C2 48/50; C3 44/50; C4 49/50; [full receipts](expt_v1/results/controls_e12.json) |
 | Protocol lock and real candidate evaluation | NOT STARTED | All adapter controls must pass first |
 
 ## Factor inputs under A1
@@ -55,11 +55,11 @@ Complete round 3b is archived in [controls_e12_round3b.json](expt_v1/results/con
 
 Round 4 corrects extraction of literal input fixtures: a zero-argument alias with a closed literal body is expanded only when every occurrence is inside an implementation-call argument. Expected-result aliases, nonliteral bodies and constants directly under test are not expanded. This preserves the gold test’s fixed input instead of incorrectly re-pointing it to candidate data. No gold function body or definition enters a bridge. [Reconciliation](expt_v1/results/fixture_input_normalization.json) retains all 10,534 tests and original text, with 23 aliases / 70 tests / 10 tasks normalized; the same 50 control task IDs remain. C3 adds a string-literal fallback only after all existing operator/numeric edits fail to compile. Existing successful mutant selections do not change. All four controls rerun in full, with two low-priority Lean workers. [Current round-4 snapshot](expt_v1/results/controls_round4_status.json): 50/50 tasks; C1 591/591, C2 48/50, C3 43/49, C4 49/50. The string-repeat fallback now compiles and is detected.
 
-Round 4 is archived unchanged in [controls_e12_round4.json](expt_v1/results/controls_e12_round4.json). Its sole failed gate is the missing Floyd–Warshall mutant: both tested entry functions delegate to helpers and contain no direct operator/literal mutation. Round 5 adds a final reachable-helper fallback after all direct attempts, preserving source-order selection and every previously successful mutant choice; it reruns all four controls on all 50 tasks. Mapping, tests and expectations stay fixed. [Round-5 live snapshot](expt_v1/results/controls_round5_status.json): 26/50 tasks; gold 293/293, renamed 25/26, mutants killed 23/26, wrong-task rejection 25/26.
+Round 4 is archived unchanged in [controls_e12_round4.json](expt_v1/results/controls_e12_round4.json). Its sole failed gate is the missing Floyd–Warshall mutant: both tested entry functions delegate to helpers and contain no direct operator/literal mutation. Round 5 adds a final reachable-helper fallback after all direct attempts, preserving source-order selection and every previously successful mutant choice; it reruns all four controls on all 50 tasks. Mapping, tests and expectations stay fixed. [Round-5 live snapshot](expt_v1/results/controls_round5_status.json): 50/50 tasks; gold 591/591, renamed 48/50, mutants killed 44/50, wrong-task rejection 49/50; every gate passes.
 
-The evaluator and analysis code are prepared, including A1/A2 sensitivities and per-step shares; neither has evaluated model hidden outcomes. The lock still requires all four controls to pass. Deterministic checks: 32 experiment-local tests pass, including synthetic statistics cases; repository suite 204 passed / 24 skipped.
+The evaluator and analysis code are prepared, including A1/A2 sensitivities and per-step shares; neither has evaluated model hidden outcomes. All four controls passed; publication of the lock precedes candidate evaluation. Deterministic checks: 32 experiment-local tests pass, including synthetic statistics cases; repository suite 204 passed / 24 skipped.
 
-## Control result and structural blocker
+## Historical round-2 control result and structural blocker
 
 The hidden suites contain only extracted statements and symbol metadata; bridges import candidate modules and evaluate the re-pointed propositions, without gold implementations. The 100-file compile sample and all control selections were fixed before their results. Original references, candidates and factors remain unchanged; renamed controls are private copies.
 
@@ -72,7 +72,7 @@ MyFreeLiveHandle.e12renamed0000 (live : ℕ) : Bool
 MyFreeLiveHandle.e12renamed0001 (live : ℕ) : Bool
 ```
 
-No tie-breaking by source order, body contents, naming conventions or hidden-test success has been introduced. The protocol remains **NOT LOCKED**. At round 2, continuation required a prospective clarification; Amendment A2 now supplies it while preserving the failed receipt and thresholds. An implementation-only change that preserves strict uniqueness cannot fix these witnesses. The master supplied A2 before any real-candidate outcome.
+At round 2, no tie-breaking by source order, body contents, naming conventions or hidden-test success had been introduced. The protocol remains **NOT LOCKED**. At round 2, continuation required a prospective clarification; Amendment A2 now supplies it while preserving the failed receipt and thresholds. An implementation-only change that preserves strict uniqueness cannot fix these witnesses. The master supplied A2 before any real-candidate outcome.
 
 Round 1 is preserved: gold self-tests 570/590 (96.61%); renamed recovery 1/47 gold-passing tasks (2.13%). [Round-1 receipts](expt_v1/results/controls_e12_round1.json) remain unchanged. Round 2 fixed equation-definition parsing, projection renaming and structural `Except` equality. It retains all 10,429 original extracted statements and adds 105 previously missed statements, before any real-candidate hidden outcome. The current extraction contains 10,534 tests on 882 tasks, with 14 `no_tests` tasks.
 

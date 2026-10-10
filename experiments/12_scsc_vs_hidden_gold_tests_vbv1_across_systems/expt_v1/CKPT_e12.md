@@ -5,14 +5,14 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 16:59 PDT
+**Last updated:** 10-09-2026 17:13 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
 - **Worker:** Codex CLI 0.154.0, personal ChatGPT login, `gpt-6-astra` / high, host `skampere1`, tmux `oct9-codex-rl4cv-e12-hidden-gold-tests`; effective sandbox danger-full-access, approval never. Supersedes the Claude launch, which failed due to exhausted personal Claude credits.
 - **Frozen forecast:** `expt_v1/forecasts/e12_phase_a_forecast.json`, SHA-256 `b29b71b7166b80df653220ddddec4b865a622ef9abc1fa42c6c1e559b067b0c5`, frozen 2026-10-09T21:35:33Z at git head `e851c02`.
 - **State:** RUNNING under Amendment A2 (`a7c2ea2`); all three forecasts verified; round-2 controls archived unchanged.
-- **Next command:** `tail -n 3 /lfs/skampere1/0/brando9/rl4cv_e12/controls_round5.log`; active tmux window `e12-controls-r5`.
+- **Next command:** publish complete controls, then `PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/lock_e12.py`; commit/push lock before `evaluate_e12.py`.
 
 ## Log
 
@@ -142,3 +142,10 @@
 - 10-09-2026 16:51 PDT round-5 milestone: 10/50 tasks; gold 122/122, renamed 10/10, mutants killed 9/10, wrong-task rejection 9/10. No timeouts in completed receipts; two low-priority Lean workers active. Published `2b36cfb` after merging concurrent experiment-10 work; merged repository tests 204 passed / 24 skipped. Next: finish controls, publish complete receipts, lock and push before any real-candidate outcome.
 
 - 10-09-2026 16:59 PDT round-5 midpoint: 26/50 tasks; gold 293/293, renamed 25/26, mutants killed 23/26, wrong-task rejection 25/26. The known heap rename failure is reproduced; all completed tasks have compiling mutants. All three forecasts reverified, and the archived round-2 receipt is byte-identical to `02b59d4`. No lock or real-candidate outcome; worker active. Last publication `8a44a67`.
+
+### 10-09-2026 17:13 PDT — all four admission controls PASS
+
+- Round 5 finished all original 50 tasks, exit 0: C1 591/591 (100%, ≥98%); C2 48/50 (96%, ≥95%); C3 44/50 compiling mutants detected (88%, ≥60%, all 50 constructed); C4 49/50 wrong-task pairs rejected (98%, ≥95%). All gates PASS; no timeouts.
+- Only outcome change from complete round 4 is Floyd–Warshall C3: fourth attempted edit, `optAdd` addition changed to subtraction, compiled and 4/12 hidden tests failed. All prior controls/mutant choices unchanged. Same normalized graph inputs preserved.
+- All six implementation hashes match the receipts; selection equals the frozen 50 tasks; all three forecast verifications PASS; real-candidate outcome file absent. Protocol remains unlocked pending publication of this milestone, then lock and push before evaluation.
+- Deterministic verification remains 32 local tests and 204 repository tests passed / 24 skipped. No source change since those checks. Two control workers have exited; status remains RUNNING for the full evaluation/analysis phase.
