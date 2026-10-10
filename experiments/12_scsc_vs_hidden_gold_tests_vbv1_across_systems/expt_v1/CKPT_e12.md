@@ -5,7 +5,7 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-10-2026 04:44 PDT
+**Last updated:** 10-10-2026 05:09 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
@@ -229,3 +229,7 @@ Report presentation prepared while evaluation continues: expose primary and seco
 - 10-10-2026 04:44 PDT evaluation milestone: 5,250/5,386 unique jobs; 43,704/43,840 cell records. 5,250 candidate receipts: 0 timeouts, 0 infrastructure retries. All three forecasts and every locked source/input hash reverified. Process/exit/log monitor checked separately before publication. Last publication `4fd8fc8`. Continue the unchanged full cohort; analyses and manual disagreements remain pending.
 
 - Hourly instruction refresh at 10-10-2026 04:44 PDT: unchanged `a2e2cfc`; shared host load 349.01/343.12/349.99. Two nice-10 single-thread Lean workers remain active.
+
+- 10-10-2026 05:09 PDT evaluation milestone: 5,386/5,386 unique jobs; 43,840/43,840 cell records. 5,386 candidate receipts: 0 timeouts, 0 infrastructure retries. All three forecasts and every locked source/input hash reverified. Process/exit/log monitor checked separately before publication. Last publication `3fb8577`. Continue the unchanged full cohort; analyses and manual disagreements remain pending.
+
+- Evaluation completed successfully at 10-10-2026 05:09 PDT: exit 0; 43,840 unique cell keys exactly equal the frozen manifests; outcome SHA-256 `e21a4a512784fff53a61af67cd609cc11548d70feb9b2ba6ca24904f627bdbb9`. All 5,386 receipts audited with zero timeouts and zero infrastructure retries. Next: launch `analyze_e12.py` using the pinned analysis virtual environment, one BLAS thread, seed 20261009, then inspect the selected 20 disagreements and publish final results.
