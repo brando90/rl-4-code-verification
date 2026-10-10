@@ -1,0 +1,17 @@
+{
+  "recorded_at": "10-09-2026 22:50:40 PDT",
+  "kind": "append_only_audit_v2_metadata_erratum",
+  "frozen_file": "L1_audit_v2.json",
+  "frozen_file_raw_sha256": "1016830614dbecfa04c307c9274041e7a715b11b1bbfd84c4810e5dffbbc2ae2",
+  "frozen_canonical_binding": "c1bcff67ae1efe57e1c96a83f736cec2e793ea6f75711cd1f1a68bfb544b89d0",
+  "incorrect_field": "audit.opaque_base_audit_py_sha256",
+  "incorrect_value": "9d841833287db8787637cf7a0ea033c37b8616cf7c79df2f4f4aa3c90d243fa1",
+  "correct_existing_frozen_field": "adapter.opaque_base_audit_py_sha256",
+  "correct_value": "a1cb77ff211fbcb2e7f799a1cfac29993a3b21da3c52de269064f0fea58d7a16",
+  "discovered_after_measurement_started": true,
+  "frozen_bytes_changed": false,
+  "scientific_code_changed": false,
+  "sealed_outcomes_read_by_recovery_master": false,
+  "effect": "Duplicate hash fields conflict. Correct frozen adapter field matches measured program. No claim that every frozen metadata field agreed prospectively; preserve conflict and chronology. This erratum does not admit G0/G1 or alter forecasts.",
+  "audit_scope_limitation": "Audit stores private scalar factors/strict equality, but drops complete parser/compiler/kernel diagnostics returned by adapter. Do not treat this audit as the full factor-measurement evidence required by PROTOCOL section Scoring. A separate source-bound train/validation measurement receipt implementation is required before downstream factor gates."
+}

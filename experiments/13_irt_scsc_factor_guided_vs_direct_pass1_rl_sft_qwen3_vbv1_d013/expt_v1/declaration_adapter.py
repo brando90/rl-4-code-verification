@@ -94,6 +94,7 @@ def inspect_source(
     scorer_root: Path,
     expected_sha256: str | None = None,
     vacuous_count: int = 0,
+    truncated: bool = False,
     lake: str = "lake",
 ) -> dict[str, Any]:
     """Measure one immutable source with Lean spans, official compilation, and kernel cones."""
@@ -103,6 +104,8 @@ def inspect_source(
         raise AdapterError("source hash mismatch; deleted or replaced cell rejected")
     if type(vacuous_count) is not int or vacuous_count < 0:
         raise AdapterError("vacuous_count must be a nonnegative integer")
+    if type(truncated) is not bool:
+        raise AdapterError("truncated must be a boolean")
     parsed = _probe(source_path, lake_dir=lake_dir, lake=lake)
     source = source_path.read_text(encoding="utf-8")
     command_rows = [row for row in parsed if row.get("event") == "command" and row.get("declaration_kind")]
@@ -144,11 +147,12 @@ def inspect_source(
         vacuous_count=vacuous_count, declarations_ok=d_num / d_den if d_den else 0.0,
         implementation_and_examples_ok=bool(t_den and t_num == t_den),
         proved_fraction=p_num / p_den if p_den else 0.0,
+        truncated=truncated,
     )
     strict = reward_kernel_binary(ScoredResponse(
         extracted=dense.extracted, compiles=dense.compiles, n_examples=dense.n_examples,
         n_theorems_stated=dense.theorem_count, n_theorems_proved=dense.proved_count,
-        vacuous_theorems=vacuous_count,
+        vacuous_theorems=vacuous_count, truncated=truncated,
     ))
     return {
         "source_sha256": actual_sha, "declarations": [asdict(d) for d in declarations],
