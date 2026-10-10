@@ -5,7 +5,7 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 17:56 PDT
+**Last updated:** 10-09-2026 18:31 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
@@ -165,3 +165,5 @@
 - 10-09-2026 17:33 PDT evaluation milestone: 100/5,386 unique jobs; 38554/43,840 cell records. 106 candidate receipts inspected for operational status: 0 timeouts, 0 infrastructure retries. Forecasts and every locked source/input hash reverified. Runner and both Lean children active; full-cohort analyses remain pending. Last published launch `58ac188`.
 
 - 10-09-2026 17:56 PDT evaluation milestone: 250/5,386 unique jobs; 38,704/43,840 cell records. 256 candidate receipts: 0 timeouts, 0 infrastructure retries. Forecasts and every locked source/input hash reverified. Runner/two Lean children active; no fatal log error. Last publication `16c63b8`. Shared-instruction hourly refresh at 17:36 PDT was unchanged (`1b35660`). Read-only monitor: `python3 /lfs/skampere1/0/brando9/rl4cv_e12/poll_e12.py`; it checks progress age, runner/children, exit marker and fatal log errors.
+
+- 10-09-2026 18:31 PDT evaluation milestone: 500/5,386 unique jobs; 38,954/43,840 cell records. 503 candidate receipts: 0 timeouts, 0 infrastructure retries. Forecasts and all locked source/input hashes reverified. Both priority-10 Lean workers active; no fatal log error. Last publication `53e5013`. Full-cohort analyses and manual disagreements still pending.
