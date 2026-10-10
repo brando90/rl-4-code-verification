@@ -180,3 +180,4 @@
 
 - 10-09-2026 21:43 PDT evaluation milestone: 1,750/5,386 unique jobs; 40,204/43,840 cell records. 1,751 candidate receipts: 0 timeouts, 0 infrastructure retries. All three forecasts and every locked source/input hash reverified. Process/exit/log monitor checked separately before publication. Last publication `8600731`. Continue the unchanged full cohort; analyses and manual disagreements remain pending.
 - Shared-instruction refresh at 21:22 PDT was unchanged (`a2e2cfc`). Host load averages 380.86 / 406.29 / 423.74; two priority-10 single-thread Lean workers retained.
+- Publication synchronized concurrent upstream `41aaf6b` (experiment 13) by a conflict-free merge; merged repository verification: 227 passed / 24 skipped. Experiment-12 locked implementation and inputs unchanged.
