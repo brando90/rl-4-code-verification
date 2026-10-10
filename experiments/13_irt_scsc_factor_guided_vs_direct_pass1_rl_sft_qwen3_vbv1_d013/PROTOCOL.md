@@ -1,206 +1,119 @@
-# Experiment 13 protocol (DRAFT, not locked): factored and IRT-guided RL vs strict-reward RL from Qwen3-4B SFT on VeriBench V1
+# Experiment 13 protocol: factored and item-response-guided reinforcement learning versus strict reward
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/PROTOCOL.md>
 
-**TLDR:** This draft fixes the definitions, gates, arms, budgets, analysis and forecasts for [experiment 13](README.md):
+**TLDR:** Reviewed prospective design for `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013`; study locks are still pending. Strict scoring stays unchanged; controls, predictive validation, pilot admission and main training have separate locks so each prerequisite can actually run.
 
-1. Per-declaration partial-credit factors (Phase 0).
-2. A conjunctive item response theory (IRT) model validated against held-out pass@1 and pass@k (Phase 1).
-3. Four GRPO (group relative policy optimization) arms from the same supervised fine-tuning (SFT) checkpoint (Phase 2).
+Created: 10-09-2026. Reconciled: 10-09-2026, one Codex `gpt-6-astra` / `ultra` review of the Claude design and Terra preparation. `REVIEW_REQUEST.json` is immutable historical input; `expt_v1/REVIEW.md` records its findings and this superseding design. No new historical partial-credit outcome has been read. All thresholds below are prospective agent-chosen criteria, not established statistical guarantees.
 
-Thresholds are agent-suggested; Brando may edit them until the matching lock. Lock 1 precedes any Phase 0 or Phase 1 outcome; lock 2 precedes the main RL runs.
+## 1. Locks and admission order
 
-**Draft status:** written 10-09-2026 by Claude Code (`claude-opus-5-5`) for Brando. Not locked; no outcome has been read except the zero-call design evidence in the README (`design_evidence/`), which motivates the design and is not a study outcome.
-
-## 1. Locks
-
-| Lock | Freezes | Before |
+| Lock / stage | Frozen before execution | Admitted work |
 |---|---|---|
-| L1 | §§ 3–4: scorer definition, controls, G0 and G1 metrics and thresholds, Phase 1 model set and validation splits, forecasts F0–F2 | Any per-declaration score of a study output, any Phase 1 fit |
-| L2 | §§ 5–8: start checkpoint hash, trainer, sampler, hyperparameters, arms, budgets, seed count, evaluation schedule, analysis, forecast F3 | The first main-run update (pilot outcomes may set the seed count and horizon by the rules in § 5) |
+| L0 control lock | scorer and adapter hashes, toolchain, authored fixtures and expected strict labels, source inventory rules | deterministic authored controls and manifest preparation; no historical factor measurement |
+| L1 measurement lock | declaration adapter bytes, full source/cell manifests, split/group hashes, G0/G1 definitions, model/feature/fold implementation and forecasts F0/F1 | historical strict reproduction, then G0, then G1 |
+| LP pilot lock | passed G0; C additionally G1/H2; train-only data/screens; exact checkpoint, trainer/config, probability probe, device allocation and bounded pilot resource plan | T1; only after T1, T2/T3 and throughput T4; only after these, fixed learning pilot T5 |
+| L2 main lock | all applicable technical/scientific gates, measured pilot costs plus reserve, seeds, full main/evaluation manifest, F3, current device lease | main runs and frozen evaluation schedule |
 
-Freeze each forecast with `rl4cv.forecast.freeze_forecast` before reading the outcome it predicts. Forecasts are append-only. Later changes are numbered amendments that state what had been seen.
+L0 does not require reproduction to have passed. L1 authorizes reproduction before requiring it for G0/G1. LP precedes the pilot; L2 follows it. H2's train generation needs LP's resource/probability admission but not its own future H2 outcome or C's admission. No human reapproval is added: the existing Stanford Network Analysis Project (SNAP) preapproval covers this task within existing resources. No current allocation exists. The 260–350 A100-device-hour figure is an unverified estimate, not a lease or spend allowance.
 
-## 2. Populations and splits (D-013)
+Use `rl4cv.forecast.freeze_forecast`; forecasts and locks are append-only. Record observed information at each lock. These are prospectively frozen analyses of historical outputs, not claims that the historical strict outcomes were unknown. F2 freezes before independent train batch 2; F3 before any main update. Implementation changes after outcomes require a numbered amendment listing seen outcomes and cannot retroactively pass a failed gate.
 
-- **Splits.** VeriBench V1 is split train 539 / validation 135 / test 222, using the manifest in experiment 08's `expt_v1/results/split/`.
-- **Training data.** Training, and every input to arm C's reward and sampler, use train-split tasks only.
-- **Validation.** Phase 0 measurements, Phase 1 validation and checkpoint selection use validation tasks.
-- **Test.** The test split is generated and scored once per selected checkpoint.
-- **Reporting.** Report core (152) and IndustrySet (70) test results separately as well as pooled.
+## 2. Populations and data separation
 
-## 3. Phase 0 — per-declaration scorer and G0 (CPU)
+Decision D-013: VeriBench version 1 train 539 / validation 135 / test 222. Split source: `../08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/split/`. Group by its `group_id`, so duplicates and security pairs remain together. Record its exact hashes before any outcome join. All training, train item parameters, prompt sampling, placebo calibration and reward calibration use train only; screen external inputs with `rl4cv.screens` against validation and test. Validation selects designs/checkpoints but never enters reward-fitting tensors, replay, gradients or train prompt text. Test outputs/reference content remain sealed from designers until the selected checkpoints and all analysis choices are frozen.
 
-### Scorer
+The historical inventory distinguishes 24 declared validation policies (25,920 cells) from 19 available policies (20,520 cells), including 15 supervised fine-tuning (SFT) checkpoints. Five unavailable 14B rungs (5,400 cells) remain pending in the ladder ledger; no new generation is authorized by this control study. The fixed available historical-control cohort is all 20,520 cells, not a claim of completing the 25,920-cell ladder.
 
-Lean v4.22.0, the VeriBench-pinned toolchain. The scorer compiles each extracted file once, collects per-declaration errors, and runs `#print axioms` for every stated theorem.
+The complete historical comparison in `05_qwen3_base_models_vbv1_g8_pass_signal_sft_derisk` has 21,504 cells. Its 3,240 validation cells overlap the base portion of the ladder and must be cached once by source hash and reused, never counted as independent observations. Its train cells may enter integrity checks; test cells enter only an opaque, precommitted equality audit. That audit has a separate output directory and exposes only manifest hashes, total/missing counts and equality PASS/FAIL, never labels, factors or task-specific discrepancies to the design/fit process. Freeze the adapter on train/validation first. A sealed-audit discrepancy blocks admission; diagnostic unsealing would require an explicit chronology amendment and invalidates the original test claim. The ordinary `e13` control harness rejects test rows. Do not silently replace the full 21,504-cell control with a validation subset.
 
-- `e ∈ {0,1}`: Lean was extracted and the output was not cut off at the token cap.
-- `d ∈ [0,1]`: the fraction of top-level declarations that elaborate without an error message.
-- `t ∈ {0,1}`: every implementation `def` and every `example` elaborates without error. `native_decide` is allowed only in examples, as VeriBench allows.
-- `p ∈ [0,1]`: the fraction of stated theorems whose axioms are within {`propext`, `Classical.choice`, `Quot.sound`}. A theorem with an error, `sorry`, `admit`, a declared axiom or `native_decide` fails.
-- Guards:
-  - `v ∈ {0,1}`: the existing non-vacuity screen (`rl4cv.rewards.is_vacuous_statement`).
-  - `n_thm`: the stated-theorem count, logged against the reference's count.
-- Strict = `e · 1[d = 1] · t · 1[p = 1] · v · 1[n_thm ≥ 1]`.
+Other full-set historical sources (experiments 01 and 103) can be joined only through the frozen validation allowlist; their inclusion/availability must be locked before fitting. They are supplementary, not substitutes for the prescribed ladder forecasts. The SWE-bench analysis is separate and cannot qualify the VeriBench gates.
 
-### Controls (all required)
+## 3. Phase 0: scorer equivalence and partial-credit usefulness
 
-1. **Authored files**, one per condition, each with the expected component values:
-   - one failed proof among proved ones;
-   - a syntax error in the implementation;
-   - `sorry` in one theorem;
-   - `native_decide` in a theorem;
-   - a vacuous theorem;
-   - a truncated file;
-   - a file with no theorem.
-2. **Exact reproduction of `kernel_binary`** on every known cell of experiment 08's ladder (20,520 cells) and experiment 05 (21,504 cells). Any mismatch fails the control until explained and fixed by an amendment.
+The strict oracle is the frozen VeriBench scorer at `59059a20d40adf3289869e58302169ad78102877`, with `--skip-tc`, combined with the existing source-specific readback and vacuity screen. Source hashes are in `expt_v1/SOURCE_EVIDENCE.json`. Preserve the extraction pin `c11b99badfa386fd26810b208eef1eb8dc9f6806`.
 
-### G0, measured on existing validation outputs
+`kernel_binary` requires extracted source, official whole-file compile success, at least one example, at least one named theorem, every named theorem proved using only `{propext, Classical.choice, Quot.sound}`, and no vacuous theorem. The existing syntactic vacuity screen is a heuristic, not semantic correctness. Preserve both its theorem-type screen and file-pattern checks from the historical adapter. An unparseable theorem type stays unmeasured.
 
-| Metric | Threshold |
-|---|---|
-| Strict reproduction (control 2) | 100% of known cells |
-| Dense-only share: SFT 4B full-schedule validation tasks whose 8 strict outcomes are equal but whose arm-B score varies | ≥ 0.15 (forecast F0: 0.50) |
-| Predictive validity within each size: among tasks with strict rate 0 at the 50% rung, AUC of mean arm-B score for "strict rate > 0 at the 100% rung" | ≥ 0.65 for the 4B size; reported for 1.7B and 8B |
+A token-cap finish is metadata, not an automatic strict zero: a complete extracted file that passes the old scorer still passes. Empty extraction is zero; a truncated invalid file fails compilation. The initial whole-file compilation follows exit status, not a count of diagnostic-looking strings. Preserve the official post-probe status too: the pinned kernel-probe parser rejects the authored `error:`-printing fixture despite Lean exit zero. This known false rejection stays part of the frozen oracle; this task does not relax it. A top-level command can fail outside any declaration. The strict channel never derives compilation from a declaration fraction.
 
-If G0 fails, stop arms B and C (README decision rules).
+The experimental adapter separately records `d` (clean declarations / declared declarations), `t` (all implementation definitions and examples clean), and `p` (proved named theorems / stated named theorems, including retained declarations after failures). Zero denominators give zero. Record integer numerators/denominators, fully qualified names, source spans, diagnostics, kernel dependency cones, unknown statuses and source hash. A failed parse/probe is missing, never silently a proof failure or success. Elaborator-created `sorryAx` taint propagates through dependent declarations. Do not edit a failed proof into `sorry` and treat the edited file as the submitted source.
 
-## 4. Phase 1 — the measurement model and G1
+Arm B remains the prespecified experimental reward:
+`0` without extraction, an example, a theorem, or the vacuity guard; otherwise `(max(.01,d) max(.01,t) max(.01,p))^(1/3)`, with official strict successes exactly `1`.
+The floor is fixed before outcomes. This is a partial-credit hypothesis, not an established measure of coverage. Padding with easy declarations, deleting hard obligations and replacing useful statements with easy nonvacuous statements can increase it. The executable counterexample is retained in `tests/test_e13_controls.py`; it must never be described as an anti-gaming guarantee.
 
-### Data
+Required authored controls cover: valid file; no example; no theorem; empty extraction; valid file at cap; invalid truncated syntax; one failed proof followed by a valid theorem; `sorry`; a `sorry` helper tainting a theorem; `native_decide` in a named theorem versus in an example; declared axiom; syntactic vacuity; top-level command failure; printed error-looking text. The future declaration adapter additionally handles namespaces, multiline declarations, nested comments, attributes, duplicate names and an unparsed trailing command. Compare the actual pinned scorer and adapter, not two copies of a formula.
 
-The models are fit to per-component outcomes (`e`, `d`, `t`, `p`, strict) from:
+Before admitting B/C training, freeze and run train-only mutation audits (padding, deletion and substitution) and a coverage-monitor manifest. Report every reward-increasing mutation and its strict/coverage change. A known vulnerability alone is not an efficacy result; the gate requires the audits, functioning independent coverage checks and a frozen stop rule. During the pilot, stop B/C if their mean reward increases while their mean theorem count or available train coverage drops more than 10% relative to their own start on the fixed audit cohort; never retune rewards in this version. Hidden gold-test coverage and validated formal-specification coverage (FSC) gates are independent. If these checks cannot run, only technical preparation is admitted. H5 remains unproven without all its measurements.
 
-- experiment 08's ladder: 19 policies × 135 validation tasks × 8 samples;
-- experiment 05: 3 × 896 × 8;
-- experiment 01: 9 × 896 single responses;
-- VeriBench experiment 103's seven single-call frontier models × 896, re-scored from their saved Lean files.
+Historical controls require exact cell-ID sets, source hashes, source-specific old labels and split membership. Verify complete input bytes, not only row counts. Missing sources/statuses remain in the declared denominator and block reproduction. Reuse existing raw sources; aggregated counts cannot supply partial factors.
 
-SWE-bench side: experiment 07's `per_cell_e07.jsonl.gz`, 164 systems × 424 tasks, with components gate, T_fix and T_keep and target `resolved`.
+G0 (after complete historical equality controls): dense-only share among 135 full-schedule 4B validation tasks is at least .15; within tasks whose 50%-rung strict rate is zero, area under the receiver-operating curve (AUC) for predicting any 100%-rung strict success from mean 50%-rung B is at least .65. Use all eight samples/task. Report numerator/denominator and a grouped-task bootstrap 95% interval (10,000 draws); Wilson is only a secondary ungrouped diagnostic. AUC with one outcome class is undefined and fails admission. Report 1.7B/8B as prespecified secondary strata. G0 failure stops B/C and reports a negative result; it does not prove all possible factored rewards useless.
 
-### Models
+## 4. Phase 1: identifiable prediction, then a separate train reward
 
-- **M0:** the empirical per-task strict rate for a policy.
-- **M1:** the arm-B score, mapped to probability by monotone regression fit on training folds.
-- **M2:** a 2PL model on strict only, `P = σ(a_j(θ_i − b_j))`.
-- **M3:** conjunctive multicomponent, `P(strict) = Π_k σ(a_jk(θ_ik − b_jk))` for k ∈ {t, p}. Here `e` is modeled as a logistic factor with policy-specific length behavior, and `d` and `p` as binomial over declarations and theorems.
-- **M3e:** M3 with `b_jk = f_k(task features)` (Python-source embedding, reference theorem count, domain, source lines) and `θ_ik = α_k + β_k · log(SFT tokens)` within a model size.
-- **Fitting:** maximum a posteriori with N(0, 1) priors on abilities and N(0, 2) on difficulties, plus log-normal priors on discriminations. The R package `GMLTM` implements the multicomponent model family; a direct PyTorch or NumPyro fit is equally acceptable. Record the library and version at L1.
+Strict success is deterministic given all its exact output factors. Therefore `P(strict | complete exact factors)` cannot itself be justified as a distinct posterior reward. Delete that claim. Also, `d=1` and `p=1` overlap; multiplying their marginal probabilities is not the probability of strict success.
 
-### Validation (G1)
+The primary conjunctive model uses conditional hurdles: Q1 = extraction plus example/theorem presence and syntactic non-vacuity; Q2 = whole-file compile success conditional on Q1; Q3 = all named theorems kernel-honest conditional on Q1/Q2. `P(strict)=q1*q2*q3` by the conditional chain rule. Each q is logistic `sigmoid(a_jk*(theta_ik-b_jk))`, fitted only among the corresponding risk set; missing controls are missing, not negative labels. This removes the false independence assumption. Partial fractions are auxiliary diagnostics, not additional independent likelihood terms for the same strict event.
 
-- **Leave-checkpoint-out:** fit on base and the 12.5–75% rungs; predict the full-schedule rung of each size.
-- **Leave-task-out:** 5-fold over validation tasks, grouped as in D-013.
-- **Metrics:**
-  - per-sample log-loss;
-  - AUC;
-  - Pearson and Spearman of implied vs measured pass@1 and pass@8 across held-out policies;
-  - mean error, implied minus measured.
-- **G1 passes** when M3 or M3e has lower held-out log-loss than both M0 and M1, with a task-bootstrap 95% interval of the difference excluding 0, and Pearson ≥ 0.80 for pass@1 (forecast F1: 0.85). For reference, Item Response Scaling Laws reported 0.78–0.93 on four test-time benchmarks.
-- **SWE-bench:** report the same metrics on experiment 07's matrix for resolved and pass@1. This is the input to experiments 10 and 11, not a gate here.
+Models: M0 = Beta(1,1)-smoothed earlier-rung per-task strict rate (training-fold pooled mean for an unseen task); M1 = monotone calibration of earlier-rung B, fitted on training-fold rung transitions; M2 = strict two-parameter logistic item response theory (IRT); M3 = conditional conjunctive IRT; M3e = M3 with frozen task features. All forecast the SAME later strict outcomes using only earlier-rung evidence and metadata. Concurrent-response reconstruction is a separate diagnostic, never the held-out forecast benchmark.
 
-### H2 (signal forecast)
+For each component, fix ability location/scale on training policies (mean 0, variance 1), discrimination sign positive and bounds [0.1,5], difficulty prior N(0,2), standardized-ability prior N(0,1), log-discrimination prior N(0,0.5). No rotation/mixing of named hurdle dimensions. Model held-out checkpoint ability from model size and `log1p(cumulative SFT tokens)` fitted on earlier checkpoints; base at zero tokens is finite. Never estimate a held-out ability from its scored outcomes. Unseen item parameters use training-only hierarchical posterior prediction (integrate random effects, not fitted held-out residuals); M3e uses frozen local Python-source features (source length, token counts, domain, reference theorem count) standardized only in training folds. No unpinned embedding model is needed.
 
-1. Generate two independent train-split batches from the start policy: 539 tasks × 8, Phase 2 sampler.
-2. Fit train-task parameters on batch 1.
-3. Predict mixed strict groups on batch 2. The forecast is AUC = 0.75 (F2); the gate is AUC ≥ 0.70.
+Library/version, numerical integration, optimizer, regularization and stopping settings must be in L1 before fitting. Required implementation validation: synthetic recovery with the actual missingness/risk-set pattern; likelihood invariance/location-scale tests; at least five fixed initializations with max predicted-probability disagreement <= .02 on the fixed diagnostic grid; finite gradients; posterior-predictive calibration; report empty/constant risk sets and prior-sensitive item estimates. Failure or no identifiable information blocks C, even if an optimizer converges. Priors alone do not establish identification.
 
-## 5. Phase 2 — RL arms
+Outer validation: five task-group folds with deterministic group assignment, plus 100%-rung checkpoint holdouts for each available size. All preprocessing/model selection uses inner grouped folds; select M3 versus M3e there, so the held-out gate does not choose whichever looks best. Gate the single selected candidate on both holdout schemes. Report per-sample log loss, AUC, Pearson/Spearman, both predicted/observed means, mean bias and absolute error, with grouped-task 95% intervals and policy counts. G1 requires lower log loss than BOTH M0 and M1 with paired group-bootstrap 95% intervals excluding zero, plus Pearson >= .80 across available full-schedule policies. Correlation over three sizes is descriptive and unstable, never a stand-alone validation claim. Undefined metrics, missing required folds or failed calibration/identification controls block C. Report M2 regardless of outcome; selection cannot replace a failed G1 with another metric.
 
-### Start checkpoint and trainer
+Arm C is explicitly amended to an IRT-weighted partial reward, not a calibrated success probability. Fit marginal component models for `(d,t,p)` on a connected train-only anchor panel with at least three distinct frozen policies (4B Base, 50%-SFT, 100%-SFT), each 539 tasks x 8 samples. Fix scale on these anchors and item parameters thereafter. Fraction models retain denominators and use a beta-binomial observation model; t is Bernoulli. Treat this as a composite marginal fit, without claiming conditional independence or multiplying marginals into strict probability. Eight responses from one policy cannot identify free difficulty and discrimination per task; a one-policy fit is forbidden.
 
-- **Start:** experiment 08 `sft_4B_f1p0` (Qwen3-4B Base, 658 SFT steps). Record the export hash at L2.
-- **Trainer:** one GRPO implementation for every arm: the installed NeMo RL or verl, whichever passes the technical gates first, never switched mid-study.
-- **Draft hyperparameters, to confirm at L2:**
-  - AdamW, learning rate 1e-6;
-  - clip 0.2 (upper 0.28);
-  - Kullback–Leibler coefficient 0;
-  - token-level loss normalization;
-  - G = 8;
-  - 32 prompts per update;
-  - 100 updates;
-  - maximum 8,192 new tokens;
-  - rollout temperature 1.0 with no top-k or top-p truncation;
-  - truncated importance sampling with cap 2.
+For current policy i and train task j, fix weights before sampling its group: `w_jk = a_jk*(1-q_jk) / sum_l a_jl*(1-q_jl)`, using marginal component predictions. C uses the same guards as B and `exp(sum_k w_jk*log(max(.01,x_rk)))`, with strict successes 1. Weights are fixed throughout the group; no gradient through reward fitting. Refit current abilities every ten updates from that arm's prior train rollouts with frozen item parameters; a failed fit stops C, never substitutes weights. Unit tests must check positivity, sum-to-one, constant-weight equivalence, deterministic replay and invariance to held-out data. This is a substantive prospective amendment recorded by this review.
 
-### Arm rewards and samplers
+Train batch 2 is independent of fitting/calibration. Freeze F2 before reading it; require AUC >= .70 for predicting mixed strict groups from `1-p^8-(1-p)^8`, where p is train-anchor strict forecast, with grouped intervals and all 539 tasks. Freeze the placebo distribution from the full-schedule anchor batch 1 even if C fails; B/P do not depend on a successful IRT fit. C's own partial reward must show nonzero within-group variance on at least .15 of the fixed train anchor groups with constant strict reward. Failure stops C. The anchor-generation cost and H2 scoring are included in LP, never inherited from another experiment.
 
-| Arm | Reward | Sampler |
+## 5. Phase 2: matched arms and resources
+
+Start = `sft_4B_f1p0`, 658 SFT steps, from Qwen3-4B-Base revision `906bfd4b4dc7f14ee4320094d8b41684abff8539`. Hash every exported shard, tokenizer/config and chat template before LP; the base revision is not an export hash. Use one exact trainer revision/config for all arms, frozen before T1. Choose it from the installed supported NeMo RL or verl implementation using technical compatibility, not pilot efficacy. No implementation switch after pilot outcomes.
+
+Draft recipe to freeze at LP: AdamW 1e-6, clipping lower .2 / upper .28, Kullback–Leibler coefficient 0, token-normalized loss, eight rollouts per prompt, 32 prompt groups per scheduled update, temperature 1, top-p 1, top-k disabled, 8,192 new-token cap, importance-weight cap 2. Record exact support/EOS masks and temperature in rollout and trainer. Unconstrained sampling removes filtering as one cause; it does not prove probability agreement.
+
+| Arm | Reward | Prompt sequence |
 |---|---|---|
-| A | Strict | Uniform without replacement within an epoch |
-| B | SCSC-style geometric mean of the graded components `d`, `t`, `p`, gated by `e`, `v` and `n_thm ≥ 1`. The exact form, including any floor that keeps one zero component from erasing partial credit, is frozen at L1 from Phase 0's validation distributions, before any RL outcome | Same as A |
-| C | `Π_k σ(a_jk(ẑ_r − b_jk))`, where `ẑ_r` is the rollout's MAP quality given its outcomes on the task's units (declarations, examples, theorems), using train-task unit parameters from Phase 1 (method of [arXiv 2609.35646](https://arxiv.org/abs/2609.35646)) | 0.5 uniform + 0.5 proportional to the task's information at the current policy, `Σ_u a_ju² P_ju(1 − P_ju)`, with θ refit every 10 updates from the arm's own train rollouts |
-| P | An independent draw from the empirical distribution of B's rewards on phase 1 batch 1, independent of the rollout | Same as A |
+| A | unchanged strict oracle | uniform without replacement within each epoch |
+| B | fixed partial-credit geometric mean | same prompt sequence as A/P for a given seed |
+| C | train-only weighted partial reward above | 50% uniform + 50% normalized train information, `sum_k a_jk^2*q_jk*(1-q_jk)`; uniform if all weights zero |
+| P | independent draw from fixed train-anchor B distribution | same sequence as A/B |
 
-### Matched budget
+P uses a domain-separated pseudorandom stream keyed by seed/update/group/slot, never task, response, generation length, scorer value or current B output. Freeze the empirical distribution hash. Use the reference `placebo_reward` and record draws before seeing responses. An independent placebo matches the frozen calibration distribution only; evolving reward density and group variance need measurement. B-P is content versus this particular placebo, not proof that all density effects were controlled.
 
-- Every arm generates exactly 32 × 8 rollouts per update for 100 updates.
-- Groups with zero reward variance contribute no loss in every arm.
-- Sensitivity arm A2 (only if B or C beats A): A with 2× oversample-and-filter at the same update count. It checks that A's loss was not just the missing refills.
+Every ordinary update consumes 32 complete groups of eight rollout slots, with no refills, score-based dropping or oversampling. A/B/P share a uniform prompt-group stream by cumulative group index for each seed; token-budget stopping can consume different-length prefixes of that stream. All-zero-advantage groups contribute zero policy-gradient loss; record whether the framework skips or advances the optimizer/scheduler on an all-zero batch and keep that convention identical. Distinguish scheduled update opportunities from nonzero-gradient optimizer updates. All rollout tokens, scorer calls, idle/padding time, fits and failed cells count. A2's outcome-selected extra-compute arm is removed from this version.
 
-### Seeds
+Fixed rollout counts and variable output lengths cannot also guarantee equal realized tokens. The primary H3 comparison therefore uses a common generated-token budget, explicitly amending the nominal 100-update draft. At L2 set `T = 25600 * ceil(mean generated tokens per rollout in the fixed A pilot)` using all pilot slots, independent of efficacy differences. Reserve enough resources for all arms at this T. Record the same four cumulative-token targets T/4, T/2, 3T/4 and T for every arm/seed. Generate one complete eight-rollout group at a time at a boundary; once the target is crossed, stop generation and update on the accumulated complete groups (at most 32). Do not refill, discard or resample the crossing group. The maximum overshoot is 8*8192 tokens; require the observed token-budget difference at each paired checkpoint <=1% of the target before calling it token-matched. If that bound is not achievable from the pilot-derived T, the token-matching gate fails before main; do not enlarge T after main outcomes. Empty-loss groups still count. Keep learning-rate/optimizer scheduling a precommitted function of consumed-token fraction, identical across arms, with actual partial-batch normalization frozen at LP.
 
-- **Pilot:** A × 2 seeds, B, C and P × 1 seed, 30 updates.
-- **Main:** 3 seeds per arm. Use 5 if the pilot's seed standard deviation implies a minimum detectable effect, 2.8 × standard error of the arm difference, above 4 percentage points. The count is decided at L2, before any main-run outcome.
+Freeze all prefix cell identifiers and the deterministic termination rule at L2; realized lengths, hashes and counts are receipts, not knowable in advance. All generated tokens, including the crossing group, count against resource accounting; budget the overshoot reserve. The number of optimizer updates and rollout groups can differ across arms under this primary token-matched design and must be reported. Equal-update learning curves from the pilot are secondary. No exact accelerator-hour equality is claimed: report generated/prompt/optimized tokens, accelerator hours, scorer/fit costs and each budget mismatch. C's sampler plus weights is a bundled intervention; C-B does not isolate fitted weighting.
 
-## 6. Evaluation
+Pilot: A seeds 1301/1302, other eligible arms seed 1301, 30 scheduled updates, T5 may extend A once to 60 as predeclared; any compared learning curves must use the common horizon. Main: three paired seed blocks 13011/13012/13013, each with the same locked token budget T (nominally 100 A-pilot-sized updates). Remove the unreliable two-A-seed variance rule for choosing five main seeds; no score-dependent seeds/horizon. Three seeds establish exploratory efficacy only. A larger confirmatory study is a separate prospectively funded design, not an automatic expansion.
 
-- **Sampling:** experiment 08's ladder configuration, for comparability with the start checkpoint's validation numbers.
-- **Validation:** every 25 updates, 135 tasks × 8 samples. Select the checkpoint with the highest validation strict pass@1; ties go to the later checkpoint. The same rule applies to every arm.
-- **Test:** 222 tasks × 16 samples per selected checkpoint, scored with the hash-pinned VeriBench scorer (`external/deps.lock.json`).
-- **FSC:** one sample per task, from the validated judge through Valkyrie (D-102, D-108), after route controls.
-- **Hidden gold tests:** through experiment 12's frozen adapter, if its coverage gate passed.
+## 6. Technical gates and allocation
 
-## 7. Technical gates (pilot, before any main run)
+The failure in `09_qwen3_1p7b_grpo_scsc_scalar_vs_factor_feedback_vbv1_d013` remains: 4/4,077 unsupported tokens, 367/4,073 supported-token differences above .05, zero optimizer updates, 0.553611 recorded A100 hours released. This new protocol does not relaunch or retrospectively pass that experiment. `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test` retains its exhausted 1,800-second layout probe and no transferable lease.
 
-| Gate | Requirement |
-|---|---|
-| T1 | Generation/trainer log-probabilities on a fixed probe batch: median absolute difference ≤ 0.01, 99th percentile ≤ 0.10, tokens truncated by importance sampling ≤ 1% |
-| T2 | One real update changes the weight hash; the refit generator matches trainer log-probabilities on the probe batch with median ≤ 0.01 |
-| T3 | Save and resume reproduce the next update's loss on the same batch within 1e-3 |
-| T4 | Measured seconds per update and Lean scoring latency. Recompute § 5's budget; Brando approves devices at L2 |
-| T5 | Arm A's own train strict reward, moving average over 10 updates, rises ≥ 2 percentage points from updates 1–10 to 21–30. Otherwise extend the pilot once to 60 updates; otherwise stop |
+T1: on the actual fixed unconstrained train probe, zero unsupported actions; median absolute generation/trainer log-probability error <= .01, 99th percentile <= .10, importance truncation <=1%. Finite full support and exact assistant masks required. T2: one real update changes weight hash and generator refit matches trainer median <= .01. T3: exact saved batch/RNG/optimizer/scheduler replay loss agrees within 1e-3. T4: measured device-hours/update, generated-token throughput, Lean wall-time/CPU-hours, storage growth, fit and evaluation cost. T5: A's train strict moving average increases >=2 percentage points from updates 1–10 to 21–30; extend once to 60, comparing updates 1–10 versus 51–60, otherwise stop. This is a technical feasibility selection and must be disclosed, not evidence for H3.
 
-## 8. Analysis
+Before even T1, a bounded probe resource plan and current scheduler/device ownership must exist. Before the learning pilot, T1–T4 and train coverage/mutation controls must pass. Before main runs, recompute a full cost estimate using measured per-arm length distributions and include anchor batches, both technical and learning pilot, all main arms/seeds, validation, selected tests, optional permitted judges, storage and 25% reserve. Hard-stop at the allocated cumulative limit; retain missing cells rather than exceeding it. Name devices, owner/process, scheduler allocation/start/end, `CUDA_VISIBLE_DEVICES`, headroom and cleanup. Existing preapproval authorizes using available resources, not inventing availability. No new charge or experiment-08 lease/probe transfer.
 
-### Primary estimand
+## 7. Evaluation and inference
 
-- Test strict pass@1 per arm: the mean over 222 tasks of the success rate over 16 samples, averaged over seeds.
-- Primary contrasts: B − A and C − A, Holm-adjusted at α = 0.05 (two-sided).
+Validation at the four common cumulative-token checkpoints: 135 tasks x 8 samples, exact ladder sampling/template frozen at LP. Select maximum validation strict mean, ties to the later token checkpoint. Test only the selected checkpoint: 222 tasks x 16 samples, once per arm/seed. Checkpoint step zero uses existing valid baseline receipts where compatible; no test baseline factors may define exploratory strata before freezing the main analysis. Mechanism strata come from predeclared validation/train data; test strata requiring new baseline outputs are omitted in this version.
 
-### Inference
+Primary outcome is average task strict rate (16 samples/task), averaged over seeds. Report pooled and core 152 / IndustrySet 70 separately. Primary token-budget-matched contrasts B-A and C-A; if C is gated out, its claim is unmeasured and multiplicity policy is fixed before main, not silently replaced. Report two-sided exact paired-seed sign-swap p-values under within-block exchangeability and Holm correction, including assumptions. With three blocks the minimum two-sided p is 2/8=.25 (not .05); even five would give 2/32=.0625. Hence no confirmatory alpha=.05 claim is available in this version. Ten thousand bootstrap draws resample paired seed blocks, then task groups paired across arms; intervals are descriptive given three seeds. Never resample paired arms' seeds independently or use tasks as independent training runs.
 
-- **Hierarchical bootstrap,** 10,000 draws: resample seeds within each arm, then tasks paired across arms; 95% percentile intervals.
-- **Exact permutation test over seed labels:** reported as descriptive only. With 3 seeds per arm its smallest one-sided p is 0.05, so it cannot clear the Holm threshold.
+Secondary: unbiased pass@4/pass@16, C-B/B-P/C-P, regression counts, component trajectories and reward-hacking audits. Estimate H5's differences with intervals; missing noninferiority margin/precision means “not established,” not “no harm.” FSC uses the pinned validated ensemble (not the scorer's retired built-in judge) through verified Vals Valkyrie, one preselected sample per task. Hidden gold tests require the separate frozen adapter/coverage gate. Neither an unavailable judge nor a missing hidden-test result counts as zero or as evidence of no gaming.
 
-### Secondary analyses
+Cells missing after identical-cell infrastructure retries remain in the declared denominator. Give paired common-cohort estimates and full-manifest bounds; carry every failed arm/seed/update forward. No score-based retry, replacement, model pin change or additional seed.
 
-- pass@4 and pass@16 (unbiased estimator).
-- Contrasts C − B, B − P and C − P.
-- Regressions: tasks with a start strict rate above 0.5 that fall below 0.5.
-- Per-component changes.
-- Test FSC and SCSC.
-- Hidden gold-test pass rate.
-- Theorem-count and vacuity audits.
+## 8. Forecasts and decision rules
 
-### Mechanism
+F0: 4B dense-only validation share .50 (freeze before historical factors). F1: held-out full-schedule pass@1 Pearson .85 for the training-selected conjunctive model (freeze before fit). F2: train mixed-group AUC .75 (freeze before batch-2 scoring). F3: B-A +2, C-A +3, P-A 0 percentage points on test (freeze before main). Report failed and unavailable forecasts.
 
-- Per update, the share of groups with nonzero advantage under each arm's reward.
-- Test gains by stratum: start strict rate 0 vs > 0, crossed with partial progress 0 vs > 0.
-- Bottleneck-component transitions under M3.
-
-### Missing cells
-
-- Infrastructure retries rerun the identical cell.
-- Cells still missing are listed and kept in the declared denominator.
-- Primary results use the common measured cohort and give full-manifest bounds.
-
-## 9. Forecasts (agent-suggested; freeze before the outcome)
-
-| ID | Quantity | Forecast | Freeze before |
-|---|---|---|---|
-| F0 | Dense-only share, SFT 4B validation | 0.50 | Phase 0 measurement |
-| F1 | Pearson, implied vs measured pass@1, held-out full-schedule checkpoints (M3e) | 0.85 | Phase 1 fit |
-| F2 | AUC, mixed-group prediction on train batch 2 | 0.75 | Batch 2 scoring |
-| F3 | Test strict pass@1 differences in percentage points: B − A, C − A, P − A | +2.0, +3.0, 0.0 | First main-run update |
+G0 fail: stop B/C, retain result. G1/H2/C-variance fail: stop C, retain eligible A/B/P. Technical or resource fail: no training beyond admitted diagnostic work. H3/H4: report effect estimates and uncertainty as exploratory; no “confirmed improvement” from a three-seed bootstrap. H5: unresolved unless independent coverage and noninferiority evidence support it. A phase's publication does not complete the experiment.

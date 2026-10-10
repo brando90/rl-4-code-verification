@@ -1,0 +1,63 @@
+{
+  "created": "10-09-2026 21:26:30 PDT",
+  "last_updated": "10-09-2026 21:26:30 PDT",
+  "status": "READY_FOR_PHASE0_ADAPTER_IMPLEMENTATION",
+  "deployment_identity": "rl4cv13-review-10-09",
+  "review_rounds": 1,
+  "review_verdict": "FIXED",
+  "experiment_complete": false,
+  "training_admitted": false,
+  "repository": "/lfs/skampere1/0/brando9/recovery_rl4cv13/repo",
+  "branch": "recovery/rl4cv13-plans",
+  "admitted_work": "CPU declaration-adapter implementation and fixture validation; no new reviewer required",
+  "exact_first_command": [
+    "env",
+    "-u",
+    "PYTHONPATH",
+    "/lfs/skampere1/0/brando9/agent-recovery-10-09-2026/workers/rl4cv13_review/.venv/bin/python",
+    "/lfs/skampere1/0/brando9/recovery_rl4cv13/repo/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/phase0_resume.py",
+    "--controls",
+    "/lfs/skampere1/0/brando9/agent-recovery-10-09-2026/workers/rl4cv13_review/phase0_controls"
+  ],
+  "exact_preparation_command_path": "/lfs/skampere1/0/brando9/agent-recovery-10-09-2026/workers/rl4cv13_review/run_phase0.sh",
+  "reuse_existing_controls": true,
+  "completed_controls": {
+    "strict_fixtures_reconciled": 15,
+    "initial_matches": 14,
+    "initial_total": 15,
+    "reconciliation": "printed_error expectation corrected to existing pinned probe rejection; original failure retained"
+  },
+  "data_manifest": {
+    "path": "/lfs/skampere1/0/brando9/agent-recovery-10-09-2026/workers/rl4cv13_review/phase0_controls/validation_source_manifest.jsonl",
+    "sha256": "c88b9e7ba58b9c0b0334b1e55af12c1ae54985ac20721bc710967abdd6a7bafa",
+    "available_cells": 20520,
+    "source_hash_matches": 20520,
+    "declared_parent_cells": 25920,
+    "unavailable_parent_cells": 5400,
+    "all_base_cells_required": 21504,
+    "overlapping_validation_cells_reuse": 3240
+  },
+  "control_prerequisites": [
+    "Exact scorer/dataset pins and Lean v4.22.0 preserved",
+    "L0 primitive controls complete with documented expectation correction",
+    "Future declaration adapter must pass full protocol fixtures and preserve raw probe diagnostics",
+    "L1 adapter/source/fold hashes and F0/F1 forecasts before historical factor measurement",
+    "Full historical strict equality including sealed opaque base-test audit before G0",
+    "G0/G1/H2, train-only mutation/coverage controls, LP/T1-T5, measured L2 and valid allocation before training"
+  ],
+  "residual_blockers": [
+    "Declaration adapter not implemented/validated",
+    "Sealed complete base-cell equality audit not implemented",
+    "No historical reproduction or G0/G1/H2 measurement",
+    "No measured probe/pilot resource plan or valid device allocation; 260-350 A100 hours only estimate"
+  ],
+  "watch": {
+    "session": "codex-rl4cv13-phase0-watch",
+    "state_path": "/lfs/skampere1/0/brando9/agent-recovery-10-09-2026/workers/rl4cv13_review/phase0_watch.json",
+    "callback": "/lfs/skampere1/0/brando9/agent-recovery-10-09-2026/workers/rl4cv13_review/watch_events.jsonl",
+    "reboot_persistence": false,
+    "automatic_account_failover": false,
+    "note": "Primitive control session finished; failed first fixture expectation preserved and reconciled. New phase0 worker needs its own named watch."
+  },
+  "protocol_sha256": "cb964b51636b104e725c1a548102193f2bde6b3c8d3bde6e537c950c4b948721"
+}
