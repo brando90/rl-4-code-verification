@@ -5,7 +5,7 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-10-2026 00:04 PDT
+**Last updated:** 10-10-2026 00:42 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
@@ -193,3 +193,7 @@
 - 10-09-2026 23:27 PDT: publication synchronized concurrent upstream `ebc31b2` (experiment 13 opaque audit) by a conflict-free merge; merged repository verification: 237 passed / 24 skipped. Locked experiment-12 implementation and inputs unchanged.
 
 - 10-10-2026 00:04 PDT evaluation milestone: 2,750/5,386 unique jobs; 41,204/43,840 cell records. 2,756 candidate receipts: 0 timeouts, 0 infrastructure retries. All three forecasts and every locked source/input hash reverified. Process/exit/log monitor checked separately before publication. Last publication `b7639d0`. Continue the unchanged full cohort; analyses and manual disagreements remain pending.
+
+- 10-10-2026 00:42 PDT evaluation milestone: 3,000/5,386 unique jobs; 41,454/43,840 cell records. 3,005 candidate receipts: 0 timeouts, 0 infrastructure retries. All three forecasts and every locked source/input hash reverified. Process/exit/log monitor checked separately before publication. Last publication `056ea45`. Continue the unchanged full cohort; analyses and manual disagreements remain pending.
+
+Report presentation prepared while evaluation continues: expose primary and secondary missing/no-test denominators beside bounds, show secondary kernel-conditioned bounds, label primary-panel mapping shares, and retain round-1 through round-5 history. `python3 -m py_compile` passed for the renderer. No locked scientific source changed. Hourly shared-instruction refresh at 00:11 PDT remained `a2e2cfc`; host load at 00:13 PDT was 328.26/329.04/335.84 with two nice-10 Lean workers.

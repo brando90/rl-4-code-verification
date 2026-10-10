@@ -13,6 +13,9 @@ def num(x):return 'unavailable' if x is None else f'{x:.3f}'
 def ci(x):return f"[{num(x['low'])}, {num(x['high'])}] ({x['n_defined']}/{x['n_requested']} defined)"
 
 
+def bounds(x):return 'unavailable' if x is None else f'[{num(x[0])}, {num(x[1])}]'
+
+
 def main():
     for name in ('e12_phase_a_forecast','e12_phase_a_forecast_amendment_A1','e12_phase_a_forecast_amendment_A2'):
         assert verify_forecast(PHASE/'forecasts'/(name+'.json'))
@@ -51,12 +54,12 @@ def main():
         lines.append(f"| {label} | {num(stats['pearson'])} | {num(stats['spearman'])} | {num(stats['kendall_tau_b'])} |")
     lines+=['','Positive bias means SCSC exceeds the hidden all-tests-pass rate. A1 computes the geometric mean of factor means over each system’s common measured factor cohort; hidden means use that cohort minus unavailable hidden outcomes and no-test tasks. These denominators are reported separately.','',
       '## Primary systems','',
-      '| System | Factors measured / declared | IC_tests | IC_proofs | FSC | SCSC | Compile | Applicable / compiling | P1 hidden mean (n) | Full hidden bounds |',
+      '| System | Factors measured / declared | IC_tests | IC_proofs | FSC | SCSC | Compile | Applicable / compiling | P1 hidden mean (n) | Full hidden bounds (observed / missing / no tests) |',
       '|---|---:|---:|---:|---:|---:|---:|---:|---:|---|']
     for r in result['systems']:
         if r['panel']!='primary':continue
-        f=r['factor_means_common'];bounds=r['hidden_bounds']
-        lines.append(f"| {r['system']} | {r['n_common_measured']}/{r['n_declared']} | {num(f['IC_tests'])} | {num(f['IC_proofs'])} | {num(f['FSC'])} | {num(r['system_score'])} | {r['n_compiling']}/{r['n_declared']} | {r['n_applicable']}/{r['n_compiling']} | {num(r['P1_hidden_mean'])} ({r['P1_n_hidden']}) | [{num(bounds[0])}, {num(bounds[1])}] |")
+        f=r['factor_means_common']
+        lines.append(f"| {r['system']} | {r['n_common_measured']}/{r['n_declared']} | {num(f['IC_tests'])} | {num(f['IC_proofs'])} | {num(f['FSC'])} | {num(r['system_score'])} | {r['n_compiling']}/{r['n_declared']} | {r['n_applicable']}/{r['n_compiling']} | {num(r['P1_hidden_mean'])} ({r['P1_n_hidden']}) | {bounds(r['hidden_bounds'])} ({r['n_hidden_observed']}/{r['n_hidden_missing']}/{r['n_no_tests']}) |")
     lines+=['','Bounds count every unavailable hidden outcome as failing versus passing over all declared cells with extracted tests. Noncompiling code is a hidden failure; compiling but unevaluable code stays missing. Detailed no-test, unmeasured and applicable counts are in [analysis_e12.json](expt_v1/results/analysis_e12.json).','',
       '## Amendment sensitivities and subsets','',
       '| Analysis | Spearman or area | 95% task-cluster interval |','|---|---:|---|']
@@ -68,6 +71,7 @@ def main():
         for name,value,iv in [('P1',d['P1']['spearman'],d['P1']['task_bootstrap_95']['spearman']),('P2',d['P2_P3']['auc'],d['P2_P3']['auc_bootstrap_95']),('P3',d['P2_P3']['spearman_within_system'],d['P2_P3']['spearman_bootstrap_95'])]:
             lines.append(f'| {subset} {name} (descriptive) | {num(value)} | {ci(iv)} |')
     lines+=['','Mapping steps: 1 normalized name; 2 unique compatible type; 3 candidate definitions agree on hidden argument tuples; 4 candidate example/theorem reference counts resolve disagreement or undecidability. Hidden expected values never decide a mapping.','',
+      'Primary-panel mappings:','',
       '| Mapping step | Symbols | Share of mapped symbols |','|---|---:|---:|']
     for step,count in result['mapping_steps']['counts'].items():lines.append(f"| {step} | {count} | {num(result['mapping_steps']['shares'][step])} |")
     lines+=['','Per-system discrimination (area reported only when both classes have at least 10 cells):','',
@@ -80,13 +84,13 @@ def main():
         lines.append(f"| {factor} | {stats['n_cells']} | {num(stats['auc'])} | {num(stats['spearman_within_system'])} |")
     lines+=['','## Secondary panels','',
       'These are descriptive saved-output panels. Experiment 08 uses validation only; its test split and sealed experiments 107/109 were not accessed.','',
-      '| Panel / system | Declared | IC_tests | IC_proofs | Kernel rate (n) | Hidden all-pass (observed n) | Hidden among kernel-verified (observed n / verified) |',
-      '|---|---:|---:|---:|---:|---:|---:|']
+      '| Panel / system | Declared | IC_tests | IC_proofs | Kernel rate (n) | Hidden all-pass (observed n) | Missing / no tests | Full hidden bounds | Hidden among kernel-verified (observed n / verified) | Kernel-conditioned bounds |',
+      '|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|']
     for r in result['systems']:
         if r['panel']=='primary':continue
         f=r['factor_means_available']
-        lines.append(f"| {r['panel']} / {r['system']} | {r['n_declared']} | {num(f['IC_tests'])} | {num(f['IC_proofs'])} | {num(r['kernel_binary_mean'])} ({r['kernel_binary_n']}) | {num(r['hidden_all_pass_mean'])} ({r['n_hidden_observed']}) | {num(r['hidden_all_pass_given_kernel'])} ({r['n_kernel_verified_hidden_observed']}/{r['n_kernel_verified']}) |")
-    lines+=['','Full bounds, missing counts and kernel-conditioned bounds for every secondary system are in the analysis artifact. The 5,400 unavailable factor cells remain explicit in the frozen manifest.','',
+        lines.append(f"| {r['panel']} / {r['system']} | {r['n_declared']} | {num(f['IC_tests'])} | {num(f['IC_proofs'])} | {num(r['kernel_binary_mean'])} ({r['kernel_binary_n']}) | {num(r['hidden_all_pass_mean'])} ({r['n_hidden_observed']}) | {r['n_hidden_missing']}/{r['n_no_tests']} | {bounds(r['hidden_bounds'])} | {num(r['hidden_all_pass_given_kernel'])} ({r['n_kernel_verified_hidden_observed']}/{r['n_kernel_verified']}) | {bounds(r['hidden_given_kernel_bounds'])} |")
+    lines+=['','Full hidden bounds use declared cells minus no-test cells; kernel-conditioned bounds use all kernel-verified cells, retaining unavailable outcomes in the bounds. The 5,400 unavailable factor cells remain explicit in the frozen manifest.','',
       '## Inspected disagreements','',
       '| Group | System / task | SCSC | Hidden result | Inspection |','|---|---|---:|---|---|']
     for r in inspections['rows']:
@@ -94,7 +98,7 @@ def main():
     lines+=['','## Validation, provenance and limitations','',
       'A1 reproduced all 11 published source aggregates under their own conventions and all 100 sampled compile statuses. Primary joins retain 9,678 hash-bound cells, 176 flagged unique paths, and two missing files. The extraction contains 10,534 tests on 882/896 gold tasks; 14 tasks have no extractable tests.','',
       f"Final controls: C1 {controls['C1']['n_pass']}/{controls['C1']['n_tests']} tests; C2 {controls['C2']['n_recovered']}/{controls['C2']['n_C1_passing_tasks']} recovered tasks; C3 {controls['C3']['n_killed']}/{controls['C3']['n_compiling_mutants']} compiling mutants detected; C4 {controls['C4']['n_rejected']}/{controls['C4']['n_pairs']} wrong-task pairs rejected. Thresholds remain 98%, 95%, 60%, 95% respectively. These are deterministic checks on the fixed 50-task sample, p-val=n/a.",'',
-      'Historical failures and implementation corrections remain in [the checkpoint](expt_v1/CKPT_e12.md), with round-1/2/3 receipts. A1 resolved aggregation conventions; A2 resolved identical-type alternatives before the protocol lock or any real-candidate hidden outcome. The extractor expands only closed literal aliases used exclusively as test inputs; all 10,534 tests and their expected values are retained. Candidate and gold source files and factors were never edited. All three forecasts remain frozen.','',
+      'Historical failures and implementation corrections remain in [the checkpoint](expt_v1/CKPT_e12.md), with round-1 through round-5 receipts. A1 resolved aggregation conventions; A2 resolved identical-type alternatives before the protocol lock or any real-candidate hidden outcome. The extractor expands only closed literal aliases used exclusively as test inputs; all 10,534 tests and their expected values are retained. Candidate and gold source files and factors were never edited. All three forecasts remain frozen.','',
       'The outcome is finite-test success, not a proof of full program correctness or a human acceptance rating. Missing applicability is bounded rather than silently scored zero. Core and IndustrySet results, missing-factor sensitivity and unambiguous-mapping sensitivity are descriptive and do not replace the frozen verdicts. Next versions cover hidden proofs and the agent-spec v8 panel.','',
       '**TLDR-end:** [rl4cv: 12_scsc_vs_hidden_gold_tests_vbv1_across_systems] Hidden gold-test agreement is fully measured under the frozen protocol and amendments; '+verdict+'.','']
     (PHASE.parent/'results.md').write_text('\n'.join(lines))
