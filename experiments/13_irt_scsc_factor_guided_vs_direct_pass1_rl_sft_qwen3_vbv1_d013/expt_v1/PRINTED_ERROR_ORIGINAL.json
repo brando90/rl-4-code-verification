@@ -1,0 +1,100 @@
+{
+  "IC_proofs": 0.0,
+  "IC_tests": 0.0,
+  "actual_strict": 0.0,
+  "cache": {
+    "IC_ap": 0.0,
+    "IC_pp": 0.0,
+    "IC_pp_regex": 1.0,
+    "allow_native_decide": false,
+    "compile_environment": "5a9560145df56c7cba359866bb6188c495eee258d7fc8e59ed87427cda40e7dd",
+    "compiles": false,
+    "kernel": {
+      "allow_native_decide": false,
+      "compile_rc": 0,
+      "compiled_module": "_stdin",
+      "compiled_module_sha256": "0b2270a8fbe08307b8e96c019e05af717219160bc2e801fafe5175c640833856",
+      "declared_axioms": [],
+      "evidence_dir": null,
+      "extra_theorems": [
+        {
+          "axioms": [],
+          "category": "honest",
+          "full_name": "good"
+        }
+      ],
+      "ic_pp": 0.0,
+      "inspect_rc": 0,
+      "kernel_check": "kernel_axioms_v4_2026-09-09",
+      "n_declared_axiom": 0,
+      "n_honest": 0,
+      "n_legacy_theorems": 1,
+      "n_native_decide": 0,
+      "n_phantom": 0,
+      "n_sorry_ax": 0,
+      "n_stated": 1,
+      "n_theorems": 1,
+      "n_unknown": 1,
+      "path": "/lfs/skampere1/0/brando9/agent-recovery-10-09-2026/workers/rl4cv13_review/phase0_controls/fixtures/printed_error.lean",
+      "probe_errors": [
+        {
+          "file": "fixture.lean",
+          "in_original": false,
+          "line": 1,
+          "msg": "pretend"
+        }
+      ],
+      "probe_ok": false,
+      "probe_output_sha256": "0527836205061100782e079e38232710c7c8025dfcea87b4ac18978fa196b66c",
+      "probe_rc": 0,
+      "source_sha256": "21a7a9a236f2ee0fdebbbce6343f3af1403a4887ba0c46a7a4b1481fbde3d19d",
+      "stderr_tail": "\n",
+      "theorems": [
+        {
+          "axioms": [],
+          "category": "unknown",
+          "column": 8,
+          "declaration": "theorem",
+          "full_name": null,
+          "kernel_honest": false,
+          "kind": null,
+          "line": 3,
+          "name": "good",
+          "offset": 56,
+          "phantom": false,
+          "prefix": "",
+          "regex_sorry": false,
+          "resolution": "probe_failed",
+          "short": "good"
+        }
+      ]
+    },
+    "kernel_check": "kernel_axioms_v4_2026-09-09",
+    "source_sha256": "21a7a9a236f2ee0fdebbbce6343f3af1403a4887ba0c46a7a4b1481fbde3d19d",
+    "submission_status": "ok"
+  },
+  "compile": [
+    {
+      "errors": 1,
+      "log": "fixture.lean:1:1: error: pretend\n",
+      "sorry_warnings": 0,
+      "success": true
+    }
+  ],
+  "expected_strict": 1,
+  "fixture": "printed_error",
+  "passed": false,
+  "source_sha256": "21a7a9a236f2ee0fdebbbce6343f3af1403a4887ba0c46a7a4b1481fbde3d19d",
+  "truncated": false,
+  "vacuity": {
+    "n_types": 1,
+    "n_vacuous": 0,
+    "pattern_hits": {
+      "theorem proved by trivial": 0,
+      "theorem states True": 0,
+      "theorem states x = x": 0
+    },
+    "unparseable": [],
+    "vacuous_types": []
+  }
+}

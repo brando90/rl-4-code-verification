@@ -1,0 +1,78 @@
+{
+  "commit": "59059a20d40adf3289869e58302169ad78102877",
+  "sources": {
+    "scripts/scsc/run_real_eval.py": "6e82b3d1cd6d3686aaec3d45f273cd902b03b962c0c2eca48f2c2b4f25f41fa9",
+    "scripts/scsc/kernel_axioms.py": "5dbbdcae75ba8b22911fcb43ab1fcde45a1475cf92742a39a29ebe41116de287",
+    "experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/scripts/score_scsc.py": "b3713c48e0fdb24adec93b77be8785d20e48897ee8d1fd8ce31fdf37101e81d6"
+  },
+  "dataset_commit": "c11b99badfa386fd26810b208eef1eb8dc9f6806",
+  "dataset_pin": "c11b99badfa386fd26810b208eef1eb8dc9f6806",
+  "reviewed_reward_source": "src/rl4cv/rewards.py",
+  "strict_semantics": "Requires example, whole-file compile, all named theorems honest, vacuity screen; cap flag alone does not reject.",
+  "mathlib_revision": "79e94a093aff4a60fb1b1f92d9681e407124c2ca",
+  "base_model": {
+    "id": "Qwen/Qwen3-4B-Base",
+    "revision": "906bfd4b4dc7f14ee4320094d8b41684abff8539"
+  },
+  "papers": [
+    {
+      "url": "https://arxiv.org/abs/2609.35646v1",
+      "title": "Rubric Rewards from Item Response Theory",
+      "scope": "Scalar rubric-quality IRT; not validation of deterministic Lean strict posterior."
+    },
+    {
+      "url": "https://arxiv.org/abs/2606.07616v1",
+      "title": "Item Response Scaling Laws",
+      "scope": "Beta-IRT measurement/scaling; not proof that conjunctive factors are independent."
+    },
+    {
+      "url": "https://arxiv.org/abs/2503.13335",
+      "title": "Reliable and Efficient Amortized Model-based Evaluation",
+      "scope": "Amortized item modeling; held-out prediction still needs training-only features."
+    },
+    {
+      "url": "https://verl.readthedocs.io/en/latest/algo/rollout_corr.html",
+      "title": "Rollout Correction",
+      "scope": "Importance correction motivates controls; not evidence replacement trainer passes."
+    }
+  ],
+  "actual_trainer": "Not selected or run in this review",
+  "export_weights": "Full-schedule exported checkpoint exists in historical manifest; bytes must be hashed at LP, not inferred from base revision",
+  "supporting_modules": {
+    "scripts/scsc/lean_public_context.py": {
+      "sha256": "4020c1cef271f3b17c4e51d2699677db17a71d51e334e2d278753963609ba29d",
+      "matches_pinned_git_blob": true
+    },
+    "scripts/scsc/pbt_diagnostic.py": {
+      "sha256": "da01d2ba0e4f900a537487a36ddd47890b4fae49024b0de0d46dde8e241cdd36",
+      "matches_pinned_git_blob": true
+    }
+  },
+  "start_export_manifest": {
+    "cumulative_assistant_tokens": 5752936,
+    "exported": true,
+    "fraction": "1.0",
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_658",
+    "in_test": true,
+    "label": "sft_4B_f1p0",
+    "role": "trained",
+    "size": "4B",
+    "source": "e08",
+    "step": 658,
+    "weights_sha256_manifest": "c0588065bf8019c11bbe1404431d2cc57cbd5bc656890d1b1b105b9239108120"
+  },
+  "export_path_exists": true,
+  "export_files": [
+    "pytorch_model.bin",
+    "tokenizer.json",
+    "config.json",
+    "added_tokens.json",
+    "vocab.json",
+    "SHA256SUMS",
+    "merges.txt",
+    "tokenizer_config.json",
+    "generation_config.json",
+    "chat_template.jinja",
+    "special_tokens_map.json"
+  ]
+}
