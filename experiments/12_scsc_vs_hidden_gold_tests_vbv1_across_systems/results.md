@@ -2,107 +2,223 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/results.md>
 
-Experiment `12_scsc_vs_hidden_gold_tests_vbv1_across_systems` phase A passed Amendment A1 input checks and 100/100 compilation reproductions; all four adapter controls passed under prospective Amendment A2 with zero experiment model calls.
+Experiment `12_scsc_vs_hidden_gold_tests_vbv1_across_systems` compared saved code from 11 primary systems using hidden gold-reference tests with zero experiment model calls: **all three frozen predictions hold for the implemented adapter; mapping limitations qualify correctness claims**.
 
-**Status:** RUNNING under prospective Amendment A2 (`a7c2ea2`). Round-2 failure retained below; round-5 controls PASS; protocol LOCKED; evaluation completed after lock publication `f64c084`. No real-candidate hidden outcomes existed at lock.
-**Last updated:** 10-10-2026 05:16 PDT
+**Status:** DONE
+**Last updated:** 10-10-2026 05:19 PDT
 
-The smooth conjunctive score for code verification (SCSC) combines internal consistency of tests (IC_tests), internal consistency of proofs (IC_proofs), and formal specification coverage (FSC). Under the prospective [Amendment A1](PROTOCOL.md#8-amendment-a1-10-09-2026-master-before-any-hidden-test-outcome), the system score is the geometric mean of the three factor means over one common measured cohort. Published-value checks reproduce each source’s own convention.
+SCSC means smooth conjunctive score for code verification. It combines internal consistency of tests (IC_tests), internal consistency of proofs (IC_proofs), and formal specification coverage (FSC). A2 changes only mechanical symbol mapping; P1–P3 thresholds remain frozen.
 
-| Step | Status | Evidence |
-|---|---|---|
-| All three frozen forecasts | PASS | Original `b29b71b7…`; A1 `81df7de2…`; A2 `674be36b…`; all unchanged and verified |
-| Published values | PASS, 11/11 | [A1 source-convention audit](expt_v1/results/aggregation_preflight_A1.json) |
-| Primary joins | PASS | 9,678 hash-bound + 176 unique-path flagged + 2 missing = 9,856; zero ambiguous |
-| Gold reference pin | PASS, 896/896 | Every file byte-identical to git pin `c11b99badfa386fd26810b208eef1eb8dc9f6806` |
-| Compilation reproduction | PASS, 100/100 | [Frozen sample](expt_v1/results/compile_selection_A1.json), [compiler receipts](expt_v1/results/compile_reproduction_A1.json); gate ≥99/100 |
-| Secondary inventory | FROZEN | 33,984 cells, 33 systems; [manifest](expt_v1/results/secondary_manifest_A1.json) |
-| Hidden-test extraction | DONE | 10,534 tests from 882/896 tasks; 14 `no_tests` tasks listed in [manifest](expt_v1/results/hidden_tests_manifest.json) |
-| Round-2 gold control C1 | PASS, 591/591 tests (100%) | All 50 tasks pass completely; required ≥98% |
-| Round-2 renamed-gold control C2 | FAIL, 2/50 tasks (4%); superseded prospectively by A2 | Required ≥95%; all 50 renamed modules compile, 48 have ambiguous mappings; [round-2 receipts](expt_v1/results/controls_e12_round2.json) |
-| Round-3b controls C1–C4 | COMPLETE, failed admission | C1 591/591; C2 47/50; C3 42/48 with two unavailable mutants; C4 49/50 |
-| Round-4 controls C1–C4 | COMPLETE, failed admission | C1 591/591; C2 48/50; C3 43/49 with one unavailable mutant; C4 49/50 |
-| Round-5 controls C1–C4 | PASS, all 50 tasks | C1 591/591; C2 48/50; C3 44/50; C4 49/50; [full receipts](expt_v1/results/controls_e12.json) |
-| Protocol lock | LOCKED | Code `a1d985c`; [exact hashes](expt_v1/results/protocol_lock.json); before real-candidate outcomes |
-| Real candidate evaluation | RUNNING | Full 43,840-cell frozen set; 5,386 unique compiling pairs; [launch](expt_v1/results/evaluation_launch.json), [live snapshot](expt_v1/results/evaluation_status.json) |
+## Frozen predictions
 
-## Factor inputs under A1
+| Prediction | Estimate | 95% task-cluster bootstrap | Threshold and verdict |
+|---|---:|---|---|
+| P1 system Spearman | 0.891 | [0.782, 0.900] (10000/10000 defined) | ≥0.80: HOLDS |
+| P2 area under the receiver operating characteristic curve | 0.640 | [0.583, 0.696] (10000/10000 defined) | ≥0.60 and interval excludes 0.50: HOLDS |
+| P3 pooled within-system Spearman | 0.151 | [0.074, 0.225] (10000/10000 defined) | >0 and interval excludes 0: HOLDS |
+| G-A applicability | 0.690 (3224/4674) | Deterministic census | ≥0.50: PASS |
 
-These are existing inputs, not hidden-test results. The seven experiment-103 rows retain 5,696/6,272 common measured cells and 576 missing-factor cells. The original and recovery files are resolved under A1.4 while preserving every recorded factor; recovery output never inherits original measured factors. A1.3’s primary and sensitivity cohorts remain distinct.
+P1 contains 11 systems and resamples 896 tasks. P2/P3 contain 3199 compiling, applicable, score-measured cells (2999 passing / 200 failing), on 752 observed tasks. Intervals use 10,000 paired task-cluster draws, seed 20261009; systems are retained together within each sampled task. Undefined draws are reported, not replaced. Thresholds are master-suggested and frozen in the original forecast; p-val=n/a. Single saved run per cell; repeated scoring variability is unavailable.
 
-| Source / system | Common measured / declared | IC_tests | IC_proofs | FSC | System score | Published source score |
-|---|---:|---:|---:|---:|---:|---:|
-| VeriBench 103 / `claude-opus-5-max` | 681/896 | 0.607930 | 0.607403 | 0.736564 | 0.647908 | 0.605000 |
-| VeriBench 103 / `gpt-6-astra-high` | 855/896 | 0.523977 | 0.523707 | 0.966433 | 0.642476 | 0.522000 |
-| VeriBench 103 / `gpt-5.6-sol-high` | 889/896 | 0.388076 | 0.388076 | 0.920866 | 0.517619 | 0.383000 |
-| VeriBench 103 / `gpt-5.6-luna-high` | 890/896 | 0.162921 | 0.162921 | 0.855506 | 0.283178 | 0.158000 |
-| VeriBench 103 / `gpt-6-luna-high` | 888/896 | 0.143018 | 0.139764 | 0.881869 | 0.260254 | 0.140000 |
-| VeriBench 103 / `gemini-3.1-pro-high` | 889/896 | 0.057368 | 0.054435 | 0.866142 | 0.139330 | 0.053000 |
-| VeriBench 103 / `qwen3.6-27b-thinking` | 604/896 | 0.001656 | 0.001656 | 0.899421 | 0.013509 | 0.002000 |
-| VeriBench 102 / `claude_code` | 896/896 | 0.977679 | 0.977416 | 0.964174 | 0.973069 | 0.973069 |
-| VeriBench 102 / `codex` | 896/896 | 0.998884 | 0.998724 | 0.918192 | 0.971176 | 0.971176 |
-| VeriBench 102 / `leanstral` | 896/896 | 0.508929 | 0.534202 | 0.652679 | 0.561937 | 0.561937 |
-| VeriBench 102 / `baseline` | 896/896 | 0.286830 | 0.289062 | 0.293638 | 0.289830 | 0.289830 |
+P2 pools within-system normalized score midranks before computing the binary-outcome area. P3 correlates pooled within-system normalized score and graded-outcome midranks. Ranks are recomputed in every bootstrap draw. An applicable cell needs only one evaluable test, whereas all-tests-pass requires every extracted test to be evaluable and true. Therefore an all-tests-pass failure can reflect partial adapter applicability as well as a false test; the inspected cases distinguish these.
 
-The two missing files are Codex `cs_set/floyd_warshall` and Leanstral `cs_set/binary_search`: 2/9,856 = 0.0203%, below A1.4’s 5% missing-plus-ambiguous gate. The 564 empty baseline outputs remain present. These are deterministic census/arithmetic checks; confidence intervals and p-values are not applicable (`p-val=n/a`).
+## System-level agreement and absolute differences
 
-## Amendment A2 execution
+| Statistic | Estimate | 95% task bootstrap | 95% system bootstrap sensitivity |
+|---|---:|---|---|
+| pearson | 0.865 | [0.843, 0.885] (10000/10000 defined) | [0.487, 0.993] (10000/10000 defined) |
+| spearman | 0.891 | [0.782, 0.900] (10000/10000 defined) | [0.493, 1.000] (10000/10000 defined) |
+| kendall_tau_b | 0.782 | [0.673, 0.818] (10000/10000 defined) | [0.378, 1.000] (10000/10000 defined) |
+| mean_score | 0.482 | [0.471, 0.492] (10000/10000 defined) | [0.308, 0.666] (10000/10000 defined) |
+| mean_hidden | 0.421 | [0.408, 0.433] (10000/10000 defined) | [0.234, 0.615] (10000/10000 defined) |
+| bias_score_minus_hidden | 0.061 | [0.052, 0.070] (10000/10000 defined) | [-0.046, 0.138] (10000/10000 defined) |
+| mean_absolute_difference | 0.136 | [0.129, 0.144] (10000/10000 defined) | [0.080, 0.207] (10000/10000 defined) |
 
-The master resolved the round-2 unique-type conflict prospectively in `a7c2ea2`. All three frozen forecasts verify; the original and A1 files are unchanged. The A2 adapter compares compatible candidate definitions with each other on hidden argument tuples only, then uses the candidate’s own example/theorem reference counts as specified. Every mapping records its deciding step. The original round-2 receipt is preserved byte-for-byte as [controls_e12_round2.json](expt_v1/results/controls_e12_round2.json).
+Descriptive system correlations (no additional verdicts):
 
-Round 3 keeps the same 50 tasks and runs all four controls. Historical intermediate snapshot: [22/50 tasks](expt_v1/results/controls_round3b_status.json); C1 224/224, C2 22/22, C3 20/21, C4 21/22. Attempt 3a was stopped on a mutant-copy construction error: proof deletion left orphan documentation comments. [Partial receipts](expt_v1/results/controls_e12_round3a_partial.json) are retained. Corrected attempt 3b masks comments in private mutant copies and reruns the entire sample. No expected value is used to select a mapping or mutation. Mutants use the first compiling single operator/literal edit in source order; wrong-task pairs use the next selected task cyclically, fixed before results. A semantically equivalent equality-check pair was accepted in C4 and remains a recorded failure of that control.
+| Pair | Pearson | Spearman | Kendall τ-b |
+|---|---:|---:|---:|
+| SCSC versus graded hidden rate | 0.864 | 0.891 | 0.782 |
+| IC_tests versus hidden all-pass | 0.911 | 0.900 | 0.818 |
+| IC_proofs versus hidden all-pass | 0.912 | 0.909 | 0.855 |
+| FSC versus hidden all-pass | -0.210 | 0.009 | -0.055 |
 
-Complete round 3b is archived in [controls_e12_round3b.json](expt_v1/results/controls_e12_round3b.json): C1 591/591; C2 47/50; C3 42/48 compiling mutants (two unavailable); C4 49/50. The three renamed failures were max/min heap operations, increment/decrement counter operations, and Floyd–Warshall input graphs incorrectly treated as implementations.
+Positive bias means SCSC exceeds the hidden all-tests-pass rate. A1 computes the geometric mean of factor means over each system’s common measured factor cohort; hidden means use that cohort minus unavailable hidden outcomes and no-test tasks. These denominators are reported separately.
 
-Round 4 corrects extraction of literal input fixtures: a zero-argument alias with a closed literal body is expanded only when every occurrence is inside an implementation-call argument. Expected-result aliases, nonliteral bodies and constants directly under test are not expanded. This preserves the gold test’s fixed input instead of incorrectly re-pointing it to candidate data. No gold function body or definition enters a bridge. [Reconciliation](expt_v1/results/fixture_input_normalization.json) retains all 10,534 tests and original text, with 23 aliases / 70 tests / 10 tasks normalized; the same 50 control task IDs remain. C3 adds a string-literal fallback only after all existing operator/numeric edits fail to compile. Existing successful mutant selections do not change. All four controls rerun in full, with two low-priority Lean workers. [Current round-4 snapshot](expt_v1/results/controls_round4_status.json): 50/50 tasks; C1 591/591, C2 48/50, C3 43/49, C4 49/50. The string-repeat fallback now compiles and is detected.
+## Primary systems
 
-Round 4 is archived unchanged in [controls_e12_round4.json](expt_v1/results/controls_e12_round4.json). Its sole failed gate is the missing Floyd–Warshall mutant: both tested entry functions delegate to helpers and contain no direct operator/literal mutation. Round 5 adds a final reachable-helper fallback after all direct attempts, preserving source-order selection and every previously successful mutant choice; it reruns all four controls on all 50 tasks. Mapping, tests and expectations stay fixed. [Round-5 live snapshot](expt_v1/results/controls_round5_status.json): 50/50 tasks; gold 591/591, renamed 48/50, mutants killed 44/50, wrong-task rejection 49/50; every gate passes.
+| System | Factors measured / declared | IC_tests | IC_proofs | FSC | SCSC | Compile | Applicable / compiling | P1 hidden mean (n) | Full hidden bounds (observed / missing / no tests) |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| baseline | 896/896 | 0.287 | 0.289 | 0.294 | 0.290 | 823/896 | 217/823 | 0.703 (290) | [0.231, 0.902] (290/592/14) |
+| claude-opus-5-max | 681/896 | 0.608 | 0.607 | 0.737 | 0.648 | 428/896 | 356/428 | 0.529 (609) | [0.379, 0.460] (810/72/14) |
+| claude_code | 896/896 | 0.978 | 0.977 | 0.964 | 0.973 | 876/896 | 623/876 | 0.927 (640) | [0.672, 0.947] (640/242/14) |
+| codex | 896/896 | 0.999 | 0.999 | 0.918 | 0.971 | 895/896 | 705/895 | 0.929 (705) | [0.743, 0.943] (705/177/14) |
+| gemini-3.1-pro-high | 889/896 | 0.057 | 0.054 | 0.866 | 0.139 | 52/896 | 28/52 | 0.032 (856) | [0.031, 0.056] (860/22/14) |
+| gpt-5.6-luna-high | 890/896 | 0.163 | 0.163 | 0.856 | 0.283 | 145/896 | 113/145 | 0.127 (844) | [0.121, 0.158] (850/32/14) |
+| gpt-5.6-sol-high | 889/896 | 0.388 | 0.388 | 0.921 | 0.518 | 347/896 | 289/347 | 0.333 (819) | [0.312, 0.375] (826/56/14) |
+| gpt-6-astra-high | 855/896 | 0.524 | 0.524 | 0.966 | 0.642 | 462/896 | 342/462 | 0.418 (729) | [0.355, 0.488] (765/117/14) |
+| gpt-6-luna-high | 888/896 | 0.143 | 0.140 | 0.882 | 0.260 | 127/896 | 107/127 | 0.122 (855) | [0.118, 0.139] (863/19/14) |
+| leanstral | 896/896 | 0.509 | 0.534 | 0.653 | 0.562 | 518/896 | 443/518 | 0.507 (807) | [0.464, 0.549] (807/75/14) |
+| qwen3.6-27b-thinking | 604/896 | 0.002 | 0.002 | 0.899 | 0.014 | 1/896 | 1/1 | 0.000 (599) | [0.000, 0.000] (882/0/14) |
 
-Evaluation completed after the published lock; all 43,840 unique cell keys match the frozen manifests and the process exited 0. The frozen analysis is running in tmux `e12-analysis` (one BLAS thread, nice 10); A1/A2 sensitivities, per-step shares and manual disagreement inspections remain in progress. Immediate accounting preserves 38,454 noncompiling, missing, unmeasured or no-test cells; 5,386 unique compiling task/code pairs require Lean evaluation. Current published progress: 5,386/5,386 compilation jobs, 43,840/43,840 retained cell records. No frozen prediction verdict is computed until completion. Deterministic checks: 32 experiment-local tests pass, including synthetic statistics cases; repository suite 237 passed / 24 skipped.
+Bounds count every unavailable hidden outcome as failing versus passing over all declared cells with extracted tests. Noncompiling code is a hidden failure; compiling but unevaluable code stays missing. Detailed no-test, unmeasured and applicable counts are in [analysis_e12.json](expt_v1/results/analysis_e12.json).
 
-## Historical round-2 control result and structural blocker
+## Amendment sensitivities and subsets
 
-The hidden suites contain only extracted statements and symbol metadata; bridges import candidate modules and evaluate the re-pointed propositions, without gold implementations. The 100-file compile sample and all control selections were fixed before their results. Original references, candidates and factors remain unchanged; renamed controls are private copies.
+| Analysis | Spearman or area | 95% task-cluster interval |
+|---|---:|---|
+| A1 P1: model_error/incomplete set to zero; infrastructure missing excluded | 0.873 | [0.782, 0.900] (10000/10000 defined) |
+| A2 P2: mapping steps 1–2 only (1518 cells) | 0.791 | [0.712, 0.858] (10000/10000 defined) |
+| A2 P3: mapping steps 1–2 only | 0.146 | [0.045, 0.226] (10000/10000 defined) |
+| Core614 P1 (descriptive) | 0.791 | [0.764, 0.800] (10000/10000 defined) |
+| Core614 P2 (descriptive) | 0.632 | [0.568, 0.697] (10000/10000 defined) |
+| Core614 P3 (descriptive) | 0.176 | [0.062, 0.274] (10000/10000 defined) |
+| IndustrySet282 P1 (descriptive) | 0.936 | [0.891, 0.945] (10000/10000 defined) |
+| IndustrySet282 P2 (descriptive) | 0.614 | [0.518, 0.722] (10000/10000 defined) |
+| IndustrySet282 P3 (descriptive) | 0.090 | [0.017, 0.162] (10000/10000 defined) |
 
-The corrected round uses the same first 50 tasks in the prescribed hash order. C1 passes **591/591 extracted tests (100%)**, across **50/50 tasks**; C2 recovers **2/50 tasks (4%)**, below PROTOCOL § 3’s **95%** threshold. All 50 renamed modules compile, and both fully mapped renamed tasks pass every test. The other 48 tasks have multiple compatible definitions. These are deterministic checks on the fixed control sample; no sampling interval or significance test is used (`p-val=n/a`).
+Core614: P1 uses 11 systems / 614 tasks; P2/P3 use 2159 cells (1998 passing / 161 failing) on 474 observed tasks.
 
-This is a conflict between the stipulated control and the permitted mapping rule. Most references expose functional and imperative implementations with identical argument/result types. After all implementation names are replaced, the adapter must reject both as ambiguous under “the unique candidate definition.” A stronger type unifier cannot resolve identical types. [Direct Lean checks](expt_v1/results/ambiguity_witnesses.json) confirm this independently of the adapter parser for three selected tasks. Three unavoidable failures alone cap recovery at 47/50 = 94%, below the required 48/50 = 96% integer cutoff. For example:
 
-```lean
-MyFreeLiveHandle.e12renamed0000 (live : ℕ) : Bool
-MyFreeLiveHandle.e12renamed0001 (live : ℕ) : Bool
+IndustrySet282: P1 uses 11 systems / 282 tasks; P2/P3 use 1040 cells (1001 passing / 39 failing) on 278 observed tasks.
+
+
+A2 restricted cohort: 1518 cells (1480 passing / 38 failing), 674 observed tasks.
+
+
+Mapping steps: 1 normalized name; 2 unique compatible type; 3 candidate definitions agree on hidden argument tuples; 4 candidate example/theorem reference counts resolve disagreement or undecidability. Hidden expected values never decide a mapping.
+
+Primary-panel mappings:
+
+| Mapping step | Symbols | Share of mapped symbols |
+|---|---:|---:|
+| 1 | 5075 | 0.660 |
+| 2 | 693 | 0.090 |
+| 3 | 1532 | 0.199 |
+| 4 | 387 | 0.050 |
+
+All-panel mapping counts (cell-symbol mappings, including mappings in otherwise unevaluable cells):
+
+| Panel | Step 1 | Step 2 | Step 3 | Step 4 | Total |
+|---|---:|---:|---:|---:|---:|
+| primary | 5075 (0.660) | 693 (0.090) | 1532 (0.199) | 387 (0.050) | 7687 |
+| experiment01 | 17 (0.500) | 11 (0.324) | 4 (0.118) | 2 (0.059) | 34 |
+| experiment08_validation | 874 (0.644) | 3 (0.002) | 442 (0.326) | 38 (0.028) | 1357 |
+| all | 5966 (0.657) | 707 (0.078) | 1978 (0.218) | 427 (0.047) | 9078 |
+
+Per-system discrimination (area reported only when both classes have at least 10 cells):
+
+| System | Pass / fail cells | Area |
+|---|---:|---:|
+| baseline | 204/13 | 0.666 |
+| claude-opus-5-max | 322/20 | 0.576 |
+| claude_code | 593/30 | 0.701 |
+| codex | 655/50 | 0.687 |
+| gemini-3.1-pro-high | 27/1 | unavailable |
+| gpt-5.6-luna-high | 107/6 | unavailable |
+| gpt-5.6-sol-high | 273/14 | 0.602 |
+| gpt-6-astra-high | 305/28 | 0.634 |
+| gpt-6-luna-high | 104/3 | unavailable |
+| leanstral | 409/34 | 0.534 |
+| qwen3.6-27b-thinking | 0/1 | unavailable |
+
+Factor discrimination, descriptive:
+
+| Factor | Cells | Area on within-system ranks | Within-system Spearman with graded rate |
+|---|---:|---:|---:|
+| IC_proofs | 3199 | 0.542 | 0.064 |
+| FSC | 3199 | 0.635 | 0.160 |
+
+## Secondary panels
+
+These are descriptive saved-output panels. Experiment 08 uses validation only; its test split and sealed experiments 107/109 were not accessed.
+
+| Panel / system | Declared | IC_tests | IC_proofs | Kernel rate (n) | Hidden all-pass (observed n) | Missing / no tests | Full hidden bounds | Hidden among kernel-verified (observed n / verified) | Kernel-conditioned bounds |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| experiment01 / qwen3-1.7b_g1 | 896 | 0.000 | 0.000 | 0.000 (896) | 0.000 (882) | 0/14 | [0.000, 0.000] | unavailable (0/0) | unavailable |
+| experiment01 / qwen3-14b_g1 | 896 | 0.006 | 0.001 | 0.001 (896) | 0.006 (882) | 0/14 | [0.006, 0.006] | 1.000 (1/1) | [1.000, 1.000] |
+| experiment01 / qwen3-4b_g1 | 896 | 0.000 | 0.000 | 0.000 (896) | 0.000 (882) | 0/14 | [0.000, 0.000] | unavailable (0/0) | unavailable |
+| experiment01 / qwen3-8b_g1 | 896 | 0.002 | 0.000 | 0.000 (896) | 0.002 (882) | 0/14 | [0.002, 0.002] | unavailable (0/0) | unavailable |
+| experiment01 / qwen3.5-0.8b_g1 | 896 | 0.000 | 0.000 | 0.000 (896) | 0.000 (878) | 4/14 | [0.000, 0.005] | unavailable (0/0) | unavailable |
+| experiment01 / qwen3.5-2b_g1 | 896 | 0.000 | 0.000 | 0.000 (896) | 0.000 (879) | 3/14 | [0.000, 0.003] | unavailable (0/0) | unavailable |
+| experiment01 / qwen3.5-4b_g1 | 896 | 0.001 | 0.000 | 0.000 (896) | 0.003 (881) | 1/14 | [0.003, 0.005] | unavailable (0/0) | unavailable |
+| experiment01 / qwen3.5-9b_g1 | 896 | 0.000 | 0.000 | 0.000 (896) | 0.003 (881) | 1/14 | [0.003, 0.005] | unavailable (0/0) | unavailable |
+| experiment01 / qwen3.6-27b-local_g1 | 896 | 0.001 | 0.000 | 0.000 (896) | 0.001 (882) | 0/14 | [0.001, 0.001] | unavailable (0/0) | unavailable |
+| experiment08_validation / base14b | 1080 | 0.008 | 0.008 | 0.008 (1080) | 0.008 (1072) | 0/8 | [0.008, 0.008] | 1.000 (9/9) | [1.000, 1.000] |
+| experiment08_validation / base_1p7B_e05 | 1080 | 0.001 | 0.001 | 0.000 (1080) | 0.002 (1067) | 5/8 | [0.002, 0.007] | unavailable (0/0) | unavailable |
+| experiment08_validation / base_4B_e05 | 1080 | 0.005 | 0.003 | 0.003 (1080) | 0.004 (1071) | 1/8 | [0.004, 0.005] | 1.000 (3/3) | [1.000, 1.000] |
+| experiment08_validation / base_8B_e05 | 1080 | 0.000 | 0.000 | 0.000 (1080) | 0.000 (1072) | 0/8 | [0.000, 0.000] | unavailable (0/0) | unavailable |
+| experiment08_validation / sft_14B_f0p125 | 1080 | unavailable | unavailable | unavailable (0) | unavailable (0) | 1072/8 | [0.000, 1.000] | unavailable (0/0) | unavailable |
+| experiment08_validation / sft_14B_f0p25 | 1080 | unavailable | unavailable | unavailable (0) | unavailable (0) | 1072/8 | [0.000, 1.000] | unavailable (0/0) | unavailable |
+| experiment08_validation / sft_14B_f0p5 | 1080 | unavailable | unavailable | unavailable (0) | unavailable (0) | 1072/8 | [0.000, 1.000] | unavailable (0/0) | unavailable |
+| experiment08_validation / sft_14B_f0p75 | 1080 | unavailable | unavailable | unavailable (0) | unavailable (0) | 1072/8 | [0.000, 1.000] | unavailable (0/0) | unavailable |
+| experiment08_validation / sft_14B_f1p0 | 1080 | unavailable | unavailable | unavailable (0) | unavailable (0) | 1072/8 | [0.000, 1.000] | unavailable (0/0) | unavailable |
+| experiment08_validation / sft_1p7B_f0p125 | 1080 | 0.004 | 0.004 | 0.004 (1080) | 0.004 (1072) | 0/8 | [0.004, 0.004] | 1.000 (4/4) | [1.000, 1.000] |
+| experiment08_validation / sft_1p7B_f0p25 | 1080 | 0.001 | 0.001 | 0.001 (1080) | 0.000 (1071) | 1/8 | [0.000, 0.001] | unavailable (0/1) | [0.000, 1.000] |
+| experiment08_validation / sft_1p7B_f0p5 | 1080 | 0.018 | 0.018 | 0.018 (1080) | 0.015 (1070) | 2/8 | [0.015, 0.017] | 0.941 (17/19) | [0.842, 0.947] |
+| experiment08_validation / sft_1p7B_f0p75 | 1080 | 0.041 | 0.041 | 0.041 (1080) | 0.036 (1071) | 1/8 | [0.036, 0.037] | 0.907 (43/44) | [0.886, 0.909] |
+| experiment08_validation / sft_1p7B_f1p0 | 1080 | 0.049 | 0.049 | 0.049 (1080) | 0.045 (1071) | 1/8 | [0.045, 0.046] | 0.923 (52/53) | [0.906, 0.925] |
+| experiment08_validation / sft_4B_f0p125 | 1080 | 0.006 | 0.006 | 0.006 (1080) | 0.006 (1072) | 0/8 | [0.006, 0.006] | 1.000 (6/6) | [1.000, 1.000] |
+| experiment08_validation / sft_4B_f0p25 | 1080 | 0.042 | 0.042 | 0.042 (1080) | 0.037 (1072) | 0/8 | [0.037, 0.037] | 0.889 (45/45) | [0.889, 0.889] |
+| experiment08_validation / sft_4B_f0p5 | 1080 | 0.039 | 0.039 | 0.039 (1080) | 0.030 (1071) | 1/8 | [0.030, 0.031] | 0.780 (41/42) | [0.762, 0.786] |
+| experiment08_validation / sft_4B_f0p75 | 1080 | 0.037 | 0.037 | 0.037 (1080) | 0.028 (1065) | 7/8 | [0.028, 0.035] | 0.909 (33/40) | [0.750, 0.925] |
+| experiment08_validation / sft_4B_f1p0 | 1080 | 0.093 | 0.093 | 0.093 (1080) | 0.069 (1065) | 7/8 | [0.069, 0.076] | 0.796 (93/100) | [0.740, 0.810] |
+| experiment08_validation / sft_8B_f0p125 | 1080 | 0.014 | 0.014 | 0.013 (1080) | 0.011 (1072) | 0/8 | [0.011, 0.011] | 0.786 (14/14) | [0.786, 0.786] |
+| experiment08_validation / sft_8B_f0p25 | 1080 | 0.069 | 0.069 | 0.069 (1080) | 0.062 (1072) | 0/8 | [0.062, 0.062] | 0.880 (75/75) | [0.880, 0.880] |
+| experiment08_validation / sft_8B_f0p5 | 1080 | 0.071 | 0.071 | 0.071 (1080) | 0.059 (1067) | 5/8 | [0.059, 0.063] | 0.875 (72/77) | [0.818, 0.883] |
+| experiment08_validation / sft_8B_f0p75 | 1080 | 0.082 | 0.082 | 0.082 (1080) | 0.063 (1062) | 10/8 | [0.062, 0.072] | 0.848 (79/89) | [0.753, 0.865] |
+| experiment08_validation / sft_8B_f1p0 | 1080 | 0.096 | 0.096 | 0.096 (1080) | 0.073 (1065) | 7/8 | [0.073, 0.079] | 0.804 (97/104) | [0.750, 0.817] |
+
+Full hidden bounds use declared cells minus no-test cells; kernel-conditioned bounds use all kernel-verified cells, retaining unavailable outcomes in the bounds. The 5,400 unavailable factor cells remain explicit in the frozen manifest.
+
+## Inspected disagreements
+
+The prescribed ranking selects 10 high-score failures (all Claude Opus 5) and 10 low-score successes (all Leanstral); these are selected extremes, not a random audit. Six high-score cases map to precondition/postcondition helpers and four have only partial type applicability. All ten low-score cases have IC_tests=0 and no self-test declarations despite passing the hidden suite. Detailed source, bridge and log hashes are in [disagreements_e12.json](expt_v1/results/disagreements_e12.json).
+
+**Post-lock implementation limitation:** the frozen identifier lexer omits question-mark suffixes, merging legal Lean names such as a core and its optional-result wrapper. This can defeat direct-name matching and suppress reference counts, contributing to helper selection in the inspected cases. The adapter and outcomes remain frozen; this requires a corrected prospective version. The A2 steps 1–2 sensitivity still includes partial type-applicability failures. Consequently these results validate association with the implemented test pipeline, not an error-free measure of semantic correctness.
+
+| Group | System / task | SCSC | Hidden result | Inspection |
+|---|---|---:|---|---|
+| high_score_failing | claude-opus-5-max / concurrent_set_synthetic__my_hazard_pointer_can_free | 1.000 | 0 | Step 4 chose preCondition (nonnegative protector count), not canFree (zero protectors); 2/8 tests pass. The source contains the intended core and an Option wrapper. The frozen lexer collapses the question-mark suffix, also suppressing core reference counts. This is a helper-mapping failure, not evidence that the intended implementation is wrong. |
+| high_score_failing | claude-opus-5-max / concurrent_set_synthetic__my_lww_register_pick_left | 1.000 | 0 | Step 4 chose the nonnegative-timestamp preCondition instead of pickLeft, which compares timestamps; 5/8 tests pass. The source also has a question-mark-suffixed wrapper that the lexer merges with the core name. Failing tests exercise helper selection, not the intended core. |
+| high_score_failing | claude-opus-5-max / easy_set__1_myadd | 1.000 | 0 | Same-name mapping reaches an Except-returning addition wrapper. Only the commutativity test is evaluable and passes (1/14); 13 tests cannot elaborate scalar expected values or nested calls at the wrapper type. No evaluated test is false. |
+| high_score_failing | claude-opus-5-max / easy_set__33_myminimum | 1.000 | 0 | The named minimum returns Option Int, so seven scalar-result tests cannot elaborate. The imperative gold name maps by unique type to scalar minList, whose five tests pass (5/12 total). No evaluated test is false. |
+| high_score_failing | claude-opus-5-max / humaneval_set__humaneval_22_filter_integers | 1.000 | 0 | The candidate filters a heterogeneous PyVal list, while the gold suite supplies integer lists. Twelve tests fail type elaboration; the empty-list inequality alone passes (1/13). No evaluated test is false. |
+| high_score_failing | claude-opus-5-max / hypervisor_set_synthetic__my_interrupt_route | 1.000 | 0 | Steps 4/3 select postCheck, a conjunction of correctness checks, instead of myInterruptRoute; 5/8 tests pass. Core and imperative definitions have question-mark-suffixed wrappers that the frozen lexer merges with their unsuffixed names, defeating direct-name selection. False results concern the selected helper. |
+| high_score_failing | claude-opus-5-max / memory_bugs_set_synthetic__my_bump_alloc_fits | 1.000 | 0 | Step 4 selects preCondition, which checks nonnegative inputs, instead of the capacity comparison; 4/7 tests pass. The intended core is present, but question-mark-suffixed wrappers collide in the frozen lexer and remove unique name/reference matches. This is a helper-mapping failure. |
+| high_score_failing | claude-opus-5-max / os_embedded_set_synthetic__my_power_transition_ok | 1.000 | 0 | Step 4 selects preCondB (states are in range), not the allowed-transition predicate; 6/9 tests pass. The intended core is present; its question-mark-suffixed wrapper collides in the frozen lexer. Failures for disallowed transitions are helper-mapping failures. |
+| high_score_failing | claude-opus-5-max / regulated_set_synthetic__my_dose_interval_ok | 1.000 | 0 | Step 4 selects PostB, which checks that the implementation obeys its specification, instead of gate (elapsed interval comparison); 4/8 tests pass. The intended gate and Option-returning implementation are present. The reference-count rule selects a correctness helper whose truth is not the requested decision. |
+| high_score_failing | claude-opus-5-max / security_set__security_6858__safe__104_unsafehttpparse_safe | 1.000 | 0 | Nine of twelve tests pass. The three empty-list tests cannot infer the candidate polymorphic element type; the source compares list length to buffer size. No evaluated test is false. |
+| low_score_passing | leanstral / aerospace_set_synthetic__my_arming_interlock | 0.000 | 1 | The mapped implementation computes three-input conjunction for arming; all 7/7 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.7. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests. |
+| low_score_passing | leanstral / aerospace_set_synthetic__my_safing_vote | 0.000 | 1 | The mapped implementation computes three-input disjunction for safing; all 7/7 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.3. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests. |
+| low_score_passing | leanstral / aerospace_set_synthetic__my_sensor_watchdog_fresh | 0.000 | 1 | The mapped implementation computes timestamp inclusion in the freshness interval; all 5/5 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.8. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests. |
+| low_score_passing | leanstral / aerospace_set_synthetic__my_tmr_voter | 0.000 | 1 | The mapped implementation computes Boolean majority voting; all 7/7 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.7. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests. |
+| low_score_passing | leanstral / compilers_set_real__my_cpython_dis_jump_target | 0.000 | 1 | The mapped implementation computes relative/absolute jump target arithmetic with an optional result; all 7/7 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.6. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests. |
+| low_score_passing | leanstral / concurrent_set_real__my_cas_success | 0.000 | 1 | The mapped implementation computes equality for compare-and-swap success; all 8/8 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.8. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests. |
+| low_score_passing | leanstral / concurrent_set_real__my_h2_flow_window_after_send | 0.000 | 1 | The mapped implementation computes natural-number window subtraction; all 8/8 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.2. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests. |
+| low_score_passing | leanstral / concurrent_set_synthetic__my_lww_register_pick_left | 0.000 | 1 | The mapped implementation computes left timestamp greater than or equal to right; all 8/8 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.4. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests. |
+| low_score_passing | leanstral / concurrent_set_synthetic__my_rcu_epoch_can_reclaim | 0.000 | 1 | The mapped implementation computes reader epoch strictly newer than retired epoch; all 8/8 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.8. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests. |
+| low_score_passing | leanstral / concurrent_set_synthetic__my_vector_clock_merge_le_target | 0.000 | 1 | The mapped implementation computes four-way conjunction for componentwise vector-clock bounds; all 8/8 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.1. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests. |
+
+## Validation, provenance and limitations
+
+A1 reproduced all 11 published source aggregates under their own conventions and all 100 sampled compile statuses. Primary joins retain 9,678 hash-bound cells, 176 flagged unique paths, and two missing files. The extraction contains 10,534 tests on 882/896 gold tasks; 14 tasks have no extractable tests.
+
+Final controls: C1 591/591 tests; C2 48/50 recovered tasks; C3 44/50 compiling mutants detected; C4 49/50 wrong-task pairs rejected. Thresholds remain 98%, 95%, 60% with at least 50 compiling mutants, and 95% respectively. These are deterministic checks on the fixed 50-task sample, p-val=n/a.
+
+Evaluation completed all 43,840 declared cells (9,856 primary; 8,064 experiment 01; 25,920 experiment 08 validation), with 5,386 unique execution jobs, zero timeouts and zero infrastructure retries. Repository verification: 237 passed / 24 skipped; experiment-local checks: 32 passed. Outcome SHA-256: `e21a4a512784fff53a61af67cd609cc11548d70feb9b2ba6ca24904f627bdbb9`. See [completion verification](expt_v1/results/evaluation_verification.json) and [protocol lock](expt_v1/results/protocol_lock.json).
+
+Historical failures and implementation corrections remain in [the checkpoint](expt_v1/CKPT_e12.md), with round-1 through round-5 receipts. A1 resolved aggregation conventions; A2 resolved identical-type alternatives before the protocol lock or any real-candidate hidden outcome. The extractor expands only closed literal aliases used exclusively as test inputs; all 10,534 tests and their expected values are retained. Candidate and gold source files and factors were never edited. All three forecasts remain frozen.
+
+The outcome is finite-test success, not a proof of full program correctness or a human acceptance rating. Missing applicability is bounded rather than silently scored zero. Core and IndustrySet results, missing-factor sensitivity and unambiguous-mapping sensitivity are descriptive and do not replace the frozen verdicts. Next versions must repair and prospectively validate identifier parsing and entry-point selection, then cover hidden proofs and the agent-spec v8 panel.
+
+**TLDR-end:** [rl4cv: 12_scsc_vs_hidden_gold_tests_vbv1_across_systems] Hidden gold-test agreement is fully measured under the frozen protocol and amendments; all three frozen predictions hold for the implemented adapter; mapping limitations qualify correctness claims.
+
+**Snapshot:**
+```text
+P1 Spearman: 0.891
+P2 area: 0.640
+P3 within-system Spearman: 0.151
+Applicable: 3224/4674
+Evaluated cells: 43840/43840
 ```
-
-At round 2, no tie-breaking by source order, body contents, naming conventions or hidden-test success had been introduced. The protocol was **NOT LOCKED** at that historical stop. At round 2, continuation required a prospective clarification; Amendment A2 now supplies it while preserving the failed receipt and thresholds. An implementation-only change that preserves strict uniqueness cannot fix these witnesses. The master supplied A2 before any real-candidate outcome.
-
-Round 1 is preserved: gold self-tests 570/590 (96.61%); renamed recovery 1/47 gold-passing tasks (2.13%). [Round-1 receipts](expt_v1/results/controls_e12_round1.json) remain unchanged. Round 2 fixed equation-definition parsing, projection renaming and structural `Except` equality. It retains all 10,429 original extracted statements and adds 105 previously missed statements, before any real-candidate hidden outcome. The current extraction contains 10,534 tests on 882 tasks, with 14 `no_tests` tasks.
-
-**Incomplete runbook work:** the worker stopped before C3/C4 because the independent C2 requirement cannot pass under the current rule. This is a documented short-circuit, not a claim that PROTOCOL § 3 specifies sequential controls. C3/C4, protocol lock, all real-candidate evaluations and all analyses remain required after the blocker is resolved. This historical stop is resolved by A2; current external status is `RUNNING`.
-
-## Secondary panels and outstanding analyses
-
-Experiment 01: 9 systems × 896 = 8,064 cells. Experiment 08: its frozen 24-system validation ladder × 135 tasks × 8 samples = 25,920 cells. Together 28,584/33,984 have recorded factors; all 5,400 unavailable cells remain explicit. Only validation candidate files are read for experiment 08. Later arrivals do not silently modify this frozen snapshot.
-
-P1 system ranking, P2 discrimination beyond compilation, P3 graded agreement, and G-A applicability remain **UNTESTED**, with no estimate, confidence interval, disagreement examples or hidden-test bounds yet. Primary, A1 sensitivity, Core 614 and IndustrySet 282 summaries will remain separate. No sealed experiment-107/109 data has been read.
-
-## Provenance and reproduction
-
-The pre-A1 stop is retained in [the original audit](expt_v1/results/aggregation_preflight.json), committed as `c696725`. The master resolved it prospectively in `a50618e`, before extraction or hidden outcomes. Resume/input milestone: `a6dce92`. Both forecast files and the original receipt remain unchanged.
-
-```bash
-PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/prepare_A1.py
-PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/prepare_secondary.py
-PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/compile_reproduction.py
-PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/extract_hidden_tests.py
-PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v1/scripts/controls_e12.py
-```
-
-The completed round-2 control runner returns exit 2, preserving its failed gate. Compilation and control scripts preserve completed receipts on resume. Host-only logs and copied control sources are in `/lfs/skampere1/0/brando9/rl4cv_e12/`; no candidate source is committed. Verification so far: repository tests 237 passed / 24 skipped; experiment-local tests 32 passed.
-
-**TLDR-end:** [rl4cv: 12_scsc_vs_hidden_gold_tests_vbv1_across_systems] Hidden gold-test agreement passed all four A2 controls and is locked before real-candidate outcomes. Full candidate evaluation is active; frozen prediction analyses follow completion.
-
-## Completed frozen analysis — manual inspection pending
-
-P1 HOLDS: system Spearman 0.891 [0.782, 0.900], 11 systems / 896 tasks (threshold ≥0.80). P2 HOLDS: area under the receiver operating characteristic curve 0.640 [0.583, 0.696] (threshold ≥0.60 and interval excludes 0.50). P3 HOLDS: within-system Spearman 0.151 [0.074, 0.225] (threshold positive and interval excludes zero). P2/P3 use 3,199 compiling applicable score-measured cells, 2,999 passing / 200 failing, on 752 observed tasks. Intervals: paired task-cluster bootstrap, 10,000 draws, seed 20261009; p-val=n/a. Applicability gate PASS: 3,224/4,674 = 68.98% (threshold ≥50%).
-
-Analysis exited 0; all forecasts verified before reading outputs. Full tables and A1/A2/subset sensitivities are in [analysis_e12.json](expt_v1/results/analysis_e12.json). The selected 20 disagreements are being inspected; initial cases include adapter selection of precondition/postcondition helpers and partial applicability. Frozen outcomes will remain unchanged. Final repository verification is running. Status remains RUNNING until inspection and publication finish.

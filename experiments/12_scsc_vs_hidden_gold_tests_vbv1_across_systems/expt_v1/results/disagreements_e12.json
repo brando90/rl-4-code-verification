@@ -1,0 +1,994 @@
+{
+  "inspected_at": "10-10-2026 05:18 PDT",
+  "method": "Manual source, mapping diagnostics, bridge and existing evaluation-log inspection; no candidate reevaluation, remapping or score changes. Selection is the frozen analysis tie-broken ranking, not a random sample.",
+  "selection_sha256": "950fe41963482ddbbb887361d27713fec8ab0c4ae379ac50528c29c013ac3084",
+  "n_rows": 20,
+  "category_counts": {
+    "helper_mapping": 6,
+    "partial_applicability": 4,
+    "zero_self_test_factor": 10
+  },
+  "post_lock_limitation": "The frozen IDENT lexer omits question-mark suffixes, collapsing legal Lean names and affecting direct-name selection and reference counts. Discovered during manual outcome inspection; frozen implementation and outcomes retained. Correct only in a new prospective version. Steps 1\u20132 sensitivity does not remove partial type-applicability failures.",
+  "rows": [
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "concurrent_set_synthetic__my_hazard_pointer_can_free",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 0.25,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        4,
+        4
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/e3c12d22384a4190eb9900a143517b6174ccbfd6f60612af147239479f857469.json",
+      "scsc": 1.0,
+      "group": "high_score_failing",
+      "reason": "Step 4 chose preCondition (nonnegative protector count), not canFree (zero protectors); 2/8 tests pass. The source contains the intended core and an Option wrapper. The frozen lexer collapses the question-mark suffix, also suppressing core reference counts. This is a helper-mapping failure, not evidence that the intended implementation is wrong.",
+      "category": "helper_mapping",
+      "n_pass": 2,
+      "n_false": 6,
+      "mapping": {
+        "MyHazardPointerCanFree.MyHazardPointerCanFree": "MyHazardPointerCanFree.preCondition",
+        "MyHazardPointerCanFree.MyHazardPointerCanFreeImp": "MyHazardPointerCanFree.preCondition"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/jobs/claude-opus-5-max/concurrent_set_synthetic__my_hazard_pointer_can_free/verifier/solution.lean",
+          "sha256": "7372fb82603954cecd26b4a7da2b8b4be1233d4c841c3f51b77311f6c5d8f069"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Evale3c12d22384a4190eb9900a1.lean",
+          "sha256": "7372fb82603954cecd26b4a7da2b8b4be1233d4c841c3f51b77311f6c5d8f069"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/e3c12d22384a4190eb9900a143517b6174ccbfd6f60612af147239479f857469.json",
+          "sha256": "1d08b01b00fe1e968f32193700747633c7c68b2fe8e149516d0f828d96aea024"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Evale3c12d22384a4190eb9900a1_Bridge.lean",
+          "sha256": "6f947126ee33dbdf82d54f4db2e7c521969761fba2c12e76c3f5c353519ad606"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Evale3c12d22384a4190eb9900a1_Bridge.log",
+          "sha256": "3d26ea4ba6e0283a18d1a9f360855b87cbe588ec5e31ac252feb4f21ea37663f"
+        }
+      }
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "concurrent_set_synthetic__my_lww_register_pick_left",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 0.625,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        4,
+        4
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/0e93f9536b45a5a3363b929886a25aee8c114a5bc83258e3d2697dc148c0c8d0.json",
+      "scsc": 1.0,
+      "group": "high_score_failing",
+      "reason": "Step 4 chose the nonnegative-timestamp preCondition instead of pickLeft, which compares timestamps; 5/8 tests pass. The source also has a question-mark-suffixed wrapper that the lexer merges with the core name. Failing tests exercise helper selection, not the intended core.",
+      "category": "helper_mapping",
+      "n_pass": 5,
+      "n_false": 3,
+      "mapping": {
+        "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.preCondition",
+        "MyLwwRegisterPickLeft.MyLwwRegisterPickLeftImp": "MyLwwRegisterPickLeft.preCondition"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/jobs/claude-opus-5-max/concurrent_set_synthetic__my_lww_register_pick_left/verifier/solution.lean",
+          "sha256": "2c0e19c653e06a4456103c1039f511d3c0bb03c28ad6c63bcc189431238e3052"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Eval0e93f9536b45a5a3363b9298.lean",
+          "sha256": "2c0e19c653e06a4456103c1039f511d3c0bb03c28ad6c63bcc189431238e3052"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/0e93f9536b45a5a3363b929886a25aee8c114a5bc83258e3d2697dc148c0c8d0.json",
+          "sha256": "d422f2907493aa4bfa76c1d2378869db5929872e7d1b3ad76e41df44ba2c8605"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval0e93f9536b45a5a3363b9298_Bridge.lean",
+          "sha256": "31df4237488f4b8fe7f6371003ef10377cd7a2fc802c63749e36f3fc007c7ace"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval0e93f9536b45a5a3363b9298_Bridge.log",
+          "sha256": "f2c5232bfbdce679f1abaccb8b833322dd57ddaf1f3bec3d9156f174854ac286"
+        }
+      }
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "easy_set__1_myadd",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 14,
+      "n_applicable": 1,
+      "n_unknown": 13,
+      "mapping_steps": [
+        1,
+        1
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/1504bd80a13d62851a6736ee85cff68e9f0cc234ffe1efcaa39c91dbaf766316.json",
+      "scsc": 1.0,
+      "group": "high_score_failing",
+      "reason": "Same-name mapping reaches an Except-returning addition wrapper. Only the commutativity test is evaluable and passes (1/14); 13 tests cannot elaborate scalar expected values or nested calls at the wrapper type. No evaluated test is false.",
+      "category": "partial_applicability",
+      "n_pass": 1,
+      "n_false": 0,
+      "mapping": {
+        "MyAdd.myAdd": "MyAdd.myAdd",
+        "MyAdd.myAddImp": "MyAdd.myAddImp"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/jobs/claude-opus-5-max/easy_set__1_myadd/verifier/solution.lean",
+          "sha256": "e5c8d59fe792944bc46986941d0cb829b6a8d51255648b1f479727491068a350"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Eval1504bd80a13d62851a6736ee.lean",
+          "sha256": "e5c8d59fe792944bc46986941d0cb829b6a8d51255648b1f479727491068a350"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/1504bd80a13d62851a6736ee85cff68e9f0cc234ffe1efcaa39c91dbaf766316.json",
+          "sha256": "e30871a4e7f122a8540cdb52738536db0e41fdde35e4e8de879053222bbbcd0d"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval1504bd80a13d62851a6736ee_Bridge.lean",
+          "sha256": "addf3e575ae80c8e477066482a9b5f644766941ccb94c92906f8dffca7ff108b"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval1504bd80a13d62851a6736ee_Bridge.log",
+          "sha256": "031c6efb3054b532a584d5e558d376f3ccdd8bdcc37426bf6161e3a7b87306f2"
+        }
+      }
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "easy_set__33_myminimum",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 12,
+      "n_applicable": 5,
+      "n_unknown": 7,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/0715f977db8424856a99d502b074a82864f15d5be30b4965dfb483337a4dcb24.json",
+      "scsc": 1.0,
+      "group": "high_score_failing",
+      "reason": "The named minimum returns Option Int, so seven scalar-result tests cannot elaborate. The imperative gold name maps by unique type to scalar minList, whose five tests pass (5/12 total). No evaluated test is false.",
+      "category": "partial_applicability",
+      "n_pass": 5,
+      "n_false": 0,
+      "mapping": {
+        "MyMinList.myMinList": "MyMinimum.myMinList",
+        "MyMinList.myMinListImperative": "MyMinimum.minList"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/jobs/claude-opus-5-max/easy_set__33_myminimum/verifier/solution.lean",
+          "sha256": "b86e65fc05a5b48d3d4bf64ff4a47af4acd6ba41da7193824c39159b151c6857"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Eval0715f977db8424856a99d502.lean",
+          "sha256": "b86e65fc05a5b48d3d4bf64ff4a47af4acd6ba41da7193824c39159b151c6857"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/0715f977db8424856a99d502b074a82864f15d5be30b4965dfb483337a4dcb24.json",
+          "sha256": "5c86f6c17a86055bf307193858cb96f4d2d78d9e72be1a8231c811fbc4115366"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval0715f977db8424856a99d502_Bridge.lean",
+          "sha256": "98d0c6ae265fb4cf42503d1aaf2fc4c87535cebb99915c9059edb46e74a2f44d"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval0715f977db8424856a99d502_Bridge.log",
+          "sha256": "33a47229e3d8e7d4b3833ec268626177e209ad4ce4fab5aa1a0031ae1a84522b"
+        }
+      }
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "humaneval_set__humaneval_22_filter_integers",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 13,
+      "n_applicable": 1,
+      "n_unknown": 12,
+      "mapping_steps": [
+        1,
+        1
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/8af3311856967ab428c3fe3e4573ebcbadb1aa8ba94023e51c763b325736b45b.json",
+      "scsc": 1.0,
+      "group": "high_score_failing",
+      "reason": "The candidate filters a heterogeneous PyVal list, while the gold suite supplies integer lists. Twelve tests fail type elaboration; the empty-list inequality alone passes (1/13). No evaluated test is false.",
+      "category": "partial_applicability",
+      "n_pass": 1,
+      "n_false": 0,
+      "mapping": {
+        "FilterIntegers.filter_integers": "humaneval_22_filter_integers.filter_integers",
+        "FilterIntegers.filter_integersImp": "humaneval_22_filter_integers.filter_integers_imp"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/jobs/claude-opus-5-max/humaneval_set__humaneval_22_filter_integers/verifier/solution.lean",
+          "sha256": "de9ebb47b2868df96e17480f72f55cc5fd2644121fdd12ed0ca72ed8f8ad0219"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Eval8af3311856967ab428c3fe3e.lean",
+          "sha256": "de9ebb47b2868df96e17480f72f55cc5fd2644121fdd12ed0ca72ed8f8ad0219"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/8af3311856967ab428c3fe3e4573ebcbadb1aa8ba94023e51c763b325736b45b.json",
+          "sha256": "6de78c379caccebaacdb32821d2398dde929db6e35dea12471cde2116667bf28"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval8af3311856967ab428c3fe3e_Bridge.lean",
+          "sha256": "ad1548e536403c528869b50cf5052896811ca5beb3aaa90e85c2bde67c1142d8"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval8af3311856967ab428c3fe3e_Bridge.log",
+          "sha256": "66a6aaba1550c42644417a9605eaf06d5041336e6627c34c493d11255e98b9f1"
+        }
+      }
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "hypervisor_set_synthetic__my_interrupt_route",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 0.625,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        4,
+        3
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/9d015a055f01c9087191f2b1c61fd3d6c295a297bedfb5e9bedf8994f8fb4d9a.json",
+      "scsc": 1.0,
+      "group": "high_score_failing",
+      "reason": "Steps 4/3 select postCheck, a conjunction of correctness checks, instead of myInterruptRoute; 5/8 tests pass. Core and imperative definitions have question-mark-suffixed wrappers that the frozen lexer merges with their unsuffixed names, defeating direct-name selection. False results concern the selected helper.",
+      "category": "helper_mapping",
+      "n_pass": 5,
+      "n_false": 3,
+      "mapping": {
+        "MyInterruptRoute.myInterruptRoute": "MyInterruptRoute.postCheck",
+        "MyInterruptRoute.myInterruptRouteImp": "MyInterruptRoute.postCheck"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/jobs/claude-opus-5-max/hypervisor_set_synthetic__my_interrupt_route/verifier/solution.lean",
+          "sha256": "db5eed7f89b9daab35a98ebe0fc5ed8182160a4ed8d4512447996c1b0018bf2d"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Eval9d015a055f01c9087191f2b1.lean",
+          "sha256": "db5eed7f89b9daab35a98ebe0fc5ed8182160a4ed8d4512447996c1b0018bf2d"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/9d015a055f01c9087191f2b1c61fd3d6c295a297bedfb5e9bedf8994f8fb4d9a.json",
+          "sha256": "95e9742560d755173a3cf2ff5d04d9944f9086f8d00d17889050abbd17b0fde6"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval9d015a055f01c9087191f2b1_Bridge.lean",
+          "sha256": "500879702da474d94bfa619951a22e05af5cbf98c6b720c9b9a8935bc18f2e37"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval9d015a055f01c9087191f2b1_Bridge.log",
+          "sha256": "2888fe271b42eda8052354fa3adc7e642b40ac1674980798d16c92d47403cd4b"
+        }
+      }
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "memory_bugs_set_synthetic__my_bump_alloc_fits",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 0.5714285714285714,
+      "n_tests": 7,
+      "n_applicable": 7,
+      "n_unknown": 0,
+      "mapping_steps": [
+        4,
+        4
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/312f25385bff4ccfe67452cda59892a1bad2c47fd8e5c8375f750a81562da577.json",
+      "scsc": 1.0,
+      "group": "high_score_failing",
+      "reason": "Step 4 selects preCondition, which checks nonnegative inputs, instead of the capacity comparison; 4/7 tests pass. The intended core is present, but question-mark-suffixed wrappers collide in the frozen lexer and remove unique name/reference matches. This is a helper-mapping failure.",
+      "category": "helper_mapping",
+      "n_pass": 4,
+      "n_false": 3,
+      "mapping": {
+        "MyBumpAllocFits.my_bump_alloc_fits": "MyBumpAllocFits.preCondition",
+        "MyBumpAllocFits.my_bump_alloc_fitsImp": "MyBumpAllocFits.preCondition"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/jobs/claude-opus-5-max/memory_bugs_set_synthetic__my_bump_alloc_fits/verifier/solution.lean",
+          "sha256": "eedb91c06a8dc4944e95035ad6ecb43592da486f5cdcc5f3abb6607f006420eb"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Eval312f25385bff4ccfe67452cd.lean",
+          "sha256": "eedb91c06a8dc4944e95035ad6ecb43592da486f5cdcc5f3abb6607f006420eb"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/312f25385bff4ccfe67452cda59892a1bad2c47fd8e5c8375f750a81562da577.json",
+          "sha256": "b40d184bd2062aec4f6df9dae10a8cc2b09acf9b97e3fdc393e1fec22d47d813"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval312f25385bff4ccfe67452cd_Bridge.lean",
+          "sha256": "0740445ef2085641b9732218dffa295899b2cdbd73c1d382d0ebf3f1219dd071"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval312f25385bff4ccfe67452cd_Bridge.log",
+          "sha256": "44a69a880b900e5c7e72512ed3ccbb2b4e924807c8db38bf898ebd0100ecb605"
+        }
+      }
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "os_embedded_set_synthetic__my_power_transition_ok",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 0.6666666666666666,
+      "n_tests": 9,
+      "n_applicable": 9,
+      "n_unknown": 0,
+      "mapping_steps": [
+        4,
+        4
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/4c9d9c035e4eafea78f5c14e5d8c3d00fd66ea110a094e935d0d2566fc1f7760.json",
+      "scsc": 1.0,
+      "group": "high_score_failing",
+      "reason": "Step 4 selects preCondB (states are in range), not the allowed-transition predicate; 6/9 tests pass. The intended core is present; its question-mark-suffixed wrapper collides in the frozen lexer. Failures for disallowed transitions are helper-mapping failures.",
+      "category": "helper_mapping",
+      "n_pass": 6,
+      "n_false": 3,
+      "mapping": {
+        "MyPowerTransitionOk.myPowerTransitionOk": "MyPowerTransitionOk.preCondB",
+        "MyPowerTransitionOk.myPowerTransitionOkImp": "MyPowerTransitionOk.preCondB"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/jobs/claude-opus-5-max/os_embedded_set_synthetic__my_power_transition_ok/verifier/solution.lean",
+          "sha256": "dc9aeed1715c4b16ff7b278efeb3b2f6ce2e2ebc572eeaaa0e0d3cbb6d7f5881"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Eval4c9d9c035e4eafea78f5c14e.lean",
+          "sha256": "dc9aeed1715c4b16ff7b278efeb3b2f6ce2e2ebc572eeaaa0e0d3cbb6d7f5881"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/4c9d9c035e4eafea78f5c14e5d8c3d00fd66ea110a094e935d0d2566fc1f7760.json",
+          "sha256": "cad5bd7c37da2c17530f25b679a729f01dffef30a823daf57f65522c9757c33b"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval4c9d9c035e4eafea78f5c14e_Bridge.lean",
+          "sha256": "b9af3fadaf2717e83d583660b2385cba980e003ab61337f211fa39ba5b682e1e"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval4c9d9c035e4eafea78f5c14e_Bridge.log",
+          "sha256": "5e3778d6d3d42e983d44ec7c7b66139f9813b9cc6b9db28ba845374f2203dc7d"
+        }
+      }
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "regulated_set_synthetic__my_dose_interval_ok",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 0.5,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        4,
+        4
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/553161b258f918d98f62b89203849813d08e3c96cd7138913e743a7b934c2ff4.json",
+      "scsc": 1.0,
+      "group": "high_score_failing",
+      "reason": "Step 4 selects PostB, which checks that the implementation obeys its specification, instead of gate (elapsed interval comparison); 4/8 tests pass. The intended gate and Option-returning implementation are present. The reference-count rule selects a correctness helper whose truth is not the requested decision.",
+      "category": "helper_mapping",
+      "n_pass": 4,
+      "n_false": 4,
+      "mapping": {
+        "MyDoseIntervalOk.myDoseIntervalOk": "MyDoseIntervalOk.PostB",
+        "MyDoseIntervalOk.myDoseIntervalOkImp": "MyDoseIntervalOk.PostB"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/jobs/claude-opus-5-max/regulated_set_synthetic__my_dose_interval_ok/verifier/solution.lean",
+          "sha256": "7bbfa4a663d8b163c17df4f716ebfb1f69e34320b1d64da1359777215e24386f"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Eval553161b258f918d98f62b892.lean",
+          "sha256": "7bbfa4a663d8b163c17df4f716ebfb1f69e34320b1d64da1359777215e24386f"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/553161b258f918d98f62b89203849813d08e3c96cd7138913e743a7b934c2ff4.json",
+          "sha256": "e40b8565e63a3fb3d45b63331f26fbf88752de31fb96cb22a81c2df5353f4754"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval553161b258f918d98f62b892_Bridge.lean",
+          "sha256": "6c7e2b2e1ab0f789cc40c2a3b1abceafa19feb537abc0773fc97b544ebf18341"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval553161b258f918d98f62b892_Bridge.log",
+          "sha256": "5edc83205aab4cd569ced618109099c0145192a5cc852d0d15ad43bf88d5c7a9"
+        }
+      }
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "security_set__security_6858__safe__104_unsafehttpparse_safe",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 12,
+      "n_applicable": 9,
+      "n_unknown": 3,
+      "mapping_steps": [
+        1,
+        1
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/e11c7a21f800ffedaf493863d35f2b37acb9bcf3c1960bbd6e0d4b3d3952fcb0.json",
+      "scsc": 1.0,
+      "group": "high_score_failing",
+      "reason": "Nine of twelve tests pass. The three empty-list tests cannot infer the candidate polymorphic element type; the source compares list length to buffer size. No evaluated test is false.",
+      "category": "partial_applicability",
+      "n_pass": 9,
+      "n_false": 0,
+      "mapping": {
+        "SafeHttpParse.safeHttpParse": "UnsafeHttpParseSafe.safeHttpParse",
+        "SafeHttpParse.safeHttpParseImp": "UnsafeHttpParseSafe.safeHttpParseImp"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/jobs/claude-opus-5-max/security_set__security_6858__safe__104_unsafehttpparse_safe/verifier/solution.lean",
+          "sha256": "f6107ac59bcdde1ce1009bf8ffcbc8c26d1d189acceafe90a625984f8e0942fb"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Evale11c7a21f800ffedaf493863.lean",
+          "sha256": "f6107ac59bcdde1ce1009bf8ffcbc8c26d1d189acceafe90a625984f8e0942fb"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/e11c7a21f800ffedaf493863d35f2b37acb9bcf3c1960bbd6e0d4b3d3952fcb0.json",
+          "sha256": "abda09be14742e0bb632ab2ce37556b823322901c64a8b2d8e21b3547527904b"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Evale11c7a21f800ffedaf493863_Bridge.lean",
+          "sha256": "6fdef48d7c007f590a7fe81356a825695713d4b85f38d7fef9cb7cb04a2e2238"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Evale11c7a21f800ffedaf493863_Bridge.log",
+          "sha256": "72224e60812cc03d71302661a7903b2d57b0c3e211d5d088e68357c6452e846c"
+        }
+      }
+    },
+    {
+      "system": "leanstral",
+      "task_id": "aerospace_set_synthetic__my_arming_interlock",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.7,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 7,
+      "n_applicable": 7,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/d235242a9af45703527978a65d3a790dc7762a7b100ba71d934fb65e8ea129a5.json",
+      "scsc": 0.0,
+      "group": "low_score_passing",
+      "reason": "The mapped implementation computes three-input conjunction for arming; all 7/7 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.7. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests.",
+      "category": "zero_self_test_factor",
+      "n_pass": 7,
+      "n_false": 0,
+      "mapping": {
+        "MyArmingInterlock.myArmingInterlock": "PyroArmingInterlock.myArmingInterlock",
+        "MyArmingInterlock.myArmingInterlockImp": "PyroArmingInterlock.myArmingInterlock"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/vb100/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/results/rerun_outputs/expt72_full_leanstral__20260820_194315/aerospace_set_synthetic__my_armi__kkrysCc/verifier/solution.lean",
+          "sha256": "8116806bc99dc37b97ef8f859433d0d77be1977f7340b60f563635fa179bc42f"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Evald235242a9af45703527978a6.lean",
+          "sha256": "8116806bc99dc37b97ef8f859433d0d77be1977f7340b60f563635fa179bc42f"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/d235242a9af45703527978a65d3a790dc7762a7b100ba71d934fb65e8ea129a5.json",
+          "sha256": "b577afc2f876e53e7e7c11b9a55b2c2c9b536eb1df1948e5818ce2ae21336e1c"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Evald235242a9af45703527978a6_Bridge.lean",
+          "sha256": "9cdd11c37c24c9a4f0fb471d8a4ea89c9a9557a29430f3d0620d367cbc4a2e79"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Evald235242a9af45703527978a6_Bridge.log",
+          "sha256": "df12ae169098258af0563c889f8599b2293db5ebd8eeb111e4e3b366d1620585"
+        }
+      }
+    },
+    {
+      "system": "leanstral",
+      "task_id": "aerospace_set_synthetic__my_safing_vote",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.30000000000000004,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 7,
+      "n_applicable": 7,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/3a3bbdee68a73faa73473a7cdda60d6586c84f765aaeecba9e77b5f1a4d0ed90.json",
+      "scsc": 0.0,
+      "group": "low_score_passing",
+      "reason": "The mapped implementation computes three-input disjunction for safing; all 7/7 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.3. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests.",
+      "category": "zero_self_test_factor",
+      "n_pass": 7,
+      "n_false": 0,
+      "mapping": {
+        "MySafingVote.mySafingVote": "MySafingVote.mySafingVote",
+        "MySafingVote.mySafingVoteImp": "MySafingVote.mySafingVote"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/vb100/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/results/rerun_outputs/expt72_full_leanstral__20260820_194315/aerospace_set_synthetic__my_safi__5iDqPpe/verifier/solution.lean",
+          "sha256": "2f0551a6cb097ee9e8d7d7b6f2dcb1a8c2e50d53d8cb489794a8b70ff723c96b"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Eval3a3bbdee68a73faa73473a7c.lean",
+          "sha256": "2f0551a6cb097ee9e8d7d7b6f2dcb1a8c2e50d53d8cb489794a8b70ff723c96b"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/3a3bbdee68a73faa73473a7cdda60d6586c84f765aaeecba9e77b5f1a4d0ed90.json",
+          "sha256": "0128f062cddb0e8bab1de2f99de66f8d10c887547a6215d7d0a5bd2e571cae3a"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval3a3bbdee68a73faa73473a7c_Bridge.lean",
+          "sha256": "fc7bceaaf21423113a90105a63a3278aa3963d8e8e9d15d1cd72069c64bbe32e"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval3a3bbdee68a73faa73473a7c_Bridge.log",
+          "sha256": "df12ae169098258af0563c889f8599b2293db5ebd8eeb111e4e3b366d1620585"
+        }
+      }
+    },
+    {
+      "system": "leanstral",
+      "task_id": "aerospace_set_synthetic__my_sensor_watchdog_fresh",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.8,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 5,
+      "n_applicable": 5,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/7987395ec7c140822b4c3060ca4189ecee888f928260e164e63162410b940399.json",
+      "scsc": 0.0,
+      "group": "low_score_passing",
+      "reason": "The mapped implementation computes timestamp inclusion in the freshness interval; all 5/5 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.8. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests.",
+      "category": "zero_self_test_factor",
+      "n_pass": 5,
+      "n_false": 0,
+      "mapping": {
+        "MySensorWatchdogFresh.mySensorWatchdogFresh": "MySensorWatchdogFresh.mySensorWatchdogFresh",
+        "MySensorWatchdogFresh.mySensorWatchdogFreshImp": "MySensorWatchdogFresh.mySensorWatchdogFresh"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/vb100/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/results/rerun_outputs/expt72_full_leanstral__20260820_194315/aerospace_set_synthetic__my_sens__Kpr7Xoj/verifier/solution.lean",
+          "sha256": "9aaa278d42fe30219f904748c3b1b70eb6ba0293960c7518e7ec933fed177872"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Eval7987395ec7c140822b4c3060.lean",
+          "sha256": "9aaa278d42fe30219f904748c3b1b70eb6ba0293960c7518e7ec933fed177872"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/7987395ec7c140822b4c3060ca4189ecee888f928260e164e63162410b940399.json",
+          "sha256": "8e12074101da7604eaf9bea77d7d4d276592229bdeec100ea6351c106fa7c7ec"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval7987395ec7c140822b4c3060_Bridge.lean",
+          "sha256": "c7a92a102230c1fe11372c8e320056ba7c2fae4e9373001328b918907d7daa81"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval7987395ec7c140822b4c3060_Bridge.log",
+          "sha256": "8b9a2d38e380f292442ae9e398c11ae8eea6e72fe145b2ce9a63cce9052aca68"
+        }
+      }
+    },
+    {
+      "system": "leanstral",
+      "task_id": "aerospace_set_synthetic__my_tmr_voter",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.7,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 7,
+      "n_applicable": 7,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/19024b9e1f35a8a7c3f2f1ee300aecbf4b96c6353977cc388e8d405a9b3341c2.json",
+      "scsc": 0.0,
+      "group": "low_score_passing",
+      "reason": "The mapped implementation computes Boolean majority voting; all 7/7 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.7. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests.",
+      "category": "zero_self_test_factor",
+      "n_pass": 7,
+      "n_false": 0,
+      "mapping": {
+        "MyTmrVoter.myTmrVoter": "MyTmrVoter.myTmrVoter",
+        "MyTmrVoter.myTmrVoterImp": "MyTmrVoter.myTmrVoter"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/vb100/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/results/rerun_outputs/expt72_full_leanstral__20260820_194315/aerospace_set_synthetic__my_tmr___GvbZjpg/verifier/solution.lean",
+          "sha256": "c6fe42f677d17794acd0c525d46b8402eab37265bebf2beeec9792cb68b50a92"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Eval19024b9e1f35a8a7c3f2f1ee.lean",
+          "sha256": "c6fe42f677d17794acd0c525d46b8402eab37265bebf2beeec9792cb68b50a92"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/19024b9e1f35a8a7c3f2f1ee300aecbf4b96c6353977cc388e8d405a9b3341c2.json",
+          "sha256": "95022cea6de9239d0b61a037f413d27ff4faf582828ae0a107d68c0a7bb36468"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval19024b9e1f35a8a7c3f2f1ee_Bridge.lean",
+          "sha256": "f3a0aed93ee868a07059a5f15937aff09df411d0906e29e920a1bf1cae3bca2a"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval19024b9e1f35a8a7c3f2f1ee_Bridge.log",
+          "sha256": "df12ae169098258af0563c889f8599b2293db5ebd8eeb111e4e3b366d1620585"
+        }
+      }
+    },
+    {
+      "system": "leanstral",
+      "task_id": "compilers_set_real__my_cpython_dis_jump_target",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.6000000000000001,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 7,
+      "n_applicable": 7,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/145c17c2ab2cfbce878c4b3aacc288fe2aa3163cb1ee2eecdeb3763c4700c6c7.json",
+      "scsc": 0.0,
+      "group": "low_score_passing",
+      "reason": "The mapped implementation computes relative/absolute jump target arithmetic with an optional result; all 7/7 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.6. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests.",
+      "category": "zero_self_test_factor",
+      "n_pass": 7,
+      "n_false": 0,
+      "mapping": {
+        "MyCpythonDisJumpTarget.myCpythonDisJumpTarget": "MyCPythonDisJumpTarget.myCPythonDisJumpTarget",
+        "MyCpythonDisJumpTarget.myCpythonDisJumpTargetImp": "MyCPythonDisJumpTarget.myCPythonDisJumpTarget"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/vb100/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/results/rerun_outputs/expt72_full_leanstral__20260820_194315/compilers_set_real__my_cpython_d__sbW6Lmg/verifier/solution.lean",
+          "sha256": "6078e5a9833004b0cbe29e52d77e264c9b6c128ad354415761e5b2e74bdfc714"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Eval145c17c2ab2cfbce878c4b3a.lean",
+          "sha256": "6078e5a9833004b0cbe29e52d77e264c9b6c128ad354415761e5b2e74bdfc714"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/145c17c2ab2cfbce878c4b3aacc288fe2aa3163cb1ee2eecdeb3763c4700c6c7.json",
+          "sha256": "d2fd4d002e387eaf3e2302184ef0b210bbadc277658555844364f118eac142e8"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval145c17c2ab2cfbce878c4b3a_Bridge.lean",
+          "sha256": "2bbf1b8d080138e27827e606f07398ff3f5654659030882aa226bd227a8ba07c"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval145c17c2ab2cfbce878c4b3a_Bridge.log",
+          "sha256": "df12ae169098258af0563c889f8599b2293db5ebd8eeb111e4e3b366d1620585"
+        }
+      }
+    },
+    {
+      "system": "leanstral",
+      "task_id": "concurrent_set_real__my_cas_success",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.8,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        2,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/6a36ee1d0c55b3889440a7be3d82f672592d77f77247dd7ae702ed51ccfbee4a.json",
+      "scsc": 0.0,
+      "group": "low_score_passing",
+      "reason": "The mapped implementation computes equality for compare-and-swap success; all 8/8 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.8. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests.",
+      "category": "zero_self_test_factor",
+      "n_pass": 8,
+      "n_false": 0,
+      "mapping": {
+        "MyCasSuccess.MyCasSuccess": "MyCAS.myCAS",
+        "MyCasSuccess.MyCasSuccessImp": "MyCAS.myCAS"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/vb100/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/results/rerun_outputs/expt72_full_leanstral__20260820_194315/concurrent_set_real__my_cas_succ__NbDyM9v/verifier/solution.lean",
+          "sha256": "95552f821f34eaf6e44544e5c256682b2faeb5d968896efc42c748cc9bc88488"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Eval6a36ee1d0c55b3889440a7be.lean",
+          "sha256": "95552f821f34eaf6e44544e5c256682b2faeb5d968896efc42c748cc9bc88488"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/6a36ee1d0c55b3889440a7be3d82f672592d77f77247dd7ae702ed51ccfbee4a.json",
+          "sha256": "0094acf1982e51462f73193cdd0b429e4d05b61251279f3de410bd8cf9e7533f"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval6a36ee1d0c55b3889440a7be_Bridge.lean",
+          "sha256": "4c11f161a945db5c68195bf7d2fa133d94d38c4e0452eb0905782df33b9711ee"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval6a36ee1d0c55b3889440a7be_Bridge.log",
+          "sha256": "dfcc9e6d9e98b6941bcba9864a33b6fe63817375ed05883a94aefceeb30a9a34"
+        }
+      }
+    },
+    {
+      "system": "leanstral",
+      "task_id": "concurrent_set_real__my_h2_flow_window_after_send",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.2,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/461f821a118c79fa671f1739c6126f5b3559851f093794c451ccc5c69ff793cf.json",
+      "scsc": 0.0,
+      "group": "low_score_passing",
+      "reason": "The mapped implementation computes natural-number window subtraction; all 8/8 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.2. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests.",
+      "category": "zero_self_test_factor",
+      "n_pass": 8,
+      "n_false": 0,
+      "mapping": {
+        "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSend": "MyH2FlowWindowAfterSend.myH2FlowWindowAfterSend",
+        "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSendImp": "MyH2FlowWindowAfterSend.myH2FlowWindowAfterSend"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/vb100/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/results/rerun_outputs/expt72_full_leanstral__20260820_194315/concurrent_set_real__my_h2_flow___vL7Vr27/verifier/solution.lean",
+          "sha256": "4cfb322040dfb2b5bb33f601cc01376c710bf82067fa27c6423de2d3737017ee"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Eval461f821a118c79fa671f1739.lean",
+          "sha256": "4cfb322040dfb2b5bb33f601cc01376c710bf82067fa27c6423de2d3737017ee"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/461f821a118c79fa671f1739c6126f5b3559851f093794c451ccc5c69ff793cf.json",
+          "sha256": "11402d71c4e5b2658e562148af2074a8673f1610ee24c64cf781ad43158cfe68"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval461f821a118c79fa671f1739_Bridge.lean",
+          "sha256": "f77d9a5d7352ce201e33fd49f775e60f516e348a8d12488963a859b98a2d19fb"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval461f821a118c79fa671f1739_Bridge.log",
+          "sha256": "dfcc9e6d9e98b6941bcba9864a33b6fe63817375ed05883a94aefceeb30a9a34"
+        }
+      }
+    },
+    {
+      "system": "leanstral",
+      "task_id": "concurrent_set_synthetic__my_lww_register_pick_left",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.4,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/6e8f30cd468b991846f19aba8b0d3b5f34d97cd3b7a176d10d5c3f8876e1abc6.json",
+      "scsc": 0.0,
+      "group": "low_score_passing",
+      "reason": "The mapped implementation computes left timestamp greater than or equal to right; all 8/8 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.4. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests.",
+      "category": "zero_self_test_factor",
+      "n_pass": 8,
+      "n_false": 0,
+      "mapping": {
+        "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.myLwwRegisterPickLeft",
+        "MyLwwRegisterPickLeft.MyLwwRegisterPickLeftImp": "MyLwwRegisterPickLeft.myLwwRegisterPickLeft"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/vb100/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/results/rerun_outputs/expt72_full_leanstral__20260820_194315/concurrent_set_synthetic__my_lww__jXzcfD9/verifier/solution.lean",
+          "sha256": "44d2b29b8706e4921a4b04899051a3db6af6fb96cf2ff022e12f51f9b1c105e5"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Eval6e8f30cd468b991846f19aba.lean",
+          "sha256": "44d2b29b8706e4921a4b04899051a3db6af6fb96cf2ff022e12f51f9b1c105e5"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/6e8f30cd468b991846f19aba8b0d3b5f34d97cd3b7a176d10d5c3f8876e1abc6.json",
+          "sha256": "8a1b03362c87f66113cc04c82090e077988a2355bd41469935db48a424af0e7d"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval6e8f30cd468b991846f19aba_Bridge.lean",
+          "sha256": "a63802f5ed2e6cf16c8540ab1288846a3129766f1bfaf08d4af95e6d41088a08"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval6e8f30cd468b991846f19aba_Bridge.log",
+          "sha256": "dfcc9e6d9e98b6941bcba9864a33b6fe63817375ed05883a94aefceeb30a9a34"
+        }
+      }
+    },
+    {
+      "system": "leanstral",
+      "task_id": "concurrent_set_synthetic__my_rcu_epoch_can_reclaim",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.8,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/05989cb99e281ffb9e8a9f924c1af5209b88ed15966fef47ccedc2ba7b55f521.json",
+      "scsc": 0.0,
+      "group": "low_score_passing",
+      "reason": "The mapped implementation computes reader epoch strictly newer than retired epoch; all 8/8 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.8. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests.",
+      "category": "zero_self_test_factor",
+      "n_pass": 8,
+      "n_false": 0,
+      "mapping": {
+        "MyRcuEpochCanReclaim.MyRcuEpochCanReclaim": "MyRcuEpochCanReclaim.myRcuEpochCanReclaim",
+        "MyRcuEpochCanReclaim.MyRcuEpochCanReclaimImp": "MyRcuEpochCanReclaim.myRcuEpochCanReclaim"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/vb100/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/results/rerun_outputs/expt72_full_leanstral__20260820_194315/concurrent_set_synthetic__my_rcu__igafMgK/verifier/solution.lean",
+          "sha256": "eca729b693a7f813c1c9415dd1b3d03f1b6230e58bad89b0b93e25fb2044b0db"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Eval05989cb99e281ffb9e8a9f92.lean",
+          "sha256": "eca729b693a7f813c1c9415dd1b3d03f1b6230e58bad89b0b93e25fb2044b0db"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/05989cb99e281ffb9e8a9f924c1af5209b88ed15966fef47ccedc2ba7b55f521.json",
+          "sha256": "673163c24ce53620d21f9c22d789c910e34ac6b200cab21c49080f0e1b5fc078"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval05989cb99e281ffb9e8a9f92_Bridge.lean",
+          "sha256": "8c7bf3b866e29ee06f4c29efa0c48068dcb817581b6a483fbd3e70715ebcc9b1"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Eval05989cb99e281ffb9e8a9f92_Bridge.log",
+          "sha256": "dfcc9e6d9e98b6941bcba9864a33b6fe63817375ed05883a94aefceeb30a9a34"
+        }
+      }
+    },
+    {
+      "system": "leanstral",
+      "task_id": "concurrent_set_synthetic__my_vector_clock_merge_le_target",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.1,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/d9d0463b1a015b6322ac046d1da01377dea660fd99a55086b96c3cd15be34f93.json",
+      "scsc": 0.0,
+      "group": "low_score_passing",
+      "reason": "The mapped implementation computes four-way conjunction for componentwise vector-clock bounds; all 8/8 hidden tests pass. Recorded IC_tests=0 forces SCSC=0 despite IC_proofs=1 and FSC=0.1. Source inspection found no example declarations or evaluation commands; it contains proofs. The score penalizes missing self-tests, not failure on these hidden tests.",
+      "category": "zero_self_test_factor",
+      "n_pass": 8,
+      "n_false": 0,
+      "mapping": {
+        "MyVectorClockMergeLeTarget.myVectorClockMergeLeTarget": "VectorClockMergeLeTarget.myVectorClockMergeLeTarget",
+        "MyVectorClockMergeLeTarget.myVectorClockMergeLeTargetImp": "VectorClockMergeLeTarget.myVectorClockMergeLeTarget"
+      },
+      "evidence": {
+        "original_candidate": {
+          "path": "/lfs/skampere1/0/brando9/vb100/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/results/rerun_outputs/expt72_full_leanstral__20260820_194315/concurrent_set_synthetic__my_vec__J2wRV2k/verifier/solution.lean",
+          "sha256": "09319f3c4901b56ebb5acb94cd2b3250cbc99dc2b3b4cb4bf11a6f98571c6b8c"
+        },
+        "compiled_candidate": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/modules/E12Evald9d0463b1a015b6322ac046d.lean",
+          "sha256": "09319f3c4901b56ebb5acb94cd2b3250cbc99dc2b3b4cb4bf11a6f98571c6b8c"
+        },
+        "receipt": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/d9d0463b1a015b6322ac046d1da01377dea660fd99a55086b96c3cd15be34f93.json",
+          "sha256": "2e4373c521c5a823d6b88abf966711feca75f132b91879a3c3da31ad416c44a0"
+        },
+        "bridge": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Evald9d0463b1a015b6322ac046d_Bridge.lean",
+          "sha256": "71228eed6993cab9a4c04c27f4e5918ddf3419b585f04d1af90bbbdb7d6b8b21"
+        },
+        "evaluation_log": {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/E12Evald9d0463b1a015b6322ac046d_Bridge.log",
+          "sha256": "dfcc9e6d9e98b6941bcba9864a33b6fe63817375ed05883a94aefceeb30a9a34"
+        }
+      }
+    }
+  ]
+}

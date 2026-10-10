@@ -77,4 +77,6 @@
 | Input preflight under A1 | PASS: published values 11/11, joins pass, compile reproduction 100/100 |
 | Hidden-test extraction and adapter controls | PASS under A2: C1 591/591, C2 48/50, C3 44/50, C4 49/50; all original 50 tasks |
 | Protocol lock | LOCKED 10-09-2026 after all four controls pass; code `a1d985c` |
-| Evaluation and analysis | RUNNING after lock publication `f64c084`; 43,840 frozen cells, 5,386 compiling pairs; predictions untested |
+| Evaluation and analysis | DONE 10-10-2026: 43,840/43,840 cells; P1 ρ=0.891, P2 area=0.640, P3 ρ=0.151; all frozen predictions hold; applicability 3,224/4,674 (69.0%) |
+| Interpretation and inspections | 20/20 inspected; helper mapping and partial applicability limit semantic-correctness claims; frozen lexer defect documented in results |
+| Verification | Repository 237 passed / 24 skipped; experiment-local 32 passed; all forecasts and lock hashes unchanged |

@@ -26,7 +26,7 @@ def main():
     assert {(r['system'],r['task_id']) for r in inspections['rows']}=={(r['system'],r['task_id']) for r in selected}
     now=datetime.now(ZoneInfo('America/Los_Angeles')).strftime('%m-%d-%Y %H:%M %Z')
     verdicts=result['verdicts'];p1=result['P1'];p23=result['P2_P3'];ga=result['G_A']
-    verdict=('SCSC tracks system hidden-test success and discriminates beyond compilation' if verdicts['P1_holds'] and verdicts['P2_holds'] else
+    verdict=('all three frozen predictions hold for the implemented adapter; mapping limitations qualify correctness claims' if verdicts['P1_holds'] and verdicts['P2_holds'] else
              'system agreement holds, but discrimination beyond compilation is not established' if verdicts['P1_holds'] else
              'the frozen system-ranking prediction fails')
     if not ga['passes']:verdict='LIMITED COVERAGE; '+verdict
@@ -72,10 +72,17 @@ def main():
             lines.append(f'| {subset} {name} (descriptive) | {num(value)} | {ci(iv)} |')
     for subset,d in result['subsets'].items():
         lines.append(f"\n{subset}: P1 uses {d['P1']['n_systems']} systems / {d['P1']['n_tasks']} tasks; P2/P3 use {d['P2_P3']['n_cells']} cells ({d['P2_P3']['n_pass']} passing / {d['P2_P3']['n_fail']} failing) on {d['P2_P3']['n_observed_tasks']} observed tasks.\n")
+    lines.append(f"\nA2 restricted cohort: {a2['n_cells']} cells ({a2['n_pass']} passing / {a2['n_fail']} failing), {a2['n_observed_tasks']} observed tasks.\n")
     lines+=['','Mapping steps: 1 normalized name; 2 unique compatible type; 3 candidate definitions agree on hidden argument tuples; 4 candidate example/theorem reference counts resolve disagreement or undecidability. Hidden expected values never decide a mapping.','',
       'Primary-panel mappings:','',
       '| Mapping step | Symbols | Share of mapped symbols |','|---|---:|---:|']
     for step,count in result['mapping_steps']['counts'].items():lines.append(f"| {step} | {count} | {num(result['mapping_steps']['shares'][step])} |")
+    lines += ['', 'All-panel mapping counts (cell-symbol mappings, including mappings in otherwise unevaluable cells):', '', '| Panel | Step 1 | Step 2 | Step 3 | Step 4 | Total |', '|---|---:|---:|---:|---:|---:|']
+    for panel in ['primary','experiment01','experiment08_validation','all']:
+        counts={str(k):sum(r['mapping_step_counts'][str(k)] for r in result['systems'] if panel=='all' or r['panel']==panel) for k in (1,2,3,4)}
+        total=sum(counts.values())
+        entries=[f"{counts[str(k)]} ({num(counts[str(k)]/total if total else None)})" for k in (1,2,3,4)]
+        lines.append('| '+panel+' | '+' | '.join(entries)+f' | {total} |')
     lines+=['','Per-system discrimination (area reported only when both classes have at least 10 cells):','',
             '| System | Pass / fail cells | Area |','|---|---:|---:|']
     for system,stats in p23['per_system'].items():
@@ -94,14 +101,17 @@ def main():
         lines.append(f"| {r['panel']} / {r['system']} | {r['n_declared']} | {num(f['IC_tests'])} | {num(f['IC_proofs'])} | {num(r['kernel_binary_mean'])} ({r['kernel_binary_n']}) | {num(r['hidden_all_pass_mean'])} ({r['n_hidden_observed']}) | {r['n_hidden_missing']}/{r['n_no_tests']} | {bounds(r['hidden_bounds'])} | {num(r['hidden_all_pass_given_kernel'])} ({r['n_kernel_verified_hidden_observed']}/{r['n_kernel_verified']}) | {bounds(r['hidden_given_kernel_bounds'])} |")
     lines+=['','Full hidden bounds use declared cells minus no-test cells; kernel-conditioned bounds use all kernel-verified cells, retaining unavailable outcomes in the bounds. The 5,400 unavailable factor cells remain explicit in the frozen manifest.','',
       '## Inspected disagreements','',
+      'The prescribed ranking selects 10 high-score failures (all Claude Opus 5) and 10 low-score successes (all Leanstral); these are selected extremes, not a random audit. Six high-score cases map to precondition/postcondition helpers and four have only partial type applicability. All ten low-score cases have IC_tests=0 and no self-test declarations despite passing the hidden suite. Detailed source, bridge and log hashes are in [disagreements_e12.json](expt_v1/results/disagreements_e12.json).','',
+      '**Post-lock implementation limitation:** the frozen identifier lexer omits question-mark suffixes, merging legal Lean names such as a core and its optional-result wrapper. This can defeat direct-name matching and suppress reference counts, contributing to helper selection in the inspected cases. The adapter and outcomes remain frozen; this requires a corrected prospective version. The A2 steps 1–2 sensitivity still includes partial type-applicability failures. Consequently these results validate association with the implemented test pipeline, not an error-free measure of semantic correctness.','',
       '| Group | System / task | SCSC | Hidden result | Inspection |','|---|---|---:|---|---|']
     for r in inspections['rows']:
         lines.append(f"| {r['group']} | {r['system']} / {r['task_id']} | {num(r['scsc'])} | {r['hidden_all_pass']} | {r['reason'].replace('|','/')} |")
     lines+=['','## Validation, provenance and limitations','',
       'A1 reproduced all 11 published source aggregates under their own conventions and all 100 sampled compile statuses. Primary joins retain 9,678 hash-bound cells, 176 flagged unique paths, and two missing files. The extraction contains 10,534 tests on 882/896 gold tasks; 14 tasks have no extractable tests.','',
       f"Final controls: C1 {controls['C1']['n_pass']}/{controls['C1']['n_tests']} tests; C2 {controls['C2']['n_recovered']}/{controls['C2']['n_C1_passing_tasks']} recovered tasks; C3 {controls['C3']['n_killed']}/{controls['C3']['n_compiling_mutants']} compiling mutants detected; C4 {controls['C4']['n_rejected']}/{controls['C4']['n_pairs']} wrong-task pairs rejected. Thresholds remain 98%, 95%, 60% with at least 50 compiling mutants, and 95% respectively. These are deterministic checks on the fixed 50-task sample, p-val=n/a.",'',
+      'Evaluation completed all 43,840 declared cells (9,856 primary; 8,064 experiment 01; 25,920 experiment 08 validation), with 5,386 unique execution jobs, zero timeouts and zero infrastructure retries. Repository verification: 237 passed / 24 skipped; experiment-local checks: 32 passed. Outcome SHA-256: `e21a4a512784fff53a61af67cd609cc11548d70feb9b2ba6ca24904f627bdbb9`. See [completion verification](expt_v1/results/evaluation_verification.json) and [protocol lock](expt_v1/results/protocol_lock.json).','',
       'Historical failures and implementation corrections remain in [the checkpoint](expt_v1/CKPT_e12.md), with round-1 through round-5 receipts. A1 resolved aggregation conventions; A2 resolved identical-type alternatives before the protocol lock or any real-candidate hidden outcome. The extractor expands only closed literal aliases used exclusively as test inputs; all 10,534 tests and their expected values are retained. Candidate and gold source files and factors were never edited. All three forecasts remain frozen.','',
-      'The outcome is finite-test success, not a proof of full program correctness or a human acceptance rating. Missing applicability is bounded rather than silently scored zero. Core and IndustrySet results, missing-factor sensitivity and unambiguous-mapping sensitivity are descriptive and do not replace the frozen verdicts. Next versions cover hidden proofs and the agent-spec v8 panel.','',
+      'The outcome is finite-test success, not a proof of full program correctness or a human acceptance rating. Missing applicability is bounded rather than silently scored zero. Core and IndustrySet results, missing-factor sensitivity and unambiguous-mapping sensitivity are descriptive and do not replace the frozen verdicts. Next versions must repair and prospectively validate identifier parsing and entry-point selection, then cover hidden proofs and the agent-spec v8 panel.','',
       '**TLDR-end:** [rl4cv: 12_scsc_vs_hidden_gold_tests_vbv1_across_systems] Hidden gold-test agreement is fully measured under the frozen protocol and amendments; '+verdict+'.','']
     lines += ['**Snapshot:**', '```text', f"P1 Spearman: {num(p1['spearman'])}", f"P2 area: {num(p23['auc'])}", f"P3 within-system Spearman: {num(p23['spearman_within_system'])}", f"Applicable: {ga['n_applicable']}/{ga['n_compiling']}", 'Evaluated cells: 43840/43840', '```', '']
     (PHASE.parent/'results.md').write_text('\n'.join(lines))

@@ -5,14 +5,14 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-10-2026 05:16 PDT
+**Last updated:** 10-10-2026 05:20 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
 - **Worker:** Codex CLI 0.154.0, personal ChatGPT login, `gpt-6-astra` / high, host `skampere1`, tmux `oct9-codex-rl4cv-e12-hidden-gold-tests`; effective sandbox danger-full-access, approval never. Supersedes the Claude launch, which failed due to exhausted personal Claude credits.
 - **Frozen forecast:** `expt_v1/forecasts/e12_phase_a_forecast.json`, SHA-256 `b29b71b7166b80df653220ddddec4b865a622ef9abc1fa42c6c1e559b067b0c5`, frozen 2026-10-09T21:35:33Z at git head `e851c02`.
-- **State:** RUNNING under Amendment A2 (`a7c2ea2`); all three forecasts verified; round-2 controls archived unchanged.
-- **Next command:** inspect the 20 selected disagreements against private source/bridge receipts; render final results, finish `make test`, update README/index, publish and write DONE.
+- **State:** analysis and all 20 inspections COMPLETE under A2; final report and verification ready, final publication in progress. All forecasts and locked sources/inputs unchanged.
+- **Next command:** commit the explicit final report/artifact/README paths, pull before push, verify origin/main; write external STATUS_e12=DONE and publish the final handoff receipt. No experiment jobs remain.
 
 ## Log
 
@@ -237,3 +237,14 @@ Report presentation prepared while evaluation continues: expose primary and seco
 - 10-10-2026 05:10 PDT: analysis launched in tmux window `e12-analysis`, process 3692620, one BLAS thread and nice 10, pinned virtual environment; first useful output `System summaries complete`. Completion publication `d17a8c3` verified on origin/main. Log `/lfs/skampere1/0/brando9/rl4cv_e12/analysis_A2.log`, exit marker `analysis_A2.exit`. Forecasts reverified before reading the log.
 
 - 10-10-2026 05:16 PDT: frozen analysis completed, exit 0; P1 Spearman 0.890909 [0.781818, 0.900000], P2 area 0.639676 [0.582646, 0.695515], P3 within-system Spearman 0.151242 [0.074213, 0.225028]; all three predictions hold. G-A 3224/4674 = 0.689773 passes. All three forecasts verified before output access. P2/P3 n=3199 (2999 pass / 200 fail), 752 observed tasks; 10000 task-cluster draws, seed 20261009, p-val=n/a. Manual disagreement inspection and final deterministic checks remain in progress; no frozen source or outcome changed.
+
+### 10-10-2026 05:20 PDT — final analysis, inspection and verification
+
+- Full evaluation: 43,840/43,840 unique frozen cells, 5,386/5,386 execution jobs; evaluator and analysis exit 0; zero timeouts, zero infrastructure retries, zero experiment model/judge/GPU calls. Private outcomes: `/lfs/skampere1/0/brando9/rl4cv_e12/cells_e12.jsonl`, SHA-256 `e21a4a512784fff53a61af67cd609cc11548d70feb9b2ba6ca24904f627bdbb9`.
+- P1 HOLDS: Spearman 0.890909 [0.781818, 0.900000], n=11 systems/896 tasks; Pearson 0.864915, Kendall tau-b 0.781818; mean score 0.481844 versus hidden rate 0.420574, bias +0.061271, mean absolute difference 0.136474. Threshold ≥0.80.
+- P2 HOLDS: area 0.639676 [0.582646, 0.695515], threshold ≥0.60 and interval excludes 0.50. P3 HOLDS: within-system Spearman 0.151242 [0.074213, 0.225028], threshold positive and interval excludes zero. n=3,199 cells (2,999 pass/200 fail), 752 observed tasks. All intervals: 10,000 paired task-cluster bootstrap draws, seed 20261009, p-val=n/a; all draws defined.
+- Applicability gate PASS: 3,224/4,674 = 0.689773, threshold ≥0.50. A1 sensitivity Spearman 0.872727 [0.781818, 0.900000]. A2 steps 1–2 sensitivity: area 0.790905 [0.711967, 0.857884], within-system Spearman 0.146158 [0.044961, 0.225674]; n=1,518 (1,480 pass/38 fail), 674 observed tasks. Core614 and IndustrySet282, all mapping shares and secondary panels are in results.md/analysis_e12.json.
+- Inspected exactly the 20 selected disagreements against original candidate, compiled copy, mapping, bridge and existing log, with hashes in disagreements_e12.json. High-score failures: 6 helper mappings and 4 partial-applicability cases. Low-score successes: 10 Leanstral cells with IC_tests=0, no self-test declarations and all hidden tests passing. These selected extremes are not a random error-rate audit.
+- **Post-lock limitation:** the frozen identifier lexer omits question-mark suffixes and merges some core/wrapper names, affecting direct-name selection and reference counts. Other helpers can also win A2 step 4; partial type applicability sets all-pass false without any false evaluated test. No locked code, candidate, score, forecast or outcome was changed. Interpret the successful predictions as association with this implemented pipeline, not an error-free semantic-correctness instrument. Repair and prospectively validate in expt_v2; do not overwrite expt_v1.
+- Deterministic verification: `make test` 237 passed/24 skipped (197.25 s), local experiment tests 32 passed (1.07 s), renderer syntax and diff whitespace pass. Final verification artifact checks all 3 forecasts, all 6 locked sources, all 5 inputs, output digest and all inspection evidence hashes. Final progress snapshots retained privately in `final_progress_archives/`.
+- Published analysis milestone `621b288` is on origin/main. Final results/README/index and inspection artifacts prepared for publication. Master next version: corrected adapter and explicit entry point, then hidden proofs and agent-spec v8. No further phase-A experiments or jobs remain.
