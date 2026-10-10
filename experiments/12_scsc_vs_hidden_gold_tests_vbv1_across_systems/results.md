@@ -5,7 +5,7 @@
 Experiment `12_scsc_vs_hidden_gold_tests_vbv1_across_systems` phase A passed Amendment A1 input checks and 100/100 compilation reproductions; all four adapter controls passed under prospective Amendment A2 with zero experiment model calls.
 
 **Status:** RUNNING under prospective Amendment A2 (`a7c2ea2`). Round-2 failure retained below; round-5 controls PASS; protocol LOCKED; evaluation is active after lock publication `f64c084`. No real-candidate hidden outcomes existed at lock.
-**Last updated:** 10-09-2026 18:31 PDT
+**Last updated:** 10-09-2026 19:08 PDT
 
 The smooth conjunctive score for code verification (SCSC) combines internal consistency of tests (IC_tests), internal consistency of proofs (IC_proofs), and formal specification coverage (FSC). Under the prospective [Amendment A1](PROTOCOL.md#8-amendment-a1-10-09-2026-master-before-any-hidden-test-outcome), the system score is the geometric mean of the three factor means over one common measured cohort. Published-value checks reproduce each source’s own convention.
 
@@ -58,7 +58,7 @@ Round 4 corrects extraction of literal input fixtures: a zero-argument alias wit
 
 Round 4 is archived unchanged in [controls_e12_round4.json](expt_v1/results/controls_e12_round4.json). Its sole failed gate is the missing Floyd–Warshall mutant: both tested entry functions delegate to helpers and contain no direct operator/literal mutation. Round 5 adds a final reachable-helper fallback after all direct attempts, preserving source-order selection and every previously successful mutant choice; it reruns all four controls on all 50 tasks. Mapping, tests and expectations stay fixed. [Round-5 live snapshot](expt_v1/results/controls_round5_status.json): 50/50 tasks; gold 591/591, renamed 48/50, mutants killed 44/50, wrong-task rejection 49/50; every gate passes.
 
-The evaluator is running after the published lock, with A1/A2 sensitivities and per-step shares prepared for the completed cohort. Immediate accounting preserves 38,454 noncompiling, missing, unmeasured or no-test cells; 5,386 unique compiling task/code pairs require Lean evaluation. Current published progress: 500/5,386 compilation jobs, 38,954/43,840 retained cell records. No frozen prediction verdict is computed until completion. Deterministic checks: 32 experiment-local tests pass, including synthetic statistics cases; repository suite 204 passed / 24 skipped.
+The evaluator is running after the published lock, with A1/A2 sensitivities and per-step shares prepared for the completed cohort. Immediate accounting preserves 38,454 noncompiling, missing, unmeasured or no-test cells; 5,386 unique compiling task/code pairs require Lean evaluation. Current published progress: 750/5,386 compilation jobs, 39,204/43,840 retained cell records. No frozen prediction verdict is computed until completion. Deterministic checks: 32 experiment-local tests pass, including synthetic statistics cases; repository suite 204 passed / 24 skipped.
 
 ## Historical round-2 control result and structural blocker
 
