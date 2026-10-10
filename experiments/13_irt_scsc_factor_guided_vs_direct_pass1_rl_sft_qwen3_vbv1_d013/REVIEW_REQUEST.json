@@ -1,0 +1,45 @@
+{
+  "request_id": "rl4cv13-plan-light-review-10-09-2026",
+  "status": "READY_FOR_MASTER_DISPATCH",
+  "requested_reviewer": {
+    "cli": "codex",
+    "model": "gpt-6-astra",
+    "reasoning_effort": "ultra",
+    "rounds": 1,
+    "mode": "light_read_only"
+  },
+  "base_commit": "be43d3a8fcd9a1df5b77058be516821f3a7629d0",
+  "scope": [
+    "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/README.md",
+    "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/PROTOCOL.md",
+    "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/",
+    "experiments/README.md",
+    "src/rl4cv/e13.py",
+    "tests/test_e13_controls.py"
+  ],
+  "content_sha256": {
+    "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/README.md": "6476a1e34b245e7ba50a020f2bf0dc7653cb99c191d7933b3ae1e23f3363979d",
+    "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/PROTOCOL.md": "60f3a9251701cc9f8a6dd514ae664318f41424df985d1d6649a881b6b7a409ee",
+    "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/PHASE0_CONTROL_PLAN.md": "0948147f15969b37c14ec925fca3c9696cdf0b3bd1d30e7a85e471d51edbf587",
+    "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/PHASE1_IRT_PLAN.md": "d046e891439a131a9a372c46c780a1555143963f0523c504e601db9782d8e920",
+    "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/PHASE2_MATCHED_RL_PLAN.md": "c889f7934f7ad970741d2fff12dfb0a047cd695ab36efbb5507d9ce2510010f7",
+    "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/RUNBOOK.md": "e57190b27242b139c5e2021d7503c0dedb9be04602a91633334155c2d26d1d8c",
+    "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/CKPT_e13.md": "e522a2e044d5dc8edf30946bd7cc0317b4971b4092b28a13ab235124c1addaa3",
+    "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/results.md": "77b17cd0a6d5a5628779601d82c1608e078122fb96798043a59d0f31a98c195e",
+    "src/rl4cv/e13.py": "0057ab81f8152fb3e02fcbdb9fc8e5046dfa2de1708629f550e724fbee74af31",
+    "tests/test_e13_controls.py": "9475d737253ada8b54b2e0c5d628407e3747d066efdfe925d25c387054016282",
+    "experiments/README.md": "d23bdae155bd66cfd51c72697b29fb3238dbb0ba116657a6c85834a3eab59778"
+  },
+  "gates_under_review": [
+    "No Phase 0 measurement until L1, fixture controls, and exact reproduction on complete e08/e05 manifests.",
+    "No Phase 1 fit until Phase 0 strict-reproduction gate; held-out task/checkpoint folds and no train-validation-test leakage.",
+    "No Phase 2/model call/device lease until review, L2, experiment-09 replacement probability controls, measured pilot budget, and valid lease.",
+    "Experiment 09 remains failed with zero optimizer updates; experiment 08 layout-probe budget cannot be reused; 260-350 A100 hours is not allocation."
+  ],
+  "deterministic_evidence": [
+    "PYTHONPATH=<repo>/src /lfs/skampere1/0/brando9/rl4cv_e12/.venv/bin/python -m pytest -q tests/test_e13_controls.py: 5 passed",
+    "git diff --check: passed"
+  ],
+  "review_prompt": "Read only the scoped Experiment 13 change from base_commit through the listed content hashes. Independently search for scientific/design defects, especially partial-credit reward gaming or collapse, strict scorer non-equivalence, split leakage, invalid IRT identifiability/validation, unmatched RL accounting, placebo dependence, unsupported inference with few seeds, and ways experiment-09 or experiment-08 failures could be bypassed. Do not edit files and do not start measurements, model calls, leases, or training. Report findings with file/line evidence and end exactly: VERDICT: PASS | FAIL; CRITICAL_ISSUES: n; MAJOR_ISSUES: n; SUMMARY: one or two sentences.",
+  "post_review_action": "Builder applies findings, reruns deterministic checks, then follows remote publication procedure; no admitted experiment phase is run in this bounded preparation phase."
+}
