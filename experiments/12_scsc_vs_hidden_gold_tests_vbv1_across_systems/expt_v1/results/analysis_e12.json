@@ -1,0 +1,4820 @@
+{
+  "settings": {
+    "seed": 20261009,
+    "draws": 10000,
+    "bootstrap_unit": "paired task clusters, all systems retained",
+    "p_value": "n/a",
+    "P2_definition": "pooled ROC AUC on within-system normalized midranks; midranks recomputed in each bootstrap",
+    "P3_definition": "Pearson of pooled within-system normalized midranks of score and graded outcome; recomputed each bootstrap",
+    "repeat_scoring": "single saved run per cell; no additional scoring repeats"
+  },
+  "outcomes_sha256": "e21a4a512784fff53a61af67cd609cc11548d70feb9b2ba6ca24904f627bdbb9",
+  "systems": [
+    {
+      "panel": "experiment01",
+      "system": "qwen3-1.7b_g1",
+      "n_declared": 896,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.0,
+        "IC_proofs": 0.0,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 0,
+      "compile_rate": 0.0,
+      "n_applicable": 0,
+      "applicability": null,
+      "n_no_tests": 14,
+      "n_hidden_observed": 882,
+      "n_hidden_missing": 0,
+      "hidden_all_pass_count": 0,
+      "hidden_all_pass_mean": 0.0,
+      "hidden_pass_rate_mean": 0.0,
+      "hidden_bounds": [
+        0.0,
+        0.0
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 896,
+      "kernel_binary_mean": 0.0,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment01",
+      "system": "qwen3-14b_g1",
+      "n_declared": 896,
+      "n_common_measured": 60,
+      "factor_means_common": {
+        "IC_tests": 0.016666666666666666,
+        "IC_proofs": 0.016666666666666666,
+        "FSC": 0.46166666666666667
+      },
+      "factor_means_available": {
+        "IC_tests": 0.005580357142857143,
+        "IC_proofs": 0.0011160714285714285,
+        "FSC": 0.46166666666666667
+      },
+      "system_score": 0.05042841745086967,
+      "n_compiling": 5,
+      "compile_rate": 0.005580357142857143,
+      "n_applicable": 5,
+      "applicability": 1.0,
+      "n_no_tests": 14,
+      "n_hidden_observed": 882,
+      "n_hidden_missing": 0,
+      "hidden_all_pass_count": 5,
+      "hidden_all_pass_mean": 0.005668934240362812,
+      "hidden_pass_rate_mean": 0.005668934240362812,
+      "hidden_bounds": [
+        0.005668934240362812,
+        0.005668934240362812
+      ],
+      "P1_n_hidden": 56,
+      "P1_hidden_mean": 0.017857142857142856,
+      "kernel_binary_n": 896,
+      "kernel_binary_mean": 0.0011160714285714285,
+      "n_kernel_verified": 1,
+      "n_kernel_verified_hidden_observed": 1,
+      "hidden_all_pass_given_kernel": 1.0,
+      "hidden_given_kernel_bounds": [
+        1.0,
+        1.0
+      ],
+      "mapping_step_counts": {
+        "1": 6,
+        "2": 0,
+        "3": 4,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment01",
+      "system": "qwen3-4b_g1",
+      "n_declared": 896,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.0,
+        "IC_proofs": 0.0,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 0,
+      "compile_rate": 0.0,
+      "n_applicable": 0,
+      "applicability": null,
+      "n_no_tests": 14,
+      "n_hidden_observed": 882,
+      "n_hidden_missing": 0,
+      "hidden_all_pass_count": 0,
+      "hidden_all_pass_mean": 0.0,
+      "hidden_pass_rate_mean": 0.0,
+      "hidden_bounds": [
+        0.0,
+        0.0
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 896,
+      "kernel_binary_mean": 0.0,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment01",
+      "system": "qwen3-8b_g1",
+      "n_declared": 896,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.002232142857142857,
+        "IC_proofs": 0.0,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 2,
+      "compile_rate": 0.002232142857142857,
+      "n_applicable": 2,
+      "applicability": 1.0,
+      "n_no_tests": 14,
+      "n_hidden_observed": 882,
+      "n_hidden_missing": 0,
+      "hidden_all_pass_count": 2,
+      "hidden_all_pass_mean": 0.0022675736961451248,
+      "hidden_pass_rate_mean": 0.0022675736961451248,
+      "hidden_bounds": [
+        0.0022675736961451248,
+        0.0022675736961451248
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 896,
+      "kernel_binary_mean": 0.0,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 2,
+        "2": 0,
+        "3": 0,
+        "4": 2
+      }
+    },
+    {
+      "panel": "experiment01",
+      "system": "qwen3.5-0.8b_g1",
+      "n_declared": 896,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.0,
+        "IC_proofs": 0.0,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 4,
+      "compile_rate": 0.004464285714285714,
+      "n_applicable": 0,
+      "applicability": 0.0,
+      "n_no_tests": 14,
+      "n_hidden_observed": 878,
+      "n_hidden_missing": 4,
+      "hidden_all_pass_count": 0,
+      "hidden_all_pass_mean": 0.0,
+      "hidden_pass_rate_mean": 0.0,
+      "hidden_bounds": [
+        0.0,
+        0.0045351473922902496
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 896,
+      "kernel_binary_mean": 0.0,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment01",
+      "system": "qwen3.5-2b_g1",
+      "n_declared": 896,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.0,
+        "IC_proofs": 0.0,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 3,
+      "compile_rate": 0.0033482142857142855,
+      "n_applicable": 0,
+      "applicability": 0.0,
+      "n_no_tests": 14,
+      "n_hidden_observed": 879,
+      "n_hidden_missing": 3,
+      "hidden_all_pass_count": 0,
+      "hidden_all_pass_mean": 0.0,
+      "hidden_pass_rate_mean": 0.0,
+      "hidden_bounds": [
+        0.0,
+        0.003401360544217687
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 896,
+      "kernel_binary_mean": 0.0,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment01",
+      "system": "qwen3.5-4b_g1",
+      "n_declared": 896,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.0011160714285714285,
+        "IC_proofs": 0.0,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 4,
+      "compile_rate": 0.004464285714285714,
+      "n_applicable": 3,
+      "applicability": 0.75,
+      "n_no_tests": 14,
+      "n_hidden_observed": 881,
+      "n_hidden_missing": 1,
+      "hidden_all_pass_count": 3,
+      "hidden_all_pass_mean": 0.00340522133938706,
+      "hidden_pass_rate_mean": 0.00340522133938706,
+      "hidden_bounds": [
+        0.003401360544217687,
+        0.0045351473922902496
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 896,
+      "kernel_binary_mean": 0.0,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 3,
+        "2": 3,
+        "3": 0,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment01",
+      "system": "qwen3.5-9b_g1",
+      "n_declared": 896,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.0,
+        "IC_proofs": 0.0,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 5,
+      "compile_rate": 0.005580357142857143,
+      "n_applicable": 4,
+      "applicability": 0.8,
+      "n_no_tests": 14,
+      "n_hidden_observed": 881,
+      "n_hidden_missing": 1,
+      "hidden_all_pass_count": 3,
+      "hidden_all_pass_mean": 0.00340522133938706,
+      "hidden_pass_rate_mean": 0.004540295119182747,
+      "hidden_bounds": [
+        0.003401360544217687,
+        0.0045351473922902496
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 896,
+      "kernel_binary_mean": 0.0,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 5,
+        "2": 5,
+        "3": 0,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment01",
+      "system": "qwen3.6-27b-local_g1",
+      "n_declared": 896,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.0011160714285714285,
+        "IC_proofs": 0.0,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 2,
+      "compile_rate": 0.002232142857142857,
+      "n_applicable": 2,
+      "applicability": 1.0,
+      "n_no_tests": 14,
+      "n_hidden_observed": 882,
+      "n_hidden_missing": 0,
+      "hidden_all_pass_count": 1,
+      "hidden_all_pass_mean": 0.0011337868480725624,
+      "hidden_pass_rate_mean": 0.0022675736961451248,
+      "hidden_bounds": [
+        0.0011337868480725624,
+        0.0011337868480725624
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 896,
+      "kernel_binary_mean": 0.0,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 1,
+        "2": 3,
+        "3": 0,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "base14b",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.008333333333333333,
+        "IC_proofs": 0.008333333333333333,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 9,
+      "compile_rate": 0.008333333333333333,
+      "n_applicable": 9,
+      "applicability": 1.0,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1072,
+      "n_hidden_missing": 0,
+      "hidden_all_pass_count": 9,
+      "hidden_all_pass_mean": 0.008395522388059701,
+      "hidden_pass_rate_mean": 0.008395522388059701,
+      "hidden_bounds": [
+        0.008395522388059701,
+        0.008395522388059701
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.008333333333333333,
+      "n_kernel_verified": 9,
+      "n_kernel_verified_hidden_observed": 9,
+      "hidden_all_pass_given_kernel": 1.0,
+      "hidden_given_kernel_bounds": [
+        1.0,
+        1.0
+      ],
+      "mapping_step_counts": {
+        "1": 9,
+        "2": 2,
+        "3": 7,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "base_1p7B_e05",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.000925925925925926,
+        "IC_proofs": 0.000925925925925926,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 7,
+      "compile_rate": 0.006481481481481481,
+      "n_applicable": 2,
+      "applicability": 0.2857142857142857,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1067,
+      "n_hidden_missing": 5,
+      "hidden_all_pass_count": 2,
+      "hidden_all_pass_mean": 0.0018744142455482662,
+      "hidden_pass_rate_mean": 0.0018744142455482662,
+      "hidden_bounds": [
+        0.0018656716417910447,
+        0.0065298507462686565
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.0,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 2,
+        "2": 1,
+        "3": 1,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "base_4B_e05",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.004629629629629629,
+        "IC_proofs": 0.002777777777777778,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 5,
+      "compile_rate": 0.004629629629629629,
+      "n_applicable": 4,
+      "applicability": 0.8,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1071,
+      "n_hidden_missing": 1,
+      "hidden_all_pass_count": 4,
+      "hidden_all_pass_mean": 0.003734827264239029,
+      "hidden_pass_rate_mean": 0.003734827264239029,
+      "hidden_bounds": [
+        0.0037313432835820895,
+        0.0046641791044776115
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.002777777777777778,
+      "n_kernel_verified": 3,
+      "n_kernel_verified_hidden_observed": 3,
+      "hidden_all_pass_given_kernel": 1.0,
+      "hidden_given_kernel_bounds": [
+        1.0,
+        1.0
+      ],
+      "mapping_step_counts": {
+        "1": 5,
+        "2": 0,
+        "3": 4,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "base_8B_e05",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.0,
+        "IC_proofs": 0.0,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 0,
+      "compile_rate": 0.0,
+      "n_applicable": 0,
+      "applicability": null,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1072,
+      "n_hidden_missing": 0,
+      "hidden_all_pass_count": 0,
+      "hidden_all_pass_mean": 0.0,
+      "hidden_pass_rate_mean": 0.0,
+      "hidden_bounds": [
+        0.0,
+        0.0
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.0,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_14B_f0p125",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 0,
+      "compile_rate": 0.0,
+      "n_applicable": 0,
+      "applicability": null,
+      "n_no_tests": 8,
+      "n_hidden_observed": 0,
+      "n_hidden_missing": 1072,
+      "hidden_all_pass_count": 0,
+      "hidden_all_pass_mean": null,
+      "hidden_pass_rate_mean": null,
+      "hidden_bounds": [
+        0.0,
+        1.0
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 0,
+      "kernel_binary_mean": null,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_14B_f0p25",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 0,
+      "compile_rate": 0.0,
+      "n_applicable": 0,
+      "applicability": null,
+      "n_no_tests": 8,
+      "n_hidden_observed": 0,
+      "n_hidden_missing": 1072,
+      "hidden_all_pass_count": 0,
+      "hidden_all_pass_mean": null,
+      "hidden_pass_rate_mean": null,
+      "hidden_bounds": [
+        0.0,
+        1.0
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 0,
+      "kernel_binary_mean": null,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_14B_f0p5",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 0,
+      "compile_rate": 0.0,
+      "n_applicable": 0,
+      "applicability": null,
+      "n_no_tests": 8,
+      "n_hidden_observed": 0,
+      "n_hidden_missing": 1072,
+      "hidden_all_pass_count": 0,
+      "hidden_all_pass_mean": null,
+      "hidden_pass_rate_mean": null,
+      "hidden_bounds": [
+        0.0,
+        1.0
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 0,
+      "kernel_binary_mean": null,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_14B_f0p75",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 0,
+      "compile_rate": 0.0,
+      "n_applicable": 0,
+      "applicability": null,
+      "n_no_tests": 8,
+      "n_hidden_observed": 0,
+      "n_hidden_missing": 1072,
+      "hidden_all_pass_count": 0,
+      "hidden_all_pass_mean": null,
+      "hidden_pass_rate_mean": null,
+      "hidden_bounds": [
+        0.0,
+        1.0
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 0,
+      "kernel_binary_mean": null,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_14B_f1p0",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 0,
+      "compile_rate": 0.0,
+      "n_applicable": 0,
+      "applicability": null,
+      "n_no_tests": 8,
+      "n_hidden_observed": 0,
+      "n_hidden_missing": 1072,
+      "hidden_all_pass_count": 0,
+      "hidden_all_pass_mean": null,
+      "hidden_pass_rate_mean": null,
+      "hidden_bounds": [
+        0.0,
+        1.0
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 0,
+      "kernel_binary_mean": null,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_1p7B_f0p125",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.003703703703703704,
+        "IC_proofs": 0.003703703703703704,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 4,
+      "compile_rate": 0.003703703703703704,
+      "n_applicable": 4,
+      "applicability": 1.0,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1072,
+      "n_hidden_missing": 0,
+      "hidden_all_pass_count": 4,
+      "hidden_all_pass_mean": 0.0037313432835820895,
+      "hidden_pass_rate_mean": 0.0037313432835820895,
+      "hidden_bounds": [
+        0.0037313432835820895,
+        0.0037313432835820895
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.003703703703703704,
+      "n_kernel_verified": 4,
+      "n_kernel_verified_hidden_observed": 4,
+      "hidden_all_pass_given_kernel": 1.0,
+      "hidden_given_kernel_bounds": [
+        1.0,
+        1.0
+      ],
+      "mapping_step_counts": {
+        "1": 6,
+        "2": 0,
+        "3": 2,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_1p7B_f0p25",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.000925925925925926,
+        "IC_proofs": 0.000925925925925926,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 1,
+      "compile_rate": 0.000925925925925926,
+      "n_applicable": 0,
+      "applicability": 0.0,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1071,
+      "n_hidden_missing": 1,
+      "hidden_all_pass_count": 0,
+      "hidden_all_pass_mean": 0.0,
+      "hidden_pass_rate_mean": 0.0,
+      "hidden_bounds": [
+        0.0,
+        0.0009328358208955224
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.000925925925925926,
+      "n_kernel_verified": 1,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": [
+        0.0,
+        1.0
+      ],
+      "mapping_step_counts": {
+        "1": 1,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_1p7B_f0p5",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.017592592592592594,
+        "IC_proofs": 0.017592592592592594,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 19,
+      "compile_rate": 0.017592592592592594,
+      "n_applicable": 17,
+      "applicability": 0.8947368421052632,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1070,
+      "n_hidden_missing": 2,
+      "hidden_all_pass_count": 16,
+      "hidden_all_pass_mean": 0.014953271028037384,
+      "hidden_pass_rate_mean": 0.01588785046728972,
+      "hidden_bounds": [
+        0.014925373134328358,
+        0.016791044776119403
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.017592592592592594,
+      "n_kernel_verified": 19,
+      "n_kernel_verified_hidden_observed": 17,
+      "hidden_all_pass_given_kernel": 0.9411764705882353,
+      "hidden_given_kernel_bounds": [
+        0.8421052631578947,
+        0.9473684210526315
+      ],
+      "mapping_step_counts": {
+        "1": 23,
+        "2": 0,
+        "3": 12,
+        "4": 2
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_1p7B_f0p75",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.040740740740740744,
+        "IC_proofs": 0.040740740740740744,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 44,
+      "compile_rate": 0.040740740740740744,
+      "n_applicable": 43,
+      "applicability": 0.9772727272727273,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1071,
+      "n_hidden_missing": 1,
+      "hidden_all_pass_count": 39,
+      "hidden_all_pass_mean": 0.036414565826330535,
+      "hidden_pass_rate_mean": 0.040149393090569564,
+      "hidden_bounds": [
+        0.036380597014925374,
+        0.03731343283582089
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.040740740740740744,
+      "n_kernel_verified": 44,
+      "n_kernel_verified_hidden_observed": 43,
+      "hidden_all_pass_given_kernel": 0.9069767441860465,
+      "hidden_given_kernel_bounds": [
+        0.8863636363636364,
+        0.9090909090909091
+      ],
+      "mapping_step_counts": {
+        "1": 50,
+        "2": 0,
+        "3": 34,
+        "4": 1
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_1p7B_f1p0",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.049074074074074076,
+        "IC_proofs": 0.049074074074074076,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 53,
+      "compile_rate": 0.049074074074074076,
+      "n_applicable": 52,
+      "applicability": 0.9811320754716981,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1071,
+      "n_hidden_missing": 1,
+      "hidden_all_pass_count": 48,
+      "hidden_all_pass_mean": 0.04481792717086835,
+      "hidden_pass_rate_mean": 0.04855275443510738,
+      "hidden_bounds": [
+        0.04477611940298507,
+        0.0457089552238806
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.049074074074074076,
+      "n_kernel_verified": 53,
+      "n_kernel_verified_hidden_observed": 52,
+      "hidden_all_pass_given_kernel": 0.9230769230769231,
+      "hidden_given_kernel_bounds": [
+        0.9056603773584906,
+        0.9245283018867925
+      ],
+      "mapping_step_counts": {
+        "1": 61,
+        "2": 0,
+        "3": 37,
+        "4": 3
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_4B_f0p125",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.005555555555555556,
+        "IC_proofs": 0.005555555555555556,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 6,
+      "compile_rate": 0.005555555555555556,
+      "n_applicable": 6,
+      "applicability": 1.0,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1072,
+      "n_hidden_missing": 0,
+      "hidden_all_pass_count": 6,
+      "hidden_all_pass_mean": 0.005597014925373134,
+      "hidden_pass_rate_mean": 0.005597014925373134,
+      "hidden_bounds": [
+        0.005597014925373134,
+        0.005597014925373134
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.005555555555555556,
+      "n_kernel_verified": 6,
+      "n_kernel_verified_hidden_observed": 6,
+      "hidden_all_pass_given_kernel": 1.0,
+      "hidden_given_kernel_bounds": [
+        1.0,
+        1.0
+      ],
+      "mapping_step_counts": {
+        "1": 7,
+        "2": 0,
+        "3": 5,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_4B_f0p25",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.041666666666666664,
+        "IC_proofs": 0.041666666666666664,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 45,
+      "compile_rate": 0.041666666666666664,
+      "n_applicable": 45,
+      "applicability": 1.0,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1072,
+      "n_hidden_missing": 0,
+      "hidden_all_pass_count": 40,
+      "hidden_all_pass_mean": 0.03731343283582089,
+      "hidden_pass_rate_mean": 0.04197761194029851,
+      "hidden_bounds": [
+        0.03731343283582089,
+        0.03731343283582089
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.041666666666666664,
+      "n_kernel_verified": 45,
+      "n_kernel_verified_hidden_observed": 45,
+      "hidden_all_pass_given_kernel": 0.8888888888888888,
+      "hidden_given_kernel_bounds": [
+        0.8888888888888888,
+        0.8888888888888888
+      ],
+      "mapping_step_counts": {
+        "1": 59,
+        "2": 0,
+        "3": 25,
+        "4": 2
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_4B_f0p5",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.03888888888888889,
+        "IC_proofs": 0.03888888888888889,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 42,
+      "compile_rate": 0.03888888888888889,
+      "n_applicable": 41,
+      "applicability": 0.9761904761904762,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1071,
+      "n_hidden_missing": 1,
+      "hidden_all_pass_count": 32,
+      "hidden_all_pass_mean": 0.029878618113912233,
+      "hidden_pass_rate_mean": 0.03828197945845005,
+      "hidden_bounds": [
+        0.029850746268656716,
+        0.030783582089552237
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.03888888888888889,
+      "n_kernel_verified": 42,
+      "n_kernel_verified_hidden_observed": 41,
+      "hidden_all_pass_given_kernel": 0.7804878048780488,
+      "hidden_given_kernel_bounds": [
+        0.7619047619047619,
+        0.7857142857142857
+      ],
+      "mapping_step_counts": {
+        "1": 48,
+        "2": 0,
+        "3": 25,
+        "4": 1
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_4B_f0p75",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.037037037037037035,
+        "IC_proofs": 0.037037037037037035,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 40,
+      "compile_rate": 0.037037037037037035,
+      "n_applicable": 33,
+      "applicability": 0.825,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1065,
+      "n_hidden_missing": 7,
+      "hidden_all_pass_count": 30,
+      "hidden_all_pass_mean": 0.028169014084507043,
+      "hidden_pass_rate_mean": 0.030985915492957747,
+      "hidden_bounds": [
+        0.027985074626865673,
+        0.03451492537313433
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.037037037037037035,
+      "n_kernel_verified": 40,
+      "n_kernel_verified_hidden_observed": 33,
+      "hidden_all_pass_given_kernel": 0.9090909090909091,
+      "hidden_given_kernel_bounds": [
+        0.75,
+        0.925
+      ],
+      "mapping_step_counts": {
+        "1": 51,
+        "2": 0,
+        "3": 25,
+        "4": 1
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_4B_f1p0",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.09259259259259259,
+        "IC_proofs": 0.09259259259259259,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 100,
+      "compile_rate": 0.09259259259259259,
+      "n_applicable": 93,
+      "applicability": 0.93,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1065,
+      "n_hidden_missing": 7,
+      "hidden_all_pass_count": 74,
+      "hidden_all_pass_mean": 0.06948356807511737,
+      "hidden_pass_rate_mean": 0.08732394366197183,
+      "hidden_bounds": [
+        0.06902985074626866,
+        0.07555970149253731
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.09259259259259259,
+      "n_kernel_verified": 100,
+      "n_kernel_verified_hidden_observed": 93,
+      "hidden_all_pass_given_kernel": 0.7956989247311828,
+      "hidden_given_kernel_bounds": [
+        0.74,
+        0.81
+      ],
+      "mapping_step_counts": {
+        "1": 116,
+        "2": 0,
+        "3": 58,
+        "4": 7
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_8B_f0p125",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.013888888888888888,
+        "IC_proofs": 0.013756613756613757,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 15,
+      "compile_rate": 0.013888888888888888,
+      "n_applicable": 15,
+      "applicability": 1.0,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1072,
+      "n_hidden_missing": 0,
+      "hidden_all_pass_count": 12,
+      "hidden_all_pass_mean": 0.011194029850746268,
+      "hidden_pass_rate_mean": 0.013992537313432836,
+      "hidden_bounds": [
+        0.011194029850746268,
+        0.011194029850746268
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.012962962962962963,
+      "n_kernel_verified": 14,
+      "n_kernel_verified_hidden_observed": 14,
+      "hidden_all_pass_given_kernel": 0.7857142857142857,
+      "hidden_given_kernel_bounds": [
+        0.7857142857142857,
+        0.7857142857142857
+      ],
+      "mapping_step_counts": {
+        "1": 19,
+        "2": 0,
+        "3": 9,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_8B_f0p25",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.06944444444444445,
+        "IC_proofs": 0.06944444444444445,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 75,
+      "compile_rate": 0.06944444444444445,
+      "n_applicable": 75,
+      "applicability": 1.0,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1072,
+      "n_hidden_missing": 0,
+      "hidden_all_pass_count": 66,
+      "hidden_all_pass_mean": 0.061567164179104475,
+      "hidden_pass_rate_mean": 0.06996268656716417,
+      "hidden_bounds": [
+        0.061567164179104475,
+        0.061567164179104475
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.06944444444444445,
+      "n_kernel_verified": 75,
+      "n_kernel_verified_hidden_observed": 75,
+      "hidden_all_pass_given_kernel": 0.88,
+      "hidden_given_kernel_bounds": [
+        0.88,
+        0.88
+      ],
+      "mapping_step_counts": {
+        "1": 99,
+        "2": 0,
+        "3": 42,
+        "4": 0
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_8B_f0p5",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.0712962962962963,
+        "IC_proofs": 0.0712962962962963,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 77,
+      "compile_rate": 0.0712962962962963,
+      "n_applicable": 72,
+      "applicability": 0.935064935064935,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1067,
+      "n_hidden_missing": 5,
+      "hidden_all_pass_count": 63,
+      "hidden_all_pass_mean": 0.059044048734770385,
+      "hidden_pass_rate_mean": 0.06747891283973759,
+      "hidden_bounds": [
+        0.058768656716417914,
+        0.06343283582089553
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.0712962962962963,
+      "n_kernel_verified": 77,
+      "n_kernel_verified_hidden_observed": 72,
+      "hidden_all_pass_given_kernel": 0.875,
+      "hidden_given_kernel_bounds": [
+        0.8181818181818182,
+        0.8831168831168831
+      ],
+      "mapping_step_counts": {
+        "1": 93,
+        "2": 0,
+        "3": 46,
+        "4": 3
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_8B_f0p75",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.0824074074074074,
+        "IC_proofs": 0.0824074074074074,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 89,
+      "compile_rate": 0.0824074074074074,
+      "n_applicable": 79,
+      "applicability": 0.8876404494382022,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1062,
+      "n_hidden_missing": 10,
+      "hidden_all_pass_count": 67,
+      "hidden_all_pass_mean": 0.06308851224105462,
+      "hidden_pass_rate_mean": 0.0743879472693032,
+      "hidden_bounds": [
+        0.0625,
+        0.07182835820895522
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.0824074074074074,
+      "n_kernel_verified": 89,
+      "n_kernel_verified_hidden_observed": 79,
+      "hidden_all_pass_given_kernel": 0.8481012658227848,
+      "hidden_given_kernel_bounds": [
+        0.7528089887640449,
+        0.8651685393258427
+      ],
+      "mapping_step_counts": {
+        "1": 113,
+        "2": 0,
+        "3": 45,
+        "4": 9
+      }
+    },
+    {
+      "panel": "experiment08_validation",
+      "system": "sft_8B_f1p0",
+      "n_declared": 1080,
+      "n_common_measured": 0,
+      "factor_means_common": {
+        "IC_tests": null,
+        "IC_proofs": null,
+        "FSC": null
+      },
+      "factor_means_available": {
+        "IC_tests": 0.0962962962962963,
+        "IC_proofs": 0.0962962962962963,
+        "FSC": null
+      },
+      "system_score": null,
+      "n_compiling": 104,
+      "compile_rate": 0.0962962962962963,
+      "n_applicable": 97,
+      "applicability": 0.9326923076923077,
+      "n_no_tests": 8,
+      "n_hidden_observed": 1065,
+      "n_hidden_missing": 7,
+      "hidden_all_pass_count": 78,
+      "hidden_all_pass_mean": 0.07323943661971831,
+      "hidden_pass_rate_mean": 0.09107981220657277,
+      "hidden_bounds": [
+        0.07276119402985075,
+        0.07929104477611941
+      ],
+      "P1_n_hidden": 0,
+      "P1_hidden_mean": null,
+      "kernel_binary_n": 1080,
+      "kernel_binary_mean": 0.0962962962962963,
+      "n_kernel_verified": 104,
+      "n_kernel_verified_hidden_observed": 97,
+      "hidden_all_pass_given_kernel": 0.8041237113402062,
+      "hidden_given_kernel_bounds": [
+        0.75,
+        0.8173076923076923
+      ],
+      "mapping_step_counts": {
+        "1": 112,
+        "2": 0,
+        "3": 65,
+        "4": 9
+      }
+    },
+    {
+      "panel": "primary",
+      "system": "baseline",
+      "n_declared": 896,
+      "n_common_measured": 896,
+      "factor_means_common": {
+        "IC_tests": 0.28683035714285715,
+        "IC_proofs": 0.2890625,
+        "FSC": 0.2936383928571429
+      },
+      "factor_means_available": {
+        "IC_tests": 0.28683035714285715,
+        "IC_proofs": 0.2890625,
+        "FSC": 0.2936383928571429
+      },
+      "system_score": 0.2898299323797745,
+      "n_compiling": 823,
+      "compile_rate": 0.9185267857142857,
+      "n_applicable": 217,
+      "applicability": 0.26366950182260024,
+      "n_no_tests": 14,
+      "n_hidden_observed": 290,
+      "n_hidden_missing": 592,
+      "hidden_all_pass_count": 204,
+      "hidden_all_pass_mean": 0.7034482758620689,
+      "hidden_pass_rate_mean": 0.7456896551724138,
+      "hidden_bounds": [
+        0.23129251700680273,
+        0.9024943310657596
+      ],
+      "P1_n_hidden": 290,
+      "P1_hidden_mean": 0.7034482758620689,
+      "kernel_binary_n": 0,
+      "kernel_binary_mean": null,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 248,
+        "2": 203,
+        "3": 4,
+        "4": 24
+      }
+    },
+    {
+      "panel": "primary",
+      "system": "claude-opus-5-max",
+      "n_declared": 896,
+      "n_common_measured": 681,
+      "factor_means_common": {
+        "IC_tests": 0.6079295154185022,
+        "IC_proofs": 0.6074027457287369,
+        "FSC": 0.7365638766519824
+      },
+      "factor_means_available": {
+        "IC_tests": 0.6079295154185022,
+        "IC_proofs": 0.6074027457287369,
+        "FSC": 0.7365638766519824
+      },
+      "system_score": 0.6479081833537453,
+      "n_compiling": 428,
+      "compile_rate": 0.47767857142857145,
+      "n_applicable": 356,
+      "applicability": 0.8317757009345794,
+      "n_no_tests": 14,
+      "n_hidden_observed": 810,
+      "n_hidden_missing": 72,
+      "hidden_all_pass_count": 334,
+      "hidden_all_pass_mean": 0.4123456790123457,
+      "hidden_pass_rate_mean": 0.4331801429023651,
+      "hidden_bounds": [
+        0.3786848072562358,
+        0.4603174603174603
+      ],
+      "P1_n_hidden": 609,
+      "P1_hidden_mean": 0.5287356321839081,
+      "kernel_binary_n": 0,
+      "kernel_binary_mean": null,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 672,
+        "2": 9,
+        "3": 79,
+        "4": 75
+      }
+    },
+    {
+      "panel": "primary",
+      "system": "claude_code",
+      "n_declared": 896,
+      "n_common_measured": 896,
+      "factor_means_common": {
+        "IC_tests": 0.9776785714285714,
+        "IC_proofs": 0.977415892454955,
+        "FSC": 0.9641741071428572
+      },
+      "factor_means_available": {
+        "IC_tests": 0.9776785714285714,
+        "IC_proofs": 0.977415892454955,
+        "FSC": 0.9641741071428572
+      },
+      "system_score": 0.9730690343309754,
+      "n_compiling": 876,
+      "compile_rate": 0.9776785714285714,
+      "n_applicable": 623,
+      "applicability": 0.7111872146118722,
+      "n_no_tests": 14,
+      "n_hidden_observed": 640,
+      "n_hidden_missing": 242,
+      "hidden_all_pass_count": 593,
+      "hidden_all_pass_mean": 0.9265625,
+      "hidden_pass_rate_mean": 0.9631333954036162,
+      "hidden_bounds": [
+        0.6723356009070295,
+        0.9467120181405896
+      ],
+      "P1_n_hidden": 640,
+      "P1_hidden_mean": 0.9265625,
+      "kernel_binary_n": 0,
+      "kernel_binary_mean": null,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 1441,
+        "2": 18,
+        "3": 198,
+        "4": 51
+      }
+    },
+    {
+      "panel": "primary",
+      "system": "codex",
+      "n_declared": 896,
+      "n_common_measured": 896,
+      "factor_means_common": {
+        "IC_tests": 0.9988839285714286,
+        "IC_proofs": 0.9987244897959184,
+        "FSC": 0.9181919642857144
+      },
+      "factor_means_available": {
+        "IC_tests": 0.9988839285714286,
+        "IC_proofs": 0.9987244897959184,
+        "FSC": 0.9181919642857144
+      },
+      "system_score": 0.9711762894679882,
+      "n_compiling": 895,
+      "compile_rate": 0.9988839285714286,
+      "n_applicable": 705,
+      "applicability": 0.7877094972067039,
+      "n_no_tests": 14,
+      "n_hidden_observed": 705,
+      "n_hidden_missing": 177,
+      "hidden_all_pass_count": 655,
+      "hidden_all_pass_mean": 0.9290780141843972,
+      "hidden_pass_rate_mean": 0.9977471661514213,
+      "hidden_bounds": [
+        0.7426303854875284,
+        0.9433106575963719
+      ],
+      "P1_n_hidden": 705,
+      "P1_hidden_mean": 0.9290780141843972,
+      "kernel_binary_n": 0,
+      "kernel_binary_mean": null,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 830,
+        "2": 21,
+        "3": 701,
+        "4": 38
+      }
+    },
+    {
+      "panel": "primary",
+      "system": "gemini-3.1-pro-high",
+      "n_declared": 896,
+      "n_common_measured": 889,
+      "factor_means_common": {
+        "IC_tests": 0.05736782902137233,
+        "IC_proofs": 0.05443515989072794,
+        "FSC": 0.8661417322834646
+      },
+      "factor_means_available": {
+        "IC_tests": 0.05736782902137233,
+        "IC_proofs": 0.05443515989072794,
+        "FSC": 0.8661417322834646
+      },
+      "system_score": 0.13933031770707682,
+      "n_compiling": 52,
+      "compile_rate": 0.05803571428571429,
+      "n_applicable": 28,
+      "applicability": 0.5384615384615384,
+      "n_no_tests": 14,
+      "n_hidden_observed": 860,
+      "n_hidden_missing": 22,
+      "hidden_all_pass_count": 27,
+      "hidden_all_pass_mean": 0.031395348837209305,
+      "hidden_pass_rate_mean": 0.03255813953488372,
+      "hidden_bounds": [
+        0.030612244897959183,
+        0.05555555555555555
+      ],
+      "P1_n_hidden": 856,
+      "P1_hidden_mean": 0.03154205607476635,
+      "kernel_binary_n": 0,
+      "kernel_binary_mean": null,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 92,
+        "2": 0,
+        "3": 0,
+        "4": 2
+      }
+    },
+    {
+      "panel": "primary",
+      "system": "gpt-5.6-luna-high",
+      "n_declared": 896,
+      "n_common_measured": 890,
+      "factor_means_common": {
+        "IC_tests": 0.16292134831460675,
+        "IC_proofs": 0.16292134831460675,
+        "FSC": 0.8555056179775282
+      },
+      "factor_means_available": {
+        "IC_tests": 0.16292134831460675,
+        "IC_proofs": 0.16292134831460675,
+        "FSC": 0.8555056179775282
+      },
+      "system_score": 0.28317807098317616,
+      "n_compiling": 145,
+      "compile_rate": 0.16183035714285715,
+      "n_applicable": 113,
+      "applicability": 0.7793103448275862,
+      "n_no_tests": 14,
+      "n_hidden_observed": 850,
+      "n_hidden_missing": 32,
+      "hidden_all_pass_count": 107,
+      "hidden_all_pass_mean": 0.12588235294117647,
+      "hidden_pass_rate_mean": 0.13294117647058823,
+      "hidden_bounds": [
+        0.12131519274376418,
+        0.15759637188208617
+      ],
+      "P1_n_hidden": 844,
+      "P1_hidden_mean": 0.12677725118483413,
+      "kernel_binary_n": 0,
+      "kernel_binary_mean": null,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 160,
+        "2": 0,
+        "3": 86,
+        "4": 20
+      }
+    },
+    {
+      "panel": "primary",
+      "system": "gpt-5.6-sol-high",
+      "n_declared": 896,
+      "n_common_measured": 889,
+      "factor_means_common": {
+        "IC_tests": 0.3880764904386952,
+        "IC_proofs": 0.3880764904386952,
+        "FSC": 0.9208661417322834
+      },
+      "factor_means_available": {
+        "IC_tests": 0.3880764904386952,
+        "IC_proofs": 0.3880764904386952,
+        "FSC": 0.9208661417322834
+      },
+      "system_score": 0.5176192166005446,
+      "n_compiling": 347,
+      "compile_rate": 0.3872767857142857,
+      "n_applicable": 289,
+      "applicability": 0.8328530259365994,
+      "n_no_tests": 14,
+      "n_hidden_observed": 826,
+      "n_hidden_missing": 56,
+      "hidden_all_pass_count": 275,
+      "hidden_all_pass_mean": 0.33292978208232443,
+      "hidden_pass_rate_mean": 0.34761439125845905,
+      "hidden_bounds": [
+        0.31179138321995464,
+        0.37528344671201813
+      ],
+      "P1_n_hidden": 819,
+      "P1_hidden_mean": 0.3333333333333333,
+      "kernel_binary_n": 0,
+      "kernel_binary_mean": null,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 356,
+        "2": 6,
+        "3": 218,
+        "4": 67
+      }
+    },
+    {
+      "panel": "primary",
+      "system": "gpt-6-astra-high",
+      "n_declared": 896,
+      "n_common_measured": 855,
+      "factor_means_common": {
+        "IC_tests": 0.5239766081871345,
+        "IC_proofs": 0.523706702654071,
+        "FSC": 0.9664327485380118
+      },
+      "factor_means_available": {
+        "IC_tests": 0.5239766081871345,
+        "IC_proofs": 0.523706702654071,
+        "FSC": 0.9664327485380118
+      },
+      "system_score": 0.6424764647480711,
+      "n_compiling": 462,
+      "compile_rate": 0.515625,
+      "n_applicable": 342,
+      "applicability": 0.7402597402597403,
+      "n_no_tests": 14,
+      "n_hidden_observed": 765,
+      "n_hidden_missing": 117,
+      "hidden_all_pass_count": 313,
+      "hidden_all_pass_mean": 0.4091503267973856,
+      "hidden_pass_rate_mean": 0.4420043572984749,
+      "hidden_bounds": [
+        0.35487528344671204,
+        0.4875283446712018
+      ],
+      "P1_n_hidden": 729,
+      "P1_hidden_mean": 0.41838134430727025,
+      "kernel_binary_n": 0,
+      "kernel_binary_mean": null,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 594,
+        "2": 9,
+        "3": 191,
+        "4": 73
+      }
+    },
+    {
+      "panel": "primary",
+      "system": "gpt-6-luna-high",
+      "n_declared": 896,
+      "n_common_measured": 888,
+      "factor_means_common": {
+        "IC_tests": 0.14301801801801803,
+        "IC_proofs": 0.1397643178893179,
+        "FSC": 0.8818693693693694
+      },
+      "factor_means_available": {
+        "IC_tests": 0.14301801801801803,
+        "IC_proofs": 0.1397643178893179,
+        "FSC": 0.8818693693693694
+      },
+      "system_score": 0.26025381686214083,
+      "n_compiling": 127,
+      "compile_rate": 0.14174107142857142,
+      "n_applicable": 107,
+      "applicability": 0.84251968503937,
+      "n_no_tests": 14,
+      "n_hidden_observed": 863,
+      "n_hidden_missing": 19,
+      "hidden_all_pass_count": 104,
+      "hidden_all_pass_mean": 0.1205098493626883,
+      "hidden_pass_rate_mean": 0.12398609501738123,
+      "hidden_bounds": [
+        0.11791383219954649,
+        0.13945578231292516
+      ],
+      "P1_n_hidden": 855,
+      "P1_hidden_mean": 0.1216374269005848,
+      "kernel_binary_n": 0,
+      "kernel_binary_mean": null,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 177,
+        "2": 0,
+        "3": 49,
+        "4": 22
+      }
+    },
+    {
+      "panel": "primary",
+      "system": "leanstral",
+      "n_declared": 896,
+      "n_common_measured": 896,
+      "factor_means_common": {
+        "IC_tests": 0.5089285714285714,
+        "IC_proofs": 0.534202274659864,
+        "FSC": 0.6526785714285713
+      },
+      "factor_means_available": {
+        "IC_tests": 0.5089285714285714,
+        "IC_proofs": 0.534202274659864,
+        "FSC": 0.6526785714285713
+      },
+      "system_score": 0.5619365835676112,
+      "n_compiling": 518,
+      "compile_rate": 0.578125,
+      "n_applicable": 443,
+      "applicability": 0.8552123552123552,
+      "n_no_tests": 14,
+      "n_hidden_observed": 807,
+      "n_hidden_missing": 75,
+      "hidden_all_pass_count": 409,
+      "hidden_all_pass_mean": 0.506815365551425,
+      "hidden_pass_rate_mean": 0.5452175293909385,
+      "hidden_bounds": [
+        0.463718820861678,
+        0.5487528344671202
+      ],
+      "P1_n_hidden": 807,
+      "P1_hidden_mean": 0.506815365551425,
+      "kernel_binary_n": 0,
+      "kernel_binary_mean": null,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 503,
+        "2": 427,
+        "3": 6,
+        "4": 15
+      }
+    },
+    {
+      "panel": "primary",
+      "system": "qwen3.6-27b-thinking",
+      "n_declared": 896,
+      "n_common_measured": 604,
+      "factor_means_common": {
+        "IC_tests": 0.0016556291390728477,
+        "IC_proofs": 0.0016556291390728477,
+        "FSC": 0.8994205298013245
+      },
+      "factor_means_available": {
+        "IC_tests": 0.0016556291390728477,
+        "IC_proofs": 0.0016556291390728477,
+        "FSC": 0.8994205298013245
+      },
+      "system_score": 0.013509200260322709,
+      "n_compiling": 1,
+      "compile_rate": 0.0011160714285714285,
+      "n_applicable": 1,
+      "applicability": 1.0,
+      "n_no_tests": 14,
+      "n_hidden_observed": 882,
+      "n_hidden_missing": 0,
+      "hidden_all_pass_count": 0,
+      "hidden_all_pass_mean": 0.0,
+      "hidden_pass_rate_mean": 0.0011337868480725624,
+      "hidden_bounds": [
+        0.0,
+        0.0
+      ],
+      "P1_n_hidden": 599,
+      "P1_hidden_mean": 0.0,
+      "kernel_binary_n": 0,
+      "kernel_binary_mean": null,
+      "n_kernel_verified": 0,
+      "n_kernel_verified_hidden_observed": 0,
+      "hidden_all_pass_given_kernel": null,
+      "hidden_given_kernel_bounds": null,
+      "mapping_step_counts": {
+        "1": 2,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      }
+    }
+  ],
+  "P1": {
+    "subset": "pooled",
+    "sensitivity_A1": false,
+    "n_tasks": 896,
+    "systems": [
+      "baseline",
+      "claude-opus-5-max",
+      "claude_code",
+      "codex",
+      "gemini-3.1-pro-high",
+      "gpt-5.6-luna-high",
+      "gpt-5.6-sol-high",
+      "gpt-6-astra-high",
+      "gpt-6-luna-high",
+      "leanstral",
+      "qwen3.6-27b-thinking"
+    ],
+    "n_systems": 11,
+    "pearson": 0.864914521510724,
+    "spearman": 0.8909090909090911,
+    "kendall_tau_b": 0.7818181818181819,
+    "mean_score": 0.4818442827510388,
+    "mean_hidden": 0.4205737454165989,
+    "bias_score_minus_hidden": 0.06127053733443986,
+    "mean_absolute_difference": 0.13647387251303875,
+    "task_bootstrap_95": {
+      "pearson": {
+        "low": 0.8430086675864268,
+        "high": 0.8845888378505963,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "spearman": {
+        "low": 0.7818181818181819,
+        "high": 0.9,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "kendall_tau_b": {
+        "low": 0.6727272727272727,
+        "high": 0.8181818181818182,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "mean_score": {
+        "low": 0.47137014142307365,
+        "high": 0.4917434237907643,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "mean_hidden": {
+        "low": 0.4076188502273439,
+        "high": 0.4334575887404173,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "bias_score_minus_hidden": {
+        "low": 0.052173647265740405,
+        "high": 0.06989758082797873,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "mean_absolute_difference": {
+        "low": 0.12856695981578656,
+        "high": 0.14421356360585824,
+        "n_defined": 10000,
+        "n_requested": 10000
+      }
+    },
+    "system_bootstrap_95": {
+      "pearson": {
+        "low": 0.4872032568420786,
+        "high": 0.99310755633827,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "spearman": {
+        "low": 0.49295437697958083,
+        "high": 1.0,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "kendall_tau_b": {
+        "low": 0.37770833333333337,
+        "high": 1.0,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "mean_score": {
+        "low": 0.3081538167560071,
+        "high": 0.6656787552143845,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "mean_hidden": {
+        "low": 0.23437375648818198,
+        "high": 0.6151777730358872,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "bias_score_minus_hidden": {
+        "low": -0.046103016155278294,
+        "high": 0.13786042175611163,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "mean_absolute_difference": {
+        "low": 0.08045755466198,
+        "high": 0.20685661614628953,
+        "n_defined": 10000,
+        "n_requested": 10000
+      }
+    },
+    "per_system": [
+      {
+        "system": "baseline",
+        "score": 0.289829932379775,
+        "hidden": 0.7034482758620689,
+        "n_factor": 896,
+        "n_hidden": 290
+      },
+      {
+        "system": "claude-opus-5-max",
+        "score": 0.6479081833537452,
+        "hidden": 0.5287356321839081,
+        "n_factor": 681,
+        "n_hidden": 609
+      },
+      {
+        "system": "claude_code",
+        "score": 0.973069034330975,
+        "hidden": 0.9265625,
+        "n_factor": 896,
+        "n_hidden": 640
+      },
+      {
+        "system": "codex",
+        "score": 0.9711762894679878,
+        "hidden": 0.9290780141843972,
+        "n_factor": 896,
+        "n_hidden": 705
+      },
+      {
+        "system": "gemini-3.1-pro-high",
+        "score": 0.1393303177070768,
+        "hidden": 0.03154205607476635,
+        "n_factor": 889,
+        "n_hidden": 856
+      },
+      {
+        "system": "gpt-5.6-luna-high",
+        "score": 0.28317807098317604,
+        "hidden": 0.12677725118483413,
+        "n_factor": 890,
+        "n_hidden": 844
+      },
+      {
+        "system": "gpt-5.6-sol-high",
+        "score": 0.5176192166005444,
+        "hidden": 0.3333333333333333,
+        "n_factor": 889,
+        "n_hidden": 819
+      },
+      {
+        "system": "gpt-6-astra-high",
+        "score": 0.6424764647480707,
+        "hidden": 0.41838134430727025,
+        "n_factor": 855,
+        "n_hidden": 729
+      },
+      {
+        "system": "gpt-6-luna-high",
+        "score": 0.2602538168621409,
+        "hidden": 0.1216374269005848,
+        "n_factor": 888,
+        "n_hidden": 855
+      },
+      {
+        "system": "leanstral",
+        "score": 0.5619365835676117,
+        "hidden": 0.506815365551425,
+        "n_factor": 896,
+        "n_hidden": 807
+      },
+      {
+        "system": "qwen3.6-27b-thinking",
+        "score": 0.013509200260322709,
+        "hidden": 0.0,
+        "n_factor": 604,
+        "n_hidden": 599
+      }
+    ],
+    "graded_outcome": {
+      "n_systems": 11,
+      "pearson": 0.8642142021728878,
+      "spearman": 0.8909090909090911,
+      "kendall_tau_b": 0.7818181818181819,
+      "mean_score": 0.4818442827510388,
+      "mean_hidden": 0.44536439618755996,
+      "bias_score_minus_hidden": 0.03647988656347883,
+      "mean_absolute_difference": 0.12419454101367382
+    },
+    "factor_correlations": {
+      "IC_tests": {
+        "n_systems": 11,
+        "pearson": 0.911283095353276,
+        "spearman": 0.9,
+        "kendall_tau_b": 0.8181818181818182,
+        "mean_score": 0.42338789700989365,
+        "mean_hidden": 0.4205737454165989,
+        "bias_score_minus_hidden": 0.002814151593294763,
+        "mean_absolute_difference": 0.0785628640876969
+      },
+      "IC_proofs": {
+        "n_systems": 11,
+        "pearson": 0.9123837262196743,
+        "spearman": 0.9090909090909091,
+        "kendall_tau_b": 0.8545454545454545,
+        "mean_score": 0.42521523190599686,
+        "mean_hidden": 0.4205737454165989,
+        "bias_score_minus_hidden": 0.0046414864893979885,
+        "mean_absolute_difference": 0.07998435482795598
+      },
+      "FSC": {
+        "n_systems": 11,
+        "pearson": -0.2103774185157568,
+        "spearman": 0.009090909090909092,
+        "kendall_tau_b": -0.05454545454545454,
+        "mean_score": 0.8141348229152953,
+        "mean_hidden": 0.4205737454165989,
+        "bias_score_minus_hidden": 0.39356107749869634,
+        "mean_absolute_difference": 0.4700512471175342
+      }
+    }
+  },
+  "sensitivity_A1": {
+    "subset": "pooled",
+    "sensitivity_A1": true,
+    "n_tasks": 896,
+    "systems": [
+      "baseline",
+      "claude-opus-5-max",
+      "claude_code",
+      "codex",
+      "gemini-3.1-pro-high",
+      "gpt-5.6-luna-high",
+      "gpt-5.6-sol-high",
+      "gpt-6-astra-high",
+      "gpt-6-luna-high",
+      "leanstral",
+      "qwen3.6-27b-thinking"
+    ],
+    "n_systems": 11,
+    "pearson": 0.8636579757716174,
+    "spearman": 0.8727272727272729,
+    "kendall_tau_b": 0.7454545454545454,
+    "mean_score": 0.46983461053054315,
+    "mean_hidden": 0.41087217418386673,
+    "bias_score_minus_hidden": 0.05896243634667653,
+    "mean_absolute_difference": 0.13416577152527542,
+    "task_bootstrap_95": {
+      "pearson": {
+        "low": 0.8425304931310303,
+        "high": 0.8834853213685668,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "spearman": {
+        "low": 0.7818181818181819,
+        "high": 0.9,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "kendall_tau_b": {
+        "low": 0.6727272727272727,
+        "high": 0.8181818181818182,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "mean_score": {
+        "low": 0.45891315991459986,
+        "high": 0.48038135738316556,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "mean_hidden": {
+        "low": 0.39757681314061727,
+        "high": 0.4239986297798491,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "bias_score_minus_hidden": {
+        "low": 0.049868030544722164,
+        "high": 0.06803057471308269,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "mean_absolute_difference": {
+        "low": 0.1263264329574731,
+        "high": 0.14162677605691268,
+        "n_defined": 10000,
+        "n_requested": 10000
+      }
+    },
+    "system_bootstrap_95": {
+      "pearson": {
+        "low": 0.46252312446260135,
+        "high": 0.9928686501844056,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "spearman": {
+        "low": 0.42180094786729855,
+        "high": 1.0,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "kendall_tau_b": {
+        "low": 0.32,
+        "high": 1.0,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "mean_score": {
+        "low": 0.2965468716840794,
+        "high": 0.6522807830117774,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "mean_hidden": {
+        "low": 0.22592161792503485,
+        "high": 0.605952858301427,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "bias_score_minus_hidden": {
+        "low": -0.050979682001562325,
+        "high": 0.13585191931811344,
+        "n_defined": 10000,
+        "n_requested": 10000
+      },
+      "mean_absolute_difference": {
+        "low": 0.07770718339038102,
+        "high": 0.20495163673647654,
+        "n_defined": 10000,
+        "n_requested": 10000
+      }
+    },
+    "per_system": [
+      {
+        "system": "baseline",
+        "score": 0.289829932379775,
+        "hidden": 0.7034482758620689,
+        "n_factor": 896,
+        "n_hidden": 290
+      },
+      {
+        "system": "claude-opus-5-max",
+        "score": 0.5197002036088345,
+        "hidden": 0.42201834862385323,
+        "n_factor": 849,
+        "n_hidden": 763
+      },
+      {
+        "system": "claude_code",
+        "score": 0.973069034330975,
+        "hidden": 0.9265625,
+        "n_factor": 896,
+        "n_hidden": 640
+      },
+      {
+        "system": "codex",
+        "score": 0.9711762894679878,
+        "hidden": 0.9290780141843972,
+        "n_factor": 896,
+        "n_hidden": 705
+      },
+      {
+        "system": "gemini-3.1-pro-high",
+        "score": 0.1393303177070768,
+        "hidden": 0.03154205607476635,
+        "n_factor": 889,
+        "n_hidden": 856
+      },
+      {
+        "system": "gpt-5.6-luna-high",
+        "score": 0.28317807098317604,
+        "hidden": 0.12677725118483413,
+        "n_factor": 890,
+        "n_hidden": 844
+      },
+      {
+        "system": "gpt-5.6-sol-high",
+        "score": 0.5176192166005444,
+        "hidden": 0.3333333333333333,
+        "n_factor": 889,
+        "n_hidden": 819
+      },
+      {
+        "system": "gpt-6-astra-high",
+        "score": 0.6424764647480707,
+        "hidden": 0.41838134430727025,
+        "n_factor": 855,
+        "n_hidden": 729
+      },
+      {
+        "system": "gpt-6-luna-high",
+        "score": 0.2602538168621409,
+        "hidden": 0.1216374269005848,
+        "n_factor": 888,
+        "n_hidden": 855
+      },
+      {
+        "system": "leanstral",
+        "score": 0.5619365835676117,
+        "hidden": 0.506815365551425,
+        "n_factor": 896,
+        "n_hidden": 807
+      },
+      {
+        "system": "qwen3.6-27b-thinking",
+        "score": 0.009610785579781997,
+        "hidden": 0.0,
+        "n_factor": 849,
+        "n_hidden": 836
+      }
+    ],
+    "graded_outcome": {
+      "n_systems": 11,
+      "pearson": 0.863256034309219,
+      "spearman": 0.8909090909090911,
+      "kendall_tau_b": 0.7818181818181819,
+      "mean_score": 0.46983461053054315,
+      "mean_hidden": 0.4351529504376252,
+      "bias_score_minus_hidden": 0.034681660092917864,
+      "mean_absolute_difference": 0.12239631454311282
+    },
+    "factor_correlations": {
+      "IC_tests": {
+        "n_systems": 11,
+        "pearson": 0.9103048735827947,
+        "spearman": 0.881818181818182,
+        "kendall_tau_b": 0.7818181818181819,
+        "mean_score": 0.4124083716078826,
+        "mean_hidden": 0.41087217418386673,
+        "bias_score_minus_hidden": 0.0015361974240159749,
+        "mean_absolute_difference": 0.0772849099184181
+      },
+      "IC_proofs": {
+        "n_systems": 11,
+        "pearson": 0.9113982607448277,
+        "spearman": 0.9,
+        "kendall_tau_b": 0.8181818181818182,
+        "mean_score": 0.4142451826050546,
+        "mean_hidden": 0.41087217418386673,
+        "bias_score_minus_hidden": 0.0033730084211878925,
+        "mean_absolute_difference": 0.07871587675974588
+      },
+      "FSC": {
+        "n_systems": 11,
+        "pearson": -0.036581404199005525,
+        "spearman": 0.1272727272727273,
+        "kendall_tau_b": 0.0909090909090909,
+        "mean_score": 0.7772892547518025,
+        "mean_hidden": 0.41087217418386673,
+        "bias_score_minus_hidden": 0.366417080567936,
+        "mean_absolute_difference": 0.44290725018677385
+      }
+    }
+  },
+  "P2_P3": {
+    "auc": 0.6396757252417472,
+    "spearman_within_system": 0.15124197446558324,
+    "n_cells": 3199,
+    "n_pass": 2999,
+    "n_fail": 200,
+    "n_tasks_in_resampling_frame": 896,
+    "n_observed_tasks": 752,
+    "unambiguous_steps_1_2_only": false,
+    "subset": "pooled",
+    "auc_bootstrap_95": {
+      "low": 0.5826461391610791,
+      "high": 0.6955153851104139,
+      "n_defined": 10000,
+      "n_requested": 10000
+    },
+    "spearman_bootstrap_95": {
+      "low": 0.07421307701094448,
+      "high": 0.22502788734277604,
+      "n_defined": 10000,
+      "n_requested": 10000
+    },
+    "per_system": {
+      "baseline": {
+        "n_cells": 217,
+        "n_pass": 204,
+        "n_fail": 13,
+        "auc": 0.6659125188536953
+      },
+      "claude-opus-5-max": {
+        "n_cells": 342,
+        "n_pass": 322,
+        "n_fail": 20,
+        "auc": 0.576164596273292
+      },
+      "claude_code": {
+        "n_cells": 623,
+        "n_pass": 593,
+        "n_fail": 30,
+        "auc": 0.7008712759977516
+      },
+      "codex": {
+        "n_cells": 705,
+        "n_pass": 655,
+        "n_fail": 50,
+        "auc": 0.6867022900763359
+      },
+      "gemini-3.1-pro-high": {
+        "n_cells": 28,
+        "n_pass": 27,
+        "n_fail": 1,
+        "auc": null
+      },
+      "gpt-5.6-luna-high": {
+        "n_cells": 113,
+        "n_pass": 107,
+        "n_fail": 6,
+        "auc": null
+      },
+      "gpt-5.6-sol-high": {
+        "n_cells": 287,
+        "n_pass": 273,
+        "n_fail": 14,
+        "auc": 0.6023024594453166
+      },
+      "gpt-6-astra-high": {
+        "n_cells": 333,
+        "n_pass": 305,
+        "n_fail": 28,
+        "auc": 0.6339578454332553
+      },
+      "gpt-6-luna-high": {
+        "n_cells": 107,
+        "n_pass": 104,
+        "n_fail": 3,
+        "auc": null
+      },
+      "leanstral": {
+        "n_cells": 443,
+        "n_pass": 409,
+        "n_fail": 34,
+        "auc": 0.5342657845534302
+      },
+      "qwen3.6-27b-thinking": {
+        "n_cells": 1,
+        "n_pass": 0,
+        "n_fail": 1,
+        "auc": null
+      }
+    },
+    "factor_descriptives": {
+      "IC_proofs": {
+        "auc": 0.5417739246415472,
+        "spearman_within_system": 0.06379641114770368,
+        "n_cells": 3199,
+        "n_pass": 2999,
+        "n_fail": 200
+      },
+      "FSC": {
+        "auc": 0.6354234744914972,
+        "spearman_within_system": 0.1601825125284523,
+        "n_cells": 3199,
+        "n_pass": 2999,
+        "n_fail": 200
+      }
+    }
+  },
+  "sensitivity_A2": {
+    "auc": 0.7909050497866288,
+    "spearman_within_system": 0.14615813840521516,
+    "n_cells": 1518,
+    "n_pass": 1480,
+    "n_fail": 38,
+    "n_tasks_in_resampling_frame": 896,
+    "n_observed_tasks": 674,
+    "unambiguous_steps_1_2_only": true,
+    "subset": "pooled",
+    "auc_bootstrap_95": {
+      "low": 0.711967052590738,
+      "high": 0.8578843917624593,
+      "n_defined": 10000,
+      "n_requested": 10000
+    },
+    "spearman_bootstrap_95": {
+      "low": 0.04496128041116299,
+      "high": 0.22567401494191894,
+      "n_defined": 10000,
+      "n_requested": 10000
+    },
+    "per_system": {
+      "baseline": {
+        "n_cells": 182,
+        "n_pass": 179,
+        "n_fail": 3,
+        "auc": null
+      },
+      "claude-opus-5-max": {
+        "n_cells": 264,
+        "n_pass": 256,
+        "n_fail": 8,
+        "auc": null
+      },
+      "claude_code": {
+        "n_cells": 488,
+        "n_pass": 479,
+        "n_fail": 9,
+        "auc": null
+      },
+      "codex": {
+        "n_cells": 12,
+        "n_pass": 9,
+        "n_fail": 3,
+        "auc": null
+      },
+      "gemini-3.1-pro-high": {
+        "n_cells": 26,
+        "n_pass": 26,
+        "n_fail": 0,
+        "auc": null
+      },
+      "gpt-5.6-luna-high": {
+        "n_cells": 10,
+        "n_pass": 10,
+        "n_fail": 0,
+        "auc": null
+      },
+      "gpt-5.6-sol-high": {
+        "n_cells": 6,
+        "n_pass": 4,
+        "n_fail": 2,
+        "auc": null
+      },
+      "gpt-6-astra-high": {
+        "n_cells": 90,
+        "n_pass": 85,
+        "n_fail": 5,
+        "auc": null
+      },
+      "gpt-6-luna-high": {
+        "n_cells": 39,
+        "n_pass": 38,
+        "n_fail": 1,
+        "auc": null
+      },
+      "leanstral": {
+        "n_cells": 400,
+        "n_pass": 394,
+        "n_fail": 6,
+        "auc": null
+      },
+      "qwen3.6-27b-thinking": {
+        "n_cells": 1,
+        "n_pass": 0,
+        "n_fail": 1,
+        "auc": null
+      }
+    },
+    "factor_descriptives": {
+      "IC_proofs": {
+        "auc": 0.6409317211948791,
+        "spearman_within_system": 0.12879775028651272,
+        "n_cells": 1518,
+        "n_pass": 1480,
+        "n_fail": 38
+      },
+      "FSC": {
+        "auc": 0.7835704125177809,
+        "spearman_within_system": 0.16571046135604348,
+        "n_cells": 1518,
+        "n_pass": 1480,
+        "n_fail": 38
+      }
+    }
+  },
+  "subsets": {
+    "Core614": {
+      "P1": {
+        "subset": "Core614",
+        "sensitivity_A1": false,
+        "n_tasks": 614,
+        "systems": [
+          "baseline",
+          "claude-opus-5-max",
+          "claude_code",
+          "codex",
+          "gemini-3.1-pro-high",
+          "gpt-5.6-luna-high",
+          "gpt-5.6-sol-high",
+          "gpt-6-astra-high",
+          "gpt-6-luna-high",
+          "leanstral",
+          "qwen3.6-27b-thinking"
+        ],
+        "n_systems": 11,
+        "pearson": 0.854943660403646,
+        "spearman": 0.790909090909091,
+        "kendall_tau_b": 0.7090909090909091,
+        "mean_score": 0.5061707482739263,
+        "mean_hidden": 0.4395116462142148,
+        "bias_score_minus_hidden": 0.06665910205971157,
+        "mean_absolute_difference": 0.14289740511631016,
+        "task_bootstrap_95": {
+          "pearson": {
+            "low": 0.8234381466506551,
+            "high": 0.8835971170378838,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "spearman": {
+            "low": 0.7636363636363637,
+            "high": 0.8000000000000002,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "kendall_tau_b": {
+            "low": 0.6363636363636364,
+            "high": 0.7454545454545454,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "mean_score": {
+            "low": 0.49250299368621264,
+            "high": 0.5190467539293937,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "mean_hidden": {
+            "low": 0.4209679921627525,
+            "high": 0.45773934862020677,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "bias_score_minus_hidden": {
+            "low": 0.053498398134911515,
+            "high": 0.07969436137897305,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "mean_absolute_difference": {
+            "low": 0.1323532310203667,
+            "high": 0.15344463024494057,
+            "n_defined": 10000,
+            "n_requested": 10000
+          }
+        },
+        "system_bootstrap_95": {
+          "pearson": {
+            "low": 0.44841430205304317,
+            "high": 0.9938867710733269,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "spearman": {
+            "low": 0.23148148148148145,
+            "high": 1.0,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "kendall_tau_b": {
+            "low": 0.24,
+            "high": 1.0,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "mean_score": {
+            "low": 0.33085971049841806,
+            "high": 0.6814343676806675,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "mean_hidden": {
+            "low": 0.25988152487901134,
+            "high": 0.6153605214256263,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "bias_score_minus_hidden": {
+            "low": -0.042220497989923854,
+            "high": 0.1388009894540634,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "mean_absolute_difference": {
+            "low": 0.0910394123160364,
+            "high": 0.20893313144027822,
+            "n_defined": 10000,
+            "n_requested": 10000
+          }
+        },
+        "per_system": [
+          {
+            "system": "baseline",
+            "score": 0.2729970254964,
+            "hidden": 0.6923076923076923,
+            "n_factor": 614,
+            "n_hidden": 169
+          },
+          {
+            "system": "claude-opus-5-max",
+            "score": 0.6561598117503575,
+            "hidden": 0.527027027027027,
+            "n_factor": 431,
+            "n_hidden": 370
+          },
+          {
+            "system": "claude_code",
+            "score": 0.9699423509497703,
+            "hidden": 0.8994565217391305,
+            "n_factor": 614,
+            "n_hidden": 368
+          },
+          {
+            "system": "codex",
+            "score": 0.9634342263154125,
+            "hidden": 0.8997668997668997,
+            "n_factor": 614,
+            "n_hidden": 429
+          },
+          {
+            "system": "gemini-3.1-pro-high",
+            "score": 0.14522912261946844,
+            "hidden": 0.02422145328719723,
+            "n_factor": 611,
+            "n_hidden": 578
+          },
+          {
+            "system": "gpt-5.6-luna-high",
+            "score": 0.3468651667276747,
+            "hidden": 0.176056338028169,
+            "n_factor": 612,
+            "n_hidden": 568
+          },
+          {
+            "system": "gpt-5.6-sol-high",
+            "score": 0.6014078830392342,
+            "hidden": 0.42805100182149364,
+            "n_factor": 614,
+            "n_hidden": 549
+          },
+          {
+            "system": "gpt-6-astra-high",
+            "score": 0.7159181358195569,
+            "hidden": 0.52834008097166,
+            "n_factor": 592,
+            "n_hidden": 494
+          },
+          {
+            "system": "gpt-6-luna-high",
+            "score": 0.32514027796208533,
+            "hidden": 0.17443868739205526,
+            "n_factor": 611,
+            "n_hidden": 579
+          },
+          {
+            "system": "leanstral",
+            "score": 0.5533076906569829,
+            "hidden": 0.4849624060150376,
+            "n_factor": 614,
+            "n_hidden": 532
+          },
+          {
+            "system": "qwen3.6-27b-thinking",
+            "score": 0.01747653967624663,
+            "hidden": 0.0,
+            "n_factor": 412,
+            "n_hidden": 407
+          }
+        ],
+        "graded_outcome": {
+          "n_systems": 11,
+          "pearson": 0.8459124357723558,
+          "spearman": 0.790909090909091,
+          "kendall_tau_b": 0.7090909090909091,
+          "mean_score": 0.5061707482739263,
+          "mean_hidden": 0.47351388928534593,
+          "bias_score_minus_hidden": 0.03265685898858044,
+          "mean_absolute_difference": 0.12724259867995244
+        },
+        "factor_correlations": {
+          "IC_tests": {
+            "n_systems": 11,
+            "pearson": 0.9015068045779077,
+            "spearman": 0.9,
+            "kendall_tau_b": 0.8181818181818182,
+            "mean_score": 0.4523364843878307,
+            "mean_hidden": 0.4395116462142148,
+            "bias_score_minus_hidden": 0.012824838173615965,
+            "mean_absolute_difference": 0.08895066674244127
+          },
+          "IC_proofs": {
+            "n_systems": 11,
+            "pearson": 0.9032209406670333,
+            "spearman": 0.9,
+            "kendall_tau_b": 0.8181818181818182,
+            "mean_score": 0.45279716943945375,
+            "mean_hidden": 0.4395116462142148,
+            "bias_score_minus_hidden": 0.01328552322523905,
+            "mean_absolute_difference": 0.08881911015947744
+          },
+          "FSC": {
+            "n_systems": 11,
+            "pearson": -0.1800117112271002,
+            "spearman": 0.03636363636363637,
+            "kendall_tau_b": -0.05454545454545454,
+            "mean_score": 0.8027926077190721,
+            "mean_hidden": 0.4395116462142148,
+            "bias_score_minus_hidden": 0.3632809615048575,
+            "mean_absolute_difference": 0.4407561760543983
+          }
+        }
+      },
+      "P2_P3": {
+        "auc": 0.63219586045673,
+        "spearman_within_system": 0.17562343006613074,
+        "n_cells": 2159,
+        "n_pass": 1998,
+        "n_fail": 161,
+        "n_tasks_in_resampling_frame": 614,
+        "n_observed_tasks": 474,
+        "unambiguous_steps_1_2_only": false,
+        "subset": "Core614",
+        "auc_bootstrap_95": {
+          "low": 0.5684704334078189,
+          "high": 0.696579239075485,
+          "n_defined": 10000,
+          "n_requested": 10000
+        },
+        "spearman_bootstrap_95": {
+          "low": 0.06194610143189149,
+          "high": 0.27375949002941163,
+          "n_defined": 10000,
+          "n_requested": 10000
+        },
+        "per_system": {
+          "baseline": {
+            "n_cells": 129,
+            "n_pass": 117,
+            "n_fail": 12,
+            "auc": 0.6812678062678063
+          },
+          "claude-opus-5-max": {
+            "n_cells": 207,
+            "n_pass": 195,
+            "n_fail": 12,
+            "auc": 0.563034188034188
+          },
+          "claude_code": {
+            "n_cells": 357,
+            "n_pass": 331,
+            "n_fail": 26,
+            "auc": 0.70764582849175
+          },
+          "codex": {
+            "n_cells": 429,
+            "n_pass": 386,
+            "n_fail": 43,
+            "auc": 0.688697433425714
+          },
+          "gemini-3.1-pro-high": {
+            "n_cells": 15,
+            "n_pass": 14,
+            "n_fail": 1,
+            "auc": null
+          },
+          "gpt-5.6-luna-high": {
+            "n_cells": 106,
+            "n_pass": 100,
+            "n_fail": 6,
+            "auc": null
+          },
+          "gpt-5.6-sol-high": {
+            "n_cells": 248,
+            "n_pass": 235,
+            "n_fail": 13,
+            "auc": 0.6170212765957447
+          },
+          "gpt-6-astra-high": {
+            "n_cells": 278,
+            "n_pass": 261,
+            "n_fail": 17,
+            "auc": 0.5237773270227631
+          },
+          "gpt-6-luna-high": {
+            "n_cells": 104,
+            "n_pass": 101,
+            "n_fail": 3,
+            "auc": null
+          },
+          "leanstral": {
+            "n_cells": 285,
+            "n_pass": 258,
+            "n_fail": 27,
+            "auc": 0.5567757680160781
+          },
+          "qwen3.6-27b-thinking": {
+            "n_cells": 1,
+            "n_pass": 0,
+            "n_fail": 1,
+            "auc": null
+          }
+        },
+        "factor_descriptives": {
+          "IC_proofs": {
+            "auc": 0.5445072401594141,
+            "spearman_within_system": 0.09628151334955522,
+            "n_cells": 2159,
+            "n_pass": 1998,
+            "n_fail": 161
+          },
+          "FSC": {
+            "auc": 0.6238505586331673,
+            "spearman_within_system": 0.18898121566665643,
+            "n_cells": 2159,
+            "n_pass": 1998,
+            "n_fail": 161
+          }
+        }
+      },
+      "systems": [
+        {
+          "panel": "primary",
+          "system": "baseline",
+          "n_declared": 614,
+          "n_common_measured": 614,
+          "factor_means_common": {
+            "IC_tests": 0.2736156351791531,
+            "IC_proofs": 0.2768729641693811,
+            "FSC": 0.2685667752442997
+          },
+          "factor_means_available": {
+            "IC_tests": 0.2736156351791531,
+            "IC_proofs": 0.2768729641693811,
+            "FSC": 0.2685667752442997
+          },
+          "system_score": 0.27299702549639987,
+          "n_compiling": 574,
+          "compile_rate": 0.9348534201954397,
+          "n_applicable": 129,
+          "applicability": 0.22473867595818817,
+          "n_no_tests": 14,
+          "n_hidden_observed": 169,
+          "n_hidden_missing": 431,
+          "hidden_all_pass_count": 117,
+          "hidden_all_pass_mean": 0.6923076923076923,
+          "hidden_pass_rate_mean": 0.7603550295857988,
+          "hidden_bounds": [
+            0.195,
+            0.9133333333333333
+          ],
+          "P1_n_hidden": 169,
+          "P1_hidden_mean": 0.6923076923076923,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 170,
+            "2": 114,
+            "3": 2,
+            "4": 17
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "claude-opus-5-max",
+          "n_declared": 614,
+          "n_common_measured": 431,
+          "factor_means_common": {
+            "IC_tests": 0.6218097447795824,
+            "IC_proofs": 0.6214414613486539,
+            "FSC": 0.7310904872389792
+          },
+          "factor_means_available": {
+            "IC_tests": 0.6218097447795824,
+            "IC_proofs": 0.6214414613486539,
+            "FSC": 0.7310904872389792
+          },
+          "system_score": 0.6561598117503575,
+          "n_compiling": 271,
+          "compile_rate": 0.44136807817589574,
+          "n_applicable": 210,
+          "applicability": 0.7749077490774908,
+          "n_no_tests": 14,
+          "n_hidden_observed": 539,
+          "n_hidden_missing": 61,
+          "hidden_all_pass_count": 198,
+          "hidden_all_pass_mean": 0.3673469387755102,
+          "hidden_pass_rate_mean": 0.3883973169687455,
+          "hidden_bounds": [
+            0.33,
+            0.43166666666666664
+          ],
+          "P1_n_hidden": 370,
+          "P1_hidden_mean": 0.527027027027027,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 510,
+            "2": 9,
+            "3": 8,
+            "4": 10
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "claude_code",
+          "n_declared": 614,
+          "n_common_measured": 614,
+          "factor_means_common": {
+            "IC_tests": 0.9771986970684039,
+            "IC_proofs": 0.9770868180884467,
+            "FSC": 0.9557003257328991
+          },
+          "factor_means_available": {
+            "IC_tests": 0.9771986970684039,
+            "IC_proofs": 0.9770868180884467,
+            "FSC": 0.9557003257328991
+          },
+          "system_score": 0.9699423509497703,
+          "n_compiling": 600,
+          "compile_rate": 0.9771986970684039,
+          "n_applicable": 357,
+          "applicability": 0.595,
+          "n_no_tests": 14,
+          "n_hidden_observed": 368,
+          "n_hidden_missing": 232,
+          "hidden_all_pass_count": 331,
+          "hidden_all_pass_mean": 0.8994565217391305,
+          "hidden_pass_rate_mean": 0.958917292213328,
+          "hidden_bounds": [
+            0.5516666666666666,
+            0.9383333333333334
+          ],
+          "P1_n_hidden": 368,
+          "P1_hidden_mean": 0.8994565217391305,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 1088,
+            "2": 18,
+            "3": 42,
+            "4": 24
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "codex",
+          "n_declared": 614,
+          "n_common_measured": 614,
+          "factor_means_common": {
+            "IC_tests": 0.998371335504886,
+            "IC_proofs": 0.9981386691484412,
+            "FSC": 0.8973941368078175
+          },
+          "factor_means_available": {
+            "IC_tests": 0.998371335504886,
+            "IC_proofs": 0.9981386691484412,
+            "FSC": 0.8973941368078175
+          },
+          "system_score": 0.9634342263154125,
+          "n_compiling": 613,
+          "compile_rate": 0.998371335504886,
+          "n_applicable": 429,
+          "applicability": 0.6998368678629691,
+          "n_no_tests": 14,
+          "n_hidden_observed": 429,
+          "n_hidden_missing": 171,
+          "hidden_all_pass_count": 386,
+          "hidden_all_pass_mean": 0.8997668997668997,
+          "hidden_pass_rate_mean": 0.9962977905285598,
+          "hidden_bounds": [
+            0.6433333333333333,
+            0.9283333333333333
+          ],
+          "P1_n_hidden": 429,
+          "P1_hidden_mean": 0.8997668997668997,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 586,
+            "2": 20,
+            "3": 399,
+            "4": 38
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "gemini-3.1-pro-high",
+          "n_declared": 614,
+          "n_common_measured": 611,
+          "factor_means_common": {
+            "IC_tests": 0.062193126022913256,
+            "IC_proofs": 0.05792611643675473,
+            "FSC": 0.8502454991816694
+          },
+          "factor_means_available": {
+            "IC_tests": 0.062193126022913256,
+            "IC_proofs": 0.05792611643675473,
+            "FSC": 0.8502454991816694
+          },
+          "system_score": 0.1452291226194685,
+          "n_compiling": 39,
+          "compile_rate": 0.06351791530944625,
+          "n_applicable": 15,
+          "applicability": 0.38461538461538464,
+          "n_no_tests": 14,
+          "n_hidden_observed": 578,
+          "n_hidden_missing": 22,
+          "hidden_all_pass_count": 14,
+          "hidden_all_pass_mean": 0.02422145328719723,
+          "hidden_pass_rate_mean": 0.025951557093425604,
+          "hidden_bounds": [
+            0.023333333333333334,
+            0.06
+          ],
+          "P1_n_hidden": 578,
+          "P1_hidden_mean": 0.02422145328719723,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 66,
+            "2": 0,
+            "3": 0,
+            "4": 2
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "gpt-5.6-luna-high",
+          "n_declared": 614,
+          "n_common_measured": 612,
+          "factor_means_common": {
+            "IC_tests": 0.2222222222222222,
+            "IC_proofs": 0.2222222222222222,
+            "FSC": 0.8450980392156864
+          },
+          "factor_means_available": {
+            "IC_tests": 0.2222222222222222,
+            "IC_proofs": 0.2222222222222222,
+            "FSC": 0.8450980392156864
+          },
+          "system_score": 0.3468651667276748,
+          "n_compiling": 136,
+          "compile_rate": 0.22149837133550487,
+          "n_applicable": 106,
+          "applicability": 0.7794117647058824,
+          "n_no_tests": 14,
+          "n_hidden_observed": 570,
+          "n_hidden_missing": 30,
+          "hidden_all_pass_count": 100,
+          "hidden_all_pass_mean": 0.17543859649122806,
+          "hidden_pass_rate_mean": 0.18596491228070175,
+          "hidden_bounds": [
+            0.16666666666666666,
+            0.21666666666666667
+          ],
+          "P1_n_hidden": 568,
+          "P1_hidden_mean": 0.176056338028169,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 151,
+            "2": 0,
+            "3": 83,
+            "4": 16
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "gpt-5.6-sol-high",
+          "n_declared": 614,
+          "n_common_measured": 614,
+          "factor_means_common": {
+            "IC_tests": 0.49022801302931596,
+            "IC_proofs": 0.49022801302931596,
+            "FSC": 0.9051302931596091
+          },
+          "factor_means_available": {
+            "IC_tests": 0.49022801302931596,
+            "IC_proofs": 0.49022801302931596,
+            "FSC": 0.9051302931596091
+          },
+          "system_score": 0.6014078830392342,
+          "n_compiling": 301,
+          "compile_rate": 0.49022801302931596,
+          "n_applicable": 248,
+          "applicability": 0.8239202657807309,
+          "n_no_tests": 14,
+          "n_hidden_observed": 549,
+          "n_hidden_missing": 51,
+          "hidden_all_pass_count": 235,
+          "hidden_all_pass_mean": 0.42805100182149364,
+          "hidden_pass_rate_mean": 0.44877866517210785,
+          "hidden_bounds": [
+            0.39166666666666666,
+            0.4766666666666667
+          ],
+          "P1_n_hidden": 549,
+          "P1_hidden_mean": 0.42805100182149364,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 308,
+            "2": 5,
+            "3": 200,
+            "4": 47
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "gpt-6-astra-high",
+          "n_declared": 614,
+          "n_common_measured": 592,
+          "factor_means_common": {
+            "IC_tests": 0.6165540540540541,
+            "IC_proofs": 0.6161642411642412,
+            "FSC": 0.9658783783783783
+          },
+          "factor_means_available": {
+            "IC_tests": 0.6165540540540541,
+            "IC_proofs": 0.6161642411642412,
+            "FSC": 0.9658783783783783
+          },
+          "system_score": 0.7159181358195567,
+          "n_compiling": 371,
+          "compile_rate": 0.6042345276872965,
+          "n_applicable": 281,
+          "applicability": 0.7574123989218329,
+          "n_no_tests": 14,
+          "n_hidden_observed": 513,
+          "n_hidden_missing": 87,
+          "hidden_all_pass_count": 264,
+          "hidden_all_pass_mean": 0.5146198830409356,
+          "hidden_pass_rate_mean": 0.5462638076673164,
+          "hidden_bounds": [
+            0.44,
+            0.585
+          ],
+          "P1_n_hidden": 494,
+          "P1_hidden_mean": 0.52834008097166,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 474,
+            "2": 4,
+            "3": 161,
+            "4": 58
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "gpt-6-luna-high",
+          "n_declared": 614,
+          "n_common_measured": 611,
+          "factor_means_common": {
+            "IC_tests": 0.20130932896890344,
+            "IC_proofs": 0.196580547112462,
+            "FSC": 0.8685761047463176
+          },
+          "factor_means_available": {
+            "IC_tests": 0.20130932896890344,
+            "IC_proofs": 0.196580547112462,
+            "FSC": 0.8685761047463176
+          },
+          "system_score": 0.3251402779620853,
+          "n_compiling": 123,
+          "compile_rate": 0.2003257328990228,
+          "n_applicable": 104,
+          "applicability": 0.8455284552845529,
+          "n_no_tests": 14,
+          "n_hidden_observed": 582,
+          "n_hidden_missing": 18,
+          "hidden_all_pass_count": 101,
+          "hidden_all_pass_mean": 0.17353951890034364,
+          "hidden_pass_rate_mean": 0.17869415807560138,
+          "hidden_bounds": [
+            0.16833333333333333,
+            0.19833333333333333
+          ],
+          "P1_n_hidden": 579,
+          "P1_hidden_mean": 0.17443868739205526,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 173,
+            "2": 0,
+            "3": 49,
+            "4": 19
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "leanstral",
+          "n_declared": 614,
+          "n_common_measured": 614,
+          "factor_means_common": {
+            "IC_tests": 0.509771986970684,
+            "IC_proofs": 0.5216806266480534,
+            "FSC": 0.6369706840390879
+          },
+          "factor_means_available": {
+            "IC_tests": 0.509771986970684,
+            "IC_proofs": 0.5216806266480534,
+            "FSC": 0.6369706840390879
+          },
+          "system_score": 0.5533076906569818,
+          "n_compiling": 353,
+          "compile_rate": 0.5749185667752443,
+          "n_applicable": 285,
+          "applicability": 0.8073654390934845,
+          "n_no_tests": 14,
+          "n_hidden_observed": 532,
+          "n_hidden_missing": 68,
+          "hidden_all_pass_count": 258,
+          "hidden_all_pass_mean": 0.4849624060150376,
+          "hidden_pass_rate_mean": 0.5307623049219687,
+          "hidden_bounds": [
+            0.43,
+            0.5433333333333333
+          ],
+          "P1_n_hidden": 532,
+          "P1_hidden_mean": 0.4849624060150376,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 344,
+            "2": 275,
+            "3": 5,
+            "4": 13
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "qwen3.6-27b-thinking",
+          "n_declared": 614,
+          "n_common_measured": 412,
+          "factor_means_common": {
+            "IC_tests": 0.0024271844660194173,
+            "IC_proofs": 0.0024271844660194173,
+            "FSC": 0.9060679611650486
+          },
+          "factor_means_available": {
+            "IC_tests": 0.0024271844660194173,
+            "IC_proofs": 0.0024271844660194173,
+            "FSC": 0.9060679611650486
+          },
+          "system_score": 0.017476539676246634,
+          "n_compiling": 1,
+          "compile_rate": 0.0016286644951140066,
+          "n_applicable": 1,
+          "applicability": 1.0,
+          "n_no_tests": 14,
+          "n_hidden_observed": 600,
+          "n_hidden_missing": 0,
+          "hidden_all_pass_count": 0,
+          "hidden_all_pass_mean": 0.0,
+          "hidden_pass_rate_mean": 0.0016666666666666668,
+          "hidden_bounds": [
+            0.0,
+            0.0
+          ],
+          "P1_n_hidden": 407,
+          "P1_hidden_mean": 0.0,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 2,
+            "2": 0,
+            "3": 0,
+            "4": 0
+          }
+        }
+      ]
+    },
+    "IndustrySet282": {
+      "P1": {
+        "subset": "IndustrySet282",
+        "sensitivity_A1": false,
+        "n_tasks": 282,
+        "systems": [
+          "baseline",
+          "claude-opus-5-max",
+          "claude_code",
+          "codex",
+          "gemini-3.1-pro-high",
+          "gpt-5.6-luna-high",
+          "gpt-5.6-sol-high",
+          "gpt-6-astra-high",
+          "gpt-6-luna-high",
+          "leanstral",
+          "qwen3.6-27b-thinking"
+        ],
+        "n_systems": 11,
+        "pearson": 0.9066921845704609,
+        "spearman": 0.9363636363636365,
+        "kendall_tau_b": 0.8545454545454545,
+        "mean_score": 0.4123998238095817,
+        "mean_hidden": 0.3771201962953475,
+        "bias_score_minus_hidden": 0.03527962751423414,
+        "mean_absolute_difference": 0.10671331697253006,
+        "task_bootstrap_95": {
+          "pearson": {
+            "low": 0.8830550676967536,
+            "high": 0.9262327251321821,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "spearman": {
+            "low": 0.8909090909090911,
+            "high": 0.9454545454545454,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "kendall_tau_b": {
+            "low": 0.7818181818181819,
+            "high": 0.8909090909090909,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "mean_score": {
+            "low": 0.39904591932793343,
+            "high": 0.4246419679946024,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "mean_hidden": {
+            "low": 0.36377989720194015,
+            "high": 0.3908350961904807,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "bias_score_minus_hidden": {
+            "low": 0.02547735316797888,
+            "high": 0.04403226143482341,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "mean_absolute_difference": {
+            "low": 0.09690108750935816,
+            "high": 0.11588491253093969,
+            "n_defined": 10000,
+            "n_requested": 10000
+          }
+        },
+        "system_bootstrap_95": {
+          "pearson": {
+            "low": 0.6571293633526217,
+            "high": 0.9962385710014386,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "spearman": {
+            "low": 0.6018518518518517,
+            "high": 1.0,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "kendall_tau_b": {
+            "low": 0.48,
+            "high": 1.0,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "mean_score": {
+            "low": 0.2240634579681404,
+            "high": 0.6187773247948943,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "mean_hidden": {
+            "low": 0.16805073788468333,
+            "high": 0.600957252200636,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "bias_score_minus_hidden": {
+            "low": -0.06625657753101875,
+            "high": 0.11350022605754113,
+            "n_defined": 10000,
+            "n_requested": 10000
+          },
+          "mean_absolute_difference": {
+            "low": 0.0455286885336185,
+            "high": 0.18211534780006594,
+            "n_defined": 10000,
+            "n_requested": 10000
+          }
+        },
+        "per_system": [
+          {
+            "system": "baseline",
+            "score": 0.3261229724421824,
+            "hidden": 0.71900826446281,
+            "n_factor": 282,
+            "n_hidden": 121
+          },
+          {
+            "system": "claude-opus-5-max",
+            "score": 0.6333684070942192,
+            "hidden": 0.5313807531380753,
+            "n_factor": 250,
+            "n_hidden": 239
+          },
+          {
+            "system": "claude_code",
+            "score": 0.9798246104969244,
+            "hidden": 0.9632352941176471,
+            "n_factor": 282,
+            "n_hidden": 272
+          },
+          {
+            "system": "codex",
+            "score": 0.9876737468543667,
+            "hidden": 0.9746376811594203,
+            "n_factor": 282,
+            "n_hidden": 276
+          },
+          {
+            "system": "gemini-3.1-pro-high",
+            "score": 0.12536799559790118,
+            "hidden": 0.046762589928057555,
+            "n_factor": 278,
+            "n_hidden": 278
+          },
+          {
+            "system": "gpt-5.6-luna-high",
+            "score": 0.09728191181625497,
+            "hidden": 0.025362318840579712,
+            "n_factor": 278,
+            "n_hidden": 276
+          },
+          {
+            "system": "gpt-5.6-sol-high",
+            "score": 0.290334928135411,
+            "hidden": 0.14074074074074075,
+            "n_factor": 275,
+            "n_hidden": 270
+          },
+          {
+            "system": "gpt-6-astra-high",
+            "score": 0.4584854683642909,
+            "hidden": 0.18723404255319148,
+            "n_factor": 263,
+            "n_hidden": 235
+          },
+          {
+            "system": "gpt-6-luna-high",
+            "score": 0.057489695541156294,
+            "hidden": 0.010869565217391304,
+            "n_factor": 277,
+            "n_hidden": 276
+          },
+          {
+            "system": "leanstral",
+            "score": 0.5804483255626912,
+            "hidden": 0.5490909090909091,
+            "n_factor": 282,
+            "n_hidden": 275
+          },
+          {
+            "system": "qwen3.6-27b-thinking",
+            "score": 0.0,
+            "hidden": 0.0,
+            "n_factor": 192,
+            "n_hidden": 192
+          }
+        ],
+        "graded_outcome": {
+          "n_systems": 11,
+          "pearson": 0.913242009486477,
+          "spearman": 0.9363636363636365,
+          "kendall_tau_b": 0.8545454545454545,
+          "mean_score": 0.4123998238095817,
+          "mean_hidden": 0.3875754372639051,
+          "bias_score_minus_hidden": 0.02482438654567654,
+          "mean_absolute_difference": 0.09962618514089451
+        },
+        "factor_correlations": {
+          "IC_tests": {
+            "n_systems": 11,
+            "pearson": 0.9366151510682735,
+            "spearman": 0.9636363636363637,
+            "kendall_tau_b": 0.8909090909090909,
+            "mean_score": 0.3595077197444507,
+            "mean_hidden": 0.3771201962953475,
+            "bias_score_minus_hidden": -0.017612476550896802,
+            "mean_absolute_difference": 0.06337009401141704
+          },
+          "IC_proofs": {
+            "n_systems": 11,
+            "pearson": 0.9368344185800376,
+            "spearman": 0.9636363636363637,
+            "kendall_tau_b": 0.8909090909090909,
+            "mean_score": 0.3643243111908294,
+            "mean_hidden": 0.3771201962953475,
+            "bias_score_minus_hidden": -0.012795885104518111,
+            "mean_absolute_difference": 0.06055055627427777
+          },
+          "FSC": {
+            "n_systems": 11,
+            "pearson": -0.2502174196013058,
+            "spearman": 0.1272727272727273,
+            "kendall_tau_b": 0.05454545454545454,
+            "mean_score": 0.8387936609765149,
+            "mean_hidden": 0.3771201962953475,
+            "bias_score_minus_hidden": 0.4616734646811672,
+            "mean_absolute_difference": 0.5311177952198319
+          }
+        }
+      },
+      "P2_P3": {
+        "auc": 0.6141934988088834,
+        "spearman_within_system": 0.08952362884046923,
+        "n_cells": 1040,
+        "n_pass": 1001,
+        "n_fail": 39,
+        "n_tasks_in_resampling_frame": 282,
+        "n_observed_tasks": 278,
+        "unambiguous_steps_1_2_only": false,
+        "subset": "IndustrySet282",
+        "auc_bootstrap_95": {
+          "low": 0.5175257815927763,
+          "high": 0.7217210985494117,
+          "n_defined": 10000,
+          "n_requested": 10000
+        },
+        "spearman_bootstrap_95": {
+          "low": 0.016854817107789015,
+          "high": 0.1624300895894676,
+          "n_defined": 10000,
+          "n_requested": 10000
+        },
+        "per_system": {
+          "baseline": {
+            "n_cells": 88,
+            "n_pass": 87,
+            "n_fail": 1,
+            "auc": null
+          },
+          "claude-opus-5-max": {
+            "n_cells": 135,
+            "n_pass": 127,
+            "n_fail": 8,
+            "auc": null
+          },
+          "claude_code": {
+            "n_cells": 266,
+            "n_pass": 262,
+            "n_fail": 4,
+            "auc": null
+          },
+          "codex": {
+            "n_cells": 276,
+            "n_pass": 269,
+            "n_fail": 7,
+            "auc": null
+          },
+          "gemini-3.1-pro-high": {
+            "n_cells": 13,
+            "n_pass": 13,
+            "n_fail": 0,
+            "auc": null
+          },
+          "gpt-5.6-luna-high": {
+            "n_cells": 7,
+            "n_pass": 7,
+            "n_fail": 0,
+            "auc": null
+          },
+          "gpt-5.6-sol-high": {
+            "n_cells": 39,
+            "n_pass": 38,
+            "n_fail": 1,
+            "auc": null
+          },
+          "gpt-6-astra-high": {
+            "n_cells": 55,
+            "n_pass": 44,
+            "n_fail": 11,
+            "auc": 0.7882231404958677
+          },
+          "gpt-6-luna-high": {
+            "n_cells": 3,
+            "n_pass": 3,
+            "n_fail": 0,
+            "auc": null
+          },
+          "leanstral": {
+            "n_cells": 158,
+            "n_pass": 151,
+            "n_fail": 7,
+            "auc": null
+          }
+        },
+        "factor_descriptives": {
+          "IC_proofs": {
+            "auc": 0.48375982991367605,
+            "spearman_within_system": -0.009174135240445788,
+            "n_cells": 1040,
+            "n_pass": 1001,
+            "n_fail": 39
+          },
+          "FSC": {
+            "auc": 0.6256563948871641,
+            "spearman_within_system": 0.09443317373927207,
+            "n_cells": 1040,
+            "n_pass": 1001,
+            "n_fail": 39
+          }
+        }
+      },
+      "systems": [
+        {
+          "panel": "primary",
+          "system": "baseline",
+          "n_declared": 282,
+          "n_common_measured": 282,
+          "factor_means_common": {
+            "IC_tests": 0.31560283687943264,
+            "IC_proofs": 0.31560283687943264,
+            "FSC": 0.34822695035460993
+          },
+          "factor_means_available": {
+            "IC_tests": 0.31560283687943264,
+            "IC_proofs": 0.31560283687943264,
+            "FSC": 0.34822695035460993
+          },
+          "system_score": 0.32612297244218263,
+          "n_compiling": 249,
+          "compile_rate": 0.8829787234042553,
+          "n_applicable": 88,
+          "applicability": 0.3534136546184739,
+          "n_no_tests": 0,
+          "n_hidden_observed": 121,
+          "n_hidden_missing": 161,
+          "hidden_all_pass_count": 87,
+          "hidden_all_pass_mean": 0.71900826446281,
+          "hidden_pass_rate_mean": 0.7252066115702479,
+          "hidden_bounds": [
+            0.30851063829787234,
+            0.8794326241134752
+          ],
+          "P1_n_hidden": 121,
+          "P1_hidden_mean": 0.71900826446281,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 78,
+            "2": 89,
+            "3": 2,
+            "4": 7
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "claude-opus-5-max",
+          "n_declared": 282,
+          "n_common_measured": 250,
+          "factor_means_common": {
+            "IC_tests": 0.584,
+            "IC_proofs": 0.5832,
+            "FSC": 0.746
+          },
+          "factor_means_available": {
+            "IC_tests": 0.584,
+            "IC_proofs": 0.5832,
+            "FSC": 0.746
+          },
+          "system_score": 0.6333684070942192,
+          "n_compiling": 157,
+          "compile_rate": 0.5567375886524822,
+          "n_applicable": 146,
+          "applicability": 0.9299363057324841,
+          "n_no_tests": 0,
+          "n_hidden_observed": 271,
+          "n_hidden_missing": 11,
+          "hidden_all_pass_count": 136,
+          "hidden_all_pass_mean": 0.5018450184501845,
+          "hidden_pass_rate_mean": 0.5222500439290108,
+          "hidden_bounds": [
+            0.48226950354609927,
+            0.5212765957446809
+          ],
+          "P1_n_hidden": 239,
+          "P1_hidden_mean": 0.5313807531380753,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 162,
+            "2": 0,
+            "3": 71,
+            "4": 65
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "claude_code",
+          "n_declared": 282,
+          "n_common_measured": 282,
+          "factor_means_common": {
+            "IC_tests": 0.9787234042553191,
+            "IC_proofs": 0.9781323877068557,
+            "FSC": 0.9826241134751774
+          },
+          "factor_means_available": {
+            "IC_tests": 0.9787234042553191,
+            "IC_proofs": 0.9781323877068557,
+            "FSC": 0.9826241134751774
+          },
+          "system_score": 0.9798246104969244,
+          "n_compiling": 276,
+          "compile_rate": 0.9787234042553191,
+          "n_applicable": 266,
+          "applicability": 0.9637681159420289,
+          "n_no_tests": 0,
+          "n_hidden_observed": 272,
+          "n_hidden_missing": 10,
+          "hidden_all_pass_count": 262,
+          "hidden_all_pass_mean": 0.9632352941176471,
+          "hidden_pass_rate_mean": 0.9688375350140056,
+          "hidden_bounds": [
+            0.9290780141843972,
+            0.9645390070921985
+          ],
+          "P1_n_hidden": 272,
+          "P1_hidden_mean": 0.9632352941176471,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 353,
+            "2": 0,
+            "3": 156,
+            "4": 27
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "codex",
+          "n_declared": 282,
+          "n_common_measured": 282,
+          "factor_means_common": {
+            "IC_tests": 1.0,
+            "IC_proofs": 1.0,
+            "FSC": 0.9634751773049645
+          },
+          "factor_means_available": {
+            "IC_tests": 1.0,
+            "IC_proofs": 1.0,
+            "FSC": 0.9634751773049645
+          },
+          "system_score": 0.9876737468543665,
+          "n_compiling": 282,
+          "compile_rate": 1.0,
+          "n_applicable": 276,
+          "applicability": 0.9787234042553191,
+          "n_no_tests": 0,
+          "n_hidden_observed": 276,
+          "n_hidden_missing": 6,
+          "hidden_all_pass_count": 269,
+          "hidden_all_pass_mean": 0.9746376811594203,
+          "hidden_pass_rate_mean": 1.0,
+          "hidden_bounds": [
+            0.9539007092198581,
+            0.975177304964539
+          ],
+          "P1_n_hidden": 276,
+          "P1_hidden_mean": 0.9746376811594203,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 244,
+            "2": 1,
+            "3": 302,
+            "4": 0
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "gemini-3.1-pro-high",
+          "n_declared": 282,
+          "n_common_measured": 278,
+          "factor_means_common": {
+            "IC_tests": 0.046762589928057555,
+            "IC_proofs": 0.046762589928057555,
+            "FSC": 0.9010791366906474
+          },
+          "factor_means_available": {
+            "IC_tests": 0.046762589928057555,
+            "IC_proofs": 0.046762589928057555,
+            "FSC": 0.9010791366906474
+          },
+          "system_score": 0.12536799559790118,
+          "n_compiling": 13,
+          "compile_rate": 0.04609929078014184,
+          "n_applicable": 13,
+          "applicability": 1.0,
+          "n_no_tests": 0,
+          "n_hidden_observed": 282,
+          "n_hidden_missing": 0,
+          "hidden_all_pass_count": 13,
+          "hidden_all_pass_mean": 0.04609929078014184,
+          "hidden_pass_rate_mean": 0.04609929078014184,
+          "hidden_bounds": [
+            0.04609929078014184,
+            0.04609929078014184
+          ],
+          "P1_n_hidden": 278,
+          "P1_hidden_mean": 0.046762589928057555,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 26,
+            "2": 0,
+            "3": 0,
+            "4": 0
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "gpt-5.6-luna-high",
+          "n_declared": 282,
+          "n_common_measured": 278,
+          "factor_means_common": {
+            "IC_tests": 0.03237410071942446,
+            "IC_proofs": 0.03237410071942446,
+            "FSC": 0.8784172661870503
+          },
+          "factor_means_available": {
+            "IC_tests": 0.03237410071942446,
+            "IC_proofs": 0.03237410071942446,
+            "FSC": 0.8784172661870503
+          },
+          "system_score": 0.09728191181625491,
+          "n_compiling": 9,
+          "compile_rate": 0.031914893617021274,
+          "n_applicable": 7,
+          "applicability": 0.7777777777777778,
+          "n_no_tests": 0,
+          "n_hidden_observed": 280,
+          "n_hidden_missing": 2,
+          "hidden_all_pass_count": 7,
+          "hidden_all_pass_mean": 0.025,
+          "hidden_pass_rate_mean": 0.025,
+          "hidden_bounds": [
+            0.024822695035460994,
+            0.031914893617021274
+          ],
+          "P1_n_hidden": 276,
+          "P1_hidden_mean": 0.025362318840579712,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 9,
+            "2": 0,
+            "3": 3,
+            "4": 4
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "gpt-5.6-sol-high",
+          "n_declared": 282,
+          "n_common_measured": 275,
+          "factor_means_common": {
+            "IC_tests": 0.16,
+            "IC_proofs": 0.16,
+            "FSC": 0.956
+          },
+          "factor_means_available": {
+            "IC_tests": 0.16,
+            "IC_proofs": 0.16,
+            "FSC": 0.956
+          },
+          "system_score": 0.29033492813541095,
+          "n_compiling": 46,
+          "compile_rate": 0.16312056737588654,
+          "n_applicable": 41,
+          "applicability": 0.8913043478260869,
+          "n_no_tests": 0,
+          "n_hidden_observed": 277,
+          "n_hidden_missing": 5,
+          "hidden_all_pass_count": 40,
+          "hidden_all_pass_mean": 0.1444043321299639,
+          "hidden_pass_rate_mean": 0.14711191335740073,
+          "hidden_bounds": [
+            0.14184397163120568,
+            0.1595744680851064
+          ],
+          "P1_n_hidden": 270,
+          "P1_hidden_mean": 0.14074074074074075,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 48,
+            "2": 1,
+            "3": 18,
+            "4": 20
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "gpt-6-astra-high",
+          "n_declared": 282,
+          "n_common_measured": 263,
+          "factor_means_common": {
+            "IC_tests": 0.3155893536121673,
+            "IC_proofs": 0.3155893536121673,
+            "FSC": 0.9676806083650191
+          },
+          "factor_means_available": {
+            "IC_tests": 0.3155893536121673,
+            "IC_proofs": 0.3155893536121673,
+            "FSC": 0.9676806083650191
+          },
+          "system_score": 0.45848546836429055,
+          "n_compiling": 91,
+          "compile_rate": 0.32269503546099293,
+          "n_applicable": 61,
+          "applicability": 0.6703296703296703,
+          "n_no_tests": 0,
+          "n_hidden_observed": 252,
+          "n_hidden_missing": 30,
+          "hidden_all_pass_count": 49,
+          "hidden_all_pass_mean": 0.19444444444444445,
+          "hidden_pass_rate_mean": 0.22976190476190475,
+          "hidden_bounds": [
+            0.17375886524822695,
+            0.2801418439716312
+          ],
+          "P1_n_hidden": 235,
+          "P1_hidden_mean": 0.18723404255319148,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 120,
+            "2": 5,
+            "3": 30,
+            "4": 15
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "gpt-6-luna-high",
+          "n_declared": 282,
+          "n_common_measured": 277,
+          "factor_means_common": {
+            "IC_tests": 0.01444043321299639,
+            "IC_proofs": 0.01444043321299639,
+            "FSC": 0.9111913357400723
+          },
+          "factor_means_available": {
+            "IC_tests": 0.01444043321299639,
+            "IC_proofs": 0.01444043321299639,
+            "FSC": 0.9111913357400723
+          },
+          "system_score": 0.05748969554115627,
+          "n_compiling": 4,
+          "compile_rate": 0.014184397163120567,
+          "n_applicable": 3,
+          "applicability": 0.75,
+          "n_no_tests": 0,
+          "n_hidden_observed": 281,
+          "n_hidden_missing": 1,
+          "hidden_all_pass_count": 3,
+          "hidden_all_pass_mean": 0.010676156583629894,
+          "hidden_pass_rate_mean": 0.010676156583629894,
+          "hidden_bounds": [
+            0.010638297872340425,
+            0.014184397163120567
+          ],
+          "P1_n_hidden": 276,
+          "P1_hidden_mean": 0.010869565217391304,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 4,
+            "2": 0,
+            "3": 0,
+            "4": 3
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "leanstral",
+          "n_declared": 282,
+          "n_common_measured": 282,
+          "factor_means_common": {
+            "IC_tests": 0.5070921985815603,
+            "IC_proofs": 0.5614657210401891,
+            "FSC": 0.6868794326241136
+          },
+          "factor_means_available": {
+            "IC_tests": 0.5070921985815603,
+            "IC_proofs": 0.5614657210401891,
+            "FSC": 0.6868794326241136
+          },
+          "system_score": 0.5804483255626908,
+          "n_compiling": 165,
+          "compile_rate": 0.5851063829787234,
+          "n_applicable": 158,
+          "applicability": 0.9575757575757575,
+          "n_no_tests": 0,
+          "n_hidden_observed": 275,
+          "n_hidden_missing": 7,
+          "hidden_all_pass_count": 151,
+          "hidden_all_pass_mean": 0.5490909090909091,
+          "hidden_pass_rate_mean": 0.5731818181818182,
+          "hidden_bounds": [
+            0.5354609929078015,
+            0.5602836879432624
+          ],
+          "P1_n_hidden": 275,
+          "P1_hidden_mean": 0.5490909090909091,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 159,
+            "2": 152,
+            "3": 1,
+            "4": 2
+          }
+        },
+        {
+          "panel": "primary",
+          "system": "qwen3.6-27b-thinking",
+          "n_declared": 282,
+          "n_common_measured": 192,
+          "factor_means_common": {
+            "IC_tests": 0.0,
+            "IC_proofs": 0.0,
+            "FSC": 0.88515625
+          },
+          "factor_means_available": {
+            "IC_tests": 0.0,
+            "IC_proofs": 0.0,
+            "FSC": 0.88515625
+          },
+          "system_score": 0.0,
+          "n_compiling": 0,
+          "compile_rate": 0.0,
+          "n_applicable": 0,
+          "applicability": null,
+          "n_no_tests": 0,
+          "n_hidden_observed": 282,
+          "n_hidden_missing": 0,
+          "hidden_all_pass_count": 0,
+          "hidden_all_pass_mean": 0.0,
+          "hidden_pass_rate_mean": 0.0,
+          "hidden_bounds": [
+            0.0,
+            0.0
+          ],
+          "P1_n_hidden": 192,
+          "P1_hidden_mean": 0.0,
+          "kernel_binary_n": 0,
+          "kernel_binary_mean": null,
+          "n_kernel_verified": 0,
+          "n_kernel_verified_hidden_observed": 0,
+          "hidden_all_pass_given_kernel": null,
+          "hidden_given_kernel_bounds": null,
+          "mapping_step_counts": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0
+          }
+        }
+      ]
+    }
+  },
+  "G_A": {
+    "n_compiling": 4674,
+    "n_applicable": 3224,
+    "fraction": 0.6897732135216089,
+    "threshold": 0.5,
+    "passes": true
+  },
+  "mapping_steps": {
+    "counts": {
+      "1": 5075,
+      "2": 693,
+      "3": 1532,
+      "4": 387
+    },
+    "n_mapped_symbols": 7687,
+    "shares": {
+      "1": 0.6602055418238585,
+      "2": 0.09015220502146482,
+      "3": 0.19929751528554704,
+      "4": 0.0503447378691297
+    }
+  },
+  "verdicts": {
+    "P1_holds": true,
+    "P2_holds": true,
+    "P3_holds": true,
+    "coverage_verdict": "PASS"
+  },
+  "disagreement_selection": [
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "concurrent_set_synthetic__my_hazard_pointer_can_free",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 0.25,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        4,
+        4
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/e3c12d22384a4190eb9900a143517b6174ccbfd6f60612af147239479f857469.json",
+      "scsc": 1.0,
+      "group": "high_score_failing"
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "concurrent_set_synthetic__my_lww_register_pick_left",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 0.625,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        4,
+        4
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/0e93f9536b45a5a3363b929886a25aee8c114a5bc83258e3d2697dc148c0c8d0.json",
+      "scsc": 1.0,
+      "group": "high_score_failing"
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "easy_set__1_myadd",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 14,
+      "n_applicable": 1,
+      "n_unknown": 13,
+      "mapping_steps": [
+        1,
+        1
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/1504bd80a13d62851a6736ee85cff68e9f0cc234ffe1efcaa39c91dbaf766316.json",
+      "scsc": 1.0,
+      "group": "high_score_failing"
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "easy_set__33_myminimum",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 12,
+      "n_applicable": 5,
+      "n_unknown": 7,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/0715f977db8424856a99d502b074a82864f15d5be30b4965dfb483337a4dcb24.json",
+      "scsc": 1.0,
+      "group": "high_score_failing"
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "humaneval_set__humaneval_22_filter_integers",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 13,
+      "n_applicable": 1,
+      "n_unknown": 12,
+      "mapping_steps": [
+        1,
+        1
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/8af3311856967ab428c3fe3e4573ebcbadb1aa8ba94023e51c763b325736b45b.json",
+      "scsc": 1.0,
+      "group": "high_score_failing"
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "hypervisor_set_synthetic__my_interrupt_route",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 0.625,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        4,
+        3
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/9d015a055f01c9087191f2b1c61fd3d6c295a297bedfb5e9bedf8994f8fb4d9a.json",
+      "scsc": 1.0,
+      "group": "high_score_failing"
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "memory_bugs_set_synthetic__my_bump_alloc_fits",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 0.5714285714285714,
+      "n_tests": 7,
+      "n_applicable": 7,
+      "n_unknown": 0,
+      "mapping_steps": [
+        4,
+        4
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/312f25385bff4ccfe67452cda59892a1bad2c47fd8e5c8375f750a81562da577.json",
+      "scsc": 1.0,
+      "group": "high_score_failing"
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "os_embedded_set_synthetic__my_power_transition_ok",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 0.6666666666666666,
+      "n_tests": 9,
+      "n_applicable": 9,
+      "n_unknown": 0,
+      "mapping_steps": [
+        4,
+        4
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/4c9d9c035e4eafea78f5c14e5d8c3d00fd66ea110a094e935d0d2566fc1f7760.json",
+      "scsc": 1.0,
+      "group": "high_score_failing"
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "regulated_set_synthetic__my_dose_interval_ok",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 0.5,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        4,
+        4
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/553161b258f918d98f62b89203849813d08e3c96cd7138913e743a7b934c2ff4.json",
+      "scsc": 1.0,
+      "group": "high_score_failing"
+    },
+    {
+      "system": "claude-opus-5-max",
+      "task_id": "security_set__security_6858__safe__104_unsafehttpparse_safe",
+      "IC_tests": 1.0,
+      "IC_proofs": 1.0,
+      "FSC": 1.0,
+      "hidden_all_pass": 0,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 12,
+      "n_applicable": 9,
+      "n_unknown": 3,
+      "mapping_steps": [
+        1,
+        1
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/e11c7a21f800ffedaf493863d35f2b37acb9bcf3c1960bbd6e0d4b3d3952fcb0.json",
+      "scsc": 1.0,
+      "group": "high_score_failing"
+    },
+    {
+      "system": "leanstral",
+      "task_id": "aerospace_set_synthetic__my_arming_interlock",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.7,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 7,
+      "n_applicable": 7,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/d235242a9af45703527978a65d3a790dc7762a7b100ba71d934fb65e8ea129a5.json",
+      "scsc": 0.0,
+      "group": "low_score_passing"
+    },
+    {
+      "system": "leanstral",
+      "task_id": "aerospace_set_synthetic__my_safing_vote",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.30000000000000004,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 7,
+      "n_applicable": 7,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/3a3bbdee68a73faa73473a7cdda60d6586c84f765aaeecba9e77b5f1a4d0ed90.json",
+      "scsc": 0.0,
+      "group": "low_score_passing"
+    },
+    {
+      "system": "leanstral",
+      "task_id": "aerospace_set_synthetic__my_sensor_watchdog_fresh",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.8,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 5,
+      "n_applicable": 5,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/7987395ec7c140822b4c3060ca4189ecee888f928260e164e63162410b940399.json",
+      "scsc": 0.0,
+      "group": "low_score_passing"
+    },
+    {
+      "system": "leanstral",
+      "task_id": "aerospace_set_synthetic__my_tmr_voter",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.7,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 7,
+      "n_applicable": 7,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/19024b9e1f35a8a7c3f2f1ee300aecbf4b96c6353977cc388e8d405a9b3341c2.json",
+      "scsc": 0.0,
+      "group": "low_score_passing"
+    },
+    {
+      "system": "leanstral",
+      "task_id": "compilers_set_real__my_cpython_dis_jump_target",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.6000000000000001,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 7,
+      "n_applicable": 7,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/145c17c2ab2cfbce878c4b3aacc288fe2aa3163cb1ee2eecdeb3763c4700c6c7.json",
+      "scsc": 0.0,
+      "group": "low_score_passing"
+    },
+    {
+      "system": "leanstral",
+      "task_id": "concurrent_set_real__my_cas_success",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.8,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        2,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/6a36ee1d0c55b3889440a7be3d82f672592d77f77247dd7ae702ed51ccfbee4a.json",
+      "scsc": 0.0,
+      "group": "low_score_passing"
+    },
+    {
+      "system": "leanstral",
+      "task_id": "concurrent_set_real__my_h2_flow_window_after_send",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.2,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/461f821a118c79fa671f1739c6126f5b3559851f093794c451ccc5c69ff793cf.json",
+      "scsc": 0.0,
+      "group": "low_score_passing"
+    },
+    {
+      "system": "leanstral",
+      "task_id": "concurrent_set_synthetic__my_lww_register_pick_left",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.4,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/6e8f30cd468b991846f19aba8b0d3b5f34d97cd3b7a176d10d5c3f8876e1abc6.json",
+      "scsc": 0.0,
+      "group": "low_score_passing"
+    },
+    {
+      "system": "leanstral",
+      "task_id": "concurrent_set_synthetic__my_rcu_epoch_can_reclaim",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.8,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/05989cb99e281ffb9e8a9f924c1af5209b88ed15966fef47ccedc2ba7b55f521.json",
+      "scsc": 0.0,
+      "group": "low_score_passing"
+    },
+    {
+      "system": "leanstral",
+      "task_id": "concurrent_set_synthetic__my_vector_clock_merge_le_target",
+      "IC_tests": 0.0,
+      "IC_proofs": 1.0,
+      "FSC": 0.1,
+      "hidden_all_pass": 1,
+      "hidden_pass_rate": 1.0,
+      "n_tests": 8,
+      "n_applicable": 8,
+      "n_unknown": 0,
+      "mapping_steps": [
+        1,
+        2
+      ],
+      "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2/d9d0463b1a015b6322ac046d1da01377dea660fd99a55086b96c3cd15be34f93.json",
+      "scsc": 0.0,
+      "group": "low_score_passing"
+    }
+  ]
+}

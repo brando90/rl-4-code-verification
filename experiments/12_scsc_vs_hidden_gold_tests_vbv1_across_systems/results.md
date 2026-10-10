@@ -5,7 +5,7 @@
 Experiment `12_scsc_vs_hidden_gold_tests_vbv1_across_systems` phase A passed Amendment A1 input checks and 100/100 compilation reproductions; all four adapter controls passed under prospective Amendment A2 with zero experiment model calls.
 
 **Status:** RUNNING under prospective Amendment A2 (`a7c2ea2`). Round-2 failure retained below; round-5 controls PASS; protocol LOCKED; evaluation completed after lock publication `f64c084`. No real-candidate hidden outcomes existed at lock.
-**Last updated:** 10-10-2026 05:11 PDT
+**Last updated:** 10-10-2026 05:16 PDT
 
 The smooth conjunctive score for code verification (SCSC) combines internal consistency of tests (IC_tests), internal consistency of proofs (IC_proofs), and formal specification coverage (FSC). Under the prospective [Amendment A1](PROTOCOL.md#8-amendment-a1-10-09-2026-master-before-any-hidden-test-outcome), the system score is the geometric mean of the three factor means over one common measured cohort. Published-value checks reproduce each source’s own convention.
 
@@ -100,3 +100,9 @@ PYTHONPATH=src python3 experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_syst
 The completed round-2 control runner returns exit 2, preserving its failed gate. Compilation and control scripts preserve completed receipts on resume. Host-only logs and copied control sources are in `/lfs/skampere1/0/brando9/rl4cv_e12/`; no candidate source is committed. Verification so far: repository tests 237 passed / 24 skipped; experiment-local tests 32 passed.
 
 **TLDR-end:** [rl4cv: 12_scsc_vs_hidden_gold_tests_vbv1_across_systems] Hidden gold-test agreement passed all four A2 controls and is locked before real-candidate outcomes. Full candidate evaluation is active; frozen prediction analyses follow completion.
+
+## Completed frozen analysis — manual inspection pending
+
+P1 HOLDS: system Spearman 0.891 [0.782, 0.900], 11 systems / 896 tasks (threshold ≥0.80). P2 HOLDS: area under the receiver operating characteristic curve 0.640 [0.583, 0.696] (threshold ≥0.60 and interval excludes 0.50). P3 HOLDS: within-system Spearman 0.151 [0.074, 0.225] (threshold positive and interval excludes zero). P2/P3 use 3,199 compiling applicable score-measured cells, 2,999 passing / 200 failing, on 752 observed tasks. Intervals: paired task-cluster bootstrap, 10,000 draws, seed 20261009; p-val=n/a. Applicability gate PASS: 3,224/4,674 = 68.98% (threshold ≥50%).
+
+Analysis exited 0; all forecasts verified before reading outputs. Full tables and A1/A2/subset sensitivities are in [analysis_e12.json](expt_v1/results/analysis_e12.json). The selected 20 disagreements are being inspected; initial cases include adapter selection of precondition/postcondition helpers and partial applicability. Frozen outcomes will remain unchanged. Final repository verification is running. Status remains RUNNING until inspection and publication finish.

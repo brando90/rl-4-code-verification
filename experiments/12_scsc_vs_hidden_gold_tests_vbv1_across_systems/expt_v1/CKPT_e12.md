@@ -5,14 +5,14 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-10-2026 05:11 PDT
+**Last updated:** 10-10-2026 05:16 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
 - **Worker:** Codex CLI 0.154.0, personal ChatGPT login, `gpt-6-astra` / high, host `skampere1`, tmux `oct9-codex-rl4cv-e12-hidden-gold-tests`; effective sandbox danger-full-access, approval never. Supersedes the Claude launch, which failed due to exhausted personal Claude credits.
 - **Frozen forecast:** `expt_v1/forecasts/e12_phase_a_forecast.json`, SHA-256 `b29b71b7166b80df653220ddddec4b865a622ef9abc1fa42c6c1e559b067b0c5`, frozen 2026-10-09T21:35:33Z at git head `e851c02`.
 - **State:** RUNNING under Amendment A2 (`a7c2ea2`); all three forecasts verified; round-2 controls archived unchanged.
-- **Next command:** `tail -n 2 /lfs/skampere1/0/brando9/rl4cv_e12/evaluation_A2.log`; inspect tmux `e12-evaluate`, child process liveness and exit marker. After complete, run analysis with the local `.venv` and one BLAS thread, then inspect disagreements and publish DONE.
+- **Next command:** inspect the 20 selected disagreements against private source/bridge receipts; render final results, finish `make test`, update README/index, publish and write DONE.
 
 ## Log
 
@@ -235,3 +235,5 @@ Report presentation prepared while evaluation continues: expose primary and seco
 - Evaluation completed successfully at 10-10-2026 05:09 PDT: exit 0; 43,840 unique cell keys exactly equal the frozen manifests; outcome SHA-256 `e21a4a512784fff53a61af67cd609cc11548d70feb9b2ba6ca24904f627bdbb9`. All 5,386 receipts audited with zero timeouts and zero infrastructure retries. Next: launch `analyze_e12.py` using the pinned analysis virtual environment, one BLAS thread, seed 20261009, then inspect the selected 20 disagreements and publish final results.
 
 - 10-10-2026 05:10 PDT: analysis launched in tmux window `e12-analysis`, process 3692620, one BLAS thread and nice 10, pinned virtual environment; first useful output `System summaries complete`. Completion publication `d17a8c3` verified on origin/main. Log `/lfs/skampere1/0/brando9/rl4cv_e12/analysis_A2.log`, exit marker `analysis_A2.exit`. Forecasts reverified before reading the log.
+
+- 10-10-2026 05:16 PDT: frozen analysis completed, exit 0; P1 Spearman 0.890909 [0.781818, 0.900000], P2 area 0.639676 [0.582646, 0.695515], P3 within-system Spearman 0.151242 [0.074213, 0.225028]; all three predictions hold. G-A 3224/4674 = 0.689773 passes. All three forecasts verified before output access. P2/P3 n=3199 (2999 pass / 200 fail), 752 observed tasks; 10000 task-cluster draws, seed 20261009, p-val=n/a. Manual disagreement inspection and final deterministic checks remain in progress; no frozen source or outcome changed.

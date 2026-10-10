@@ -43,7 +43,7 @@ def main():
       f"| P3 pooled within-system Spearman | {num(p23['spearman_within_system'])} | {ci(p23['spearman_bootstrap_95'])} | >0 and interval excludes 0: {'HOLDS' if verdicts['P3_holds'] else 'FAILS'} |",
       f"| G-A applicability | {num(ga['fraction'])} ({ga['n_applicable']}/{ga['n_compiling']}) | Deterministic census | ≥0.50: {verdicts['coverage_verdict']} |",'',
       f"P1 contains {p1['n_systems']} systems and resamples {p1['n_tasks']} tasks. P2/P3 contain {p23['n_cells']} compiling, applicable, score-measured cells ({p23['n_pass']} passing / {p23['n_fail']} failing), on {p23['n_observed_tasks']} observed tasks. Intervals use 10,000 paired task-cluster draws, seed 20261009; systems are retained together within each sampled task. Undefined draws are reported, not replaced. Thresholds are master-suggested and frozen in the original forecast; p-val=n/a. Single saved run per cell; repeated scoring variability is unavailable.",'',
-      'P2 pools within-system normalized score midranks before computing the binary-outcome area. P3 correlates pooled within-system normalized score and graded-outcome midranks. Ranks are recomputed in every bootstrap draw.','',
+      'P2 pools within-system normalized score midranks before computing the binary-outcome area. P3 correlates pooled within-system normalized score and graded-outcome midranks. Ranks are recomputed in every bootstrap draw. An applicable cell needs only one evaluable test, whereas all-tests-pass requires every extracted test to be evaluable and true. Therefore an all-tests-pass failure can reflect partial adapter applicability as well as a false test; the inspected cases distinguish these.','',
       '## System-level agreement and absolute differences','',
       '| Statistic | Estimate | 95% task bootstrap | 95% system bootstrap sensitivity |','|---|---:|---|---|']
     for metric in ['pearson','spearman','kendall_tau_b','mean_score','mean_hidden','bias_score_minus_hidden','mean_absolute_difference']:
@@ -70,6 +70,8 @@ def main():
     for subset,d in result['subsets'].items():
         for name,value,iv in [('P1',d['P1']['spearman'],d['P1']['task_bootstrap_95']['spearman']),('P2',d['P2_P3']['auc'],d['P2_P3']['auc_bootstrap_95']),('P3',d['P2_P3']['spearman_within_system'],d['P2_P3']['spearman_bootstrap_95'])]:
             lines.append(f'| {subset} {name} (descriptive) | {num(value)} | {ci(iv)} |')
+    for subset,d in result['subsets'].items():
+        lines.append(f"\n{subset}: P1 uses {d['P1']['n_systems']} systems / {d['P1']['n_tasks']} tasks; P2/P3 use {d['P2_P3']['n_cells']} cells ({d['P2_P3']['n_pass']} passing / {d['P2_P3']['n_fail']} failing) on {d['P2_P3']['n_observed_tasks']} observed tasks.\n")
     lines+=['','Mapping steps: 1 normalized name; 2 unique compatible type; 3 candidate definitions agree on hidden argument tuples; 4 candidate example/theorem reference counts resolve disagreement or undecidability. Hidden expected values never decide a mapping.','',
       'Primary-panel mappings:','',
       '| Mapping step | Symbols | Share of mapped symbols |','|---|---:|---:|']
@@ -97,10 +99,11 @@ def main():
         lines.append(f"| {r['group']} | {r['system']} / {r['task_id']} | {num(r['scsc'])} | {r['hidden_all_pass']} | {r['reason'].replace('|','/')} |")
     lines+=['','## Validation, provenance and limitations','',
       'A1 reproduced all 11 published source aggregates under their own conventions and all 100 sampled compile statuses. Primary joins retain 9,678 hash-bound cells, 176 flagged unique paths, and two missing files. The extraction contains 10,534 tests on 882/896 gold tasks; 14 tasks have no extractable tests.','',
-      f"Final controls: C1 {controls['C1']['n_pass']}/{controls['C1']['n_tests']} tests; C2 {controls['C2']['n_recovered']}/{controls['C2']['n_C1_passing_tasks']} recovered tasks; C3 {controls['C3']['n_killed']}/{controls['C3']['n_compiling_mutants']} compiling mutants detected; C4 {controls['C4']['n_rejected']}/{controls['C4']['n_pairs']} wrong-task pairs rejected. Thresholds remain 98%, 95%, 60%, 95% respectively. These are deterministic checks on the fixed 50-task sample, p-val=n/a.",'',
+      f"Final controls: C1 {controls['C1']['n_pass']}/{controls['C1']['n_tests']} tests; C2 {controls['C2']['n_recovered']}/{controls['C2']['n_C1_passing_tasks']} recovered tasks; C3 {controls['C3']['n_killed']}/{controls['C3']['n_compiling_mutants']} compiling mutants detected; C4 {controls['C4']['n_rejected']}/{controls['C4']['n_pairs']} wrong-task pairs rejected. Thresholds remain 98%, 95%, 60% with at least 50 compiling mutants, and 95% respectively. These are deterministic checks on the fixed 50-task sample, p-val=n/a.",'',
       'Historical failures and implementation corrections remain in [the checkpoint](expt_v1/CKPT_e12.md), with round-1 through round-5 receipts. A1 resolved aggregation conventions; A2 resolved identical-type alternatives before the protocol lock or any real-candidate hidden outcome. The extractor expands only closed literal aliases used exclusively as test inputs; all 10,534 tests and their expected values are retained. Candidate and gold source files and factors were never edited. All three forecasts remain frozen.','',
       'The outcome is finite-test success, not a proof of full program correctness or a human acceptance rating. Missing applicability is bounded rather than silently scored zero. Core and IndustrySet results, missing-factor sensitivity and unambiguous-mapping sensitivity are descriptive and do not replace the frozen verdicts. Next versions cover hidden proofs and the agent-spec v8 panel.','',
       '**TLDR-end:** [rl4cv: 12_scsc_vs_hidden_gold_tests_vbv1_across_systems] Hidden gold-test agreement is fully measured under the frozen protocol and amendments; '+verdict+'.','']
+    lines += ['**Snapshot:**', '```text', f"P1 Spearman: {num(p1['spearman'])}", f"P2 area: {num(p23['auc'])}", f"P3 within-system Spearman: {num(p23['spearman_within_system'])}", f"Applicable: {ga['n_applicable']}/{ga['n_compiling']}", 'Evaluated cells: 43840/43840', '```', '']
     (PHASE.parent/'results.md').write_text('\n'.join(lines))
 
 
