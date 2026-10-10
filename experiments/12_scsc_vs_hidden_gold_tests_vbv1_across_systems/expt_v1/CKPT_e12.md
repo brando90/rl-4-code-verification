@@ -5,7 +5,7 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-10-2026 05:09 PDT
+**Last updated:** 10-10-2026 05:11 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
@@ -233,3 +233,5 @@ Report presentation prepared while evaluation continues: expose primary and seco
 - 10-10-2026 05:09 PDT evaluation milestone: 5,386/5,386 unique jobs; 43,840/43,840 cell records. 5,386 candidate receipts: 0 timeouts, 0 infrastructure retries. All three forecasts and every locked source/input hash reverified. Process/exit/log monitor checked separately before publication. Last publication `3fb8577`. Continue the unchanged full cohort; analyses and manual disagreements remain pending.
 
 - Evaluation completed successfully at 10-10-2026 05:09 PDT: exit 0; 43,840 unique cell keys exactly equal the frozen manifests; outcome SHA-256 `e21a4a512784fff53a61af67cd609cc11548d70feb9b2ba6ca24904f627bdbb9`. All 5,386 receipts audited with zero timeouts and zero infrastructure retries. Next: launch `analyze_e12.py` using the pinned analysis virtual environment, one BLAS thread, seed 20261009, then inspect the selected 20 disagreements and publish final results.
+
+- 10-10-2026 05:10 PDT: analysis launched in tmux window `e12-analysis`, process 3692620, one BLAS thread and nice 10, pinned virtual environment; first useful output `System summaries complete`. Completion publication `d17a8c3` verified on origin/main. Log `/lfs/skampere1/0/brando9/rl4cv_e12/analysis_A2.log`, exit marker `analysis_A2.exit`. Forecasts reverified before reading the log.
