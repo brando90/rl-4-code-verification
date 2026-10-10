@@ -5,7 +5,7 @@
 **TLDR:** Resume record for the experiment 12 phase A worker: what is done, what runs where, and the exact next command.
 
 **Created:** 10-09-2026 14:36 PDT
-**Last updated:** 10-09-2026 23:27 PDT
+**Last updated:** 10-10-2026 00:04 PDT
 
 - **Task:** `expt_v1/cc.md`. Brando, 10-09-2026: "Go" (measure hidden gold tests on existing outputs, zero model calls).
 - **Owner:** Emily Xia (@emxia18), Ethan Li (@lethan3) advising; tracking issue: see Log. **Master:** Claude Code (Opus 5.5) on Brando's laptop, tmux `oct9-cc-rl4cv-master`, session https://claude.ai/code/session_01FgRzJQkGdRPP8sJU7XAYgv.
@@ -191,3 +191,5 @@
 - 10-09-2026 23:22 PDT evaluation milestone: 2,500/5,386 unique jobs; 40,954/43,840 cell records. 2,503 candidate receipts: 0 timeouts, 0 infrastructure retries. All three forecasts and every locked source/input hash reverified. Process/exit/log monitor checked separately before publication. Last publication `e5c2b40`. Continue the unchanged full cohort; analyses and manual disagreements remain pending.
 - Shared-instruction refresh at 23:13 PDT was unchanged (`a2e2cfc`). Host load averages 362.53 / 371.53 / 390.32; two priority-10 single-thread Lean workers retained.
 - 10-09-2026 23:27 PDT: publication synchronized concurrent upstream `ebc31b2` (experiment 13 opaque audit) by a conflict-free merge; merged repository verification: 237 passed / 24 skipped. Locked experiment-12 implementation and inputs unchanged.
+
+- 10-10-2026 00:04 PDT evaluation milestone: 2,750/5,386 unique jobs; 41,204/43,840 cell records. 2,756 candidate receipts: 0 timeouts, 0 infrastructure retries. All three forecasts and every locked source/input hash reverified. Process/exit/log monitor checked separately before publication. Last publication `b7639d0`. Continue the unchanged full cohort; analyses and manual disagreements remain pending.
