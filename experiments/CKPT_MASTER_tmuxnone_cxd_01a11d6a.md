@@ -2,9 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/CKPT_MASTER_tmuxnone_cxd_01a11d6a.md>
 
-**TLDR:** The 14B resource investigation completed bounded disposable probes. Two A100s with CPU offload fit, but changing tensor partitions changes query/key normalization updates in the pinned implementation, so that route is rejected. Mercury2 with eight smaller A4000s preserves the original partitions and completed two full-length updates plus save/reload; its required third resumed update timed out, so production is not admitted there. All probe children and leases are released. The historical eight-A100 pipeline and its independent recovery watches remain active, waiting for capacity. The original study has zero scientific 14B updates, 15/20 trained rungs and 20,520/25,920 validation cells.
+**TLDR:** Original eight-A100 14B production started on 10-10-2026 at 23:58 PDT and completed its first saved rung: 82/658 scientific optimizer updates, 164 consumed samples and 720,775 valid training tokens, verified on 10-11-2026 at 00:14 PDT. The next segment is initializing. Validation remains 15/20 trained rungs and 20,520/25,920 cells, with 5,400 missing; selection and held-out evaluation remain pending. Coordinator recovery encountered an inaccessible home-policy path before its eligible Vals candidate launched; the parent is repairing that pre-launch infrastructure failure within the original incident deadline. The rejected two-A100 route and pending Mercury route remain closed to production; all disposable probe accounting persists.
 
-Created: 10-08-2026 16:28 PDT. Last updated: 10-09-2026 14:49 PDT. **Status:** two-A100 route REJECTED/CLEAN; Mercury2 route PARTIAL/NOT_ADMITTED/CLEAN; scientific 14B updates zero; original pipeline WAITING_GPU; resource owner VERIFIED_COMPLETE; coordinator monitor ARMED; heartbeat ACTIVE. Learning adapter FAILED_TECHNICAL_GATE; repair allocation blocked.
+Created: 10-08-2026 16:28 PDT. Last updated: 10-11-2026 00:22 PDT. **Status:** historical 14B production RUNNING; first saved rung 82/658; parent repairing coordinator pre-launch handoff; heartbeat ACTIVE. Two-A100 route REJECTED/CLEAN; Mercury2 PARTIAL/NOT_ADMITTED/CLEAN. Experiments 09 and 06 remain closed.
 
 ## 1. Identity and recovery
 
@@ -221,16 +221,26 @@ At **14:38:39 PDT**, the monitor accepted the resource owner's completed receipt
 - Runtime evidence: `owner_recovery/monitor_diagnostic_10-09-2026/{state_before_reconciliation,reconciliation,personal_read_diagnostic}.json`. The latest parent findings digest is `26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba`. The canonical continuation brief requires its acknowledgment in the next owner's receipt; this has not been represented as acknowledgment by the exited owner.
 - No new scientific output: original 14B 0/658, validation 20,520/25,920, missing 5,400; healthy resource wait continues. Preserve closed experiments 06/09 and the 1783.907/1800-second disposable probe ledger.
 
-**TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched supervised fine-tuning remains queued on its admitted historical route; Mercury has demonstrated memory fit and two updates but has not passed its existing resume gate. Scientific settings and completed evidence are preserved.
+## 13. Scientific training starts; pre-launch recovery repair (10-11-2026)
+
+- Pipeline PID 4005026/start 8095062 acquired all eight devices at 10-10-2026 23:58:19 PDT and launched `rl4cv-e08-sft-14B`, PID 456540/start 20305429, with the admitted `historical_tp8` layout. Its lease is live. No scientific retry was consumed.
+- Parent and independent read-only worker verified `ckpt/driver_14B.log`: segment to step 82 exited zero at 10-11-2026 00:11:42 PDT and segment to step 164 started. `ckpt/14B/checkpoints/step_82/training_info.json` records step 82, 164 samples and 720,775 valid tokens. All referenced native weight/optimizer storage extents exist within their eight shards; full payload hashes were not recomputed. This structural check does not resolve the previously documented normalization-state limitation.
+- At 00:14 PDT the second segment was initializing; do not count updates from its target filename. Hugging Face exports occur after the training segments and were not yet present. Validation stays 20,520/25,920, missing 5,400; selection/test remain unadmitted. These training counts do not establish learned-weight improvement.
+- A semantic training-start event opened incident `53cd99c4-2406-4b25-8933-d6cd76c0a6d1` at 00:00:02 PDT, deadline **01:10:02 PDT**. Personal native account-read exited before useful metadata. Vals account-read succeeded for brando@vals.ai, Astra/ultra, no managed restrictions and 97% included allowance remaining, but preparing its handoff failed on inaccessible `/afs/cs.stanford.edu/u/brando9/agents-config`. No Vals command, event stream or coordinator process was created; attempt 2 stayed PROBING. Preserve both attempts and this deadline.
+- The readable policy checkout is `/dfs/scratch0/brando9/agents-config`, revision `a2e2cfcc705ad871ef40dfb3d66c5be7213b59de`, matching the refreshed parent. Its unrelated dirty/backup files remain untouched. Parent owns the monitor repair; scientific pipeline and children continue. Resume only the same demonstrably unlaunched Vals attempt after verified repair, then require native permissions, hashes, latest parent finding acknowledgment and first useful output.
+
+- Monitor repair now supports an explicitly pinned readable policy checkout and same-attempt recovery before any launch evidence exists. It persists launch intent before creating a child and refuses ambiguous retries. Focused checks: 38 passed/one Linux-only skip locally. Full local suite: 264 passed/five skipped/seven failures from cluster-only experiment13 fixture paths; the full suite on an isolated native checkout passed **248 tests/24 optional skips in 183.43 seconds**. Native log: `owner_recovery/handoff_repair_full_test_10-11-2026.log`. Deployment and first useful coordinator output are not yet claimed.
+
+**TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched supervised fine-tuning has completed its first 14B production rung; the pipeline continues while the parent repairs coordinator handoff preparation.
 **Snapshot:**
 ```text
-published resource evidence: cb5c1ec / merge 1cf27ef
-historical production route: eight A100s; waiting for capacity
-Mercury: two disposable updates; resumed update incomplete
-probe window: 1783.907/1800 seconds; no reset
-probe children / active probe leases: 0 / 0
-scientific 14B updates: 0/658
-trained rungs: 15/20
+historical 14B production: running on eight A100s
+verified saved updates: 82/658
+consumed samples / valid tokens: 164 / 720775
+next segment target: 164 (not a completion count)
+validation rungs: 15/20
 validation cells: 20520/25920; missing 5400
 selection / new held-out evaluation: not admitted
+recovery incident deadline: 10-11-2026 01:10:02 PDT
+probe allocation unchanged: 1783.907/1800 seconds
 ```

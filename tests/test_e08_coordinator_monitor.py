@@ -303,3 +303,171 @@ def test_receipt_requires_native_permissions_hash_ack_and_fresh_output(root):
     rollout.write_text(json.dumps({"type": "turn_context", "payload": context}) + "\n")
     output.write_text("changed")
     assert not m.receipt_valid(attempt, directory, candidate)
+
+
+@pytest.mark.parametrize("explicit", [False, True])
+def test_handoff_policy_repository_is_explicit_and_revision_pinned(root, monkeypatch, explicit):
+    policy = root / ("readable-policy" if explicit else "agents-config")
+    monkeypatch.setattr(m.Path, "home", lambda: root)
+    calls = []
+    def git_read(cmd, **kwargs):
+        calls.append(cmd)
+        return "policy-pin\n" if cmd[2] == str(policy) else "project-pin\n"
+    monkeypatch.setattr(m.subprocess, "check_output", git_read)
+    for path in [m.EXP / "PROTOCOL.md", m.EXP / "expt_v1/cc.md", m.EXP / "expt_v1/CKPT_e08.md",
+                 m.EXP / "results.md", root / "pipeline/state.json", root / "pipeline/leases.json",
+                 root / "owner_recovery/launch_receipt.json"]:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("fixture")
+    prompt = root / "continuation.md"
+    prompt.write_text("Continue the original study.")
+    config = {"prompt": str(prompt), "policy_revision": "policy-pin"}
+    if explicit:
+        config["policy_repository"] = str(policy)
+    directory = root / "owner_recovery/attempt"
+    directory.mkdir()
+    state = {"incident": {"id": "fixture", "deadline_utc": "fixed-deadline"}}
+    m.prepare_handoff(config, state, directory, {"key": "event"})
+    packet = m.read(directory / "handoff.json")
+    assert packet["policy_repository"] == str(policy)
+    assert packet["policy_revision"] == "policy-pin"
+    assert str(policy) in (directory / "prompt.md").read_text()
+    assert "policy-pin" in (directory / "prompt.md").read_text()
+    config["policy_revision"] = "unexpected-revision"
+    with pytest.raises(RuntimeError, match="policy repository revision changed"):
+        m.prepare_handoff(config, state, directory, {"key": "event"})
+    assert calls[-1][2] == str(policy)  # No silent fallback to another clone.
+
+
+def recovery_fixture(root):
+    candidate = {"id": "vals_codex", "prefix": ["never-a-real-model"],
+                 "account_email": "expected", "model": "gpt-6-astra", "effort": "ultra",
+                 "file_sha256": {}}
+    state = {"owner": None, "incident": {"id": "fixture", "deadline_utc": (
+        dt.datetime.now(dt.timezone.utc) + dt.timedelta(minutes=10)).isoformat(), "attempts": []}}
+    return candidate, state, root / "owner_recovery"
+
+
+def fake_completed_launch(root, monkeypatch, state, calls):
+    class Child:
+        pid = 987654321
+        returncode = 0
+        def poll(self):
+            return 0
+        def wait(self):
+            return 0
+    def popen(cmd, **kwargs):
+        saved = m.read(root / "owner_recovery/monitor_state.json")["incident"]["attempts"][-1]
+        assert saved["status"] == "LAUNCHING"
+        assert saved["command"] == cmd
+        assert saved["launch_intent_utc"]
+        calls.append(cmd)
+        return Child()
+    monkeypatch.setattr(m.subprocess, "Popen", popen)
+    monkeypatch.setattr(m, "receipt_valid", lambda *args: False)
+
+
+def test_handoff_failure_resumes_same_attempt_without_reprobe(root, monkeypatch):
+    candidate, state, store = recovery_fixture(root)
+    probes, launches = [], []
+    monkeypatch.setattr(m, "account_probe", lambda *args: probes.append(args) or responses())
+    fake_completed_launch(root, monkeypatch, state, launches)
+    def broken(*args):
+        raise PermissionError("inaccessible policy repository")
+    monkeypatch.setattr(m, "prepare_handoff", broken)
+    deadline = state["incident"]["deadline_utc"]
+    m.drive({"candidates": [candidate]}, state, {"key": "event"}, store)
+    assert state["status"] == "HANDOFF_INFRASTRUCTURE_BLOCKED"
+    attempt = state["incident"]["attempts"][0]
+    assert attempt["status"] == "HANDOFF_FAILED"
+    assert len(probes) == 1 and not launches
+    started = attempt["started_utc"]
+    failure = dict(attempt["handoff_failures"][0])
+    def repaired(config, state, directory, snapshot):
+        (directory / "prompt.md").write_text("fixed handoff")
+        return m.digest(directory / "prompt.md")
+    monkeypatch.setattr(m, "prepare_handoff", repaired)
+    m.drive({"candidates": [candidate]}, state, {"key": "event"}, store)
+    assert len(probes) == 1 and len(launches) == 1
+    assert len(state["incident"]["attempts"]) == 1
+    assert attempt["status"] == "EXITED"
+    assert attempt["started_utc"] == started and attempt["number"] == 1
+    assert attempt["handoff_failures"] == [failure]
+    assert state["incident"]["deadline_utc"] == deadline
+
+
+def test_legacy_probing_attempt_resumes_after_saved_eligible_read(root, monkeypatch):
+    candidate, state, store = recovery_fixture(root)
+    spent = {"profile": "personal_codex", "number": 1, "status": "INELIGIBLE", "reason": "native read failed"}
+    directory = store / "incidents/fixture/2"
+    directory.mkdir(parents=True)
+    m.write(directory / "account_check.json", responses())
+    attempt = {"profile": candidate["id"], "number": 2, "incident_id": "fixture", "started_utc": m.now(),
+               "receipt_directory": str(directory), "status": "PROBING"}
+    state["incident"]["attempts"] = [spent, attempt]
+    monkeypatch.setattr(m, "account_probe", lambda *args: pytest.fail("spent probe repeated"))
+    launches = []
+    fake_completed_launch(root, monkeypatch, state, launches)
+    def prepare(config, state, directory, snapshot):
+        (directory / "prompt.md").write_text("fixed")
+        return m.digest(directory / "prompt.md")
+    monkeypatch.setattr(m, "prepare_handoff", prepare)
+    original_spent = dict(spent)
+    m.drive({"candidates": [dict(candidate, id="personal_codex"), candidate]}, state, {"key": "event"}, store)
+    assert len(launches) == 1
+    assert len(state["incident"]["attempts"]) == 2 and spent == original_spent
+    assert attempt["number"] == 2 and attempt["status"] == "EXITED"
+
+
+@pytest.mark.parametrize("evidence", ["events.jsonl", "stderr.log", "last_message.txt", "unknown.json",
+                                     "command", "process", "launch_intent_utc", "missing_account", "LAUNCHING"])
+def test_ambiguous_prelaunch_attempt_never_reprobes_or_launches(root, monkeypatch, evidence):
+    candidate, state, store = recovery_fixture(root)
+    directory = store / "incidents/fixture/1"
+    directory.mkdir(parents=True)
+    m.write(directory / "account_check.json", responses())
+    attempt = {"profile": candidate["id"], "number": 1, "incident_id": "fixture", "started_utc": m.now(),
+               "receipt_directory": str(directory), "status": "PROBING"}
+    state["incident"]["attempts"] = [attempt]
+    if evidence == "missing_account":
+        (directory / "account_check.json").unlink()
+    elif evidence == "LAUNCHING":
+        attempt["status"] = "LAUNCHING"
+    elif evidence in ("command", "process", "launch_intent_utc"):
+        attempt[evidence] = None  # Presence is ambiguous, even without an observed child identity.
+    else:
+        (directory / evidence).touch()  # Even empty native files precede Popen in the legacy launcher.
+    monkeypatch.setattr(m, "account_probe", lambda *args: pytest.fail("probe repeated"))
+    monkeypatch.setattr(m.subprocess, "Popen", lambda *args, **kwargs: pytest.fail("possible duplicate writer"))
+    original = dict(attempt)
+    m.drive({"candidates": [candidate, dict(candidate, id="personal_codex")]}, state, {"key": "event"}, store)
+    assert state["status"] == "PRELAUNCH_RECOVERY_UNVERIFIED"
+    assert state["incident"]["attempts"] == [original]
+
+
+def test_pipeline_lock_deferral_keeps_attempt_and_account_read(root, monkeypatch):
+    candidate, state, store = recovery_fixture(root)
+    probes = []
+    monkeypatch.setattr(m, "account_probe", lambda *args: probes.append(args) or responses())
+    monkeypatch.setattr(m, "prepare_handoff", lambda *args: pytest.fail("pipeline lock bypassed"))
+    with m.locked(root / "pipeline/lock") as acquired:
+        assert acquired
+        for _ in range(2):
+            m.drive({"candidates": [candidate]}, state, {"key": "event"}, store)
+            assert state["status"] == "WAITING_PIPELINE_LOCK"
+    assert len(probes) == 1
+    assert len(state["incident"]["attempts"]) == 1
+    assert state["incident"]["attempts"][0]["status"] == "HANDOFF_PENDING"
+
+
+def test_preparation_cannot_run_past_incident_deadline(root, monkeypatch):
+    candidate, state, store = recovery_fixture(root)
+    monkeypatch.setattr(m, "account_probe", lambda *args: responses())
+    def prepare(config, state, directory, snapshot):
+        monkeypatch.setattr(m.time, "time", lambda: dt.datetime.fromisoformat(state["incident"]["deadline_utc"]).timestamp() + 1)
+        return "unused"
+    monkeypatch.setattr(m, "prepare_handoff", prepare)
+    monkeypatch.setattr(m.subprocess, "Popen", lambda *args, **kwargs: pytest.fail("expired launch"))
+    m.drive({"candidates": [candidate]}, state, {"key": "event"}, store)
+    assert state["status"] == "INCIDENT_DEADLINE"
+    assert "launch_intent_utc" not in state["incident"]["attempts"][0]

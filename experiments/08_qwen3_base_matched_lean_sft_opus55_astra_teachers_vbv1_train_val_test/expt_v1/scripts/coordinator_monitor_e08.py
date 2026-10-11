@@ -362,12 +362,19 @@ def receipt_valid(attempt, directory, candidate):
 
 
 def prepare_handoff(config, state, directory, snapshot):
+    policy_repo = Path(config.get("policy_repository", str(Path.home() / "agents-config")))
+    if not policy_repo.is_absolute():
+        raise ValueError("policy_repository must be absolute")
+    policy_revision = subprocess.check_output(
+        ["git", "-C", str(policy_repo), "rev-parse", "HEAD"], text=True).strip()
+    if config.get("policy_revision") and config["policy_revision"] != policy_revision:
+        raise RuntimeError("policy repository revision changed")
     files = [EXP / "PROTOCOL.md", EXP / "expt_v1/cc.md", EXP / "expt_v1/CKPT_e08.md",
              EXP / "results.md", WORK / "pipeline/state.json", WORK / "pipeline/leases.json"]
     packet = {"incident_id": state["incident"]["id"], "event": snapshot,
               "deadline_utc": state["incident"]["deadline_utc"],
               "project_revision": subprocess.check_output(["git", "-C", str(REPO), "rev-parse", "HEAD"], text=True).strip(),
-              "policy_revision": subprocess.check_output(["git", "-C", str(Path.home() / "agents-config"), "rev-parse", "HEAD"], text=True).strip(),
+              "policy_repository": str(policy_repo), "policy_revision": policy_revision,
               "file_sha256": {str(p): digest(p) for p in files},
               "original_launch_receipt_sha256": digest(WORK / "owner_recovery/launch_receipt.json"),
               "scientific_accounting": "All existing cells, calls, retries, gates, locks and funding route persist."}
@@ -375,9 +382,39 @@ def prepare_handoff(config, state, directory, snapshot):
     text = Path(config["prompt"]).read_text() + (
         "\nThis invocation's receipt directory: " + str(directory) +
         "\nRead handoff.json there, verify its stable input hashes; runtime state may advance."
+        "\nRead the policy index and applicable rules from " + str(policy_repo) +
+        "; its recorded revision is " + policy_revision + "."
         "\nIncident: " + packet["incident_id"] + "\nDeadline: " + packet["deadline_utc"] + "\n")
     (directory / "prompt.md").write_text(text)
     return digest(directory / "prompt.md")
+
+
+def prelaunch_check(attempt, directory, candidate):
+    """An old PROBING write may precede Popen; even empty native log files fence that window."""
+    if attempt.get("status") not in ("PROBING", "HANDOFF_PENDING", "HANDOFF_FAILED"):
+        return False, "attempt passed the prelaunch boundary"
+    if any(k in attempt for k in ("command", "process", "launch_intent_utc", "observed_descendants", "exit_code")):
+        return False, "launch evidence already recorded"
+    allowed_files = {"account_check.json", "handoff.json", "prompt.md"}
+    if (not directory.is_dir() or directory.is_symlink()
+            or any(p.name not in allowed_files or p.is_symlink() or not p.is_file()
+                   for p in directory.iterdir())):
+        return False, "ambiguous attempt directory or native output"
+    account = directory / "account_check.json"
+    if not account.is_file():
+        return False, "saved account check missing; probe is not repeated"
+    try:
+        if attempt.get("account_check_sha256") and digest(account) != attempt["account_check_sha256"]:
+            return False, "saved account check changed"
+        fingerprint = hashlib.sha256(json.dumps(candidate, sort_keys=True).encode()).hexdigest()
+        if attempt.get("candidate_sha256") and fingerprint != attempt["candidate_sha256"]:
+            return False, "candidate changed since account check"
+        intact, reason = candidate_integrity(candidate)
+        if not intact:
+            return False, reason
+        return eligible(candidate, read(account))
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        return False, type(exc).__name__ + ":" + str(exc)
 
 
 
@@ -396,41 +433,73 @@ def drive(config, state, snapshot, storage):
         if time.time() >= dt.datetime.fromisoformat(incident["deadline_utc"]).timestamp():
             state["status"] = "INCIDENT_DEADLINE"
             break
-        if any(a["profile"] == candidate["id"] for a in incident["attempts"]):
-            continue
-        number = len(incident["attempts"]) + 1
-        directory = storage / "incidents" / incident["id"] / str(number)
-        directory.mkdir(parents=True, exist_ok=True)
-        attempt = {"profile": candidate["id"], "number": number, "incident_id": incident["id"],
-                   "started_utc": now(), "receipt_directory": str(directory), "status": "PROBING"}
-        incident["attempts"].append(attempt)
-        write(storage / "monitor_state.json", state)
-        try:
-            intact, integrity_reason = candidate_integrity(candidate)
-            if not intact:
-                raise RuntimeError(integrity_reason)
-            response = account_probe(candidate, REPO)
-            allowed, reason = eligible(candidate, response)
-            # Only nonsecret account/usage/config/model metadata from read methods.
-            write(directory / "account_check.json", response)
-        except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as exc:
-            allowed, reason = False, type(exc).__name__ + ":" + str(exc)
-        if not allowed:
-            attempt.update(status="INELIGIBLE", reason=reason, ended_utc=now())
+        prior = [a for a in incident["attempts"] if a["profile"] == candidate["id"]]
+        if prior:
+            attempt = prior[-1]
+            if attempt.get("status") == "LAUNCHING":
+                state.update(status="PRELAUNCH_RECOVERY_UNVERIFIED",
+                             recovery_reason="launch intent persisted; child launch is ambiguous")
+                write(storage / "monitor_state.json", state)
+                return
+            if attempt.get("status") not in ("PROBING", "HANDOFF_PENDING", "HANDOFF_FAILED"):
+                continue
+            directory = storage / "incidents" / incident["id"] / str(attempt.get("number"))
+            allowed, reason = prelaunch_check(attempt, directory, candidate)
+            if len(prior) != 1 or attempt.get("receipt_directory") != str(directory) or not allowed:
+                state.update(status="PRELAUNCH_RECOVERY_UNVERIFIED", recovery_reason=reason)
+                write(storage / "monitor_state.json", state)
+                return
+        else:
+            number = len(incident["attempts"]) + 1
+            directory = storage / "incidents" / incident["id"] / str(number)
+            directory.mkdir(parents=True, exist_ok=True)
+            attempt = {"profile": candidate["id"], "number": number, "incident_id": incident["id"],
+                       "started_utc": now(), "receipt_directory": str(directory), "status": "PROBING"}
+            incident["attempts"].append(attempt)
             write(storage / "monitor_state.json", state)
-            continue
+            try:
+                intact, integrity_reason = candidate_integrity(candidate)
+                if not intact:
+                    raise RuntimeError(integrity_reason)
+                response = account_probe(candidate, REPO)
+                allowed, reason = eligible(candidate, response)
+                # Only nonsecret account/usage/config/model metadata from read methods.
+                write(directory / "account_check.json", response)
+            except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as exc:
+                allowed, reason = False, type(exc).__name__ + ":" + str(exc)
+            if not allowed:
+                attempt.update(status="INELIGIBLE", reason=reason, ended_utc=now())
+                write(storage / "monitor_state.json", state)
+                continue
+        attempt.update(status="HANDOFF_PENDING", account_check_sha256=digest(directory / "account_check.json"),
+                       candidate_sha256=hashlib.sha256(json.dumps(candidate, sort_keys=True).encode()).hexdigest())
+        write(storage / "monitor_state.json", state)
         with locked(WORK / "pipeline/lock") as acquired:
             if not acquired:
-                # No model call attempted: preserve candidate availability, defer snapshot atomically.
-                incident["attempts"].pop()
+                # Preserve this attempt and its read-only probe; the next tick resumes the handoff.
                 state["status"] = "WAITING_PIPELINE_LOCK"
                 write(storage / "monitor_state.json", state)
                 return
-            attempt["handoff_sha256"] = prepare_handoff(config, state, directory, snapshot)
+            try:
+                attempt["handoff_sha256"] = prepare_handoff(config, state, directory, snapshot)
+            except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as exc:
+                attempt["status"] = "HANDOFF_FAILED"
+                attempt.setdefault("handoff_failures", []).append({"observed_utc": now(),
+                    "reason": type(exc).__name__ + ":" + str(exc)})
+                state["status"] = "HANDOFF_INFRASTRUCTURE_BLOCKED"
+                write(storage / "monitor_state.json", state)
+                return
+        # Preparation may have waited on infrastructure; it cannot extend the original allocation.
+        if time.time() >= dt.datetime.fromisoformat(incident["deadline_utc"]).timestamp():
+            state["status"] = "INCIDENT_DEADLINE"
+            write(storage / "monitor_state.json", state)
+            return
         cmd = candidate["prefix"] + ["exec", "--dangerously-bypass-approvals-and-sandbox",
               "-m", candidate["model"], "-c", 'model_reasoning_effort="ultra"', "--json",
               "-o", str(directory / "last_message.txt"), "-"]
-        attempt["command"] = cmd
+        # Persist before opening native logs or spawning: a crash in this window is not safely retryable.
+        attempt.update(command=cmd, launch_intent_utc=now(), status="LAUNCHING")
+        write(storage / "monitor_state.json", state)
         with (directory / "prompt.md").open() as inp, (directory / "events.jsonl").open("w") as out, (directory / "stderr.log").open("w") as err:
             child = subprocess.Popen(cmd, cwd=REPO, env=clean_env(), stdin=inp, stdout=out,
                                      stderr=err, start_new_session=True, close_fds=True)
