@@ -2,11 +2,19 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/results.md>
 
-**TLDR:** Matched supervised fine-tuning now has two saved 14B production rungs: **164/658 optimizer updates**, 328 samples and **1,442,549 valid training tokens**, verified on 10-11-2026 at 00:31 PDT. All 164 logged token counts and learning rates match the frozen schedule and the completed sizes. The original eight-A100 pipeline is training toward step 334. The 1.7B/4B/8B training and their 15 validation rungs are complete. Full validation remains **20,520/25,920 cells**, with **5,400 unknown** across five trained-14B rungs; selection and held-out evaluation remain pending. Training progress alone does not establish learned-weight improvement.
+**TLDR:** Matched supervised fine-tuning completed all **658/658 14B optimizer updates** on 10-11-2026 at 01:37:55 PDT, with 1,316 consumed samples and **5,752,936 valid training tokens**. All 658 logged token counts and learning rates match the frozen schedule and completed sizes. The original pipeline is exporting five checkpoints for validation. The 1.7B/4B/8B training and their 15 validation rungs are complete. Full validation remains **20,520/25,920 cells**, with **5,400 unknown** across the five trained-14B rungs; selection and held-out evaluation remain pending. Training completion does not establish learned-weight improvement.
 
-**Status:** RUNNING under the original serialized pipeline and host watchdog. The recovered Vals coordinator has verified its handoff, native permissions, saved checkpoints and downstream admission boundary. The eight-device production lease and healthy children remain active. Mercury remains unadmitted; disposable probe accounting is unchanged.
+**Status:** TRAINING_COMPLETE / EXPORTING under the original serialized pipeline. The bounded Vals coordination phase completed and exited; the remote recovery monitor is ARMED. The launcher retains its existing stage lease during exports. Mercury remains unadmitted; disposable probe accounting is unchanged.
 
-**Last updated:** 10-11-2026 00:34 PDT (verified coordinator continuation and second saved 14B rung)
+**Last updated:** 10-11-2026 01:46 PDT (verified full 14B training completion)
+
+## Full 14B training complete; checkpoint exports running (10-11-2026)
+
+All five segments exited zero. Independent read-only verification found exactly 658 completed update records and 658 finite TensorBoard loss, learning-rate and token records. Cumulative token counts and logged float32 learning rates match the frozen recipe at every update; per-step token counts and rates also match each of the completed 1.7B, 4B and 8B runs. The final metadata records 658 total updates, 1,316 samples and 5,752,936 valid tokens. Its `step: 0` field is the native within-epoch cursor, separate from the total update count.
+
+The final native checkpoint has all referenced weight/optimizer storage extents present and in bounds across eight shards each. Full payload hashes and numerical restoration fidelity were not measured; the shared query/key normalization-state limitation below remains unchanged. At 01:43 PDT, the first of five exports was actively writing, with its weight file growing from about 26 GB to 38 GB between observations. Exports are not yet complete, and trained-14B validation remains 0/5 rungs. The existing pipeline will continue exports, full validation and frozen selection before admitting held-out evaluation. [Verified training and export observation](expt_v1/results/parent_training_complete_10-11-2026.json).
+
+The prior Vals coordinator phase exited zero at 00:37:26 PDT. Parent verified all 15 output hashes and five published file hashes; the recovery monitor returned ARMED with no active model owner. This phase completion is separate from completion of the scientific study.
 
 ## Verified coordinator continuation and second 14B rung (10-11-2026)
 

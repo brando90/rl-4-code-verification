@@ -2,9 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/CKPT_MASTER_tmuxnone_cxd_01a11d6a.md>
 
-**TLDR:** Original eight-A100 14B production started on 10-10-2026 at 23:58 PDT and completed three saved rungs: 334/658 scientific optimizer updates, 668 consumed samples and 2,884,708 valid training tokens, verified on 10-11-2026 at 00:57 PDT. The third segment exited zero at 00:51:14 PDT; resumed training toward step 497 is active. Validation remains 15/20 trained rungs and 20,520/25,920 cells, with 5,400 missing; selection and held-out evaluation remain pending. The recovered Vals coordinator completed its bounded phase and published verified outputs; its process exited and the remote recovery monitor is ARMED. The ordinary-code pipeline retains the live training lease. The rejected two-A100 route and pending Mercury route remain closed to production; all disposable probe accounting persists.
+**TLDR:** Historical eight-A100 14B training completed all **658/658 optimizer updates** at 10-11-2026 01:37:55 PDT: 1,316 samples and 5,752,936 valid tokens. All five segments exited zero; all 658 logged token counts and learning rates match the frozen recipe and completed 1.7B/4B/8B runs. The original launcher is exporting five checkpoints; first-export file growth and a live converter were verified at 01:43 PDT. Validation remains 15/20 trained rungs and 20,520/25,920 cells, with 5,400 missing; selection and held-out evaluation remain pending. The completed Vals coordination phase left the remote recovery monitor ARMED. Alternate hardware and disposable probe accounting are unchanged. Training completion does not establish learned-weight improvement.
 
-Created: 10-08-2026 16:28 PDT. Last updated: 10-11-2026 01:00 PDT. **Status:** historical 14B production RUNNING; three saved rungs, 334/658; coordinator phase VERIFIED_COMPLETE and monitor ARMED; heartbeat ACTIVE. Two-A100 route REJECTED/CLEAN; Mercury2 PARTIAL/NOT_ADMITTED/CLEAN. Experiments 09 and 06 remain closed.
+Created: 10-08-2026 16:28 PDT. Last updated: 10-11-2026 01:46 PDT. **Status:** 14B TRAINING_COMPLETE (658/658), EXPORTING; coordinator phase VERIFIED_COMPLETE and monitor ARMED; heartbeat ACTIVE. Two-A100 route REJECTED/CLEAN; Mercury2 PARTIAL/NOT_ADMITTED/CLEAN. Experiments 09 and 06 remain closed.
 
 ## 1. Identity and recovery
 
@@ -17,7 +17,7 @@ Preserve the original shared checkout and other owners' dirty files. Publish onl
 | Experiment | Verified state and declared denominators |
 |---|---|
 | `09_qwen3_1p7b_grpo_scsc_scalar_vs_factor_feedback_vbv1_d013` | Scorer controls 14/14 matched expected outcomes. Live coverage controls 50/50 measured ratings, all frozen category gates passed; this is not a claim of 50/50 expected-label accuracy. Read-only model/feedback forward pass passed. Calibration 0/256 rollouts, 0/512 responses; training 0/6 trajectories and zero optimizer updates; validation 0/945 cells, test 0/1,554 cells. The actual disposable batch completed 32 two-turn trajectories and passed its 4,077-token assistant-mask audit. A read-only replay found 4 actions outside recomputed support and 367 supported actions beyond the frozen log-probability tolerance; zero optimizer steps were taken. The adapter attempt is FAILED_TECHNICAL_GATE; optimizer, save/reload and full-context controls were not passed. This is not a negative learning result. |
-| `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test` | At 10-11-2026 00:57 PDT, original eight-A100 14B production has saved step 334/658 after three zero-exit segments; training toward step 497 is running. Validation remains 15/20 matched trained rungs and 20,520/25,920 full cells, with 5,400 missing. All five exports and validation generation/scoring for 1.7B/4B/8B are complete. The verified Vals coordination phase has completed and the remote recovery monitor is armed; selection and held-out testing remain unadmitted. The hardware probes remain separate from scientific training. |
+| `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test` | At 10-11-2026 01:43 PDT, original eight-A100 14B training is complete: 658/658 updates and five zero-exit segments; checkpoint exports are running. Validation remains 15/20 matched trained rungs and 20,520/25,920 full cells, with 5,400 missing. All five exports and validation generation/scoring for 1.7B/4B/8B are complete. The verified Vals coordination phase has completed and the remote recovery monitor is armed; selection and held-out testing remain unadmitted. The hardware probes remain separate from scientific training. |
 | `06_swebench_lite_factor_feedback_matched_budget` | Version 3 BLOCKED: all 3/3 coordinator launches used. Last owner exited at 19:34:21 PDT with `error_max_turns`, 90 configured turns/91 reported. Official controls 0/16, author calls 0/8, solver cells 0/56. Five preliminary smoke executions remain non-admitted; four lacked enforced CPU/memory bounds and the fifth failed its observer. This is infrastructure/coordinator blockage, not evidence about repair efficacy. |
 | `02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics` | Phase-A version 3 completed/PARTIAL in `572e28f`: 587 kept pairs over 455/970 tasks, 42/2,910 cells unmeasured. Below frozen SUFFICIENT thresholds of 1,024 pairs and 512 tasks. Do not restart completed work. |
 
@@ -245,17 +245,24 @@ At **14:38:39 PDT**, the monitor accepted the resource owner's completed receipt
 - Validation remains 15/20 trained rungs and 20,520/25,920 full cells, with 5,400 missing; selection/test remain pending. Training updates are not evidence of learned-weight improvement. Published observation: `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/parent_supervision_10-11-2026_0057.json`.
 - Next observation: use `ssh -S none -o ControlMaster=no skampere1` to read `$WORK/ckpt/driver_14B.log`, saved checkpoint metadata, `$WORK/pipeline/state.json`, `$WORK/owner_recovery/monitor_state.json` and `$WORK/watchdog/status.json`, where `$WORK=/lfs/skampere1/0/brando9/rl4cv_e08`. Adopt the existing owner if one is active; do not launch a duplicate.
 
-**TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched supervised fine-tuning has completed three 14B production rungs; the pipeline continues under verified remote recovery watches and unchanged scientific limits.
+## 15. Full 14B training completion; export continues (10-11-2026)
+
+- Final training segment exited zero at 01:37:55 PDT. Independent read-only analysis found exactly 658 completed log records across five segments, 658 finite TensorBoard loss/learning-rate/token records, exact frozen cumulative-token and float32 learning-rate matches, and exact per-step token/rate agreement with each completed smaller size. All five saved configurations retain the scientific recipe.
+- Native final metadata records total_steps 658, 1,316 samples and 5,752,936 valid tokens. `step: 0` is the within-epoch cursor saved modulo the dataloader length; it does not overwrite the cumulative update count. Final weights and optimizer have all 2,417 and 5,308 storage extents respectively within their eight shards. This structural check does not measure numerical restoration fidelity or resolve the shared normalization-state limitation.
+- The original launcher is exporting its first checkpoint. Converter PID 1538330/start 20902949 was active at 01:43:20; `pytorch_model.bin` grew from 26,180,393,216 to 38,133,002,240 bytes between two observations. Zero of five exports were complete at that observation. The production lease remains governed by the existing stage boundary; no new training or disposable probe was launched.
+- Evidence: `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/parent_training_complete_10-11-2026.json`, including immutable segment-log/metadata digests and explicit remaining denominators. Continue all five exports, validation rungs, frozen selection and admitted held-out stages through the existing pipeline. Monitor instructions were updated/read back ACTIVE, same thread and 45-minute cadence, to reflect training completion and the closed coordinator phase. No model improvement conclusion is available yet.
+
+**TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched supervised fine-tuning has completed all 14B updates; checkpoint exports and evaluation remain under the existing pipeline and verified watches.
 **Snapshot:**
 ```text
-historical 14B production: running on eight A100s
-verified saved updates: 334/658
-consumed samples / valid tokens: 668 / 2884708
-next segment target: 497 (not a completion count)
+14B training: COMPLETE; five segments exited zero
+verified updates: 658/658
+consumed samples / valid tokens: 1316 / 5752936
+frozen token/rate matches: 658/658
+checkpoint exports: 0/5 complete at 01:43 PDT; first export writing
 validation rungs: 15/20
 validation cells: 20520/25920; missing 5400
 selection / new held-out evaluation: not admitted
-coordinator phase: VERIFIED_COMPLETE; recovery monitor ARMED
-coordinator exited: 10-11-2026 00:37:26 PDT; original deadline preserved
+recovery monitor: ARMED; completed coordinator phase preserved
 probe allocation unchanged: 1783.907/1800 seconds
 ```

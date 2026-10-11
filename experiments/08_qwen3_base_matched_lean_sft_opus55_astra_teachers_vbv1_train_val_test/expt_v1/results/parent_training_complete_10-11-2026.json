@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "experiment": "08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test",
+  "verification_date_pdt": "10-11-2026 01:43 PDT",
+  "training_finished_utc": "2026-10-11T08:37:55Z",
+  "runtime": "skampere1:/lfs/skampere1/0/brando9/rl4cv_e08",
+  "training": {
+    "status": "COMPLETE",
+    "completed_updates": 658,
+    "declared_updates": 658,
+    "segment_targets": [
+      82,
+      164,
+      334,
+      497,
+      658
+    ],
+    "segment_completed_counts": [
+      82,
+      82,
+      170,
+      163,
+      161
+    ],
+    "segment_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "completed_log_records": 658,
+    "tensorboard_records_per_metric": 658,
+    "finite_loss_lr_token_records": true,
+    "frozen_cumulative_token_matches": 658,
+    "frozen_lr_matches_at_logged_float32_precision": 658,
+    "matched_sizes": [
+      "1.7B",
+      "4B",
+      "8B"
+    ],
+    "per_size_learning_rate_matches": 658,
+    "per_size_per_step_token_matches": 658,
+    "final_training_info": {
+      "epoch": 0,
+      "step": 0,
+      "total_steps": 658,
+      "consumed_samples": 1316,
+      "total_valid_tokens": 5752936.0
+    },
+    "step_zero_explanation": "Within-epoch cursor: pinned nemo_rl/algorithms/sft.py line514 stores (current_step + 1) % len(train_dataloader); line515 independently stores total_steps."
+  },
+  "recipe": {
+    "tensor_parallel_size": 8,
+    "cpu_offload": false,
+    "seed": 20260830,
+    "global_batch_size": 2,
+    "microbatch_size": 1,
+    "sequence_length": 16384,
+    "packing": false,
+    "precision": "bf16",
+    "optimizer": "pinned AdamW",
+    "all_five_saved_configs_match": true
+  },
+  "pins": {
+    "training_data_sha256": "ac1f348b03d0ddebe8c906214b06355f8154b8aa2efd273051b2bd8475a9997e",
+    "schedule_sha256": "e0d6d896a1f4c085629ac90dc8fda9c52e6e5bf511a5a8b42fb30c769e575f8b",
+    "production_config_sha256": "4244709493df989ebae42a5a0fa05d698b3d8cbb32eec2138db9be4235dd91f3",
+    "nemo_revision": "c751f811217db7df0d4c94abdeaada6626cfc150"
+  },
+  "final_checkpoint_structure": {
+    "weights": {
+      "keys": 443,
+      "extents": 2417,
+      "shards": 8,
+      "missing_or_out_of_bounds": 0
+    },
+    "optimizer": {
+      "keys": 1360,
+      "extents": 5308,
+      "shards": 8,
+      "missing_or_out_of_bounds": 0
+    },
+    "payload_hashes_computed": false,
+    "numerical_restoration_fidelity_established": false,
+    "shared_normalization_state_limitation_unchanged": true
+  },
+  "export_observation": {
+    "observed_utc": "2026-10-11T08:43:20.909255+00:00",
+    "status": "RUNNING",
+    "first_export_started_utc": "2026-10-11T08:37:55Z",
+    "converter_pid": 1538330,
+    "converter_start_ticks": 20902949,
+    "first_export_weight_bytes": 38133002240,
+    "earlier_observed_utc": "2026-10-11T08:42:52.131958+00:00",
+    "earlier_weight_bytes": 26180393216,
+    "completed_exports_at_observation": 0,
+    "declared_exports": 5,
+    "gpu_memory_mib": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "production_launcher_pid": 456540,
+    "lease": "sft_14B",
+    "lease_release_boundary": "Existing launcher stage completion; unchanged"
+  },
+  "evaluation": {
+    "known_validation_cells": 20520,
+    "declared_validation_cells": 25920,
+    "missing_cells": 5400,
+    "complete_trained_rungs": 15,
+    "declared_trained_rungs": 20,
+    "selection": "pending",
+    "held_out_evaluation": "not_admitted",
+    "learned_weight_improvement": "not_yet_evaluated"
+  },
+  "monitor": {
+    "status": "ARMED",
+    "owner": null,
+    "observed_utc": "2026-10-11T08:40:01.820686+00:00",
+    "pipeline_pid": 4005026,
+    "pipeline_start_ticks": 8095062,
+    "pipeline_last_tick": "2026-10-11T08:41:41+00:00",
+    "watchdog_checked_utc": "2026-10-11T08:30:04Z",
+    "watchdog_state": "running"
+  },
+  "sha256": {
+    "ckpt/14B/driver_logs/segment_to_step_82.log": "275881e7ad0e142ff9c38dec50599165cc5a9dc10d964f5cb99c5238d6a906da",
+    "ckpt/14B/driver_logs/segment_to_step_164.log": "16820f39564e58f71405db99f1602b52a3ff70c1cb428ea16f4c2f99469169fc",
+    "ckpt/14B/driver_logs/segment_to_step_334.log": "fbe5e8333bc795438bca55cee7e6cd72571f181c295c35f634eac12e3828e475",
+    "ckpt/14B/driver_logs/segment_to_step_497.log": "675cec4d7f131ccbf9a3eea6d7fbab4a84b5b5e6d832c0d490fd19c2604ccd9b",
+    "ckpt/14B/driver_logs/segment_to_step_658.log": "0e0aea3e73b720b45cc6d8707ea846d3a082b3918bb1e718ee9ab09164d69d6c",
+    "ckpt/14B/checkpoints/step_658/policy/weights/.metadata": "d6dc667ab66c9f462d01940450efb1fd13b56919b4d5a6206f0f8585ef534f25",
+    "ckpt/14B/checkpoints/step_658/policy/optimizer/.metadata": "d7acb47a29c9614f4002285c7036a78aa1af161ce8ae2dcf259ac40b4f5eb835"
+  },
+  "interpretation": "Training completion is verified; exports, validation, frozen selection and held-out evaluation remain. No efficacy conclusion follows from execution counts or training loss."
+}
