@@ -1,0 +1,368 @@
+{
+  "experiment": "08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test",
+  "observed_utc": "2026-10-11T15:28:14.952930+00:00",
+  "kind": "parent_validation_readiness_observation",
+  "runtime": "skampere1:/lfs/skampere1/0/brando9/rl4cv_e08",
+  "publication": {
+    "revision": "1d996c82928b0951c4003b33e035b8133f2a1d3a",
+    "runtime_published_local_hashes": {
+      "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/validation_ladder.json": "334f1ef1b8dde98bdb68f26bb43cba32496401117b348cb2c12e569062e5310d",
+      "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder_manifest.json": "dcc4a252def1b85d9960bc53b1fc7ef99809fee4c57f23e82ae43d89ab3b73ec",
+      "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_14B_f0p5_validation_cells.csv": "79fd068cca9fe887342dac67f24c5e6001ca5c15619622081627613f1c235213",
+      "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_14B_f0p5_validation_per_task.csv": "8415616b044e6bedba75c6c73e112bf2560d5893423aca6b4ca9817514bfad17"
+    },
+    "all_four_hashes_match": true,
+    "published_manifest_reference_matches": true
+  },
+  "completed_14B_rungs": {
+    "f0p125": {
+      "rows": 1080,
+      "manifest_keys_match": true,
+      "sha256": "c7c645b30ce55a74315d30beab06f567c11cd567a91617d2924dd892bc407c1d",
+      "transport_measured": {
+        "True": 911,
+        "False": 169
+      },
+      "capped": 169
+    },
+    "f0p25": {
+      "rows": 1080,
+      "manifest_keys_match": true,
+      "sha256": "f49f6d80de47b30b2c0a78da3938e724a942b0275fdead529a2cfd1b03f7cc00",
+      "transport_measured": {
+        "True": 952,
+        "False": 128
+      },
+      "capped": 128
+    },
+    "f0p5": {
+      "rows": 1080,
+      "manifest_keys_match": true,
+      "sha256": "3cbaa8573a65077c091da04fe45bd17bec9c15d7212f0b6ba1bfb87883caf019",
+      "transport_measured": {
+        "True": 975,
+        "False": 105
+      },
+      "capped": 105
+    }
+  },
+  "first_passing_14B_rung": {
+    "fraction": 0.5,
+    "checkpoint_step": 334,
+    "cumulative_assistant_tokens": 2884708,
+    "gates": {
+      "a_extraction": {
+        "n": 975,
+        "of": 1080,
+        "pass": true,
+        "share": 0.9028,
+        "threshold": 0.9
+      },
+      "b_capped": {
+        "n": 105,
+        "of": 1080,
+        "pass": true,
+        "share": 0.0972,
+        "threshold": 0.1
+      },
+      "c_mixed": {
+        "n": 30,
+        "of": 135,
+        "pass": true,
+        "share": 0.2222,
+        "threshold": 0.05,
+        "wilson95": [
+          0.1603,
+          0.2995
+        ]
+      },
+      "complete": true,
+      "n_declared": 1080,
+      "n_known": 1080,
+      "pass": true
+    },
+    "independently_recomputed_from_cells": true,
+    "p_val": "n/a (prespecified point-estimate gates, PROTOCOL section 9)",
+    "mixed_interval": "Wilson 95% interval over 135 tasks; single training/generation run, not training-seed variation",
+    "scope": "Validation readiness of one checkpoint, not cross-size readiness, held-out efficacy or learned-weight improvement. Smaller sizes do not all pass this fraction; full frozen selection waits for every rung."
+  },
+  "progress": {
+    "f0p125": {
+      "raw_rows": 1080,
+      "completed_sample_csvs": 8,
+      "latest_generation_progress": "Processed prompts: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 56/56 [05:40<00:00,  6.08s/it, est. speed input: 565.20 toks/s, output: 506.91 toks/s]"
+    },
+    "f0p25": {
+      "raw_rows": 1080,
+      "completed_sample_csvs": 8,
+      "latest_generation_progress": "Processed prompts: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 56/56 [05:36<00:00,  6.01s/it, est. speed input: 571.54 toks/s, output: 509.05 toks/s]"
+    },
+    "f0p5": {
+      "raw_rows": 1080,
+      "completed_sample_csvs": 8,
+      "latest_generation_progress": "Processed prompts: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 56/56 [05:24<00:00,  5.80s/it, est. speed input: 592.07 toks/s, output: 472.67 toks/s]"
+    },
+    "f0p75": {
+      "raw_rows": 1080,
+      "completed_sample_csvs": 7,
+      "latest_generation_progress": "Processed prompts: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 56/56 [05:45<00:00,  6.17s/it, est. speed input: 556.91 toks/s, output: 513.53 toks/s]"
+    },
+    "f1p0": {
+      "raw_rows": 1080,
+      "completed_sample_csvs": 1,
+      "latest_generation_progress": "Processed prompts: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 56/56 [02:39<00:00,  2.84s/it, est. speed input: 1207.96 toks/s, output: 889.06 toks/s]"
+    }
+  },
+  "denominators": {
+    "systems_declared": 24,
+    "systems_finalized": 22,
+    "trained_rungs_declared": 20,
+    "trained_rungs_finalized": 18,
+    "cells_declared": 25920,
+    "cells_in_finalized_systems": 23760,
+    "cells_outside_finalized_systems": 2160,
+    "new_14B_raw_generation_cells": 5400,
+    "raw_generation_declared": 5400,
+    "note": "Finalized kernel-scoring receipts include length-capped responses scored as they stand under section 9. Transport flags are separate. Partial sample tables for the two unfinished rungs remain evidence, not zero-filled missing outcomes."
+  },
+  "selection_exists": false,
+  "test_manifest_exists": false,
+  "independent_health": {
+    "observed_utc": "2026-10-11T15:28:24.232803+00:00",
+    "source_sha256": "b07e4cfb9ae00c4fb6d1be9f32886a08f10a870b666babc2c093e1980bdb9b3d",
+    "pipeline": {
+      "actual": {
+        "pid": 4005026,
+        "ppid": 5979,
+        "start_ticks": 8095062,
+        "state": "S",
+        "utime_ticks": 296512,
+        "stime_ticks": 46490
+      },
+      "identity_match": true,
+      "last_tick": "2026-10-11T15:27:24+00:00"
+    },
+    "step334_exit": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/pipeline/ladder_val_sft_14B_f0p5.exit",
+      "exists": true,
+      "value": "0",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "active_scorers": [
+      {
+        "pid": 1864033,
+        "ppid": 1864028,
+        "start_ticks": 23135490,
+        "state": "S",
+        "utime_ticks": 1010,
+        "stime_ticks": 10,
+        "rung_marker": "sft_14B_f0p75_g8_s7",
+        "role": "kernel-scorer"
+      },
+      {
+        "pid": 1891918,
+        "ppid": 1891901,
+        "start_ticks": 23155251,
+        "state": "S",
+        "utime_ticks": 1028,
+        "stime_ticks": 15,
+        "rung_marker": "sft_14B_f1p0_g8_s0",
+        "role": "kernel-scorer"
+      },
+      {
+        "pid": 1891924,
+        "ppid": 1891907,
+        "start_ticks": 23155251,
+        "state": "S",
+        "utime_ticks": 1011,
+        "stime_ticks": 12,
+        "rung_marker": "sft_14B_f1p0_g8_s2",
+        "role": "kernel-scorer"
+      },
+      {
+        "pid": 1891931,
+        "ppid": 1891909,
+        "start_ticks": 23155252,
+        "state": "S",
+        "utime_ticks": 1040,
+        "stime_ticks": 12,
+        "rung_marker": "sft_14B_f1p0_g8_s3",
+        "role": "kernel-scorer"
+      },
+      {
+        "pid": 2293615,
+        "ppid": 2293604,
+        "start_ticks": 23316031,
+        "state": "S",
+        "utime_ticks": 855,
+        "stime_ticks": 5,
+        "rung_marker": "sft_14B_f1p0_g8_s4",
+        "role": "kernel-scorer"
+      }
+    ],
+    "live_lean_child_count": 10,
+    "leases": {
+      "ladder_val_sft_14B_f0p125": {
+        "gpus": [
+          0
+        ],
+        "released": true,
+        "released_at": "2026-10-11T11:43:12+00:00",
+        "identity": {
+          "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+          "host": "skampere1.stanford.edu",
+          "pid": 1967498,
+          "pid_start": "21128843"
+        },
+        "identity_match": false
+      },
+      "ladder_val_sft_14B_f0p25": {
+        "gpus": [
+          1
+        ],
+        "released": true,
+        "released_at": "2026-10-11T11:23:30+00:00",
+        "identity": {
+          "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+          "host": "skampere1.stanford.edu",
+          "pid": 1998280,
+          "pid_start": "21141874"
+        },
+        "identity_match": false
+      },
+      "ladder_val_sft_14B_f0p5": {
+        "gpus": [
+          1
+        ],
+        "released": true,
+        "released_at": "2026-10-11T13:10:36+00:00",
+        "identity": {
+          "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+          "host": "skampere1.stanford.edu",
+          "pid": 3602568,
+          "pid_start": "21896595"
+        },
+        "identity_match": false
+      },
+      "ladder_val_sft_14B_f0p75": {
+        "gpus": [
+          0
+        ],
+        "released": true,
+        "released_at": "2026-10-11T13:57:42+00:00",
+        "identity": {
+          "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+          "host": "skampere1.stanford.edu",
+          "pid": 3782222,
+          "pid_start": "22015041"
+        },
+        "identity_match": true
+      },
+      "ladder_val_sft_14B_f1p0": {
+        "gpus": [
+          1
+        ],
+        "released": true,
+        "released_at": "2026-10-11T14:55:20+00:00",
+        "identity": {
+          "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+          "host": "skampere1.stanford.edu",
+          "pid": 496083,
+          "pid_start": "22539312"
+        },
+        "identity_match": true
+      }
+    },
+    "owned_gpu_process_count": 0,
+    "monitor": {
+      "status": "ARMED",
+      "owner": null,
+      "incident": null,
+      "observed_utc": "2026-10-11T15:25:02.812733+00:00",
+      "errors": {},
+      "completed_incident_ids": [
+        "8339e1ac-9675-4e2c-b609-552c1b436a12",
+        "89fdad95-eeef-4667-a562-2044b29a2b38",
+        "53cd99c4-2406-4b25-8933-d6cd76c0a6d1",
+        "adac6942-e4d9-493e-b141-9acc43540db6"
+      ]
+    },
+    "watchdog": {
+      "checked_utc": "2026-10-11T15:15:02Z",
+      "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+      "host": "skampere1.stanford.edu",
+      "jobs": [
+        {
+          "name": "pipeline",
+          "session": "rl4cv-e08-pipeline",
+          "state": "running",
+          "pane_pid": "4005026",
+          "processes": 1,
+          "fresh_age_s": "20"
+        }
+      ]
+    },
+    "installed_watch_entries": [
+      "*/15 * * * * /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/watchdog_e08.sh >> /lfs/skampere1/0/brando9/rl4cv_e08/watchdog/cron.log 2>&1",
+      "@reboot /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/watchdog_e08.sh --reboot >> /lfs/skampere1/0/brando9/rl4cv_e08/watchdog/cron.log 2>&1",
+      "*/5 * * * * /bin/bash -c '. /dfs/scratch0/brando9/.bash_env; exec /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py' >> /lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_cron.log 2>&1 # rl4cv-e08-coordinator-monitor",
+      "@reboot /bin/bash -c '. /dfs/scratch0/brando9/.bash_env; exec /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py' >> /lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_cron.log 2>&1 # rl4cv-e08-coordinator-monitor"
+    ],
+    "parent_findings": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/resource_request_10-09-2026/parent_findings.md",
+      "sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba"
+    },
+    "scope": {
+      "sandbox": "danger-full-access",
+      "approval_policy": "never",
+      "permission_evidence": "active developer permissions context",
+      "first_useful_read": "Single bounded SSH read of exact runtime receipts, actual process tree, GPU telemetry and installed cron entries",
+      "ssh_options": [
+        "-S",
+        "none",
+        "-o",
+        "ControlMaster=no"
+      ],
+      "remote_mutations": false,
+      "new_jobs_or_model_calls": false,
+      "held_out_content_reads": false
+    },
+    "explicit_process_checks": {
+      "3602568": {
+        "exists": false,
+        "identity": {}
+      },
+      "498469": {
+        "exists": false,
+        "identity": {}
+      },
+      "496095": {
+        "exists": false,
+        "identity": {}
+      },
+      "2012516": {
+        "exists": false,
+        "identity": {}
+      }
+    }
+  },
+  "constraints": {
+    "scientific_recipe_changed": false,
+    "new_responses_or_judge_calls_by_parent": 0,
+    "new_coordinator_dispatched": false,
+    "probe_allocation_seconds": 1783.907,
+    "probe_limit_seconds": 1800,
+    "experiment08_overall_wall_or_device_cap": null,
+    "experiments06_and09_remain_closed": true
+  },
+  "verification": "JSON/count/key-set/hash checks and independent gate recalculation passed. Observation changes only; no production source edited. Prior native full suite passed 268 tests, with four skipped, with tested-revision limitation documented in parent_supervision_10-11-2026_0316.json.",
+  "automation_readback": {
+    "verified_utc": "2026-10-11T15:34:13.278959+00:00",
+    "id": "overnight-factored-score-learning",
+    "status": "ACTIVE",
+    "rrule": "FREQ=MINUTELY;INTERVAL=45",
+    "target_thread_id": "01a11d6a-30aa-7020-a672-6b34546fdeee",
+    "prompt_sha256": "11721a86f00cd2bdf9b7e65c95aba9cd2a2b140047dac7291c789aecf0e2ab1a",
+    "expected_prompt_exact_match": true
+  }
+}

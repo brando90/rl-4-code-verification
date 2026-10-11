@@ -2,9 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/CKPT_MASTER_tmuxnone_cxd_01a11d6a.md>
 
-**TLDR:** Historical eight-A100 14B training completed 658/658 updates and five exports. At 10-11-2026 06:13 PDT its step-164 validation rung has 1,080/1,080 finalized kernel-scoring receipts, bringing completed validation systems to 21,600/25,920 cells and trained rungs to 16/20. That rung includes 128 length-capped responses and fails two frozen readiness gates; the other four 14B rungs continue before selection. The original pipeline and recovery watches are healthy, with no active model owner. Selection/test and learned-weight improvement remain pending.
+**TLDR:** Historical eight-A100 14B training completed 658/658 updates and five exports. At 10-11-2026 08:28 PDT all five validation generations are complete, and step 334 is the first 14B checkpoint passing all three frozen readiness gates. Validation has 18/20 trained rungs and 23,760/25,920 finalized kernel-scoring receipts; 2,160 cells are in the last two unfinished scoring rungs. All 14B inference leases are released. The original scoring pipeline and recovery watches remain healthy, with no active model owner. Frozen selection, held-out testing and learned-weight improvement remain pending.
 
-Created: 10-08-2026 16:28 PDT. Last updated: 10-11-2026 06:21 PDT. **Status:** 14B TRAINING/EXPORTS_COMPLETE; VALIDATION_RUNNING (one of five 14B rungs complete, four active); latest coordinator phase VERIFIED_COMPLETE; recovery monitor ARMED; heartbeat ACTIVE. Two-A100 route REJECTED/CLEAN; Mercury2 PARTIAL/NOT_ADMITTED/CLEAN. Experiments 09 and 06 remain closed.
+Created: 10-08-2026 16:28 PDT. Last updated: 10-11-2026 08:34 PDT. **Status:** 14B TRAINING/EXPORTS/GENERATION_COMPLETE; VALIDATION_SCORING (three of five 14B rungs complete); first 14B READINESS_PASS at step 334; latest coordinator phase VERIFIED_COMPLETE; recovery monitor ARMED; heartbeat ACTIVE. Two-A100 route REJECTED/CLEAN; Mercury2 PARTIAL/NOT_ADMITTED/CLEAN. Experiments 09 and 06 remain closed.
 
 ## 1. Identity and recovery
 
@@ -17,7 +17,7 @@ Preserve the original shared checkout and other owners' dirty files. Publish onl
 | Experiment | Verified state and declared denominators |
 |---|---|
 | `09_qwen3_1p7b_grpo_scsc_scalar_vs_factor_feedback_vbv1_d013` | Scorer controls 14/14 matched expected outcomes. Live coverage controls 50/50 measured ratings, all frozen category gates passed; this is not a claim of 50/50 expected-label accuracy. Read-only model/feedback forward pass passed. Calibration 0/256 rollouts, 0/512 responses; training 0/6 trajectories and zero optimizer updates; validation 0/945 cells, test 0/1,554 cells. The actual disposable batch completed 32 two-turn trajectories and passed its 4,077-token assistant-mask audit. A read-only replay found 4 actions outside recomputed support and 367 supported actions beyond the frozen log-probability tolerance; zero optimizer steps were taken. The adapter attempt is FAILED_TECHNICAL_GATE; optimizer, save/reload and full-context controls were not passed. This is not a negative learning result. |
-| `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test` | At 10-11-2026 06:13 PDT, original 14B training (658/658) and five exports are complete. Step-164 validation is complete: 1,080 unique cells, all gate inputs known, including 128 length-capped responses whose transport measured flag is false. The rung fails extraction/cap gates. Completed validation systems cover 21,600/25,920 cells; 4,320 lie outside completed rungs, including partial scoring evidence retained separately. Trained rungs complete: 16/20. Steps 82/334 are scoring; steps 497/658 are generating on devices 0/1. The original pipeline continues, recovery ARMED, no active model owner. Selection and new held-out testing remain pending; no improvement conclusion yet. |
+| `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test` | At 10-11-2026 08:28 PDT, 14B training (658/658), five exports and all 5,400 declared 14B validation generations are complete. Steps 82/164/334 have finalized scoring; step 334 passes all three frozen readiness gates. Total trained rungs: 18/20; finalized validation receipts: 23,760/25,920. The remaining 2,160 cells belong to steps 497/658, which have active scoring and partial sample tables. All five 14B inference leases are released. The original pipeline and recovery remain healthy with no active model owner. Full frozen selection and new held-out testing remain pending; this is readiness evidence, not measured learning improvement. |
 | `06_swebench_lite_factor_feedback_matched_budget` | Version 3 BLOCKED: all 3/3 coordinator launches used. Last owner exited at 19:34:21 PDT with `error_max_turns`, 90 configured turns/91 reported. Official controls 0/16, author calls 0/8, solver cells 0/56. Five preliminary smoke executions remain non-admitted; four lacked enforced CPU/memory bounds and the fifth failed its observer. This is infrastructure/coordinator blockage, not evidence about repair efficacy. |
 | `02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics` | Phase-A version 3 completed/PARTIAL in `572e28f`: 587 kept pairs over 455/970 tasks, 42/2,910 cells unmeasured. Below frozen SUFFICIENT thresholds of 1,024 pairs and 512 tasks. Do not restart completed work. |
 
@@ -276,17 +276,25 @@ At **14:38:39 PDT**, the monitor accepted the resource owner's completed receipt
 - Original pipeline PID 4005026/start8095062 remains active; actual scoring children and both generation owners/leases were checked. The monitor is ARMED without owner/incident; scheduled/reboot recovery and watchdog entries remain installed. No coordinator was dispatched for this ordinary validation progress. Closed incidents and their attempt/deadline records remain unchanged.
 - Evidence: `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/parent_first_14B_validation_10-11-2026.json`. Continue all remaining validation rungs, then apply and publish frozen selection before any new test generation. Kernel-validation completeness does not claim completed coverage judging or official three-factor evaluation, and it does not establish learning, repair or correlation improvement. The heartbeat prompt was refreshed and read back ACTIVE, preserving its 45-minute cadence, original chat and full-study stopping condition.
 
-**TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched training and exports are complete; the first 14B validation rung is finalized and four others continue before selection.
+## 19. First 14B readiness pass; generation complete (10-11-2026)
+
+- Step 334 / fraction 0.5 completed at 08:01:42 PDT and is published in `1d996c82928b0951c4003b33e035b8133f2a1d3a`. At 08:28 parent independently verified exactly 1,080 distinct frozen task/sample keys, all four runtime/published/local ladder and cell/task-table hashes, and the manifest reference. Scored digest: `3cbaa8573a65077c091da04fe45bd17bec9c15d7212f0b6ba1bfb87883caf019`.
+- Independent cell-table recalculation matches all three frozen protocol section 9 gates: 975/1,080 extracted (minimum 972), 105/1,080 length-capped (maximum 108), and 30/135 tasks with mixed success among their eight responses (minimum 7). Mixed-task share is 0.2222 [0.1603,0.2995], Wilson 95% over tasks, p-val=n/a (prespecified point-estimate gate); this is one training/generation run, not seed variability. All gate inputs are known. The 105 capped responses retain false transport-measured flags and are scored as they stand under the frozen protocol.
+- This is the first passing 14B checkpoint, not a matched cross-size selection or a learning-effect result. The three smaller sizes do not all pass fraction 0.5. Finish the entire frozen ladder before applying selection; no test manifest or new test generation is admitted yet.
+- All five 14B generations are durably complete: 5,400/5,400 raw cells. Steps 82/164/334 have finalized scoring, giving 18/20 trained rungs and 23,760/25,920 finalized validation receipts overall. Steps 497/658 retain seven/one completed sample tables at the observation and have real scoring/Lean children. Their full 2,160-cell denominator remains explicit. Original generation engines are absent and all five 14B inference leases are released; preserve the live CPU scoring and healthy pipeline/recovery watches.
+- Evidence: `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/parent_14B_readiness_10-11-2026_0828.json`. Parent changed only its observation and master checkpoint. Scientific settings, probe ledger, failed gates, prior owner incidents and held-out isolation remain intact. The heartbeat prompt was updated and read back exactly, ACTIVE with its unchanged 45-minute cadence, original chat and full-study stopping condition.
+
+**TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched training and generation are complete; step 334 passes 14B validation readiness while the last two scoring rungs continue before frozen selection.
 **Snapshot:**
 ```text
 14B training / exports: 658/658 updates; 5/5 exports
-14B step164 validation: 1080/1080 finalized receipts
-transport measured / length-capped: 952/1080 and 128/1080
-readiness at step164: extraction and cap gates fail
-completed validation systems: 21600/25920 cells
-outside completed rungs: 4320 cells; partial evidence retained
-trained validation rungs complete: 16/20
+14B validation generation: 5400/5400 raw cells
+step 334 gates: extracted 975>=972; capped 105<=108; mixed 30>=7
+mixed tasks: 30/135; Wilson 95% [0.1603,0.2995]; p-val=n/a
+trained validation rungs finalized: 18/20
+finalized validation receipts: 23760/25920; remaining 2160
+remaining scoring: step 497 and step 658; partial evidence retained
+active 14B inference leases: 0
 selection / new held-out evaluation: pending
 pipeline healthy; recovery ARMED; no active model owner
-probe allocation unchanged: 1783.907/1800 seconds
 ```
