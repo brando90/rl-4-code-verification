@@ -4,7 +4,7 @@
 
 **TLDR:** All 20 trained validation rungs and all 25,920 declared validation cells are complete. Frozen selection is PARTIAL: no training fraction passes readiness at all four sizes. The admitted diagnostics select 8B step 658 and 14B step 334; the 1.7B and 4B sizes have no passing checkpoint. Selection and the 10,656-cell test manifest were published before the first test launch. Held-out generation is underway; kernel scoring, pinned judging and final learned-weight comparisons remain unfinished.
 
-Created: 10-08-2026 16:28 PDT. Last updated: 10-11-2026 10:02 PDT. **Status:** TRAINING/VALIDATION_COMPLETE; SELECTION_FROZEN_PARTIAL; TEST_RUNNING; new coordinator IDENTITY/FIRST_ACTION_VERIFIED; coordination phase pending. Two-A100 route REJECTED/CLEAN; Mercury2 PARTIAL/NOT_ADMITTED/CLEAN. Experiments 09 and 06 remain closed.
+Created: 10-08-2026 16:28 PDT. Last updated: 10-11-2026 10:51 PDT. **Status:** TRAINING/VALIDATION_COMPLETE; SELECTION_FROZEN_PARTIAL; TEST_RUNNING; latest coordinator VERIFIED_COMPLETE; monitor ARMED without a model owner. Two-A100 route REJECTED/CLEAN; Mercury2 PARTIAL/NOT_ADMITTED/CLEAN. Experiments 09 and 06 remain closed.
 
 ## 1. Identity and recovery
 
@@ -294,6 +294,14 @@ At **14:38:39 PDT**, the monitor accepted the resource owner's completed receipt
 - At 10:00:40 PDT the actual 8B test generator had processed 119/1,024 prompts in its first batch, with zero durable rows; each complete system still declares 1,776 cells. Its launcher 3212695/start23850587, generator 3213066, engine 3213958 and device-2 lease match. Pipeline 4005026/start8095062 and installed recovery/watchdog schedules remain healthy.
 - Parent owns this checkpoint and `expt_v1/results/parent_full_validation_selection_10-11-2026.json`; the verified native coordinator retains experiment implementation/publication ownership. Existing failed gates, closed incidents, the 1,783.907/1,800-second disposable probe ledger and absence of an overall experiment08 wall/device cap remain unchanged. The heartbeat prompt was refreshed and read back exactly, ACTIVE in the same chat with its unchanged 45-minute cadence and full-study completion condition.
 
+## 21. Verified test coordinator closure; generation continues (10-11-2026)
+
+- Incident `9618422d-1484-4d67-86ce-d876278664e5` finished its bounded phase at 10:01:30 PDT and the native owner exited zero at 10:01:53, before its original 11:00:02 deadline. Both attempts remain recorded. At 10:43 parent independently matched all 12 output hashes and four published file hashes in `b923256`, verified that publication on main, and found all 69 recorded owner/descendant identities absent. Actual Vals / Astra / ultra / full-access / never, launch-input hashes, first output and latest-finding acknowledgment retain the prior verification. The attempt's retained `failure_class=unverified_exit` is stale; final status and independent completion evidence establish VERIFIED_COMPLETE. Do not reopen this incident.
+- Original pipeline PID 4005026/start8095062 remains healthy. Selected 8B and Base14B are generating on devices 2 and 1, with matching launcher leases and actual generation/engine children; selected 14B waits under the existing two-generator limit. At 10:43 the first batches reached 493/1,024 and 188/1,024 prompts, respectively, with zero durable rows. Each full system still declares 1,776 cells; 0/3 new test systems have finalized scoring. This is ordinary progress, not a new held-out result.
+- All four frozen selection, test-manifest and ladder hashes remain unchanged. Recovery monitor ARMED has no active model owner or incident; the five-minute/reboot recovery watch and fifteen-minute/reboot watchdog remain installed. Preserve the original scientific execution and use the existing event-driven recovery for a new semantic phase or actual failure. No scientific retry, new coordinator, probe or treatment change was made.
+- Deterministic verification: fresh host `make test` passed 268 tests with four skipped in 208.11 seconds at `b923256`; source and test files are unchanged through parent `4332e14`. The Mac run retained seven failures from experiment13's hardcoded remote Lean paths (264 passed, five skipped), and an unconfigured remote shell had no Python executable. The recorded host environment resolves both execution prerequisites; no source change or scientific rerun was made.
+- Parent evidence: `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/parent_test_supervision_10-11-2026_1043.json`. The heartbeat prompt now records verified closure and was read back exactly, ACTIVE with unchanged cadence, chat and full-study stopping condition.
+
 **TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched training and full validation are complete; PARTIAL selection admits two unmatched checkpoints for held-out diagnostics, now underway.
 **Snapshot:**
 ```text
@@ -305,6 +313,7 @@ selected 14B: step 334; 2884708 assistant tokens
 1.7B and 4B: no passing checkpoint
 test manifest: 10656 cells = 5328 new + 5328 reused
 selection and test manifest published before first test launch
-new test systems scored at 09:57 PDT: 0/3
+new test systems scored at 10:43 PDT: 0/3
+latest coordinator: VERIFIED_COMPLETE; monitor ARMED
 full test factors and learned-weight comparisons: pending
 ```

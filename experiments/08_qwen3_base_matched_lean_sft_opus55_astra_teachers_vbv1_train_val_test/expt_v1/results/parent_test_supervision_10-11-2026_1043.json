@@ -1,0 +1,393 @@
+{
+  "schema": 1,
+  "scope": "Parent metadata-only supervision; no scientific model calls, source changes, restarts or test-response inspection.",
+  "observed_utc": "2026-10-11T17:43:22.531993+00:00",
+  "coordinator_closure": {
+    "incident": {
+      "id": "9618422d-1484-4d67-86ce-d876278664e5",
+      "status": "VERIFIED_COMPLETE",
+      "created_utc": "2026-10-11T16:50:02.440397+00:00",
+      "deadline_utc": "2026-10-11T18:00:02.440411+00:00",
+      "ended_utc": "2026-10-11T17:01:53.345058+00:00"
+    },
+    "attempts": [
+      {
+        "ended_utc": "2026-10-11T16:50:02.963320+00:00",
+        "number": 1,
+        "profile": "personal_codex",
+        "started_utc": "2026-10-11T16:50:02.441436+00:00",
+        "status": "INELIGIBLE"
+      },
+      {
+        "ended_utc": "2026-10-11T17:01:53.336691+00:00",
+        "exit_code": 0,
+        "failure_class": "unverified_exit",
+        "native_errors": [],
+        "number": 2,
+        "process": {
+          "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+          "pid": 3217740,
+          "ppid": 3216513,
+          "session": 3217740,
+          "start_ticks": 23855867
+        },
+        "profile": "vals_codex",
+        "started_utc": "2026-10-11T16:50:02.964867+00:00",
+        "status": "VERIFIED_COMPLETE"
+      }
+    ],
+    "phase_sha256": "24d375331aaa68b81b50a5ce9b1f933b663fde04c2b4d5de1958a1bf4ae21235",
+    "receipt_sha256": "f75693761a9b80be5a7c0e2f5a1e1d67bb84ddb5589b2e808248cf6730304511",
+    "inherited_identity": {
+      "account": "brando@vals.ai",
+      "model": "gpt-6-astra",
+      "effort": "ultra",
+      "sandbox": "danger-full-access",
+      "approval_policy": "never",
+      "native_session_id": "01a12bdf-1d13-7ba1-ac00-36125b2cbdb5",
+      "basis": "Previously independently verified native account receipt, live CODEX_HOME, exact command lines and native turn_context; associated immutable receipt hashes rechecked here."
+    },
+    "evidence_hashes": {
+      "ack.json": "3702c8b8fb9e757dde85b4d9c643f2e8534a0b47a09224331b3992011e4ec3d6",
+      "account_check.json": "903ea132e385d2c431b182aa5f14511fcc3cb990198e429bc42a83831e6c7dc7",
+      "first_action.json": "634f24ca9e29025888a39cf8cdeba563d39cf0c2e3a9379c357549ac0fe3d7ec",
+      "prompt.md": "0ab4fd4da0f01d9c1cf285e2bf2e76587f176bfbdc737088d267f987e811e2b6",
+      "initial_check.json": "18ea3f17810d15c9bf187350fba6e9e9f96615e76064303264dc4847882cceca",
+      "completion_validation.json": "d894dc6b9a4283552b324e16dc123146618dcaf02562f3a2fc8851c7f4776bfa",
+      "make_test_host.log": "43f151a9867292d10c1449bab3345d8f60a1c5080b763abd98cff36901afa3e8",
+      "make_test_venv.log": "06fd0c9bafe7bd40bb6d0606a7e85afe85c5384bc1fb8a15e2f79a36a4cd677a"
+    }
+  },
+  "output_hashes": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/9618422d-1484-4d67-86ce-d876278664e5/2/published_artifacts/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/results.md",
+      "sha256": "cbdea608275095e60d327029a8c063f215a022384fd7777243027dea7c49d644",
+      "matches": true
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/9618422d-1484-4d67-86ce-d876278664e5/2/published_artifacts/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/CKPT_e08.md",
+      "sha256": "5878537f80fe5928c791d3a4673f3583ccd4e9d6c5ead25a168505a9de7da72a",
+      "matches": true
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/9618422d-1484-4d67-86ce-d876278664e5/2/published_artifacts/experiments/README.md",
+      "sha256": "5e58dcf696da4a42ff4eaf50fbd78de404dfadfc07e253e0c3f3495050676bc0",
+      "matches": true
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/9618422d-1484-4d67-86ce-d876278664e5/2/published_artifacts/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/coordinator_test_start_10-11-2026.json",
+      "sha256": "8e62b3d6473c9ac3ce6b758626878a5790b95697d817a56a6aa4a043da1ca238",
+      "matches": true
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/9618422d-1484-4d67-86ce-d876278664e5/2/initial_check.json",
+      "sha256": "18ea3f17810d15c9bf187350fba6e9e9f96615e76064303264dc4847882cceca",
+      "matches": true
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/9618422d-1484-4d67-86ce-d876278664e5/2/artifact_check.json",
+      "sha256": "d9469176dd18d37609ef150e327e77a447d844376235f1ccc43673b490f0bea5",
+      "matches": true
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/9618422d-1484-4d67-86ce-d876278664e5/2/host_check.json",
+      "sha256": "4d3eb14df0a2ea52bdcb5f389bb43a710577571a4fac3afd61d67beed4e1d93f",
+      "matches": true
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/9618422d-1484-4d67-86ce-d876278664e5/2/final_state_check.json",
+      "sha256": "5be25846ad3d487742e3c1f6256190e16303e83f1572bad36823399e6686d8de",
+      "matches": true
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/9618422d-1484-4d67-86ce-d876278664e5/2/publication.json",
+      "sha256": "58b87c8e09fedd3e23e05857a09a6b68642690b530694ab0aca2244d81d8517b",
+      "matches": true
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/9618422d-1484-4d67-86ce-d876278664e5/2/staged_check.json",
+      "sha256": "33bf87cd8213049df2d5682571d0434b5777eec1adbe5be991d2b666097c9e76",
+      "matches": true
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/9618422d-1484-4d67-86ce-d876278664e5/2/make_test_host.log",
+      "sha256": "43f151a9867292d10c1449bab3345d8f60a1c5080b763abd98cff36901afa3e8",
+      "matches": true
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/9618422d-1484-4d67-86ce-d876278664e5/2/final_observed_event.json",
+      "sha256": "0930eb8add1fb6936bf10f3f8b1fb67c9c3d4282525f7b1d6f23885f55771d69",
+      "matches": true
+    }
+  ],
+  "published_files": [
+    {
+      "published_path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/results.md",
+      "commit": "b923256dfc7dca28d920ee8063b434bb7e998afd",
+      "git_blob_sha256": "cbdea608275095e60d327029a8c063f215a022384fd7777243027dea7c49d644",
+      "git_blob_matches": true
+    },
+    {
+      "published_path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/CKPT_e08.md",
+      "commit": "b923256dfc7dca28d920ee8063b434bb7e998afd",
+      "git_blob_sha256": "5878537f80fe5928c791d3a4673f3583ccd4e9d6c5ead25a168505a9de7da72a",
+      "git_blob_matches": true
+    },
+    {
+      "published_path": "experiments/README.md",
+      "commit": "b923256dfc7dca28d920ee8063b434bb7e998afd",
+      "git_blob_sha256": "5e58dcf696da4a42ff4eaf50fbd78de404dfadfc07e253e0c3f3495050676bc0",
+      "git_blob_matches": true
+    },
+    {
+      "published_path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/coordinator_test_start_10-11-2026.json",
+      "commit": "b923256dfc7dca28d920ee8063b434bb7e998afd",
+      "git_blob_sha256": "8e62b3d6473c9ac3ce6b758626878a5790b95697d817a56a6aa4a043da1ca238",
+      "git_blob_matches": true
+    }
+  ],
+  "publication_ancestry": {
+    "repository": "/Users/brandomiranda/.codex/worktrees/factor-feedback-validation/rl-4-code-verification",
+    "commit": "b923256dfc7dca28d920ee8063b434bb7e998afd",
+    "fresh_remote_main": "4332e14d01ad0b0276b14297d9edf33b0ab85110",
+    "is_ancestor": true,
+    "exit_code": 0,
+    "stderr": ""
+  },
+  "recorded_owner_processes_absent": {
+    "identities": 69,
+    "pid_exists": 0,
+    "identity_alive": 0
+  },
+  "closure_verifier_source_sha256": "0675b845729780b16241699baa7582dade6bca707fc08e38bf6186011e16623f",
+  "monitor": {
+    "status": "ARMED",
+    "owner": null,
+    "incident": null,
+    "observed_utc": "2026-10-11T17:40:02.244586+00:00",
+    "matching_completed_receipt": [
+      {
+        "id": "9618422d-1484-4d67-86ce-d876278664e5",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/9618422d-1484-4d67-86ce-d876278664e5/receipt.json",
+        "sha256": "f75693761a9b80be5a7c0e2f5a1e1d67bb84ddb5589b2e808248cf6730304511",
+        "status": "VERIFIED_COMPLETE"
+      }
+    ]
+  },
+  "closure_caveat": "Retained failure_class=unverified_exit is stale; final status, zero exit, native completion and matching published outputs establish VERIFIED_COMPLETE.",
+  "pipeline": {
+    "pid": 4005026,
+    "ppid": 5979,
+    "start_ticks": 8095062,
+    "args": ".venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/pipeline_e08.py "
+  },
+  "pipeline_last_tick": "2026-10-11T17:43:15+00:00",
+  "test_stage_status": {
+    "ladder_test_base14b": {
+      "status": "running",
+      "retries": 0,
+      "gpus": [
+        1
+      ],
+      "launched_at": "2026-10-11T17:38:57+00:00"
+    },
+    "ladder_test_test_sft_14B_f0p5": {
+      "status": "waiting_gpu",
+      "retries": 0
+    },
+    "ladder_test_test_sft_8B_f1p0": {
+      "status": "running",
+      "retries": 0,
+      "gpus": [
+        2
+      ],
+      "launched_at": "2026-10-11T16:49:11+00:00"
+    }
+  },
+  "test_denominators": {
+    "systems": 6,
+    "tasks": 222,
+    "samples_per_task": 8,
+    "cells": 10656,
+    "new_cells": 5328,
+    "reused_cells": 5328,
+    "new_systems_scored": 0,
+    "new_systems": 3
+  },
+  "raw_files": {
+    "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/raw/gen_test_sft_8B_f1p0_g8.shard0of1.jsonl": {
+      "bytes": 0,
+      "rows": 0
+    },
+    "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/raw/gen_base14b_g8.shard0of1.jsonl": {
+      "bytes": 0,
+      "rows": 0
+    }
+  },
+  "generation_progress": {
+    "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/logs/gen_base14b_g8.shard0of1.log": {
+      "last_progress": "Processed prompts:  18%|\u2588\u258a        | 188/1024 [03:19<25:51,  1.86s/it, est. speed input: 3365.66 toks/s, output: 929.01 toks/s]",
+      "bytes": 48102
+    },
+    "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/logs/gen_test_sft_8B_f1p0_g8.shard0of1.log": {
+      "last_progress": "Processed prompts:  48%|\u2588\u2588\u2588\u2588\u258a     | 493/1024 [52:09<45:18,  5.12s/it, est. speed input: 563.21 toks/s, output: 1015.23 toks/s]",
+      "bytes": 88754
+    }
+  },
+  "leases": {
+    "ladder_test_base14b": {
+      "boundary": "stage end (resumable launcher; lease released when the merged generation exists or the stage finishes)",
+      "cuda_visible_devices": "1",
+      "expires_utc": null,
+      "gpus": [
+        1
+      ],
+      "identity": {
+        "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+        "host": "skampere1.stanford.edu",
+        "pid": 3892334,
+        "pid_start": "24149195"
+      },
+      "kind": "inference",
+      "owner": "e08-pipeline",
+      "released": false,
+      "released_at": null,
+      "since": "2026-10-11T17:38:57+00:00",
+      "stage": "ladder_test_base14b"
+    },
+    "ladder_test_test_sft_8B_f1p0": {
+      "boundary": "stage end (resumable launcher; lease released when the merged generation exists or the stage finishes)",
+      "cuda_visible_devices": "2",
+      "expires_utc": null,
+      "gpus": [
+        2
+      ],
+      "identity": {
+        "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+        "host": "skampere1.stanford.edu",
+        "pid": 3212695,
+        "pid_start": "23850587"
+      },
+      "kind": "inference",
+      "owner": "e08-pipeline",
+      "released": false,
+      "released_at": null,
+      "since": "2026-10-11T16:49:11+00:00",
+      "stage": "ladder_test_test_sft_8B_f1p0"
+    }
+  },
+  "process_trees": {
+    "3212695": [
+      {
+        "pid": 3212695,
+        "ppid": 5979,
+        "start_ticks": 23850587
+      },
+      {
+        "pid": 3212696,
+        "ppid": 3212695,
+        "start_ticks": 23850587
+      },
+      {
+        "pid": 3213066,
+        "ppid": 3212696,
+        "start_ticks": 23850830
+      },
+      {
+        "pid": 3213958,
+        "ppid": 3213066,
+        "start_ticks": 23852250
+      }
+    ],
+    "3892334": [
+      {
+        "pid": 3892334,
+        "ppid": 5979,
+        "start_ticks": 24149195
+      },
+      {
+        "pid": 3892336,
+        "ppid": 3892334,
+        "start_ticks": 24149196
+      },
+      {
+        "pid": 3892679,
+        "ppid": 3892336,
+        "start_ticks": 24149395
+      },
+      {
+        "pid": 3894350,
+        "ppid": 3892679,
+        "start_ticks": 24150849
+      }
+    ]
+  },
+  "frozen_hashes": {
+    "selection.json": "47e12d6c217a3e62e47e0d5bcef13478f2ecf52098b7ac6163df91e216e21cdb",
+    "test_manifest.json": "ed128d11e8d5d09e7d19244f5480f24360f01530510240a9d1176b0a446136fa",
+    "validation_ladder.json": "8b5386f73f2dc9072a2a81aa33912ef8658cfa7b1983f93248ad89142fa503e3",
+    "ladder_manifest.json": "3013db1230f27cf021ace50ff53abcc6de2e9f6964ac62968baa80ccb577a948"
+  },
+  "runtime_local_frozen_hashes_match": 4,
+  "active_lease_identity_matches": 2,
+  "parent_findings_sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba",
+  "watchdog": {
+    "checked_utc": "2026-10-11T17:30:02Z",
+    "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+    "host": "skampere1.stanford.edu",
+    "jobs": [
+      {
+        "name": "pipeline",
+        "session": "rl4cv-e08-pipeline",
+        "state": "running",
+        "pane_pid": "4005026",
+        "processes": 1,
+        "fresh_age_s": "111"
+      }
+    ]
+  },
+  "cron": [
+    "*/15 * * * * /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/watchdog_e08.sh >> /lfs/skampere1/0/brando9/rl4cv_e08/watchdog/cron.log 2>&1",
+    "@reboot /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/watchdog_e08.sh --reboot >> /lfs/skampere1/0/brando9/rl4cv_e08/watchdog/cron.log 2>&1",
+    "*/5 * * * * /bin/bash -c '. /dfs/scratch0/brando9/.bash_env; exec /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py' >> /lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_cron.log 2>&1 # rl4cv-e08-coordinator-monitor",
+    "@reboot /bin/bash -c '. /dfs/scratch0/brando9/.bash_env; exec /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py' >> /lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_cron.log 2>&1 # rl4cv-e08-coordinator-monitor"
+  ],
+  "automation": {
+    "readback_utc": "2026-10-11T17:45:59.151877+00:00",
+    "status": "ACTIVE",
+    "rrule": "FREQ=MINUTELY;INTERVAL=45",
+    "target_thread_id": "01a11d6a-30aa-7020-a672-6b34546fdeee",
+    "prompt_sha256": "32f5c6502c779297b318ea3e87876a0a5316ef9ad58f81f737f0640105ec0299",
+    "exact_readback": true
+  },
+  "constraints": {
+    "scientific_recipe_changed": false,
+    "selection": "PARTIAL",
+    "overall_study_wall_or_device_cap": null,
+    "probe_seconds_used": 1783.907,
+    "probe_seconds_limit": 1800,
+    "experiments06_and09_closed": true
+  },
+  "prior_owner_tests": {
+    "log_sha256": "43f151a9867292d10c1449bab3345d8f60a1c5080b763abd98cff36901afa3e8",
+    "result": "268 passed, 4 skipped in 207.61 seconds",
+    "tested_revision_unrecorded": true,
+    "earlier_environment_failure_preserved": true
+  },
+  "local_parent_test": {
+    "head": "4332e14d01ad0b0276b14297d9edf33b0ab85110",
+    "result": "7 failed, 264 passed, 5 skipped in 37.28 seconds",
+    "cause": "Seven experiment13 tests hardcode skampere1 Lean runtime paths absent on this Mac; no source files changed.",
+    "log_sha256": "bceca22d01686b2e3d5d68fb14972dec5ba6060ed128a59a94898ccd796f037d"
+  },
+  "remote_parent_test": {
+    "head": "b923256dfc7dca28d920ee8063b434bb7e998afd",
+    "log_sha256": "0f881fded4516f60266323c96db139cf596b94e577e5e0d90e5ed6e4e92432e2",
+    "log": "python -m pytest -q\n........................................................................ [ 26%]\n........................................................................ [ 53%]\n.....................................s.................................. [ 80%]\n.....................................................                    [100%]\n268 passed, 4 skipped in 208.11s (0:03:28)\n",
+    "command": "source env_e08.sh; source .venv/bin/activate; ELAN_HOME=/lfs/skampere1/0/brando9/.elan PATH=/lfs/skampere1/0/brando9/.elan/bin:$PATH env -u CODEX_HOME make test",
+    "exit_code": 0,
+    "source_and_test_files_equal_parent_head": true,
+    "first_remote_attempt": "No python on shell PATH; make exited before tests. Retried in the recorded existing host environment."
+  },
+  "written_utc": "2026-10-11T17:51:25.175150+00:00"
+}
