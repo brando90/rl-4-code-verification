@@ -6,7 +6,7 @@
 
 **Status:** RUNNING — 14B validation under the original serialized pipeline and host watchdog. Training and exports are complete; the production lease is released and two validation leases are live. The bounded coordinator has verified this transition; ordinary-code supervision continues after its exit.
 
-**Last updated:** 10-11-2026 08:43 PDT (pipeline: validation ladder table)
+**Last updated:** 10-11-2026 09:42 PDT (pipeline: validation ladder table)
 
 ## Five 14B exports verified; validation running (10-11-2026)
 
@@ -225,7 +225,7 @@ Failure taxonomy (cells): Opus 5.5 {"kept": 1200, "no_lean": 437, "no_typecheck"
 
 ## Validation ladder (live; PROTOCOL § 9: 135 tasks × 8 samples per system; gates (a) extraction ≥ 972/1080, (b) capped ≤ 108/1080, (c) mixed `kernel_binary` tasks ≥ 7/135; p-val=n/a)
 
-Written 2026-10-11T15:43:00+00:00 by the pipeline from `expt_v1/results/validation_ladder.json` (per-task and per-cell CSVs under `expt_v1/results/ladder/`).
+Written 2026-10-11T16:42:04+00:00 by the pipeline from `expt_v1/results/validation_ladder.json` (per-task and per-cell CSVs under `expt_v1/results/ladder/`).
 
 | System | Status | Extraction | Capped | Mixed tasks (share; Wilson 95%) | Gates | pass@8 | mean pass | mean tokens |
 |---|---|---:|---:|---|---|---:|---:|---:|
@@ -237,7 +237,7 @@ Written 2026-10-11T15:43:00+00:00 by the pipeline from `expt_v1/results/validati
 | `sft_14B_f0p25` | COMPLETE | 952 / 1080 | 128 / 1080 | 25 / 135 (0.1852; [0.1287, 0.2591]) | fail | 0.1852 | 0.06667 | 5137.2 |
 | `sft_14B_f0p5` | COMPLETE | 975 / 1080 | 105 / 1080 | 30 / 135 (0.2222; [0.1603, 0.2995]) | PASS | 0.2296 | 0.10278 | 4603.3 |
 | `sft_14B_f0p75` | COMPLETE | 953 / 1080 | 127 / 1080 | 35 / 135 (0.2593; [0.1927, 0.3391]) | fail | 0.2667 | 0.09352 | 5361.5 |
-| `sft_14B_f1p0` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
+| `sft_14B_f1p0` | COMPLETE | 995 / 1080 | 84 / 1080 | 39 / 135 (0.2889; [0.2191, 0.3703]) | PASS | 0.2889 | 0.12037 | 4606.1 |
 | `sft_1p7B_f0p125` | COMPLETE | 66 / 1080 | 608 / 1080 | 3 / 135 (0.0222; [0.0076, 0.0633]) | fail | 0.0222 | 0.0037 | 8394.6 |
 | `sft_1p7B_f0p25` | COMPLETE | 79 / 1080 | 387 / 1080 | 1 / 135 (0.0074; [0.0013, 0.0408]) | fail | 0.0074 | 0.00093 | 7205.3 |
 | `sft_1p7B_f0p5` | COMPLETE | 834 / 1080 | 245 / 1080 | 11 / 135 (0.0815; [0.0461, 0.14]) | fail | 0.0815 | 0.01759 | 5984.3 |
@@ -253,6 +253,8 @@ Written 2026-10-11T15:43:00+00:00 by the pipeline from `expt_v1/results/validati
 | `sft_8B_f0p5` | COMPLETE | 934 / 1080 | 146 / 1080 | 29 / 135 (0.2148; [0.1539, 0.2915]) | fail | 0.2148 | 0.0713 | 5200.8 |
 | `sft_8B_f0p75` | COMPLETE | 964 / 1080 | 118 / 1080 | 33 / 135 (0.2444; [0.1797, 0.3233]) | fail | 0.2444 | 0.08241 | 5141.6 |
 | `sft_8B_f1p0` | COMPLETE | 974 / 1080 | 106 / 1080 | 32 / 135 (0.237; [0.1732, 0.3154]) | PASS | 0.237 | 0.0963 | 4913.8 |
+
+**Selection (PROTOCOL § 9, frozen rule):** verdict **PARTIAL**, f* = None; earliest passing fraction per size {"1.7B": null, "14B": "0.5", "4B": null, "8B": "1.0"}; tokens needed {"14B": 2884708, "8B": 5752936}; incomplete systems []. `expt_v1/results/selection.json` is committed before any test generation (D-004).
 
 ## Open questions for Brando
 
