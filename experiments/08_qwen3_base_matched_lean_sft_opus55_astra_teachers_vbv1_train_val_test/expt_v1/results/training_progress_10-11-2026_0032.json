@@ -1,0 +1,66 @@
+{
+  "observed_utc": "2026-10-11T07:32:28.812524+00:00",
+  "host": "skampere1",
+  "runtime": "/lfs/skampere1/0/brando9/rl4cv_e08",
+  "pipeline": {
+    "pid": 4005026,
+    "start_ticks": 8095062,
+    "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+    "last_tick": "2026-10-11T07:32:10+00:00"
+  },
+  "production_14B": {
+    "status": "running",
+    "layout": "historical_tp8",
+    "launcher_pid": 456540,
+    "launcher_start_ticks": 20305429,
+    "retries": 0,
+    "saved_steps": [
+      82,
+      164
+    ],
+    "declared_final_step": 658,
+    "latest_training_info": {
+      "epoch": 0,
+      "step": 164,
+      "total_steps": 164,
+      "consumed_samples": 328,
+      "total_valid_tokens": 1442549.0
+    },
+    "latest_segment_exit_code": 0,
+    "latest_segment_exit_utc": "2026-10-11T07:27:28Z",
+    "next_segment_target": 334,
+    "step_334_training_info_present": false
+  },
+  "coordinator": {
+    "native_session": "01a129d9-d832-70a2-bd87-123460699161",
+    "pid": 808257,
+    "start_ticks": 20465785,
+    "process_alive": true,
+    "parent_verification_receipt": "parent_handoff_verification_10-11-2026.json",
+    "phase_result_present": false
+  },
+  "validation": {
+    "completed_rungs": 15,
+    "declared_rungs": 20,
+    "completed_cells": 20520,
+    "declared_cells": 25920,
+    "missing_cells": 5400,
+    "selection": "pending",
+    "held_out_evaluation": "not_admitted"
+  },
+  "watchdog": {
+    "checked_utc": "2026-10-11T07:30:05Z",
+    "pipeline_status": "running"
+  },
+  "interpretation": "Saved training updates are execution progress, not a measured learned-weight improvement. Target step 334 is not a completion count. The shared native normalization-state caveat is unchanged.",
+  "sources": [
+    "pipeline/state.json",
+    "watchdog/status.json",
+    "owner_recovery/monitor_state.json",
+    "ckpt/driver_14B.log",
+    "ckpt/14B/checkpoints/step_164/training_info.json",
+    "/proc/4005026/stat",
+    "/proc/456540/stat",
+    "/proc/808257/stat"
+  ]
+}
