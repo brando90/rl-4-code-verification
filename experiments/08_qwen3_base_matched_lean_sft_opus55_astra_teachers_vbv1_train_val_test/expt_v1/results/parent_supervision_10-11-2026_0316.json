@@ -1,0 +1,476 @@
+{
+  "schema": 1,
+  "experiment": "08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test",
+  "observed_utc": "2026-10-11T10:16:23.157566+00:00",
+  "runtime": "skampere1:/lfs/skampere1/0/brando9/rl4cv_e08",
+  "pipeline": {
+    "identity": {
+      "pid": 4005026,
+      "alive": true,
+      "state": "S",
+      "ppid": 5979,
+      "start_ticks": "8095062",
+      "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+      "cmd": ".venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/pipeline_e08.py "
+    },
+    "last_tick": "2026-10-11T10:16:09+00:00",
+    "summary": {
+      "ladder_val_sft_14B_f0p125": "running",
+      "ladder_val_sft_14B_f0p25": "running",
+      "ladder_val_sft_14B_f0p5": "waiting_gpu",
+      "ladder_val_sft_14B_f0p75": "waiting_gpu",
+      "ladder_val_sft_14B_f1p0": "waiting_gpu",
+      "selection": "pending (15/20 rungs valid)",
+      "sft_14B": "done"
+    }
+  },
+  "monitor": {
+    "status": "ARMED",
+    "owner": null,
+    "observed_utc": "2026-10-11T10:15:02.592447+00:00"
+  },
+  "watchdog": {
+    "checked_utc": "2026-10-11T10:15:03Z",
+    "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+    "host": "skampere1.stanford.edu",
+    "jobs": [
+      {
+        "name": "pipeline",
+        "session": "rl4cv-e08-pipeline",
+        "state": "running",
+        "pane_pid": "4005026",
+        "processes": 1,
+        "fresh_age_s": "65"
+      }
+    ]
+  },
+  "active_leases": {
+    "ladder_val_sft_14B_f0p125": {
+      "boundary": "stage end (resumable launcher; lease released when the merged generation exists or the stage finishes)",
+      "cuda_visible_devices": "0",
+      "expires_utc": null,
+      "gpus": [
+        0
+      ],
+      "identity": {
+        "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+        "host": "skampere1.stanford.edu",
+        "pid": 1967498,
+        "pid_start": "21128843"
+      },
+      "kind": "inference",
+      "owner": "e08-pipeline",
+      "released": false,
+      "released_at": null,
+      "since": "2026-10-11T09:15:34+00:00",
+      "stage": "ladder_val_sft_14B_f0p125"
+    },
+    "ladder_val_sft_14B_f0p25": {
+      "boundary": "stage end (resumable launcher; lease released when the merged generation exists or the stage finishes)",
+      "cuda_visible_devices": "1",
+      "expires_utc": null,
+      "gpus": [
+        1
+      ],
+      "identity": {
+        "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+        "host": "skampere1.stanford.edu",
+        "pid": 1998280,
+        "pid_start": "21141874"
+      },
+      "kind": "inference",
+      "owner": "e08-pipeline",
+      "released": false,
+      "released_at": null,
+      "since": "2026-10-11T09:17:44+00:00",
+      "stage": "ladder_val_sft_14B_f0p25"
+    }
+  },
+  "validation": {
+    "declared_cells": 25920,
+    "known_scored_cells": 20520,
+    "missing_scored_cells": 5400,
+    "declared_cells_per_rung": 1080,
+    "completed_trained_rungs": 15,
+    "declared_trained_rungs": 20,
+    "rungs": {
+      "f0p125": {
+        "stage": {
+          "gpus": [
+            0
+          ],
+          "health": "active",
+          "launched_at": "2026-10-11T09:15:34+00:00",
+          "log_age_s": 29,
+          "n_children": 3,
+          "observed": "2026-10-11T10:16:01+00:00",
+          "pane_pid": 1967498,
+          "retries": 0,
+          "session": "rl4cv-e08-ladder-14B-f0p125",
+          "status": "running"
+        },
+        "declared_cells": 1080,
+        "process_tree": [
+          {
+            "pid": 1967498,
+            "alive": true,
+            "state": "S",
+            "ppid": 5979,
+            "start_ticks": "21128843",
+            "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+            "command_sha256": "67bbf3d5cb3d19efb0aeb59af037b4829dd8ac7f2d148ccae1d62564854d504e"
+          },
+          {
+            "pid": 1967500,
+            "alive": true,
+            "state": "S",
+            "ppid": 1967498,
+            "start_ticks": "21128844",
+            "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+            "command_sha256": "d8eb874dc59356bb2236d9e0896e58c33d8adcfb4a15315281be02c0d6bf530f"
+          },
+          {
+            "pid": 1967516,
+            "alive": true,
+            "state": "S",
+            "ppid": 1967500,
+            "start_ticks": "21128847",
+            "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+            "command_sha256": "b85a0fd10b36fa3c7163596ee91437f810ea19952d73b0bb5f1e145ed91c9950"
+          },
+          {
+            "pid": 1970592,
+            "alive": true,
+            "state": "S",
+            "ppid": 1967516,
+            "start_ticks": "21130423",
+            "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+            "command_sha256": "85aa8d5ab844e47b38d729334bf2a2d19c37a3a0d0e80130f6ddbc6213ffc651"
+          }
+        ],
+        "raw_exists": true,
+        "durable_raw_rows": 0,
+        "current_batch_processed_prompts": 341,
+        "current_batch_size": 1024,
+        "scored_summary_exists": false
+      },
+      "f0p25": {
+        "stage": {
+          "gpus": [
+            1
+          ],
+          "health": "active",
+          "launched_at": "2026-10-11T09:17:44+00:00",
+          "log_age_s": 14,
+          "n_children": 3,
+          "observed": "2026-10-11T10:16:02+00:00",
+          "pane_pid": 1998280,
+          "retries": 0,
+          "session": "rl4cv-e08-ladder-14B-f0p25",
+          "status": "running"
+        },
+        "declared_cells": 1080,
+        "process_tree": [
+          {
+            "pid": 1998280,
+            "alive": true,
+            "state": "S",
+            "ppid": 5979,
+            "start_ticks": "21141874",
+            "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+            "command_sha256": "3a1f2468f1b79bd56855bd967a4cbdf3a2fac7e6d6a5f4bc35bae72c31999e18"
+          },
+          {
+            "pid": 1998281,
+            "alive": true,
+            "state": "S",
+            "ppid": 1998280,
+            "start_ticks": "21141874",
+            "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+            "command_sha256": "ae53cb07c4dd02b1aa00e9123a6165304921d62ada56499f7bb05fc591dce7a2"
+          },
+          {
+            "pid": 1998292,
+            "alive": true,
+            "state": "S",
+            "ppid": 1998281,
+            "start_ticks": "21141876",
+            "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+            "command_sha256": "bd64f44452c353271e981c305037f195e2f7a45f31d6e2632899618c116168b9"
+          },
+          {
+            "pid": 1999033,
+            "alive": true,
+            "state": "R",
+            "ppid": 1998292,
+            "start_ticks": "21143453",
+            "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+            "command_sha256": "0f91ead48ecfd59485040a2ca82c62c65df19a575e6e1084c11412021fdde66e"
+          }
+        ],
+        "raw_exists": true,
+        "durable_raw_rows": 0,
+        "current_batch_processed_prompts": 415,
+        "current_batch_size": 1024,
+        "scored_summary_exists": false
+      },
+      "f0p5": {
+        "stage": {
+          "retries": 0,
+          "status": "waiting_gpu"
+        },
+        "declared_cells": 1080,
+        "raw_exists": false,
+        "durable_raw_rows": 0,
+        "scored_summary_exists": false
+      },
+      "f0p75": {
+        "stage": {
+          "retries": 0,
+          "status": "waiting_gpu"
+        },
+        "declared_cells": 1080,
+        "raw_exists": false,
+        "durable_raw_rows": 0,
+        "scored_summary_exists": false
+      },
+      "f1p0": {
+        "stage": {
+          "retries": 0,
+          "status": "waiting_gpu"
+        },
+        "declared_cells": 1080,
+        "raw_exists": false,
+        "durable_raw_rows": 0,
+        "scored_summary_exists": false
+      }
+    },
+    "selection_exists": false,
+    "test_manifest_exists": false,
+    "full_manifest_note": "135 tasks \u00d7 eight samples =1080 cells/rung; current1024-prompt batch flushes only when complete. Remaining56 prompts stay declared. Missing scored cells are unmeasured, never zero-filled.",
+    "scored_count_basis": "Previously verified20520 cells remain; none of the five trained14B summaries exists. Selection stays15/20 trained rungs."
+  },
+  "watches": {
+    "cron_entries": [
+      "*/15 * * * * /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/watchdog_e08.sh >> /lfs/skampere1/0/brando9/rl4cv_e08/watchdog/cron.log 2>&1",
+      "@reboot /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/watchdog_e08.sh --reboot >> /lfs/skampere1/0/brando9/rl4cv_e08/watchdog/cron.log 2>&1",
+      "*/5 * * * * /bin/bash -c '. /dfs/scratch0/brando9/.bash_env; exec /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py' >> /lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_cron.log 2>&1 # rl4cv-e08-coordinator-monitor",
+      "@reboot /bin/bash -c '. /dfs/scratch0/brando9/.bash_env; exec /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py' >> /lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_cron.log 2>&1 # rl4cv-e08-coordinator-monitor"
+    ],
+    "code_sha256": {
+      "pipeline_e08.py": "aad9a3be6b16d683e25b11cce3095350a0a6e42625eaf953c79cca8a68e70d4f",
+      "coordinator_monitor_e08.py": "ab9a8a2bc318d88e87232df1661e7e75b898b6a86c7257ba6cc595485e6842d9",
+      "watchdog_e08.sh": "80d81021402ebee6612c7ad5d5d0f3084fb47486aa7da52673fb210711258449"
+    }
+  },
+  "gpu_snapshot": "0, NVIDIA A100-SXM4-80GB, 70291 MiB, 100 %\n1, NVIDIA A100-SXM4-80GB, 70291 MiB, 100 %\n2, NVIDIA A100-SXM4-80GB, 0 MiB, 0 %\n3, NVIDIA A100-SXM4-80GB, 12151 MiB, 93 %\n4, NVIDIA A100-SXM4-80GB, 0 MiB, 0 %\n5, NVIDIA A100-SXM4-80GB, 42913 MiB, 100 %\n6, NVIDIA A100-SXM4-80GB, 38245 MiB, 88 %\n7, NVIDIA A100-SXM4-80GB, 37807 MiB, 59 %\n",
+  "interpretation": "Healthy validation generation is making prompt progress, but current batches have not flushed durable rows. No new 14B outcome or learned-weight improvement is established. The existing pipeline and host watches remain authoritative; no scientific retry, gate or resource budget was changed.",
+  "coordinator_closure": {
+    "attempts": [
+      {
+        "exit_code": null,
+        "number": 1,
+        "profile": "personal_codex",
+        "status": "INELIGIBLE"
+      },
+      {
+        "exit_code": 0,
+        "number": 2,
+        "profile": "vals_codex",
+        "status": "VERIFIED_COMPLETE"
+      }
+    ],
+    "caveats": [
+      "Coordinator phase completion is not scientific study completion.",
+      "Existing export/checkpoint validation receipts inspected and hashed; large exported/native payloads were not rehashed during this closure check.",
+      "Native checkpoint extents do not establish numerical restoration fidelity; normalization-state drift remains unmeasured.",
+      "No tests rerun or holdout contents read.",
+      "Completed attempt retains diagnostic failure_class unverified_exit but exit0, statusVERIFIED_COMPLETE and independently matching artifacts support closure."
+    ],
+    "commits": [
+      {
+        "ancestor_of_fresh_remote_main": true,
+        "check_rc": 0,
+        "commit": "5c5a2e255083bd07324b81eecfef49f86a0b761d"
+      },
+      {
+        "ancestor_of_fresh_remote_main": true,
+        "check_rc": 0,
+        "commit": "bb96cac89682981a93b0b093e378cd908b16a12d"
+      }
+    ],
+    "deadline_utc": "2026-10-11T10:30:02.409627+00:00",
+    "effective_permissions": {
+      "approval": "never",
+      "sandbox": "danger-full-access"
+    },
+    "ended_utc": "2026-10-11T09:34:16.692905+00:00",
+    "first_read_utc": "2026-10-11T10:15:20.167157+00:00",
+    "incident_id": "adac6942-e4d9-493e-b141-9acc43540db6",
+    "incident_receipt_sha256": "291bac40130e1d6d7fa302c0742727917fed71139a4949625f8b4f44ce081049",
+    "incident_status": "VERIFIED_COMPLETE",
+    "monitor": {
+      "incident": null,
+      "observed_utc": "2026-10-11T10:15:02.592447+00:00",
+      "owner": null,
+      "status": "ARMED"
+    },
+    "observed_utc": "2026-10-11T10:16:11.344844+00:00",
+    "phase_completed_utc": "2026-10-11T09:33:46.823927+00:00",
+    "phase_sha256": "80b4200bca58952efa056f55484a631d0bc17f1631604a449a03bddb22f12a4d",
+    "phase_status": "COMPLETE",
+    "preserved_limits": {
+      "attempt_count": 2,
+      "attempts_retries_or_budgets_reset": false,
+      "original_deadline_matches": true
+    },
+    "remote_lookup_rc": 0,
+    "remote_main": "bb96cac89682981a93b0b093e378cd908b16a12d",
+    "reused_native_verification": {
+      "account_check_sha256": "98be01be290a139d28acfe3fdee153dc3ff05db4125aeaf8132f983ac417eb29",
+      "ack_sha256": "85d34d8db5b991f48e66a22ddc52b6e70670c1c71cc317b9ffa2b823f997d1aa",
+      "approval_policy": "never",
+      "effort": "ultra",
+      "handoff_sha256": "d1228e90c0c89335ee2a31aa386f181f8327dbfe9238ca50f2ac7ed71baddd6b",
+      "model": "gpt-6-astra",
+      "parent_findings_sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba",
+      "prior_independent_check_utc": "2026-10-11T09:28:12.871046+00:00",
+      "sandbox": {
+        "type": "danger-full-access"
+      },
+      "session": "01a12a43-217f-74f3-b38f-8b90e44c8245"
+    },
+    "scope": "Independent read-only verification of remote coordinator closure; parent published the returned evidence. No scientific mutation.",
+    "test_log_sha256": "e4faa62cca9a391348d37dfb0dbca0678fa0bce2e740a1dc53c8130dacab7bb9",
+    "test_log_summary": "268 passed, 4 skipped in 204.22s (0:03:24)",
+    "test_receipt": {
+      "command": "source env_e08.sh; source .venv/bin/activate; ELAN_HOME=/lfs/skampere1/0/brando9/.elan PATH=/lfs/skampere1/0/brando9/.elan/bin:$PATH env -u CODEX_HOME make test",
+      "failed": 0,
+      "log_path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/make_test.log",
+      "log_sha256": "e4faa62cca9a391348d37dfb0dbca0678fa0bce2e740a1dc53c8130dacab7bb9",
+      "passed": 268,
+      "production_source_changes": false,
+      "seconds": 204.22,
+      "skipped": 4
+    },
+    "source_receipt_sha256": "3e9043b9f7f424bc756ea797ca120c97c87f8a3ce995f35028d18f56923636a3",
+    "process_identity_check": {
+      "checked": 66,
+      "alive": 0,
+      "start_ticks_by_pid": {
+        "2012516": 21155890,
+        "2012526": 21155897,
+        "2013675": 21156896,
+        "2032193": 21173563,
+        "2032172": 21173560,
+        "2032190": 21173562,
+        "2034716": 21175697,
+        "2034908": 21175772,
+        "2035864": 21176523,
+        "2035962": 21176582,
+        "2036751": 21177294,
+        "2036753": 21177298,
+        "2036754": 21177299,
+        "2036755": 21177301,
+        "2036756": 21177303,
+        "2036757": 21177303,
+        "2036758": 21177304,
+        "2036773": 21177312,
+        "2036597": 21177142,
+        "2036471": 21177076,
+        "2037164": 21177695,
+        "2037267": 21177750,
+        "2037889": 21178272,
+        "2038024": 21178332,
+        "2038862": 21179079,
+        "2038935": 21179134,
+        "2039434": 21179627,
+        "2039672": 21179684,
+        "2039965": 21179927,
+        "2039968": 21179931,
+        "2039984": 21179958,
+        "2040213": 21180184,
+        "2040319": 21180250,
+        "2040994": 21180828,
+        "2040868": 21180769,
+        "2041802": 21181510,
+        "2041775": 21181506,
+        "2041908": 21181582,
+        "2042072": 21181649,
+        "2042389": 21182128,
+        "2042457": 21182184,
+        "2042848": 21182648,
+        "2042948": 21182711,
+        "2043535": 21183245,
+        "2043646": 21183315,
+        "2044491": 21184062,
+        "2045082": 21184592,
+        "2045790": 21185117,
+        "2046957": 21185669,
+        "2047050": 21185728,
+        "2048003": 21186518,
+        "2047901": 21186460,
+        "2048582": 21186995,
+        "2048669": 21187050,
+        "2049281": 21187533,
+        "2049448": 21187598,
+        "2051565": 21188342,
+        "2051824": 21188410,
+        "2054025": 21189155,
+        "2054224": 21189213,
+        "2055669": 21189698,
+        "2055933": 21189757,
+        "2057054": 21190229,
+        "2057277": 21190287,
+        "2059431": 21190865,
+        "2059125": 21190804
+      }
+    },
+    "output_hash_verification": {
+      "matched": 18,
+      "declared": 18,
+      "sha256_by_path": {
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/first_action_integrity.json": "bd0199a7805da82114dcc7a5ed0520656ae6f2fff0e21ebf5225d83771d0fd07",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/production_artifact_check.json": "a1eb9807e80c00d8d0c3fe93c0c6499ed122807447ad6c1963a5c6594e01be79",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/pipeline_artifact_check.json": "fc4d5ac8d3e7d08fdc2a0146540a92bd5949abf29b0e02af1f1ec403b8d3e55a",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/test_receipt.json": "3c6bef8dda5b93698ef03c31aa4d703551d1349393e1c5d9c493b9dcdc5dd658",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/make_test.log": "e4faa62cca9a391348d37dfb0dbca0678fa0bce2e740a1dc53c8130dacab7bb9",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/downstream_inventory.json": "980782edc5bd8fc7077ceea8dbcd6c9d7c214c13b93162ff2bfc154df1c6f498",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/staged_inspection.json": "41ae9076a6443e1adbc35c0e989eac852c23921c08b971b3a41524bc6ec38b9a",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/publication.json": "734b055a2626815fbf4e2aae855599cddb699ea731908391816ac8eeb2c03a3a",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/final_observation.json": "5e2a1a5003b0fbc0b60091f1a814fe56615a9101a1981e7bbb66b6543a5bb837",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/final_live_check.json": "00848e5f7e1aa4f70de4b160659d3fc46a014a454e78126bd339b0544fe50e76",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/published_00_README.md": "388f794e9e1c72775bba7ec161a84f70defbb7c0026889b53bffbbda569df17e",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/published_01_CKPT_e08.md": "12ed686cc4b5b84caf2079da4f5f50bbeaca1a6fdcead5e3b4af0f486cc46eac",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/published_02_coordinator_validation_start_10-11-2026.json": "60d6e253dcb9cf4f58f324c032224a33ad24c838d59503da165e8f6cce522de6",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/published_03_ladder_manifest.json": "a7932cfe0efb2ff024d2b13f2d2fb0a2a23be5c6e5536d4e5ad06f37242bba6d",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/published_04_sft_14B_steps.csv": "126c10e06f5eb3e115dc4354cf146dcc60691b99fc98f090fdbf77718e91b31e",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/published_05_sft_14B_summary.json": "cfacedf091157e037a8782ec9da32f64361e781b11887605ea3f9a1fe2416578",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/published_06_results.md": "8986bb72d9335a41bdc8469dee7994db290e033619381af5a0ba6a3f78482462",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/published_07_README.md": "5844c3ddb850cb577c148627f0842c622520f11d385e885d67a8b5342f8a5554"
+      }
+    },
+    "published_blob_verification": {
+      "matched": 8,
+      "declared": 8,
+      "commit": "bb96cac89682981a93b0b093e378cd908b16a12d",
+      "sha256_by_path": {
+        "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/README.md": "388f794e9e1c72775bba7ec161a84f70defbb7c0026889b53bffbbda569df17e",
+        "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/CKPT_e08.md": "12ed686cc4b5b84caf2079da4f5f50bbeaca1a6fdcead5e3b4af0f486cc46eac",
+        "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/coordinator_validation_start_10-11-2026.json": "60d6e253dcb9cf4f58f324c032224a33ad24c838d59503da165e8f6cce522de6",
+        "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder_manifest.json": "a7932cfe0efb2ff024d2b13f2d2fb0a2a23be5c6e5536d4e5ad06f37242bba6d",
+        "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/train_logs/sft_14B_steps.csv": "126c10e06f5eb3e115dc4354cf146dcc60691b99fc98f090fdbf77718e91b31e",
+        "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/train_logs/sft_14B_summary.json": "cfacedf091157e037a8782ec9da32f64361e781b11887605ea3f9a1fe2416578",
+        "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/results.md": "8986bb72d9335a41bdc8469dee7994db290e033619381af5a0ba6a3f78482462",
+        "experiments/README.md": "5844c3ddb850cb577c148627f0842c622520f11d385e885d67a8b5342f8a5554"
+      }
+    }
+  },
+  "unchanged_bounds": {
+    "probe_seconds_spent": 1783.907,
+    "probe_seconds_limit": 1800,
+    "study_overall_wall_time_cap": null,
+    "study_overall_device_hour_cap": null,
+    "experiments_06_09": "closed; not relaunched"
+  }
+}
