@@ -2,11 +2,21 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/results.md>
 
-**TLDR:** Matched supervised fine-tuning completed all **658/658 14B optimizer updates** on 10-11-2026 at 01:37:55 PDT, with 1,316 consumed samples and **5,752,936 valid training tokens**. All 658 logged token counts and learning rates match the frozen schedule and completed sizes. The original pipeline is exporting five checkpoints for validation. The 1.7B/4B/8B training and their 15 validation rungs are complete. Full validation remains **20,520/25,920 cells**, with **5,400 unknown** across the five trained-14B rungs; selection and held-out evaluation remain pending. Training completion does not establish learned-weight improvement.
+**TLDR:** Matched supervised fine-tuning is complete at all four Qwen3 Base sizes: **658 updates and 5,752,936 real loss tokens per size**. All five 14B Hugging Face exports are complete and every listed file digest has been independently recomputed. The original pipeline is generating the first two 14B validation rungs; the other three await its existing concurrency slots. Full validation remains **15/20 trained rungs and 20,520/25,920 cells**, with **5,400 unknown**. Frozen selection, held-out evaluation and validated judging remain pending.
 
-**Status:** TRAINING_COMPLETE / EXPORTING under the original serialized pipeline. The bounded Vals coordination phase completed and exited; the remote recovery monitor is ARMED. The launcher retains its existing stage lease during exports. Mercury remains unadmitted; disposable probe accounting is unchanged.
+**Status:** RUNNING — 14B validation under the original serialized pipeline and host watchdog. Training and exports are complete; the production lease is released and two validation leases are live. The bounded coordinator has verified this transition; ordinary-code supervision continues after its exit.
 
-**Last updated:** 10-11-2026 01:46 PDT (verified full 14B training completion)
+**Last updated:** 10-11-2026 02:30 PDT (verified exports and validation-start coordination)
+
+## Five 14B exports verified; validation running (10-11-2026)
+
+`08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test` completed the production launcher at 02:14:55 PDT. All five 14B checkpoints (steps 82, 164, 334, 497 and 658) have complete Hugging Face exports: **50/50 listed file digests match**, including five distinct weight digests. Every referenced native weight/optimizer extent is also present and in bounds across eight shards at each rung. All four 658-step training logs agree exactly on per-step tokens, cumulative tokens and logged learning rates. The final 1,316 consumed slots comprise 1,315 real examples plus one fully loss-masked padding slot. These execution checks do not establish validation improvement or lossless per-rank normalization-state restoration.
+
+The original pipeline PID 4005026/start 8095062 released its training lease and launched validation fractions 0.125 and 0.25 on devices 0 and 1 at 02:15:34 and 02:17:44 PDT. Both exports loaded in vLLM and generation is progressing. Fractions 0.5, 0.75 and 1.0 await the existing two-generator concurrency limit; no resource recipe changed. The 15 completed trained rungs and reused baselines still account for 20,520 known validation cells. All five trained-14B cohorts remain unscored, so **5,400 cells stay unknown** and no checkpoint has been selected.
+
+Incident `adac6942-e4d9-493e-b141-9acc43540db6` acknowledged the stable handoff and parent findings (`26ec0a7e…`) with verified native Astra/ultra/full-access/never settings. The shared normalization-state checkpoint limitation remains documented, with numerical drift unmeasured. Mercury is still unadmitted; its ledger remains 1783.907/1800 seconds spent, without a new allocation. The parent’s newly published records were integrated while preserving the pipeline’s uncommitted artifacts byte for byte and leaving the parent master checkpoint untouched by owned edits.
+
+The downstream commands, pinned Lean toolchain, live pipeline Git access and monitor executable hashes check out. An actual prospective test-admission check rejects `No committed, admitted selection`. Formal specification coverage still requires the validated judge and its pending route controls. Full `make test`: **268 passed, four optional skips in 204.22 seconds**. No production source or scientific setting changed. [Complete export/training and coordination receipt](expt_v1/results/coordinator_validation_start_10-11-2026.json); [full 14B training log](expt_v1/results/train_logs/sft_14B_steps.csv).
 
 ## Full 14B training complete; checkpoint exports running (10-11-2026)
 
@@ -67,8 +77,8 @@ The recovery fixes run in newly launched downstream processes: the test launcher
 | Teacher runs (4,312 cells) | DONE (10-08-2026): 4,312 / 4,312 terminal; measured 3,827; kept 2,004; charges 5,111.94 USD | `expt_v1/results/runs_state.json`, `results/receipts/preflight/` |
 | Scoring, screen, SFT set S | DONE (10-08-2026): |S| = 1315 over 476 tasks, 5.75M assistant tokens | `expt_v1/results/scored_cells.jsonl`, `generated_lean_screen.json`, `sft_set_manifest.csv`, `sft_set_stats.json`, `teacher_analysis.json` |
 | Lock 2 preflight and lock | DONE (10-08-2026): lock 2 at `d1c101a` (lock commit `9995821`); dry run PASS (val loss on the fixed 16 examples 0.6283 → 0.5886, loss tokens = rendered spans, export loads in vLLM); framework NeMo RL | `expt_v1/results/sft_schedule.json`, `sft_config_diff.md`, `dry_run_e08.json` |
-| Matched SFT, 4 sizes × 5 checkpoints | 1.7B, 4B and 8B DONE (658 steps each, 5 rungs exported with hash manifests, token logs match the schedule); 14B RUNNING on historical TP8, two saved rungs through 164/658 verified | `expt_v1/results/train_logs/sft_{1p7B,4B}_steps.csv`, `$WORK/ckpt/<size>/` (host) |
-| Validation ladder and selection | 15 / 20 trained rungs COMPLETE (1.7B, 4B, 8B at 12.5 / 25 / 50 / 75 / 100 %; 1,080 / 1,080 cells each) + Base 14B COMPLETE; 14B rungs 0 / 1,080 each (after its SFT); selection BLOCKED until all 20 rungs are complete (rule frozen in PROTOCOL § 9); live table below | `expt_v1/results/validation_ladder_base14b.json`, `expt_v1/results/ladder_manifest.json`, host `$WORK/ladder/validation/` |
+| Matched SFT, 4 sizes × 5 checkpoints | DONE: 658 steps and 5,752,936 real loss tokens per size; all 20 exports complete; all 50 listed 14B export file digests verified | `expt_v1/results/train_logs/`, `expt_v1/results/coordinator_validation_start_10-11-2026.json` |
+| Validation ladder and selection | IN PROGRESS: 15/20 trained rungs COMPLETE plus four Base systems; 14B fractions 0.125/0.25 generating, three waiting for concurrency slots. 20,520/25,920 known cells, 5,400 unknown. Selection awaits all 20 rungs | `expt_v1/results/validation_ladder.json`, `expt_v1/results/ladder_manifest.json`, host `$WORK/ladder/validation/` |
 | Test evaluation | NOT STARTED (only after a committed `selection.json`: frozen test manifest → generation → kernel factors → judge route controls → D-102 judging → `analyze_test.py`) | — |
 
 ## D-013 split
@@ -248,4 +258,4 @@ Written 2026-10-09T07:58:33+00:00 by the pipeline from `expt_v1/results/validati
 
 - None blocking. Varun's math/code rows and warm-start checkpoints (D-105) would allow a math + code + Lean arm in a later version; ask him first.
 
-**TLDR-end:** [rl4cv: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched supervised fine-tuning is active on the original eight-A100 route, with 14B saved through 164/658 updates and 1,442,549 valid tokens. Validation remains 15/20 trained rungs and 20,520/25,920 cells; selection and held-out evaluation await the five missing 14B rungs, under the existing pipeline and host monitors.
+**TLDR-end:** [rl4cv: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched supervised fine-tuning and all 20 exports are complete; all five 14B exports have verified file digests and the first two validation rungs are generating. Validation remains 15/20 trained rungs and 20,520/25,920 cells; selection and held-out evaluation await the five missing 14B rungs under the existing pipeline and host monitors.

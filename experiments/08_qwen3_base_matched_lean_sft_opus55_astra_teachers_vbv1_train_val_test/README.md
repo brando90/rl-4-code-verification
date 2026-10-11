@@ -99,9 +99,9 @@ My guess at what is needed: the 25% rung (~1M tokens) teaches the file format; n
 | Split (D-013) | DONE (10-07-2026), committed with tests |
 | Base models on the splits (experiment 05 receipts) | DONE (10-07-2026), zero calls |
 | Token-budget inputs | DONE (10-07-2026), zero calls |
-| Protocol lock 1 (teacher data) | Pending, done by the SNAP worker after zero-call checks, before live preflight |
-| Teacher runs, scoring, SFT set | Pending |
-| Protocol lock 2, matched SFT | Pending |
-| Validation ladder, selection | Pending |
-| Test evaluation | Pending |
+| Protocol lock 1 (teacher data) | DONE, including recorded A1 teacher-effort amendment |
+| Teacher runs, scoring, SFT set | DONE: 4,312 terminal cells; 1,315 training examples |
+| Protocol lock 2, matched SFT | DONE: 658 updates/5,752,936 loss tokens at every size; all 20 exports complete |
+| Validation ladder, selection | IN PROGRESS: 15/20 trained rungs complete; first two 14B rungs generating; selection awaits all rungs |
+| Test evaluation | PENDING frozen published selection and validated judge controls |
 | RL (version 2) | Not started |

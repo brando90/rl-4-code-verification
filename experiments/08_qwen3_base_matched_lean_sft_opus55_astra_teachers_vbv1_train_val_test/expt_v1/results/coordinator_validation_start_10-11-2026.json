@@ -1,0 +1,846 @@
+{
+  "schema": 1,
+  "started_utc": "2026-10-11T09:24:20.829301+00:00",
+  "incident_id": "adac6942-e4d9-493e-b141-9acc43540db6",
+  "native_session_id": "01a12a43-217f-74f3-b38f-8b90e44c8245",
+  "frozen_data": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft/s_v1_nemo.jsonl",
+      "sha256": "ac1f348b03d0ddebe8c906214b06355f8154b8aa2efd273051b2bd8475a9997e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft/s_v1.jsonl",
+      "sha256": "885d4ae2d6cf193bddc43df6ad6274cacfa8c98a5e5ecd63bd2519472f5e7354"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/sft_set_manifest.csv",
+      "sha256": "8364ac11de3b0dae4d43e28d0835486a953c41fec94a3d4f7456d5bf677728aa"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/PROTOCOL.md",
+      "sha256": "f6c1f85c4d165d3d6706151105a47b92a3a08fa6c66fc6e85ffcb7bd52df27ce"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/sft_schedule.json",
+      "sha256": "e0d6d896a1f4c085629ac90dc8fda9c52e6e5bf511a5a8b42fb30c769e575f8b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/configs/e08_sft_14B.yaml",
+      "sha256": "4244709493df989ebae42a5a0fa05d698b3d8cbb32eec2138db9be4235dd91f3"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/configs/e08_sft_14B_tp2_offload_candidate.yaml",
+      "sha256": "bfc9842eca75fdbc83969dbe292c3dc1be3a53d23c4e531a89ffce5164ae1838"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/layout_10-09-2026/tp2_execution_summary.json",
+      "sha256": "9859f25f5ec95f2d7f6b3f7d38cefc0ae4a15cc972be49f69e0fc96dda21ab5d"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/configs/e08_sft_14B_tp8_mercury_offload_candidate.yaml",
+      "sha256": "fe01f147f084e9b956b1b5cb32a134ec525ba8b19be9cec193ea65dbc278b057"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/layout_10-09-2026/mercury_execution_summary.json",
+      "sha256": "868b15213630d922725b644732ec819679c45bcc965c82982e294cae9b9af3ca"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/layout_10-09-2026/probe_accounting.json",
+      "sha256": "e403a4c38b4b3f0ca421a66dad12783cb9535fb4418388b0320470ddf3ead5ca"
+    }
+  ],
+  "split_counts": {
+    "train": 539,
+    "test": 222,
+    "validation": 135
+  },
+  "layout_receipt": {
+    "layout": {
+      "id": "historical_tp8",
+      "gpus": 8,
+      "tensor_parallel_size": 8,
+      "cpu_offload": false,
+      "config_sha256": "4244709493df989ebae42a5a0fa05d698b3d8cbb32eec2138db9be4235dd91f3"
+    },
+    "registry_sha256": "08e979fa79d91b68de3df0e6e13a5e6d2f5c96466b7ae0558c8443eb7d2d0301",
+    "initialization": "pinned Base; disposable probe checkpoints excluded"
+  },
+  "matched_training": {
+    "sizes": [
+      "1p7B",
+      "4B",
+      "8B",
+      "14B"
+    ],
+    "steps_per_size": 658,
+    "token_or_learning_rate_mismatches": 0,
+    "final_real_loss_tokens_per_size": 5752936,
+    "real_examples": 1315,
+    "fully_masked_padding_slots": 1
+  },
+  "checkpoints": [
+    {
+      "step": 82,
+      "training_info": {
+        "epoch": 0,
+        "step": 82,
+        "total_steps": 82,
+        "consumed_samples": 164,
+        "total_valid_tokens": 720775.0
+      },
+      "training_info_sha256": "012377fc0540b92135943c6691d2f3fd425613fdc4a98eb36e652b9c823ff9e9",
+      "components": {
+        "weights": {
+          "metadata_sha256": "3e47301205fefd7f8805e277d7d27b97716078b74b94e9e4c29a93603d974742",
+          "storage_extents": 2417,
+          "files": {
+            "__0_0.distcp": 7384385834,
+            "__1_0.distcp": 7384673497,
+            "__2_0.distcp": 7384655618,
+            "__3_0.distcp": 7384655618,
+            "__4_0.distcp": 7384659796,
+            "__5_0.distcp": 7384667230,
+            "__6_0.distcp": 7384671408,
+            "__7_0.distcp": 7384671408
+          },
+          "all_extents_in_bounds": true,
+          "full_native_payload_hashes_recomputed": false
+        },
+        "optimizer": {
+          "metadata_sha256": "b6cdada866a39e90c9dd9a3e4b6472136a528027365bceb1772333c6021b9791",
+          "storage_extents": 5308,
+          "files": {
+            "__0_0.distcp": 14768773245,
+            "__1_0.distcp": 14769425865,
+            "__2_0.distcp": 14769451527,
+            "__3_0.distcp": 14769438911,
+            "__4_0.distcp": 14769424288,
+            "__5_0.distcp": 14769463527,
+            "__6_0.distcp": 14769444236,
+            "__7_0.distcp": 14769417529
+          },
+          "all_extents_in_bounds": true,
+          "full_native_payload_hashes_recomputed": false
+        }
+      }
+    },
+    {
+      "step": 164,
+      "training_info": {
+        "epoch": 0,
+        "step": 164,
+        "total_steps": 164,
+        "consumed_samples": 328,
+        "total_valid_tokens": 1442549.0
+      },
+      "training_info_sha256": "00e89d789ec311c0ca8145fe3b4a9c1bc26984dfabf3f4513552eb66c5eb0370",
+      "components": {
+        "weights": {
+          "metadata_sha256": "b74452857596c991981d90a978f2fd9e4203821a2bee854cfb627baa02a0d219",
+          "storage_extents": 2417,
+          "files": {
+            "__0_0.distcp": 7384385834,
+            "__1_0.distcp": 7384673497,
+            "__2_0.distcp": 7384655618,
+            "__3_0.distcp": 7384655618,
+            "__4_0.distcp": 7384659796,
+            "__5_0.distcp": 7384667230,
+            "__6_0.distcp": 7384671408,
+            "__7_0.distcp": 7384671408
+          },
+          "all_extents_in_bounds": true,
+          "full_native_payload_hashes_recomputed": false
+        },
+        "optimizer": {
+          "metadata_sha256": "d414c65003c68b45ed5974dfe9f7ab84101511dfbcfc0a2623119512e09beb18",
+          "storage_extents": 5308,
+          "files": {
+            "__0_0.distcp": 14768773245,
+            "__1_0.distcp": 14769425865,
+            "__2_0.distcp": 14769451527,
+            "__3_0.distcp": 14769438911,
+            "__4_0.distcp": 14769424288,
+            "__5_0.distcp": 14769463527,
+            "__6_0.distcp": 14769444236,
+            "__7_0.distcp": 14769417529
+          },
+          "all_extents_in_bounds": true,
+          "full_native_payload_hashes_recomputed": false
+        }
+      }
+    },
+    {
+      "step": 334,
+      "training_info": {
+        "epoch": 0,
+        "step": 334,
+        "total_steps": 334,
+        "consumed_samples": 668,
+        "total_valid_tokens": 2884708.0
+      },
+      "training_info_sha256": "9d7cf5dba5a2e16109a53d376eaa8b77e4fe16d7a4b4b6d1f5ad6b966c732edc",
+      "components": {
+        "weights": {
+          "metadata_sha256": "29339e48897b12ba8c9fdac8fc2ee04454c72e4e0b8506361be2bd87bfb23cc4",
+          "storage_extents": 2417,
+          "files": {
+            "__0_0.distcp": 7384385834,
+            "__1_0.distcp": 7384673497,
+            "__2_0.distcp": 7384655618,
+            "__3_0.distcp": 7384655618,
+            "__4_0.distcp": 7384659796,
+            "__5_0.distcp": 7384667230,
+            "__6_0.distcp": 7384671408,
+            "__7_0.distcp": 7384671408
+          },
+          "all_extents_in_bounds": true,
+          "full_native_payload_hashes_recomputed": false
+        },
+        "optimizer": {
+          "metadata_sha256": "7b6d8b6bdeabea8f2284dd4b37ab6e801c33bd02c634a0b601d80217aff38b4f",
+          "storage_extents": 5308,
+          "files": {
+            "__0_0.distcp": 14768773245,
+            "__1_0.distcp": 14769425865,
+            "__2_0.distcp": 14769451527,
+            "__3_0.distcp": 14769438911,
+            "__4_0.distcp": 14769424288,
+            "__5_0.distcp": 14769463527,
+            "__6_0.distcp": 14769444236,
+            "__7_0.distcp": 14769417529
+          },
+          "all_extents_in_bounds": true,
+          "full_native_payload_hashes_recomputed": false
+        }
+      }
+    },
+    {
+      "step": 497,
+      "training_info": {
+        "epoch": 0,
+        "step": 497,
+        "total_steps": 497,
+        "consumed_samples": 994,
+        "total_valid_tokens": 4318781.0
+      },
+      "training_info_sha256": "dc3ef07ffeed23b586fb88dfb5c113b83e15464e505386918487de1c0aa4c844",
+      "components": {
+        "weights": {
+          "metadata_sha256": "3ca378e15a8501e0f338b2c85ce3fd4502c68298f0c52f27920db8b2072814cf",
+          "storage_extents": 2417,
+          "files": {
+            "__0_0.distcp": 7384385834,
+            "__1_0.distcp": 7384673497,
+            "__2_0.distcp": 7384655618,
+            "__3_0.distcp": 7384655618,
+            "__4_0.distcp": 7384659796,
+            "__5_0.distcp": 7384667230,
+            "__6_0.distcp": 7384671408,
+            "__7_0.distcp": 7384671408
+          },
+          "all_extents_in_bounds": true,
+          "full_native_payload_hashes_recomputed": false
+        },
+        "optimizer": {
+          "metadata_sha256": "2bd80897a2975738555e184a7e95320cf68e40735192618791a6ef9c95c23037",
+          "storage_extents": 5308,
+          "files": {
+            "__0_0.distcp": 14768773245,
+            "__1_0.distcp": 14769425865,
+            "__2_0.distcp": 14769451527,
+            "__3_0.distcp": 14769438911,
+            "__4_0.distcp": 14769424288,
+            "__5_0.distcp": 14769463527,
+            "__6_0.distcp": 14769444236,
+            "__7_0.distcp": 14769417529
+          },
+          "all_extents_in_bounds": true,
+          "full_native_payload_hashes_recomputed": false
+        }
+      }
+    },
+    {
+      "step": 658,
+      "training_info": {
+        "epoch": 0,
+        "step": 0,
+        "total_steps": 658,
+        "consumed_samples": 1316,
+        "total_valid_tokens": 5752936.0
+      },
+      "training_info_sha256": "1b424d91ba87ef7fd3b6f90c43aab43a4eb083f98de1c8de943f8666ba7cab92",
+      "components": {
+        "weights": {
+          "metadata_sha256": "d6dc667ab66c9f462d01940450efb1fd13b56919b4d5a6206f0f8585ef534f25",
+          "storage_extents": 2417,
+          "files": {
+            "__0_0.distcp": 7384385834,
+            "__1_0.distcp": 7384673497,
+            "__2_0.distcp": 7384655618,
+            "__3_0.distcp": 7384655618,
+            "__4_0.distcp": 7384659796,
+            "__5_0.distcp": 7384667230,
+            "__6_0.distcp": 7384671408,
+            "__7_0.distcp": 7384671408
+          },
+          "all_extents_in_bounds": true,
+          "full_native_payload_hashes_recomputed": false
+        },
+        "optimizer": {
+          "metadata_sha256": "d7acb47a29c9614f4002285c7036a78aa1af161ce8ae2dcf259ac40b4f5eb835",
+          "storage_extents": 5308,
+          "files": {
+            "__0_0.distcp": 14768773245,
+            "__1_0.distcp": 14769425865,
+            "__2_0.distcp": 14769451527,
+            "__3_0.distcp": 14769438911,
+            "__4_0.distcp": 14769424288,
+            "__5_0.distcp": 14769463527,
+            "__6_0.distcp": 14769444236,
+            "__7_0.distcp": 14769417529
+          },
+          "all_extents_in_bounds": true,
+          "full_native_payload_hashes_recomputed": false
+        }
+      }
+    }
+  ],
+  "exports": [
+    {
+      "step": 82,
+      "root": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_82",
+      "sha256sums_sha256": "f3bc80193f5cc1749d28ab602dcb32de6c6a5318836d28d883d84f5ddae7f083",
+      "files": [
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_82/added_tokens.json",
+          "sha256": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680",
+          "bytes": 707
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_82/chat_template.jinja",
+          "sha256": "87a2728cb8dc9fe424d624542f6060ec05a1d285ebbec578bb078900e33396b5",
+          "bytes": 4116
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_82/config.json",
+          "sha256": "708af9aad3c6d31f99b8d2a42d0ee2cf6bef5bca3a55c695c335f698670ded9f",
+          "bytes": 1632
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_82/generation_config.json",
+          "sha256": "8c970692323e3ea0e9b8b0a4dca79388d31226e41f83c9fd6014804280ebf6e8",
+          "bytes": 138
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_82/merges.txt",
+          "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+          "bytes": 1671853
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_82/pytorch_model.bin",
+          "sha256": "b9a031e812c778b981dff22d59f107e9c5954785a6348ce81949086b65f58dd1",
+          "bytes": 59073377555
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_82/special_tokens_map.json",
+          "sha256": "6676f091c8bc4d1b50146427cfde92073402866b87b6e39223227931b70083e9",
+          "bytes": 616
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_82/tokenizer_config.json",
+          "sha256": "67e5a0a11cd35f9c00ee52e0af4cdc0baa75fea0cb5fce7d1beb251b4621d15c",
+          "bytes": 5407
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_82/tokenizer.json",
+          "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+          "bytes": 11422654
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_82/vocab.json",
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+          "bytes": 2776833
+        }
+      ],
+      "all_hashes_recomputed": true
+    },
+    {
+      "step": 164,
+      "root": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_164",
+      "sha256sums_sha256": "ec72ae06e494030dd6bebd0373773d569e3840466bf176f3b2fcd3f5b5d6e079",
+      "files": [
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_164/added_tokens.json",
+          "sha256": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680",
+          "bytes": 707
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_164/chat_template.jinja",
+          "sha256": "87a2728cb8dc9fe424d624542f6060ec05a1d285ebbec578bb078900e33396b5",
+          "bytes": 4116
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_164/config.json",
+          "sha256": "708af9aad3c6d31f99b8d2a42d0ee2cf6bef5bca3a55c695c335f698670ded9f",
+          "bytes": 1632
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_164/generation_config.json",
+          "sha256": "8c970692323e3ea0e9b8b0a4dca79388d31226e41f83c9fd6014804280ebf6e8",
+          "bytes": 138
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_164/merges.txt",
+          "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+          "bytes": 1671853
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_164/pytorch_model.bin",
+          "sha256": "051143a45f4be3f0210ce1952bec28829f6f66826de7fbac7c32700954336d01",
+          "bytes": 59073377555
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_164/special_tokens_map.json",
+          "sha256": "6676f091c8bc4d1b50146427cfde92073402866b87b6e39223227931b70083e9",
+          "bytes": 616
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_164/tokenizer_config.json",
+          "sha256": "67e5a0a11cd35f9c00ee52e0af4cdc0baa75fea0cb5fce7d1beb251b4621d15c",
+          "bytes": 5407
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_164/tokenizer.json",
+          "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+          "bytes": 11422654
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_164/vocab.json",
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+          "bytes": 2776833
+        }
+      ],
+      "all_hashes_recomputed": true
+    },
+    {
+      "step": 334,
+      "root": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_334",
+      "sha256sums_sha256": "a079a9d078d4d9e85b01d2b7b5f1d7cca874ec53184942136d9997b8af74b436",
+      "files": [
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_334/added_tokens.json",
+          "sha256": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680",
+          "bytes": 707
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_334/chat_template.jinja",
+          "sha256": "87a2728cb8dc9fe424d624542f6060ec05a1d285ebbec578bb078900e33396b5",
+          "bytes": 4116
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_334/config.json",
+          "sha256": "708af9aad3c6d31f99b8d2a42d0ee2cf6bef5bca3a55c695c335f698670ded9f",
+          "bytes": 1632
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_334/generation_config.json",
+          "sha256": "8c970692323e3ea0e9b8b0a4dca79388d31226e41f83c9fd6014804280ebf6e8",
+          "bytes": 138
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_334/merges.txt",
+          "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+          "bytes": 1671853
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_334/pytorch_model.bin",
+          "sha256": "ed55a205fdecd17780dcce94f88a32be4b78fde2456a4e315eac45d400e9dead",
+          "bytes": 59073377555
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_334/special_tokens_map.json",
+          "sha256": "6676f091c8bc4d1b50146427cfde92073402866b87b6e39223227931b70083e9",
+          "bytes": 616
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_334/tokenizer_config.json",
+          "sha256": "67e5a0a11cd35f9c00ee52e0af4cdc0baa75fea0cb5fce7d1beb251b4621d15c",
+          "bytes": 5407
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_334/tokenizer.json",
+          "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+          "bytes": 11422654
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_334/vocab.json",
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+          "bytes": 2776833
+        }
+      ],
+      "all_hashes_recomputed": true
+    },
+    {
+      "step": 497,
+      "root": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_497",
+      "sha256sums_sha256": "dd2af102425adbabe106acbe6505847610f1d8a8683864105275456f45ea3e98",
+      "files": [
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_497/added_tokens.json",
+          "sha256": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680",
+          "bytes": 707
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_497/chat_template.jinja",
+          "sha256": "87a2728cb8dc9fe424d624542f6060ec05a1d285ebbec578bb078900e33396b5",
+          "bytes": 4116
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_497/config.json",
+          "sha256": "708af9aad3c6d31f99b8d2a42d0ee2cf6bef5bca3a55c695c335f698670ded9f",
+          "bytes": 1632
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_497/generation_config.json",
+          "sha256": "8c970692323e3ea0e9b8b0a4dca79388d31226e41f83c9fd6014804280ebf6e8",
+          "bytes": 138
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_497/merges.txt",
+          "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+          "bytes": 1671853
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_497/pytorch_model.bin",
+          "sha256": "d44257a438a16e075903b5dbe2982eb9fde80c471f1271144d7dfeac90905a5a",
+          "bytes": 59073377555
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_497/special_tokens_map.json",
+          "sha256": "6676f091c8bc4d1b50146427cfde92073402866b87b6e39223227931b70083e9",
+          "bytes": 616
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_497/tokenizer_config.json",
+          "sha256": "67e5a0a11cd35f9c00ee52e0af4cdc0baa75fea0cb5fce7d1beb251b4621d15c",
+          "bytes": 5407
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_497/tokenizer.json",
+          "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+          "bytes": 11422654
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_497/vocab.json",
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+          "bytes": 2776833
+        }
+      ],
+      "all_hashes_recomputed": true
+    },
+    {
+      "step": 658,
+      "root": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_658",
+      "sha256sums_sha256": "8c65cc3f0c900fffddb760b5daf77590ea319cdb92039c4df12bc57b9982d0d4",
+      "files": [
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_658/added_tokens.json",
+          "sha256": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680",
+          "bytes": 707
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_658/chat_template.jinja",
+          "sha256": "87a2728cb8dc9fe424d624542f6060ec05a1d285ebbec578bb078900e33396b5",
+          "bytes": 4116
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_658/config.json",
+          "sha256": "708af9aad3c6d31f99b8d2a42d0ee2cf6bef5bca3a55c695c335f698670ded9f",
+          "bytes": 1632
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_658/generation_config.json",
+          "sha256": "8c970692323e3ea0e9b8b0a4dca79388d31226e41f83c9fd6014804280ebf6e8",
+          "bytes": 138
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_658/merges.txt",
+          "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+          "bytes": 1671853
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_658/pytorch_model.bin",
+          "sha256": "140d9e8d22c741587ddb40c9ffa6140850879a45263a8a6bbd0fcfafbbdb48c3",
+          "bytes": 59073377555
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_658/special_tokens_map.json",
+          "sha256": "6676f091c8bc4d1b50146427cfde92073402866b87b6e39223227931b70083e9",
+          "bytes": 616
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_658/tokenizer_config.json",
+          "sha256": "67e5a0a11cd35f9c00ee52e0af4cdc0baa75fea0cb5fce7d1beb251b4621d15c",
+          "bytes": 5407
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_658/tokenizer.json",
+          "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+          "bytes": 11422654
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_658/vocab.json",
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+          "bytes": 2776833
+        }
+      ],
+      "all_hashes_recomputed": true
+    }
+  ],
+  "distinct_export_weights": 5,
+  "shared_checkpoint_limitation": "Native checkpoint deduplication of query/key normalization weights and moments is a shared pinned-baseline limitation; actual per-rank numerical drift unmeasured. Export digests and native storage extents do not prove full-state lossless restoration. No historical-production gate or selective repair.",
+  "probe_accounting": {
+    "schema": 1,
+    "phase_incident": "8339e1ac-9675-4e2c-b609-552c1b436a12",
+    "cumulative_accelerator_window_limit_seconds": 1800,
+    "spent_seconds": 1783.9074669163674,
+    "remaining_seconds": 16.09253308363259,
+    "device_seconds": 8343.091856226325,
+    "attempts": [
+      {
+        "attempt": "skampere1_tp2",
+        "devices": 2,
+        "status": "FAILED",
+        "seconds": 988.027979850769,
+        "device_seconds": 1976.055959701538,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt1",
+        "devices": 8,
+        "status": "FAILED",
+        "seconds": 78.3024847432971,
+        "device_seconds": 626.4198779463768,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt2",
+        "devices": 8,
+        "status": "FAILED",
+        "seconds": 9.088251980021596,
+        "device_seconds": 72.70601584017277,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt3",
+        "devices": 8,
+        "status": "FAILED",
+        "seconds": 114.57696747779846,
+        "device_seconds": 916.6157398223877,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt4",
+        "devices": 8,
+        "status": "TIMEOUT",
+        "seconds": 593.9117828644812,
+        "device_seconds": 4751.29426291585,
+        "owned_children_remaining": [],
+        "lease_released": true
+      }
+    ],
+    "future_rule": "Never reset these receipts/counters. Remaining16seconds cannot complete a fresh native resume. No further disposable accelerator allocation in this phase; new scope/allowance must be explicit and prospective.",
+    "production_budget": "Original658updates/five-rung finite manifest unchanged; no invented overall production wall-time cap."
+  },
+  "completed_utc": "2026-10-11T09:28:11.068866+00:00",
+  "elapsed_seconds": 230.24,
+  "passed": true,
+  "experiment": "08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test",
+  "coordination_observed_utc": "2026-10-11T09:30:13.453293+00:00",
+  "native_runtime": {
+    "model": "gpt-6-astra",
+    "effort": "ultra",
+    "sandbox_mode": "danger-full-access",
+    "approval_policy": "never"
+  },
+  "parent_findings_sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba",
+  "parent_findings_acknowledged": true,
+  "policy_revision": "a2e2cfcc705ad871ef40dfb3d66c5be7213b59de",
+  "policy_remote_main_verified_same": true,
+  "project_revision_at_handoff": "06bfba42a068ceacebf1af4aadb0f1b5d0442915",
+  "project_revision_before_owned_changes": "d2b453776a9f979313b0fbd714c9978ddc0c0953",
+  "pipeline_identity": {
+    "pid": 4005026,
+    "start_ticks": 8095062,
+    "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+    "ppid": 5979,
+    "session": 4005026
+  },
+  "production_lease_released": true,
+  "active_validation_children": {
+    "ladder_val_sft_14B_f0p125": {
+      "identity": {
+        "pid": 1967498,
+        "start_ticks": 21128843,
+        "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+        "ppid": 5979,
+        "session": 1967498
+      },
+      "session": "rl4cv-e08-ladder-14B-f0p125",
+      "gpus": [
+        0
+      ],
+      "health": "active"
+    },
+    "ladder_val_sft_14B_f0p25": {
+      "identity": {
+        "pid": 1998280,
+        "start_ticks": 21141874,
+        "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+        "ppid": 5979,
+        "session": 1998280
+      },
+      "session": "rl4cv-e08-ladder-14B-f0p25",
+      "gpus": [
+        1
+      ],
+      "health": "active"
+    }
+  },
+  "validation": {
+    "complete_trained_rungs": 15,
+    "declared_trained_rungs": 20,
+    "known_cells": 20520,
+    "declared_cells": 25920,
+    "unknown_cells": 5400
+  },
+  "test_admission": {
+    "rejected": true,
+    "reason": "No committed, admitted selection"
+  },
+  "selection_and_test": "Pending all 20 trained validation rungs, frozen published selection, test manifest and validated judge controls.",
+  "stage_retry_counts": {
+    "ladder_val_sft_14B_f0p125": 0,
+    "ladder_val_sft_14B_f0p25": 0,
+    "ladder_val_sft_14B_f0p5": 0,
+    "ladder_val_sft_14B_f0p75": 0,
+    "ladder_val_sft_14B_f1p0": 0,
+    "ladder_val_sft_1p7B_f0p125": 0,
+    "ladder_val_sft_1p7B_f0p25": 0,
+    "ladder_val_sft_1p7B_f0p5": 0,
+    "ladder_val_sft_1p7B_f0p75": 0,
+    "ladder_val_sft_1p7B_f1p0": 0,
+    "ladder_val_sft_4B_f0p125": 0,
+    "ladder_val_sft_4B_f0p25": 0,
+    "ladder_val_sft_4B_f0p5": 0,
+    "ladder_val_sft_4B_f0p75": 0,
+    "ladder_val_sft_4B_f1p0": 0,
+    "ladder_val_sft_8B_f0p125": 0,
+    "ladder_val_sft_8B_f0p25": 0,
+    "ladder_val_sft_8B_f0p5": 0,
+    "ladder_val_sft_8B_f0p75": 0,
+    "ladder_val_sft_8B_f1p0": 0,
+    "sft_14B": 0,
+    "sft_8B": 0
+  },
+  "checks": {
+    "make_test": {
+      "command": "source env_e08.sh; source .venv/bin/activate; ELAN_HOME=/lfs/skampere1/0/brando9/.elan PATH=/lfs/skampere1/0/brando9/.elan/bin:$PATH env -u CODEX_HOME make test",
+      "passed": 268,
+      "skipped": 4,
+      "failed": 0,
+      "seconds": 204.22,
+      "log_path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/make_test.log",
+      "log_sha256": "e4faa62cca9a391348d37dfb0dbca0678fa0bce2e740a1dc53c8130dacab7bb9",
+      "production_source_changes": false
+    },
+    "pipeline_and_validation": "PASS",
+    "monitor_executable_hashes": {
+      "personal_codex": [
+        true,
+        "verified executable hashes"
+      ],
+      "vals_codex": [
+        true,
+        "verified executable hashes"
+      ]
+    },
+    "manifest_scientific_fields_preserved": true,
+    "downstream_inventory": {
+      "observed_utc": "2026-10-11T09:28:27.095155+00:00",
+      "scope": "Bounded downstream source and executable discovery; root remains sole implementation writer",
+      "native_session_id": "01a12a44-b2f7-7d73-8bc6-2ac4c91853de",
+      "native_runtime": {
+        "model": "gpt-6-astra",
+        "effort": "ultra",
+        "approval_policy": "never",
+        "sandbox_policy": {
+          "type": "danger-full-access"
+        }
+      },
+      "findings": {
+        "downstream_cli_imports": "PASS: analyze_ladder, make_ladder_manifest_e08, test_admission_e08, judge, deployment, analyze_test; generate/jobs/collect/summarize with launcher PYTHONPATH",
+        "live_pipeline_git_read": "PASS ls-remote under live process environment; readable existing credential path",
+        "lean_version": "4.22.0",
+        "vllm_version": "0.30.0",
+        "judge_controls_pack": "25 train control cells; rubric fingerprint matches; actual route controls not yet run",
+        "judge_configuration": "GPT-6 Sol high and Claude Opus 5.5 max, three ratings each; validated vb103_judge through frozen Vals Valkyrie route",
+        "test_admission": "REJECTED: No committed, admitted selection",
+        "unmet_scientific_boundaries": [
+          "Five trained-14B validation rungs",
+          "Frozen published selection and test manifest",
+          "Judge controls and validated formal-specification coverage before final test aggregates"
+        ]
+      },
+      "files_changed": false,
+      "scientific_calls_launched": 0
+    }
+  },
+  "funding": {
+    "coordinator": "Existing Vals Codex included allowance",
+    "included_weekly_allowance_remaining_percent_at_native_read": 89,
+    "reset_credits_consumed": 0,
+    "new_charges_enabled": false,
+    "scientific_judging_route": "Frozen Vals Valkyrie"
+  },
+  "coordinator_launched_scientific_calls": 0,
+  "new_resource_probes": 0,
+  "pipeline_owned_artifacts_adopted_for_publication": [
+    "ladder_manifest.json (export availability/hashes only)",
+    "train_logs/sft_14B_steps.csv",
+    "train_logs/sft_14B_summary.json"
+  ],
+  "limitations": [
+    "Validation results for all five trained-14B rungs remain unknown.",
+    "Native checkpoint payload hashes and per-rank normalization numerical drift are unmeasured; all Hugging Face export file hashes were recomputed.",
+    "Mercury resumed optimizer update and remote-production integration remain unmet; no new disposable allocation.",
+    "The existing pipeline commits locally before checking make-test success; test admission independently requires exact published artifacts.",
+    "The existing renderer can print zero placeholders for incomplete cohorts; completeness and known-cell counts remain authoritative."
+  ],
+  "durable_evidence": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/first_action_integrity.json",
+      "sha256": "bd0199a7805da82114dcc7a5ed0520656ae6f2fff0e21ebf5225d83771d0fd07"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/production_artifact_check.json",
+      "sha256": "a1eb9807e80c00d8d0c3fe93c0c6499ed122807447ad6c1963a5c6594e01be79"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/pipeline_artifact_check.json",
+      "sha256": "fc4d5ac8d3e7d08fdc2a0146540a92bd5949abf29b0e02af1f1ec403b8d3e55a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/test_receipt.json",
+      "sha256": "3c6bef8dda5b93698ef03c31aa4d703551d1349393e1c5d9c493b9dcdc5dd658"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/adac6942-e4d9-493e-b141-9acc43540db6/2/downstream_inventory.json",
+      "sha256": "980782edc5bd8fc7077ceea8dbcd6c9d7c214c13b93162ff2bfc154df1c6f498"
+    }
+  ]
+}
