@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "experiment": "08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test",
+  "observed_utc": "2026-10-11T07:57:16.645358+00:00",
+  "followup_observed_utc": "2026-10-11T07:58:08.271517+00:00",
+  "runtime": "skampere1:/lfs/skampere1/0/brando9/rl4cv_e08",
+  "training": {
+    "status": "RUNNING",
+    "saved_steps": [
+      82,
+      164,
+      334
+    ],
+    "saved_updates": 334,
+    "declared_updates": 658,
+    "consumed_samples": 668,
+    "valid_tokens": 2884708,
+    "last_saved_segment_exit_utc": "2026-10-11T07:51:14Z",
+    "last_saved_segment_exit_code": 0,
+    "next_segment_target": 497,
+    "followup_last_logged_completed_step": 373,
+    "target_is_not_completion_count": true,
+    "scientific_retries": 0,
+    "launcher_pid": 456540,
+    "launcher_start_ticks": 20305429,
+    "pipeline_pid": 4005026,
+    "pipeline_start_ticks": 8095062,
+    "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+    "layout": "historical_tp8",
+    "active_lease": "sft_14B",
+    "active_gpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "validation": {
+    "completed_rungs": 15,
+    "declared_rungs": 20,
+    "completed_cells": 20520,
+    "declared_cells": 25920,
+    "missing_cells": 5400,
+    "selection": "pending",
+    "held_out": "not_admitted"
+  },
+  "coordinator_phase": {
+    "incident_id": "53cd99c4-2406-4b25-8933-d6cd76c0a6d1",
+    "status": "VERIFIED_COMPLETE",
+    "exit_code": 0,
+    "exit_utc": "2026-10-11T07:37:26Z",
+    "original_deadline_utc": "2026-10-11T08:10:02.833185+00:00",
+    "model": "gpt-6-astra",
+    "effort": "ultra",
+    "sandbox_mode": "danger-full-access",
+    "approval_policy": "never",
+    "outputs_hash_verified": 15,
+    "outputs_declared": 15,
+    "published_files_hash_verified": 5,
+    "published_files_declared": 5,
+    "recorded_owner_process_identities_absent": 64,
+    "published_commits": [
+      "dd5d18d316395a52159f20f493a407a1f98b548b",
+      "06bfba42a068ceacebf1af4aadb0f1b5d0442915"
+    ],
+    "existing_test_receipt": {
+      "passed": 268,
+      "skipped": 4,
+      "failed": 0,
+      "seconds": 207.88,
+      "rerun_for_this_observation": false
+    },
+    "latest_parent_findings_sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba",
+    "latest_parent_findings_acknowledged": true
+  },
+  "watches": {
+    "coordinator_status": "ARMED",
+    "coordinator_observed_utc": "2026-10-11T07:55:02.334017+00:00",
+    "owner": null,
+    "incident": null,
+    "coordinator_cron_minutes": 5,
+    "pipeline_cron_minutes": 15,
+    "both_reboot_entries_present": true,
+    "watchdog_checked_utc": "2026-10-11T07:45:03Z",
+    "watchdog_pipeline_state": "running"
+  },
+  "limits_preserved": {
+    "probe_used_seconds": 1783.907,
+    "probe_limit_seconds": 1800,
+    "experiment_06": "closed",
+    "experiment_09": "closed",
+    "experiment_08_overall_wall_or_device_cap": null
+  },
+  "limitations": [
+    "Training execution progress does not establish learned-weight improvement.",
+    "Native checkpoint structure checks do not establish full per-rank normalization-state fidelity; payload hashes and drift were not measured."
+  ],
+  "sources": [
+    "ckpt/14B/checkpoints/step_334/training_info.json",
+    "ckpt/driver_14B.log",
+    "ckpt/14B/driver_logs/segment_to_step_497.log",
+    "pipeline/state.json",
+    "pipeline/leases.json",
+    "watchdog/status.json",
+    "owner_recovery/monitor_state.json",
+    "owner_recovery/incidents/53cd99c4-2406-4b25-8933-d6cd76c0a6d1/receipt.json",
+    "owner_recovery/incidents/53cd99c4-2406-4b25-8933-d6cd76c0a6d1/2/phase_result.json"
+  ]
+}
