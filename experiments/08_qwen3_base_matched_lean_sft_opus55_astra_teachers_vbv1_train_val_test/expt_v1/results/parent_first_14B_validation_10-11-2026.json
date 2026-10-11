@@ -1,0 +1,433 @@
+{
+  "experiment": "08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test",
+  "observed_utc": "2026-10-11T13:13:57.752272+00:00",
+  "runtime": "skampere1:/lfs/skampere1/0/brando9/rl4cv_e08",
+  "complete_rung": {
+    "label": "sft_14B_f0p25_g8",
+    "checkpoint_step": 164,
+    "scored_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_14B_f0p25_g8.jsonl",
+    "scored_sha256": "f49f6d80de47b30b2c0a78da3938e724a942b0275fdead529a2cfd1b03f7cc00",
+    "rows": 1080,
+    "unique_keys": 1080,
+    "declared_cells": 1080,
+    "missing_keys": 0,
+    "extra_keys": 0,
+    "validation_ids_sha256": "666d6d6b31cb3f736d8ca0eee625ff5ad5ea31efa7e0ce3a10c350091848c84d",
+    "task_count": 135,
+    "sample_counts": {
+      "0": 135,
+      "1": 135,
+      "2": 135,
+      "3": 135,
+      "4": 135,
+      "5": 135,
+      "6": 135,
+      "7": 135
+    },
+    "status_counts": {
+      "scored": 1080
+    },
+    "measured_counts": {
+      "True": 952,
+      "False": 128
+    },
+    "admitted_counts": {
+      "True": 952,
+      "False": 128
+    },
+    "sample_csvs": [
+      {
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scores/sft_14B_f0p25_g8_s0/scsc_sft_14B_f0p25_g8_s0_sft_14B_f0p25_g8_s0_per_task.csv",
+        "sha256": "63992907fdd782950b2a4cc362e01ab261e5615e9219573a105497cde916b175",
+        "rows": 135,
+        "distinct_tasks": 135,
+        "task_set_matches_validation": true
+      },
+      {
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scores/sft_14B_f0p25_g8_s1/scsc_sft_14B_f0p25_g8_s1_sft_14B_f0p25_g8_s1_per_task.csv",
+        "sha256": "6a1af77d5cba87bc22477e7ff3b87049df045727076e1d13600c4948e74fc84b",
+        "rows": 135,
+        "distinct_tasks": 135,
+        "task_set_matches_validation": true
+      },
+      {
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scores/sft_14B_f0p25_g8_s2/scsc_sft_14B_f0p25_g8_s2_sft_14B_f0p25_g8_s2_per_task.csv",
+        "sha256": "8eaff7a8e8ac3342bee7574e9de46445ac06c7fa4b6b0174048235fbe117e2a8",
+        "rows": 135,
+        "distinct_tasks": 135,
+        "task_set_matches_validation": true
+      },
+      {
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scores/sft_14B_f0p25_g8_s3/scsc_sft_14B_f0p25_g8_s3_sft_14B_f0p25_g8_s3_per_task.csv",
+        "sha256": "1ae4c4f27d0702d13dc035b8f1b0b0e1be836d526618fa5ece10f0ee6c4935b5",
+        "rows": 135,
+        "distinct_tasks": 135,
+        "task_set_matches_validation": true
+      },
+      {
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scores/sft_14B_f0p25_g8_s4/scsc_sft_14B_f0p25_g8_s4_sft_14B_f0p25_g8_s4_per_task.csv",
+        "sha256": "153a0a0748adad8c607fc187be800589ca5c016fde45851aebd2acc126f6fa56",
+        "rows": 135,
+        "distinct_tasks": 135,
+        "task_set_matches_validation": true
+      },
+      {
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scores/sft_14B_f0p25_g8_s5/scsc_sft_14B_f0p25_g8_s5_sft_14B_f0p25_g8_s5_per_task.csv",
+        "sha256": "08c4ae65f69341bea39a27baa24fcfa4501514ae7037b6b78988f66067a66ada",
+        "rows": 135,
+        "distinct_tasks": 135,
+        "task_set_matches_validation": true
+      },
+      {
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scores/sft_14B_f0p25_g8_s6/scsc_sft_14B_f0p25_g8_s6_sft_14B_f0p25_g8_s6_per_task.csv",
+        "sha256": "73c9ac5f86407ce9d08b5e11aabb614649dfd41f4cf061735341b1939f8157df",
+        "rows": 135,
+        "distinct_tasks": 135,
+        "task_set_matches_validation": true
+      },
+      {
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scores/sft_14B_f0p25_g8_s7/scsc_sft_14B_f0p25_g8_s7_sft_14B_f0p25_g8_s7_per_task.csv",
+        "sha256": "f4d467c407f862c9ccecc1be348541e0f17f8bb789d7741d59d44fea18b9a857",
+        "rows": 135,
+        "distinct_tasks": 135,
+        "task_set_matches_validation": true
+      }
+    ],
+    "summary_sha256": "ba6114593ec676213091f50d128e78cc388e01e5c4bd322e756209a2d6259299",
+    "protocol_accounting": "PROTOCOL.md section 9 scores length-capped responses as they stand despite transport measured=false. All 1080 gate inputs are known; 952 transport-measured/admitted and 128 length-capped transport-unmeasured/not-admitted. No missing-generation or failed-scoring cell was silently converted to a measured zero.",
+    "gates": {
+      "a_extraction": {
+        "n": 952,
+        "of": 1080,
+        "pass": false,
+        "share": 0.8815,
+        "threshold": 0.9
+      },
+      "b_capped": {
+        "n": 128,
+        "of": 1080,
+        "pass": false,
+        "share": 0.1185,
+        "threshold": 0.1
+      },
+      "c_mixed": {
+        "n": 25,
+        "of": 135,
+        "pass": true,
+        "share": 0.1852,
+        "threshold": 0.05,
+        "wilson95": [
+          0.1287,
+          0.2591
+        ]
+      },
+      "complete": true,
+      "n_declared": 1080,
+      "n_known": 1080,
+      "pass": false
+    },
+    "gate_interpretation": "Complete rung, not a passing checkpoint: extraction 952/1080 is below the frozen minimum 972 and cap count 128/1080 exceeds the frozen maximum 108. Continue the other four declared 14B rungs before applying frozen cross-size selection. This is not a treatment-effect estimate.",
+    "raw_sha256_independently_verified": "7bbe594cda9a00d044fe642e6db23855d6a9069ff0d6594ba8f8dca565f1d237",
+    "capped_response_detail": {
+      "count": 128,
+      "finish_reason": "length",
+      "transport_measured": false,
+      "transport_admitted": false,
+      "truncated": true,
+      "extraction": "no_lean_block",
+      "scorer_factors": "All 128 have explicit IC_tests=0 and IC_proofs=0 from completed scorer receipts on empty extracted Lean; none represents absent generation or failed scoring."
+    }
+  },
+  "pipeline": {
+    "pid": 4005026,
+    "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+    "last_tick": "2026-10-11T13:12:50+00:00",
+    "summary": {
+      "e09_admission": "closed ([])",
+      "ladder_val_sft_14B_f0p125": "running",
+      "ladder_val_sft_14B_f0p25": "done",
+      "ladder_val_sft_14B_f0p5": "running",
+      "ladder_val_sft_14B_f0p75": "running",
+      "ladder_val_sft_14B_f1p0": "running",
+      "ladder_val_sft_1p7B_f0p125": "done",
+      "ladder_val_sft_1p7B_f0p25": "done",
+      "ladder_val_sft_1p7B_f0p5": "done",
+      "ladder_val_sft_1p7B_f0p75": "done",
+      "ladder_val_sft_1p7B_f1p0": "done",
+      "ladder_val_sft_4B_f0p125": "done",
+      "ladder_val_sft_4B_f0p25": "done",
+      "ladder_val_sft_4B_f0p5": "done",
+      "ladder_val_sft_4B_f0p75": "done",
+      "ladder_val_sft_4B_f1p0": "done",
+      "ladder_val_sft_8B_f0p125": "done",
+      "ladder_val_sft_8B_f0p25": "done",
+      "ladder_val_sft_8B_f0p5": "done",
+      "ladder_val_sft_8B_f0p75": "done",
+      "ladder_val_sft_8B_f1p0": "done",
+      "selection": "pending (16/20 rungs valid)",
+      "sft_1.7B": "done",
+      "sft_14B": "done",
+      "sft_4B": "done",
+      "sft_8B": "done"
+    }
+  },
+  "monitor": {
+    "status": "ARMED",
+    "owner": null,
+    "incident": null,
+    "observed_utc": "2026-10-11T13:10:02.679079+00:00"
+  },
+  "watchdog": {
+    "checked_utc": "2026-10-11T13:00:02Z",
+    "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+    "host": "skampere1.stanford.edu",
+    "jobs": [
+      {
+        "name": "pipeline",
+        "session": "rl4cv-e08-pipeline",
+        "state": "running",
+        "pane_pid": "4005026",
+        "processes": 1,
+        "fresh_age_s": "9"
+      }
+    ]
+  },
+  "active_leases": {
+    "ladder_val_sft_14B_f0p75": {
+      "boundary": "stage end (resumable launcher; lease released when the merged generation exists or the stage finishes)",
+      "cuda_visible_devices": "0",
+      "expires_utc": null,
+      "gpus": [
+        0
+      ],
+      "identity": {
+        "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+        "host": "skampere1.stanford.edu",
+        "pid": 3782222,
+        "pid_start": "22015041"
+      },
+      "kind": "inference",
+      "owner": "e08-pipeline",
+      "released": false,
+      "released_at": null,
+      "since": "2026-10-11T11:43:16+00:00",
+      "stage": "ladder_val_sft_14B_f0p75"
+    },
+    "ladder_val_sft_14B_f1p0": {
+      "boundary": "stage end (resumable launcher; lease released when the merged generation exists or the stage finishes)",
+      "cuda_visible_devices": "1",
+      "expires_utc": null,
+      "gpus": [
+        1
+      ],
+      "identity": {
+        "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+        "host": "skampere1.stanford.edu",
+        "pid": 496083,
+        "pid_start": "22539312"
+      },
+      "kind": "inference",
+      "owner": "e08-pipeline",
+      "released": false,
+      "released_at": null,
+      "since": "2026-10-11T13:10:38+00:00",
+      "stage": "ladder_val_sft_14B_f1p0"
+    }
+  },
+  "other_rungs": {
+    "f0p125": {
+      "status": "running",
+      "retries": 0,
+      "durable_generation_rows": 1080,
+      "completed_sample_csvs": 7,
+      "complete_summary_exists": false
+    },
+    "f0p5": {
+      "status": "running",
+      "retries": 0,
+      "durable_generation_rows": 1080,
+      "completed_sample_csvs": 0,
+      "complete_summary_exists": false
+    },
+    "f0p75": {
+      "status": "running",
+      "retries": 0,
+      "durable_generation_rows": 0,
+      "completed_sample_csvs": 0,
+      "complete_summary_exists": false
+    },
+    "f1p0": {
+      "status": "running",
+      "retries": 0,
+      "durable_generation_rows": 0,
+      "completed_sample_csvs": 0,
+      "complete_summary_exists": false
+    }
+  },
+  "selection_exists": false,
+  "test_manifest_exists": false,
+  "publication": {
+    "runtime_head": "bdacb706c39ee87d3ccdebc432e0a23fc9d22675",
+    "runtime_working_file_sha256": {
+      "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/validation_ladder.json": "8c968ca38432bbcbf3923954154e0a247e91790fc61c1d0ef0941ac2d9745f2a",
+      "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder_manifest.json": "00a618dd04fb0c217ebdccbc494f2d9220923733e926f6409c117881ae375fae",
+      "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_14B_f0p25_validation_cells.csv": "23f6c31c01c29a798be1b5394f03a0198de025aa24384e8225a503df58fef060",
+      "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_14B_f0p25_validation_per_task.csv": "8d69b8c5b156f7cb1f8b3b2c9b9c0a6c675fe038af4d21ed49657cdf5fc41837"
+    },
+    "published_blob_sha256": {
+      "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/validation_ladder.json": "8c968ca38432bbcbf3923954154e0a247e91790fc61c1d0ef0941ac2d9745f2a",
+      "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder_manifest.json": "e9adce9015092820e1b3532a5593ea0ec2a2ce1a2a6eb7523509c18f02ea32e3",
+      "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_14B_f0p25_validation_cells.csv": "23f6c31c01c29a798be1b5394f03a0198de025aa24384e8225a503df58fef060",
+      "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_14B_f0p25_validation_per_task.csv": "8d69b8c5b156f7cb1f8b3b2c9b9c0a6c675fe038af4d21ed49657cdf5fc41837"
+    },
+    "ladder_manifest_difference": {
+      "fields": [
+        "written_utc"
+      ],
+      "published": "2026-10-11T12:46:52+00:00",
+      "runtime": "2026-10-11T13:10:38+00:00",
+      "all_other_fields_equal": true,
+      "meaning": "The live launcher refreshed only its timestamp after publication. The published validation ladder points to the exact published manifest digest; there is no frozen scientific manifest difference."
+    }
+  },
+  "scope": "Read-only parent observation; no new model calls, responses, optimizer updates, retries, leases or scientific changes.",
+  "recorded_at_utc": "2026-10-11T13:20:02.751257+00:00",
+  "checks": {
+    "unique_manifest_keys": true,
+    "all_eight_sample_csv_task_sets_match": true,
+    "published_validation_ladder_and_two_rung_csv_hashes_match": true,
+    "published_ladder_manifest_hash_matches_validation_ladder_reference": true
+  },
+  "validation_accounting": {
+    "declared_systems": 24,
+    "declared_trained_rungs": 20,
+    "complete_systems": 20,
+    "complete_trained_rungs": 16,
+    "declared_tasks_per_system": 135,
+    "samples_per_task": 8,
+    "declared_cells": 25920,
+    "cells_in_complete_systems": 21600,
+    "cells_outside_complete_systems": 4320,
+    "count_meaning": "Completeness of finalized kernel-scoring receipts and selection gate inputs, not the count of transport-admitted responses or completed official three-factor measurements. Partial sample CSVs in unfinished rungs remain separately recorded, so 4320 does not mean all those responses are absent."
+  },
+  "limitations": [
+    "This is an execution/accounting observation, not evidence of learned-weight improvement, repair improvement or correlation.",
+    "No formal-specification-coverage judge measurements or official three-factor aggregates are claimed by these kernel-validation counts.",
+    "No new held-out test generation is admitted before the frozen selection commit.",
+    "Native checkpoint normalization-state limitation remains as previously documented; no numerical restoration claim is added.",
+    "Production source was not changed by this parent observation; existing full-test evidence and its tested-revision limitation remain in parent_supervision_10-11-2026_0316.json."
+  ],
+  "independent_process_watch_check": {
+    "observer": "parent read-only verification agent",
+    "source_receipt_sha256": "38cd574ed00c620b24c0ff733cede429975f90e3f9f533cb21a1a9b09f1be26c",
+    "receipt": {
+      "kind": "experiment08_prior_observed_process_watch_health",
+      "observation_utc": "2026-10-11T13:12:56.844897Z",
+      "source_note": "Preserves the compact, previously observed health fields available in this agent context. No new health polling was performed while writing this receipt. Unrecorded fields are omitted.",
+      "host": "skampere1",
+      "runtime": "/lfs/skampere1/0/brando9/rl4cv_e08",
+      "effective_permissions": {
+        "sandbox": "danger-full-access",
+        "approval_policy": "never",
+        "evidence": "active developer permission context"
+      },
+      "constraints": {
+        "scope": "read-only process/watch observation",
+        "ssh_options": [
+          "-S",
+          "none",
+          "-o",
+          "ControlMaster=no"
+        ],
+        "scientific_calls": 0,
+        "runtime_mutations": 0,
+        "new_workers": 0,
+        "holdout_content_reads": 0
+      },
+      "first_useful_inspection": "The prior bounded SSH inspection returned process identity, real scorer/Lean children, GPU state, leases and installed watch entries; these observed fields are preserved below.",
+      "pipeline": {
+        "pid": 4005026,
+        "start_ticks": 8095062,
+        "identity_match": true,
+        "last_tick_utc": "2026-10-11T13:12:50Z"
+      },
+      "scoring": {
+        "sft_14B_f0p125": {
+          "current_sample": 7,
+          "scorer_pid": 67927,
+          "lean_child_pids": [
+            452908,
+            453062
+          ]
+        },
+        "sft_14B_f0p5": {
+          "scorer_pids": [
+            491429,
+            491434,
+            491435,
+            491436
+          ],
+          "samples": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "lean_or_lake_children_count": 8
+        }
+      },
+      "generation": {
+        "sft_14B_f0p75": {
+          "launcher_pid": 3782222,
+          "launcher_start_ticks": 22015041,
+          "engine_pid": 3786801,
+          "device": 0,
+          "gpu_utilization_percent": 100,
+          "gpu_memory_used_mib": 70291
+        },
+        "sft_14B_f1p0": {
+          "launcher_pid": 496083,
+          "launcher_start_ticks": 22539312,
+          "generator_pid": 496095,
+          "engine_pid": 498469,
+          "device": 1,
+          "gpu_utilization_percent": 0,
+          "gpu_memory_used_mib": 30509,
+          "stage_observation": "initializing"
+        }
+      },
+      "active_leases": {
+        "sft_14B_f0p75": {
+          "device": 0,
+          "launcher_identity_match": true
+        },
+        "sft_14B_f1p0": {
+          "device": 1,
+          "launcher_identity_match": true
+        }
+      },
+      "owner_monitor": {
+        "observed_state": "ARMED",
+        "owner": null,
+        "incident": null,
+        "latest_receipt_utc": "2026-10-11T13:10:02Z",
+        "installed_cadence_minutes": 5,
+        "reboot_entry_present": true
+      },
+      "watchdog": {
+        "latest_receipt_utc": "2026-10-11T13:00:02Z",
+        "installed_cadence_minutes": 15,
+        "reboot_entry_present": true
+      },
+      "concrete_failures": []
+    }
+  },
+  "automation": {
+    "id": "overnight-factored-score-learning",
+    "status": "ACTIVE",
+    "cadence_minutes": 45,
+    "target_thread": "01a11d6a-30aa-7020-a672-6b34546fdeee",
+    "prompt_update_readback_verified": true,
+    "stop_condition": "Full study completion, verified final report and monitor retirement; no new overall study cap."
+  }
+}

@@ -2,9 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/CKPT_MASTER_tmuxnone_cxd_01a11d6a.md>
 
-**TLDR:** Historical eight-A100 14B training completed 658/658 updates and five exports. At 10-11-2026 03:16 PDT the first two trained 14B validation rungs were actively generating, with 341/1024 and 415/1024 prompts processed in their first batches. No new durable/scored 14B cells are available; full validation remains 20,520/25,920, missing 5,400, with selection/test pending. The latest Vals coordination phase is verified complete and published; its owner exited, while the original scientific pipeline and recovery watches remain healthy. Learned-weight improvement remains unmeasured.
+**TLDR:** Historical eight-A100 14B training completed 658/658 updates and five exports. At 10-11-2026 06:13 PDT its step-164 validation rung has 1,080/1,080 finalized kernel-scoring receipts, bringing completed validation systems to 21,600/25,920 cells and trained rungs to 16/20. That rung includes 128 length-capped responses and fails two frozen readiness gates; the other four 14B rungs continue before selection. The original pipeline and recovery watches are healthy, with no active model owner. Selection/test and learned-weight improvement remain pending.
 
-Created: 10-08-2026 16:28 PDT. Last updated: 10-11-2026 03:17 PDT. **Status:** 14B TRAINING/EXPORTS_COMPLETE; VALIDATION_RUNNING (two of five 14B rungs active); latest coordinator phase VERIFIED_COMPLETE; recovery monitor ARMED; heartbeat ACTIVE. Two-A100 route REJECTED/CLEAN; Mercury2 PARTIAL/NOT_ADMITTED/CLEAN. Experiments 09 and 06 remain closed.
+Created: 10-08-2026 16:28 PDT. Last updated: 10-11-2026 06:21 PDT. **Status:** 14B TRAINING/EXPORTS_COMPLETE; VALIDATION_RUNNING (one of five 14B rungs complete, four active); latest coordinator phase VERIFIED_COMPLETE; recovery monitor ARMED; heartbeat ACTIVE. Two-A100 route REJECTED/CLEAN; Mercury2 PARTIAL/NOT_ADMITTED/CLEAN. Experiments 09 and 06 remain closed.
 
 ## 1. Identity and recovery
 
@@ -17,7 +17,7 @@ Preserve the original shared checkout and other owners' dirty files. Publish onl
 | Experiment | Verified state and declared denominators |
 |---|---|
 | `09_qwen3_1p7b_grpo_scsc_scalar_vs_factor_feedback_vbv1_d013` | Scorer controls 14/14 matched expected outcomes. Live coverage controls 50/50 measured ratings, all frozen category gates passed; this is not a claim of 50/50 expected-label accuracy. Read-only model/feedback forward pass passed. Calibration 0/256 rollouts, 0/512 responses; training 0/6 trajectories and zero optimizer updates; validation 0/945 cells, test 0/1,554 cells. The actual disposable batch completed 32 two-turn trajectories and passed its 4,077-token assistant-mask audit. A read-only replay found 4 actions outside recomputed support and 367 supported actions beyond the frozen log-probability tolerance; zero optimizer steps were taken. The adapter attempt is FAILED_TECHNICAL_GATE; optimizer, save/reload and full-context controls were not passed. This is not a negative learning result. |
-| `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test` | At 10-11-2026 03:16 PDT, original 14B training (658/658) and five exports are complete; the first two trained 14B validation rungs are generating on devices 0/1, with 341/1024 and 415/1024 first-batch prompts processed. Validation remains 15/20 matched trained rungs and 20,520/25,920 full cells, with 5,400 missing. All five exports and validation generation/scoring for 1.7B/4B/8B are complete. The latest Vals phase finished and published; the original pipeline continues with recovery ARMED and no active model owner. Selection and held-out testing remain unadmitted. The hardware probes remain separate from scientific training. |
+| `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test` | At 10-11-2026 06:13 PDT, original 14B training (658/658) and five exports are complete. Step-164 validation is complete: 1,080 unique cells, all gate inputs known, including 128 length-capped responses whose transport measured flag is false. The rung fails extraction/cap gates. Completed validation systems cover 21,600/25,920 cells; 4,320 lie outside completed rungs, including partial scoring evidence retained separately. Trained rungs complete: 16/20. Steps 82/334 are scoring; steps 497/658 are generating on devices 0/1. The original pipeline continues, recovery ARMED, no active model owner. Selection and new held-out testing remain pending; no improvement conclusion yet. |
 | `06_swebench_lite_factor_feedback_matched_budget` | Version 3 BLOCKED: all 3/3 coordinator launches used. Last owner exited at 19:34:21 PDT with `error_max_turns`, 90 configured turns/91 reported. Official controls 0/16, author calls 0/8, solver cells 0/56. Five preliminary smoke executions remain non-admitted; four lacked enforced CPU/memory bounds and the fifth failed its observer. This is infrastructure/coordinator blockage, not evidence about repair efficacy. |
 | `02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics` | Phase-A version 3 completed/PARTIAL in `572e28f`: 587 kept pairs over 455/970 tasks, 42/2,910 cells unmeasured. Below frozen SUFFICIENT thresholds of 1,024 pairs and 512 tasks. Do not restart completed work. |
 
@@ -267,17 +267,26 @@ At **14:38:39 PDT**, the monitor accepted the resource owner's completed receipt
 - The monitor is ARMED with no owner/incident; the watchdog checked the original pipeline healthy at 03:15:03. Both scheduled and reboot entries remain installed for the five-minute coordinator watch and fifteen-minute pipeline watchdog. Preserve those watches and active scientific leases. The next semantic event or actual failure uses the existing recovery contract; do not reopen this completed incident or dispatch for ordinary prompt progress.
 - Durable parent evidence: `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/parent_supervision_10-11-2026_0316.json`. Continue all five validation rungs, frozen selection and admitted held-out stages. No new learning, repair or correlation result is inferred from execution progress.
 
-**TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched training and exports are complete; the original pipeline is making validation progress with verified coordinator closure and armed recovery.
+## 18. First complete 14B validation rung (10-11-2026)
+
+- The original pipeline finalized fraction 0.25 / step 164 at 05:46:47 PDT and published its ladder artifacts in `bdacb706c39ee87d3ccdebc432e0a23fc9d22675`. Parent observation at 06:13:57 independently verified all 1,080 distinct validation task/sample keys against the frozen 135-task × eight-sample manifest, no missing/extra keys, and all eight 135-task sample outputs. Scored receipt digest: `f49f6d80de47b30b2c0a78da3938e724a942b0275fdead529a2cfd1b03f7cc00`.
+- Completeness is separate from transport admission and readiness. The rung has 952 transport-measured/admitted and 128 length-capped transport-unmeasured responses. Protocol section 9 explicitly scores capped responses as they stand and includes them in the cap gate; their false transport flag is not a missing gate input. Extraction 952/1,080 misses the frozen minimum 972, and 128 capped cells exceeds the frozen maximum 108. The checkpoint therefore does not pass readiness. These are prespecified point-estimate gates (p-val=n/a), not learned-weight treatment effects; no gate or response is changed.
+- Completed validation systems now account for 21,600/25,920 finalized kernel-scoring receipts; trained rungs are 16/20 complete. The remaining 4,320 cells lie outside completed rungs, not all outside durable evidence: step 82 already has 1,080 raw rows and seven completed sample tables; step 334 has 1,080 raw rows and active scoring. Steps 497/658 are generating under the original two-generator limit on devices 0/1. Every scientific retry count remains zero. Preserve each full 1,080-cell denominator and all partial evidence.
+- Parent matched the published validation-ladder and both step-164 cell/task table hashes to runtime files. The live `ladder_manifest.json` differs from the published blob only in `written_utc` (06:10:38 versus 05:46:52 PDT); every scientific field is equal, and the published ladder correctly references the published manifest hash. Do not misreport a live timestamp refresh as a four-of-four byte match.
+- Original pipeline PID 4005026/start8095062 remains active; actual scoring children and both generation owners/leases were checked. The monitor is ARMED without owner/incident; scheduled/reboot recovery and watchdog entries remain installed. No coordinator was dispatched for this ordinary validation progress. Closed incidents and their attempt/deadline records remain unchanged.
+- Evidence: `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/parent_first_14B_validation_10-11-2026.json`. Continue all remaining validation rungs, then apply and publish frozen selection before any new test generation. Kernel-validation completeness does not claim completed coverage judging or official three-factor evaluation, and it does not establish learning, repair or correlation improvement. The heartbeat prompt was refreshed and read back ACTIVE, preserving its 45-minute cadence, original chat and full-study stopping condition.
+
+**TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched training and exports are complete; the first 14B validation rung is finalized and four others continue before selection.
 **Snapshot:**
 ```text
 14B training / exports: 658/658 updates; 5/5 exports
-active validation first batches: 341/1024 and 415/1024 prompts
-full denominator per rung: 1080 cells; remaining rungs: 3
-new durable/scored 14B cells: 0 at 03:16 PDT
-full scored validation: 20520/25920; missing 5400
-selection / new held-out evaluation: not admitted
-coordinator: VERIFIED_COMPLETE; 18/18 hashes; 8/8 Git blobs
-recorded coordinator/descendant identities alive: 0/66
-recovery: ARMED; pipeline and watches healthy
+14B step164 validation: 1080/1080 finalized receipts
+transport measured / length-capped: 952/1080 and 128/1080
+readiness at step164: extraction and cap gates fail
+completed validation systems: 21600/25920 cells
+outside completed rungs: 4320 cells; partial evidence retained
+trained validation rungs complete: 16/20
+selection / new held-out evaluation: pending
+pipeline healthy; recovery ARMED; no active model owner
 probe allocation unchanged: 1783.907/1800 seconds
 ```
