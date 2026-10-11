@@ -1,0 +1,1115 @@
+{
+  "observed_utc": "2026-10-11T16:57:41.189493+00:00",
+  "experiment": "08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test",
+  "kind": "parent_full_validation_and_frozen_selection_verification",
+  "publication": {
+    "selection_revision": "089a32358f8ebbd45680042884f78dff67aa338b",
+    "test_manifest_revision": "bee4580de580beee2729899956f2291b87ba6584",
+    "selection_sha256": "47e12d6c217a3e62e47e0d5bcef13478f2ecf52098b7ac6163df91e216e21cdb",
+    "test_manifest_sha256": "ed128d11e8d5d09e7d19244f5480f24360f01530510240a9d1176b0a446136fa",
+    "validation_ladder_sha256": "8b5386f73f2dc9072a2a81aa33912ef8658cfa7b1983f93248ad89142fa503e3",
+    "ladder_manifest_sha256": "3013db1230f27cf021ace50ff53abcc6de2e9f6964ac62968baa80ccb577a948",
+    "matched_runtime_git_files": 52
+  },
+  "validation_source_receipts": {
+    "base14b": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "4bdbde58d14bec4e4c520239ae68af47bcef8c7fa0416b8dbeaf88dfde264940"
+    },
+    "base_1p7B_e05": {
+      "manifest_keys_match": true,
+      "sha256": "d15bdbced56252d1466ace05c3b3137082e112fae9cfdd0ea47bd4fa3c8d67af",
+      "source_rows_all_splits": 7168,
+      "validation_rows": 1080,
+      "unique_validation_keys": 1080,
+      "scope": "Shared experiment05 source covers all splits; validation keys alone were checked. File hash covers its complete source artifact; no test outcomes used."
+    },
+    "base_4B_e05": {
+      "manifest_keys_match": true,
+      "sha256": "f3b6d2edbd2fa52fdaa3ba832ba4fc19b397ed620594ea1fa5b345e8880ea061",
+      "source_rows_all_splits": 7168,
+      "validation_rows": 1080,
+      "unique_validation_keys": 1080,
+      "scope": "Shared experiment05 source covers all splits; validation keys alone were checked. File hash covers its complete source artifact; no test outcomes used."
+    },
+    "base_8B_e05": {
+      "manifest_keys_match": true,
+      "sha256": "aef4ee5a302d545b79abf2e44642e8731c05911c2cabda2805e2a386da9212ef",
+      "source_rows_all_splits": 7168,
+      "validation_rows": 1080,
+      "unique_validation_keys": 1080,
+      "scope": "Shared experiment05 source covers all splits; validation keys alone were checked. File hash covers its complete source artifact; no test outcomes used."
+    },
+    "sft_14B_f0p125": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "c7c645b30ce55a74315d30beab06f567c11cd567a91617d2924dd892bc407c1d"
+    },
+    "sft_14B_f0p25": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "f49f6d80de47b30b2c0a78da3938e724a942b0275fdead529a2cfd1b03f7cc00"
+    },
+    "sft_14B_f0p5": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "3cbaa8573a65077c091da04fe45bd17bec9c15d7212f0b6ba1bfb87883caf019"
+    },
+    "sft_14B_f0p75": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "aa8e8819d8a6308dac8ad3fd6f5a0e3f2f1ccaa769ce0c6a3a4d343b9d0d2ae5"
+    },
+    "sft_14B_f1p0": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "1ddf4c8aa9d3c6d1c6ea497855fecfea2573944c9c2c8beac17518009661f98f"
+    },
+    "sft_1p7B_f0p125": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "aa8579dcef5b83d5bbc4a78714bf6c12bc35fa71e5ba14bb1258e24098eba18a"
+    },
+    "sft_1p7B_f0p25": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "1d1e5aebe3a49c3d23630e10136074b4ca551067919513b1ffad81c5f4f1ce50"
+    },
+    "sft_1p7B_f0p5": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "65071358864aabaffade47c923ad787ed308eeb9e175d89a2ed62b0f874179f4"
+    },
+    "sft_1p7B_f0p75": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "976cc530a644c28183c11e0eecd7094c882ca91d08395fd6bc9f630aca305478"
+    },
+    "sft_1p7B_f1p0": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "65dad0e571c17cc7f7095d69ff2f4731dd9534c4f9550d3f8806b578315160e1"
+    },
+    "sft_4B_f0p125": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "6e0ef13097098751d656bd842e2eaf939517032ebb2575c8861ae0a3cb803e18"
+    },
+    "sft_4B_f0p25": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "79edbfd0c0b5da8784fce52557fc9175a2ec4601e7d2d708db078d813c04927e"
+    },
+    "sft_4B_f0p5": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "ffc7de798c9091802bab2a33a2af91cc1a17893b06f3f77945f4578349fdbf9f"
+    },
+    "sft_4B_f0p75": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "907c7b52f7a67e2918c2fda41e144db56ed21d27a01695699b3c5577ca486190"
+    },
+    "sft_4B_f1p0": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "8cb55ab655eb58f6fa6aa517f64bb786814e7cfae71443684afcbde7a7e0f1b1"
+    },
+    "sft_8B_f0p125": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "e72ab4f0238c830b5df9dcea0115ef3cc9d61b8616b9080f2e29742d629eb0d2"
+    },
+    "sft_8B_f0p25": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "6740252a7c0df3d69ba1aae666d549e1637672fbeaccf6e3d7566f4d3fc193d5"
+    },
+    "sft_8B_f0p5": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "819dd450cf8bc297565196eda276c3b3bca78c0a541de0d521e98db979a376f2"
+    },
+    "sft_8B_f0p75": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "6fb57726c014edbff38989c1de61d1774a747efe70ade84d029a4c0a8f34880b"
+    },
+    "sft_8B_f1p0": {
+      "rows": 1080,
+      "unique_keys": 1080,
+      "manifest_keys_match": true,
+      "sha256": "e377998c0764e0df8532710a11f0a4e17c8177e4b7f0d8b745591eff1414eb8c"
+    }
+  },
+  "publication_file_hashes": {
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/selection.json": {
+      "runtime_sha256": "47e12d6c217a3e62e47e0d5bcef13478f2ecf52098b7ac6163df91e216e21cdb",
+      "git_sha256": "47e12d6c217a3e62e47e0d5bcef13478f2ecf52098b7ac6163df91e216e21cdb",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/test_manifest.json": {
+      "runtime_sha256": "ed128d11e8d5d09e7d19244f5480f24360f01530510240a9d1176b0a446136fa",
+      "git_sha256": "ed128d11e8d5d09e7d19244f5480f24360f01530510240a9d1176b0a446136fa",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/validation_ladder.json": {
+      "runtime_sha256": "8b5386f73f2dc9072a2a81aa33912ef8658cfa7b1983f93248ad89142fa503e3",
+      "git_sha256": "8b5386f73f2dc9072a2a81aa33912ef8658cfa7b1983f93248ad89142fa503e3",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder_manifest.json": {
+      "runtime_sha256": "3013db1230f27cf021ace50ff53abcc6de2e9f6964ac62968baa80ccb577a948",
+      "git_sha256": "3013db1230f27cf021ace50ff53abcc6de2e9f6964ac62968baa80ccb577a948",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_1p7B_e05_validation_cells.csv": {
+      "runtime_sha256": "f7c8426ece04b540eda2788f299e59879c9d830a5970b9dcdddd3ec3d5b58a00",
+      "git_sha256": "f7c8426ece04b540eda2788f299e59879c9d830a5970b9dcdddd3ec3d5b58a00",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_8B_f0p25_validation_cells.csv": {
+      "runtime_sha256": "8134b7668136de5093f584af9fd538310af2fd0dd15e732754626b0e1be1adee",
+      "git_sha256": "8134b7668136de5093f584af9fd538310af2fd0dd15e732754626b0e1be1adee",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_14B_f0p75_validation_cells.csv": {
+      "runtime_sha256": "453af484011bd0ca7fb9d007802097cce3a9ddd922ed5aaa812357d3f1724db3",
+      "git_sha256": "453af484011bd0ca7fb9d007802097cce3a9ddd922ed5aaa812357d3f1724db3",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_1p7B_f0p25_validation_cells.csv": {
+      "runtime_sha256": "1d948d3561b57017b73139415f441b7175ccfa74ab190a7a1a6844c55d0669d4",
+      "git_sha256": "1d948d3561b57017b73139415f441b7175ccfa74ab190a7a1a6844c55d0669d4",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_14B_f0p25_validation_cells.csv": {
+      "runtime_sha256": "23f6c31c01c29a798be1b5394f03a0198de025aa24384e8225a503df58fef060",
+      "git_sha256": "23f6c31c01c29a798be1b5394f03a0198de025aa24384e8225a503df58fef060",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_4B_f0p75_validation_per_task.csv": {
+      "runtime_sha256": "fef7f5379d88268ca18799f11663ddbf7c48a781804f423ed0709448454c9d41",
+      "git_sha256": "fef7f5379d88268ca18799f11663ddbf7c48a781804f423ed0709448454c9d41",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_8B_f1p0_validation_per_task.csv": {
+      "runtime_sha256": "4e189d46aa1096c03691aff102ac8e8d3646471b5fffde4d86010a16195b8731",
+      "git_sha256": "4e189d46aa1096c03691aff102ac8e8d3646471b5fffde4d86010a16195b8731",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_14B_f1p0_validation_per_task.csv": {
+      "runtime_sha256": "e45121fa0812a3b3916d99f32457e4a35c0116e0fd9a9393ee54d8ae4fca90fb",
+      "git_sha256": "e45121fa0812a3b3916d99f32457e4a35c0116e0fd9a9393ee54d8ae4fca90fb",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_1p7B_f0p75_validation_per_task.csv": {
+      "runtime_sha256": "8c0e0d8474ceccb8fb9307bb5e6aae19ceac6ff88569e8117e61a7a7b2219921",
+      "git_sha256": "8c0e0d8474ceccb8fb9307bb5e6aae19ceac6ff88569e8117e61a7a7b2219921",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_8B_f0p75_validation_per_task.csv": {
+      "runtime_sha256": "7d39aae4fd225eb267cf131759aff433a98ddf58b851397f8b64b8f71decfc81",
+      "git_sha256": "7d39aae4fd225eb267cf131759aff433a98ddf58b851397f8b64b8f71decfc81",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_1p7B_f0p75_validation_cells.csv": {
+      "runtime_sha256": "d176bca23dd5c95d90c12cc9955d9447e56f752c6d5502bc731fc6578e888741",
+      "git_sha256": "d176bca23dd5c95d90c12cc9955d9447e56f752c6d5502bc731fc6578e888741",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_4B_f0p5_validation_cells.csv": {
+      "runtime_sha256": "27b0970ca62108aac45cd0ec7d13ef711965585f1e47dd6d4598f3e654d1d2d7",
+      "git_sha256": "27b0970ca62108aac45cd0ec7d13ef711965585f1e47dd6d4598f3e654d1d2d7",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_8B_f0p25_validation_per_task.csv": {
+      "runtime_sha256": "15d119c083ea1891319b1d7531146f23c4bb7f1437e260583cebd6120217c4a3",
+      "git_sha256": "15d119c083ea1891319b1d7531146f23c4bb7f1437e260583cebd6120217c4a3",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_1p7B_f0p125_validation_per_task.csv": {
+      "runtime_sha256": "4d694d453f0eda0873324d1d6590403621ae86464c75b5b4a93bd63319e6dbd3",
+      "git_sha256": "4d694d453f0eda0873324d1d6590403621ae86464c75b5b4a93bd63319e6dbd3",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_14B_f0p125_validation_cells.csv": {
+      "runtime_sha256": "4113d8fc050d8845728564ad8023046b22ee017f81c89eebae71bf4140c6cbe1",
+      "git_sha256": "4113d8fc050d8845728564ad8023046b22ee017f81c89eebae71bf4140c6cbe1",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_14B_f0p5_validation_cells.csv": {
+      "runtime_sha256": "79fd068cca9fe887342dac67f24c5e6001ca5c15619622081627613f1c235213",
+      "git_sha256": "79fd068cca9fe887342dac67f24c5e6001ca5c15619622081627613f1c235213",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_1p7B_f0p25_validation_per_task.csv": {
+      "runtime_sha256": "18c6eb019e39c1067d13b29e2ec3a5fd3a2816b5a4abc86ed91500680a238cde",
+      "git_sha256": "18c6eb019e39c1067d13b29e2ec3a5fd3a2816b5a4abc86ed91500680a238cde",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_4B_f0p25_validation_per_task.csv": {
+      "runtime_sha256": "9560b837179f146088565ce36198f9562e79cef48e64700646be72793b6d2032",
+      "git_sha256": "9560b837179f146088565ce36198f9562e79cef48e64700646be72793b6d2032",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_8B_e05_validation_per_task.csv": {
+      "runtime_sha256": "a0213d549bf713562a2dba5f100f1d8ac35e6e6b71fb1e7f07688ba05b8fd146",
+      "git_sha256": "a0213d549bf713562a2dba5f100f1d8ac35e6e6b71fb1e7f07688ba05b8fd146",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_8B_e05_validation_cells.csv": {
+      "runtime_sha256": "31773adf2541ca4427c696002a6dab64f3c03f9f37edc67b61e5f6d415691a94",
+      "git_sha256": "31773adf2541ca4427c696002a6dab64f3c03f9f37edc67b61e5f6d415691a94",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_14B_f0p25_validation_per_task.csv": {
+      "runtime_sha256": "8d69b8c5b156f7cb1f8b3b2c9b9c0a6c675fe038af4d21ed49657cdf5fc41837",
+      "git_sha256": "8d69b8c5b156f7cb1f8b3b2c9b9c0a6c675fe038af4d21ed49657cdf5fc41837",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_14B_f0p75_validation_per_task.csv": {
+      "runtime_sha256": "a2e3ed476ba3d594b6a5c8901811a8bc7d3b57d31147b1fcf12657016dc99432",
+      "git_sha256": "a2e3ed476ba3d594b6a5c8901811a8bc7d3b57d31147b1fcf12657016dc99432",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_14B_f0p5_validation_per_task.csv": {
+      "runtime_sha256": "8415616b044e6bedba75c6c73e112bf2560d5893423aca6b4ca9817514bfad17",
+      "git_sha256": "8415616b044e6bedba75c6c73e112bf2560d5893423aca6b4ca9817514bfad17",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_8B_f0p5_validation_per_task.csv": {
+      "runtime_sha256": "285c789b0b139be5a9bb4e4944427b368aa4dcc71c59f2216b4d4f58768f4b17",
+      "git_sha256": "285c789b0b139be5a9bb4e4944427b368aa4dcc71c59f2216b4d4f58768f4b17",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_4B_f0p125_validation_per_task.csv": {
+      "runtime_sha256": "ef7a0a2dead3cc38ebf7e2d30d9fcb5637631ad51ad974cfa2002ebee7577b4a",
+      "git_sha256": "ef7a0a2dead3cc38ebf7e2d30d9fcb5637631ad51ad974cfa2002ebee7577b4a",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_8B_f0p125_validation_per_task.csv": {
+      "runtime_sha256": "362c604cf245744a0b1ebfee93a6cc05bca76630665aa3e5e6e9d71281be674a",
+      "git_sha256": "362c604cf245744a0b1ebfee93a6cc05bca76630665aa3e5e6e9d71281be674a",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_4B_e05_validation_cells.csv": {
+      "runtime_sha256": "16c5a4d6f5e59fad7cb949a2e82a5a70abc6dff679e16992396e9b49ac81111d",
+      "git_sha256": "16c5a4d6f5e59fad7cb949a2e82a5a70abc6dff679e16992396e9b49ac81111d",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base14b_validation_per_task.csv": {
+      "runtime_sha256": "677c43d0fd5f4ef2d570f2d15084227f53495720ea1f041c99ae69c2144be41e",
+      "git_sha256": "677c43d0fd5f4ef2d570f2d15084227f53495720ea1f041c99ae69c2144be41e",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_4B_f1p0_validation_per_task.csv": {
+      "runtime_sha256": "8fd8dace0a7f4d47f1f4ea536873cafddbceda78ca90b105f44bac8b893b3e2a",
+      "git_sha256": "8fd8dace0a7f4d47f1f4ea536873cafddbceda78ca90b105f44bac8b893b3e2a",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_1p7B_f0p5_validation_cells.csv": {
+      "runtime_sha256": "53fcb19d0940d51d0ec83be3fbb46bf77ee389ccc677c1605c297dda9e83391e",
+      "git_sha256": "53fcb19d0940d51d0ec83be3fbb46bf77ee389ccc677c1605c297dda9e83391e",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_4B_f0p25_validation_cells.csv": {
+      "runtime_sha256": "ab8bc3b6c760c7eef880d8b0223c2a1ff254a0083f0f73abccb1ba7d228a41f7",
+      "git_sha256": "ab8bc3b6c760c7eef880d8b0223c2a1ff254a0083f0f73abccb1ba7d228a41f7",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_1p7B_e05_validation_per_task.csv": {
+      "runtime_sha256": "c4432295fd992ecdb55e52abca3bf4a9758e2065e6779ff7d87bfd2fddfea544",
+      "git_sha256": "c4432295fd992ecdb55e52abca3bf4a9758e2065e6779ff7d87bfd2fddfea544",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_4B_f0p5_validation_per_task.csv": {
+      "runtime_sha256": "92d32ef43d90213a24e6158ac82ad033d66792d2e20fbdc918316126e28c49a0",
+      "git_sha256": "92d32ef43d90213a24e6158ac82ad033d66792d2e20fbdc918316126e28c49a0",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_1p7B_f0p5_validation_per_task.csv": {
+      "runtime_sha256": "eeaae5586dc1969dda0fe19592ba9e0a88c44dda7340c4dae8f1847dc0ce3900",
+      "git_sha256": "eeaae5586dc1969dda0fe19592ba9e0a88c44dda7340c4dae8f1847dc0ce3900",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_1p7B_f1p0_validation_per_task.csv": {
+      "runtime_sha256": "9c968477744009ab33b7fcfef67248cb26e0aa181a7783a7d532b45187d0b3c4",
+      "git_sha256": "9c968477744009ab33b7fcfef67248cb26e0aa181a7783a7d532b45187d0b3c4",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_4B_f1p0_validation_cells.csv": {
+      "runtime_sha256": "6cc557f719e40aaf793b9f62f28a781e52c2db467a915819f1e926195e3839b8",
+      "git_sha256": "6cc557f719e40aaf793b9f62f28a781e52c2db467a915819f1e926195e3839b8",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_8B_f0p5_validation_cells.csv": {
+      "runtime_sha256": "d3f33d42ae4cd63a8ad132ddfe791905cc5a1908344120f9eb596fc4834ffced",
+      "git_sha256": "d3f33d42ae4cd63a8ad132ddfe791905cc5a1908344120f9eb596fc4834ffced",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_14B_f0p125_validation_per_task.csv": {
+      "runtime_sha256": "1dda0808591b5e83a2d75aa2ab8e7a05b1efc82d8382b5ee8d4f56e5282cf8e4",
+      "git_sha256": "1dda0808591b5e83a2d75aa2ab8e7a05b1efc82d8382b5ee8d4f56e5282cf8e4",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base14b_validation_cells.csv": {
+      "runtime_sha256": "4a33f61f3e53ef8360b8ce52d3d506d2dbec4ab86f63031cf487865bb85553fb",
+      "git_sha256": "4a33f61f3e53ef8360b8ce52d3d506d2dbec4ab86f63031cf487865bb85553fb",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_8B_f1p0_validation_cells.csv": {
+      "runtime_sha256": "2487c550f3a36e227ee3b820a50a8f05f7ed8c058e8aca39b3f0b2b057f9c037",
+      "git_sha256": "2487c550f3a36e227ee3b820a50a8f05f7ed8c058e8aca39b3f0b2b057f9c037",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_4B_e05_validation_per_task.csv": {
+      "runtime_sha256": "d0a295f1b40009666d6c942be49bf5d9f32816824456e1accd5c36443c1d1dcd",
+      "git_sha256": "d0a295f1b40009666d6c942be49bf5d9f32816824456e1accd5c36443c1d1dcd",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_8B_f0p125_validation_cells.csv": {
+      "runtime_sha256": "91c4d4071527879e996edc71a98a911845d49221abd9670b7ce738a602f07464",
+      "git_sha256": "91c4d4071527879e996edc71a98a911845d49221abd9670b7ce738a602f07464",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_4B_f0p75_validation_cells.csv": {
+      "runtime_sha256": "2358915f0995ec3dc00e2f6f8fa894555e4c851284a77843338b5f6fbae8efbf",
+      "git_sha256": "2358915f0995ec3dc00e2f6f8fa894555e4c851284a77843338b5f6fbae8efbf",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_4B_f0p125_validation_cells.csv": {
+      "runtime_sha256": "7c824175cbf11de01f72ff206c58cfeac714e995bbaeefb063603989d2320851",
+      "git_sha256": "7c824175cbf11de01f72ff206c58cfeac714e995bbaeefb063603989d2320851",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_8B_f0p75_validation_cells.csv": {
+      "runtime_sha256": "aadecc9af20a681543c61d7677885f39c311b37e325d47fa4a152a6c391e9326",
+      "git_sha256": "aadecc9af20a681543c61d7677885f39c311b37e325d47fa4a152a6c391e9326",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_1p7B_f0p125_validation_cells.csv": {
+      "runtime_sha256": "5b4982ed338d05312f22a8ba3f7786698c37ea6f5f4120b5b6f5f92cf6bd24c0",
+      "git_sha256": "5b4982ed338d05312f22a8ba3f7786698c37ea6f5f4120b5b6f5f92cf6bd24c0",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_1p7B_f1p0_validation_cells.csv": {
+      "runtime_sha256": "3d8de2b48cabe59c24c363e3b90f27b9edf6fe18dfdb81d8574db041a0d138d7",
+      "git_sha256": "3d8de2b48cabe59c24c363e3b90f27b9edf6fe18dfdb81d8574db041a0d138d7",
+      "match": true
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_14B_f1p0_validation_cells.csv": {
+      "runtime_sha256": "fcd206e311cd898ca3d69dac074479bff2b6369b72a745833182ec8ffdc4f37a",
+      "git_sha256": "fcd206e311cd898ca3d69dac074479bff2b6369b72a745833182ec8ffdc4f37a",
+      "match": true
+    }
+  },
+  "selection": {
+    "verdict": "PARTIAL",
+    "common_fraction": null,
+    "earliest_passing_fraction_per_size": {
+      "1.7B": null,
+      "14B": "0.5",
+      "4B": null,
+      "8B": "1.0"
+    },
+    "selected": {
+      "14B": {
+        "cumulative_assistant_tokens": 2884708,
+        "exported": true,
+        "fraction": "0.5",
+        "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_334",
+        "in_test": true,
+        "label": "sft_14B_f0p5",
+        "role": "trained",
+        "size": "14B",
+        "source": "e08",
+        "step": 334,
+        "weights_sha256_manifest": "a079a9d078d4d9e85b01d2b7b5f1d7cca874ec53184942136d9997b8af74b436"
+      },
+      "8B": {
+        "cumulative_assistant_tokens": 5752936,
+        "exported": true,
+        "fraction": "1.0",
+        "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_658",
+        "in_test": true,
+        "label": "sft_8B_f1p0",
+        "role": "trained",
+        "size": "8B",
+        "source": "e08",
+        "step": 658,
+        "weights_sha256_manifest": "3085508bfd29932193b556c2f769eabe83b26e2d96dd59ef7412cfbcbf8f397d"
+      }
+    },
+    "incomplete_systems": [],
+    "interpretation": "PARTIAL permits unmatched diagnostic checkpoints only; the four-size matched readiness objective was not achieved. No held-out improvement estimate is available."
+  },
+  "denominators": {
+    "validation_systems": 24,
+    "trained_validation_rungs": 20,
+    "validation_tasks": 135,
+    "samples_per_task": 8,
+    "validation_finalized": 25920,
+    "validation_declared": 25920,
+    "validation_missing": 0,
+    "test_systems": 6,
+    "test_tasks": 222,
+    "test_declared_cells": 10656,
+    "test_new_cells": 5328,
+    "test_reused_cells": 5328,
+    "new_test_systems_scored": 0
+  },
+  "chronology": {
+    "validation_final_rung_done_utc": "2026-10-11T16:41:11+00:00",
+    "selection_pushed_utc": "2026-10-11T16:45:34+00:00",
+    "test_manifest_pushed_utc": "2026-10-11T16:49:10+00:00",
+    "first_test_launcher_utc": "2026-10-11T16:49:11+00:00",
+    "pipeline_log_lines": [
+      "[2026-10-11T16:41:11+00:00] DONE ladder_val_sft_14B_f1p0",
+      "[2026-10-11T16:45:34+00:00] publish 'Experiment 08 \u00a7 9: validation ladder complete at all four sizes; froze': pushed",
+      "[2026-10-11T16:49:10+00:00] publish 'Experiment 08 \u00a7 10: test manifest frozen from the committed selection ': pushed",
+      "[2026-10-11T16:49:11+00:00] LAUNCH ladder_test_test_sft_8B_f1p0 in rl4cv-e08-test-test_sft_8B_f1p0 gpus=[2]: SCORE_PAR=4 bash /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/run_ladder_e08.sh test t"
+    ]
+  },
+  "constraints": {
+    "scientific_recipe_changed": false,
+    "thresholds_changed": false,
+    "held_out_outcomes_used_for_selection": false,
+    "probe_allocation_seconds": 1783.907,
+    "probe_limit_seconds": 1800,
+    "overall_experiment_wall_or_device_cap": null,
+    "experiments06_and09_remain_closed": true
+  },
+  "independent_recalculation": {
+    "validation_recomputed": {
+      "base14b": {
+        "cells": 1080,
+        "extracted": 1010,
+        "capped": 77,
+        "mixed": 7,
+        "pass": true
+      },
+      "base_1p7B_e05": {
+        "cells": 1080,
+        "extracted": 601,
+        "capped": 658,
+        "mixed": 0,
+        "pass": false
+      },
+      "base_4B_e05": {
+        "cells": 1080,
+        "extracted": 913,
+        "capped": 108,
+        "mixed": 3,
+        "pass": false
+      },
+      "base_8B_e05": {
+        "cells": 1080,
+        "extracted": 930,
+        "capped": 142,
+        "mixed": 0,
+        "pass": false
+      },
+      "sft_14B_f0p125": {
+        "cells": 1080,
+        "extracted": 848,
+        "capped": 169,
+        "mixed": 20,
+        "pass": false
+      },
+      "sft_14B_f0p25": {
+        "cells": 1080,
+        "extracted": 952,
+        "capped": 128,
+        "mixed": 25,
+        "pass": false
+      },
+      "sft_14B_f0p5": {
+        "cells": 1080,
+        "extracted": 975,
+        "capped": 105,
+        "mixed": 30,
+        "pass": true
+      },
+      "sft_14B_f0p75": {
+        "cells": 1080,
+        "extracted": 953,
+        "capped": 127,
+        "mixed": 35,
+        "pass": false
+      },
+      "sft_14B_f1p0": {
+        "cells": 1080,
+        "extracted": 995,
+        "capped": 84,
+        "mixed": 39,
+        "pass": true
+      },
+      "sft_1p7B_f0p125": {
+        "cells": 1080,
+        "extracted": 66,
+        "capped": 608,
+        "mixed": 3,
+        "pass": false
+      },
+      "sft_1p7B_f0p25": {
+        "cells": 1080,
+        "extracted": 79,
+        "capped": 387,
+        "mixed": 1,
+        "pass": false
+      },
+      "sft_1p7B_f0p5": {
+        "cells": 1080,
+        "extracted": 834,
+        "capped": 245,
+        "mixed": 11,
+        "pass": false
+      },
+      "sft_1p7B_f0p75": {
+        "cells": 1080,
+        "extracted": 875,
+        "capped": 205,
+        "mixed": 16,
+        "pass": false
+      },
+      "sft_1p7B_f1p0": {
+        "cells": 1080,
+        "extracted": 897,
+        "capped": 184,
+        "mixed": 20,
+        "pass": false
+      },
+      "sft_4B_f0p125": {
+        "cells": 1080,
+        "extracted": 43,
+        "capped": 390,
+        "mixed": 4,
+        "pass": false
+      },
+      "sft_4B_f0p25": {
+        "cells": 1080,
+        "extracted": 724,
+        "capped": 245,
+        "mixed": 21,
+        "pass": false
+      },
+      "sft_4B_f0p5": {
+        "cells": 1080,
+        "extracted": 845,
+        "capped": 230,
+        "mixed": 22,
+        "pass": false
+      },
+      "sft_4B_f0p75": {
+        "cells": 1080,
+        "extracted": 916,
+        "capped": 164,
+        "mixed": 21,
+        "pass": false
+      },
+      "sft_4B_f1p0": {
+        "cells": 1080,
+        "extracted": 946,
+        "capped": 134,
+        "mixed": 32,
+        "pass": false
+      },
+      "sft_8B_f0p125": {
+        "cells": 1080,
+        "extracted": 504,
+        "capped": 247,
+        "mixed": 10,
+        "pass": false
+      },
+      "sft_8B_f0p25": {
+        "cells": 1080,
+        "extracted": 929,
+        "capped": 150,
+        "mixed": 23,
+        "pass": false
+      },
+      "sft_8B_f0p5": {
+        "cells": 1080,
+        "extracted": 934,
+        "capped": 146,
+        "mixed": 29,
+        "pass": false
+      },
+      "sft_8B_f0p75": {
+        "cells": 1080,
+        "extracted": 964,
+        "capped": 118,
+        "mixed": 33,
+        "pass": false
+      },
+      "sft_8B_f1p0": {
+        "cells": 1080,
+        "extracted": 974,
+        "capped": 106,
+        "mixed": 32,
+        "pass": true
+      }
+    },
+    "all_cells": 25920,
+    "selection_recomputed": {
+      "1.7B": null,
+      "4B": null,
+      "8B": "1.0",
+      "14B": "0.5"
+    },
+    "verdict": "PARTIAL",
+    "test_cells": 10656,
+    "new_test_cells": 5328,
+    "reused_test_cells": 5328,
+    "hash_chain_matches": true,
+    "test_manifest_matches_selection": true,
+    "scope": "Validation cells only; no test outcomes used in this verification."
+  },
+  "owner_verification": {
+    "observation_utc": "2026-10-11T16:59:53.502242+00:00",
+    "incident_directory": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/9618422d-1484-4d67-86ce-d876278664e5/2",
+    "incident": {
+      "id": "9618422d-1484-4d67-86ce-d876278664e5",
+      "created_utc": "2026-10-11T16:50:02.440397+00:00",
+      "deadline_utc": "2026-10-11T18:00:02.440411+00:00",
+      "attempts": [
+        {
+          "ended_utc": "2026-10-11T16:50:02.963320+00:00",
+          "number": 1,
+          "profile": "personal_codex",
+          "reason": "RuntimeError:native account probe exited",
+          "started_utc": "2026-10-11T16:50:02.441436+00:00",
+          "status": "INELIGIBLE"
+        },
+        {
+          "account_check_sha256": "903ea132e385d2c431b182aa5f14511fcc3cb990198e429bc42a83831e6c7dc7",
+          "candidate_sha256": "2d8fc90eaa50f7b3aa7f451fe5e1fe256fb7241abcd9b1b72271f15fa6e77b06",
+          "handoff_sha256": "0ab4fd4da0f01d9c1cf285e2bf2e76587f176bfbdc737088d267f987e811e2b6",
+          "number": 2,
+          "process": {
+            "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+            "pid": 3217740,
+            "ppid": 3216513,
+            "session": 3217740,
+            "start_ticks": 23855867
+          },
+          "profile": "vals_codex",
+          "started_utc": "2026-10-11T16:50:02.964867+00:00",
+          "status": "RUNNING_UNVERIFIED"
+        }
+      ],
+      "monitor_status": "OBSERVING",
+      "monitor_observed_utc": "2026-10-11T16:59:48.656270+00:00",
+      "owner": {
+        "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+        "pid": 3217740,
+        "ppid": 3216513,
+        "session": 3217740,
+        "start_ticks": 23855867
+      }
+    },
+    "hashes": {
+      "ack.json": "3702c8b8fb9e757dde85b4d9c643f2e8534a0b47a09224331b3992011e4ec3d6",
+      "handoff.json": "703d225e164397e67d07f01421422961f523ed3cd5294a0426c280eba7d64c57",
+      "prompt.md": "0ab4fd4da0f01d9c1cf285e2bf2e76587f176bfbdc737088d267f987e811e2b6",
+      "first_action.json": "634f24ca9e29025888a39cf8cdeba563d39cf0c2e3a9379c357549ac0fe3d7ec",
+      "initial_check.json": "18ea3f17810d15c9bf187350fba6e9e9f96615e76064303264dc4847882cceca",
+      "account_check.json": "903ea132e385d2c431b182aa5f14511fcc3cb990198e429bc42a83831e6c7dc7"
+    },
+    "handoff_prompt_match": true,
+    "candidate_integrity": {
+      "fingerprint_match": true,
+      "files": {
+        "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/codex": {
+          "sha256": "61b0194f3bb6534439c8d26a3ed57d0805f84b884588b761795323eeb92fcf70",
+          "matches": true
+        },
+        "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/bin/codex": {
+          "sha256": "3188814c35471432d4123203e0eb38e5bddc60226e3d7ddf0e59e649ea140022",
+          "matches": true
+        },
+        "/dfs/scratch0/brando9/bin/codexd-vals": {
+          "sha256": "700e02f9b949575ed17989c71a2ebdb118100e4e8862dd2d7a9a252a8246d4af",
+          "matches": true
+        },
+        "/lfs/skampere1/0/brando9/.local/bin/codexd-vals": {
+          "sha256": "17edc1bf784591d51bcf9f50b60ab9c27ae97d3169fa6fa87c5bf4bbcfe9f301",
+          "matches": true
+        }
+      }
+    },
+    "account": {
+      "account_read": {
+        "email": "brando@vals.ai",
+        "planType": "pro",
+        "type": "chatgpt"
+      },
+      "ordinary_usage_allowed": true,
+      "receipt_hash_matches_monitor": true
+    },
+    "ack": {
+      "native_session_id": "01a12bdf-1d13-7ba1-ac00-36125b2cbdb5",
+      "actual_model": "gpt-6-astra",
+      "actual_effort": "ultra",
+      "actual_permissions": {
+        "approval_policy": "never",
+        "sandbox_policy": {
+          "type": "danger-full-access"
+        }
+      },
+      "parent_findings_sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba",
+      "parent_findings_acknowledged": true,
+      "parent_findings_acknowledgment": "Read section 11 and 14:36 PDT correction. 16/16 restored samples cover embeddings/query projections only; query/key native checkpoint deduplication is a shared pinned-baseline limitation with unmeasured numerical drift, not a new historical gate or selective 14B repair. Preserve 1783.907/1800 seconds, 16.093 remaining; no probe relaunch. Mercury resumed-update and remote integration requirements remain unmet.",
+      "adopted_pipeline_identity": {
+        "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+        "pid": 4005026,
+        "ppid": 5979,
+        "session": 4005026,
+        "start_ticks": 8095062
+      },
+      "timestamp": "2026-10-11T16:51:05.868961+00:00"
+    },
+    "first_action_outputs": [
+      {
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/9618422d-1484-4d67-86ce-d876278664e5/2/initial_check.json",
+        "declared_sha256": "18ea3f17810d15c9bf187350fba6e9e9f96615e76064303264dc4847882cceca",
+        "actual_sha256": "18ea3f17810d15c9bf187350fba6e9e9f96615e76064303264dc4847882cceca",
+        "matches": true,
+        "mtime_utc": "2026-10-11T16:51:05.876857+00:00"
+      }
+    ],
+    "native_runtime": {
+      "path": "/lfs/skampere1/0/brando9/.codex-vals/sessions/2026/10/11/rollout-2026-10-11T09-50-04-01a12bdf-1d13-7ba1-ac00-36125b2cbdb5.jsonl",
+      "session_meta": {
+        "id": "01a12bdf-1d13-7ba1-ac00-36125b2cbdb5",
+        "cwd": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification",
+        "originator": "codex_exec",
+        "cli_version": "0.154.0",
+        "model_provider": "openai"
+      },
+      "turn_contexts": [
+        {
+          "cwd": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification",
+          "model": "gpt-6-astra",
+          "effort": "ultra",
+          "approval_policy": "never",
+          "sandbox_policy": {
+            "type": "danger-full-access"
+          }
+        }
+      ],
+      "expected_session": "01a12bdf-1d13-7ba1-ac00-36125b2cbdb5",
+      "session_match": true,
+      "all_contexts_match": true
+    },
+    "input_checks": [
+      {
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/pipeline/leases.json",
+        "handoff_sha256": "cc57142decd0e3b54ac03a950b9f24a79b3660ba6f32275b1b51054ae4ac1c6e",
+        "current_sha256": "cc57142decd0e3b54ac03a950b9f24a79b3660ba6f32275b1b51054ae4ac1c6e",
+        "current_matches": true,
+        "runtime_mutable": true
+      },
+      {
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/pipeline/state.json",
+        "handoff_sha256": "7549921a96aa96b730d7d8fdcffb8d8c66e042acbc4eec8a6d3aa9b29abaac5e",
+        "current_sha256": "9ca2ea4b84a997ba1417bd14f636482504bf196651c9a09e9c878dbc3ea1cf02",
+        "current_matches": false,
+        "runtime_mutable": true
+      },
+      {
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/PROTOCOL.md",
+        "handoff_sha256": "f6c1f85c4d165d3d6706151105a47b92a3a08fa6c66fc6e85ffcb7bd52df27ce",
+        "current_sha256": "f6c1f85c4d165d3d6706151105a47b92a3a08fa6c66fc6e85ffcb7bd52df27ce",
+        "current_matches": true,
+        "runtime_mutable": false,
+        "launch_revision_blob_sha256": "f6c1f85c4d165d3d6706151105a47b92a3a08fa6c66fc6e85ffcb7bd52df27ce",
+        "launch_revision_matches": true
+      },
+      {
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/CKPT_e08.md",
+        "handoff_sha256": "12ed686cc4b5b84caf2079da4f5f50bbeaca1a6fdcead5e3b4af0f486cc46eac",
+        "current_sha256": "5878537f80fe5928c791d3a4673f3583ccd4e9d6c5ead25a168505a9de7da72a",
+        "current_matches": false,
+        "runtime_mutable": false,
+        "launch_revision_blob_sha256": "12ed686cc4b5b84caf2079da4f5f50bbeaca1a6fdcead5e3b4af0f486cc46eac",
+        "launch_revision_matches": true
+      },
+      {
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/cc.md",
+        "handoff_sha256": "3da20b1f89116542a6dda4899e25d1c98de38966c309dfcceb0df04a7be0a7f9",
+        "current_sha256": "3da20b1f89116542a6dda4899e25d1c98de38966c309dfcceb0df04a7be0a7f9",
+        "current_matches": true,
+        "runtime_mutable": false,
+        "launch_revision_blob_sha256": "3da20b1f89116542a6dda4899e25d1c98de38966c309dfcceb0df04a7be0a7f9",
+        "launch_revision_matches": true
+      },
+      {
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/results.md",
+        "handoff_sha256": "967cba2308b146858191d83ee0d50fb3b11a657b7305c438c22c18ef2fedf906",
+        "current_sha256": "cbdea608275095e60d327029a8c063f215a022384fd7777243027dea7c49d644",
+        "current_matches": false,
+        "runtime_mutable": false,
+        "launch_revision_blob_sha256": "967cba2308b146858191d83ee0d50fb3b11a657b7305c438c22c18ef2fedf906",
+        "launch_revision_matches": true
+      }
+    ],
+    "parent_findings": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/resource_request_10-09-2026/parent_findings.md",
+      "sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba",
+      "ack_matches": true
+    },
+    "owner_processes": [
+      {
+        "pid": 3217740,
+        "ppid": 3216513,
+        "start_ticks": 23855867,
+        "state": "S",
+        "utime_ticks": 3,
+        "stime_ticks": 2,
+        "cmd": "node /dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/codex --sandbox danger-full-access --ask-for-approval never exec --dangerously-bypass-approvals-and-sandbox -m gpt-6-astra -c model_reasoning_effort=\"ultra\" --json -o /lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/9618422d-1484-4d67-86ce-d876278664e5/2/last_message.txt -"
+      },
+      {
+        "pid": 3217750,
+        "ppid": 3217740,
+        "start_ticks": 23855873,
+        "state": "S",
+        "utime_ticks": 748,
+        "stime_ticks": 748,
+        "cmd": "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/bin/codex --sandbox danger-full-access --ask-for-approval never exec --dangerously-bypass-approvals-and-sandbox -m gpt-6-astra -c model_reasoning_effort=\"ultra\" --json -o /lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/9618422d-1484-4d67-86ce-d876278664e5/2/last_message.txt -"
+      }
+    ],
+    "phase_result": {
+      "exists": false
+    },
+    "caveats": [
+      "Coordinator receipt_valid requires a COMPLETE phase_result.json; RUNNING_UNVERIFIED alone does not mean the native identity or acknowledgment failed. Phase result remained absent at verification.",
+      "All four repository handoff inputs match their launch-revision Git blobs. Current checkpoint/results bytes have changed during owner work; current pipeline state has also advanced. Current publication closure is not yet verified.",
+      "Generation metadata reads only command arguments, file metadata/line counts and progress lines; no held-out response or task content was inspected."
+    ],
+    "independent_receipt_sha256": "31ac7164bb6938a632f9c98077687a90f2abcaada0a4090412efb119f0dccdf8"
+  },
+  "scientific_health": {
+    "pipeline": {
+      "identity": {
+        "pid": 4005026,
+        "ppid": 5979,
+        "start_ticks": 8095062,
+        "state": "R",
+        "utime_ticks": 308611,
+        "stime_ticks": 48674,
+        "cmd": ".venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/pipeline_e08.py"
+      },
+      "identity_match": true,
+      "last_tick": "2026-10-11T16:57:53+00:00",
+      "test_stages": {
+        "ladder_test_base14b": {
+          "status": "waiting_gpu",
+          "pane_pid": null,
+          "gpus": null,
+          "retries": 0,
+          "gen_released": null
+        },
+        "ladder_test_test_sft_14B_f0p5": {
+          "status": "waiting_gpu",
+          "pane_pid": null,
+          "gpus": null,
+          "retries": 0,
+          "gen_released": null
+        },
+        "ladder_test_test_sft_8B_f1p0": {
+          "status": "running",
+          "pane_pid": 3212695,
+          "gpus": [
+            2
+          ],
+          "retries": 0,
+          "gen_released": null
+        }
+      }
+    },
+    "scientific_processes": [
+      {
+        "pid": 3212695,
+        "ppid": 5979,
+        "start_ticks": 23850587,
+        "state": "S",
+        "utime_ticks": 0,
+        "stime_ticks": 0,
+        "role": "test-launcher"
+      },
+      {
+        "pid": 3212696,
+        "ppid": 3212695,
+        "start_ticks": 23850587,
+        "state": "S",
+        "utime_ticks": 1,
+        "stime_ticks": 7,
+        "role": "test-launcher"
+      },
+      {
+        "pid": 3213066,
+        "ppid": 3212696,
+        "start_ticks": 23850830,
+        "state": "S",
+        "utime_ticks": 2954,
+        "stime_ticks": 580,
+        "role": "generator"
+      },
+      {
+        "pid": 3213958,
+        "ppid": 3213066,
+        "start_ticks": 23852250,
+        "state": "S",
+        "utime_ticks": 23156,
+        "stime_ticks": 7495,
+        "role": "generation-engine"
+      }
+    ],
+    "active_leases": {
+      "ladder_test_test_sft_8B_f1p0": {
+        "boundary": "stage end (resumable launcher; lease released when the merged generation exists or the stage finishes)",
+        "cuda_visible_devices": "2",
+        "expires_utc": null,
+        "gpus": [
+          2
+        ],
+        "identity": {
+          "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+          "host": "skampere1.stanford.edu",
+          "pid": 3212695,
+          "pid_start": "23850587"
+        },
+        "kind": "inference",
+        "owner": "e08-pipeline",
+        "released": false,
+        "released_at": null,
+        "since": "2026-10-11T16:49:11+00:00",
+        "stage": "ladder_test_test_sft_8B_f1p0",
+        "identity_match": true
+      }
+    },
+    "watchdog": {
+      "checked_utc": "2026-10-11T16:49:15Z",
+      "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+      "host": "skampere1.stanford.edu",
+      "jobs": [
+        {
+          "name": "pipeline",
+          "session": "rl4cv-e08-pipeline",
+          "state": "running",
+          "pane_pid": "4005026",
+          "processes": 1,
+          "fresh_age_s": "1"
+        }
+      ]
+    },
+    "crontab": {
+      "exit_code": 0,
+      "lines": [
+        "*/15 * * * * /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/watchdog_e08.sh >> /lfs/skampere1/0/brando9/rl4cv_e08/watchdog/cron.log 2>&1",
+        "@reboot /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/watchdog_e08.sh --reboot >> /lfs/skampere1/0/brando9/rl4cv_e08/watchdog/cron.log 2>&1",
+        "*/5 * * * * /bin/bash -c '. /dfs/scratch0/brando9/.bash_env; exec /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py' >> /lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_cron.log 2>&1 # rl4cv-e08-coordinator-monitor",
+        "@reboot /bin/bash -c '. /dfs/scratch0/brando9/.bash_env; exec /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py' >> /lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_cron.log 2>&1 # rl4cv-e08-coordinator-monitor"
+      ],
+      "stderr": ""
+    },
+    "test_generation_metadata": {
+      "observed_utc": "2026-10-11T17:00:40.828720+00:00",
+      "generator_pid": 3213066,
+      "present": true,
+      "arguments": [
+        "/lfs/skampere1/0/brando9/rl4cv_e08/venv_gen/bin/python",
+        "-m",
+        "rl4cv.veribench.generate",
+        "--pack",
+        "/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/packs/vbv1_896",
+        "--model",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_658",
+        "--thinking",
+        "on",
+        "--seed",
+        "91",
+        "--stop-token",
+        "<|im_end|>",
+        "--max-tokens",
+        "12288",
+        "--temperature",
+        "0.6",
+        "--top-p",
+        "0.95",
+        "--top-k",
+        "20",
+        "--batch",
+        "1024",
+        "--samples",
+        "8",
+        "--task-ids",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/raw/gen_test_sft_8B_f1p0_g8.shard0of1.ids",
+        "--label",
+        "test_sft_8B_f1p0_g8",
+        "--out",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/raw/gen_test_sft_8B_f1p0_g8.shard0of1.jsonl"
+      ],
+      "stdout_target": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/logs/gen_test_sft_8B_f1p0_g8.shard0of1.log",
+      "stderr_target": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/logs/gen_test_sft_8B_f1p0_g8.shard0of1.log",
+      "output_argument": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/raw/gen_test_sft_8B_f1p0_g8.shard0of1.jsonl",
+      "progress_lines": [
+        "Processed prompts:  11%|\u2588\u258f        | 117/1024 [09:30<1:26:12,  5.70s/it, est. speed input: 718.94 toks/s, output: 942.72 toks/s]",
+        "Processed prompts:  12%|\u2588\u258f        | 118/1024 [09:34<1:18:22,  5.19s/it, est. speed input: 720.11 toks/s, output: 944.36 toks/s]",
+        "Processed prompts:  12%|\u2588\u258f        | 119/1024 [09:40<1:23:44,  5.55s/it, est. speed input: 718.42 toks/s, output: 943.63 toks/s]"
+      ],
+      "log_bytes": 39957,
+      "raw_files": [
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/raw/gen_test_sft_8B_f1p0_g8.shard0of1.ids",
+          "bytes": 11997,
+          "mtime_utc": "2026-10-11T16:49:13.978089+00:00"
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/raw/gen_test_sft_8B_f1p0_g8.shard0of1.jsonl",
+          "bytes": 0,
+          "mtime_utc": "2026-10-11T16:50:50.403751+00:00",
+          "physical_line_count": 0
+        }
+      ]
+    }
+  },
+  "verification_scope": {
+    "production_source_changes": false,
+    "new_model_calls_or_jobs_by_parent": false,
+    "verification": "52 runtime/Git/local file hashes; all 24 validation key sets; all 24 cell-table gate recomputations; frozen selection/test hash chain and publication chronology; native owner identity, permissions, handoff, inputs and first useful output.",
+    "prior_full_suite": "268 passed, four skipped; historical tested-revision limitation retained. This parent change is observation-only; no test suite rerun."
+  },
+  "automation_readback": {
+    "observed_utc": "2026-10-11T17:02:37.853937+00:00",
+    "id": "overnight-factored-score-learning",
+    "status": "ACTIVE",
+    "rrule": "FREQ=MINUTELY;INTERVAL=45",
+    "target_thread_id": "01a11d6a-30aa-7020-a672-6b34546fdeee",
+    "prompt_sha256": "a6c5b4a98a32431242def1f5b8f7379957405ae5ba2589210a38522b4c867e52",
+    "exact_expected_match": true
+  }
+}
