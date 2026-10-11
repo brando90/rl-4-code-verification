@@ -5,7 +5,7 @@
   "mixed_min_share": 0.05,
   "p_val": "n/a (prespecified point-estimate gate)"
  },
- "manifest_sha256": "14d0871933d8119f9bce9015d330c97316a5fbc112d4e88f26d7af95e2c2e9f8",
+ "manifest_sha256": "e9adce9015092820e1b3532a5593ea0ec2a2ce1a2a6eb7523509c18f02ea32e3",
  "n_tasks": 135,
  "samples_per_task": 8,
  "split": "validation",
@@ -330,7 +330,7 @@
    "status": "INCOMPLETE",
    "system": {
     "cumulative_assistant_tokens": 720775,
-    "exported": false,
+    "exported": true,
     "fraction": "0.125",
     "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_82",
     "in_test": true,
@@ -339,62 +339,67 @@
     "size": "14B",
     "source": "e08",
     "step": 82,
-    "weights_sha256_manifest": null
+    "weights_sha256_manifest": "f3bc80193f5cc1749d28ab602dcb32de6c6a5318836d28d883d84f5ddae7f083"
    }
   },
   "sft_14B_f0p25": {
    "cells_csv": "results/ladder/sft_14B_f0p25_validation_cells.csv",
    "diagnostics": {
     "all_pass_share": 0.0,
-    "ic_tests_rate": 0.0,
-    "mean_generated_tokens": 0.0,
-    "mean_pass_rate": 0.0,
-    "mean_proof_fraction": 0.0,
-    "n_tasks_with_diversity": 0,
-    "pass_at_8_share": 0.0,
-    "within_task_diversity_mean_pairwise_jaccard": null
+    "ic_tests_rate": 0.06667,
+    "mean_generated_tokens": 5137.2,
+    "mean_pass_rate": 0.06667,
+    "mean_proof_fraction": 0.06667,
+    "n_tasks_with_diversity": 134,
+    "pass_at_8_share": 0.1852,
+    "within_task_diversity_mean_pairwise_jaccard": 0.0942
    },
    "gates": {
     "a_extraction": {
-     "n": 0,
-     "of": 0,
+     "n": 952,
+     "of": 1080,
      "pass": false,
-     "share": 0.0,
+     "share": 0.8815,
      "threshold": 0.9
     },
     "b_capped": {
-     "n": 0,
-     "of": 0,
+     "n": 128,
+     "of": 1080,
      "pass": false,
-     "share": 0.0,
+     "share": 0.1185,
      "threshold": 0.1
     },
     "c_mixed": {
-     "n": 0,
+     "n": 25,
      "of": 135,
-     "pass": false,
-     "share": 0.0,
+     "pass": true,
+     "share": 0.1852,
      "threshold": 0.05,
      "wilson95": [
-      0.0,
-      0.0277
+      0.1287,
+      0.2591
      ]
     },
-    "complete": false,
+    "complete": true,
     "n_declared": 1080,
-    "n_known": 0,
+    "n_known": 1080,
     "pass": false
    },
    "notes": {
-    "missing_file": true,
+    "duplicates_rejected": 0,
+    "extras_rejected": 0,
+    "missing": [],
+    "n_missing": 0,
+    "n_unparseable_theorem_types": 0,
+    "n_vacuous_cells": 3,
     "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/validation/scored/scored_sft_14B_f0p25_g8.jsonl"
    },
    "per_task_csv": "results/ladder/sft_14B_f0p25_validation_per_task.csv",
    "split": "validation",
-   "status": "INCOMPLETE",
+   "status": "COMPLETE",
    "system": {
     "cumulative_assistant_tokens": 1442549,
-    "exported": false,
+    "exported": true,
     "fraction": "0.25",
     "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_164",
     "in_test": true,
@@ -403,7 +408,7 @@
     "size": "14B",
     "source": "e08",
     "step": 164,
-    "weights_sha256_manifest": null
+    "weights_sha256_manifest": "ec72ae06e494030dd6bebd0373773d569e3840466bf176f3b2fcd3f5b5d6e079"
    }
   },
   "sft_14B_f0p5": {
@@ -458,7 +463,7 @@
    "status": "INCOMPLETE",
    "system": {
     "cumulative_assistant_tokens": 2884708,
-    "exported": false,
+    "exported": true,
     "fraction": "0.5",
     "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_334",
     "in_test": true,
@@ -467,7 +472,7 @@
     "size": "14B",
     "source": "e08",
     "step": 334,
-    "weights_sha256_manifest": null
+    "weights_sha256_manifest": "a079a9d078d4d9e85b01d2b7b5f1d7cca874ec53184942136d9997b8af74b436"
    }
   },
   "sft_14B_f0p75": {
@@ -522,7 +527,7 @@
    "status": "INCOMPLETE",
    "system": {
     "cumulative_assistant_tokens": 4318781,
-    "exported": false,
+    "exported": true,
     "fraction": "0.75",
     "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_497",
     "in_test": true,
@@ -531,7 +536,7 @@
     "size": "14B",
     "source": "e08",
     "step": 497,
-    "weights_sha256_manifest": null
+    "weights_sha256_manifest": "dd2af102425adbabe106acbe6505847610f1d8a8683864105275456f45ea3e98"
    }
   },
   "sft_14B_f1p0": {
@@ -586,7 +591,7 @@
    "status": "INCOMPLETE",
    "system": {
     "cumulative_assistant_tokens": 5752936,
-    "exported": false,
+    "exported": true,
     "fraction": "1.0",
     "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_658",
     "in_test": true,
@@ -595,7 +600,7 @@
     "size": "14B",
     "source": "e08",
     "step": 658,
-    "weights_sha256_manifest": null
+    "weights_sha256_manifest": "8c65cc3f0c900fffddb760b5daf77590ea319cdb92039c4df12bc57b9982d0d4"
    }
   },
   "sft_1p7B_f0p125": {
@@ -1634,5 +1639,5 @@
    }
   }
  },
- "written_utc": "2026-10-09T07:58:33+00:00"
+ "written_utc": "2026-10-11T12:47:33+00:00"
 }
