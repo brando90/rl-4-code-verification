@@ -2,11 +2,23 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/results.md>
 
-**TLDR:** Matched supervised fine-tuning is complete at all four sizes (658 updates and 5,752,936 real loss tokens each), and validation is complete: **20/20 trained rungs and 25,920/25,920 cells**, including four Base systems. The frozen published verdict is **PARTIAL**: 8B first passes at step 658 (5,752,936 tokens), 14B at step 334 (2,884,708 tokens); 1.7B and 4B pass no rung. These selected checkpoints are unmatched diagnostics, not a common matched warm start. The six-system test manifest is published and test generation is running; validated judging and final test results remain pending.
+**TLDR:** Matched supervised fine-tuning is complete at all four sizes (658 updates and 5,752,936 real loss tokens each), and validation is complete: **20/20 trained rungs and 25,920/25,920 cells**, including four Base systems. The frozen published verdict is **PARTIAL**: 8B first passes at step 658 (5,752,936 tokens), 14B at step 334 (2,884,708 tokens); 1.7B and 4B pass no rung. These selected checkpoints are unmatched diagnostics, not a common matched warm start. All 5,328 new test generations are complete. After a host reboot, the watchdog restored the pipeline and both unfinished kernel scorers; 2,886/5,328 new cells have finalized score shards. Validated judging and final test results remain pending.
 
-**Status:** RUNNING — validation complete, PARTIAL selection and test manifest published; test generation under the original pipeline. Judge controls and validated judging remain pending.
+**Status:** RUNNING — all new test generations complete; watchdog-restored pipeline is scoring the two selected checkpoints after reboot. Judge controls and validated judging remain pending.
 
-**Last updated:** 10-11-2026 09:58 PDT (complete validation and test-start reconciliation)
+**Last updated:** 10-11-2026 16:38 PDT (reboot recovery and test-artifact reconciliation)
+
+## Reboot recovery; all test generations preserved (10-11-2026)
+
+`08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test` recovered through its existing reboot watchdog at 16:34:18 PDT. The prior pipeline process 4005026 ended with boot `83765e57…`; the recovered process is 28223/start 24891 on boot `839e7dd6-64e1-4a80-9498-31d30b3cc2df`. The pipeline resumed both unfinished scorers at 16:34:21 PDT. Their retry counters advanced from zero to one under the existing bound; no counter was cleared and no manual competing process was launched.
+
+All three new test generation files contain exactly **1,776/1,776 distinct declared cells**, totaling **5,328/5,328**, with no missing, duplicate or extra generation cells. Base 14B has all eight score shards and 1,776 merged scored cells. The selected 8B checkpoint has five completed shards (1,110 cells), with shards 5–7 active; selected 14B has no finalized shard yet, with shards 0–3 active. Thus **2,886/5,328 new cells have finalized kernel-score artifacts and 2,442 await finalized shards**. The strict system-level completion remains **1/3**. In-progress shard work is not counted as complete. Completed shards were skipped, interrupted directories retained, and all three generation digests were recorded. These counts describe execution completeness, not model quality.
+
+The frozen six-system denominator remains **10,656 test cells**, including 5,328 reused Base cells. Both protocol locks, all 20 completed validation rungs, 25,920/25,920 validation cells, selection and test-manifest hashes are unchanged. Published PARTIAL selection still admits only the 8B step-658 and 14B step-334 diagnostics plus the declared Base systems; no test outcome changes selection. The downstream commands run in the recovered pipeline's environment, its Git access succeeds, all 25 train-control instruction hashes match, and live Lean compiler children confirm actual scoring. Judge route controls, validated formal specification coverage and final analysis remain pending. Kernel factors do not substitute for the validated judge.
+
+Incident `294a3a1b-b6a7-4eb5-be83-4c34b32cada2`, attempt 2, verified native `gpt-6-astra` / `ultra`, `danger-full-access`, approval `never`, stable input hashes and parent finding `26ec0a7e…`. The shared native normalization-state checkpoint limitation remains: 16/16 reload samples cover embeddings/query projections only, with actual normalization-state numerical drift unmeasured. There is no new historical gate or selective 14B repair. Mercury remains unadmitted, and its cumulative probe accounting stays **1783.907/1800 seconds spent**, with **16.093 seconds remaining**; no resource probe ran.
+
+Full `make test`: **268 passed, four optional skips in 153.41 seconds**. No production source or scientific setting changed. The 15-minute watchdog and five-minute coordinator monitor retain their reboot entries; the model phase ends with healthy scoring under ordinary-code supervision. Parent publications through `4e9c51a` were fast-forwarded from a clean tree under the pipeline lock, and the parent's master checkpoint was preserved. [Detailed verified receipt](expt_v1/results/coordinator_reboot_recovery_10-11-2026.json).
 
 ## Full validation and published PARTIAL selection; test running (10-11-2026)
 
@@ -96,7 +108,7 @@ The recovery fixes run in newly launched downstream processes: the test launcher
 | Lock 2 preflight and lock | DONE (10-08-2026): lock 2 at `d1c101a` (lock commit `9995821`); dry run PASS (val loss on the fixed 16 examples 0.6283 → 0.5886, loss tokens = rendered spans, export loads in vLLM); framework NeMo RL | `expt_v1/results/sft_schedule.json`, `sft_config_diff.md`, `dry_run_e08.json` |
 | Matched SFT, 4 sizes × 5 checkpoints | DONE: 658 steps and 5,752,936 real loss tokens per size; all 20 exports complete; all 50 listed 14B export file digests verified | `expt_v1/results/train_logs/`, `expt_v1/results/coordinator_validation_start_10-11-2026.json` |
 | Validation ladder and selection | DONE: 20/20 trained rungs, four Base systems and 25,920/25,920 known cells. Published PARTIAL selection: 8B step 658; 14B step 334; no common passing fraction | `expt_v1/results/validation_ladder.json`, `selection.json`, `coordinator_test_start_10-11-2026.json` |
-| Test evaluation | IN PROGRESS: published six-system manifest, 10,656 declared cells (5,328 new + 5,328 reused). 8B generation running; trained 14B/Base14B await devices; 0/3 new systems fully scored. Judge controls, validated coverage and final analysis pending | `expt_v1/results/test_manifest.json`; host `$WORK/ladder/test/` |
+| Test evaluation | IN PROGRESS: published six-system manifest, 10,656 declared cells (5,328 new + 5,328 reused). All 5,328 new generations complete; 2,886 finalized kernel-score cells, 2,442 awaiting finalized shards; 1/3 new systems fully scored. Both selected-checkpoint scorers resumed after reboot. Judge controls, validated coverage and final analysis pending | `expt_v1/results/test_manifest.json`; host `$WORK/ladder/test/` |
 
 ## D-013 split
 
@@ -277,4 +289,4 @@ Written 2026-10-11T16:42:04+00:00 by the pipeline from `expt_v1/results/validati
 
 - None blocking. Varun's math/code rows and warm-start checkpoints (D-105) would allow a math + code + Lean arm in a later version; ask him first.
 
-**TLDR-end:** [rl4cv: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched supervised fine-tuning and all 20 validation rungs are complete; frozen selection is PARTIAL (8B at 5,752,936 tokens, 14B at 2,884,708). The published six-system test manifest is executing under the original pipeline; validated judging and final test results remain pending.
+**TLDR-end:** [rl4cv: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched supervised fine-tuning and all 20 validation rungs are complete; frozen selection is PARTIAL (8B at 5,752,936 tokens, 14B at 2,884,708). All 5,328 new test generations survived reboot; both unfinished scorers run under the watchdog-restored pipeline. Validated judging and final test results remain pending.

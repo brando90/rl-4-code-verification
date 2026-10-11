@@ -1,0 +1,617 @@
+{
+  "schema": 1,
+  "incident_id": "294a3a1b-b6a7-4eb5-be83-4c34b32cada2",
+  "native_session_id": "01a12d4f-8a34-7de0-9304-b43d1125c896",
+  "checked_utc": "2026-10-11T23:37:17.688814+00:00",
+  "verdict": "PASS",
+  "project_revision": "4e9c51aca55b19abe4517751da6343e58b703e39",
+  "frozen_hashes": {
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/PROTOCOL.md": {
+      "expected": "f6c1f85c4d165d3d6706151105a47b92a3a08fa6c66fc6e85ffcb7bd52df27ce",
+      "actual": "f6c1f85c4d165d3d6706151105a47b92a3a08fa6c66fc6e85ffcb7bd52df27ce"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/cc.md": {
+      "expected": "3da20b1f89116542a6dda4899e25d1c98de38966c309dfcceb0df04a7be0a7f9",
+      "actual": "3da20b1f89116542a6dda4899e25d1c98de38966c309dfcceb0df04a7be0a7f9"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/sft_schedule.json": {
+      "expected": "e0d6d896a1f4c085629ac90dc8fda9c52e6e5bf511a5a8b42fb30c769e575f8b",
+      "actual": "e0d6d896a1f4c085629ac90dc8fda9c52e6e5bf511a5a8b42fb30c769e575f8b"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/sft_set_manifest.csv": {
+      "expected": "8364ac11de3b0dae4d43e28d0835486a953c41fec94a3d4f7456d5bf677728aa",
+      "actual": "8364ac11de3b0dae4d43e28d0835486a953c41fec94a3d4f7456d5bf677728aa"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/split/vbv1_split_manifest.csv": {
+      "expected": "157ce781ed9e4ac93a1a1fe0c49f2ee2ae907be1260402485c8f6fa3d06e0e24",
+      "actual": "157ce781ed9e4ac93a1a1fe0c49f2ee2ae907be1260402485c8f6fa3d06e0e24"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/selection.json": {
+      "expected": "47e12d6c217a3e62e47e0d5bcef13478f2ecf52098b7ac6163df91e216e21cdb",
+      "actual": "47e12d6c217a3e62e47e0d5bcef13478f2ecf52098b7ac6163df91e216e21cdb"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/test_manifest.json": {
+      "expected": "ed128d11e8d5d09e7d19244f5480f24360f01530510240a9d1176b0a446136fa",
+      "actual": "ed128d11e8d5d09e7d19244f5480f24360f01530510240a9d1176b0a446136fa"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/validation_ladder.json": {
+      "expected": "8b5386f73f2dc9072a2a81aa33912ef8658cfa7b1983f93248ad89142fa503e3",
+      "actual": "8b5386f73f2dc9072a2a81aa33912ef8658cfa7b1983f93248ad89142fa503e3"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/sft_layout_admission_14B.json": {
+      "expected": "08e979fa79d91b68de3df0e6e13a5e6d2f5c96466b7ae0558c8443eb7d2d0301",
+      "actual": "08e979fa79d91b68de3df0e6e13a5e6d2f5c96466b7ae0558c8443eb7d2d0301"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/layout_10-09-2026/probe_accounting.json": {
+      "expected": "e403a4c38b4b3f0ca421a66dad12783cb9535fb4418388b0320470ddf3ead5ca",
+      "actual": "e403a4c38b4b3f0ca421a66dad12783cb9535fb4418388b0320470ddf3ead5ca"
+    },
+    "external/deps.lock.json": {
+      "expected": "71758c61a738591f6edb70df867aead852843ba4ceb1c5a02347afb0e9a5457f",
+      "actual": "71758c61a738591f6edb70df867aead852843ba4ceb1c5a02347afb0e9a5457f"
+    }
+  },
+  "test_manifest": {
+    "n_systems": 6,
+    "n_tasks": 222,
+    "samples_per_task": 8,
+    "declared_cells": 10656,
+    "new_generation_cells": 5328,
+    "reused_base_cells": 5328
+  },
+  "test_systems": {
+    "test_sft_8B_f1p0": {
+      "generation_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/raw/gen_test_sft_8B_f1p0_g8.jsonl",
+      "generation_sha256": "5eaaec526a3b78295f95e6f1ef56e1567c4579ac111b8fae3928260d68e60056",
+      "declared_cells": 1776,
+      "generated_cells": 1776,
+      "missing_generation_cells": 0,
+      "completed_score_shards": [
+        {
+          "sample_idx": 0,
+          "rows": 222,
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/scores/test_sft_8B_f1p0_g8_s0/scsc_test_sft_8B_f1p0_g8_s0_test_sft_8B_f1p0_g8_s0_per_task.csv",
+          "sha256": "e9fed304a507e21b562502f40c622872b259347122d3b174d0b93eb4a385e59d"
+        },
+        {
+          "sample_idx": 1,
+          "rows": 222,
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/scores/test_sft_8B_f1p0_g8_s1/scsc_test_sft_8B_f1p0_g8_s1_test_sft_8B_f1p0_g8_s1_per_task.csv",
+          "sha256": "d1b1f56e856b4c0238403807624b356d48ac82385aaa6160856cea86b4e4b3b6"
+        },
+        {
+          "sample_idx": 2,
+          "rows": 222,
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/scores/test_sft_8B_f1p0_g8_s2/scsc_test_sft_8B_f1p0_g8_s2_test_sft_8B_f1p0_g8_s2_per_task.csv",
+          "sha256": "3a3559649e44b4c10b5897941da952e422d81e8ac9a1f412e2aa950e6bcf3fc9"
+        },
+        {
+          "sample_idx": 3,
+          "rows": 222,
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/scores/test_sft_8B_f1p0_g8_s3/scsc_test_sft_8B_f1p0_g8_s3_test_sft_8B_f1p0_g8_s3_per_task.csv",
+          "sha256": "975290f24ea5f3a0b602d288a38803c7c0ce0600f873643d32f7a0e194c4f466"
+        },
+        {
+          "sample_idx": 4,
+          "rows": 222,
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/scores/test_sft_8B_f1p0_g8_s4/scsc_test_sft_8B_f1p0_g8_s4_test_sft_8B_f1p0_g8_s4_per_task.csv",
+          "sha256": "048680ffcfe7489d77b00fd1e5620991a402dc7d5cb995e55be9682d55d97f5f"
+        }
+      ],
+      "completed_shard_cells": 1110,
+      "pending_shard_cells": 666,
+      "pipeline_artifact_check": {
+        "rows": 0,
+        "distinct": 0,
+        "unscored": 0,
+        "shards_ok": 5,
+        "gen_rows": 1776,
+        "gen_complete": true,
+        "valid": false
+      },
+      "admission": {
+        "verdict": "PASS",
+        "label": "test_sft_8B_f1p0",
+        "selection_sha256": "47e12d6c217a3e62e47e0d5bcef13478f2ecf52098b7ac6163df91e216e21cdb"
+      }
+    },
+    "test_sft_14B_f0p5": {
+      "generation_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/raw/gen_test_sft_14B_f0p5_g8.jsonl",
+      "generation_sha256": "3f91eb25d0a5d75478170bd8e32c76134578bf008b6f9ce001c3aed6984bc74f",
+      "declared_cells": 1776,
+      "generated_cells": 1776,
+      "missing_generation_cells": 0,
+      "completed_score_shards": [],
+      "completed_shard_cells": 0,
+      "pending_shard_cells": 1776,
+      "pipeline_artifact_check": {
+        "rows": 0,
+        "distinct": 0,
+        "unscored": 0,
+        "shards_ok": 0,
+        "gen_rows": 1776,
+        "gen_complete": true,
+        "valid": false
+      },
+      "admission": {
+        "verdict": "PASS",
+        "label": "test_sft_14B_f0p5",
+        "selection_sha256": "47e12d6c217a3e62e47e0d5bcef13478f2ecf52098b7ac6163df91e216e21cdb"
+      }
+    },
+    "base14b": {
+      "generation_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/raw/gen_base14b_g8.jsonl",
+      "generation_sha256": "8c1aa431c6630d903374e77c579404f76eb35fef693f14f03eaadca7d07f379f",
+      "declared_cells": 1776,
+      "generated_cells": 1776,
+      "missing_generation_cells": 0,
+      "completed_score_shards": [
+        {
+          "sample_idx": 0,
+          "rows": 222,
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/scores/base14b_g8_s0/scsc_base14b_g8_s0_base14b_g8_s0_per_task.csv",
+          "sha256": "cc1743939190023caaa32fc87c38727a15947f02d579c68969af45b45be1d57b"
+        },
+        {
+          "sample_idx": 1,
+          "rows": 222,
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/scores/base14b_g8_s1/scsc_base14b_g8_s1_base14b_g8_s1_per_task.csv",
+          "sha256": "eb528f1e10902a39740bff6d92ac4fb9b6114cf725b26b0ffe04d160bb12f482"
+        },
+        {
+          "sample_idx": 2,
+          "rows": 222,
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/scores/base14b_g8_s2/scsc_base14b_g8_s2_base14b_g8_s2_per_task.csv",
+          "sha256": "6d5acc1713f9780c3b98d582cf229c87377e597b3f0092aa19f1b961d795a328"
+        },
+        {
+          "sample_idx": 3,
+          "rows": 222,
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/scores/base14b_g8_s3/scsc_base14b_g8_s3_base14b_g8_s3_per_task.csv",
+          "sha256": "d0e1afe8092785516189dabd44bd5b1a332bac8a39a3f9c6dd3a242eddabe84f"
+        },
+        {
+          "sample_idx": 4,
+          "rows": 222,
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/scores/base14b_g8_s4/scsc_base14b_g8_s4_base14b_g8_s4_per_task.csv",
+          "sha256": "b3533e72faa261dc184a213c906b79de35d5399a1c587392a61135b4f4ec5e71"
+        },
+        {
+          "sample_idx": 5,
+          "rows": 222,
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/scores/base14b_g8_s5/scsc_base14b_g8_s5_base14b_g8_s5_per_task.csv",
+          "sha256": "cbe84f6a68c4387e0383ab0793b9c5fe128facbf87f54213d48522dd9c4cbe3f"
+        },
+        {
+          "sample_idx": 6,
+          "rows": 222,
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/scores/base14b_g8_s6/scsc_base14b_g8_s6_base14b_g8_s6_per_task.csv",
+          "sha256": "452d7a7a4a020c274f99d3562a2cf79692c9a4c6f12a989fca5e7266f0926238"
+        },
+        {
+          "sample_idx": 7,
+          "rows": 222,
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/scores/base14b_g8_s7/scsc_base14b_g8_s7_base14b_g8_s7_per_task.csv",
+          "sha256": "6a306048e730b2297d301707dd8224130c9b977cecba9121e31e9999d9ee1a35"
+        }
+      ],
+      "completed_shard_cells": 1776,
+      "pending_shard_cells": 0,
+      "pipeline_artifact_check": {
+        "rows": 1776,
+        "distinct": 1776,
+        "unscored": 0,
+        "shards_ok": 8,
+        "gen_rows": 1776,
+        "gen_complete": true,
+        "valid": true
+      },
+      "admission": {
+        "verdict": "PASS",
+        "label": "base14b",
+        "selection_sha256": "47e12d6c217a3e62e47e0d5bcef13478f2ecf52098b7ac6163df91e216e21cdb"
+      }
+    }
+  },
+  "validation": {
+    "trained_rungs_complete": 20,
+    "trained_rungs_declared": 20,
+    "all_known_cells": 25920,
+    "all_declared_cells": 25920,
+    "evidence": "Current artifact checks and unchanged exact frozen gate/cell digests from coordinator_test_start_10-11-2026.json"
+  },
+  "judge_controls": {
+    "instruction_hashes_verified": 25,
+    "train_only": true,
+    "route_controls": "PENDING",
+    "test_judging": "PENDING",
+    "formal_specification_coverage": "Unmeasured; validated judge required"
+  },
+  "pipeline_observation": {
+    "key": "242219161caa9e325a1b22965ce85e3b515070131bf49f8c3fead7f006fd4c3b",
+    "event": {
+      "phase": "test",
+      "errors": {},
+      "pipeline_health": "fresh",
+      "stage_retries": {
+        "ladder_test_test_sft_14B_f0p5": 1,
+        "ladder_test_test_sft_8B_f1p0": 1
+      },
+      "sft_layout_admission_sha256": "08e979fa79d91b68de3df0e6e13a5e6d2f5c96466b7ae0558c8443eb7d2d0301"
+    },
+    "observed_utc": "2026-10-11T23:37:15.993248+00:00",
+    "pipeline": {
+      "pid": 28223,
+      "start_ticks": 24891,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "ppid": 28222,
+      "session": 28222
+    },
+    "last_tick": "2026-10-11T23:36:25+00:00",
+    "summary": {
+      "ladder_test_base14b": "done",
+      "ladder_test_test_sft_14B_f0p5": "running",
+      "ladder_test_test_sft_8B_f1p0": "running",
+      "ladder_val_sft_14B_f0p125": "done",
+      "ladder_val_sft_14B_f0p25": "done",
+      "ladder_val_sft_14B_f0p5": "done",
+      "ladder_val_sft_14B_f0p75": "done",
+      "ladder_val_sft_14B_f1p0": "done",
+      "ladder_val_sft_1p7B_f0p125": "done",
+      "ladder_val_sft_1p7B_f0p25": "done",
+      "ladder_val_sft_1p7B_f0p5": "done",
+      "ladder_val_sft_1p7B_f0p75": "done",
+      "ladder_val_sft_1p7B_f1p0": "done",
+      "ladder_val_sft_4B_f0p125": "done",
+      "ladder_val_sft_4B_f0p25": "done",
+      "ladder_val_sft_4B_f0p5": "done",
+      "ladder_val_sft_4B_f0p75": "done",
+      "ladder_val_sft_4B_f1p0": "done",
+      "ladder_val_sft_8B_f0p125": "done",
+      "ladder_val_sft_8B_f0p25": "done",
+      "ladder_val_sft_8B_f0p5": "done",
+      "ladder_val_sft_8B_f0p75": "done",
+      "ladder_val_sft_8B_f1p0": "done",
+      "selection": "PARTIAL",
+      "sft_1.7B": "done",
+      "sft_14B": "done",
+      "sft_4B": "done",
+      "sft_8B": "done",
+      "test_generation": "1/3 systems scored"
+    }
+  },
+  "active_scoring_children": {
+    "ladder_test_test_sft_14B_f0p5": {
+      "pane_pid": 29327,
+      "descendants": [
+        [
+          "---bash",
+          "29328"
+        ],
+        [
+          "---xargs",
+          "29368"
+        ],
+        [
+          "-+-bash",
+          "29376"
+        ],
+        [
+          "---python",
+          "29425"
+        ],
+        [
+          "-bash",
+          "29382"
+        ],
+        [
+          "---python",
+          "29429"
+        ],
+        [
+          "---lake",
+          "64718"
+        ],
+        [
+          "-+-lean",
+          "64766"
+        ],
+        [
+          "-bash",
+          "29386"
+        ],
+        [
+          "---python",
+          "29435"
+        ],
+        [
+          "---lake",
+          "64770"
+        ],
+        [
+          "-+-lean",
+          "64841"
+        ],
+        [
+          "-bash",
+          "29396"
+        ],
+        [
+          "---python",
+          "29440"
+        ],
+        [
+          "---lake",
+          "64158"
+        ],
+        [
+          "-+-lean",
+          "64541"
+        ]
+      ]
+    },
+    "ladder_test_test_sft_8B_f1p0": {
+      "pane_pid": 29298,
+      "descendants": [
+        [
+          "---bash",
+          "29299"
+        ],
+        [
+          "---xargs",
+          "29371"
+        ],
+        [
+          "-+-bash",
+          "29405"
+        ],
+        [
+          "---python",
+          "29443"
+        ],
+        [
+          "---lake",
+          "64790"
+        ],
+        [
+          "-+-lean",
+          "64866"
+        ],
+        [
+          "-bash",
+          "29411"
+        ],
+        [
+          "---python",
+          "29445"
+        ],
+        [
+          "---lake",
+          "64900"
+        ],
+        [
+          "-+-lean",
+          "64961"
+        ],
+        [
+          "-bash",
+          "29419"
+        ],
+        [
+          "---python",
+          "29446"
+        ],
+        [
+          "---lake",
+          "65022"
+        ],
+        [
+          "-+-lean",
+          "65072"
+        ]
+      ]
+    }
+  },
+  "watchdog": {
+    "checked_utc": "2026-10-11T23:34:18Z",
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "host": "skampere1.stanford.edu",
+    "jobs": [
+      {
+        "name": "pipeline",
+        "session": "rl4cv-e08-pipeline",
+        "state": "relaunched",
+        "pane_pid": "",
+        "processes": 0,
+        "fresh_age_s": ""
+      }
+    ]
+  },
+  "cron_entries": [
+    "*/15 * * * * /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/watchdog_e08.sh >> /lfs/skampere1/0/brando9/rl4cv_e08/watchdog/cron.log 2>&1",
+    "@reboot /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/watchdog_e08.sh --reboot >> /lfs/skampere1/0/brando9/rl4cv_e08/watchdog/cron.log 2>&1",
+    "*/5 * * * * /bin/bash -c '. /dfs/scratch0/brando9/.bash_env; exec /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py' >> /lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_cron.log 2>&1 # rl4cv-e08-coordinator-monitor",
+    "@reboot /bin/bash -c '. /dfs/scratch0/brando9/.bash_env; exec /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py' >> /lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_cron.log 2>&1 # rl4cv-e08-coordinator-monitor"
+  ],
+  "monitor_integrity": "source, prompt and all fixed candidate executable hashes verified",
+  "STOP_present": false,
+  "stage_retries": {
+    "ladder_test_base14b": 0,
+    "ladder_test_test_sft_14B_f0p5": 1,
+    "ladder_test_test_sft_8B_f1p0": 1,
+    "ladder_val_sft_14B_f0p125": 0,
+    "ladder_val_sft_14B_f0p25": 0,
+    "ladder_val_sft_14B_f0p5": 0,
+    "ladder_val_sft_14B_f0p75": 0,
+    "ladder_val_sft_14B_f1p0": 0,
+    "ladder_val_sft_1p7B_f0p125": 0,
+    "ladder_val_sft_1p7B_f0p25": 0,
+    "ladder_val_sft_1p7B_f0p5": 0,
+    "ladder_val_sft_1p7B_f0p75": 0,
+    "ladder_val_sft_1p7B_f1p0": 0,
+    "ladder_val_sft_4B_f0p125": 0,
+    "ladder_val_sft_4B_f0p25": 0,
+    "ladder_val_sft_4B_f0p5": 0,
+    "ladder_val_sft_4B_f0p75": 0,
+    "ladder_val_sft_4B_f1p0": 0,
+    "ladder_val_sft_8B_f0p125": 0,
+    "ladder_val_sft_8B_f0p25": 0,
+    "ladder_val_sft_8B_f0p5": 0,
+    "ladder_val_sft_8B_f0p75": 0,
+    "ladder_val_sft_8B_f1p0": 0,
+    "sft_14B": 0,
+    "sft_8B": 0
+  },
+  "previous_pipeline": {
+    "pid": 4005026,
+    "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+    "created": "2026-10-09T00:06:43+00:00",
+    "last_tick": "2026-10-11T23:14:02+00:00"
+  },
+  "parent_findings_sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba",
+  "parent_findings_acknowledged": true,
+  "probe_accounting": {
+    "schema": 1,
+    "phase_incident": "8339e1ac-9675-4e2c-b609-552c1b436a12",
+    "cumulative_accelerator_window_limit_seconds": 1800,
+    "spent_seconds": 1783.9074669163674,
+    "remaining_seconds": 16.09253308363259,
+    "device_seconds": 8343.091856226325,
+    "attempts": [
+      {
+        "attempt": "skampere1_tp2",
+        "devices": 2,
+        "status": "FAILED",
+        "seconds": 988.027979850769,
+        "device_seconds": 1976.055959701538,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt1",
+        "devices": 8,
+        "status": "FAILED",
+        "seconds": 78.3024847432971,
+        "device_seconds": 626.4198779463768,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt2",
+        "devices": 8,
+        "status": "FAILED",
+        "seconds": 9.088251980021596,
+        "device_seconds": 72.70601584017277,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt3",
+        "devices": 8,
+        "status": "FAILED",
+        "seconds": 114.57696747779846,
+        "device_seconds": 916.6157398223877,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt4",
+        "devices": 8,
+        "status": "TIMEOUT",
+        "seconds": 593.9117828644812,
+        "device_seconds": 4751.29426291585,
+        "owned_children_remaining": [],
+        "lease_released": true
+      }
+    ],
+    "future_rule": "Never reset these receipts/counters. Remaining16seconds cannot complete a fresh native resume. No further disposable accelerator allocation in this phase; new scope/allowance must be explicit and prospective.",
+    "production_budget": "Original658updates/five-rung finite manifest unchanged; no invented overall production wall-time cap."
+  },
+  "checkpoint_limitation": "16/16 restored samples cover embeddings/query projections only. Native query/key normalization-state deduplication is a shared pinned-baseline limitation; actual per-rank numerical drift unmeasured. No new historical-production gate or selective 14B repair. Mercury remains unadmitted under unfinished resumed update and remote integration requirements.",
+  "scientific_actions": "No new generation, judging, probe, or manual restart. Existing watchdog restarted pipeline after reboot; existing pipeline resumed deterministic scoring with its preserved bounded retries.",
+  "downstream_execution": {
+    "checked_utc": "2026-10-11T23:35:39.040442+00:00",
+    "pipeline_pid": 28223,
+    "pipeline_boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "git_remote_returncode": 0,
+    "git_remote_stdout": "4e9c51aca55b19abe4517751da6343e58b703e39\trefs/heads/main",
+    "commands": {
+      "analyze_ladder.py": {
+        "returncode": 0,
+        "source_sha256": "54996b9357cd35bbb9f6dfc93376b17aff7005f1fe61977d6969efbbdb5eb8db"
+      },
+      "test_admission_e08.py": {
+        "returncode": 0,
+        "source_sha256": "227ccfcb35d501a6ef8f96b74b1d69467820bc63aad46837abc8ed8448e577dc"
+      },
+      "judge_rl4cv_e08.py": {
+        "returncode": 0,
+        "source_sha256": "5238551671e9eee3041c7e07060dc6b0011056be68ea769dc51a37bfadea9127"
+      },
+      "deploy_service_e08.py": {
+        "returncode": 0,
+        "source_sha256": "a8e6db2ce659d0115f54165cb91d92ccdb916986aa7f3b4088dee94c4e02077b"
+      },
+      "analyze_test.py": {
+        "returncode": 0,
+        "source_sha256": "8714130c422a88a329fd1ed06628c6050c0afc2ae77bcd9e51622d7397c1dbaf"
+      },
+      "run_ladder_e08.sh": {
+        "shell_syntax_returncode": 0,
+        "source_sha256": "4d1f89a9bc9f71f03a347d299deda8c2c2cbe449179892f06aedd8f474ac5836"
+      },
+      "watchdog_e08.sh": {
+        "shell_syntax_returncode": 0,
+        "source_sha256": "80d81021402ebee6612c7ad5d5d0f3084fb47486aa7da52673fb210711258449"
+      }
+    }
+  },
+  "source_changes": false,
+  "checks": {
+    "make_test": {
+      "status": "PASS",
+      "passed": 268,
+      "skipped": 4,
+      "seconds": 153.41,
+      "command": "source env_e08.sh; source .venv/bin/activate; ELAN_HOME=/lfs/skampere1/0/brando9/.elan PATH=/lfs/skampere1/0/brando9/.elan/bin:$PATH env -u CODEX_HOME make test",
+      "output_sha256": "c1919714ff8fcc5de6c5b6ba92ef0142d1475ca0a0ae0dd3469b9448cdd78d71"
+    },
+    "initial_check_diagnostic": {
+      "check": "reboot recovery process names",
+      "failure": "Assertion expected bare names but existing pstree parser returns connector-prefixed names such as ---python and -+-lean",
+      "resolution": "Strip pstree connectors for check only; confirmed live Lean and Python descendants; no production source or scientific change"
+    }
+  },
+  "worker_inventory": {
+    "task": "artifact_reconcile",
+    "native_session_id": "01a12d50-ffa3-7650-bd0e-4d065000e504",
+    "runtime": {
+      "model": "gpt-5.6-terra",
+      "effort": "high",
+      "approval_policy": "never",
+      "sandbox_policy": {
+        "type": "danger-full-access"
+      }
+    },
+    "role": "bounded artifact inventory",
+    "rationale": "Independent deterministic artifact and downstream inventory while sole root writer coordinates recovery and publication",
+    "allowance_evidence": "Parent account_check.json: included weekly used 36%, no purchased credit; one worker only",
+    "result": "Finished: exact complete generations, finalized shard counts, selection chronology and pending judge prerequisites independently confirmed; no mutations or scientific calls."
+  },
+  "receipt_directory": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/294a3a1b-b6a7-4eb5-be83-4c34b32cada2/2",
+  "phase": "Reconcile reboot interruption, verify automatic recovery and preserved artifacts, publish owned records, return healthy deterministic scoring to ordinary-code supervision.",
+  "remaining_scientific_state": {
+    "test_new_generations": "5328/5328 complete",
+    "new_kernel_finalized_shard_cells": 2886,
+    "new_kernel_pending_shard_cells": 2442,
+    "new_kernel_complete_systems": "1/3",
+    "full_test_manifest_cells": 10656,
+    "reused_base_cells": 5328,
+    "judge_route_controls": "PENDING",
+    "validated_test_judging": "PENDING",
+    "final_test_analysis": "PENDING",
+    "resource_probe": "1783.907/1800 seconds spent; no relaunch or reset",
+    "selection": "Frozen PARTIAL; selected checkpoints are unmatched diagnostics"
+  },
+  "parent_master_checkpoint_sha256_before_owned_edits": "4658c03e48d2972fa6fa6c8c178377204c695299cfcec2891badb3ad4047e26e"
+}
