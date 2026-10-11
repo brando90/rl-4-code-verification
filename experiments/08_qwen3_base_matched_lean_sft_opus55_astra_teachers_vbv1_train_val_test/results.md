@@ -2,11 +2,23 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/results.md>
 
-**TLDR:** Original eight-A100 14B supervised fine-tuning has completed its first saved rung: **82/658 optimizer updates**, 164 samples and 720,775 valid training tokens, verified on 10-11-2026 at 00:14 PDT. The next segment targets step 164; its target is not a completion count. The 1.7B/4B/8B training and their 15 validation rungs are complete. Full validation remains **20,520/25,920 cells**, with **5,400 missing** across five trained-14B rungs; selection and held-out evaluation remain pending. No alternate hardware route has been admitted. Training progress alone does not establish learned-weight improvement.
+**TLDR:** Matched supervised fine-tuning now has two saved 14B production rungs: **164/658 optimizer updates**, 328 samples and **1,442,549 valid training tokens**, verified on 10-11-2026 at 00:31 PDT. All 164 logged token counts and learning rates match the frozen schedule and the completed sizes. The original eight-A100 pipeline is training toward step 334. The 1.7B/4B/8B training and their 15 validation rungs are complete. Full validation remains **20,520/25,920 cells**, with **5,400 unknown** across five trained-14B rungs; selection and held-out evaluation remain pending. Training progress alone does not establish learned-weight improvement.
 
-**Status:** RUNNING under the serialized pipeline `expt_v1/scripts/pipeline_e08.py` and host watchdog. At 10-11-2026 00:14 PDT, scientific 14B training has a complete native step-82 checkpoint and is initializing the next segment; its eight-device lease and healthy children remain active. The five trained-14B validation rungs are unmeasured (0/1,080 each). Earlier completed sizes and all 20,520 validation cells are preserved. Selection and test evaluation await all 20 validation rungs. Coordinator handoff preparation is being repaired separately. Mercury remains unadmitted and all disposable probe leases remain released.
+**Status:** RUNNING under the original serialized pipeline and host watchdog. The recovered Vals coordinator has verified its handoff, native permissions, saved checkpoints and downstream admission boundary. The eight-device production lease and healthy children remain active. Mercury remains unadmitted; disposable probe accounting is unchanged.
 
-**Last updated:** 10-11-2026 00:17 PDT (first scientific 14B rung; coordinator handoff repair pending)
+**Last updated:** 10-11-2026 00:34 PDT (verified coordinator continuation and second saved 14B rung)
+
+## Verified coordinator continuation and second 14B rung (10-11-2026)
+
+The recovered Vals coordinator (`gpt-6-astra`, `ultra`, full access, approval `never`) acknowledged incident `53cd99c4-2406-4b25-8933-d6cd76c0a6d1` and produced an immutable first-action check. All stable handoff hashes match. The original pipeline PID 4005026/start 8095062 and scientific driver PID 456540/start 20305429 remain adopted without restart. The monitor’s five-minute cron, reboot entry, attempt history and original 01:10:02 PDT coordination deadline are preserved.
+
+Segment 164 exited successfully at 00:27:28 PDT. Both saved native checkpoints (82 and 164) have all referenced weight/optimizer extents present and in bounds. The log contains 164 consecutive updates and zero token-schedule or learning-rate mismatches against the completed 1.7B, 4B and 8B runs. Full payload hashes were not recomputed. The next segment target, 334, is not a completed-update count. Exports occur after all five segments, followed by validation. [Detailed receipt](expt_v1/results/coordinator_training_progress_10-11-2026.json); [partial per-step log](expt_v1/results/train_logs/sft_14B_partial_step164_10-11-2026.csv).
+
+The latest parent finding (`26ec0a7e…`, full digest in the receipt) is verified and acknowledged: the 16/16 Mercury reload samples cover embeddings/query projections only. Native deduplication of query/key normalization weights and optimizer states is a shared pinned-baseline limitation; actual per-rank numerical drift was not measured. It adds no new historical-production gate and authorizes no selective 14B repair. Mercury still lacks its completed resumed optimizer update and remote-production integration. The probe ledger remains 1783.907/1800 seconds spent (16.093 seconds left); no fresh allocation or new probe was made.
+
+All 15 completed trained validation rungs plus Base 14B pass the existing artifact checks; reused baselines bring the total to 20,520 known cells. Each trained-14B rung has **0/1,080 known cells**. The table’s missing outcomes are shown as unknown; any zero placeholders in historical incomplete analyzer records do not represent measured failure rates. Selection still requires all 20 trained rungs, and the actual test-admission check rejects `No committed, admitted selection`. Formal specification coverage still requires the validated judge. No scientific generation, judging or held-out evaluation was launched by this coordination phase.
+
+Full `make test` passed: **268 tests, four optional skips in 207.88 seconds**. The initial environment failures and the corrected command are retained in the receipt; no source, recipe or acceptance criterion changed. Git publication uses the existing approved credential through a readable, command-scoped path.
 
 ## First scientific 14B rung (10-11-2026)
 
@@ -18,7 +30,7 @@ The training-start event exposed a separate coordinator-monitor failure: the eli
 
 ## Smaller-device layout investigation (10-09-2026)
 
-The historical eight-device configuration is one admitted route, not a scientific prerequisite. Two A100s with CPU state offload fit and executed optimizer updates, but changing tensor parallelism changes the pinned query/key-normalization gradient semantics. Mercury2's eight 16-GiB A4000s preserve the eight tensor partitions; whole-decoder checkpointing completed two full-length updates, with 124.020/121.506-second training times and peak reserved memory14.471GiB/device. Its checkpoint restored16/16 sampled parameter hashes, but the cumulative probe boundary stopped the resumed update after one backward per rank. **No alternative was admitted; 14B production remains0/658.**
+The historical eight-device configuration is one admitted route, not a scientific prerequisite. Two A100s with CPU state offload fit and executed optimizer updates, but changing tensor parallelism changes the pinned query/key-normalization gradient semantics. Mercury2's eight 16-GiB A4000s preserve the eight tensor partitions; whole-decoder checkpointing completed two full-length updates, with 124.020/121.506-second training times and peak reserved memory14.471GiB/device. Its checkpoint restored16/16 sampled parameter hashes, but the cumulative probe boundary stopped the resumed update after one backward per rank. **At the close of that 10-09-2026 phase, no alternative was admitted and 14B production was 0/658.**
 
 The phase used1783.907/1800 accelerator-window seconds, preserving every failed attempt and all scientific retries. All probe leases/children are released. The pipeline now reads hash-verified layout admissions; it was safely reloaded while idle and can launch the historical route when available. The final survey has only skampere1 devices1,2 idle. Completed study evidence and all validation/selection/test settings remain unchanged. [Full decision, measured costs, numerical limits and exact receipts](expt_v1/results/layout_10-09-2026/README.md).
 
@@ -28,7 +40,7 @@ The first cron check after the resource owner finished reopened an already-servi
 
 At 14:47:34 PDT the parent verified the completed phase and all 14 immutable output hashes, then reconciled the duplicate incident under monitor, owner and pipeline locks. Both failed account-read attempts remain archived as `SUPERSEDED_BY_VERIFIED_COMPLETION`; no replacement model owner or scientific call was launched. The original pipeline identity is unchanged, and the monitor returned to ARMED. A separate native diagnostic at 14:45 confirmed the personal account eligible with 62% weekly allowance remaining; this does not erase the earlier transient read failure. Private receipts: `$WORK/owner_recovery/monitor_diagnostic_10-09-2026/`.
 
-The continuation brief now requires the next owner to read and acknowledge the parent's updated checkpoint findings. Sampled embedding/query-projection agreement is not proof of lossless per-rank normalization-state restoration. The native deduplication limitation also belongs to the historical implementation, so it is documented without selectively changing 14B or imposing a new retrospective gate. Scientific counts remain **0/658 14B updates**, **15/20 trained rungs**, **20,520/25,920 validation cells**, with **5,400 missing**.
+The continuation brief now requires the next owner to read and acknowledge the parent's updated checkpoint findings. Sampled embedding/query-projection agreement is not proof of lossless per-rank normalization-state restoration. The native deduplication limitation also belongs to the historical implementation, so it is documented without selectively changing 14B or imposing a new retrospective gate. At that 10-09-2026 repair, scientific counts were **0/658 14B updates**, **15/20 trained rungs**, **20,520/25,920 validation cells**, with **5,400 missing**.
 
 ## Earlier coordinator recovery (10-09-2026 13:21 PDT)
 
@@ -47,7 +59,7 @@ The recovery fixes run in newly launched downstream processes: the test launcher
 | Teacher runs (4,312 cells) | DONE (10-08-2026): 4,312 / 4,312 terminal; measured 3,827; kept 2,004; charges 5,111.94 USD | `expt_v1/results/runs_state.json`, `results/receipts/preflight/` |
 | Scoring, screen, SFT set S | DONE (10-08-2026): |S| = 1315 over 476 tasks, 5.75M assistant tokens | `expt_v1/results/scored_cells.jsonl`, `generated_lean_screen.json`, `sft_set_manifest.csv`, `sft_set_stats.json`, `teacher_analysis.json` |
 | Lock 2 preflight and lock | DONE (10-08-2026): lock 2 at `d1c101a` (lock commit `9995821`); dry run PASS (val loss on the fixed 16 examples 0.6283 → 0.5886, loss tokens = rendered spans, export loads in vLLM); framework NeMo RL | `expt_v1/results/sft_schedule.json`, `sft_config_diff.md`, `dry_run_e08.json` |
-| Matched SFT, 4 sizes × 5 checkpoints | 1.7B, 4B and 8B DONE (658 steps each, 5 rungs exported with hash manifests, token logs match the schedule); 14B RUNNING on historical TP8, first saved rung 82/658 verified | `expt_v1/results/train_logs/sft_{1p7B,4B}_steps.csv`, `$WORK/ckpt/<size>/` (host) |
+| Matched SFT, 4 sizes × 5 checkpoints | 1.7B, 4B and 8B DONE (658 steps each, 5 rungs exported with hash manifests, token logs match the schedule); 14B RUNNING on historical TP8, two saved rungs through 164/658 verified | `expt_v1/results/train_logs/sft_{1p7B,4B}_steps.csv`, `$WORK/ckpt/<size>/` (host) |
 | Validation ladder and selection | 15 / 20 trained rungs COMPLETE (1.7B, 4B, 8B at 12.5 / 25 / 50 / 75 / 100 %; 1,080 / 1,080 cells each) + Base 14B COMPLETE; 14B rungs 0 / 1,080 each (after its SFT); selection BLOCKED until all 20 rungs are complete (rule frozen in PROTOCOL § 9); live table below | `expt_v1/results/validation_ladder_base14b.json`, `expt_v1/results/ladder_manifest.json`, host `$WORK/ladder/validation/` |
 | Test evaluation | NOT STARTED (only after a committed `selection.json`: frozen test manifest → generation → kernel factors → judge route controls → D-102 judging → `analyze_test.py`) | — |
 
@@ -203,11 +215,11 @@ Written 2026-10-09T07:58:33+00:00 by the pipeline from `expt_v1/results/validati
 | `base_1p7B_e05` | COMPLETE | 601 / 1080 | 658 / 1080 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 7945.7 |
 | `base_4B_e05` | COMPLETE | 913 / 1080 | 108 / 1080 | 3 / 135 (0.0222; [0.0076, 0.0633]) | fail | 0.0222 | 0.00278 | 2242.3 |
 | `base_8B_e05` | COMPLETE | 930 / 1080 | 142 / 1080 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 2533.3 |
-| `sft_14B_f0p125` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
-| `sft_14B_f0p25` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
-| `sft_14B_f0p5` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
-| `sft_14B_f0p75` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
-| `sft_14B_f1p0` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
+| `sft_14B_f0p125` | PENDING (0/1,080 known) | unknown | unknown | unknown | pending | unknown | unknown | unknown |
+| `sft_14B_f0p25` | PENDING (0/1,080 known) | unknown | unknown | unknown | pending | unknown | unknown | unknown |
+| `sft_14B_f0p5` | PENDING (0/1,080 known) | unknown | unknown | unknown | pending | unknown | unknown | unknown |
+| `sft_14B_f0p75` | PENDING (0/1,080 known) | unknown | unknown | unknown | pending | unknown | unknown | unknown |
+| `sft_14B_f1p0` | PENDING (0/1,080 known) | unknown | unknown | unknown | pending | unknown | unknown | unknown |
 | `sft_1p7B_f0p125` | COMPLETE | 66 / 1080 | 608 / 1080 | 3 / 135 (0.0222; [0.0076, 0.0633]) | fail | 0.0222 | 0.0037 | 8394.6 |
 | `sft_1p7B_f0p25` | COMPLETE | 79 / 1080 | 387 / 1080 | 1 / 135 (0.0074; [0.0013, 0.0408]) | fail | 0.0074 | 0.00093 | 7205.3 |
 | `sft_1p7B_f0p5` | COMPLETE | 834 / 1080 | 245 / 1080 | 11 / 135 (0.0815; [0.0461, 0.14]) | fail | 0.0815 | 0.01759 | 5984.3 |
@@ -228,4 +240,4 @@ Written 2026-10-09T07:58:33+00:00 by the pipeline from `expt_v1/results/validati
 
 - None blocking. Varun's math/code rows and warm-start checkpoints (D-105) would allow a math + code + Lean arm in a later version; ask him first.
 
-**TLDR-end:** [rl4cv: expt 08 matched Lean SFT warm start] Teachers, S and the matched SFT for 1.7B / 4B / 8B are done and all 15 of their validation rungs plus Base 14B are scored (17,280 / 17,280 generated cells); selection and the test split wait for the 14B SFT, which is running on its historical eight-A100 route with the first saved rung at 82/658 updates; the tested Mercury alternative remains unadmitted.
+**TLDR-end:** [rl4cv: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched supervised fine-tuning is active on the original eight-A100 route, with 14B saved through 164/658 updates and 1,442,549 valid tokens. Validation remains 15/20 trained rungs and 20,520/25,920 cells; selection and held-out evaluation await the five missing 14B rungs, under the existing pipeline and host monitors.

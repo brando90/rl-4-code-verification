@@ -1,0 +1,321 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-10-11T07:31:23.187615+00:00",
+  "experiment": "08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test",
+  "incident_id": "53cd99c4-2406-4b25-8933-d6cd76c0a6d1",
+  "native_session_id": "01a129d9-d832-70a2-bd87-123460699161",
+  "runtime": {
+    "model": "gpt-6-astra",
+    "effort": "ultra",
+    "sandbox_mode": "danger-full-access",
+    "approval_policy": "never"
+  },
+  "policy_revision": "a2e2cfcc705ad871ef40dfb3d66c5be7213b59de",
+  "project_revision_at_handoff": "1d1c47a72d98527699286ec6eae3c15a0f3c6f01",
+  "project_revision_before_publication": "25c6d25c38a28b4d1c24d6ad7b710d7b1394f097",
+  "parent_findings_sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba",
+  "parent_findings_acknowledged": true,
+  "pipeline_identity": {
+    "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+    "pid": 4005026,
+    "ppid": 5979,
+    "session": 4005026,
+    "start_ticks": 8095062
+  },
+  "training_driver": {
+    "pid": 456540,
+    "start_ticks": 20305429,
+    "session": "rl4cv-e08-sft-14B",
+    "gpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "layout": "historical_tp8"
+  },
+  "saved_updates": 164,
+  "declared_updates": 658,
+  "saved_rungs": [
+    82,
+    164
+  ],
+  "consumed_samples": 328,
+  "valid_training_tokens": 1442549,
+  "segment_164_exit_utc": "2026-10-11T07:27:28Z",
+  "segment_164_exit_code": 0,
+  "next_segment_target": 334,
+  "next_segment_is_not_completion_count": true,
+  "token_and_learning_rate_check": {
+    "steps_compared": 164,
+    "mismatches": 0,
+    "matched_completed_sizes": [
+      "1.7B",
+      "4B",
+      "8B"
+    ],
+    "full_658_step_log_complete": false
+  },
+  "checkpoint_structure": [
+    {
+      "step": 82,
+      "training_info": {
+        "epoch": 0,
+        "step": 82,
+        "total_steps": 82,
+        "consumed_samples": 164,
+        "total_valid_tokens": 720775.0
+      },
+      "training_info_sha256": "012377fc0540b92135943c6691d2f3fd425613fdc4a98eb36e652b9c823ff9e9",
+      "components": {
+        "weights": {
+          "metadata_sha256": "3e47301205fefd7f8805e277d7d27b97716078b74b94e9e4c29a93603d974742",
+          "storage_extents": 2417,
+          "files": {
+            "__0_0.distcp": 7384385834,
+            "__1_0.distcp": 7384673497,
+            "__2_0.distcp": 7384655618,
+            "__3_0.distcp": 7384655618,
+            "__4_0.distcp": 7384659796,
+            "__5_0.distcp": 7384667230,
+            "__6_0.distcp": 7384671408,
+            "__7_0.distcp": 7384671408
+          },
+          "all_extents_in_bounds": true,
+          "full_payload_hashes_recomputed": false
+        },
+        "optimizer": {
+          "metadata_sha256": "b6cdada866a39e90c9dd9a3e4b6472136a528027365bceb1772333c6021b9791",
+          "storage_extents": 5308,
+          "files": {
+            "__0_0.distcp": 14768773245,
+            "__1_0.distcp": 14769425865,
+            "__2_0.distcp": 14769451527,
+            "__3_0.distcp": 14769438911,
+            "__4_0.distcp": 14769424288,
+            "__5_0.distcp": 14769463527,
+            "__6_0.distcp": 14769444236,
+            "__7_0.distcp": 14769417529
+          },
+          "all_extents_in_bounds": true,
+          "full_payload_hashes_recomputed": false
+        }
+      }
+    },
+    {
+      "step": 164,
+      "training_info": {
+        "epoch": 0,
+        "step": 164,
+        "total_steps": 164,
+        "consumed_samples": 328,
+        "total_valid_tokens": 1442549.0
+      },
+      "training_info_sha256": "00e89d789ec311c0ca8145fe3b4a9c1bc26984dfabf3f4513552eb66c5eb0370",
+      "components": {
+        "weights": {
+          "metadata_sha256": "b74452857596c991981d90a978f2fd9e4203821a2bee854cfb627baa02a0d219",
+          "storage_extents": 2417,
+          "files": {
+            "__0_0.distcp": 7384385834,
+            "__1_0.distcp": 7384673497,
+            "__2_0.distcp": 7384655618,
+            "__3_0.distcp": 7384655618,
+            "__4_0.distcp": 7384659796,
+            "__5_0.distcp": 7384667230,
+            "__6_0.distcp": 7384671408,
+            "__7_0.distcp": 7384671408
+          },
+          "all_extents_in_bounds": true,
+          "full_payload_hashes_recomputed": false
+        },
+        "optimizer": {
+          "metadata_sha256": "d414c65003c68b45ed5974dfe9f7ab84101511dfbcfc0a2623119512e09beb18",
+          "storage_extents": 5308,
+          "files": {
+            "__0_0.distcp": 14768773245,
+            "__1_0.distcp": 14769425865,
+            "__2_0.distcp": 14769451527,
+            "__3_0.distcp": 14769438911,
+            "__4_0.distcp": 14769424288,
+            "__5_0.distcp": 14769463527,
+            "__6_0.distcp": 14769444236,
+            "__7_0.distcp": 14769417529
+          },
+          "all_extents_in_bounds": true,
+          "full_payload_hashes_recomputed": false
+        }
+      }
+    }
+  ],
+  "validation": {
+    "declared": 25920,
+    "known": 20520,
+    "missing": 5400,
+    "trained_rungs_complete": 15,
+    "trained_rungs_declared": 20
+  },
+  "selection": "pending: all 20 validation rungs required",
+  "test_admission": {
+    "reason": "No committed, admitted selection",
+    "rejected": true
+  },
+  "stage_retry_counts": {
+    "ladder_val_sft_14B_f0p125": 0,
+    "ladder_val_sft_14B_f0p25": 0,
+    "ladder_val_sft_14B_f0p5": 0,
+    "ladder_val_sft_14B_f0p75": 0,
+    "ladder_val_sft_14B_f1p0": 0,
+    "ladder_val_sft_1p7B_f0p125": 0,
+    "ladder_val_sft_1p7B_f0p25": 0,
+    "ladder_val_sft_1p7B_f0p5": 0,
+    "ladder_val_sft_1p7B_f0p75": 0,
+    "ladder_val_sft_1p7B_f1p0": 0,
+    "ladder_val_sft_4B_f0p125": 0,
+    "ladder_val_sft_4B_f0p25": 0,
+    "ladder_val_sft_4B_f0p5": 0,
+    "ladder_val_sft_4B_f0p75": 0,
+    "ladder_val_sft_4B_f1p0": 0,
+    "ladder_val_sft_8B_f0p125": 0,
+    "ladder_val_sft_8B_f0p25": 0,
+    "ladder_val_sft_8B_f0p5": 0,
+    "ladder_val_sft_8B_f0p75": 0,
+    "ladder_val_sft_8B_f1p0": 0,
+    "sft_14B": 0,
+    "sft_8B": 0
+  },
+  "probe_accounting": {
+    "schema": 1,
+    "phase_incident": "8339e1ac-9675-4e2c-b609-552c1b436a12",
+    "cumulative_accelerator_window_limit_seconds": 1800,
+    "spent_seconds": 1783.9074669163674,
+    "remaining_seconds": 16.09253308363259,
+    "device_seconds": 8343.091856226325,
+    "attempts": [
+      {
+        "attempt": "skampere1_tp2",
+        "devices": 2,
+        "status": "FAILED",
+        "seconds": 988.027979850769,
+        "device_seconds": 1976.055959701538,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt1",
+        "devices": 8,
+        "status": "FAILED",
+        "seconds": 78.3024847432971,
+        "device_seconds": 626.4198779463768,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt2",
+        "devices": 8,
+        "status": "FAILED",
+        "seconds": 9.088251980021596,
+        "device_seconds": 72.70601584017277,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt3",
+        "devices": 8,
+        "status": "FAILED",
+        "seconds": 114.57696747779846,
+        "device_seconds": 916.6157398223877,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt4",
+        "devices": 8,
+        "status": "TIMEOUT",
+        "seconds": 593.9117828644812,
+        "device_seconds": 4751.29426291585,
+        "owned_children_remaining": [],
+        "lease_released": true
+      }
+    ],
+    "future_rule": "Never reset these receipts/counters. Remaining16seconds cannot complete a fresh native resume. No further disposable accelerator allocation in this phase; new scope/allowance must be explicit and prospective.",
+    "production_budget": "Original658updates/five-rung finite manifest unchanged; no invented overall production wall-time cap."
+  },
+  "shared_checkpoint_limitation": "16/16 restored Mercury samples cover embeddings/query projections only. Native checkpoint deduplication of query/key normalization states is a shared pinned-baseline limitation; actual per-rank weight/moment drift remains unmeasured. No new historical-production gate or selective 14B repair. Mercury resumed optimizer update and remote-production integration remain unmet.",
+  "scientific_calls_in_this_phase": 0,
+  "new_resource_probes": 0,
+  "checks": {
+    "stable_handoff_hashes": "PASS",
+    "production_training_data_hashes": "PASS",
+    "layout_registry_config_and_evidence_hashes": "PASS",
+    "checkpoint_storage_extents": "PASS; full payload hashes not recomputed",
+    "split_counts": {
+      "test": 222,
+      "train": 539,
+      "validation": 135
+    },
+    "downstream_shell_syntax": "PASS",
+    "native_delegate": {
+      "session_id": "01a129db-689e-7c71-82cb-2ff740bdb425",
+      "model": "gpt-5.6-terra",
+      "effort": "medium",
+      "approval_policy": "never",
+      "sandbox_mode": "danger-full-access",
+      "scope": "bounded read-only downstream source lookup"
+    },
+    "full_make_test": {
+      "command": "source env_e08.sh; source .venv/bin/activate; ELAN_HOME=/lfs/skampere1/0/brando9/.elan PATH=/lfs/skampere1/0/brando9/.elan/bin:$PATH env -u CODEX_HOME make test",
+      "passed": 268,
+      "skipped": 4,
+      "failed": 0,
+      "seconds": 207.88,
+      "log_path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/53cd99c4-2406-4b25-8933-d6cd76c0a6d1/2/make_test_corrected_env.log",
+      "log_sha256": "0fb2e6105925fbc58e0475009f2ffaedd31c7a33f639ea20617e8cf113898e40",
+      "initial_environment_failures": {
+        "failed": 11,
+        "passed": 257,
+        "skipped": 4,
+        "causes": [
+          "Inherited CODEX_HOME rejected by monitor fixture environment (4).",
+          "Inaccessible home-relative lake executable (7)."
+        ],
+        "log_path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/53cd99c4-2406-4b25-8933-d6cd76c0a6d1/2/make_test.log",
+        "log_sha256": "09f378bc23cc9be3bedde96262a8162573b53de7850758a69965e806ddedde3d"
+      },
+      "source_changes_in_phase": false
+    }
+  },
+  "receipt_directory": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/53cd99c4-2406-4b25-8933-d6cd76c0a6d1/2",
+  "durable_evidence": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/53cd99c4-2406-4b25-8933-d6cd76c0a6d1/2/initial_integrity_check.json",
+      "sha256": "6900fe3cfbd1c1fb130c580caba5e0f0d0555f262ecd1e7364c16040b4b92baf"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/53cd99c4-2406-4b25-8933-d6cd76c0a6d1/2/artifact_reconciliation.json",
+      "sha256": "f87912df43b018fcb7fc3e3c60cf0136df68b4f342d856a62db6d28cc14f17cb"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/53cd99c4-2406-4b25-8933-d6cd76c0a6d1/2/checkpoint_structure_check.json",
+      "sha256": "579093dcd1a877dac155c11d98497a0634f7946f8e445ecfd2c79fbd34af1da3"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/53cd99c4-2406-4b25-8933-d6cd76c0a6d1/2/sft_14B_steps_partial.csv",
+      "sha256": "a80c6a7fa260364dab206d9d5f337d4c76b868f0149f414c74c99d8e401741f7"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/53cd99c4-2406-4b25-8933-d6cd76c0a6d1/2/sft_14B_summary_partial.json",
+      "sha256": "040f9db2ebdc0f9d77c5fcf909509b874d92e9ea1079f2b67033033c8a78b79e"
+    }
+  ],
+  "limitations": [
+    "Training progress does not establish learned-weight improvement.",
+    "Exports follow all five training segments; no trained-14B validation yet.",
+    "Existing pipeline publication commits locally before checking make-test success; test admission independently requires exact published artifacts.",
+    "The adopted in-memory renderer can display zero placeholders for incomplete cohorts; completeness and n_known=0 remain authoritative. Current report displays these missing outcomes as unknown."
+  ]
+}
