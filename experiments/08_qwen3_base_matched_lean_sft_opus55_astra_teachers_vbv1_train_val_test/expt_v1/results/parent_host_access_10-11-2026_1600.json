@@ -1,0 +1,107 @@
+{
+  "observed_utc": "2026-10-11T23:01:41.042158+00:00",
+  "observed_local": "10-11-2026 16:01 PDT",
+  "status": "HOST_ACCESS_UNAVAILABLE_SCIENTIFIC_STATE_UNVERIFIED",
+  "classification": "SSH banner exchange times out before authentication; no evidence of account quota or scientific job failure",
+  "latest_successful_parent_observation": {
+    "observed_utc": "2026-10-11T22:12:48.253215+00:00",
+    "receipt_sha256": "c9a583e51306181a59a948f3fa3f7ae1e730f60a78e6298330a0fcfdd8a3ac33",
+    "new_test_declared_cells": 5328,
+    "all_test_declared_cells": 10656,
+    "frozen_hashes": {
+      "selection.json": "47e12d6c217a3e62e47e0d5bcef13478f2ecf52098b7ac6163df91e216e21cdb",
+      "test_manifest.json": "ed128d11e8d5d09e7d19244f5480f24360f01530510240a9d1176b0a446136fa",
+      "validation_ladder.json": "8b5386f73f2dc9072a2a81aa33912ef8658cfa7b1983f93248ad89142fa503e3",
+      "ladder_manifest.json": "3013db1230f27cf021ace50ff53abcc6de2e9f6964ac62968baa80ccb577a948"
+    },
+    "base_scored_sha256": "57c30f60cad5f7866bdb43beae74f041ecf5dd3ee756a418f0c7f6d33ed8dc1e",
+    "baseline_complete_cells": 1776,
+    "sft8_complete_sample_tables": [
+      {
+        "sample": "test_sft_8B_f1p0_g8_s0",
+        "rows": 222,
+        "unique_tasks": 222,
+        "frozen_tasks_match": true,
+        "all_scored": true,
+        "sha256": "e9fed304a507e21b562502f40c622872b259347122d3b174d0b93eb4a385e59d"
+      },
+      {
+        "sample": "test_sft_8B_f1p0_g8_s1",
+        "rows": 222,
+        "unique_tasks": 222,
+        "frozen_tasks_match": true,
+        "all_scored": true,
+        "sha256": "d1b1f56e856b4c0238403807624b356d48ac82385aaa6160856cea86b4e4b3b6"
+      },
+      {
+        "sample": "test_sft_8B_f1p0_g8_s2",
+        "rows": 222,
+        "unique_tasks": 222,
+        "frozen_tasks_match": true,
+        "all_scored": true,
+        "sha256": "3a3559649e44b4c10b5897941da952e422d81e8ac9a1f412e2aa950e6bcf3fc9"
+      },
+      {
+        "sample": "test_sft_8B_f1p0_g8_s3",
+        "rows": 222,
+        "unique_tasks": 222,
+        "frozen_tasks_match": true,
+        "all_scored": true,
+        "sha256": "975290f24ea5f3a0b602d288a38803c7c0ce0600f873643d32f7a0e194c4f466"
+      }
+    ],
+    "last_observed_sft14_progress": "712/752 prompts processed in final batch; merged generation not yet present at 15:12 PDT",
+    "pipeline_pid": 4005026,
+    "pipeline_start_ticks": "8095062",
+    "monitor": "ARMED without owner/incident",
+    "host_watch_entries_last_verified": 4
+  },
+  "access_evidence": [
+    {
+      "route": "Mac to skampere1",
+      "result": "exit 255; Connection timed out during banner exchange; 172.24.75.194:22"
+    },
+    {
+      "route": "Mac to skampere1 bounded retry",
+      "started_utc": "2026-10-11T22:58:49.485377+00:00",
+      "result": "local subprocess timeout after 25 seconds"
+    },
+    {
+      "route": "Mac to skampere2",
+      "result": "exit 0; remote date Sun Oct 11 10:58:51 PM UTC 2026"
+    },
+    {
+      "route": "Mac to skampere2 to skampere1",
+      "observed_utc": "2026-10-11T22:59:42.616873+00:00",
+      "result": "inner SSH exit 255; Connection timed out during banner exchange; 172.24.75.194:22"
+    },
+    {
+      "route": "skampere2 read skampere1 local-filesystem paths",
+      "observed_utc": "2026-10-11T23:00:29.470718+00:00",
+      "result": "all three receipt paths absent on skampere2; this does not establish deletion on skampere1"
+    },
+    {
+      "route": "independent read-only helper direct SSH",
+      "result": "exit 255; banner exchange timeout; no fresh remote receipts obtained"
+    }
+  ],
+  "preservation": {
+    "only_local_poll_ssh_terminated": 15494,
+    "remote_jobs_signalled": false,
+    "new_owner_dispatched": false,
+    "incidents_reopened": false,
+    "scientific_calls_or_retries": 0,
+    "probe_ledger_seconds_used": 1783.907,
+    "probe_ledger_seconds_cap": 1800,
+    "original_overall_study_cap": null
+  },
+  "next_action": "Keep same-chat monitor active. On the next check use bounded SSH -S none -o ControlMaster=no. Once accessible read fresh owner_recovery, pipeline and watchdog receipts and verify actual processes before any recovery action. Adopt healthy jobs and any verified current owner; preserve all existing incident attempts/deadlines and scientific inputs. Do not infer jobs failed, relaunch them, switch accounts for a pre-authentication timeout, or stop the study because observation is unavailable.",
+  "test_evidence": "Observation-only documentation; no production source, tests, scientific data or settings changed. Existing make test at b923256: 268 passed, 4 skipped; host unavailable for fresh execution.",
+  "automation_readback": {
+    "status": "ACTIVE",
+    "cadence_unchanged": true,
+    "target_thread_id": "01a11d6a-30aa-7020-a672-6b34546fdeee",
+    "prompt_sha256": "0f5e6425049ae0657601081612e45a6b94cce187c2140dd487b98b3844bf687f",
+    "latest_access_instruction_present": true
+  }
+}

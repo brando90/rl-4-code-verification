@@ -2,9 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/CKPT_MASTER_tmuxnone_cxd_01a11d6a.md>
 
-**TLDR:** All 20 trained validation rungs and all 25,920 declared validation cells are complete. Frozen selection is PARTIAL: no training fraction passes readiness at all four sizes. The admitted diagnostics select 8B step 658 and 14B step 334; the 1.7B and 4B sizes have no passing checkpoint. Selection and the 10,656-cell test manifest were published before the first test launch. Held-out generation is underway; kernel scoring, pinned judging and final learned-weight comparisons remain unfinished.
+**TLDR:** All 20 trained validation rungs and all 25,920 declared validation cells are complete. Frozen selection is PARTIAL: no training fraction passes readiness at all four sizes. The admitted diagnostics select 8B step 658 and 14B step 334; the 1.7B and 4B sizes have no passing checkpoint. Selection and the 10,656-cell test manifest were published before the first test launch. At the last successful check, one new test system was kernel-scored and the selected models were scoring/generating. Host access timed out at the 15:57 PDT check; current remote progress is unverified. Pinned judging and final learned-weight comparisons remain unfinished.
 
-Created: 10-08-2026 16:28 PDT. Last updated: 10-11-2026 10:51 PDT. **Status:** TRAINING/VALIDATION_COMPLETE; SELECTION_FROZEN_PARTIAL; TEST_RUNNING; latest coordinator VERIFIED_COMPLETE; monitor ARMED without a model owner. Two-A100 route REJECTED/CLEAN; Mercury2 PARTIAL/NOT_ADMITTED/CLEAN. Experiments 09 and 06 remain closed.
+Created: 10-08-2026 16:28 PDT. Last updated: 10-11-2026 16:03 PDT. **Status:** TRAINING/VALIDATION_COMPLETE; SELECTION_FROZEN_PARTIAL; TEST_RUNNING at last observation; HOST_ACCESS_UNAVAILABLE since the 15:57 PDT check. Latest verified coordinator is complete; current remote owner/watch/job state is unverified. Two-A100 route REJECTED/CLEAN; Mercury2 PARTIAL/NOT_ADMITTED/CLEAN. Experiments 09 and 06 remain closed.
 
 ## 1. Identity and recovery
 
@@ -302,6 +302,15 @@ At **14:38:39 PDT**, the monitor accepted the resource owner's completed receipt
 - Deterministic verification: fresh host `make test` passed 268 tests with four skipped in 208.11 seconds at `b923256`; source and test files are unchanged through parent `4332e14`. The Mac run retained seven failures from experiment13's hardcoded remote Lean paths (264 passed, five skipped), and an unconfigured remote shell had no Python executable. The recorded host environment resolves both execution prerequisites; no source change or scientific rerun was made.
 - Parent evidence: `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/parent_test_supervision_10-11-2026_1043.json`. The heartbeat prompt now records verified closure and was read back exactly, ACTIVE with unchanged cadence, chat and full-study stopping condition.
 
+## 22. Host-access interruption; scientific state preserved (10-11-2026)
+
+- The 15:57 PDT heartbeat could not inspect skampere1: Secure Shell (SSH) timed out during banner exchange from both the Mac and skampere2. A separate helper observed the same failure. Mac access to skampere2 succeeded. Reading skampere1's local-filesystem paths from skampere2 returned absent paths; that is not evidence of deletion on skampere1. This is an observation/host-access failure before authentication, not evidence of account exhaustion or scientific-job failure.
+- Latest successful parent check at 15:12:48 PDT, with host watches checked at 15:13:04: Base14B completed 1,776/1,776 unique frozen test cells and exited zero at 12:44:49; all eight 222-task scoring tables were verified. Selected 8B had four complete 222-task sample tables (888/1,776 cells), with four live Lean scoring children. Selected 14B was generating its final 752-prompt batch at 712/752 processed; its earlier 1,024 rows were durable. Partial sample tables and processed prompts are not completed system results. The full manifest remains 10,656 cells: 5,328 new plus 5,328 reused receipts.
+- All four frozen selection/ladder/test-manifest hashes and the completed baseline scored hash matched at the last successful check. Original pipeline PID 4005026/start8095062, selected-model launchers and active generation lease matched; monitor was ARMED without owner/incident and all four periodic/reboot watch entries were installed. These are last-known facts, not fresh liveness claims during the access interruption.
+- Parent terminated only its own stalled local polling SSH process after confirming its exact command. No remote job was signalled, no owner or scientific retry was launched, no completed incident was reopened and no allocation ledger or deadline was changed. Experiment09 resource-availability advertising had no actual runtime processes or active leases at 15:13; its failed scientific gate remains closed.
+- Evidence: `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/parent_host_access_10-11-2026_1600.json`. Continue the existing heartbeat. Next check uses bounded SSH, then fresh runtime receipts/process identities before any action; adopt healthy children and the current verified owner. Restore observation before deciding whether scientific recovery is needed. There is still no overall experiment08 study time/device cap, and full test judging/reporting remains required.
+- This publication changes only parent observation documents. Production source and tests are unchanged from the verified host suite (268 passed, four skipped at `b923256`); host access currently prevents fresh remote execution. The heartbeat prompt was updated and read back exactly, ACTIVE in the same chat with its unchanged 45-minute cadence; repeat the outage notification only on changed evidence or required human action.
+
 **TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched training and full validation are complete; PARTIAL selection admits two unmatched checkpoints for held-out diagnostics, now underway.
 **Snapshot:**
 ```text
@@ -313,7 +322,8 @@ selected 14B: step 334; 2884708 assistant tokens
 1.7B and 4B: no passing checkpoint
 test manifest: 10656 cells = 5328 new + 5328 reused
 selection and test manifest published before first test launch
-new test systems scored at 10:43 PDT: 0/3
-latest coordinator: VERIFIED_COMPLETE; monitor ARMED
+new test systems scored at 15:13 PDT: 1/3
+latest access check at 15:57 PDT: SSH banner timeout; state unverified
+last verified coordinator: VERIFIED_COMPLETE; monitor ARMED at 15:13 PDT
 full test factors and learned-weight comparisons: pending
 ```
