@@ -1,0 +1,53 @@
+{
+  "observed_utc": "2026-10-11T07:27:56.818176+00:00",
+  "status": "RESUMED_VERIFIED",
+  "incident_id": "53cd99c4-2406-4b25-8933-d6cd76c0a6d1",
+  "deadline_utc": "2026-10-11T08:10:02.833185+00:00",
+  "attempt_number": 2,
+  "attempts_preserved": 2,
+  "profile": "vals_codex",
+  "account_email": "brando@vals.ai",
+  "native_session_id": "01a129d9-d832-70a2-bd87-123460699161",
+  "runtime_context": {
+    "session_id": "01a129d9-d832-70a2-bd87-123460699161",
+    "model": "gpt-6-astra",
+    "effort": "ultra",
+    "approval_policy": "never",
+    "sandbox_mode": "danger-full-access"
+  },
+  "owner_process": {
+    "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+    "pid": 808257,
+    "ppid": 807520,
+    "session": 808257,
+    "start_ticks": 20465785
+  },
+  "handoff_sha256": "13ca5d78dde21b6cbe28836543845772dfd20f4db9dcc7791d65faedaf13f09c",
+  "parent_findings_sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba",
+  "parent_findings_acknowledged": true,
+  "policy_repository": "/dfs/scratch0/brando9/agents-config",
+  "policy_revision": "a2e2cfcc705ad871ef40dfb3d66c5be7213b59de",
+  "project_revision_at_handoff": "1d1c47a72d98527699286ec6eae3c15a0f3c6f01",
+  "first_action_outputs": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/53cd99c4-2406-4b25-8933-d6cd76c0a6d1/2/initial_integrity_check.json",
+      "sha256": "6900fe3cfbd1c1fb130c580caba5e0f0d0555f262ecd1e7364c16040b4b92baf"
+    }
+  ],
+  "scientific_pipeline_adopted": {
+    "boot_id": "83765e57-f5f3-4202-b7b4-18f1eb506043",
+    "pid": 4005026,
+    "ppid": 5979,
+    "session": 4005026,
+    "start_ticks": 8095062
+  },
+  "monitor_source_sha256": "ab9a8a2bc318d88e87232df1661e7e75b898b6a86c7257ba6cc595485e6842d9",
+  "coordination_phase_complete": false,
+  "scientific_study_complete": false,
+  "code_validation": {
+    "native_full_suite": "248 passed, 24 skipped in 183.43 seconds",
+    "local_full_suite": "264 passed, 5 skipped, 7 failures caused by unavailable cluster-only fixtures",
+    "local_focused": "38 passed, 1 Linux-only skip"
+  },
+  "scientific_budgets_and_attempt_limits_reset": false
+}
