@@ -6,7 +6,7 @@
 
 **Status:** RUNNING — 14B validation under the original serialized pipeline and host watchdog. Training and exports are complete; the production lease is released and two validation leases are live. The bounded coordinator has verified this transition; ordinary-code supervision continues after its exit.
 
-**Last updated:** 10-11-2026 05:47 PDT (pipeline: validation ladder table)
+**Last updated:** 10-11-2026 06:32 PDT (pipeline: validation ladder table)
 
 ## Five 14B exports verified; validation running (10-11-2026)
 
@@ -225,7 +225,7 @@ Failure taxonomy (cells): Opus 5.5 {"kept": 1200, "no_lean": 437, "no_typecheck"
 
 ## Validation ladder (live; PROTOCOL § 9: 135 tasks × 8 samples per system; gates (a) extraction ≥ 972/1080, (b) capped ≤ 108/1080, (c) mixed `kernel_binary` tasks ≥ 7/135; p-val=n/a)
 
-Written 2026-10-11T12:47:33+00:00 by the pipeline from `expt_v1/results/validation_ladder.json` (per-task and per-cell CSVs under `expt_v1/results/ladder/`).
+Written 2026-10-11T13:32:54+00:00 by the pipeline from `expt_v1/results/validation_ladder.json` (per-task and per-cell CSVs under `expt_v1/results/ladder/`).
 
 | System | Status | Extraction | Capped | Mixed tasks (share; Wilson 95%) | Gates | pass@8 | mean pass | mean tokens |
 |---|---|---:|---:|---|---|---:|---:|---:|
@@ -233,7 +233,7 @@ Written 2026-10-11T12:47:33+00:00 by the pipeline from `expt_v1/results/validati
 | `base_1p7B_e05` | COMPLETE | 601 / 1080 | 658 / 1080 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 7945.7 |
 | `base_4B_e05` | COMPLETE | 913 / 1080 | 108 / 1080 | 3 / 135 (0.0222; [0.0076, 0.0633]) | fail | 0.0222 | 0.00278 | 2242.3 |
 | `base_8B_e05` | COMPLETE | 930 / 1080 | 142 / 1080 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 2533.3 |
-| `sft_14B_f0p125` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
+| `sft_14B_f0p125` | COMPLETE | 848 / 1080 | 169 / 1080 | 20 / 135 (0.1481; [0.098, 0.2178]) | fail | 0.1481 | 0.03704 | 5682.8 |
 | `sft_14B_f0p25` | COMPLETE | 952 / 1080 | 128 / 1080 | 25 / 135 (0.1852; [0.1287, 0.2591]) | fail | 0.1852 | 0.06667 | 5137.2 |
 | `sft_14B_f0p5` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
 | `sft_14B_f0p75` | INCOMPLETE | 0 / 0 | 0 / 0 | 0 / 135 (0.0; [0.0, 0.0277]) | fail | 0.0 | 0.0 | 0.0 |
