@@ -1,0 +1,269 @@
+{
+  "experiment": "08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test",
+  "frozen_hashes": {
+    "ladder_manifest.json": "3013db1230f27cf021ace50ff53abcc6de2e9f6964ac62968baa80ccb577a948",
+    "selection.json": "47e12d6c217a3e62e47e0d5bcef13478f2ecf52098b7ac6163df91e216e21cdb",
+    "split/vbv1_test_task_ids.txt": "303a6c666d6902bb62e64a37091167a6150e652f1c3b1311c0a62e8c7fccd095",
+    "test_manifest.json": "ed128d11e8d5d09e7d19244f5480f24360f01530510240a9d1176b0a446136fa",
+    "validation_ladder.json": "8b5386f73f2dc9072a2a81aa33912ef8658cfa7b1983f93248ad89142fa503e3"
+  },
+  "frozen_hashes_unchanged": true,
+  "observed_local": "10-11-2026 18:12:51 PDT",
+  "observed_utc": "2026-10-12T01:12:51.011583+00:00",
+  "prior_completed_sample_hashes_unchanged": 13,
+  "provenance": [
+    {
+      "private_local_path": "/tmp/e08_parent_poll_10-11-2026_1813.json",
+      "sha256": "3b9922b4308ce13f5a6d4440054570ecf7cd9710c5be283b07b9c81faeea32b6"
+    },
+    {
+      "private_local_path": "/tmp/e08_health_1812pdt_10-11-2026_04io2kyq.json",
+      "sha256": "eedda42d7efc82d7d8be3b03280f8b6af25f4541272ee8ebee50e9b27f3f4091"
+    }
+  ],
+  "remaining_work": {
+    "current_14B_lean_children": 4,
+    "experiment08_overall_time_device_cap": null,
+    "experiments06_09": "remain closed",
+    "judging_and_final_aligned_factors": "pending",
+    "probe_cap_seconds": 1800,
+    "probe_spent_seconds": 1783.907,
+    "selected_14B_retry_count": 1,
+    "selected_14B_samples_scoring": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "selected_8B_final_retry_count": 1,
+    "selection": "frozen PARTIAL; unmatched selected8B/14B diagnostics only"
+  },
+  "runtime": {
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "comparison_1728pdt": {
+      "boot_unchanged": true,
+      "current_lean_count": 4,
+      "findings_unchanged": true,
+      "new_lean_identities": 4,
+      "old_lean_identities_still_present": 0,
+      "pipeline_identity_unchanged": true,
+      "previous_receipt": "/tmp/e08_health_1727pdt_10-11-2026_s57cib62.json",
+      "reboot_incident_receipt_unchanged": true
+    },
+    "cron": {
+      "entries": [
+        "*/15 * * * * /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/watchdog_e08.sh >> /lfs/skampere1/0/brando9/rl4cv_e08/watchdog/cron.log 2>&1",
+        "@reboot /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/watchdog_e08.sh --reboot >> /lfs/skampere1/0/brando9/rl4cv_e08/watchdog/cron.log 2>&1",
+        "*/5 * * * * /bin/bash -c '. /dfs/scratch0/brando9/.bash_env; exec /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py' >> /lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_cron.log 2>&1 # rl4cv-e08-coordinator-monitor",
+        "@reboot /bin/bash -c '. /dfs/scratch0/brando9/.bash_env; exec /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py' >> /lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_cron.log 2>&1 # rl4cv-e08-coordinator-monitor"
+      ],
+      "exit_code": 0,
+      "monitor_5minute": true,
+      "monitor_reboot": true,
+      "watchdog_15minute": true,
+      "watchdog_reboot": true
+    },
+    "monitor": {
+      "event_errors": {},
+      "incident": null,
+      "latest_completed_incident": {
+        "id": "294a3a1b-b6a7-4eb5-be83-4c34b32cada2",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/294a3a1b-b6a7-4eb5-be83-4c34b32cada2/receipt.json",
+        "sha256": "41c95c135809d9e9189001b35dbd646b3c57b3a61562c27c46421205711eb901",
+        "status": "VERIFIED_COMPLETE"
+      },
+      "observed_utc": "2026-10-12T01:10:02.154847+00:00",
+      "owner": null,
+      "status": "ARMED"
+    },
+    "parent_findings": {
+      "exists": true,
+      "sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba"
+    },
+    "pipeline_interpreters": [
+      {
+        "argv0": ".venv/bin/python",
+        "pid": 28223,
+        "ppid": 28222,
+        "start_ticks": 24891,
+        "state": "S"
+      }
+    ],
+    "preserved_reboot_incident": {
+      "attempts": [
+        {
+          "ended_utc": "2026-10-11T23:32:28.147620+00:00",
+          "exit_code": null,
+          "number": 1,
+          "profile": "personal_codex",
+          "started_utc": "2026-10-11T23:32:19.556262+00:00",
+          "status": "INELIGIBLE"
+        },
+        {
+          "ended_utc": "2026-10-11T23:41:06.584716+00:00",
+          "exit_code": 0,
+          "number": 2,
+          "profile": "vals_codex",
+          "started_utc": "2026-10-11T23:32:28.150133+00:00",
+          "status": "VERIFIED_COMPLETE"
+        }
+      ],
+      "created_utc": "2026-10-11T23:32:19.554419+00:00",
+      "deadline_utc": "2026-10-12T00:42:19.554423+00:00",
+      "sha256": "41c95c135809d9e9189001b35dbd646b3c57b3a61562c27c46421205711eb901",
+      "status": "VERIFIED_COMPLETE"
+    },
+    "registered_lease_check": {
+      "registered": 27,
+      "unreleased": []
+    },
+    "selected_8b_completion_check": {
+      "closed_8b_identities": [
+        {
+          "identity_alive": false,
+          "pid": 29298,
+          "pid_exists": false,
+          "recorded_start_ticks": 25176
+        },
+        {
+          "identity_alive": false,
+          "pid": 29299,
+          "pid_exists": false,
+          "recorded_start_ticks": 25176
+        },
+        {
+          "identity_alive": false,
+          "pid": 29443,
+          "pid_exists": false,
+          "recorded_start_ticks": 25318
+        },
+        {
+          "identity_alive": false,
+          "pid": 29445,
+          "pid_exists": false,
+          "recorded_start_ticks": 25318
+        },
+        {
+          "identity_alive": false,
+          "pid": 29446,
+          "pid_exists": false,
+          "recorded_start_ticks": 25318
+        }
+      ],
+      "exit_file": {
+        "mtime_utc": "2026-10-12T01:00:58.274824+00:00",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/pipeline/ladder_test_test_sft_8B_f1p0.exit",
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "value": "0"
+      },
+      "observed_utc": "2026-10-12T01:13:41.068329+00:00"
+    },
+    "watchdog": {
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "checked_utc": "2026-10-12T01:00:02Z",
+      "host": "skampere1.stanford.edu",
+      "jobs": [
+        {
+          "fresh_age_s": "34",
+          "name": "pipeline",
+          "pane_pid": "28222",
+          "processes": 2,
+          "session": "rl4cv-e08-pipeline",
+          "state": "running"
+        }
+      ]
+    }
+  },
+  "schema": 1,
+  "scientific_artifacts": {
+    "base14b": {
+      "all_complete_tables_have_222_unique_frozen_tasks": true,
+      "all_complete_tables_rows_scored": true,
+      "complete_sample_tables": 8,
+      "merged_scored": {
+        "frozen_keys_match": true,
+        "rows": 1776,
+        "sha256": "57c30f60cad5f7866bdb43beae74f041ecf5dd3ee756a418f0c7f6d33ed8dc1e",
+        "unique_cells": 1776
+      },
+      "sample_table_sha256": {
+        "0": "cc1743939190023caaa32fc87c38727a15947f02d579c68969af45b45be1d57b",
+        "1": "eb528f1e10902a39740bff6d92ac4fb9b6114cf725b26b0ffe04d160bb12f482",
+        "2": "6d5acc1713f9780c3b98d582cf229c87377e597b3f0092aa19f1b961d795a328",
+        "3": "d0e1afe8092785516189dabd44bd5b1a332bac8a39a3f9c6dd3a242eddabe84f",
+        "4": "b3533e72faa261dc184a213c906b79de35d5399a1c587392a61135b4f4ec5e71",
+        "5": "cbe84f6a68c4387e0383ab0793b9c5fe128facbf87f54213d48522dd9c4cbe3f",
+        "6": "452d7a7a4a020c274f99d3562a2cf79692c9a4c6f12a989fca5e7266f0926238",
+        "7": "6a306048e730b2297d301707dd8224130c9b977cecba9121e31e9999d9ee1a35"
+      }
+    },
+    "test_sft_14B_f0p5": {
+      "all_complete_tables_have_222_unique_frozen_tasks": true,
+      "all_complete_tables_rows_scored": true,
+      "complete_sample_tables": 4,
+      "merged_scored": null,
+      "sample_table_sha256": {
+        "0": "91f01c82b4dd04b3272f1455534f75f6a75221855e550e53c349fb8bb5ea53c5",
+        "1": "1668d7fdaa551a3e94c5c0114ef89b5ad18004ee2036c1a0cdcce64028ccc728",
+        "2": "3988d7b7be8bd874643f87bc7bdc4d926b7d14730778477644bf3b2a9ab1f9a6",
+        "3": "c180b5b913cd0a732ddf399af582066d6d4f8e12f4a19e2cde29e2a02d03cd26"
+      }
+    },
+    "test_sft_8B_f1p0": {
+      "all_complete_tables_have_222_unique_frozen_tasks": true,
+      "all_complete_tables_rows_scored": true,
+      "complete_sample_tables": 8,
+      "merged_scored": {
+        "frozen_keys_match": true,
+        "rows": 1776,
+        "sha256": "e464e756dfdd9cb6e4558df084779734dc7b7a14bc31b65d5693c0f0ff9c7379",
+        "unique_cells": 1776
+      },
+      "sample_table_sha256": {
+        "0": "e9fed304a507e21b562502f40c622872b259347122d3b174d0b93eb4a385e59d",
+        "1": "d1b1f56e856b4c0238403807624b356d48ac82385aaa6160856cea86b4e4b3b6",
+        "2": "3a3559649e44b4c10b5897941da952e422d81e8ac9a1f412e2aa950e6bcf3fc9",
+        "3": "975290f24ea5f3a0b602d288a38803c7c0ce0600f873643d32f7a0e194c4f466",
+        "4": "048680ffcfe7489d77b00fd1e5620991a402dc7d5cb995e55be9682d55d97f5f",
+        "5": "a45c2bf9924d60cec56c6402909117d60629c9aaf823e17f66e1e56b29801f18",
+        "6": "89cb2d6a72286102014738885e33d97338c844e0c979825337fc0d4767a150c7",
+        "7": "e5109dcb07b7184978ae11670fa0b97b870c522d095acdd0e593bbd92132530a"
+      }
+    }
+  },
+  "test_denominators": {
+    "all_cells": 10656,
+    "declared_new_cells": 5328,
+    "declared_reused_cells": 5328,
+    "full_factor_evaluation_complete": false,
+    "new_cells_in_complete_systems": 3552,
+    "new_systems_declared": 3,
+    "new_systems_kernel_complete": 2,
+    "raw_new_cells_previously_verified": 5328,
+    "selected_14B_cells_outside_complete_sample_tables": 888,
+    "selected_14B_partial_complete_sample_cells": 888
+  },
+  "tests": {
+    "existing_verified_host_suite": {
+      "passed": 268,
+      "seconds": 153.41,
+      "skipped": 4
+    },
+    "parent_checks": [
+      "frozen hash equality",
+      "completed sample-table hash preservation",
+      "exact task/sample key sets",
+      "all sample tables have 222 scored tasks",
+      "actual exit and process identities",
+      "monitor/watch status"
+    ],
+    "source_and_tests_unchanged_since": "b923256dfc7dca28d920ee8063b434bb7e998afd"
+  },
+  "verdict": "SELECTED_8B_KERNEL_COMPLETE_SELECTED_14B_SCORING",
+  "verification_limits": [
+    "Execution counts are not held-out efficacy estimates.",
+    "The 5328 reused baseline cells remain the declared source; this check does not establish their final factor evaluation.",
+    "No new responses, optimizer updates, judge calls, coordinator dispatches or remote mutations were made by the parent.",
+    "Native normalization checkpoint deduplication remains a shared pinned-baseline limitation; numerical drift and full per-rank lossless restoration were not measured."
+  ]
+}

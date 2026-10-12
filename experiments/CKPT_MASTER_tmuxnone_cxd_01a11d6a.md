@@ -2,9 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/CKPT_MASTER_tmuxnone_cxd_01a11d6a.md>
 
-**TLDR:** All 20 trained validation rungs and all 25,920 declared validation cells are complete. Frozen selection is PARTIAL: no training fraction passes readiness at all four sizes. The admitted diagnostics select 8B step 658 and 14B step 334; the 1.7B and 4B sizes have no passing checkpoint. Selection and the 10,656-cell test manifest were published before the first test launch. Host access is restored after a verified reboot; the installed watchdog resumed the single pipeline and unfinished scoring. All 5,328 new test responses are complete and preserved. Base14B is fully kernel-scored; selected 8B has five completed sample tables, and selected 14B is scoring. Pinned judging and final learned-weight comparisons remain unfinished.
+**TLDR:** All 20 trained validation rungs and all 25,920 declared validation cells are complete. Frozen selection is PARTIAL: no training fraction passes readiness at all four sizes. The admitted diagnostics select 8B step 658 and 14B step 334; the 1.7B and 4B sizes have no passing checkpoint. Selection and the 10,656-cell test manifest were published before the first test launch. Host access is restored after a verified reboot; the installed watchdog resumed the single pipeline and unfinished scoring. All 5,328 new test responses are complete and preserved. Base14B and selected 8B are fully kernel-scored (2/3 new systems); selected 14B has four completed sample tables and is scoring the remaining four. Pinned judging and final learned-weight comparisons remain unfinished.
 
-Created: 10-08-2026 16:28 PDT. Last updated: 10-11-2026 16:50 PDT. **Status:** TRAINING/VALIDATION_COMPLETE; SELECTION_FROZEN_PARTIAL; TEST_SCORING_RUNNING; HOST_RESTORED/REBOOT_RECOVERY_VERIFIED. New reboot coordinator is VERIFIED_COMPLETE; monitor ARMED without an active model owner. Two-A100 route REJECTED/CLEAN; Mercury2 PARTIAL/NOT_ADMITTED/CLEAN. Experiments 09 and 06 remain closed.
+Created: 10-08-2026 16:28 PDT. Last updated: 10-11-2026 18:15 PDT. **Status:** TRAINING/VALIDATION_COMPLETE; SELECTION_FROZEN_PARTIAL; TEST_SCORING_RUNNING; HOST_RESTORED/REBOOT_RECOVERY_VERIFIED. New reboot coordinator is VERIFIED_COMPLETE; monitor ARMED without an active model owner. Two-A100 route REJECTED/CLEAN; Mercury2 PARTIAL/NOT_ADMITTED/CLEAN. Experiments 09 and 06 remain closed.
 
 ## 1. Identity and recovery
 
@@ -322,6 +322,14 @@ At **14:38:39 PDT**, the monitor accepted the resource owner's completed receipt
 - Monitor ARMED has no active owner/incident. Both five-minute/reboot recovery and fifteen-minute/reboot watchdog entries remain installed. The existing coordinator test log verifies 268 passed and four skipped in 153.41 seconds; production source and tests remain unchanged from `b923256`. This parent publication adds only observation documents. The heartbeat's stale outage paragraph was replaced with this verified recovery and read back, preserving its ACTIVE state, 45-minute cadence and full-study stopping condition.
 - Evidence: `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/parent_reboot_recovery_10-11-2026_1648.json`. Continue remaining kernel scoring, pinned Vals-funded judge-route controls and ratings, aligned factors and the verified final report. PARTIAL selection still admits unmatched diagnostics only. The shared normalization-restoration limitation, unmeasured numerical drift, closed experiments 06/09 and 1,783.907/1,800-second probe ledger remain unchanged. There is no overall experiment08 study time/device cap.
 
+## 24. Selected 8B test kernel scoring complete (10-11-2026)
+
+- At 18:12:51 PDT, parent independently verified selected 8B's merged test output: 1,776/1,776 unique cells matching all 222 frozen tasks × eight samples. Its digest is `e464e756dfdd9cb6e4558df084779734dc7b7a14bc31b65d5693c0f0ff9c7379`. All eight sample tables contain exactly 222 distinct frozen tasks with scored status. The launcher exited zero at 18:00:58 PDT; both recorded launcher identities and all three previously active scorer identities are absent. The retained stage field `exit=no-exit-file` is stale; the actual exit file records zero.
+- Base14B remains complete and its merged digest is unchanged. Two of the three new test systems are now fully kernel-scored, covering 3,552/5,328 declared new cells in complete systems. Selected 14B has four complete sample tables (888/1,776 cells); the remaining 888 cells are outside complete sample tables. Preserve this partial evidence separately. The full six-system manifest remains 10,656 cells, including 5,328 declared reused baseline receipts; final factor evaluation is still pending.
+- All five frozen selection/ladder/test-manifest/task-list hashes and all 13 previously completed sample-table hashes match. At 18:13 PDT, four actual selected-14B scorers and four fresh Lean children were processing samples 4–7 under the same single pipeline PID 28223/start24891. Both selected-system retry counts remain one; no generation was restarted or new optimizer progress claimed.
+- Monitor ARMED has no active model owner, incident or event errors; all four periodic/reboot watch entries remain installed. The completed reboot incident and latest parent-finding digests are unchanged. No new owner is needed for ordinary scoring progress. Continue the admitted pipeline through final kernel tables, pinned Vals-funded judge-route controls and ratings, aligned factors and the final report. PARTIAL selection still means unmatched diagnostics, not a matched cross-size improvement result.
+- Evidence: `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/parent_selected_8B_test_complete_10-11-2026.json`. This publication contains parent observation documents only; production source/tests are unchanged from the existing verified host suite (268 passed, four skipped). The heartbeat remains active with its unchanged 45-minute cadence and full-study completion condition.
+
 **TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched training and full validation are complete; PARTIAL selection admits two unmatched checkpoints for held-out diagnostics. Verified reboot recovery preserved all generated test responses and resumed unfinished kernel scoring.
 **Snapshot:**
 ```text
@@ -334,8 +342,8 @@ selected 14B: step 334; 2884708 assistant tokens
 test manifest: 10656 cells = 5328 new + 5328 reused
 selection and test manifest published before first test launch
 new test generations: 5328/5328 exact frozen cells
-new test systems fully scored at 16:48 PDT: 1/3
-selected 8B completed sample tables: 5/8; selected 14B: 0/8
+new test systems fully scored at 18:13 PDT: 2/3
+selected 8B completed sample tables: 8/8; selected 14B: 4/8
 host restored; reboot recovery verified; one pipeline interpreter
 latest coordinator: VERIFIED_COMPLETE; monitor ARMED; no active owner
 full test factors and learned-weight comparisons: pending
