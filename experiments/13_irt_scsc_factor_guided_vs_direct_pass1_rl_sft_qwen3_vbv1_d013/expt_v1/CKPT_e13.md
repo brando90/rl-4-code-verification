@@ -4,7 +4,7 @@
 
 **TLDR:** The historical audit terminated with 21,504 accounted cells, 6,739 measured and 14,765 unmeasured. The scientific gate failed; all budgets and downstream gates remain unchanged.
 
-Created: 10-09-2026. Last updated: 10-11-2026 23:34:29 PDT
+Created: 10-09-2026. Last updated: 10-11-2026 23:36:37 PDT
 Status: BLOCKED — audit terminal accounting complete; scientific acceptance failed; later phases unadmitted.
 
 ## Current terminal reconciliation — 10-11-2026 23:30:49 PDT
@@ -58,3 +58,9 @@ Integration refresh 10-09-2026 22:55:43 PDT: main advanced with experiment12 doc
 LANDED 465225ea38f3b2f2a0729fea01809d857875582a https://github.com/brando90/rl-4-code-verification/pull/12 10-09-2026 23:00:34 PDT
 
 The implementation phase is merged and all21owned paths exactly match verified head2efdf8c0c8b5da01ce60b9909bcb1052500f75f4. Final post-rebase `make test`:233 passed/24 skipped, exit0 (193.57seconds). Six canonical audit bindings and four active runtime scientific files were checked byte-for-byte. Scientific audit remains RUNNING: 170/21,504 processed at 2026-10-10T06:00:30+00:00; equality PENDING. Original scientific gates, immutable metadata erratum and full diagnostic-retention limitation remain. Parent owns notifications.
+
+## Terminal closeout publication
+
+LANDED d0c3a9d297a7b6b97f4bef538113fecca39ee961 https://github.com/brando90/rl-4-code-verification/commit/d0c3a9d297a7b6b97f4bef538113fecca39ee961 10-11-2026 23:36:37 PDT
+
+Documentation and sanitized terminal accounting published by direct fast-forward to main under repository instructions. Full repository verification: 257 passed, 24 skipped, exit 0; exact six-file staged scope and secret scan passed. No frozen scientific source/lock changes, new measurement or retry. Recovery master gpt-6-astra/ultra; parent retains notifications and unresolved scientific/funding/context dependencies.
