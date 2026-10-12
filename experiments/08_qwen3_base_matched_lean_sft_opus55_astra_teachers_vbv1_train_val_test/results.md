@@ -6,7 +6,7 @@
 
 **Status:** DONE (10-11-2026 21:24 PDT; verdict PARTIAL; test split evaluated once after the committed selection)
 
-**Last updated:** 10-11-2026 21:52 PDT (verified final analysis and closure)
+**Last updated:** 10-11-2026 22:04 PDT (parent verification and monitor retirement)
 
 ## Final result and execution closure (10-11-2026)
 
@@ -31,11 +31,13 @@ Repeated-rating variability below is the mean within-file sample standard deviat
 
 The [charge ledger](expt_v1/results/reported_charge_accounting.json) sums raw reported costs once: main teachers including recovery **$5,111.944132**, preflight **$9.2857082**, test judge **$252.8124947**, and judge controls **$3.1320861**, totaling **$5,377.174421 reported** on the frozen Vals-funded route. The separate recovery files duplicate rows already merged into main receipts and are not added again. There are 446 source rows without reported charges, including four original failed Opus preflight ratings and 16 unserved placeholders; unknown charges are not asserted to be zero. Host computation costs were not measured. The 471 main teacher cells without available responses remain in their original 4,312-cell denominator and are not replayed.
 
-The pipeline published final evaluation in `e755b954` and exited normally at 21:27 PDT; its identity was not restarted. Both finished judge services and tunnels are stopped, all ports 9740–9759 are free, the port claim is archived, and the two completed-pipeline watchdog cron entries are retired. Other jobs and cron entries are preserved. The coordinator monitor retains its five-minute/reboot entries and an explicit `STOP` marker suppresses future model launches; its parent will validate this incident's final receipt after the owner exits. Checkpoints, raw data, failed attempts, retry counts, both protocol locks and the 539/135/222 split remain intact.
+The pipeline published final evaluation in `e755b954` and exited normally at 21:27 PDT; its identity was not restarted. Both finished judge services and tunnels are stopped, all ports 9740–9759 are free, the port claim is archived, and the two completed-pipeline watchdog cron entries are retired. Other jobs and cron entries are preserved. Parent subsequently verified final coordinator closure and retired the two remaining five-minute/reboot coordinator entries at 22:02:50 PDT, preserving all seven unrelated cron lines. The explicit `STOP` marker and all recovery evidence remain. Checkpoints, raw data, failed attempts, retry counts, both protocol locks and the 539/135/222 split remain intact.
 
 The shared native checkpoint limitation is unchanged: 16/16 historical reload samples cover embeddings/query projections only, while actual per-rank query/key normalization-state drift remains unmeasured. This adds no historical-production gate and no selective 14B repair. TP2 remains blocked by gradient semantics; Mercury remains unadmitted with its resumed optimizer update and remote integration unfinished. The disposable probe ledger stays **1783.907/1800 seconds spent, 16.093 remaining**, with no fresh allocation. These unused alternatives do not block the already completed historical production route.
 
 Full `make test`: **277 passed, four optional skips in 158.50 seconds**. The added regression cases cover missing required judging, compile gating with zero proofs, diagnostic audit gating, duplicate identities, mismatched rating transport, and served teacher errors without responses. The original test analyzer, scorer, manifests, training recipe and test outcomes are unchanged. The teacher reporting source now uses the response-availability flag; its historical output remains preserved beside the correction receipt. [Coordination and cleanup receipt](expt_v1/results/coordinator_completion_10-11-2026.json). No scientific model call or resource probe was made in this closure phase.
+
+Parent final verification independently matched all 42 newly published files to runtime and rebuilt all 10,656 factor rows and 4,302 rating identities. A separate task-sum bootstrap reproduced all 18 system/scope means, 72 factor/aggregate intervals and six paired comparisons. Final owner closure verifies 24/24 output hashes, 14/14 published files and absence of all 158 recorded identities; its exit zero preceded the unchanged incident deadline. Teacher response counts and the 28-file reported-charge ledger also independently reproduce. [Parent completion verification](expt_v1/results/parent_final_verification_10-11-2026.json). All four experiment08 host watch entries are retired; the parent will remove its desktop heartbeat after publishing this verification.
 
 Earlier dated entries below retain the state observed at their own timestamps.
 

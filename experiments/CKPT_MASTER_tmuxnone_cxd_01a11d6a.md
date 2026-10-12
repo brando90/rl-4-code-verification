@@ -2,9 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/CKPT_MASTER_tmuxnone_cxd_01a11d6a.md>
 
-**TLDR:** All 20 trained validation rungs and all 25,920 declared validation cells are complete. Frozen selection is PARTIAL: no training fraction passes readiness at all four sizes. The admitted diagnostics select 8B step 658 and 14B step 334; the 1.7B and 4B sizes have no passing checkpoint. Selection and the 10,656-cell test manifest were published before the first test launch. Host access is restored after a verified reboot; the installed watchdog resumed the single pipeline and unfinished scoring. All 5,328 new test responses are complete and preserved. All three new test systems and all three reused baselines now have complete kernel tables: 10,656/10,656 frozen test cells, with no missing kernel inputs. The single recovery owner repaired inherited command discovery; all 50 judge-control ratings are measured and every frozen category gate passes. The test-rating manifest declares 4,302 ratings over 717 files. All twelve judge runs are admitted, including the recovered selected-8B pair. Coordinator closure and publication are independently verified. Pinned test judging and final learned-weight comparisons remain unfinished.
+**TLDR:** Experiment08 is complete and independently verified: all four training sizes, 20 trained validation rungs, 25,920 validation cells, 10,656 held-out test factor cells and 4,302 judge ratings. Frozen selection remains PARTIAL: the selected diagnostics are 8B step 658 and 14B step 334, at different fractions; 1.7B and 4B have no passing rung. The final report is published. The final coordinator and all owned scientific jobs have exited, all 27 leases are released, and all four host watch entries are retired. Experiments 09 and 06 remain closed; no follow-on study is launched.
 
-Created: 10-08-2026 16:28 PDT. Last updated: 10-11-2026 20:34 PDT. **Status:** TRAINING/VALIDATION_COMPLETE; SELECTION_FROZEN_PARTIAL; TEST_KERNEL_COMPLETE; JUDGE_CONTROLS_PASS; TEST_RATING_MANIFEST_VERIFIED. Incident 6ca5cdbf is VERIFIED_COMPLETE; all twelve test-judge runs are admitted under the original pipeline, and monitor ARMED has no active model owner. Two-A100 route REJECTED/CLEAN; Mercury2 PARTIAL/NOT_ADMITTED/CLEAN. Experiments 09 and 06 remain closed.
+Created: 10-08-2026 16:28 PDT. Last updated: 10-11-2026 22:04 PDT. **Status:** EXPERIMENT08_COMPLETE_VERIFIED; SELECTION_PARTIAL; FINAL_REPORT_PUBLISHED. All host monitoring is retired; delete the desktop heartbeat after publishing this receipt. Experiments 09 and 06 remain closed.
 
 ## 1. Identity and recovery
 
@@ -17,7 +17,7 @@ Preserve the original shared checkout and other owners' dirty files. Publish onl
 | Experiment | Verified state and declared denominators |
 |---|---|
 | `09_qwen3_1p7b_grpo_scsc_scalar_vs_factor_feedback_vbv1_d013` | Scorer controls 14/14 matched expected outcomes. Live coverage controls 50/50 measured ratings, all frozen category gates passed; this is not a claim of 50/50 expected-label accuracy. Read-only model/feedback forward pass passed. Calibration 0/256 rollouts, 0/512 responses; training 0/6 trajectories and zero optimizer updates; validation 0/945 cells, test 0/1,554 cells. The actual disposable batch completed 32 two-turn trajectories and passed its 4,077-token assistant-mask audit. A read-only replay found 4 actions outside recomputed support and 367 supported actions beyond the frozen log-probability tolerance; zero optimizer steps were taken. The adapter attempt is FAILED_TECHNICAL_GATE; optimizer, save/reload and full-context controls were not passed. This is not a negative learning result. |
-| `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test` | At 10-11-2026 09:57 PDT, all four sizes completed their frozen training and 20/20 trained validation rungs. All 24 validation systems have 25,920/25,920 finalized kernel-scoring receipts, with no missing gate inputs. Frozen PARTIAL selection chooses 8B step 658 and 14B step 334 as unmatched diagnostics; no common fraction passes all four sizes, and 1.7B/4B have no passing rung. The six-system test manifest declares 10,656 cells (5,328 new + 5,328 reused). Its first generator launched after selection/manifest publication; 0/3 new test systems were scored at the observation. Held-out efficacy and the final report remain pending. |
+| `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test` | COMPLETE, independently verified on 10-11-2026. Four sizes each finished 658 updates and 5,752,936 assistant loss tokens. Validation: 20/20 trained rungs and 25,920/25,920 cells. Selection PARTIAL: unmatched diagnostics 8B step 658 and 14B step 334; no passing 1.7B/4B rung. Held-out test: 10,656/10,656 known factor cells and 4,302/4,302 measured ratings over 717 files. Final results and cleanup verified; no further scientific work remains. |
 | `06_swebench_lite_factor_feedback_matched_budget` | Version 3 BLOCKED: all 3/3 coordinator launches used. Last owner exited at 19:34:21 PDT with `error_max_turns`, 90 configured turns/91 reported. Official controls 0/16, author calls 0/8, solver cells 0/56. Five preliminary smoke executions remain non-admitted; four lacked enforced CPU/memory bounds and the fifth failed its observer. This is infrastructure/coordinator blockage, not evidence about repair efficacy. |
 | `02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics` | Phase-A version 3 completed/PARTIAL in `572e28f`: 587 kept pairs over 455/970 tasks, 42/2,910 cells unmeasured. Below frozen SUFFICIENT thresholds of 1,024 pairs and 512 tasks. Do not restart completed work. |
 
@@ -352,25 +352,28 @@ At **14:38:39 PDT**, the monitor accepted the resource owner's completed receipt
 - The same single pipeline PID 28223/start24891 on boot `839e7dd6-64e1-4a80-9498-31d30b3cc2df` continues, fresh at 20:31:56. Monitor ARMED has no owner or active incident, all 27 registered leases are released, and all four periodic/reboot recovery/watchdog entries remain installed. The latest parent-finding acknowledgment, actual Vals/Astra/ultra/full-access/never identity and first useful output remain verified. Do not reopen this completed incident or dispatch for ordinary rating progress.
 - Evidence: `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/parent_judge_recovery_closed_10-11-2026.json`. Frozen selection, ladders, test manifest, task IDs, controls and judge-pack hashes are unchanged. Continue the original pipeline through parsed ratings, the fixed audit, aligned factors and the verified final report. Shared checkpoint limitations, the spent Mercury probe ledger, closed experiments 06/09 and the absence of an overall experiment08 study time/device cap are preserved.
 
-**TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched training and full validation are complete; PARTIAL selection admits two unmatched checkpoints for held-out diagnostics. All declared test kernel cells and the judge controls are verified and published; the recovery owner has closed its phase and all twelve admitted judge runs continue under the original pipeline.
+## 27. Full study completion independently verified (10-11-2026)
+
+- Final scientific outputs and report are on main in `e755b95496c53fa5a15774d0d90fda4895e0a10a` and `e536aa8c2b95d8f28583af69eb9821ef3ac0dd46`. Parent matched all 42 changed files across runtime, published blobs and the local checkout. Independent reconstruction verified all 10,656 frozen system/task/sample factor cells, 4,302 unique measured rating identities, 717 six-rating file aggregates, 361 compiling files and 356 audit-only files. All 60 fixed audit identities per system and the Base4B compiling/proof-failing edge cell are preserved. No test factor is missing.
+- A separate task-sum implementation reproduced all 18 system/scope means, 72 factor/aggregate intervals and six paired comparisons using 10,000 task-bootstrap draws, seed 0, carrying each task's eight samples together. Selected-minus-Base aggregate differences with 95% bootstrap intervals over 222 tasks / 1,776 paired cells are 8B +0.111559 [0.082297, 0.143466] and 14B +0.084605 [0.062685, 0.107744]; p-val=n/a (interval estimation only). These within-size learned-weight gains are single-run, unmatched diagnostics. The core results improve; IndustrySet 8B remains zero and the 14B difference is -0.003699 [-0.012049, 0.004751]. Full factor means, repeat variability and limits are in the final report and verification receipt. No repair or correlation claim substitutes for learned-weight evidence.
+- Final incident `f0b38aa4-b9e8-4be7-a43f-ad107bfa3650`, native `01a12e5f-f7ee-7ec2-b97c-13c65287533a`, finished its phase at 21:54:13 PDT and exited zero at 21:54:55, before its unchanged 22:40:01 deadline. Both attempts remain recorded. Parent verified actual Vals/Astra/ultra/full-access/never, six launch inputs, four executable hashes, latest parent-finding acknowledgment and useful output at 21:31:00. All 24 phase-output hashes and 14 published files match; all 158 recorded owner/descendant identities are absent. The full suite passed 277 tests with four optional skips in 158.50 seconds; the original analyzer and scientific recipe are unchanged.
+- The original pipeline exited at 21:27:33 PDT. All owned services/tunnels and port listeners are absent; 27/27 leases are released. The owner retired two completed-pipeline watch entries; parent retired the remaining two coordinator entries at 22:02:50, preserving all seven other cron lines exactly. The STOP marker, raw evidence and all attempts remain. The independent experiment13 process that refers to the shared scorer path was preserved. Experiment09's terminal failed-gate receipt remains unchanged; the old availability summary does not authorize a relaunch.
+- The teacher reporting correction independently reproduces 3,841 available responses and 471 unavailable out of 4,312 declared cells; kept membership and training inputs are unchanged. Reported charges reproduce across 28 source files; 446 rows retain unknown charges, which are not zero. The native normalization-state limitation and spent Mercury probe ledger are preserved. Neither affects the completed historical route by a new retrospective gate.
+- Evidence: `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/parent_final_verification_10-11-2026.json`. Exact remaining administrative action: publish this parent receipt, verify main, then delete desktop heartbeat `overnight-factored-score-learning`. Do not dispatch, retrain, resample or reopen a closed study.
+
+**TLDR-end:** [rl-4-code-verification: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] The full experiment08 study and its admitted held-out evaluation are complete and verified. The frozen outcome remains PARTIAL, with two unmatched within-size diagnostics; final evidence is published and host monitoring is retired.
 **Snapshot:**
 ```text
-trained validation rungs: 20/20
-validation kernel receipts: 25920/25920; missing 0
-selection: PARTIAL; common fraction: none
-selected 8B: step 658; 5752936 assistant tokens
-selected 14B: step 334; 2884708 assistant tokens
-1.7B and 4B: no passing checkpoint
-test manifest: 10656 cells = 5328 new + 5328 reused
-selection and test manifest published before first test launch
-new test generations: 5328/5328 exact frozen cells
-new test systems fully scored: 3/3; 5328/5328 new cells
-all six test systems: 10656/10656 known kernel cells; missing 0
-host restored; reboot recovery verified; one pipeline interpreter
-latest coordinator: 6ca5cdbf VERIFIED_COMPLETE; monitor ARMED
-judge controls: 50/50 measured; all 10 category gates PASS
-test ratings declared: 4302 across 717 unique files
-admitted judge runs: 12/12; selected8B failures preserved/recovered once
-tracker FINISHED: 2619/4302; parsed test harvests: none yet
-full test factors and learned-weight comparisons: pending
+training: 4/4 sizes; 658 updates each
+validation: 20/20 trained rungs; 25920/25920 cells
+selection: PARTIAL; no common passing fraction
+test factor cells: 10656/10656; missing 0
+test judge ratings: 4302/4302 across 717 files
+fixed audit: 60/60 files per system
+independent bootstrap: all intervals and paired comparisons match
+final owner: f0b38aa4 VERIFIED_COMPLETE; 158 identities absent
+phase outputs: 24/24; publication files: 14/14 verified
+leases: 27/27 released; owned services/tunnels absent
+host monitor entries: 0; unrelated cron lines preserved: 7
+experiment06/09: remain closed; no follow-on launches
 ```

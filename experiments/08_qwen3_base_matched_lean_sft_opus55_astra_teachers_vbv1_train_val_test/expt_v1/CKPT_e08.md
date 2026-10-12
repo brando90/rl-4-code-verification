@@ -4,7 +4,7 @@
 
 **TLDR:** Matched supervised fine-tuning is complete at all four sizes (658 updates and 5,752,936 real loss tokens each), with all 20 trained validation rungs and 25,920/25,920 validation cells complete. The frozen verdict is **PARTIAL**: 8B step 658 and 14B step 334 passed at different fractions; 1.7B and 4B passed no rung. All **10,656/10,656 test cells have complete factors**, using all **4,302/4,302 validated-judge ratings** over 717 files, including all 60 fixed audit files per system. Final results reproduce exactly; services are stopped and the completed study is closed without a follow-on run.
 
-**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-11-2026 21:52 PDT (final receipt reconciliation and closure).
+**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-11-2026 22:04 PDT (parent verified completion and retired host watches).
 
 ## State
 
@@ -21,7 +21,7 @@
 | Services, ports, tunnels | Judge controls/test services and tunnels stopped after identity checks; ports 9740–9759 free; port claim archived in this receipt directory; raw data/private configuration retained |
 | Health check | All 25,920 validation cells, 10,656 test factor cells and 4,302 judge ratings reconciled; original final evaluation reproduced exactly except timestamp; full make test 277 passed, 4 skipped in 158.50 seconds |
 | Watchdog | Completed pipeline every-15-minute/reboot cron entries retired; prior jobs/state/retry records and other cron entries preserved |
-| Coordinator monitor | Five-minute/reboot entries retained; `$WORK/owner_recovery/STOP` suppresses further model launches. Parent owns recovery lock and will validate phase receipt after child exit. Incident `f0b38aa4-b9e8-4be7-a43f-ad107bfa3650`, attempt 2, deadline 10-11-2026 22:40 PDT; receipt directory `$WORK/owner_recovery/incidents/f0b38aa4-b9e8-4be7-a43f-ad107bfa3650/2/` |
+| Coordinator monitor | Retired by parent at 22:02:50 PDT after independent final verification; all unrelated cron lines preserved. STOP marker retained. Incident `f0b38aa4-b9e8-4be7-a43f-ad107bfa3650` VERIFIED_COMPLETE, both attempts and original deadline preserved; all 158 owner identities absent. Parent receipt `results/parent_final_verification_10-11-2026.json`; desktop heartbeat deletion follows publication. |
 
 ## Log
 
