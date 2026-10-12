@@ -2,10 +2,16 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/CKPT_e13.md>
 
-**TLDR:** One Astra/ultra review is reconciled; the executable phase-0 handoff reuses verified source/strict-control receipts. This checkpoint records a publishable plan phase, not experiment completion.
+**TLDR:** The historical audit terminated with 21,504 accounted cells, 6,739 measured and 14,765 unmeasured. The scientific gate failed; all budgets and downstream gates remain unchanged.
 
-Created: 10-09-2026. Last updated: 10-09-2026 23:00:34 PDT
-Status: RUNNING — adapter landed; sealed equality reproduction is executing; training remains gated.
+Created: 10-09-2026. Last updated: 10-11-2026 23:34:29 PDT
+Status: BLOCKED — audit terminal accounting complete; scientific acceptance failed; later phases unadmitted.
+
+## Current terminal reconciliation — 10-11-2026 23:30:49 PDT
+
+See [terminal report](RESULTS_opaque_audit_terminal.md) and [operational receipt](results/opaque_audit_terminal_10-11-2026.json). The audit and observer have exited BLOCKED; the 16,645-row original prefix and one unmeasured interruption are preserved, followed by 4,858 suffix records. No current audit computation is running. The 14,764 generic source/probe rejections cannot be assigned specific causes because detailed exceptions and probes were not retained. Current 21,504/21,504 source hashes match. Preserve all original gates, caps and failed records.
+
+Next action: keep this frozen audit closed. Any new scientific measurement requires a separately authorized prospective condition with complete diagnostics and cumulative budget accounting. Existing coordination owner retains this dependency; no routine blocked polling or repeated scientific retries. Earlier RUNNING statements below are historical only.
 
 Original base/input HEAD: `be43d3a8fcd9a1df5b77058be516821f3a7629d0`. Current coordination/publication owner: recovery master `deploy_16e6b761a004445db113437e27f45456`. The prior Terra/high implementation worker exited 0; its native thread `01a1241d-1151-7ed0-85ba-72f9e93c9e7d` is retained. The ordinary audit owns computation; publication uses an isolated integration checkout so active source bytes remain unchanged. Historical plan reviewer: `gpt-6-astra` / `ultra`, session `01a123fd-3adf-7133-b95c-cf293feed08d`, full access/approval never verified in native turn metadata.
 

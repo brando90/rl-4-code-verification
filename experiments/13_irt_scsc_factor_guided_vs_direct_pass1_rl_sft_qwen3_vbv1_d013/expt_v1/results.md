@@ -2,10 +2,16 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/results.md>
 
-**TLDR:** The single pinned design review is reconciled, 20,520 validation source hashes match, and 15 authored strict controls are reconciled against the actual scorer. The opaque historical equality audit is running; item response models and reinforcement-learning training remain gated.
+**TLDR:** The historical audit terminated with 21,504 accounted cells, 6,739 measured and 14,765 unmeasured. The scientific gate failed; all budgets and downstream gates remain unchanged.
 
-Created: 10-09-2026. Last updated: 10-09-2026 23:00:34 PDT
-Status: RUNNING — design/control phase complete; experiment incomplete.
+Created: 10-09-2026. Last updated: 10-11-2026 23:34:29 PDT
+Status: BLOCKED — audit terminal accounting complete; scientific acceptance failed; later phases unadmitted.
+
+## Current terminal reconciliation — 10-11-2026 23:30:49 PDT
+
+See [terminal report](RESULTS_opaque_audit_terminal.md) and [operational receipt](results/opaque_audit_terminal_10-11-2026.json). The audit and observer have exited BLOCKED; the 16,645-row original prefix and one unmeasured interruption are preserved, followed by 4,858 suffix records. No current audit computation is running. The 14,764 generic source/probe rejections cannot be assigned specific causes because detailed exceptions and probes were not retained. Current 21,504/21,504 source hashes match. Preserve all original gates, caps and failed records.
+
+Next action: keep this frozen audit closed. Any new scientific measurement requires a separately authorized prospective condition with complete diagnostics and cumulative budget accounting. Existing coordination owner retains this dependency; no routine blocked polling or repeated scientific retries. Earlier RUNNING statements below are historical only.
 
 | Activity | Declared denominator | Observed outcome | Meaning |
 |---|---:|---|---|
@@ -14,7 +20,7 @@ Status: RUNNING — design/control phase complete; experiment incomplete.
 | Repository deterministic suite | 247 collected | 226 passed / 21 optional integration skips with pinned dependency path | private environment; no shared evaluator changes |
 | Available validation source-byte inventory | 20,520 | 20,520 hashes match | parent ladder 25,920; 5,400 missing remain explicit |
 | Authored pinned Lean strict controls | 15 | Initial 14/15 matched; printed-error expectation corrected; 15/15 source/evidence-bound reconciliation | `PHASE0_CONTROLS_ORIGINAL.json` preserved; `PHASE0_CONTROLS_RESULT.json` records correction |
-| Historical strict reproduction | 20,520 ladder plus 21,504 base cells (3,240 overlap) | Opaque base audit running: 101/21,504 processed; equality pending | no historical outcome disclosed; separate ladder measurement remains pending |
+| Historical strict reproduction | 21,504 declared base cells | Terminal: 6,739 measured; 14,765 unmeasured; scientific gate failed | all cells retained; separate ladder measurement remains unadmitted |
 | Historical G0 / G1 / H2 | not admitted | no new factor/model outcome | forecast/adapter/scientific gates pending |
 | Training / selected test evaluation | not admitted | zero new updates/evaluations | no resource plan or current allocation |
 

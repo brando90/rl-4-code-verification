@@ -12,10 +12,10 @@ The plan has three phases:
 - **Phase 1:** fit and validate a conjunctive item response theory (IRT) model that predicts held-out pass@1 and pass@k.
 - **Phase 2:** run four RL arms from the Qwen3-4B SFT checkpoint: strict reward, SCSC-style factored reward, IRT-guided reward and prompt sampling, and a placebo dense reward.
 
-Status: **RUNNING 10-09-2026: reviewed plans and parser adapter published; the complete 21,504-cell opaque historical equality audit is executing under frozen L1/F0/F1 bindings.** The requested single `gpt-6-astra` / ultra review is reconciled in `expt_v1/REVIEW.md`. See the live [ledger](expt_v1/results.md), [checkpoint](expt_v1/CKPT_e13.md) and append-only [metadata erratum](expt_v1/locks/L1_audit_v2_metadata_erratum.json). Factor fitting and training remain gated.
+Status: **BLOCKED 10-11-2026: historical audit terminated; 21,504 accounted, 6,739 measured, 14,765 unmeasured.** See the [terminal report](expt_v1/RESULTS_opaque_audit_terminal.md), [ledger](expt_v1/results.md) and [checkpoint](expt_v1/CKPT_e13.md). Original scientific limits remain; fitting and training are unadmitted. The unresolved prospective recovery decision is a live dependency, so this experiment remains in its current home.
 
 - **Created:** 10-09-2026 by Claude Code (`claude-opus-5-5`) for Brando.
-- **Owner:** recovery master; ordinary execution in `codex-rl4cv13-opaque-reproduction`, observed by `codex-rl4cv13-audit-root-observer-v2`.
+- **Owner:** recovery master; audit and observer are terminal. Parent retains recovery ownership for the unresolved gates.
 - **Terms:**
   - An *arm* is one condition being compared.
   - *Strict* is `kernel_binary`: the file typechecks, has at least one example, states at least one theorem, every stated theorem is a proved theorem with allowed axioms, and none is vacuous.

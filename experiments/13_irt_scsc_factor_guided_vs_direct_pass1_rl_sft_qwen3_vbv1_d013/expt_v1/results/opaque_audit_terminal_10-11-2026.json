@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "created": "10-11-2026 23:30:49 PDT",
+  "canonical_experiment": "13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013",
+  "phase": "opaque_historical_base_equality_audit",
+  "operational_status": "TERMINAL_ACCOUNTING_COMPLETE",
+  "scientific_status": "BLOCKED",
+  "declared_cells": 21504,
+  "terminal_accounted_cells": 21504,
+  "measured_cells": 6739,
+  "unmeasured_cells": 14765,
+  "unmeasured_failure_classes": {
+    "source_or_pinned_probe_rejected": 14764,
+    "node_reboot_interrupted_phase_budget_unverifiable": 1
+  },
+  "prefix": {
+    "rows": 16645,
+    "measured": 5981,
+    "unmeasured": 10664,
+    "bytes_preserved": true,
+    "sha256": "7ee3c2353dc0e702f2033ceab84930d07f119d69c3c776a31840734cbf6edf16"
+  },
+  "interruption": {
+    "rows": 1,
+    "status": "unmeasured",
+    "retry": false,
+    "residual_phase_budget": "unverifiable; no replenishment"
+  },
+  "suffix": {
+    "rows": 4858,
+    "measured": 758,
+    "unmeasured": 4100
+  },
+  "manifest_sha256": "06fcbcda0d7406156f99754d69814a699fe4dbf29fee40e377fa190ccd03f1b6",
+  "sealed_results_sha256": "8b5914819a098a749293494ee8db74ecbefca5c8ea0eebd493a6980a84edd85c",
+  "scientific_source_revision": "ba5b8566976fc2eb0ced2424472efb8d7a153be3",
+  "source_sha256": "a1cb77ff211fbcb2e7f799a1cfac29993a3b21da3c52de269064f0fea58d7a16",
+  "adapter_sha256": "a77fbd34f0166249742cf72cdc027b0f9949c265becfec4a191224945ff75353",
+  "lock_sha256": "1016830614dbecfa04c307c9274041e7a715b11b1bbfd84c4810e5dffbbc2ae2",
+  "launcher_terminal": {
+    "observed_at": "10-11-2026 23:15:32 PDT",
+    "status": "BLOCKED",
+    "exit_code": 1,
+    "sha256": "621aecfaad72cd9002ea74f3a343ce481bab2dc1f602266e94c58fe028db2456"
+  },
+  "observer_terminal": {
+    "observed_at": "10-11-2026 23:15:37 PDT",
+    "status": "BLOCKED",
+    "terminal_and_callback_sha256": "9c4a4e3dfa9ef8f967621521d3e1dfb269416528412f07ded8fe499109d96bc5"
+  },
+  "source_checks_now": {
+    "readable": 21504,
+    "hash_match": 21504,
+    "utf8_valid": 21504
+  },
+  "diagnostic_provenance": {
+    "catch_site": "expt_v1/opaque_base_audit.py:240",
+    "catch_types": [
+      "AdapterError",
+      "AuditError",
+      "OSError",
+      "UnicodeError",
+      "ValueError"
+    ],
+    "retained_per_cell_fields": [
+      "cell_id",
+      "status",
+      "failure_class"
+    ],
+    "exception_message_retained": false,
+    "complete_probe_diagnostics_retained": false,
+    "resumed_child_log_bytes": 0,
+    "specific_rejection_causes": "UNRESOLVED: frozen catch-all removes phase and exception evidence; current source checks cannot reconstruct historical errors"
+  },
+  "equality_acceptance": false,
+  "downstream_fitting_training_admitted": false,
+  "new_measurements_or_retries_during_closeout": 0,
+  "caps_seconds": {
+    "parser": 900,
+    "compile": 600,
+    "kernel": 900
+  },
+  "sealed_outcomes_disclosed": false,
+  "limitations": [
+    "Operational measurement status counts do not reveal sealed scores or equality comparisons.",
+    "Full accounting is not full measured coverage or scientific success.",
+    "Unmeasured cells remain in the declared denominator and are never converted to zero.",
+    "The existing duplicate-source-hash metadata erratum and missing complete diagnostic receipts remain binding."
+  ],
+  "next_boundary": "Preserve this failed frozen audit. A separately authorized prospective diagnostic/recovery condition must freeze complete phase receipts, cumulative elapsed budgets and criteria before any new measured attempt; original study is not reopened.",
+  "scored_and_split_inputs_sha256": {
+    "scored_qwen3-1.7b-base_g8.jsonl": "d15bdbced56252d1466ace05c3b3137082e112fae9cfdd0ea47bd4fa3c8d67af",
+    "scored_qwen3-4b-base_g8.jsonl": "f3b6d2edbd2fa52fdaa3ba832ba4fc19b397ed620594ea1fa5b345e8880ea061",
+    "scored_qwen3-8b-base_g8.jsonl": "aef4ee5a302d545b79abf2e44642e8731c05911c2cabda2805e2a386da9212ef",
+    "vbv1_split_manifest.csv": "157ce781ed9e4ac93a1a1fe0c49f2ee2ae907be1260402485c8f6fa3d06e0e24"
+  },
+  "last_updated": "10-11-2026 23:32:46 PDT"
+}
