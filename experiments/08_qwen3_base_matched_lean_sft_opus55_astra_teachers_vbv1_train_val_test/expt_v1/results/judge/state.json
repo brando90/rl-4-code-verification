@@ -1,0 +1,150 @@
+{
+ "created": "2026-10-12T02:48:14+00:00",
+ "runs": {
+  "controls/H2_opus55_max": {
+   "admitted_at": "2026-10-12T02:59:11+00:00",
+   "benchmark": "veribench-rl4cv-e08-controls",
+   "cells_terminal": 25,
+   "charges_usd": 2.5389,
+   "command": [
+    "run",
+    "start",
+    "--agent",
+    "vb103_judge",
+    "--benchmark",
+    "veribench-rl4cv-e08-controls",
+    "--dataset",
+    "default",
+    "--model",
+    "anthropic/claude-opus-5-5-no-fallback",
+    "--concurrency",
+    "8",
+    "--label",
+    "rl4cv-e08-judge-controls-H2_opus55_max",
+    "--task-ids-file",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_controls.txt",
+    "-k",
+    "judge_config",
+    "H2_opus55_max",
+    "-k",
+    "max_tokens",
+    "32000",
+    "-k",
+    "benchmark",
+    "rl4cv-e08-judge-veribench-rl4cv-e08-controls-controls-H2_opus55_max",
+    "-k",
+    "compute_effort",
+    "max"
+   ],
+   "concurrency": 8,
+   "config": "H2_opus55_max",
+   "expected_cells": 25,
+   "harvested_at": "2026-10-12T03:03:38+00:00",
+   "kwargs": {
+    "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-controls-controls-H2_opus55_max",
+    "compute_effort": "max",
+    "judge_config": "H2_opus55_max",
+    "max_tokens": "32000"
+   },
+   "phase": "terminal",
+   "polled_at": "2026-10-12T03:03:05+00:00",
+   "recovered_at": null,
+   "run_id": "e30e4c47-e2da-4bc1-b0a9-9c9b8fcb8208",
+   "run_status": "finished",
+   "selector": "anthropic/claude-opus-5-5-no-fallback",
+   "status_counts": {
+    "measured": 25
+   },
+   "suite": "rl4cv-e08-controls",
+   "task_ids_sha256": "a30097ab14d32d53d3a1825cd7b2766e03e6f47962bedd5de0116d5dcddaa337",
+   "task_state_counts": {
+    "BUILDING": 0,
+    "ERROR": 0,
+    "EVALUATING": 0,
+    "FINISHED": 25,
+    "IN_PROGRESS": 0,
+    "PENDING": 0,
+    "STOPPED": 0
+   }
+  },
+  "controls/H2_sol_high": {
+   "admitted_at": "2026-10-12T02:48:14+00:00",
+   "benchmark": "veribench-rl4cv-e08-controls",
+   "cells_terminal": 25,
+   "charges_usd": 0.5931,
+   "command": [
+    "run",
+    "start",
+    "--agent",
+    "vb103_judge",
+    "--benchmark",
+    "veribench-rl4cv-e08-controls",
+    "--dataset",
+    "default",
+    "--model",
+    "openai/gpt-6-sol-high",
+    "--concurrency",
+    "8",
+    "--label",
+    "rl4cv-e08-judge-controls-H2_sol_high",
+    "--task-ids-file",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_controls.txt",
+    "-k",
+    "judge_config",
+    "H2_sol_high",
+    "-k",
+    "max_tokens",
+    "32000",
+    "-k",
+    "benchmark",
+    "rl4cv-e08-judge-veribench-rl4cv-e08-controls-controls-H2_sol_high",
+    "-k",
+    "reasoning_effort",
+    "high"
+   ],
+   "concurrency": 8,
+   "config": "H2_sol_high",
+   "expected_cells": 25,
+   "harvested_at": "2026-10-12T03:03:24+00:00",
+   "kwargs": {
+    "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-controls-controls-H2_sol_high",
+    "judge_config": "H2_sol_high",
+    "max_tokens": "32000",
+    "reasoning_effort": "high"
+   },
+   "phase": "terminal",
+   "polled_at": "2026-10-12T03:03:11+00:00",
+   "prior_launches": [
+    {
+     "admitted_at": "2026-10-12T02:48:14+00:00",
+     "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/judge_recovery_plan.json",
+     "evidence_sha256": "e683be67564fd7701f57df8aec1c70f18bf857c3728bc65f24ee32279141f8ed",
+     "phase": "preexec_failed",
+     "requests_sent": 0,
+     "subprocess_started": false
+    }
+   ],
+   "recovered_at": "2026-10-12T02:59:11+00:00",
+   "recovery_attempts": 1,
+   "recovery_started_at": "2026-10-12T02:59:00+00:00",
+   "run_id": "7e85dd9e-58d8-4a6c-a4e1-d5b253b37fe7",
+   "run_status": "finished",
+   "selector": "openai/gpt-6-sol-high",
+   "status_counts": {
+    "measured": 25
+   },
+   "suite": "rl4cv-e08-controls",
+   "task_ids_sha256": "a30097ab14d32d53d3a1825cd7b2766e03e6f47962bedd5de0116d5dcddaa337",
+   "task_state_counts": {
+    "BUILDING": 0,
+    "ERROR": 0,
+    "EVALUATING": 0,
+    "FINISHED": 25,
+    "IN_PROGRESS": 0,
+    "PENDING": 0,
+    "STOPPED": 0
+   }
+  }
+ },
+ "updated": "2026-10-12T03:03:38+00:00"
+}

@@ -1,0 +1,202 @@
+{
+ "configs": {
+  "H2_opus55_max": {
+   "charges_usd": 2.5389,
+   "exact_receipt_inventory": true,
+   "expected_envelope": {
+    "effort": "max",
+    "max_tokens": 32000,
+    "rubric": "H2_human_mirror_conventions_demos",
+    "selector": "anthropic/claude-opus-5-5-no-fallback"
+   },
+   "per_kind": {
+    "control_blank": {
+     "fraction": 1.0,
+     "measured": 5,
+     "min_fraction": 0.9,
+     "n": 5,
+     "ok": 5,
+     "pass": true,
+     "rule": "score_raw == 0",
+     "scores": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "control_halfdel": {
+     "fraction": 0.8,
+     "measured": 5,
+     "min_fraction": 0.8,
+     "n": 5,
+     "ok": 4,
+     "pass": true,
+     "rule": "1 <= score_raw <= 4",
+     "scores": [
+      3,
+      3,
+      4,
+      5,
+      3
+     ]
+    },
+    "control_oracle": {
+     "fraction": 1.0,
+     "measured": 5,
+     "min_fraction": 0.9,
+     "n": 5,
+     "ok": 5,
+     "pass": true,
+     "rule": "score_raw >= 4",
+     "scores": [
+      5,
+      5,
+      5,
+      5,
+      5
+     ]
+    },
+    "control_shuffled": {
+     "fraction": 1.0,
+     "measured": 5,
+     "min_fraction": 0.9,
+     "n": 5,
+     "ok": 5,
+     "pass": true,
+     "rule": "score_raw <= 1",
+     "scores": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "control_vacuous": {
+     "fraction": 1.0,
+     "measured": 5,
+     "min_fraction": 0.9,
+     "n": 5,
+     "ok": 5,
+     "pass": true,
+     "rule": "score_raw <= 1",
+     "scores": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    }
+   },
+   "run_id": "e30e4c47-e2da-4bc1-b0a9-9c9b8fcb8208",
+   "status_counts": {
+    "measured": 25
+   },
+   "transport_matches": true
+  },
+  "H2_sol_high": {
+   "charges_usd": 0.5931,
+   "exact_receipt_inventory": true,
+   "expected_envelope": {
+    "effort": "high",
+    "max_tokens": 32000,
+    "rubric": "H2_human_mirror_conventions_demos",
+    "selector": "openai/gpt-6-sol-high"
+   },
+   "per_kind": {
+    "control_blank": {
+     "fraction": 1.0,
+     "measured": 5,
+     "min_fraction": 0.9,
+     "n": 5,
+     "ok": 5,
+     "pass": true,
+     "rule": "score_raw == 0",
+     "scores": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "control_halfdel": {
+     "fraction": 0.8,
+     "measured": 5,
+     "min_fraction": 0.8,
+     "n": 5,
+     "ok": 4,
+     "pass": true,
+     "rule": "1 <= score_raw <= 4",
+     "scores": [
+      3,
+      3,
+      4,
+      5,
+      3
+     ]
+    },
+    "control_oracle": {
+     "fraction": 1.0,
+     "measured": 5,
+     "min_fraction": 0.9,
+     "n": 5,
+     "ok": 5,
+     "pass": true,
+     "rule": "score_raw >= 4",
+     "scores": [
+      5,
+      5,
+      5,
+      5,
+      5
+     ]
+    },
+    "control_shuffled": {
+     "fraction": 1.0,
+     "measured": 5,
+     "min_fraction": 0.9,
+     "n": 5,
+     "ok": 5,
+     "pass": true,
+     "rule": "score_raw <= 1",
+     "scores": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "control_vacuous": {
+     "fraction": 1.0,
+     "measured": 5,
+     "min_fraction": 0.9,
+     "n": 5,
+     "ok": 5,
+     "pass": true,
+     "rule": "score_raw <= 1",
+     "scores": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    }
+   },
+   "run_id": "7e85dd9e-58d8-4a6c-a4e1-d5b253b37fe7",
+   "status_counts": {
+    "measured": 25
+   },
+   "transport_matches": true
+  }
+ },
+ "identity_evidence": "Frozen request envelope and returned no-fallback receipt; provider-returned model/effort fields are unavailable in the validated bundle.",
+ "pack_matches_frozen_rubric": true,
+ "verdict": "PASS",
+ "written_utc": "2026-10-12T03:03:38+00:00"
+}
