@@ -1,0 +1,1179 @@
+{
+ "aggregate_rule": "D-009: SCSC = (mean IC_tests \u00b7 mean IC_proofs \u00b7 mean fsc_compiled)^(1/3) on the common cohort of cells with all three factors known; fsc_compiled = FSC when IC_tests = 1 else 0 (D-003); bounds set unknown factors to 0 / 1",
+ "bootstrap": {
+  "n_resamples": 10000,
+  "seed": 0,
+  "unit": "task (all 8 samples carried together)"
+ },
+ "f_star": null,
+ "n_test_tasks": 222,
+ "p_val": "n/a",
+ "paired_differences": {
+  "14B": {
+   "all": {
+    "SCSC_diff": {
+     "bootstrap95": [
+      0.06268546733971177,
+      0.1077439609130829
+     ],
+     "point": 0.08460519076109407
+    },
+    "base": "base14b",
+    "kernel_binary_mean_pass_rate_diff": {
+     "bootstrap95": [
+      0.06249999999999999,
+      0.10754504504504506
+     ],
+     "point": 0.08445945945945946
+    },
+    "n_missing_pairs": 0,
+    "n_shared_known_cells": 1776,
+    "p_val": "n/a (interval estimation only)",
+    "selected": "test_sft_14B_f0p5"
+   },
+   "core": {
+    "SCSC_diff": {
+     "bootstrap95": [
+      0.09520108664812171,
+      0.1568278730738621
+     ],
+     "point": 0.12527171643622706
+    },
+    "base": "base14b",
+    "kernel_binary_mean_pass_rate_diff": {
+     "bootstrap95": [
+      0.09539473684210527,
+      0.15709292763157864
+     ],
+     "point": 0.12582236842105263
+    },
+    "n_missing_pairs": 0,
+    "n_shared_known_cells": 1216,
+    "p_val": "n/a (interval estimation only)",
+    "selected": "test_sft_14B_f0p5"
+   },
+   "industryset": {
+    "SCSC_diff": {
+     "bootstrap95": [
+      -0.012049038075739277,
+      0.004751403231124478
+     ],
+     "point": -0.003699332901593501
+    },
+    "base": "base14b",
+    "kernel_binary_mean_pass_rate_diff": {
+     "bootstrap95": [
+      -0.014285714285714285,
+      0.0035714285714285718
+     ],
+     "point": -0.005357142857142857
+    },
+    "n_missing_pairs": 0,
+    "n_shared_known_cells": 560,
+    "p_val": "n/a (interval estimation only)",
+    "selected": "test_sft_14B_f0p5"
+   }
+  },
+  "8B": {
+   "all": {
+    "SCSC_diff": {
+     "bootstrap95": [
+      0.08229694082393288,
+      0.14346574986817337
+     ],
+     "point": 0.11155942075898573
+    },
+    "base": "base_8B_e05",
+    "kernel_binary_mean_pass_rate_diff": {
+     "bootstrap95": [
+      0.08277027027027027,
+      0.14414414414414414
+     ],
+     "point": 0.11204954954954954
+    },
+    "n_missing_pairs": 0,
+    "n_shared_known_cells": 1776,
+    "p_val": "n/a (interval estimation only)",
+    "selected": "test_sft_8B_f1p0"
+   },
+   "core": {
+    "SCSC_diff": {
+     "bootstrap95": [
+      0.1218984474688415,
+      0.2061628925322233
+     ],
+     "point": 0.16293546979272916
+    },
+    "base": "base_8B_e05",
+    "kernel_binary_mean_pass_rate_diff": {
+     "bootstrap95": [
+      0.1225328947368421,
+      0.20723684210526316
+     ],
+     "point": 0.16365131578947367
+    },
+    "n_missing_pairs": 0,
+    "n_shared_known_cells": 1216,
+    "p_val": "n/a (interval estimation only)",
+    "selected": "test_sft_8B_f1p0"
+   },
+   "industryset": {
+    "SCSC_diff": {
+     "bootstrap95": [
+      0.0,
+      0.0
+     ],
+     "point": 0.0
+    },
+    "base": "base_8B_e05",
+    "kernel_binary_mean_pass_rate_diff": {
+     "bootstrap95": [
+      0.0,
+      0.0
+     ],
+     "point": 0.0
+    },
+    "n_missing_pairs": 0,
+    "n_shared_known_cells": 560,
+    "p_val": "n/a (interval estimation only)",
+    "selected": "test_sft_8B_f1p0"
+   }
+  }
+ },
+ "scopes": {
+  "all": 222,
+  "core": 152,
+  "industryset": 70
+ },
+ "selection_sha256": "47e12d6c217a3e62e47e0d5bcef13478f2ecf52098b7ac6163df91e216e21cdb",
+ "systems": {
+  "base14b": {
+   "n_unknown_cells": 0,
+   "scopes": {
+    "all": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.0005630630630630631,
+       0.00563063063063063
+      ],
+      "IC_tests": [
+       0.0005630630630630631,
+       0.00563063063063063
+      ],
+      "SCSC": [
+       0.0003769329673886091,
+       0.004498653658409206
+      ],
+      "fsc_compiled": [
+       0.0001689189189189189,
+       0.0033783783783783777
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       0.002815315315315315,
+       0.002815315315315315
+      ],
+      "IC_tests": [
+       0.002815315315315315,
+       0.002815315315315315
+      ],
+      "SCSC": [
+       0.0022925824464484017,
+       0.0022925824464484017
+      ],
+      "fsc_compiled": [
+       0.0015202702702702704,
+       0.0015202702702702704
+      ]
+     },
+     "kernel_binary_known_cells": 1776,
+     "kernel_binary_mean_pass_rate": 0.002815315315315315,
+     "n_declared_cells": 1776,
+     "n_known_cells": 1776,
+     "n_tasks": 222,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 0.002815315315315315,
+      "IC_tests": 0.002815315315315315,
+      "SCSC": 0.0022925824464484017,
+      "fsc_compiled": 0.0015202702702702704
+     },
+     "tasks_with_all_known": 222
+    },
+    "core": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.0,
+       0.0
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       0.0,
+       0.0
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ]
+     },
+     "kernel_binary_known_cells": 1216,
+     "kernel_binary_mean_pass_rate": 0.0,
+     "n_declared_cells": 1216,
+     "n_known_cells": 1216,
+     "n_tasks": 152,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 0.0,
+      "IC_tests": 0.0,
+      "SCSC": 0.0,
+      "fsc_compiled": 0.0
+     },
+     "tasks_with_all_known": 152
+    },
+    "industryset": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.0017857142857142857,
+       0.017857142857142856
+      ],
+      "IC_tests": [
+       0.0017857142857142857,
+       0.017857142857142856
+      ],
+      "SCSC": [
+       0.0016577102977188502,
+       0.01441931949666237
+      ],
+      "fsc_compiled": [
+       0.0005357142857142857,
+       0.010714285714285714
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       0.008928571428571428,
+       0.008928571428571428
+      ],
+      "IC_tests": [
+       0.008928571428571428,
+       0.008928571428571428
+      ],
+      "SCSC": [
+       0.0072707614730220735,
+       0.0072707614730220735
+      ],
+      "fsc_compiled": [
+       0.004821428571428572,
+       0.004821428571428572
+      ]
+     },
+     "kernel_binary_known_cells": 560,
+     "kernel_binary_mean_pass_rate": 0.008928571428571428,
+     "n_declared_cells": 560,
+     "n_known_cells": 560,
+     "n_tasks": 70,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 0.008928571428571428,
+      "IC_tests": 0.008928571428571428,
+      "SCSC": 0.0072707614730220735,
+      "fsc_compiled": 0.004821428571428572
+     },
+     "tasks_with_all_known": 70
+    }
+   },
+   "system": {
+    "e05_label": null,
+    "hf_path": null,
+    "label": "base14b",
+    "role": "base",
+    "size": "14B",
+    "source": "e08",
+    "weights_sha256_manifest": null
+   },
+   "unknown_cells": []
+  },
+  "base_1p7B_e05": {
+   "n_unknown_cells": 0,
+   "scopes": {
+    "all": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.0,
+       0.0002413127413127413
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       8.043758043758043e-05,
+       8.043758043758043e-05
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ]
+     },
+     "kernel_binary_known_cells": 1776,
+     "kernel_binary_mean_pass_rate": 0.0,
+     "n_declared_cells": 1776,
+     "n_known_cells": 1776,
+     "n_tasks": 222,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 8.043758043758043e-05,
+      "IC_tests": 0.0,
+      "SCSC": 0.0,
+      "fsc_compiled": 0.0
+     },
+     "tasks_with_all_known": 222
+    },
+    "core": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.0,
+       0.0
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       0.0,
+       0.0
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ]
+     },
+     "kernel_binary_known_cells": 1216,
+     "kernel_binary_mean_pass_rate": 0.0,
+     "n_declared_cells": 1216,
+     "n_known_cells": 1216,
+     "n_tasks": 152,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 0.0,
+      "IC_tests": 0.0,
+      "SCSC": 0.0,
+      "fsc_compiled": 0.0
+     },
+     "tasks_with_all_known": 152
+    },
+    "industryset": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.0,
+       0.0007653061224489796
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       0.0002551020408163265,
+       0.0002551020408163265
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ]
+     },
+     "kernel_binary_known_cells": 560,
+     "kernel_binary_mean_pass_rate": 0.0,
+     "n_declared_cells": 560,
+     "n_known_cells": 560,
+     "n_tasks": 70,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 0.0002551020408163265,
+      "IC_tests": 0.0,
+      "SCSC": 0.0,
+      "fsc_compiled": 0.0
+     },
+     "tasks_with_all_known": 70
+    }
+   },
+   "system": {
+    "e05_label": "qwen3-1.7b-base",
+    "hf_path": null,
+    "label": "base_1p7B_e05",
+    "role": "base",
+    "size": "1.7B",
+    "source": "e05",
+    "weights_sha256_manifest": null
+   },
+   "unknown_cells": []
+  },
+  "base_4B_e05": {
+   "n_unknown_cells": 0,
+   "scopes": {
+    "all": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.0,
+       0.0016891891891891893
+      ],
+      "IC_tests": [
+       0.0,
+       0.002815315315315315
+      ],
+      "SCSC": [
+       0.0,
+       0.0019094659025980676
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0016328828828828831
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       0.0005630630630630631,
+       0.0005630630630630631
+      ],
+      "IC_tests": [
+       0.0011261261261261261,
+       0.0011261261261261261
+      ],
+      "SCSC": [
+       0.0007323150038577633,
+       0.0007323150038577633
+      ],
+      "fsc_compiled": [
+       0.0006193693693693694,
+       0.0006193693693693694
+      ]
+     },
+     "kernel_binary_known_cells": 1776,
+     "kernel_binary_mean_pass_rate": 0.0005630630630630631,
+     "n_declared_cells": 1776,
+     "n_known_cells": 1776,
+     "n_tasks": 222,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 0.0005630630630630631,
+      "IC_tests": 0.0011261261261261261,
+      "SCSC": 0.0007323150038577633,
+      "fsc_compiled": 0.0006193693693693694
+     },
+     "tasks_with_all_known": 222
+    },
+    "core": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.0,
+       0.0
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       0.0,
+       0.0
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ]
+     },
+     "kernel_binary_known_cells": 1216,
+     "kernel_binary_mean_pass_rate": 0.0,
+     "n_declared_cells": 1216,
+     "n_known_cells": 1216,
+     "n_tasks": 152,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 0.0,
+      "IC_tests": 0.0,
+      "SCSC": 0.0,
+      "fsc_compiled": 0.0
+     },
+     "tasks_with_all_known": 152
+    },
+    "industryset": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.0,
+       0.005357142857142857
+      ],
+      "IC_tests": [
+       0.0,
+       0.008928571428571428
+      ],
+      "SCSC": [
+       0.0,
+       0.006055734719668157
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.005178571428571429
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       0.0017857142857142857,
+       0.0017857142857142857
+      ],
+      "IC_tests": [
+       0.0035714285714285713,
+       0.0035714285714285713
+      ],
+      "SCSC": [
+       0.002322484726520335,
+       0.002322484726520335
+      ],
+      "fsc_compiled": [
+       0.0019642857142857144,
+       0.0019642857142857144
+      ]
+     },
+     "kernel_binary_known_cells": 560,
+     "kernel_binary_mean_pass_rate": 0.0017857142857142857,
+     "n_declared_cells": 560,
+     "n_known_cells": 560,
+     "n_tasks": 70,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 0.0017857142857142857,
+      "IC_tests": 0.0035714285714285713,
+      "SCSC": 0.002322484726520335,
+      "fsc_compiled": 0.0019642857142857144
+     },
+     "tasks_with_all_known": 70
+    }
+   },
+   "system": {
+    "e05_label": "qwen3-4b-base",
+    "hf_path": null,
+    "label": "base_4B_e05",
+    "role": "base",
+    "size": "4B",
+    "source": "e05",
+    "weights_sha256_manifest": null
+   },
+   "unknown_cells": []
+  },
+  "base_8B_e05": {
+   "n_unknown_cells": 0,
+   "scopes": {
+    "all": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.0,
+       0.0
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       0.0,
+       0.0
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ]
+     },
+     "kernel_binary_known_cells": 1776,
+     "kernel_binary_mean_pass_rate": 0.0,
+     "n_declared_cells": 1776,
+     "n_known_cells": 1776,
+     "n_tasks": 222,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 0.0,
+      "IC_tests": 0.0,
+      "SCSC": 0.0,
+      "fsc_compiled": 0.0
+     },
+     "tasks_with_all_known": 222
+    },
+    "core": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.0,
+       0.0
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       0.0,
+       0.0
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ]
+     },
+     "kernel_binary_known_cells": 1216,
+     "kernel_binary_mean_pass_rate": 0.0,
+     "n_declared_cells": 1216,
+     "n_known_cells": 1216,
+     "n_tasks": 152,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 0.0,
+      "IC_tests": 0.0,
+      "SCSC": 0.0,
+      "fsc_compiled": 0.0
+     },
+     "tasks_with_all_known": 152
+    },
+    "industryset": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.0,
+       0.0
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       0.0,
+       0.0
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ]
+     },
+     "kernel_binary_known_cells": 560,
+     "kernel_binary_mean_pass_rate": 0.0,
+     "n_declared_cells": 560,
+     "n_known_cells": 560,
+     "n_tasks": 70,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 0.0,
+      "IC_tests": 0.0,
+      "SCSC": 0.0,
+      "fsc_compiled": 0.0
+     },
+     "tasks_with_all_known": 70
+    }
+   },
+   "system": {
+    "e05_label": "qwen3-8b-base",
+    "hf_path": null,
+    "label": "base_8B_e05",
+    "role": "base",
+    "size": "8B",
+    "source": "e05",
+    "weights_sha256_manifest": null
+   },
+   "unknown_cells": []
+  },
+  "test_sft_14B_f0p5": {
+   "n_unknown_cells": 0,
+   "scopes": {
+    "all": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.06531531531531531,
+       0.1097972972972973
+      ],
+      "IC_tests": [
+       0.06531531531531531,
+       0.1097972972972973
+      ],
+      "SCSC": [
+       0.0651072578398674,
+       0.1095353168860988
+      ],
+      "fsc_compiled": [
+       0.06452702702702703,
+       0.10889639639639644
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       0.08727477477477477,
+       0.08727477477477477
+      ],
+      "IC_tests": [
+       0.08727477477477477,
+       0.08727477477477477
+      ],
+      "SCSC": [
+       0.08689777320754248,
+       0.08689777320754248
+      ],
+      "fsc_compiled": [
+       0.08614864864864867,
+       0.08614864864864867
+      ]
+     },
+     "kernel_binary_known_cells": 1776,
+     "kernel_binary_mean_pass_rate": 0.08727477477477477,
+     "n_declared_cells": 1776,
+     "n_known_cells": 1776,
+     "n_tasks": 222,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 0.08727477477477477,
+      "IC_tests": 0.08727477477477477,
+      "SCSC": 0.08689777320754248,
+      "fsc_compiled": 0.08614864864864867
+     },
+     "tasks_with_all_known": 222
+    },
+    "core": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.09539473684210527,
+       0.15709292763157864
+      ],
+      "IC_tests": [
+       0.09539473684210527,
+       0.15709292763157864
+      ],
+      "SCSC": [
+       0.09520108664812171,
+       0.1568278730738621
+      ],
+      "fsc_compiled": [
+       0.09432565789473685,
+       0.15575863486842106
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       0.12582236842105263,
+       0.12582236842105263
+      ],
+      "IC_tests": [
+       0.12582236842105263,
+       0.12582236842105263
+      ],
+      "SCSC": [
+       0.12527171643622706,
+       0.12527171643622706
+      ],
+      "fsc_compiled": [
+       0.12417763157894739,
+       0.12417763157894739
+      ]
+     },
+     "kernel_binary_known_cells": 1216,
+     "kernel_binary_mean_pass_rate": 0.12582236842105263,
+     "n_declared_cells": 1216,
+     "n_known_cells": 1216,
+     "n_tasks": 152,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 0.12582236842105263,
+      "IC_tests": 0.12582236842105263,
+      "SCSC": 0.12527171643622706,
+      "fsc_compiled": 0.12417763157894739
+     },
+     "tasks_with_all_known": 152
+    },
+    "industryset": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.0,
+       0.008928571428571428
+      ],
+      "IC_tests": [
+       0.0,
+       0.008928571428571428
+      ],
+      "SCSC": [
+       0.0,
+       0.00892857142857143
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.008928571428571428
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       0.0035714285714285713,
+       0.0035714285714285713
+      ],
+      "IC_tests": [
+       0.0035714285714285713,
+       0.0035714285714285713
+      ],
+      "SCSC": [
+       0.0035714285714285726,
+       0.0035714285714285726
+      ],
+      "fsc_compiled": [
+       0.0035714285714285713,
+       0.0035714285714285713
+      ]
+     },
+     "kernel_binary_known_cells": 560,
+     "kernel_binary_mean_pass_rate": 0.0035714285714285713,
+     "n_declared_cells": 560,
+     "n_known_cells": 560,
+     "n_tasks": 70,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 0.0035714285714285713,
+      "IC_tests": 0.0035714285714285713,
+      "SCSC": 0.0035714285714285726,
+      "fsc_compiled": 0.0035714285714285713
+     },
+     "tasks_with_all_known": 70
+    }
+   },
+   "system": {
+    "e05_label": null,
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_334",
+    "label": "test_sft_14B_f0p5",
+    "role": "trained",
+    "size": "14B",
+    "source": "e08",
+    "weights_sha256_manifest": "a079a9d078d4d9e85b01d2b7b5f1d7cca874ec53184942136d9997b8af74b436"
+   },
+   "unknown_cells": []
+  },
+  "test_sft_8B_f1p0": {
+   "n_unknown_cells": 0,
+   "scopes": {
+    "all": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.08277027027027027,
+       0.14414414414414414
+      ],
+      "IC_tests": [
+       0.08277027027027027,
+       0.14414414414414414
+      ],
+      "SCSC": [
+       0.08229694082393288,
+       0.14346574986817337
+      ],
+      "fsc_compiled": [
+       0.08147381756756758,
+       0.14217483108108112
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       0.11204954954954954,
+       0.11204954954954954
+      ],
+      "IC_tests": [
+       0.11204954954954954,
+       0.11204954954954954
+      ],
+      "SCSC": [
+       0.11155942075898573,
+       0.11155942075898573
+      ],
+      "fsc_compiled": [
+       0.11058558558558562,
+       0.11058558558558562
+      ]
+     },
+     "kernel_binary_known_cells": 1776,
+     "kernel_binary_mean_pass_rate": 0.11204954954954954,
+     "n_declared_cells": 1776,
+     "n_known_cells": 1776,
+     "n_tasks": 222,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 0.11204954954954954,
+      "IC_tests": 0.11204954954954954,
+      "SCSC": 0.11155942075898573,
+      "fsc_compiled": 0.11058558558558562
+     },
+     "tasks_with_all_known": 222
+    },
+    "core": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.1225328947368421,
+       0.20723684210526316
+      ],
+      "IC_tests": [
+       0.1225328947368421,
+       0.20723684210526316
+      ],
+      "SCSC": [
+       0.1218984474688415,
+       0.2061628925322233
+      ],
+      "fsc_compiled": [
+       0.12063939144736845,
+       0.2043606085526316
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       0.16365131578947367,
+       0.16365131578947367
+      ],
+      "IC_tests": [
+       0.16365131578947367,
+       0.16365131578947367
+      ],
+      "SCSC": [
+       0.16293546979272916,
+       0.16293546979272916
+      ],
+      "fsc_compiled": [
+       0.1615131578947369,
+       0.1615131578947369
+      ]
+     },
+     "kernel_binary_known_cells": 1216,
+     "kernel_binary_mean_pass_rate": 0.16365131578947367,
+     "n_declared_cells": 1216,
+     "n_known_cells": 1216,
+     "n_tasks": 152,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 0.16365131578947367,
+      "IC_tests": 0.16365131578947367,
+      "SCSC": 0.16293546979272916,
+      "fsc_compiled": 0.1615131578947369
+     },
+     "tasks_with_all_known": 152
+    },
+    "industryset": {
+     "bootstrap95_task": {
+      "IC_proofs": [
+       0.0,
+       0.0
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ],
+      "n_resamples": 10000
+     },
+     "full_manifest_bounds": {
+      "IC_proofs": [
+       0.0,
+       0.0
+      ],
+      "IC_tests": [
+       0.0,
+       0.0
+      ],
+      "SCSC": [
+       0.0,
+       0.0
+      ],
+      "fsc_compiled": [
+       0.0,
+       0.0
+      ]
+     },
+     "kernel_binary_known_cells": 560,
+     "kernel_binary_mean_pass_rate": 0.0,
+     "n_declared_cells": 560,
+     "n_known_cells": 560,
+     "n_tasks": 70,
+     "n_unknown_cells": 0,
+     "point_common_cohort": {
+      "IC_proofs": 0.0,
+      "IC_tests": 0.0,
+      "SCSC": 0.0,
+      "fsc_compiled": 0.0
+     },
+     "tasks_with_all_known": 70
+    }
+   },
+   "system": {
+    "e05_label": null,
+    "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_658",
+    "label": "test_sft_8B_f1p0",
+    "role": "trained",
+    "size": "8B",
+    "source": "e08",
+    "weights_sha256_manifest": "3085508bfd29932193b556c2f769eabe83b26e2d96dd59ef7412cfbcbf8f397d"
+   },
+   "unknown_cells": []
+  }
+ },
+ "verdict": "PARTIAL",
+ "written_utc": "2026-10-12T04:24:52+00:00"
+}

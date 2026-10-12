@@ -4,9 +4,9 @@
 
 **TLDR:** Matched supervised fine-tuning is complete at all four sizes (658 updates and 5,752,936 real loss tokens each), with all 20 trained validation rungs and 25,920/25,920 validation cells complete. Frozen published selection remains **PARTIAL**: the 8B step-658 and 14B step-334 checkpoints are unmatched diagnostics; 1.7B and 4B pass no rung. All **10,656/10,656 declared test cells have kernel factors**, including 5,328 new and 5,328 reused Base cells. The reboot environment blocked the first judge client before execution; the original admission was preserved and recovered once after verifying zero tracker runs. Controls PASS: 50/50 declared ratings measured with exact inventories and frozen transport envelopes. All 12 test-judge runs are admitted for the frozen 4,302 ratings over 717 files; final coverage and aggregate remain pending.
 
-**Status:** RUNNING — all test kernel factors complete; 50/50 train control ratings measured and accepted; all 12 test-judge runs admitted, final analysis pending.
+**Status:** DONE (10-11-2026 21:24 PDT; verdict PARTIAL; test split evaluated once after the committed selection)
 
-**Last updated:** 10-11-2026 20:18 PDT (controls accepted; all test judging admitted)
+**Last updated:** 10-11-2026 21:24 PDT (pipeline: final results)
 
 ## Test kernel completion and judge admission recovery (10-11-2026 20:01 PDT)
 
@@ -297,8 +297,40 @@ Written 2026-10-11T16:42:04+00:00 by the pipeline from `expt_v1/results/validati
 
 **Selection (PROTOCOL § 9, frozen rule):** verdict **PARTIAL**, f* = None; earliest passing fraction per size {"1.7B": null, "14B": "0.5", "4B": null, "8B": "1.0"}; tokens needed {"14B": 2884708, "8B": 5752936}; incomplete systems []. `expt_v1/results/selection.json` is committed before any test generation (D-004).
 
+## Test evaluation (once; PROTOCOL § 10 and D-009: geometric mean of factor means on the common known cohort; 10,000 task-bootstrap resamples, seed 0; p-val=n/a)
+
+Verdict PARTIAL, f* = None. Written 2026-10-12T04:24:52+00:00 from `expt_v1/results/test_eval.json`; unknown cells stay in the declared denominator and are listed there.
+
+| System | Scope | Known / declared cells | IC_tests | IC_proofs | fsc_compiled | SCSC [task-bootstrap 95%] | kernel_binary mean |
+|---|---|---:|---:|---:|---:|---|---:|
+| `base14b` | all | 1776 / 1776 | 0.0028 | 0.0028 | 0.0015 | 0.0023 [0.0004, 0.0045] | 0.002815315315315315 |
+| `base14b` | core | 1216 / 1216 | 0.0000 | 0.0000 | 0.0000 | 0.0000 [0.0000, 0.0000] | 0.0 |
+| `base14b` | industryset | 560 / 560 | 0.0089 | 0.0089 | 0.0048 | 0.0073 [0.0017, 0.0144] | 0.008928571428571428 |
+| `base_1p7B_e05` | all | 1776 / 1776 | 0.0000 | 0.0001 | 0.0000 | 0.0000 [0.0000, 0.0000] | 0.0 |
+| `base_1p7B_e05` | core | 1216 / 1216 | 0.0000 | 0.0000 | 0.0000 | 0.0000 [0.0000, 0.0000] | 0.0 |
+| `base_1p7B_e05` | industryset | 560 / 560 | 0.0000 | 0.0003 | 0.0000 | 0.0000 [0.0000, 0.0000] | 0.0 |
+| `base_4B_e05` | all | 1776 / 1776 | 0.0011 | 0.0006 | 0.0006 | 0.0007 [0.0000, 0.0019] | 0.0005630630630630631 |
+| `base_4B_e05` | core | 1216 / 1216 | 0.0000 | 0.0000 | 0.0000 | 0.0000 [0.0000, 0.0000] | 0.0 |
+| `base_4B_e05` | industryset | 560 / 560 | 0.0036 | 0.0018 | 0.0020 | 0.0023 [0.0000, 0.0061] | 0.0017857142857142857 |
+| `base_8B_e05` | all | 1776 / 1776 | 0.0000 | 0.0000 | 0.0000 | 0.0000 [0.0000, 0.0000] | 0.0 |
+| `base_8B_e05` | core | 1216 / 1216 | 0.0000 | 0.0000 | 0.0000 | 0.0000 [0.0000, 0.0000] | 0.0 |
+| `base_8B_e05` | industryset | 560 / 560 | 0.0000 | 0.0000 | 0.0000 | 0.0000 [0.0000, 0.0000] | 0.0 |
+| `test_sft_14B_f0p5` | all | 1776 / 1776 | 0.0873 | 0.0873 | 0.0861 | 0.0869 [0.0651, 0.1095] | 0.08727477477477477 |
+| `test_sft_14B_f0p5` | core | 1216 / 1216 | 0.1258 | 0.1258 | 0.1242 | 0.1253 [0.0952, 0.1568] | 0.12582236842105263 |
+| `test_sft_14B_f0p5` | industryset | 560 / 560 | 0.0036 | 0.0036 | 0.0036 | 0.0036 [0.0000, 0.0089] | 0.0035714285714285713 |
+| `test_sft_8B_f1p0` | all | 1776 / 1776 | 0.1120 | 0.1120 | 0.1106 | 0.1116 [0.0823, 0.1435] | 0.11204954954954954 |
+| `test_sft_8B_f1p0` | core | 1216 / 1216 | 0.1637 | 0.1637 | 0.1615 | 0.1629 [0.1219, 0.2062] | 0.16365131578947367 |
+| `test_sft_8B_f1p0` | industryset | 560 / 560 | 0.0000 | 0.0000 | 0.0000 | 0.0000 [0.0000, 0.0000] | 0.0 |
+
+Paired differences on all 222 tasks (shared known cohort, shared resampled task indices):
+
+| Size | Selected − Base | kernel_binary mean pass-rate diff [95%] | SCSC diff [95%] | shared known cells |
+|---|---|---|---|---:|
+| 14B | `test_sft_14B_f0p5` − `base14b` | {'bootstrap95': [0.06249999999999999, 0.10754504504504506], 'point': 0.08445945945945946} | {'bootstrap95': [0.06268546733971177, 0.1077439609130829], 'point': 0.08460519076109407} | 1776 |
+| 8B | `test_sft_8B_f1p0` − `base_8B_e05` | {'bootstrap95': [0.08277027027027027, 0.14414414414414414], 'point': 0.11204954954954954} | {'bootstrap95': [0.08229694082393288, 0.14346574986817337], 'point': 0.11155942075898573} | 1776 |
+
 ## Open questions for Brando
 
 - None blocking. Varun's math/code rows and warm-start checkpoints (D-105) would allow a math + code + Lean arm in a later version; ask him first.
 
-**TLDR-end:** [rl4cv: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched supervised fine-tuning and all validation are complete, with frozen PARTIAL selection and all 10,656 test kernel cells known. All 50 train control ratings are measured and both members meet the frozen acceptance checks; all 12 test-judge runs continue under ordinary-code supervision, with final coverage and results pending.
+**TLDR-end:** [rl4cv: expt 08 matched Lean SFT warm start] Verdict PARTIAL (f* = None; tokens needed {"14B": 2884708, "8B": 5752936}); the validation ladder and test tables above carry every count with its denominator.
