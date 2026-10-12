@@ -1,0 +1,1963 @@
+{
+  "schema": 1,
+  "incident_id": "6ca5cdbf-0415-4a2e-83c9-c0c95c937d20",
+  "native_session_id": "01a12e04-6cc2-72c0-a063-917ba75e390d",
+  "written_utc": "2026-10-12T03:01:47.979631+00:00",
+  "status": "RECOVERED_CONTROLS_PASS_TEST_JUDGING_ADMITTED",
+  "native_runtime": {
+    "model": "gpt-6-astra",
+    "effort": "ultra",
+    "approval_policy": "never",
+    "sandbox_policy": {
+      "type": "danger-full-access"
+    }
+  },
+  "project_revision_at_entry": "18a8e1e594670bf3ef8769c6a888989dcba87cff",
+  "policy_revision": "a2e2cfcc705ad871ef40dfb3d66c5be7213b59de",
+  "adopted_pipeline_identity": {
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "pid": 28223,
+    "ppid": 28222,
+    "session": 28222,
+    "start_ticks": 24891
+  },
+  "pipeline_source_changed": false,
+  "pipeline_restarted": false,
+  "frozen_hashes": {
+    "recovery_receipt": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/coordinator_reboot_recovery_10-11-2026.json",
+    "frozen_hashes_checked": 11,
+    "frozen_hashes_matching": 11,
+    "key_artifact_sha256": {
+      "validation_ladder.json": "8b5386f73f2dc9072a2a81aa33912ef8658cfa7b1983f93248ad89142fa503e3",
+      "selection.json": "47e12d6c217a3e62e47e0d5bcef13478f2ecf52098b7ac6163df91e216e21cdb",
+      "test_manifest.json": "ed128d11e8d5d09e7d19244f5480f24360f01530510240a9d1176b0a446136fa",
+      "test_ladder_kernel.json": "9790b049f05cf306f233f6e5525ba7ff8bb18059d7d19952281c938e496dbb70"
+    },
+    "test_manifest": {
+      "task_ids_sha256": "303a6c666d6902bb62e64a37091167a6150e652f1c3b1311c0a62e8c7fccd095",
+      "selection_sha256": "47e12d6c217a3e62e47e0d5bcef13478f2ecf52098b7ac6163df91e216e21cdb"
+    }
+  },
+  "coverage": {
+    "validation": {
+      "split": "validation",
+      "systems": 24,
+      "tasks_per_system": 135,
+      "samples_per_task": 8,
+      "declared_cells": 25920,
+      "known_unique_task_sample_cells": 25920,
+      "unknown_cells": 0,
+      "evidence": "24 *_validation_cells.csv files, each 1080 unique (task_id,sample_idx) rows with known=True; validation_ladder.json marks every system COMPLETE."
+    },
+    "test_kernel": {
+      "split": "test",
+      "systems": 6,
+      "tasks_per_system": 222,
+      "samples_per_task": 8,
+      "declared_cells": 10656,
+      "known_unique_task_sample_cells": 10656,
+      "unknown_cells": 0,
+      "systems_complete": [
+        "base14b",
+        "base_1p7B_e05",
+        "base_4B_e05",
+        "base_8B_e05",
+        "test_sft_14B_f0p5",
+        "test_sft_8B_f1p0"
+      ],
+      "evidence": "test_ladder_kernel.json written 2026-10-12T02:45:57+00:00; all six COMPLETE with n_known=n_declared=1776."
+    }
+  },
+  "selection": {
+    "selection": {
+      "verdict": "PARTIAL",
+      "f_star": null,
+      "earliest_passing_fraction_per_size": {
+        "1.7B": null,
+        "4B": null,
+        "8B": "1.0",
+        "14B": "0.5"
+      },
+      "selected_unmatched_diagnostics": [
+        "test_sft_8B_f1p0",
+        "test_sft_14B_f0p5"
+      ],
+      "selection_written_utc": "2026-10-11T16:42:04+00:00",
+      "selection_published_commit": "089a32358f8ebbd45680042884f78dff67aa338b",
+      "selection_pushed_utc": "2026-10-11T16:45:34+00:00"
+    },
+    "publication_order": [
+      "validation final rung completed: 2026-10-11T16:41:11+00:00",
+      "frozen selection pushed: 2026-10-11T16:45:34+00:00",
+      "test manifest pushed: 2026-10-11T16:49:10+00:00 (commit bee4580de580beee2729899956f2291b87ba6584)",
+      "first test launcher: 2026-10-11T16:49:11+00:00",
+      "test-kernel factors committed: 18a8e1e594670bf3ef8769c6a888989dcba87cff at 2026-10-11T19:46:35-07:00"
+    ],
+    "protocol_constraint": "PARTIAL checkpoints are unmatched diagnostics, and test outcomes cannot trigger new training, selection, or samples."
+  },
+  "failure_and_recovery": {
+    "schema": 1,
+    "written_utc": "2026-10-12T02:58:10.855090+00:00",
+    "incident_id": "6ca5cdbf-0415-4a2e-83c9-c0c95c937d20",
+    "original_pipeline": {
+      "pid": 28223,
+      "start_ticks": 24891,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df"
+    },
+    "failure": {
+      "type": "FileNotFoundError",
+      "errno": 2,
+      "subprocess_started": false
+    },
+    "original_pipeline_PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+    "original_admission": {
+      "admitted_at": "2026-10-12T02:48:14+00:00",
+      "benchmark": "veribench-rl4cv-e08-controls",
+      "command": [
+        "run",
+        "start",
+        "--agent",
+        "vb103_judge",
+        "--benchmark",
+        "veribench-rl4cv-e08-controls",
+        "--dataset",
+        "default",
+        "--model",
+        "openai/gpt-6-sol-high",
+        "--concurrency",
+        "8",
+        "--label",
+        "rl4cv-e08-judge-controls-H2_sol_high",
+        "--task-ids-file",
+        "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_controls.txt",
+        "-k",
+        "judge_config",
+        "H2_sol_high",
+        "-k",
+        "max_tokens",
+        "32000",
+        "-k",
+        "benchmark",
+        "rl4cv-e08-judge-veribench-rl4cv-e08-controls-controls-H2_sol_high",
+        "-k",
+        "reasoning_effort",
+        "high"
+      ],
+      "concurrency": 8,
+      "config": "H2_sol_high",
+      "expected_cells": 25,
+      "kwargs": {
+        "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-controls-controls-H2_sol_high",
+        "judge_config": "H2_sol_high",
+        "max_tokens": "32000",
+        "reasoning_effort": "high"
+      },
+      "phase": "admitting",
+      "selector": "openai/gpt-6-sol-high",
+      "suite": "rl4cv-e08-controls",
+      "task_ids_sha256": "a30097ab14d32d53d3a1825cd7b2766e03e6f47962bedd5de0116d5dcddaa337"
+    },
+    "remote_run_listing": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/run_list_repaired_environment.json",
+      "sha256": "83c30c9d184df2edf2fa55cccec537b52b6c2023025b93ab39859dc4b426cb95",
+      "returned_count": 0
+    },
+    "recovery_decision": "Original valk exec lookup failed before a client existed; two read-only tracker listings find zero controls runs. Preserve the original admission and failure history; make exactly one bounded identical command attempt, with no automatic replay on timeout/error. Then admit the previously unattempted second frozen member.",
+    "declared_controls": {
+      "files": 25,
+      "members": 2,
+      "ratings": 50,
+      "max_requests_per_rating": 2,
+      "settings": "H2_sol_high + H2_opus55_max, unchanged",
+      "concurrency_per_member": 8
+    },
+    "prospective_success": "Record two verified run IDs with frozen task/config identities, confirm pipeline adoption and ordinary-code polling; scientific control acceptance and test judging remain downstream.",
+    "budget": "Existing 50-rating route-control manifest; Vals-funded only, no new coordinator credits or resource probes. Reported model charges are collected per receipt; price estimate not established for this judge batch.",
+    "judge_bundle": {
+      "contract.yaml": "cadb016cc6aa991d94f32390dae2fb25cfe3e9d71de828153c2ed2cba37cf05f",
+      "judge_call.py": "9314c8107eef1c940a98a5f0dfba84546bc315aef5637405c97987f34a02b061",
+      "setup.sh": "78329d7b038de0d635f3e0d1eb1306ee708e3dc16b0c4b3168d01c598b32c999"
+    },
+    "contract_secrets_mapping": {
+      "MODEL_GATEWAY_API_KEY": "fellows/brandoModelGatewayApiKey"
+    },
+    "route_identity": {
+      "environment": "bench",
+      "S3_BUCKET": "fellow-brando-miranda",
+      "LOG_GROUP": "fellows/brando-miranda",
+      "default_sandbox_provider": "daytona"
+    },
+    "payer": "Vals gateway credential mapped only inside Valkyrie by fellows/brandoModelGatewayApiKey; unchanged authorized route",
+    "private_config_sha256": "24b206e5051c47d635c3f1a8e95055c95e503495a83a919fcf845ea30a1d4a09",
+    "runtime_repairs": {
+      "/dfs/scratch0/brando9/bin/valk": "7f978623d3cff27a682f15157b3f562a9659adf1b6b579fdb1eef6ce5e2b1126",
+      "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/lean": "ce0c2ab1fc97d0ca639886d911427c5835406a0f4e1ca5787320a0c6973262ab",
+      "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/lake": "d7044afc8e1653a84d0c82eb2cbd1b975fa6ab2ee6c0ea1e833cfd01bdd232a7"
+    },
+    "scientific_requests_by_this_phase_so_far": 0
+  },
+  "control_admissions": {
+    "created": "2026-10-12T02:48:14+00:00",
+    "runs": {
+      "controls/H2_opus55_max": {
+        "admitted_at": "2026-10-12T02:59:11+00:00",
+        "benchmark": "veribench-rl4cv-e08-controls",
+        "command": [
+          "run",
+          "start",
+          "--agent",
+          "vb103_judge",
+          "--benchmark",
+          "veribench-rl4cv-e08-controls",
+          "--dataset",
+          "default",
+          "--model",
+          "anthropic/claude-opus-5-5-no-fallback",
+          "--concurrency",
+          "8",
+          "--label",
+          "rl4cv-e08-judge-controls-H2_opus55_max",
+          "--task-ids-file",
+          "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_controls.txt",
+          "-k",
+          "judge_config",
+          "H2_opus55_max",
+          "-k",
+          "max_tokens",
+          "32000",
+          "-k",
+          "benchmark",
+          "rl4cv-e08-judge-veribench-rl4cv-e08-controls-controls-H2_opus55_max",
+          "-k",
+          "compute_effort",
+          "max"
+        ],
+        "concurrency": 8,
+        "config": "H2_opus55_max",
+        "expected_cells": 25,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-controls-controls-H2_opus55_max",
+          "compute_effort": "max",
+          "judge_config": "H2_opus55_max",
+          "max_tokens": "32000"
+        },
+        "phase": "running",
+        "recovered_at": null,
+        "run_id": "e30e4c47-e2da-4bc1-b0a9-9c9b8fcb8208",
+        "selector": "anthropic/claude-opus-5-5-no-fallback",
+        "suite": "rl4cv-e08-controls",
+        "task_ids_sha256": "a30097ab14d32d53d3a1825cd7b2766e03e6f47962bedd5de0116d5dcddaa337"
+      },
+      "controls/H2_sol_high": {
+        "admitted_at": "2026-10-12T02:48:14+00:00",
+        "benchmark": "veribench-rl4cv-e08-controls",
+        "command": [
+          "run",
+          "start",
+          "--agent",
+          "vb103_judge",
+          "--benchmark",
+          "veribench-rl4cv-e08-controls",
+          "--dataset",
+          "default",
+          "--model",
+          "openai/gpt-6-sol-high",
+          "--concurrency",
+          "8",
+          "--label",
+          "rl4cv-e08-judge-controls-H2_sol_high",
+          "--task-ids-file",
+          "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_controls.txt",
+          "-k",
+          "judge_config",
+          "H2_sol_high",
+          "-k",
+          "max_tokens",
+          "32000",
+          "-k",
+          "benchmark",
+          "rl4cv-e08-judge-veribench-rl4cv-e08-controls-controls-H2_sol_high",
+          "-k",
+          "reasoning_effort",
+          "high"
+        ],
+        "concurrency": 8,
+        "config": "H2_sol_high",
+        "expected_cells": 25,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-controls-controls-H2_sol_high",
+          "judge_config": "H2_sol_high",
+          "max_tokens": "32000",
+          "reasoning_effort": "high"
+        },
+        "phase": "running",
+        "prior_launches": [
+          {
+            "admitted_at": "2026-10-12T02:48:14+00:00",
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/judge_recovery_plan.json",
+            "evidence_sha256": "e683be67564fd7701f57df8aec1c70f18bf857c3728bc65f24ee32279141f8ed",
+            "phase": "preexec_failed",
+            "requests_sent": 0,
+            "subprocess_started": false
+          }
+        ],
+        "recovered_at": "2026-10-12T02:59:11+00:00",
+        "recovery_attempts": 1,
+        "recovery_started_at": "2026-10-12T02:59:00+00:00",
+        "run_id": "7e85dd9e-58d8-4a6c-a4e1-d5b253b37fe7",
+        "selector": "openai/gpt-6-sol-high",
+        "suite": "rl4cv-e08-controls",
+        "task_ids_sha256": "a30097ab14d32d53d3a1825cd7b2766e03e6f47962bedd5de0116d5dcddaa337"
+      }
+    },
+    "updated": "2026-10-12T02:59:20+00:00"
+  },
+  "controls_remote_status": {
+    "kind": "run_status",
+    "missing_run_ids": [],
+    "observed_at": "2026-10-12T02:59:56.886089Z",
+    "requested_count": 2,
+    "returned_count": 2,
+    "runs": [
+      {
+        "finished_at": null,
+        "finished_tasks": 0,
+        "progress_percent": 0.0,
+        "run_id": "e30e4c47-e2da-4bc1-b0a9-9c9b8fcb8208",
+        "status": "IN_PROGRESS",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 0,
+          "IN_PROGRESS": 0,
+          "PENDING": 25,
+          "STOPPED": 0
+        },
+        "total_tasks": 25
+      },
+      {
+        "finished_at": null,
+        "finished_tasks": 0,
+        "progress_percent": 0.0,
+        "run_id": "7e85dd9e-58d8-4a6c-a4e1-d5b253b37fe7",
+        "status": "IN_PROGRESS",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 0,
+          "IN_PROGRESS": 8,
+          "PENDING": 17,
+          "STOPPED": 0
+        },
+        "total_tasks": 25
+      }
+    ],
+    "schema_version": 1
+  },
+  "checks": {
+    "command": "make test",
+    "environment": "Original pipeline /proc/28223/environ plus repository .venv/bin, exactly as publish() uses",
+    "returncode": 0,
+    "seconds": 158.4850680010004,
+    "passed": 271,
+    "skipped": 4,
+    "pytest_seconds": 158.26,
+    "log_sha256": "13e4f275367dec0c2a538ee1ff9a93a82ce522805a02514cbb6c8b476c1d7e1f",
+    "initial_pipeline_publication_failure": "7 existing Lean-backed tests failed because reboot cron PATH lacked lake; 261 passed, 4 skipped; original pipeline log retained."
+  },
+  "parent_findings_sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba",
+  "parent_findings_acknowledged": true,
+  "shared_checkpoint_limitation": "16/16 embedding/query samples only; shared pinned-baseline query/key checkpoint deduplication limitation, actual numerical drift unmeasured, no new historical gate or selective repair; Mercury remains unadmitted; 1783.907/1800 seconds spent, 16.093 remain; no new resource probe.",
+  "probe_accounting": {
+    "schema": 1,
+    "phase_incident": "8339e1ac-9675-4e2c-b609-552c1b436a12",
+    "cumulative_accelerator_window_limit_seconds": 1800,
+    "spent_seconds": 1783.9074669163674,
+    "remaining_seconds": 16.09253308363259,
+    "device_seconds": 8343.091856226325,
+    "attempts": [
+      {
+        "attempt": "skampere1_tp2",
+        "devices": 2,
+        "status": "FAILED",
+        "seconds": 988.027979850769,
+        "device_seconds": 1976.055959701538,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt1",
+        "devices": 8,
+        "status": "FAILED",
+        "seconds": 78.3024847432971,
+        "device_seconds": 626.4198779463768,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt2",
+        "devices": 8,
+        "status": "FAILED",
+        "seconds": 9.088251980021596,
+        "device_seconds": 72.70601584017277,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt3",
+        "devices": 8,
+        "status": "FAILED",
+        "seconds": 114.57696747779846,
+        "device_seconds": 916.6157398223877,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt4",
+        "devices": 8,
+        "status": "TIMEOUT",
+        "seconds": 593.9117828644812,
+        "device_seconds": 4751.29426291585,
+        "owned_children_remaining": [],
+        "lease_released": true
+      }
+    ],
+    "future_rule": "Never reset these receipts/counters. Remaining16seconds cannot complete a fresh native resume. No further disposable accelerator allocation in this phase; new scope/allowance must be explicit and prospective.",
+    "production_budget": "Original658updates/five-rung finite manifest unchanged; no invented overall production wall-time cap."
+  },
+  "stage_retries": {
+    "ladder_test_base14b": 0,
+    "ladder_test_test_sft_14B_f0p5": 1,
+    "ladder_test_test_sft_8B_f1p0": 1,
+    "ladder_val_sft_14B_f0p125": 0,
+    "ladder_val_sft_14B_f0p25": 0,
+    "ladder_val_sft_14B_f0p5": 0,
+    "ladder_val_sft_14B_f0p75": 0,
+    "ladder_val_sft_14B_f1p0": 0,
+    "ladder_val_sft_1p7B_f0p125": 0,
+    "ladder_val_sft_1p7B_f0p25": 0,
+    "ladder_val_sft_1p7B_f0p5": 0,
+    "ladder_val_sft_1p7B_f0p75": 0,
+    "ladder_val_sft_1p7B_f1p0": 0,
+    "ladder_val_sft_4B_f0p125": 0,
+    "ladder_val_sft_4B_f0p25": 0,
+    "ladder_val_sft_4B_f0p5": 0,
+    "ladder_val_sft_4B_f0p75": 0,
+    "ladder_val_sft_4B_f1p0": 0,
+    "ladder_val_sft_8B_f0p125": 0,
+    "ladder_val_sft_8B_f0p25": 0,
+    "ladder_val_sft_8B_f0p5": 0,
+    "ladder_val_sft_8B_f0p75": 0,
+    "ladder_val_sft_8B_f1p0": 0,
+    "sft_14B": 0,
+    "sft_8B": 0
+  },
+  "recovery_monitor": {
+    "five_minute_cron": true,
+    "reboot_entry": true,
+    "parent_owner_lock_preserved": true,
+    "STOP_present": false
+  },
+  "watchdog": {
+    "checked_utc": "2026-10-12T03:00:02Z",
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "host": "skampere1.stanford.edu",
+    "jobs": [
+      {
+        "name": "pipeline",
+        "session": "rl4cv-e08-pipeline",
+        "state": "running",
+        "pane_pid": "28222",
+        "processes": 2,
+        "fresh_age_s": "85"
+      }
+    ]
+  },
+  "remaining_scientific_state": [
+    "4,302 declared test ratings across 12 admitted runs, including the fixed audit; completed ratings preserved and missing ratings remain pending",
+    "Formal specification coverage, official aggregate and final task-bootstrap intervals remain pending"
+  ],
+  "source_changes": [
+    "judge child PATH includes its own interpreter bin",
+    "Client exec failures and admission timeouts leave fenced durable receipts",
+    "Regression checks preserve ambiguous-admission no-replay policy"
+  ],
+  "host_installation": {
+    "scope": "experiment repository .venv/bin only; survives reboot; no global settings or pipeline identity changed",
+    "valk": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/valk",
+      "target": "/dfs/scratch0/brando9/bin/valk",
+      "sha256": "7f978623d3cff27a682f15157b3f562a9659adf1b6b579fdb1eef6ce5e2b1126"
+    },
+    "lean": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/lean",
+      "sha256": "ce0c2ab1fc97d0ca639886d911427c5835406a0f4e1ca5787320a0c6973262ab"
+    },
+    "lake": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/lake",
+      "sha256": "d7044afc8e1653a84d0c82eb2cbd1b975fa6ab2ee6c0ea1e833cfd01bdd232a7"
+    }
+  },
+  "receipt_directory": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2",
+  "parent_master_sha256_before_owned_edits": "4658c03e48d2972fa6fa6c8c178377204c695299cfcec2891badb3ad4047e26e",
+  "scientific_changes": false,
+  "resource_probes": 0,
+  "notifications_sent": 0,
+  "controls_acceptance": {
+    "configs": {
+      "H2_opus55_max": {
+        "charges_usd": 2.5389,
+        "exact_receipt_inventory": true,
+        "expected_envelope": {
+          "effort": "max",
+          "max_tokens": 32000,
+          "rubric": "H2_human_mirror_conventions_demos",
+          "selector": "anthropic/claude-opus-5-5-no-fallback"
+        },
+        "per_kind": {
+          "control_blank": {
+            "fraction": 1.0,
+            "measured": 5,
+            "min_fraction": 0.9,
+            "n": 5,
+            "ok": 5,
+            "pass": true,
+            "rule": "score_raw == 0",
+            "scores": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "control_halfdel": {
+            "fraction": 0.8,
+            "measured": 5,
+            "min_fraction": 0.8,
+            "n": 5,
+            "ok": 4,
+            "pass": true,
+            "rule": "1 <= score_raw <= 4",
+            "scores": [
+              3,
+              3,
+              4,
+              5,
+              3
+            ]
+          },
+          "control_oracle": {
+            "fraction": 1.0,
+            "measured": 5,
+            "min_fraction": 0.9,
+            "n": 5,
+            "ok": 5,
+            "pass": true,
+            "rule": "score_raw >= 4",
+            "scores": [
+              5,
+              5,
+              5,
+              5,
+              5
+            ]
+          },
+          "control_shuffled": {
+            "fraction": 1.0,
+            "measured": 5,
+            "min_fraction": 0.9,
+            "n": 5,
+            "ok": 5,
+            "pass": true,
+            "rule": "score_raw <= 1",
+            "scores": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "control_vacuous": {
+            "fraction": 1.0,
+            "measured": 5,
+            "min_fraction": 0.9,
+            "n": 5,
+            "ok": 5,
+            "pass": true,
+            "rule": "score_raw <= 1",
+            "scores": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "run_id": "e30e4c47-e2da-4bc1-b0a9-9c9b8fcb8208",
+        "status_counts": {
+          "measured": 25
+        },
+        "transport_matches": true
+      },
+      "H2_sol_high": {
+        "charges_usd": 0.5931,
+        "exact_receipt_inventory": true,
+        "expected_envelope": {
+          "effort": "high",
+          "max_tokens": 32000,
+          "rubric": "H2_human_mirror_conventions_demos",
+          "selector": "openai/gpt-6-sol-high"
+        },
+        "per_kind": {
+          "control_blank": {
+            "fraction": 1.0,
+            "measured": 5,
+            "min_fraction": 0.9,
+            "n": 5,
+            "ok": 5,
+            "pass": true,
+            "rule": "score_raw == 0",
+            "scores": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "control_halfdel": {
+            "fraction": 0.8,
+            "measured": 5,
+            "min_fraction": 0.8,
+            "n": 5,
+            "ok": 4,
+            "pass": true,
+            "rule": "1 <= score_raw <= 4",
+            "scores": [
+              3,
+              3,
+              4,
+              5,
+              3
+            ]
+          },
+          "control_oracle": {
+            "fraction": 1.0,
+            "measured": 5,
+            "min_fraction": 0.9,
+            "n": 5,
+            "ok": 5,
+            "pass": true,
+            "rule": "score_raw >= 4",
+            "scores": [
+              5,
+              5,
+              5,
+              5,
+              5
+            ]
+          },
+          "control_shuffled": {
+            "fraction": 1.0,
+            "measured": 5,
+            "min_fraction": 0.9,
+            "n": 5,
+            "ok": 5,
+            "pass": true,
+            "rule": "score_raw <= 1",
+            "scores": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "control_vacuous": {
+            "fraction": 1.0,
+            "measured": 5,
+            "min_fraction": 0.9,
+            "n": 5,
+            "ok": 5,
+            "pass": true,
+            "rule": "score_raw <= 1",
+            "scores": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "run_id": "7e85dd9e-58d8-4a6c-a4e1-d5b253b37fe7",
+        "status_counts": {
+          "measured": 25
+        },
+        "transport_matches": true
+      }
+    },
+    "identity_evidence": "Frozen request envelope and returned no-fallback receipt; provider-returned model/effort fields are unavailable in the validated bundle.",
+    "pack_matches_frozen_rubric": true,
+    "verdict": "PASS",
+    "written_utc": "2026-10-12T03:03:38+00:00"
+  },
+  "latest_judge_state": {
+    "created": "2026-10-12T02:48:14+00:00",
+    "runs": {
+      "base14b/H2_opus55_max": {
+        "admitted_at": "2026-10-12T03:10:54+00:00",
+        "benchmark": "veribench-rl4cv-e08-test",
+        "cells_terminal": 43,
+        "command": [
+          "run",
+          "start",
+          "--agent",
+          "vb103_judge",
+          "--benchmark",
+          "veribench-rl4cv-e08-test",
+          "--dataset",
+          "default",
+          "--model",
+          "anthropic/claude-opus-5-5-no-fallback",
+          "--concurrency",
+          "12",
+          "--label",
+          "rl4cv-e08-judge-base14b-H2_opus55_max",
+          "--task-ids-file",
+          "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_base14b.txt",
+          "-k",
+          "judge_config",
+          "H2_opus55_max",
+          "-k",
+          "max_tokens",
+          "32000",
+          "-k",
+          "benchmark",
+          "rl4cv-e08-judge-veribench-rl4cv-e08-test-base14b-H2_opus55_max",
+          "-k",
+          "compute_effort",
+          "max"
+        ],
+        "concurrency": 12,
+        "config": "H2_opus55_max",
+        "expected_cells": 195,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-base14b-H2_opus55_max",
+          "compute_effort": "max",
+          "judge_config": "H2_opus55_max",
+          "max_tokens": "32000"
+        },
+        "phase": "running",
+        "polled_at": "2026-10-12T03:16:37+00:00",
+        "run_id": "61a7168e-fe37-4b84-960d-78d85ef2ac5f",
+        "run_status": "in_progress",
+        "selector": "anthropic/claude-opus-5-5-no-fallback",
+        "suite": "rl4cv-e08:base14b",
+        "task_ids_sha256": "9c869110782c1a06110bad22d861a4335a60340bc7854aa646200947eb74f520",
+        "task_state_counts": {
+          "BUILDING": 1,
+          "ERROR": 0,
+          "EVALUATING": 1,
+          "FINISHED": 43,
+          "IN_PROGRESS": 10,
+          "PENDING": 140,
+          "STOPPED": 0
+        }
+      },
+      "base14b/H2_sol_high": {
+        "admitted_at": "2026-10-12T03:10:44+00:00",
+        "benchmark": "veribench-rl4cv-e08-test",
+        "cells_terminal": 111,
+        "command": [
+          "run",
+          "start",
+          "--agent",
+          "vb103_judge",
+          "--benchmark",
+          "veribench-rl4cv-e08-test",
+          "--dataset",
+          "default",
+          "--model",
+          "openai/gpt-6-sol-high",
+          "--concurrency",
+          "12",
+          "--label",
+          "rl4cv-e08-judge-base14b-H2_sol_high",
+          "--task-ids-file",
+          "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_base14b.txt",
+          "-k",
+          "judge_config",
+          "H2_sol_high",
+          "-k",
+          "max_tokens",
+          "32000",
+          "-k",
+          "benchmark",
+          "rl4cv-e08-judge-veribench-rl4cv-e08-test-base14b-H2_sol_high",
+          "-k",
+          "reasoning_effort",
+          "high"
+        ],
+        "concurrency": 12,
+        "config": "H2_sol_high",
+        "expected_cells": 195,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-base14b-H2_sol_high",
+          "judge_config": "H2_sol_high",
+          "max_tokens": "32000",
+          "reasoning_effort": "high"
+        },
+        "phase": "running",
+        "polled_at": "2026-10-12T03:16:43+00:00",
+        "run_id": "f6fb62eb-d26c-4d57-8253-7a9cadf82879",
+        "run_status": "in_progress",
+        "selector": "openai/gpt-6-sol-high",
+        "suite": "rl4cv-e08:base14b",
+        "task_ids_sha256": "9c869110782c1a06110bad22d861a4335a60340bc7854aa646200947eb74f520",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 111,
+          "IN_PROGRESS": 12,
+          "PENDING": 72,
+          "STOPPED": 0
+        }
+      },
+      "base_1p7B_e05/H2_opus55_max": {
+        "admitted_at": "2026-10-12T03:11:10+00:00",
+        "benchmark": "veribench-rl4cv-e08-test",
+        "cells_terminal": 73,
+        "command": [
+          "run",
+          "start",
+          "--agent",
+          "vb103_judge",
+          "--benchmark",
+          "veribench-rl4cv-e08-test",
+          "--dataset",
+          "default",
+          "--model",
+          "anthropic/claude-opus-5-5-no-fallback",
+          "--concurrency",
+          "12",
+          "--label",
+          "rl4cv-e08-judge-base_1p7B_e05-H2_opus55_max",
+          "--task-ids-file",
+          "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_base_1p7B_e05.txt",
+          "-k",
+          "judge_config",
+          "H2_opus55_max",
+          "-k",
+          "max_tokens",
+          "32000",
+          "-k",
+          "benchmark",
+          "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_1p7B_e05-H2_opus55_max",
+          "-k",
+          "compute_effort",
+          "max"
+        ],
+        "concurrency": 12,
+        "config": "H2_opus55_max",
+        "expected_cells": 180,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_1p7B_e05-H2_opus55_max",
+          "compute_effort": "max",
+          "judge_config": "H2_opus55_max",
+          "max_tokens": "32000"
+        },
+        "phase": "running",
+        "polled_at": "2026-10-12T03:16:49+00:00",
+        "run_id": "227d48b2-dd3f-4c88-8521-d1d5789897a5",
+        "run_status": "in_progress",
+        "selector": "anthropic/claude-opus-5-5-no-fallback",
+        "suite": "rl4cv-e08:base_1p7B_e05",
+        "task_ids_sha256": "7a01c39fee1f9ac4af46650abc129fab23ed817a0783f9e286c56d005c7ac6fc",
+        "task_state_counts": {
+          "BUILDING": 1,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 73,
+          "IN_PROGRESS": 11,
+          "PENDING": 95,
+          "STOPPED": 0
+        }
+      },
+      "base_1p7B_e05/H2_sol_high": {
+        "admitted_at": "2026-10-12T03:11:02+00:00",
+        "benchmark": "veribench-rl4cv-e08-test",
+        "cells_terminal": 118,
+        "command": [
+          "run",
+          "start",
+          "--agent",
+          "vb103_judge",
+          "--benchmark",
+          "veribench-rl4cv-e08-test",
+          "--dataset",
+          "default",
+          "--model",
+          "openai/gpt-6-sol-high",
+          "--concurrency",
+          "12",
+          "--label",
+          "rl4cv-e08-judge-base_1p7B_e05-H2_sol_high",
+          "--task-ids-file",
+          "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_base_1p7B_e05.txt",
+          "-k",
+          "judge_config",
+          "H2_sol_high",
+          "-k",
+          "max_tokens",
+          "32000",
+          "-k",
+          "benchmark",
+          "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_1p7B_e05-H2_sol_high",
+          "-k",
+          "reasoning_effort",
+          "high"
+        ],
+        "concurrency": 12,
+        "config": "H2_sol_high",
+        "expected_cells": 180,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_1p7B_e05-H2_sol_high",
+          "judge_config": "H2_sol_high",
+          "max_tokens": "32000",
+          "reasoning_effort": "high"
+        },
+        "phase": "running",
+        "polled_at": "2026-10-12T03:16:55+00:00",
+        "run_id": "ddaf46c2-5364-440a-9690-238eccaa7521",
+        "run_status": "in_progress",
+        "selector": "openai/gpt-6-sol-high",
+        "suite": "rl4cv-e08:base_1p7B_e05",
+        "task_ids_sha256": "7a01c39fee1f9ac4af46650abc129fab23ed817a0783f9e286c56d005c7ac6fc",
+        "task_state_counts": {
+          "BUILDING": 1,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 118,
+          "IN_PROGRESS": 11,
+          "PENDING": 50,
+          "STOPPED": 0
+        }
+      },
+      "base_4B_e05/H2_opus55_max": {
+        "admitted_at": "2026-10-12T03:11:27+00:00",
+        "benchmark": "veribench-rl4cv-e08-test",
+        "cells_terminal": 50,
+        "command": [
+          "run",
+          "start",
+          "--agent",
+          "vb103_judge",
+          "--benchmark",
+          "veribench-rl4cv-e08-test",
+          "--dataset",
+          "default",
+          "--model",
+          "anthropic/claude-opus-5-5-no-fallback",
+          "--concurrency",
+          "12",
+          "--label",
+          "rl4cv-e08-judge-base_4B_e05-H2_opus55_max",
+          "--task-ids-file",
+          "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_base_4B_e05.txt",
+          "-k",
+          "judge_config",
+          "H2_opus55_max",
+          "-k",
+          "max_tokens",
+          "32000",
+          "-k",
+          "benchmark",
+          "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_4B_e05-H2_opus55_max",
+          "-k",
+          "compute_effort",
+          "max"
+        ],
+        "concurrency": 12,
+        "config": "H2_opus55_max",
+        "expected_cells": 186,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_4B_e05-H2_opus55_max",
+          "compute_effort": "max",
+          "judge_config": "H2_opus55_max",
+          "max_tokens": "32000"
+        },
+        "phase": "running",
+        "polled_at": "2026-10-12T03:17:00+00:00",
+        "run_id": "05b842d8-6942-483c-987a-87426dd31b81",
+        "run_status": "in_progress",
+        "selector": "anthropic/claude-opus-5-5-no-fallback",
+        "suite": "rl4cv-e08:base_4B_e05",
+        "task_ids_sha256": "e6f5f3c3c0b1b2d832752ebd969e21fb736699c5182e700315d0ce3e91824312",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 50,
+          "IN_PROGRESS": 12,
+          "PENDING": 124,
+          "STOPPED": 0
+        }
+      },
+      "base_4B_e05/H2_sol_high": {
+        "admitted_at": "2026-10-12T03:11:19+00:00",
+        "benchmark": "veribench-rl4cv-e08-test",
+        "cells_terminal": 90,
+        "command": [
+          "run",
+          "start",
+          "--agent",
+          "vb103_judge",
+          "--benchmark",
+          "veribench-rl4cv-e08-test",
+          "--dataset",
+          "default",
+          "--model",
+          "openai/gpt-6-sol-high",
+          "--concurrency",
+          "12",
+          "--label",
+          "rl4cv-e08-judge-base_4B_e05-H2_sol_high",
+          "--task-ids-file",
+          "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_base_4B_e05.txt",
+          "-k",
+          "judge_config",
+          "H2_sol_high",
+          "-k",
+          "max_tokens",
+          "32000",
+          "-k",
+          "benchmark",
+          "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_4B_e05-H2_sol_high",
+          "-k",
+          "reasoning_effort",
+          "high"
+        ],
+        "concurrency": 12,
+        "config": "H2_sol_high",
+        "expected_cells": 186,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_4B_e05-H2_sol_high",
+          "judge_config": "H2_sol_high",
+          "max_tokens": "32000",
+          "reasoning_effort": "high"
+        },
+        "phase": "running",
+        "polled_at": "2026-10-12T03:17:06+00:00",
+        "run_id": "b5279160-c5b9-464c-8ff1-f36460fcb6f1",
+        "run_status": "in_progress",
+        "selector": "openai/gpt-6-sol-high",
+        "suite": "rl4cv-e08:base_4B_e05",
+        "task_ids_sha256": "e6f5f3c3c0b1b2d832752ebd969e21fb736699c5182e700315d0ce3e91824312",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 90,
+          "IN_PROGRESS": 12,
+          "PENDING": 84,
+          "STOPPED": 0
+        }
+      },
+      "base_8B_e05/H2_opus55_max": {
+        "admitted_at": "2026-10-12T03:11:43+00:00",
+        "benchmark": "veribench-rl4cv-e08-test",
+        "cells_terminal": 45,
+        "command": [
+          "run",
+          "start",
+          "--agent",
+          "vb103_judge",
+          "--benchmark",
+          "veribench-rl4cv-e08-test",
+          "--dataset",
+          "default",
+          "--model",
+          "anthropic/claude-opus-5-5-no-fallback",
+          "--concurrency",
+          "12",
+          "--label",
+          "rl4cv-e08-judge-base_8B_e05-H2_opus55_max",
+          "--task-ids-file",
+          "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_base_8B_e05.txt",
+          "-k",
+          "judge_config",
+          "H2_opus55_max",
+          "-k",
+          "max_tokens",
+          "32000",
+          "-k",
+          "benchmark",
+          "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_8B_e05-H2_opus55_max",
+          "-k",
+          "compute_effort",
+          "max"
+        ],
+        "concurrency": 12,
+        "config": "H2_opus55_max",
+        "expected_cells": 180,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_8B_e05-H2_opus55_max",
+          "compute_effort": "max",
+          "judge_config": "H2_opus55_max",
+          "max_tokens": "32000"
+        },
+        "phase": "running",
+        "polled_at": "2026-10-12T03:17:12+00:00",
+        "run_id": "1a046573-6c86-4fe4-b64f-f963ab08d3af",
+        "run_status": "in_progress",
+        "selector": "anthropic/claude-opus-5-5-no-fallback",
+        "suite": "rl4cv-e08:base_8B_e05",
+        "task_ids_sha256": "f45c6ed60a703ee597b32e5637b9c4f7725ac1f6e559220572e9155000dfa9f6",
+        "task_state_counts": {
+          "BUILDING": 1,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 45,
+          "IN_PROGRESS": 11,
+          "PENDING": 123,
+          "STOPPED": 0
+        }
+      },
+      "base_8B_e05/H2_sol_high": {
+        "admitted_at": "2026-10-12T03:11:35+00:00",
+        "benchmark": "veribench-rl4cv-e08-test",
+        "cells_terminal": 96,
+        "command": [
+          "run",
+          "start",
+          "--agent",
+          "vb103_judge",
+          "--benchmark",
+          "veribench-rl4cv-e08-test",
+          "--dataset",
+          "default",
+          "--model",
+          "openai/gpt-6-sol-high",
+          "--concurrency",
+          "12",
+          "--label",
+          "rl4cv-e08-judge-base_8B_e05-H2_sol_high",
+          "--task-ids-file",
+          "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_base_8B_e05.txt",
+          "-k",
+          "judge_config",
+          "H2_sol_high",
+          "-k",
+          "max_tokens",
+          "32000",
+          "-k",
+          "benchmark",
+          "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_8B_e05-H2_sol_high",
+          "-k",
+          "reasoning_effort",
+          "high"
+        ],
+        "concurrency": 12,
+        "config": "H2_sol_high",
+        "expected_cells": 180,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_8B_e05-H2_sol_high",
+          "judge_config": "H2_sol_high",
+          "max_tokens": "32000",
+          "reasoning_effort": "high"
+        },
+        "phase": "running",
+        "polled_at": "2026-10-12T03:17:18+00:00",
+        "run_id": "54b36873-260b-421e-9494-ddfa4f9bebbc",
+        "run_status": "in_progress",
+        "selector": "openai/gpt-6-sol-high",
+        "suite": "rl4cv-e08:base_8B_e05",
+        "task_ids_sha256": "f45c6ed60a703ee597b32e5637b9c4f7725ac1f6e559220572e9155000dfa9f6",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 1,
+          "FINISHED": 96,
+          "IN_PROGRESS": 11,
+          "PENDING": 72,
+          "STOPPED": 0
+        }
+      },
+      "controls/H2_opus55_max": {
+        "admitted_at": "2026-10-12T02:59:11+00:00",
+        "benchmark": "veribench-rl4cv-e08-controls",
+        "cells_terminal": 25,
+        "charges_usd": 2.5389,
+        "command": [
+          "run",
+          "start",
+          "--agent",
+          "vb103_judge",
+          "--benchmark",
+          "veribench-rl4cv-e08-controls",
+          "--dataset",
+          "default",
+          "--model",
+          "anthropic/claude-opus-5-5-no-fallback",
+          "--concurrency",
+          "8",
+          "--label",
+          "rl4cv-e08-judge-controls-H2_opus55_max",
+          "--task-ids-file",
+          "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_controls.txt",
+          "-k",
+          "judge_config",
+          "H2_opus55_max",
+          "-k",
+          "max_tokens",
+          "32000",
+          "-k",
+          "benchmark",
+          "rl4cv-e08-judge-veribench-rl4cv-e08-controls-controls-H2_opus55_max",
+          "-k",
+          "compute_effort",
+          "max"
+        ],
+        "concurrency": 8,
+        "config": "H2_opus55_max",
+        "expected_cells": 25,
+        "harvested_at": "2026-10-12T03:03:38+00:00",
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-controls-controls-H2_opus55_max",
+          "compute_effort": "max",
+          "judge_config": "H2_opus55_max",
+          "max_tokens": "32000"
+        },
+        "phase": "terminal",
+        "polled_at": "2026-10-12T03:17:23+00:00",
+        "recovered_at": null,
+        "run_id": "e30e4c47-e2da-4bc1-b0a9-9c9b8fcb8208",
+        "run_status": "finished",
+        "selector": "anthropic/claude-opus-5-5-no-fallback",
+        "status_counts": {
+          "measured": 25
+        },
+        "suite": "rl4cv-e08-controls",
+        "task_ids_sha256": "a30097ab14d32d53d3a1825cd7b2766e03e6f47962bedd5de0116d5dcddaa337",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 25,
+          "IN_PROGRESS": 0,
+          "PENDING": 0,
+          "STOPPED": 0
+        }
+      },
+      "controls/H2_sol_high": {
+        "admitted_at": "2026-10-12T02:48:14+00:00",
+        "benchmark": "veribench-rl4cv-e08-controls",
+        "cells_terminal": 25,
+        "charges_usd": 0.5931,
+        "command": [
+          "run",
+          "start",
+          "--agent",
+          "vb103_judge",
+          "--benchmark",
+          "veribench-rl4cv-e08-controls",
+          "--dataset",
+          "default",
+          "--model",
+          "openai/gpt-6-sol-high",
+          "--concurrency",
+          "8",
+          "--label",
+          "rl4cv-e08-judge-controls-H2_sol_high",
+          "--task-ids-file",
+          "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_controls.txt",
+          "-k",
+          "judge_config",
+          "H2_sol_high",
+          "-k",
+          "max_tokens",
+          "32000",
+          "-k",
+          "benchmark",
+          "rl4cv-e08-judge-veribench-rl4cv-e08-controls-controls-H2_sol_high",
+          "-k",
+          "reasoning_effort",
+          "high"
+        ],
+        "concurrency": 8,
+        "config": "H2_sol_high",
+        "expected_cells": 25,
+        "harvested_at": "2026-10-12T03:03:24+00:00",
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-controls-controls-H2_sol_high",
+          "judge_config": "H2_sol_high",
+          "max_tokens": "32000",
+          "reasoning_effort": "high"
+        },
+        "phase": "terminal",
+        "polled_at": "2026-10-12T03:17:29+00:00",
+        "prior_launches": [
+          {
+            "admitted_at": "2026-10-12T02:48:14+00:00",
+            "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/judge_recovery_plan.json",
+            "evidence_sha256": "e683be67564fd7701f57df8aec1c70f18bf857c3728bc65f24ee32279141f8ed",
+            "phase": "preexec_failed",
+            "requests_sent": 0,
+            "subprocess_started": false
+          }
+        ],
+        "recovered_at": "2026-10-12T02:59:11+00:00",
+        "recovery_attempts": 1,
+        "recovery_started_at": "2026-10-12T02:59:00+00:00",
+        "run_id": "7e85dd9e-58d8-4a6c-a4e1-d5b253b37fe7",
+        "run_status": "finished",
+        "selector": "openai/gpt-6-sol-high",
+        "status_counts": {
+          "measured": 25
+        },
+        "suite": "rl4cv-e08-controls",
+        "task_ids_sha256": "a30097ab14d32d53d3a1825cd7b2766e03e6f47962bedd5de0116d5dcddaa337",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 25,
+          "IN_PROGRESS": 0,
+          "PENDING": 0,
+          "STOPPED": 0
+        }
+      },
+      "test_sft_14B_f0p5/H2_opus55_max": {
+        "admitted_at": "2026-10-12T03:12:01+00:00",
+        "benchmark": "veribench-rl4cv-e08-test",
+        "cells_terminal": 39,
+        "command": [
+          "run",
+          "start",
+          "--agent",
+          "vb103_judge",
+          "--benchmark",
+          "veribench-rl4cv-e08-test",
+          "--dataset",
+          "default",
+          "--model",
+          "anthropic/claude-opus-5-5-no-fallback",
+          "--concurrency",
+          "12",
+          "--label",
+          "rl4cv-e08-judge-test_sft_14B_f0p5-H2_opus55_max",
+          "--task-ids-file",
+          "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_test_sft_14B_f0p5.txt",
+          "-k",
+          "judge_config",
+          "H2_opus55_max",
+          "-k",
+          "max_tokens",
+          "32000",
+          "-k",
+          "benchmark",
+          "rl4cv-e08-judge-veribench-rl4cv-e08-test-test_sft_14B_f0p5-H2_opus55_max",
+          "-k",
+          "compute_effort",
+          "max"
+        ],
+        "concurrency": 12,
+        "config": "H2_opus55_max",
+        "expected_cells": 642,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-test_sft_14B_f0p5-H2_opus55_max",
+          "compute_effort": "max",
+          "judge_config": "H2_opus55_max",
+          "max_tokens": "32000"
+        },
+        "phase": "running",
+        "polled_at": "2026-10-12T03:17:35+00:00",
+        "run_id": "171aed58-adf3-4794-abe1-dac90015eb9e",
+        "run_status": "in_progress",
+        "selector": "anthropic/claude-opus-5-5-no-fallback",
+        "suite": "rl4cv-e08:test_sft_14B_f0p5",
+        "task_ids_sha256": "e549cfc8d79b1acd3926028231bea6601b7a4769cde3b05e61b2b0f61af92b74",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 39,
+          "IN_PROGRESS": 12,
+          "PENDING": 591,
+          "STOPPED": 0
+        }
+      },
+      "test_sft_14B_f0p5/H2_sol_high": {
+        "admitted_at": "2026-10-12T03:11:52+00:00",
+        "benchmark": "veribench-rl4cv-e08-test",
+        "cells_terminal": 93,
+        "command": [
+          "run",
+          "start",
+          "--agent",
+          "vb103_judge",
+          "--benchmark",
+          "veribench-rl4cv-e08-test",
+          "--dataset",
+          "default",
+          "--model",
+          "openai/gpt-6-sol-high",
+          "--concurrency",
+          "12",
+          "--label",
+          "rl4cv-e08-judge-test_sft_14B_f0p5-H2_sol_high",
+          "--task-ids-file",
+          "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_test_sft_14B_f0p5.txt",
+          "-k",
+          "judge_config",
+          "H2_sol_high",
+          "-k",
+          "max_tokens",
+          "32000",
+          "-k",
+          "benchmark",
+          "rl4cv-e08-judge-veribench-rl4cv-e08-test-test_sft_14B_f0p5-H2_sol_high",
+          "-k",
+          "reasoning_effort",
+          "high"
+        ],
+        "concurrency": 12,
+        "config": "H2_sol_high",
+        "expected_cells": 642,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-test_sft_14B_f0p5-H2_sol_high",
+          "judge_config": "H2_sol_high",
+          "max_tokens": "32000",
+          "reasoning_effort": "high"
+        },
+        "phase": "running",
+        "polled_at": "2026-10-12T03:17:41+00:00",
+        "run_id": "07e372db-3644-4c4b-87e8-29ec8cf669bc",
+        "run_status": "in_progress",
+        "selector": "openai/gpt-6-sol-high",
+        "suite": "rl4cv-e08:test_sft_14B_f0p5",
+        "task_ids_sha256": "e549cfc8d79b1acd3926028231bea6601b7a4769cde3b05e61b2b0f61af92b74",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 93,
+          "IN_PROGRESS": 12,
+          "PENDING": 537,
+          "STOPPED": 0
+        }
+      },
+      "test_sft_8B_f1p0/H2_opus55_max": {
+        "admitted_at": "2026-10-12T03:12:16+00:00",
+        "benchmark": "veribench-rl4cv-e08-test",
+        "cells_terminal": 12,
+        "command": [
+          "run",
+          "start",
+          "--agent",
+          "vb103_judge",
+          "--benchmark",
+          "veribench-rl4cv-e08-test",
+          "--dataset",
+          "default",
+          "--model",
+          "anthropic/claude-opus-5-5-no-fallback",
+          "--concurrency",
+          "12",
+          "--label",
+          "rl4cv-e08-judge-test_sft_8B_f1p0-H2_opus55_max",
+          "--slice",
+          "1383:2151",
+          "-k",
+          "judge_config",
+          "H2_opus55_max",
+          "-k",
+          "max_tokens",
+          "32000",
+          "-k",
+          "benchmark",
+          "rl4cv-e08-judge-veribench-rl4cv-e08-test-test_sft_8B_f1p0-H2_opus55_max",
+          "-k",
+          "compute_effort",
+          "max"
+        ],
+        "concurrency": 12,
+        "config": "H2_opus55_max",
+        "expected_cells": 768,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-test_sft_8B_f1p0-H2_opus55_max",
+          "compute_effort": "max",
+          "judge_config": "H2_opus55_max",
+          "max_tokens": "32000"
+        },
+        "phase": "running",
+        "polled_at": "2026-10-12T03:17:47+00:00",
+        "prior_launches": [
+          {
+            "admitted_at": "2026-10-12T03:12:16+00:00",
+            "benchmark": "veribench-rl4cv-e08-test",
+            "command": [
+              "run",
+              "start",
+              "--agent",
+              "vb103_judge",
+              "--benchmark",
+              "veribench-rl4cv-e08-test",
+              "--dataset",
+              "default",
+              "--model",
+              "anthropic/claude-opus-5-5-no-fallback",
+              "--concurrency",
+              "12",
+              "--label",
+              "rl4cv-e08-judge-test_sft_8B_f1p0-H2_opus55_max",
+              "--task-ids-file",
+              "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_test_sft_8B_f1p0.txt",
+              "-k",
+              "judge_config",
+              "H2_opus55_max",
+              "-k",
+              "max_tokens",
+              "32000",
+              "-k",
+              "benchmark",
+              "rl4cv-e08-judge-veribench-rl4cv-e08-test-test_sft_8B_f1p0-H2_opus55_max",
+              "-k",
+              "compute_effort",
+              "max"
+            ],
+            "concurrency": 12,
+            "config": "H2_opus55_max",
+            "expected_cells": 768,
+            "kwargs": {
+              "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-test_sft_8B_f1p0-H2_opus55_max",
+              "compute_effort": "max",
+              "judge_config": "H2_opus55_max",
+              "max_tokens": "32000"
+            },
+            "phase": "admission_failed",
+            "retry_blocked": true,
+            "returncode": 1,
+            "selector": "anthropic/claude-opus-5-5-no-fallback",
+            "stderr_tail": "Error: Failed to verify task ids\n",
+            "suite": "rl4cv-e08:test_sft_8B_f1p0",
+            "task_ids_sha256": "c0f139b8c23b3eb9ffa4aadf59448005e84997777547288db2611655c3db672a"
+          }
+        ],
+        "recovered_at": "2026-10-12T03:15:47+00:00",
+        "recovery_attempts": 1,
+        "recovery_plan": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/test_8b_slice_recovery_plan.json",
+        "recovery_plan_sha256": "ddc9c2f4c7341acbe0361497712d49b1ca7d00b1af5a4e993faa6486028ac7c8",
+        "recovery_started_at": "2026-10-12T03:15:30+00:00",
+        "retry_blocked": false,
+        "returncode": 1,
+        "run_id": "95f77d87-0b22-4333-9bff-f66d40702541",
+        "run_status": "in_progress",
+        "selector": "anthropic/claude-opus-5-5-no-fallback",
+        "stderr_tail": "Error: Failed to verify task ids\n",
+        "suite": "rl4cv-e08:test_sft_8B_f1p0",
+        "task_ids_sha256": "c0f139b8c23b3eb9ffa4aadf59448005e84997777547288db2611655c3db672a",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 12,
+          "IN_PROGRESS": 12,
+          "PENDING": 744,
+          "STOPPED": 0
+        },
+        "verified_slice": "1383:2151"
+      },
+      "test_sft_8B_f1p0/H2_sol_high": {
+        "admitted_at": "2026-10-12T03:12:09+00:00",
+        "benchmark": "veribench-rl4cv-e08-test",
+        "cells_terminal": 29,
+        "command": [
+          "run",
+          "start",
+          "--agent",
+          "vb103_judge",
+          "--benchmark",
+          "veribench-rl4cv-e08-test",
+          "--dataset",
+          "default",
+          "--model",
+          "openai/gpt-6-sol-high",
+          "--concurrency",
+          "12",
+          "--label",
+          "rl4cv-e08-judge-test_sft_8B_f1p0-H2_sol_high",
+          "--slice",
+          "1383:2151",
+          "-k",
+          "judge_config",
+          "H2_sol_high",
+          "-k",
+          "max_tokens",
+          "32000",
+          "-k",
+          "benchmark",
+          "rl4cv-e08-judge-veribench-rl4cv-e08-test-test_sft_8B_f1p0-H2_sol_high",
+          "-k",
+          "reasoning_effort",
+          "high"
+        ],
+        "concurrency": 12,
+        "config": "H2_sol_high",
+        "expected_cells": 768,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-test_sft_8B_f1p0-H2_sol_high",
+          "judge_config": "H2_sol_high",
+          "max_tokens": "32000",
+          "reasoning_effort": "high"
+        },
+        "phase": "running",
+        "polled_at": "2026-10-12T03:17:53+00:00",
+        "prior_launches": [
+          {
+            "admitted_at": "2026-10-12T03:12:09+00:00",
+            "benchmark": "veribench-rl4cv-e08-test",
+            "command": [
+              "run",
+              "start",
+              "--agent",
+              "vb103_judge",
+              "--benchmark",
+              "veribench-rl4cv-e08-test",
+              "--dataset",
+              "default",
+              "--model",
+              "openai/gpt-6-sol-high",
+              "--concurrency",
+              "12",
+              "--label",
+              "rl4cv-e08-judge-test_sft_8B_f1p0-H2_sol_high",
+              "--task-ids-file",
+              "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/task_ids_test_sft_8B_f1p0.txt",
+              "-k",
+              "judge_config",
+              "H2_sol_high",
+              "-k",
+              "max_tokens",
+              "32000",
+              "-k",
+              "benchmark",
+              "rl4cv-e08-judge-veribench-rl4cv-e08-test-test_sft_8B_f1p0-H2_sol_high",
+              "-k",
+              "reasoning_effort",
+              "high"
+            ],
+            "concurrency": 12,
+            "config": "H2_sol_high",
+            "expected_cells": 768,
+            "kwargs": {
+              "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-test_sft_8B_f1p0-H2_sol_high",
+              "judge_config": "H2_sol_high",
+              "max_tokens": "32000",
+              "reasoning_effort": "high"
+            },
+            "phase": "admission_failed",
+            "retry_blocked": true,
+            "returncode": 1,
+            "selector": "openai/gpt-6-sol-high",
+            "stderr_tail": "Error: Failed to verify task ids\n",
+            "suite": "rl4cv-e08:test_sft_8B_f1p0",
+            "task_ids_sha256": "c0f139b8c23b3eb9ffa4aadf59448005e84997777547288db2611655c3db672a"
+          }
+        ],
+        "recovered_at": "2026-10-12T03:15:39+00:00",
+        "recovery_attempts": 1,
+        "recovery_plan": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/test_8b_slice_recovery_plan.json",
+        "recovery_plan_sha256": "ddc9c2f4c7341acbe0361497712d49b1ca7d00b1af5a4e993faa6486028ac7c8",
+        "recovery_started_at": "2026-10-12T03:15:30+00:00",
+        "retry_blocked": false,
+        "returncode": 1,
+        "run_id": "44ca8d52-27fb-4a20-b39f-953a47594859",
+        "run_status": "in_progress",
+        "selector": "openai/gpt-6-sol-high",
+        "stderr_tail": "Error: Failed to verify task ids\n",
+        "suite": "rl4cv-e08:test_sft_8B_f1p0",
+        "task_ids_sha256": "c0f139b8c23b3eb9ffa4aadf59448005e84997777547288db2611655c3db672a",
+        "task_state_counts": {
+          "BUILDING": 1,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 29,
+          "IN_PROGRESS": 11,
+          "PENDING": 727,
+          "STOPPED": 0
+        },
+        "verified_slice": "1383:2151"
+      }
+    },
+    "updated": "2026-10-12T03:17:53+00:00"
+  },
+  "judge_test_manifest_check": {
+    "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/judge_pack_test.json",
+    "sha256": "a2b5d4afd927d1fd53305e3e78e2311bb37ea9698d91b4c2517a78387353955e",
+    "verdict": "PASS",
+    "files": 717,
+    "per_member_task_ids": 2151,
+    "declared_ratings": 4302,
+    "missing_files": {},
+    "per_system": {
+      "base14b": {
+        "n_audit": 60,
+        "n_audit_only": 60,
+        "n_cells": 65,
+        "n_main": 5
+      },
+      "base_1p7B_e05": {
+        "n_audit": 60,
+        "n_audit_only": 60,
+        "n_cells": 60,
+        "n_main": 0
+      },
+      "base_4B_e05": {
+        "n_audit": 60,
+        "n_audit_only": 60,
+        "n_cells": 62,
+        "n_main": 2
+      },
+      "base_8B_e05": {
+        "n_audit": 60,
+        "n_audit_only": 60,
+        "n_cells": 60,
+        "n_main": 0
+      },
+      "test_sft_14B_f0p5": {
+        "n_audit": 60,
+        "n_audit_only": 59,
+        "n_cells": 214,
+        "n_main": 155
+      },
+      "test_sft_8B_f1p0": {
+        "n_audit": 60,
+        "n_audit_only": 57,
+        "n_cells": 256,
+        "n_main": 199
+      }
+    },
+    "manifest_sha256": "ed128d11e8d5d09e7d19244f5480f24360f01530510240a9d1176b0a446136fa",
+    "secret_scan": "PASS"
+  },
+  "pipeline_after_recovery": {
+    "last_tick": "2026-10-12T03:14:27+00:00",
+    "judge": {
+      "controls": "PASS"
+    },
+    "summary": {
+      "e09_admission": "open ([4])",
+      "judge": "admitted 1 systems",
+      "ladder_test_base14b": "done",
+      "ladder_test_test_sft_14B_f0p5": "done",
+      "ladder_test_test_sft_8B_f1p0": "done",
+      "ladder_val_sft_14B_f0p125": "done",
+      "ladder_val_sft_14B_f0p25": "done",
+      "ladder_val_sft_14B_f0p5": "done",
+      "ladder_val_sft_14B_f0p75": "done",
+      "ladder_val_sft_14B_f1p0": "done",
+      "ladder_val_sft_1p7B_f0p125": "done",
+      "ladder_val_sft_1p7B_f0p25": "done",
+      "ladder_val_sft_1p7B_f0p5": "done",
+      "ladder_val_sft_1p7B_f0p75": "done",
+      "ladder_val_sft_1p7B_f1p0": "done",
+      "ladder_val_sft_4B_f0p125": "done",
+      "ladder_val_sft_4B_f0p25": "done",
+      "ladder_val_sft_4B_f0p5": "done",
+      "ladder_val_sft_4B_f0p75": "done",
+      "ladder_val_sft_4B_f1p0": "done",
+      "ladder_val_sft_8B_f0p125": "done",
+      "ladder_val_sft_8B_f0p25": "done",
+      "ladder_val_sft_8B_f0p5": "done",
+      "ladder_val_sft_8B_f0p75": "done",
+      "ladder_val_sft_8B_f1p0": "done",
+      "selection": "PARTIAL",
+      "sft_1.7B": "done",
+      "sft_14B": "done",
+      "sft_4B": "done",
+      "sft_8B": "done",
+      "test_generation": "done"
+    }
+  },
+  "selected_8b_admission_recovery": {
+    "test_8b_id_verification.json": {
+      "checked": "2026-10-12T03:13:43.210964+00:00",
+      "ids": 768,
+      "checks": [
+        {
+          "name": "local_full",
+          "task_count": 768,
+          "query_bytes": 77804,
+          "http_status": 400,
+          "body": "Invalid HTTP request received."
+        },
+        {
+          "name": "tunnel_full",
+          "task_count": 768,
+          "query_bytes": 77804,
+          "http_status": 414,
+          "body": ""
+        },
+        {
+          "name": "tunnel_half_1",
+          "task_count": 384,
+          "query_bytes": 35852,
+          "http_status": 200,
+          "returned_count": 384,
+          "exact": true
+        },
+        {
+          "name": "tunnel_half_2",
+          "task_count": 384,
+          "query_bytes": 41951,
+          "http_status": 200,
+          "returned_count": 384,
+          "exact": true
+        }
+      ]
+    },
+    "test_8b_slice_recovery_plan.json": {
+      "created": "2026-10-12T03:15:01.331121+00:00",
+      "slice": "1383:2151",
+      "full_service_tasks": 2152,
+      "expected_cells_per_config": 768,
+      "ids_sha256": "c0f139b8c23b3eb9ffa4aadf59448005e84997777547288db2611655c3db672a",
+      "checks": [
+        {
+          "route": "local",
+          "count": 768,
+          "exact_inventory": true,
+          "ordered_ids_sha256": "c0f139b8c23b3eb9ffa4aadf59448005e84997777547288db2611655c3db672a"
+        },
+        {
+          "route": "tunnel",
+          "count": 768,
+          "exact_inventory": true,
+          "ordered_ids_sha256": "c0f139b8c23b3eb9ffa4aadf59448005e84997777547288db2611655c3db672a"
+        }
+      ],
+      "remote_run_count": 10,
+      "remote_selected_8b_runs": 0,
+      "prospective_action": "One admission per frozen member using exact verified slice instead of an overlong task-ID URL; preserve original failed entry and command, count recovery_attempts=1, no scientific retries or additional ratings; stop on any ambiguity."
+    },
+    "judge_8b_recovery_result.json": {
+      "timestamp": "2026-10-12T03:15:47+00:00",
+      "runs": {
+        "base14b/H2_opus55_max": {
+          "phase": "running",
+          "run_id": "61a7168e-fe37-4b84-960d-78d85ef2ac5f",
+          "expected_cells": 195,
+          "recovery_attempts": null,
+          "verified_slice": null
+        },
+        "base14b/H2_sol_high": {
+          "phase": "running",
+          "run_id": "f6fb62eb-d26c-4d57-8253-7a9cadf82879",
+          "expected_cells": 195,
+          "recovery_attempts": null,
+          "verified_slice": null
+        },
+        "base_1p7B_e05/H2_opus55_max": {
+          "phase": "running",
+          "run_id": "227d48b2-dd3f-4c88-8521-d1d5789897a5",
+          "expected_cells": 180,
+          "recovery_attempts": null,
+          "verified_slice": null
+        },
+        "base_1p7B_e05/H2_sol_high": {
+          "phase": "running",
+          "run_id": "ddaf46c2-5364-440a-9690-238eccaa7521",
+          "expected_cells": 180,
+          "recovery_attempts": null,
+          "verified_slice": null
+        },
+        "base_4B_e05/H2_opus55_max": {
+          "phase": "running",
+          "run_id": "05b842d8-6942-483c-987a-87426dd31b81",
+          "expected_cells": 186,
+          "recovery_attempts": null,
+          "verified_slice": null
+        },
+        "base_4B_e05/H2_sol_high": {
+          "phase": "running",
+          "run_id": "b5279160-c5b9-464c-8ff1-f36460fcb6f1",
+          "expected_cells": 186,
+          "recovery_attempts": null,
+          "verified_slice": null
+        },
+        "base_8B_e05/H2_opus55_max": {
+          "phase": "running",
+          "run_id": "1a046573-6c86-4fe4-b64f-f963ab08d3af",
+          "expected_cells": 180,
+          "recovery_attempts": null,
+          "verified_slice": null
+        },
+        "base_8B_e05/H2_sol_high": {
+          "phase": "running",
+          "run_id": "54b36873-260b-421e-9494-ddfa4f9bebbc",
+          "expected_cells": 180,
+          "recovery_attempts": null,
+          "verified_slice": null
+        },
+        "controls/H2_opus55_max": {
+          "phase": "terminal",
+          "run_id": "e30e4c47-e2da-4bc1-b0a9-9c9b8fcb8208",
+          "expected_cells": 25,
+          "recovery_attempts": null,
+          "verified_slice": null
+        },
+        "controls/H2_sol_high": {
+          "phase": "terminal",
+          "run_id": "7e85dd9e-58d8-4a6c-a4e1-d5b253b37fe7",
+          "expected_cells": 25,
+          "recovery_attempts": 1,
+          "verified_slice": null
+        },
+        "test_sft_14B_f0p5/H2_opus55_max": {
+          "phase": "running",
+          "run_id": "171aed58-adf3-4794-abe1-dac90015eb9e",
+          "expected_cells": 642,
+          "recovery_attempts": null,
+          "verified_slice": null
+        },
+        "test_sft_14B_f0p5/H2_sol_high": {
+          "phase": "running",
+          "run_id": "07e372db-3644-4c4b-87e8-29ec8cf669bc",
+          "expected_cells": 642,
+          "recovery_attempts": null,
+          "verified_slice": null
+        },
+        "test_sft_8B_f1p0/H2_opus55_max": {
+          "phase": "running",
+          "run_id": "95f77d87-0b22-4333-9bff-f66d40702541",
+          "expected_cells": 768,
+          "recovery_attempts": 1,
+          "verified_slice": "1383:2151"
+        },
+        "test_sft_8B_f1p0/H2_sol_high": {
+          "phase": "running",
+          "run_id": "44ca8d52-27fb-4a20-b39f-953a47594859",
+          "expected_cells": 768,
+          "recovery_attempts": 1,
+          "verified_slice": "1383:2151"
+        }
+      },
+      "plan_sha256": "ddc9c2f4c7341acbe0361497712d49b1ca7d00b1af5a4e993faa6486028ac7c8"
+    }
+  },
+  "updated_utc": "2026-10-12T03:17:53.632507+00:00",
+  "remote_test_admission_verification": {
+    "observed_at": "2026-10-12T03:16:14.578022Z",
+    "runs": 12,
+    "total_tasks": 4302,
+    "all_run_ids_match_local": true
+  }
+}

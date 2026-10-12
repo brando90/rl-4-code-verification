@@ -161,3 +161,35 @@ def test_test_gate_requires_published_bytes_and_all_validation(gate, monkeypatch
     monkeypatch.setattr(p, "git", lambda *args: subprocess.CompletedProcess(args, 0, "unpublished", ""))
     with pytest.raises(ValueError, match="exact published"):
         gate.check("synthetic", "model", "local")
+
+
+def test_cron_judge_cli_uses_its_interpreter_bin(judge, monkeypatch, tmp_path):
+    executable = tmp_path / "bin" / "python"
+    monkeypatch.setattr(judge.sys, "executable", str(executable))
+    monkeypatch.setenv("PATH", "/usr/bin:/bin")
+    monkeypatch.setenv("OPENAI_API_KEY", "synthetic-must-be-removed")
+    actual = judge.env()
+    assert actual["PATH"].split(":")[0] == str(executable.parent)
+    assert "OPENAI_API_KEY" not in actual
+    assert actual["VALKYRIE_CONFIG_PATH"] == str(judge.WORK / "private" / "valkyrie.yaml")
+
+
+@pytest.mark.parametrize("error,started", [
+    (FileNotFoundError(2, "missing client"), False),
+    (subprocess.TimeoutExpired(["valk", "run", "start"], 1800), True),
+])
+def test_client_launch_failure_is_recorded_and_never_replayed(judge, monkeypatch, error, started):
+    judge.write_json(judge.RESULTS / "judge_pack_controls.json",
+                     {"verdict": "PASS", "control_cells": [{"task_id": "synthetic"}]})
+    calls = []
+    def cli(args):
+        calls.append(args)
+        raise error
+    monkeypatch.setattr(judge, "cli", cli)
+    assert judge.admit("rl4cv-e08-controls", [judge.CONFIGS[0]], 1) == 1
+    entry = judge.load_state()["runs"]["controls/" + judge.CONFIGS[0]]
+    assert entry["phase"] == "admission_failed"
+    assert entry["subprocess_started"] is started
+    assert entry["retry_blocked"]
+    assert judge.admit("rl4cv-e08-controls", [judge.CONFIGS[0]], 1) == 1
+    assert len(calls) == 1

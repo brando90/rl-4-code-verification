@@ -228,6 +228,8 @@ def build_test(systems_path: Path, cells_dir: Path, smoke_items: int = 1) -> dic
 def env() -> dict[str, str]:
     out = {k: v for k, v in os.environ.items() if k not in PROVIDER_ENV}
     out.update(VALKYRIE_ENV="bench", VALKYRIE_CONFIG_PATH=str(WORK / "private" / "valkyrie.yaml"))
+    # Cron may supply only system paths; use the experiment interpreter's installed CLI.
+    out["PATH"] = str(Path(sys.executable).parent) + os.pathsep + out.get("PATH", os.defpath)
     return out
 
 
@@ -296,7 +298,25 @@ def _admit_locked(suite: str, configs: list[str], concurrency: int) -> int:
                  "admitted_at": stamp(), "phase": "admitting", "command": args, "task_ids_sha256": sha(ids_file.read_bytes())}
         state["runs"][key] = entry
         save_state(state)
-        result = cli(args)
+        try:
+            result = cli(args)
+        except OSError as exc:
+            # Popen failed before a client existed. Record that evidence, but never
+            # automatically replay an admission: recovery owns the bounded decision.
+            entry.update(phase="admission_failed", retry_blocked=True,
+                         subprocess_started=False, launch_error=type(exc).__name__,
+                         launch_errno=exc.errno)
+            failed = True
+            save_state(state)
+            print(f"{key}: client could not start ({type(exc).__name__}); recovery required")
+            continue
+        except subprocess.TimeoutExpired:
+            entry.update(phase="admission_failed", retry_blocked=True,
+                         subprocess_started=True, launch_error="TimeoutExpired")
+            failed = True
+            save_state(state)
+            print(f"{key}: admission timed out; receipt recovery required")
+            continue
         found = UUID_RE.findall(result.stdout + result.stderr)
         if result.returncode or not found:
             failed = True

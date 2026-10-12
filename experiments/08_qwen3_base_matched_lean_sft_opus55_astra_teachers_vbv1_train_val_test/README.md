@@ -102,6 +102,6 @@ My guess at what is needed: the 25% rung (~1M tokens) teaches the file format; n
 | Protocol lock 1 (teacher data) | DONE, including recorded A1 teacher-effort amendment |
 | Teacher runs, scoring, SFT set | DONE: 4,312 terminal cells; 1,315 training examples |
 | Protocol lock 2, matched SFT | DONE: 658 updates/5,752,936 loss tokens at every size; all 20 exports complete |
-| Validation ladder, selection | IN PROGRESS: 15/20 trained rungs complete; first two 14B rungs generating; selection awaits all rungs |
-| Test evaluation | PENDING frozen published selection and validated judge controls |
+| Validation ladder, selection | DONE: all 20 trained rungs and 25,920 validation cells; frozen PARTIAL selection |
+| Test evaluation | IN PROGRESS: all 10,656 test kernel cells known; 50/50 train judge controls accepted; all 12 test-judge runs admitted for 4,302 ratings; final analysis pending |
 | RL (version 2) | Not started |
