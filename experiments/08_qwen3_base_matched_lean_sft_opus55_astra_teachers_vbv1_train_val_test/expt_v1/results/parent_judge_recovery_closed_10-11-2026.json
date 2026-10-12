@@ -1,0 +1,588 @@
+{
+  "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+  "experiment": "08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test",
+  "frozen_hashes": {
+    "judge/controls_check.json": "7f8f5fd310399dd1f534152c0997d4ac665b6d5ac370ecdbbbca422ef2293f1c",
+    "judge/judge_pack_test.json": "a2b5d4afd927d1fd53305e3e78e2311bb37ea9698d91b4c2517a78387353955e",
+    "ladder_manifest.json": "3013db1230f27cf021ace50ff53abcc6de2e9f6964ac62968baa80ccb577a948",
+    "selection.json": "47e12d6c217a3e62e47e0d5bcef13478f2ecf52098b7ac6163df91e216e21cdb",
+    "split/vbv1_test_task_ids.txt": "303a6c666d6902bb62e64a37091167a6150e652f1c3b1311c0a62e8c7fccd095",
+    "test_manifest.json": "ed128d11e8d5d09e7d19244f5480f24360f01530510240a9d1176b0a446136fa",
+    "validation_ladder.json": "8b5386f73f2dc9072a2a81aa33912ef8658cfa7b1983f93248ad89142fa503e3"
+  },
+  "incident": {
+    "attempts": [
+      {
+        "ended_utc": "2026-10-12T02:50:02.304785+00:00",
+        "exit_code": null,
+        "failure_class": null,
+        "number": 1,
+        "profile": "personal_codex",
+        "status": "INELIGIBLE"
+      },
+      {
+        "ended_utc": "2026-10-12T03:21:20.571675+00:00",
+        "exit_code": 0,
+        "failure_class": "unverified_exit",
+        "number": 2,
+        "profile": "vals_codex",
+        "status": "VERIFIED_COMPLETE"
+      }
+    ],
+    "created_utc": "2026-10-12T02:50:01.890885+00:00",
+    "deadline_utc": "2026-10-12T04:00:01.890898+00:00",
+    "ended_utc": "2026-10-12T03:21:20.580978+00:00",
+    "status": "VERIFIED_COMPLETE"
+  },
+  "incident_id": "6ca5cdbf-0415-4a2e-83c9-c0c95c937d20",
+  "inherited_verified_identity": {
+    "account": "brando@vals.ai",
+    "approval": "never",
+    "effort": "ultra",
+    "input_caveat": "Four stable repository inputs and leases matched. Mutable pipeline state advanced before ack; mismatch explicitly retained.",
+    "model": "gpt-6-astra",
+    "receipt": "/tmp/e08_controls_owner_verification_10-11-2026.json",
+    "receipt_sha256": "badb3d25e9b35ffef103ab2cb909e2603d0190bf0e3a0fce5c2b4f6459f823e6",
+    "sandbox": "danger-full-access"
+  },
+  "installed_watch_entries": [
+    "*/15 * * * * /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/watchdog_e08.sh >> /lfs/skampere1/0/brando9/rl4cv_e08/watchdog/cron.log 2>&1",
+    "@reboot /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/watchdog_e08.sh --reboot >> /lfs/skampere1/0/brando9/rl4cv_e08/watchdog/cron.log 2>&1",
+    "*/5 * * * * /bin/bash -c '. /dfs/scratch0/brando9/.bash_env; exec /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py' >> /lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_cron.log 2>&1 # rl4cv-e08-coordinator-monitor",
+    "@reboot /bin/bash -c '. /dfs/scratch0/brando9/.bash_env; exec /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py' >> /lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/monitor_cron.log 2>&1 # rl4cv-e08-coordinator-monitor"
+  ],
+  "latest_finding_sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba",
+  "limitations": [
+    "Tracker FINISHED counts are execution receipts, not parsed valid ratings or final factors.",
+    "Provider-returned judge model/effort fields are unavailable; pinned request envelopes and returned no-fallback receipts are verified.",
+    "PARTIAL selection admits unmatched diagnostics only; no learned-weight improvement conclusion.",
+    "Native query/key normalization-state deduplication is a shared pinned-baseline limitation; actual drift unmeasured.",
+    "Original control-admission stderr was not retained; prior pre-execution inference and one recorded recovery remain unchanged.",
+    "No overall experiment08 time/device cap; Mercury probe ledger remains 1783.907/1800 seconds; experiments 06/09 remain closed."
+  ],
+  "monitor": {
+    "incident": null,
+    "owner": null,
+    "status": "ARMED"
+  },
+  "native_session_id": "01a12e04-6cc2-72c0-a063-917ba75e390d",
+  "observed_utc": "2026-10-12T03:32:22.114425+00:00",
+  "owner_process_closure": {
+    "absent": 110,
+    "matching_live": 0,
+    "recorded": 110,
+    "reused": 0
+  },
+  "phase_completed_utc": "2026-10-12T03:20:54.822126+00:00",
+  "phase_outputs": [
+    {
+      "actual": "607faaced506d72a8b6c94ac81ff6f4d53cde52dc4fb5e144562c4105dcd58b3",
+      "expected": "607faaced506d72a8b6c94ac81ff6f4d53cde52dc4fb5e144562c4105dcd58b3",
+      "match": true,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/first_action_check.json"
+    },
+    {
+      "actual": "13e4f275367dec0c2a538ee1ff9a93a82ce522805a02514cbb6c8b476c1d7e1f",
+      "expected": "13e4f275367dec0c2a538ee1ff9a93a82ce522805a02514cbb6c8b476c1d7e1f",
+      "match": true,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/make_test_pipeline_environment.log"
+    },
+    {
+      "actual": "1a0fd0b69e8afe01363f70c2812982635458de0250355962f2c23839baa932f1",
+      "expected": "1a0fd0b69e8afe01363f70c2812982635458de0250355962f2c23839baa932f1",
+      "match": true,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/final_supervision_after_repair.json"
+    },
+    {
+      "actual": "ddc9c2f4c7341acbe0361497712d49b1ca7d00b1af5a4e993faa6486028ac7c8",
+      "expected": "ddc9c2f4c7341acbe0361497712d49b1ca7d00b1af5a4e993faa6486028ac7c8",
+      "match": true,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/test_8b_slice_recovery_plan.json"
+    },
+    {
+      "actual": "d58d4971228bdd36e201a7ffcbcdc896010de28c73bcab3274e44a97c336c141",
+      "expected": "d58d4971228bdd36e201a7ffcbcdc896010de28c73bcab3274e44a97c336c141",
+      "match": true,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/test_runs_after_8b_recovery.json"
+    },
+    {
+      "actual": "1c1c9c093f66abae3b307b0315ba1f3f86b7f68be7843e30703c906737160712",
+      "expected": "1c1c9c093f66abae3b307b0315ba1f3f86b7f68be7843e30703c906737160712",
+      "match": true,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/parent_integration.json"
+    },
+    {
+      "actual": "9b5c6b7b2d0d3af9f69dd565896bb4e4b4eb25b7b1d67264efd5c23cc45704d9",
+      "expected": "9b5c6b7b2d0d3af9f69dd565896bb4e4b4eb25b7b1d67264efd5c23cc45704d9",
+      "match": true,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/publication.json"
+    },
+    {
+      "actual": "019e730a3402aa216bd6e31ae47b877835a51b22e35a5aee78773c572e94089d",
+      "expected": "019e730a3402aa216bd6e31ae47b877835a51b22e35a5aee78773c572e94089d",
+      "match": true,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/published_owned_receipt.json"
+    },
+    {
+      "actual": "18a8f738deb5c39ee7468433143f2f30eabf6e4debb80b1a8b499e2e780a58a7",
+      "expected": "18a8f738deb5c39ee7468433143f2f30eabf6e4debb80b1a8b499e2e780a58a7",
+      "match": true,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/final_observation.json"
+    },
+    {
+      "actual": "7e55791858f7fdc7409d5b9984548a4249e99a1bf501eb11e2780c3de6b67b79",
+      "expected": "7e55791858f7fdc7409d5b9984548a4249e99a1bf501eb11e2780c3de6b67b79",
+      "match": true,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/final_execution_check.json"
+    }
+  ],
+  "pipeline": {
+    "cmdline": ".venv/bin/python /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/pipeline_e08.py ",
+    "pid": 28223,
+    "ppid": 28222,
+    "start_ticks": 24891,
+    "state": "S"
+  },
+  "provenance": [
+    {
+      "path": "/tmp/e08_controls_owner_completed_verification_10-11-2026.json",
+      "sha256": "1f011757e5dcbce53cf229f76f54e2f991adf9861f00bdd407b2d3b91afb6be0"
+    },
+    {
+      "path": "/tmp/e08_8b_slice_evidence_10-11-2026.json",
+      "sha256": "ae885a0edd474101e8cb62044bf3c7b9b71bf2966346013c60227621a2075775"
+    },
+    {
+      "path": "/tmp/e08_8b_slice_diagnostic_10-11-2026.json",
+      "sha256": "95ad0373a01f2a89bcce058eef98642b83601669e5240fe550f95fb2fcf0195f"
+    },
+    {
+      "path": "/tmp/e08_slice_independent_mapping_10-11-2026.json",
+      "sha256": "d7031f4a919522cec614d4f6d3f79e850d2eb9665371169cd199b1a223b7edc2"
+    },
+    {
+      "path": "/tmp/e08_judge_followup_progress_10-11-2026.json",
+      "sha256": "14cbce6d1314fe3e73cb0d76c5c9c333f4f656c88986b036e469435c6a2de4a1"
+    }
+  ],
+  "publication": {
+    "ancestor_of_main": true,
+    "commit": "81c2583d2f391581bfbf337f72b299db16b57447",
+    "existing_test_log": {
+      "sha256": "13e4f275367dec0c2a538ee1ff9a93a82ce522805a02514cbb6c8b476c1d7e1f",
+      "tail": "271 passed, 4 skipped in 158.26s (0:02:38)"
+    },
+    "files": [
+      {
+        "all_match": true,
+        "commit_sha256": "bedbcb89f3e1d0be8a9c19129d5e863d15a2dbbc98f925f3a08ac17f6cfc54f7",
+        "expected": "bedbcb89f3e1d0be8a9c19129d5e863d15a2dbbc98f925f3a08ac17f6cfc54f7",
+        "main_sha256": "bedbcb89f3e1d0be8a9c19129d5e863d15a2dbbc98f925f3a08ac17f6cfc54f7",
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/README.md",
+        "runtime_sha256": "bedbcb89f3e1d0be8a9c19129d5e863d15a2dbbc98f925f3a08ac17f6cfc54f7"
+      },
+      {
+        "all_match": true,
+        "commit_sha256": "d7868ab3169965e11a95405e7c945d4b1565f0ca71ad5a29456c650c0f4877c4",
+        "expected": "d7868ab3169965e11a95405e7c945d4b1565f0ca71ad5a29456c650c0f4877c4",
+        "main_sha256": "d7868ab3169965e11a95405e7c945d4b1565f0ca71ad5a29456c650c0f4877c4",
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/CKPT_e08.md",
+        "runtime_sha256": "d7868ab3169965e11a95405e7c945d4b1565f0ca71ad5a29456c650c0f4877c4"
+      },
+      {
+        "all_match": true,
+        "commit_sha256": "019e730a3402aa216bd6e31ae47b877835a51b22e35a5aee78773c572e94089d",
+        "expected": "019e730a3402aa216bd6e31ae47b877835a51b22e35a5aee78773c572e94089d",
+        "main_sha256": "019e730a3402aa216bd6e31ae47b877835a51b22e35a5aee78773c572e94089d",
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/coordinator_judge_recovery_10-11-2026.json",
+        "runtime_sha256": "019e730a3402aa216bd6e31ae47b877835a51b22e35a5aee78773c572e94089d"
+      },
+      {
+        "all_match": true,
+        "commit_sha256": "ea64c09f47b68a62154e07c8d8d9748e42a42190254183e16961d6ec514cc4a6",
+        "expected": "ea64c09f47b68a62154e07c8d8d9748e42a42190254183e16961d6ec514cc4a6",
+        "main_sha256": "ea64c09f47b68a62154e07c8d8d9748e42a42190254183e16961d6ec514cc4a6",
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/judge_rl4cv_e08.py",
+        "runtime_sha256": "ea64c09f47b68a62154e07c8d8d9748e42a42190254183e16961d6ec514cc4a6"
+      },
+      {
+        "all_match": true,
+        "commit_sha256": "180a4c82921a58a4e63f8ece398402fd4b593ff0f8d07782badb0f1c72c2e10b",
+        "expected": "180a4c82921a58a4e63f8ece398402fd4b593ff0f8d07782badb0f1c72c2e10b",
+        "main_sha256": "180a4c82921a58a4e63f8ece398402fd4b593ff0f8d07782badb0f1c72c2e10b",
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/results.md",
+        "runtime_sha256": "180a4c82921a58a4e63f8ece398402fd4b593ff0f8d07782badb0f1c72c2e10b"
+      },
+      {
+        "all_match": true,
+        "commit_sha256": "702f7d2b912f56e5d7292b5ce08ef212c477e411ad11db29ac4c64f6238b3d1a",
+        "expected": "702f7d2b912f56e5d7292b5ce08ef212c477e411ad11db29ac4c64f6238b3d1a",
+        "main_sha256": "702f7d2b912f56e5d7292b5ce08ef212c477e411ad11db29ac4c64f6238b3d1a",
+        "path": "experiments/README.md",
+        "runtime_sha256": "702f7d2b912f56e5d7292b5ce08ef212c477e411ad11db29ac4c64f6238b3d1a"
+      },
+      {
+        "all_match": true,
+        "commit_sha256": "a48535650e2afff7e81a51dfef3f3e974acec9096880cbb6c68f9790cc94f770",
+        "expected": "a48535650e2afff7e81a51dfef3f3e974acec9096880cbb6c68f9790cc94f770",
+        "main_sha256": "a48535650e2afff7e81a51dfef3f3e974acec9096880cbb6c68f9790cc94f770",
+        "path": "tests/test_e08_recovery_gates.py",
+        "runtime_sha256": "a48535650e2afff7e81a51dfef3f3e974acec9096880cbb6c68f9790cc94f770"
+      }
+    ],
+    "tested_sources_unchanged": {
+      "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/judge_rl4cv_e08.py": true,
+      "tests/test_e08_recovery_gates.py": true
+    }
+  },
+  "registered_leases": 27,
+  "released_leases": 27,
+  "remaining_work": [
+    "Complete all admitted judging with original rating identities and missing-cell accounting",
+    "Harvest and validate ratings, produce aligned item-by-factor outputs and fixed audit",
+    "Publish verified final report before stopping monitor"
+  ],
+  "schema": 1,
+  "scientific_progress": {
+    "declared_ratings": 4302,
+    "full_factor_cells_declared": 10656,
+    "observed_utc": "2026-10-12T03:32:22.114425+00:00",
+    "parsed_test_rating_completeness": "not yet measured; no test harvest files at observation",
+    "pipeline_last_tick": "2026-10-12T03:31:56+00:00",
+    "runs": {
+      "base14b/H2_opus55_max": {
+        "expected_cells": 195,
+        "phase": "running",
+        "polled_at": "2026-10-12T03:30:40+00:00",
+        "run_id": "61a7168e-fe37-4b84-960d-78d85ef2ac5f",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 186,
+          "IN_PROGRESS": 9,
+          "PENDING": 0,
+          "STOPPED": 0
+        }
+      },
+      "base14b/H2_sol_high": {
+        "expected_cells": 195,
+        "phase": "terminal",
+        "polled_at": "2026-10-12T03:30:46+00:00",
+        "run_id": "f6fb62eb-d26c-4d57-8253-7a9cadf82879",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 195,
+          "IN_PROGRESS": 0,
+          "PENDING": 0,
+          "STOPPED": 0
+        }
+      },
+      "base_1p7B_e05/H2_opus55_max": {
+        "expected_cells": 180,
+        "phase": "terminal",
+        "polled_at": "2026-10-12T03:30:52+00:00",
+        "run_id": "227d48b2-dd3f-4c88-8521-d1d5789897a5",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 180,
+          "IN_PROGRESS": 0,
+          "PENDING": 0,
+          "STOPPED": 0
+        }
+      },
+      "base_1p7B_e05/H2_sol_high": {
+        "expected_cells": 180,
+        "phase": "terminal",
+        "polled_at": "2026-10-12T03:30:58+00:00",
+        "run_id": "ddaf46c2-5364-440a-9690-238eccaa7521",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 180,
+          "IN_PROGRESS": 0,
+          "PENDING": 0,
+          "STOPPED": 0
+        }
+      },
+      "base_4B_e05/H2_opus55_max": {
+        "expected_cells": 186,
+        "phase": "running",
+        "polled_at": "2026-10-12T03:31:04+00:00",
+        "run_id": "05b842d8-6942-483c-987a-87426dd31b81",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 179,
+          "IN_PROGRESS": 7,
+          "PENDING": 0,
+          "STOPPED": 0
+        }
+      },
+      "base_4B_e05/H2_sol_high": {
+        "expected_cells": 186,
+        "phase": "terminal",
+        "polled_at": "2026-10-12T03:31:09+00:00",
+        "run_id": "b5279160-c5b9-464c-8ff1-f36460fcb6f1",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 186,
+          "IN_PROGRESS": 0,
+          "PENDING": 0,
+          "STOPPED": 0
+        }
+      },
+      "base_8B_e05/H2_opus55_max": {
+        "expected_cells": 180,
+        "phase": "terminal",
+        "polled_at": "2026-10-12T03:31:15+00:00",
+        "run_id": "1a046573-6c86-4fe4-b64f-f963ab08d3af",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 180,
+          "IN_PROGRESS": 0,
+          "PENDING": 0,
+          "STOPPED": 0
+        }
+      },
+      "base_8B_e05/H2_sol_high": {
+        "expected_cells": 180,
+        "phase": "terminal",
+        "polled_at": "2026-10-12T03:31:21+00:00",
+        "run_id": "54b36873-260b-421e-9494-ddfa4f9bebbc",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 180,
+          "IN_PROGRESS": 0,
+          "PENDING": 0,
+          "STOPPED": 0
+        }
+      },
+      "test_sft_14B_f0p5/H2_opus55_max": {
+        "expected_cells": 642,
+        "phase": "running",
+        "polled_at": "2026-10-12T03:31:38+00:00",
+        "run_id": "171aed58-adf3-4794-abe1-dac90015eb9e",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 209,
+          "IN_PROGRESS": 12,
+          "PENDING": 421,
+          "STOPPED": 0
+        }
+      },
+      "test_sft_14B_f0p5/H2_sol_high": {
+        "expected_cells": 642,
+        "phase": "running",
+        "polled_at": "2026-10-12T03:31:44+00:00",
+        "run_id": "07e372db-3644-4c4b-87e8-29ec8cf669bc",
+        "task_state_counts": {
+          "BUILDING": 2,
+          "ERROR": 0,
+          "EVALUATING": 1,
+          "FINISHED": 439,
+          "IN_PROGRESS": 9,
+          "PENDING": 191,
+          "STOPPED": 0
+        }
+      },
+      "test_sft_8B_f1p0/H2_opus55_max": {
+        "expected_cells": 768,
+        "phase": "running",
+        "polled_at": "2026-10-12T03:31:51+00:00",
+        "run_id": "95f77d87-0b22-4333-9bff-f66d40702541",
+        "task_state_counts": {
+          "BUILDING": 1,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 147,
+          "IN_PROGRESS": 11,
+          "PENDING": 609,
+          "STOPPED": 0
+        }
+      },
+      "test_sft_8B_f1p0/H2_sol_high": {
+        "expected_cells": 768,
+        "phase": "running",
+        "polled_at": "2026-10-12T03:31:56+00:00",
+        "run_id": "44ca8d52-27fb-4a20-b39f-953a47594859",
+        "task_state_counts": {
+          "BUILDING": 0,
+          "ERROR": 0,
+          "EVALUATING": 0,
+          "FINISHED": 358,
+          "IN_PROGRESS": 12,
+          "PENDING": 398,
+          "STOPPED": 0
+        }
+      }
+    },
+    "runs_admitted": 12,
+    "runs_declared": 12,
+    "test_harvest_files": [],
+    "tracker_counts": {
+      "BUILDING": 3,
+      "ERROR": 0,
+      "EVALUATING": 1,
+      "FINISHED": 2619,
+      "IN_PROGRESS": 60,
+      "PENDING": 1619,
+      "STOPPED": 0
+    },
+    "unique_files": 717
+  },
+  "selected_8b_recovery": {
+    "deployed_service_source_hashes": {
+      "main.py": {
+        "actual": "ec197ee3b93ca597ca03cfa7bde6da5b0b348c2e4d46d32e1cdd19ff18d77b12",
+        "expected": "ec197ee3b93ca597ca03cfa7bde6da5b0b348c2e4d46d32e1cdd19ff18d77b12",
+        "match": true
+      },
+      "single_call_service.py": {
+        "actual": "985009a7875bc7a5a485cb88e5f2a2a36cd45bccb2382fe6b21394823a674fba",
+        "expected": "985009a7875bc7a5a485cb88e5f2a2a36cd45bccb2382fe6b21394823a674fba",
+        "match": true
+      },
+      "veribench_valkyrie_service.py": {
+        "actual": "e65d77ddf97b07ddb3c194754a22bbd87ae6e41a7d8076ee79560a23049fd2b7",
+        "expected": "e65d77ddf97b07ddb3c194754a22bbd87ae6e41a7d8076ee79560a23049fd2b7",
+        "match": true
+      }
+    },
+    "independent_mapping": {
+      "observed_utc": "2026-10-12T03:30:34.767333+00:00",
+      "ordered_slice_matches": true,
+      "pack_dirs": 2152,
+      "service_dir": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/external/veribench/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/scripts/vb_service_single_call",
+      "service_files_sha256": {
+        "main.py": "ec197ee3b93ca597ca03cfa7bde6da5b0b348c2e4d46d32e1cdd19ff18d77b12",
+        "single_call_service.py": "985009a7875bc7a5a485cb88e5f2a2a36cd45bccb2382fe6b21394823a674fba",
+        "veribench_valkyrie_service.py": "e65d77ddf97b07ddb3c194754a22bbd87ae6e41a7d8076ee79560a23049fd2b7"
+      },
+      "sets_match": true,
+      "slice_count": 768,
+      "slice_sha256": "c0f139b8c23b3eb9ffa4aadf59448005e84997777547288db2611655c3db672a",
+      "task_file_sha256": "c0f139b8c23b3eb9ffa4aadf59448005e84997777547288db2611655c3db672a"
+    },
+    "members": {
+      "test_sft_8B_f1p0/H2_opus55_max": {
+        "expected_ratings": 768,
+        "only_command_change": "--task-ids-file PATH replaced with --slice 1383:2151",
+        "original_failed_entry_preserved_exactly": true,
+        "recovered_at": "2026-10-12T03:15:47+00:00",
+        "recovery_attempts": 1,
+        "run_id": "95f77d87-0b22-4333-9bff-f66d40702541",
+        "scientific_envelope_unchanged": true
+      },
+      "test_sft_8B_f1p0/H2_sol_high": {
+        "expected_ratings": 768,
+        "only_command_change": "--task-ids-file PATH replaced with --slice 1383:2151",
+        "original_failed_entry_preserved_exactly": true,
+        "recovered_at": "2026-10-12T03:15:39+00:00",
+        "recovery_attempts": 1,
+        "run_id": "44ca8d52-27fb-4a20-b39f-953a47594859",
+        "scientific_envelope_unchanged": true
+      }
+    },
+    "no_duplicate_selected_8b_run_in_pre_recovery_inventory": true,
+    "original_failures_retained": true,
+    "pre_recovery_inventory_exactly_matches_prior_ten_run_ids": true,
+    "preserved_other_test_runs": 10,
+    "prior_http_observations": {
+      "data": {
+        "checked": "2026-10-12T03:13:43.210964+00:00",
+        "checks": [
+          {
+            "body": "Invalid HTTP request received.",
+            "http_status": 400,
+            "name": "local_full",
+            "query_bytes": 77804,
+            "task_count": 768
+          },
+          {
+            "body": "",
+            "http_status": 414,
+            "name": "tunnel_full",
+            "query_bytes": 77804,
+            "task_count": 768
+          },
+          {
+            "exact": true,
+            "http_status": 200,
+            "name": "tunnel_half_1",
+            "query_bytes": 35852,
+            "returned_count": 384,
+            "task_count": 384
+          },
+          {
+            "exact": true,
+            "http_status": 200,
+            "name": "tunnel_half_2",
+            "query_bytes": 41951,
+            "returned_count": 384,
+            "task_count": 384
+          }
+        ],
+        "ids": 768
+      },
+      "sha256": "c8b4ff7cb1b18caa467dbcc74c67f21a45f8cc2aac1a186e371d055ed1dc3ab7"
+    },
+    "prospective_plan": {
+      "data": {
+        "checks": [
+          {
+            "count": 768,
+            "exact_inventory": true,
+            "ordered_ids_sha256": "c0f139b8c23b3eb9ffa4aadf59448005e84997777547288db2611655c3db672a",
+            "route": "local"
+          },
+          {
+            "count": 768,
+            "exact_inventory": true,
+            "ordered_ids_sha256": "c0f139b8c23b3eb9ffa4aadf59448005e84997777547288db2611655c3db672a",
+            "route": "tunnel"
+          }
+        ],
+        "created": "2026-10-12T03:15:01.331121+00:00",
+        "expected_cells_per_config": 768,
+        "full_service_tasks": 2152,
+        "ids_sha256": "c0f139b8c23b3eb9ffa4aadf59448005e84997777547288db2611655c3db672a",
+        "prospective_action": "One admission per frozen member using exact verified slice instead of an overlong task-ID URL; preserve original failed entry and command, count recovery_attempts=1, no scientific retries or additional ratings; stop on any ambiguity.",
+        "remote_run_count": 10,
+        "remote_selected_8b_runs": 0,
+        "slice": "1383:2151"
+      },
+      "sha256": "ddc9c2f4c7341acbe0361497712d49b1ca7d00b1af5a4e993faa6486028ac7c8"
+    }
+  },
+  "verdict": "COORDINATOR_VERIFIED_COMPLETE; ALL_TEST_JUDGE_RUNS_ADMITTED; SCIENTIFIC_STUDY_PENDING",
+  "watchdog": {
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "checked_utc": "2026-10-12T03:15:02Z",
+    "host": "skampere1.stanford.edu",
+    "jobs": [
+      {
+        "fresh_age_s": "35",
+        "name": "pipeline",
+        "pane_pid": "28222",
+        "processes": 2,
+        "session": "rl4cv-e08-pipeline",
+        "state": "running"
+      }
+    ]
+  }
+}
