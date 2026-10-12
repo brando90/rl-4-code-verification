@@ -2,11 +2,42 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/results.md>
 
-**TLDR:** Matched supervised fine-tuning is complete at all four sizes (658 updates and 5,752,936 real loss tokens each), with all 20 trained validation rungs and 25,920/25,920 validation cells complete. Frozen published selection remains **PARTIAL**: the 8B step-658 and 14B step-334 checkpoints are unmatched diagnostics; 1.7B and 4B pass no rung. All **10,656/10,656 declared test cells have kernel factors**, including 5,328 new and 5,328 reused Base cells. The reboot environment blocked the first judge client before execution; the original admission was preserved and recovered once after verifying zero tracker runs. Controls PASS: 50/50 declared ratings measured with exact inventories and frozen transport envelopes. All 12 test-judge runs are admitted for the frozen 4,302 ratings over 717 files; final coverage and aggregate remain pending.
+**TLDR:** Matched supervised fine-tuning is complete at all four sizes (658 updates and 5,752,936 real loss tokens each), with all 20 trained validation rungs and 25,920/25,920 validation cells complete. The frozen verdict is **PARTIAL**: 8B step 658 and 14B step 334 passed at different fractions; 1.7B and 4B passed no rung. All **10,656/10,656 test cells have complete factors**, using all **4,302/4,302 validated-judge ratings** over 717 files, including all 60 fixed audit files per system. Final results reproduce exactly; services are stopped and the completed study is closed without a follow-on run.
 
 **Status:** DONE (10-11-2026 21:24 PDT; verdict PARTIAL; test split evaluated once after the committed selection)
 
-**Last updated:** 10-11-2026 21:24 PDT (pipeline: final results)
+**Last updated:** 10-11-2026 21:52 PDT (verified final analysis and closure)
+
+## Final result and execution closure (10-11-2026)
+
+`08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test` completed the original four-size matched supervised fine-tuning study and its once-only VeriBench V1 test evaluation. The validation rule gives **PARTIAL**, with no common passing token fraction: 8B first passes at 5,752,936 real assistant tokens (step 658), and 14B at 2,884,708 (step 334). The 1.7B and 4B models pass no rung, so this study does not establish a matched warm start for reinforcement learning across all four sizes. No new training or selection used test outcomes.
+
+On all 222 test tasks, eight samples each, the selected 8B diagnostic has a Smooth Conjunctive Score for Code verification (SCS4CV; frozen artifact key `SCSC`) of **0.1116 [0.0823, 0.1435]**, versus Base 8B **0.0000 [0.0000, 0.0000]**. The selected 14B diagnostic has **0.0869 [0.0651, 0.1095]**, versus Base 14B **0.0023 [0.0004, 0.0045]**. These are 0–1 scores, with **1,776/1,776 known cells per system**; the full table below retains all three factors, core/IndustrySet results, and the other Base systems. The paired selected-minus-Base differences are **+0.1116 [0.0823, 0.1435]** for 8B and **+0.0846 [0.0627, 0.1077]** for 14B. Intervals use the frozen 10,000 task-bootstrap resamples, seed 0, carrying each task's eight samples together; p-val=n/a (interval estimation only). They describe this one training run, not variation across training seeds. The selected fractions differ, so the two trained sizes are unmatched diagnostics.
+
+All 12 test-judge runs are terminal, with **4,302/4,302 measured ratings** and no missing, duplicate or extra rating identities. The validated ensemble uses GPT-6 Sol high and Claude Opus 5.5 max, three ratings per member/file, then the mean of member medians divided by five. All 361 cells whose stated tests pass are judged, including the Base-4B cell with zero proved-theorem fraction. The fixed audit adds 356 distinct files after four overlaps, giving 717 unique judged files and **60/60 audit files for each of six systems**. Audit coverage on noncompiling files remains diagnostic; it does not bypass compile gating. All 10,656 declared test cells have known official factors, with **zero pending test cells**.
+
+[Joined factor table](expt_v1/results/test_factor_cells.csv) records every system/task/sample, test and proof factors, judged coverage when available, compile-gated formal specification coverage, strict kernel success, audit membership and per-file combined score. The per-file score is diagnostic; the official aggregate remains the geometric mean of the three factor means on the common known cohort. [Receipt summary](expt_v1/results/test_receipts_summary.json) records the audit identities, complete source hashes and repeat variability. The added deterministic summarizer independently reproduces every published factor mean and aggregate; a full rerun of the original analyzer reproduces `test_eval.json` exactly except its timestamp, including every interval and paired difference.
+
+Repeated-rating variability below is the mean within-file sample standard deviation of each member's three raw ratings, normalized from 0–5 to 0–1. It is a descriptive dispersion statistic, not a confidence interval or repeated measurement of the final six-rating ensemble. Independent repeatability of that final ensemble, human agreement on these student outputs, and training-seed variation were not measured. The existing validated judge's provider-returned model/effort fields remain unavailable; frozen request envelopes and returned no-fallback receipts are verified.
+
+| System | Judged files | Ratings measured / declared | Fixed audit | Sol repeat standard deviation | Opus repeat standard deviation |
+|---|---:|---:|---:|---:|---:|
+| `base14b` | 65 | 390 / 390 | 60 / 60 | 0.0422 | 0.0213 |
+| `base_1p7B_e05` | 60 | 360 / 360 | 60 / 60 | 0.0149 | 0.0058 |
+| `base_4B_e05` | 62 | 372 / 372 | 60 / 60 | 0.0380 | 0.0354 |
+| `base_8B_e05` | 60 | 360 / 360 | 60 / 60 | 0.0346 | 0.0212 |
+| `test_sft_14B_f0p5` | 214 | 1284 / 1284 | 60 / 60 | 0.0148 | 0.0043 |
+| `test_sft_8B_f1p0` | 256 | 1536 / 1536 | 60 / 60 | 0.0188 | 0.0036 |
+
+The [charge ledger](expt_v1/results/reported_charge_accounting.json) sums raw reported costs once: main teachers including recovery **$5,111.944132**, preflight **$9.2857082**, test judge **$252.8124947**, and judge controls **$3.1320861**, totaling **$5,377.174421 reported** on the frozen Vals-funded route. The separate recovery files duplicate rows already merged into main receipts and are not added again. There are 446 source rows without reported charges, including four original failed Opus preflight ratings and 16 unserved placeholders; unknown charges are not asserted to be zero. Host computation costs were not measured. The 471 main teacher cells without available responses remain in their original 4,312-cell denominator and are not replayed.
+
+The pipeline published final evaluation in `e755b954` and exited normally at 21:27 PDT; its identity was not restarted. Both finished judge services and tunnels are stopped, all ports 9740–9759 are free, the port claim is archived, and the two completed-pipeline watchdog cron entries are retired. Other jobs and cron entries are preserved. The coordinator monitor retains its five-minute/reboot entries and an explicit `STOP` marker suppresses future model launches; its parent will validate this incident's final receipt after the owner exits. Checkpoints, raw data, failed attempts, retry counts, both protocol locks and the 539/135/222 split remain intact.
+
+The shared native checkpoint limitation is unchanged: 16/16 historical reload samples cover embeddings/query projections only, while actual per-rank query/key normalization-state drift remains unmeasured. This adds no historical-production gate and no selective 14B repair. TP2 remains blocked by gradient semantics; Mercury remains unadmitted with its resumed optimizer update and remote integration unfinished. The disposable probe ledger stays **1783.907/1800 seconds spent, 16.093 remaining**, with no fresh allocation. These unused alternatives do not block the already completed historical production route.
+
+Full `make test`: **277 passed, four optional skips in 158.50 seconds**. The added regression cases cover missing required judging, compile gating with zero proofs, diagnostic audit gating, duplicate identities, mismatched rating transport, and served teacher errors without responses. The original test analyzer, scorer, manifests, training recipe and test outcomes are unchanged. The teacher reporting source now uses the response-availability flag; its historical output remains preserved beside the correction receipt. [Coordination and cleanup receipt](expt_v1/results/coordinator_completion_10-11-2026.json). No scientific model call or resource probe was made in this closure phase.
+
+Earlier dated entries below retain the state observed at their own timestamps.
 
 ## Test kernel completion and judge admission recovery (10-11-2026 20:01 PDT)
 
@@ -115,12 +146,12 @@ The recovery fixes run in newly launched downstream processes: the test launcher
 | Base models on the splits (experiment 05 receipts) | DONE (10-07-2026) | `expt_v1/results/base_qwen3_e05_on_d013_splits.json` |
 | Token-budget inputs | DONE (10-07-2026) | `expt_v1/results/token_budget_gold_lengths.json`, `token_budget_e103_teacher_yields.json` |
 | Lock 1 preflight and lock | DONE: lock 1 LOCKED 2026-10-08T00:16 UTC at `6e6890f` (lock commit `cc86ec0`); amendment A1 (opus55 effort xhigh) at `bc27e1c`; live preflight passed (8 locked cells + 4 diagnostic cells, 10-07/10-08-2026) | `expt_v1/results/pack_check.json`, `scorer_adapter_check.json`, `template_check.json`, `deployment_e08.json`, `route_identity_e08.json` |
-| Teacher runs (4,312 cells) | DONE (10-08-2026): 4,312 / 4,312 terminal; measured 3,827; kept 2,004; charges 5,111.94 USD | `expt_v1/results/runs_state.json`, `results/receipts/preflight/` |
-| Scoring, screen, SFT set S | DONE (10-08-2026): |S| = 1315 over 476 tasks, 5.75M assistant tokens | `expt_v1/results/scored_cells.jsonl`, `generated_lean_screen.json`, `sft_set_manifest.csv`, `sft_set_stats.json`, `teacher_analysis.json` |
+| Teacher runs (4,312 cells) | DONE (10-08-2026): 4,312 / 4,312 terminal; response available 3,841; unavailable 471; kept 2,004; charges 5,111.94 USD | `expt_v1/results/runs_state.json`, `results/receipts/preflight/` |
+| Scoring, screen, SFT set S | DONE (10-08-2026): 1,315 examples over 476 tasks, 5.75M assistant tokens | `expt_v1/results/scored_cells.jsonl`, `generated_lean_screen.json`, `sft_set_manifest.csv`, `sft_set_stats.json`, `teacher_analysis.json` |
 | Lock 2 preflight and lock | DONE (10-08-2026): lock 2 at `d1c101a` (lock commit `9995821`); dry run PASS (val loss on the fixed 16 examples 0.6283 → 0.5886, loss tokens = rendered spans, export loads in vLLM); framework NeMo RL | `expt_v1/results/sft_schedule.json`, `sft_config_diff.md`, `dry_run_e08.json` |
 | Matched SFT, 4 sizes × 5 checkpoints | DONE: 658 steps and 5,752,936 real loss tokens per size; all 20 exports complete; all 50 listed 14B export file digests verified | `expt_v1/results/train_logs/`, `expt_v1/results/coordinator_validation_start_10-11-2026.json` |
 | Validation ladder and selection | DONE: 20/20 trained rungs, four Base systems and 25,920/25,920 known cells. Published PARTIAL selection: 8B step 658; 14B step 334; no common passing fraction | `expt_v1/results/validation_ladder.json`, `selection.json`, `coordinator_test_start_10-11-2026.json` |
-| Test evaluation | IN PROGRESS: all 10,656 declared cells have kernel factors; 50/50 train control ratings accepted; all 12 test-judge runs admitted for 4,302 ratings. Final analysis pending | `expt_v1/results/test_manifest.json`, `test_ladder_kernel.json`, `coordinator_judge_recovery_10-11-2026.json` |
+| Test evaluation | DONE: 10,656/10,656 known factor cells; 4,302/4,302 test ratings over 717 files; 60/60 audit files per system; final analysis reproduced | `expt_v1/results/test_eval.json`, `test_factor_cells.csv`, `test_receipts_summary.json` |
 
 ## D-013 split
 
@@ -243,20 +274,22 @@ Diagnostics: pass@8 share 0.052, all-pass share 0, mean pass rate 9 / 1,080 = 0.
 
 All 4,312 declared cells are terminal (8 Valkyrie runs of 539 cells, concurrency 24; one identical recovery re-send for 16 positively unserved cells, all measured). Every collected file was kernel-scored by the frozen scorer in the private grading project; `kernel_binary` includes the non-vacuity screen. Charges are the gateway's per-receipt reports (Vals-funded, D-108). Unmeasured = no model response (output cap, content filter, infrastructure); such cells stay in the denominator.
 
-| Teacher / sample | Declared | Measured | Unmeasured | Kept | Kept / measured [Wilson 95%] | Truncated | Charge (USD) |
+**Reporting correction, 10-11-2026:** [receipt reconciliation](expt_v1/results/teacher_receipt_reconciliation_10-11-2026.json) distinguishes served requests from available responses. The historical analyzer used `served=True` as its measured condition, yielding the incorrect 539/539 measured rows; an earlier phase summary also stated 3,827. Original receipts contain **3,841 available responses and 471 unavailable**, with terminal statuses **3,837 measured, 49 incomplete, 347 model_error and 79 unmeasured_infra**. Four incomplete-status cells nevertheless have captured responses and consistent extraction; three pass the existing keep rule. The corrected table uses the original response-availability Boolean and retains every declared cell. Its Wilson intervals use tasks within each run; p-val=n/a. Original `teacher_analysis.json`, receipt statuses, kept-file hashes and the frozen SFT set are preserved. The reporting source is corrected prospectively to use `measured` rather than `served`.
+
+| Teacher / sample | Declared | Response available | Response unavailable | Kept | Kept / available [Wilson 95%] | Truncated | Reported charge (USD) |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| opus55/s1 | 539 | 539 | 0 | 303 | 0.5622 [0.52, 0.6034] | 97 | 447.75 |
-| opus55/s2 | 539 | 539 | 0 | 287 | 0.5325 [0.4903, 0.5742] | 102 | 461.02 |
-| opus55/s3 | 539 | 539 | 0 | 304 | 0.564 [0.5218, 0.6053] | 96 | 467.13 |
-| opus55/s4 | 539 | 539 | 0 | 306 | 0.5677 [0.5256, 0.6089] | 101 | 460.19 |
-| astra/s1 | 539 | 539 | 0 | 206 | 0.3822 [0.3421, 0.4239] | 0 | 840.9 |
-| astra/s2 | 539 | 539 | 0 | 207 | 0.384 [0.3439, 0.4258] | 0 | 812.77 |
-| astra/s3 | 539 | 539 | 0 | 193 | 0.3581 [0.3187, 0.3994] | 0 | 807.72 |
-| astra/s4 | 539 | 539 | 0 | 198 | 0.3673 [0.3277, 0.4089] | 0 | 814.46 |
+| opus55/s1 | 539 | 432 | 107 | 303 | 0.7014 [0.6566, 0.7426] | 97 | 447.75 |
+| opus55/s2 | 539 | 426 | 113 | 287 | 0.6737 [0.6278, 0.7165] | 102 | 461.02 |
+| opus55/s3 | 539 | 432 | 107 | 304 | 0.7037 [0.6590, 0.7448] | 96 | 467.13 |
+| opus55/s4 | 539 | 429 | 110 | 306 | 0.7133 [0.6687, 0.7540] | 101 | 460.19 |
+| astra/s1 | 539 | 533 | 6 | 206 | 0.3865 [0.3461, 0.4285] | 0 | 840.9 |
+| astra/s2 | 539 | 530 | 9 | 207 | 0.3906 [0.3500, 0.4327] | 0 | 812.77 |
+| astra/s3 | 539 | 526 | 13 | 193 | 0.3669 [0.3268, 0.4089] | 0 | 807.72 |
+| astra/s4 | 539 | 533 | 6 | 198 | 0.3715 [0.3315, 0.4133] | 0 | 814.46 |
 
 Union coverage: 479 / 539 train tasks have at least one kept file (share 0.8887, Wilson 95% [0.8593, 0.9125]); both teachers 277, opus55 only 159, astra only 43, neither 60. Total reported charge 5111.94 USD.
 
-Failure taxonomy (cells): Opus 5.5 {"kept": 1200, "no_lean": 437, "no_typecheck": 515, "unproved_theorem": 2, "vacuous_theorem": 2}; Astra {"kept": 804, "no_lean": 34, "no_typecheck": 1316, "unparseable_theorem_type": 2}. `no_lean` cells are the unmeasured ones (Opus: 78 per run exceeded the 128,000-token output cap even at xhigh, 9–11 were content-filtered); `no_typecheck` is the dominant measured failure. Kept-file lengths (Qwen3 tokens): Opus mean 4908, median 4811, p90 6615 (n 1200); Astra mean 3055, median 2653, p90 4693 (n 804). Per-family union coverage: aerospace_set_real 2/2, aerospace_set_synthetic 10/10, compilers_set_real 3/3, compilers_set_synthetic 9/9, concurrent_set_real 3/3, concurrent_set_synthetic 9/9, critical_infra_set_real 4/4, critical_infra_set_synthetic 8/8, crypto_set_real 10/10, crypto_set_synthetic 2/2, cs_set 1/15, easy_set 20/25, finance_set_real 5/5, finance_set_synthetic 7/7, gov_cert_set_real 2/2, gov_cert_set_synthetic 10/10, hardware_set_real 3/3, hardware_set_synthetic 10/10, humaneval_set 30/34, hypervisor_set_real 3/3, hypervisor_set_synthetic 10/10, medical_oss_set_real 6/6, medical_oss_set_synthetic 6/6, memory_bugs_set_real 3/3, memory_bugs_set_synthetic 9/9, os_embedded_set_real 4/4, os_embedded_set_synthetic 8/8, realcode_set 3/19, regulated_set_real 3/3, regulated_set_synthetic 9/9, rfc_set_real 11/11, rfc_set_synthetic 1/1, security_set 255/276.
+Failure taxonomy (cells): Opus 5.5 {"kept": 1200, "no_lean": 437, "no_typecheck": 515, "unproved_theorem": 2, "vacuous_theorem": 2}; Astra {"kept": 804, "no_lean": 34, "no_typecheck": 1316, "unparseable_theorem_type": 2}. `no_lean` cells are those without available responses (Opus: 78 per run exceeded the 128,000-token output cap even at xhigh, 9–11 were content-filtered); `no_typecheck` is the dominant measured failure. Kept-file lengths (Qwen3 tokens): Opus mean 4908, median 4811, p90 6615 (n 1200); Astra mean 3055, median 2653, p90 4693 (n 804). Per-family union coverage: aerospace_set_real 2/2, aerospace_set_synthetic 10/10, compilers_set_real 3/3, compilers_set_synthetic 9/9, concurrent_set_real 3/3, concurrent_set_synthetic 9/9, critical_infra_set_real 4/4, critical_infra_set_synthetic 8/8, crypto_set_real 10/10, crypto_set_synthetic 2/2, cs_set 1/15, easy_set 20/25, finance_set_real 5/5, finance_set_synthetic 7/7, gov_cert_set_real 2/2, gov_cert_set_synthetic 10/10, hardware_set_real 3/3, hardware_set_synthetic 10/10, humaneval_set 30/34, hypervisor_set_real 3/3, hypervisor_set_synthetic 10/10, medical_oss_set_real 6/6, medical_oss_set_synthetic 6/6, memory_bugs_set_real 3/3, memory_bugs_set_synthetic 9/9, os_embedded_set_real 4/4, os_embedded_set_synthetic 8/8, realcode_set 3/19, regulated_set_real 3/3, regulated_set_synthetic 9/9, rfc_set_real 11/11, rfc_set_synthetic 1/1, security_set 255/276.
 
 **Generated-Lean screen (§ 6):** 2004 kept, extraction-consistent cells → 6012 texts (file, full response, each fenced block) against the 714 validation + test Python programs and gold Lean references: 0 exact, 0 near hits (max word-5-gram Jaccard 0.0277); mean Jaccard to the task's own gold 0.0284 (max 0.1402), diagnostic only.
 
@@ -299,7 +332,7 @@ Written 2026-10-11T16:42:04+00:00 by the pipeline from `expt_v1/results/validati
 
 ## Test evaluation (once; PROTOCOL § 10 and D-009: geometric mean of factor means on the common known cohort; 10,000 task-bootstrap resamples, seed 0; p-val=n/a)
 
-Verdict PARTIAL, f* = None. Written 2026-10-12T04:24:52+00:00 from `expt_v1/results/test_eval.json`; unknown cells stay in the declared denominator and are listed there.
+Verdict PARTIAL; no common passing fraction. `IC_tests` is the stated-test correctness factor; `IC_proofs` is the proved-theorem fraction; `fsc_compiled` is validated formal specification coverage after the compile gate. All factors and the official combined score are on 0–1 scales. Written 2026-10-12T04:24:52+00:00 from `expt_v1/results/test_eval.json`; unknown cells stay in the declared denominator and are listed there.
 
 | System | Scope | Known / declared cells | IC_tests | IC_proofs | fsc_compiled | SCSC [task-bootstrap 95%] | kernel_binary mean |
 |---|---|---:|---:|---:|---:|---|---:|
@@ -326,11 +359,11 @@ Paired differences on all 222 tasks (shared known cohort, shared resampled task 
 
 | Size | Selected − Base | kernel_binary mean pass-rate diff [95%] | SCSC diff [95%] | shared known cells |
 |---|---|---|---|---:|
-| 14B | `test_sft_14B_f0p5` − `base14b` | {'bootstrap95': [0.06249999999999999, 0.10754504504504506], 'point': 0.08445945945945946} | {'bootstrap95': [0.06268546733971177, 0.1077439609130829], 'point': 0.08460519076109407} | 1776 |
-| 8B | `test_sft_8B_f1p0` − `base_8B_e05` | {'bootstrap95': [0.08277027027027027, 0.14414414414414414], 'point': 0.11204954954954954} | {'bootstrap95': [0.08229694082393288, 0.14346574986817337], 'point': 0.11155942075898573} | 1776 |
+| 14B | `test_sft_14B_f0p5` − `base14b` | +0.0845 [+0.0625, +0.1075] | +0.0846 [+0.0627, +0.1077] | 1,776 / 1,776; missing 0 |
+| 8B | `test_sft_8B_f1p0` − `base_8B_e05` | +0.1120 [+0.0828, +0.1441] | +0.1116 [+0.0823, +0.1435] | 1,776 / 1,776; missing 0 |
 
 ## Open questions for Brando
 
-- None blocking. Varun's math/code rows and warm-start checkpoints (D-105) would allow a math + code + Lean arm in a later version; ask him first.
+- None for the completed version 1. Follow-on training or evaluation requires its own authorization and prospective protocol.
 
-**TLDR-end:** [rl4cv: expt 08 matched Lean SFT warm start] Verdict PARTIAL (f* = None; tokens needed {"14B": 2884708, "8B": 5752936}); the validation ladder and test tables above carry every count with its denominator.
+**TLDR-end:** [rl4cv: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] Matched supervised fine-tuning and the once-only test evaluation are complete. Verdict PARTIAL: no common passing fraction; all 10,656 test factor cells and 4,302 judge ratings are known, with finished services retired and further launches stopped.

@@ -67,7 +67,8 @@ def main(argv: list[str] | None = None) -> int:
     for t in TEACHERS:
         for s in SAMPLES:
             cells = [r for r in rows if r["teacher"] == t and r["r"] == s]
-            measured = [r for r in cells if r.get("served")]
+            # A served request may end in an error without a response. Captured incomplete-run responses remain measured.
+            measured = [r for r in cells if r.get("measured") is True]
             kept = [r for r in cells if r.get("kernel_binary") == 1.0]
             eligible = [r for r in kept if r.get("extraction_consistent") is True and f"{t}/{s}/{r['task_id']}" not in screen.get("excluded_cells", {})]
             p, lo, hi = wilson(len(kept), len(measured))

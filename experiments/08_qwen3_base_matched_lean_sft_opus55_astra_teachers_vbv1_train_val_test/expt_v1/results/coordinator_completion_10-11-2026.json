@@ -1,0 +1,256 @@
+{
+  "schema": 1,
+  "incident_id": "f0b38aa4-b9e8-4be7-a43f-ad107bfa3650",
+  "native_session_id": "01a12e5f-f7ee-7ec2-b97c-13c65287533a",
+  "written_utc": "2026-10-12T04:52:46.282670+00:00",
+  "status": "COORDINATION_CHECKS_COMPLETE",
+  "native_runtime": {
+    "model": "gpt-6-astra",
+    "effort": "ultra",
+    "sandbox_mode": "danger-full-access",
+    "approval_policy": "never"
+  },
+  "project_revision_at_entry": "e755b95496c53fa5a15774d0d90fda4895e0a10a",
+  "policy_checkout_revision": "a2e2cfcc705ad871ef40dfb3d66c5be7213b59de",
+  "latest_policy_revision_read": "e78c0004252273ac173db6e75fa379d644ceacc2",
+  "policy_refresh": "Read latest fetched index/diff; preserved dirty policy checkout. Changes only govern email, which is not authorized for this task.",
+  "adopted_pipeline_identity": {
+    "phase": "pipeline_terminal",
+    "live_process": null,
+    "completed_process": {
+      "pid": 28223,
+      "start_ticks": 24891,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df"
+    },
+    "done_receipt_sha256": "ad529861d23ecc56e8c4cebe4300d68ff15fbc2522bab2374f9e7764d3e7acba",
+    "done_utc": "2026-10-12T04:27:33+00:00"
+  },
+  "pipeline_restarted": false,
+  "parent_findings_sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba",
+  "parent_findings_acknowledged": true,
+  "frozen_input_sha256": {
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/PROTOCOL.md": "f6c1f85c4d165d3d6706151105a47b92a3a08fa6c66fc6e85ffcb7bd52df27ce",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/selection.json": "47e12d6c217a3e62e47e0d5bcef13478f2ecf52098b7ac6163df91e216e21cdb",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/test_manifest.json": "ed128d11e8d5d09e7d19244f5480f24360f01530510240a9d1176b0a446136fa",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder_manifest.json": "3013db1230f27cf021ace50ff53abcc6de2e9f6964ac62968baa80ccb577a948",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/validation_ladder.json": "8b5386f73f2dc9072a2a81aa33912ef8658cfa7b1983f93248ad89142fa503e3",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/test_eval.json": "64aa9651a5382d545a523218ddf7bb8bf738b8a9648187c7dd05a8c5582af154",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/test_ladder_kernel.json": "9790b049f05cf306f233f6e5525ba7ff8bb18059d7d19952281c938e496dbb70",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/sft_schedule.json": "e0d6d896a1f4c085629ac90dc8fda9c52e6e5bf511a5a8b42fb30c769e575f8b",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/sft_layout_admission_14B.json": "08e979fa79d91b68de3df0e6e13a5e6d2f5c96466b7ae0558c8443eb7d2d0301",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/layout_10-09-2026/probe_accounting.json": "e403a4c38b4b3f0ca421a66dad12783cb9535fb4418388b0320470ddf3ead5ca",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/split/vbv1_split_manifest.csv": "157ce781ed9e4ac93a1a1fe0c49f2ee2ae907be1260402485c8f6fa3d06e0e24",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/sft_set_manifest.csv": "8364ac11de3b0dae4d43e28d0835486a953c41fec94a3d4f7456d5bf677728aa"
+  },
+  "coverage": {
+    "training_updates_per_size": 658,
+    "loss_tokens_per_size": 5752936,
+    "trained_validation_rungs": 20,
+    "validation_cells_known": 25920,
+    "validation_cells_declared": 25920,
+    "test_cells_known": 10656,
+    "test_cells_declared": 10656,
+    "test_judge_files": 717,
+    "test_judge_ratings_measured": 4302,
+    "test_judge_ratings_declared": 4302,
+    "test_missing_factor_cells": 0,
+    "fixed_audit_known_per_system": 60,
+    "fixed_audit_declared_per_system": 60
+  },
+  "selection": "PARTIAL: 8B step 658 and 14B step 334 are unmatched diagnostics; 1.7B/4B passed no rung; no common selected fraction.",
+  "scientific_outputs_unchanged": true,
+  "reproduction": {
+    "match_except_timestamp": true,
+    "original_sha256": "64aa9651a5382d545a523218ddf7bb8bf738b8a9648187c7dd05a8c5582af154",
+    "recomputed_sha256": "1aefea7576b4a316792a484e67cbc5b017b73cddad1dc14c7f52f001fc274972",
+    "bootstrap_resamples": 10000,
+    "seed": 0
+  },
+  "checks": {
+    "make_test": {
+      "returncode": 0,
+      "passed": 277,
+      "skipped": 4,
+      "seconds": 158.5,
+      "log_sha256": "c7a9473fc89d7252a11039fe8a17774217b7c7cf2436d1797451b1f157c6177c",
+      "command": "source env_e08.sh; PATH=<repo>/.venv/bin:<node>/.elan/bin:$PATH ELAN_HOME=<node>/.elan env -u CODEX_HOME make test",
+      "log_path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/f0b38aa4-b9e8-4be7-a43f-ad107bfa3650/2/make_test_publication.log"
+    },
+    "factor_and_judge_receipt_reconciliation": "All 10656 cells and 4302 ratings joined; all original aggregate means and scopes match.",
+    "targeted_regressions": "6 passed; missing coverage, proof-zero compile gate, audit gate, duplicate identity, transport checks and served teacher errors without responses",
+    "independent_read_only_review": "Native Astra ultra delegate verified all teacher counts, unchanged kept membership, exact test receipt summary reproduction and final scientific claims; no material issue."
+  },
+  "cleanup": {
+    "written_utc": "2026-10-12T04:38:56.931302+00:00",
+    "owned_services": {
+      "judge-controls": {
+        "service_pid": {
+          "pid": 2314542,
+          "exists": false
+        },
+        "tunnel_pid": {
+          "pid": 2314813,
+          "exists": false
+        }
+      },
+      "judge-test": {
+        "service_pid": {
+          "pid": 2655829,
+          "exists": false
+        },
+        "tunnel_pid": {
+          "pid": 2656289,
+          "exists": false
+        }
+      }
+    },
+    "port_block_listeners": [],
+    "released_lease_count": 27,
+    "removed_watchdog_cron_lines": [
+      "*/15 * * * * /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/watchdog_e08.sh >> /lfs/skampere1/0/brando9/rl4cv_e08/watchdog/cron.log 2>&1",
+      "@reboot /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/watchdog_e08.sh --reboot >> /lfs/skampere1/0/brando9/rl4cv_e08/watchdog/cron.log 2>&1"
+    ],
+    "preserved_cron_line_count": 9,
+    "coordinator_monitor_cron_retained": true,
+    "port_claim": {
+      "path": "/lfs/skampere1/0/brando9/valkyrie_port_claims/rl4cv-e08_9740-9759.txt",
+      "existed": true,
+      "sha256": "dee888cef584de6a76674242106aa5a0bfcdd7bdff5bfed7493eb2854220eb21",
+      "archived_to": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/f0b38aa4-b9e8-4be7-a43f-ad107bfa3650/2/retired_port_claim.txt"
+    },
+    "other_tmux_sessions_preserved": [
+      "codex-recovery-master-10-09",
+      "codex-recovery-watch-10-11-reboot",
+      "codex-rl4cv13-audit-reboot-10-11",
+      "job_watcher"
+    ],
+    "coordinator_stop_path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/STOP",
+    "coordinator_stop_sha256": "53fceaa8269cc2a3aedbbd1c62a9947142e43b1097ac63cd10e1077d50ec6b71"
+  },
+  "stage_retries": {
+    "ladder_test_base14b": 0,
+    "ladder_test_test_sft_14B_f0p5": 1,
+    "ladder_test_test_sft_8B_f1p0": 1,
+    "ladder_val_sft_14B_f0p125": 0,
+    "ladder_val_sft_14B_f0p25": 0,
+    "ladder_val_sft_14B_f0p5": 0,
+    "ladder_val_sft_14B_f0p75": 0,
+    "ladder_val_sft_14B_f1p0": 0,
+    "ladder_val_sft_1p7B_f0p125": 0,
+    "ladder_val_sft_1p7B_f0p25": 0,
+    "ladder_val_sft_1p7B_f0p5": 0,
+    "ladder_val_sft_1p7B_f0p75": 0,
+    "ladder_val_sft_1p7B_f1p0": 0,
+    "ladder_val_sft_4B_f0p125": 0,
+    "ladder_val_sft_4B_f0p25": 0,
+    "ladder_val_sft_4B_f0p5": 0,
+    "ladder_val_sft_4B_f0p75": 0,
+    "ladder_val_sft_4B_f1p0": 0,
+    "ladder_val_sft_8B_f0p125": 0,
+    "ladder_val_sft_8B_f0p25": 0,
+    "ladder_val_sft_8B_f0p5": 0,
+    "ladder_val_sft_8B_f0p75": 0,
+    "ladder_val_sft_8B_f1p0": 0,
+    "sft_14B": 0,
+    "sft_8B": 0
+  },
+  "shared_checkpoint_limitation": "16/16 historical Mercury samples cover embeddings/query projections only. Native query/key normalization-state checkpoint deduplication is shared with pinned baseline; actual per-rank numerical drift unmeasured. No new historical gate or selective 14B repair.",
+  "probe_accounting": {
+    "schema": 1,
+    "phase_incident": "8339e1ac-9675-4e2c-b609-552c1b436a12",
+    "cumulative_accelerator_window_limit_seconds": 1800,
+    "spent_seconds": 1783.9074669163674,
+    "remaining_seconds": 16.09253308363259,
+    "device_seconds": 8343.091856226325,
+    "attempts": [
+      {
+        "attempt": "skampere1_tp2",
+        "devices": 2,
+        "status": "FAILED",
+        "seconds": 988.027979850769,
+        "device_seconds": 1976.055959701538,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt1",
+        "devices": 8,
+        "status": "FAILED",
+        "seconds": 78.3024847432971,
+        "device_seconds": 626.4198779463768,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt2",
+        "devices": 8,
+        "status": "FAILED",
+        "seconds": 9.088251980021596,
+        "device_seconds": 72.70601584017277,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt3",
+        "devices": 8,
+        "status": "FAILED",
+        "seconds": 114.57696747779846,
+        "device_seconds": 916.6157398223877,
+        "owned_children_remaining": [],
+        "lease_released": true
+      },
+      {
+        "attempt": "mercury_attempt4",
+        "devices": 8,
+        "status": "TIMEOUT",
+        "seconds": 593.9117828644812,
+        "device_seconds": 4751.29426291585,
+        "owned_children_remaining": [],
+        "lease_released": true
+      }
+    ],
+    "future_rule": "Never reset these receipts/counters. Remaining16seconds cannot complete a fresh native resume. No further disposable accelerator allocation in this phase; new scope/allowance must be explicit and prospective.",
+    "production_budget": "Original658updates/five-rung finite manifest unchanged; no invented overall production wall-time cap."
+  },
+  "remaining_scientific_state": {
+    "study_execution": "DONE",
+    "validation_verdict": "PARTIAL",
+    "test_factors_pending": 0,
+    "teacher_cells_declared": 4312,
+    "alternate_layouts": "TP2 blocked by gradient semantics; Mercury pending resumed update and remote production integration; no remaining usable probe allocation.",
+    "follow_on_studies": "Not started or reopened.",
+    "teacher_response_available": 3841,
+    "teacher_response_unavailable": 471,
+    "teacher_terminal_status_counts": {
+      "measured": 3837,
+      "unmeasured_infra": 79,
+      "model_error": 347,
+      "incomplete": 49
+    }
+  },
+  "receipt_directory": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/f0b38aa4-b9e8-4be7-a43f-ad107bfa3650/2",
+  "parent_master_sha256_before_owned_edits": "c3ae1c3f71ca537732803382a2725b1c6f33f22814a4049b70f53b07cb365452",
+  "source_changes": [
+    "New deterministic joined-factor and audit/repeat receipt summarizer plus regression tests.",
+    "Teacher report now counts the original measured response-availability Boolean rather than served requests; original teacher output retained beside an additive reconciliation receipt.",
+    "Original test analyzer, scorer, training recipe, manifests, training membership and scientific outcomes unchanged."
+  ],
+  "notifications_sent": 0,
+  "resource_probes": 0,
+  "scientific_calls_in_this_phase": 0,
+  "delegate": {
+    "role": "bounded read-only artifact inventory",
+    "native_session_id": "01a12e61-47cf-7141-a989-bc1d80f4ac4e",
+    "model": "gpt-6-astra",
+    "effort": "ultra",
+    "sandbox_mode": "danger-full-access",
+    "approval_policy": "never",
+    "repository_mutations": 0
+  },
+  "serviced_event_key": "bcfc018b3d46979b6b04bbecab621470abed6f6ee458ff48d0049123b55f5016",
+  "teacher_reporting_correction": {
+    "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/teacher_receipt_reconciliation_10-11-2026.json",
+    "sha256": "a83421981ee330679cdbdeed7376a3150303b98fdf5d69eda6fdbf101e483258",
+    "scientific_membership_changed": false
+  }
+}

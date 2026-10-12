@@ -2,26 +2,26 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/CKPT_e08.md>
 
-**TLDR:** Matched supervised fine-tuning is complete at all four sizes (658 updates and 5,752,936 real loss tokens each), with all 20 trained validation rungs and 25,920/25,920 validation cells complete. Frozen published selection remains **PARTIAL**: the 8B step-658 and 14B step-334 checkpoints are unmatched diagnostics; 1.7B and 4B pass no rung. All **10,656/10,656 declared test cells have kernel factors**, including 5,328 new and 5,328 reused Base cells. The reboot environment blocked the first judge client before execution; the original admission was preserved and recovered once after verifying zero tracker runs. Controls PASS: 50/50 declared ratings measured with exact inventories and frozen transport envelopes. All 12 test-judge runs are admitted for the frozen 4,302 ratings over 717 files; final coverage and aggregate remain pending.
+**TLDR:** Matched supervised fine-tuning is complete at all four sizes (658 updates and 5,752,936 real loss tokens each), with all 20 trained validation rungs and 25,920/25,920 validation cells complete. The frozen verdict is **PARTIAL**: 8B step 658 and 14B step 334 passed at different fractions; 1.7B and 4B passed no rung. All **10,656/10,656 test cells have complete factors**, using all **4,302/4,302 validated-judge ratings** over 717 files, including all 60 fixed audit files per system. Final results reproduce exactly; services are stopped and the completed study is closed without a follow-on run.
 
-**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-11-2026 20:18 PDT (controls accepted; all test judging admitted).
+**Created:** 10-07-2026 16:35 PDT (master). **Last updated:** 10-11-2026 21:52 PDT (final receipt reconciliation and closure).
 
 ## State
 
 | Item | Value |
 |---|---|
-| Current step | Validation DONE; frozen PARTIAL selection and all test kernel factors complete → train route controls PASS (50/50 measured) → all 12 test-judge runs admitted → final analysis |
+| Current step | DONE: all training/validation/test factors and fixed audit complete; frozen PARTIAL selection; final documentation/publication closure |
 | Master | Parent coordinator owns experiments/CKPT_MASTER_tmuxnone_cxd_01a11d6a.md; that file is unchanged by this recovery |
-| Worker | Vals Codex `gpt-6-astra` / `ultra`, native session `01a12e04-6cc2-72c0-a063-917ba75e390d`, `danger-full-access` / approval `never`; sole implementation writer; bounded artifact inventory delegate made no repository mutations |
+| Worker | Vals Codex `gpt-6-astra` / `ultra`, native session `01a12e5f-f7ee-7ec2-b97c-13c65287533a`, `danger-full-access` / approval `never`; sole implementation writer; one completed read-only artifact inventory delegate |
 | Work root | `/lfs/skampere1/0/brando9/rl4cv_e08`: `env_e08.sh` (source in every shell), `.venv` (tests), `venv_gen` (vLLM 0.30.0 / torch 2.13.0+cu130 / transformers 5.18.0), `grading/lean_src` (private Lean v4.22.0 + Mathlib copy), `pack_train539/`, `cache/huggingface` (HF_HOME; 1.7B/4B/8B linked, pinned 14B weights/tokenizer), `private/` (0700), `logs/` |
-| Status file | `/lfs/skampere1/0/brando9/rl4cv_e08/STATUS_e08` = RUNNING; reboot watchdog restored pipeline PID 28223/start 24891 on boot `839e7dd6-64e1-4a80-9498-31d30b3cc2df`; prior PID 4005026 ended with the previous boot |
+| Status file | `/lfs/skampere1/0/brando9/rl4cv_e08/STATUS_e08` = DONE; pipeline PID 28223/start 24891 exited normally at 21:27 PDT on boot `839e7dd6-64e1-4a80-9498-31d30b3cc2df`; `$WORK/pipeline/DONE` confirms published PARTIAL result |
 | Lock 1 / lock 2 | lock 1 LOCKED 2026-10-08T00:16:15Z at code commit `6e6890f`; the lock commit itself is `cc86ec0` (10-07-2026 17:16 PDT). **Amendment A1 (v1.1)** LOCKED 2026-10-08T00:55:51Z at `bc27e1c`: opus55 compute_effort xhigh. **Lock 2** LOCKED 2026-10-08T09:44:45Z at code commit `d1c101a`; the lock commit itself is `9995821` (10-08-2026 02:46 PDT) |
 | Valkyrie runs | preflight (8 cells, admitted 10-07-2026 17:17–17:19 PDT): opus55 p1 `67be268e-2560-4c6d-ae77-eb0448560508`, p2 `a3f8317d-3e9c-4f34-9d08-6f4cc4b85ccc`; astra p1 `68b86858-6af1-404e-ae1d-61d5c49da838`, p2 `62365cc4-5ff5-4ade-803f-320343716ca9` (`expt_v1/results/runs_state.json`); **Astra main** (admitted 17:44 PDT, 539 cells each, concurrency 24): s1 `e8ead92a-2839-41bd-8631-fe6b57e67747`, s2 `20362628-b046-4781-99a8-b3c7bd763d1f`, s3 `670496fd-932f-4ae9-af20-5d90106e046e`, s4 `3e4b9292-4da7-4db0-959a-26f582e9e3b2`; **Opus xhigh diagnostic preflight** (17:43 PDT): p1 `e4294309-0639-404c-b4f0-316437e4179c`, p2 `9ede472b-0200-47e6-98ab-8384b10fd5df`; **Opus main (xhigh, admitted 17:57 PDT, 539 cells each, concurrency 24)**: s1 `65dfef88-acc0-4bb3-9c32-88be333fccd2`, s2 `968f1080-e811-4736-865d-b728c333736b`, s3 `f26ab151-1a11-4afe-b576-276e73c6663e`, s4 `b267e358-bb10-4d66-981f-3ec730a9c367` |
-| GPUs held | No devices needed for current Valkyrie judging; all local training/generation/scoring complete; released leases and other users preserved |
-| Services, ports, tunnels | teacher service and tunnel died with the reboot and are no longer needed (teacher runs complete); port claim `/lfs/skampere1/0/brando9/valkyrie_port_claims/rl4cv-e08_9740-9759.txt` kept for the judge instances (§ 10) and removed at finish; private config `$WORK/private/valkyrie.yaml` |
-| Health check | Frozen hashes PASS; all 10,656 test kernel cells known; 50/50 control ratings accepted; all 12 test-judge runs have verified run IDs; actual pipeline publication environment make test 271 passed, 4 skipped in 158.26 seconds |
-| Watchdog | `scripts/watchdog_e08.sh` in the user crontab (every 15 min, plus `@reboot` with a 120 s delay): reads `$WORK/watchdog/jobs.tsv`, records boot id and tmux pane pids in `$WORK/watchdog/status.json`, relaunches a dead job once per incident (a reboot is one incident; launchers resume without duplicating work), marks a second death `CRITICAL_<name>`, never kills, no email (not authorized this turn). Self-test PASS 10-08-2026 16:12 PDT. tmux does not survive a reboot; `@reboot` cron is the supported user scheduling here |
-| Coordinator monitor | Five-minute cron + reboot; incident `6ca5cdbf-0415-4a2e-83c9-c0c95c937d20`, attempt 2, deadline 10-11-2026 21:00 PDT; parent retains owner lock; immutable acknowledgment/first-action and completion receipts in this invocation directory |
+| GPUs held | None; all owned scientific execution complete; device leases released and other users preserved |
+| Services, ports, tunnels | Judge controls/test services and tunnels stopped after identity checks; ports 9740–9759 free; port claim archived in this receipt directory; raw data/private configuration retained |
+| Health check | All 25,920 validation cells, 10,656 test factor cells and 4,302 judge ratings reconciled; original final evaluation reproduced exactly except timestamp; full make test 277 passed, 4 skipped in 158.50 seconds |
+| Watchdog | Completed pipeline every-15-minute/reboot cron entries retired; prior jobs/state/retry records and other cron entries preserved |
+| Coordinator monitor | Five-minute/reboot entries retained; `$WORK/owner_recovery/STOP` suppresses further model launches. Parent owns recovery lock and will validate phase receipt after child exit. Incident `f0b38aa4-b9e8-4be7-a43f-ad107bfa3650`, attempt 2, deadline 10-11-2026 22:40 PDT; receipt directory `$WORK/owner_recovery/incidents/f0b38aa4-b9e8-4be7-a43f-ad107bfa3650/2/` |
 
 ## Log
 
@@ -126,15 +126,17 @@
 
 - **10-11-2026 20:16 PDT — Selected-8B admission transport repaired.** The selected-8B admissions initially failed before producing run IDs because the 77,804-byte task-ID verification URL exceeded the transport limit (local HTTP 400; tunnel HTTP 414). Read-only tracker inventory showed zero selected-8B runs. The existing slice `1383:2151` returned exactly the same ordered 768 IDs locally and through the tunnel (SHA-256 `c0f139b8c23b3eb9ffa4aadf59448005e84997777547288db2611655c3db672a`). One recorded admission recovery per member then succeeded; all 12 runs cover exactly 4,302 declared ratings. Original commands and failures remain in `prior_launches`; no generation or scientific retry count was reset.
 
-## Next command (worker)
+- **10-11-2026 21:52 PDT — Final evaluation reconciled and execution closed.** `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test`: all 20 trained validation rungs/25,920 cells, 10,656 test factor cells, 4,302 judge ratings and 60 audit files per system verified. Frozen PARTIAL selection unchanged. Original `test_eval.json` reproduced exactly except timestamp, with every task-bootstrap interval and paired difference unchanged. Added joined factors and deterministic audit/repeat diagnostics; no new scientific calls.
+  - Full `make test`: 277 passed, four skips in 158.50 seconds. Source changes export/check existing evidence and correct teacher response counts; original test analysis/scorer/training unchanged. Main teacher denominator still 4,312, including 471 cells without available responses. Reported combined charge subtotal $5,377.174421; missing charges retained, recovery copies not double-counted.
+  - Pipeline exited normally after final publication `e755b954`; no restart. Judge services/tunnels stopped by verified identity, ports free, port claim archived, completed pipeline watchdog cron removed, coordinator STOP recorded while its ordinary-code cron/reboot entries remain. Other jobs and the parent master checkpoint preserved.
+  - Parent findings `26ec0a7e…` verified/acknowledged. Shared normalization-state limitation and unmeasured numerical drift retained; no selective repair/new historical gate. Probe budget remains 1783.907/1800 seconds, no fresh allocation. No follow-on experiment opened.
+  - Evidence: [completion receipt](results/coordinator_completion_10-11-2026.json), [factor CSV](results/test_factor_cells.csv), [audit/repeat/source-hash summary](results/test_receipts_summary.json), [charge ledger](results/reported_charge_accounting.json). Final commit hashes and exact publication checks are in this invocation's `publication.json` and `phase_result.json`.
+
+## Final verification command (no scientific calls)
 
 ```bash
 source /lfs/skampere1/0/brando9/rl4cv_e08/env_e08.sh
-# Original pipeline accepted both controls and supervises all 12 test-judge runs; no manual launch needed.
-# Runtime prerequisite after rebuilding .venv: retain bin/valk -> /dfs/scratch0/brando9/bin/valk
-# and bin/{lean,lake} wrappers with ELAN_HOME=/lfs/skampere1/0/brando9/.elan (hashes in recovery receipt).
-# coordinator monitor status: cat $WORK/owner_recovery/monitor_state.json
-# orchestrator status: cat $WORK/pipeline/state.json | python3 -c 'import json,sys; print(json.load(sys.stdin)["summary"])' ; tail $WORK/pipeline/pipeline.log
-# if its tmux session is gone the cron watchdog relaunches it once; manual: tmux new -d -s rl4cv-e08-pipeline "cd $REPO && .venv/bin/python $EXP/expt_v1/scripts/pipeline_e08.py >> $WORK/pipeline/driver.log 2>&1"
-# terminal receipt: $WORK/pipeline/DONE ; then finalize experiments/README.md row 08, judge teardown, port claim and cron lines
+.venv/bin/python "$EXP/expt_v1/scripts/summarize_test_receipts_e08.py" --out-dir "$WORK/owner_recovery/final_recheck"
+# The study is terminal; do not restart the production pipeline or remove STOP to create more measurements.
+# Read publication.json and phase_result.json in the incident directory above for exact landed hashes.
 ```

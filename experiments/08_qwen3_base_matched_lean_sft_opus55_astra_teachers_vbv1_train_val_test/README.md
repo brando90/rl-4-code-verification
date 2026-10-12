@@ -4,7 +4,7 @@
 
 **TLDR:** Qwen3 Base gives essentially zero reinforcement-learning (RL) signal on VeriBench V1 at the three measured sizes (experiment 05), so it needs a supervised fine-tuning (SFT) warm start. This experiment splits VeriBench V1 into train / validation / test (539 / 135 / 222 tasks; decision D-013). It asks two frontier teachers through Vals Valkyrie (Claude Opus 5.5 and GPT-6 Astra) for four single-call Lean files per train task, and keeps only files the Lean kernel fully verifies. It then fine-tunes Qwen3 Base 1.7B, 4B, 8B and 14B with one identical recipe (same data, order, token budget and hyperparameters at every size, as Varun requires). The validation split measures how many SFT tokens it takes before every size gives usable RL signal; each selected trained checkpoint is evaluated on the test split once after selection (historical Base/teacher test results were already inspected).
 
-**Owner:** Rakshit Kaushik (@rakshit-kaushik), tracking issue [#7](https://github.com/brando90/rl-4-code-verification/issues/7). **Set up by:** Claude Code master session for Brando, 10-07-2026. **Status:** see [results.md](results.md).
+**Owner:** Rakshit Kaushik (@rakshit-kaushik), tracking issue [#7](https://github.com/brando90/rl-4-code-verification/issues/7). **Set up by:** Claude Code master session for Brando, 10-07-2026. **Status:** DONE / frozen verdict PARTIAL (10-11-2026); see [results.md](results.md).
 
 ## Origin
 
@@ -69,11 +69,11 @@ My guess at what is needed: the 25% rung (~1M tokens) teaches the file format; n
 ## Method (summary; exact settings in PROTOCOL.md)
 
 1. **Split (done, D-013).** `rl4cv.splits` on VeriBench V1 at the `veribench` pin. Near-duplicates (exact normalized hash, or word-5-gram Jaccard ≥ 0.70 on the Python program or the gold Lean) and security safe/vulnerable pairs stay in one split. Groups are assigned per family in salted-hash order, toward 60 / 15 / 25%. The result is 664 groups → 539 / 135 / 222 tasks (core 369 / 93 / 152; IndustrySet 170 / 42 / 70). The largest cross-split Jaccard is 0.640 (Python) and 0.610 (gold Lean).
-2. **Teacher data (Valkyrie, D-015).** The prompt is experiment 103's frozen single-call prompt for the 539 train tasks, the same bytes the Qwen policy sees in experiments 01 and 05 and at evaluation. The route is `vb103_single_call` through a collect-only benchmark service on `skampere1`. Teachers are `anthropic/claude-opus-5-5-no-fallback` at maximum compute effort and GPT-6 Astra at the highest reasoning effort the registry serves. Each teacher runs 4 times over the manifest, so there are 4,312 declared cells.
+2. **Teacher data (Valkyrie, D-015).** The prompt is experiment 103's frozen single-call prompt for the 539 train tasks, the same bytes the Qwen policy sees in experiments 01 and 05 and at evaluation. The route is `vb103_single_call` through a collect-only benchmark service on `skampere1`. Teachers are `anthropic/claude-opus-5-5-no-fallback` at `xhigh` compute effort (the recorded lock-1 amendment A1) and GPT-6 Astra at the highest reasoning effort the registry serves. Each teacher runs 4 times over the manifest, so there are 4,312 declared cells.
 3. **Keep rule.** The frozen scorer (`--skip-tc`) and `rl4cv.rewards.reward_kernel_binary == 1`. Every kept file then passes the generated-Lean screen against the validation and test splits. Apply every eligibility filter before taking at most 2 distinct files per (task, teacher), in sample order, with `opus55` before `astra` for cross-teacher deduplication. Screen full assistant text as well as extracted Lean.
 4. **Matched SFT.** Qwen3-{1.7B, 4B, 8B, 14B}-Base, full-parameter, Varun's recipe: NeMo RL 0.4.0 SFT, AdamW 2×10⁻⁵, betas (0.9, 0.98), weight decay 0.1, clip 1.0, 3% warmup then cosine, global batch 2, maximum sequence length 16,384, assistant-only loss, one epoch in one fixed order. Checkpoints at 12.5 / 25 / 50 / 75 / 100% of assistant tokens. Only the GPU layout differs by size.
 5. **Validation.** Experiment 05's exact sampling (G = 8, T = 0.6, 12,288-token cap, thinking template on) on the 135 validation tasks for every checkpoint. Base 1.7B / 4B / 8B come from experiment 05's receipts; Base 14B is generated here. Gates are format, truncation and `kernel_binary` mixed-group share ≥ 0.05.
-6. **Test (once).** The selected π₀(N) and Base on the 222 test tasks, G = 8. Factors are IC_tests and IC_proofs from the kernel, and compile-gated formal specification coverage (FSC) from the validated `vb103_judge` (D-102). SCSC = (IC_tests · IC_proofs · FSC)^(1/3), always with its factors and n. Core and IndustrySet are reported separately.
+6. **Test (once).** The selected π₀(N) and Base on the 222 test tasks, G = 8. Factors are IC_tests and IC_proofs from the kernel, and compile-gated formal specification coverage (FSC) from the validated `vb103_judge` (D-102). The official SCSC aggregate is the geometric mean of the three factor means on one common known cohort, with compile-gated FSC, always with its factors and denominator. Core and IndustrySet are reported separately.
 7. **RL (version 2, after RL-READY).** Group-relative RL (GRPO) from π₀(N) on train-split prompts, `kernel_binary` reward first, validation monitoring, one test evaluation. It gets its own locked protocol.
 
 ## Compute and calls (estimate)
@@ -103,5 +103,10 @@ My guess at what is needed: the 25% rung (~1M tokens) teaches the file format; n
 | Teacher runs, scoring, SFT set | DONE: 4,312 terminal cells; 1,315 training examples |
 | Protocol lock 2, matched SFT | DONE: 658 updates/5,752,936 loss tokens at every size; all 20 exports complete |
 | Validation ladder, selection | DONE: all 20 trained rungs and 25,920 validation cells; frozen PARTIAL selection |
-| Test evaluation | IN PROGRESS: all 10,656 test kernel cells known; 50/50 train judge controls accepted; all 12 test-judge runs admitted for 4,302 ratings; final analysis pending |
-| RL (version 2) | Not started |
+| Test evaluation | DONE: all 10,656 test factor cells and 4,302 judge ratings known; all 60 fixed audit files per system; final analysis reproduced |
+| Execution cleanup | DONE: judge services/tunnels stopped, port claim archived, pipeline watchdog retired, monitor STOP recorded |
+| RL (version 2) | Not started; no common passing fraction and no follow-on study authorized |
+
+Version 1 is complete with PARTIAL selection: 8B step 658 and 14B step 334 are unmatched diagnostics; neither 1.7B nor 4B passes a rung. The final test table, intervals, audit, charges and preserved limitations are in [results.md](results.md); [all joined test factors](expt_v1/results/test_factor_cells.csv) are available without raw model text.
+
+**Live dependency retaining this canonical home:** the frozen D-013 split is consumed by `tests/test_splits.py` and `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/phase0_prepare.py`; that study also references these retained checkpoint/manifests. Moving this completed folder would break those active consumers, so it remains at this path. This does not reopen training or authorize a follow-on study.

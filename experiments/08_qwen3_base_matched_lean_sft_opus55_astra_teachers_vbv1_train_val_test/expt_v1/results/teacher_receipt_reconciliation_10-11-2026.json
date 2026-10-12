@@ -1,0 +1,183 @@
+{
+  "schema": 1,
+  "written_utc": "2026-10-12T04:46:10.802249+00:00",
+  "source_path": "scored_cells.jsonl",
+  "source_sha256": "de5146e8a251f0f369910fb211feca9c4a24fd288099eeefa91a7178febdf90e",
+  "legacy_analysis_sha256": "88a1692fdcdb73624984c55bdc6b0076cf325027d502bcd408612c143532dc79",
+  "legacy_analyzer_sha256": "40ca22fc864df434b47d5338a5f6fbe4020052605a4c3bbe541f7304f0b1c84b",
+  "correction": "Historical analyzer counted served=True as measured. All 4312 served flags are True. Response availability is the original measured Boolean; terminal status is reported separately. Original source and frozen SFT membership are unchanged.",
+  "declared_cells": 4312,
+  "response_available": 3841,
+  "response_unavailable": 471,
+  "terminal_status_counts": {
+    "measured": 3837,
+    "unmeasured_infra": 79,
+    "model_error": 347,
+    "incomplete": 49
+  },
+  "incomplete_with_response": [
+    {
+      "teacher": "opus55",
+      "sample": "s1",
+      "task_id": "humaneval_set__humaneval_27_flip_case",
+      "kept": true,
+      "extraction_consistent": true,
+      "response_text_sha256": "68d46ce8ba956da4d63a0ac60b09a16523a2049953d3157cff4aa1f275fb2bd6"
+    },
+    {
+      "teacher": "opus55",
+      "sample": "s1",
+      "task_id": "security_set__security_6858__vulnerabilities__103_unsafetcpreset",
+      "kept": false,
+      "extraction_consistent": true,
+      "response_text_sha256": "caee2b389ffdec244f576af597d5a58fe286dc249718ac95f2eb0cb8556e2f88"
+    },
+    {
+      "teacher": "opus55",
+      "sample": "s3",
+      "task_id": "humaneval_set__humaneval_29_filter_by_prefix",
+      "kept": true,
+      "extraction_consistent": true,
+      "response_text_sha256": "f3ec9de5581c58f97c3172d62d86ddf515ac35295061eb39a4551cef7fdbfc7f"
+    },
+    {
+      "teacher": "opus55",
+      "sample": "s4",
+      "task_id": "humaneval_set__humaneval_27_flip_case",
+      "kept": true,
+      "extraction_consistent": true,
+      "response_text_sha256": "afb4808cab5860a472692d29dbe114c5449141b2408909794db9df7974406a7c"
+    }
+  ],
+  "per_run": {
+    "opus55/s1": {
+      "declared": 539,
+      "response_available": 432,
+      "response_unavailable": 107,
+      "kept": 303,
+      "kept_over_available": 0.7013888888888888,
+      "wilson95": [
+        0.6566120776244686,
+        0.7426156609358272
+      ],
+      "terminal_status_counts": {
+        "measured": 430,
+        "unmeasured_infra": 12,
+        "model_error": 90,
+        "incomplete": 7
+      }
+    },
+    "opus55/s2": {
+      "declared": 539,
+      "response_available": 426,
+      "response_unavailable": 113,
+      "kept": 287,
+      "kept_over_available": 0.6737089201877934,
+      "wilson95": [
+        0.6278059571746939,
+        0.7165070376331693
+      ],
+      "terminal_status_counts": {
+        "measured": 426,
+        "unmeasured_infra": 11,
+        "incomplete": 15,
+        "model_error": 87
+      }
+    },
+    "opus55/s3": {
+      "declared": 539,
+      "response_available": 432,
+      "response_unavailable": 107,
+      "kept": 304,
+      "kept_over_available": 0.7037037037037037,
+      "wilson95": [
+        0.6590018482514253,
+        0.7448147148900235
+      ],
+      "terminal_status_counts": {
+        "measured": 431,
+        "unmeasured_infra": 12,
+        "model_error": 83,
+        "incomplete": 13
+      }
+    },
+    "opus55/s4": {
+      "declared": 539,
+      "response_available": 429,
+      "response_unavailable": 110,
+      "kept": 306,
+      "kept_over_available": 0.7132867132867133,
+      "wilson95": [
+        0.668748819006593,
+        0.7540387773409801
+      ],
+      "terminal_status_counts": {
+        "measured": 428,
+        "unmeasured_infra": 10,
+        "model_error": 87,
+        "incomplete": 14
+      }
+    },
+    "astra/s1": {
+      "declared": 539,
+      "response_available": 533,
+      "response_unavailable": 6,
+      "kept": 206,
+      "kept_over_available": 0.38649155722326456,
+      "wilson95": [
+        0.346104492986199,
+        0.42850307876850974
+      ],
+      "terminal_status_counts": {
+        "measured": 533,
+        "unmeasured_infra": 6
+      }
+    },
+    "astra/s2": {
+      "declared": 539,
+      "response_available": 530,
+      "response_unavailable": 9,
+      "kept": 207,
+      "kept_over_available": 0.3905660377358491,
+      "wilson95": [
+        0.34996011013619943,
+        0.4327469125759622
+      ],
+      "terminal_status_counts": {
+        "measured": 530,
+        "unmeasured_infra": 9
+      }
+    },
+    "astra/s3": {
+      "declared": 539,
+      "response_available": 526,
+      "response_unavailable": 13,
+      "kept": 193,
+      "kept_over_available": 0.3669201520912547,
+      "wilson95": [
+        0.3268352926440301,
+        0.4089347237386154
+      ],
+      "terminal_status_counts": {
+        "unmeasured_infra": 13,
+        "measured": 526
+      }
+    },
+    "astra/s4": {
+      "declared": 539,
+      "response_available": 533,
+      "response_unavailable": 6,
+      "kept": 198,
+      "kept_over_available": 0.3714821763602251,
+      "wilson95": [
+        0.331516924832661,
+        0.4132866894681249
+      ],
+      "terminal_status_counts": {
+        "measured": 533,
+        "unmeasured_infra": 6
+      }
+    }
+  },
+  "method": "Response available uses scored_cells.measured, not served. Wilson 95% intervals for kept/available use z=1.959964, unit=task within each run, descriptive only; p-val=n/a."
+}
