@@ -1,0 +1,1562 @@
+{
+  "experiment": "08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test",
+  "files": {
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base14b_test_cells.csv": {
+      "head_blob_sha256": "93c639b8a8bc4b644371fb49bcac0fc78fb86b68a30d0e348328d04dab629089",
+      "head_matches": true,
+      "runtime_sha256": "93c639b8a8bc4b644371fb49bcac0fc78fb86b68a30d0e348328d04dab629089"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base14b_test_per_task.csv": {
+      "head_blob_sha256": "d67bcd9ad96600fb80abb75c675870aad068626a99e1ee38ff327be1f500b9d2",
+      "head_matches": true,
+      "runtime_sha256": "d67bcd9ad96600fb80abb75c675870aad068626a99e1ee38ff327be1f500b9d2"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_1p7B_e05_test_cells.csv": {
+      "head_blob_sha256": "fbf8c28e450c4ee9821813731545892942699901a3c375710c645755ae608b8d",
+      "head_matches": true,
+      "runtime_sha256": "fbf8c28e450c4ee9821813731545892942699901a3c375710c645755ae608b8d"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_1p7B_e05_test_per_task.csv": {
+      "head_blob_sha256": "94d0197ef73d964df44d7560afe14b8146c0632e55306bb16cb9f8f236d145ba",
+      "head_matches": true,
+      "runtime_sha256": "94d0197ef73d964df44d7560afe14b8146c0632e55306bb16cb9f8f236d145ba"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_4B_e05_test_cells.csv": {
+      "head_blob_sha256": "09ecff4135aadd369025cc45092d5bee5847eb490b9b51c24df718e6e6d51c93",
+      "head_matches": true,
+      "runtime_sha256": "09ecff4135aadd369025cc45092d5bee5847eb490b9b51c24df718e6e6d51c93"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_4B_e05_test_per_task.csv": {
+      "head_blob_sha256": "d9c14e6834ed63ccd337b6437cf7117f1fb63578055d782f458313d95096c88b",
+      "head_matches": true,
+      "runtime_sha256": "d9c14e6834ed63ccd337b6437cf7117f1fb63578055d782f458313d95096c88b"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_8B_e05_test_cells.csv": {
+      "head_blob_sha256": "65eb7d9e1e21bb812030a3e2bccb1c16485fb6d66f45e55f3f126abd8b71e9bd",
+      "head_matches": true,
+      "runtime_sha256": "65eb7d9e1e21bb812030a3e2bccb1c16485fb6d66f45e55f3f126abd8b71e9bd"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_8B_e05_test_per_task.csv": {
+      "head_blob_sha256": "fff6f5f6fd8f5544d02c9c9ef2c23307c3df6ea8ff09f854d62e061ad0ae415a",
+      "head_matches": true,
+      "runtime_sha256": "fff6f5f6fd8f5544d02c9c9ef2c23307c3df6ea8ff09f854d62e061ad0ae415a"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/test_sft_14B_f0p5_test_cells.csv": {
+      "head_blob_sha256": "0a28f42649a5f46a1ddaa5d2d90b2546aa7272af19e425ac200d3c1a5c2ac294",
+      "head_matches": true,
+      "runtime_sha256": "0a28f42649a5f46a1ddaa5d2d90b2546aa7272af19e425ac200d3c1a5c2ac294"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/test_sft_14B_f0p5_test_per_task.csv": {
+      "head_blob_sha256": "fa82ac479a13c3c9b2087fc44b6968c3405c892ce073c5dba3b390f865f958a8",
+      "head_matches": true,
+      "runtime_sha256": "fa82ac479a13c3c9b2087fc44b6968c3405c892ce073c5dba3b390f865f958a8"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/test_sft_8B_f1p0_test_cells.csv": {
+      "head_blob_sha256": "d4b961930c758a8bdc6214f74a65887ad278416ec30acda4669b81027cd2fc2f",
+      "head_matches": true,
+      "runtime_sha256": "d4b961930c758a8bdc6214f74a65887ad278416ec30acda4669b81027cd2fc2f"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/test_sft_8B_f1p0_test_per_task.csv": {
+      "head_blob_sha256": "9bee6468b637feae4287cb45cff78e79617af69e87be2d69e4a1e26cd8dd21ef",
+      "head_matches": true,
+      "runtime_sha256": "9bee6468b637feae4287cb45cff78e79617af69e87be2d69e4a1e26cd8dd21ef"
+    },
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/test_ladder_kernel.json": {
+      "head_blob_sha256": "9790b049f05cf306f233f6e5525ba7ff8bb18059d7d19952281c938e496dbb70",
+      "head_matches": true,
+      "runtime_sha256": "9790b049f05cf306f233f6e5525ba7ff8bb18059d7d19952281c938e496dbb70"
+    }
+  },
+  "frozen_hashes": {
+    "ladder_manifest.json": "3013db1230f27cf021ace50ff53abcc6de2e9f6964ac62968baa80ccb577a948",
+    "selection.json": "47e12d6c217a3e62e47e0d5bcef13478f2ecf52098b7ac6163df91e216e21cdb",
+    "split/vbv1_test_task_ids.txt": "303a6c666d6902bb62e64a37091167a6150e652f1c3b1311c0a62e8c7fccd095",
+    "test_manifest.json": "ed128d11e8d5d09e7d19244f5480f24360f01530510240a9d1176b0a446136fa",
+    "validation_ladder.json": "8b5386f73f2dc9072a2a81aa33912ef8658cfa7b1983f93248ad89142fa503e3"
+  },
+  "judge_controls": {
+    "H2_opus55_max": {
+      "categories": {
+        "control_blank": {
+          "declared": 5,
+          "known": 5,
+          "min_fraction": 0.9,
+          "ok": 5,
+          "pass": true
+        },
+        "control_halfdel": {
+          "declared": 5,
+          "known": 5,
+          "min_fraction": 0.8,
+          "ok": 4,
+          "pass": true
+        },
+        "control_oracle": {
+          "declared": 5,
+          "known": 5,
+          "min_fraction": 0.9,
+          "ok": 5,
+          "pass": true
+        },
+        "control_shuffled": {
+          "declared": 5,
+          "known": 5,
+          "min_fraction": 0.9,
+          "ok": 5,
+          "pass": true
+        },
+        "control_vacuous": {
+          "declared": 5,
+          "known": 5,
+          "min_fraction": 0.9,
+          "ok": 5,
+          "pass": true
+        }
+      },
+      "declared": 25,
+      "exact_keys": true,
+      "measured": 25,
+      "request_envelope_and_returned_no_fallback_receipts_match": true,
+      "requests_sent": 25,
+      "run_id": "e30e4c47-e2da-4bc1-b0a9-9c9b8fcb8208"
+    },
+    "H2_sol_high": {
+      "categories": {
+        "control_blank": {
+          "declared": 5,
+          "known": 5,
+          "min_fraction": 0.9,
+          "ok": 5,
+          "pass": true
+        },
+        "control_halfdel": {
+          "declared": 5,
+          "known": 5,
+          "min_fraction": 0.8,
+          "ok": 4,
+          "pass": true
+        },
+        "control_oracle": {
+          "declared": 5,
+          "known": 5,
+          "min_fraction": 0.9,
+          "ok": 5,
+          "pass": true
+        },
+        "control_shuffled": {
+          "declared": 5,
+          "known": 5,
+          "min_fraction": 0.9,
+          "ok": 5,
+          "pass": true
+        },
+        "control_vacuous": {
+          "declared": 5,
+          "known": 5,
+          "min_fraction": 0.9,
+          "ok": 5,
+          "pass": true
+        }
+      },
+      "declared": 25,
+      "exact_keys": true,
+      "measured": 25,
+      "request_envelope_and_returned_no_fallback_receipts_match": true,
+      "requests_sent": 25,
+      "run_id": "7e85dd9e-58d8-4a6c-a4e1-d5b253b37fe7"
+    }
+  },
+  "judge_identity_limit": "Provider-returned model/effort fields are unavailable; evidence verifies frozen request envelope and returned no-fallback receipt.",
+  "kernel_commit": "18a8e1e594670bf3ef8769c6a888989dcba87cff",
+  "latest_verified_utc": "2026-10-12T03:10:44.587665+00:00",
+  "limitations": [
+    "Frozen PARTIAL selection admits unmatched diagnostics only.",
+    "Shared native query/key normalization-state restoration limitation; actual drift unmeasured.",
+    "No overall experiment08 study time/device cap.",
+    "Probe accounting unchanged:1783.907/1800seconds.",
+    "Experiments06/09closed."
+  ],
+  "new_cells": 5328,
+  "new_systems_complete": 3,
+  "numeric_kernel_checks": {
+    "base14b": {
+      "binary_kernel_known": true,
+      "finite_kernel_factors_within_unit_interval": true,
+      "rows": 1776
+    },
+    "base_1p7B_e05": {
+      "binary_kernel_known": true,
+      "finite_kernel_factors_within_unit_interval": true,
+      "rows": 1776
+    },
+    "base_4B_e05": {
+      "binary_kernel_known": true,
+      "finite_kernel_factors_within_unit_interval": true,
+      "rows": 1776
+    },
+    "base_8B_e05": {
+      "binary_kernel_known": true,
+      "finite_kernel_factors_within_unit_interval": true,
+      "rows": 1776
+    },
+    "test_sft_14B_f0p5": {
+      "binary_kernel_known": true,
+      "finite_kernel_factors_within_unit_interval": true,
+      "rows": 1776
+    },
+    "test_sft_8B_f1p0": {
+      "binary_kernel_known": true,
+      "finite_kernel_factors_within_unit_interval": true,
+      "rows": 1776
+    }
+  },
+  "observed_utc": "2026-10-12T02:47:21.153382+00:00",
+  "previous_sample_table_hashes_matched": 21,
+  "provenance": [
+    {
+      "path": "/tmp/e08_full_test_kernel_verify_10-11-2026_1950.json",
+      "sha256": "33752ebb548770a9d68eb81ac493b0e2a71738a29c09c47184420d9c0d34c2e4"
+    },
+    {
+      "path": "/tmp/e08_parent_poll_10-11-2026_1946.json",
+      "sha256": "2f384bd0d4ad1099ee469bc044f3434e62f0e93fa8f97afa436c30c2679c8b50"
+    },
+    {
+      "path": "/tmp/e08_health_1942pdt_10-11-2026_04sj5cs6.json",
+      "sha256": "961de0a72b234a7310b381331ef5b5817110e5b7dfa3de5b5e0335e33da38203"
+    },
+    {
+      "path": "/tmp/e08_pipeline_environment_diagnostic_10-11-2026.json",
+      "sha256": "151a21a9368b87fde227ba13b402d3f9ad57dcd2c4f5790f62479444fc71e0b2"
+    },
+    {
+      "path": "/tmp/e08_controls_owner_verification_10-11-2026.json",
+      "sha256": "badb3d25e9b35ffef103ab2cb909e2603d0190bf0e3a0fce5c2b4f6459f823e6"
+    },
+    {
+      "path": "/tmp/e08_repair_test_verification_10-11-2026.json",
+      "sha256": "a3bc887fb72c206ec334ecac3c495caea99586b667ac5cae2d08ecf16ce8b092"
+    },
+    {
+      "path": "/tmp/e08_controls_evidence_10-11-2026.json",
+      "sha256": "656ebf68729d052b8ed96a6d5f08f714ae27f4ae7a55a35d48e0909a8dc3d265"
+    },
+    {
+      "path": "/tmp/e08_controls_pack_parent_verification_10-11-2026.json",
+      "sha256": "ed18c0f2c9606299712f94a0e792a25c8692b4db3e7f7322cc25ab81fedc1c2f"
+    },
+    {
+      "path": "/tmp/e08_controls_admission_verification_10-11-2026.json",
+      "sha256": "4b27023114ab7ace369b3fcde33fadbbc68536be4f524071724f7a695743f3f2"
+    },
+    {
+      "path": "/tmp/e08_controls_owner_closure_verification_10-11-2026.json",
+      "sha256": "11bd90007355e6280a02a46d8139ae8d78b7a7b3b656f9ed6106e26fb6e929af"
+    },
+    {
+      "path": "/tmp/e08_judge_test_launch_observation_10-11-2026.json",
+      "sha256": "b7906b62b2ccbc97783d66135127f6025df9dd81f6670b327cfea8dc6af2da62"
+    },
+    {
+      "path": "/tmp/e08_selected8b_admission_owner_observation_10-11-2026.json",
+      "sha256": "83a4db391a4251c18372d8b9527c1727943136df355b0fac3a1f17244bd189e3"
+    }
+  ],
+  "publication_at_observation": "local commit only; pipeline test suite failed seven tests",
+  "publication_environment_diagnostic": {
+    "adapter_probe_source": [
+      "54: def _probe(source: Path, *, lake_dir: Path, lake: str = \"lake\") -> list[dict[str, Any]]:",
+      "55:     \"\"\"Run the pinned Lean parser helper; parser errors are terminal, not guessed around.\"\"\"",
+      "56:     completed = subprocess.run(",
+      "57:         [\"nice\", \"-n\", \"10\", lake, \"env\", \"lean\", \"--run\", str(PROBE), str(source)], cwd=lake_dir,",
+      "58:         capture_output=True, text=True, check=False, timeout=900,",
+      "59:     )",
+      "60:     if completed.returncode:",
+      "61:         raise AdapterError(f\"Lean parser probe failed rc={completed.returncode}: {completed.stderr[-500:]}\")",
+      "62:     rows: list[dict[str, Any]] = []",
+      "63:     try:",
+      "64:         for line in completed.stdout.splitlines():",
+      "65:             if line.strip():",
+      "66:                 rows.append(json.loads(line))",
+      "67:     except json.JSONDecodeError as exc:",
+      "68:         raise AdapterError(\"Lean parser probe emitted non-JSON output\") from exc",
+      "69:     if not rows or rows[-1].get(\"event\") != \"terminal\" or rows[-1].get(\"parse_error\") is not False:",
+      "70:         raise AdapterError(\"Lean parser recovered from malformed source; declaration evidence is unknown\")"
+    ],
+    "fixtures_and_lake_dir_exist": {
+      "/lfs/skampere1/0/brando9/agent-recovery-10-09-2026/workers/rl4cv13_review/phase0_controls/fixtures/valid.lean": true,
+      "/lfs/skampere1/0/brando9/rl4cv_e08/grading/lean_src": true,
+      "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/external/veribench_scorer": true
+    },
+    "observed_utc": "2026-10-12T02:49:45.718872+00:00",
+    "pipeline_environment_allowlist": {
+      "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+    },
+    "pipeline_failure_log_excerpt": [
+      "[2026-10-12T02:46:35+00:00] make test FAILED (rc=2); committed locally, NOT pushed: ter.py::test_source_hash_and_malformed_source_are_rejected",
+      "7 failed, 261 passed, 4 skipped in 37.66s",
+      "[2026-10-12T02:48:14+00:00] deploy judge-controls (veribench-rl4cv-e08-controls, port 9741, 25 tasks): rc=0 d__r1\", \"judge__ctl_oracle_humaneval_set__humaneval_0_hascloseelements__r1\", \"judge__ctl_vacuous_security_set__security_6858__safe__0_unsafecopy_safe__r1\"]}, \"required_min_s\": 6600, \"limit_ok\": true}} ",
+      "[2026-10-12T02:48:15+00:00] admit controls rc=1: "
+    ],
+    "publish_test_path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+    "publish_test_resolution": {
+      "elan": null,
+      "lake": null,
+      "lean": null,
+      "python": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python"
+    }
+  },
+  "publication_verified": {
+    "files": [
+      {
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/controls_check.json",
+        "runtime_local_main_match": true,
+        "sha256": "7f8f5fd310399dd1f534152c0997d4ac665b6d5ac370ecdbbbca422ef2293f1c"
+      },
+      {
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/judge_pack_controls.json",
+        "runtime_local_main_match": true,
+        "sha256": "4fe824fc1a7e720da12b25a518fca886ab939a9867a00b0650e84682a5c72047"
+      },
+      {
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/harvests/cells_controls__H2_sol_high.json",
+        "runtime_local_main_match": true,
+        "sha256": "5b4844a134afa4a17654b128b8b9a1ae2c38abfa313a827d967fff4954e1c76b"
+      },
+      {
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/harvests/cells_controls__H2_opus55_max.json",
+        "runtime_local_main_match": true,
+        "sha256": "7e2cfd99bce541aa0cdf231dc7d6c92114bfa3ce7653af70f22f68f88b14c8b8"
+      },
+      {
+        "local_matches_original_kernel_commit": true,
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/test_ladder_kernel.json",
+        "sha256": "9790b049f05cf306f233f6e5525ba7ff8bb18059d7d19952281c938e496dbb70"
+      },
+      {
+        "local_matches_original_kernel_commit": true,
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base14b_test_cells.csv",
+        "sha256": "93c639b8a8bc4b644371fb49bcac0fc78fb86b68a30d0e348328d04dab629089"
+      },
+      {
+        "local_matches_original_kernel_commit": true,
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_1p7B_e05_test_cells.csv",
+        "sha256": "fbf8c28e450c4ee9821813731545892942699901a3c375710c645755ae608b8d"
+      },
+      {
+        "local_matches_original_kernel_commit": true,
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_4B_e05_test_cells.csv",
+        "sha256": "09ecff4135aadd369025cc45092d5bee5847eb490b9b51c24df718e6e6d51c93"
+      },
+      {
+        "local_matches_original_kernel_commit": true,
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_8B_e05_test_cells.csv",
+        "sha256": "65eb7d9e1e21bb812030a3e2bccb1c16485fb6d66f45e55f3f126abd8b71e9bd"
+      },
+      {
+        "local_matches_original_kernel_commit": true,
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/test_sft_14B_f0p5_test_cells.csv",
+        "sha256": "0a28f42649a5f46a1ddaa5d2d90b2546aa7272af19e425ac200d3c1a5c2ac294"
+      },
+      {
+        "local_matches_original_kernel_commit": true,
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/test_sft_8B_f1p0_test_cells.csv",
+        "sha256": "d4b961930c758a8bdc6214f74a65887ad278416ec30acda4669b81027cd2fc2f"
+      },
+      {
+        "local_matches_original_kernel_commit": true,
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base14b_test_per_task.csv",
+        "sha256": "d67bcd9ad96600fb80abb75c675870aad068626a99e1ee38ff327be1f500b9d2"
+      },
+      {
+        "local_matches_original_kernel_commit": true,
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_1p7B_e05_test_per_task.csv",
+        "sha256": "94d0197ef73d964df44d7560afe14b8146c0632e55306bb16cb9f8f236d145ba"
+      },
+      {
+        "local_matches_original_kernel_commit": true,
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_4B_e05_test_per_task.csv",
+        "sha256": "d9c14e6834ed63ccd337b6437cf7117f1fb63578055d782f458313d95096c88b"
+      },
+      {
+        "local_matches_original_kernel_commit": true,
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/base_8B_e05_test_per_task.csv",
+        "sha256": "fff6f5f6fd8f5544d02c9c9ef2c23307c3df6ea8ff09f854d62e061ad0ae415a"
+      },
+      {
+        "local_matches_original_kernel_commit": true,
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/test_sft_14B_f0p5_test_per_task.csv",
+        "sha256": "fa82ac479a13c3c9b2087fc44b6968c3405c892ce073c5dba3b390f865f958a8"
+      },
+      {
+        "local_matches_original_kernel_commit": true,
+        "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/test_sft_8B_f1p0_test_per_task.csv",
+        "sha256": "9bee6468b637feae4287cb45cff78e79617af69e87be2d69e4a1e26cd8dd21ef"
+      }
+    ],
+    "main_verified": "5552fd294a7394da0d8eaedf41d0569395cd38f8"
+  },
+  "recovery_followup": {
+    "admission_verification": {
+      "bundle_hashes": {
+        "contract.yaml": {
+          "downloaded_sha256": "cadb016cc6aa991d94f32390dae2fb25cfe3e9d71de828153c2ed2cba37cf05f",
+          "frozen_source_sha256": "cadb016cc6aa991d94f32390dae2fb25cfe3e9d71de828153c2ed2cba37cf05f",
+          "matches_recorded_and_frozen": true
+        },
+        "judge_call.py": {
+          "downloaded_sha256": "9314c8107eef1c940a98a5f0dfba84546bc315aef5637405c97987f34a02b061",
+          "frozen_source_sha256": "9314c8107eef1c940a98a5f0dfba84546bc315aef5637405c97987f34a02b061",
+          "matches_recorded_and_frozen": true
+        },
+        "setup.sh": {
+          "downloaded_sha256": "78329d7b038de0d635f3e0d1eb1306ee708e3dc16b0c4b3168d01c598b32c999",
+          "frozen_source_sha256": "78329d7b038de0d635f3e0d1eb1306ee708e3dc16b0c4b3168d01c598b32c999",
+          "matches_recorded_and_frozen": true
+        }
+      },
+      "contract_route_lines": [
+        "run_cmd: env MODEL_GATEWAY_URL=https://dev.model-gateway.vals.ai python3 /bundle/vb103_judge/judge_call.py",
+        "MODEL_GATEWAY_API_KEY: fellows/brandoModelGatewayApiKey"
+      ],
+      "findings_sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba",
+      "observed_utc": "2026-10-12T03:04:04.200148+00:00",
+      "original_committed_cli_excerpt": "def env() -> dict[str, str]:\n    out = {k: v for k, v in os.environ.items() if k not in PROVIDER_ENV}\n    out.update(VALKYRIE_ENV=\"bench\", VALKYRIE_CONFIG_PATH=str(WORK / \"private\" / \"valkyrie.yaml\"))\n    return out\n\n\ndef cli(args: list[str], timeout: int = 1800) -> subprocess.CompletedProcess:\n    return subprocess.run([\"valk\"] + args, env=env(), stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=timeout)\n\n\ndef load_state() -> dict:",
+      "original_pipeline_environment_allowlist": {
+        "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+      },
+      "original_sol_fields_preserved": {
+        "admitted_at": true,
+        "benchmark": true,
+        "command": true,
+        "concurrency": true,
+        "config": true,
+        "expected_cells": true,
+        "kwargs": true,
+        "selector": true,
+        "suite": true,
+        "task_ids_sha256": true
+      },
+      "owner_processes": [
+        {
+          "pid": 2364830,
+          "ppid": 2362730,
+          "start_ticks": 1199445,
+          "state": "S"
+        },
+        {
+          "pid": 2364845,
+          "ppid": 2364830,
+          "start_ticks": 1199449,
+          "state": "S"
+        }
+      ],
+      "phase_result_present": false,
+      "preexec_evidence_caveat": "Original launch stderr/traceback was not persisted. Pre-exec nonexecution is reconstructed from unchanged inherited PATH, absence of a resolvable valk executable, pinned subprocess source, saved admitting state, empty-output rc1 and two pre-recovery empty tracker listings; do not label the recorded FileNotFoundError a saved original traceback.",
+      "prior_failure": [
+        {
+          "admitted_at": "2026-10-12T02:48:14+00:00",
+          "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/judge_recovery_plan.json",
+          "evidence_sha256": "e683be67564fd7701f57df8aec1c70f18bf857c3728bc65f24ee32279141f8ed",
+          "phase": "preexec_failed",
+          "requests_sent": 0,
+          "subprocess_started": false
+        }
+      ],
+      "private_config_matches_plan": true,
+      "private_config_sha256": "24b206e5051c47d635c3f1a8e95055c95e503495a83a919fcf845ea30a1d4a09",
+      "recovery_attempts": 1,
+      "valk_resolves_in_original_PATH": null
+    },
+    "owner_closure": {
+      "inherited_identity_receipt": {
+        "actual_account": "brando@vals.ai",
+        "actual_effort": "ultra",
+        "actual_model": "gpt-6-astra",
+        "approval": "never",
+        "first_useful_sha256": "607faaced506d72a8b6c94ac81ff6f4d53cde52dc4fb5e144562c4105dcd58b3",
+        "input_caveat": "Four stable repository hashes and leases hash matched; mutable pipeline/state hash advanced before acknowledgment, explicitly recorded by owner.",
+        "path": "/tmp/e08_controls_owner_verification_10-11-2026.json",
+        "prompt_sha256": "5c7b3e0c620b1ef3efbbe170de753e814673e0ce97d9461576a79bdf4c4b7cfa",
+        "sandbox": "danger-full-access",
+        "sha256": "badb3d25e9b35ffef103ab2cb909e2603d0190bf0e3a0fce5c2b4f6459f823e6"
+      },
+      "observed_utc": "2026-10-12T03:08:42.144295+00:00",
+      "owner_publication_check": {
+        "commit": "5552fd294a7394da0d8eaedf41d0569395cd38f8",
+        "description": "Experiment 08 \u00a7 10: judge test pack built (every IC_tests = 1 cell + the 60-cell audit per system; 3 repeats \u00d7 2 members)",
+        "files": [
+          {
+            "commit_sha256": "a2b5d4afd927d1fd53305e3e78e2311bb37ea9698d91b4c2517a78387353955e",
+            "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/judge/judge_pack_test.json",
+            "runtime_sha256": "a2b5d4afd927d1fd53305e3e78e2311bb37ea9698d91b4c2517a78387353955e"
+          }
+        ],
+        "observed_utc": "2026-10-12T03:10:04.059577+00:00",
+        "phase_result.json": {
+          "present": false
+        },
+        "receipt.json": {
+          "present": false
+        }
+      },
+      "processes": {
+        "2364830": {
+          "ppid": 2362730,
+          "start_ticks": 1199445,
+          "state": "S"
+        },
+        "2364845": {
+          "ppid": 2364830,
+          "start_ticks": 1199449,
+          "state": "S"
+        },
+        "28223": {
+          "ppid": 28222,
+          "start_ticks": 24891,
+          "state": "S"
+        }
+      }
+    },
+    "publication_monitor_followup": {
+      "advertised_main": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "5552fd294a7394da0d8eaedf41d0569395cd38f8\trefs/heads/main"
+      },
+      "findings_sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba",
+      "monitor": {
+        "attempts": [
+          {
+            "number": 1,
+            "profile": "personal_codex",
+            "status": "INELIGIBLE"
+          },
+          {
+            "number": 2,
+            "profile": "vals_codex",
+            "status": "RUNNING_UNVERIFIED"
+          }
+        ],
+        "deadline_utc": "2026-10-12T04:00:01.890898+00:00",
+        "incident_id": "6ca5cdbf-0415-4a2e-83c9-c0c95c937d20",
+        "owner": {
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "pid": 2364830,
+          "ppid": 2362730,
+          "session": 2364830,
+          "start_ticks": 1199445
+        },
+        "status": "OBSERVING"
+      },
+      "observed_utc": "2026-10-12T03:09:34.381276+00:00",
+      "phase_result_present": false,
+      "recorded_identities": {
+        "absent": 81,
+        "count": 85,
+        "different_identity": 0,
+        "matching_live": [
+          {
+            "pid": 2364845,
+            "ppid": 2364830,
+            "start_ticks": 1199449,
+            "state": "S"
+          },
+          {
+            "pid": 2367837,
+            "ppid": 2364845,
+            "start_ticks": 1200204,
+            "state": "S"
+          },
+          {
+            "pid": 2653194,
+            "ppid": 2364845,
+            "start_ticks": 1311679,
+            "state": "S"
+          },
+          {
+            "pid": 2364830,
+            "ppid": 2362730,
+            "start_ticks": 1199445,
+            "state": "S"
+          }
+        ]
+      }
+    }
+  },
+  "recovery_incident": {
+    "account": {
+      "email": "brando@vals.ai",
+      "hash_matches": true,
+      "ordinaryUsageAllowed": true
+    },
+    "actual_processes": [
+      {
+        "codex_home": "/lfs/skampere1/0/brando9/.codex-vals",
+        "exists": true,
+        "expected_start": 1199445,
+        "identity_matches": true,
+        "pid": 2364830,
+        "ppid": 2362730,
+        "start_ticks": 1199445,
+        "state": "S"
+      },
+      {
+        "codex_home": "/lfs/skampere1/0/brando9/.codex-vals",
+        "exists": true,
+        "expected_start": 1199449,
+        "identity_matches": true,
+        "pid": 2364845,
+        "ppid": 2364830,
+        "start_ticks": 1199449,
+        "state": "S"
+      },
+      {
+        "codex_home": null,
+        "exists": true,
+        "expected_start": 24891,
+        "identity_matches": true,
+        "pid": 28223,
+        "ppid": 28222,
+        "start_ticks": 24891,
+        "state": "S"
+      }
+    ],
+    "attempts": [
+      {
+        "ended_utc": "2026-10-12T02:50:02.304785+00:00",
+        "number": 1,
+        "profile": "personal_codex",
+        "started_utc": "2026-10-12T02:50:01.891634+00:00",
+        "status": "INELIGIBLE"
+      },
+      {
+        "ended_utc": null,
+        "number": 2,
+        "profile": "vals_codex",
+        "started_utc": "2026-10-12T02:50:02.305612+00:00",
+        "status": "RUNNING_UNVERIFIED"
+      }
+    ],
+    "candidate": {
+      "files": [
+        {
+          "actual": "61b0194f3bb6534439c8d26a3ed57d0805f84b884588b761795323eeb92fcf70",
+          "expected": "61b0194f3bb6534439c8d26a3ed57d0805f84b884588b761795323eeb92fcf70",
+          "match": true,
+          "path": "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/codex"
+        },
+        {
+          "actual": "3188814c35471432d4123203e0eb38e5bddc60226e3d7ddf0e59e649ea140022",
+          "expected": "3188814c35471432d4123203e0eb38e5bddc60226e3d7ddf0e59e649ea140022",
+          "match": true,
+          "path": "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/bin/codex"
+        },
+        {
+          "actual": "700e02f9b949575ed17989c71a2ebdb118100e4e8862dd2d7a9a252a8246d4af",
+          "expected": "700e02f9b949575ed17989c71a2ebdb118100e4e8862dd2d7a9a252a8246d4af",
+          "match": true,
+          "path": "/dfs/scratch0/brando9/bin/codexd-vals"
+        },
+        {
+          "actual": "17edc1bf784591d51bcf9f50b60ab9c27ae97d3169fa6fa87c5bf4bbcfe9f301",
+          "expected": "17edc1bf784591d51bcf9f50b60ab9c27ae97d3169fa6fa87c5bf4bbcfe9f301",
+          "match": true,
+          "path": "/lfs/skampere1/0/brando9/.local/bin/codexd-vals"
+        }
+      ],
+      "fingerprint": "2d8fc90eaa50f7b3aa7f451fe5e1fe256fb7241abcd9b1b72271f15fa6e77b06",
+      "recorded": "2d8fc90eaa50f7b3aa7f451fe5e1fe256fb7241abcd9b1b72271f15fa6e77b06"
+    },
+    "created_utc": "2026-10-12T02:50:01.890885+00:00",
+    "deadline_matches_handoff": true,
+    "deadline_utc": "2026-10-12T04:00:01.890898+00:00",
+    "findings": {
+      "ack_hash_matches": true,
+      "acknowledged": true,
+      "sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba"
+    },
+    "first_action": {
+      "exists": true,
+      "first_action": {
+        "native_session_id": "01a12e04-6cc2-72c0-a063-917ba75e390d",
+        "outputs": [
+          {
+            "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/first_action_check.json",
+            "sha256": "607faaced506d72a8b6c94ac81ff6f4d53cde52dc4fb5e144562c4105dcd58b3"
+          }
+        ]
+      },
+      "first_action_sha256": "6b45479403e2af6c709c53c1a8c0d8741c72bfe2566a989d43a2174cae3bef35",
+      "output_metadata": [
+        {
+          "check": "Frozen split exact hash/counts and completed validation rung state",
+          "limitations": "Rung-state completion is an initial deterministic check; cell-level reconciliation follows. No scientific call or resource probe.",
+          "pipeline_boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "pipeline_last_tick": "2026-10-12T02:50:19+00:00",
+          "pipeline_pid": 28223,
+          "protocol_sha256": "f6c1f85c4d165d3d6706151105a47b92a3a08fa6c66fc6e85ffcb7bd52df27ce",
+          "rung_states": {
+            "ladder_val_sft_14B_f0p125": "done",
+            "ladder_val_sft_14B_f0p25": "done",
+            "ladder_val_sft_14B_f0p5": "done",
+            "ladder_val_sft_14B_f0p75": "done",
+            "ladder_val_sft_14B_f1p0": "done",
+            "ladder_val_sft_1p7B_f0p125": "done",
+            "ladder_val_sft_1p7B_f0p25": "done",
+            "ladder_val_sft_1p7B_f0p5": "done",
+            "ladder_val_sft_1p7B_f0p75": "done",
+            "ladder_val_sft_1p7B_f1p0": "done",
+            "ladder_val_sft_4B_f0p125": "done",
+            "ladder_val_sft_4B_f0p25": "done",
+            "ladder_val_sft_4B_f0p5": "done",
+            "ladder_val_sft_4B_f0p75": "done",
+            "ladder_val_sft_4B_f1p0": "done",
+            "ladder_val_sft_8B_f0p125": "done",
+            "ladder_val_sft_8B_f0p25": "done",
+            "ladder_val_sft_8B_f0p5": "done",
+            "ladder_val_sft_8B_f0p75": "done",
+            "ladder_val_sft_8B_f1p0": "done"
+          },
+          "split_counts": {
+            "test": 222,
+            "train": 539,
+            "validation": 135
+          },
+          "split_sha256": "157ce781ed9e4ac93a1a1fe0c49f2ee2ae907be1260402485c8f6fa3d06e0e24",
+          "timestamp": "2026-10-12T02:51:45.609167+00:00"
+        }
+      ],
+      "output_verifications": [
+        {
+          "actual_sha256": "607faaced506d72a8b6c94ac81ff6f4d53cde52dc4fb5e144562c4105dcd58b3",
+          "match": true,
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/first_action_check.json",
+          "sha256": "607faaced506d72a8b6c94ac81ff6f4d53cde52dc4fb5e144562c4105dcd58b3"
+        }
+      ]
+    },
+    "handoff_prompt_hash_match": true,
+    "hashes": {
+      "account_check.json": "13f38fc655d2f60374fd907f80ac223f1e779595d50762ebf2dd3ac83d301d3e",
+      "ack.json": "dd2479ba9075febbfcf870ed2bd727d51938211b549effa46d571285e3093a52",
+      "handoff.json": "e765398c4eb2545b3d1980305987c8a2fabbe966dc7b6dfb10451d928c170fcb",
+      "prompt.md": "5c7b3e0c620b1ef3efbbe170de753e814673e0ce97d9461576a79bdf4c4b7cfa"
+    },
+    "incident_id": "6ca5cdbf-0415-4a2e-83c9-c0c95c937d20",
+    "native_runtime": {
+      "path": "/lfs/skampere1/0/brando9/.codex-vals/sessions/2026/10/11/rollout-2026-10-11T19-50-04-01a12e04-6cc2-72c0-a063-917ba75e390d.jsonl",
+      "session_meta": [
+        {
+          "cwd": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification",
+          "id": "01a12e04-6cc2-72c0-a063-917ba75e390d",
+          "model_provider": "openai",
+          "originator": "codex_exec",
+          "timestamp": "2026-10-12T02:50:04.360Z"
+        }
+      ],
+      "turn_context": [
+        {
+          "approval_policy": "never",
+          "cwd": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification",
+          "effort": "ultra",
+          "model": "gpt-6-astra",
+          "sandbox_policy": {
+            "type": "danger-full-access"
+          }
+        }
+      ]
+    },
+    "repository_input_revision": "18a8e1e594670bf3ef8769c6a888989dcba87cff",
+    "runtime_state_advanced": true,
+    "stable_repository_hashes_verified": 4,
+    "state": "IDENTITY_AND_FIRST_OUTPUT_VERIFIED; coordination ongoing"
+  },
+  "recovery_inference_limit": "Original admission stderr was not retained. Pre-execution failure is reconstructed from the original bare-valk source, inherited executable search path and two empty tracker inventories; no original traceback was independently verified.",
+  "remaining_work": [
+    "single owner reconciliation of selected8B judge admission failures",
+    "verified coordinator phase closure and repair publication",
+    "pinned Vals-funded test ratings",
+    "aligned item-by-factor outputs",
+    "verified final report"
+  ],
+  "repair_tests": {
+    "head": "18a8e1e594670bf3ef8769c6a888989dcba87cff",
+    "observed_utc": "2026-10-12T02:58:56.191896+00:00",
+    "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/6ca5cdbf-0415-4a2e-83c9-c0c95c937d20/2/make_test_pipeline_environment.log",
+    "sha256": "13e4f275367dec0c2a538ee1ff9a93a82ce522805a02514cbb6c8b476c1d7e1f",
+    "source_sha256": {
+      "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/judge_rl4cv_e08.py": "ea64c09f47b68a62154e07c8d8d9748e42a42190254183e16961d6ec514cc4a6",
+      "tests/test_e08_recovery_gates.py": "a48535650e2afff7e81a51dfef3f3e974acec9096880cbb6c68f9790cc94f770"
+    },
+    "tail": "python -m pytest -q\n........................................................................ [ 26%]\n........................................................................ [ 52%]\n........................................s............................... [ 79%]\n........................................................                 [100%]\n271 passed, 4 skipped in 158.26s (0:02:38)\n"
+  },
+  "reused_scoped_cells": 5328,
+  "runtime": {
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "final14b_transition_check": {
+      "exit_file": {
+        "exists": true,
+        "mtime_utc": "2026-10-12T02:43:43.682426+00:00",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/pipeline/ladder_test_test_sft_14B_f0p5.exit",
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "value": "0"
+      },
+      "latest_completed_incident": {
+        "id": "294a3a1b-b6a7-4eb5-be83-4c34b32cada2",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/294a3a1b-b6a7-4eb5-be83-4c34b32cada2/receipt.json",
+        "sha256": "41c95c135809d9e9189001b35dbd646b3c57b3a61562c27c46421205711eb901",
+        "status": "VERIFIED_COMPLETE"
+      },
+      "monitor": {
+        "incident": null,
+        "observed_utc": "2026-10-12T02:45:02.074381+00:00",
+        "owner": null,
+        "status": "ARMED"
+      },
+      "observed_utc": "2026-10-12T02:46:08.588904+00:00",
+      "recorded_14b_identities": [
+        {
+          "actual_start_ticks": 25186,
+          "pid": 29327,
+          "pid_exists": true,
+          "recorded_start_ticks": 25186,
+          "running_identity": false,
+          "state": "Z"
+        },
+        {
+          "pid": 29328,
+          "pid_exists": false,
+          "recorded_start_ticks": 25187,
+          "running_identity": false
+        },
+        {
+          "pid": 632765,
+          "pid_exists": false,
+          "recorded_start_ticks": 405234,
+          "running_identity": false
+        },
+        {
+          "pid": 645189,
+          "pid_exists": false,
+          "recorded_start_ticks": 419377,
+          "running_identity": false
+        },
+        {
+          "pid": 883687,
+          "pid_exists": false,
+          "recorded_start_ticks": 575621,
+          "running_identity": false
+        },
+        {
+          "pid": 893879,
+          "pid_exists": false,
+          "recorded_start_ticks": 589394,
+          "running_identity": false
+        }
+      ],
+      "stage14b": {
+        "active": true,
+        "cmd": "SCORE_PAR=4 bash /lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/run_ladder_e08.sh test test_sft_14B_f0p5 /lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_334 local 0 1",
+        "crashed_at": "2026-10-11T23:34:21+00:00",
+        "exit": "no-exit-file",
+        "gen_released": true,
+        "gpus": [],
+        "health": "active",
+        "launched_at": "2026-10-11T23:34:21+00:00",
+        "log": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/driver_test_sft_14B_f0p5_test_pipeline.log",
+        "log_age_s": 85,
+        "n_children": 6,
+        "observed": "2026-10-12T02:43:40+00:00",
+        "pane_pid": 29327,
+        "retries": 1,
+        "session": "rl4cv-e08-test-test_sft_14B_f0p5",
+        "stale_logged": true,
+        "status": "running",
+        "watch": [
+          "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/logs/*test_sft_14B_f0p5*",
+          "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/scores/.partial_test_sft_14B_f0p5_g8_s*/**"
+        ]
+      },
+      "state_keys": [
+        "boot_id",
+        "created",
+        "dry",
+        "last_tick",
+        "pid",
+        "stages",
+        "summary"
+      ]
+    },
+    "monitor": {
+      "event_errors": {},
+      "incident": null,
+      "latest_completed_incident": {
+        "id": "294a3a1b-b6a7-4eb5-be83-4c34b32cada2",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/owner_recovery/incidents/294a3a1b-b6a7-4eb5-be83-4c34b32cada2/receipt.json",
+        "sha256": "41c95c135809d9e9189001b35dbd646b3c57b3a61562c27c46421205711eb901",
+        "status": "VERIFIED_COMPLETE"
+      },
+      "observed_utc": "2026-10-12T02:45:02.074381+00:00",
+      "owner": null,
+      "status": "ARMED"
+    },
+    "observation_scope": "19:45 PDT snapshot predates the new recovery incident; later owner/pipeline verification is in recovery_followup.",
+    "parent_findings": {
+      "exists": true,
+      "sha256": "26ec0a7eb5704790ac730fa5385c3b2e628bd57e9da5a1619622f3f7eac5d8ba"
+    },
+    "pipeline_interpreters": [
+      {
+        "argv0": ".venv/bin/python",
+        "pid": 28223,
+        "ppid": 28222,
+        "start_ticks": 24891,
+        "state": "S"
+      }
+    ],
+    "preserved_reboot_incident": {
+      "attempt_count": 2,
+      "deadline_utc": "2026-10-12T00:42:19.554423+00:00",
+      "sha256": "41c95c135809d9e9189001b35dbd646b3c57b3a61562c27c46421205711eb901",
+      "status": "VERIFIED_COMPLETE"
+    },
+    "registered_leases": {
+      "registered": 27,
+      "unreleased": 0
+    },
+    "watchdog": {
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "checked_utc": "2026-10-12T02:45:02Z",
+      "host": "skampere1.stanford.edu",
+      "jobs": [
+        {
+          "fresh_age_s": "82",
+          "name": "pipeline",
+          "pane_pid": "28222",
+          "processes": 2,
+          "session": "rl4cv-e08-pipeline",
+          "state": "running"
+        }
+      ]
+    }
+  },
+  "sample_tables": {
+    "base14b": [
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 0,
+        "sha256": "cc1743939190023caaa32fc87c38727a15947f02d579c68969af45b45be1d57b",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 1,
+        "sha256": "eb528f1e10902a39740bff6d92ac4fb9b6114cf725b26b0ffe04d160bb12f482",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 2,
+        "sha256": "6d5acc1713f9780c3b98d582cf229c87377e597b3f0092aa19f1b961d795a328",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 3,
+        "sha256": "d0e1afe8092785516189dabd44bd5b1a332bac8a39a3f9c6dd3a242eddabe84f",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 4,
+        "sha256": "b3533e72faa261dc184a213c906b79de35d5399a1c587392a61135b4f4ec5e71",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 5,
+        "sha256": "cbe84f6a68c4387e0383ab0793b9c5fe128facbf87f54213d48522dd9c4cbe3f",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 6,
+        "sha256": "452d7a7a4a020c274f99d3562a2cf79692c9a4c6f12a989fca5e7266f0926238",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 7,
+        "sha256": "6a306048e730b2297d301707dd8224130c9b977cecba9121e31e9999d9ee1a35",
+        "unique_tasks": 222
+      }
+    ],
+    "test_sft_14B_f0p5": [
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 0,
+        "sha256": "91f01c82b4dd04b3272f1455534f75f6a75221855e550e53c349fb8bb5ea53c5",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 1,
+        "sha256": "1668d7fdaa551a3e94c5c0114ef89b5ad18004ee2036c1a0cdcce64028ccc728",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 2,
+        "sha256": "3988d7b7be8bd874643f87bc7bdc4d926b7d14730778477644bf3b2a9ab1f9a6",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 3,
+        "sha256": "c180b5b913cd0a732ddf399af582066d6d4f8e12f4a19e2cde29e2a02d03cd26",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 4,
+        "sha256": "081f451b17a50ad05b73baa7f15f58d88a15272a79e5a7a465e868e2cee5cd62",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 5,
+        "sha256": "a422013916066a66f97ec7c86f32be600716a9b3febc9506b6b46d563e92c681",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 6,
+        "sha256": "4cb814deb5df22b9ff2d2bfb72b7c0110fdecf84d8c06f6bb1b2418c53df6d1e",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 7,
+        "sha256": "055089141f5784d0cc5f6b5a9cbcbc3a83085a768bd3579f6cc92fa9f10b95ce",
+        "unique_tasks": 222
+      }
+    ],
+    "test_sft_8B_f1p0": [
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 0,
+        "sha256": "e9fed304a507e21b562502f40c622872b259347122d3b174d0b93eb4a385e59d",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 1,
+        "sha256": "d1b1f56e856b4c0238403807624b356d48ac82385aaa6160856cea86b4e4b3b6",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 2,
+        "sha256": "3a3559649e44b4c10b5897941da952e422d81e8ac9a1f412e2aa950e6bcf3fc9",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 3,
+        "sha256": "975290f24ea5f3a0b602d288a38803c7c0ce0600f873643d32f7a0e194c4f466",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 4,
+        "sha256": "048680ffcfe7489d77b00fd1e5620991a402dc7d5cb995e55be9682d55d97f5f",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 5,
+        "sha256": "a45c2bf9924d60cec56c6402909117d60629c9aaf823e17f66e1e56b29801f18",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 6,
+        "sha256": "89cb2d6a72286102014738885e33d97338c844e0c979825337fc0d4767a150c7",
+        "unique_tasks": 222
+      },
+      {
+        "all_scored": true,
+        "frozen_task_set_match": true,
+        "rows": 222,
+        "sample_idx": 7,
+        "sha256": "e5109dcb07b7184978ae11670fa0b97b870c522d095acdd0e593bbd92132530a",
+        "unique_tasks": 222
+      }
+    ]
+  },
+  "schema": 1,
+  "systems": {
+    "base14b": {
+      "declared": 1776,
+      "duplicates_rejected": 0,
+      "exact_frozen_keyset": true,
+      "exact_frozen_taskset": true,
+      "extras_rejected": 0,
+      "known": 1776,
+      "missing": 0,
+      "rows": 1776,
+      "source_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/scored/scored_base14b_g8.jsonl",
+      "source_scoped_exact_frozen_keyset": true,
+      "source_scoped_rows": 1776,
+      "source_scoped_unique_cells": 1776,
+      "source_sha256": "57c30f60cad5f7866bdb43beae74f041ecf5dd3ee756a418f0c7f6d33ed8dc1e",
+      "status": "COMPLETE",
+      "task_rows": 222,
+      "unique_cells": 1776,
+      "unique_tasks": 222
+    },
+    "base_1p7B_e05": {
+      "declared": 1776,
+      "duplicates_rejected": 0,
+      "exact_frozen_keyset": true,
+      "exact_frozen_taskset": true,
+      "extras_rejected": 0,
+      "known": 1776,
+      "missing": 0,
+      "rows": 1776,
+      "source_file": "/lfs/skampere1/0/brando9/rl4cv_e05/out/scored/scored_qwen3-1.7b-base_g8.jsonl",
+      "source_scoped_exact_frozen_keyset": true,
+      "source_scoped_rows": 1776,
+      "source_scoped_unique_cells": 1776,
+      "source_sha256": "d15bdbced56252d1466ace05c3b3137082e112fae9cfdd0ea47bd4fa3c8d67af",
+      "status": "COMPLETE",
+      "task_rows": 222,
+      "unique_cells": 1776,
+      "unique_tasks": 222
+    },
+    "base_4B_e05": {
+      "declared": 1776,
+      "duplicates_rejected": 0,
+      "exact_frozen_keyset": true,
+      "exact_frozen_taskset": true,
+      "extras_rejected": 0,
+      "known": 1776,
+      "missing": 0,
+      "rows": 1776,
+      "source_file": "/lfs/skampere1/0/brando9/rl4cv_e05/out/scored/scored_qwen3-4b-base_g8.jsonl",
+      "source_scoped_exact_frozen_keyset": true,
+      "source_scoped_rows": 1776,
+      "source_scoped_unique_cells": 1776,
+      "source_sha256": "f3b6d2edbd2fa52fdaa3ba832ba4fc19b397ed620594ea1fa5b345e8880ea061",
+      "status": "COMPLETE",
+      "task_rows": 222,
+      "unique_cells": 1776,
+      "unique_tasks": 222
+    },
+    "base_8B_e05": {
+      "declared": 1776,
+      "duplicates_rejected": 0,
+      "exact_frozen_keyset": true,
+      "exact_frozen_taskset": true,
+      "extras_rejected": 0,
+      "known": 1776,
+      "missing": 0,
+      "rows": 1776,
+      "source_file": "/lfs/skampere1/0/brando9/rl4cv_e05/out/scored/scored_qwen3-8b-base_g8.jsonl",
+      "source_scoped_exact_frozen_keyset": true,
+      "source_scoped_rows": 1776,
+      "source_scoped_unique_cells": 1776,
+      "source_sha256": "aef4ee5a302d545b79abf2e44642e8731c05911c2cabda2805e2a386da9212ef",
+      "status": "COMPLETE",
+      "task_rows": 222,
+      "unique_cells": 1776,
+      "unique_tasks": 222
+    },
+    "test_sft_14B_f0p5": {
+      "declared": 1776,
+      "duplicates_rejected": 0,
+      "exact_frozen_keyset": true,
+      "exact_frozen_taskset": true,
+      "extras_rejected": 0,
+      "known": 1776,
+      "missing": 0,
+      "rows": 1776,
+      "source_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/scored/scored_test_sft_14B_f0p5_g8.jsonl",
+      "source_scoped_exact_frozen_keyset": true,
+      "source_scoped_rows": 1776,
+      "source_scoped_unique_cells": 1776,
+      "source_sha256": "30afec437e01d81620830cde1f605ceb4e2d38619d87cd3c5539b51b89fa886a",
+      "status": "COMPLETE",
+      "task_rows": 222,
+      "unique_cells": 1776,
+      "unique_tasks": 222
+    },
+    "test_sft_8B_f1p0": {
+      "declared": 1776,
+      "duplicates_rejected": 0,
+      "exact_frozen_keyset": true,
+      "exact_frozen_taskset": true,
+      "extras_rejected": 0,
+      "known": 1776,
+      "missing": 0,
+      "rows": 1776,
+      "source_file": "/lfs/skampere1/0/brando9/rl4cv_e08/ladder/test/scored/scored_test_sft_8B_f1p0_g8.jsonl",
+      "source_scoped_exact_frozen_keyset": true,
+      "source_scoped_rows": 1776,
+      "source_scoped_unique_cells": 1776,
+      "source_sha256": "e464e756dfdd9cb6e4558df084779734dc7b7a14bc31b65d5693c0f0ff9c7379",
+      "status": "COMPLETE",
+      "task_rows": 222,
+      "unique_cells": 1776,
+      "unique_tasks": 222
+    }
+  },
+  "test_cells_declared": 10656,
+  "test_judge_admission_observation": {
+    "note": "Admission identifiers are not measured ratings; first downstream receipt polling/harvesting pending at this observation. Both selected8B failures remain retry-blocked; never infer pre-execution from this error alone.",
+    "observed_utc": "2026-10-12T03:12:37.875087+00:00",
+    "parsed_test_ratings_measured": null,
+    "ratings_in_admitted_runs": 2766,
+    "ratings_in_failed_admission_runs": 1536,
+    "runs": {
+      "base14b/H2_opus55_max": {
+        "admitted_at": "2026-10-12T03:10:54+00:00",
+        "concurrency": 12,
+        "expected_cells": 195,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-base14b-H2_opus55_max",
+          "compute_effort": "max",
+          "judge_config": "H2_opus55_max",
+          "max_tokens": "32000"
+        },
+        "phase": "running",
+        "retry_blocked": null,
+        "returncode": null,
+        "run_id": "61a7168e-fe37-4b84-960d-78d85ef2ac5f",
+        "selector": "anthropic/claude-opus-5-5-no-fallback",
+        "stderr_tail": null,
+        "task_ids_sha256": "9c869110782c1a06110bad22d861a4335a60340bc7854aa646200947eb74f520"
+      },
+      "base14b/H2_sol_high": {
+        "admitted_at": "2026-10-12T03:10:44+00:00",
+        "concurrency": 12,
+        "expected_cells": 195,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-base14b-H2_sol_high",
+          "judge_config": "H2_sol_high",
+          "max_tokens": "32000",
+          "reasoning_effort": "high"
+        },
+        "phase": "running",
+        "retry_blocked": null,
+        "returncode": null,
+        "run_id": "f6fb62eb-d26c-4d57-8253-7a9cadf82879",
+        "selector": "openai/gpt-6-sol-high",
+        "stderr_tail": null,
+        "task_ids_sha256": "9c869110782c1a06110bad22d861a4335a60340bc7854aa646200947eb74f520"
+      },
+      "base_1p7B_e05/H2_opus55_max": {
+        "admitted_at": "2026-10-12T03:11:10+00:00",
+        "concurrency": 12,
+        "expected_cells": 180,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_1p7B_e05-H2_opus55_max",
+          "compute_effort": "max",
+          "judge_config": "H2_opus55_max",
+          "max_tokens": "32000"
+        },
+        "phase": "running",
+        "retry_blocked": null,
+        "returncode": null,
+        "run_id": "227d48b2-dd3f-4c88-8521-d1d5789897a5",
+        "selector": "anthropic/claude-opus-5-5-no-fallback",
+        "stderr_tail": null,
+        "task_ids_sha256": "7a01c39fee1f9ac4af46650abc129fab23ed817a0783f9e286c56d005c7ac6fc"
+      },
+      "base_1p7B_e05/H2_sol_high": {
+        "admitted_at": "2026-10-12T03:11:02+00:00",
+        "concurrency": 12,
+        "expected_cells": 180,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_1p7B_e05-H2_sol_high",
+          "judge_config": "H2_sol_high",
+          "max_tokens": "32000",
+          "reasoning_effort": "high"
+        },
+        "phase": "running",
+        "retry_blocked": null,
+        "returncode": null,
+        "run_id": "ddaf46c2-5364-440a-9690-238eccaa7521",
+        "selector": "openai/gpt-6-sol-high",
+        "stderr_tail": null,
+        "task_ids_sha256": "7a01c39fee1f9ac4af46650abc129fab23ed817a0783f9e286c56d005c7ac6fc"
+      },
+      "base_4B_e05/H2_opus55_max": {
+        "admitted_at": "2026-10-12T03:11:27+00:00",
+        "concurrency": 12,
+        "expected_cells": 186,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_4B_e05-H2_opus55_max",
+          "compute_effort": "max",
+          "judge_config": "H2_opus55_max",
+          "max_tokens": "32000"
+        },
+        "phase": "running",
+        "retry_blocked": null,
+        "returncode": null,
+        "run_id": "05b842d8-6942-483c-987a-87426dd31b81",
+        "selector": "anthropic/claude-opus-5-5-no-fallback",
+        "stderr_tail": null,
+        "task_ids_sha256": "e6f5f3c3c0b1b2d832752ebd969e21fb736699c5182e700315d0ce3e91824312"
+      },
+      "base_4B_e05/H2_sol_high": {
+        "admitted_at": "2026-10-12T03:11:19+00:00",
+        "concurrency": 12,
+        "expected_cells": 186,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_4B_e05-H2_sol_high",
+          "judge_config": "H2_sol_high",
+          "max_tokens": "32000",
+          "reasoning_effort": "high"
+        },
+        "phase": "running",
+        "retry_blocked": null,
+        "returncode": null,
+        "run_id": "b5279160-c5b9-464c-8ff1-f36460fcb6f1",
+        "selector": "openai/gpt-6-sol-high",
+        "stderr_tail": null,
+        "task_ids_sha256": "e6f5f3c3c0b1b2d832752ebd969e21fb736699c5182e700315d0ce3e91824312"
+      },
+      "base_8B_e05/H2_opus55_max": {
+        "admitted_at": "2026-10-12T03:11:43+00:00",
+        "concurrency": 12,
+        "expected_cells": 180,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_8B_e05-H2_opus55_max",
+          "compute_effort": "max",
+          "judge_config": "H2_opus55_max",
+          "max_tokens": "32000"
+        },
+        "phase": "running",
+        "retry_blocked": null,
+        "returncode": null,
+        "run_id": "1a046573-6c86-4fe4-b64f-f963ab08d3af",
+        "selector": "anthropic/claude-opus-5-5-no-fallback",
+        "stderr_tail": null,
+        "task_ids_sha256": "f45c6ed60a703ee597b32e5637b9c4f7725ac1f6e559220572e9155000dfa9f6"
+      },
+      "base_8B_e05/H2_sol_high": {
+        "admitted_at": "2026-10-12T03:11:35+00:00",
+        "concurrency": 12,
+        "expected_cells": 180,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-base_8B_e05-H2_sol_high",
+          "judge_config": "H2_sol_high",
+          "max_tokens": "32000",
+          "reasoning_effort": "high"
+        },
+        "phase": "running",
+        "retry_blocked": null,
+        "returncode": null,
+        "run_id": "54b36873-260b-421e-9494-ddfa4f9bebbc",
+        "selector": "openai/gpt-6-sol-high",
+        "stderr_tail": null,
+        "task_ids_sha256": "f45c6ed60a703ee597b32e5637b9c4f7725ac1f6e559220572e9155000dfa9f6"
+      },
+      "test_sft_14B_f0p5/H2_opus55_max": {
+        "admitted_at": "2026-10-12T03:12:01+00:00",
+        "concurrency": 12,
+        "expected_cells": 642,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-test_sft_14B_f0p5-H2_opus55_max",
+          "compute_effort": "max",
+          "judge_config": "H2_opus55_max",
+          "max_tokens": "32000"
+        },
+        "phase": "running",
+        "retry_blocked": null,
+        "returncode": null,
+        "run_id": "171aed58-adf3-4794-abe1-dac90015eb9e",
+        "selector": "anthropic/claude-opus-5-5-no-fallback",
+        "stderr_tail": null,
+        "task_ids_sha256": "e549cfc8d79b1acd3926028231bea6601b7a4769cde3b05e61b2b0f61af92b74"
+      },
+      "test_sft_14B_f0p5/H2_sol_high": {
+        "admitted_at": "2026-10-12T03:11:52+00:00",
+        "concurrency": 12,
+        "expected_cells": 642,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-test_sft_14B_f0p5-H2_sol_high",
+          "judge_config": "H2_sol_high",
+          "max_tokens": "32000",
+          "reasoning_effort": "high"
+        },
+        "phase": "running",
+        "retry_blocked": null,
+        "returncode": null,
+        "run_id": "07e372db-3644-4c4b-87e8-29ec8cf669bc",
+        "selector": "openai/gpt-6-sol-high",
+        "stderr_tail": null,
+        "task_ids_sha256": "e549cfc8d79b1acd3926028231bea6601b7a4769cde3b05e61b2b0f61af92b74"
+      },
+      "test_sft_8B_f1p0/H2_opus55_max": {
+        "admitted_at": "2026-10-12T03:12:16+00:00",
+        "concurrency": 12,
+        "expected_cells": 768,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-test_sft_8B_f1p0-H2_opus55_max",
+          "compute_effort": "max",
+          "judge_config": "H2_opus55_max",
+          "max_tokens": "32000"
+        },
+        "phase": "admission_failed",
+        "retry_blocked": true,
+        "returncode": 1,
+        "run_id": null,
+        "selector": "anthropic/claude-opus-5-5-no-fallback",
+        "stderr_tail": "Error: Failed to verify task ids\n",
+        "task_ids_sha256": "c0f139b8c23b3eb9ffa4aadf59448005e84997777547288db2611655c3db672a"
+      },
+      "test_sft_8B_f1p0/H2_sol_high": {
+        "admitted_at": "2026-10-12T03:12:09+00:00",
+        "concurrency": 12,
+        "expected_cells": 768,
+        "kwargs": {
+          "benchmark": "rl4cv-e08-judge-veribench-rl4cv-e08-test-test_sft_8B_f1p0-H2_sol_high",
+          "judge_config": "H2_sol_high",
+          "max_tokens": "32000",
+          "reasoning_effort": "high"
+        },
+        "phase": "admission_failed",
+        "retry_blocked": true,
+        "returncode": 1,
+        "run_id": null,
+        "selector": "openai/gpt-6-sol-high",
+        "stderr_tail": "Error: Failed to verify task ids\n",
+        "task_ids_sha256": "c0f139b8c23b3eb9ffa4aadf59448005e84997777547288db2611655c3db672a"
+      }
+    },
+    "runs_declared": 12,
+    "runs_with_identifiers": 10,
+    "single_owner_awareness": {
+      "completed_inspections": [
+        "item_81",
+        "item_82"
+      ],
+      "message": "Ten admitted runs preserved; both selected8B task-ID verification failures under remote-inventory reconciliation before any retry decision.",
+      "native_event": "item_80",
+      "verified_at_local": "10-11-2026 20:13:30 PDT"
+    }
+  },
+  "test_kernel_cells_known": 10656,
+  "test_kernel_cells_missing": 0,
+  "test_rating_manifest": {
+    "declared_ratings": 4302,
+    "sha256": "a2b5d4afd927d1fd53305e3e78e2311bb37ea9698d91b4c2517a78387353955e",
+    "systems": {
+      "base14b": {
+        "all_three_repeat_keys_verified": true,
+        "compiling_without_proof_cells_included": 0,
+        "n_audit": 60,
+        "n_audit_only": 60,
+        "n_cells": 65,
+        "n_main": 5,
+        "ratings_declared": 390
+      },
+      "base_1p7B_e05": {
+        "all_three_repeat_keys_verified": true,
+        "compiling_without_proof_cells_included": 0,
+        "n_audit": 60,
+        "n_audit_only": 60,
+        "n_cells": 60,
+        "n_main": 0,
+        "ratings_declared": 360
+      },
+      "base_4B_e05": {
+        "all_three_repeat_keys_verified": true,
+        "compiling_without_proof_cells_included": 1,
+        "n_audit": 60,
+        "n_audit_only": 60,
+        "n_cells": 62,
+        "n_main": 2,
+        "ratings_declared": 372
+      },
+      "base_8B_e05": {
+        "all_three_repeat_keys_verified": true,
+        "compiling_without_proof_cells_included": 0,
+        "n_audit": 60,
+        "n_audit_only": 60,
+        "n_cells": 60,
+        "n_main": 0,
+        "ratings_declared": 360
+      },
+      "test_sft_14B_f0p5": {
+        "all_three_repeat_keys_verified": true,
+        "compiling_without_proof_cells_included": 0,
+        "n_audit": 60,
+        "n_audit_only": 59,
+        "n_cells": 214,
+        "n_main": 155,
+        "ratings_declared": 1284
+      },
+      "test_sft_8B_f1p0": {
+        "all_three_repeat_keys_verified": true,
+        "compiling_without_proof_cells_included": 0,
+        "n_audit": 60,
+        "n_audit_only": 57,
+        "n_cells": 256,
+        "n_main": 199,
+        "ratings_declared": 1536
+      }
+    },
+    "unique_files": 717
+  },
+  "verdict": "TEST_KERNEL_COMPLETE; JUDGE_CONTROLS_PASS; TEST_RATING_MANIFEST_VERIFIED; COORDINATOR_PHASE_PENDING"
+}
