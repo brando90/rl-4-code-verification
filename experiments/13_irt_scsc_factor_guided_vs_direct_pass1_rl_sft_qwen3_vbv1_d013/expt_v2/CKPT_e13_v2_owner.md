@@ -5,7 +5,7 @@
 **TLDR:** Amendment A1 resumed experiment 13 version 2; R0 attempt 2 passed all 30 fixtures and its required repository suite; R1 attempt 1 passed all 400 train cells.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-13-2026 15:58 PDT
+Last updated: 10-13-2026 16:28 PDT
 
 ## Goal
 - Complete amended development acceptance, then the unchanged scientific gates and matched reinforcement-learning comparison.
@@ -17,7 +17,7 @@ Last updated: 10-13-2026 15:58 PDT
 - Required full suite: 283 passed, 23 skips, 168.61 seconds; all seven required Lean integration cases executed.
 - Fix/justification commits before rerun: `3fbcb96`, `7ed9e85`, `76d85b4`.
 ## Results
-- R2 under A2: original opaque INCOMPLETE, 5,319 measured + 7 typed limits + 2 untyped / 5,328; original ordinary run continues untouched. A2 retries have not started.
+- R2 under A2: original opaque INCOMPLETE, 5,319 measured + 7 typed limits + 2 untyped / 5,328; original ordinary run continues untouched at 18,023/33,456 receipts. A2 retries have not started.
 - R1 PASS: 400/400 measured/oracle-equal, 0 untyped inconsistencies; rejected causes 296 parse errors, 3 unparseable types, 1 duplicate identity (denominator 300).
 - Attempt 2 PASS, 30/30; lock `67f005f9b146704ec5007be748d6a30bc01239d0f0af826d3aec489799872759`. Attempt 1 retained at 26/29 matches.
 - Owner process 887384, full access/no approvals; fenced watchdog re-armed as `e13v2_a1`, two owned cron entries restored.
@@ -29,6 +29,7 @@ Last updated: 10-13-2026 15:58 PDT
 - None.
 
 ## Log
+- 10-13-2026 16:28 PDT -- Original run at 23,351/38,784 receipts, ordinary 18,023/33,456; coordinator alive, zero retries. A2 code and lock published at `d72cd10`; wait for original completion, then run `$WR/state/launch_R2_A2.sh` in a new owned session. Integrity verification: 50 unchanged L1v2 bindings plus master-authorized PLAN supersession; 42 version-1 files and 47 frozen attempt-1 files unchanged. Cleanup total 26 children from 13 terminal workers; zero forced kills. Shared index `176def8` refreshed, no new changes. Required publication suite: 313 passed / 23 skipped in 181.23 seconds.
 - 10-13-2026 15:58 PDT -- A2 implementation/lock publication ready: 313 passed / 23 skipped in 214.01 seconds with required Lean integration; 13 synthetic A2 controls include process/recovery replay. Lock `a18efcdb64d1d0f5bc315c15f8315eae91d559f5e03b43e2bf868ece1309d552`. Original run at 18,819/38,784 receipts; ordinary 13,491/33,456; zero retries so far. Next launcher `$WR/state/launch_R2_A2.sh` only after original terminal public result and dead original route coordinators; use a new `e13v2-a2-r2` session and scope.
 - 10-13-2026 15:50 PDT -- Master A2 brief received and `de37baf` pulled. A2 permits exactly one identical retry for untyped R2 cells, equality among all measured cells, no integrity defects and unresolved ceilings 5/5,328 opaque and 33/33,456 ordinary. Building separate reconciliation; original coordinator untouched. No terminal marker or notification created. PLAN/runbook are explicitly superseded instruction bytes; original lock and measurement code remain unchanged. Twelve synthetic reconciliation tests passed before full-suite validation.
 - 10-13-2026 15:28 PDT -- Ordinary cohort still running: 10,004/33,456 receipts; total 15,332/38,784, zero retries. Opaque INCOMPLETE remains unchanged; no later measurement admitted. Frozen bindings and prior evidence verified again. Required publication suite 300 passed / 23 skipped in 197.58 seconds; shared index refreshed to `176def8`. Latest cron confirms one live owner; continue full declared ordinary set before terminal report and notification.
