@@ -5,7 +5,7 @@
 **TLDR:** The master's resumable record for experiment 13 version 2. The plan is at revision 2 after the single light review (FAIL, all 13 findings fixed). The SNAP owner is **RUNNING** on skampere1 in tmux `codex-rl4cv-e13v2-owner` (Codex `gpt-6-astra` high, full access), launched 10-13-2026 11:41 PDT.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-13-2026 15:45 PDT
+Last updated: 10-13-2026 16:45 PDT
 
 ## Task and owner
 
@@ -99,6 +99,13 @@ Last updated: 10-13-2026 15:45 PDT
   - The opaque receipt adds `equality_among_measured` (a boolean only).
   - R2 admits G0 on: equality on all measured cells of both routes; no integrity defect; typed limits listed; unresolved at most 0.1% per route, listed by cell ID.
   - No test outcome is inspected.
+
+## Check-in 10-13-2026 16:40 PDT: running under A2
+
+- **A2:** implemented and locked by the owner (`d72cd10`).
+- **Status:** RUNNING UNDER A2.
+- **Ordinary route:** 19,996/33,456 (25,324/38,784 overall), 0 retries. About 146 cells per minute, so the expected finish is about 18:15 PDT.
+- **Next:** A2 reconciliation and the admission decision.
 
 ## Exact next commands (master)
 
