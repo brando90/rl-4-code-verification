@@ -5,7 +5,7 @@
 **TLDR:** The master's resumable record for experiment 13 version 2. The plan is at revision 2 after the single light review (FAIL, all 13 findings fixed). The SNAP owner is **RUNNING** on skampere1 in tmux `codex-rl4cv-e13v2-owner` (Codex `gpt-6-astra` high, full access), launched 10-13-2026 11:41 PDT.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-13-2026 14:45 PDT
+Last updated: 10-13-2026 15:45 PDT
 
 ## Task and owner
 
@@ -88,6 +88,17 @@ Last updated: 10-13-2026 14:45 PDT
   - Rate about 185 cells per minute, so the expected finish is about 17:30 PDT.
   - Node load about 48/128; 1,924 GiB available.
 - **Owner:** working, monitoring R2.
+
+## Check-in 10-13-2026 15:40 PDT: opaque route INCOMPLETE; Amendment A2
+
+- **Opaque route:** finished at 14:57 PDT, INCOMPLETE. 5,328 accounted, 5,319 measured, 7 typed deterministic limits, 2 untyped; equality status not reported among measured cells.
+- **Ordinary route:** 11,385/33,456 at 15:40 PDT, no retries.
+- **Owner response:** under PLAN § 4's literal rule, it blocked G0 and every later phase.
+- **Master decision:** [Amendment A2](AMENDMENT_A2_R2_untyped_cells_and_admission_10-13-2026.md), written after the observation and disclosed as such.
+  - Untyped cells get exactly one identical retry, inside their route.
+  - The opaque receipt adds `equality_among_measured` (a boolean only).
+  - R2 admits G0 on: equality on all measured cells of both routes; no integrity defect; typed limits listed; unresolved at most 0.1% per route, listed by cell ID.
+  - No test outcome is inspected.
 
 ## Exact next commands (master)
 

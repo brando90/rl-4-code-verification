@@ -174,7 +174,7 @@ Per `../PROTOCOL.md` § 3:
 | Event | Effect |
 |---|---|
 | R0 or R1 fails | Development acceptance test (Amendment A1): fix, record the attempt, rerun, at most 5 attempts each; then stop and publish |
-| R2 fails or is INCOMPLETE; integrity defect | Stop downstream measurement; publish the failure with evidence (no retries from L1v2 onward) |
+| R2 fails, or is INCOMPLETE under [Amendment A2](AMENDMENT_A2_R2_untyped_cells_and_admission_10-13-2026.md)'s admission rule; integrity defect | Stop downstream measurement; publish the failure with evidence (no retries from L1v2 onward except A2's single identical retry of untyped cells) |
 | G0 fails | Stop arms B and C (README rule); Phase 2 is not run, since A against P alone does not test the hypothesis |
 | G1 fails, H2 fails, or arm C's variance check fails | Disable **arm C only**; A, B and P continue to Phase 2 |
 | T1–T4 fail | Stop Phase 2 at that gate; publish |
