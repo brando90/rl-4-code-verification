@@ -56,6 +56,7 @@ def definitions():
         'set_option stderrAsMessages false in #eval IO.eprintln "e13v2-command-raw-stderr"\n',1,(4,4,1,1,1))
     add('base_vacuity_status',EXAMPLE+'theorem vac : True := by trivial\n',1,(2,2,1,1,1),family='base')
     add('unresolved_type',EXAMPLE+'theorem broken : MissingType := by trivial\n',0,(1,2,1,0,1))
+    add('initialized_pretty_printing', EXAMPLE+'set_option pp.mathlib.binderPredicates true\ntheorem binder_failure : ∀ n : Nat, n < 0 := by intro n; trivial\ntheorem later : 2 + 2 = 4 := by decide\n',0,(3,4,1,1,2))
     add('admit',GOOD.replace('by decide\n', 'by decide\n', 1).replace('theorem good : 1 + 1 = 2 := by decide','theorem good : 1 + 1 = 2 := by admit'),0,(2,2,1,0,1))
     for name, completion in [
         ('multiple_blocks_longest', '```lean\nexample : True := by trivial\n```\n```lean\n'+GOOD+'```'),
@@ -72,10 +73,10 @@ def freeze(output):
         p=output/(row['name']+'.lean')
         p.write_text(row.pop('source'))
         row['source_path']=str(p.resolve());row['source_sha256']=sha256(p)
-    lock={'created':datetime.now(timezone.utc).isoformat(), 'stage':'R0', 'fixtures':fixtures,
+    lock={'created':datetime.now(timezone.utc).isoformat(), 'stage':'R0_attempt_2', 'development_attempt':2, 'attempt_limit':5, 'fixtures':fixtures,
           'old_contract_tests':30, 'fixture_count':len(fixtures),
-          'implementation_sha256':{p.name:sha256(p) for p in [HERE/'DeclarationProbe_v2.lean',HERE/'declaration_adapter_v2.py',HERE/'historical_oracle_v2.py',Path(__file__)]},
-          'rule':'All fixtures match and required Lean integration runs; failure stops downstream under PLAN section 4.'}
+          'implementation_sha256':{str(p.relative_to(HERE.parent)):sha256(p) for p in [HERE/'DeclarationProbe_v2.lean',HERE/'declaration_adapter_v2.py',HERE.parent/'historical_oracle_v2.py',HERE/'run_r0_v2.py',HERE.parent/'watchdog_e13v2.py',Path(__file__)]},
+          'rule':'Amendment A1: all fixtures match and required Lean integration runs; at most five development attempts; no retries from L1v2 onward.'}
     (output/'lock.json').write_text(json.dumps(lock,indent=2)+'\n')
     print(json.dumps({'lock_sha256':sha256(output/'lock.json'),'fixtures':len(fixtures)}))
 
@@ -83,7 +84,7 @@ def freeze(output):
 def run(output,lake,scorer):
     lock=json.loads((output/'lock.json').read_text())
     for name,expected in lock['implementation_sha256'].items():
-        if sha256(HERE/name)!=expected: raise ValueError('R0 implementation changed after freeze')
+        if sha256(HERE.parent/name)!=expected: raise ValueError('R0 implementation changed after freeze')
     results=output/'results.jsonl'
     # Opening with x prevents any silent gate retry or overwritten result.
     with results.open('x') as f:
@@ -103,8 +104,10 @@ def run(output,lake,scorer):
                     mismatches['vacuity_counts']=actual
                 if row['name']=='error_beyond_4000':
                     raw=json.loads((output/'evidence'/row['name']/'components/frontend.json').read_text())
-                    if not any(m['severity']=='error' for c in raw['commands'] for m in c['messages']):
-                        mismatches['full_diagnostics']='error missing'
+                    long_messages=[{'command_index':c['index'],'length':len(m['text'])} for c in raw['commands'] for m in c['messages'] if m['severity']=='information' and len(m['text'])>=5000]
+                    errors=[c['index'] for c in raw['commands'] if any(m['severity']=='error' for m in c['messages'])]
+                    if [m['command_index'] for m in long_messages]!=[2,4] or errors!=[3]:
+                        mismatches['full_diagnostics']={'long_messages':long_messages,'error_commands':errors}
                 if row['name']=='stderr_capture':
                     raw=json.loads((output/'evidence'/row['name']/'components/frontend.json').read_text())
                     messages=[m for c in raw['commands'] for m in c['messages']]
@@ -118,13 +121,18 @@ def run(output,lake,scorer):
                     (folder/'returncode').write_text(str(control.returncode)+'\n')
                     if control.returncode or control.stdout!=b'e13v2-raw-stdout-control\n' or control.stderr!=b'e13v2-raw-stderr-control\n':
                         mismatches['process_streams']='raw stdout/stderr capture control failed'
+                if row['name']=='initialized_pretty_printing':
+                    raw=json.loads((output/'evidence'/row['name']/'components/frontend.json').read_text())
+                    errors=[m['text'] for c in raw['commands'] for m in c['messages'] if m['severity']=='error']
+                    if not any('n < 0' in text for text in errors) or len(raw['theorems'])!=2:
+                        mismatches['initialized_diagnostics']={'errors':errors,'obligations':len(raw['theorems'])}
                 result={'fixture':row['name'],'actual':actual,'mismatches':mismatches,'pass':not mismatches}
             except Exception as exc:
                 result={'fixture':row['name'],'pass':False,'exception':type(exc).__name__,'message':str(exc)}
             f.write(json.dumps(result)+'\n');f.flush();os.fsync(f.fileno())
             print(json.dumps({'fixture':row['name'],'pass':result['pass']}),flush=True)
     rows=[json.loads(line) for line in results.read_text().splitlines()]
-    receipt={'stage':'R0','passed':sum(r['pass'] for r in rows),'declared':len(lock['fixtures']),
+    receipt={'stage':'R0_attempt_2', 'development_attempt':2, 'attempt_limit':5,'passed':sum(r['pass'] for r in rows),'declared':len(lock['fixtures']),
              'status':'PASS' if all(r['pass'] for r in rows) else 'FAIL',
              'lock_sha256':sha256(output/'lock.json'),'results_sha256':sha256(results)}
     (output/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')

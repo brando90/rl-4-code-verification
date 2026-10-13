@@ -58,10 +58,14 @@ def commandJson (stx : Syntax) (ns : Name) : Json :=
 def messagesJson (log : MessageLog) : IO Json := do
   let mut rows := #[]
   for m in log.reported.toArray ++ log.unreported.toArray do
+    let (text, renderingError) ← try
+      pure (← m.data.toString, false)
+    catch e =>
+      pure (s!"message rendering exception: {e}", true)
     rows := rows.push <| Json.mkObj [
       ("severity", toJson (match m.severity with | .error => "error" | .warning => "warning" | .information => "information")),
       ("line", toJson m.pos.line), ("column", toJson m.pos.column),
-      ("text", toJson (← m.data.toString))]
+      ("text", toJson text), ("rendering_error", toJson renderingError)]
   return Json.arr rows
 
 partial def inspectCommands : FrontendM (Array Json × Array (Nat × Name)) := do
@@ -73,14 +77,19 @@ partial def inspectCommands : FrontendM (Array Json × Array (Nat × Name)) := d
     setMessages {}
     let stdout ← IO.mkRef { : IO.FS.Stream.Buffer }
     let stderr ← IO.mkRef { : IO.FS.Stream.Buffer }
-    let done ← IO.withStdout (IO.FS.Stream.ofBuffer stdout) <|
-      IO.withStderr (IO.FS.Stream.ofBuffer stderr) processCommand
+    let mut frontendError : Option String := none
+    let done ← try
+      IO.withStdout (IO.FS.Stream.ofBuffer stdout) <|
+        IO.withStderr (IO.FS.Stream.ofBuffer stderr) processCommand
+    catch e =>
+      frontendError := some (toString e)
+      pure false
     let out := String.fromUTF8! (← stdout.get).data
     let err := String.fromUTF8! (← stderr.get).data
     let after ← get
-    let cmd := after.commands.back!
+    let cmd := if after.commands.size > before.commands.size then after.commands.back! else Syntax.missing
     let msgs ← messagesJson after.commandState.messages
-    let errors := after.commandState.messages.hasErrors
+    let errors := after.commandState.messages.hasErrors || frontendError.isSome
     if done && !errors then break
     let base := commandJson cmd ns
     let row := Json.mkObj [
@@ -88,6 +97,7 @@ partial def inspectCommands : FrontendM (Array Json × Array (Nat × Name)) := d
       ("syntax", base), ("start", toJson before.parserState.pos.byteIdx),
       ("stop", toJson after.parserState.pos.byteIdx),
       ("clean", toJson (!errors)), ("messages", msgs),
+      ("frontend_exception", toJson frontendError),
       ("stdout", toJson out), ("stderr", toJson err)]
     let kind := if cmd.isOfKind ``Parser.Command.declaration then cmd[1].getKind else cmd.getKind
     let short? := if kind == ``Parser.Command.theorem then declarationName? cmd[1] else lemmaName? cmd
@@ -104,15 +114,17 @@ partial def inspectCommands : FrontendM (Array Json × Array (Nat × Name)) := d
     rows := rows.push row
     if done then break
     if after.parserState.pos.byteIdx <= before.parserState.pos.byteIdx then
-      throw <| IO.Error.userError "frontend made no progress"
+      -- A parser exception is one failed remaining parse region; retain evidence.
+      break
   return (rows, obligations)
 
-def inspectFile (path output : System.FilePath) : IO Unit := do
+unsafe def inspectFile (path output : System.FilePath) : IO Unit := do
+  enableInitializersExecution
   let input ← IO.FS.readFile path
   let ictx := Parser.mkInputContext input path.toString
   let (header, ps, msgs) ← Parser.parseHeader ictx
   let opts := ({} : Options).setBool `Elab.async false
-  let (env, headerMsgs) ← Elab.processHeader header opts msgs ictx
+  let (env, headerMsgs) ← Elab.processHeader header opts msgs ictx (leakEnv := true)
   let initial : Frontend.State := {
     commandState := Command.mkState env {} opts
     parserState := ps
@@ -135,7 +147,7 @@ def inspectFile (path output : System.FilePath) : IO Unit := do
     ("terminal", toJson true)]
   IO.FS.writeFile output (result.compress ++ "\n")
 
-def main (args : List String) : IO UInt32 := do
+unsafe def main (args : List String) : IO UInt32 := do
   match args with
   | ["--capture-control"] =>
     IO.println "e13v2-raw-stdout-control"
