@@ -1,0 +1,15 @@
+{
+  "written_utc": "2026-10-13T21:45:40.191962+00:00",
+  "authorization": "PLAN section 7: run-bound process cleanup; user SNAP preapproval",
+  "reason": "lake subprocess timeout can leave registered Lean grandchildren after their worker exits with a terminal measurement receipt; coordinators wait for those groups to drain",
+  "scope": "registered descendants only, dead worker plus terminal receipt required, receipt/source/identity hash verified; each signal through PID-bound file descriptor",
+  "scientific_implementation_changed": false,
+  "measurement_receipts_changed": false,
+  "measurement_retries": 0,
+  "script": "/lfs/skampere1/0/brando9/rl4cv_e13v2/state/cleanup_R2_terminal_children.py",
+  "script_sha256": "0b7fd6ba87734d1f1233380361e6bd3d61e3d52036d14a804431a80a91c4bb60",
+  "first_cleanup_completed_workers": 7,
+  "first_cleanup_processes": 14,
+  "forced_kills": 0,
+  "test_outcomes_disclosed": false
+}
