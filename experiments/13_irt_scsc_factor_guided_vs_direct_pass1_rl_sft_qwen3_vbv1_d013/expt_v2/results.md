@@ -4,8 +4,8 @@
 
 **TLDR:** `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013` version 2 passed R0 attempt 2 under Amendment A1: 30/30 fixtures matched, with complete components and historical oracle value/status. R1 attempt 1 also passed 400/400 train cells with matching historical oracle values and statuses.
 
-Last updated: 10-13-2026 13:50 PDT
-Status: **RUNNING — R0 and R1 accepted; L1v2 frozen before R2.**
+Last updated: 10-13-2026 13:58 PDT
+Status: **RUNNING — R2 full reproduction active under published L1v2.**
 
 | Stage | Status | Measured / declared |
 |---|---|---|
@@ -13,8 +13,8 @@ Status: **RUNNING — R0 and R1 accepted; L1v2 frozen before R2.**
 | R0 attempt 2 | PASS | 30/30 matches, oracle values/statuses, and complete components |
 | Required suite for attempt 2 | PASS | 283 passed, 23 skipped; all seven required Lean cases ran |
 | R1 attempt 1 | PASS | 400/400 measured and oracle-equal; zero untyped inconsistencies |
-| L1v2 | FROZEN | 51 verified bindings; F0v2 0.50, F1v2 0.85; zero validation/test factors |
-| R2 | ADMITTED AFTER LOCK PUBLICATION | 0/38,784 unique available historical cells |
+| L1v2 | FROZEN | 51 verified bindings; F0v2 0.50, F1v2 0.85; zero validation/test factors at freeze |
+| R2 | RUNNING, admission pending | 1,040/38,784 completed receipts; 472 ordinary and 568 opaque |
 | G0 | NOT ADMITTED | 0/135 validation tasks |
 | Phases 1 and 2 | NOT ADMITTED | No fitting or reinforcement learning |
 
@@ -24,5 +24,5 @@ Attempt 2 retained two 5,001-character messages and their intervening theorem er
 
 A1 permits at most five attempts each for R0 and R1; every attempt remains recorded. No retries from L1v2 onward.
 
-**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2's fixture acceptance passed 30/30 on attempt 2; the train-only diagnostic passed 400/400; L1v2 is frozen; full reproduction is next.
-**Snapshot:** R0_attempt_2 PASS; 30/30 fixtures; 283 tests passed; R1 400/400 PASS; R2 0/38,784.
+**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2's fixture acceptance passed 30/30 on attempt 2; the train-only diagnostic passed 400/400; L1v2 is published and full reproduction is active.
+**Snapshot:** R0_attempt_2 PASS; 30/30 fixtures; 283 tests passed; R1 400/400 PASS; R2 1,040/38,784 receipts; gate pending.

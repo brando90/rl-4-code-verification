@@ -5,28 +5,32 @@
 **TLDR:** Amendment A1 resumed experiment 13 version 2; R0 attempt 2 passed all 30 fixtures and its required repository suite; R1 attempt 1 passed all 400 train cells.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-13-2026 13:50 PDT
+Last updated: 10-13-2026 13:58 PDT
 
 ## Goal
 - Complete amended development acceptance, then the unchanged scientific gates and matched reinforcement-learning comparison.
 ## What ran
+- R2 launched after published L1v2 `a7991af`; tmux `e13v2-a1-r2`, active scope `e13v2-a1-r2.scope`, enforced MemoryMax 1,044,624,427,008 bytes; global 48-worker limit.
 - R1 full required suite: 286 passed, 23 skips, 185.82 seconds (includes three train-isolation tests).
 - R1 attempt 1 completed: process 407126, systemd scope `e13v2-a1-r1.scope`, 400 train cells, code `a19e4bd`. Initial tree peak 6,924,185,600 bytes; 48 workers; aggregate cap 1,049,300,488,192 bytes.
 - R0_attempt_2 completed as process 280828; 30 authored fixtures, serial 64 GiB address-space ceiling.
 - Required full suite: 283 passed, 23 skips, 168.61 seconds; all seven required Lean integration cases executed.
 - Fix/justification commits before rerun: `3fbcb96`, `7ed9e85`, `76d85b4`.
 ## Results
+- R2 running at 1,040/38,784 receipts (472 ordinary, 568 opaque), zero retries; launch publication suite 300 passed / 23 skipped in 195.15 seconds.
 - R1 PASS: 400/400 measured/oracle-equal, 0 untyped inconsistencies; rejected causes 296 parse errors, 3 unparseable types, 1 duplicate identity (denominator 300).
 - Attempt 2 PASS, 30/30; lock `67f005f9b146704ec5007be748d6a30bc01239d0f0af826d3aec489799872759`. Attempt 1 retained at 26/29 matches.
 - Owner process 887384, full access/no approvals; fenced watchdog re-armed as `e13v2_a1`, two owned cron entries restored.
 ## Stuck / blocked
-- None. R1 is train-only; no validation or test source has run for version 2.
+- None. R2 is active after L1v2; opaque test outcomes remain undisclosed. Frozen code and attempt limits remain unchanged.
 ## Next steps
-- [p 10/10] Publish L1v2, then launch 38,784-cell R2 in `e13v2-a1-r2.scope`; test remains opaque. Publish R2 before G0; failures stop downstream work.
+- [p 10/10] Supervise R2 to all 38,784 cells; read only opaque public receipts. Publish the gate before G0. If R2 fails or is incomplete, stop downstream and publish; no scientific retry.
 ## Brando to-do
 - None.
 
 ## Log
+- 10-13-2026 13:58 PDT -- R2 launch checkpoint publication: 1,040 completed receipts, both coordinators alive, zero retries; 300/23 required suite passed. Full-set gate pending.
+- 10-13-2026 13:54 PDT -- R2 verified running after lock publication: ordinary process 2420733, opaque process 2420734, both start ticks 16342291 on boot 839e7dd6-64e1-4a80-9498-31d30b3cc2df. 112/38,784 completed receipts (43 ordinary, 69 opaque); admission pending. Launch evidence `$WR/R2/launch_receipt.json`; first useful measurements completed, resource cap verified.
 - 10-13-2026 13:50 PDT -- Implementation published as `3e5f159`; required suite 300 passed / 23 skipped. L1v2 frozen with 51 verified bindings and carried F0v2=0.50/F1v2=0.85; no validation/test factors computed. R2 admission: 48 workers, 64 GiB address space, aggregate 1044624427008 bytes.
 - 10-13-2026 13:44 PDT -- R1 PASS published at `8bb1091`. Prediction and reproduction preparation uses synthetic tests only; 38,784-source metadata union hash-checked (no factors), with 42,024 source-family readbacks. Required suite and pre-lock verification in progress.
 - 10-13-2026 12:57 PDT -- R0 attempt 2 completed PASS: 30/30 fixtures, oracle values/statuses, and components. R1 admitted after publication.
