@@ -2,12 +2,32 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2_owner.md>
 
-**TLDR:** Single-writer setup for `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013`, version 2. The formal authored fixture gate failed (26/29); downstream work is stopped under PLAN § 4. Preserve the frozen attempt; do not relaunch it.
+**TLDR:** Amendment A1 resumed experiment 13 version 2; the frozen 30-case R0 attempt 2 is running, with its required repository suite passed.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-13-2026 12:18 PDT
+Last updated: 10-13-2026 12:52 PDT
 
-- Status: STOPPED AT R0 — FAIL. 26/29 new authored cases matched; 29/29 oracle value/status matched; 28/29 component measurements. Zero gate retries. See `RESULTS_R0_terminal.md`.
+## Goal
+- Complete amended development acceptance, then the unchanged scientific gates and matched reinforcement-learning comparison.
+## What ran
+- R0_attempt_2 running as process 280828; 30 authored fixtures, serial 64 GiB address-space ceiling.
+- Required full suite: 283 passed, 23 skips, 168.61 seconds; all seven required Lean integration cases executed.
+- Fix/justification commits before rerun: `3fbcb96`, `7ed9e85`, `76d85b4`.
+## Results
+- Attempt 2 pending; lock `67f005f9b146704ec5007be748d6a30bc01239d0f0af826d3aec489799872759`. Attempt 1 retained at 26/29 matches.
+- Owner process 887384, full access/no approvals; fenced watchdog re-armed as `e13v2_a1`, two owned cron entries restored.
+## Stuck / blocked
+- None. No historical train, validation or test cell has run for version 2.
+## Next steps
+- [p 10/10] Reconcile `$WR/R0_attempt_2/receipt.json`, publish; if passed, freeze and execute R1 train-only diagnostic.
+## Brando to-do
+- None.
+
+## Log
+- 10-13-2026 12:52 PDT -- Resumed under A1 at `cb5e175`, committed three justified fixes, froze and launched attempt 2; required full suite passed.
+
+## Prior owner record (before A1; stop superseded)
+
 - Owner: skampere1, tmux `codex-rl4cv-e13v2-owner`; Codex `gpt-6-astra`, effort `high` (runbook worker pin), command-line interface 0.154.0; observed full access `danger-full-access`, approvals `never`.
 - Owner native process: 887384; boot `839e7dd6-64e1-4a80-9498-31d30b3cc2df`. Launch evidence: `/lfs/skampere1/0/brando9/rl4cv_e13v2/owner_launch.json`. First useful actions: read binding plans, inspect clean checkout and process inventory.
 - Work root: `/lfs/skampere1/0/brando9/rl4cv_e13v2`; owned clone `rl-4-code-verification`, branch `main`, starting revision `1e0c8f85a5943997ee2124180f7e492db3ca92b8`.
