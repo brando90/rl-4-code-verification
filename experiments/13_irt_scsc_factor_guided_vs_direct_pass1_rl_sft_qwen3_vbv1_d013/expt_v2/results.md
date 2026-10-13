@@ -2,29 +2,33 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/results.md>
 
-**TLDR:** `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013` version 2 is building the authored-fixture probe. Historical cell measurements have not started.
+**TLDR:** `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013` version 2 stopped at its authored fixture gate (R0): **26/29** cases matched, with **28/29** complete component measurements. Historical strict value and status matched on **29/29** authored cases; no historical cells or training were run.
 
-**Status:** RUNNING — setup started 10-13-2026 11:44 PDT.
-**Last updated:** 10-13-2026 11:58 PDT
+**Status:** STOPPED AT R0 — FAIL under PLAN § 4.
+**Last updated:** 10-13-2026 12:12 PDT
+
+[Full terminal report](RESULTS_R0_terminal.md) · [Machine-readable evidence](results/R0_result.json) · [Owner checkpoint](CKPT_e13_v2_owner.md)
 
 | Stage | Status | Measured / declared |
 |---|---|---|
-| Owner and watchdog | DONE (monitoring; executor recovery pending) | 6 / 6 self-tests passed |
-| R0 authored fixtures | IN PROGRESS | Development only; formal expectations not yet frozen |
-| R1 train diagnostic | PENDING | 0 / target 400 (300 rejected, 100 measured) |
-| L1v2 measurement lock | PENDING | No validation/test measurement admitted |
-| R2 oracle reproduction | PENDING | 0 / 38,784 unique available cells |
-| G0 usefulness gate | PENDING | 0 / 135 validation tasks |
-| Phase 1 prediction and anchors | PENDING | Train anchor tasks: 539 per batch |
-| Phase 2 matched reinforcement learning | PENDING | Three paired seeds; test 222 tasks × 16 samples per selected arm/seed |
+| Owner and watchdog | DONE | 6 / 6 self-tests passed |
+| R0 authored source fixtures | FAIL | 26 / 29 full matches; 28 / 29 component measurements |
+| R0 historical oracle value/status | DONE | 29 / 29 matched authored expectations |
+| R0 inherited contract and Lean integration cases | DONE | 30 / 30 passed |
+| R1 train diagnostic | NOT ADMITTED | 0 / target 400 (300 rejected, 100 measured) |
+| L1v2 historical measurement lock | NOT CREATED | No validation/test measurement admitted |
+| R2 oracle reproduction | NOT ADMITTED | 0 / 38,784 unique available cells |
+| G0 usefulness gate | NOT ADMITTED | 0 / 135 validation tasks |
+| Phase 1 prediction and anchors | NOT ADMITTED | Train anchor tasks: 539 per batch |
+| Phase 2 matched reinforcement learning | NOT ADMITTED | Three paired seeds planned; test 222 tasks × 16 samples per selected condition/seed |
 
-Full historical manifest: 21,504 base cells plus 20,520 available ladder cells, with 3,240 shared cells counted once. The parent's 5,400 unavailable ladder cells remain separately declared. Split task counts are train 539, validation 135, test 222. Missing cells never become zero scores.
+Three failures remain exactly as recorded: the long-log fixture used unavailable `String.ofList` (clean commands 2/5, expected 4/5); the standard-error assertion missed text retained by Lean as an information message; and the unresolved-theorem probe exited 1 with a Mathlib initializer error, leaving its components unmeasured. The long-log fixture and channel assertion were authoring errors. None was repaired and rerun to convert this gate into acceptance.
 
-The historical strict oracle supplies both value and status; new components are separate measurements. Development uses train cells only. The measurement lock precedes validation/test factors, and test reproduction runs only in an opaque process. Version 1 evidence is preserved byte-for-byte.
+Required verification: `E13_REQUIRE_LEAN_INTEGRATION=1 make test` passed **283**, skipped **23**, failed **0** in 164.72 seconds; all seven required legacy Lean cases ran. An earlier dependency failure occurred before test collection and is retained. These are exhaustive deterministic counts, not population estimates; confidence intervals/statistical tests do not apply, p-val=n/a.
 
-Verification: `make test` passed 283 tests with 23 conditional skips; watchdog self-tests use fake mail and uniquely owned processes. These are deterministic operational counts, not scientific estimates (p-val=n/a). Automatic executor replacement is still pending.
+Full historical denominator stays **38,784**: base **21,504** plus available ladder **20,520** minus **3,240** shared cells. The parent's **5,400** unavailable ladder cells remain separately declared. Split task counts remain train **539**, validation **135**, test **222**. Missing values never become zero scores.
 
-[Owner checkpoint](CKPT_e13_v2_owner.md) · [Binding transition table](PLAN.md#transition-table)
+All **42** original version 1 files remain byte-identical. No historical train, validation or test source was executed for version 2. No new historical forecast, model fit, rollout, provider call or reinforcement-learning update occurred. The stop is an engineering admission result, not evidence for or against the reinforcement-learning hypothesis. Gate retries: **0**.
 
-**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 monitoring passed six self-tests; the formal fixture gate has not run.
-**Snapshot:** 0 / 38,784 reproduction cells measured; no validation/test factors computed.
+**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 stopped at the authored fixture gate with 26/29 matches; downstream measurement and training remain unadmitted.
+**Snapshot:** 26/29 fixture matches; 29/29 oracle matches; 28/29 component measurements; 0/38,784 historical cells; 0 retries.

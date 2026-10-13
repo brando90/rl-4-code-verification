@@ -2,12 +2,12 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2_owner.md>
 
-**TLDR:** Single-writer setup for `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013`, version 2. The initial records were published before authored development probes; no historical cells have run.
+**TLDR:** Single-writer setup for `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013`, version 2. The formal authored fixture gate failed (26/29); downstream work is stopped under PLAN § 4. Preserve the frozen attempt; do not relaunch it.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-13-2026 11:58 PDT
+Last updated: 10-13-2026 12:12 PDT
 
-- Status: IMPLEMENTING R0; watchdog installed and six self-tests passed. Downstream gates unadmitted.
+- Status: STOPPED AT R0 — FAIL. 26/29 new authored cases matched; 29/29 oracle value/status matched; 28/29 component measurements. Zero gate retries. See `RESULTS_R0_terminal.md`.
 - Owner: skampere1, tmux `codex-rl4cv-e13v2-owner`; Codex `gpt-6-astra`, effort `high` (runbook worker pin), command-line interface 0.154.0; observed full access `danger-full-access`, approvals `never`.
 - Owner native process: 887384; boot `839e7dd6-64e1-4a80-9498-31d30b3cc2df`. Launch evidence: `/lfs/skampere1/0/brando9/rl4cv_e13v2/owner_launch.json`. First useful actions: read binding plans, inspect clean checkout and process inventory.
 - Work root: `/lfs/skampere1/0/brando9/rl4cv_e13v2`; owned clone `rl-4-code-verification`, branch `main`, starting revision `1e0c8f85a5943997ee2124180f7e492db3ca92b8`.
@@ -23,5 +23,10 @@ Last updated: 10-13-2026 11:58 PDT
 - Recovery configuration currently monitors the registered owner and adopts registered children; automatic executor replacement is not yet configured. Do not claim unattended executor recovery until the verified handoff route is installed.
 - Node health: shared filesystem percentage-free warning (3,212 GiB free) does not constrain the bounded local fixture work; local work root has 5,483 GiB free. No shared cleanup performed.
 - Authored development evidence only: valid source oracle 1, components at maximum; failed proof followed by valid theorem retains proof fraction 1/2 and command fraction 2/3. These are development checks, not the frozen R0 gate. Raw evidence under `$WR/state/`.
-- Exact next actions: finish independent R0 expectations, freeze fixture and implementation hashes, execute once, and run `E13_REQUIRE_LEAN_INTEGRATION=1 make test`. A failed formal gate is published and stops downstream; no gate retry.
-- Blockers: none established; no gate result yet.
+- Formal R0 freeze: `locks/R0.json`, digest `e2041b3ca1f4fca5a226c8cc28b1d544698ea5ea5968d27d8a09ea5f5a092a49`; serial execution under 64 GiB address-space ceiling and durable per-fixture attempts. Results digest `6d87f6a616fdac0c229b63df5ec36b474d87086d452a0c08565899a0a26991d0`.
+- Required integration suite: 283 passed / 23 unrelated conditional skips / 0 failed, 164.72 seconds; all 30 inherited experiment-13 tests executed. Initial isolated Pytest startup lacked pygments, failed before collection, and was repaired without retrying scientific fixtures.
+- Failures: unavailable `String.ofList` in authored long-log fixture (d=2/5, expected 4/5); stderr assertion (text retained as information message); unresolved theorem causes frontend exit 1 on `Mathlib.pp.mathlib.binderPredicates` initialization. Strict oracle remains independently reproduced for all 29 cases.
+- Frozen scientific implementation and all authored sources are retained. Raw evidence: `$WR/r0/`; source copies and complete hash inventory are published under `expt_v2/`. The 42 original version 1 files are byte-identical.
+- R1 preparation was never executed; three draft scripts are preserved privately at `$WR/state/unexecuted_r1_preparation/`. No train allowlist, L1v2 lock, historical factors, fitted model or training exists.
+- Terminal actions: publish the gate result, verify main contains it, then send one deduplicated watchdog completion notice and retire the owned cron entries. No downstream run is admitted.
+- Binding stop: R0 failed. This condition is terminal, not an infrastructure retry or an account handoff. The parent retains the unresolved measurement dependency for its planned reinforcement-learning comparison.

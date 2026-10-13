@@ -1,0 +1,1197 @@
+{
+  "stage": "R0",
+  "passed": 26,
+  "declared": 29,
+  "status": "FAIL",
+  "lock_sha256": "e2041b3ca1f4fca5a226c8cc28b1d544698ea5ea5968d27d8a09ea5f5a092a49",
+  "results_sha256": "6d87f6a616fdac0c229b63df5ec36b474d87086d452a0c08565899a0a26991d0",
+  "oracle_value_status_matches": 29,
+  "components_measured": 28,
+  "historical_cells_measured": 0,
+  "r1_cells_measured": 0,
+  "v1_original_files_unchanged": 42,
+  "gate_retries": 0,
+  "required_integration": {
+    "command": "E13_REQUIRE_LEAN_INTEGRATION=1 make test",
+    "passed": 283,
+    "skipped": 23,
+    "failed": 0,
+    "seconds": 164.72,
+    "legacy_e13_contract_and_integration_cases": 30,
+    "log_sha256": "b91bd07f61eb20ec69bf3a7ad7c320cf47d8b4843eb3fcb7e0b9b223f3bf5bdf"
+  },
+  "private_evidence_root": "/lfs/skampere1/0/brando9/rl4cv_e13v2/r0",
+  "fixture_results": [
+    {
+      "fixture": "valid",
+      "actual": {
+        "source_sha256": "5f8839d6d5d4a157c610356668cb2d0faa597c9ff10112ff190b637413c4acac",
+        "strict": 1.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 1.0,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "valid_at_cap",
+      "actual": {
+        "source_sha256": "5f8839d6d5d4a157c610356668cb2d0faa597c9ff10112ff190b637413c4acac",
+        "strict": 1.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": true,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 1.0,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "no_example",
+      "actual": {
+        "source_sha256": "e57f4874b9360cd18d3963144c40b8e18639394965bd6954bb1368db0b6fe1b2",
+        "strict": 0.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "t": 0,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "n_examples": 0,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 0.0,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "no_theorem",
+      "actual": {
+        "source_sha256": "f15d5971571c15428a2989364386425bfde2b4225f12f804eb95701acdbcf30b",
+        "strict": 0.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "t": 1,
+        "p": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 0.0,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "empty",
+      "actual": {
+        "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "strict": 0.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 0,
+        "d": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "t": 0,
+        "p": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "n_examples": 0,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 0.0,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "truncated_syntax",
+      "actual": {
+        "source_sha256": "cdb9badc5df659785da9f066fdfbdcb1e0e836c448cfa483afadfc9498c061b6",
+        "strict": 0.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": true,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 3
+        },
+        "t": 0,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 0.1882072057762057,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "failed_then_valid",
+      "actual": {
+        "source_sha256": "6c3dc20dfaaafbee35d18af07d090f335406415316b44f9541386e4aad2745db",
+        "strict": 0.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 3
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 0.6933612743506347,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "sorry",
+      "actual": {
+        "source_sha256": "4ba81ad9ed9eedeca5916aec2e72017658b192c8f4b912ebca45c5040aee8f1a",
+        "strict": 0.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 0.2154434690031884,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "helper_sorry",
+      "actual": {
+        "source_sha256": "5d99f63a66c0d76f57ceaeb553bbae6f1a673c0a424201f5af3f09efe740cdd5",
+        "strict": 0.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 3,
+          "denominator": 3
+        },
+        "t": 1,
+        "p": {
+          "numerator": 0,
+          "denominator": 2
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 0.2154434690031884,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "native_theorem",
+      "actual": {
+        "source_sha256": "e5266ff9c0a6a495b3d776469f73c1f73516c08fca692a145a7c02ceae3aee62",
+        "strict": 0.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 0.2154434690031884,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "native_example",
+      "actual": {
+        "source_sha256": "451bfdc3c9170b9bfc4e46fda41c52338cedec177b54d7cf9e175aab0806dfbc",
+        "strict": 1.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 1.0,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "declared_axiom",
+      "actual": {
+        "source_sha256": "c3c6df149ce22c5777f1330b20254c3e6c6d40e2aad366917caa1d501fc66233",
+        "strict": 0.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 3,
+          "denominator": 3
+        },
+        "t": 1,
+        "p": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 0.2154434690031884,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "vacuous",
+      "actual": {
+        "source_sha256": "292ecd3b0b7e7acddddf0cfffee6cbc84b131838a79e98d26d830b6774db2536",
+        "strict": 0.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 2,
+        "distinct_vacuous_theorems": 1,
+        "factored_reward": 0.0,
+        "consistency": "vacuity"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "top_level_error",
+      "actual": {
+        "source_sha256": "d627e81654415db0ad168de3d9c60b29481d3b63cc1359d9c0fd08f4ad7f9c09",
+        "strict": 0.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 3
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 0.8735804647362989,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "printed_error",
+      "actual": {
+        "source_sha256": "21a7a9a236f2ee0fdebbbce6343f3af1403a4887ba0c46a7a4b1481fbde3d19d",
+        "strict": 0.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 3,
+          "denominator": 3
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 1.0,
+        "consistency": "kernel_probe_rejection"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "unknown_valid",
+      "actual": {
+        "source_sha256": "5f8839d6d5d4a157c610356668cb2d0faa597c9ff10112ff190b637413c4acac",
+        "strict": null,
+        "strict_status": "unmeasured",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 1.0,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "unknown_empty",
+      "actual": {
+        "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "strict": null,
+        "strict_status": "unmeasured",
+        "family": "ladder",
+        "truncated": false,
+        "e": 0,
+        "d": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "t": 0,
+        "p": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "n_examples": 0,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 0.0,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "unparseable_compiling",
+      "actual": {
+        "source_sha256": "bd7c084c1c6be7b3bdaa57eb7813d5a020e1528dba69da500b12e79aaa19167e",
+        "strict": 0.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 1.0,
+        "consistency": "vacuity"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "unparseable_noncompiling",
+      "actual": {
+        "source_sha256": "2973d7767a788d26762f3e8e31b20b8ac5edae5a87a32b4597d4de6016e25b46",
+        "strict": 0.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 3
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 0.8735804647362989,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "error_beyond_4000",
+      "actual": {
+        "source_sha256": "00d13ab808928516959a538c97fff3dd270037b6618ea11501bb0d777d274869",
+        "strict": 0.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 5
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 0.5848035476425733,
+        "consistency": "consistent"
+      },
+      "mismatches": {
+        "d": {
+          "expected": {
+            "numerator": 4,
+            "denominator": 5
+          },
+          "actual": {
+            "numerator": 2,
+            "denominator": 5
+          }
+        }
+      },
+      "pass": false
+    },
+    {
+      "fixture": "unused_axiom",
+      "actual": {
+        "source_sha256": "fbc3539347118b44c26e98b9e43ce0d6417da9948571c4a965003c9ffeb8dfd3",
+        "strict": 1.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 3,
+          "denominator": 3
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 1.0,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "namespaces_multiline",
+      "actual": {
+        "source_sha256": "4bdf7dc484ce063e7abe12cfbb05c91d08dbb451140d9483ea2140f3d72aae18",
+        "strict": 1.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 7,
+          "denominator": 7
+        },
+        "t": 1,
+        "p": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 1.0,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "duplicate_obligation",
+      "actual": {
+        "source_sha256": "da72616719ab3268a1bc0a191d7053f04a0105741c19de3712d92019e4dd2ab1",
+        "strict": 0.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 3
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 0.6933612743506347,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "stderr_capture",
+      "actual": {
+        "source_sha256": "bcd25bc7ec59494ffef3a5eb87f8cf05c2b6d8dac613ecde9a4049abfe827da4",
+        "strict": 1.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 3,
+          "denominator": 3
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 1.0,
+        "consistency": "consistent"
+      },
+      "mismatches": {
+        "stderr": "not retained per command"
+      },
+      "pass": false
+    },
+    {
+      "fixture": "base_vacuity_status",
+      "actual": {
+        "source_sha256": "292ecd3b0b7e7acddddf0cfffee6cbc84b131838a79e98d26d830b6774db2536",
+        "strict": 1.0,
+        "strict_status": "scored",
+        "family": "base",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 2,
+        "distinct_vacuous_theorems": 1,
+        "factored_reward": 1.0,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "unresolved_type",
+      "pass": false,
+      "exception": "RuntimeError",
+      "message": "frontend process failed; full private evidence retained"
+    },
+    {
+      "fixture": "admit",
+      "actual": {
+        "source_sha256": "63648685fe56e421cd9f92ced5931ddbc667e070dd9c514c4dc537513fd00730",
+        "strict": 0.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 0.2154434690031884,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "multiple_blocks_longest",
+      "actual": {
+        "source_sha256": "5f8839d6d5d4a157c610356668cb2d0faa597c9ff10112ff190b637413c4acac",
+        "strict": 1.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 1.0,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    },
+    {
+      "fixture": "multiple_blocks_labelled",
+      "actual": {
+        "source_sha256": "5f8839d6d5d4a157c610356668cb2d0faa597c9ff10112ff190b637413c4acac",
+        "strict": 1.0,
+        "strict_status": "scored",
+        "family": "ladder",
+        "truncated": false,
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "n_examples": 1,
+        "raw_vacuity_hits": 0,
+        "distinct_vacuous_theorems": 0,
+        "factored_reward": 1.0,
+        "consistency": "consistent"
+      },
+      "mismatches": {},
+      "pass": true
+    }
+  ],
+  "raw_evidence_sha256": {
+    "evidence/admit/components/command.json": "fa99491a321521a42d36ddb7ff76529815231fb5c2b21eea6a6e079b4a8d771d",
+    "evidence/admit/components/frontend.json": "081732b595492c8563c2967919be470009e986c1ccad060586f034a12fa2c369",
+    "evidence/admit/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/admit/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/admit/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/admit/measurement.json": "5f96d8f8120ef4d78fcd0897283354ccf38478ea6dfc9a688131643ab7ee34c8",
+    "evidence/admit/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/admit/oracle/0.stdout": "3146330ba303acdd732345b25371625443d51ccd6c27e1b9d8a824ef52cb8a16",
+    "evidence/admit/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/admit/oracle/1.stdout": "3146330ba303acdd732345b25371625443d51ccd6c27e1b9d8a824ef52cb8a16",
+    "evidence/admit/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/admit/oracle/2.stdout": "5a876e7d20ca877c6c26fb561bca81b38d23a71f9a8cc29a0384bb1633991baa",
+    "evidence/admit/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "4bb640f22c3810a3087daa936ee21c1e6360108f71fc02d7a4c508adc0ab1ede",
+    "evidence/admit/oracle/oracle.json": "7234af4ebbb19844d505f852317355ca2996b5acdbe828d397dc20b12e0f0af8",
+    "evidence/admit/oracle/subprocesses.json": "24f20b853ed51dfd7f4c930df3d907e87b7902925005d42002a382f55dbda89c",
+    "evidence/base_vacuity_status/components/command.json": "18916cd4814fa798a38edbfde2956dda6a8df4bed4e002727ab715a2f54eea56",
+    "evidence/base_vacuity_status/components/frontend.json": "d3c0bbbfed6c95f156f292505ced3a68923aec7f745f87616addd113b38a806c",
+    "evidence/base_vacuity_status/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/base_vacuity_status/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/base_vacuity_status/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/base_vacuity_status/measurement.json": "b335e1bb0ff18254203ba7045859bb2b7bb2d4d008ad6203ffe11450f742bbc7",
+    "evidence/base_vacuity_status/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/base_vacuity_status/oracle/0.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/base_vacuity_status/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/base_vacuity_status/oracle/1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/base_vacuity_status/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/base_vacuity_status/oracle/2.stdout": "3c0b88a251b22c66eb8d83d7c81dfa1dfd4b953c1357dfe0fecb097d7780c855",
+    "evidence/base_vacuity_status/oracle/oracle.json": "84a40a08d1942bca03d9b15de5a343cf0016480d11c7c2c8e5a8bdd875be3d58",
+    "evidence/base_vacuity_status/oracle/subprocesses.json": "6efdae3f812df12c124a21a82c5d97a56d5c6c8d73525671b3c4fa4ba748beb5",
+    "evidence/declared_axiom/components/command.json": "9be06a21c76ebbf53fd421e22ba08b359f2e681f0fc6bc0bf90e4d3f47301fe8",
+    "evidence/declared_axiom/components/frontend.json": "39f49ac17a794078216c2b4f05fa5e54e5fbf7455875eeaba91171c74066958d",
+    "evidence/declared_axiom/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/declared_axiom/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/declared_axiom/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/declared_axiom/measurement.json": "b07536be4d429f3b79ad82e8149f4fdc083730e7a56ca718887007d70501ccf3",
+    "evidence/declared_axiom/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/declared_axiom/oracle/0.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/declared_axiom/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/declared_axiom/oracle/1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/declared_axiom/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/declared_axiom/oracle/2.stdout": "e3a5162ed3516a273319fdbaac9cdf896e599fe5b8474276d4c93b819ccb60c2",
+    "evidence/declared_axiom/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "4bb640f22c3810a3087daa936ee21c1e6360108f71fc02d7a4c508adc0ab1ede",
+    "evidence/declared_axiom/oracle/oracle.json": "2a46b8cbca953139146290e98cf6d3a729dbe325afe2f07115449c4b61276c80",
+    "evidence/declared_axiom/oracle/subprocesses.json": "e4d46de3691a0caec214d7e9ae0c324f51455c7b49d957e93a794d3a2cac8ce4",
+    "evidence/duplicate_obligation/components/command.json": "69847e7f71a17afc46c12417d37ba806b68dca079f54144290d234b3287f644a",
+    "evidence/duplicate_obligation/components/frontend.json": "038e10d9697359060654212aa8e814611207fa9c59d21f058793843de7de202b",
+    "evidence/duplicate_obligation/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/duplicate_obligation/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/duplicate_obligation/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/duplicate_obligation/measurement.json": "76b5090fb321534b8bd682077893ea55b6d01a9a2308d6a96cefc34b8f21547a",
+    "evidence/duplicate_obligation/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/duplicate_obligation/oracle/0.stdout": "e7206369b08da6928a46122eb8dd71820f52e2f7f6e2988d3525b043fcdf0b76",
+    "evidence/duplicate_obligation/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "fd7bf678cfb9cf4d3dad793dd614f4fea0225c96cf0fe068e9fcbf33edf5873e",
+    "evidence/duplicate_obligation/oracle/oracle.json": "73828af20ecc10b4bf378d5cffe5ef9e703c50f40761b6e0871a609e13217e01",
+    "evidence/duplicate_obligation/oracle/subprocesses.json": "3ff325060c5001a2303013e696a53a12d5c50368b539291cb776f1b89cc24d69",
+    "evidence/empty/components/command.json": "ef30c43697dfe71fc8b73d945d5fa33380db2523ba0a9b4b2b227c53c258fa2a",
+    "evidence/empty/components/frontend.json": "fcfd448e98a2915bd1aa858b6a054fafc744ed731e39070f100fc8763d1073ff",
+    "evidence/empty/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/empty/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/empty/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/empty/measurement.json": "a997104d50935e8a3a60f339d2fa1c1465ac289376735352cb6234e547ddec2c",
+    "evidence/empty/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "338a009844d2be707a940eb70777d5d2a28c52c6214a4e3a09937eedde2d283e",
+    "evidence/empty/oracle/oracle.json": "7978585fecc9031e9309671e5e41404e3211b9b847117963e5c03e9c42b94a57",
+    "evidence/empty/oracle/subprocesses.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "evidence/error_beyond_4000/components/command.json": "f21147bf4fdaee7e5c535ff2e7c887d6a7238d0b201c2c60456f711c4be8e2e8",
+    "evidence/error_beyond_4000/components/frontend.json": "211186f22fd00bc80d101c235f540a026a11b7ce3950d22f3b64c3f350da7601",
+    "evidence/error_beyond_4000/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/error_beyond_4000/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/error_beyond_4000/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/error_beyond_4000/measurement.json": "d9fa465a26acc9c05d1c64abfded66f246c71e809e9fc57256ccbf65516a9889",
+    "evidence/error_beyond_4000/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/error_beyond_4000/oracle/0.stdout": "95817fd56bd8ac487a91932e4f8acbe1d7aaf565f6596f66c760768e26f9ca12",
+    "evidence/error_beyond_4000/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "fd7bf678cfb9cf4d3dad793dd614f4fea0225c96cf0fe068e9fcbf33edf5873e",
+    "evidence/error_beyond_4000/oracle/oracle.json": "5b7363f4e013f4d090a18eec4fe0504a0d75a4e9c511e2fa7bc42f5b6d4a85d0",
+    "evidence/error_beyond_4000/oracle/subprocesses.json": "346710ab4439778c0d43d6d98c6d1239d757af254b04f2e4c7f102bf06868e99",
+    "evidence/failed_then_valid/components/command.json": "fc5c519ab6aea3e647c0652199a5c86c9aad500bd702d0d0f6570869099f6f93",
+    "evidence/failed_then_valid/components/frontend.json": "09f30a6ea7a635af9623cf9118ede3843c60648da748b04ede63982ae69ec764",
+    "evidence/failed_then_valid/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/failed_then_valid/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/failed_then_valid/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/failed_then_valid/measurement.json": "f13124f6acb24352ff9f1fe77d5b523d9e59628262becb6a6b1c2d5c7b2e1819",
+    "evidence/failed_then_valid/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/failed_then_valid/oracle/0.stdout": "b3f6d10213a9fad43a5e07ab086fb5dde567cd9316249089dd78ae28cb2e2e29",
+    "evidence/failed_then_valid/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "fd7bf678cfb9cf4d3dad793dd614f4fea0225c96cf0fe068e9fcbf33edf5873e",
+    "evidence/failed_then_valid/oracle/oracle.json": "066c1587218ea7e68b400cf518d1061842f5363439c35e08ef241c42a3308f2c",
+    "evidence/failed_then_valid/oracle/subprocesses.json": "081696c06e092f3ea3a0baa1317cdb721da4a8e475f81ac862c28684b3dc1d78",
+    "evidence/helper_sorry/components/command.json": "912d262b5111adc07f576f3d0cde4434cff32d5de42d3516b18c9f4f617a5e62",
+    "evidence/helper_sorry/components/frontend.json": "505b75cb5967840b6e606da4354fdf4d85b703fce615897b7aab9e457678ceef",
+    "evidence/helper_sorry/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/helper_sorry/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/helper_sorry/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/helper_sorry/measurement.json": "a391b301031ceb8185d76a07063796c57ced32fd30e663e6350cfe842fb6f326",
+    "evidence/helper_sorry/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/helper_sorry/oracle/0.stdout": "01f72e9f4706d3793e0cc3a9bdb251a7c1e8088572c4cd25b4f77d334b883582",
+    "evidence/helper_sorry/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/helper_sorry/oracle/1.stdout": "01f72e9f4706d3793e0cc3a9bdb251a7c1e8088572c4cd25b4f77d334b883582",
+    "evidence/helper_sorry/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/helper_sorry/oracle/2.stdout": "13d88d3a613ba6f1745f5dc5dadcd341bd26b0dfada4265918d5c534d0b17887",
+    "evidence/helper_sorry/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "5a6d77b9813d4a6008825e81691ca86a45e0e95e009211407e9b4270251b817b",
+    "evidence/helper_sorry/oracle/oracle.json": "c9847c55e5871ed6eed4e4eb6aa26dc9c2619ce65cd801f3f47052956b929bb4",
+    "evidence/helper_sorry/oracle/subprocesses.json": "a06ab06f941eeda1f58f2c52c47a467bce1b6f5d79e0146830ca2decd265067e",
+    "evidence/multiple_blocks_labelled/components/command.json": "3aa1856837860e1f7f1e424f1c45e83c26704ed8ce9aa98839603c0aa7c68489",
+    "evidence/multiple_blocks_labelled/components/frontend.json": "b0b386ffbfde1f5c82db8d61346065861cc87d922686f82e115e7b2306a06ec3",
+    "evidence/multiple_blocks_labelled/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/multiple_blocks_labelled/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/multiple_blocks_labelled/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/multiple_blocks_labelled/measurement.json": "daba90cf427a6a0f2cc1c720fe40ebba60f823c7f774c417144dc8de1c9dec77",
+    "evidence/multiple_blocks_labelled/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/multiple_blocks_labelled/oracle/0.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/multiple_blocks_labelled/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/multiple_blocks_labelled/oracle/1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/multiple_blocks_labelled/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/multiple_blocks_labelled/oracle/2.stdout": "182acfeb3685bc2f7555479683c5d0035af50160b141eaba9665133c7c521dc8",
+    "evidence/multiple_blocks_labelled/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "a956f5db7e95c48076d013b5be5ad2fe82e141974dbec501342fb102393710e0",
+    "evidence/multiple_blocks_labelled/oracle/oracle.json": "7ca2ff6443c093b4d503d71c32cdc520cdd736af182c3b19bd961f91c20691dc",
+    "evidence/multiple_blocks_labelled/oracle/subprocesses.json": "7cc0aef4e52d8db5fe3ae4e53eb94866df6b65e94ba9f855fdcad95d608d0b58",
+    "evidence/multiple_blocks_longest/components/command.json": "8b0e31ab0db3aa963e00909ddb3092689326f04d2f6b2e316f68133763cfec2e",
+    "evidence/multiple_blocks_longest/components/frontend.json": "b0b386ffbfde1f5c82db8d61346065861cc87d922686f82e115e7b2306a06ec3",
+    "evidence/multiple_blocks_longest/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/multiple_blocks_longest/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/multiple_blocks_longest/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/multiple_blocks_longest/measurement.json": "daba90cf427a6a0f2cc1c720fe40ebba60f823c7f774c417144dc8de1c9dec77",
+    "evidence/multiple_blocks_longest/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/multiple_blocks_longest/oracle/0.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/multiple_blocks_longest/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/multiple_blocks_longest/oracle/1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/multiple_blocks_longest/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/multiple_blocks_longest/oracle/2.stdout": "f5abbc64860cd35224e46f7f17819c0e8f7f01cd84dbb068bee152a642e38286",
+    "evidence/multiple_blocks_longest/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "a956f5db7e95c48076d013b5be5ad2fe82e141974dbec501342fb102393710e0",
+    "evidence/multiple_blocks_longest/oracle/oracle.json": "50ca292db4a27b06527eca59e4442d35c2f72f093906b43652a005c2b99f3448",
+    "evidence/multiple_blocks_longest/oracle/subprocesses.json": "e35e067be6e99efc4673313e7fecedd45989442d70dab1d09d08abc2300d5862",
+    "evidence/namespaces_multiline/components/command.json": "e464ca318f5ebb1e2a9d4dd864b43707e8325d224543a0cb56051d7afee74ab6",
+    "evidence/namespaces_multiline/components/frontend.json": "6446987f489feb4bbfb182928a14217dec8656c7277b4efe62ebb40bb632a0aa",
+    "evidence/namespaces_multiline/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/namespaces_multiline/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/namespaces_multiline/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/namespaces_multiline/measurement.json": "48f568b5934ab2463522a5338708a88ff75f10ed887460589e98957c98214dd4",
+    "evidence/namespaces_multiline/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/namespaces_multiline/oracle/0.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/namespaces_multiline/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/namespaces_multiline/oracle/1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/namespaces_multiline/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/namespaces_multiline/oracle/2.stdout": "1b780f982208cea1251e473691fd240d470d42699db50af679fa6a9feae7b4cf",
+    "evidence/namespaces_multiline/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "58c8968adbb099ad28b9b11337f63a0031ec24f57ed1c5b58d34ad95c9f8493d",
+    "evidence/namespaces_multiline/oracle/oracle.json": "d74274b4b5cde31380c433425b8c24b486495e2da55a1d79d83add7b9abb4c93",
+    "evidence/namespaces_multiline/oracle/subprocesses.json": "af3bdf7258bacec6993eb2823cab958ffd81ee55908ba6162d60da1aa7582c03",
+    "evidence/native_example/components/command.json": "854fe2dfca97c5d6fbd1063ef0d1424c52975cee486cda0ccaefe44d7de37c93",
+    "evidence/native_example/components/frontend.json": "1f0657dd5523df96e4cf20bc814cf34e34ea5cdbfe3e33875eec49b6f0dc7c6d",
+    "evidence/native_example/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/native_example/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/native_example/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/native_example/measurement.json": "998e5f6ac9d06294d5ea9b7af5f30fdc482dd5cc60b6c7b11c6d41e6fd22a3b1",
+    "evidence/native_example/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/native_example/oracle/0.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/native_example/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/native_example/oracle/1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/native_example/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/native_example/oracle/2.stdout": "36c412a21359218a29901270373db133a4f7bdf094e79c903b2d448ee1e7cfa6",
+    "evidence/native_example/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "a956f5db7e95c48076d013b5be5ad2fe82e141974dbec501342fb102393710e0",
+    "evidence/native_example/oracle/oracle.json": "0c3f8e59e607fcbf0f03912becb166b22d7b039f1ab7df9768d6163620fa1264",
+    "evidence/native_example/oracle/subprocesses.json": "032f9f4ec22cac177bdf5af85541f0769d9107f3ce50fa6b753b3e11575fd2c3",
+    "evidence/native_theorem/components/command.json": "d073f2e0a8856f1b821d29cef14340980c5ba7afadf65cee6b2d1ae470881c31",
+    "evidence/native_theorem/components/frontend.json": "22bd941b978630d615dcba43c68a0a3765376cb0bfe7b499fc4337b1aacf9f16",
+    "evidence/native_theorem/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/native_theorem/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/native_theorem/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/native_theorem/measurement.json": "0e4fcb6594d98dda5b4ccb37ca308130a707426bbaf01b9ff03027e42a9f37e7",
+    "evidence/native_theorem/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/native_theorem/oracle/0.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/native_theorem/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/native_theorem/oracle/1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/native_theorem/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/native_theorem/oracle/2.stdout": "046495d027687e6a25a2c13c70857bb1424b5ace043d0edf790daf791cf6cc9e",
+    "evidence/native_theorem/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "4bb640f22c3810a3087daa936ee21c1e6360108f71fc02d7a4c508adc0ab1ede",
+    "evidence/native_theorem/oracle/oracle.json": "704b5650a6b3ba5b51d7e98a5fef2883df6534abdba79915aa584394811efc54",
+    "evidence/native_theorem/oracle/subprocesses.json": "1ac716ae0fcd2f4f55d179fcfe125a6aba57adb670b495bf6e5d34b4cecd7c86",
+    "evidence/no_example/components/command.json": "7c31baa57aefd34420eb024bc09aa73491326bd458acd138316f1df39a3101f5",
+    "evidence/no_example/components/frontend.json": "070d7e412a320c14cc5d4735f86962b82c15e9bcd6a92e609a2dce3014a8ffd1",
+    "evidence/no_example/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/no_example/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/no_example/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/no_example/measurement.json": "f160f4b59c504617f4b5019e92e8c927c76edc7c483c20675aea617041817eff",
+    "evidence/no_example/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/no_example/oracle/0.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/no_example/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/no_example/oracle/1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/no_example/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/no_example/oracle/2.stdout": "39b39cc0036542955e920d0e7a7b8b6bd531f2f36e7944ee8b81e1b00c4e7cfd",
+    "evidence/no_example/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "8042a45afbc024595e3a5b6015562fc76147f58d58eab2275f4102c2073a623e",
+    "evidence/no_example/oracle/oracle.json": "f6cb84c91e6da03f9fb84d01190506fc9b6aabbafc955fbdbf5514ed2513f802",
+    "evidence/no_example/oracle/subprocesses.json": "c24a45c21a8058b6df30c635a683487171fdbdf0458e39a8685580dc2353f1dd",
+    "evidence/no_theorem/components/command.json": "257bfa93d1f57da3abcb04ab39c98390157da7956c3b2d7e99c6a861e32f243e",
+    "evidence/no_theorem/components/frontend.json": "20b2b1d38fd08aad6badee333eba6cf1fddd708798d07e92c7a3bae7c8ae19c3",
+    "evidence/no_theorem/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/no_theorem/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/no_theorem/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/no_theorem/measurement.json": "b3d2143395b7e6cdbf1dfd4988d7dda5ab174242c9757e1fb7e7e1ce1439dfe6",
+    "evidence/no_theorem/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/no_theorem/oracle/0.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/no_theorem/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/no_theorem/oracle/1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/no_theorem/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/no_theorem/oracle/2.stdout": "5795ca12fe576397b99fb4f19db600cf50c1f7aec92ab3bbb5f5c314bdfedc3d",
+    "evidence/no_theorem/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "eb1ea15f58c502a865cd1f5be36340b8a04fc4a36f2a9c5e357dfccabdee3c66",
+    "evidence/no_theorem/oracle/oracle.json": "8f113a7f81ce26e3b64ae1db614a3c240eca0481d534024ac3de052f7f04dcd3",
+    "evidence/no_theorem/oracle/subprocesses.json": "37c6435dbce6b6931e7a46566f072a681fb81d6a5fdd1cccbdef284316b83f5f",
+    "evidence/printed_error/components/command.json": "e105c219e6232dbe8b1eade5e300c86b643d866a374c65ae83797da4af34b057",
+    "evidence/printed_error/components/frontend.json": "3359d88c3c1464f7f886bb4523bb3fe4e99764399d230c1695ba232c8fc8b909",
+    "evidence/printed_error/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/printed_error/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/printed_error/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/printed_error/measurement.json": "823dc26bdc5d6007ab76adc645ce888887e90ad309a0edb82e466aab3b811c1d",
+    "evidence/printed_error/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/printed_error/oracle/0.stdout": "0036d68219d4af80ea97c00f0b3786e57fff46bd2634cc3930ce7a4ecd7e1544",
+    "evidence/printed_error/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/printed_error/oracle/1.stdout": "0036d68219d4af80ea97c00f0b3786e57fff46bd2634cc3930ce7a4ecd7e1544",
+    "evidence/printed_error/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/printed_error/oracle/2.stdout": "47142ddb1aa2b4f8f515fe1a44783013440a86efa03205103ad7d6f07d6a5985",
+    "evidence/printed_error/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "8933d27582f2f9ed4a97a1c8641516ab5b7562d2d096d610c71169a7beb7cefe",
+    "evidence/printed_error/oracle/oracle.json": "149f6bd1e629e14b6d0e3002f322e8fc3c971db9e79413e65920ca76d49676f4",
+    "evidence/printed_error/oracle/subprocesses.json": "6788f8faa613e3d63a173debb992961b953cf0d9fb50e790c1ac6f6c37b39338",
+    "evidence/sorry/components/command.json": "76358ab48f24012da02e6703a2ea16633ce5fc47c772c7a6bb86106124f6500b",
+    "evidence/sorry/components/frontend.json": "081732b595492c8563c2967919be470009e986c1ccad060586f034a12fa2c369",
+    "evidence/sorry/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/sorry/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/sorry/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/sorry/measurement.json": "50bf2a7057a2aa942b5b1a40ec9a07a3184de59f550d9765d8578c4fa73874bc",
+    "evidence/sorry/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/sorry/oracle/0.stdout": "afea6c1ce5eed2650a4a615e4bc2eb4d53bb8fb104202e48d4aa2e03259579b9",
+    "evidence/sorry/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/sorry/oracle/1.stdout": "afea6c1ce5eed2650a4a615e4bc2eb4d53bb8fb104202e48d4aa2e03259579b9",
+    "evidence/sorry/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/sorry/oracle/2.stdout": "9cdd97f4936261573028cefe970622db55b25849a1f7b842185ce11feb11b927",
+    "evidence/sorry/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "4bb640f22c3810a3087daa936ee21c1e6360108f71fc02d7a4c508adc0ab1ede",
+    "evidence/sorry/oracle/oracle.json": "ba4be863524849298644aa717b2cb9a87148ad509f724ce4ba6ff62a4504454a",
+    "evidence/sorry/oracle/subprocesses.json": "1e0a965ae4778a61cd46fa0ba88be4ceee79375edef40771c345429bb25c0610",
+    "evidence/stderr_capture/components/command.json": "88d2a10aed9ca7f1abee9f76e90349c3e251cff9c509bba3bde9ca8d5f4b8874",
+    "evidence/stderr_capture/components/frontend.json": "32cd58a5df6acf5fa00e9a2bb0b035544680ac1a5f7b7658b10c9e6baed4a063",
+    "evidence/stderr_capture/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/stderr_capture/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/stderr_capture/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/stderr_capture/measurement.json": "cfa38b40a6b9cd57ffdb781cba190bd1134afc4e23ab491ad2967ebddb60b131",
+    "evidence/stderr_capture/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/stderr_capture/oracle/0.stdout": "b13f70f290ecc3a31ab56da92b0d84542323dee3a32d6fc948d5aa397a0db6b1",
+    "evidence/stderr_capture/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/stderr_capture/oracle/1.stdout": "b13f70f290ecc3a31ab56da92b0d84542323dee3a32d6fc948d5aa397a0db6b1",
+    "evidence/stderr_capture/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/stderr_capture/oracle/2.stdout": "f7a4848901d47fcb9d1bb65aa8a5e91afde999c1b105ccfa09d6d1a6161680e4",
+    "evidence/stderr_capture/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "a956f5db7e95c48076d013b5be5ad2fe82e141974dbec501342fb102393710e0",
+    "evidence/stderr_capture/oracle/oracle.json": "462b2ab3d90a05e3b8b68058f45b36e4ffbc0039cc1751afe951a552b695042e",
+    "evidence/stderr_capture/oracle/subprocesses.json": "5e87d067ab9e95b80d99f47d7453bb416f2b3abbe8c1315928cb2000ee8724b3",
+    "evidence/top_level_error/components/command.json": "630d88623dc31ae747be57fc7afc138a7b6ded71176ff6a6cf4d4f62dc8d381f",
+    "evidence/top_level_error/components/frontend.json": "3539833a14bd768a8c4eff5cbb75269a7f9f84fe110b88f1c50a1b856003b37a",
+    "evidence/top_level_error/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/top_level_error/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/top_level_error/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/top_level_error/measurement.json": "ad583475f95576086538632d9592fb142ff1f5a55774cbdcd1cea0dd724dc8e2",
+    "evidence/top_level_error/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/top_level_error/oracle/0.stdout": "9cdffc7595607eec2d7593d02f6218c64b530eee95d51797749c22f895fa6528",
+    "evidence/top_level_error/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "8933d27582f2f9ed4a97a1c8641516ab5b7562d2d096d610c71169a7beb7cefe",
+    "evidence/top_level_error/oracle/oracle.json": "eff8c9da327c83195630137e0f34ca07423248ea546ed35204901a23b90f0877",
+    "evidence/top_level_error/oracle/subprocesses.json": "256a90687ffa6b75ca0d52a3277cc653e5628cced87a8e4dfe79a7ba4a09ed61",
+    "evidence/truncated_syntax/components/command.json": "06688ca2dc954df6ff0997df608ebec8c84194bdd44c6c97df021ef2c2d00cff",
+    "evidence/truncated_syntax/components/frontend.json": "82342ee83fe7226b11e1d14fa235afd60232efb9cdd41eea940b9a6cf3ffc534",
+    "evidence/truncated_syntax/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/truncated_syntax/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/truncated_syntax/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/truncated_syntax/measurement.json": "f59869546bd8546d2ec9ef610f31c1e955a0eacb1aeee02b05b8ccf5677eb842",
+    "evidence/truncated_syntax/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/truncated_syntax/oracle/0.stdout": "437a69b488da7f2305133ade59196e66c3fde013e43b9258436740c1ee33c113",
+    "evidence/truncated_syntax/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "cffce036a2d466bf9667f14fd822b35cc0ccca28e226cc84bb1dd0935e3ca2f5",
+    "evidence/truncated_syntax/oracle/oracle.json": "4f00b6a3c38e5afa81fe1147e1f7bf74cba6cce4705553805c645e0645d0205c",
+    "evidence/truncated_syntax/oracle/subprocesses.json": "bca79a08ea05b04317271be164ed8985d7db0f52a7ac7fa00d4dc248fd0859fb",
+    "evidence/unknown_empty/components/command.json": "6f1470fd846194f2897afd5980f409b1644928114cf4a1f854458f8148e5457d",
+    "evidence/unknown_empty/components/frontend.json": "fcfd448e98a2915bd1aa858b6a054fafc744ed731e39070f100fc8763d1073ff",
+    "evidence/unknown_empty/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/unknown_empty/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unknown_empty/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unknown_empty/measurement.json": "4962cc7027deeb2a74b710c34ff6569325cef7a3701540459b9f60a7948c0c04",
+    "evidence/unknown_empty/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "c141783b0f2618e7a9233a08e15d2b30cc7df54c7e87001e2041c516a96b94b9",
+    "evidence/unknown_empty/oracle/oracle.json": "ea5da1e049663a7b71d9d539644bc1569131e589c2a5c7b8cce953e4ce26e44c",
+    "evidence/unknown_empty/oracle/subprocesses.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "evidence/unknown_valid/components/command.json": "87b48f37bc61f76d5b91af5f567a2b6a9710a5345b73b683722f5bd33ae0a414",
+    "evidence/unknown_valid/components/frontend.json": "b0b386ffbfde1f5c82db8d61346065861cc87d922686f82e115e7b2306a06ec3",
+    "evidence/unknown_valid/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/unknown_valid/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unknown_valid/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unknown_valid/measurement.json": "d3075e1311b33ed4337be1f7463bf4e083e7ebe862655775243ed7e36ff2f4cc",
+    "evidence/unknown_valid/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unknown_valid/oracle/0.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unknown_valid/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unknown_valid/oracle/1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unknown_valid/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unknown_valid/oracle/2.stdout": "0bc72a853b0f35c73e468098f24d87224685f2eac24dd3adec26299723857705",
+    "evidence/unknown_valid/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "b7ea96298458cd420949742a35a91aee9984d04b9f66fd2ad6360706b593b778",
+    "evidence/unknown_valid/oracle/oracle.json": "654895875405fe312a48e67598a46ab89400a3885ee292e00af8337166151498",
+    "evidence/unknown_valid/oracle/subprocesses.json": "b16126a04c0e65f656031ffab7d381fb6630e3bb881b1e0f89ef1fe792fb3187",
+    "evidence/unparseable_compiling/components/command.json": "e35ce24fa07cc61700e7ec23d3b5bedadfcb99d57ee33cadeabb834c9396af72",
+    "evidence/unparseable_compiling/components/frontend.json": "09e75342800b62903ac071c84f2946cef8a2f2210db9fddba5f0bf340b7c8a6b",
+    "evidence/unparseable_compiling/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/unparseable_compiling/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unparseable_compiling/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unparseable_compiling/measurement.json": "f459e4801947f3a9209ad44c1031cd6250c9ffe15447051df52ca0b909002e51",
+    "evidence/unparseable_compiling/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unparseable_compiling/oracle/0.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unparseable_compiling/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unparseable_compiling/oracle/1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unparseable_compiling/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unparseable_compiling/oracle/2.stdout": "58d79f467ee26fdc2400210394a4191edfce215578bbb694c83fec43746fbb11",
+    "evidence/unparseable_compiling/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "a956f5db7e95c48076d013b5be5ad2fe82e141974dbec501342fb102393710e0",
+    "evidence/unparseable_compiling/oracle/oracle.json": "8435d6867e5c618e5635ac361cd21dd8da62dd93087eca605742b43c95ad1c9f",
+    "evidence/unparseable_compiling/oracle/subprocesses.json": "6b7e9dbe48c2d40dcd1e278fa4531c7480f1a4fc53aac7a3e9459ab9020f0f44",
+    "evidence/unparseable_noncompiling/components/command.json": "62433daa76b8d2c0ec828d1b43b98d9245913dcd0da8e5de575d06b6f903fb78",
+    "evidence/unparseable_noncompiling/components/frontend.json": "32f9558477bbe10dc89c810366b9495c6c3e1c51dd825198645ff7a3ce95aa21",
+    "evidence/unparseable_noncompiling/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/unparseable_noncompiling/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unparseable_noncompiling/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unparseable_noncompiling/measurement.json": "c8b21287a51fba9e0ab007850d1a27df8f7928eae943a7ea368805e1bb936e0b",
+    "evidence/unparseable_noncompiling/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unparseable_noncompiling/oracle/0.stdout": "0023e3a18a4079e987bf5de58ec9f723e0d06361709eafaa6617255b5fc81c54",
+    "evidence/unparseable_noncompiling/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "8933d27582f2f9ed4a97a1c8641516ab5b7562d2d096d610c71169a7beb7cefe",
+    "evidence/unparseable_noncompiling/oracle/oracle.json": "8d146853388735f530407b6f5ef88555dbb620d7d4712aa3f50dc97441ae5906",
+    "evidence/unparseable_noncompiling/oracle/subprocesses.json": "48b5730eade62e1787db5346a2f35fd5fee7dbb4191916b57067fb45d5035ca7",
+    "evidence/unresolved_type/components/command.json": "28aa08a5e2ebb88e1066c498dcfaac0e7e3c000934b5f9d5c809051cf8d97ec8",
+    "evidence/unresolved_type/components/returncode": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "evidence/unresolved_type/components/stderr": "87fe059bb1a99927996ff3e1c8bce9cb3e5bbf763de605bc8f4d58673c0fce72",
+    "evidence/unresolved_type/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unresolved_type/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unresolved_type/oracle/0.stdout": "8bcd485985f2e8d97a340140be963a3c3db4ba074627c865597ab4c761c887df",
+    "evidence/unresolved_type/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "8933d27582f2f9ed4a97a1c8641516ab5b7562d2d096d610c71169a7beb7cefe",
+    "evidence/unresolved_type/oracle/oracle.json": "31e0f8232c42a51514820d9178510a9a558eb1bf2721a6bebced2981a812fd8f",
+    "evidence/unresolved_type/oracle/subprocesses.json": "1f06ab101f58014129480e6616d4b796d82b8674aa91446118e36728123a11ae",
+    "evidence/unused_axiom/components/command.json": "599acef2e6fdd36f28a949e9d65c28d2182065a90fa236c4b8565681ea833ef4",
+    "evidence/unused_axiom/components/frontend.json": "392d418b3c59d14b46d75964a0824556d7b61f023062723181ca2d54af6a1308",
+    "evidence/unused_axiom/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/unused_axiom/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unused_axiom/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unused_axiom/measurement.json": "3f984e4c3e4707c6402094ef07f3573242968f8af60d4f85797a458d3afaf3e8",
+    "evidence/unused_axiom/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unused_axiom/oracle/0.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unused_axiom/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unused_axiom/oracle/1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unused_axiom/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/unused_axiom/oracle/2.stdout": "d0dbb5201d8d458cbe98c50437f6776b5e87a9471553ef26ad3db09b8f72f982",
+    "evidence/unused_axiom/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "a956f5db7e95c48076d013b5be5ad2fe82e141974dbec501342fb102393710e0",
+    "evidence/unused_axiom/oracle/oracle.json": "d0e34ca84f931a64fefabe6cab05933ef204e15a4aac4d279f0b25f82014eda3",
+    "evidence/unused_axiom/oracle/subprocesses.json": "b4d9a8be979df38013bf3539a99085e7c14f14e5715979e4c9a24c7526acd0a8",
+    "evidence/vacuous/components/command.json": "677bb5f638cba55d0ac50e5e27bbb46c116f7804a6d4f13623300ed24c9d9519",
+    "evidence/vacuous/components/frontend.json": "d3c0bbbfed6c95f156f292505ced3a68923aec7f745f87616addd113b38a806c",
+    "evidence/vacuous/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/vacuous/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/vacuous/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/vacuous/measurement.json": "d167c5a51fece6e7d521d7b7d4bb5011e63903fcf59f6abac5b0bc4fcffa58f6",
+    "evidence/vacuous/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/vacuous/oracle/0.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/vacuous/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/vacuous/oracle/1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/vacuous/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/vacuous/oracle/2.stdout": "2685c9a4bfb0e1915a76e394e135f3ed5b8bfcbdf26c57977f3727a9ec754bd8",
+    "evidence/vacuous/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "a956f5db7e95c48076d013b5be5ad2fe82e141974dbec501342fb102393710e0",
+    "evidence/vacuous/oracle/oracle.json": "40ce448d5bccb1a542dc891383b5e680916bdddf2db8a67e96e80dc4884fdb7d",
+    "evidence/vacuous/oracle/subprocesses.json": "15c105d86a096e442b144ccbc206b4747e6ac7c336fc87f90fabf8a2c4535e47",
+    "evidence/valid/components/command.json": "dcb8805ebde5fec6d719cc665ef6b3badfae3e92ec63a1b3c8fcbcbbcda7551e",
+    "evidence/valid/components/frontend.json": "b0b386ffbfde1f5c82db8d61346065861cc87d922686f82e115e7b2306a06ec3",
+    "evidence/valid/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/valid/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/valid/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/valid/measurement.json": "daba90cf427a6a0f2cc1c720fe40ebba60f823c7f774c417144dc8de1c9dec77",
+    "evidence/valid/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/valid/oracle/0.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/valid/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/valid/oracle/1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/valid/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/valid/oracle/2.stdout": "6c1f545491b200b1f0ab38f5f338743b9c068590897192f898dc1989ebd27484",
+    "evidence/valid/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "a956f5db7e95c48076d013b5be5ad2fe82e141974dbec501342fb102393710e0",
+    "evidence/valid/oracle/oracle.json": "ff27f6176038ab3c3b84d2cc5cc8bf074a5c08068ec17cd8913b28a5ead3b402",
+    "evidence/valid/oracle/subprocesses.json": "ae37af893307bd20996fdf038da0cc6b6da41c3f14904db416379a459d5afc16",
+    "evidence/valid_at_cap/components/command.json": "583810a4a0a749508bfb2f0b33d81f9565cae25f3c699b9cfa477b39ca52ae67",
+    "evidence/valid_at_cap/components/frontend.json": "b0b386ffbfde1f5c82db8d61346065861cc87d922686f82e115e7b2306a06ec3",
+    "evidence/valid_at_cap/components/returncode": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "evidence/valid_at_cap/components/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/valid_at_cap/components/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/valid_at_cap/measurement.json": "58d80dc4fd2eebc49f9fbfe1d8431e5d375395b7a3e07d477274bf7902f3c4d2",
+    "evidence/valid_at_cap/oracle/0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/valid_at_cap/oracle/0.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/valid_at_cap/oracle/1.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/valid_at_cap/oracle/1.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/valid_at_cap/oracle/2.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/valid_at_cap/oracle/2.stdout": "664279465475b4e5128839ac7da1d8baab8019a9bad0a2cfbc84f76dfbe1744c",
+    "evidence/valid_at_cap/oracle/ladder/train/scored/scored_fixture_g8.jsonl": "b327a94d9a2fe66d3b10ae8fc120af6137675d256337e2fb9623658fa9104bd4",
+    "evidence/valid_at_cap/oracle/oracle.json": "3f6502a6172a22dbd65002ad39cffaa03fc2d946d6adb939e44572754ad07c9c",
+    "evidence/valid_at_cap/oracle/subprocesses.json": "dfa1d65269900bcdd67f2ea9c0da417fd3e7dab133e325a36866727178487e07"
+  },
+  "stop_rule": "PLAN section 4: R0 fails; stop downstream and publish evidence",
+  "created": "2026-10-13T12:10:39.784077-07:00"
+}
