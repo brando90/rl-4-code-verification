@@ -5,7 +5,7 @@
 **TLDR:** Amendment A1 resumed experiment 13 version 2; R0 attempt 2 passed all 30 fixtures and its required repository suite; R1 attempt 1 passed all 400 train cells.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-13-2026 13:44 PDT
+Last updated: 10-13-2026 13:50 PDT
 
 ## Goal
 - Complete amended development acceptance, then the unchanged scientific gates and matched reinforcement-learning comparison.
@@ -22,11 +22,12 @@ Last updated: 10-13-2026 13:44 PDT
 ## Stuck / blocked
 - None. R1 is train-only; no validation or test source has run for version 2.
 ## Next steps
-- [p 10/10] Publish validated prediction/reproduction code; freeze L1v2 manifests/folds/forecasts; launch 38,784-cell R2 with test opaque. No validation/test factors before the published lock.
+- [p 10/10] Publish L1v2, then launch 38,784-cell R2 in `e13v2-a1-r2.scope`; test remains opaque. Publish R2 before G0; failures stop downstream work.
 ## Brando to-do
 - None.
 
 ## Log
+- 10-13-2026 13:50 PDT -- Implementation published as `3e5f159`; required suite 300 passed / 23 skipped. L1v2 frozen with 51 verified bindings and carried F0v2=0.50/F1v2=0.85; no validation/test factors computed. R2 admission: 48 workers, 64 GiB address space, aggregate 1044624427008 bytes.
 - 10-13-2026 13:44 PDT -- R1 PASS published at `8bb1091`. Prediction and reproduction preparation uses synthetic tests only; 38,784-source metadata union hash-checked (no factors), with 42,024 source-family readbacks. Required suite and pre-lock verification in progress.
 - 10-13-2026 12:57 PDT -- R0 attempt 2 completed PASS: 30/30 fixtures, oracle values/statuses, and components. R1 admitted after publication.
 - 10-13-2026 12:52 PDT -- Resumed under A1 at `cb5e175`, committed three justified fixes, froze and launched attempt 2; required full suite passed.

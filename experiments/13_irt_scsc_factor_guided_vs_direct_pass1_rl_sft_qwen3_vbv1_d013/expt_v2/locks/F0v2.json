@@ -1,0 +1,46 @@
+{
+  "name": "F0v2",
+  "prediction": 0.5,
+  "target": "4B full-schedule dense-only validation task share",
+  "frozen_at_utc": "2026-10-13T20:49:45.371674+00:00",
+  "frozen_at_local": "10-13-2026 13:49 PDT",
+  "git_head": "3e5f159079f07fa1e741b503e93ea3e8234693c3",
+  "numeric_source": "PROTOCOL section 8",
+  "history": [
+    {
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/locks/F0.json",
+      "sha256": "7fa69649449c94eb71ca687e7315bd745e1df80898452b0bc6d4fc8daeae3be5",
+      "content": {
+        "L1_sha256": "3561c7db5e02197f587baae81df6494827bbf085ad472d72647b5241022fc64d",
+        "decision": "G0 pass only if locked dense-share and AUC thresholds pass",
+        "kind": "F0_G0_forecast",
+        "outcomes_observed": false
+      }
+    },
+    {
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/locks/F0_audit_v1.json",
+      "sha256": "9576f39781d65cf6868d21df819b73a55d2317043762223edbc025faa7dae3e8",
+      "content": {
+        "L1_audit_v1_sha256": "c00cdd6bb0f6222de40609a8646e4e8943f6336f829ed3c576dd8c1a07cda95e",
+        "decision": "G0 pass only if the original locked dense-share and AUC thresholds pass",
+        "kind": "F0_G0_forecast_audit_v1",
+        "outcomes_observed": false,
+        "previous_F0_binding_sha256": "7fa69649449c94eb71ca687e7315bd745e1df80898452b0bc6d4fc8daeae3be5"
+      }
+    },
+    {
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/locks/F0_audit_v2.json",
+      "sha256": "b3a50fc8876024ae938be8d9d09cbf77c76accd76cc9b2bb7f9e68f934b7335a",
+      "content": {
+        "L1_audit_v2_sha256": "c1bcff67ae1efe57e1c96a83f736cec2e793ea6f75711cd1f1a68bfb544b89d0",
+        "decision": "G0 only under original thresholds",
+        "kind": "F0_audit_v2",
+        "outcomes_observed": false,
+        "previous_binding_sha256": "12e42668c78373fc9403bdfc54bae3f8d30a890a79fdbc4f0e99bb8bb22cbb7f"
+      }
+    }
+  ],
+  "historical_ledger_sha256": "6e079b92d4961f87bcf7b4a5128cf568d1052e0c471eebc904e1e1bbc0fd01ac",
+  "chronology": "carried numeric forecast; original version-1 timestamps do not prospectively register changed version-2 procedure",
+  "version2_validation_test_factors_observed": false
+}

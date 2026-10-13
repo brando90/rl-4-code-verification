@@ -1,0 +1,46 @@
+{
+  "name": "F1v2",
+  "prediction": 0.85,
+  "target": "held-out full-schedule policy Pearson correlation of inner-selected conjunctive model",
+  "frozen_at_utc": "2026-10-13T20:49:45.371674+00:00",
+  "frozen_at_local": "10-13-2026 13:49 PDT",
+  "git_head": "3e5f159079f07fa1e741b503e93ea3e8234693c3",
+  "numeric_source": "PROTOCOL section 8",
+  "history": [
+    {
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/locks/F1.json",
+      "sha256": "a7a55b06d5e2df92cba58bcaed527f2683a36b61b430e04cb2e71b21e0ce59b7",
+      "content": {
+        "L1_sha256": "3561c7db5e02197f587baae81df6494827bbf085ad472d72647b5241022fc64d",
+        "decision": "G1 pass only if locked selected candidate beats M0/M1 and Pearson threshold passes",
+        "kind": "F1_G1_forecast",
+        "outcomes_observed": false
+      }
+    },
+    {
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/locks/F1_audit_v1.json",
+      "sha256": "17ce911f816efc7ddfa1cd85b4ee6d08e9f3251e04686aa3ed0923f43a1e4510",
+      "content": {
+        "L1_audit_v1_sha256": "c00cdd6bb0f6222de40609a8646e4e8943f6336f829ed3c576dd8c1a07cda95e",
+        "decision": "G1 pass only if the original locked selected-candidate comparison and Pearson threshold pass",
+        "kind": "F1_G1_forecast_audit_v1",
+        "outcomes_observed": false,
+        "previous_F1_binding_sha256": "a7a55b06d5e2df92cba58bcaed527f2683a36b61b430e04cb2e71b21e0ce59b7"
+      }
+    },
+    {
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/locks/F1_audit_v2.json",
+      "sha256": "0452dd979b50ae822546788aff4337c3c5d7c23c982d537991515aa7901c4228",
+      "content": {
+        "L1_audit_v2_sha256": "c1bcff67ae1efe57e1c96a83f736cec2e793ea6f75711cd1f1a68bfb544b89d0",
+        "decision": "G1 only under original thresholds",
+        "kind": "F1_audit_v2",
+        "outcomes_observed": false,
+        "previous_binding_sha256": "d395923fad711555bdbc3648535af72c59abaf118e0a617dcc42a07bac7c5354"
+      }
+    }
+  ],
+  "historical_ledger_sha256": "6e079b92d4961f87bcf7b4a5128cf568d1052e0c471eebc904e1e1bbc0fd01ac",
+  "chronology": "carried numeric forecast; original version-1 timestamps do not prospectively register changed version-2 procedure",
+  "version2_validation_test_factors_observed": false
+}

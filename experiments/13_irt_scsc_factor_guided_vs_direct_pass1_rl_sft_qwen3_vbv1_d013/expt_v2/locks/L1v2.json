@@ -1,0 +1,269 @@
+{
+  "name": "L1v2",
+  "frozen_at_utc": "2026-10-13T20:49:45.371674+00:00",
+  "frozen_at_local": "10-13-2026 13:49 PDT",
+  "git_head": "3e5f159079f07fa1e741b503e93ea3e8234693c3",
+  "measurement_contract": {
+    "strict": "frozen historical source-family oracle value AND status, independent of components",
+    "components": "accepted R0_attempt_2 elaborator probe; complete per-command messages and raw stdout/stderr; unresolved obligations retained",
+    "consistency": "strict=1 implies maxima; all maxima/strict=0 needs typed reason; untyped fails R2",
+    "alias_policy": "one compile/component measurement per unique source, both original historical source-family readbacks for overlaps"
+  },
+  "counts": {
+    "unique": 38784,
+    "base": 21504,
+    "ladder": 20520,
+    "overlap": 3240,
+    "source_specific_readbacks": 42024,
+    "ordinary": 33456,
+    "opaque_test": 5328,
+    "train": 12936,
+    "validation": 20520,
+    "unavailable_parent_ladder": 5400
+  },
+  "chronology": {
+    "R0": "attempt 2 PASS 30/30; attempt 1 unchanged",
+    "R1": "attempt 1 PASS 400/400 train; 300 rejected plus 100 measured cells",
+    "version1_private_base_equalities": 6739,
+    "version1_per_cell_values_or_factors_published": false,
+    "master_read_version1_private_outcomes": false,
+    "design_evidence": "published experiment-08 validation aggregates predate version-1 F0",
+    "version2_validation_test_factors_computed": 0,
+    "test_route": "separate opaque process; completeness, hashes and equality only; discrepancies need numbered chronology amendment to inspect"
+  },
+  "prediction_config": {
+    "schema": "e13v2-prediction-config-1",
+    "libraries": {
+      "python": "3.12.3",
+      "numpy": "2.5.4",
+      "scipy": "1.18.1"
+    },
+    "models": [
+      "M0",
+      "M1",
+      "M2",
+      "M3",
+      "M3e"
+    ],
+    "hurdles": [
+      "extraction_example_theorem_and_nonvacuity",
+      "whole_file_compile_given_q1",
+      "kernel_honesty_given_q1_q2"
+    ],
+    "strict_chain_disagreement": "blocks fitted C admission; never alters the historical strict oracle",
+    "estimation": "maximum a posteriori; empirical-Bayes unseen-item random-effects integration conditional on training hierarchy coefficients",
+    "ability_identification": {
+      "mean": 0,
+      "variance": 1,
+      "dimensions": "fixed named components, no mixing"
+    },
+    "priors": {
+      "difficulty_normal_sd": 2.0,
+      "standardized_ability_normal_sd": 1.0,
+      "log_discrimination_normal_sd": 0.5,
+      "feature_coefficient_normal_sd": 2.0
+    },
+    "discrimination_bounds": [
+      0.1,
+      5.0
+    ],
+    "quadrature": {
+      "method": "Gauss-Legendre on normal quantiles; truncated-normal log-discrimination",
+      "points_per_random_effect": 31
+    },
+    "optimizer": {
+      "method": "L-BFGS-B",
+      "maxiter": 2000,
+      "maxls": 50,
+      "ftol": 1e-10,
+      "gtol": 1e-07,
+      "maxcor": 20,
+      "gradient": "analytic; checked by central differences"
+    },
+    "initialization_seeds": [
+      1302011,
+      1302012,
+      1302013,
+      1302014,
+      1302015
+    ],
+    "initialization_max_prediction_disagreement": 0.02,
+    "diagnostic_ability_grid": {
+      "start": -3,
+      "stop": 3,
+      "points": 25
+    },
+    "prior_sensitivity_sd_multipliers": [
+      0.5,
+      2.0
+    ],
+    "features": [
+      "python_character_count",
+      "python_token_count",
+      "industry_domain",
+      "reference_theorem_count"
+    ],
+    "feature_standardization": "training fold only",
+    "policy_ability_extrapolation": [
+      "intercept",
+      "log_size_billions",
+      "log1p_cumulative_sft_assistant_tokens"
+    ],
+    "outer_folds": 5,
+    "outer_group_assignment": "integer SHA-256(group_id) modulo 5, preserved from version 1",
+    "inner_folds": 3,
+    "inner_group_assignment": "integer SHA-256(inner + NUL + group_id) modulo 3",
+    "full_schedule_outcomes": "excluded from every fit and inner selection; used only by final forecast evaluation",
+    "inner_target": "last earlier rung (75 percent); fit on lower rungs",
+    "M0_unseen_tasks": "training-only pooled Beta(1,1) mean",
+    "M1": "weighted pool-adjacent-violators with interpolation through all block endpoints, trained on earlier adjacent transitions",
+    "candidate_selection": "minimum pooled inner held-out log loss, exact ties M3",
+    "bootstrap": {
+      "draws": 10000,
+      "seed": 1302031,
+      "unit": "task group, paired across models/policies; fixed fitted predictions"
+    },
+    "G1": {
+      "required_schemes": [
+        "grouped_tasks",
+        "full_schedule_policies"
+      ],
+      "log_loss_difference_upper_95_below_zero_against": [
+        "M0",
+        "M1"
+      ],
+      "full_schedule_policy_pearson_min": 0.8
+    },
+    "calibration": {
+      "bins": 10,
+      "criterion": "paired group-bootstrap 95% interval for mean prediction-minus-outcome bias contains zero",
+      "criterion_source": "prospective operationalization of PROTOCOL section 4 calibration requirement; not evidence that calibration is exact"
+    },
+    "synthetic_recovery": {
+      "pattern": "actual risk counts and missingness, after R2",
+      "seed": 1302041,
+      "ability_correlation_min": 0.8,
+      "probability_mean_absolute_error_max": 0.08,
+      "threshold_source": "prospective implementation controls, declared before historical validation factors"
+    },
+    "anchors": {
+      "split": "train",
+      "policies": [
+        "base_4B",
+        "sft_4B_f0p5",
+        "sft_4B_f1p0"
+      ],
+      "tasks": 539,
+      "samples": 8,
+      "d_and_p": "per-output beta-binomial numerator/denominator",
+      "t": "Bernoulli",
+      "log_concentration_prior_mean": "log(20)",
+      "log_concentration_prior_sd": 1.0,
+      "concentration_bounds": [
+        0.05,
+        10000.0
+      ],
+      "ability_update_every_updates": 10,
+      "current_ability_prior": "N(0,1), earlier train rollouts only, fixed items",
+      "weights": "a*(1-q), normalized across d/t/p, frozen throughout group"
+    },
+    "post_L1_policy": "no score-driven configuration changes or gate retries",
+    "feature_extraction": {
+      "python_tokens": "stdlib tokenize; excludes comments, indentation and newline tokens",
+      "reference_theorem_count": "pinned scorer theorem-type extractor",
+      "industry_domain": "one-hot vocabulary fitted on training-fold tasks; unseen domain all-zero",
+      "numeric_standardization": "training-fold only"
+    }
+  },
+  "library_versions": {
+    "python": "3.12.3",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "psutil": "7.2.2"
+  },
+  "folds": "SHA-256(group_id) modulo 5; inner SHA-256(inner + NUL + group_id) modulo 3; test fold=None",
+  "G0": {
+    "dense_only": "B varies across all eight samples while strict is constant",
+    "size": "4B",
+    "tasks": 135,
+    "dense_only_count_minimum": 21,
+    "predictor": "mean 50 percent rung B on tasks with zero strict successes",
+    "outcome": "any strict success at full schedule",
+    "auc_minimum": 0.65,
+    "one_class_auc": "undefined, fails",
+    "bootstrap": {
+      "draws": 10000,
+      "seed": 1302051,
+      "unit": "task group",
+      "resample": "full cohort then condition on zero earlier successes"
+    },
+    "secondary_sizes": [
+      "1.7B",
+      "8B"
+    ]
+  },
+  "resources": {
+    "max_workers": 48,
+    "p99_peak_bytes": 6928265707.52,
+    "address_space_bytes": 68719476736,
+    "aggregate": "half available memory at launch via systemd scope",
+    "dynamic_admission": "min(48,floor(0.5*current_available/p99)); pause below 25% available",
+    "mean_R1_complete_cell_seconds": 18.29810984922922,
+    "conservative_R2_hours_at_48": 4.10690909949367,
+    "runtime_reserve_multiplier": 1.25
+  },
+  "retries": "no gate retry; only one identical per-cell transient infrastructure retry persisted across boots/accounts; deterministic limits no retry",
+  "hashes": {
+    "/lfs/skampere1/0/brando9/agent-recovery-10-09-2026/workers/rl4cv13_phase0/sealed_base_audit_v1/sealed_manifest.jsonl": "06fcbcda0d7406156f99754d69814a699fe4dbf29fee40e377fa190ccd03f1b6",
+    "/lfs/skampere1/0/brando9/agent-recovery-10-09-2026/workers/rl4cv13_review/phase0_controls/validation_source_manifest.jsonl": "c88b9e7ba58b9c0b0334b1e55af12c1ae54985ac20721bc710967abdd6a7bafa",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/grading/lean_src/lake-manifest.json": "d99caf0bc025deb50cb467cb84af15464d248fde48e72aea336191efde4ceef1",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/grading/lean_src/lakefile.toml": "88ac408cd8ad2da99b825601bf91f446247957352f4a7c4dba3704e39a15f43b",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/grading/lean_src/lean-toolchain": "f3d6c7b78f8d6f91e250079899d9309c5d7a020bbedb4e8b4871508f24ee4d2c",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/external/veribench/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/scripts/valkyrie_single_call_agent/single_call.py": "c7cbe3e6bffbc2b950e2a42f7d7c1ac859945a361a421b35b3b702aa100cdcf0",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/external/veribench_scorer/scripts/scsc/kernel_axioms.py": "5dbbdcae75ba8b22911fcb43ab1fcde45a1475cf92742a39a29ebe41116de287",
+    "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/external/veribench_scorer/scripts/scsc/run_real_eval.py": "6e82b3d1cd6d3686aaec3d45f273cd902b03b962c0c2eca48f2c2b4f25f41fa9",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/R2/folds.json": "40e4bde329b21146271821fb20c7e5a4ab3b109ac03f957799086bdf3f28ca38",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/R2/index_receipt.json": "0acbede0e4eac761f5d440e08c2bb1124925cb31ec1dbaf7c145c04463270602",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/R2/manifest_receipt.json": "ab418a4cedfcf8f03da44100579955f8de284a88a1c8866182bce31d0750f15a",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/R2/opaque_manifest.index": "0e0095c203fb168ff737204f2e44b529e33b3e0850e73661543bc2034f9f48c3",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/R2/opaque_manifest.jsonl": "025b71b9b457f3076d4e5dc666a29dd9174d9850305fc3256bb9523c7c5dade1",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/R2/ordinary_manifest.index": "5bf5b771bce0ec6adccaa92a3894e7fd5196e2ecc7707ebfce37b0e7a8fe238a",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/R2/ordinary_manifest.jsonl": "2b6b764f481c4a1cd87d47a67a1746e5bbbd78f79571131fa1ca2383cd163eba",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder_manifest.json": "3013db1230f27cf021ace50ff53abcc6de2e9f6964ac62968baa80ccb577a948",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/sft_schedule.json": "e0d6d896a1f4c085629ac90dc8fda9c52e6e5bf511a5a8b42fb30c769e575f8b",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/split/vbv1_split_manifest.csv": "157ce781ed9e4ac93a1a1fe0c49f2ee2ae907be1260402485c8f6fa3d06e0e24",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/analyze_ladder.py": "54996b9357cd35bbb9f6dfc93376b17aff7005f1fe61977d6969efbbdb5eb8db",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/score_teacher_files.py": "e77aa53f26a78b64dcb978c874b0336c5f75c7a15656740fde67e29ed5f00000",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/PROTOCOL.md": "cb964b51636b104e725c1a548102193f2bde6b3c8d3bde6e537c950c4b948721",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/PHASE1_IRT_PLAN.md": "664f36eb4810627fc40bcbc85c5868e52f5a04ba5ede2ea58b0c7baae02e09cc",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/AMENDMENT_A1_development_gates_10-13-2026.md": "c810c06603e5220a165cae6456e2ab1d2eb934dca5f0325168c3feaca3942abd",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/PLAN.md": "7583cafc2516a49af8a84c6c27304e7a651b60e0725c2e6e6f07d96d4d358a59",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/R0_attempt_2/DeclarationProbe_v2.lean": "eae1eb58b0cd91977631e7e07b65a8c1c962f9759f4c30e4730330e1edc16076",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/R0_attempt_2/declaration_adapter_v2.py": "7ae02b4b9d04a061930f4dab3c27b4dcdd89f1338d8002ae6a411648c093b34a",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/R0_attempt_2/result.json": "18a414f251b283e93035b7009fc55482a29896eaf13cc16d70832b2143bb5ea7",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/R1_attempt_1/result.json": "a100d0426314616dcfcc6f083ba5fcff60b99cea9313bcd7906c2b2d08d84057",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/env_e13v2.sh": "f113ba04ddce0493bdf2e87c255025b4bb8342898636bf732da73a766e9b00fe",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/historical_oracle_v2.py": "82e8d0fbbfd588e1d19bd1709ea43a9d90789569374a794dc961edadfea36a66",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/locks/F0v2.json": "18f01942c8742738274e834380733b6ffa8b1b593edfcda683f6b09836dcea63",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/locks/F1v2.json": "8b9841d0e64c72f3a44f97a503b41dd11024c551c0d794ee7a9957e25ababa77",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/prediction/config.json": "9758db611ffcbfe9c10a469388f6bd262496105dfa759536a843ff97699e9ff0",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/prediction/evaluation_v2.py": "1c2153c930ce7aaac2faff89a208f3a858fca42d037270205ce6ff01929cb6c3",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/prediction/features_v2.py": "dc2cb5430e41f31e01e416389ee353358aa61244ad9299337496f12ca276a480",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/prediction/forecast_v2.py": "1f5a21da15dcba3c9e7faa6fcdd158f03751fae5c5cb417ebcd67d7f04599f2e",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/prediction/irt_v2.py": "4c39e896ddfeb2828f4141c2a95c44109431f8a87c02e870eda769c3fa213856",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/prediction/marginal_v2.py": "f7ba9c08f57eca5b5104a5fef187c4938a44b3fec59031d0b19a402c3dc1814c",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/prediction/nested_forecast_v2.py": "3dfd2370387d0cf9f985734283f30c109430e717a9130d2d1c5c9e4548040980",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/prediction/policy_metadata.json": "e2be1b2cee3f61edcc673a8a7b01a74fb98714f4c01b558b8bb77f52397c5578",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/prediction/recovery_v2.py": "406a2e033eb2dfaebbbb2eeac8135d8e5b948e594d14f8409ce12db2961826b0",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/reproduction/build_manifests.py": "24328b992a4382759df557bc05b508cf4226ba520ccda8c799b016cb79f3f981",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/reproduction/cell_worker.py": "c1cc388229f31f001d68c2cbaa4648ef84181d12df55b973e674aa0255ab2f38",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/reproduction/g0.py": "5042467c7c9e04eced96ffd67c8789f2c318a44208f180ffe07e351b4034bfd9",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/reproduction/run_all.py": "100b29a361d5faca5bc70e42aab810f507e9f2dda197051016c441092ff54151",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/reproduction/run_route.py": "00e2446961fa2ae9170bf8c81666f014ccd9da77cdae7354eb35156e0184141e",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/watchdog_e13v2.py": "7d52146551f9056224c0f8957f4e3f1f3f15955b912aab34e7e7d5d5100d00f1",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/watchdog_e13v2.sh": "ec0ac39538294745ebf9782a6b91cef3894ec681afc301e34cb8018d2b37b15d",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/external/deps.lock.json": "71758c61a738591f6edb70df867aead852843ba4ceb1c5a02347afb0e9a5457f",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/src/rl4cv/rewards.py": "fdc5256566f74c459875dfeca91b3956004d35a90fed17d8975e6275c7c6e9e0",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/src/rl4cv/veribench/jobs.py": "fb62b7951c4c735d3fe197a097c2e6b4f5e7eb18e33505175572309756528ed8"
+  }
+}
