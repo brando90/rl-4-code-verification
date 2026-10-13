@@ -28,7 +28,7 @@
 ├── README.md        design (this file)
 ├── PROTOCOL.md      locked data, splits, models, arms, statistics and decision rules
 ├── results.md       live results ledger
-├── reviews/         the single light QA review (Codex GPT-6 Astra, ultra)
+├── reviews/         the single light QA review (Codex GPT-6 Astra, ultra) and its resolution
 └── expt_v1/
     ├── cc.md                    run instructions for the executing agent
     ├── irt_e14.py               1PL / 2PL / graded response model: marginal MAP fit on a fixed grid, EAP scoring
@@ -59,4 +59,4 @@ Tests: `tests/test_e14_irt.py`. They cover gradient checks, Rasch sufficiency an
 
 ## Status
 
-DRAFT, 10-12-2026: protocol revision 1 is written and the pipeline is tested on synthetic data; it awaits the light QA round, the lock and the run. Live state: [results.md](results.md).
+Protocol revision 2 (10-12-2026), written after the single light QA round ([review](reviews/light_qa_codex_gpt6_astra_ultra_10-12-2026.md): FAIL with 7 findings; [resolution](reviews/light_qa_resolution_10-12-2026.md): all fixed). The lock and the run follow. Live state: [results.md](results.md).

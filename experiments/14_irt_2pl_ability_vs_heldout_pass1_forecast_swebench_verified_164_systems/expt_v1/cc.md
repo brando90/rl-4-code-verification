@@ -13,7 +13,7 @@
    cd /lfs/skampere1/0/brando9/rl4cv_e14
    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONPATH=src \
      $PY experiments/14_irt_2pl_ability_vs_heldout_pass1_forecast_swebench_verified_164_systems/expt_v1/analyze_e14.py \
-     --workers 32 2>&1 | tee experiments/14_irt_2pl_ability_vs_heldout_pass1_forecast_swebench_verified_164_systems/expt_v1/results/run_e14.log
+     --workers 64 2>&1 | tee experiments/14_irt_2pl_ability_vs_heldout_pass1_forecast_swebench_verified_164_systems/expt_v1/results/run_e14.log
    ```
 4. **Stop rules (the analyzer enforces them):**
    - input hashes;
@@ -25,4 +25,4 @@
    On a STOP, publish the log and the status, and do not rerun with changed settings.
 5. Copy `expt_v1/results/` back to the private worktree. Commit it with explicit pathspecs together with `results.md` (verdict, counts, intervals, threshold sources, forecast versus outcome, deviations), then push to `main` after `make test`.
 
-**TL;DR:** One locked CPU run on `skampere1`; the analyzer enforces the stop rules; publish everything, including failures.
+**TL;DR:** One locked CPU run (64 processes) on `skampere1`; the analyzer enforces the stop rules; publish everything, including failures.

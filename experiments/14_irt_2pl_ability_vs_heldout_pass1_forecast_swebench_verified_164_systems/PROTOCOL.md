@@ -4,7 +4,7 @@
 
 **TLDR:** This protocol fixes the data, splits, item response theory (IRT) models, arms, statistics and decision rules for Q1 of the VeriBench IRT idea page. The question: does IRT ability estimated from the n_A tasks of half A forecast each system's pass@1 on the held-out half B better than its pass@1 on half A does, in rank and in level? It uses experiment 07's matrix and experiment 07's exact H2 splits, with zero model calls. Changes after the lock go to `results.md` → Deviations, never here.
 
-**Status:** DRAFT, revision 1 (10-12-2026), awaiting one light quality-assurance (QA) review by Codex GPT-6 Astra (effort ultra). The protocol is locked by the commit that adds `expt_v1/forecasts/e14_forecast.json` through `rl4cv.forecast.freeze_forecast`.
+**Status:** revision 2 (10-12-2026), written after the single light quality-assurance (QA) review. Codex GPT-6 Astra (effort ultra) reviewed revision 1 at commit `1dad751`: `VERDICT: FAIL`, 2 critical, 4 major and 1 minor finding. All seven are fixed here and in the code, with regression tests; there is no re-review. Details: [`reviews/`](reviews/). The protocol is locked by the commit that adds `expt_v1/forecasts/e14_forecast.json` through `rl4cv.forecast.freeze_forecast`.
 
 ## Question and origin
 
@@ -17,7 +17,8 @@
 
 - Experiment 07's published results (`results.md`, `analysis_e07.json`, including all H2 values and the one-system-per-base-model list) and its code.
 - Field names and counts of the per-cell file: 91,000 rows. In the 164 × 424 cohort, 69,536 cells are all measured: 68,608 test reports and 928 "no patch or patch not applied".
-- **Synthetic data only** for the new code: a 2PL-generated stand-in with the real shapes (`analyze_e14.py --synthetic`; 40 splits). It exposed the fold artifact described under Arms, which changed the rank-arm design before the lock.
+- **Synthetic data only** for the new code: a 2PL-generated stand-in with the real shapes (`analyze_e14.py --synthetic`; 40-split runs and one full-size dry run on `skampere1`). It exposed the fold artifact described under Arms, which changed the rank-arm design before the lock.
+- **The light QA review of revision 1** ([`reviews/light_qa_codex_gpt6_astra_ultra_10-12-2026.md`](reviews/light_qa_codex_gpt6_astra_ultra_10-12-2026.md)). The reviewer used synthetic and constructed data only. The fixes are listed in [`reviews/light_qa_resolution_10-12-2026.md`](reviews/light_qa_resolution_10-12-2026.md).
 - **One check on the real data:** experiment 07's own `held_out_prediction`, run on the replayed random stream, reproduces 07's published H2 block exactly, and our replayed permutations reproduce its medians and positive counts. This recomputes 07's published statistics (SCS4C-T versus pass@1 on half A) and nothing else. Result and time are recorded in `results.md`.
 - No IRT fit, forecast or Q1 statistic was computed on the real matrix. The real-data run of experiment 10 was not read.
 
@@ -44,12 +45,24 @@
 
 ## Models (frozen)
 
-- **Ability grid:** 401 equally spaced nodes on [−6, 6], with standard-normal population weights. Fitting and scoring share it.
+- **Ability grid (base):** 1,201 equally spaced nodes on [−12, 12], with standard-normal population weights. Fitting and scoring share it.
+- **Check grid:** 4,801 nodes on [−18, 18], four times finer and 1.5 times wider. It is used only for the numerical gates below. (Revision 1's 401 nodes on [−6, 6] could truncate the posterior of a system far outside the reference panel; QA finding 1.)
 - **1PL (Rasch with one common slope):** logit P(resolved) = aθ + d_j.
 - **2PL:** logit P(resolved) = a_j θ + d_j.
 - **Graded response model, three ordered categories (GRM3):** P(c ≥ 1) = σ(a_j θ + d_j) and P(c = 2) = σ(a_j θ + d2_j), with d2_j = d_j − exp(γ_j) so the thresholds stay ordered. P(resolved) = P(c = 2).
 - **Priors (maximum a posteriori):** log a ~ N(0, 1), d ~ N(0, 5²), γ ~ N(0, 2²). Slopes are positive.
-- **Fitting:** marginal maximum a posteriori. Each system's ability is integrated over the grid, and the analytic gradient follows Fisher's identity. The optimizer is scipy's L-BFGS-B (maxiter 20,000). A fit is accepted when the largest absolute gradient of the per-system objective is ≤ 1e-4.
+- **Fitting:** marginal maximum a posteriori. Each system's ability is integrated over the grid, and the analytic gradient follows Fisher's identity. The optimizer is scipy's L-BFGS-B (maxiter 20,000).
+- **A fit is accepted only if all of these hold:**
+  - the objective and parameters are finite;
+  - the largest absolute gradient of the per-system objective is ≤ 1e-4 on the base grid;
+  - the same bound holds when the fitted parameters are evaluated on the check grid.
+
+  A non-finite value never passes (QA finding 2).
+- **Numerical gates on scoring:**
+  - every scored posterior keeps at most 1e-8 of its mass on the two end nodes of the base grid;
+  - rescoring on the check grid changes forecasts, EAP abilities and posterior standard deviations by at most 1e-6.
+
+  For within-half fits both gates are checked for every fit. For the K-fold models the endpoint gate is checked for every scored posterior, and the rescoring gate on the first 20 splits at n_A = 50 for every fold model.
 - **Scoring:** each system's posterior over the grid gives the expected a posteriori (EAP) ability θ̂ and the posterior standard deviation. The held-out forecast is the posterior predictive mean of P(resolved), averaged over the half-B tasks. Binary models score through the sufficient statistic Σ_j a_j x_j (the count times the common slope for 1PL), so equal statistics give bitwise-equal posteriors.
 - **Why not Beta-IRT.** The per-test fractions have point masses at exactly 0 and 1 (resolved means both fractions are 1). A Beta likelihood cannot represent these without inflation components. The ordinal graded model uses partial credit without that problem, at the cost of using only "any partial credit", not its size.
 - **Why no multidimensional arm.** With n_A = 25–50 binary responses, a two-dimensional ability is weakly identified. It would add a fifth model family to a question already answered by the 2PL-versus-pass@1 contrast. It is left for a follow-up if Q1 continues.
@@ -72,14 +85,19 @@
 
 ## Statistics
 
-- **Rank.** For every split, Δ = Spearman(arm, pass@1 on B) − Spearman(pass@1 on A, pass@1 on B). Spearman is Pearson on average ranks (`rl4cv.scs4c.spearman`), and forecasts are rounded to 12 decimals before ranking.
+- **Rank.** For every split, Δ = Spearman(arm, pass@1 on B) − Spearman(pass@1 on A, pass@1 on B). Spearman is Pearson on average ranks (`rl4cv.scs4c.spearman`), and forecasts are rounded to 12 decimals before ranking. A split whose forecast has any non-finite value, or whose within-half fit failed a gate, is undefined for that arm. It is never computed on a subset of systems.
   - **Per-size summary:** median Δ, 5th–95th percentile, mean, splits with Δ > 0 out of 2,000 (an undefined split counts as not positive, as in 07), exact-zero splits, and both median Spearman values.
   - **At n_A = 50:** a system-cluster bootstrap with 2,000 draws. Each draw resamples the 164 systems and re-ranks all 2,000 splits. It gives 95% percentile intervals for the median Δ and the share, with bootstrap p-values (twice the smaller tail share; nulls: median Δ = 0 and share = 0.60). Medians over splits of Pearson, Spearman and Kendall τ-b are also reported.
 - **Level.** The error is e = forecast − pass@1 on B for every system and split.
   - **Reported per arm:** mean absolute error (MAE), root-mean-square error, and mean bias (forecast minus held-out, so positive means the forecast runs high), with both means.
   - **Comparison with pass@1 on A:** take each system's split-averaged absolute error. The difference is the mean over systems of MAE_i(pass@1 on A) − MAE_i(arm), so positive means the arm is closer.
-  - **Uncertainty for the difference:** a 95% interval from a 2,000-draw system bootstrap and a paired sign-flip permutation test over systems (10,000 flips; null: zero mean difference). Also reported: systems closer, and splits with lower MAE.
-- **Scope of the uncertainty.** Intervals are conditional on the 164 × 424 cohort and on the fitted item parameters. They do not cover sampling of tasks beyond the random halves. Split percentiles describe the split distribution and are not population intervals.
+  - **Uncertainty for the difference:** a 95% interval and a p-value from the same 2,000-draw system bootstrap. The null is a zero mean difference; p is twice the smaller tail count, +1 corrected.
+  - **Diagnostic:** a paired sign-flip permutation test (10,000 flips) is reported beside it and labelled as what it tests: per-system differences symmetric about 0, a stronger null than a zero mean (QA finding 4). It never decides a rule.
+  - Also reported: systems closer, and splits with lower MAE.
+- **Scope of the uncertainty** (also printed beside the results; QA finding 6):
+  - Intervals resample whole systems with the fitted item parameters, fold assignments, control fits and task splits held fixed.
+  - They are conditional on the 164 × 424 cohort. They are not intervals for a refitted procedure, unseen tasks or new model families.
+  - Split percentiles describe the split distribution and are not population intervals.
 
 ## Decision rules (frozen)
 
@@ -88,8 +106,10 @@
 | P1 (rank) | `2pl_within_A` at n_A = 50: median Δ > 0 **and** share(Δ > 0) ≥ 0.60 over 2,000 splits | Experiment 07's frozen H2 rule (agent-suggested by Claude, 10-07-2026), reused unchanged |
 | P2 (level) | K-fold `2pl` at n_A = 50: MAE difference versus pass@1 on A > 0 with its 95% system-bootstrap interval excluding 0 | VeriBench idea page Q1 row (agent-suggested by session 323c2b90, 10-09-2026) |
 | Q1 | **CONTINUE** if P1 or P2 holds; **NO ADVANTAGE** if neither holds | Idea page Q1 row |
-| Fit gate | **INCONCLUSIVE** if any primary K-fold 2PL fit fails the gradient criterion, or more than 1% of the within-half 2PL fits at n_A = 50 do | Agent-suggested (this protocol) |
-| Interpretation | A P2 win counts as item-level IRT information only if the K-fold `2pl` also beats `linear_regression` on level, with an interval excluding 0. Otherwise it is credited to using the reference panel (difficulty shift and shrinkage) | Agent-suggested (this protocol) |
+| P1 validity | A within-half fit that fails any gate leaves its split undefined. P1 is **inconclusive** if more than 1% of the 2,000 within-half 2PL fits at n_A = 50 fail, or if the decision changes when every failed split is set to its worst (Δ = −∞) and its best (Δ = +∞) case (QA finding 2) | Agent-suggested (this protocol) |
+| P2 validity | P2 is **inconclusive** if any of the 10 primary K-fold 2PL fits fails a gate, any K-fold 2PL posterior at n_A = 50 exceeds the endpoint-mass bound, or check-grid rescoring exceeds its tolerance | Agent-suggested (this protocol) |
+| Q1 (combined) | **CONTINUE** if a valid P1 or a valid P2 holds; **NO ADVANTAGE** if both are valid and both fail; **INCONCLUSIVE** otherwise | Idea page Q1 row, with the validity rules above |
+| Interpretation | A P2 win counts as item-level IRT information only if the K-fold `2pl` also beats `linear_regression` on level, with an interval excluding 0. Otherwise it is credited to using the reference panel (difficulty shift and shrinkage). The result states this attribution beside the verdict (QA finding 6) | Agent-suggested (this protocol) |
 
 The two primary rules are joined by "or", as the idea page defined Q1. That multiplicity is disclosed, not corrected. A forecast that fails is reported exactly like one that holds.
 
@@ -103,7 +123,8 @@ The two primary rules are joined by "or", as the idea page defined Q1. That mult
     - G0 (scalar; AlphaHebe semantics): pass@1_A(C) > pass@1_A(I).
     - G1: the paired z = Δpass@1_A / SE exceeds 1. SE is the standard deviation (ddof 1) of the per-task differences, divided by √n_A.
     - G2 (the IRT gate from the idea page): (θ̂_C − θ̂_I) / √(sd_C² + sd_I²) > 1, using the within-half 2PL EAP abilities and posterior standard deviations.
-    - Matched counts: G1m takes the top N2 pairs by the paired z, where N2 is G2's count in that split (ties broken by pair index). G2m takes the top N1 by the IRT z.
+    - Degenerate pairs (QA finding 3): a zero standard error gives z = +∞ for a positive gain, −∞ for a negative gain and 0 for identical responses. ±∞ are valid z values.
+    - Matched counts: G1m takes the top N2 pairs by the paired z, where N2 is G2's count in that split (ties broken by pair index). G2m takes the top N1 by the IRT z. The matched counts are asserted in every split. If any split cannot be matched, the matched comparison is reported as unavailable. A rate with zero promotions is undefined, never 0.
   - Outcomes: a promotion is harmful when pass@1_B(C) < pass@1_B(I) and correct when it is greater.
   - Reported: promotions per split, and harmful- and correct-promotion rates pooled over splits. The matched differences HPR(G1m) − HPR(G2) and HPR(G1) − HPR(G2m) (positive means the IRT gate is safer) come with a 2,000-draw system-cluster bootstrap (conditional on each split's selections) and its p-value.
 - **S5: stability.**
@@ -120,16 +141,16 @@ The two primary rules are joined by "or", as the idea page defined Q1. That mult
 1. Both input hashes match their pins.
 2. The cohort reproduces 164 × 424 = 69,536 measured cells with exactly one inconsistent cell.
 3. The split replay reproduces experiment 07's H2 exactly (see Splits).
-4. The Rasch common-parameter check gives Δ = 0 in every split at every size; otherwise STOP (code defect).
-5. Fit convergence, as in the decision rules.
+4. The Rasch common-parameter check gives Δ = 0 in every split at every size. Otherwise STOP immediately (code defect), with no further analysis. The STOP writes a failure receipt with no verdict and no verdict-dependent outcomes, marks every frozen forecast outcome unavailable and exits non-zero (QA finding 5).
+5. Fit convergence and the numerical gates, as in the models section and decision rules.
 6. `rl4cv.forecast.verify_forecast` passes on the frozen forecast before any computation. The analyzer refuses to run otherwise.
 
 ## Compute
 
 - **Resources:** CPU only. Zero model calls, no Valkyrie and no GPU.
 - **Where it runs:** host `skampere1`, tmux session `ccv-rl4cv14-irt-q1-run`, from a `/lfs` checkout at the lock commit.
-- **Command:** `OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 python analyze_e14.py --workers 32`. Results do not depend on the worker count.
-- **Size:** about 16,000 within-half fits and 80 K-fold fits. The estimate is 30–60 minutes.
+- **Command:** `OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 python analyze_e14.py --workers 64`. Results do not depend on the worker count.
+- **Size:** about 16,000 within-half fits and 80 K-fold fits on the 1,201-node grid. The estimate is 1–2 hours with 32–64 processes.
 
 ## Not in this protocol
 
