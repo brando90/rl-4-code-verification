@@ -12,7 +12,7 @@ The plan has three phases:
 - **Phase 1:** fit and validate a conjunctive item response theory (IRT) model that predicts held-out pass@1 and pass@k.
 - **Phase 2:** run four RL arms from the Qwen3-4B SFT checkpoint: strict reward, SCSC-style factored reward, IRT-guided reward and prompt sampling, and a placebo dense reward.
 
-Status (10-13-2026): **version 2 RUNNING under A1; R0 attempt 2 PASS, 30/30**. Historical oracle value/status and complete components matched all 30 fixtures; the required repository suite passed 283 tests with 23 unrelated skips. [Attempt-2 report](expt_v2/RESULTS_R0_attempt_2.md). R1 train-only diagnostic is next. Attempt 1 remains failed and unchanged; version 1 evidence remains byte-identical.
+Status (10-13-2026): **version 2 RUNNING under A1; R0 attempt 2 PASS, 30/30**. Historical oracle value/status and complete components matched all 30 fixtures; the required repository suite passed 283 tests with 23 unrelated skips. [Attempt-2 report](expt_v2/RESULTS_R0_attempt_2.md). R1 train-only diagnostic also passed **400/400** ([report](expt_v2/RESULTS_R1_attempt_1.md)); preparing L1v2. Attempt 1 remains failed and unchanged; version 1 evidence remains byte-identical.
 
 - **Created:** 10-09-2026 by Claude Code (`claude-opus-5-5`) for Brando.
 - **Owner:** version 2 skampere1 owner resumed under Amendment A1; the Mac master retains the parent experiment.
@@ -72,7 +72,7 @@ The reward fractions remain vulnerable to padding and dropping hard statements. 
 
 ## Status and next admitted work
 
-Version 2 passed its second authored fixture attempt under [Amendment A1](expt_v2/AMENDMENT_A1_development_gates_10-13-2026.md). The complete train-only diagnostic must pass before L1v2 and historical reproduction. No fitting or training is admitted yet.
+Version 2 passed its second authored fixture attempt under [Amendment A1](expt_v2/AMENDMENT_A1_development_gates_10-13-2026.md). The train-only diagnostic passed 400/400; the complete prediction implementation and L1v2 lock precede historical reproduction. No fitting or training is admitted yet.
 
 The ladder declares 25,920 validation cells, with 20,520 available and 5,400 missing from five 14B checkpoints. Preserve those missing cells and reuse overlapping historical base outputs once. Full historical test equality checks use an opaque locked audit; test outcomes cannot enter model fitting.
 

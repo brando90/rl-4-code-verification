@@ -1,0 +1,86 @@
+{
+  "stage": "R1_attempt_1",
+  "development_attempt": 1,
+  "attempt_limit": 5,
+  "status": "PASS",
+  "declared": 400,
+  "measured": 400,
+  "typed_classes": {
+    "measured": 400
+  },
+  "oracle_matches": 400,
+  "untyped_measurements": [],
+  "oracle_disagreements": [],
+  "untyped_consistency_cells": [],
+  "uncovered_cause_branches_above_one_percent": [],
+  "rejected_cause_table": [
+    {
+      "cause": "identity_duplicate",
+      "count": 1,
+      "denominator": 300,
+      "share": 0.0033333333333333335,
+      "wilson_95": [
+        0.0005886577218511581,
+        0.018636693694531237
+      ],
+      "fixtures": [
+        "duplicate_obligation"
+      ]
+    },
+    {
+      "cause": "parser_parse_error",
+      "count": 296,
+      "denominator": 300,
+      "share": 0.9866666666666667,
+      "wilson_95": [
+        0.9662244697474675,
+        0.9948030382606411
+      ],
+      "fixtures": [
+        "truncated_syntax"
+      ]
+    },
+    {
+      "cause": "vacuity_unparseable_type",
+      "count": 3,
+      "denominator": 300,
+      "share": 0.01,
+      "wilson_95": [
+        0.003406618437715286,
+        0.02898349336233983
+      ],
+      "fixtures": [
+        "unparseable_compiling",
+        "unparseable_noncompiling"
+      ]
+    }
+  ],
+  "consistency_counts": {
+    "consistent": 400
+  },
+  "memory_cells": 400,
+  "memory_p99_bytes": 6928265707.52,
+  "memory_max_bytes": 6935719936,
+  "mean_complete_cell_seconds": 18.29810984922922,
+  "total_cell_seconds": 7319.243939691689,
+  "split": "train",
+  "interval_note": "Wilson 95% per requested rejected-cell denominator; descriptive binomial intervals do not adjust within-task correlation; p-val=n/a.",
+  "source_sha256": {
+    "results.jsonl": "c0011f2d09c9717f738276b5cdcc6d5e4a40c6bc0ca3e6edbdd5401bc35eb82a",
+    "receipt.json": "01ec1b045e90d2debf9dd502a59b52b825b81ca819d01dcc843d14bf4e2413ba",
+    "sample.json": "42668f3aaad920da02676d813586d133acce7351b9ea858b809e79ce1240b454",
+    "train_allowlist.json": "04de90e165613533b103f66c4aec70d1bd334096e8467d0df12fe8a3961ef9f0",
+    "selection_lock.json": "d4c0fd47e774e9566ae4226763d6fc8ac353919b15d5d9571d92868406ce03df",
+    "execution_lock.json": "83d03bcc7b4fb494677d4cfed29f02e19829a7d152e7d1494d8db4d8b900a0b8",
+    "memory_admission.json": "a57aa339bcf92c76688b089fbfd040a89d4a09b848d19c8c9ebeec2805586c4a"
+  },
+  "sample_tasks": 292,
+  "sample_groups": 254,
+  "required_suite": {
+    "passed": 286,
+    "skipped": 23,
+    "seconds": 185.82,
+    "required_lean_cases": 7
+  },
+  "raw_evidence_root": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R1_attempt_1"
+}
