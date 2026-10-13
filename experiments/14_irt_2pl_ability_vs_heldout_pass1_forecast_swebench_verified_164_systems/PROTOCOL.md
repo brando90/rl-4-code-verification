@@ -4,7 +4,7 @@
 
 **TLDR:** This protocol fixes the data, splits, item response theory (IRT) models, arms, statistics and decision rules for Q1 of the VeriBench IRT idea page. The question: does IRT ability estimated from the n_A tasks of half A forecast each system's pass@1 on the held-out half B better than its pass@1 on half A does, in rank and in level? It uses experiment 07's matrix and experiment 07's exact H2 splits, with zero model calls. Changes after the lock go to `results.md` → Deviations, never here.
 
-**Status:** revision 2 (10-12-2026), written after the single light quality-assurance (QA) review. Codex GPT-6 Astra (effort ultra) reviewed revision 1 at commit `1dad751`: `VERDICT: FAIL`, 2 critical, 4 major and 1 minor finding. All seven are fixed here and in the code, with regression tests; there is no re-review. Details: [`reviews/`](reviews/). The protocol is locked by the commit that adds `expt_v1/forecasts/e14_forecast.json` through `rl4cv.forecast.freeze_forecast`.
+**Status:** LOCKED, revision 2 (10-12-2026 21:54 PDT). Forecast `expt_v1/forecasts/e14_forecast.json`, SHA-256 `33de7cd2…6890`, frozen by `rl4cv.forecast.freeze_forecast` before any real-data IRT fit or Q1 statistic. This revision follows the single light quality-assurance (QA) review: Codex GPT-6 Astra (effort ultra) reviewed revision 1 at `1dad751` and returned `VERDICT: FAIL` with 2 critical, 4 major and 1 minor finding, all fixed here and in the code with regression tests and no re-review ([`reviews/`](reviews/)). The lock is the commit that adds the forecast.
 
 ## Question and origin
 

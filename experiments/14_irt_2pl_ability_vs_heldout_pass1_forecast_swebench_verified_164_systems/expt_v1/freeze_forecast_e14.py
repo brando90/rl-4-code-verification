@@ -1,0 +1,66 @@
+"""TLDR: Freeze experiment 14's prospective forecast once with rl4cv.forecast.freeze_forecast, before any IRT fit or Q1 statistic is computed on the real matrix; the frozen file is append-only."""
+
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parents[2] / "src"))
+
+from rl4cv.forecast import freeze_forecast, verify_forecast  # noqa: E402
+
+N50 = ["sizes", "50", "arms"]
+
+FORECAST = {
+    "experiment": "14_irt_2pl_ability_vs_heldout_pass1_forecast_swebench_verified_164_systems",
+    "protocol": "PROTOCOL.md revision 2 (locked by the commit that adds this file)",
+    "forecaster": "Claude Code, claude-opus-5-5, effort max, Vals profile, worker ccv-vb-irt-q1-pass1-forecast (10-12-2026)",
+    "seen_before_freeze": [
+        "experiment 07 published results and code; per-cell field names and counts",
+        "experiment 07 H2 reproduced exactly on the replayed splits (07's own statistic only)",
+        "synthetic 2PL-generated stand-in runs (12-40 splits; one full-size dry run of revision 1) -- never real-data IRT fits",
+        "the single light QA review of revision 1 (Codex GPT-6 Astra, ultra; FAIL, 7 findings) and its fixes (revision 2)",
+    ],
+    "not_seen": "no IRT fit, forecast or Q1 statistic on the real 164 x 424 matrix; experiment 10 real-data results not read",
+    "reasoning": (
+        "On correctly specified synthetic 2PL data, IRT's level forecast beats pass@1 on half A by about 0.018 MAE at n_A = 50, "
+        "mostly because it corrects for how hard the observed tasks happened to be; the rank gain is small (about +0.002). "
+        "Real SWE-bench systems are not unidimensional (scaffold and repository effects), and experiment 07 showed partial credit "
+        "hurt held-out ranking, so I expect the level advantage to survive at a smaller size, a rank result near zero, and the "
+        "graded model to do no better than 2PL in rank."
+    ),
+    "predictions": [
+        {"id": "P1_rank_median_delta_2pl_within_A_n50", "path": ["primary_2pl_n50", "rank", "delta_median"], "point": 0.001, "interval80": [-0.004, 0.005]},
+        {"id": "P1_rank_share_delta_positive_n50", "path": ["primary_2pl_n50", "rank", "share_delta_positive"], "point": 0.55, "interval80": [0.25, 0.85]},
+        {"id": "P1_rank_rule_holds", "path": ["primary_2pl_n50", "rank_holds"], "probability": 0.40},
+        {"id": "P2_mae_pass1_A_n50", "path": [*N50, "pass1_A", "level", "mae_mean_over_splits"], "point": 0.050, "interval80": [0.040, 0.062]},
+        {"id": "P2_mae_2pl_kfold_n50", "path": [*N50, "2pl", "level", "mae_mean_over_splits"], "point": 0.035, "interval80": [0.025, 0.046]},
+        {"id": "P2_mae_difference_n50", "path": ["primary_2pl_n50", "level", "mae_difference"], "point": 0.015, "interval80": [0.005, 0.025]},
+        {"id": "P2_level_rule_holds", "path": ["primary_2pl_n50", "level_holds"], "probability": 0.85},
+        {"id": "Q1_continue", "path": ["q1_continue"], "probability": 0.88},
+        {"id": "Q1_inconclusive", "path": ["q1_inconclusive"], "probability": 0.04},
+        {"id": "level_win_beyond_reference_panel", "path": ["level_win_beyond_reference_panel"], "probability": 0.45},
+        {"id": "S3_2pl_minus_linear_regression_mae_n50", "path": ["irt_vs_reference_panel_controls_n50", "linear_regression", "2pl", "mae_difference"], "point": 0.001, "interval80": [-0.002, 0.004]},
+        {"id": "S1_mae_mean_equating_n50", "path": [*N50, "mean_equating", "level", "mae_mean_over_splits"], "point": 0.040, "interval80": [0.030, 0.050]},
+        {"id": "S1_kfold_2pl_rank_median_delta_n50", "path": [*N50, "2pl", "rank", "delta_median"], "point": -0.001, "interval80": [-0.005, 0.003]},
+        {"id": "S2_grm3_within_A_rank_median_delta_n50", "path": ["key_secondary_grm3_n50", "rank", "delta_median"], "point": -0.002, "interval80": [-0.010, 0.004]},
+        {"id": "S2_grm3_rank_rule_holds", "path": ["key_secondary_grm3_n50", "rank_holds"], "probability": 0.25},
+        {"id": "S2_grm3_mae_difference_n50", "path": ["key_secondary_grm3_n50", "level", "mae_difference"], "point": 0.013, "interval80": [0.003, 0.023]},
+        {"id": "S2_grm3_level_rule_holds", "path": ["key_secondary_grm3_n50", "level_holds"], "probability": 0.80},
+        {"id": "S4_G0_harmful_promotion_rate", "path": ["promotion_gates_n50", "G0_scalar", "harmful_promotion_rate"], "point": 0.05, "interval80": [0.03, 0.08]},
+        {"id": "S4_matched_hpr_difference_pass1_minus_irt", "path": ["promotion_gates_n50", "matched_G1m-G2", "hpr_difference_pass1_minus_irt"], "point": 0.000, "interval80": [-0.004, 0.004]},
+        {"id": "S5_2pl_error_sd_ratio_to_pass1_A", "path": ["split_variability_n50", "2pl", "ratio_mean_sd_error_to_pass1_A"], "point": 0.75, "interval80": [0.60, 0.90]},
+        {"id": "S7_heldout_cell_brier_2pl", "path": ["heldout_cell_brier_n50", "2pl"], "point": 0.12, "interval80": [0.09, 0.15]},
+    ],
+}
+
+
+def main() -> None:
+    entry = freeze_forecast(FORECAST, HERE / "forecasts", "e14_forecast", outcomes_observed=False)
+    assert verify_forecast(HERE / "forecasts" / "e14_forecast.json")
+    print(entry)
+
+
+if __name__ == "__main__":
+    main()
