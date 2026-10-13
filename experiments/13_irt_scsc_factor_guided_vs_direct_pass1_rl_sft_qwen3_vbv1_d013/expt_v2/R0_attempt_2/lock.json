@@ -1,0 +1,711 @@
+{
+  "created": "2026-10-13T19:47:39.336277+00:00",
+  "stage": "R0_attempt_2",
+  "development_attempt": 2,
+  "attempt_limit": 5,
+  "fixtures": [
+    {
+      "name": "valid",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 1,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/valid.lean",
+      "source_sha256": "5f8839d6d5d4a157c610356668cb2d0faa597c9ff10112ff190b637413c4acac"
+    },
+    {
+      "name": "valid_at_cap",
+      "family": "ladder",
+      "known": true,
+      "truncated": true,
+      "expected": {
+        "strict": 1,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/valid_at_cap.lean",
+      "source_sha256": "5f8839d6d5d4a157c610356668cb2d0faa597c9ff10112ff190b637413c4acac"
+    },
+    {
+      "name": "no_example",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "t": 0,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/no_example.lean",
+      "source_sha256": "e57f4874b9360cd18d3963144c40b8e18639394965bd6954bb1368db0b6fe1b2"
+    },
+    {
+      "name": "no_theorem",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "t": 1,
+        "p": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/no_theorem.lean",
+      "source_sha256": "f15d5971571c15428a2989364386425bfde2b4225f12f804eb95701acdbcf30b"
+    },
+    {
+      "name": "empty",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 0,
+        "d": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "t": 0,
+        "p": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/empty.lean",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "truncated_syntax",
+      "family": "ladder",
+      "known": true,
+      "truncated": true,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 3
+        },
+        "t": 0,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/truncated_syntax.lean",
+      "source_sha256": "cdb9badc5df659785da9f066fdfbdcb1e0e836c448cfa483afadfc9498c061b6"
+    },
+    {
+      "name": "failed_then_valid",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 3
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/failed_then_valid.lean",
+      "source_sha256": "6c3dc20dfaaafbee35d18af07d090f335406415316b44f9541386e4aad2745db"
+    },
+    {
+      "name": "sorry",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/sorry.lean",
+      "source_sha256": "4ba81ad9ed9eedeca5916aec2e72017658b192c8f4b912ebca45c5040aee8f1a"
+    },
+    {
+      "name": "helper_sorry",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 3,
+          "denominator": 3
+        },
+        "t": 1,
+        "p": {
+          "numerator": 0,
+          "denominator": 2
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/helper_sorry.lean",
+      "source_sha256": "5d99f63a66c0d76f57ceaeb553bbae6f1a673c0a424201f5af3f09efe740cdd5"
+    },
+    {
+      "name": "native_theorem",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/native_theorem.lean",
+      "source_sha256": "e5266ff9c0a6a495b3d776469f73c1f73516c08fca692a145a7c02ceae3aee62"
+    },
+    {
+      "name": "native_example",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 1,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/native_example.lean",
+      "source_sha256": "451bfdc3c9170b9bfc4e46fda41c52338cedec177b54d7cf9e175aab0806dfbc"
+    },
+    {
+      "name": "declared_axiom",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 3,
+          "denominator": 3
+        },
+        "t": 1,
+        "p": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/declared_axiom.lean",
+      "source_sha256": "c3c6df149ce22c5777f1330b20254c3e6c6d40e2aad366917caa1d501fc66233"
+    },
+    {
+      "name": "vacuous",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "consistency": "vacuity"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/vacuous.lean",
+      "source_sha256": "292ecd3b0b7e7acddddf0cfffee6cbc84b131838a79e98d26d830b6774db2536"
+    },
+    {
+      "name": "top_level_error",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 3
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/top_level_error.lean",
+      "source_sha256": "d627e81654415db0ad168de3d9c60b29481d3b63cc1359d9c0fd08f4ad7f9c09"
+    },
+    {
+      "name": "printed_error",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 3,
+          "denominator": 3
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "consistency": "kernel_probe_rejection"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/printed_error.lean",
+      "source_sha256": "21a7a9a236f2ee0fdebbbce6343f3af1403a4887ba0c46a7a4b1481fbde3d19d"
+    },
+    {
+      "name": "unknown_valid",
+      "family": "ladder",
+      "known": false,
+      "truncated": false,
+      "expected": {
+        "strict": null,
+        "strict_status": "unmeasured",
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/unknown_valid.lean",
+      "source_sha256": "5f8839d6d5d4a157c610356668cb2d0faa597c9ff10112ff190b637413c4acac"
+    },
+    {
+      "name": "unknown_empty",
+      "family": "ladder",
+      "known": false,
+      "truncated": false,
+      "expected": {
+        "strict": null,
+        "strict_status": "unmeasured",
+        "e": 0,
+        "d": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "t": 0,
+        "p": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/unknown_empty.lean",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "unparseable_compiling",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "consistency": "vacuity"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/unparseable_compiling.lean",
+      "source_sha256": "bd7c084c1c6be7b3bdaa57eb7813d5a020e1528dba69da500b12e79aaa19167e"
+    },
+    {
+      "name": "unparseable_noncompiling",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 3
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/unparseable_noncompiling.lean",
+      "source_sha256": "2973d7767a788d26762f3e8e31b20b8ac5edae5a87a32b4597d4de6016e25b46"
+    },
+    {
+      "name": "error_beyond_4000",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 4,
+          "denominator": 5
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/error_beyond_4000.lean",
+      "source_sha256": "4aa3f7fdec2fecd7e14a7e4be158c95ff640b0769f3227af911d9e991f8d0e2e"
+    },
+    {
+      "name": "unused_axiom",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 1,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 3,
+          "denominator": 3
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/unused_axiom.lean",
+      "source_sha256": "fbc3539347118b44c26e98b9e43ce0d6417da9948571c4a965003c9ffeb8dfd3"
+    },
+    {
+      "name": "namespaces_multiline",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 1,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 7,
+          "denominator": 7
+        },
+        "t": 1,
+        "p": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/namespaces_multiline.lean",
+      "source_sha256": "4bdf7dc484ce063e7abe12cfbb05c91d08dbb451140d9483ea2140f3d72aae18"
+    },
+    {
+      "name": "duplicate_obligation",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 3
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/duplicate_obligation.lean",
+      "source_sha256": "da72616719ab3268a1bc0a191d7053f04a0105741c19de3712d92019e4dd2ab1"
+    },
+    {
+      "name": "stderr_capture",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 1,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 4,
+          "denominator": 4
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/stderr_capture.lean",
+      "source_sha256": "81be4bee577d383d98f8798693eec5ba891660db651a16eea87d823989023c47"
+    },
+    {
+      "name": "base_vacuity_status",
+      "family": "base",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 1,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/base_vacuity_status.lean",
+      "source_sha256": "292ecd3b0b7e7acddddf0cfffee6cbc84b131838a79e98d26d830b6774db2536"
+    },
+    {
+      "name": "unresolved_type",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/unresolved_type.lean",
+      "source_sha256": "31ee619fab13ca21a3519c5b764845a7379b55a1b85c44f464ed978098609ca1"
+    },
+    {
+      "name": "initialized_pretty_printing",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 3,
+          "denominator": 4
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/initialized_pretty_printing.lean",
+      "source_sha256": "468cffb6278f3409a19a39bb67911f7c30536dd798809f34153072f9ee731ed2"
+    },
+    {
+      "name": "admit",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 0,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/admit.lean",
+      "source_sha256": "63648685fe56e421cd9f92ced5931ddbc667e070dd9c514c4dc537513fd00730"
+    },
+    {
+      "name": "multiple_blocks_longest",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 1,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "completion": "```lean\nexample : True := by trivial\n```\n```lean\nimport Mathlib\nexample : 1 + 1 = 2 := by decide\ntheorem good : 1 + 1 = 2 := by decide\n```",
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/multiple_blocks_longest.lean",
+      "source_sha256": "5f8839d6d5d4a157c610356668cb2d0faa597c9ff10112ff190b637413c4acac"
+    },
+    {
+      "name": "multiple_blocks_labelled",
+      "family": "ladder",
+      "known": true,
+      "truncated": false,
+      "expected": {
+        "strict": 1,
+        "strict_status": "scored",
+        "e": 1,
+        "d": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "t": 1,
+        "p": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "consistency": "consistent"
+      },
+      "completion": "```lean\nimport Mathlib\nexample : 1 + 1 = 2 := by decide\ntheorem good : 1 + 1 = 2 := by decide\n-- longer discarded block\n-- longer discarded block\n-- longer discarded block\n-- longer discarded block\n-- longer discarded block\n-- longer discarded block\n-- longer discarded block\n-- longer discarded block\n-- longer discarded block\n-- longer discarded block\n```\nFILE: solution.lean\n```lean\nimport Mathlib\nexample : 1 + 1 = 2 := by decide\ntheorem good : 1 + 1 = 2 := by decide\n```",
+      "source_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/R0_attempt_2/multiple_blocks_labelled.lean",
+      "source_sha256": "5f8839d6d5d4a157c610356668cb2d0faa597c9ff10112ff190b637413c4acac"
+    }
+  ],
+  "old_contract_tests": 30,
+  "fixture_count": 30,
+  "implementation_sha256": {
+    "R0_attempt_2/DeclarationProbe_v2.lean": "eae1eb58b0cd91977631e7e07b65a8c1c962f9759f4c30e4730330e1edc16076",
+    "R0_attempt_2/declaration_adapter_v2.py": "7ae02b4b9d04a061930f4dab3c27b4dcdd89f1338d8002ae6a411648c093b34a",
+    "historical_oracle_v2.py": "82e8d0fbbfd588e1d19bd1709ea43a9d90789569374a794dc961edadfea36a66",
+    "R0_attempt_2/run_r0_v2.py": "8899afe8dd3ac1c942909a98c6a1e31566cda0e7ef368d3555289ce658b96b01",
+    "watchdog_e13v2.py": "7d52146551f9056224c0f8957f4e3f1f3f15955b912aab34e7e7d5d5100d00f1",
+    "R0_attempt_2/r0_fixtures_v2.py": "6e818fb9988725ff16508a9cecff054c316581ce28db78eab664823399e1568b"
+  },
+  "rule": "Amendment A1: all fixtures match and required Lean integration runs; at most five development attempts; no retries from L1v2 onward."
+}

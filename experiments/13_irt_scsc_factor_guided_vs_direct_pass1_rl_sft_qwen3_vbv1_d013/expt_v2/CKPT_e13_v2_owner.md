@@ -2,28 +2,29 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2_owner.md>
 
-**TLDR:** Amendment A1 resumed experiment 13 version 2; the frozen 30-case R0 attempt 2 is running, with its required repository suite passed.
+**TLDR:** Amendment A1 resumed experiment 13 version 2; R0 attempt 2 passed all 30 fixtures and its required repository suite.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-13-2026 12:52 PDT
+Last updated: 10-13-2026 12:57 PDT
 
 ## Goal
 - Complete amended development acceptance, then the unchanged scientific gates and matched reinforcement-learning comparison.
 ## What ran
-- R0_attempt_2 running as process 280828; 30 authored fixtures, serial 64 GiB address-space ceiling.
+- R0_attempt_2 completed as process 280828; 30 authored fixtures, serial 64 GiB address-space ceiling.
 - Required full suite: 283 passed, 23 skips, 168.61 seconds; all seven required Lean integration cases executed.
 - Fix/justification commits before rerun: `3fbcb96`, `7ed9e85`, `76d85b4`.
 ## Results
-- Attempt 2 pending; lock `67f005f9b146704ec5007be748d6a30bc01239d0f0af826d3aec489799872759`. Attempt 1 retained at 26/29 matches.
+- Attempt 2 PASS, 30/30; lock `67f005f9b146704ec5007be748d6a30bc01239d0f0af826d3aec489799872759`. Attempt 1 retained at 26/29 matches.
 - Owner process 887384, full access/no approvals; fenced watchdog re-armed as `e13v2_a1`, two owned cron entries restored.
 ## Stuck / blocked
 - None. No historical train, validation or test cell has run for version 2.
 ## Next steps
-- [p 10/10] Reconcile `$WR/R0_attempt_2/receipt.json`, publish; if passed, freeze and execute R1 train-only diagnostic.
+- [p 10/10] Publish accepted R0; freeze and execute R1 train-only diagnostic.
 ## Brando to-do
 - None.
 
 ## Log
+- 10-13-2026 12:57 PDT -- R0 attempt 2 completed PASS: 30/30 fixtures, oracle values/statuses, and components. R1 admitted after publication.
 - 10-13-2026 12:52 PDT -- Resumed under A1 at `cb5e175`, committed three justified fixes, froze and launched attempt 2; required full suite passed.
 
 ## Prior owner record (before A1; stop superseded)

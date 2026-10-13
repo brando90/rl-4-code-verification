@@ -12,10 +12,10 @@ The plan has three phases:
 - **Phase 1:** fit and validate a conjunctive item response theory (IRT) model that predicts held-out pass@1 and pass@k.
 - **Phase 2:** run four RL arms from the Qwen3-4B SFT checkpoint: strict reward, SCSC-style factored reward, IRT-guided reward and prompt sampling, and a placebo dense reward.
 
-Status (10-13-2026): **version 2 STOPPED AT R0 — FAIL**: 26/29 authored source cases matched; 29/29 historical oracle value/status checks matched; 28/29 complete component measurements. The required repository suite passed 283 tests with 23 unrelated conditional skips. See the [version 2 terminal report](expt_v2/RESULTS_R0_terminal.md), [live ledger](expt_v2/results.md), and [owner checkpoint](expt_v2/CKPT_e13_v2_owner.md). No train diagnostic, historical reproduction, model fitting or training was started; no gate was retried. Version 1 remains **BLOCKED** with 21,504 accounted, 6,739 measured and 14,765 unmeasured ([unchanged terminal report](expt_v1/RESULTS_opaque_audit_terminal.md)). The unresolved measurement admission blocks the planned matched reinforcement-learning comparison, a live dependency that keeps this parent experiment in its current home.
+Status (10-13-2026): **version 2 RUNNING under A1; R0 attempt 2 PASS, 30/30**. Historical oracle value/status and complete components matched all 30 fixtures; the required repository suite passed 283 tests with 23 unrelated skips. [Attempt-2 report](expt_v2/RESULTS_R0_attempt_2.md). R1 train-only diagnostic is next. Attempt 1 remains failed and unchanged; version 1 evidence remains byte-identical.
 
 - **Created:** 10-09-2026 by Claude Code (`claude-opus-5-5`) for Brando.
-- **Owner:** version 2 skampere1 owner completed the mandated failed-gate closeout; the Mac master retains the parent experiment. No execution recovery may override the failed gate.
+- **Owner:** version 2 skampere1 owner resumed under Amendment A1; the Mac master retains the parent experiment.
 - **Terms:**
   - An *arm* is one condition being compared.
   - *Strict* is `kernel_binary`: the file typechecks, has at least one example, states at least one theorem, every stated theorem is a proved theorem with allowed axioms, and none is vacuous.
@@ -72,7 +72,7 @@ The reward fractions remain vulnerable to padding and dropping hard statements. 
 
 ## Status and next admitted work
 
-Version 2 stopped at the authored fixture gate under [PLAN § 4](expt_v2/PLAN.md#transition-table). Its long-log fixture used an unavailable Lean constant, its standard-error assertion disagreed with Lean's information-message capture, and its unresolved-theorem case crashed the frontend before producing components. The full attempt and independent oracle results are retained in [RESULTS_R0_terminal.md](expt_v2/RESULTS_R0_terminal.md). Historical reproduction, item response theory fitting and reinforcement learning remain unadmitted. The gate is not retried in this condition.
+Version 2 passed its second authored fixture attempt under [Amendment A1](expt_v2/AMENDMENT_A1_development_gates_10-13-2026.md). The complete train-only diagnostic must pass before L1v2 and historical reproduction. No fitting or training is admitted yet.
 
 The ladder declares 25,920 validation cells, with 20,520 available and 5,400 missing from five 14B checkpoints. Preserve those missing cells and reuse overlapping historical base outputs once. Full historical test equality checks use an opaque locked audit; test outcomes cannot enter model fitting.
 
