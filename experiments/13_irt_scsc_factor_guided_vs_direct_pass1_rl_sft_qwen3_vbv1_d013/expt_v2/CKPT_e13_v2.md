@@ -5,7 +5,7 @@
 **TLDR:** The master's resumable record for experiment 13 version 2. The plan is at revision 2 after the single light review (FAIL, all 13 findings fixed). The SNAP owner is **RUNNING** on skampere1 in tmux `codex-rl4cv-e13v2-owner` (Codex `gpt-6-astra` high, full access), launched 10-13-2026 11:41 PDT.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-13-2026 12:45 PDT
+Last updated: 10-13-2026 13:45 PDT
 
 ## Task and owner
 
@@ -63,6 +63,22 @@ Last updated: 10-13-2026 12:45 PDT
   - R0 and R1 are development acceptance tests: fix, record numbered attempts, rerun, at most 5 attempts each.
   - The no-retry rule starts at L1v2.
   - The owner is briefed to apply A1, re-arm its watchdog and continue.
+
+## Check-in 10-13-2026 13:40 PDT: R0 and R1 pass; L1v2 in preparation
+
+- **R0 attempt 2 (under A1):** PASS, 30/30 fixtures (`7392a38`, [report](RESULTS_R0_attempt_2.md)).
+- **R1 attempt 1:** PASS (`8bb1091`, [report](RESULTS_R1_attempt_1.md)).
+  - Measured 400/400 train-allowlist cells: 300 of 8,900 v1-rejected and 100 of 4,036 v1-measured, from 12,936.
+  - Oracle value and status 400/400; consistency 400/400.
+  - Version 1 causes among the 300 rejected (Wilson 95%):
+    - parse error 296/300 = 98.67% [96.62, 99.48];
+    - unparseable theorem type 3/300 = 1.00% [0.34, 2.90];
+    - duplicate identity 1/300 = 0.33% [0.06, 1.86].
+  - Memory p99 6.45 GiB per cell; 48 workers admitted under a verified aggregate ceiling.
+  - Projected R2 runtime 4.1 h, or 5.1 h with reserve.
+  - Suite: 286 passed, 23 skipped.
+- **Owner:** working on L1v2. The manifest has 38,784 unique sources and 42,024 oracle readbacks (3,240 shared).
+- **Watchdog:** re-armed in cron (`*/15` plus `@reboot`, run `e13v2_a1`).
 
 ## Exact next commands (master)
 
