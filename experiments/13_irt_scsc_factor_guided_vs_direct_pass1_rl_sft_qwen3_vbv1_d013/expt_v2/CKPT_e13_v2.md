@@ -5,7 +5,7 @@
 **TLDR:** The master's resumable record for experiment 13 version 2. The plan is at revision 2 after the single light review (FAIL, all 13 findings fixed). The SNAP owner is **RUNNING** on skampere1 in tmux `codex-rl4cv-e13v2-owner` (Codex `gpt-6-astra` high, full access), launched 10-13-2026 11:41 PDT.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-13-2026 13:45 PDT
+Last updated: 10-13-2026 14:45 PDT
 
 ## Task and owner
 
@@ -79,6 +79,15 @@ Last updated: 10-13-2026 13:45 PDT
   - Suite: 286 passed, 23 skipped.
 - **Owner:** working on L1v2. The manifest has 38,784 unique sources and 42,024 oracle readbacks (3,240 shared).
 - **Watchdog:** re-armed in cron (`*/15` plus `@reboot`, run `e13v2_a1`).
+
+## Check-in 10-13-2026 14:40 PDT: L1v2 frozen; R2 running
+
+- **L1v2:** frozen with carried forecasts before any validation or test factor (`a7991af`).
+- **R2:** launched (`bc90848`) in tmux `e13v2-a1-r2`; coordinators `r2_ordinary` and `r2_opaque` both alive.
+  - At 14:39 PDT: 8,499/38,784 complete (ordinary 4,483, opaque 4,016); 0 retried cells.
+  - Rate about 185 cells per minute, so the expected finish is about 17:30 PDT.
+  - Node load about 48/128; 1,924 GiB available.
+- **Owner:** working, monitoring R2.
 
 ## Exact next commands (master)
 
