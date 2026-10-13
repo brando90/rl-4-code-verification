@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2.md>
 
-**TLDR:** The master's resumable record for experiment 13 version 2. The plan is at revision 2: the single requested light review came back FAIL (3 critical, 9 major), and all findings are fixed in `REVIEW_v2.md`. Next is dispatching the SNAP owner, which waits on a Stanford VPN connection from the Mac.
+**TLDR:** The master's resumable record for experiment 13 version 2. The plan is at revision 2 after the single light review (FAIL, all 13 findings fixed). The SNAP owner is **RUNNING** on skampere1 in tmux `codex-rl4cv-e13v2-owner` (Codex `gpt-6-astra` high, full access), launched 10-13-2026 11:41 PDT.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-13-2026 11:26 PDT
+Last updated: 10-13-2026 11:45 PDT
 
 ## Task and owner
 
@@ -35,6 +35,23 @@ Last updated: 10-13-2026 11:26 PDT
 - **Blocker:** SSH to skampere1, skampere2 and skampere3 times out from the Mac (home network 192.168.4.x; Stanford VPN not connected). GitHub is reachable.
   - A background watch on the Mac exits when skampere1 answers (task `b313svabj`, at most about 8 hours).
   - Connecting the Cisco VPN needs Brando's login and Duo.
+
+## Owner launch (verified 10-13-2026 11:44 PDT)
+
+- **Preflight on skampere1:**
+  - `snap_health.sh --node skampere1`: PASS, except `disk.dfs` FAIL (DFS 96% used). DFS is not on this job's path; the work root is on `/lfs`, 5.4 TB free.
+  - No `rl4cv13`/`e13` tmux sessions or processes, so there is no live version 1 writer.
+  - Load 13–16 on 128 cores; 1,940 GiB memory available.
+  - GPUs 0–3 are busy with another user's vLLM (`srivats…`) and are off-limits. GPUs 4–7 were idle at 11:40 PDT.
+- **Launch:**
+  - Work root `/lfs/skampere1/0/brando9/rl4cv_e13v2`, clone of `main` at `1e0c8f8`.
+  - Launcher `$WR/launch_owner.sh` writes the receipt `$WR/owner_launch.json` and appends exits to `$WR/owner_exits.log`.
+  - Receipt fields: boot `839e7dd6-64e1-4a80-9498-31d30b3cc2df`, launcher PID 886575, runbook sha256 `e68206ee38309854af2f96a77817c14b7ce62e2583c2c314ec4ecf54fb014fee`, client `codex-cli 0.154.0` (login shell, nvm path; the stale `/usr/local/bin/codex` 0.114 is not used).
+  - Codex process 1251864, binary 1251881, flags `--sandbox danger-full-access --ask-for-approval never`. The status bar shows `gpt-6-astra high`.
+  - The master accepted Codex's directory-trust prompt for this owned clone.
+- **First useful action:** the owner verified a clean checkout and no live version 1 writer, then read PLAN, PROTOCOL, the Phase 1 and Phase 2 plans, the review, the adapter and the tests.
+- **Attach:** `ssh skampere1 -t tmux attach -t codex-rl4cv-e13v2-owner`.
+- **Master check-in:** hourly from this session. It runs through SSH, which needs the VPN off campus. If the owner sits idle at its prompt with work remaining, the master types a continuation brief into the pane. The owner installs the SNAP watchdog per `cc.md` § 0.
 
 ## Exact next commands (master)
 
