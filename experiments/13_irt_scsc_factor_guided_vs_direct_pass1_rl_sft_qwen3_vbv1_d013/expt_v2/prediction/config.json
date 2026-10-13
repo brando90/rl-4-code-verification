@@ -1,0 +1,144 @@
+{
+  "schema": "e13v2-prediction-config-1",
+  "libraries": {
+    "python": "3.12.3",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1"
+  },
+  "models": [
+    "M0",
+    "M1",
+    "M2",
+    "M3",
+    "M3e"
+  ],
+  "hurdles": [
+    "extraction_example_theorem_and_nonvacuity",
+    "whole_file_compile_given_q1",
+    "kernel_honesty_given_q1_q2"
+  ],
+  "strict_chain_disagreement": "blocks fitted C admission; never alters the historical strict oracle",
+  "estimation": "maximum a posteriori; empirical-Bayes unseen-item random-effects integration conditional on training hierarchy coefficients",
+  "ability_identification": {
+    "mean": 0,
+    "variance": 1,
+    "dimensions": "fixed named components, no mixing"
+  },
+  "priors": {
+    "difficulty_normal_sd": 2.0,
+    "standardized_ability_normal_sd": 1.0,
+    "log_discrimination_normal_sd": 0.5,
+    "feature_coefficient_normal_sd": 2.0
+  },
+  "discrimination_bounds": [
+    0.1,
+    5.0
+  ],
+  "quadrature": {
+    "method": "Gauss-Legendre on normal quantiles; truncated-normal log-discrimination",
+    "points_per_random_effect": 31
+  },
+  "optimizer": {
+    "method": "L-BFGS-B",
+    "maxiter": 2000,
+    "maxls": 50,
+    "ftol": 1e-10,
+    "gtol": 1e-07,
+    "maxcor": 20,
+    "gradient": "analytic; checked by central differences"
+  },
+  "initialization_seeds": [
+    1302011,
+    1302012,
+    1302013,
+    1302014,
+    1302015
+  ],
+  "initialization_max_prediction_disagreement": 0.02,
+  "diagnostic_ability_grid": {
+    "start": -3,
+    "stop": 3,
+    "points": 25
+  },
+  "prior_sensitivity_sd_multipliers": [
+    0.5,
+    2.0
+  ],
+  "features": [
+    "python_character_count",
+    "python_token_count",
+    "industry_domain",
+    "reference_theorem_count"
+  ],
+  "feature_standardization": "training fold only",
+  "policy_ability_extrapolation": [
+    "intercept",
+    "log_size_billions",
+    "log1p_cumulative_sft_assistant_tokens"
+  ],
+  "outer_folds": 5,
+  "outer_group_assignment": "integer SHA-256(group_id) modulo 5, preserved from version 1",
+  "inner_folds": 3,
+  "inner_group_assignment": "integer SHA-256(inner + NUL + group_id) modulo 3",
+  "full_schedule_outcomes": "excluded from every fit and inner selection; used only by final forecast evaluation",
+  "inner_target": "last earlier rung (75 percent); fit on lower rungs",
+  "M0_unseen_tasks": "training-only pooled Beta(1,1) mean",
+  "M1": "weighted pool-adjacent-violators with interpolation through all block endpoints, trained on earlier adjacent transitions",
+  "candidate_selection": "minimum pooled inner held-out log loss, exact ties M3",
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 1302031,
+    "unit": "task group, paired across models/policies; fixed fitted predictions"
+  },
+  "G1": {
+    "required_schemes": [
+      "grouped_tasks",
+      "full_schedule_policies"
+    ],
+    "log_loss_difference_upper_95_below_zero_against": [
+      "M0",
+      "M1"
+    ],
+    "full_schedule_policy_pearson_min": 0.8
+  },
+  "calibration": {
+    "bins": 10,
+    "criterion": "paired group-bootstrap 95% interval for mean prediction-minus-outcome bias contains zero",
+    "criterion_source": "prospective operationalization of PROTOCOL section 4 calibration requirement; not evidence that calibration is exact"
+  },
+  "synthetic_recovery": {
+    "pattern": "actual risk counts and missingness, after R2",
+    "seed": 1302041,
+    "ability_correlation_min": 0.8,
+    "probability_mean_absolute_error_max": 0.08,
+    "threshold_source": "prospective implementation controls, declared before historical validation factors"
+  },
+  "anchors": {
+    "split": "train",
+    "policies": [
+      "base_4B",
+      "sft_4B_f0p5",
+      "sft_4B_f1p0"
+    ],
+    "tasks": 539,
+    "samples": 8,
+    "d_and_p": "per-output beta-binomial numerator/denominator",
+    "t": "Bernoulli",
+    "log_concentration_prior_mean": "log(20)",
+    "log_concentration_prior_sd": 1.0,
+    "concentration_bounds": [
+      0.05,
+      10000.0
+    ],
+    "ability_update_every_updates": 10,
+    "current_ability_prior": "N(0,1), earlier train rollouts only, fixed items",
+    "weights": "a*(1-q), normalized across d/t/p, frozen throughout group"
+  },
+  "post_L1_policy": "no score-driven configuration changes or gate retries",
+  "feature_extraction": {
+    "python_tokens": "stdlib tokenize; excludes comments, indentation and newline tokens",
+    "reference_theorem_count": "pinned scorer theorem-type extractor",
+    "industry_domain": "one-hot vocabulary fitted on training-fold tasks; unseen domain all-zero",
+    "numeric_standardization": "training-fold only"
+  }
+}
