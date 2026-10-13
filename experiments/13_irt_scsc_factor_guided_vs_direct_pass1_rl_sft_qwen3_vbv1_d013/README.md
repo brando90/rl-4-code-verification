@@ -12,7 +12,7 @@ The plan has three phases:
 - **Phase 1:** fit and validate a conjunctive item response theory (IRT) model that predicts held-out pass@1 and pass@k.
 - **Phase 2:** run four RL arms from the Qwen3-4B SFT checkpoint: strict reward, SCSC-style factored reward, IRT-guided reward and prompt sampling, and a placebo dense reward.
 
-Status: **BLOCKED 10-11-2026: historical audit terminated; 21,504 accounted, 6,739 measured, 14,765 unmeasured.** See the [terminal report](expt_v1/RESULTS_opaque_audit_terminal.md), [ledger](expt_v1/results.md) and [checkpoint](expt_v1/CKPT_e13.md). Original scientific limits remain; fitting and training are unadmitted. The unresolved prospective recovery decision is a live dependency, so this experiment remains in its current home.
+Status (10-13-2026): **version 2 authorized and planned** ([plan revision 2](expt_v2/PLAN.md), [single light review and fixes](expt_v2/REVIEW_v2.md), [owner runbook](expt_v2/cc.md), [master checkpoint](expt_v2/CKPT_e13_v2.md)); nothing launched yet. Version 1: **BLOCKED 10-11-2026: historical audit terminated; 21,504 accounted, 6,739 measured, 14,765 unmeasured.** See the [terminal report](expt_v1/RESULTS_opaque_audit_terminal.md), [ledger](expt_v1/results.md) and [checkpoint](expt_v1/CKPT_e13.md). Original scientific limits remain; fitting and training are unadmitted. The unresolved prospective recovery decision is a live dependency, so this experiment remains in its current home.
 
 - **Created:** 10-09-2026 by Claude Code (`claude-opus-5-5`) for Brando.
 - **Owner:** recovery master; audit and observer are terminal. Parent retains recovery ownership for the unresolved gates.

@@ -1,199 +1,297 @@
-# Experiment 13 v2 plan: a scorer that measures every output, then the original gates, through RL to completion
+# Experiment 13 v2 plan (revision 2): measure every output, keep the historical strict oracle, protect chronology, then run the reviewed gates through RL
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/PLAN.md>
 
-**TLDR:** Version 1's historical audit ended BLOCKED: it measured only 6,739 of 21,504 cells. The other 14,764 were rejected by its own design: any Lean parse error or unparseable theorem statement raised an exception, which was caught without a diagnosis, while the original strict score simply counts such files as failures.
+**TLDR:** Version 1's historical audit ended BLOCKED: 6,739 of 21,504 cells measured, 14,764 rejected by its exception handling, causes not retained. Version 2 is the separately authorized prospective condition that version 1's closeout requires (Brando, 10-13-2026: "Try again", continuing his 10-09 request: plan, one light review, run to completion).
 
-Version 2 is the separately authorized prospective condition that version 1's closeout requires (Brando, 10-13-2026: "Try again", continuing his 10-09 request to plan, take one light review and run to completion). It has three parts:
+Revision 2 applies the single requested review (Codex GPT-6 Astra, ultra, 10-13-2026; `REVIEW_v2.md`: FAIL, 3 critical and 9 major findings, all fixed here). It makes six changes:
 
-1. A scorer that measures every output, scoring malformed, cut-off and non-compiling files as failures with partial credit.
-2. Full diagnostics for every cell.
-3. The original reviewed gates and phases, from G0 through the Phase 2 RL comparison.
+1. Strict comes only from the historical oracle, value and status, never from the new components.
+2. Development diagnostics use train-split cells only.
+3. The version 2 measurement lock and forecasts are frozen before any validation or test factor is computed.
+4. Partial credit comes from an elaborator-backed probe that keeps complete diagnostics.
+5. Arm-specific failures disable only that arm.
+6. Memory, devices and recovery have enforceable limits.
 
-Created: 10-13-2026 by Claude Code (`claude-opus-5-5`, master session "Oct 9: IRT for eval metric decomposition") for Brando. Status: PLANNED; nothing launched.
+Created: 10-13-2026 by Claude Code (`claude-opus-5-5`, master session "Oct 9: IRT for eval metric decomposition"). Revision 2: 10-13-2026. Status: PLANNED; nothing launched.
 
-## 1. What version 1 established and why it stopped
+## 1. What version 1 established, and its verified rejection paths
 
 | Fact | Evidence |
 |---|---|
-| Design reviewed once (GPT-6 Astra, ultra), 11 findings reconciled; protocol, Phase 1 and Phase 2 plans are reusable | `../expt_v1/REVIEW.md`, `../PROTOCOL.md`, `../expt_v1/PHASE1_IRT_PLAN.md`, `../expt_v1/PHASE2_MATCHED_RL_PLAN.md` |
-| 20,520 ladder and 21,504 base-model source hashes match; 15 authored strict controls reconciled; 30 adapter fixtures passed | `../expt_v1/results.md`, `../expt_v1/PHASE0_CONTROLS_RESULT.json` |
-| Historical audit: 21,504 accounted, **6,739 measured, 14,765 unmeasured** (14,764 `source_or_pinned_probe_rejected`, 1 reboot interruption); exited BLOCKED 10-11-2026 23:15 PDT | `../expt_v1/RESULTS_opaque_audit_terminal.md` |
-| Forecasts F0 and F1 were frozen before any factor outcome was read; no factor value was disclosed | `../expt_v1/locks/forecast_ledger.jsonl` |
+| Design reviewed once (GPT-6 Astra, ultra), 11 findings reconciled; protocol and the Phase 1 and Phase 2 plans are reusable | `../expt_v1/REVIEW.md`, `../PROTOCOL.md`, `../expt_v1/PHASE1_IRT_PLAN.md`, `../expt_v1/PHASE2_MATCHED_RL_PLAN.md` |
+| Source hashes: 20,520 ladder and 21,504 base-model sources match; 15 authored strict controls reconciled; 30 adapter fixtures passed on skampere1 | `../expt_v1/results.md`, `../expt_v1/PHASE0_CONTROLS_RESULT.json` |
+| Historical audit: 21,504 accounted, **6,739 measured, 14,765 unmeasured** (14,764 `source_or_pinned_probe_rejected`, 1 reboot interruption) | `../expt_v1/RESULTS_opaque_audit_terminal.md` |
+| Forecasts F0 and F1 were frozen on 10-10-2026, before any factor outcome was published | `../expt_v1/locks/forecast_ledger.jsonl` |
 
-**Root cause, from the code** (`../expt_v1/opaque_base_audit.py`, `../expt_v1/declaration_adapter.py`):
+**Code paths that end in the generic rejection class.** These are a verified inventory, not per-cell causes; cause frequencies are unknown until the instrumented diagnostic in § 4.
 
-1. **Unparseable theorem statement.** The audit raises `AuditError("unparseable theorem type")` whenever the frozen vacuity screen cannot parse a theorem type. The original strict score did not reject these files: experiment 08's `analyze_ladder.py` (lines 91–92) sets `kernel_binary` to 0 when it would otherwise be 1, "conservative for a policy gate".
-2. **Parse errors.** `_probe` raises `AdapterError` when the Lean parser helper exits nonzero, or when its terminal event reports `parse_error` ("parser errors are terminal, not guessed around"). Malformed and truncated files are exactly the failures a partial-credit scorer must measure.
-3. **Identity disagreements.** An invalid command span, a duplicate declaration name, or a mismatch between kernel and parser theorem identities raises `AdapterError`. Non-compiling files, which elaborate with errors, plausibly reach these branches.
-4. **Diagnostics discarded.** One `except (AdapterError, AuditError, OSError, UnicodeError, ValueError)` writes the single class `source_or_pinned_probe_rejected` and drops the phase, message, return code and logs. This is why the cause per cell cannot now be assigned.
+1. **Vacuity screen.** `opaque_base_audit.py` raises `AuditError("unparseable theorem type")` before the adapter runs.
+2. **Parser.** `declaration_adapter._probe` raises on a nonzero parser exit, non-JSON output, or a terminal `parse_error`.
+3. **Identity checks.** Invalid command spans, duplicate fully qualified names, and kernel/parser theorem-identity disagreement each raise.
+4. **Count overflow** (found by the review and reproduced without Lean). `theorem t : True := by trivial` yields two historical vacuity pattern hits for one theorem. `PartialCredit` then raises `ValueError("theorem counts inconsistent")`.
+5. **Loading and environment.** Module loading, pinned-module errors, source, hash and encoding errors also raise. A rejection is therefore not necessarily a malformed submission.
+6. **One catch-all.** A single `except` maps all of these to one class and discards phase, message, return codes and logs.
 
-Items 1–3 are code paths, not per-cell findings. Section 3's diagnostic sample assigns causes with evidence before any full rerun.
+## 2. Measurement contract
 
-## 2. Scoring contract for version 2
+### 2a. Strict is the historical oracle, value and status
 
-- **Measured means a recorded outcome, never a skip.** Every cell whose source exists gets a measured strict value and measured component values. A file that does not parse, truncates, fails to compile, has an unparseable theorem statement, or has no theorem is a measured failure:
-  - strict is 0;
-  - components carry whatever partial credit Lean's per-command results support;
-  - a component with no evidence is 0, with a reason code.
-- **Only infrastructure faults are unmeasured.** A probe timeout, out-of-memory kill, missing or replaced source, tool crash or reboot leaves a cell unmeasured. It keeps a typed reason code and full receipts, and gets exactly one identical retry, as rl4cv's rules require. Unmeasured cells stay in the denominator.
-- **Strict is the historical definition, byte for byte.** It reuses the pinned scorer and vacuity screen behind the historical `kernel_binary`, including the rule that an unparseable theorem type cannot count as a pass. The new per-declaration components must imply that same strict value: `e · 1[d = 1] · t · 1[p = 1] · v · 1[n_thm ≥ 1]`.
-- **Components** keep the definitions in `../PROTOCOL.md` § 3:
-  - `e`: Lean extracted and not cut off.
-  - `d`: fraction of top-level declarations that elaborate without an error message. A parse-error region counts as one failed declaration; commands after the parser recovers are still counted.
-  - `t`: implementation and `example`s elaborate.
-  - `p`: fraction of stated theorems whose axioms are within {`propext`, `Classical.choice`, `Quot.sound`}. Lean v4.22.0 reports per-theorem axioms after a failed proof (`../design_evidence/lean_partial_credit_probe_output.txt`).
-- **Identity disagreements are logged, not fatal.**
-  - `p` uses kernel theorem identities; `d` uses parser command spans.
-  - Disagreements are recorded per cell.
-  - The strict-consistency check below decides whether one matters.
-- **Full diagnostics per cell**, in a private receipt:
-  - phase reached;
-  - exception class and message;
-  - return codes;
-  - the last 4 KB of standard error;
-  - parser terminal event;
-  - per-declaration status;
-  - timings;
-  - source hash.
+Version 2 never derives strict from components. For each source family it calls the frozen historical code path, returning the historical **value** and **status**:
 
-  Public files carry counts, reason-code tallies and hashes only, as in version 1.
+| Family | Historical oracle | Status semantics kept |
+|---|---|---|
+| Experiment 08 ladder | `analyze_ladder.py` | `known=False` → `None`. An unparseable theorem type turns 1 into 0. Example presence, vacuity, frozen kernel probe and the pinned extractor apply |
+| Experiment 05 base cells | Experiment 05's recorded scorer path, as bound in version 1's sealed manifest | As recorded |
 
-## 3. Phases, gates and decision rules
+Teacher files (`score_teacher_files.py`) are not in the manifest. If any are ever added, their `served`/`None` semantics are kept.
 
-Each phase starts only when the previous one passes. A gate failure stops the chain and is reported with its evidence, never retried until it passes.
+The oracle's own rules carry over unchanged:
 
-### Phase 0v2-a — scorer fix and fixtures (CPU, no model calls)
+- **Extraction:** pinned `single_call.py` selection. Labelled blocks first; otherwise the longest eligible block for one target.
+- **Cap:** a capped but valid file may score 1, because the cap flag is not part of `reward_kernel_binary`.
+- **Exceptions:** `native_decide` in an `example` and an unused declared axiom do not fail a file. A `sorry`, `admit`, `native_decide` or declared axiom in a stated theorem's dependency cone does.
+- **Probe rejection:** a kernel-probe rejection after a successful compile is 0, as in the reviewed printed-`error:` fixture.
 
-1. **Implement** `expt_v2/declaration_adapter_v2.py` and, if needed, `expt_v2/DeclarationProbe_v2.lean`, from the version 1 code, with the contract in § 2. Keep version 1's files byte-identical.
-2. **Fixtures.** Keep version 1's 30 fixtures, plus at least these:
-   - a parse error mid-file, with later declarations;
-   - a file truncated mid-proof;
-   - an unparseable theorem statement in a file that compiles, and one in a file that does not;
-   - a duplicate declaration name;
-   - a theorem inside a namespace with a failing earlier declaration;
-   - an empty extraction;
-   - a file with no theorem;
-   - `sorry` and `native_decide` in a theorem;
-   - a 15-minute timeout simulation.
+### 2b. Components are experimental measurements
 
-   Each fixture has an independently written expected strict value, component values and reason code.
-3. **Gate R0:** every fixture matches; `make test` passes; version 1's tests still pass.
+Components come from a new **elaborator-backed probe**, `expt_v2/DeclarationProbe_v2.lean` with `declaration_adapter_v2.py`. It runs Lean's frontend command by command on the unchanged source, with these properties:
 
-### Phase 0v2-b — diagnostic sample (CPU)
+- **Complete messages.** It records the full message list per command: no 4,000-character cap, with stdout and stderr both captured.
+- **Recovery.** It continues past parse and elaboration errors.
+- **Axioms after failure.** It reads each stated theorem's axioms from the final environment, including after earlier failures.
+- **Denominators.** Unresolved stated obligations stay in the denominators.
+- **Raw evidence.** Full raw evidence is stored privately per cell.
 
-1. From version 1's private result ledger, draw a seeded uniform sample of 300 cells among the 14,764 rejected ones and 100 among the 6,739 measured ones, without reading any stored strict or factor value.
-2. Run the version 1 adapter with diagnostics switched on, using a wrapper that records the exception and changes nothing else.
-3. Run the version 2 adapter on the same 400 cells.
-4. Publish:
-   - a cause table (counts per root-cause branch), with 95% Wilson intervals for each branch's share among the rejected population;
-   - version 2's measured share;
-   - its strict-consistency share on the 400.
-5. **Gate R1:**
-   - version 2 measures all 400, apart from infrastructure faults that pass on their one retry;
-   - its strict value equals the historical `kernel_binary` on every measured cell;
-   - any cause branch above 1% of the sample is explained by a fixture.
+The components are those of `../PROTOCOL.md` § 3:
 
-   If a mismatch appears, fix the definition through a numbered amendment before the full run. The full run never tunes on outcomes.
+| Component | Definition |
+|---|---|
+| `e` | Extraction present |
+| `d` | Fraction of top-level commands that elaborate without error; a parse-error region counts as one failed command |
+| `t` | Implementation and examples elaborate; **at least one `example` present** |
+| `p` | Proved-theorem fraction over stated theorems |
 
-### Phase 0v2-c — full strict reproduction (CPU)
+Guards keep **raw vacuity screen hits separate from distinct vacuous theorems** (fixing path 4), plus the stated-theorem count. Cap status is a recorded covariate. It is not a component factor, so it never forces a zero.
 
-1. **Manifest:** the union of experiment 05's 21,504 base cells and experiment 08's 20,520 available ladder cells. The overlap is 3,240, giving **38,784 unique cells**; the parent ladder's 5,400 missing cells stay listed as missing.
-2. **Parallelism:** 48 worker processes on skampere1 (128 cores, about 2 TiB of memory), checked against current load before launch. The pinned Lean v4.22.0, Mathlib copy and limits are 900 s parse, 600 s compile and 900 s kernel.
-3. **Expected wall clock:** about 2 hours. Version 1 ran one process at about 7.5 cells per minute. The real rate is recorded after the first 500 cells.
-4. **Gate R2:**
-   - every cell is measured, or unmeasured only for infrastructure after one identical retry;
-   - unmeasured cells number 0, or the gate reports INCOMPLETE with their list;
-   - the version 2 strict value equals the historical `kernel_binary` on **100%** of measured cells.
+### 2c. Consistency is a diagnostic, not a definition
 
-   Any mismatch fails R2 and is diagnosed before G0.
+For every measured cell, record these, and report each with its count and full denominator:
 
-### Phase 0v2-d — gate G0 (CPU)
+- whether `strict = 1` implies every component is at its maximum;
+- whether all components at maximum with `strict = 0` falls in a typed branch:
+  - kernel-probe rejection;
+  - a top-level non-declaration failure;
+  - vacuity;
+  - no example;
+  - extraction-selection difference.
 
-Before measuring, append F0v2 to the forecast ledger with the same value as version 1's F0 (0.50), bound to the version 2 adapter hash. Then measure G0 exactly as `../PROTOCOL.md` § 3 defines it, on validation outputs:
+An untyped inconsistency fails R1 or R2.
 
-- dense-only share for the 4B full-schedule checkpoint, threshold ≥ 0.15;
-- predictive validity from the 50% rung to the 100% rung, AUC ≥ 0.65 for 4B.
+### 2d. Status classes
 
-If G0 fails, arms B and C stop (README decision rules).
+| Class | Meaning | Retry |
+|---|---|---|
+| Measured | Oracle value and status reproduced, components recorded | — |
+| Transient infrastructure | Reboot, killed tool, lost node | One identical retry (a bounded policy stated here, not a `CLAUDE.md` number); still missing afterwards → INCOMPLETE |
+| Deterministic resource limit | Reproducible timeout or memory ceiling at the frozen limits | No retry; reported per cell |
+| Integrity defect | Missing, replaced or re-encoded source | Blocks the gate |
 
-### Phase 1 — interpretable model and gate G1
+## 3. Chronology and data isolation
 
-Follow `../expt_v1/PHASE1_IRT_PLAN.md` and `../PROTOCOL.md` § 4 as reviewed:
+1. **Development set.** Train-split cells only: experiment 05's base-model cells on the 539 train tasks, 3 models × 8 samples, about 12,936 cells. The allowlist is frozen by cell ID from D-013's split manifest. All adapter development, fixtures from real data, and the § 4 diagnostic sample come from it. No validation or test cell is executed during development.
+2. **L1v2 measurement lock**, appended to `expt_v2/locks/` before any validation or test factor is computed. It freezes:
+   - the measurement contract (§ 2);
+   - adapter, probe and oracle implementation hashes;
+   - complete manifests and grouped folds;
+   - the model and fit configuration for Phase 1;
+   - **F0v2 and F1v2**.
 
-- grouped folds;
-- conditional hurdle likelihood;
-- M0, M1, M2, M3 and M3e on identical outer-held-out cells;
-- convergence, sensitivity and simulation recovery;
-- G1 report with bias, absolute error and intervals.
+   F0v2 and F1v2 carry the numeric predictions of version 1's F0 and F1, with that history recorded, bound to the version 2 hashes. Version 1's timestamps are not claimed as prospective registration of the changed procedure.
+3. **Information already observed.**
+   - Version 1 computed private equality results for 6,739 base cells. No per-cell value, factor or comparison was published, and the master has read none.
+   - The design evidence used published experiment 08 validation aggregates, before version 1's F0 lock.
+   - Both facts are recorded in L1v2.
+4. **Validation reproduction and G0** run in the ordinary harness, after L1v2.
+5. **Test cells** (base cells on the 222 test tasks) run only in a separate opaque process. It exposes completeness, hashes and the equality status, nothing else.
+   - A test discrepancy blocks admission.
+   - Inspecting it needs a numbered chronology amendment that gives up the untouched-test claim.
 
-**Train-split rollout batches** (H2 and arm C anchors):
+## 4. Phases, gates and transitions
 
-- two independent batches from `sft_4B_f1p0`, 539 tasks × 8 samples each, with the Phase 2 sampler;
-- self-hosted vLLM on one device (D-101);
-- about 43 million generated tokens in total, roughly 2–3 device-hours on an A100, H200 or B200.
+### R0 — fixtures (skampere1, pinned Lean; integration tests required, never skipped)
 
-**Phase 1b, SWE-bench model for AlphaHebe:**
+The fixtures are version 1's 30 plus these:
 
-- Experiment `14_irt_2pl_ability_vs_heldout_pass1_forecast_swebench_verified_164_systems` already shows a 2PL ability forecast beats half-A pass@1 on level: mean absolute error (MAE) 0.0344 vs 0.0554 at n_A = 50, a difference of +0.0210 [+0.0195, +0.0224].
-- Phase 1b fits the conjunctive model to experiment 07's components (gate, T_fix, T_keep → resolved).
-- It scores an IRT promotion gate on experiment 10's incumbent → candidate pairs as a secondary analysis.
-- Experiment 10's protocol locked on 10-09-2026 (revision 3), so this does not change it.
+- a valid file at the token cap (oracle 1);
+- a printed-`error:` kernel rejection after a successful compile (0);
+- no `example` (0);
+- `native_decide` in an `example` only (unchanged);
+- multiple Lean blocks (pinned selection);
+- the `True := by trivial` vacuity overflow;
+- an error beyond 4,000 characters of log;
+- a failed proof followed by a valid theorem (asserts the actual partial `p` and `d`);
+- a top-level non-declaration failure;
+- `known=False` and `None` status;
+- an unparseable theorem type in a compiling file and in a non-compiling one.
 
-### Phase 2 — matched RL comparison
+Each fixture has an independently written expected oracle value and status, components and reason code.
 
-Follow `../expt_v1/PHASE2_MATCHED_RL_PLAN.md` and `../PROTOCOL.md` §§ 5–8 as reviewed:
+**Gate R0:** every fixture matches; the full suite passes with `E13_REQUIRE_LEAN_INTEGRATION=1`, so the adapter integration cases run.
 
-- LP pilot manifest and resource lock;
-- T1 probability check;
-- T2–T3 update, refit and resume;
-- T4 measured cost;
-- T5 learning pilot;
-- L2 main lock;
-- four arms (A strict, B SCSC-style, C IRT-guided, P placebo) × 3 paired seeds, at matched cumulative generated-token thresholds;
+### R1 — instrumented diagnostic on the train-split allowlist
+
+- **Sample.** A seeded sample of 300 cells from version 1's rejected train-split cells, and 100 from its measured train-split cells, drawn by cell ID only. If fewer exist, take all.
+- **Version 1 wrapped.** The **complete** version 1 per-cell path (vacuity, adapter and `PartialCredit`) runs inside a wrapper that records phase and exception and changes nothing else.
+- **Version 2.** The version 2 pipeline runs on the same cells.
+- **Report.** The cause table uses Wilson 95% intervals on the **300 rejected** cells as denominator. Version 2's measured share and its consistency diagnostics are reported alongside.
+- **Gate R1:**
+  - every cell measured, except typed classes;
+  - oracle value and status reproduced on every measured cell;
+  - no untyped inconsistency;
+  - every cause branch above 1% covered by a fixture.
+
+  Fixes go in before L1v2. After L1v2, a fix requires a numbered amendment.
+
+### L1v2 lock (§ 3)
+
+### R2 — full reproduction
+
+- **Manifest:** experiment 05's 21,504 base cells ∪ experiment 08's 20,520 available ladder cells = **38,784 unique cells**. The parent ladder's 5,400 unavailable cells stay listed separately.
+- **Routing:** train and validation cells run in the ordinary harness; test cells run in the opaque process.
+- **Gate R2:** a **complete** reproduction of oracle value and status on all 38,784, except typed deterministic-limit cells listed with reasons.
+  - **INCOMPLETE does not advance to G0.** It is an unresolved technical measurement, not evidence about the hypothesis.
+
+### G0 — on validation outputs, after R2
+
+Per `../PROTOCOL.md` § 3:
+
+- dense-only tasks for the 4B full-schedule checkpoint ≥ 0.15 × 135, i.e. **at least 21 of 135**;
+- predictive validity on the zero-success subset of the 50% rung: AUC ≥ 0.65. If the subset contains only one class, the AUC is undefined and G0 fails admission.
+
+### Transition table
+
+| Event | Effect |
+|---|---|
+| R0, R1 or R2 fails or is INCOMPLETE; integrity defect | Stop downstream measurement; publish the failure with evidence |
+| G0 fails | Stop arms B and C (README rule); Phase 2 is not run, since A against P alone does not test the hypothesis |
+| G1 fails, H2 fails, or arm C's variance check fails | Disable **arm C only**; A, B and P continue to Phase 2 |
+| T1–T4 fail | Stop Phase 2 at that gate; publish |
+| T5 fails | One preregistered horizon extension, per the reviewed plan; then stop |
+| A test discrepancy in the opaque process | Block test-based admission; chronology amendment required to inspect |
+
+## 5. Phase 1 — interpretable model, G1 and H2
+
+Phase 1 follows `../expt_v1/PHASE1_IRT_PLAN.md` and `../PROTOCOL.md` § 4. The ordering is fixed:
+
+1. **LP-1:** a bounded resource and probability admission for **generation only**. It covers device route (§ 7), sampler, probability agreement on a probe batch and token caps.
+2. **Anchor panel for arm C**, three connected policies on the 539 train tasks with the Phase 2 sampler:
+   - **Base:** reuse experiment 05's Qwen3-4B-Base train receipts only if their sampler and extraction match the Phase 2 sampler exactly; otherwise generate a new Base batch.
+   - **50%:** generate a batch for `sft_4B_f0p5`.
+   - **100%:** generate batch 1 for `sft_4B_f1p0`.
+3. **Freeze** the calibration, item parameters and **F2** in the locks folder.
+4. **Batch 2**, independent, for `sft_4B_f1p0`: the H2 test.
+
+Each batch is 539 × 8 samples, about 21.6 million generated tokens, roughly 1–1.5 device-hours on one A100, H200 or B200 with vLLM (D-101). Up to four batches total about 4–6 device-hours, and the master records each one's device plan in the checkpoint.
+
+G1 is reported with bias, absolute error and intervals on grouped folds, as reviewed.
+
+### Phase 1b — SWE-bench promotion gate (optional, not on the critical path)
+
+This is a separate protocol, `expt_v2/PHASE1B_PROTOCOL.md`, frozen before any execution. It specifies:
+
+- the promotion statistic;
+- information used;
+- task and system partitions;
+- missingness and uncertainty.
+
+Item parameters come only from systems in other folds, as in experiment `14_irt_2pl_ability_vs_heldout_pass1_forecast_swebench_verified_164_systems`. Candidate and incumbent outcomes never fit their own forecasts.
+
+Experiment 14 supports the premise; its result (`../../14_irt_2pl_ability_vs_heldout_pass1_forecast_swebench_verified_164_systems/results.md`):
+
+- **Setup:** 164 systems × 424 tasks, 2,000 splits, n_A = 50 observed tasks per split, fixed-fit conditioning.
+- **Level:** the 2PL forecast has mean absolute error 0.0344 vs 0.0554, a difference of +0.0210 [+0.0195, +0.0224] (system-cluster bootstrap), p-val=0.001.
+- **Rank:** small, and gone by n_A = 250.
+- **Scope:** a historical SWE-bench forecasting result, not established transfer to Lean or to a promotion model.
+
+Experiment 10's locked revision 3 stays unchanged.
+
+## 6. Phase 2 — matched RL comparison
+
+Phase 2 follows `../expt_v1/PHASE2_MATCHED_RL_PLAN.md` and `../PROTOCOL.md` §§ 5–8 as reviewed:
+
+- sequence: LP → T1 → T2, T3 → T4 → T5 → L2;
+- four arms (A, B, C and P, with C subject to the transition table) × 3 paired seeds;
+- matched cumulative-token thresholds;
 - validation selection, then one test evaluation;
-- FSC on test outputs through the validated Valkyrie judge (D-102, D-108).
+- formal specification coverage (FSC) through the validated Valkyrie judge (D-102, D-108).
 
-**Device budget:**
+The 260–350 A100-hour figure stays an estimate until T4 measures it. On SNAP the plan is recorded in the checkpoint (Trigger Rule 51).
 
-- The 260–350 A100-hour figure is an estimate.
-- T4 replaces it with measured cost before L2.
-- On SNAP the plan is recorded in the checkpoint rather than asked (Trigger Rule 51 pre-approval).
-- Devices come only from idle GPUs, checked with `nvidia-smi` and kept clear of other users, or through experiment 08's lease interface. No device held by another owner is used.
+## 7. Execution safety
 
-## 4. Owners, accounts and supervision
+### Memory and concurrency
 
-- **Master:** this Claude Code session on the Mac (Rule 55). It writes plans, dispatches, verifies, publishes and reports; it never runs the experiment.
-- **Phase owner:**
-  - One SNAP worker on skampere1, the single writer for version 2, in tmux `codex-rl4cv-e13v2-owner`.
-  - Codex `gpt-6-astra`, effort `high`, full access (`codex --sandbox danger-full-access --ask-for-approval never`), with the verbatim SNAP pre-approval line.
-  - Fallback under Rule 48 if that account is limited: Claude Code `claude-fable-5-1` `high` (`clauded`), then Claude Code on the Vals profile (`clauded-vals`).
-  - On 10-12-2026, Codex-Vals was at its usage limit and the Stanford Codex account was read-only (experiment 14's record); the personal Codex account ran experiment 14's review.
-- **Watchdog (no model calls):**
-  - `expt_v2/watchdog_e13v2.sh` in the skampere1 crontab every 15 minutes, plus `@reboot`.
-  - It checks the owner's tmux pane and processes, progress freshness, disk headroom, and done or blocked markers.
-  - It relaunches a dead loop at most once per incident.
-  - It emails `brando.science@gmail.com` only on completion or on an event that needs Brando, deduplicated.
-  - It removes its own cron line when every phase is done or blocked. This is modeled on experiment 08's `watchdog_e08.sh`.
-- **Master check-in:** hourly from this session while it is open. Each check-in reads the receipts, confirms the watchdog and dispatches the next phase. The watchdog does not depend on it.
+- **Measure first.** During R1, measure peak resident memory per complete cell, including the child processes of the frontend, compile and kernel probe.
+- **Concurrency:** `floor(0.5 × available memory headroom / p99 peak)`, capped at 48, and lowered if other owners' load rises.
+- **Enforce:** each cell runs in its own process group under `prlimit --as` with a per-worker cap. An aggregate `systemd-run --user --scope -p MemoryMax=` cap is used where the node supports it; otherwise a semaphore admits workers only while measured headroom stays above 25%.
+- **Kill rule:** kill a process group only if it belongs to this run's receipts.
+- **Runtime:** re-estimate from the repaired pipeline's measured complete-cell cost. Version 1's rate included early rejections.
 
-## 5. Completion, publication and reporting
+### Device route
 
-- **Results.** `expt_v2/results.md` is live from launch. Each phase publishes its report and sanitized receipts; private receipts stay under `/lfs/skampere1/0/brando9/rl4cv_e13v2/`.
-- **Publishing.** Commits go to `main` after `make test`, with explicit pathspecs.
-- **Done means all of these:**
-  - Phase 2's test analysis is published, with the primary contrasts B − A and C − A, the placebo contrasts, guards and full denominators;
-  - experiment 13's README and the experiments index are updated;
-  - one completion email has been sent.
-- **Stopping early.** A failed gate earlier in the chain is a valid stopping point. It is reported as that gate's result, with what it means for the hypothesis.
+- **Own registry.** Version 2 uses an experiment-13-owned lease registry under `/lfs/skampere1/0/brando9/rl4cv_e13v2/leases/`, with its own ownership and accounting. Experiment 08's `gpu_lease_e08.py` accepts only owner `e09`, so it is never used.
+- **Before claiming a device**, check:
+  - all compute processes, including Brando's own other experiments;
+  - every other experiment's lease files: 08, 09, 12, 14;
+  - reservations recorded by the rl4cv master (Codex thread `01a11d6a`).
+- **Etiquette:** claim only idle, unreserved devices, and release them on exit.
+- **Paths:** caches, temporary outputs and installs live under version 2's own work root. Borrowed environments are read-only.
 
-## 6. Timeline and risks
+### Supervision and one writer
+
+The watchdog `expt_v2/watchdog_e13v2.sh` runs from cron every 15 minutes, plus `@reboot`. It:
+
+- uses a shared recovery `flock` with the owner and the master;
+- binds processes to their run by PID, start time and boot ID;
+- adopts surviving children instead of relaunching over them;
+- keeps a persistent per-cell attempt ledger across reboots and account changes, so the one-retry policy cannot reset;
+- emails `brando.science@gmail.com` only on completion or on an event that needs Brando, deduplicated.
+
+Its self-tests:
+
+- a fake mailer;
+- an owned unique test session for kill tests, never another experiment's;
+- concurrent-recovery and orphaned-child cases.
+
+## 8. Owners, accounts, completion, timeline
+
+### Owners and accounts
+
+- **Master:** this Claude Code session on the Mac (Rule 55).
+- **Owner:** one SNAP worker on skampere1 in tmux `codex-rl4cv-e13v2-owner`, the single writer.
+  - Codex `gpt-6-astra`, effort `high`, full access, with the verbatim SNAP pre-approval line.
+  - Fallbacks under Rule 48: Claude Code `claude-fable-5-1` `high` (`clauded`), then the Vals profile.
+  - On 10-12, Codex-Vals was at its limit and Stanford Codex was read-only (experiment 14's record).
+- **Pre-dispatch check:** no live version 1 writer on skampere1 (CKPT § Coordination).
+
+### Completion
+
+Phase 2's test analysis is published:
+
+- primary contrasts B − A and C − A, with C absent if disabled;
+- placebo contrasts;
+- guards and full denominators.
+
+The README and the experiments index are updated, and one completion email is sent. Stopping at a gate under § 4's transition table is a valid, reported outcome.
+
+### Timeline and risks
 
 | Phase | Estimate | Main risk |
 |---|---|---|
-| 0v2-a, b | about 1 day | A cause branch with no fixture → amendment |
-| 0v2-c, d | about 3 hours of compute | Strict mismatch on a definition edge case |
-| 1 | 1–2 days | Identification with few policies; device time for the two rollout batches |
-| 2 | Pilot about 1 day; main 3–6 days | Free devices; trainer passing T1 (experiment 09 failed it); Lean scoring throughput inside the RL loop |
+| R0, R1 | 1–2 days | Building the elaborator-backed probe; cause branches |
+| L1v2, R2, G0 | About 1 day | Memory-bounded throughput; opaque test process |
+| Phase 1 | 2–3 days | Anchor generation devices; identification |
+| Phase 2 | Pilot about 1 day; main 3–6 days | Free devices; trainer T1 (experiment 09 failed it); Lean scoring throughput |
 
-The master cannot reach SNAP from an off-campus network without the Stanford virtual private network (VPN). Brando connects it, or works from campus, for the master's check-ins and dispatch. The SNAP-side owner and watchdog do not depend on the Mac.
+The master needs the Stanford VPN off campus. The SNAP owner and watchdog do not.

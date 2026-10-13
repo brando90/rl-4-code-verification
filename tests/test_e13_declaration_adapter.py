@@ -1,6 +1,7 @@
 """Lean-backed counterexamples for the Experiment 13 declaration adapter."""
 from pathlib import Path
 import importlib.util
+import os
 import sys
 
 import pytest
@@ -17,9 +18,24 @@ inspect_source = ADAPTER.inspect_source
 sha256 = ADAPTER.sha256
 
 
-CONTROLS = Path("/lfs/skampere1/0/brando9/agent-recovery-10-09-2026/workers/rl4cv13_review/phase0_controls")
-SCORER = Path("/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/external/veribench_scorer")
-LAKE = Path("/lfs/skampere1/0/brando9/rl4cv_e08/grading/lean_src")
+# Integration prerequisites: the frozen fixture directory, the pinned scorer checkout and the pinned
+# Lean v4.22.0 + Mathlib project. Defaults are the skampere1 paths; override them with E13_* variables.
+CONTROLS = Path(os.environ.get(
+    "E13_CONTROLS_DIR", "/lfs/skampere1/0/brando9/agent-recovery-10-09-2026/workers/rl4cv13_review/phase0_controls"))
+SCORER = Path(os.environ.get(
+    "E13_SCORER_ROOT", "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/external/veribench_scorer"))
+LAKE = Path(os.environ.get("E13_LAKE_DIR", "/lfs/skampere1/0/brando9/rl4cv_e08/grading/lean_src"))
+
+_MISSING = [f"{var}={path}" for var, path in (
+    ("E13_CONTROLS_DIR", CONTROLS / "fixtures"), ("E13_SCORER_ROOT", SCORER), ("E13_LAKE_DIR", LAKE))
+    if not path.exists()]
+if _MISSING and os.environ.get("E13_REQUIRE_LEAN_INTEGRATION") == "1":
+    raise RuntimeError("E13_REQUIRE_LEAN_INTEGRATION=1 but Lean integration prerequisites are absent: "
+                       + ", ".join(_MISSING))
+pytestmark = pytest.mark.skipif(
+    bool(_MISSING),
+    reason=("Lean integration prerequisites absent (" + ", ".join(_MISSING) + "); set the E13_* paths, "
+            "and set E13_REQUIRE_LEAN_INTEGRATION=1 on the pinned host so absence fails instead of skipping"))
 
 
 def inspect(name: str):
