@@ -4,8 +4,8 @@
 
 **TLDR:** `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013` version 2 passed R0 attempt 2 under Amendment A1: 30/30 fixtures matched, with complete components and historical oracle value/status. R1 attempt 1 also passed 400/400 train cells with matching historical oracle values and statuses.
 
-Last updated: 10-13-2026 15:28 PDT
-Status: **DOWNSTREAM BLOCKED — opaque reproduction INCOMPLETE; ordinary cohort still running to finish the declared report.**
+Last updated: 10-13-2026 15:58 PDT
+Status: **RUNNING UNDER A2 — original ordinary cohort continues; amended reconciliation and admission pending.**
 
 | Stage | Status | Measured / declared |
 |---|---|---|
@@ -14,17 +14,17 @@ Status: **DOWNSTREAM BLOCKED — opaque reproduction INCOMPLETE; ordinary cohort
 | Required suite for attempt 2 | PASS | 283 passed, 23 skipped; all seven required Lean cases ran |
 | R1 attempt 1 | PASS | 400/400 measured and oracle-equal; zero untyped inconsistencies |
 | L1v2 | FROZEN | 51 verified bindings; F0v2 0.50, F1v2 0.85; zero validation/test factors at freeze |
-| R2 | Opaque route INCOMPLETE; ordinary route running | 15,332/38,784 receipts at 15:28; ordinary 10,004/33,456; opaque 5,319 measured + 7 typed limits + 2 unresolved / 5,328 |
+| R2 | Original opaque INCOMPLETE; A2 reconciliation pending | 18,819/38,784 receipts; ordinary 13,491/33,456 at 10-13-2026 15:57 PDT; opaque 5,319 measured + 7 typed limits + 2 unresolved / 5,328 |
 | G0 | NOT ADMITTED | 0/135 validation tasks |
 | Phases 1 and 2 | NOT ADMITTED | No fitting or reinforcement learning |
 
 [L1v2 lock report](RESULTS_L1v2.md) · [R1 report](RESULTS_R1_attempt_1.md) · [Attempt-2 report](RESULTS_R0_attempt_2.md) · [Unchanged attempt-1 report](RESULTS_R0_terminal.md) · [Owner checkpoint](CKPT_e13_v2_owner.md). The full historical denominator stays 38,784 = 21,504 base + 20,520 ladder − 3,240 overlap. The 5,400 unavailable ladder cells remain separately declared. Splits: train 539, validation 135, test 222.
 
-Attempt 2 retained two 5,001-character messages and their intervening theorem error, checked information-message and raw-stream channels separately, and measured the unresolved theorem as 0/1 proved. All 42 original version-1 files and 49 preserved attempt-1 evidence/configuration files remain byte-identical. The original 50-file snapshot also included the separately owned live master checkpoint, which the master updated in `1e1a34a` before L1v2; it is not frozen attempt evidence. These are deterministic counts; intervals and p-values are not applicable (p-val=n/a).
+Attempt 2 retained two 5,001-character messages and their intervening theorem error, checked information-message and raw-stream channels separately, and measured the unresolved theorem as 0/1 proved. All 42 original version-1 files and 47 preserved attempt-1 evidence/configuration files remain byte-identical. The 50-file snapshot also includes PLAN and the runbook, explicitly superseded by master Amendment A2, and the separately owned live master checkpoint. Frozen fixture measurements and measurement code remain unchanged. These are deterministic counts; intervals and p-values are not applicable (p-val=n/a).
 
-The [opaque public receipt](R2/opaque_public_receipt.json) exposes completeness and hashes only. No test discrepancy, factor, label or source has been inspected. Under PLAN section 4, its INCOMPLETE status blocks G0 and every later phase; the existing ordinary run continues only to complete the declared reproduction report. No retry or scientific fix is authorized after the lock. This is unresolved technical measurement, not evidence against the reward hypothesis.
+The [opaque public receipt](R2/opaque_public_receipt.json) exposes completeness and hashes only. No test discrepancy, factor, label or source has been inspected. [Amendment A2](AMENDMENT_A2_R2_untyped_cells_and_admission_10-13-2026.md), written after that public observation, supersedes the original incomplete-stop rule. The original ordinary run finishes untouched; separate route processes then retry each untyped cell exactly once with unchanged measurement code, inputs and limits. Admission requires measured equality, no integrity defects and at most 5/5,328 unresolved opaque cells and 33/33,456 unresolved ordinary cells. [Reconciliation implementation](reproduction/README_A2.md) and [A2 lock](locks/A2_reconciliation.json) are prepared before retries; required suite: 313 passed, 23 unrelated skips. No A2 retry has run yet. This is technical measurement admission, not evidence against the reward hypothesis.
 
-A1 permits at most five attempts each for R0 and R1; every attempt remains recorded. No retries from L1v2 onward.
+A1 permits at most five attempts each for R0 and R1; every attempt remains recorded. Later gates retain the no-retry rule; A2 authorizes only the specified untyped-cell retries in R2.
 
-**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2's fixture acceptance passed 30/30 on attempt 2; the train-only diagnostic passed 400/400; L1v2 is published and full reproduction is blocked by incomplete opaque measurement while the ordinary cohort finishes.
+**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2's fixture acceptance passed 30/30 on attempt 2; the train-only diagnostic passed 400/400; L1v2 is published and full reproduction continues under A2, with amended reconciliation and admission pending.
 **Snapshot:** R0_attempt_2 PASS; 30/30 fixtures; 283 tests passed; R1 400/400 PASS; R2 opaque INCOMPLETE: 5,319 measured, 7 typed limits, 2 unresolved / 5,328; ordinary cohort running.

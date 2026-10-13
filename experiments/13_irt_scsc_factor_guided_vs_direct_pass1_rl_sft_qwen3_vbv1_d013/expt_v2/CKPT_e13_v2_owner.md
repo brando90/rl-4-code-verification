@@ -5,7 +5,7 @@
 **TLDR:** Amendment A1 resumed experiment 13 version 2; R0 attempt 2 passed all 30 fixtures and its required repository suite; R1 attempt 1 passed all 400 train cells.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-13-2026 15:28 PDT
+Last updated: 10-13-2026 15:58 PDT
 
 ## Goal
 - Complete amended development acceptance, then the unchanged scientific gates and matched reinforcement-learning comparison.
@@ -17,18 +17,20 @@ Last updated: 10-13-2026 15:28 PDT
 - Required full suite: 283 passed, 23 skips, 168.61 seconds; all seven required Lean integration cases executed.
 - Fix/justification commits before rerun: `3fbcb96`, `7ed9e85`, `76d85b4`.
 ## Results
-- R2 downstream blocked: opaque INCOMPLETE, 5,319 measured + 7 typed limits + 2 unresolved / 5,328. Ordinary running; 15,332/38,784 total receipts at 15:28 (10,004 ordinary), zero retries.
+- R2 under A2: original opaque INCOMPLETE, 5,319 measured + 7 typed limits + 2 untyped / 5,328; original ordinary run continues untouched. A2 retries have not started.
 - R1 PASS: 400/400 measured/oracle-equal, 0 untyped inconsistencies; rejected causes 296 parse errors, 3 unparseable types, 1 duplicate identity (denominator 300).
 - Attempt 2 PASS, 30/30; lock `67f005f9b146704ec5007be748d6a30bc01239d0f0af826d3aec489799872759`. Attempt 1 retained at 26/29 matches.
 - Owner process 887384, full access/no approvals; fenced watchdog re-armed as `e13v2_a1`, two owned cron entries restored.
 ## Stuck / blocked
-- Opaque completeness failed; downstream gates cannot run. Test outcomes remain undisclosed; do not inspect discrepancy details or change frozen code.
+- A2 supersedes the original incomplete-stop rule. Admission is pending identical untyped-cell retries and the amended public checks; test evidence stays sealed.
 ## Next steps
-- [p 10/10] Finish the already-running ordinary cohort, publish complete R2 INCOMPLETE report, update lifecycle indexes and send the one terminal notification. No downstream execution, scientific fix or retry.
+- [p 10/10] Finish original ordinary route untouched; run published A2 reconciliation after completion, retrying untyped cells once per route. Publish R2 under A2; proceed to G0 only if admitted. No terminal notification or stop now.
 ## Brando to-do
 - None.
 
 ## Log
+- 10-13-2026 15:58 PDT -- A2 implementation/lock publication ready: 313 passed / 23 skipped in 214.01 seconds with required Lean integration; 13 synthetic A2 controls include process/recovery replay. Lock `a18efcdb64d1d0f5bc315c15f8315eae91d559f5e03b43e2bf868ece1309d552`. Original run at 18,819/38,784 receipts; ordinary 13,491/33,456; zero retries so far. Next launcher `$WR/state/launch_R2_A2.sh` only after original terminal public result and dead original route coordinators; use a new `e13v2-a2-r2` session and scope.
+- 10-13-2026 15:50 PDT -- Master A2 brief received and `de37baf` pulled. A2 permits exactly one identical retry for untyped R2 cells, equality among all measured cells, no integrity defects and unresolved ceilings 5/5,328 opaque and 33/33,456 ordinary. Building separate reconciliation; original coordinator untouched. No terminal marker or notification created. PLAN/runbook are explicitly superseded instruction bytes; original lock and measurement code remain unchanged. Twelve synthetic reconciliation tests passed before full-suite validation.
 - 10-13-2026 15:28 PDT -- Ordinary cohort still running: 10,004/33,456 receipts; total 15,332/38,784, zero retries. Opaque INCOMPLETE remains unchanged; no later measurement admitted. Frozen bindings and prior evidence verified again. Required publication suite 300 passed / 23 skipped in 197.58 seconds; shared index refreshed to `176def8`. Latest cron confirms one live owner; continue full declared ordinary set before terminal report and notification.
 - 10-13-2026 14:57 PDT -- Opaque process finished: public receipt INCOMPLETE, 5,319 measured / 5,328, seven typed deterministic limits, two unresolved cells. No test-specific details inspected. PLAN section 4 blocks downstream execution; complete the ordinary cohort and publish the full technical stop. Cleanup now totals 18 registered children from nine terminal workers, zero forced kills/retries.
 - 10-13-2026 14:55 PDT -- Cleanup publication: required Lean integration suite 300 passed / 23 skipped. Two subsequent terminal descendants stopped from one completed worker; cumulative 16 children from eight workers, no forced kills or retries. Latest cleanup found zero eligible children; reproduction remains pending.

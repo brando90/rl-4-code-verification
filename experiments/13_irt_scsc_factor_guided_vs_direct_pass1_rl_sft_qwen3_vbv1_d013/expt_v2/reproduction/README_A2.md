@@ -1,0 +1,21 @@
+# Experiment 13 version 2: Amendment A2 reconciliation
+
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/reproduction/README_A2.md>
+
+**TLDR:** After the original full reproduction finishes, apply the master's Amendment A2 in separate route processes, with one identical retry for each untyped cell. Keep the original measurements, ledger attempts and public receipts unchanged. Publish effective results separately under `$WR/R2_A2`.
+
+The amendment was written after observing the opaque public receipt: 5,319 measured, seven typed deterministic limits and two untyped cells among 5,328. Its unresolved tolerance was therefore selected after that observation; the report must retain this chronology. No test-specific evidence is opened by the owner or the parent coordinator.
+
+`a2_reconcile.py` is a reconciliation coordinator. It does not edit the frozen worker, probe, adapter, historical oracle or original coordinator. The original run in `e13v2-a1-r2` finishes untouched. Its full public result must exist and its route coordinators must have exited before reconciliation can start. The A2 scope enforces the original aggregate memory limit; the unchanged cell-worker command retains its original per-process address-space ceiling, environment, source, route and scoring limits.
+
+The opaque route runs first in its own process, followed by the ordinary route in another process. Each verifies the frozen bindings, preserves the original result file and builds a private retry inventory. Under the shared recovery lock it appends attempt 2 to the existing ledger without relabelling attempt 1. Only a terminal untyped attempt 1 is eligible. A completed measurement, typed resource limit or integrity defect cannot retry. Recovery adopts surviving registered children, reuses terminal retry receipts and never reserves attempt 3. The existing fenced cleanup helper handles children whose worker and receipt are already terminal.
+
+The opaque process checks the two-cell count and the original public-receipt hash against the amendment lock. Neither the owner nor the parent coordinator reads its cell inventory, effective results, exception details or non-measured-cell ledger. The public receipt exposes counts, hashes and statuses only. `equality_among_measured` represents the logical equality result using the amendment's explicit `PASS` / `FAIL` encoding. Private ledgers list unresolved cell identifiers and typed limits with reason codes; only their hashes are published. Ordinary per-cell diagnostics also remain private.
+
+Admission requires complete accounting, historical value/status equality for every measured cell on both routes, no integrity defect, and at most 5 unresolved opaque cells or 33 unresolved ordinary cells. PLAN section 2c's existing prohibition on untyped component inconsistencies is retained separately from oracle equality. None of these measured inconsistencies is eligible for a retry. Deterministic limits remain allowed and listed. Public retry counts and final outcome classes are reported even when admission fails.
+
+L1v2 remains byte-identical. Its only changed bound document is the master-amended PLAN; the A2 lock records both original and amended hashes. The original runbook is also master-amended, with its history retained in Git. All measurement implementation and data bindings remain unchanged. The attempt-1 snapshot has 47 unchanged evidence/configuration paths, two explicitly superseded instructions (PLAN and runbook), and the separately owned live master checkpoint; version 1's 42 files remain unchanged.
+
+Before any A2 retry, publish the reconciliation implementation, synthetic tests and append-only `locks/A2_reconciliation.json`. Run the full repository suite with required Lean integration. Synthetic tests cover exactly one retry, unchanged attempt 1, route completion before access, public disclosure, resource-command identity, integrity/equality/consistency failures and both tolerance boundaries.
+
+If admitted and the R2 report is published, the existing frozen `g0.py` reads the ordinary effective results from `$WR/R2_A2`. Its definitions, eight-sample requirement, missingness behavior and no-retry rule are unchanged. All later gates remain subject to the existing plans.
