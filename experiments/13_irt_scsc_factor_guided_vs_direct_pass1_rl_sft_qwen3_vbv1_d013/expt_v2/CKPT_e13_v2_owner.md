@@ -5,7 +5,7 @@
 **TLDR:** Amendment A1 resumed experiment 13 version 2; R0 attempt 2 passed all 30 fixtures and its required repository suite; R1 attempt 1 passed all 400 train cells.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-13-2026 14:55 PDT
+Last updated: 10-13-2026 14:57 PDT
 
 ## Goal
 - Complete amended development acceptance, then the unchanged scientific gates and matched reinforcement-learning comparison.
@@ -17,18 +17,19 @@ Last updated: 10-13-2026 14:55 PDT
 - Required full suite: 283 passed, 23 skips, 168.61 seconds; all seven required Lean integration cases executed.
 - Fix/justification commits before rerun: `3fbcb96`, `7ed9e85`, `76d85b4`.
 ## Results
-- R2 running at 11,163/38,784 receipts (5,841 ordinary, 5,322 opaque), zero retries; latest required suite 300 passed / 23 skipped in 207.70 seconds.
+- R2 downstream blocked: opaque INCOMPLETE, 5,319 measured + 7 typed limits + 2 unresolved / 5,328. Ordinary running; 11,414/38,784 total receipts at 14:57, zero retries.
 - R1 PASS: 400/400 measured/oracle-equal, 0 untyped inconsistencies; rejected causes 296 parse errors, 3 unparseable types, 1 duplicate identity (denominator 300).
 - Attempt 2 PASS, 30/30; lock `67f005f9b146704ec5007be748d6a30bc01239d0f0af826d3aec489799872759`. Attempt 1 retained at 26/29 matches.
 - Owner process 887384, full access/no approvals; fenced watchdog re-armed as `e13v2_a1`, two owned cron entries restored.
 ## Stuck / blocked
-- None. R2 is active after L1v2; opaque test outcomes remain undisclosed. Frozen code and attempt limits remain unchanged.
+- Opaque completeness failed; downstream gates cannot run. Test outcomes remain undisclosed; do not inspect discrepancy details or change frozen code.
 ## Next steps
-- [p 10/10] Supervise R2 to all 38,784 cells; read only opaque public receipts. Publish the gate before G0. If R2 fails or is incomplete, stop downstream and publish; no scientific retry.
+- [p 10/10] Finish the already-running ordinary cohort, publish complete R2 INCOMPLETE report, update lifecycle indexes and send the one terminal notification. No downstream execution, scientific fix or retry.
 ## Brando to-do
 - None.
 
 ## Log
+- 10-13-2026 14:57 PDT -- Opaque process finished: public receipt INCOMPLETE, 5,319 measured / 5,328, seven typed deterministic limits, two unresolved cells. No test-specific details inspected. PLAN section 4 blocks downstream execution; complete the ordinary cohort and publish the full technical stop. Cleanup now totals 18 registered children from nine terminal workers, zero forced kills/retries.
 - 10-13-2026 14:55 PDT -- Cleanup publication: required Lean integration suite 300 passed / 23 skipped. Two subsequent terminal descendants stopped from one completed worker; cumulative 16 children from eight workers, no forced kills or retries. Latest cleanup found zero eligible children; reproduction remains pending.
 - 10-13-2026 14:47 PDT -- Operational cleanup under PLAN section 7: seven exited workers had terminal receipts but fourteen registered Lean grandchildren remained after timeouts. Verified all identities/receipt bindings and stopped only those descendants via process-identifier file descriptors; no forced kill, changed measurement or retry. Subsequent cleanup had zero eligible children. All 51 L1v2 bindings remain unchanged. Continue the helper in `operations/` while supervising; private per-action audits in `$WR/state/R2_terminal_child_cleanup_*.json`.
 - 10-13-2026 14:32 PDT -- Hourly integrity check: all 51 L1v2 bindings and 42 version-1 files unchanged. The broad A1 snapshot matches 49/50 paths; its only difference is the live master checkpoint, advanced by master commit `1e1a34a` before L1v2. Corrected the live preservation description; no scientific bytes changed. R2 at 7,944/38,784 receipts, zero retries. Shared instruction index refreshed to `b90414c`; no experiment gate changed.
