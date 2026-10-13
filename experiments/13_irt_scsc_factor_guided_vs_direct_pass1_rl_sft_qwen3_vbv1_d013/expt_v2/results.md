@@ -4,7 +4,7 @@
 
 **TLDR:** `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013` version 2 passed R0 attempt 2 under Amendment A1: 30/30 fixtures matched, with complete components and historical oracle value/status. R1 attempt 1 also passed 400/400 train cells with matching historical oracle values and statuses.
 
-Last updated: 10-13-2026 13:58 PDT
+Last updated: 10-13-2026 14:35 PDT
 Status: **RUNNING — R2 full reproduction active under published L1v2.**
 
 | Stage | Status | Measured / declared |
@@ -14,15 +14,15 @@ Status: **RUNNING — R2 full reproduction active under published L1v2.**
 | Required suite for attempt 2 | PASS | 283 passed, 23 skipped; all seven required Lean cases ran |
 | R1 attempt 1 | PASS | 400/400 measured and oracle-equal; zero untyped inconsistencies |
 | L1v2 | FROZEN | 51 verified bindings; F0v2 0.50, F1v2 0.85; zero validation/test factors at freeze |
-| R2 | RUNNING, admission pending | 1,040/38,784 completed receipts; 472 ordinary and 568 opaque |
+| R2 | RUNNING, admission pending | 8,210/38,784 completed receipts; 4,331 ordinary and 3,879 opaque |
 | G0 | NOT ADMITTED | 0/135 validation tasks |
 | Phases 1 and 2 | NOT ADMITTED | No fitting or reinforcement learning |
 
 [L1v2 lock report](RESULTS_L1v2.md) · [R1 report](RESULTS_R1_attempt_1.md) · [Attempt-2 report](RESULTS_R0_attempt_2.md) · [Unchanged attempt-1 report](RESULTS_R0_terminal.md) · [Owner checkpoint](CKPT_e13_v2_owner.md). The full historical denominator stays 38,784 = 21,504 base + 20,520 ladder − 3,240 overlap. The 5,400 unavailable ladder cells remain separately declared. Splits: train 539, validation 135, test 222.
 
-Attempt 2 retained two 5,001-character messages and their intervening theorem error, checked information-message and raw-stream channels separately, and measured the unresolved theorem as 0/1 proved. All 42 original version-1 files and 50 preserved version-2 files remain byte-identical. These are deterministic counts; intervals and p-values are not applicable (p-val=n/a).
+Attempt 2 retained two 5,001-character messages and their intervening theorem error, checked information-message and raw-stream channels separately, and measured the unresolved theorem as 0/1 proved. All 42 original version-1 files and 49 preserved attempt-1 evidence/configuration files remain byte-identical. The original 50-file snapshot also included the separately owned live master checkpoint, which the master updated in `1e1a34a` before L1v2; it is not frozen attempt evidence. These are deterministic counts; intervals and p-values are not applicable (p-val=n/a).
 
 A1 permits at most five attempts each for R0 and R1; every attempt remains recorded. No retries from L1v2 onward.
 
 **TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2's fixture acceptance passed 30/30 on attempt 2; the train-only diagnostic passed 400/400; L1v2 is published and full reproduction is active.
-**Snapshot:** R0_attempt_2 PASS; 30/30 fixtures; 283 tests passed; R1 400/400 PASS; R2 1,040/38,784 receipts; gate pending.
+**Snapshot:** R0_attempt_2 PASS; 30/30 fixtures; 283 tests passed; R1 400/400 PASS; R2 8,210/38,784 receipts; gate pending.

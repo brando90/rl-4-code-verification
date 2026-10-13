@@ -5,7 +5,7 @@
 **TLDR:** Amendment A1 resumed experiment 13 version 2; R0 attempt 2 passed all 30 fixtures and its required repository suite; R1 attempt 1 passed all 400 train cells.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-13-2026 13:58 PDT
+Last updated: 10-13-2026 14:35 PDT
 
 ## Goal
 - Complete amended development acceptance, then the unchanged scientific gates and matched reinforcement-learning comparison.
@@ -17,7 +17,7 @@ Last updated: 10-13-2026 13:58 PDT
 - Required full suite: 283 passed, 23 skips, 168.61 seconds; all seven required Lean integration cases executed.
 - Fix/justification commits before rerun: `3fbcb96`, `7ed9e85`, `76d85b4`.
 ## Results
-- R2 running at 1,040/38,784 receipts (472 ordinary, 568 opaque), zero retries; launch publication suite 300 passed / 23 skipped in 195.15 seconds.
+- R2 running at 8,210/38,784 receipts (4,331 ordinary, 3,879 opaque), zero retries; latest required suite 300 passed / 23 skipped in 177.49 seconds.
 - R1 PASS: 400/400 measured/oracle-equal, 0 untyped inconsistencies; rejected causes 296 parse errors, 3 unparseable types, 1 duplicate identity (denominator 300).
 - Attempt 2 PASS, 30/30; lock `67f005f9b146704ec5007be748d6a30bc01239d0f0af826d3aec489799872759`. Attempt 1 retained at 26/29 matches.
 - Owner process 887384, full access/no approvals; fenced watchdog re-armed as `e13v2_a1`, two owned cron entries restored.
@@ -29,6 +29,7 @@ Last updated: 10-13-2026 13:58 PDT
 - None.
 
 ## Log
+- 10-13-2026 14:32 PDT -- Hourly integrity check: all 51 L1v2 bindings and 42 version-1 files unchanged. The broad A1 snapshot matches 49/50 paths; its only difference is the live master checkpoint, advanced by master commit `1e1a34a` before L1v2. Corrected the live preservation description; no scientific bytes changed. R2 at 7,944/38,784 receipts, zero retries. Shared instruction index refreshed to `b90414c`; no experiment gate changed.
 - 10-13-2026 13:58 PDT -- R2 launch checkpoint publication: 1,040 completed receipts, both coordinators alive, zero retries; 300/23 required suite passed. Full-set gate pending.
 - 10-13-2026 13:54 PDT -- R2 verified running after lock publication: ordinary process 2420733, opaque process 2420734, both start ticks 16342291 on boot 839e7dd6-64e1-4a80-9498-31d30b3cc2df. 112/38,784 completed receipts (43 ordinary, 69 opaque); admission pending. Launch evidence `$WR/R2/launch_receipt.json`; first useful measurements completed, resource cap verified.
 - 10-13-2026 13:50 PDT -- Implementation published as `3e5f159`; required suite 300 passed / 23 skipped. L1v2 frozen with 51 verified bindings and carried F0v2=0.50/F1v2=0.85; no validation/test factors computed. R2 admission: 48 workers, 64 GiB address space, aggregate 1044624427008 bytes.
