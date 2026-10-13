@@ -9,8 +9,10 @@ import json
 import os
 from pathlib import Path
 import sys
+import subprocess
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent))
 sys.path.insert(0, str(HERE))
 from declaration_adapter_v2 import inspect_source, sha256
 from historical_oracle_v2 import load
@@ -50,7 +52,8 @@ def definitions():
     add('unused_axiom', EXAMPLE+'axiom unused : False\ntheorem good : 1 + 1 = 2 := by decide\n',1,(3,3,1,1,1))
     add('namespaces_multiline', EXAMPLE+'/- outer /- nested -/ comment -/\nnamespace Outer\n@[simp] theorem first\n : 1 + 1 = 2 := by decide\nnamespace Inner\ntheorem second : 2 + 2 = 4 := by decide\nend Inner\nend Outer\n',1,(7,7,1,2,2))
     add('duplicate_obligation',GOOD+'theorem good : 1 + 1 = 2 := by decide\n',0,(2,3,1,1,2))
-    add('stderr_capture',GOOD+'#eval IO.eprintln "e13v2-stderr-evidence"\n',1,(3,3,1,1,1))
+    add('stderr_capture',GOOD+'#eval IO.eprintln "e13v2-stderr-evidence"\n' +
+        'set_option stderrAsMessages false in #eval IO.eprintln "e13v2-command-raw-stderr"\n',1,(4,4,1,1,1))
     add('base_vacuity_status',EXAMPLE+'theorem vac : True := by trivial\n',1,(2,2,1,1,1),family='base')
     add('unresolved_type',EXAMPLE+'theorem broken : MissingType := by trivial\n',0,(1,2,1,0,1))
     add('admit',GOOD.replace('by decide\n', 'by decide\n', 1).replace('theorem good : 1 + 1 = 2 := by decide','theorem good : 1 + 1 = 2 := by admit'),0,(2,2,1,0,1))
@@ -104,8 +107,17 @@ def run(output,lake,scorer):
                         mismatches['full_diagnostics']='error missing'
                 if row['name']=='stderr_capture':
                     raw=json.loads((output/'evidence'/row['name']/'components/frontend.json').read_text())
-                    if 'e13v2-stderr-evidence' not in ''.join(c['stderr'] for c in raw['commands']):
-                        mismatches['stderr']='not retained per command'
+                    messages=[m for c in raw['commands'] for m in c['messages']]
+                    if not any(m['severity']=='information' and 'e13v2-stderr-evidence' in m['text'] for m in messages):
+                        mismatches['stderr_message']='not retained as information message'
+                    if 'e13v2-command-raw-stderr' not in ''.join(c['stderr'] for c in raw['commands']):
+                        mismatches['command_stderr']='explicit raw stderr not retained'
+                    control=subprocess.run(['lake','env','lean','--run',str(HERE/'DeclarationProbe_v2.lean'),'--capture-control'],cwd=lake,capture_output=True,timeout=120)
+                    folder=output/'evidence'/row['name']/'raw_capture_control';folder.mkdir()
+                    (folder/'stdout').write_bytes(control.stdout);(folder/'stderr').write_bytes(control.stderr)
+                    (folder/'returncode').write_text(str(control.returncode)+'\n')
+                    if control.returncode or control.stdout!=b'e13v2-raw-stdout-control\n' or control.stderr!=b'e13v2-raw-stderr-control\n':
+                        mismatches['process_streams']='raw stdout/stderr capture control failed'
                 result={'fixture':row['name'],'actual':actual,'mismatches':mismatches,'pass':not mismatches}
             except Exception as exc:
                 result={'fixture':row['name'],'pass':False,'exception':type(exc).__name__,'message':str(exc)}
