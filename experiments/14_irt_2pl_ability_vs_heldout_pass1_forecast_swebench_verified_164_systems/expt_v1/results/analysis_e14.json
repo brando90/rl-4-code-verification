@@ -1,0 +1,3175 @@
+{
+ "status": "PRIMARY ANALYSES COMPUTED",
+ "experiment": "14_irt_2pl_ability_vs_heldout_pass1_forecast_swebench_verified_164_systems",
+ "settings": {
+  "seed_e07": 20261007,
+  "splits": 2000,
+  "sizes": [
+   25,
+   50,
+   100,
+   250
+  ],
+  "primary_n_A": 50,
+  "seed": 20261012,
+  "folds": 10,
+  "fold_seeds": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "bootstrap_draws": 2000,
+  "signflip_draws": 10000,
+  "base_grid": [
+   -12.0,
+   12.0,
+   1201
+  ],
+  "check_grid": [
+   -18.0,
+   18.0,
+   4801
+  ],
+  "item_priors_sd": {
+   "alpha": 1.0,
+   "d": 5.0,
+   "gamma": 2.0
+  },
+  "grad_tol": 0.0001,
+  "endpoint_tol": 1e-08,
+  "rescore_tol": 1e-06,
+  "within_fail_share": 0.01,
+  "rank_rounding_decimals": 12
+ },
+ "environment": {
+  "host": "skampere1.stanford.edu",
+  "python": "3.12.14",
+  "numpy": "2.2.6",
+  "scipy": "1.16.3",
+  "platform": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
+  "started": "2026-10-12T21:55:46-0700",
+  "workers": 64,
+  "thread_env": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  },
+  "finished": "2026-10-12T22:43:14-0700"
+ },
+ "validity": {
+  "systems": 164,
+  "tasks": 424,
+  "cells": 69536,
+  "inconsistent_cells": 1,
+  "cells_by_graded_category": {
+   "0": 23952,
+   "1": 5675,
+   "2": 39909
+  },
+  "per_cell_sha256": "f064c3951860cf4d88879e7c3b81ec42c8b42780923c61198c71f98dc6463a4d",
+  "analysis_e07_sha256": "16d551328ab9aedaad399f50fd4d59cf12759e0b377c8040d063dd5ef2c5b3f5",
+  "forecast_sha256": "33de7cd2268f60ed4d4d828d6eec7f5c5b79a9ce457cc8da881f5d54dc706890",
+  "e07_h2_reproduction": {
+   "e07_code_on_replayed_stream_equals_published_h2": true,
+   "replayed_permutations_reproduce_published_medians_and_counts": true,
+   "replayed": {
+    "25": {
+     "delta_median": -0.009360066473104778,
+     "positive_splits": 391
+    },
+    "50": {
+     "delta_median": -0.012138953190928725,
+     "positive_splits": 92
+    },
+    "100": {
+     "delta_median": -0.012941050463773973,
+     "positive_splits": 7
+    },
+    "250": {
+     "delta_median": -0.012669847666142708,
+     "positive_splits": 0
+    }
+   }
+  },
+  "all_primary_fits_converged": true
+ },
+ "timing_seconds": {
+  "primary_fits": 118.5,
+  "within_half_fits_n25": 168.0,
+  "score_n25": 56.5,
+  "within_half_fits_n50": 209.4,
+  "score_n50": 97.3,
+  "within_half_fits_n100": 407.7,
+  "score_n100": 86.8,
+  "within_half_fits_n250": 1092.5,
+  "score_n250": 130.2,
+  "kfold_rescore_check_n50": 4.8,
+  "rank_bootstrap_n50": 187.3,
+  "fold_seed_1": 43.6,
+  "fold_seed_2": 43.3,
+  "fold_seed_3": 43.8,
+  "fold_seed_4": 44.4,
+  "sensitivity": 95.4,
+  "total": 2831.4
+ },
+ "fold_of_system": [
+  7,
+  7,
+  0,
+  3,
+  0,
+  4,
+  7,
+  7,
+  8,
+  4,
+  4,
+  9,
+  0,
+  0,
+  2,
+  5,
+  0,
+  8,
+  6,
+  1,
+  6,
+  2,
+  5,
+  5,
+  6,
+  0,
+  5,
+  9,
+  9,
+  3,
+  5,
+  3,
+  5,
+  1,
+  7,
+  7,
+  9,
+  3,
+  0,
+  1,
+  5,
+  7,
+  0,
+  6,
+  3,
+  0,
+  9,
+  9,
+  7,
+  1,
+  1,
+  6,
+  1,
+  8,
+  5,
+  5,
+  0,
+  1,
+  3,
+  2,
+  3,
+  1,
+  8,
+  1,
+  9,
+  3,
+  5,
+  8,
+  3,
+  8,
+  8,
+  8,
+  9,
+  4,
+  8,
+  4,
+  0,
+  9,
+  1,
+  6,
+  7,
+  4,
+  6,
+  6,
+  2,
+  1,
+  2,
+  6,
+  4,
+  8,
+  7,
+  9,
+  6,
+  1,
+  7,
+  4,
+  6,
+  4,
+  3,
+  5,
+  9,
+  8,
+  4,
+  6,
+  2,
+  1,
+  9,
+  6,
+  4,
+  4,
+  5,
+  4,
+  6,
+  2,
+  4,
+  9,
+  8,
+  4,
+  2,
+  3,
+  8,
+  0,
+  5,
+  2,
+  3,
+  9,
+  2,
+  9,
+  5,
+  2,
+  0,
+  3,
+  8,
+  9,
+  3,
+  2,
+  1,
+  8,
+  2,
+  2,
+  3,
+  6,
+  2,
+  7,
+  7,
+  3,
+  6,
+  2,
+  3,
+  5,
+  0,
+  7,
+  1,
+  8,
+  0,
+  5,
+  1,
+  2,
+  0,
+  1,
+  4,
+  7,
+  7,
+  0
+ ],
+ "fits": {
+  "1pl": [
+   {
+    "kind": "1pl",
+    "n_systems": 147,
+    "n_items": 424,
+    "objective": 133.28661683473467,
+    "max_abs_grad": 1.0939027529038065e-08,
+    "check_grid_max_abs_grad": 1.0939027535080096e-08,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 63,
+    "nfev": 68,
+    "seconds": 3.44,
+    "fold": 0
+   },
+   {
+    "kind": "1pl",
+    "n_systems": 147,
+    "n_items": 424,
+    "objective": 134.4077737333497,
+    "max_abs_grad": 1.7643628652568314e-08,
+    "check_grid_max_abs_grad": 1.764361337831631e-08,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 64,
+    "nfev": 68,
+    "seconds": 3.94,
+    "fold": 1
+   },
+   {
+    "kind": "1pl",
+    "n_systems": 147,
+    "n_items": 424,
+    "objective": 132.99975910128018,
+    "max_abs_grad": 1.186756909825781e-08,
+    "check_grid_max_abs_grad": 1.1867568931346728e-08,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 59,
+    "nfev": 61,
+    "seconds": 3.35,
+    "fold": 2
+   },
+   {
+    "kind": "1pl",
+    "n_systems": 147,
+    "n_items": 424,
+    "objective": 134.21465931170897,
+    "max_abs_grad": 1.7393593586975958e-08,
+    "check_grid_max_abs_grad": 1.739359629380543e-08,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 64,
+    "nfev": 69,
+    "seconds": 3.41,
+    "fold": 3
+   },
+   {
+    "kind": "1pl",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 132.7946230260113,
+    "max_abs_grad": 8.197326490647908e-09,
+    "check_grid_max_abs_grad": 8.197326440012737e-09,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 61,
+    "nfev": 64,
+    "seconds": 3.4,
+    "fold": 4
+   },
+   {
+    "kind": "1pl",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 133.13161863674458,
+    "max_abs_grad": 9.581715630008953e-09,
+    "check_grid_max_abs_grad": 9.581715648387645e-09,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 63,
+    "nfev": 66,
+    "seconds": 3.47,
+    "fold": 5
+   },
+   {
+    "kind": "1pl",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 132.16513842522227,
+    "max_abs_grad": 1.619537508755974e-08,
+    "check_grid_max_abs_grad": 1.6195375089060043e-08,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 60,
+    "nfev": 63,
+    "seconds": 3.17,
+    "fold": 6
+   },
+   {
+    "kind": "1pl",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 132.89793662651164,
+    "max_abs_grad": 1.829480723183221e-08,
+    "check_grid_max_abs_grad": 1.8294809344256558e-08,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 62,
+    "nfev": 67,
+    "seconds": 3.34,
+    "fold": 7
+   },
+   {
+    "kind": "1pl",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 134.49209965973122,
+    "max_abs_grad": 1.8508766617513877e-08,
+    "check_grid_max_abs_grad": 1.8508766666086135e-08,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 61,
+    "nfev": 64,
+    "seconds": 3.17,
+    "fold": 8
+   },
+   {
+    "kind": "1pl",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 134.74536167626968,
+    "max_abs_grad": 2.170185074251257e-08,
+    "check_grid_max_abs_grad": 2.1701839220197937e-08,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 57,
+    "nfev": 62,
+    "seconds": 3.02,
+    "fold": 9
+   }
+  ],
+  "2pl": [
+   {
+    "kind": "2pl",
+    "n_systems": 147,
+    "n_items": 424,
+    "objective": 125.43672763873278,
+    "max_abs_grad": 1.5302513943824112e-07,
+    "check_grid_max_abs_grad": 1.5302513931362426e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 211,
+    "nfev": 220,
+    "seconds": 10.57,
+    "fold": 0
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 147,
+    "n_items": 424,
+    "objective": 126.48358222102499,
+    "max_abs_grad": 8.578348323974554e-08,
+    "check_grid_max_abs_grad": 8.578348329034754e-08,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 219,
+    "nfev": 227,
+    "seconds": 11.31,
+    "fold": 1
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 147,
+    "n_items": 424,
+    "objective": 124.88246305156487,
+    "max_abs_grad": 4.5451909746123315e-08,
+    "check_grid_max_abs_grad": 4.545190962301695e-08,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 219,
+    "nfev": 225,
+    "seconds": 11.53,
+    "fold": 2
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 147,
+    "n_items": 424,
+    "objective": 126.50616882466903,
+    "max_abs_grad": 5.01326463071308e-07,
+    "check_grid_max_abs_grad": 5.013264620230158e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 224,
+    "nfev": 238,
+    "seconds": 12.49,
+    "fold": 3
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 124.9091840153238,
+    "max_abs_grad": 8.111624686511063e-08,
+    "check_grid_max_abs_grad": 8.111624623498405e-08,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 217,
+    "nfev": 228,
+    "seconds": 11.64,
+    "fold": 4
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 125.27689260226015,
+    "max_abs_grad": 3.948429876148056e-08,
+    "check_grid_max_abs_grad": 3.9484298494426916e-08,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 222,
+    "nfev": 231,
+    "seconds": 11.92,
+    "fold": 5
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 124.15653105965715,
+    "max_abs_grad": 1.7665674517138882e-07,
+    "check_grid_max_abs_grad": 1.7665674507912028e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 224,
+    "nfev": 232,
+    "seconds": 11.91,
+    "fold": 6
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 125.11463252455528,
+    "max_abs_grad": 9.158236860015187e-08,
+    "check_grid_max_abs_grad": 9.158236846662504e-08,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 206,
+    "nfev": 213,
+    "seconds": 10.97,
+    "fold": 7
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 126.7339727263737,
+    "max_abs_grad": 3.929031447818937e-07,
+    "check_grid_max_abs_grad": 3.9290314410525777e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 214,
+    "nfev": 222,
+    "seconds": 11.35,
+    "fold": 8
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 126.96667021266687,
+    "max_abs_grad": 1.516196736525174e-07,
+    "check_grid_max_abs_grad": 1.5161967436215993e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 212,
+    "nfev": 222,
+    "seconds": 11.66,
+    "fold": 9
+   }
+  ],
+  "grm3": [
+   {
+    "kind": "grm3",
+    "n_systems": 147,
+    "n_items": 424,
+    "objective": 162.83227270074187,
+    "max_abs_grad": 1.6085052080041865e-07,
+    "check_grid_max_abs_grad": 1.6085052167726827e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 352,
+    "nfev": 364,
+    "seconds": 41.02,
+    "fold": 0
+   },
+   {
+    "kind": "grm3",
+    "n_systems": 147,
+    "n_items": 424,
+    "objective": 164.77077109723896,
+    "max_abs_grad": 7.767806368047715e-08,
+    "check_grid_max_abs_grad": 7.767806200192567e-08,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 355,
+    "nfev": 369,
+    "seconds": 39.93,
+    "fold": 1
+   },
+   {
+    "kind": "grm3",
+    "n_systems": 147,
+    "n_items": 424,
+    "objective": 162.790830342747,
+    "max_abs_grad": 8.512447759422712e-07,
+    "check_grid_max_abs_grad": 8.512447774701496e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 347,
+    "nfev": 358,
+    "seconds": 39.48,
+    "fold": 2
+   },
+   {
+    "kind": "grm3",
+    "n_systems": 147,
+    "n_items": 424,
+    "objective": 165.1377803936591,
+    "max_abs_grad": 3.189114333916298e-07,
+    "check_grid_max_abs_grad": 3.189114328648403e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 348,
+    "nfev": 362,
+    "seconds": 39.22,
+    "fold": 3
+   },
+   {
+    "kind": "grm3",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 162.13907245401793,
+    "max_abs_grad": 7.18883836121935e-07,
+    "check_grid_max_abs_grad": 7.188838354513002e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 351,
+    "nfev": 371,
+    "seconds": 43.13,
+    "fold": 4
+   },
+   {
+    "kind": "grm3",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 162.501853181808,
+    "max_abs_grad": 1.7241958287393553e-07,
+    "check_grid_max_abs_grad": 1.724195826642684e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 376,
+    "nfev": 389,
+    "seconds": 41.77,
+    "fold": 5
+   },
+   {
+    "kind": "grm3",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 161.22856124957502,
+    "max_abs_grad": 1.4427064049571992e-07,
+    "check_grid_max_abs_grad": 1.442706410358284e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 380,
+    "nfev": 397,
+    "seconds": 44.27,
+    "fold": 6
+   },
+   {
+    "kind": "grm3",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 161.98731754173377,
+    "max_abs_grad": 1.4311915888670796e-07,
+    "check_grid_max_abs_grad": 1.431191597775119e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 351,
+    "nfev": 367,
+    "seconds": 41.93,
+    "fold": 7
+   },
+   {
+    "kind": "grm3",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 164.56688585539183,
+    "max_abs_grad": 1.0939735746038768e-07,
+    "check_grid_max_abs_grad": 1.0939735728785302e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 355,
+    "nfev": 367,
+    "seconds": 40.4,
+    "fold": 8
+   },
+   {
+    "kind": "grm3",
+    "n_systems": 148,
+    "n_items": 424,
+    "objective": 165.01292775509273,
+    "max_abs_grad": 6.539921721794835e-07,
+    "check_grid_max_abs_grad": 6.539921742780301e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 336,
+    "nfev": 352,
+    "seconds": 37.43,
+    "fold": 9
+   }
+  ]
+ },
+ "all_primary_fits_converged": true,
+ "item_parameter_stability_across_folds": {
+  "1pl": {
+   "location_b": {
+    "pearson_mean": 0.9983740230324467,
+    "pearson_min": 0.9974529438376871,
+    "spearman_mean": 0.9987397333642922,
+    "spearman_min": 0.9982851570821374
+   },
+   "slope_a": {
+    "values": [
+     1.6113325828418454,
+     1.633550314666156,
+     1.6571979253948785,
+     1.622246487682867,
+     1.6136940041862813,
+     1.627432215877384,
+     1.587209103598872,
+     1.5685949510027624,
+     1.6300336874472015,
+     1.583484508895758
+    ]
+   }
+  },
+  "2pl": {
+   "location_b": {
+    "pearson_mean": 0.9926002150282615,
+    "pearson_min": 0.9811203946745525,
+    "spearman_mean": 0.9977748279318097,
+    "spearman_min": 0.9964356195265631
+   },
+   "slope_a": {
+    "pearson_mean": 0.9651521961217807,
+    "pearson_min": 0.9312070011186581,
+    "spearman_mean": 0.9709924442129733,
+    "spearman_min": 0.9430030154450196
+   }
+  },
+  "grm3": {
+   "location_b": {
+    "pearson_mean": 0.9916194038345952,
+    "pearson_min": 0.9805222495904983,
+    "spearman_mean": 0.9978782255671337,
+    "spearman_min": 0.9965063409355536
+   },
+   "slope_a": {
+    "pearson_mean": 0.9663112305106915,
+    "pearson_min": 0.9278400335758139,
+    "spearman_mean": 0.9717884765719182,
+    "spearman_min": 0.9417716184199344
+   }
+  }
+ },
+ "sizes": {
+  "25": {
+   "n_A": 25,
+   "n_B": 399,
+   "rasch_common_check_nonzero_delta_splits": 0,
+   "within_half_fits": {
+    "2pl": {
+     "fits": 2000,
+     "failed": 0,
+     "failed_splits": [],
+     "not_converged": 0,
+     "max_abs_grad_max": 1.6024170922011622e-07,
+     "check_grid_max_abs_grad_max": 1.602417092675038e-07,
+     "endpoint_mass_max": 5.8835894330303166e-30,
+     "rescore_max_abs_change_max": 5.98965321785272e-14
+    },
+    "grm3": {
+     "fits": 2000,
+     "failed": 0,
+     "failed_splits": [],
+     "not_converged": 0,
+     "max_abs_grad_max": 5.144817334193161e-07,
+     "check_grid_max_abs_grad_max": 5.144817334399634e-07,
+     "endpoint_mass_max": 1.1685489342162471e-29,
+     "rescore_max_abs_change_max": 4.235500838944972e-14
+    }
+   },
+   "kfold_endpoint_mass": {
+    "1pl": {
+     "max": 4.367204925884372e-30,
+     "violations": 0
+    },
+    "2pl": {
+     "max": 4.155079674842532e-28,
+     "violations": 0
+    },
+    "grm3": {
+     "max": 6.324373108765606e-28,
+     "violations": 0
+    }
+   },
+   "arms": {
+    "pass1_A": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.0,
+      "delta_p05_p95": [
+       0.0,
+       0.0
+      ],
+      "delta_mean": 0.0,
+      "exact_zero_splits": 2000,
+      "positive_splits": 0,
+      "share_delta_positive": 0.0,
+      "spearman_arm_A_vs_pass1_B_median": 0.9201915728773228,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9201915728773228
+     },
+     "level": {
+      "mae_mean_over_splits": 0.07718239073292987,
+      "rmse_mean_over_splits": 0.0922672544173634,
+      "mean_bias_forecast_minus_heldout": -0.000640185830429711,
+      "mean_forecast": 0.5733304878048775,
+      "mean_heldout_pass1": 0.5739706736353072,
+      "per_system_sd_of_forecast_across_splits_mean": 0.09070564354594322
+     }
+    },
+    "rasch_common_check": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.0,
+      "delta_p05_p95": [
+       0.0,
+       0.0
+      ],
+      "delta_mean": 0.0,
+      "exact_zero_splits": 2000,
+      "positive_splits": 0,
+      "share_delta_positive": 0.0,
+      "spearman_arm_A_vs_pass1_B_median": 0.9201915728773228,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9201915728773228
+     }
+    },
+    "2pl_within_A": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.00705605006208504,
+      "delta_p05_p95": [
+       -0.004558887488504993,
+       0.034572747831369856
+      ],
+      "delta_mean": 0.010107408088988879,
+      "exact_zero_splits": 0,
+      "positive_splits": 1649,
+      "share_delta_positive": 0.8245,
+      "spearman_arm_A_vs_pass1_B_median": 0.9283777388444329,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9201915728773228
+     }
+    },
+    "grm3_within_A": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.010190486328504167,
+      "delta_p05_p95": [
+       -0.0029986889881072456,
+       0.04027413404755667
+      ],
+      "delta_mean": 0.0135449899281748,
+      "exact_zero_splits": 0,
+      "positive_splits": 1773,
+      "share_delta_positive": 0.8865,
+      "spearman_arm_A_vs_pass1_B_median": 0.9316568133226426,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9201915728773228
+     }
+    },
+    "1pl": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": -0.009406983932615076,
+      "delta_p05_p95": [
+       -0.017104392424916782,
+       -0.004971461742990075
+      ],
+      "delta_mean": -0.010003695078597894,
+      "exact_zero_splits": 0,
+      "positive_splits": 0,
+      "share_delta_positive": 0.0,
+      "spearman_arm_A_vs_pass1_B_median": 0.9104551020686773,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9201915728773228
+     },
+     "level": {
+      "mae_mean_over_splits": 0.048389792715783836,
+      "rmse_mean_over_splits": 0.06094470186144226,
+      "mean_bias_forecast_minus_heldout": -0.0010921556912775352,
+      "mean_forecast": 0.5728785179440303,
+      "mean_heldout_pass1": 0.5739706736353078,
+      "per_system_sd_of_forecast_across_splits_mean": 0.052593791337822306,
+      "vs_pass1_A": {
+       "mae_difference": 0.02879259801714598,
+       "ci95": [
+        0.02723720627344906,
+        0.030229498214667753
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 160,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1942,
+       "split_mae_difference_p05_p95": [
+        0.000722124360580146,
+        0.08447128359819354
+       ],
+       "splits": 2000
+      }
+     }
+    },
+    "2pl": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.00642734140583795,
+      "delta_p05_p95": [
+       -0.005005805328647234,
+       0.03551742972878918
+      ],
+      "delta_mean": 0.009704308442381812,
+      "exact_zero_splits": 0,
+      "positive_splits": 1584,
+      "share_delta_positive": 0.792,
+      "spearman_arm_A_vs_pass1_B_median": 0.928179782839347,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9201915728773228
+     },
+     "level": {
+      "mae_mean_over_splits": 0.04588735240445838,
+      "rmse_mean_over_splits": 0.05825658363178909,
+      "mean_bias_forecast_minus_heldout": -0.0015173662648129476,
+      "mean_forecast": 0.5724533073704949,
+      "mean_heldout_pass1": 0.5739706736353078,
+      "per_system_sd_of_forecast_across_splits_mean": 0.04604744368149708,
+      "vs_pass1_A": {
+       "mae_difference": 0.031295038328471435,
+       "ci95": [
+        0.028813875592878218,
+        0.033482831251462834
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 156,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1985,
+       "split_mae_difference_p05_p95": [
+        0.003207488914780507,
+        0.0879005947143509
+       ],
+       "splits": 2000
+      }
+     }
+    },
+    "grm3": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.009671002014683683,
+      "delta_p05_p95": [
+       -0.0038447534113167647,
+       0.04153284868425482
+      ],
+      "delta_mean": 0.013304574494308276,
+      "exact_zero_splits": 0,
+      "positive_splits": 1745,
+      "share_delta_positive": 0.8725,
+      "spearman_arm_A_vs_pass1_B_median": 0.9314614177850447,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9201915728773228
+     },
+     "level": {
+      "mae_mean_over_splits": 0.044383559591336906,
+      "rmse_mean_over_splits": 0.05596502530349383,
+      "mean_bias_forecast_minus_heldout": -0.005225356002067331,
+      "mean_forecast": 0.5687453176332405,
+      "mean_heldout_pass1": 0.5739706736353078,
+      "per_system_sd_of_forecast_across_splits_mean": 0.04424250398435095,
+      "vs_pass1_A": {
+       "mae_difference": 0.032798831141592905,
+       "ci95": [
+        0.030742708170048365,
+        0.034617862573754
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 160,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1990,
+       "split_mae_difference_p05_p95": [
+        0.004513050221815191,
+        0.0897886877637853
+       ],
+       "splits": 2000
+      }
+     }
+    },
+    "mean_equating": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": -0.008357597921289484,
+      "delta_p05_p95": [
+       -0.01629052217400121,
+       -0.0038261752831805166
+      ],
+      "delta_mean": -0.008999977500250039,
+      "exact_zero_splits": 0,
+      "positive_splits": 1,
+      "share_delta_positive": 0.0005,
+      "spearman_arm_A_vs_pass1_B_median": 0.9117684082620077,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9201915728773228
+     },
+     "level": {
+      "mae_mean_over_splits": 0.0545615016582,
+      "rmse_mean_over_splits": 0.06831863635150277,
+      "mean_bias_forecast_minus_heldout": 1.3593686308746654e-08,
+      "mean_forecast": 0.5739706872289941,
+      "mean_heldout_pass1": 0.5739706736353078,
+      "per_system_sd_of_forecast_across_splits_mean": 0.06431781406011179,
+      "vs_pass1_A": {
+       "mae_difference": 0.022620889074729807,
+       "ci95": [
+        0.021274904486377193,
+        0.02388063864790266
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 158,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1780,
+       "split_mae_difference_p05_p95": [
+        -0.0003019155789059615,
+        0.07822313974715668
+       ],
+       "splits": 2000
+      }
+     }
+    },
+    "linear_regression": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": -0.009983412266984126,
+      "delta_p05_p95": [
+       -0.017849305295804287,
+       -0.005259644111837408
+      ],
+      "delta_mean": -0.010587849225201196,
+      "exact_zero_splits": 0,
+      "positive_splits": 0,
+      "share_delta_positive": 0.0,
+      "spearman_arm_A_vs_pass1_B_median": 0.9100636889281668,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9201915728773228
+     },
+     "level": {
+      "mae_mean_over_splits": 0.04909522650275021,
+      "rmse_mean_over_splits": 0.06174604032362352,
+      "mean_bias_forecast_minus_heldout": 0.00010421858393523642,
+      "mean_forecast": 0.5740748922192429,
+      "mean_heldout_pass1": 0.5739706736353076,
+      "per_system_sd_of_forecast_across_splits_mean": 0.054292911584380536,
+      "vs_pass1_A": {
+       "mae_difference": 0.028087164230179613,
+       "ci95": [
+        0.026381912859224067,
+        0.029643301509201764
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 158,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1943,
+       "split_mae_difference_p05_p95": [
+        0.0006466249514462043,
+        0.08348957326295968
+       ],
+       "splits": 2000
+      }
+     }
+    }
+   }
+  },
+  "50": {
+   "n_A": 50,
+   "n_B": 374,
+   "rasch_common_check_nonzero_delta_splits": 0,
+   "within_half_fits": {
+    "2pl": {
+     "fits": 2000,
+     "failed": 0,
+     "failed_splits": [],
+     "not_converged": 0,
+     "max_abs_grad_max": 2.741169709674369e-07,
+     "check_grid_max_abs_grad_max": 2.7411697092004935e-07,
+     "endpoint_mass_max": 2.664631135444289e-29,
+     "rescore_max_abs_change_max": 1.3838930001952576e-13
+    },
+    "grm3": {
+     "fits": 2000,
+     "failed": 0,
+     "failed_splits": [],
+     "not_converged": 0,
+     "max_abs_grad_max": 6.706148982028566e-07,
+     "check_grid_max_abs_grad_max": 6.70614897794308e-07,
+     "endpoint_mass_max": 2.7595510060477504e-28,
+     "rescore_max_abs_change_max": 7.896461262646426e-14
+    }
+   },
+   "kfold_endpoint_mass": {
+    "1pl": {
+     "max": 2.359775386944427e-29,
+     "violations": 0
+    },
+    "2pl": {
+     "max": 9.800931252426699e-27,
+     "violations": 0
+    },
+    "grm3": {
+     "max": 3.766375425322681e-27,
+     "violations": 0
+    }
+   },
+   "arms": {
+    "pass1_A": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.0,
+      "delta_p05_p95": [
+       0.0,
+       0.0
+      ],
+      "delta_mean": 0.0,
+      "exact_zero_splits": 2000,
+      "positive_splits": 0,
+      "share_delta_positive": 0.0,
+      "spearman_arm_A_vs_pass1_B_median": 0.9532117636530625,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9532117636530625
+     },
+     "correlations_median_over_splits": {
+      "pearson": 0.9637874108718695,
+      "spearman": 0.9532117636530625,
+      "kendall_tau_b": 0.8305689894337747
+     },
+     "level": {
+      "mae_mean_over_splits": 0.05538670014347203,
+      "rmse_mean_over_splits": 0.06641011571095279,
+      "mean_bias_forecast_minus_heldout": 8.841398200078576e-05,
+      "mean_forecast": 0.5740109146341462,
+      "mean_heldout_pass1": 0.5739225006521455,
+      "per_system_sd_of_forecast_across_splits_mean": 0.06109073581276151
+     }
+    },
+    "rasch_common_check": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.0,
+      "delta_p05_p95": [
+       0.0,
+       0.0
+      ],
+      "delta_mean": 0.0,
+      "exact_zero_splits": 2000,
+      "positive_splits": 0,
+      "share_delta_positive": 0.0,
+      "spearman_arm_A_vs_pass1_B_median": 0.9532117636530625,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9532117636530625
+     },
+     "correlations_median_over_splits": {
+      "pearson": 0.9651210670411976,
+      "spearman": 0.9532117636530625,
+      "kendall_tau_b": 0.8305689894337747
+     }
+    },
+    "2pl_within_A": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.004021867545595914,
+      "delta_p05_p95": [
+       -0.0029808835984796445,
+       0.01659588057314259
+      ],
+      "delta_mean": 0.005051502758076161,
+      "exact_zero_splits": 0,
+      "positive_splits": 1623,
+      "share_delta_positive": 0.8115,
+      "spearman_arm_A_vs_pass1_B_median": 0.9574113242417054,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9532117636530625
+     },
+     "correlations_median_over_splits": {
+      "pearson": 0.952686796554929,
+      "spearman": 0.9574113242417054,
+      "kendall_tau_b": 0.82589237398017
+     }
+    },
+    "grm3_within_A": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.005069289611437822,
+      "delta_p05_p95": [
+       -0.002664221095926272,
+       0.018412126836589115
+      ],
+      "delta_mean": 0.006100536408019739,
+      "exact_zero_splits": 0,
+      "positive_splits": 1676,
+      "share_delta_positive": 0.838,
+      "spearman_arm_A_vs_pass1_B_median": 0.9583810910052335,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9532117636530625
+     },
+     "correlations_median_over_splits": {
+      "pearson": 0.9546191815924306,
+      "spearman": 0.9583810910052335,
+      "kendall_tau_b": 0.8282353605232518
+     }
+    },
+    "1pl": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": -0.003638327292419141,
+      "delta_p05_p95": [
+       -0.006005867591579256,
+       -0.0018005174717098005
+      ],
+      "delta_mean": -0.00376728743984364,
+      "exact_zero_splits": 0,
+      "positive_splits": 1,
+      "share_delta_positive": 0.0005,
+      "spearman_arm_A_vs_pass1_B_median": 0.9494388998391525,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9532117636530625
+     },
+     "correlations_median_over_splits": {
+      "pearson": 0.9643940480261967,
+      "spearman": 0.9494388998391525,
+      "kendall_tau_b": 0.8108502648020488
+     },
+     "level": {
+      "mae_mean_over_splits": 0.03613113089228634,
+      "rmse_mean_over_splits": 0.04555933069241489,
+      "mean_bias_forecast_minus_heldout": -0.000535984828737255,
+      "mean_forecast": 0.5733865158234084,
+      "mean_heldout_pass1": 0.5739225006521457,
+      "per_system_sd_of_forecast_across_splits_mean": 0.038656855221354106,
+      "vs_pass1_A": {
+       "mae_difference": 0.01925556925118565,
+       "ci95": [
+        0.0183772609357881,
+        0.020069420000543535
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 162,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1919,
+       "split_mae_difference_p05_p95": [
+        0.00032212840848586046,
+        0.06176646830501308
+       ],
+       "splits": 2000
+      }
+     }
+    },
+    "2pl": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.0036213709433037256,
+      "delta_p05_p95": [
+       -0.003228113549326211,
+       0.017126559038126665
+      ],
+      "delta_mean": 0.004858490378867902,
+      "exact_zero_splits": 0,
+      "positive_splits": 1587,
+      "share_delta_positive": 0.7935,
+      "spearman_arm_A_vs_pass1_B_median": 0.9571465415673104,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9532117636530625
+     },
+     "correlations_median_over_splits": {
+      "pearson": 0.9669712193810514,
+      "spearman": 0.9571465415673104,
+      "kendall_tau_b": 0.8250981559993072
+     },
+     "level": {
+      "mae_mean_over_splits": 0.0343526874583386,
+      "rmse_mean_over_splits": 0.043639126865003416,
+      "mean_bias_forecast_minus_heldout": -0.0007230280498751668,
+      "mean_forecast": 0.5731994726022704,
+      "mean_heldout_pass1": 0.5739225006521456,
+      "per_system_sd_of_forecast_across_splits_mean": 0.03430820988804444,
+      "vs_pass1_A": {
+       "mae_difference": 0.02103401268513339,
+       "ci95": [
+        0.01950591950727057,
+        0.02235666886478808
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 159,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1972,
+       "split_mae_difference_p05_p95": [
+        0.0018364598587414071,
+        0.0628588497375002
+       ],
+       "splits": 2000
+      }
+     }
+    },
+    "grm3": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.0047542725572862765,
+      "delta_p05_p95": [
+       -0.002940557648418851,
+       0.018432318790110407
+      ],
+      "delta_mean": 0.005895375558868951,
+      "exact_zero_splits": 0,
+      "positive_splits": 1641,
+      "share_delta_positive": 0.8205,
+      "spearman_arm_A_vs_pass1_B_median": 0.9581067295911362,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9532117636530625
+     },
+     "correlations_median_over_splits": {
+      "pearson": 0.9688581297982105,
+      "spearman": 0.9581067295911362,
+      "kendall_tau_b": 0.8272549236183177
+     },
+     "level": {
+      "mae_mean_over_splits": 0.033557824415246906,
+      "rmse_mean_over_splits": 0.04248229477126996,
+      "mean_bias_forecast_minus_heldout": -0.003322823957572506,
+      "mean_forecast": 0.570599676694573,
+      "mean_heldout_pass1": 0.5739225006521456,
+      "per_system_sd_of_forecast_across_splits_mean": 0.03272570381665975,
+      "vs_pass1_A": {
+       "mae_difference": 0.021828875728225085,
+       "ci95": [
+        0.020528554326634765,
+        0.023065798512278097
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 159,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1981,
+       "split_mae_difference_p05_p95": [
+        0.002403214471652812,
+        0.06339941083369129
+       ],
+       "splits": 2000
+      }
+     }
+    },
+    "mean_equating": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": -0.0032326348471989896,
+      "delta_p05_p95": [
+       -0.005594579029383468,
+       -0.0012789639053917114
+      ],
+      "delta_mean": -0.003307153638323894,
+      "exact_zero_splits": 0,
+      "positive_splits": 3,
+      "share_delta_positive": 0.0015,
+      "spearman_arm_A_vs_pass1_B_median": 0.9498785493486332,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9532117636530625
+     },
+     "correlations_median_over_splits": {
+      "pearson": 0.9633358187352887,
+      "spearman": 0.9498785493486332,
+      "kendall_tau_b": 0.8118185512322941
+     },
+     "level": {
+      "mae_mean_over_splits": 0.03953314887092249,
+      "rmse_mean_over_splits": 0.049585493399200285,
+      "mean_bias_forecast_minus_heldout": 3.4961596550794205e-07,
+      "mean_forecast": 0.5739228502681111,
+      "mean_heldout_pass1": 0.5739225006521456,
+      "per_system_sd_of_forecast_across_splits_mean": 0.04401150556604286,
+      "vs_pass1_A": {
+       "mae_difference": 0.015853551272549494,
+       "ci95": [
+        0.014905510874662794,
+        0.01671439263766567
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 159,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1835,
+       "split_mae_difference_p05_p95": [
+        -0.0001470694318357828,
+        0.0565210794841098
+       ],
+       "splits": 2000
+      }
+     }
+    },
+    "linear_regression": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": -0.003911207963040175,
+      "delta_p05_p95": [
+       -0.006439878942061,
+       -0.0019630394481754635
+      ],
+      "delta_mean": -0.004002915782002726,
+      "exact_zero_splits": 0,
+      "positive_splits": 0,
+      "share_delta_positive": 0.0,
+      "spearman_arm_A_vs_pass1_B_median": 0.9492390227049479,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9532117636530625
+     },
+     "correlations_median_over_splits": {
+      "pearson": 0.9627493338582928,
+      "spearman": 0.9492390227049479,
+      "kendall_tau_b": 0.8105157764945395
+     },
+     "level": {
+      "mae_mean_over_splits": 0.03655622467969036,
+      "rmse_mean_over_splits": 0.04605122340485145,
+      "mean_bias_forecast_minus_heldout": 6.248821847083562e-05,
+      "mean_forecast": 0.5739849888706164,
+      "mean_heldout_pass1": 0.5739225006521456,
+      "per_system_sd_of_forecast_across_splits_mean": 0.039516105250135075,
+      "vs_pass1_A": {
+       "mae_difference": 0.018830475463781637,
+       "ci95": [
+        0.017787625235249033,
+        0.019742964588400986
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 159,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1932,
+       "split_mae_difference_p05_p95": [
+        0.0003175857975562621,
+        0.059732820427919116
+       ],
+       "splits": 2000
+      }
+     }
+    }
+   }
+  },
+  "100": {
+   "n_A": 100,
+   "n_B": 324,
+   "rasch_common_check_nonzero_delta_splits": 0,
+   "within_half_fits": {
+    "2pl": {
+     "fits": 2000,
+     "failed": 0,
+     "failed_splits": [],
+     "not_converged": 0,
+     "max_abs_grad_max": 4.6021996795397325e-07,
+     "check_grid_max_abs_grad_max": 4.602199679133554e-07,
+     "endpoint_mass_max": 1.2688099142783246e-33,
+     "rescore_max_abs_change_max": 3.063105324940807e-13
+    },
+    "grm3": {
+     "fits": 2000,
+     "failed": 0,
+     "failed_splits": [],
+     "not_converged": 0,
+     "max_abs_grad_max": 1.0616262074964587e-06,
+     "check_grid_max_abs_grad_max": 1.061626207659269e-06,
+     "endpoint_mass_max": 9.107385627008475e-36,
+     "rescore_max_abs_change_max": 1.89681603757208e-13
+    }
+   },
+   "kfold_endpoint_mass": {
+    "1pl": {
+     "max": 2.3850332088462066e-35,
+     "violations": 0
+    },
+    "2pl": {
+     "max": 1.4037136935410554e-31,
+     "violations": 0
+    },
+    "grm3": {
+     "max": 5.024236624107768e-34,
+     "violations": 0
+    }
+   },
+   "arms": {
+    "pass1_A": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.0,
+      "delta_p05_p95": [
+       0.0,
+       0.0
+      ],
+      "delta_mean": 0.0,
+      "exact_zero_splits": 2000,
+      "positive_splits": 0,
+      "share_delta_positive": 0.0,
+      "spearman_arm_A_vs_pass1_B_median": 0.9708016191400874,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9708016191400874
+     },
+     "level": {
+      "mae_mean_over_splits": 0.0425321386630533,
+      "rmse_mean_over_splits": 0.0509643994396748,
+      "mean_bias_forecast_minus_heldout": 0.0008338602830472758,
+      "mean_forecast": 0.5745701219512206,
+      "mean_heldout_pass1": 0.5737362616681733,
+      "per_system_sd_of_forecast_across_splits_mean": 0.04065318378472735
+     }
+    },
+    "rasch_common_check": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.0,
+      "delta_p05_p95": [
+       0.0,
+       0.0
+      ],
+      "delta_mean": 0.0,
+      "exact_zero_splits": 2000,
+      "positive_splits": 0,
+      "share_delta_positive": 0.0,
+      "spearman_arm_A_vs_pass1_B_median": 0.9708016191400874,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9708016191400874
+     }
+    },
+    "2pl_within_A": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.001242442703172808,
+      "delta_p05_p95": [
+       -0.003228321521616284,
+       0.007759429933270129
+      ],
+      "delta_mean": 0.0015952854595657525,
+      "exact_zero_splits": 0,
+      "positive_splits": 1304,
+      "share_delta_positive": 0.652,
+      "spearman_arm_A_vs_pass1_B_median": 0.9720360839098615,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9708016191400874
+     }
+    },
+    "grm3_within_A": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.0008755751928600786,
+      "delta_p05_p95": [
+       -0.003973362269271585,
+       0.008045503736087877
+      ],
+      "delta_mean": 0.0013808497291353916,
+      "exact_zero_splits": 0,
+      "positive_splits": 1240,
+      "share_delta_positive": 0.62,
+      "spearman_arm_A_vs_pass1_B_median": 0.9719755184620842,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9708016191400874
+     }
+    },
+    "1pl": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": -0.001466764571812551,
+      "delta_p05_p95": [
+       -0.0024708162773419253,
+       -0.0005997512133186945
+      ],
+      "delta_mean": -0.00148767516268154,
+      "exact_zero_splits": 0,
+      "positive_splits": 3,
+      "share_delta_positive": 0.0015,
+      "spearman_arm_A_vs_pass1_B_median": 0.9693296260539749,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9708016191400874
+     },
+     "level": {
+      "mae_mean_over_splits": 0.02787027908018569,
+      "rmse_mean_over_splits": 0.03512473276702306,
+      "mean_bias_forecast_minus_heldout": -0.0002653839518143481,
+      "mean_forecast": 0.5734708777163579,
+      "mean_heldout_pass1": 0.5737362616681722,
+      "per_system_sd_of_forecast_across_splits_mean": 0.027615470745461747,
+      "vs_pass1_A": {
+       "mae_difference": 0.014661859582867592,
+       "ci95": [
+        0.01409559689060778,
+        0.01520988959639866
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 164,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1928,
+       "split_mae_difference_p05_p95": [
+        0.0003048261209641027,
+        0.047826418693708315
+       ],
+       "splits": 2000
+      }
+     }
+    },
+    "2pl": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.0009375685720684479,
+      "delta_p05_p95": [
+       -0.003390183576349359,
+       0.007585473504118123
+      ],
+      "delta_mean": 0.0013394490186054643,
+      "exact_zero_splits": 0,
+      "positive_splits": 1233,
+      "share_delta_positive": 0.6165,
+      "spearman_arm_A_vs_pass1_B_median": 0.9718742823376683,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9708016191400874
+     },
+     "level": {
+      "mae_mean_over_splits": 0.02709901242804541,
+      "rmse_mean_over_splits": 0.03434964474909167,
+      "mean_bias_forecast_minus_heldout": -0.0003263990450423215,
+      "mean_forecast": 0.57340986262313,
+      "mean_heldout_pass1": 0.5737362616681723,
+      "per_system_sd_of_forecast_across_splits_mean": 0.025193717592040102,
+      "vs_pass1_A": {
+       "mae_difference": 0.01543312623500787,
+       "ci95": [
+        0.014361727954082524,
+        0.016399658620618852
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 158,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1936,
+       "split_mae_difference_p05_p95": [
+        0.0005901279253176264,
+        0.04894702887497217
+       ],
+       "splits": 2000
+      }
+     }
+    },
+    "grm3": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.0006130458592294996,
+      "delta_p05_p95": [
+       -0.004029846040282592,
+       0.007483140743415482
+      ],
+      "delta_mean": 0.0011105445485373408,
+      "exact_zero_splits": 0,
+      "positive_splits": 1154,
+      "share_delta_positive": 0.577,
+      "spearman_arm_A_vs_pass1_B_median": 0.9716362722962352,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9708016191400874
+     },
+     "level": {
+      "mae_mean_over_splits": 0.027024057382435886,
+      "rmse_mean_over_splits": 0.03421713267849802,
+      "mean_bias_forecast_minus_heldout": -0.0022908609693664214,
+      "mean_forecast": 0.5714454006988059,
+      "mean_heldout_pass1": 0.5737362616681723,
+      "per_system_sd_of_forecast_across_splits_mean": 0.02414567774414571,
+      "vs_pass1_A": {
+       "mae_difference": 0.015508081280617397,
+       "ci95": [
+        0.01435557770421054,
+        0.016532088499470448
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 156,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1938,
+       "split_mae_difference_p05_p95": [
+        0.000511518272647277,
+        0.04926148925820172
+       ],
+       "splits": 2000
+      }
+     }
+    },
+    "mean_equating": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": -0.0012851083240895678,
+      "delta_p05_p95": [
+       -0.0022483289524515447,
+       -0.000417963034599117
+      ],
+      "delta_mean": -0.0012988720056038724,
+      "exact_zero_splits": 0,
+      "positive_splits": 14,
+      "share_delta_positive": 0.007,
+      "spearman_arm_A_vs_pass1_B_median": 0.9694933287310433,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9708016191400874
+     },
+     "level": {
+      "mae_mean_over_splits": 0.030109276262394246,
+      "rmse_mean_over_splits": 0.03775835477814558,
+      "mean_bias_forecast_minus_heldout": 1.830501482024904e-07,
+      "mean_forecast": 0.5737364447183205,
+      "mean_heldout_pass1": 0.5737362616681724,
+      "per_system_sd_of_forecast_across_splits_mean": 0.030129011890126418,
+      "vs_pass1_A": {
+       "mae_difference": 0.01242286240065903,
+       "ci95": [
+        0.011732413775635117,
+        0.01306274416732387
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 159,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1823,
+       "split_mae_difference_p05_p95": [
+        -0.00013358702917840286,
+        0.04498444045090386
+       ],
+       "splits": 2000
+      }
+     }
+    },
+    "linear_regression": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": -0.0015797343618426662,
+      "delta_p05_p95": [
+       -0.0025501855991748646,
+       -0.0007265520356734669
+      ],
+      "delta_mean": -0.0016064524038201858,
+      "exact_zero_splits": 0,
+      "positive_splits": 1,
+      "share_delta_positive": 0.0005,
+      "spearman_arm_A_vs_pass1_B_median": 0.9692202120657764,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9708016191400874
+     },
+     "level": {
+      "mae_mean_over_splits": 0.02818579659193234,
+      "rmse_mean_over_splits": 0.035493764525945916,
+      "mean_bias_forecast_minus_heldout": 3.0139489386266053e-05,
+      "mean_forecast": 0.5737664011575584,
+      "mean_heldout_pass1": 0.5737362616681722,
+      "per_system_sd_of_forecast_across_splits_mean": 0.02815605629455729,
+      "vs_pass1_A": {
+       "mae_difference": 0.014346342071120944,
+       "ci95": [
+        0.013642083390402715,
+        0.014990975121295632
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 160,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1942,
+       "split_mae_difference_p05_p95": [
+        0.00034348319341180725,
+        0.046992226536218255
+       ],
+       "splits": 2000
+      }
+     }
+    }
+   }
+  },
+  "250": {
+   "n_A": 250,
+   "n_B": 174,
+   "rasch_common_check_nonzero_delta_splits": 0,
+   "within_half_fits": {
+    "2pl": {
+     "fits": 2000,
+     "failed": 0,
+     "failed_splits": [],
+     "not_converged": 0,
+     "max_abs_grad_max": 9.55310933133892e-07,
+     "check_grid_max_abs_grad_max": 9.553109335292395e-07,
+     "endpoint_mass_max": 1.327772582591257e-61,
+     "rescore_max_abs_change_max": 1.100841640067074e-12
+    },
+    "grm3": {
+     "fits": 2000,
+     "failed": 0,
+     "failed_splits": [],
+     "not_converged": 0,
+     "max_abs_grad_max": 1.7727998608988764e-06,
+     "check_grid_max_abs_grad_max": 1.7727998612525905e-06,
+     "endpoint_mass_max": 1.0457997317572634e-77,
+     "rescore_max_abs_change_max": 5.505318423359995e-13
+    }
+   },
+   "kfold_endpoint_mass": {
+    "1pl": {
+     "max": 2.127940386651672e-107,
+     "violations": 0
+    },
+    "2pl": {
+     "max": 6.839954141690954e-63,
+     "violations": 0
+    },
+    "grm3": {
+     "max": 1.20073298900592e-79,
+     "violations": 0
+    }
+   },
+   "arms": {
+    "pass1_A": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.0,
+      "delta_p05_p95": [
+       0.0,
+       0.0
+      ],
+      "delta_mean": 0.0,
+      "exact_zero_splits": 2000,
+      "positive_splits": 0,
+      "share_delta_positive": 0.0,
+      "spearman_arm_A_vs_pass1_B_median": 0.9772355678515496,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9772355678515496
+     },
+     "level": {
+      "mae_mean_over_splits": 0.03700959489767311,
+      "rmse_mean_over_splits": 0.04434654136342473,
+      "mean_bias_forecast_minus_heldout": 0.001269919820577515,
+      "mean_forecast": 0.5744540731707313,
+      "mean_heldout_pass1": 0.5731841533501537,
+      "per_system_sd_of_forecast_across_splits_mean": 0.019018935247763703
+     }
+    },
+    "rasch_common_check": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": 0.0,
+      "delta_p05_p95": [
+       0.0,
+       0.0
+      ],
+      "delta_mean": 0.0,
+      "exact_zero_splits": 2000,
+      "positive_splits": 0,
+      "share_delta_positive": 0.0,
+      "spearman_arm_A_vs_pass1_B_median": 0.9772355678515496,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9772355678515496
+     }
+    },
+    "2pl_within_A": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": -0.0005461266709418933,
+      "delta_p05_p95": [
+       -0.004450880793493689,
+       0.003555009971162909
+      ],
+      "delta_mean": -0.0005196825301951578,
+      "exact_zero_splits": 0,
+      "positive_splits": 833,
+      "share_delta_positive": 0.4165,
+      "spearman_arm_A_vs_pass1_B_median": 0.9768926044331339,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9772355678515496
+     }
+    },
+    "grm3_within_A": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": -0.0013756840418227556,
+      "delta_p05_p95": [
+       -0.005664704334244003,
+       0.003182259678066107
+      ],
+      "delta_mean": -0.0013706088991181156,
+      "exact_zero_splits": 0,
+      "positive_splits": 581,
+      "share_delta_positive": 0.2905,
+      "spearman_arm_A_vs_pass1_B_median": 0.9759947754827312,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9772355678515496
+     }
+    },
+    "1pl": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": -0.0005196335953209785,
+      "delta_p05_p95": [
+       -0.0009657067761411009,
+       -0.00012144466271944442
+      ],
+      "delta_mean": -0.0005311894081362374,
+      "exact_zero_splits": 0,
+      "positive_splits": 30,
+      "share_delta_positive": 0.015,
+      "spearman_arm_A_vs_pass1_B_median": 0.9767289196241816,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9772355678515496
+     },
+     "level": {
+      "mae_mean_over_splits": 0.024386751936798113,
+      "rmse_mean_over_splits": 0.030751379407854013,
+      "mean_bias_forecast_minus_heldout": -9.34141379103992e-05,
+      "mean_forecast": 0.5730907392122437,
+      "mean_heldout_pass1": 0.5731841533501542,
+      "per_system_sd_of_forecast_across_splits_mean": 0.023862355639835294,
+      "vs_pass1_A": {
+       "mae_difference": 0.012622842960874986,
+       "ci95": [
+        0.012166678184415459,
+        0.013065438037398933
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 164,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1906,
+       "split_mae_difference_p05_p95": [
+        4.042198727339297e-05,
+        0.04146919760841235
+       ],
+       "splits": 2000
+      }
+     }
+    },
+    "2pl": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": -0.000793514189945832,
+      "delta_p05_p95": [
+       -0.004650576639424436,
+       0.0031755998882786016
+      ],
+      "delta_mean": -0.0007737262785431219,
+      "exact_zero_splits": 0,
+      "positive_splits": 741,
+      "share_delta_positive": 0.3705,
+      "spearman_arm_A_vs_pass1_B_median": 0.9766084002127515,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9772355678515496
+     },
+     "level": {
+      "mae_mean_over_splits": 0.024451224444834767,
+      "rmse_mean_over_splits": 0.030924884530342284,
+      "mean_bias_forecast_minus_heldout": -9.001194379496113e-05,
+      "mean_forecast": 0.5730941414063592,
+      "mean_heldout_pass1": 0.5731841533501542,
+      "per_system_sd_of_forecast_across_splits_mean": 0.023868258273886507,
+      "vs_pass1_A": {
+       "mae_difference": 0.012558370452838329,
+       "ci95": [
+        0.01171228192369054,
+        0.01335203184564316
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 157,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1868,
+       "split_mae_difference_p05_p95": [
+        -0.00036305907435250266,
+        0.0409600948564812
+       ],
+       "splits": 2000
+      }
+     }
+    },
+    "grm3": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": -0.0016280116337099582,
+      "delta_p05_p95": [
+       -0.00578885449863033,
+       0.0027663664318382016
+      ],
+      "delta_mean": -0.0016675845602622994,
+      "exact_zero_splits": 0,
+      "positive_splits": 483,
+      "share_delta_positive": 0.2415,
+      "spearman_arm_A_vs_pass1_B_median": 0.9756697185070129,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9772355678515496
+     },
+     "level": {
+      "mae_mean_over_splits": 0.024967058491197226,
+      "rmse_mean_over_splits": 0.03165956637620329,
+      "mean_bias_forecast_minus_heldout": -0.001625184634414527,
+      "mean_forecast": 0.5715589687157397,
+      "mean_heldout_pass1": 0.5731841533501543,
+      "per_system_sd_of_forecast_across_splits_mean": 0.023575065233843912,
+      "vs_pass1_A": {
+       "mae_difference": 0.012042536406475879,
+       "ci95": [
+        0.011048144780385205,
+        0.012983122273589586
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 156,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1782,
+       "split_mae_difference_p05_p95": [
+        -0.0011011227598552004,
+        0.04049405041578793
+       ],
+       "splits": 2000
+      }
+     }
+    },
+    "mean_equating": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": -0.0004444005992808586,
+      "delta_p05_p95": [
+       -0.0008832662321690832,
+       -2.670182624475164e-05
+      ],
+      "delta_mean": -0.000447928605546002,
+      "exact_zero_splits": 0,
+      "positive_splits": 78,
+      "share_delta_positive": 0.039,
+      "spearman_arm_A_vs_pass1_B_median": 0.976814123063126,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9772355678515496
+     },
+     "level": {
+      "mae_mean_over_splits": 0.026188992466862255,
+      "rmse_mean_over_splits": 0.03283940381026639,
+      "mean_bias_forecast_minus_heldout": 1.1273325126087894e-07,
+      "mean_forecast": 0.5731842660834054,
+      "mean_heldout_pass1": 0.5731841533501542,
+      "per_system_sd_of_forecast_across_splits_mean": 0.023631452093908854,
+      "vs_pass1_A": {
+       "mae_difference": 0.010820602430810844,
+       "ci95": [
+        0.01016664335145399,
+        0.011402448192419472
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 159,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1821,
+       "split_mae_difference_p05_p95": [
+        -0.0001238334311895557,
+        0.037765796600654836
+       ],
+       "splits": 2000
+      }
+     }
+    },
+    "linear_regression": {
+     "rank": {
+      "splits": 2000,
+      "defined": 2000,
+      "delta_median": -0.0005707863130960389,
+      "delta_p05_p95": [
+       -0.0010655812954412202,
+       -0.00017129050152858716
+      ],
+      "delta_mean": -0.0005907107683194286,
+      "exact_zero_splits": 0,
+      "positive_splits": 22,
+      "share_delta_positive": 0.011,
+      "spearman_arm_A_vs_pass1_B_median": 0.9766533530642365,
+      "spearman_pass1_A_vs_pass1_B_median": 0.9772355678515496
+     },
+     "level": {
+      "mae_mean_over_splits": 0.024660560399910585,
+      "rmse_mean_over_splits": 0.031054411539463794,
+      "mean_bias_forecast_minus_heldout": 9.012521956797822e-06,
+      "mean_forecast": 0.573193165872111,
+      "mean_heldout_pass1": 0.5731841533501542,
+      "per_system_sd_of_forecast_across_splits_mean": 0.02412900772114316,
+      "vs_pass1_A": {
+       "mae_difference": 0.012349034497762508,
+       "ci95": [
+        0.011749502733982934,
+        0.01292370875692237
+       ],
+       "p_value": 0.0009995002498750624,
+       "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+       "systems_arm_better": 161,
+       "n_systems": 164,
+       "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+       "splits_arm_mae_lower": 1930,
+       "split_mae_difference_p05_p95": [
+        0.00018019906684357408,
+        0.040434152044892965
+       ],
+       "splits": 2000
+      }
+     }
+    }
+   }
+  }
+ },
+ "kfold_rescore_check_n50": {
+  "1pl": {
+   "splits_checked": 20,
+   "max_abs_change": 1.0499934255392418e-13,
+   "ok": true
+  },
+  "2pl": {
+   "splits_checked": 20,
+   "max_abs_change": 9.43689570931383e-14,
+   "ok": true
+  },
+  "grm3": {
+   "splits_checked": 20,
+   "max_abs_change": 7.738254481637341e-14,
+   "ok": true
+  }
+ },
+ "irt_vs_reference_panel_controls_n50": {
+  "mean_equating": {
+   "1pl": {
+    "mae_difference": 0.0034020179786361554,
+    "ci95": [
+     0.0032766791461347963,
+     0.0035244046903314674
+    ],
+    "p_value": 0.0009995002498750624,
+    "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+    "systems_arm_better": 164,
+    "n_systems": 164,
+    "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0"
+   },
+   "2pl": {
+    "mae_difference": 0.005180461412583895,
+    "ci95": [
+     0.004345517823244954,
+     0.005934168454514292
+    ],
+    "p_value": 0.0009995002498750624,
+    "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+    "systems_arm_better": 146,
+    "n_systems": 164,
+    "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0"
+   },
+   "grm3": {
+    "mae_difference": 0.005975324455675591,
+    "ci95": [
+     0.005109349194574905,
+     0.006777544152203321
+    ],
+    "p_value": 0.0009995002498750624,
+    "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+    "systems_arm_better": 144,
+    "n_systems": 164,
+    "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0"
+   }
+  },
+  "linear_regression": {
+   "1pl": {
+    "mae_difference": 0.0004250937874040161,
+    "ci95": [
+     0.0002504377069758436,
+     0.0006504329188398484
+    ],
+    "p_value": 0.0009995002498750624,
+    "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+    "systems_arm_better": 99,
+    "n_systems": 164,
+    "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0"
+   },
+   "2pl": {
+    "mae_difference": 0.002203537221351755,
+    "ci95": [
+     0.0015455304568761919,
+     0.002818398153345651
+    ],
+    "p_value": 0.0009995002498750624,
+    "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+    "systems_arm_better": 133,
+    "n_systems": 164,
+    "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0"
+   },
+   "grm3": {
+    "mae_difference": 0.0029984002644434515,
+    "ci95": [
+     0.0022732646914510927,
+     0.00370178194572136
+    ],
+    "p_value": 0.0009995002498750624,
+    "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+    "systems_arm_better": 134,
+    "n_systems": 164,
+    "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0"
+   }
+  }
+ },
+ "primary_2pl_n50": {
+  "rank_arm": "2pl_within_A",
+  "level_arm": "2pl",
+  "rank_rule": "median \u0394 > 0 and share(\u0394 > 0) \u2265 0.60 over 2,000 splits at n_A = 50 (experiment 07's frozen H2 rule)",
+  "rank_status": "holds",
+  "rank_holds": true,
+  "rank_provisional_holds": true,
+  "rank_bounds_failed_splits_worst_best": [
+   true,
+   true
+  ],
+  "rank_failed_splits": [],
+  "rank": {
+   "splits": 2000,
+   "defined": 2000,
+   "delta_median": 0.004021867545595914,
+   "delta_p05_p95": [
+    -0.0029808835984796445,
+    0.01659588057314259
+   ],
+   "delta_mean": 0.005051502758076161,
+   "exact_zero_splits": 0,
+   "positive_splits": 1623,
+   "share_delta_positive": 0.8115,
+   "spearman_arm_A_vs_pass1_B_median": 0.9574113242417054,
+   "spearman_pass1_A_vs_pass1_B_median": 0.9532117636530625
+  },
+  "rank_bootstrap": {
+   "delta_median_ci95": [
+    0.0015898888530657283,
+    0.006572225089717709
+   ],
+   "delta_median_p_value": 0.0009995002498750624,
+   "share_ci95": [
+    0.5995,
+    0.8390249999999998
+   ],
+   "share_p_value_vs_0.60": 0.051974012993503245,
+   "draws": 2000,
+   "test": "system-cluster percentile bootstrap (2000 draws); p = twice the smaller tail count, +1 corrected"
+  },
+  "level_rule": "mean per-system absolute error lower than pass@1 on A, 95% system-bootstrap interval of the difference excluding 0",
+  "level_status": "holds",
+  "level_holds": true,
+  "level_gates": {
+   "valid": true,
+   "reason": null,
+   "fits_converged": true,
+   "endpoint_mass": {
+    "max": 9.800931252426699e-27,
+    "violations": 0
+   },
+   "rescore_check": {
+    "splits_checked": 20,
+    "max_abs_change": 9.43689570931383e-14,
+    "ok": true
+   }
+  },
+  "level": {
+   "mae_difference": 0.02103401268513339,
+   "ci95": [
+    0.01950591950727057,
+    0.02235666886478808
+   ],
+   "p_value": 0.0009995002498750624,
+   "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+   "systems_arm_better": 159,
+   "n_systems": 164,
+   "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+   "splits_arm_mae_lower": 1972,
+   "split_mae_difference_p05_p95": [
+    0.0018364598587414071,
+    0.0628588497375002
+   ],
+   "splits": 2000
+  }
+ },
+ "key_secondary_grm3_n50": {
+  "rank_arm": "grm3_within_A",
+  "level_arm": "grm3",
+  "rank_rule": "median \u0394 > 0 and share(\u0394 > 0) \u2265 0.60 over 2,000 splits at n_A = 50 (experiment 07's frozen H2 rule)",
+  "rank_status": "holds",
+  "rank_holds": true,
+  "rank_provisional_holds": true,
+  "rank_bounds_failed_splits_worst_best": [
+   true,
+   true
+  ],
+  "rank_failed_splits": [],
+  "rank": {
+   "splits": 2000,
+   "defined": 2000,
+   "delta_median": 0.005069289611437822,
+   "delta_p05_p95": [
+    -0.002664221095926272,
+    0.018412126836589115
+   ],
+   "delta_mean": 0.006100536408019739,
+   "exact_zero_splits": 0,
+   "positive_splits": 1676,
+   "share_delta_positive": 0.838,
+   "spearman_arm_A_vs_pass1_B_median": 0.9583810910052335,
+   "spearman_pass1_A_vs_pass1_B_median": 0.9532117636530625
+  },
+  "rank_bootstrap": {
+   "delta_median_ci95": [
+    0.0020406282187172137,
+    0.008019040104114689
+   ],
+   "delta_median_p_value": 0.001999000499750125,
+   "share_ci95": [
+    0.6174875000000001,
+    0.8715125
+   ],
+   "share_p_value_vs_0.60": 0.031984007996002,
+   "draws": 2000,
+   "test": "system-cluster percentile bootstrap (2000 draws); p = twice the smaller tail count, +1 corrected"
+  },
+  "level_rule": "mean per-system absolute error lower than pass@1 on A, 95% system-bootstrap interval of the difference excluding 0",
+  "level_status": "holds",
+  "level_holds": true,
+  "level_gates": {
+   "valid": true,
+   "reason": null,
+   "fits_converged": true,
+   "endpoint_mass": {
+    "max": 3.766375425322681e-27,
+    "violations": 0
+   },
+   "rescore_check": {
+    "splits_checked": 20,
+    "max_abs_change": 7.738254481637341e-14,
+    "ok": true
+   }
+  },
+  "level": {
+   "mae_difference": 0.021828875728225085,
+   "ci95": [
+    0.020528554326634765,
+    0.023065798512278097
+   ],
+   "p_value": 0.0009995002498750624,
+   "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+   "systems_arm_better": 159,
+   "n_systems": 164,
+   "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+   "splits_arm_mae_lower": 1981,
+   "split_mae_difference_p05_p95": [
+    0.002403214471652812,
+    0.06339941083369129
+   ],
+   "splits": 2000
+  }
+ },
+ "kfold_2pl_rank_bootstrap_n50": {
+  "delta_median_ci95": [
+   0.0010553259619167075,
+   0.006439682149904561
+  ],
+  "delta_median_p_value": 0.00399800099950025,
+  "share_ci95": [
+   0.5659749999999999,
+   0.8275125
+  ],
+  "share_p_value_vs_0.60": 0.11694152923538231,
+  "draws": 2000,
+  "test": "system-cluster percentile bootstrap (2000 draws); p = twice the smaller tail count, +1 corrected"
+ },
+ "level_win_beyond_reference_panel": true,
+ "q1_verdict": "CONTINUE: 2PL forecasts held-out pass@1 better than pass@1 on half A (rank and level rule holds); the level gain also exceeds the non-IRT linear-regression forecast from the same reference systems",
+ "q1_continue": true,
+ "q1_inconclusive": false,
+ "split_variability_n50": {
+  "pass1_A": {
+   "mean_sd_forecast": 0.06109073581276151,
+   "mean_sd_error": 0.06925794648289774
+  },
+  "1pl": {
+   "mean_sd_forecast": 0.038656855221354106,
+   "mean_sd_error": 0.043726423678472126,
+   "ratio_mean_sd_error_to_pass1_A": 0.6313560522512712,
+   "ratio_ci95": [
+    0.6200268192392719,
+    0.6427559477171884
+   ]
+  },
+  "2pl": {
+   "mean_sd_forecast": 0.03430820988804444,
+   "mean_sd_error": 0.03861256109826637,
+   "ratio_mean_sd_error_to_pass1_A": 0.557518134150876,
+   "ratio_ci95": [
+    0.5437858477717182,
+    0.5705644454834896
+   ]
+  },
+  "grm3": {
+   "mean_sd_forecast": 0.03272570381665975,
+   "mean_sd_error": 0.036771534846841085,
+   "ratio_mean_sd_error_to_pass1_A": 0.530935967844806,
+   "ratio_ci95": [
+    0.5193577626372259,
+    0.5431904154890578
+   ]
+  },
+  "mean_equating": {
+   "mean_sd_forecast": 0.04401150556604286,
+   "mean_sd_error": 0.049495121278252466,
+   "ratio_mean_sd_error_to_pass1_A": 0.7146489867480345,
+   "ratio_ci95": [
+    0.7006261790004705,
+    0.730268757742114
+   ]
+  },
+  "linear_regression": {
+   "mean_sd_forecast": 0.039516105250135075,
+   "mean_sd_error": 0.044540020570118855,
+   "ratio_mean_sd_error_to_pass1_A": 0.6431033958120225,
+   "ratio_ci95": [
+    0.6304799230912634,
+    0.6559569679355732
+   ]
+  }
+ },
+ "fold_seed_stability_2pl_n50": [
+  {
+   "fold_seed": 0,
+   "kfold_rank_median_delta": 0.0036213709433037256,
+   "kfold_rank_share_delta_positive": 0.7935,
+   "mae_difference": 0.02103401268513339,
+   "mae_difference_ci95": [
+    0.01950591950727057,
+    0.02235666886478808
+   ],
+   "all_fits_converged": true
+  },
+  {
+   "fold_seed": 1,
+   "kfold_rank_median_delta": 0.003256223252544932,
+   "kfold_rank_share_delta_positive": 0.772,
+   "mae_difference": 0.020963519964187466,
+   "mae_difference_ci95": [
+    0.019430905825706647,
+    0.02233639564388488
+   ],
+   "all_fits_converged": true
+  },
+  {
+   "fold_seed": 2,
+   "kfold_rank_median_delta": 0.0034253737589477473,
+   "kfold_rank_share_delta_positive": 0.774,
+   "mae_difference": 0.020924345049831216,
+   "mae_difference_ci95": [
+    0.019259129723127676,
+    0.022312575686685
+   ],
+   "all_fits_converged": true
+  },
+  {
+   "fold_seed": 3,
+   "kfold_rank_median_delta": 0.0037223900056596038,
+   "kfold_rank_share_delta_positive": 0.7985,
+   "mae_difference": 0.02094915776504588,
+   "mae_difference_ci95": [
+    0.019263738363390622,
+    0.02234854645985948
+   ],
+   "all_fits_converged": true
+  },
+  {
+   "fold_seed": 4,
+   "kfold_rank_median_delta": 0.0034725994243950398,
+   "kfold_rank_share_delta_positive": 0.77,
+   "mae_difference": 0.020932923549640714,
+   "mae_difference_ci95": [
+    0.019377989732085286,
+    0.022297998887675145
+   ],
+   "all_fits_converged": true
+  }
+ ],
+ "promotion_gates_n50": {
+  "population": "all ordered pairs of distinct systems; harmful = candidate's held-out pass@1 below incumbent's",
+  "splits": 2000,
+  "ordered_pairs_per_split": 26732,
+  "base_rate_harmful_if_promoted_at_random": 0.49737039877300615,
+  "matched_count_failures": 0,
+  "degenerate_convention": "a zero standard error gives z = +inf, -inf or 0 by the sign of the gain",
+  "G0_scalar": {
+   "promotions_per_split_mean": 12867.4255,
+   "promotions_per_split_p05_p95": [
+    12764.0,
+    12954.0
+   ],
+   "harmful_promotion_rate": 0.07628083799669172,
+   "correct_promotion_rate": 0.9188654715739368,
+   "promotions_total": 25734851
+  },
+  "G1_pass1_1se": {
+   "promotions_per_split_mean": 10577.7765,
+   "promotions_per_split_p05_p95": [
+    10148.95,
+    10927.15
+   ],
+   "harmful_promotion_rate": 0.02911557074400277,
+   "correct_promotion_rate": 0.9683822493318893,
+   "promotions_total": 21155553
+  },
+  "G2_irt_1se": {
+   "promotions_per_split_mean": 10745.6335,
+   "promotions_per_split_p05_p95": [
+    10383.95,
+    11041.05
+   ],
+   "harmful_promotion_rate": 0.02646842552372552,
+   "correct_promotion_rate": 0.9710801136107983,
+   "promotions_total": 21491267
+  },
+  "G1m_pass1_top_matched_to_G2": {
+   "promotions_per_split_mean": 10745.6335,
+   "promotions_per_split_p05_p95": [
+    10383.95,
+    11041.05
+   ],
+   "harmful_promotion_rate": 0.03138842395843856,
+   "correct_promotion_rate": 0.9659662224660835,
+   "promotions_total": 21491267
+  },
+  "G2m_irt_top_matched_to_G1": {
+   "promotions_per_split_mean": 10577.7765,
+   "promotions_per_split_p05_p95": [
+    10148.95,
+    10927.15
+   ],
+   "harmful_promotion_rate": 0.024068716142754576,
+   "correct_promotion_rate": 0.973652685892919,
+   "promotions_total": 21155553
+  },
+  "matched_G1m-G2": {
+   "hpr_difference_pass1_minus_irt": 0.004919998434713042,
+   "ci95": [
+    0.0031388745682474862,
+    0.0070452872694474165
+   ],
+   "p_value": 0.0009995002498750624,
+   "undefined_draws": 0,
+   "available": true,
+   "test": "system-cluster percentile bootstrap (2000 draws), conditional on each split's selections"
+  },
+  "matched_G1-G2m": {
+   "hpr_difference_pass1_minus_irt": 0.0050468546012481935,
+   "ci95": [
+    0.003228592604842788,
+    0.007303617916682964
+   ],
+   "p_value": 0.0009995002498750624,
+   "undefined_draws": 0,
+   "available": true,
+   "test": "system-cluster percentile bootstrap (2000 draws), conditional on each split's selections"
+  }
+ },
+ "heldout_cell_brier_n50": {
+  "2pl": 0.09666728909059867,
+  "system_only_pass1_A": 0.22084736308203992,
+  "item_only_reference_rate": 0.1393617001069641
+ },
+ "sensitivity_one_system_per_base_model_n50": {
+  "n_systems": 73,
+  "systems": [
+   "20240918_lingma-agent_lingma-swe-gpt-72b",
+   "20240918_lingma-agent_lingma-swe-gpt-7b",
+   "20241002_lingma-agent_lingma-swe-gpt-72b",
+   "20241002_lingma-agent_lingma-swe-gpt-7b",
+   "20241022_tools_claude-3-5-haiku",
+   "20241029_OpenHands-CodeAct-2.1-sonnet-20241022",
+   "20241212_google_jules_gemini_2.0_flash_experimental",
+   "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+   "20250117_wandb_programmer_o1_crosscheck5",
+   "20250118_codeshellagent_gemini_2.0_flash_experimental",
+   "20250122_autocoderover-v2.1-claude-3-5-sonnet-20241022",
+   "20250203_openhands_4x_scaled",
+   "20250214_agentless_lite_o3_mini",
+   "20250225_sweagent_claude-3-7-sonnet",
+   "20250226_swerl_llama3_70b",
+   "20250228_epam-ai-run-claude-3-5-sonnet",
+   "20250306_SWE-Fixer_Qwen2.5-7b-retriever_Qwen2.5-72b-editor",
+   "20250511_sweagent_lm_32b",
+   "20250514_aime_coder",
+   "20250520_openhands_devstral_small",
+   "20250527_amazon.nova-premier-v1.0",
+   "20250528_patchpilot_Co-PatcheR",
+   "20250616_Skywork-SWE-32B+TTS_Bo8",
+   "20250627_agentless_MCTS-Refine-7B",
+   "20250629_deepswerl_r2eagent",
+   "20250629_deepswerl_r2eagent_tts",
+   "20250720_mini-v0.0.0-Llama-4-Maverick-17B-Instruct",
+   "20250720_mini-v0.0.0-Llama-4-Scout-17B-Instruct",
+   "20250720_mini-v0.0.0-gpt-4o-2024-11-20",
+   "20250725_sweagent_devstral_small_2507",
+   "20250726_mini-v1.0.0_gemini-2.0-flash",
+   "20250726_mini-v1.0.0_gemini-2.5-pro",
+   "20250726_mini-v1.0.0_o3-2025-04-16",
+   "20250726_mini-v1.0.0_o4-mini-2025-04-16",
+   "20250802_mini-v1.0.0_claude-4-opus-20250514",
+   "20250803_mini-v1.0.0_qwen2-5-coder-32b-instruct",
+   "20250805_openhands-Qwen3-Coder-480B-A35B-Instruct",
+   "20250806_SWE-Exp_DeepSeek-V3",
+   "20250807_mini-v1.7.0_gpt-5-nano",
+   "20250807_mini-v1.7.0_gpt-oss-120b",
+   "20250807_mini-v1.7.0_kimi-k2-instruct",
+   "20250822_mini-v1.9.1_glm-4.5",
+   "20250901_entroPO_R2E_QwenCoder30BA3B_tts",
+   "20250924_artemis_agent_v2",
+   "20250928_trae_doubao_seed_code",
+   "20251014_Lingxi_kimi_k2",
+   "20251015_Prometheus_v1.2.1_gpt5",
+   "20251103_SalesforceAIResearch_SAGE_OpenHands",
+   "20251110_frogboss-32b",
+   "20251110_frogmini-14b",
+   "20251120_livesweagent_gemini-3-pro-preview",
+   "20251120_mini-v1.15.0_gpt-5.1-2025-11-13",
+   "20251124_mini-v1.16.0_gpt-5.1-codex",
+   "20251124_mini-v1.17.0_minimax-m2",
+   "20251201_mini-v1.17.1_deepseek-v3.2-reasoner",
+   "20251201_mini-v1.17.1_glm-4.6",
+   "20251209_mini-v1.17.2_devstral-2512",
+   "20251209_mini-v1.17.2_devstral-small-2512",
+   "20251210_mini-v1.17.2_kimi-k2-thinking",
+   "20260217_mini-v2.0.0_claude-4-5-haiku-high",
+   "20260217_mini-v2.0.0_claude-4-5-opus-high",
+   "20260217_mini-v2.0.0_claude-4-5-sonnet-high",
+   "20260217_mini-v2.0.0_claude-4-6-opus",
+   "20260217_mini-v2.0.0_deepseek-3-2-high",
+   "20260217_mini-v2.0.0_gemini-3-flash-high",
+   "20260217_mini-v2.0.0_glm-5-high",
+   "20260217_mini-v2.0.0_gpt-5-2-high",
+   "20260217_mini-v2.0.0_gpt-5-mini",
+   "20260217_mini-v2.0.0_kimi-k2-5-high",
+   "20260217_mini-v2.0.0_minimax-2-5-high",
+   "20260219_mini-v2.0.0_gpt-5-2-codex",
+   "20260226_mini-v2.0.0_gemini-3-pro-high",
+   "20260901_mini-v2.4.2_gemini-3-5-flash"
+  ],
+  "all_fits_converged": true,
+  "within_half_fits": {
+   "fits": 2000,
+   "failed": 0,
+   "failed_splits": [],
+   "not_converged": 0,
+   "max_abs_grad_max": 3.188884174240151e-07,
+   "check_grid_max_abs_grad_max": 3.188884176034758e-07,
+   "endpoint_mass_max": 7.000269146486025e-30,
+   "rescore_max_abs_change_max": 1.0350054147068022e-13
+  },
+  "pass1_A": {
+   "rank": {
+    "splits": 2000,
+    "defined": 2000,
+    "delta_median": 0.0,
+    "delta_p05_p95": [
+     0.0,
+     0.0
+    ],
+    "delta_mean": 0.0,
+    "exact_zero_splits": 2000,
+    "positive_splits": 0,
+    "share_delta_positive": 0.0,
+    "spearman_arm_A_vs_pass1_B_median": 0.9602150645218805,
+    "spearman_pass1_A_vs_pass1_B_median": 0.9602150645218805
+   },
+   "level": {
+    "mae_mean_over_splits": 0.05498925646472786,
+    "rmse_mean_over_splits": 0.06628910412916357,
+    "mean_bias_forecast_minus_heldout": 0.00010610797743755406,
+    "mean_forecast": 0.5410279452054793,
+    "mean_heldout_pass1": 0.5409218372280417,
+    "per_system_sd_of_forecast_across_splits_mean": 0.06066212470379682
+   }
+  },
+  "2pl_within_A": {
+   "rank": {
+    "splits": 2000,
+    "defined": 2000,
+    "delta_median": 0.0016289385481353391,
+    "delta_p05_p95": [
+     -0.007444070740051617,
+     0.014367273447203514
+    ],
+    "delta_mean": 0.0021933580148651554,
+    "exact_zero_splits": 0,
+    "positive_splits": 1238,
+    "share_delta_positive": 0.619,
+    "spearman_arm_A_vs_pass1_B_median": 0.9616032952506108,
+    "spearman_pass1_A_vs_pass1_B_median": 0.9602150645218805
+   }
+  },
+  "2pl": {
+   "rank": {
+    "splits": 2000,
+    "defined": 2000,
+    "delta_median": -0.000936584991165168,
+    "delta_p05_p95": [
+     -0.010175967534858454,
+     0.012524967691802696
+    ],
+    "delta_mean": -0.0001990042385761542,
+    "exact_zero_splits": 0,
+    "positive_splits": 871,
+    "share_delta_positive": 0.4355,
+    "spearman_arm_A_vs_pass1_B_median": 0.9593137866895756,
+    "spearman_pass1_A_vs_pass1_B_median": 0.9602150645218805
+   },
+   "level": {
+    "mae_mean_over_splits": 0.03848720647227175,
+    "rmse_mean_over_splits": 0.04837223893692429,
+    "mean_bias_forecast_minus_heldout": 0.00026059620332719464,
+    "mean_forecast": 0.5411824334313692,
+    "mean_heldout_pass1": 0.540921837228042,
+    "per_system_sd_of_forecast_across_splits_mean": 0.036949217007563956,
+    "vs_pass1_A": {
+     "mae_difference": 0.01650204999245609,
+     "ci95": [
+      0.013679835472453572,
+      0.01907372775722674
+     ],
+     "p_value": 0.0009995002498750624,
+     "p_value_signflip_symmetry_diagnostic": 9.999000099990002e-05,
+     "systems_arm_better": 67,
+     "n_systems": 73,
+     "test": "system-cluster percentile bootstrap over systems (2000 draws) for the CI and the p-value (null: zero mean difference; p = twice the smaller tail count, +1 corrected); sign-flip diagnostic (10000 flips) assumes per-system differences symmetric about 0",
+     "splits_arm_mae_lower": 1773,
+     "split_mae_difference_p05_p95": [
+      -0.002224167087854109,
+      0.054784547406887214
+     ],
+     "splits": 2000
+    }
+   }
+  },
+  "fits": [
+   {
+    "kind": "2pl",
+    "n_systems": 65,
+    "n_items": 424,
+    "objective": 129.72732870237942,
+    "max_abs_grad": 1.389832388287715e-07,
+    "check_grid_max_abs_grad": 1.3898323947782496e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 192,
+    "nfev": 200,
+    "seconds": 7.35,
+    "fold": 0
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 65,
+    "n_items": 424,
+    "objective": 131.5306967540396,
+    "max_abs_grad": 1.2911190847564313e-07,
+    "check_grid_max_abs_grad": 1.291119080691307e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 164,
+    "nfev": 175,
+    "seconds": 6.57,
+    "fold": 1
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 65,
+    "n_items": 424,
+    "objective": 132.00492217900612,
+    "max_abs_grad": 1.5475381713015734e-07,
+    "check_grid_max_abs_grad": 1.5475381676634578e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 169,
+    "nfev": 178,
+    "seconds": 6.76,
+    "fold": 2
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 66,
+    "n_items": 424,
+    "objective": 131.34647053597539,
+    "max_abs_grad": 1.7529763272274643e-07,
+    "check_grid_max_abs_grad": 1.752976330659063e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 163,
+    "nfev": 174,
+    "seconds": 6.56,
+    "fold": 3
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 66,
+    "n_items": 424,
+    "objective": 132.50629028791943,
+    "max_abs_grad": 9.097797077479775e-08,
+    "check_grid_max_abs_grad": 9.097797040640557e-08,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 169,
+    "nfev": 181,
+    "seconds": 6.85,
+    "fold": 4
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 66,
+    "n_items": 424,
+    "objective": 134.00396106621298,
+    "max_abs_grad": 1.0094007113660725e-07,
+    "check_grid_max_abs_grad": 1.0094007201132842e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 161,
+    "nfev": 168,
+    "seconds": 6.33,
+    "fold": 5
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 66,
+    "n_items": 424,
+    "objective": 132.7589583797748,
+    "max_abs_grad": 1.685968230647601e-07,
+    "check_grid_max_abs_grad": 1.6859682288981587e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 160,
+    "nfev": 167,
+    "seconds": 6.29,
+    "fold": 6
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 66,
+    "n_items": 424,
+    "objective": 130.64223229809954,
+    "max_abs_grad": 4.517046200043969e-08,
+    "check_grid_max_abs_grad": 4.517046261274451e-08,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 169,
+    "nfev": 178,
+    "seconds": 6.69,
+    "fold": 7
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 66,
+    "n_items": 424,
+    "objective": 132.3131239192776,
+    "max_abs_grad": 3.7811944314345963e-07,
+    "check_grid_max_abs_grad": 3.781194437574466e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 169,
+    "nfev": 173,
+    "seconds": 6.61,
+    "fold": 8
+   },
+   {
+    "kind": "2pl",
+    "n_systems": 66,
+    "n_items": 424,
+    "objective": 133.26489108415217,
+    "max_abs_grad": 2.185754193734067e-07,
+    "check_grid_max_abs_grad": 2.185754195449866e-07,
+    "converged": true,
+    "scipy_success": true,
+    "scipy_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "nit": 166,
+    "nfev": 172,
+    "seconds": 6.38,
+    "fold": 9
+   }
+  ]
+ },
+ "forecast_evaluation": [
+  {
+   "id": "P1_rank_median_delta_2pl_within_A_n50",
+   "outcome": 0.004021867545595914,
+   "point": 0.001,
+   "interval80": [
+    -0.004,
+    0.005
+   ],
+   "probability": null,
+   "inside_interval80": true
+  },
+  {
+   "id": "P1_rank_share_delta_positive_n50",
+   "outcome": 0.8115,
+   "point": 0.55,
+   "interval80": [
+    0.25,
+    0.85
+   ],
+   "probability": null,
+   "inside_interval80": true
+  },
+  {
+   "id": "P1_rank_rule_holds",
+   "outcome": true,
+   "point": null,
+   "interval80": null,
+   "probability": 0.4,
+   "note": "event occurred"
+  },
+  {
+   "id": "P2_mae_pass1_A_n50",
+   "outcome": 0.05538670014347203,
+   "point": 0.05,
+   "interval80": [
+    0.04,
+    0.062
+   ],
+   "probability": null,
+   "inside_interval80": true
+  },
+  {
+   "id": "P2_mae_2pl_kfold_n50",
+   "outcome": 0.0343526874583386,
+   "point": 0.035,
+   "interval80": [
+    0.025,
+    0.046
+   ],
+   "probability": null,
+   "inside_interval80": true
+  },
+  {
+   "id": "P2_mae_difference_n50",
+   "outcome": 0.02103401268513339,
+   "point": 0.015,
+   "interval80": [
+    0.005,
+    0.025
+   ],
+   "probability": null,
+   "inside_interval80": true
+  },
+  {
+   "id": "P2_level_rule_holds",
+   "outcome": true,
+   "point": null,
+   "interval80": null,
+   "probability": 0.85,
+   "note": "event occurred"
+  },
+  {
+   "id": "Q1_continue",
+   "outcome": true,
+   "point": null,
+   "interval80": null,
+   "probability": 0.88,
+   "note": "event occurred"
+  },
+  {
+   "id": "Q1_inconclusive",
+   "outcome": false,
+   "point": null,
+   "interval80": null,
+   "probability": 0.04,
+   "note": "event did not occur"
+  },
+  {
+   "id": "level_win_beyond_reference_panel",
+   "outcome": true,
+   "point": null,
+   "interval80": null,
+   "probability": 0.45,
+   "note": "event occurred"
+  },
+  {
+   "id": "S3_2pl_minus_linear_regression_mae_n50",
+   "outcome": 0.002203537221351755,
+   "point": 0.001,
+   "interval80": [
+    -0.002,
+    0.004
+   ],
+   "probability": null,
+   "inside_interval80": true
+  },
+  {
+   "id": "S1_mae_mean_equating_n50",
+   "outcome": 0.03953314887092249,
+   "point": 0.04,
+   "interval80": [
+    0.03,
+    0.05
+   ],
+   "probability": null,
+   "inside_interval80": true
+  },
+  {
+   "id": "S1_kfold_2pl_rank_median_delta_n50",
+   "outcome": 0.0036213709433037256,
+   "point": -0.001,
+   "interval80": [
+    -0.005,
+    0.003
+   ],
+   "probability": null,
+   "inside_interval80": false
+  },
+  {
+   "id": "S2_grm3_within_A_rank_median_delta_n50",
+   "outcome": 0.005069289611437822,
+   "point": -0.002,
+   "interval80": [
+    -0.01,
+    0.004
+   ],
+   "probability": null,
+   "inside_interval80": false
+  },
+  {
+   "id": "S2_grm3_rank_rule_holds",
+   "outcome": true,
+   "point": null,
+   "interval80": null,
+   "probability": 0.25,
+   "note": "event occurred"
+  },
+  {
+   "id": "S2_grm3_mae_difference_n50",
+   "outcome": 0.021828875728225085,
+   "point": 0.013,
+   "interval80": [
+    0.003,
+    0.023
+   ],
+   "probability": null,
+   "inside_interval80": true
+  },
+  {
+   "id": "S2_grm3_level_rule_holds",
+   "outcome": true,
+   "point": null,
+   "interval80": null,
+   "probability": 0.8,
+   "note": "event occurred"
+  },
+  {
+   "id": "S4_G0_harmful_promotion_rate",
+   "outcome": 0.07628083799669172,
+   "point": 0.05,
+   "interval80": [
+    0.03,
+    0.08
+   ],
+   "probability": null,
+   "inside_interval80": true
+  },
+  {
+   "id": "S4_matched_hpr_difference_pass1_minus_irt",
+   "outcome": 0.004919998434713042,
+   "point": 0.0,
+   "interval80": [
+    -0.004,
+    0.004
+   ],
+   "probability": null,
+   "inside_interval80": false
+  },
+  {
+   "id": "S5_2pl_error_sd_ratio_to_pass1_A",
+   "outcome": 0.557518134150876,
+   "point": 0.75,
+   "interval80": [
+    0.6,
+    0.9
+   ],
+   "probability": null,
+   "inside_interval80": false
+  },
+  {
+   "id": "S7_heldout_cell_brier_2pl",
+   "outcome": 0.09666728909059867,
+   "point": 0.12,
+   "interval80": [
+    0.09,
+    0.15
+   ],
+   "probability": null,
+   "inside_interval80": true
+  }
+ ]
+}

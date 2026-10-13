@@ -59,4 +59,4 @@ Tests: `tests/test_e14_irt.py`. They cover gradient checks, Rasch sufficiency an
 
 ## Status
 
-Protocol revision 2 (10-12-2026), written after the single light QA round ([review](reviews/light_qa_codex_gpt6_astra_ultra_10-12-2026.md): FAIL with 7 findings; [resolution](reviews/light_qa_resolution_10-12-2026.md): all fixed). The lock and the run follow. Live state: [results.md](results.md).
+**DONE (10-12-2026 22:43 PDT): Q1 verdict CONTINUE.** At n_A = 50, the 2PL level forecast has MAE 0.0344 against 0.0554 for pass@1 on half A: a difference of +0.0210 [+0.0195, +0.0224], which also beats a non-IRT regression forecast from the same reference systems (+0.0022 [+0.0015, +0.0028]). The rank gain is small: Spearman Δ +0.0040 [+0.0016, +0.0066], share 0.811 [0.600, 0.839]; Kendall τ-b is slightly lower, and the gain vanishes by n_A = 250. Details: [results.md](results.md). Kept under `experiments/` because the verdict gates Q2–Q4 on the VeriBench IRT idea page and informs [`13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013`](../13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/README.md).
