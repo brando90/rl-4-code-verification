@@ -5,7 +5,7 @@
 **TLDR:** Amendment A1 resumed experiment 13 version 2; R0 attempt 2 passed all 30 fixtures and its required repository suite; R1 attempt 1 passed all 400 train cells.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-13-2026 14:57 PDT
+Last updated: 10-13-2026 15:28 PDT
 
 ## Goal
 - Complete amended development acceptance, then the unchanged scientific gates and matched reinforcement-learning comparison.
@@ -17,7 +17,7 @@ Last updated: 10-13-2026 14:57 PDT
 - Required full suite: 283 passed, 23 skips, 168.61 seconds; all seven required Lean integration cases executed.
 - Fix/justification commits before rerun: `3fbcb96`, `7ed9e85`, `76d85b4`.
 ## Results
-- R2 downstream blocked: opaque INCOMPLETE, 5,319 measured + 7 typed limits + 2 unresolved / 5,328. Ordinary running; 11,414/38,784 total receipts at 14:57, zero retries.
+- R2 downstream blocked: opaque INCOMPLETE, 5,319 measured + 7 typed limits + 2 unresolved / 5,328. Ordinary running; 15,332/38,784 total receipts at 15:28 (10,004 ordinary), zero retries.
 - R1 PASS: 400/400 measured/oracle-equal, 0 untyped inconsistencies; rejected causes 296 parse errors, 3 unparseable types, 1 duplicate identity (denominator 300).
 - Attempt 2 PASS, 30/30; lock `67f005f9b146704ec5007be748d6a30bc01239d0f0af826d3aec489799872759`. Attempt 1 retained at 26/29 matches.
 - Owner process 887384, full access/no approvals; fenced watchdog re-armed as `e13v2_a1`, two owned cron entries restored.
@@ -29,6 +29,7 @@ Last updated: 10-13-2026 14:57 PDT
 - None.
 
 ## Log
+- 10-13-2026 15:28 PDT -- Ordinary cohort still running: 10,004/33,456 receipts; total 15,332/38,784, zero retries. Opaque INCOMPLETE remains unchanged; no later measurement admitted. Frozen bindings and prior evidence verified again. Required publication suite 300 passed / 23 skipped in 197.58 seconds; shared index refreshed to `176def8`. Latest cron confirms one live owner; continue full declared ordinary set before terminal report and notification.
 - 10-13-2026 14:57 PDT -- Opaque process finished: public receipt INCOMPLETE, 5,319 measured / 5,328, seven typed deterministic limits, two unresolved cells. No test-specific details inspected. PLAN section 4 blocks downstream execution; complete the ordinary cohort and publish the full technical stop. Cleanup now totals 18 registered children from nine terminal workers, zero forced kills/retries.
 - 10-13-2026 14:55 PDT -- Cleanup publication: required Lean integration suite 300 passed / 23 skipped. Two subsequent terminal descendants stopped from one completed worker; cumulative 16 children from eight workers, no forced kills or retries. Latest cleanup found zero eligible children; reproduction remains pending.
 - 10-13-2026 14:47 PDT -- Operational cleanup under PLAN section 7: seven exited workers had terminal receipts but fourteen registered Lean grandchildren remained after timeouts. Verified all identities/receipt bindings and stopped only those descendants via process-identifier file descriptors; no forced kill, changed measurement or retry. Subsequent cleanup had zero eligible children. All 51 L1v2 bindings remain unchanged. Continue the helper in `operations/` while supervising; private per-action audits in `$WR/state/R2_terminal_child_cleanup_*.json`.

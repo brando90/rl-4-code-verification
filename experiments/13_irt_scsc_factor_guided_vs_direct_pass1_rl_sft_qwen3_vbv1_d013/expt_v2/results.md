@@ -4,7 +4,7 @@
 
 **TLDR:** `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013` version 2 passed R0 attempt 2 under Amendment A1: 30/30 fixtures matched, with complete components and historical oracle value/status. R1 attempt 1 also passed 400/400 train cells with matching historical oracle values and statuses.
 
-Last updated: 10-13-2026 14:57 PDT
+Last updated: 10-13-2026 15:28 PDT
 Status: **DOWNSTREAM BLOCKED — opaque reproduction INCOMPLETE; ordinary cohort still running to finish the declared report.**
 
 | Stage | Status | Measured / declared |
@@ -14,7 +14,7 @@ Status: **DOWNSTREAM BLOCKED — opaque reproduction INCOMPLETE; ordinary cohort
 | Required suite for attempt 2 | PASS | 283 passed, 23 skipped; all seven required Lean cases ran |
 | R1 attempt 1 | PASS | 400/400 measured and oracle-equal; zero untyped inconsistencies |
 | L1v2 | FROZEN | 51 verified bindings; F0v2 0.50, F1v2 0.85; zero validation/test factors at freeze |
-| R2 | Opaque route INCOMPLETE; ordinary route running | 11,414/38,784 receipts at 14:57; opaque 5,319 measured + 7 typed limits + 2 unresolved / 5,328 |
+| R2 | Opaque route INCOMPLETE; ordinary route running | 15,332/38,784 receipts at 15:28; ordinary 10,004/33,456; opaque 5,319 measured + 7 typed limits + 2 unresolved / 5,328 |
 | G0 | NOT ADMITTED | 0/135 validation tasks |
 | Phases 1 and 2 | NOT ADMITTED | No fitting or reinforcement learning |
 
