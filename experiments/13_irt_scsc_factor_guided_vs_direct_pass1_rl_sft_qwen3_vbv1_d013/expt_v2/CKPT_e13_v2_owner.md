@@ -5,7 +5,7 @@
 **TLDR:** Single-writer setup for `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013`, version 2. The formal authored fixture gate failed (26/29); downstream work is stopped under PLAN § 4. Preserve the frozen attempt; do not relaunch it.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-13-2026 12:12 PDT
+Last updated: 10-13-2026 12:18 PDT
 
 - Status: STOPPED AT R0 — FAIL. 26/29 new authored cases matched; 29/29 oracle value/status matched; 28/29 component measurements. Zero gate retries. See `RESULTS_R0_terminal.md`.
 - Owner: skampere1, tmux `codex-rl4cv-e13v2-owner`; Codex `gpt-6-astra`, effort `high` (runbook worker pin), command-line interface 0.154.0; observed full access `danger-full-access`, approvals `never`.
@@ -28,5 +28,5 @@ Last updated: 10-13-2026 12:12 PDT
 - Failures: unavailable `String.ofList` in authored long-log fixture (d=2/5, expected 4/5); stderr assertion (text retained as information message); unresolved theorem causes frontend exit 1 on `Mathlib.pp.mathlib.binderPredicates` initialization. Strict oracle remains independently reproduced for all 29 cases.
 - Frozen scientific implementation and all authored sources are retained. Raw evidence: `$WR/r0/`; source copies and complete hash inventory are published under `expt_v2/`. The 42 original version 1 files are byte-identical.
 - R1 preparation was never executed; three draft scripts are preserved privately at `$WR/state/unexecuted_r1_preparation/`. No train allowlist, L1v2 lock, historical factors, fitted model or training exists.
-- Terminal actions: publish the gate result, verify main contains it, then send one deduplicated watchdog completion notice and retire the owned cron entries. No downstream run is admitted.
+- Terminal closeout: gate result pushed as `6e9c7c2bc1c2435f1455ec7667b1933e8e16174b` and verified on remote `main`. The watchdog recorded exactly one `stopped` notification as `sent` to `brando.science@gmail.com` without carbon copy. Both owned cron entries were retired; all unrelated entries were preserved. No registered experiment child remains alive. Durable receipt: `$WR/state/completion.json`. No downstream run is admitted.
 - Binding stop: R0 failed. This condition is terminal, not an infrastructure retry or an account handoff. The parent retains the unresolved measurement dependency for its planned reinforcement-learning comparison.
