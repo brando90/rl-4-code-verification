@@ -2,14 +2,16 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2_owner.md>
 
-**TLDR:** Amendment A1 resumed experiment 13 version 2; R0 attempt 2 passed all 30 fixtures and its required repository suite.
+**TLDR:** Amendment A1 resumed experiment 13 version 2; R0 attempt 2 passed all 30 fixtures and its required repository suite; R1 attempt 1 is running on 400 train cells.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-13-2026 12:57 PDT
+Last updated: 10-13-2026 13:02 PDT
 
 ## Goal
 - Complete amended development acceptance, then the unchanged scientific gates and matched reinforcement-learning comparison.
 ## What ran
+- R1 full required suite: 286 passed, 23 skips, 185.82 seconds (includes three train-isolation tests).
+- R1 attempt 1: process 407126, systemd scope `e13v2-a1-r1.scope`, 400 train cells, code `a19e4bd`. Initial tree peak 6,924,185,600 bytes; 48 workers; aggregate cap 1,049,300,488,192 bytes.
 - R0_attempt_2 completed as process 280828; 30 authored fixtures, serial 64 GiB address-space ceiling.
 - Required full suite: 283 passed, 23 skips, 168.61 seconds; all seven required Lean integration cases executed.
 - Fix/justification commits before rerun: `3fbcb96`, `7ed9e85`, `76d85b4`.
@@ -17,15 +19,17 @@ Last updated: 10-13-2026 12:57 PDT
 - Attempt 2 PASS, 30/30; lock `67f005f9b146704ec5007be748d6a30bc01239d0f0af826d3aec489799872759`. Attempt 1 retained at 26/29 matches.
 - Owner process 887384, full access/no approvals; fenced watchdog re-armed as `e13v2_a1`, two owned cron entries restored.
 ## Stuck / blocked
-- None. No historical train, validation or test cell has run for version 2.
+- None. R1 is train-only; no validation or test source has run for version 2.
 ## Next steps
-- [p 10/10] Publish accepted R0; freeze and execute R1 train-only diagnostic.
+- [p 10/10] Reconcile `$WR/R1_attempt_1/receipt.json`; publish the complete cause table and measured memory, then apply R1 admission.
 ## Brando to-do
 - None.
 
 ## Log
 - 10-13-2026 12:57 PDT -- R0 attempt 2 completed PASS: 30/30 fixtures, oracle values/statuses, and components. R1 admitted after publication.
 - 10-13-2026 12:52 PDT -- Resumed under A1 at `cb5e175`, committed three justified fixes, froze and launched attempt 2; required full suite passed.
+
+- 10-13-2026 13:02 PDT -- R0 PASS published at `7392a38`; R1 sample frozen (300/8,900 rejected, 100/4,036 measured train cells), run verified active with enforced memory limits; 129/400 completed, all measured with matching oracle.
 
 ## Prior owner record (before A1; stop superseded)
 
