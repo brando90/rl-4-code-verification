@@ -13,7 +13,7 @@ Revision 2 applies the single requested review (Codex GPT-6 Astra, ultra, 10-13-
 5. Arm-specific failures disable only that arm.
 6. Memory, devices and recovery have enforceable limits.
 
-Created: 10-13-2026 by Claude Code (`claude-opus-5-5`, master session "Oct 9: IRT for eval metric decomposition"). Revision 2: 10-13-2026. Status: PLANNED; nothing launched.
+Created: 10-13-2026 by Claude Code (`claude-opus-5-5`, master session "Oct 9: IRT for eval metric decomposition"). Revision 2: 10-13-2026. Status: RUNNING (owner on skampere1); amended by [Amendment A1](AMENDMENT_A1_development_gates_10-13-2026.md) (R0 and R1 are development acceptance tests).
 
 ## 1. What version 1 established, and its verified rejection paths
 
@@ -173,7 +173,8 @@ Per `../PROTOCOL.md` § 3:
 
 | Event | Effect |
 |---|---|
-| R0, R1 or R2 fails or is INCOMPLETE; integrity defect | Stop downstream measurement; publish the failure with evidence |
+| R0 or R1 fails | Development acceptance test (Amendment A1): fix, record the attempt, rerun, at most 5 attempts each; then stop and publish |
+| R2 fails or is INCOMPLETE; integrity defect | Stop downstream measurement; publish the failure with evidence (no retries from L1v2 onward) |
 | G0 fails | Stop arms B and C (README rule); Phase 2 is not run, since A against P alone does not test the hypothesis |
 | G1 fails, H2 fails, or arm C's variance check fails | Disable **arm C only**; A, B and P continue to Phase 2 |
 | T1–T4 fail | Stop Phase 2 at that gate; publish |

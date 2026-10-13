@@ -5,7 +5,7 @@
 **TLDR:** The master's resumable record for experiment 13 version 2. The plan is at revision 2 after the single light review (FAIL, all 13 findings fixed). The SNAP owner is **RUNNING** on skampere1 in tmux `codex-rl4cv-e13v2-owner` (Codex `gpt-6-astra` high, full access), launched 10-13-2026 11:41 PDT.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-13-2026 11:45 PDT
+Last updated: 10-13-2026 12:45 PDT
 
 ## Task and owner
 
@@ -52,6 +52,17 @@ Last updated: 10-13-2026 11:45 PDT
 - **First useful action:** the owner verified a clean checkout and no live version 1 writer, then read PLAN, PROTOCOL, the Phase 1 and Phase 2 plans, the review, the adapter and the tests.
 - **Attach:** `ssh skampere1 -t tmux attach -t codex-rl4cv-e13v2-owner`.
 - **Master check-in:** hourly from this session. It runs through SSH, which needs the VPN off campus. If the owner sits idle at its prompt with work remaining, the master types a continuation brief into the pane. The owner installs the SNAP watchdog per `cc.md` § 0.
+
+## Check-in 10-13-2026 12:40 PDT: R0 attempt 1 failed; Amendment A1
+
+- **R0 attempt 1:** the owner stopped at R0 under the runbook's literal no-retry rule ([RESULTS_R0_terminal.md](RESULTS_R0_terminal.md), `6e9c7c2`, `7e0efa9`).
+  - 26/29 fixtures fully matched; oracle value and status 29/29; components 28/29; required suite 283 passed, 23 skipped, 0 failed.
+  - Failures: 2 fixture-authoring errors (`String.ofList` missing in Lean 4.22.0; `#eval` marker in information messages, not stderr) and a real probe crash (`[init]` declaration evaluation in the frontend).
+  - The owner sent one completion email and retired its watchdog.
+- **Master decision:** [Amendment A1](AMENDMENT_A1_development_gates_10-13-2026.md).
+  - R0 and R1 are development acceptance tests: fix, record numbered attempts, rerun, at most 5 attempts each.
+  - The no-retry rule starts at L1v2.
+  - The owner is briefed to apply A1, re-arm its watchdog and continue.
 
 ## Exact next commands (master)
 

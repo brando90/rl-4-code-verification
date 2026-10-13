@@ -75,7 +75,7 @@ Follow `../expt_v1/PHASE2_MATCHED_RL_PLAN.md` and `../PROTOCOL.md` §§ 5–8, w
 
 - **Publishing.** Push each finished, test-passing step to `main`: `make test` first, explicit paths only. Never pipe a test command into another command inside an `&&` chain.
 - **Updates.** Update `results.md` and the checkpoint at each gate and at least every 4 hours.
-- **Failures.** A failed gate is a published result, never a reason to retry.
+- **Failures.** R0 and R1 are development acceptance tests under [Amendment A1](AMENDMENT_A1_development_gates_10-13-2026.md): fix, record the numbered attempt, rerun, at most 5 attempts. From L1v2 onward, a failed gate is a published result, never a reason to retry.
 - **Account limits.** On account, context or turn exhaustion, checkpoint and continue under Rule 48 with one writer.
 - **Notifications.** The watchdog's deduplicated email to `brando.science@gmail.com` (no CC) goes out only on completion or on an event that needs Brando.
 
