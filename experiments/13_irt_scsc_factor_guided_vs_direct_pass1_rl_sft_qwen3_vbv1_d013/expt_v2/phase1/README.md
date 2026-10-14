@@ -1,8 +1,16 @@
-# Experiment 13 version 2 Phase 1: resource block before generation admission
+# Experiment 13 version 2 Phase 1: CPU preparation while devices are busy
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/README.md>
 
-**TLDR:** `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013` passed G0. Phase 1 is blocked before LP-1 (generation resource and probability admission): no usable device route was available on 10-14-2026. This is an operational block, not a failed or inconclusive scientific gate and not experiment completion.
+**TLDR:** `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013` passed G0. Phase 1 CPU preparation continues while LP-1 (generation resource and probability admission) waits for a device. No usable default device route was available in the 10-14-2026 snapshot below; this is not a scientific failure or experiment completion.
+
+## Current preparation
+
+`device_watch.py` now polls all five direct-access nodes every 15 minutes. Its first live poll on 10-14-2026 at 14:24 PDT and first scheduled poll at 14:30 PDT completed with zero candidates; all prior nine cron lines were preserved exactly and one line appended. It records every observation under `$WR/device_watch/` and never claims devices or starts a model. Candidate availability still needs current foreign-lease/master-reservation checks and the enforcing experiment-13 launcher before execution.
+
+`sampler.json` records the prospective protocol sampler. `probability.py` checks actual generator/trainer token alignment, assistant and end-of-sequence masks, support errors, probability differences and importance truncation; it does not itself establish a passed LP-1 gate. `g1_bounds.py` supplies exact linear-metric and paired-bootstrap completion bounds and bounded policy-correlation enumeration. Their 29 synthetic tests pass, and 112 independent coefficient checks match the frozen evaluator. The full required suite passed 462 tests with 23 skips and zero failures in 223.40 seconds ([receipt](preparation_test.json)). The [G1 method draft](G1_BOUNDS_DRAFT.md) lists the remaining wrapper/diagnostic work. No real probability probe, fit, anchor, or training call has run. The frozen `prediction/` models remain unchanged.
+
+CPU work continues on the lease launcher, the actual trainer probability runtime, anchor runner and complete G1 missing-data/bounds harness. No automatic execution or completed admission lock is claimed.
 
 ## Verified resource state
 
@@ -33,7 +41,7 @@ The required publication suite passed: `E13_REQUIRE_LEAN_INTEGRATION=1 make test
 
 ## Exact continuation
 
-Resume in the same owned checkout after an idle supported device with sufficient storage becomes available, or after a valid scheduler account association is provisioned. No new permission is needed. Do not replay G0.
+Continue implementation in the same owned checkout while polling. Execute only after an idle supported device and a checked storage route become available, or a valid scheduler account association is provisioned. No new permission is needed. Do not replay G0.
 
 1. Refresh the device/process inventory and every required foreign lease and master reservation. Finish the experiment-13 lease launcher with identity checks, bounded accounting and exit release; the currently empty registry alone is not an enforcing launcher.
 2. Finish and publish LP-1's bounded device plan, actual trainer/generator implementation and hashes, train-only probability probe, sampler/support/assistant masks and token caps. No LP-1 lock or executable generation runner is claimed to be finished by this resource report.
@@ -42,5 +50,5 @@ Resume in the same owned checkout after an idle supported device with sufficient
 
 Zero LP-1 probability measurements, anchor cells, fits, optimizer updates or device claims have occurred. PLAN section 7 forbids claiming busy devices; PROTOCOL sections 6 and 8 require a real allocation and permit no training beyond admitted diagnostic work on resource failure. No PLAN section 4 scientific failure transition has been triggered. The watchdog remains armed for owner/process monitoring; automatic device-triggered execution or executor replacement is not installed.
 
-**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 passed G0 and is resource-blocked before Phase 1 generation admission; all downstream scientific gates remain unattempted.
+**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 passed G0; CPU preparation and device polling continue while generation waits. All downstream scientific gates remain unattempted.
 **Snapshot:** G0 PASS; skampere devices occupied 24/24; Mercury local free space 31.16/12.10 GiB; scheduler associations 0; anchor cells 0/17,248; training updates 0.

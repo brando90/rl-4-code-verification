@@ -12,7 +12,7 @@ The plan has three phases:
 - **Phase 1:** fit and validate a conjunctive item response theory (IRT) model that predicts held-out pass@1 and pass@k.
 - **Phase 2:** run four RL arms from the Qwen3-4B SFT checkpoint: strict reward, SCSC-style factored reward, IRT-guided reward and prompt sampling, and a placebo dense reward.
 
-Status (10-14-2026): **G0 PASS under A3: primary 4B dense-only bounds 89–97/135 (threshold 21), predictive AUC bounds 0.670652174–0.904643963 (threshold 0.65), exact across 221,184 configurations; 23 tasks affected by 34 excluded cells. Phase 1 is resource-blocked before generation admission; no training has run.** [G0 report](expt_v2/RESULTS_G0.md) · [Resource block and continuation](expt_v2/phase1/README.md). The original [R2 FAIL under A2](expt_v2/RESULTS_R2.md) remains unchanged; adopted A3 admits the bounded G0 analysis.
+Status (10-14-2026): **G0 PASS under A3: primary 4B dense-only bounds 89–97/135 (threshold 21), predictive AUC bounds 0.670652174–0.904643963 (threshold 0.65), exact across 221,184 configurations; 23 tasks affected by 34 excluded cells. Phase 1 CPU preparation and device polling continue while generation waits; no training has run.** [G0 report](expt_v2/RESULTS_G0.md) · [Resource block and continuation](expt_v2/phase1/README.md). The original [R2 FAIL under A2](expt_v2/RESULTS_R2.md) remains unchanged; adopted A3 admits the bounded G0 analysis.
 
 - **Created:** 10-09-2026 by Claude Code (`claude-opus-5-5`) for Brando.
 - **Owner:** fresh version 2 skampere1 owner `codex-rl4cv-e13v2-owner-g0`; the Mac master retains the parent experiment.

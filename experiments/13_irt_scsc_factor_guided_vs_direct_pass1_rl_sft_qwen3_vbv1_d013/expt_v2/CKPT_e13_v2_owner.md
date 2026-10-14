@@ -2,29 +2,33 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2_owner.md>
 
-**TLDR:** G0 PASS under A3: primary 4B dense-only bounds 89–97/135 (threshold 21), predictive AUC bounds 0.670652174–0.904643963 (threshold 0.65), exact across 221,184 configurations; 23 tasks affected by 34 excluded cells. Phase 1 is resource-blocked before generation admission; no training has run.
+**TLDR:** G0 PASS under A3: primary 4B dense-only bounds 89–97/135 (threshold 21), predictive AUC bounds 0.670652174–0.904643963 (threshold 0.65), exact across 221,184 configurations; 23 tasks affected by 34 excluded cells. Phase 1 CPU preparation continues while generation waits for an idle device; no training has run.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-14-2026 14:16 PDT
+Last updated: 10-14-2026 14:34 PDT
 
 ## Goal
 - Complete Phase 1 then Phase 2 for 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013 version 2 under PLAN and amendments; stop only at binding transitions or real blockers.
 ## What ran
 - Single writer `codex-rl4cv-e13v2-owner-g0`, PID 1243923, Astra/high, full access/never. Prior owner idle and untouched. Watchdog run `e13v2_g0_owner_10-14-2026`, additive cron verified, six tests passed; shared recovery lock/ledger retained.
 - Published wrapper/tests/lock at `a717d069d0e47864c9ce6b47be0f3a11afd4781c`, remote verified. Required suite 433 passed / 23 skipped in 260.05s. G0 one invocation, 118.686s, exit 0; nine hashes checked before data. No outer fallback.
+- Observation-only device poller armed every 15 minutes, exact prior nine cron lines plus one verified. First live poll completed; zero candidates/claims. New probability/alignment checks and partial G1 bound helpers pass 29 synthetic tests; full suite 462 passed / 23 skipped in 223.40s. No model or fit run.
 ## Results
 - Primary 4B exact dense-only 89–97/135, AUC 0.670652174–0.904643963; minimum-AUC conditional 95% group interval [0.524992589,0.811120839], p-val=n/a. 23 tasks affected, 34/2160 excluded cells, 221184 configurations. [Report](RESULTS_G0.md).
 - Secondary 1.7B PASS (dense 103–111, AUC .671605–.937688); 8B INCONCLUSIVE (dense 90–100, AUC .557486–.909091), nongating. No undefined completion. F0v2 .50 underpredicts primary share .659259–.718519; F1v2 untested.
 - All 217 exclusions enforced (13 train/204 validation). Opaque data remain sealed. Original R2/A2 evidence preserved. No model calls, graphics processor claim, anchor generation, fit or training.
 ## Stuck / blocked
-- Generation admission is resource-blocked before LP-1: skampere1/2/3 occupied 24/24; Mercury1/2 local free space 31.16/12.10 GiB, below required headroom. Scheduler has zero associations and its allocation test exits 1 (invalid account). [Evidence and continuation](phase1/README.md). Validated Valkyrie formal-specification judge unavailable, not probed; Phase 2 coverage scoring remains pending that route.
+- Generation waits before LP-1; CPU preparation continues: skampere1/2/3 occupied 24/24; Mercury1/2 local free space 31.16/12.10 GiB, below required headroom. Scheduler has zero associations and its allocation test exits 1 (invalid account). [Evidence and continuation](phase1/README.md). Validated Valkyrie formal-specification judge unavailable, not probed; Phase 2 coverage scoring remains pending that route.
 ## Next steps
-- G0 report/receipts/indexes published and remote verified at `120c558`. When a valid device route exists, repeat inventory/leases/reservations, finish the enforcing own lease launcher and generation runner, freeze/publish LP-1, then run it once. No ready runner or automatic device-triggered resumption is claimed.
+- G0 published at `120c558`, resource snapshot at `77dbf1a`. Continue CPU implementation: own enforcing lease launcher, actual-trainer LP-1 runtime, anchor runner, missing-data forecast wrapper and remaining G1 diagnostic bounds. Freeze/publish complete LP-1 and G1 locks before their respective executions. No G0 retry.
 - Four anchor batches needed (historical Base sampler incompatible): Base, 50%, full batch 1, then freeze calibration/items/F2, then independent full batch 2. Freeze G1 bounds lock before any fit. No G0 retry.
 ## Brando to-do
-- A valid compute route is needed: an idle supported device with sufficient storage, or a provisioned scheduler account association. Existing task approval remains sufficient; no confirmation is requested.
+- None: resource availability is a wait while CPU preparation continues. No blocker or completion email sent.
 
 ## Log
+- 10-14-2026 14:34 PDT -- CPU-preparation publication verification: 462 passed, 23 skipped, zero failed in 223.40s with required Lean integration; 112 independent synthetic coefficient checks match the frozen evaluator. First scheduled device poll at 14:30 verified, zero candidates/claims; watchdog reports one live owner. Continue same-writer CPU work under queued master follow-up, no gate retry or notification.
+- 10-14-2026 14:29 PDT -- Continued CPU preparation while devices are busy, following the master check-in. Added observation-only 15-minute poller without replacing cron; first useful poll verified, no automatic launch or lease claim. Implemented prospective sampler/probability checks and exact linear/bootstrap/policy-correlation bound helpers with 29 synthetic tests; G1 method draft remains unlocked. Frozen prediction code preserved. Native owner has the master follow-up queued; same writer continues, no email or terminal marker.
+
 - 10-14-2026 14:16 PDT -- Resource block verified before LP-1: 24/24 skampere devices occupied; Mercury1/2 free space 31.16/12.10 GiB; scheduler account associations zero, non-submitting allocation test exits 1. Required publication suite passed 433/23/0 in 222.90s; operational evidence/continuation prepared for publication; no gate failure, lease, anchor or training call. Own registry empty, foreign released leases preserved; watchdog monitoring remains armed.
 
 - 10-14-2026 14:10 PDT -- G0 result publication verified: required suite 433 passed / 23 skipped / zero failed in 233.01s; full extrema outputs and result/attempt hashes retained. Phase 1 inventory finds all skampere devices busy and Mercury local disks below headroom; no lease or model call.

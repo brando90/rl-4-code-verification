@@ -1,0 +1,26 @@
+{
+  "status": "PROSPECTIVE_CONFIGURATION_NOT_YET_LP1_LOCKED",
+  "temperature": 1.0,
+  "top_p": 1.0,
+  "top_k": -1,
+  "min_p": 0.0,
+  "repetition_penalty": 1.0,
+  "presence_penalty": 0.0,
+  "frequency_penalty": 0.0,
+  "max_new_tokens": 8192,
+  "min_new_tokens": 0,
+  "ignore_eos": false,
+  "stop_strings": [],
+  "include_eos_in_probability_mask": true,
+  "samples_per_task": 8,
+  "probability_thresholds": {
+    "unsupported_tokens": 0,
+    "median_absolute_logprob_error": 0.01,
+    "p99_absolute_logprob_error": 0.10,
+    "importance_ratio_cap": 2.0,
+    "importance_truncation_fraction": 0.01,
+    "quantile_method": "linear"
+  },
+  "threshold_source": "PROTOCOL sections 5 and 6; LP-1 generation-only admission under PLAN section 5",
+  "seed_policy": "Freeze batch seeds and per-cell seed derivation in LP-1 before generation; batch 2 distinct from all fitting batches"
+}

@@ -1,0 +1,37 @@
+# Experiment 13 version 2 G1 completion bounds: prospective implementation draft
+
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/G1_BOUNDS_DRAFT.md>
+
+**TLDR:** For `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013`, Amendment A3 requires missing historical cells to stay missing in fitting and bounds on held-out outcomes with forecasts fixed. This is a draft, not an admission lock. No Phase 1 fit has run. Publish the completed implementation, tests and hash lock before any fit.
+
+## Fitting and chronology
+
+Import the frozen two-parameter logistic and conditional-hurdle item response theory implementations from `prediction/`. Preserve their five initialization seeds, gradients, priors, discrimination bounds, ability scale, prior-sensitivity fits and train-only feature standardization. Do not modify those frozen files.
+
+The complete-case requirement in frozen `nested_forecast_v2.py` cannot implement A3 directly. A separate wrapper must construct the same declared policy/task/sample grid, mark exactly the 217 listed cells missing before reading their measurements, and pass `observed=False` into the frozen fitting functions. An unlisted missing cell remains an integrity/completeness failure. No test row is permitted. Do not substitute zero labels for missing observations.
+
+Earlier-rung baseline counts use measured successes and measured denominators. Earlier-rung reward averages and calibration transitions use available measured observations; a transition missing its entire earlier predictor or later target is unavailable. No target completion may enter this calculation or inner selection. If a required predictor or calibration cannot be constructed, record the unsupported forecast and disable arm C rather than impute from held-out outcomes. The wrapper must document these counts per fold.
+
+Synthetic recovery uses the actual admitted earlier-rung risk-count and missingness arrays, with the frozen seed and criteria. It is not evidence about later outcomes. Retain all identification failures, prior-sensitive estimates, likelihood-invariance and finite-gradient checks. Five-start disagreement must remain at most 0.02 on the frozen diagnostic grid; recovery criteria stay those in L1v2. These controls precede interpretation of fitted forecasts.
+
+For each required outer scheme, freeze each cell's predictions from the training-selected candidate, M0, M1 and M2 before completing held-out labels. Never select between M3 and M3e on a completion, and never refit for a completion. Keep all declared held-out cells and policy/task groups. Each excluded held-out strict outcome ranges independently over {0,1}. This is fixed-forecast uncertainty; fitting uncertainty is not resampled.
+
+## Gate statistics
+
+`g1_bounds.py` currently implements the following components with exhaustive synthetic comparisons:
+
+1. **Linear-in-label metrics.** Log loss, candidate-minus-baseline log-loss contrasts, mean bias, absolute error, Brier score and observed/predicted means are means of `a_i*y_i+b_i`, with coefficients fixed by predictions. An excluded label minimizing its contribution is 0 for nonnegative `a_i` and 1 otherwise; maximizing reverses that choice. Both are feasible completions.
+2. **Paired group bootstrap.** Use the frozen evaluator's sorted groups, seed 1302031, 10,000 draws and linear quantiles. Every draw is a nonnegative weighted mean. Therefore the same two completions minimize/maximize every draw, and also each percentile endpoint. This supplies exact ranges for the upper 95% confidence-interval endpoint of both log-loss contrasts and both endpoints of the calibration-bias interval. Confidence intervals condition on fixed forecasts; the ranges across completions are not confidence intervals for missingness.
+3. **Policy Pearson correlation.** Fixed predicted policy means and each policy's known successes reduce the search to integer totals of successful excluded outcomes per policy. Enumerate their Cartesian product when at most 2^20 states. Record undefined constant-outcome completions. If the search exceeds that limit, the valid outer range [-1,1] cannot certify the correlation gate; mark the result INCONCLUSIVE unless another criterion already establishes FAIL.
+
+PASS requires every completion to satisfy both paired log-loss upper endpoints <0, policy Pearson correlation ≥0.80 with no undefined completion, and calibration-bias intervals containing zero, for both required outer schemes, plus all frozen implementation controls. A criterion failing for every completion establishes FAIL; otherwise the result is INCONCLUSIVE. Either non-PASS disables only arm C under the admission record. Never classify a mixed-completion outcome as a scientific failure of every completion.
+
+## Remaining implementation before locking
+
+- Complete the A3 missing-data forecast wrapper and bind the manifest, exclusions, feature/fold/policy metadata and all frozen imported implementations.
+- Implement completion bounds for every additional reported metric, including area under the receiver-operating curve, cell Pearson/Spearman/Kendall, calibration bins and their bootstrap intervals. Point rank bounds can search the number of additional positives and the smallest/largest fixed ranks. For diagnostic bootstrap intervals, enumeration or mathematically valid outer ranges must account for duplicated cells and completion-dependent undefined draws; independent copies of a duplicated cell are not an exact completion. Label any outer range explicitly. Never use a loose bound to create PASS or FAIL.
+- Test both holdout schemes, incomplete predictions, undefined metrics, all 217 exclusions, preserved denominators, no target-label access during fitting/selection, and pre-read hash refusals.
+- Freeze the final method and its implementation hashes in `locks/G1_A3.json`, then run the required integration suite and publish before fitting. This draft does not authorize a fit and is not a complete G1 evaluator.
+
+**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] The draft gives exact fixed-forecast bounds for linear metrics, paired bootstrap endpoints and finite policy-correlation searches; the complete wrapper and diagnostic bounds remain to implement before locking or fitting.
+**Snapshot:** actual Phase 1 fits 0; target-completion refits forbidden; paired draws 10,000; policy-correlation search cap 2^20; G1 lock not yet created.

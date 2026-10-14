@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/results.md>
 
-`13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013`: **G0 PASS under A3: primary 4B dense-only bounds 89–97/135 (threshold 21), predictive AUC bounds 0.670652174–0.904643963 (threshold 0.65), exact across 221,184 configurations; 23 tasks affected by 34 excluded cells. Phase 1 is resource-blocked before generation admission; no training has run.** [G0 report](expt_v2/RESULTS_G0.md) · [Resource block and continuation](expt_v2/phase1/README.md).
+`13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013`: **G0 PASS under A3: primary 4B dense-only bounds 89–97/135 (threshold 21), predictive AUC bounds 0.670652174–0.904643963 (threshold 0.65), exact across 221,184 configurations; 23 tasks affected by 34 excluded cells. Phase 1 CPU preparation and device polling continue while generation waits; no training has run.** [G0 report](expt_v2/RESULTS_G0.md) · [Resource block and continuation](expt_v2/phase1/README.md).
 
 Last updated: 10-14-2026 14:16 PDT
 
