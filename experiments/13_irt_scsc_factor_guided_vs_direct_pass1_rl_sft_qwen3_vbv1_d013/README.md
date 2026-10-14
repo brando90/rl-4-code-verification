@@ -12,7 +12,7 @@ The plan has three phases:
 - **Phase 1:** fit and validate a conjunctive item response theory (IRT) model that predicts held-out pass@1 and pass@k.
 - **Phase 2:** run four RL arms from the Qwen3-4B SFT checkpoint: strict reward, SCSC-style factored reward, IRT-guided reward and prompt sampling, and a placebo dense reward.
 
-Status (10-14-2026): **Version 2 STOPPED at LP-1, the generation resource and probability admission: one attempt, 0/8 responses, zero optimizer updates.** A launcher/device-index incompatibility caused startup failure; cleanup passed and the lease was released after 0.014593276 device-hours. No retry or Phase 2 run is admitted. [LP-1 report](expt_v2/RESULTS_LP1.md). G0 remains PASS under A3: primary 4B dense-only bounds 89–97/135 (threshold 21), predictive area under the curve 0.670652174–0.904643963 (threshold 0.65), exact across 221,184 configurations. [G0 report](expt_v2/RESULTS_G0.md). Original R2 FAIL remains unchanged; this technical stop does not test the reinforcement-learning hypothesis.
+Status (10-14-2026): **Version 2 CONTINUES under adopted A4 (`d79b0fd`, disclosed post-observation).** G0 remains PASS. LP-1 attempt 1 is INCOMPLETE-INFRA: 0/8 responses, no admission statistic. Attempt 2 is being frozen with corrected numeric device mapping and a real engine preflight; the scientific settings and 0.5-hour attempt/0.6-hour cumulative caps are unchanged. [A4](expt_v2/AMENDMENT_A4_technical_gate_infrastructure_attempts_10-14-2026.md) · [Preparation](expt_v2/phase1/LP1_A4.md) · [Preserved attempt-1 report](expt_v2/RESULTS_LP1.md).
 
 - **Created:** 10-09-2026 by Claude Code (`claude-opus-5-5`) for Brando.
 - **Owner:** fresh version 2 skampere1 owner `codex-rl4cv-e13v2-owner-g0`; the Mac master retains the parent experiment.
@@ -70,7 +70,9 @@ The phase plans provide [scorer controls](expt_v1/PHASE0_CONTROL_PLAN.md), [mode
 
 The reward fractions remain vulnerable to padding and dropping hard statements. Mutation and coverage audits are required before learning, and the pilot has a frozen gaming stop rule. The official scorer is unchanged.
 
-## Status and next admitted work
+## Historical state before A4
+
+The stop below was superseded by adopted A4; the current continuation is recorded above.
 
 Version 2 passed its authored fixtures and train-only diagnostic, then froze L1v2 before historical reproduction. [R2 fails under Amendment A2](expt_v2/RESULTS_R2.md) after complete accounting and all 48 authorized untyped-cell retries. The measured oracle inequality is a technical measurement failure, not evidence about the reinforcement-learning hypothesis. Adopted A3 subsequently admitted the exclusion-and-bounds route; G0 passed, admitting Phase 1 in its frozen order. Its single LP-1 attempt then failed at generation startup. The prerequisite remains unmet under the no-retry rule; later gates are unmeasured.
 

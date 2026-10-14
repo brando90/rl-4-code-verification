@@ -2,10 +2,20 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2_owner.md>
 
-**TLDR:** G0 remains PASS. LP-1, the generation resource and probability admission, is INCOMPLETE: one attempt produced 0/8 responses because the launcher supplied a graphics processor identifier where vLLM expected a numeric index. Cleanup passed, the lease was released after 0.014593276 device-hours, and automatic launch was retired. The no-retry rule stops downstream execution; no anchor or Phase 2 run occurred.
+**TLDR:** Experiment 13 version 2 continues under adopted Amendment A4 (`d79b0fd`, disclosed post-observation). G0 remains PASS; LP-1 attempt 1 is INCOMPLETE-INFRA with 0/8 responses and no admission statistic. Attempt 2 is being prepared with numeric device mapping, an engine preflight and unchanged scientific settings. No new probe has run.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-14-2026 15:38 PDT
+Last updated: 10-14-2026 16:22 PDT
+
+## Current A4 continuation — 10-14-2026 16:22 PDT
+
+Master continuation and adopted A4 admit attempt 2 after a verified infrastructure fix. The same writer remains active; the old owner is idle at its prompt with only client-service processes, no experiment children. Fresh watchdog `e13v2_a4_owner_10-14-2026` at `$WR/watchdog_a4` registers owner PID 1243923. Cron backup `$WR/state/crontab_before_a4_10-14-2026.txt`; all ten prior entries preserved plus two A4 entries. Six fake-mailer/watchdog tests pass within 30 focused tests.
+
+Numeric device mapping and preflight are implemented; configuration preservation and the successor lock are being frozen. Three owned deployments retain the original model/trainer/input hashes. Expected maximum new allocation 0.5 device-hours, cumulative allowance 0.6, already used 0.014593276; no new model call yet. The single-token non-probe preflight is included in that allocation. Next: publish the tested lock before arming the existing poller for attempt 2; finish G1 execution driver/lock before fitting. No email or permission step is needed for this authorized continuation.
+
+Publication verification (10-14-2026 16:28 PDT): required Lean integration suite exited 0, **545 passed, 23 skipped, zero failures in 239.73 seconds**. [Receipt](phase1/LP1_A4_publication_test.json). Successor lock binds 31 inputs, with four named replacements and 17 unchanged previous bindings; each of three runtime routes preserves 130 prior scientific/source bindings and verifies 133 total. Publish before arming.
+
+## Historical closeout before A4 (superseded)
 
 ## Goal and terminal state
 Complete Phase 1 then Phase 2 under PLAN and amendments, or publish a binding stop. The current execution stops at the unmet LP-1 prerequisite, with its original one-attempt failure retained. [LP-1 report](RESULTS_LP1.md) and [aggregate evidence receipt](LP1/result.json).
@@ -87,5 +97,5 @@ Failure report and retained preparation published as `50cf118726b101b916c88ffd30
 - Terminal closeout: gate result pushed as `6e9c7c2bc1c2435f1455ec7667b1933e8e16174b` and verified on remote `main`. The watchdog recorded exactly one `stopped` notification as `sent` to `brando.science@gmail.com` without carbon copy. Both owned cron entries were retired; all unrelated entries were preserved. No registered experiment child remains alive. Durable receipt: `$WR/state/completion.json`. No downstream run is admitted.
 - Binding stop: R0 failed. This condition is terminal, not an infrastructure retry or an account handoff. The parent retains the unresolved measurement dependency for its planned reinforcement-learning comparison.
 
-**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 stops at incomplete LP-1 startup under the no-retry rule; G0 remains PASS and later scientific gates are unmeasured.
-**Snapshot:** LP-1 attempts 1; responses 0/8; tokens 0; optimizer updates 0; retries 0; device-hours 0.014593276; cleanup PASS; lease RELEASED.
+**TLDR-end:** [rl4cv: Experiment 13 v2] A4 admits continued preparation for LP-1 attempt 2 with unchanged scientific settings; G0 remains PASS.
+**Snapshot:** Attempt 1 INCOMPLETE-INFRA; attempt 2 pending publication; used 0.014593276/0.6 device-hours; probe responses so far 0/8.

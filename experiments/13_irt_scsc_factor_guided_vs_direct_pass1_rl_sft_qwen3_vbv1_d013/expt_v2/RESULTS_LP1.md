@@ -1,8 +1,14 @@
-# Experiment 13 version 2: LP-1 incomplete at generation startup
+# Experiment 13 version 2: LP-1 attempt 1 and adopted A4 continuation
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/RESULTS_LP1.md>
 
-**TLDR:** `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013` stopped at LP-1, the generation-only resource and probability admission. One attempt produced 0/8 responses because the launcher supplied a graphics processor UUID where installed vLLM 0.10.0 expected a numeric device index. Probability agreement is unmeasured. Cleanup passed and the lease was released; no retry, anchors, actual-data fit or Phase 2 ran.
+**TLDR:** LP-1 attempt 1 produced 0/8 responses after a launcher device-identifier error. Adopted A4 classifies it INCOMPLETE-INFRA and admits attempt 2 after a verified fix and engine preflight with unchanged scientific settings. The original evidence and historical stopped notification remain intact; the experiment continues.
+
+## Adopted A4 continuation — 10-14-2026 16:23 PDT
+
+The master adopted [A4](AMENDMENT_A4_technical_gate_infrastructure_attempts_10-14-2026.md) at `d79b0fd`, explicitly after observing attempt 1. It classifies that attempt as **INCOMPLETE-INFRA** and admits attempt 2 after a published fix, regression and engine preflight with unchanged scientific settings. The original result receipt, failure evidence and stopped notification remain unchanged; the terminal interpretation below is historical and superseded by A4. [Attempt-2 preparation](phase1/LP1_A4.md).
+
+## Attempt 1 historical report (preserved evidence)
 
 ## Chronology and resources
 
@@ -49,5 +55,5 @@ A future authorized protocol amendment could prospectively freeze a corrected nu
 
 Publication verified on remote main at `50cf118`. The watchdog sent exactly one stopped notice at 15:38 PDT on 10-14-2026; no live experiment child or active lease remains. [Completion receipt](LP1/completion.json).
 
-**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 ends at incomplete LP-1 startup under the no-retry rule; G0 still passes, while Phase 1 scientific measurements and Phase 2 remain unmeasured.
-**Snapshot:** LP-1 attempts 1; responses 0/8; tokens 0; optimizer updates 0; retries 0; device-hours 0.014593276; cleanup PASS; lease RELEASED.
+**TLDR-end:** [rl4cv: Experiment 13 v2] A4 admits LP-1 attempt 2 after the published infrastructure failure; G0 remains PASS and later scientific gates are unmeasured.
+**Snapshot:** Attempt 1 INCOMPLETE-INFRA; responses 0/8; tokens 0; optimizer updates 0; 0.014593276 device-hours; attempt 2 pending publication.

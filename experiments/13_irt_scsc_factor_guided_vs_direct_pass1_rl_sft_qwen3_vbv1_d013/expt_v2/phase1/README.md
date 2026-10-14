@@ -1,8 +1,12 @@
-# Experiment 13 version 2 Phase 1: LP-1 startup stop and retained preparation
+# Experiment 13 version 2 Phase 1: A4 continuation and retained preparation
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/README.md>
 
-**TLDR:** G0 remains PASS. LP-1, the generation resource and probability admission, is INCOMPLETE: one attempt produced 0/8 responses because the launcher supplied a graphics processor identifier where vLLM expected a numeric index. Cleanup passed, the lease was released after 0.014593276 device-hours, and automatic launch was retired. The no-retry rule stops downstream execution; no anchor or Phase 2 run occurred.
+**TLDR:** Experiment 13 version 2 continues under adopted Amendment A4 (`d79b0fd`, disclosed post-observation). G0 remains PASS; LP-1 attempt 1 is INCOMPLETE-INFRA with 0/8 responses and no admission statistic. Attempt 2 is being prepared with numeric device mapping, an engine preflight and unchanged scientific settings. No new probe has run.
+
+## Current A4 continuation
+
+See [LP-1 attempt 2 preparation](LP1_A4.md) and the [adopted amendment](../AMENDMENT_A4_technical_gate_infrastructure_attempts_10-14-2026.md). The following stopped state is the preserved pre-amendment history, superseded by that adoption.
 
 ## Current state — 10-14-2026 15:36 PDT
 
@@ -58,5 +62,5 @@ Required publication suite: **502 passed, 23 skipped, zero failed in 230.51 seco
 
 Publication verification: `E13_REQUIRE_LEAN_INTEGRATION=1 make test` exited 0; **512 passed, 23 skipped, zero failed in 240.62 seconds**. Receipt: [LP1_publication_test.json](LP1_publication_test.json).
 
-**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 stops at incomplete LP-1 startup under the no-retry rule; G0 remains PASS and later scientific gates are unmeasured.
-**Snapshot:** LP-1 attempts 1; responses 0/8; tokens 0; optimizer updates 0; retries 0; device-hours 0.014593276; cleanup PASS; lease RELEASED.
+**TLDR-end:** [rl4cv: Experiment 13 v2] A4 admits continued preparation for LP-1 attempt 2 with unchanged scientific settings; G0 remains PASS.
+**Snapshot:** Attempt 1 INCOMPLETE-INFRA; attempt 2 pending publication; used 0.014593276/0.6 device-hours; probe responses so far 0/8.

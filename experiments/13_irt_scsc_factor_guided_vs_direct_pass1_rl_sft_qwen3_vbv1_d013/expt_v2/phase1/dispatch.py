@@ -15,6 +15,7 @@ import sys
 from device_watch import observe
 from lease import claim, release
 from panel import digest, write_new
+from a4_admission import admit_attempt, unchanged_science
 
 
 def published(plan):
@@ -38,7 +39,16 @@ def published(plan):
         raise RuntimeError('LP-1 requires published G0 PASS')
     if digest(plan['configuration']) != lock['configuration_sha256']:
         raise RuntimeError('dispatch configuration differs from frozen lock')
-    return json.loads(Path(plan['configuration']).read_text())
+    config = json.loads(Path(plan['configuration']).read_text())
+    if 'attempt_number' in lock:
+        bound = {b['path'] for b in lock['bindings']}
+        if not set(lock['previous_attempts']+[lock['previous_configuration']]) <= bound:
+            raise RuntimeError('A4 provenance is not bound')
+        admit_attempt(lock['attempt_number'], [json.loads(Path(p).read_text()) for p in lock['previous_attempts']])
+        unchanged_science(json.loads(Path(lock['previous_configuration']).read_text()),config)
+        if any(r['runtime']['attempt_number'] != lock['attempt_number'] for r in config['routes']):
+            raise RuntimeError('attempt number differs from published lock')
+    return config
 
 
 def command(host, argv, **kwargs):
@@ -61,7 +71,7 @@ def dispatch(plan_path):
     with (root/'dispatch.lock').open('a') as stream:
         try: fcntl.flock(stream, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError: return {'status': 'ALREADY_SUPERVISED'}
-        if (root/'attempt.json').exists(): return {'status': 'ATTEMPT_ALREADY_RECORDED_NO_RETRY'}
+        if (root/'launch.json').exists(): return {'status': 'ATTEMPT_ALREADY_RECORDED_NO_RETRY'}
         config = published(plan)
         subprocess.run([sys.executable, str(Path(__file__).resolve().parents[1]/'watchdog_e13v2.py'),
                         '--root', plan['watchdog_root'], '--run', plan['watchdog_run'],
@@ -96,10 +106,13 @@ def dispatch(plan_path):
                 try:
                     command(host, ['python3', '-c', installer, route['lease_path'], route['config_path']],
                             input=payload, text=True, capture_output=True, check=True, timeout=30)
-                    write_new(root/'attempt.json', {'lease_id': lease['id'], 'host': host, 'uuid': lease['uuid'],
-                                                  'published_revision': plan['published_revision'], 'retries': 0})
-                    argv = ['env', 'CUDA_VISIBLE_DEVICES='+lease['uuid'], 'E13_EXECUTION_ID='+lease['id'],
+                    write_new(root/'launch.json', {'lease_id': lease['id'], 'host': host, 'uuid': lease['uuid'],
+                                                  'published_revision': plan['published_revision'], 'retries': 0,
+                                                  'attempt_number':runtime.get('attempt_number',1)})
+                    argv = ['env', 'E13_EXECUTION_ID='+lease['id'],
                             *[k+'='+v for k,v in route['environment'].items()],
+                            runtime['python'], str(Path(route['lp1_script']).with_name('device_binding.py')),
+                            '--lease', route['lease_path'], '--purpose', 'LP1', '--',
                             runtime['python'], route['lp1_script'], '--config', route['config_path']]
                     with (root/'execution.log').open('x') as log:
                         result = command(host, argv, stdout=log, stderr=subprocess.STDOUT,
@@ -108,6 +121,9 @@ def dispatch(plan_path):
                                        str(Path(runtime['attempt_root'])/'result.json')]
                     retrieved = command(host, receipt_command, capture_output=True, text=True, check=True, timeout=30)
                     receipt = json.loads(retrieved.stdout)
+                    if receipt.get('attempt_counted'):
+                        write_new(root/'attempt.json', {'attempt_number':runtime.get('attempt_number',1),
+                                                       'lease_id':lease['id'], 'preflight':'PASS'})
                     receipt['supervisor_exit_code'] = result.returncode
                     if result.returncode != 0 and receipt['status'] == 'PASS':
                         receipt.update(status='INCOMPLETE', probability_status='PASS')

@@ -18,7 +18,7 @@ import lp1
 
 def test_runtime_requires_every_export_input_and_exact_version(tmp_path):
     model = tmp_path/'model'; model.mkdir(); (model/'weights.bin').write_bytes(b'not a real model')
-    files = [ROOT/name for name in ('runtime.py','panel.py','probability.py','lp1.py')]
+    files = [ROOT/name for name in ('runtime.py','panel.py','probability.py','lp1.py','device_binding.py')]
     config = {'model':str(model), 'runtime_versions':{'numpy':importlib.metadata.version('numpy')}}
     for name in ('manifest','train_ids','policy_config'):
         path=tmp_path/name; path.write_text('synthetic'); config[name]=str(path); files.append(path)
@@ -37,8 +37,10 @@ def test_runtime_requires_every_export_input_and_exact_version(tmp_path):
 def test_foreign_process_on_target_uuid_refuses_model_call(tmp_path, monkeypatch):
     lease = tmp_path/'lease.json'
     lease.write_text(json.dumps({'status':'ACTIVE','owner':'e13v2','host':socket.gethostname().split('.')[0],
-                                'expires_unix':time.time()+100,'uuid':'GPU-fixture','id':'synthetic-execution'}))
-    monkeypatch.setenv('CUDA_VISIBLE_DEVICES','GPU-fixture')
+                                'expires_unix':time.time()+100,'uuid':'GPU-fixture','index':0,'id':'synthetic-execution'}))
+    monkeypatch.setenv('CUDA_VISIBLE_DEVICES','0')
+    monkeypatch.setenv('E13_EXECUTION_ID','synthetic-execution')
+    monkeypatch.setattr(runtime,'check_visible_device',lambda _:None)
     monkeypatch.setattr(runtime.subprocess,'run',lambda *args,**kw: SimpleNamespace(stdout=f'GPU-fixture, {os.getpid()}\n'))
     with pytest.raises(RuntimeError,match='another execution'):
         runtime.check_lease({'lease_path':str(lease)})
@@ -59,8 +61,12 @@ def test_cleanup_failure_cannot_leave_a_passed_admission(tmp_path, monkeypatch):
     monkeypatch.setenv('E13_EXECUTION_ID','fixture')
     monkeypatch.setattr(lp1,'check_bindings',lambda _:None)
     monkeypatch.setattr(lp1,'check_lease',lambda _:None)
-    monkeypatch.setattr(lp1.subprocess,'run',lambda *args,**kwargs:SimpleNamespace(returncode=0))
-    clean=iter([True,True,False])
+    def stage(*args, **kwargs):
+        if args[0][-1] == 'preflight':
+            (tmp_path/'attempt/preflight.json').write_text('{"status":"PASS"}')
+        return SimpleNamespace(returncode=0)
+    monkeypatch.setattr(lp1.subprocess,'run',stage)
+    clean=iter([True,True,True,False])
     monkeypatch.setattr(lp1,'cleanup',lambda _: {'verified':next(clean),'signals':[]})
     result=lp1.run(path)
     assert result['status']=='INCOMPLETE' and result['probability_status']=='PASS'

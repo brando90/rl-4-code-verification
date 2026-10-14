@@ -10,6 +10,7 @@ import math
 import subprocess
 
 from panel import digest, generate_once, write_new
+from device_binding import check_visible_device
 
 
 def check_bindings(config):
@@ -18,7 +19,7 @@ def check_bindings(config):
     required = {Path(__file__).resolve(), Path(__file__).with_name('panel.py').resolve(),
                 Path(__file__).with_name('probability.py').resolve(), Path(__file__).with_name('lp1.py').resolve(),
                 Path(config['manifest']).resolve(), Path(config['train_ids']).resolve(),
-                Path(config['policy_config']).resolve()}
+                Path(config['policy_config']).resolve(), Path(__file__).with_name('device_binding.py').resolve()}
     model_files = [p for p in model.iterdir() if p.is_file()]
     if not any(p.suffix in ('.bin', '.safetensors') for p in model_files):
         raise ValueError('no frozen model weights')
@@ -35,16 +36,9 @@ def check_bindings(config):
 
 
 def check_lease(config):
-    # Lease supervisor owns expiry, host identity and process cleanup. Every model
-    # step checks its live registry record and the exact visible device UUID.
-    import socket
-    import time
+    # Re-query UUID/index mapping at every model stage; never pass UUIDs to vLLM.
     lease = json.loads(Path(config['lease_path']).read_text())
-    if (lease['status'] != 'ACTIVE' or lease['owner'] != 'e13v2'
-            or lease['host'] != socket.gethostname().split('.')[0]
-            or lease['expires_unix'] <= time.time()
-            or os.environ.get('CUDA_VISIBLE_DEVICES') != lease['uuid']):
-        raise RuntimeError('model call has no valid experiment-13 lease')
+    check_visible_device(lease)
     query = subprocess.run(['nvidia-smi', '--query-compute-apps=gpu_uuid,pid', '--format=csv,noheader,nounits'],
                            capture_output=True, text=True, check=True, timeout=15)
     marker = ('E13_EXECUTION_ID='+lease['id']).encode()
@@ -56,6 +50,40 @@ def check_lease(config):
                     raise RuntimeError('another execution now occupies the leased device')
             except FileNotFoundError:
                 pass  # Process ended between the census and identity read.
+
+
+def build_engine(config, manifest):
+    from vllm import LLM
+    return LLM(model=config['model'], tokenizer=config['model'], dtype='bfloat16',
+        tensor_parallel_size=1, max_model_len=manifest['max_model_len'],
+        gpu_memory_utilization=config['gpu_memory_utilization'], enforce_eager=True,
+        max_num_seqs=config['batch_size'], trust_remote_code=False, enable_prefix_caching=False,
+        generation_config='vllm', seed=1302100, logprobs_mode='raw_logprobs')
+
+
+def preflight(config):
+    """Exercise engine startup and one non-probe token before counting a gate attempt."""
+    from vllm import SamplingParams
+    import torch
+    lease = json.loads(Path(config['lease_path']).read_text())
+    check_lease(config)
+    actual_uuid = str(torch.cuda.get_device_properties(0).uuid)
+    if actual_uuid.removeprefix('GPU-') != lease['uuid'].removeprefix('GPU-'):
+        raise RuntimeError('CUDA physical device does not match leased UUID')
+    manifest = json.loads(Path(config['manifest']).read_text())
+    engine = build_engine(config, manifest)
+    # This authored health prompt contains no dataset/probe material. Neither its
+    # text nor its output enters any gate statistic, fitting or model selection.
+    prompt = 'Reply with one word: ready.'
+    outputs = engine.generate([prompt], SamplingParams(max_tokens=1, temperature=0.,
+                              seed=1302100, logprobs=None), use_tqdm=False)
+    if len(outputs) != 1 or len(outputs[0].outputs) != 1 or not outputs[0].outputs[0].token_ids:
+        raise RuntimeError('engine health request did not complete')
+    write_new(Path(config['attempt_root'])/'preflight.json',
+              {'status':'PASS', 'scope':'non-probe infrastructure only',
+               'device_uuid':actual_uuid, 'visible_index':os.environ['CUDA_VISIBLE_DEVICES'],
+               'prompt':prompt, 'generated_tokens':len(outputs[0].outputs[0].token_ids),
+               'admission_statistics_computed':False})
 
 
 def generation(config):
@@ -71,11 +99,7 @@ def generation(config):
     engines = []
     def generate_batch(cells):
         if not engines:
-            engines.append(LLM(model=config['model'], tokenizer=config['model'], dtype='bfloat16',
-                tensor_parallel_size=1, max_model_len=manifest['max_model_len'],
-                gpu_memory_utilization=config['gpu_memory_utilization'], enforce_eager=True,
-                max_num_seqs=config['batch_size'], trust_remote_code=False, enable_prefix_caching=False,
-                generation_config='vllm', seed=1302100, logprobs_mode='raw_logprobs'))
+            engines.append(build_engine(config, manifest))
         sampling = [SamplingParams(n=1, temperature=1., top_p=1., top_k=-1, min_p=0.,
             repetition_penalty=1., presence_penalty=0., frequency_penalty=0.,
             max_tokens=8192, min_tokens=0, ignore_eos=False, stop=None,
@@ -146,11 +170,13 @@ def trainer(config):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config', type=Path, required=True)
-    parser.add_argument('--stage', choices=('generate', 'trainer'), required=True)
+    parser.add_argument('--stage', choices=('preflight', 'generate', 'trainer'), required=True)
     args = parser.parse_args()
     config = json.loads(args.config.read_text())
     check_bindings(config); check_lease(config)
-    if args.stage == 'generate':
+    if args.stage == 'preflight':
+        preflight(config)
+    elif args.stage == 'generate':
         generation(config)
     else:
         trainer(config)

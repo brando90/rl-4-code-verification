@@ -54,21 +54,32 @@ def run(config_path):
     lease = json.loads(Path(config['lease_path']).read_text())
     if marker != lease['id']: raise ValueError('execution marker/lease mismatch')
     root = Path(config['attempt_root']); root.mkdir(parents=True, exist_ok=True)
-    write_new(root/'attempt.json', {'started_unix': time.time(), 'lease_id': marker,
+    launch = {'started_unix': time.time(), 'lease_id': marker,
                                   'declared_responses': 8, 'optimizer_updates': 0, 'retries': 0,
                                   'pid': os.getpid(), 'pgid': os.getpgid(os.getpid()),
                                   'start_ticks': Path('/proc/self/stat').read_text().rsplit(')',1)[1].split()[19],
-                                  'boot_id': Path('/proc/sys/kernel/random/boot_id').read_text().strip()})
+                                  'boot_id': Path('/proc/sys/kernel/random/boot_id').read_text().strip(),
+                                  'attempt_number':config.get('attempt_number',1)}
+    write_new(root/'launch.json', launch)
     deadline = time.monotonic()+config['maximum_seconds']
-    result = {'status': 'INCOMPLETE', 'optimizer_updates': 0, 'retries': 0}
+    result = {'status': 'INCOMPLETE', 'optimizer_updates': 0, 'retries': 0,
+              'attempt_number':config.get('attempt_number',1), 'attempt_counted':False,
+              'admission_statistics_computed':False}
     cleanup_receipts = []
     def interrupted(signum, frame):
         raise TimeoutError('supervisor interrupted by signal '+str(signum))
     prior_handlers = {sig: signal.signal(sig, interrupted) for sig in (signal.SIGTERM, signal.SIGHUP)}
     try:
-        for stage in ('generate', 'trainer'):
+        for stage in ('preflight', 'generate', 'trainer'):
+            if stage == 'generate':
+                preflight = json.loads((root/'preflight.json').read_text())
+                if preflight['status'] != 'PASS': raise RuntimeError('engine preflight did not pass')
+                write_new(root/'attempt.json', {**launch, 'started_unix':time.time(),
+                                               'preflight':'PASS'})
+                result['attempt_counted'] = True
             check_lease(config)
-            remaining = min(deadline-time.monotonic(), lease['expires_unix']-time.time())
+            # Cleanup and lease retirement consume the same frozen allocation.
+            remaining = min(deadline-time.monotonic(), lease['expires_unix']-time.time())-45
             if remaining <= 0: raise TimeoutError('bounded allocation exhausted')
             with (root/(stage+'.log')).open('x') as stream:
                 completed = subprocess.run([config['python'], str(Path(__file__).with_name('runtime.py')),
@@ -80,7 +91,11 @@ def run(config_path):
         generation_root = Path(config['generation_root'])
         rows = [json.loads((generation_root/f'{i:05d}.probability.json').read_text()) for i in range(8)]
         manifest = json.loads(Path(config['manifest']).read_text())
-        result = assess_probability(rows, eos_token_ids=manifest['terminal_token_ids'])
+        # Set before assessment so a crash during statistic computation can never
+        # be mistaken for an infrastructure attempt eligible for A4.
+        result['admission_statistics_computed'] = True
+        write_new(root/'statistics_started.json', {'attempt_number':config.get('attempt_number',1)})
+        result.update(assess_probability(rows, eos_token_ids=manifest['terminal_token_ids']))
         result.update(optimizer_updates=0, retries=0, lease_id=marker,
                       resource_seconds=config['maximum_seconds']-(deadline-time.monotonic()),
                       sampler={'temperature': 1., 'top_p': 1., 'top_k': -1, 'max_new_tokens': 8192},

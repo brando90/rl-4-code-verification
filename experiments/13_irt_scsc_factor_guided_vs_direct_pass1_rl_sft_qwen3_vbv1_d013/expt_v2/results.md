@@ -2,10 +2,18 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/results.md>
 
-**TLDR:** G0 remains PASS. LP-1, the generation resource and probability admission, is INCOMPLETE: one attempt produced 0/8 responses because the launcher supplied a graphics processor identifier where vLLM expected a numeric index. Cleanup passed, the lease was released after 0.014593276 device-hours, and automatic launch was retired. The no-retry rule stops downstream execution; no anchor or Phase 2 run occurred.
+**TLDR:** Experiment 13 version 2 continues under adopted Amendment A4 (`d79b0fd`, disclosed post-observation). G0 remains PASS; LP-1 attempt 1 is INCOMPLETE-INFRA with 0/8 responses and no admission statistic. Attempt 2 is being prepared with numeric device mapping, an engine preflight and unchanged scientific settings. No new probe has run.
 
-Last updated: 10-14-2026 15:38 PDT
-Status: **STOPPED: LP-1 INCOMPLETE; no retry or downstream execution.** [LP-1 failure and evidence](RESULTS_LP1.md) · [G0 PASS and exact bounds](RESULTS_G0.md).
+Last updated: 10-14-2026 16:22 PDT
+Status: **CONTINUING UNDER A4: LP-1 attempt 2 preparation.** [LP-1 failure and evidence](RESULTS_LP1.md) · [G0 PASS and exact bounds](RESULTS_G0.md).
+
+## Current A4 continuation — 10-14-2026 16:22 PDT
+
+The master adopted [A4](AMENDMENT_A4_technical_gate_infrastructure_attempts_10-14-2026.md) after observing attempt 1. Its original records and historical stopped notice remain intact. [Attempt-2 preparation](phase1/LP1_A4.md) fixes the reproducible launcher defect and adds a claimed-device engine preflight. The original no-retry stop below is superseded only as A4 specifies; scientific gates retain their no-retry rules. Next: publish successor lock/tests, arm attempt 2, then follow PLAN section 5 if admitted.
+
+Publication verification (10-14-2026 16:28 PDT): required Lean integration suite exited 0, **545 passed, 23 skipped, zero failures in 239.73 seconds**. [Receipt](phase1/LP1_A4_publication_test.json). Successor lock binds 31 inputs, with four named replacements and 17 unchanged previous bindings; each of three runtime routes preserves 130 prior scientific/source bindings and verifies 133 total. Publish before arming.
+
+## Historical result before A4
 
 | Stage | Status | Measured / declared |
 |---|---|---|
@@ -63,5 +71,5 @@ The anchor scorer now uses frozen extraction, independent official strict scorin
 
 PLAN section 5's LP-1 prerequisite is unmet and section 4's no-retry rule applies. G0 remains PASS, but no anchors, calibration, G1/H2 or Phase 2 were run. The final G1 driver and executable lock were not completed; the retained draft is non-executable. The latest required suite passed 528 tests with 23 skips, zero failures in 247.80 seconds; [verification receipt](phase1/scoring_inputs_publication_test.json). No scientific failure is inferred from the unmeasured probability statistics. Report and retained preparation published at `50cf118`, verified on remote main. At 15:38 PDT the watchdog recorded exactly one stopped notification as sent to `brando.science@gmail.com`; zero live experiment children and zero active leases. [Completion receipt](LP1/completion.json).
 
-**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 stops at incomplete LP-1 startup under the no-retry rule; G0 remains PASS and later scientific gates are unmeasured.
-**Snapshot:** LP-1 attempts 1; responses 0/8; tokens 0; optimizer updates 0; retries 0; device-hours 0.014593276; cleanup PASS; lease RELEASED.
+**TLDR-end:** [rl4cv: Experiment 13 v2] A4 admits continued preparation for LP-1 attempt 2 with unchanged scientific settings; G0 remains PASS.
+**Snapshot:** Attempt 1 INCOMPLETE-INFRA; attempt 2 pending publication; used 0.014593276/0.6 device-hours; probe responses so far 0/8.
