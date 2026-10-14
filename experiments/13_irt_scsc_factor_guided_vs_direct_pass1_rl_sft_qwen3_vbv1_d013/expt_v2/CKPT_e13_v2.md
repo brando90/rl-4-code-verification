@@ -5,7 +5,7 @@
 **TLDR:** The master's resumable record for experiment 13 version 2. The plan is at revision 2 after the single light review (FAIL, all 13 findings fixed). The SNAP owner is **RUNNING** on skampere1 in tmux `codex-rl4cv-e13v2-owner` (Codex `gpt-6-astra` high, full access), launched 10-13-2026 11:41 PDT.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-13-2026 16:45 PDT
+Last updated: 10-14-2026 13:00 PDT
 
 ## Task and owner
 
@@ -106,6 +106,22 @@ Last updated: 10-13-2026 16:45 PDT
 - **Status:** RUNNING UNDER A2.
 - **Ordinary route:** 19,996/33,456 (25,324/38,784 overall), 0 retries. About 146 cells per minute, so the expected finish is about 18:15 PDT.
 - **Next:** A2 reconciliation and the admission decision.
+
+## 10-14-2026 12:53–13:00 PDT: revived, then handed over
+
+- **Brando:** "revive this".
+- **R2 (published 10-13 21:23 PDT, `d5c97ec`):** FAIL under A2.
+  - Ordinary route: 4 of 33,243 measured cells unequal (value equality 36,477/36,481 readbacks; status 36,481/36,481); 45 unresolved against a ceiling of 33.
+  - Opaque route: equality PASS; 2 unresolved, within the ceiling of 5.
+  - G0 and later phases were not admitted.
+- **Crontab incident (10-13 21:20 PDT, owner):** verified clean. The current crontab equals the owner's pre-version-2 backup line for line. Experiment 13's own watchdog lines are retired.
+- **Connectivity:** skampere1 is reachable through the configured `whale.stanford.edu` ProxyJump, with no VPN.
+- **Concurrent coordinator:** at about 12:50 PDT, Brando's ultracode master (`experiments/CKPT_MASTER_oct14-cc-rl4cv-master-ultracode-progress.md`; agent `rl-4-code-verification-75`) launched workflow `rl4cv-ultracode-progress-10-14`. One of its six workers is "experiment 13 v2 R2 diagnosis", running through the owner `codex-rl4cv-e13v2-owner`.
+- **Handoff, to keep one coordinator per owner:**
+  - This master committed [A3 (PROPOSED)](AMENDMENT_A3_PROPOSED_R2_diagnosis_and_admission_10-14-2026.md) before any diagnosis was read.
+  - It messaged the ultracode master to adopt or reject A3.
+  - It paused its own hourly check-in (cron `c6d0f8df` deleted).
+  - It sends no brief to the owner while the ultracode workflow owns experiment 13.
 
 ## Exact next commands (master)
 
