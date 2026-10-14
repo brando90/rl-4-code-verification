@@ -6,6 +6,8 @@
 
 **Owner:** Rakshit Kaushik (@rakshit-kaushik), tracking issue [#7](https://github.com/brando90/rl-4-code-verification/issues/7). **Set up by:** Claude Code master session for Brando, 10-07-2026. **Status:** Version 1 DONE / frozen verdict PARTIAL (10-11-2026); see [results.md](results.md). **Version 2 RUNNING (10-13-2026):** one-time test evaluation of 1.7B, 4B and 14B at step 658, so all four sizes are compared after identical SFT (same data, 658 updates, 5,752,936 tokens); see [expt_v2/PROTOCOL_v2.md](expt_v2/PROTOCOL_v2.md) and [expt_v2/results.md](expt_v2/results.md).
 
+**Next training comparison (10-13-2026):** [expt_v3](expt_v3/README.md) prepares matched original-data replay versus cached-data expansion for Lethan (1.7B/8B) and Rakshit (4B/14B). Its existing-data audit and 685-row candidate manifest are complete; no new training has launched. See the [meeting plan](../meetings/oct_13_2026/PLAN.md).
+
 ## Origin
 
 - **Brando, 10-07-2026:** "maybe we can use VeriBench as a validation set … we can split VeriBench into train val test in a reasonable way, and then create a plan so that we use Valkyrie to create a bunch of synthetic data from Claude Opus 5.5 and Astra. Guess how many tokens we might need for SFT so that these Qwen models are all trained in a consistent way … start doing an SFT and then do the training … execute it and do a light QA with Codex … create a Git issue assigned to Rakshit."

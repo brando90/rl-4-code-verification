@@ -1,0 +1,25 @@
+{
+  "observed_at": "10-13-2026 17:50 PDT",
+  "host": "skampere1",
+  "base_revision": "1980a0ad2ee74569a0c357f77522fed0808f16f9",
+  "command": "env -u CODEX_HOME PYTHONPATH=<owned-checkout>/src PYTHONDONTWRITEBYTECODE=1 VERIBENCH_ROOT=<existing-pinned-veribench> PATH=<existing-environment>/bin:$PATH make test",
+  "exit_code": 0,
+  "passed": 323,
+  "skipped": 24,
+  "elapsed_seconds": 287.25,
+  "stdout": "python -m pytest -q\n.........sssssss...........................................ssssssssss..s [ 20%]\nss...................................................................... [ 41%]\n......................................s................................. [ 62%]\n........................................................................ [ 83%]\n........................................................                 [100%]\n323 passed, 24 skipped in 287.25s (0:04:47)\n",
+  "code_sha256": {
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/prepare_continuation.py": "a6c41c8a88d7ba071635d21c71574b606784b7265766ca34bb628083b35b8c11",
+    "tests/test_sft_continuation_audit.py": "9732ca2af1a2ad199a6f1e06596c364403fe80e71b34504621d56615c12d1265"
+  },
+  "local_platform_result": {
+    "passed": 311,
+    "skipped": 36,
+    "failed": 4,
+    "reason": "Existing Linux /proc watchdog tests cannot identify processes on macOS."
+  },
+  "focused_checks_passed": 5,
+  "audit_reproduction": "byte-identical",
+  "link_and_secret_checks": "passed",
+  "host_health": "LFS passes: 5421 GiB available. Shared DFS below percentage threshold; verification uses LFS and existing dependencies only, no DFS installation or experiment calls."
+}
