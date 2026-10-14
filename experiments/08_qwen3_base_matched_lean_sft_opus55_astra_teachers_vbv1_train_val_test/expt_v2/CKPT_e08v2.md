@@ -4,27 +4,31 @@
 
 **TLDR:** This is the resume record for version 2: a one-time test evaluation of 1.7B, 4B and 14B at step 658, so all four sizes are compared after identical SFT (same data, 658 updates, 5,752,936 tokens). The binding protocol is `PROTOCOL_v2.md` and the runbook is `cc.md`.
 
-**Created:** 10-13-2026 17:02 PDT (Claude master). **Last updated:** 10-13-2026 17:30 PDT
+**Created:** 10-13-2026 17:02 PDT (Claude master). **Last updated:** 10-13-2026 17:49 PDT
 
 ## Goal
-- Finish experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v2: 5,328 new test cells, all ratings, matched four-size report and one DONE email.
+- Complete the matched step-658 evaluation; this attempt closed PARTIAL at the runbook route-controls gate.
 ## What ran
-- One writer: tmux `codexv-rl4cv-e08v2-matched-test`, PID 2972470 (launcher 2972451), gpt-6-astra/high, full access/never, deployment deploy_e6c90b4a14374fbe81cb42a3fc065263.
-- Published admission `25bbe01`; all inputs and fresh judge bundle hashes match. Full make test: 338 passed / 4 skipped in 293.84 s; command uses env -u CODEX_HOME and node-local Lean.
-- GPU plan: 1.7B=4, 4B=1, 14B=2,3, ~70–75 GB/device, compute-bound, estimated 1–4 h/system; explicit CUDA_VISIBLE_DEVICES; shared leases released at merged generation. Devices 0/7 belong to others.
-- Resumable drivers named `rl4cv-e08v2-test-<label>`; runtime `$WORK/v2`. Cron every 15 min + reboot; child-aware recovery and idle nudge self-tests PASS.
-- Controls service: port 9860, claimed block 9860–9869; health/authentication verified, exact 25 control prompts; no judge calls yet.
+- Worker: tmux `codexv-rl4cv-e08v2-matched-test`, PID 2972470 (launcher 2972451), gpt-6-astra/high, full access/never; deployment deploy_e6c90b4a14374fbe81cb42a3fc065263.
+- Manifest/admission published before generation at 25bbe01; all hashes verified; frozen judge bundle 3/3 exact.
+- CUDA 12.4 startup failed without cells; identical environment-only resumes used CUDA 12.8. Real inference ran on GPUs 4 (1.7B), 1 (4B), 2/3 (14B).
+- Two control admissions rejected unserved, zero tracker runs. Supported current CLI authenticates to BrandoMiranda-fellow but managed AWS is unavailable (HTTP 403), Daytona mapping absent.
+- Runbook §§4/7 terminal partial closeout: stopped 14 owned processes, own service/tunnel, released leases/port claim, removed only two own cron lines. STATUS_e08v2=PARTIAL.
 ## Results
-- 0/5,328 new cells so far. All six reused-system summaries reproduce original values exactly; independent 108 factor/score checks PASS.
-- Master START email 17:09 and worker START 17:18 (duplicate discovered only after upstream merge); START marker prevents another. DONE not sent.
+- 0/5,328 new generations persisted before the first batch returned; all 5,328 cells remain unknown. Reused matched 8,880 cells and diagnostic 1,776 retain original factors.
+- All six reused summaries reproduce exact v1 scope fields; terminal independent 108 factor/score checks PASS; reused 8B paired metrics also exact.
+- Control ratings 0/50; fixed-audit ratings 0/1,080; additional eligibility unknown for 5,328 cells. No model request admitted, no charge receipts. Forecasts unresolved.
+- Terminal full make test: 338 passed / 4 skipped in 293.25 s; Python compilation and git diff --check PASS.
+- START duplication discovered after upstream merge (master 17:09, worker 17:18); no further START. DONE not sent yet.
 ## Stuck / blocked
-- Initial generators failed before outputs: inherited CUDA_HOME=12.4. Environment-only recovery pins 12.8/private caches; all failed logs and identities retained. Verify live utilization next.
+- Vals-side managed AWS/Daytona restoration needed for the existing organization; see `results/judge_route_blocker_v2.json`.
 ## Next steps
-- [p 10/10] Publish prepared controls/scripts, then `.venv/bin/python expt_v2/scripts/judge_rl4cv_e08v2.py admit --suite rl4cv-e08v2-controls` (from experiment directory; repo-relative path otherwise).
-- Supervise generation/scoring; after controls pass and 3/3 score files exist, build/freeze/publish test judge pack before admission, then run cc.md §§ 4–9.
-- Local named resume copy: `$WORK/v2/CKPT_codexv-rl4cv-e08v2-matched-test.md`. Fallbacks from master: personal Codex, Vals Claude, personal Claude; allowance unknown. Judge ~$225 + ~$3 controls, Vals only.
+- [p 10/10] Terminal report/analysis verified; publish explicit paths, send one required PARTIAL DONE email, then commit its receipt.
+- Resume only after route repair: reverify Vals payer/frozen bundle and supported CLI/service registration; archive positively unserved control entries before a bounded identical admission. Never replay a possibly served rating.
+- Preserve the exact published generation manifest/protocol and shard layouts. Existing drivers resume with GPUs 4 / 1 / 2,3 only after rechecking idle devices and leases; do not take another owner's GPU.
+- Canonical checkpoint here; local named copy `$WORK/v2/CKPT_codexv-rl4cv-e08v2-matched-test.md`; every failed attempt remains under `$WORK/v2`.
 ## Brando to-do
-- None.
+- Have Vals restore managed AWS access and the existing Daytona configuration for BrandoMiranda-fellow before resuming.
 
 ## Log
 
@@ -45,4 +49,11 @@
 - 10-13-2026 17:28 PDT -- initial generators failed before any output (nvcc 12.4 rejects --compress-mode); environment corrected to CUDA 12.8, fixed sampling unchanged. Resume 1.7B/4B now; let 14B initialization finish/fail before identical resume.
 
 - 10-13-2026 17:30 PDT -- controls deployed with exact prompts; full make test 338 passed / 4 skipped in 293.84 s; all three CUDA-environment resumes initiated, failed attempts retained. Publishing controls/scripts before the first judge call.
+
+- 10-13-2026 17:37 PDT -- all four assigned GPUs doing inference; controls admission failed because server lacks a Daytona mapping after service migration. Preserved both failed entries; diagnosing supported CLI with existing credentials, no new judge call.
+
+- 10-13-2026 17:45 PDT -- confirmed terminal Vals-side managed AWS blocker via supported CLI; zero admitted control runs. Followed runbook partial closeout, stopped only owned jobs/services, released resources, retained all unknowns and failed attempts; terminal analysis/tests/publication next.
+
 - 10-13-2026 17:38 PDT -- master (Claude, laptop) handing off: Brando is moving computers, so the laptop watch ends. Verified at 17:37: STATUS RUNNING; drivers for 1.7B (GPU 4), 4B (GPU 1) and 14B (GPUs 2,3) fresh and at 99–100% utilization; host watchdog cron (*/15 + @reboot, tag e08v2-matched-test) live. Recovery now rests on the worker and that watchdog; any new master resumes from this file.
+
+- 10-13-2026 17:49 PDT -- terminal analysis: all six reused summaries and 8B paired metrics exact; independent 108 checks PASS; full make test 338 passed / 4 skipped in 293.25 s. All new cells and 1,130 control/fixed-audit ratings listed missing; additional main eligibility unresolved. Publishing PARTIAL report next.

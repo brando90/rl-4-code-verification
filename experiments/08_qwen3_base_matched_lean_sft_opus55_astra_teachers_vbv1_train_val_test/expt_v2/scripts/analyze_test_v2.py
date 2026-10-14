@@ -117,7 +117,7 @@ def main():
     out=dict(written_utc=a.stamp(),manifest_sha256=a.sha(args.manifest.read_bytes()),n_declared_matched_cells=14208,n_new_declared_cells=5328,scopes={s:len(t) for s,t in scopes.items()},bootstrap=dict(n_resamples=10000,seed=0,unit='task; eight samples together; one training run, not training-seed variation'),systems=results,paired_differences=paired,adjacent_size_differences=adjacent,diagnostic_14B_step658_minus_step334=diagnostic,reused_regression=regression,p_val='n/a')
     write(EXP/'results/test_eval_v2.json',out)
     with (EXP/'results/test_factor_cells_v2.csv').open('w') as f:
-        writer=csv.DictWriter(f,fieldnames=list(rows[0])); writer.writeheader(); writer.writerows(rows)
+        writer=csv.DictWriter(f,fieldnames=list(rows[0]),lineterminator='\n'); writer.writeheader(); writer.writerows(rows)
     scores={}
     F=forecast['forecasts']
     for label,prediction in F['F1_validation_level_carries_to_test']['predicted_test_kernel_binary_mean'].items():
