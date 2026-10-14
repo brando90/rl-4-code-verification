@@ -1,0 +1,25 @@
+{
+  "checked_at": "2026-10-13T17:40:09-07:00",
+  "status": "BLOCKED",
+  "organization": "BrandoMiranda-fellow",
+  "tracker_environment": "bench",
+  "authenticated_using": "existing Valkyrie access key, loaded transiently from private config",
+  "new_cli_source": "https://github.com/vals-ai/Valkyrie",
+  "new_cli_commit": "825e8aa52428c09bd0015d17a2fcf5e5ff39adb6",
+  "cli_environment_fix": "unset inherited PYTHONPATH and PYTHONHOME for isolated current CLI",
+  "provider_listing": "No provider has a secret yet",
+  "secret_listing_error": "Managed AWS access is not available for this organization. Contact Vals support to enable managed AWS for this organization.",
+  "controls_run_reconciliation": {
+    "kind": "run_list",
+    "observed_at": "2026-10-14T00:39:06.026793Z",
+    "returned_count": 0,
+    "runs": [],
+    "schema_version": 1
+  },
+  "admissions_retried": false,
+  "model_requests_served": 0,
+  "positive_unserved_evidence": "Both admissions rejected with missing provider mapping. Current server checks this before sandbox and run creation (services/tracker/main.py lines 663\u2013669 versus row creation line 839); authenticated benchmark-filtered listing returns zero runs.",
+  "required_repair": "Vals must restore managed AWS access and the existing Daytona mapping for BrandoMiranda-fellow. Reverify payer, frozen bundle, service registration, and route controls before test judging.",
+  "new_provider_credentials": false,
+  "scientific_settings_changed": false
+}

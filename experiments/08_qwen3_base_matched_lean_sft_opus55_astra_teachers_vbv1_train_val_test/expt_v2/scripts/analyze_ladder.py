@@ -167,6 +167,13 @@ def main(argv: list[str] | None = None) -> int:
         if a.split == "test" and not system.get("in_test", True):
             continue
         results[system["label"]] = evaluate(system, ids, a.split, a.per_task_dir)
+        if not results[system["label"]]["gates"]["n_known"]:
+            # Preserve the reference arithmetic for measured data; no-data rates
+            # are unavailable, not the reference helper's zero-denominator fallback.
+            results[system["label"]]["diagnostics"] = {
+                key: (0 if key == "n_tasks_with_diversity" else None)
+                for key in results[system["label"]]["diagnostics"]
+            }
     out = {"written_utc": stamp(), "split": a.split, "n_tasks": len(ids), "samples_per_task": G, "manifest_sha256": sha(a.manifest.read_bytes()),
            "gates": {"extraction_min_share": GATE_EXTRACT, "capped_max_share": GATE_CAP, "mixed_min_share": GATE_MIXED, "p_val": "n/a (prespecified point-estimate gate)"},
            "systems": results}

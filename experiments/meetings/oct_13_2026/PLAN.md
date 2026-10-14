@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/meetings/oct_13_2026/PLAN.md>
 
-**TLDR:** Lethan owns Qwen3 Base 1.7B and 8B; Rakshit owns 4B and 14B. First diagnose the smaller models’ output failures, then compare additional exposure to the original data against a screened expansion at the same training-token budget across all four sizes. Reuse the existing training, active matched evaluation and cached teacher outputs; select future training choices on validation only.
+**TLDR:** Lethan owns Qwen3 Base 1.7B and 8B; Rakshit owns 4B and 14B. First diagnose the smaller models’ output failures, then compare additional exposure to the original data against a screened expansion at the same training-token budget across all four sizes. Reuse the existing training, recorded matched evaluation and cached teacher outputs; select future training choices on validation only.
 
 ## What the meeting decided
 
@@ -21,9 +21,9 @@ Canonical experiment: [08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1
 
 All four sizes already completed **658 updates / 5,752,936 loss tokens**, using the same **1,315 examples from 476 of 539 train tasks**. The smaller models were evaluated on validation; they failed output extraction and length gates. They do not need their original training repeated simply to fill a missing record.
 
-The earlier test comparison used 8B at step 658 but 14B at step 334. It cannot establish that the larger model is worse after matched training. Version 2 already evaluates 1.7B, 4B and 14B at step 658 and reuses the existing 8B result. At 10-13-2026 17:33 PDT, the existing owner `codexv-rl4cv-e08v2-matched-test` and its generators were verified live on `skampere1` after a compiler-environment repair. The latest published count was 0/5,328 new cells; live execution is not a completed result. Follow [the owner’s results](../../08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v2/results.md) for subsequent counts.
+The earlier test comparison used 8B at step 658 but 14B at step 334. It cannot establish that the larger model is worse after matched training. Version 2 attempted to evaluate 1.7B, 4B and 14B at step 658 and reuse the existing 8B result. At 10-13-2026 17:33 PDT, the existing owner `codexv-rl4cv-e08v2-matched-test` and its generators were verified live on `skampere1` after a compiler-environment repair. **Superseding status, 17:49 PDT:** the owner closed this attempt PARTIAL under its route-controls gate. The Vals organization lacks managed execution access and its existing provider mapping; 0/5,328 new generations persisted before closeout, and all new test scores remain unknown. Owned jobs were stopped and resources released. Resume requires restoration of the existing Vals route and revalidation of payer, judge bundle and controls. Follow [the owner’s results](../../08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v2/results.md) for subsequent counts.
 
-The active evaluation has one writer. Our new material is in `expt_v3`; its preparation and later training outputs must not overwrite version 1 or 2.
+The closed evaluation retains its recorded owner and recovery contract. Our new material is in `expt_v3`; its preparation and later training outputs must not overwrite version 1 or 2.
 
 ## Define the target before trying to reach it
 
@@ -43,10 +43,10 @@ Priorities are proposed next-work importance, not effort estimates or agreed dea
 
 | Priority | Owner | Work | Completion evidence |
 |---|---|---|---|
-| [p 10/10] | Existing matched-evaluation owner; Lethan/Rakshit read their sizes | Finish `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v2`; avoids duplicate training and test calls | Full 5,328 new-cell accounting, exact checkpoint hashes, all factors and separate core/IndustrySet rows |
+| [p 10/10] | Existing matched-evaluation owner after Vals route restoration; Lethan/Rakshit read their sizes | Resume and finish `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v2`; avoids duplicate training and test calls | Full 5,328 new-cell accounting, exact checkpoint hashes, all factors and separate core/IndustrySet rows |
 | [p 9/10] | Lethan: 1.7B; Rakshit: 4B | Diagnose smaller-model failures using validation outputs; these are the immediate common-checkpoint blocker | Counts for missing extraction, length cap, compile error, unproved theorem and vacuity, plus representative validation examples; distinguish overlapping flags |
 | [p 9/10] | Rakshit prepares cached responses; Lethan prepares the earlier Python-to-Lean pool | Build one expansion candidate pool; reuse paid-for outputs before generating more | Admitted/rejected manifest, rejection reasons, hashes, exact loss tokens, per-source/family/task coverage |
-| [p 8/10] | Both, assigned sizes | Run the same two-condition continuation after its protocol is frozen; separates more exposure from the expanded-pool intervention | Identical within-condition loss budgets across sizes, validation results for every declared checkpoint, one common selection decision |
+| [p 8/10] | Both, assigned sizes | Prepare and then run the same two-condition continuation after its protocol is frozen; separates more exposure from the expanded-pool intervention | Identical within-condition loss budgets across sizes, validation results for every declared checkpoint, one common selection decision |
 | [p 8/10] | Both | Prepare one concise results page each before the next meeting; makes the meeting about findings | Baseline → change → measured result with uncertainty → next decision, plus one failed example and one successful example |
 
 ### Lethan can start here
@@ -61,7 +61,7 @@ Priorities are proposed next-work importance, not effort estimates or agreed dea
 1. Read the audit for 4B/14B. For 4B, the separate deficits are **26 extractions** and **26 fewer capped outputs**. Reconcile failure modes with Lethan using the same categories.
 2. Use [cached_train_candidates.csv](../../08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/results/cached_train_candidates.csv): **685 responses** excluded only by the historical per-teacher cap. The audit checked their train membership and recorded success/screen receipts. Fetch by the listed paths and verify hashes, then redo normalized deduplication jointly with the selected data and MBPP conversion.
 3. Publish the shared accepted corpus, order and token schedule. Those 685 candidates span 360 **already-covered** train tasks; 389 are security examples. They add solution variants rather than new source-task coverage, so report family balance and unique task coverage separately from tokens.
-4. Train/evaluate 4B and 14B under that same manifest. The earlier 14B test used half as many loss tokens as 8B; use the running matched evaluation for the size comparison.
+4. Train/evaluate 4B and 14B under that same manifest. The earlier 14B test used half as many loss tokens as 8B; use the matched evaluation once its route blocker is resolved for the size comparison.
 
 ## The next comparison
 
@@ -72,7 +72,7 @@ Continue in [08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val
 - **Proposed bound:** one additional original-budget equivalent, **5,752,936 loss tokens per size and condition**; measure at half and all of that additional budget. All four sizes run both conditions; eight training continuations and 17,280 validation generations (2 conditions ×4 sizes ×2 checkpoints ×135 tasks ×8 attempts). This is a proposed study, not a launched run.
 - **Keep it interpretable:** pin seed, template, masks, full-parameter optimization, sampling and verifier. Reset the additional-phase learning-rate schedule explicitly—the original cosine schedule ended at zero. Freeze how token budgets, last-batch masking, optimizer state, checkpoints and learning-rate progress work before training. Match those rules across conditions; log updates, processed tokens and wall time as well as loss tokens. Equal tokens need not mean equal updates or compute.
 - **Prospective decision:** first seek a common checkpoint satisfying the existing format/signal gates. If both conditions qualify, prefer the expanded pool only if the minimum success rate across sizes improves and no size has a paired validation difference whose 95% interval lies wholly below zero; otherwise prefer replay or call the choice inconclusive. If neither qualifies, use the failure taxonomy to design a new version rather than silently adding epochs. Freeze this agent-proposed decision rule before measurement.
-- **SCSC milestone:** evaluate the frozen candidate checkpoints on the declared validation set using the validated coverage judge and the official factor aggregation; report whether ≥0.25 is attained. Preserve judge/model pins and record judge calibration limits on these student outputs. Only then freeze the checkpoint/forecast for its single test evaluation. This is distinct from the already-running version-2 test report.
+- **SCSC milestone:** evaluate the frozen candidate checkpoints on the declared validation set using the validated coverage judge and the official factor aggregation; report whether ≥0.25 is attained. Preserve judge/model pins and record judge calibration limits on these student outputs. Only then freeze the checkpoint/forecast for its single test evaluation. This is distinct from the version-2 test report, which is currently partial because its judge route failed admission. New judged evaluation also requires that route to work.
 
 This initial comparison tests the expanded pool as one intervention; it does not isolate the effects of capped-response reuse versus MBPP, or diversity versus teacher/style changes. If it helps, a later ablation can separate those. More teacher generation, larger models and mathematics-only OpenR1 data are lower-priority alternatives after this inexpensive reuse path; they are not required dependencies.
 
@@ -82,7 +82,7 @@ For new training, VeriBench V1 has **train 539 / validation 135 / test 222**. Tr
 
 Exclude external HumanEval-derived data. Existing `humaneval_set` tasks assigned to VeriBench V1 train by the frozen split are a different case and remain governed by that split. VeriBench-Infinity is not automatically a training pool: identify source tasks and all variants, assign protected groups, and prove disjointness before admitting any material. Use only existing approved sources in the first comparison.
 
-Training and model evaluation execute on the Stanford Network Analysis Project (SNAP) cluster under named persistent owners with full access, frozen manifests, progress records and a verified watchdog. Respect the current allocation and the active version-2 writer. Teacher generation and coverage judging by Brando’s accounts use the project’s Vals-funded Valkyrie route; the transcript’s generic suggestion to use lab keys does not override current funding rules. Raw data and weights remain on the execution host; publish manifests and summaries in this private repository.
+Training and model evaluation execute on the Stanford Network Analysis Project (SNAP) cluster under named persistent owners with full access, frozen manifests, progress records and a verified watchdog. Recheck the current allocation; preserve the closed version-2 evidence and its recovery contract. Teacher generation and coverage judging by Brando’s accounts use the project’s Vals-funded Valkyrie route; the transcript’s generic suggestion to use lab keys does not override current funding rules. Raw data and weights remain on the execution host; publish manifests and summaries in this private repository.
 
 ### Dataset retrieval and verification
 
@@ -99,12 +99,12 @@ The matching original SFT dataset is `/lfs/skampere1/0/brando9/rl4cv_e08/sft/s_v
 
 ## Already completed for the team
 
-- Reconciled the transcript with the actual training, validation and live evaluation records.
+- Reconciled the transcript with the actual training, validation and evaluation records, including the concurrent partial closeout.
 - Recomputed the four complete validation success distributions and task-bootstrap intervals without model calls.
 - Produced the 685-row cached-candidate manifest with train-membership, kernel/screen checks and source hashes, and verified all 685 response files on the cluster.
 - Identified the existing 587-pair dataset, verified its full file hash and all 587 Lean hashes on the cluster, and documented the conversion requirement and superseded access blocker.
 - Prepared the next controlled comparison and divided implementation and model ownership.
 
-No new training, teacher generation or coverage judging was launched by this follow-through. The outstanding work is corpus admission, failure diagnosis and the frozen comparison, not a request for another permission decision from Brando.
+No new training, teacher generation or coverage judging was launched by this follow-through. The outstanding work is corpus admission, failure diagnosis and the frozen comparison. The separate matched evaluation needs Vals to restore the recorded managed route; this is an infrastructure dependency, not a new permission gate for corpus preparation.
 
-**TLDR-end:** [rl4cv: matched warm starts for Lethan and Rakshit] Lethan owns 1.7B/8B and Rakshit 4B/14B, with one shared recipe. Use the current matched evaluation, diagnose formatting, then test additional exposure against a screened expansion before buying more teacher data.
+**TLDR-end:** [rl4cv: matched warm starts for Lethan and Rakshit] Lethan owns 1.7B/8B and Rakshit 4B/14B, with one shared recipe. Recover the matched evaluation after its route repair, diagnose formatting, then test additional exposure against a screened expansion before buying more teacher data.

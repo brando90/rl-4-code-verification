@@ -9,10 +9,20 @@ CONFIGS=('H2_sol_high','H2_opus55_max')
 pack=json.loads((ROOT/'judge_pack_test.json').read_text())
 want={(c['system'],c['task_id_vb'],int(c['sample_idx']),int(c['repeat']),config) for c in pack['cells'] for config in CONFIGS}
 got={}; charges=[]; unknown=[]; systems={}
+state=json.loads((ROOT/'state.json').read_text()) if (ROOT/'state.json').exists() else {'runs':{}}
 for label in pack['per_system']:
     info=dict(n_declared_ratings=0,n_measured_ratings=0,reported_charge=0.,missing_charge_receipts=0,repeat_sd={})
     for config in CONFIGS:
         path=ROOT/f'harvests/cells_{label}__{config}.json'
+        if not path.exists():
+            entry=state['runs'].get(f'{label}/{config}',{})
+            missing=sorted(k for k in want if k[0]==label and k[4]==config)
+            info['n_declared_ratings']+=len(missing)
+            info['missing_charge_receipts']+=len(missing)
+            for key in missing:
+                unknown.append(dict(system=key[0],task_id=key[1],sample_idx=key[2],rating_idx=key[3],member=key[4],status='unharvested' if entry.get('run_id') else 'not_admitted',receipt_available=False))
+            info['repeat_sd'][config]=dict(mean_within_file_sd=None,n_files_with_three_ratings=0,ratings_per_file=3,scale='0–1 normalized raw member ratings')
+            continue
         data=json.loads(path.read_text())
         assert not data['receipt_inventory']['extra'], (label,config,'extra receipts')
         assert not data['receipt_inventory']['duplicates'], (label,config,'duplicate receipts')
@@ -32,7 +42,8 @@ for label in pack['per_system']:
         sd=[statistics.stdev(values) for values in repeats.values() if len(values)==3]
         info['repeat_sd'][config]=dict(mean_within_file_sd=statistics.fmean(sd) if sd else None,n_files_with_three_ratings=len(sd),ratings_per_file=3,scale='0–1 normalized raw member ratings')
     systems[label]=info
-assert set(got)==want, ('missing rating identities',len(want-set(got)))
-receipt=dict(verdict='PASS',n_declared_ratings=len(want),n_receipts=len(got),n_measured_ratings=sum(c['status']=='measured' for c in got.values()),n_unknown_ratings=len(unknown),unknown_ratings=unknown,reported_charge_usd=sum(charges),systems=systems,audit_files_not_replaced=pack['cells_not_judged'])
+unknown_keys={(c['system'],c['task_id'],c['sample_idx'],c['rating_idx'],c['member']) for c in unknown}
+assert set(got)|unknown_keys==want, ('unaccounted rating identities',len(want-(set(got)|unknown_keys)))
+receipt=dict(verdict='PASS',meaning='Every declared identity is reconciled to a receipt or an explicit missing rating; this does not assert ratings are complete.',n_declared_ratings=len(want),n_receipts=len(got),n_measured_ratings=sum(c['status']=='measured' for c in got.values()),n_unknown_ratings=len(unknown),unknown_ratings=unknown,reported_charge_usd=sum(charges) if charges else None,systems=systems,audit_files_not_replaced=pack['cells_not_judged'])
 (ROOT.parent/'judge_reconciliation_v2.json').write_text(json.dumps(receipt,indent=2)+'\n')
 print(json.dumps({k:v for k,v in receipt.items() if k not in ['systems','unknown_ratings']}))
