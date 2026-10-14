@@ -50,6 +50,7 @@ def main():
         cells = cells[:args.limit]
     groups = defaultdict(list)
     skipped = Counter()
+    eligible = []
     for c in cells:
         if c['join_status'] in ('file_missing', 'join_ambiguous'):
             skipped['join_' + c['join_status']] += 1
@@ -61,6 +62,7 @@ def main():
             skipped['no_tests'] += 1
             continue
         groups[(c['task_id'], c['sha256'])].append(c)
+        eligible.append(c)
     group_results = {}
     source_hash_mismatch = []
     for (task_id, sha), members in groups.items():
@@ -81,6 +83,7 @@ def main():
                           'needs_probe' if statuses.get('needs_probe') else
                           'mapped_partial' if statuses.get('mapped') else 'not_applicable'),
             'v2_helpers_excluded': sum(bool(d['helpers_excluded']) for d in diag),
+            'v2_reasons': [d['reason'] for d in diag if d['status'] != 'mapped'],
             'v2_result_type_mismatch': sum(d['result_type_compatible'] is False for d in diag),
             'v2_argument_type_mismatch': sum(d['argument_types_compatible'] is False for d in diag),
             'n_tests': suite['n_tests'], 'n_mapped_tests': n_mapped_tests,
@@ -90,10 +93,12 @@ def main():
     hist_all = Counter()
     step_counter_v2 = Counter()
     step_counter_v1 = Counter()
-    for c in cells:
-        g = group_results.get((c['task_id'], c['sha256']))
+    reason_counter = Counter()
+    for c in eligible:
+        g = group_results.get((c['task_id'], c.get('sha256')))
         if g is None:
             continue
+        reason_counter.update(str(r) for r in g['v2_reasons'])
         s = per_system.setdefault(c['system'], Counter())
         s['compiling_with_tests'] += 1
         v1 = g['v1']
@@ -161,6 +166,7 @@ def main():
         'totals': dict(totals), 'per_system': {k: dict(v) for k, v in sorted(per_system.items())},
         'tests_mapped_histogram': dict(hist_all),
         'v2_static_steps': dict(step_counter_v2), 'v1_recorded_steps': dict(step_counter_v1),
+        'v2_unmapped_symbol_reasons': dict(reason_counter),
         'gold_lexer_impact': gold_impact,
     }
     out = Path(args.out)
