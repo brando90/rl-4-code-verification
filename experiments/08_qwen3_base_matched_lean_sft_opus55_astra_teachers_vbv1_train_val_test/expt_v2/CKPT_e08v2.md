@@ -45,3 +45,4 @@
 - 10-13-2026 17:28 PDT -- initial generators failed before any output (nvcc 12.4 rejects --compress-mode); environment corrected to CUDA 12.8, fixed sampling unchanged. Resume 1.7B/4B now; let 14B initialization finish/fail before identical resume.
 
 - 10-13-2026 17:30 PDT -- controls deployed with exact prompts; full make test 338 passed / 4 skipped in 293.84 s; all three CUDA-environment resumes initiated, failed attempts retained. Publishing controls/scripts before the first judge call.
+- 10-13-2026 17:38 PDT -- master (Claude, laptop) handing off: Brando is moving computers, so the laptop watch ends. Verified at 17:37: STATUS RUNNING; drivers for 1.7B (GPU 4), 4B (GPU 1) and 14B (GPUs 2,3) fresh and at 99–100% utilization; host watchdog cron (*/15 + @reboot, tag e08v2-matched-test) live. Recovery now rests on the worker and that watchdog; any new master resumes from this file.
