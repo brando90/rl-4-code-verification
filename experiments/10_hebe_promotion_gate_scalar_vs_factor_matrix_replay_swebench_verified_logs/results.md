@@ -2,11 +2,11 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/10_hebe_promotion_gate_scalar_vs_factor_matrix_replay_swebench_verified_logs/results.md>
 
-**TLDR:** No real-data statistic has been computed yet. Protocol revision 3 fixes all findings from two GPT-6 Astra (effort ultra) reviews. The analysis code passes 15 unit tests, including every reviewer counterexample, plus synthetic signal, null, coverage and full-pipeline checks. Claude Fable 5.1 was unavailable on all three Claude accounts.
+**TLDR:** Phase A's primary replay is running on the real data (launched 10-14-2026 13:02 PDT on skampere1, zero model calls) under the LOCKED protocol revision 3 (commit `55d1c53`); no real-data statistic has been read yet. The matched-test-lists sensitivity is BLOCKED by the protocol's own shape stop rule (164 × 421 instead of the declared 164 × 420, because one declared drift task is outside the cohort) and needs an amendment or `expt_v2`. Protocol revision 3 fixes all findings from two GPT-6 Astra (effort ultra) reviews. The analysis code passes 15 unit tests, including every reviewer counterexample, plus synthetic signal, null, coverage and full-pipeline checks. Claude Fable 5.1 was unavailable on all three Claude accounts.
 
-**Status:** LOCK CANDIDATE (10-09-2026).
+**Status:** LOCKED; PHASE A RUNNING (10-14-2026).
 
-**Last updated:** 10-09-2026.
+**Last updated:** 10-14-2026.
 
 | Stage | State | Evidence |
 |---|---|---|
@@ -14,11 +14,12 @@
 | GPT-6 Astra (effort ultra) design review of revision 1 | DONE (15 findings, applied in revision 2) | [reviews/design_review_gpt6_astra_ultra_10-09-2026.md](reviews/design_review_gpt6_astra_ultra_10-09-2026.md) |
 | GPT-6 Astra (effort ultra) protocol-and-code review of revision 2 | DONE: 3 blocking, 5 major, 1 minor; all fixed in revision 3, with counterexamples as regression tests | [reviews/review_gpt6_astra_ultra_protocol_r2_and_code_10-09-2026.md](reviews/review_gpt6_astra_ultra_protocol_r2_and_code_10-09-2026.md) |
 | Claude Fable 5.1 review | NOT AVAILABLE: personal account out of usage credits (attempt 1 died 10:18 PDT, no file); Stanford account "Usage credits are required for this model"; Vals account "individual spend limit" (preflight probes, 10-09-2026). No credits bought | — |
-| Protocol revision 3 | DONE (lock candidate) | [PROTOCOL.md](PROTOCOL.md) |
+| Protocol revision 3 | DONE (locked) | [PROTOCOL.md](PROTOCOL.md) |
 | Analysis code and unit tests | DONE (15/15 pass) | `expt_v1/analyze_e10.py`, `tests/test_e10_replay.py` |
 | Synthetic checks | DONE | `expt_v1/results/synthetic/` |
-| Lock and frozen forecast | NOT STARTED | — |
-| Phase A replay on real data | NOT STARTED | — |
+| Lock and frozen forecast | DONE: commit `55d1c53` (10-09-2026 16:43 PDT); forecast `expt_v1/forecasts/e10_forecast.json`, SHA-256 `e4eccd8b84fa427fa9d5839980df6c08293f6a628f93cfc0c01f78cf2f163c23` (`verify_forecast` True on 10-14-2026); pins `analyze_e10.py` `a1278349…`, `tests/test_e10_replay.py` `dc1ba2e1…`, `per_cell_e07.jsonl.gz` `f064c395…`, drift list `e1d34185…` all re-verified | `expt_v1/forecasts/forecast_ledger.jsonl` |
+| Phase A primary replay (`--sensitivity none`) | DONE (run): launched 10-14-2026 13:02 PDT on skampere1 (clone at `57c3bb6`, venv numpy 2.5.4, 15/15 tests pass there) in tmux `rl4cv-e10-phase-a-10-14`; 1,000 splits × 1,000 draws, 32 workers, one BLAS thread each; exit 0 at 13:04:56 PDT; output `e10_primary.json` SHA-256 `0005a03e455ae22a92edfee1d2632a4a3d1246ddfc8159d7c738b47f60ed20b1`. Scoring of the frozen predictions follows below | [`expt_v1/results/run_e10_primary.log`](expt_v1/results/run_e10_primary.log) |
+| Phase A sensitivity (`--sensitivity matched_test_lists`) | BLOCKED under the lock: launched 13:02 PDT in tmux `rl4cv-e10-phase-a-sens-10-14`, exited after 1.4 s with the pinned stop rule `STOP: expected (164, 420), got (164, 421)`. Cause: of the 4 declared drift tasks, `django__django-10097` is not in the 424-task common cohort (0 `common_cohort` cells; the other 3 have 164 each), so the drop leaves 421 tasks. Needs a dated amendment or `expt_v2`, not a run under the old lock | [`expt_v1/results/run_e10_sensitivity_matched_test_lists.log`](expt_v1/results/run_e10_sensitivity_matched_test_lists.log) |
 | Phase B (real AlphaHebe records) | WAITING on the AlphaHebe team's export | — |
 
 ## Synthetic checks before the lock (no real data)
@@ -45,4 +46,5 @@ Data comes from `expt_v1/synthetic_e10.py`: 164 systems × 424 tasks, 20 splits 
 
 ## Deviations and open questions
 
+- **10-14-2026, matched-test-lists sensitivity blocked by its own stop rule.** PROTOCOL.md declares that dropping the 4 drift tasks gives 164 × 420 and that any other shape stops the analysis. On the real cohort the drop gives 164 × 421 because `django__django-10097` (1 drift cell) lies outside the 424-task common cohort; within the cohort the drift is 65 cells in 3 tasks. The pinned code stopped before computing any statistic (exit 1, 1.4 s). Re-admitting the sensitivity requires changing `EXPECTED_SHAPE` in `analyze_e10.py` or the protocol's declared drop, which is a dated amendment or a new `expt_v2` with its own lock; it was not done in this round. The primary analysis never reads the drift list and is unaffected. The check that found the cause read only cohort membership flags, no outcome.
 - **10-09-2026, review worktree removal:** removing the GPT-6 reviewer's worktree with `--force` discarded its checkpoint file (`CKPT_codex-rl4cv-e10-e11-design-review.md`) and an edit it had made to that worktree's copy of this ledger. The review file itself had been copied first and is unchanged.

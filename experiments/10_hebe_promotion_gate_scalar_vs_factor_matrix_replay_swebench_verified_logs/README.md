@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/10_hebe_promotion_gate_scalar_vs_factor_matrix_replay_swebench_verified_logs/README.md>
 
-**TLDR:** AlphaHebe promotes a candidate harness edit whenever its single held-out score beats the incumbent's (`candidate.score > incumbent.score`). The AlphaApollo team reported that such edits fix some tasks and silently break others. This experiment asks, with **zero model calls**, whether a per-item factor matrix (patch gate, FAIL_TO_PASS fraction, PASS_TO_PASS fraction per task) predicts those regressions better than per-item pass/fail alone, and whether a promotion gate built on it makes fewer harmful promotions. The data is 164 real SWE-bench Verified systems from [experiment 07](../07_scs4c_vs_pass1_swebench_across_models/README.md), treated as incumbent → candidate pairs on random search / held-out task splits. Status: protocol revision 3 ready to lock; not yet run on real data.
+**TLDR:** AlphaHebe promotes a candidate harness edit whenever its single held-out score beats the incumbent's (`candidate.score > incumbent.score`). The AlphaApollo team reported that such edits fix some tasks and silently break others. This experiment asks, with **zero model calls**, whether a per-item factor matrix (patch gate, FAIL_TO_PASS fraction, PASS_TO_PASS fraction per task) predicts those regressions better than per-item pass/fail alone, and whether a promotion gate built on it makes fewer harmful promotions. The data is 164 real SWE-bench Verified systems from [experiment 07](../07_scs4c_vs_pass1_swebench_across_models/README.md), treated as incumbent → candidate pairs on random search / held-out task splits. Status: protocol revision 3 LOCKED (commit `55d1c53`, 10-09-2026); the phase A replay on the real data was launched on 10-14-2026 (see Status).
 
 Created: 10-09-2026 by Claude Code (`claude-opus-5-5`) for Brando. Owner: Brando; AlphaHebe-side records (phase B) come from the AlphaHebe team. Companion live study: [experiment 11](../11_hebe_gepa_factor_feedback_and_nonregression_gate_2x2_swebench_verified/README.md).
 
@@ -64,9 +64,9 @@ Prior evidence that shapes the predictions:
 
 | Path | Content |
 |---|---|
-| [PROTOCOL.md](PROTOCOL.md) | Draft; locked, with a frozen forecast (`rl4cv.forecast.freeze_forecast`), before any pair statistic is computed |
+| [PROTOCOL.md](PROTOCOL.md) | LOCKED, revision 3 (commit `55d1c53`), with the forecast frozen by `rl4cv.forecast.freeze_forecast` (`expt_v1/forecasts/e10_forecast.json`, SHA-256 `e4eccd8b…3c23`) before any pair statistic was computed |
 | [results.md](results.md) | Live results ledger |
-| `expt_v1/cc.md` | Agent runbook: build the replay, lock, freeze, run, publish |
+| [`expt_v1/cc.md`](expt_v1/cc.md) | Agent runbook: verify the lock, run the primary and sensitivity replays, score the frozen predictions, publish |
 | `expt_v1/results/` | Outputs (per-gate tables, pair-level records, bootstrap draws) |
 | `reviews/` | Design reviews (GPT-6 Astra ultra, Claude Fable 5.1) and how each point was resolved |
 
@@ -78,4 +78,8 @@ Prior evidence that shapes the predictions:
 
 ## Status
 
-DESIGNED (10-09-2026). Protocol draft under GPT-6 Astra (effort ultra) and Claude Fable 5.1 review; not locked; no pair statistic computed.
+LOCKED; PHASE A RUNNING (10-14-2026).
+
+- **10-09-2026:** protocol revision 3 LOCKED (commit `55d1c53`, 16:43 PDT) after two GPT-6 Astra (effort ultra) reviews; forecast frozen with `rl4cv.forecast.freeze_forecast` (`expt_v1/forecasts/e10_forecast.json`, SHA-256 `e4eccd8b…3c23`). Claude Fable 5.1 review unavailable (no credits on any account; none bought).
+- **10-14-2026:** lock re-verified before the run (`verify_forecast` True; `analyze_e10.py`, `tests/test_e10_replay.py`, the per-cell input and the drift list all match their pins; 15/15 tests pass on the host). Phase A launched at 13:02 PDT on skampere1 with zero model calls: primary run (tmux `rl4cv-e10-phase-a-10-14`) and matched-test-lists sensitivity (`rl4cv-e10-phase-a-sens-10-14`), 1,000 splits × 1,000 draws each. Verdicts go to [results.md](results.md) when they finish.
+- **Phase B:** WAITING on the AlphaHebe team's record export.
