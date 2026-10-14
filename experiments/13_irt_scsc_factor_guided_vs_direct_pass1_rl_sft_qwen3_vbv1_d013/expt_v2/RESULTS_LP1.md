@@ -1,8 +1,39 @@
-# Experiment 13 version 2: LP-1 attempt 1 and adopted A4 continuation
+# Experiment 13 version 2: LP-1 attempt 2 measured FAIL under A4
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/RESULTS_LP1.md>
 
-**TLDR:** LP-1 attempt 1 produced 0/8 responses after a launcher device-identifier error. Adopted A4 classifies it INCOMPLETE-INFRA and admits attempt 2 after a verified fix and engine preflight with unchanged scientific settings. The original evidence and historical stopped notification remain intact; the experiment continues.
+**TLDR:** LP-1 attempt 2 is a final measured FAIL: its 99th-percentile absolute generation/trainer log-probability error is 0.1247693253, above the frozen 0.10 threshold, over all 40,035 tokens from 8/8 probe responses. Other admission criteria pass. A4 forbids an attempt 3 after statistics are computed. Cleanup passed and both leases are released; no anchors, fitted model or Phase 2 run is admitted.
+
+Final preparation/result publication verification: **552 passed, 23 skipped, zero failures in 243.53 seconds**, direct exit 0 with Lean integration required. Seven focused G1 driver checks cover frozen publication/input refusal, phase chronology and retained partial-fit receipts. The final [G1 method lock](locks/G1_A3.json) and [driver](phase1/g1_driver.py) are complete; no actual-data fit ran. [Test receipt](phase1/G1_A3_publication_test.json).
+
+## Attempt 2 result — 10-14-2026 16:38 PDT
+
+**Verdict: FAIL, final under A4 rule 5.** All 8/8 fixed probe responses and 40,035 generated tokens have trainer probability receipts. The 99th-percentile error exceeds its 0.10 ceiling by 0.0247693253. No threshold, seed, model hash, sampler, cap, scorer or probe identity changed. [Machine-readable result and evidence hashes](LP1_A4/attempt2_result.json).
+
+| Admission statistic | Observed | Frozen threshold | Result |
+|---|---:|---:|---|
+| Unsupported generated tokens | 0/40,035 | 0 | PASS |
+| Median absolute log-probability error | 0.0003027766943 | ≤0.01 | PASS |
+| 99th-percentile absolute log-probability error | 0.1247693252563 | ≤0.10 | **FAIL** |
+| Importance-ratio truncation at cap 2 | 0/40,035 = 0 | ≤0.01 | PASS |
+
+Thresholds are from PROTOCOL sections 5–6 and PLAN section 5's LP-1 admission, unchanged in the original and A4 locks. Quantiles use the frozen linear method over all generated tokens; every generated terminal token is included. Five responses ended with a registered terminal token and three reached 8,192 new tokens. Prompt tokens total 28,164; prompt positions are excluded from these statistics. These are fixed-probe technical measurements, not estimates of a population effect: no inferential confidence interval or hypothesis test applies (p-val=n/a). This failure does not test whether a partial-credit reward improves reinforcement learning.
+
+### Publication, preflight and device accounting
+
+The fix, regression tests and [successor lock](locks/LP1_A4.json) were pushed as **`957efca7dd84abc6184c6f63aced35c95dc469b8`** before arming or any new device work. Required tests exited 0: **545 passed, 23 skipped, zero failures in 239.73 seconds**. All three CPU routes verified 133 file bindings and eight package versions; the successor configuration checker preserved 130 prior runtime bindings per route and every scientific setting. A4's adoption was explicitly post-observation; attempt 1 remains INCOMPLETE-INFRA and contributes no response to these statistics.
+
+Fresh process, foreign-lease and reservation checks admitted skampere1 device 0, an idle 80 GiB A100. The launcher queried its identifier-to-index mapping and set the numeric index. Before the attempt counted, the real engine constructed successfully on the verified physical device and completed one token for an authored non-probe health prompt. Its process was cleaned; a fresh generation process then used the original probe seeds. [Preflight and arming receipt](phase1/LP1_A4_armed.json).
+
+The lease ran **16:30:46–16:36:49 PDT**, **362.776132 seconds = 0.100771148 device-hours**, including preflight and cleanup, below the frozen 0.5-hour cap. The supervisor's internal elapsed time was 349.115145 seconds; total lease time is the budget quantity. Cumulative attempt-1/attempt-2 usage is **0.115364424 of 0.6 device-hours**. All four cleanup checks passed without signals; no marked process remains. Both canonical leases and the active lease file are RELEASED. The launch plan is retired; all twelve cron entries are preserved. Optimizer updates: zero.
+
+The trainer's teardown logged an ignored policy-destructor exception: it attempted Ray auto-initialization after the explicit shutdown and hit a Unix socket path-length limit. All eight probability receipts already existed, the supervisor exited 0, and cleanup was verified. This is retained in the raw log; it does not erase the measured statistics or qualify this attempt for an infrastructure retry. Independent read-only arithmetic on the retained receipts verified alignment, both reported quantiles and the zero truncation count without another model or gate run.
+
+### Transition
+
+A4 says an attempt computing admission statistics is final, PASS or FAIL. Its maximum of three is not permission to retry a measured failure. Attempt 3 is **not admitted**. PLAN section 5's LP-1 prerequisite remains unmet, and PROTOCOL section 8 disallows training beyond admitted diagnostics after a technical failure. G0 remains PASS. Anchor responses are 0/17,248; calibration, G1/H2 and Phase 2 remain unmeasured.
+
+The final G1 execution driver and method lock were prepared during this attempt, before any fit. They retain publication, input-hash, library-version and phase-order checks; the failed LP-1 prerequisite prevents execution. Their tests/publication are retained with the other Phase 1 preparation. The scientific training comparison has not been run. Completion notification through the A4 watchdog follows verified result publication.
 
 ## Adopted A4 continuation — 10-14-2026 16:23 PDT
 
@@ -55,5 +86,5 @@ A future authorized protocol amendment could prospectively freeze a corrected nu
 
 Publication verified on remote main at `50cf118`. The watchdog sent exactly one stopped notice at 15:38 PDT on 10-14-2026; no live experiment child or active lease remains. [Completion receipt](LP1/completion.json).
 
-**TLDR-end:** [rl4cv: Experiment 13 v2] A4 admits LP-1 attempt 2 after the published infrastructure failure; G0 remains PASS and later scientific gates are unmeasured.
-**Snapshot:** Attempt 1 INCOMPLETE-INFRA; responses 0/8; tokens 0; optimizer updates 0; 0.014593276 device-hours; attempt 2 pending publication.
+**TLDR-end:** [rl4cv: Experiment 13 v2] LP-1 attempt 2 fails its frozen probability-tail criterion; A4 makes this measured result final and no downstream run is admitted.
+**Snapshot:** Responses 8/8; generated tokens 40,035; median error 0.000302777; p99 error 0.124769325 > 0.10; unsupported/truncated tokens 0/40,035; cumulative device-hours 0.115364424; leases RELEASED.

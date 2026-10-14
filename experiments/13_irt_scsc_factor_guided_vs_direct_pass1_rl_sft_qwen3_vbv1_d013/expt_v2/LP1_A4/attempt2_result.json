@@ -1,0 +1,233 @@
+{
+  "admission_statistics_computed": true,
+  "attempt_counted": true,
+  "attempt_number": 2,
+  "cleanup_verified": true,
+  "eos_tokens_in_mask": 5,
+  "generated_tokens": 40035,
+  "importance_ratio_cap": 2.0,
+  "importance_truncated_tokens": 0,
+  "importance_truncation_fraction": 0.0,
+  "interpretation": "Technical fixed-probe admission; p-val=n/a; no optimizer update",
+  "lease_id": "e13v2-58c0633516ab463289f23dbe94e640e5",
+  "median_absolute_logprob_error": 0.00030277669429779053,
+  "optimizer_updates": 0,
+  "p99_absolute_logprob_error": 0.12476932525634762,
+  "prompt_tokens": 28164,
+  "quantile_method": "linear",
+  "resource_seconds": 349.1151452920167,
+  "responses": 8,
+  "retries": 0,
+  "route": "skampere1-single-device-sequential-generation-and-trainer",
+  "sampler": {
+    "max_new_tokens": 8192,
+    "temperature": 1.0,
+    "top_k": -1,
+    "top_p": 1.0
+  },
+  "status": "FAIL",
+  "supported_tokens": 40035,
+  "terminal_token_ids": [
+    151643,
+    151645
+  ],
+  "threshold_source": "PROTOCOL sections 5 and 6; PLAN section 5 LP-1",
+  "token_cap_finishes": 3,
+  "unsupported_tokens": 0,
+  "gate": "LP1",
+  "classification": "FINAL_MEASURED_FAIL",
+  "lock_revision": "957efca7dd84abc6184c6f63aced35c95dc469b8",
+  "lock_sha256": "193b05e6d0069c4f4316c306708fdaea20dc61176939f0ed3ff5dc03c441e400",
+  "preflight": {
+    "admission_statistics_computed": false,
+    "device_uuid": "4a898d48-860a-9abc-bda7-59057400018e",
+    "generated_tokens": 1,
+    "prompt": "Reply with one word: ready.",
+    "scope": "non-probe infrastructure only",
+    "status": "PASS",
+    "visible_index": "0"
+  },
+  "lease_status": "RELEASED",
+  "device_hours": 0.10077114780743916,
+  "lease_seconds": 362.776132106781,
+  "cumulative_device_hours": 0.11536442399024963,
+  "remaining_marked_processes": 0,
+  "automatic_launch_plan_retired": true,
+  "attempt3_admitted": false,
+  "transition": "A4 measured admission is final. LP-1 FAIL does not admit anchors or Phase 2; no scientific fit ran.",
+  "private_evidence_bindings": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/attempt.json",
+      "sha256": "b81926b6efe2794b68ca99f575c2a5b0fd94436cda51c53a9f4f83a3ff3406fd"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/cleanup.json",
+      "sha256": "5b3f6456c95de3225649f2e1488ae1250392726295df695170a9939f9e94f5d4"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generate.log",
+      "sha256": "8dfc23c95f1846e00957ed99171985f29d8a20f7e0cb85d26f732075bfac5161"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00000.generation.json",
+      "sha256": "df9199deca79e41659024a45f25cad36f6982c95d96879cf64093677199fb296"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00000.probability.json",
+      "sha256": "570c9ae104ec2fec6be9a212727848936d3f6285d302ca8ff84b08280dd4346a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00000.started.json",
+      "sha256": "237313d05a392d7c59249d1363ce28f3ef21f177c778f2aab4bfff06e6f05fd1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00001.generation.json",
+      "sha256": "4aec53d789ac2eb1b3a5b548e48f7e179537aada8596238a27db2ca9c46f4f98"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00001.probability.json",
+      "sha256": "87a6ad7480c4c5f0a4dd584ee41324f338269ddc959c8a3338d90ab49227c8f3"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00001.started.json",
+      "sha256": "4986e044bae0239bfb0c8e242b32cb733a86a2650b076d769b5917bc9d7396a1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00002.generation.json",
+      "sha256": "f29e6752d2b04737cb346e3f556e88b4660e3523b6624e2bf6b2efaac4061321"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00002.probability.json",
+      "sha256": "0662b29a926025b51e6badb312dc944c11441f13cbfd736192019f0d75571908"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00002.started.json",
+      "sha256": "a8e65cecab735bc650ca51aefac16752c84d27aea3a7765ee7f790d708ea364c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00003.generation.json",
+      "sha256": "009011376bb66baa250938450a54599be4f24b536554365158d1d2d45b9e2fd6"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00003.probability.json",
+      "sha256": "b28f1d58dd87f8826c3ea5cefb27ea2c2f307914252b59d748732c54cc3694cf"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00003.started.json",
+      "sha256": "c49e1ffb29419872b0c1dfd49f7e2e63f559e896b7b92e3e1b124825a8895048"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00004.generation.json",
+      "sha256": "34295244f9777ad2399e392a56888815450578346d71d7389f25487ce898bdc0"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00004.probability.json",
+      "sha256": "61a688506fe301cb2dbfb4f6bf6b7791722336a121dfa5a2f93a37c196251fd6"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00004.started.json",
+      "sha256": "a7bc2119855f180953cca04b882d0559aa026fdffff9ea00be1ba61108597ca9"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00005.generation.json",
+      "sha256": "8b5c11b5c89a1a05c6427c1ec5c83ce197268871bb1e711bfff89d5e1fd9769d"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00005.probability.json",
+      "sha256": "37110b986c1c5e03419924289af424948821b0516861d12a01263b0a060fdb41"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00005.started.json",
+      "sha256": "23ab801363f8ef7e052420138389ba5d05871a6f52af04f79ddaec72ba74e45a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00006.generation.json",
+      "sha256": "4fb9ad35c18a5896a33fe05845608c9d5abb449a31b661755abba44fb6abc313"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00006.probability.json",
+      "sha256": "b3ea512e6c2291724ce62798272e6945b187db67f2361dfa98985e20d9da26b5"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00006.started.json",
+      "sha256": "adb43b364730a0a3dcd0c169ca76115be34aca151f6441cdc874acd3c68b6330"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00007.generation.json",
+      "sha256": "c840ca6287381145298ba40b4f1f8887678264d6b1fc07e725c7db0b5bf288fe"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00007.probability.json",
+      "sha256": "809321e0cb1857103b8f331d0341874486a25b5472c75c1cc997593bc105fd54"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/00007.started.json",
+      "sha256": "2f6f6b47d5138df1aaf49458435fad83dd3886d2c2d42c04b52de8d45121b913"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/attempt.json",
+      "sha256": "a0ef374ad07442c77106725c6ff9787899c828864392e9c8a4c7ba0767e69426"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/batch_00000.raw.json",
+      "sha256": "f740a39111b68bd91834c09fb15494f8116db93cf69ebbff15acab444f1a48a0"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/terminal.json",
+      "sha256": "cc89c79a7c17db767267903679f32e2da7e3cc9c5ad3c799a98c06a6afe998eb"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/generation/trainer_attempt.json",
+      "sha256": "59d9fc83532eead79fd771b2e0217302034c1ecf995702e0e3574ce3b5f1c7ee"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/launch.json",
+      "sha256": "21d984f51c7ba576d2672ec5e881333fbfaa84cdfbf8a39623b250a5d6e0b122"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/preflight.json",
+      "sha256": "fa4d22f23679952046e6bc984f4f80b30574e6cfa774db1a08b4d09fa68ad833"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/preflight.log",
+      "sha256": "80b97b91b02028bf845b3fbf28605315db3bd962f501545d572caa2cfbafc424"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/registry_after_attempt2.json",
+      "sha256": "c2ecddce43dec1f1c956e9b0da4545678988caa1941fb2a83d198a368ef19193"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/result.json",
+      "sha256": "9e492c5e0bca2938d54d83d069ed7ab83156c5fe669f8c8363e52d59cd7247b7"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/statistics_started.json",
+      "sha256": "da40b98080ac40bc84a6673b7366a891526e228c757e2bba8850a25b9bf7b7e2"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/trainer.log",
+      "sha256": "91b24a4783b99d79d8971f1436501dafb357a07b1c71e700d8e2da1c580e2aa6"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2_dispatch/attempt.json",
+      "sha256": "178bdd33a0f66590d167eff842015a9a269aa091c4b27b858a7a2f119bf968d1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2_dispatch/execution.log",
+      "sha256": "9e492c5e0bca2938d54d83d069ed7ab83156c5fe669f8c8363e52d59cd7247b7"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2_dispatch/launch.json",
+      "sha256": "f85e068a0f90d656602c7802de385ad647ddbd572b7b65376053c11ac7091bed"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2_dispatch/result.json",
+      "sha256": "41d03a917854c1b254e566abd4b1aeef0b17a59c598113289389cbb51bb0725f"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_attempt2/arithmetic_verification.json",
+      "sha256": "29baa967ce33b59d053151f74acace95b5db622d7de8315d06689432ad6ae858"
+    }
+  ],
+  "nonfatal_teardown_error": "After probability receipts, ignored Policy.__del__ attempted Ray auto-initialization after shutdown and exceeded Unix socket path length; supervisor exited 0 and all cleanup checks passed. Statistics remain final."
+}

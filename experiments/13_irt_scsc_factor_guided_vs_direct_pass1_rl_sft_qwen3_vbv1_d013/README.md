@@ -12,7 +12,7 @@ The plan has three phases:
 - **Phase 1:** fit and validate a conjunctive item response theory (IRT) model that predicts held-out pass@1 and pass@k.
 - **Phase 2:** run four RL arms from the Qwen3-4B SFT checkpoint: strict reward, SCSC-style factored reward, IRT-guided reward and prompt sampling, and a placebo dense reward.
 
-Status (10-14-2026): **Version 2 CONTINUES under adopted A4 (`d79b0fd`, disclosed post-observation).** G0 remains PASS. LP-1 attempt 1 is INCOMPLETE-INFRA: 0/8 responses, no admission statistic. Attempt 2 is being frozen with corrected numeric device mapping and a real engine preflight; the scientific settings and 0.5-hour attempt/0.6-hour cumulative caps are unchanged. [A4](expt_v2/AMENDMENT_A4_technical_gate_infrastructure_attempts_10-14-2026.md) · [Preparation](expt_v2/phase1/LP1_A4.md) · [Preserved attempt-1 report](expt_v2/RESULTS_LP1.md).
+Status (10-14-2026): **Version 2 STOPPED at final measured LP-1 FAIL under A4.** Attempt 2 measured all 8/8 responses and 40,035 tokens. Its 99th-percentile absolute generation/trainer log-probability error is **0.124769325 > 0.10**; median error 0.000302777, unsupported 0 and truncation 0 pass. A4 makes this measured verdict final: no attempt 3 or downstream run is admitted. Cleanup passed; both leases are released after cumulative 0.115364424/0.6 device-hours. G0 remains PASS. [LP-1 report](expt_v2/RESULTS_LP1.md) · [A4](expt_v2/AMENDMENT_A4_technical_gate_infrastructure_attempts_10-14-2026.md). The G1 driver/method lock is retained but no actual fit or reinforcement-learning update ran.
 
 - **Created:** 10-09-2026 by Claude Code (`claude-opus-5-5`) for Brando.
 - **Owner:** fresh version 2 skampere1 owner `codex-rl4cv-e13v2-owner-g0`; the Mac master retains the parent experiment.

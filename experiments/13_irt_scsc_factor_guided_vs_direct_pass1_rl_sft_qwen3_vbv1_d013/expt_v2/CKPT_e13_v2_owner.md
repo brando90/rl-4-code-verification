@@ -2,10 +2,22 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2_owner.md>
 
-**TLDR:** Experiment 13 version 2 continues under adopted Amendment A4 (`d79b0fd`, disclosed post-observation). G0 remains PASS; LP-1 attempt 1 is INCOMPLETE-INFRA with 0/8 responses and no admission statistic. Attempt 2 is being prepared with numeric device mapping, an engine preflight and unchanged scientific settings. No new probe has run.
+**TLDR:** Experiment 13 version 2 stops at a final measured LP-1 FAIL under A4. Attempt 2 completed 8/8 responses and 40,035 generated tokens; its 99th-percentile log-probability error 0.124769325 exceeds the frozen 0.10 ceiling. Other criteria pass. A4 forbids attempt 3 after statistics; cleanup passed, both leases are released, and no downstream run is admitted. G0 remains PASS.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-14-2026 16:22 PDT
+Last updated: 10-14-2026 16:38 PDT
+
+## Final LP-1 result — 10-14-2026 16:38 PDT
+
+[Attempt-2 report](RESULTS_LP1.md) and [evidence receipt](LP1_A4/attempt2_result.json). Published fix/lock `957efca` preceded a passing real engine preflight and all probe work. All 8/8 responses and 40,035 generated tokens were measured: unsupported 0/40,035 (required 0), median absolute log-probability error 0.0003027766943 (maximum 0.01), 99th percentile 0.1247693252563 (maximum 0.10, FAIL), importance truncation 0/40,035 (maximum 0.01). These fixed-probe technical statistics have no inferential interval or hypothesis test (p-val=n/a).
+
+The lease lasted 362.776132 seconds (0.100771148 device-hours), including the non-probe preflight; cumulative usage is 0.115364424/0.6 device-hours. Four cleanup checks passed without signals; no marked process remains and both leases are RELEASED. The private launch plan is retired; all twelve cron lines remain unchanged. The ignored Ray destructor error happened after the probability receipts and does not reclassify this measured FAIL as infrastructure incompleteness.
+
+A4 rule 5 makes a measured verdict final. No attempt 3, anchor generation, calibration, G1/H2 evaluation or Phase 2 is admitted. The final G1 driver and executable method lock were prepared before any fit and are being published with this result; their LP-1 prerequisite prevents execution. All actual-data fits remain zero. Notification follows verified publication through the A4 watchdog.
+
+Final preparation/result publication verification: **552 passed, 23 skipped, zero failures in 243.53 seconds**, direct exit 0 with Lean integration required. Seven focused G1 driver checks cover frozen publication/input refusal, phase chronology and retained partial-fit receipts. The final [G1 method lock](locks/G1_A3.json) and [driver](phase1/g1_driver.py) are complete; no actual-data fit ran. [Test receipt](phase1/G1_A3_publication_test.json).
+
+## Earlier A4 preparation (historical)
 
 ## Current A4 continuation — 10-14-2026 16:22 PDT
 
@@ -14,6 +26,8 @@ Master continuation and adopted A4 admit attempt 2 after a verified infrastructu
 Numeric device mapping and preflight are implemented; configuration preservation and the successor lock are being frozen. Three owned deployments retain the original model/trainer/input hashes. Expected maximum new allocation 0.5 device-hours, cumulative allowance 0.6, already used 0.014593276; no new model call yet. The single-token non-probe preflight is included in that allocation. Next: publish the tested lock before arming the existing poller for attempt 2; finish G1 execution driver/lock before fitting. No email or permission step is needed for this authorized continuation.
 
 Publication verification (10-14-2026 16:28 PDT): required Lean integration suite exited 0, **545 passed, 23 skipped, zero failures in 239.73 seconds**. [Receipt](phase1/LP1_A4_publication_test.json). Successor lock binds 31 inputs, with four named replacements and 17 unchanged previous bindings; each of three runtime routes preserves 130 prior scientific/source bindings and verifies 133 total. Publish before arming.
+
+Active execution: the published A4 lock passed the original-versus-successor scientific-configuration check before arming. A fresh census admitted skampere1 device 0. Real engine preflight passed with one non-probe token and numeric device index verified; attempt 2 is now recorded and generating. [Arming/preflight receipt](phase1/LP1_A4_armed.json). All twelve cron entries remain installed; the old stopped receipt is historical, and the A4 watchdog monitors this continuation.
 
 ## Historical closeout before A4 (superseded)
 
@@ -97,5 +111,5 @@ Failure report and retained preparation published as `50cf118726b101b916c88ffd30
 - Terminal closeout: gate result pushed as `6e9c7c2bc1c2435f1455ec7667b1933e8e16174b` and verified on remote `main`. The watchdog recorded exactly one `stopped` notification as `sent` to `brando.science@gmail.com` without carbon copy. Both owned cron entries were retired; all unrelated entries were preserved. No registered experiment child remains alive. Durable receipt: `$WR/state/completion.json`. No downstream run is admitted.
 - Binding stop: R0 failed. This condition is terminal, not an infrastructure retry or an account handoff. The parent retains the unresolved measurement dependency for its planned reinforcement-learning comparison.
 
-**TLDR-end:** [rl4cv: Experiment 13 v2] A4 admits continued preparation for LP-1 attempt 2 with unchanged scientific settings; G0 remains PASS.
-**Snapshot:** Attempt 1 INCOMPLETE-INFRA; attempt 2 pending publication; used 0.014593276/0.6 device-hours; probe responses so far 0/8.
+**TLDR-end:** [rl4cv: Experiment 13 v2] LP-1 attempt 2 fails the frozen probability-tail criterion; the measured verdict is final under A4.
+**Snapshot:** Responses 8/8; tokens 40,035; median error 0.000302777; p99 error 0.124769325 > 0.10; optimizer updates 0; cumulative device-hours 0.115364424; leases RELEASED.
