@@ -1,0 +1,18 @@
+{
+  "verified_utc": "2026-10-14T04:21:47.064277+00:00",
+  "owned_cron_entries_removed": 2,
+  "unrelated_entries_restored": 7,
+  "unrelated_cron_bytes_restored": true,
+  "remaining_crontab_sha256": "4e9b907728168012c791eeb9013ad9bb67346c47b686661acf210e7d4570394f",
+  "terminal_notification_sent": false,
+  "terminal_marker_created": false,
+  "operational_incident": {
+    "cause": "Used crontab - instead of crontab -l for a read, temporarily clearing the account schedule after all R2 measurement processes had exited.",
+    "restoration": "Restored seven unrelated entries byte-for-byte from two owner backups; independently matched the later E08 teardown backup after removing its two documented retired entries and our two owned entries. Corrected both helper reads to -l.",
+    "restored_by_utc": "2026-10-14T04:20:23.289424+00:00",
+    "later_backup_modified_utc": "2026-10-14T00:42:18.315830+00:00",
+    "limitation": "No system-journal access. The 21:20 PDT periodic monitor checks may have been missed; no active job was killed. Schedule restored and read back; no intervening additions beyond the preserved snapshots are evidenced.",
+    "measurement_results_changed": false
+  },
+  "reason": "R2 failure under A2 blocks downstream; latest master instruction forbids terminal notification"
+}

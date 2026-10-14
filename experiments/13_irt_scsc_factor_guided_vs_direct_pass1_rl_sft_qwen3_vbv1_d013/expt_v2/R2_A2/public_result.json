@@ -1,0 +1,76 @@
+{
+  "gate": "R2",
+  "amendment": "A2",
+  "status": "FAIL",
+  "admitted": false,
+  "declared": 38784,
+  "accounted": 38784,
+  "measured": 38562,
+  "typed_deterministic_limits": 175,
+  "integrity_defects": 0,
+  "retried_untyped_cells": 48,
+  "unresolved": 47,
+  "routes": [
+    {
+      "amendment": "A2",
+      "route": "opaque",
+      "declared": 5328,
+      "accounted": 5328,
+      "measured": 5319,
+      "typed_deterministic_limits": 7,
+      "integrity_defects": 0,
+      "retried_untyped_cells": 2,
+      "retry_outcome_classes": {
+        "unresolved_measurement": 2
+      },
+      "unresolved": 2,
+      "unresolved_maximum": 5,
+      "equality_among_measured": "PASS",
+      "component_consistency": "PASS",
+      "status": "PASS",
+      "admitted": true,
+      "complete_accounting": true,
+      "hashes": {
+        "manifest": "025b71b9b457f3076d4e5dc666a29dd9174d9850305fc3256bb9523c7c5dade1",
+        "original_results": "bd2e634663c9b3c4db1b4506d29225d62ae126b447c65eced9171bd87f72f42c",
+        "effective_results": "a42eaf72273a8cdbbfe01d39b16aac308c80b51ae2bc81774bccb40d9ae60702",
+        "private_nonmeasured_ledger": "15f20571c42d8bea39fc6d957cfcf3ac9e20bd6a09705dfe34ffbff45a8c40f6",
+        "private_retry_inventory": "f041288c90ac423d9461ca5cd47a884b001c73c032c8d9734c32065534f01f86",
+        "A2_lock": "a18efcdb64d1d0f5bc315c15f8315eae91d559f5e03b43e2bf868ece1309d552"
+      },
+      "test_outcomes_disclosed": false
+    },
+    {
+      "amendment": "A2",
+      "route": "ordinary",
+      "declared": 33456,
+      "accounted": 33456,
+      "measured": 33243,
+      "typed_deterministic_limits": 168,
+      "integrity_defects": 0,
+      "retried_untyped_cells": 46,
+      "retry_outcome_classes": {
+        "unresolved_measurement": 45,
+        "deterministic_resource_limit": 1
+      },
+      "unresolved": 45,
+      "unresolved_maximum": 33,
+      "equality_among_measured": "FAIL",
+      "component_consistency": "PASS",
+      "status": "FAIL",
+      "admitted": false,
+      "complete_accounting": true,
+      "hashes": {
+        "manifest": "2b6b764f481c4a1cd87d47a67a1746e5bbbd78f79571131fa1ca2383cd163eba",
+        "original_results": "d0574c96b2b90f9882aacffae5cfb1db75f9bc3d1cefcca060f66d134c9ae5ca",
+        "effective_results": "3611d101695b5ad427bdadf6f9136c28f6fc44348abff9ad33e9d1168c112811",
+        "private_nonmeasured_ledger": "f3b2b51ea7dc483cd48ce6997c7aa81bfb97f7fee318c8b098b95b8bc654e241",
+        "private_retry_inventory": "3090a682cf9732e4d4112951d480e8cee071006a350c855366230ee158346800",
+        "A2_lock": "a18efcdb64d1d0f5bc315c15f8315eae91d559f5e03b43e2bf868ece1309d552"
+      },
+      "test_outcomes_disclosed": false
+    }
+  ],
+  "test_outcomes_disclosed": false,
+  "chronology": "A2 tolerance chosen after original opaque completeness receipt; no test details inspected"
+}

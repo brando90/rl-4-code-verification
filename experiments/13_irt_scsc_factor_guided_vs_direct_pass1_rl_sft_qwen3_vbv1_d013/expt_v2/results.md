@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/results.md>
 
-**TLDR:** `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013` version 2 passed R0 attempt 2 under Amendment A1: 30/30 fixtures matched, with complete components and historical oracle value/status. R1 attempt 1 also passed 400/400 train cells with matching historical oracle values and statuses.
+**TLDR:** `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013` version 2 completed full reproduction and A2's authorized retries. **R2 FAIL under A2**: 38,784/38,784 accounted; 4/33,243 ordinary measured oracle mismatches; 45/33,456 ordinary unresolved (maximum 33). Opaque equality PASS; 2/5,328 unresolved (maximum 5). G0 and later phases are not admitted; the reinforcement-learning hypothesis remains untested.
 
-Last updated: 10-13-2026 20:54 PDT
-Status: **RUNNING UNDER A2 — original cohort complete; A2 resource-preflight correction prepared; amended admission pending.**
+Last updated: 10-13-2026 21:21 PDT
+Status: **R2 FAIL — downstream measurement not admitted under A2 rule 3 and PLAN § 4.**
 
 | Stage | Status | Measured / declared |
 |---|---|---|
@@ -14,7 +14,7 @@ Status: **RUNNING UNDER A2 — original cohort complete; A2 resource-preflight c
 | Required suite for attempt 2 | PASS | 283 passed, 23 skipped; all seven required Lean cases ran |
 | R1 attempt 1 | PASS | 400/400 measured and oracle-equal; zero untyped inconsistencies |
 | L1v2 | FROZEN | 51 verified bindings; F0v2 0.50, F1v2 0.85; zero validation/test factors at freeze |
-| R2 | Original opaque INCOMPLETE; A2 reconciliation pending | 38,784/38,784 receipts; ordinary 33,243 measured + 167 typed limits + 46 untyped / 33,456, original equality FAIL; opaque 5,319 measured + 7 typed limits + 2 untyped / 5,328 |
+| R2 | FAIL under A2 | 38,784/38,784 accounted; 38,562 measured; 175 typed limits; 47 unresolved; 48 one-time retries |
 | G0 | NOT ADMITTED | 0/135 validation tasks |
 | Phases 1 and 2 | NOT ADMITTED | No fitting or reinforcement learning |
 
@@ -22,9 +22,11 @@ Status: **RUNNING UNDER A2 — original cohort complete; A2 resource-preflight c
 
 Attempt 2 retained two 5,001-character messages and their intervening theorem error, checked information-message and raw-stream channels separately, and measured the unresolved theorem as 0/1 proved. All 42 original version-1 files and 47 preserved attempt-1 evidence/configuration files remain byte-identical. The 50-file snapshot also includes PLAN and the runbook, explicitly superseded by master Amendment A2, and the separately owned live master checkpoint. Frozen fixture measurements and measurement code remain unchanged. These are deterministic counts; intervals and p-values are not applicable (p-val=n/a).
 
-The [opaque public receipt](R2/opaque_public_receipt.json) exposes completeness and hashes only. No test discrepancy, factor, label or source has been inspected. [Amendment A2](AMENDMENT_A2_R2_untyped_cells_and_admission_10-13-2026.md), written after that public observation, supersedes the original incomplete-stop rule. The original ordinary run finished untouched; separate route processes then retry each untyped cell exactly once with unchanged measurement code, inputs and limits. Admission requires measured equality, no integrity defects and at most 5/5,328 unresolved opaque cells and 33/33,456 unresolved ordinary cells. [Reconciliation implementation](reproduction/README_A2.md) and [A2 lock](locks/A2_reconciliation.json) are prepared before retries; required suite: 313 passed, 23 unrelated skips. No A2 retry has run yet. Its initial preflight stopped before route-data access because Linux represents the requested memory cap rounded down by 2,048 bytes. The [resource-preflight justification](reproduction/README_A2_resource_preflight.md), zero-cell control and separately frozen launcher preserve all original measurement and A2 files; the required integration suite passed 333 tests with 23 unrelated skips in 172.52 seconds; corrected launch follows publication. This is technical measurement admission, not evidence against the reward hypothesis.
+The [R2 report](RESULTS_R2.md) and [A2 public result](R2_A2/public_result.json) retain both original and effective counts and hashes. Original ordinary reproduction finished untouched. Separate route processes retried all 46 ordinary and two opaque untyped cells exactly once with unchanged measurement code, sources, environment and limits. All 48 retries completed; no attempt 3 occurred. The ordinary route fails oracle equality and its unresolved ceiling. Both routes pass component consistency and have zero integrity defects. Opaque measured equality is PASS; its unresolved count is allowed. All per-cell ordinary diagnostics remain private and all test evidence sealed.
+
+A2's unresolved tolerance was selected after the original opaque public observation, as disclosed in its amendment. The first A2 launch failed before any cell retry due to Linux page-rounding the requested memory cap by 2,048 bytes. A separate [justified, frozen preflight launcher](reproduction/README_A2_resource_preflight.md) was published at `90089e2` before corrected launch; the original A2 and measurement files remain unchanged. Required integration suite before launch: 333 passed, 23 unrelated skips. The final publication verification is recorded in the checkpoint. No terminal notification is sent, following the latest master instruction.
 
 A1 permits at most five attempts each for R0 and R1; every attempt remains recorded. Later gates retain the no-retry rule; A2 authorizes only the specified untyped-cell retries in R2.
 
-**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2's fixture acceptance passed 30/30 on attempt 2; the train-only diagnostic passed 400/400; L1v2 is published and original reproduction accounted for all 38,784 cells; amended reconciliation and admission remain pending.
-**Snapshot:** R0_attempt_2 PASS; 30/30 fixtures; 283 tests passed; R1 400/400 PASS; R2 opaque INCOMPLETE: 5,319 measured, 7 typed limits, 2 unresolved / 5,328; ordinary accounted 33,456/33,456; A2 has zero retries so far.
+**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 passed fixture and train diagnostics but fails full reproduction under A2; the reinforcement-learning comparison is not admitted.
+**Snapshot:** R0 attempt 2 PASS 30/30; R1 PASS 400/400; R2 accounted 38,784/38,784; ordinary oracle mismatches 4/33243; opaque equality PASS; R2 FAIL; zero training updates.

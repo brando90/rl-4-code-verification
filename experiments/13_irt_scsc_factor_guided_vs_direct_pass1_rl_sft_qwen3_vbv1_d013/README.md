@@ -12,7 +12,7 @@ The plan has three phases:
 - **Phase 1:** fit and validate a conjunctive item response theory (IRT) model that predicts held-out pass@1 and pass@k.
 - **Phase 2:** run four RL arms from the Qwen3-4B SFT checkpoint: strict reward, SCSC-style factored reward, IRT-guided reward and prompt sampling, and a placebo dense reward.
 
-Status (10-13-2026): **version 2 RUNNING under A1; R0 attempt 2 PASS, 30/30**. Historical oracle value/status and complete components matched all 30 fixtures; the required repository suite passed 283 tests with 23 unrelated skips. [Attempt-2 report](expt_v2/RESULTS_R0_attempt_2.md). R1 train-only diagnostic also passed **400/400** ([report](expt_v2/RESULTS_R1_attempt_1.md)); preparing L1v2. Attempt 1 remains failed and unchanged; version 1 evidence remains byte-identical.
+Status (10-13-2026): **R2 FAIL under A2**: 38,784/38,784 accounted; 4/33,243 ordinary measured oracle mismatches; 45/33,456 ordinary unresolved (maximum 33). Opaque equality PASS; 2/5,328 unresolved (maximum 5). [Full reproduction report](expt_v2/RESULTS_R2.md). R0 attempt 2 passed 30/30 fixtures and R1 passed 400/400 train cells; L1v2 was frozen before reproduction. G0 and later phases are not admitted. Version 1 and attempt-1 evidence remain unchanged.
 
 - **Created:** 10-09-2026 by Claude Code (`claude-opus-5-5`) for Brando.
 - **Owner:** version 2 skampere1 owner resumed under Amendment A1; the Mac master retains the parent experiment.
@@ -62,7 +62,7 @@ So the crux has never run with a working trainer. With today's factors it could 
 
 ## Reviewed execution design
 
-The one requested Codex `gpt-6-astra` / `ultra` review has reconciled the plan and receipt harness; see [review findings](expt_v1/REVIEW.md). The original design evidence above remains historical. No new factor measurement, fitted model, training update or test evaluation is claimed.
+The one requested Codex `gpt-6-astra` / `ultra` review has reconciled the plan and receipt harness; see [review findings](expt_v1/REVIEW.md). The original design evidence above remains historical. Version 2 measurement reproduction is reported below; no fitted model, training update or Phase 2 test evaluation is claimed.
 
 [PROTOCOL.md](PROTOCOL.md) is the authoritative prospective specification. It separates the immutable strict scorer from experimental declaration fractions, models strict probability with conditional hurdles, and defines arm C as a train-only weighted reward. Its typed receipt harness checks exact source/cell identities. A valid token-cap completion remains eligible under the existing strict scorer; at least one example is required.
 
@@ -72,8 +72,8 @@ The reward fractions remain vulnerable to padding and dropping hard statements. 
 
 ## Status and next admitted work
 
-Version 2 passed its second authored fixture attempt under [Amendment A1](expt_v2/AMENDMENT_A1_development_gates_10-13-2026.md). The train-only diagnostic passed 400/400; the complete prediction implementation and L1v2 lock precede historical reproduction. No fitting or training is admitted yet.
+Version 2 passed its authored fixtures and train-only diagnostic, then froze L1v2 before historical reproduction. [R2 fails under Amendment A2](expt_v2/RESULTS_R2.md) after complete accounting and all 48 authorized untyped-cell retries. The measured oracle inequality is a technical measurement failure, not evidence about the reinforcement-learning hypothesis. PLAN § 4 blocks G0, fitting and training; no further scientific retry is authorized.
 
 The ladder declares 25,920 validation cells, with 20,520 available and 5,400 missing from five 14B checkpoints. Preserve those missing cells and reuse overlapping historical base outputs once. Full historical test equality checks use an opaque locked audit; test outcomes cannot enter model fitting.
 
-The measured resource plan and a valid current device allocation are still absent. The 260–350 A100-hour estimate is not an allocation. Existing SNAP preapproval applies within resources; no extra human approval gate is introduced. Publication of this phase does not complete `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013`.
+The central-processor resource plan was measured in R1 and enforced through R2. No graphics processor was allocated and no optimizer update ran. The 260–350 A100-hour estimate was never an allocation. The authorized version-2 owner run ends at the failed R2 admission gate; the scientific comparison remains unperformed.
