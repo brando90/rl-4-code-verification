@@ -1,0 +1,72 @@
+{
+ "population_status": "ok",
+ "splits_degenerate": 0,
+ "splits_used": 1000,
+ "pairs_per_split_median": 2382.0,
+ "H2a": {
+  "value": "0.1265 [0.0840, 0.1675] p-val=n/a (split 5-95%: 0.0129 to 0.2412)",
+  "support": "status=ok; splits 1000/1000 admitted; draws 1000/1000 valid",
+  "frozen_prediction": "> 0 with interval excluding 0",
+  "verdict": "SUPPORTED"
+ },
+ "H3": {
+  "q": "0.5",
+  "support": "status=ok; splits 1000/1000 admitted; draws 1000/1000 valid",
+  "C_fac=R2-R3": "0.0046 [-0.0027, 0.0117] p-val=n/a (split 5-95%: -0.0123 to 0.0225)",
+  "C_fac0=R0-R3": "0.0210 [0.0017, 0.0403] p-val=n/a (split 5-95%: -0.0069 to 0.0501)",
+  "C_bin=R0-R2": "0.0163 [-0.0014, 0.0355] p-val=n/a (split 5-95%: -0.0082 to 0.0418)",
+  "guard_R3_minus_R2": "0.0007 [-0.0000, 0.0014] p-val=n/a (split 5-95%: -0.0013 to 0.0028)",
+  "guard_R3_minus_R0": "0.0003 [-0.0014, 0.0023] p-val=n/a (split 5-95%: -0.0027 to 0.0036)",
+  "guard_R2_minus_R0": "-0.0004 [-0.0020, 0.0014] p-val=n/a (split 5-95%: -0.0029 to 0.0023)",
+  "factor_gate": "NOT ESTABLISHED",
+  "binary_gate": "NOT ESTABLISHED",
+  "recommendation": "no recommendation: superiority or retained utility not established",
+  "reason_codes": [
+   "interval_includes_zero"
+  ]
+ },
+ "practical_target": {
+  "S0plus-R3": {
+   "relative_hpr_reduction": -0.37902138214059,
+   "meets_0.20_target": false,
+   "abs": "-0.0652 [-0.0838, -0.0443] p-val=n/a (split 5-95%: -0.0928 to -0.0357)"
+  },
+  "S0plus-R2": {
+   "relative_hpr_reduction": -0.4059596765812252,
+   "meets_0.20_target": false,
+   "abs": "-0.0698 [-0.0865, -0.0507] p-val=n/a (split 5-95%: -0.0944 to -0.0451)"
+  }
+ },
+ "H1": {
+  "hpr": "0.2580 [0.2410, 0.2821] p-val=n/a (split 5-95%: 0.2304 to 0.2865)",
+  "share_any_loss": "0.9991 [0.9961, 1.0000] p-val=n/a (split 5-95%: 0.9987 to 0.9992)",
+  "mean_lossfrac": "0.0754 [0.0690, 0.0820] p-val=n/a (split 5-95%: 0.0711 to 0.0798)",
+  "mean_dpass_t": "0.0245 [0.0223, 0.0262] p-val=n/a (split 5-95%: 0.0210 to 0.0285)",
+  "support": "status=ok; splits 1000/1000 admitted; draws 1000/1000 valid"
+ },
+ "input_sha256_verified": "f064c3951860cf4d88879e7c3b81ec42c8b42780923c61198c71f98dc6463a4d",
+ "cohort": {
+  "systems": 164,
+  "tasks": 424,
+  "near_max_net_gain": 10,
+  "runtime_s": 172.5,
+  "settings": {
+   "per_cell": "/lfs/skampere1/0/brando9/rl4cv_e10/rl-4-code-verification/experiments/07_scs4c_vs_pass1_swebench_across_models/expt_v1/results/per_cell_e07.jsonl.gz",
+   "expect_sha": "f064c3951860cf4d88879e7c3b81ec42c8b42780923c61198c71f98dc6463a4d",
+   "sensitivity": "none",
+   "splits": 1000,
+   "draws": 1000,
+   "split_seed": 20261009,
+   "boot_seed": 20261010,
+   "near_band": 0.05,
+   "q": [
+    0.5,
+    0.25,
+    0.75
+   ],
+   "min_pairs": 200,
+   "workers": 32,
+   "out": "experiments/10_hebe_promotion_gate_scalar_vs_factor_matrix_replay_swebench_verified_logs/expt_v1/results/e10_primary.json"
+  }
+ }
+}
