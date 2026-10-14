@@ -5,30 +5,31 @@
 **TLDR:** Amendment A1 resumed experiment 13 version 2; R0 attempt 2 passed all 30 fixtures and its required repository suite; R1 attempt 1 passed all 400 train cells.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-13-2026 17:43 PDT
+Last updated: 10-13-2026 20:54 PDT
 
 ## Goal
 - Complete amended development acceptance, then the unchanged scientific gates and matched reinforcement-learning comparison.
 ## What ran
-- R2 launched after published L1v2 `a7991af`; tmux `e13v2-a1-r2`, active scope `e13v2-a1-r2.scope`, enforced MemoryMax 1,044,624,427,008 bytes; global 48-worker limit.
+- R2 launched after published L1v2 `a7991af`; tmux `e13v2-a1-r2`, now naturally completed; requested MemoryMax 1,044,624,427,008 bytes (kernel-effective 1,044,624,424,960); global 48-worker limit.
 - R1 full required suite: 286 passed, 23 skips, 185.82 seconds (includes three train-isolation tests).
 - R1 attempt 1 completed: process 407126, systemd scope `e13v2-a1-r1.scope`, 400 train cells, code `a19e4bd`. Initial tree peak 6,924,185,600 bytes; 48 workers; aggregate cap 1,049,300,488,192 bytes.
 - R0_attempt_2 completed as process 280828; 30 authored fixtures, serial 64 GiB address-space ceiling.
 - Required full suite: 283 passed, 23 skips, 168.61 seconds; all seven required Lean integration cases executed.
 - Fix/justification commits before rerun: `3fbcb96`, `7ed9e85`, `76d85b4`.
 ## Results
-- R2 under A2: original opaque INCOMPLETE, 5,319 measured + 7 typed limits + 2 untyped / 5,328; original ordinary run continues untouched at 24,205/33,456 receipts. A2 retries have not started.
+- R2 original complete accounting: 38,784/38,784; ordinary 33,243 measured + 167 typed limits + 46 untyped / 33,456, original equality FAIL; opaque unchanged. A2 retries have not started.
 - R1 PASS: 400/400 measured/oracle-equal, 0 untyped inconsistencies; rejected causes 296 parse errors, 3 unparseable types, 1 duplicate identity (denominator 300).
 - Attempt 2 PASS, 30/30; lock `67f005f9b146704ec5007be748d6a30bc01239d0f0af826d3aec489799872759`. Attempt 1 retained at 26/29 matches.
 - Owner process 887384, full access/no approvals; fenced watchdog re-armed as `e13v2_a1`, two owned cron entries restored.
 ## Stuck / blocked
 - A2 supersedes the original incomplete-stop rule. Admission is pending identical untyped-cell retries and the amended public checks; test evidence stays sealed.
 ## Next steps
-- [p 10/10] Finish original ordinary route untouched; run published A2 reconciliation after completion, retrying untyped cells once per route. Publish R2 under A2; proceed to G0 only if admitted. No terminal notification or stop now.
+- [p 10/10] Publish the exact-page resource-preflight launcher and supplemental lock, then resume A2 reconciliation, retrying untyped cells once per route. Publish R2 under A2; proceed to G0 only if admitted. No terminal notification or stop now.
 ## Brando to-do
 - None.
 
 ## Log
+- 10-13-2026 20:54 PDT -- Original coordinator completed naturally; no original process or running attempt remains. A2 first launch failed before route-data access or any retry: the requested cap differs from kernel page representation by 2,048 bytes. A zero-cell control reproduced the exact representation. Separate launcher and supplemental lock preserve all original A2 and measurement files; 22 synthetic tests passed. Required full suite passed 333 tests with 23 unrelated skips in 172.52 seconds; Lean integration required. Original cleanup total: 335 registered descendants from 177 completed workers, zero forced kills/retries. No terminal notification or marker.
 - 10-13-2026 17:43 PDT -- Original reproduction at 29,533/38,784 receipts (ordinary 24,205/33,456), coordinator alive and zero retries. Preservation verified again: original L1v2 lock, 50 unchanged bindings plus authorized PLAN amendment, 42 version-1 files and 47 frozen attempt-1 files. Fenced cleanup totals 95 descendants from 50 terminal workers, zero forced kills or measurement retries. Shared index refreshed to `e9f7620`; checkout-lifecycle changes do not alter gate definitions. This execution checkout remains active under the owner; cleanup waits for all live consumers and preservation of bound evidence. The 50% and full 4B exports each passed ten file-hash checks as metadata preparation only. A2 remains published and unexecuted, awaiting original completion. After synchronizing concurrent work, the required full suite passed 319 tests with 23 unrelated skips in 296.51 seconds.
 - 10-13-2026 16:28 PDT -- Original run at 23,351/38,784 receipts, ordinary 18,023/33,456; coordinator alive, zero retries. A2 code and lock published at `d72cd10`; wait for original completion, then run `$WR/state/launch_R2_A2.sh` in a new owned session. Integrity verification: 50 unchanged L1v2 bindings plus master-authorized PLAN supersession; 42 version-1 files and 47 frozen attempt-1 files unchanged. Cleanup total 26 children from 13 terminal workers; zero forced kills. Shared index `176def8` refreshed, no new changes. Required publication suite: 313 passed / 23 skipped in 181.23 seconds.
 - 10-13-2026 15:58 PDT -- A2 implementation/lock publication ready: 313 passed / 23 skipped in 214.01 seconds with required Lean integration; 13 synthetic A2 controls include process/recovery replay. Lock `a18efcdb64d1d0f5bc315c15f8315eae91d559f5e03b43e2bf868ece1309d552`. Original run at 18,819/38,784 receipts; ordinary 13,491/33,456; zero retries so far. Next launcher `$WR/state/launch_R2_A2.sh` only after original terminal public result and dead original route coordinators; use a new `e13v2-a2-r2` session and scope.
