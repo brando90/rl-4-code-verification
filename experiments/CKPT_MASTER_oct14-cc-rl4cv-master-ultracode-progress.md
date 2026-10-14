@@ -5,7 +5,7 @@
 **TLDR:** Brando asked (10-14-2026, about 12:40 PDT) for a multi-agent "ultracode" push to make progress on experiments and the 10-13 meeting notes while he is away 1-2 hours. The master (Claude Code, claude-fable-5-1, effort max, tmux `oct14-cc-rl4cv-master-ultracode-progress` on Brando's Mac) launched one Workflow run with six parallel workers, each independently checked. Zero model calls this round: the Vals Valkyrie route returns HTTP 403 since 10-13 03:27 PDT.
 
 Created: 10-14-2026 12:56 PDT
-Last updated: 10-14-2026 12:56 PDT
+Last updated: 10-14-2026 12:59 PDT
 
 ## Goal
 - Land verifiable progress on main for: the 10-13-2026 meeting record and decisions; experiment 10 phase A (locked, never run); experiment 08 v3 corpus admission and failure taxonomy; experiment 13 v2 R2 diagnosis (via its idle owner on skampere1); a new experiment 15 (IRT forecast of RL-signal onset, idea-page Q2); experiment 12's corrected adapter (version 2 preparation).
@@ -16,6 +16,7 @@ Last updated: 10-14-2026 12:56 PDT
 
 ## Results
 - none yet (workers in progress; see each experiment's CKPT and results.md as they land).
+- Experiment 13 v2: Amendment A3 (rule-based R2 diagnosis and admission, commit 6582361 by the version 2 master) ADOPTED as written before any diagnosis outcome; record in expt_v2/AMENDMENT_A3_ADOPTION_10-14-2026.md. This round: classification only; fixes and re-measurement deferred to the version 2 master.
 
 ## Stuck / blocked
 - Vals Valkyrie route: HTTP 403 "Managed AWS access is not available for this organization" since 10-13 03:27 PDT; Jaewon asked 10-14 03:43 PDT (issue #68 comment 6166535065). Blocks experiment 08 v2's matched test and all judged evaluation.
@@ -33,3 +34,4 @@ Last updated: 10-14-2026 12:56 PDT
 
 ## Log
 - 10-14-2026 12:56 PDT -- Workflow launched with six workers; checkpoint created.
+- 10-14-2026 12:59 PDT -- Adopted experiment 13 v2 Amendment A3 (peer session's prospective rules) before any per-cell outcome; owner told to classify by A3; version 2 master resumes after this round.

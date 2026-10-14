@@ -6,7 +6,7 @@
 
 A3 proposes how the 49 ordinary cells are diagnosed and when G0 may be admitted. Its classification rules are committed here **before any per-cell diagnosis is read**, so that admission follows rules, not outcomes.
 
-**Status:** PROPOSED. Not in force until the experiment's current coordinator adopts it. On 10-14-2026 that is the ultracode master, `CKPT_MASTER_oct14-cc-rl4cv-master-ultracode-progress.md`.
+**Status:** ADOPTED 10-14-2026 12:59 PDT by the ultracode master (`CKPT_MASTER_oct14-cc-rl4cv-master-ultracode-progress.md`; record: [AMENDMENT_A3_ADOPTION_10-14-2026.md](AMENDMENT_A3_ADOPTION_10-14-2026.md)). Adopted as written, before any per-cell diagnosis was read by the coordinator or published.
 
 **Disclosure:** written after the R2 FAIL was published, and before the diagnosis of its 49 ordinary cells.
 
