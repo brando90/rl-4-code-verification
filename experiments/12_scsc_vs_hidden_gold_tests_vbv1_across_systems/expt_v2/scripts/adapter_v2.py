@@ -54,9 +54,19 @@ def is_helper(name):
 
 
 def name_affine(gold_name, candidate_name):
-    """The candidate's normalized basename is contained in the gold's (e.g. `canFree` in `MyHazardPointerCanFree`)."""
-    g, c = normalized(gold_name), normalized(candidate_name)
-    return len(c) >= 3 and c in g
+    """The candidate's normalized basename is a word-boundary suffix of the gold's basename (`canFree` in `MyHazardPointerCanFree`,
+    `median_low` in `benchmark_median_low`), never a prefix or an inner piece (`escapeHtml` in `escapeHtmlImp`, `safeX` in `unsafeX`, `absDiff` in `quadAbsDiffPlusThree`)."""
+    raw, c = basename(gold_name), normalized(candidate_name)
+    if len(c) < 3:
+        return False
+    # VeriBench gold twins are `f` and `fImp`; the imperative twin is also affine to the candidate's `f`.
+    variants = [raw] + [raw[:-len(s)] for s in ('Imperative', '_imperative', 'Imp', '_imp') if raw.endswith(s) and len(raw) > len(s)]
+    for name in variants:
+        for i in range(len(name)):
+            if name[i] != '_' and normalized(name[i:]) == c:
+                if i == 0 or name[i - 1] in '_' or name[i].isupper() or name[i - 1].isdigit() or name[i].isdigit():
+                    return True
+    return False
 
 
 # ---------------------------------------------------------------------------
@@ -233,9 +243,14 @@ def select_entry_point(gold, definitions, counts):
     if len(S) == 1:
         return finish(S[0], '2a')
     affine = [d for d in S if name_affine(gold['name'], d['name'])]
+    diag['affine'] = [d['full_name'] for d in affine]
     if len(affine) == 1:
-        return finish(affine[0], '2b')
-    if affine:
+        # Amendment V2-A1: the affine member decides only if no other member is referenced more by the candidate's own examples and theorems.
+        best = sum(counts[affine[0]['full_name']])
+        if all(sum(counts[d['full_name']]) <= best for d in S):
+            return finish(affine[0], '2b')
+        diag['reason'] = 'affine_member_out_referenced'
+    elif affine:
         S = affine
         diag['candidates'] = [d['full_name'] for d in S]
     diag['status'] = 'needs_probe'
@@ -280,7 +295,7 @@ def map_symbols(gold_symbols, candidate_source, tests=(), agreement=None):
         if diag['status'] == 'needs_probe':
             members = [by_full[n] for n in diag['candidates']]
             if agreement is None:
-                diag['reason'] = 'needs_probe_static_census'
+                diag['reason'] = diag['reason'] or 'needs_probe_static_census'
             else:
                 tuples = _argument_tuples(gold, tests)
                 comparisons = agreement(gold, members, tuples)

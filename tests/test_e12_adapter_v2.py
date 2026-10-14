@@ -60,6 +60,38 @@ def test_helper_name_rule(name, helper):
     assert v2.is_helper(name) is helper
 
 
+@pytest.mark.parametrize('gold,cand,affine', [
+    ('MyHazardPointerCanFree', 'canFree', True), ('MyLwwRegisterPickLeft', 'pickLeft', True), ('benchmark_median_low', 'median_low', True),
+    ('myInterruptRoute', 'myInterruptRoute', True), ('my_bump_alloc_fits', 'fits', True),
+    ('unsafeAccessMemory', 'safeAccessMemory', False), ('unsafeFindLast', 'safeFindLast', False), ('escapeHtmlImp', 'escapeHtml', True),
+    ('MyHazardPointerCanFreeImp', 'canFree', True), ('myMinListImperative', 'minList', True), ('escapeHtml', 'escapeHtmlImp', False),
+    ('quadAbsDiffPlusThree', 'absDiff', False), ('myDoseIntervalOk', 'gate', False), ('myFoo', 'oo', False),
+])
+def test_name_affinity_is_a_word_boundary_suffix(gold, cand, affine):
+    """Amendment V2-A1: the static renamed-gold control found 7/882 wrong picks from inner-piece and prefix affinity."""
+    assert v2.name_affine(gold, cand) is affine
+
+
+def test_affine_member_defers_to_probe_when_out_referenced_and_breaks_step_4_ties():
+    suite = extract('def my_core (x : Nat) : Bool := true\nexample : my_core 1 = true := by decide\n')
+    source = 'def core (x : Nat) : Bool := true\ndef other (x : Nat) : Bool := false\nexample : other 1 = false := rfl\n'
+    mapping, diag, _ = v2.map_symbols(suite['symbols'], source)
+    assert mapping == {} and diag[0]['status'] == 'needs_probe' and diag[0]['reason'] == 'affine_member_out_referenced'
+    assert set(diag[0]['candidates']) == {'core', 'other'}
+    mapping, diag, _ = v2.map_symbols(suite['symbols'], source, suite['tests'], lambda *_: {'agrees': False})
+    assert mapping == {'my_core': 'other'} and diag[0]['step'] == 4  # reference counts still decide a disagreement
+    quiet = 'def core (x : Nat) : Bool := true\ndef other (x : Nat) : Bool := false\n'
+    mapping, diag, _ = v2.map_symbols(suite['symbols'], quiet)
+    assert mapping == {'my_core': 'core'} and diag[0]['step'] == '2b'  # nobody out-references the affine member: static decision
+    tie = quiet + 'example : core 1 = true := rfl\nexample : other 1 = false := rfl\n'
+    mapping, diag, _ = v2.map_symbols(suite['symbols'], tie)
+    assert mapping == {'my_core': 'core'} and diag[0]['step'] == '2b'  # equal references do not out-reference the affine member
+    twins = extract('def myCoreImp (x : Nat) : Bool := true\nexample : myCoreImp 1 = true := by decide\n')
+    source = 'def core (x : Nat) : Bool := true\ndef coreImp (x : Nat) : Bool := false\n'
+    mapping, diag, _ = v2.map_symbols(twins['symbols'], source, twins['tests'], lambda *_: {'agrees': False})
+    assert mapping == {} and diag[0]['reason'] == 'ambiguous_disagreeing' and set(diag[0]['affine']) == {'core', 'coreImp'}
+
+
 def test_implicit_binders_are_skipped_not_fatal():
     sig = v2.signature('{α : Type} (url : List α) (bufSize : Nat) : Bool')
     assert sig['arity'] == 2 and sig['has_implicit'] and sig['args'] == ('List i0', 'NUM')

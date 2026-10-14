@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v2/README.md>
 
-**TLDR:** Version 1 (DONE 10-10-2026) showed that SCSC, the smooth conjunctive score for code verification, tracks hidden gold-reference tests on VeriBench V1 (P1 Spearman 0.891, P2 area 0.640, P3 Spearman 0.151, applicability 3,224/4,674 = 0.690), but its inspection found that the frozen adapter sometimes tested a precondition helper instead of the model's entry point and counted partially applicable cells as failures. Version 2 is the corrected, prospective rerun of the same question on the same saved outputs with zero model calls: a Lean-faithful identifier lexer, an explicit entry-point priority order that never prefers helpers, and per-test applicability. This round (10-14-2026) delivers the design, the adapter with 49 passing unit tests, a zero-compilation mapping census on the host, a locked protocol and a frozen forecast. The Lean evaluation (4,626 compiling primary cells, optionally the 33,984 secondary cells) is Emily Xia's run, scripted in [cc.md](cc.md). No hidden-test outcome has been computed in version 2.
+**TLDR:** Version 1 (DONE 10-10-2026) showed that SCSC, the smooth conjunctive score for code verification, tracks hidden gold-reference tests on VeriBench V1 (P1 Spearman 0.891, P2 area 0.640, P3 Spearman 0.151, applicability 3,224/4,674 = 0.690), but its inspection found that the frozen adapter sometimes tested a precondition helper instead of the model's entry point and counted partially applicable cells as failures. Version 2 is the corrected, prospective rerun of the same question on the same saved outputs with zero model calls: a Lean-faithful identifier lexer, an explicit entry-point priority order that never prefers helpers, and per-test applicability. This round (10-14-2026) delivers the design, the adapter with 64 passing unit tests, zero-compilation static controls over all 882 gold suites and a mapping census on the host, a locked protocol (one dated amendment, V2-A1, after the static controls) and a frozen forecast (plus its amendment note). The Lean evaluation (4,626 compiling primary cells, optionally the 33,984 secondary cells) is Emily Xia's run, scripted in [cc.md](cc.md). No hidden-test outcome has been computed in version 2.
 
 **Owner:** Emily Xia (@emxia18), with Ethan Li (@lethan3) advising. **Prepared by:** a Claude Code worker (claude-fable-5-1) for Brando's 10-14-2026 progress push. **Status:** see [results.md](results.md) and [CKPT_e12_v2.md](CKPT_e12_v2.md).
 
@@ -35,9 +35,10 @@ The version-1 adapter and outcomes are frozen (protocol lock `a1d985c`, 43,840/4
 - `scripts/adapter_v2.py` — lexer, declarations, signatures, helper rule, entry-point selection, per-test plan, bridge and cell outcome; imports version-1 helpers read-only.
 - `scripts/mapping_census_v2.py` — static mapping over the 4,626 compiling primary cells with tests, compared with the version-1 receipts' mapping fields only.
 - `fixtures/disagreement_skeletons_e12v2.json` — declaration skeletons (names, headers, own example statements; no bodies) of the 20 inspected candidates with their gold symbols and tests.
-- `tests/test_e12_adapter_v2.py` (repository `tests/`) — 49 tests: 10 lexer cases, 16 helper-name cases, the 20 inspected rows, per-test applicability, bridge format, 5 version-1 control fixtures.
+- `scripts/static_controls_v2.py` — zero-Lean gold-self and renamed-gold controls over all 882 suites (`results/static_controls_v2.json`: 882/882 and 0/882 wrong).
+- `tests/test_e12_adapter_v2.py` (repository `tests/`) — 64 tests: 10 lexer cases, 16 helper-name cases, 13 affinity cases, the 20 inspected rows, per-test applicability, bridge format, 5 version-1 control fixtures.
 - `results/mapping_census_v2.json` and the tables in `results.md`.
-- `PROTOCOL.md` (locked), `forecasts/e12_v2_forecast.json` (frozen), `cc.md`, `CKPT_e12_v2.md`.
+- `PROTOCOL.md` (locked; § 8 amendment V2-A1), `forecasts/e12_v2_forecast.json` and `e12_v2_forecast_amendment_A1.json` (frozen), `cc.md`, `CKPT_e12_v2.md`.
 
 ## Structure
 

@@ -43,3 +43,11 @@ Per test: `unmapped`, `type_unknown`, `pass` or `fail`. Per cell: `n_tests`, `n_
 ## 7. Not in version 2
 
 Hidden proofs (`reference_obligations_proved`), a fresh agent-spec v8 panel, human acceptance ratings, and any `Option`/`Except` unwrapping.
+
+## 8. Amendment V2-A1 (10-14-2026, worker; after the lock, before any evaluation or control run)
+
+The static renamed-gold control (`results/static_controls_v2.json`, first run) found 7/882 tasks where step 2b (name affinity) picked a same-typed definition that was not the renamed tested symbol: an inner piece (`absDiff` for `quadAbsDiffPlusThree`), a prefix (`escapeHtml` for `escapeHtmlImp`), a wrapper target (`median_low` for `benchmark_median_low`, `covariance` for `benchmark_covariance`) and the safe variant of a security pair (`safeAccessMemory` for `unsafeAccessMemory`, `safeFindLast` for `unsafeFindLast`). No hidden outcome was involved. The fix is to the adapter before any Lean control or evaluation; predictions and thresholds are unchanged; the forecast amendment `forecasts/e12_v2_forecast_amendment_A1.json` records the new hashes.
+
+- **V2-A1.1 Name affinity** (step 2b) now requires the candidate basename, normalized, to be a **suffix of the gold basename at a word boundary** (preceded by `_`, a digit, or starting with an upper-case letter, or the whole name); the gold twin suffixes `Imp`, `_imp`, `Imperative`, `_imperative` are stripped before the test, so `canFree` is affine to both `MyHazardPointerCanFree` and `MyHazardPointerCanFreeImp`. Prefixes and inner pieces are never affine.
+- **V2-A1.2 Reference veto.** A unique affine member decides statically only if no other member of the compatible set is referenced strictly more often by the candidate's own examples and theorems; otherwise the cell is deferred to the agreement probe (reason `affine_member_out_referenced`) with the full set.
+- **V2-A1.3 Receipts.** Adapter `scripts/adapter_v2.py` SHA-256 `da6fbe366b26e8518894ba5dd0d236de9e3f258f53e30c5181be08ebcfc7f430` replaces the lock-line hash; the census and static controls were rerun with it (census 3,121 fully mapped / 315 partial / 263 probe / 927 none; static C1 882/882; static C2 0/882 wrong). Section 3's Lean controls still gate the evaluation with unchanged expectations.
