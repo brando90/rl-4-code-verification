@@ -5,7 +5,7 @@
 **TLDR:** G0 remains PASS. LP-1, the generation resource and probability admission, is INCOMPLETE: one attempt produced 0/8 responses because the launcher supplied a graphics processor identifier where vLLM expected a numeric index. Cleanup passed, the lease was released after 0.014593276 device-hours, and automatic launch was retired. The no-retry rule stops downstream execution; no anchor or Phase 2 run occurred.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-14-2026 15:36 PDT
+Last updated: 10-14-2026 15:38 PDT
 
 ## Goal and terminal state
 Complete Phase 1 then Phase 2 under PLAN and amendments, or publish a binding stop. The current execution stops at the unmet LP-1 prerequisite, with its original one-attempt failure retained. [LP-1 report](RESULTS_LP1.md) and [aggregate evidence receipt](LP1/result.json).
@@ -21,9 +21,10 @@ Complete Phase 1 then Phase 2 under PLAN and amendments, or publish a binding st
 PLAN section 5 fixes LP-1 before anchors; PLAN section 4 and the explicit master instruction prohibit retries from L1v2 onward. Without LP-1 PASS, no anchor, calibration, G1/H2 or Phase 2 is admitted. G0 remains unchanged. This stop is an unmet technical prerequisite, not a claimed G1/H2/T1 failure. No corrected-launcher retry was performed. Formal specification coverage's Valkyrie HTTP 403 remains a separate unreached limitation.
 
 ## Closeout
-Publish the failure and retained preparation, verify remote main, then send the authorized stopped notice through the watchdog only. Notification is pending this publication. No user action is required for closeout, and no device wait is being treated as a blocker.
+Failure report and retained preparation published as `50cf118726b101b916c88ffd307844a0ab607fe9`, verified on remote main. At 15:38 PDT the watchdog recorded exactly one stopped notification as sent to `brando.science@gmail.com`, with no carbon copy, per PLAN section 7. Zero live experiment children and zero active leases; all ten cron entries unchanged. [Completion receipt](LP1/completion.json). No user action is required for closeout.
 
 ## Log
+- 10-14-2026 15:38 PDT -- Report publication 50cf118 verified; watchdog stopped notification sent exactly once. Zero live experiment children/active leases, retired launch plan, ten cron entries unchanged. Published completion receipt and synchronized experiment README/index. Required suite remains 528/23/0; only documentation/receipts changed after that passing run.
 - 10-14-2026 15:36 PDT -- LP-1 INCOMPLETE at startup after one frozen attempt, responses 0/8, tokens/optimizer updates/retries 0. Device UUID was incompatible with installed vLLM numeric-index parsing. Cleanup verified; lease RELEASED after 0.014593276 device-hours; automatic launch plan retired without changing cron. Required suite 528 passed/23 skipped/0 failed, direct exit 0. Publishing honest prerequisite stop and retained CPU preparation; completion notice follows verified publication.
 - 10-14-2026 15:29 PDT -- LP-1 automatic launch armed after verified d831d0f publication; dispatcher PID 3760150 registered, returned WAIT, zero claims. Ten cron lines unchanged and one live owner. Anchor scoring passes four focused tests including real capped-source Lean; G1 missing-input/bounds controls pass 41 synthetic tests. Prepared 539 train/135 validation feature records from 1,348 hash-bound sources, no test content or actual fits. Required publication suite running; continue final G1 driver and calibration preparation.
 - 10-14-2026 15:17 PDT -- LP-1 freeze prepared: three CPU-verified routes, 132 bindings each, eight-response probe, 30-minute device cap (0.6-hour cumulative prelaunch/attempt allowance), zero optimizer updates/retries. Own remote runtime/model deployments complete within 50 GiB per-node preparation allowance. Required suite passed 512/23/0 in 240.62s, direct exit 0; publish before arming private launch plan. No model inference, fit or lease.

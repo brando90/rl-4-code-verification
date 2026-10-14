@@ -47,5 +47,7 @@ Completed CPU preparation is retained: anchor generation and scoring, sampler an
 
 A future authorized protocol amendment could prospectively freeze a corrected numeric device mapping with UUID-to-index verification and an additional preflight. No such rerun was performed or implicitly approved by this report. The current attempt, lock, failure and budget accounting remain immutable.
 
+Publication verified on remote main at `50cf118`. The watchdog sent exactly one stopped notice at 15:38 PDT on 10-14-2026; no live experiment child or active lease remains. [Completion receipt](LP1/completion.json).
+
 **TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 ends at incomplete LP-1 startup under the no-retry rule; G0 still passes, while Phase 1 scientific measurements and Phase 2 remain unmeasured.
 **Snapshot:** LP-1 attempts 1; responses 0/8; tokens 0; optimizer updates 0; retries 0; device-hours 0.014593276; cleanup PASS; lease RELEASED.

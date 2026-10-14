@@ -43,7 +43,7 @@ The required publication suite passed: `E13_REQUIRE_LEAN_INTEGRATION=1 make test
 
 ## Transition
 
-PLAN section 5 requires LP-1 admission before anchor generation. The attempt did not pass, and the explicit no-retry rule remains binding. No downstream run is admitted. G0 remains PASS; anchors, calibration, G1/H2 and Phase 2 remain unmeasured. The watchdog completion notice follows verified publication of this stop.
+PLAN section 5 requires LP-1 admission before anchor generation. The attempt did not pass, and the explicit no-retry rule remains binding. No downstream run is admitted. G0 remains PASS; anchors, calibration, G1/H2 and Phase 2 remain unmeasured. The report is published at `50cf118`; the watchdog recorded its completion notice as sent at 15:38 PDT ([receipt](../LP1/completion.json)).
 
 ## Earlier CPU preparation record, 10-14-2026 14:47 PDT
 

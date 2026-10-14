@@ -4,7 +4,7 @@
 
 **TLDR:** G0 remains PASS. LP-1, the generation resource and probability admission, is INCOMPLETE: one attempt produced 0/8 responses because the launcher supplied a graphics processor identifier where vLLM expected a numeric index. Cleanup passed, the lease was released after 0.014593276 device-hours, and automatic launch was retired. The no-retry rule stops downstream execution; no anchor or Phase 2 run occurred.
 
-Last updated: 10-14-2026 15:36 PDT
+Last updated: 10-14-2026 15:38 PDT
 Status: **STOPPED: LP-1 INCOMPLETE; no retry or downstream execution.** [LP-1 failure and evidence](RESULTS_LP1.md) · [G0 PASS and exact bounds](RESULTS_G0.md).
 
 | Stage | Status | Measured / declared |
@@ -61,7 +61,7 @@ The anchor scorer now uses frozen extraction, independent official strict scorin
 
 [LP-1 report](RESULTS_LP1.md): one frozen attempt, 0/8 responses, zero generated tokens and optimizer updates. Installed vLLM 0.10.0 interpreted the launcher's device UUID as an integer during engine construction. Probability agreement is unmeasured; this is a launcher defect. The CPU preflight omitted this compatibility check. Cleanup passed and the lease was released after 52.535794 seconds (0.014593276 device-hours). Automatic launch is retired; the ten cron entries are preserved.
 
-PLAN section 5's LP-1 prerequisite is unmet and section 4's no-retry rule applies. G0 remains PASS, but no anchors, calibration, G1/H2 or Phase 2 were run. The final G1 driver and executable lock were not completed; the retained draft is non-executable. The latest required suite passed 528 tests with 23 skips, zero failures in 247.80 seconds; [verification receipt](phase1/scoring_inputs_publication_test.json). No scientific failure is inferred from the unmeasured probability statistics. Completion notification through the watchdog is pending verified publication.
+PLAN section 5's LP-1 prerequisite is unmet and section 4's no-retry rule applies. G0 remains PASS, but no anchors, calibration, G1/H2 or Phase 2 were run. The final G1 driver and executable lock were not completed; the retained draft is non-executable. The latest required suite passed 528 tests with 23 skips, zero failures in 247.80 seconds; [verification receipt](phase1/scoring_inputs_publication_test.json). No scientific failure is inferred from the unmeasured probability statistics. Report and retained preparation published at `50cf118`, verified on remote main. At 15:38 PDT the watchdog recorded exactly one stopped notification as sent to `brando.science@gmail.com`; zero live experiment children and zero active leases. [Completion receipt](LP1/completion.json).
 
 **TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 stops at incomplete LP-1 startup under the no-retry rule; G0 remains PASS and later scientific gates are unmeasured.
 **Snapshot:** LP-1 attempts 1; responses 0/8; tokens 0; optimizer updates 0; retries 0; device-hours 0.014593276; cleanup PASS; lease RELEASED.
