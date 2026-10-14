@@ -1,0 +1,379 @@
+{
+  "gate": "G0_A3",
+  "status": "PASS",
+  "publication": "a717d069d0e47864c9ce6b47be0f3a11afd4781c",
+  "lock_sha256": "78978a55c32f0416ac8332ee1f6c5380476e83c34ca8eca5a8c7082ba125d967",
+  "threshold_source": "PROTOCOL section 3; PLAN section 4; R2_A3_ADMISSION_10-14-2026.md",
+  "dense_only_minimum": 21,
+  "dense_only_denominator": 135,
+  "auc_minimum": 0.65,
+  "strata": {
+    "1p7B": {
+      "status": "PASS",
+      "tasks": 135,
+      "affected_tasks": 21,
+      "excluded_cells": 38,
+      "dense_only": {
+        "minimum": 103,
+        "maximum": 111,
+        "exact": true
+      },
+      "auc": {
+        "minimum": 0.671604938271605,
+        "maximum": 0.9376876876876877,
+        "exact": true,
+        "configurations": 196608,
+        "enumeration_limit": 1048576,
+        "undefined_possible": false,
+        "witness_values": [
+          0.671604938271605,
+          0.9376876876876877
+        ]
+      },
+      "evaluate_outputs": {
+        "dense_minimum": {
+          "tasks": 135,
+          "samples_per_task": 8,
+          "groups": 100,
+          "dense_only": 103,
+          "dense_only_share": 0.762962962962963,
+          "dense_only_interval_95": [
+            0.6857142857142857,
+            0.835820895522388
+          ],
+          "zero_success_earlier_tasks": 124,
+          "later_positive_in_subset": 18,
+          "auc": 0.7541928721174004,
+          "auc_interval_95": [
+            0.6033624188311688,
+            0.8917880752606153
+          ],
+          "auc_valid_bootstrap_draws": 10000,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 1302051,
+          "uncertainty": "paired task-group percentile bootstrap; resample full cohort, then condition on zero earlier successes",
+          "p_value": null,
+          "test": "prespecified point thresholds; no hypothesis-test p-value"
+        },
+        "dense_maximum": {
+          "tasks": 135,
+          "samples_per_task": 8,
+          "groups": 100,
+          "dense_only": 111,
+          "dense_only_share": 0.8222222222222222,
+          "dense_only_interval_95": [
+            0.7536231884057971,
+            0.8863636363636364
+          ],
+          "zero_success_earlier_tasks": 124,
+          "later_positive_in_subset": 11,
+          "auc": 0.9300080450522928,
+          "auc_interval_95": [
+            0.8793092549806008,
+            0.9730603448275862
+          ],
+          "auc_valid_bootstrap_draws": 10000,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 1302051,
+          "uncertainty": "paired task-group percentile bootstrap; resample full cohort, then condition on zero earlier successes",
+          "p_value": null,
+          "test": "prespecified point thresholds; no hypothesis-test p-value"
+        },
+        "auc_minimum": {
+          "tasks": 135,
+          "samples_per_task": 8,
+          "groups": 100,
+          "dense_only": 106,
+          "dense_only_share": 0.7851851851851852,
+          "dense_only_interval_95": [
+            0.7101449275362319,
+            0.855072463768116
+          ],
+          "zero_success_earlier_tasks": 123,
+          "later_positive_in_subset": 15,
+          "auc": 0.671604938271605,
+          "auc_interval_95": [
+            0.504640540968048,
+            0.8382637909253605
+          ],
+          "auc_valid_bootstrap_draws": 10000,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 1302051,
+          "uncertainty": "paired task-group percentile bootstrap; resample full cohort, then condition on zero earlier successes",
+          "p_value": null,
+          "test": "prespecified point thresholds; no hypothesis-test p-value"
+        },
+        "auc_maximum": {
+          "tasks": 135,
+          "samples_per_task": 8,
+          "groups": 100,
+          "dense_only": 110,
+          "dense_only_share": 0.8148148148148148,
+          "dense_only_interval_95": [
+            0.7445214313155151,
+            0.880007042253521
+          ],
+          "zero_success_earlier_tasks": 123,
+          "later_positive_in_subset": 12,
+          "auc": 0.9376876876876877,
+          "auc_interval_95": [
+            0.8889898043586808,
+            0.9773487115847872
+          ],
+          "auc_valid_bootstrap_draws": 10000,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 1302051,
+          "uncertainty": "paired task-group percentile bootstrap; resample full cohort, then condition on zero earlier successes",
+          "p_value": null,
+          "test": "prespecified point thresholds; no hypothesis-test p-value"
+        }
+      },
+      "witness_interpretation": "certified extrema"
+    },
+    "4B": {
+      "status": "PASS",
+      "tasks": 135,
+      "affected_tasks": 23,
+      "excluded_cells": 34,
+      "dense_only": {
+        "minimum": 89,
+        "maximum": 97,
+        "exact": true
+      },
+      "auc": {
+        "minimum": 0.6706521739130434,
+        "maximum": 0.9046439628482972,
+        "exact": true,
+        "configurations": 221184,
+        "enumeration_limit": 1048576,
+        "undefined_possible": false,
+        "witness_values": [
+          0.6706521739130434,
+          0.9046439628482972
+        ]
+      },
+      "evaluate_outputs": {
+        "dense_minimum": {
+          "tasks": 135,
+          "samples_per_task": 8,
+          "groups": 100,
+          "dense_only": 89,
+          "dense_only_share": 0.6592592592592592,
+          "dense_only_interval_95": [
+            0.5625,
+            0.7575757575757576
+          ],
+          "zero_success_earlier_tasks": 113,
+          "later_positive_in_subset": 21,
+          "auc": 0.7251552795031055,
+          "auc_interval_95": [
+            0.5799719982078853,
+            0.8528711484593837
+          ],
+          "auc_valid_bootstrap_draws": 10000,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 1302051,
+          "uncertainty": "paired task-group percentile bootstrap; resample full cohort, then condition on zero earlier successes",
+          "p_value": null,
+          "test": "prespecified point thresholds; no hypothesis-test p-value"
+        },
+        "dense_maximum": {
+          "tasks": 135,
+          "samples_per_task": 8,
+          "groups": 100,
+          "dense_only": 97,
+          "dense_only_share": 0.7185185185185186,
+          "dense_only_interval_95": [
+            0.625,
+            0.8106060606060606
+          ],
+          "zero_success_earlier_tasks": 113,
+          "later_positive_in_subset": 14,
+          "auc": 0.8838383838383839,
+          "auc_interval_95": [
+            0.7763231043453127,
+            0.9736488526570048
+          ],
+          "auc_valid_bootstrap_draws": 10000,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 1302051,
+          "uncertainty": "paired task-group percentile bootstrap; resample full cohort, then condition on zero earlier successes",
+          "p_value": null,
+          "test": "prespecified point thresholds; no hypothesis-test p-value"
+        },
+        "auc_minimum": {
+          "tasks": 135,
+          "samples_per_task": 8,
+          "groups": 100,
+          "dense_only": 90,
+          "dense_only_share": 0.6666666666666666,
+          "dense_only_interval_95": [
+            0.5683453237410072,
+            0.7651515151515151
+          ],
+          "zero_success_earlier_tasks": 112,
+          "later_positive_in_subset": 20,
+          "auc": 0.6706521739130434,
+          "auc_interval_95": [
+            0.5249925889328063,
+            0.8111208394775647
+          ],
+          "auc_valid_bootstrap_draws": 10000,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 1302051,
+          "uncertainty": "paired task-group percentile bootstrap; resample full cohort, then condition on zero earlier successes",
+          "p_value": null,
+          "test": "prespecified point thresholds; no hypothesis-test p-value"
+        },
+        "auc_maximum": {
+          "tasks": 135,
+          "samples_per_task": 8,
+          "groups": 100,
+          "dense_only": 94,
+          "dense_only_share": 0.6962962962962963,
+          "dense_only_interval_95": [
+            0.6013513513513513,
+            0.7894736842105263
+          ],
+          "zero_success_earlier_tasks": 112,
+          "later_positive_in_subset": 17,
+          "auc": 0.9046439628482972,
+          "auc_interval_95": [
+            0.8085203089803854,
+            0.9796122022185851
+          ],
+          "auc_valid_bootstrap_draws": 10000,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 1302051,
+          "uncertainty": "paired task-group percentile bootstrap; resample full cohort, then condition on zero earlier successes",
+          "p_value": null,
+          "test": "prespecified point thresholds; no hypothesis-test p-value"
+        }
+      },
+      "witness_interpretation": "certified extrema"
+    },
+    "8B": {
+      "status": "INCONCLUSIVE",
+      "tasks": 135,
+      "affected_tasks": 23,
+      "excluded_cells": 38,
+      "dense_only": {
+        "minimum": 90,
+        "maximum": 100,
+        "exact": true
+      },
+      "auc": {
+        "minimum": 0.5574855252274608,
+        "maximum": 0.9090909090909091,
+        "exact": true,
+        "configurations": 31104,
+        "enumeration_limit": 1048576,
+        "undefined_possible": false,
+        "witness_values": [
+          0.5574855252274608,
+          0.9090909090909091
+        ]
+      },
+      "evaluate_outputs": {
+        "dense_minimum": {
+          "tasks": 135,
+          "samples_per_task": 8,
+          "groups": 100,
+          "dense_only": 90,
+          "dense_only_share": 0.6666666666666666,
+          "dense_only_interval_95": [
+            0.5757575757575758,
+            0.7559055118110236
+          ],
+          "zero_success_earlier_tasks": 106,
+          "later_positive_in_subset": 16,
+          "auc": 0.6361111111111111,
+          "auc_interval_95": [
+            0.44436029955621303,
+            0.8090487954580327
+          ],
+          "auc_valid_bootstrap_draws": 10000,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 1302051,
+          "uncertainty": "paired task-group percentile bootstrap; resample full cohort, then condition on zero earlier successes",
+          "p_value": null,
+          "test": "prespecified point thresholds; no hypothesis-test p-value"
+        },
+        "dense_maximum": {
+          "tasks": 135,
+          "samples_per_task": 8,
+          "groups": 100,
+          "dense_only": 100,
+          "dense_only_share": 0.7407407407407407,
+          "dense_only_interval_95": [
+            0.654404854046882,
+            0.8253968253968254
+          ],
+          "zero_success_earlier_tasks": 106,
+          "later_positive_in_subset": 7,
+          "auc": 0.8744588744588745,
+          "auc_interval_95": [
+            0.78125,
+            0.9528209154529044
+          ],
+          "auc_valid_bootstrap_draws": 9991,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 1302051,
+          "uncertainty": "paired task-group percentile bootstrap; resample full cohort, then condition on zero earlier successes",
+          "p_value": null,
+          "test": "prespecified point thresholds; no hypothesis-test p-value"
+        },
+        "auc_minimum": {
+          "tasks": 135,
+          "samples_per_task": 8,
+          "groups": 100,
+          "dense_only": 94,
+          "dense_only_share": 0.6962962962962963,
+          "dense_only_interval_95": [
+            0.6086956521739131,
+            0.7819548872180451
+          ],
+          "zero_success_earlier_tasks": 106,
+          "later_positive_in_subset": 13,
+          "auc": 0.5574855252274608,
+          "auc_interval_95": [
+            0.3551005913729128,
+            0.7536379492600422
+          ],
+          "auc_valid_bootstrap_draws": 10000,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 1302051,
+          "uncertainty": "paired task-group percentile bootstrap; resample full cohort, then condition on zero earlier successes",
+          "p_value": null,
+          "test": "prespecified point thresholds; no hypothesis-test p-value"
+        },
+        "auc_maximum": {
+          "tasks": 135,
+          "samples_per_task": 8,
+          "groups": 100,
+          "dense_only": 96,
+          "dense_only_share": 0.7111111111111111,
+          "dense_only_interval_95": [
+            0.6231884057971014,
+            0.796875
+          ],
+          "zero_success_earlier_tasks": 106,
+          "later_positive_in_subset": 11,
+          "auc": 0.9090909090909091,
+          "auc_interval_95": [
+            0.8353443489948574,
+            0.9652191327567191
+          ],
+          "auc_valid_bootstrap_draws": 10000,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 1302051,
+          "uncertainty": "paired task-group percentile bootstrap; resample full cohort, then condition on zero earlier successes",
+          "p_value": null,
+          "test": "prespecified point thresholds; no hypothesis-test p-value"
+        }
+      },
+      "witness_interpretation": "certified extrema"
+    }
+  },
+  "private_completions_sha256": "e9a93389b3db5b380ada17423ef0bfb4d016657dcb840b9a2cd1221842385086"
+}

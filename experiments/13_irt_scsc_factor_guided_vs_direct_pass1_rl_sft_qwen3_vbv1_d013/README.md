@@ -12,10 +12,10 @@ The plan has three phases:
 - **Phase 1:** fit and validate a conjunctive item response theory (IRT) model that predicts held-out pass@1 and pass@k.
 - **Phase 2:** run four RL arms from the Qwen3-4B SFT checkpoint: strict reward, SCSC-style factored reward, IRT-guided reward and prompt sampling, and a placebo dense reward.
 
-Status (10-13-2026): **R2 FAIL under A2**: 38,784/38,784 accounted; 4/33,243 ordinary measured oracle mismatches; 45/33,456 ordinary unresolved (maximum 33). Opaque equality PASS; 2/5,328 unresolved (maximum 5). [Full reproduction report](expt_v2/RESULTS_R2.md). R0 attempt 2 passed 30/30 fixtures and R1 passed 400/400 train cells; L1v2 was frozen before reproduction. G0 and later phases are not admitted. Version 1 and attempt-1 evidence remain unchanged.
+Status (10-14-2026): **G0 PASS under A3: primary 4B dense-only bounds 89–97/135 (threshold 21), predictive AUC bounds 0.670652174–0.904643963 (threshold 0.65), exact across 221,184 configurations; 23 tasks affected by 34 excluded cells. Phase 1 generation admission is next; no training has run.** [G0 report](expt_v2/RESULTS_G0.md). The original [R2 FAIL under A2](expt_v2/RESULTS_R2.md) remains unchanged; adopted A3 admits the bounded G0 analysis.
 
 - **Created:** 10-09-2026 by Claude Code (`claude-opus-5-5`) for Brando.
-- **Owner:** version 2 skampere1 owner resumed under Amendment A1; the Mac master retains the parent experiment.
+- **Owner:** fresh version 2 skampere1 owner `codex-rl4cv-e13v2-owner-g0`; the Mac master retains the parent experiment.
 - **Terms:**
   - An *arm* is one condition being compared.
   - *Strict* is `kernel_binary`: the file typechecks, has at least one example, states at least one theorem, every stated theorem is a proved theorem with allowed axioms, and none is vacuous.
@@ -72,8 +72,8 @@ The reward fractions remain vulnerable to padding and dropping hard statements. 
 
 ## Status and next admitted work
 
-Version 2 passed its authored fixtures and train-only diagnostic, then froze L1v2 before historical reproduction. [R2 fails under Amendment A2](expt_v2/RESULTS_R2.md) after complete accounting and all 48 authorized untyped-cell retries. The measured oracle inequality is a technical measurement failure, not evidence about the reinforcement-learning hypothesis. PLAN § 4 blocks G0, fitting and training; no further scientific retry is authorized.
+Version 2 passed its authored fixtures and train-only diagnostic, then froze L1v2 before historical reproduction. [R2 fails under Amendment A2](expt_v2/RESULTS_R2.md) after complete accounting and all 48 authorized untyped-cell retries. The measured oracle inequality is a technical measurement failure, not evidence about the reinforcement-learning hypothesis. Adopted A3 subsequently admitted the exclusion-and-bounds route; G0 now passes, admitting Phase 1 in its frozen order. No gate retry occurred.
 
 The ladder declares 25,920 validation cells, with 20,520 available and 5,400 missing from five 14B checkpoints. Preserve those missing cells and reuse overlapping historical base outputs once. Full historical test equality checks use an opaque locked audit; test outcomes cannot enter model fitting.
 
-The central-processor resource plan was measured in R1 and enforced through R2. No graphics processor was allocated and no optimizer update ran. The 260–350 A100-hour estimate was never an allocation. The authorized version-2 owner run ends at the failed R2 admission gate; the scientific comparison remains unperformed.
+The central-processor resource plan was measured in R1 and enforced through R2. No graphics processor was allocated and no optimizer update ran. The 260–350 A100-hour estimate was never an allocation. Phase 1 generation admission is next; the scientific training comparison remains unperformed. This canonical folder retains live test imports, frozen measurement code and absolute-path-bound evidence; it remains active.

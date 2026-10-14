@@ -2,29 +2,31 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2_owner.md>
 
-**TLDR:** Fresh owner is preparing the admitted G0 bounds run for 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013 version 2. The watchdog is armed and all 217 exclusions verified; wrapper, tests and lock passed the required suite and await publication before any G0 statistic.
+**TLDR:** G0 PASS under A3: primary 4B dense-only bounds 89–97/135 (threshold 21), predictive AUC bounds 0.670652174–0.904643963 (threshold 0.65), exact across 221,184 configurations; 23 tasks affected by 34 excluded cells. Phase 1 generation admission is next; no training has run.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-14-2026 14:03 PDT
+Last updated: 10-14-2026 14:10 PDT
 
 ## Goal
-- Execute G0 once under A3; on PASS continue Phase 1 then Phase 2, otherwise publish PLAN §4 stop and completion notification.
+- Complete Phase 1 then Phase 2 for 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013 version 2 under PLAN and amendments; stop only at binding transitions or real blockers.
 ## What ran
-- Owner `codex-rl4cv-e13v2-owner-g0`, native PID 1243923, Astra/high, full access/never; prior owner idle, no experiment children, never briefed. Launch receipt `$WR/state/G0_owner_launch.json`.
-- Watchdog run `e13v2_g0_owner_10-14-2026`: seven prior cron lines preserved plus two added; six watchdog tests passed. Shared lock/ledger preserved; active owner handles continuation, automatic executor replacement remains unconfigured.
-- Verified exclusion hash/count/splits/composition and four public class-(c) identities. Wrote `reproduction/g0_a3.py`, synthetic tests and `locks/G0_A3.json`; all nine hashes match. Required full suite passed: 433 passed, 23 skipped, 0 failed in 260.05 seconds; Lean integration required.
+- Single writer `codex-rl4cv-e13v2-owner-g0`, PID 1243923, Astra/high, full access/never. Prior owner idle and untouched. Watchdog run `e13v2_g0_owner_10-14-2026`, additive cron verified, six tests passed; shared recovery lock/ledger retained.
+- Published wrapper/tests/lock at `a717d069d0e47864c9ce6b47be0f3a11afd4781c`, remote verified. Required suite 433 passed / 23 skipped in 260.05s. G0 one invocation, 118.686s, exit 0; nine hashes checked before data. No outer fallback.
 ## Results
-- Exclusions: 217/33,456 ordinary cells, train 13 and validation 204, test zero. Composition 168 typed + 2 (a) + 4 (c) + 43 (d), equivalent to manifest 167 typed + 3 (a). [Counts and method](reproduction/README_G0_A3.md).
-- No G0 statistic, fitted model, model call, device claim or training update. Original R2 FAIL under A2 and opaque PASS preserved.
+- Primary 4B exact dense-only 89–97/135, AUC 0.670652174–0.904643963; minimum-AUC conditional 95% group interval [0.524992589,0.811120839], p-val=n/a. 23 tasks affected, 34/2160 excluded cells, 221184 configurations. [Report](RESULTS_G0.md).
+- Secondary 1.7B PASS (dense 103–111, AUC .671605–.937688); 8B INCONCLUSIVE (dense 90–100, AUC .557486–.909091), nongating. No undefined completion. F0v2 .50 underpredicts primary share .659259–.718519; F1v2 untested.
+- All 217 exclusions enforced (13 train/204 validation). Opaque data remain sealed. Original R2/A2 evidence preserved. No model calls, graphics processor claim, anchor generation, fit or training.
 ## Stuck / blocked
-- No G0 blocker. Validated Valkyrie judge remains unavailable for later formal specification coverage; no probe or call made.
+- Generation admission waits for a viable device route: all skampere1/2/3 devices occupied; Mercury1/2 idle 16 GiB devices have only 32/13 GiB local free space, below required headroom. Scheduler inventory pending. Validated Valkyrie formal-specification judge unavailable, not probed; Phase 2 coverage scoring remains pending that route.
 ## Next steps
-- Required suite passed; publish explicit wrapper/test/lock/report paths on main, then run `python expt_v2/reproduction/g0_a3.py --work-root $WR --output-dir $WR/G0_A3 --publication <published-commit>` from the experiment folder with frozen environment loaded.
-- G0 PASS advances; FAIL/INCONCLUSIVE disables B/C and stops Phase 2. No gate retry; no statistic before freeze publication.
+- G0 result-publication suite passed 433/23 in 233.01s; publish report/receipts/indexes. Then read PLAN §5 and PROTOCOL §§4–6; inventory generation/trainer environment, all GPU processes/leases/reservations; freeze LP-1 before execution.
+- Four anchor batches needed (historical Base sampler incompatible): Base, 50%, full batch 1, then freeze calibration/items/F2, then independent full batch 2. Freeze G1 bounds lock before any fit. No G0 retry.
 ## Brando to-do
 - None.
 
 ## Log
+- 10-14-2026 14:10 PDT -- G0 result publication verified: required suite 433 passed / 23 skipped / zero failed in 233.01s; full extrema outputs and result/attempt hashes retained. Phase 1 inventory finds all skampere devices busy and Mercury local disks below headroom; no lease or model call.
+- 10-14-2026 14:07 PDT -- G0 completed once after a717d06 publication: PASS. Exact 4B dense-only 89–97/135, AUC 0.670652174–0.904643963, 23 affected tasks/34 excluded cells, 221184 states; runtime 118.686s. 1.7B passes, secondary 8B inconclusive; no fallback. Full report prepared; Phase 1 LP-1 generation admission starts with lease/trainer inventory.
 - 10-14-2026 14:03 PDT -- Freeze verification complete: required full suite 433 passed / 23 skipped / 0 failed in 260.05s. Pulled e0fb245, read its documentation-only issue-reference correction, updated admission binding before publication. No G0 statistic.
 - 10-14-2026 14:01 PDT -- Fresh G0 owner resumed: old owner idle with no experiment children; watchdog rearmed additively, 6/6 tests passed; 217 exclusions verified, per-policy counts published in prospective method report. Wrapper/tests/lock prepared, full required suite running; no G0 statistic.
 - 10-14-2026 13:15 PDT -- Read-only A3 diagnosis complete: 49/49 classified, (a) 2, (b) 0, (c) 4, (d) 43; all four unequal cells (c). Supplemental typed A2 retry (a), opaque unresolved 2/2 RuntimeError by aggregate-only process. All 50 requested ordinary cells have private evidence-bound diagnosis; 1,057 ordinary raw files, 11 relevant L1 bindings and 42 version-1 files verified unchanged. Zero cell/model calls or GPU launches. Adopted A3 read at 57c3bb6 after the master addendum; no second proposal. Recommend master exclusion/bounds audit, 217/33,456 excluded and 33,239 retained; no class (b) repair set. Required suite initially 333/23 in 170.80 seconds; after clean rebase onto concurrent code at d3c2777, 382 passed / 23 skipped / 0 failed in 164.19 seconds. Second clean synchronization to 69ae5be adds independent experiment-15 tests: 14/14 passed in 47.06 seconds. Publishing diagnosis and appended recommendation; no G0 or notification.
