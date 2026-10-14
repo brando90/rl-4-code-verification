@@ -6,11 +6,11 @@
 
 - **Plan:** revision 2, after the single light review (FAIL, with all 13 findings fixed).
 - **Admission:** G0 was admitted under A3 on 10-14-2026 ([admission record](R2_A3_ADMISSION_10-14-2026.md)).
-- **Next:** a fresh SNAP owner runs G0 onward from [cc_resume_g0.md](cc_resume_g0.md).
+- **G0:** PASS (`120c558`). Next is Phase 1; its generation waits for an idle GPU, and the owner runs [cc_resume_g0.md](cc_resume_g0.md) onward.
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-14-2026 14:25 PDT
+Last updated: 10-14-2026 14:22 PDT
 
 ## Task and owner
 
@@ -155,6 +155,12 @@ Last updated: 10-14-2026 14:25 PDT
 - **First useful action.** The owner read the rules and confirmed the old owner idle with no experiment children. It then named its own session as the single writer and began binding the watchdog additively. It also ran `snap_health.sh` and read the Valkyrie thread in agents-config issue #68.
 - **Post-launch correction.** The brief and the admission record cited "rl4cv issue #68" for the Valkyrie 403. The thread is [agents-config issue #68](https://github.com/brando90/agents-config/issues/68), the agent inbox. Both docs were corrected after launch, changing that reference only; the owner had already found the right thread.
 - **Attach:** `ssh skampere1 -t tmux attach -t codex-rl4cv-e13v2-owner-g0`.
+
+## Check-in 10-14-2026 14:20 PDT: G0 PASS verified; Phase 1 waiting for GPUs
+
+- **G0 PASS, verified.** The lock `a717d06` (14:03) precedes the result `120c558` (14:11), and the frozen files are unchanged between them. The 4B primary stratum gives dense-only 89–97/135 and AUC 0.6707–0.9046, by exact enumeration over 221,184 configurations; the admission verdict rule is applied. The 1.7B stratum passes, and the 8B stratum is INCONCLUSIVE (secondary, not gating). F0v2 (0.50) underpredicted.
+- **GPU wait.** All 24 large GPUs are occupied by other users: skampere1's 8 A100s (`enyijolivia`, since about 14:02), and skampere2's H200s and skampere3's B200s (`vmadan`, `alexspan`, `srivatsavad`, `ruhana`, `aryangul`). The `ilc` Slurm route lacks an account association. This is a wait, not a scientific failure.
+- **Owner steered at 14:20 (queued, not idle).** It does the GPU-free Phase 1 work now: LP-1 code, the sampler, the anchor runner, IRT fitting and its PROTOCOL § 4 validation, and the G1 bounds lock draft. It arms a 15-minute poller that claims only idle GPUs, and may use mercury's idle 16 GB RTX A4000s for generation. It is working (25 min, 71% context), and its watchdog lines are present.
 
 ## Exact next commands (master)
 
