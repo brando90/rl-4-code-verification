@@ -137,7 +137,24 @@ Last updated: 10-14-2026 14:25 PDT
   - it evaluates the frozen rule at every feasible completion of the excluded cells: PASS if the minima clear the thresholds, FAIL if a maximum misses one, INCONCLUSIVE otherwise;
   - its code, tests and lock are pushed before any G0 statistic is computed.
 - **Transitions.** An INCONCLUSIVE gate does not advance. G1 fits treat excluded cells as missing, and the held-out G1 metrics are bounded; this is disclosed.
-- **Brief.** [cc_resume_g0.md](cc_resume_g0.md), with the verbatim SNAP pre-approval line.
+- **Brief.** [cc_resume_g0.md](cc_resume_g0.md), with the verbatim SNAP pre-approval line. Committed at `50de07f`.
+
+## Fresh owner launch (verified 10-14-2026 13:54 PDT)
+
+- **Preflight (13:51 PDT).**
+  - skampere1: boot `839e7dd6…`, load 12 on 128 cores, 1,947 GiB memory available.
+  - The old owner `codex-rl4cv-e13v2-owner` was idle at its prompt. Its process tree held only Codex and its plugin services, with no experiment children.
+  - No experiment 13 cron lines were installed (7 crontab lines in total), and the clone was clean.
+  - The other live session, `codexv-rl4cv-e08v2-matched-test`, belongs to experiment 08 and was not touched.
+- **Launch.**
+  - Clone fast-forwarded to `50de07f`. Launcher: `$WR/launch_owner_g0.sh`. Receipt: `$WR/owner_launch_g0.json`.
+  - Session: tmux `codex-rl4cv-e13v2-owner-g0`, pane PID 1241764, launcher PID 1243344, Codex node PID 1243913, binary PID 1243923.
+  - Client `codex-cli 0.154.0` (nvm login shell), flags `--sandbox danger-full-access --ask-for-approval never`, status bar `gpt-6-astra high`.
+  - The brief as launched has SHA-256 `24b331af415fbd33366fbaaf03bfcb6827b96313f814a2ae2e866cc5eea086ea`.
+  - No trust prompt appeared, since this clone was already trusted.
+- **First useful action.** The owner read the rules and confirmed the old owner idle with no experiment children. It then named its own session as the single writer and began binding the watchdog additively. It also ran `snap_health.sh` and read the Valkyrie thread in agents-config issue #68.
+- **Post-launch correction.** The brief and the admission record cited "rl4cv issue #68" for the Valkyrie 403. The thread is [agents-config issue #68](https://github.com/brando90/agents-config/issues/68), the agent inbox. Both docs were corrected after launch, changing that reference only; the owner had already found the right thread.
+- **Attach:** `ssh skampere1 -t tmux attach -t codex-rl4cv-e13v2-owner-g0`.
 
 ## Exact next commands (master)
 

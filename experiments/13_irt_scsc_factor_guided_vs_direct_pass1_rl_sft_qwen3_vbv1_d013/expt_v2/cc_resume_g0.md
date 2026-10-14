@@ -74,7 +74,7 @@ Use devices only through the experiment-13 lease registry, after checking every 
 **Phase 2** follows PLAN § 6.
 
 - The primary outcome is strict pass@1 under the frozen official scorer.
-- Formal specification coverage (FSC) test evaluation needs the validated Valkyrie judge, which has returned HTTP 403 since 10-13 (rl4cv issue #68). Run everything else and leave that step pending, with the blocker recorded.
+- Formal specification coverage (FSC) test evaluation needs the validated Valkyrie judge, which has returned HTTP 403 since 10-13 ([agents-config issue #68](https://github.com/brando90/agents-config/issues/68), the agent inbox; on 10-14 Vals said a permissions change is the likely cause, with no fix yet). Run everything else and leave that step pending, with the blocker recorded.
 
 ## 4. Throughout
 

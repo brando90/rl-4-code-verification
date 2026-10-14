@@ -98,4 +98,4 @@ The wrapper checks these hashes before it reads any validation row.
 
 - **Phase 2 is unaffected.** It scores new policy outputs with the frozen official scorer. The excluded historical cells do not enter it.
 - **The forecasts stay valid.** F0v2 (0.50) and F1v2 (0.85) were frozen at L1v2, before any validation factor was computed. They remain the forecasts for G0 and G1.
-- **Valkyrie is still blocked.** It has returned HTTP 403 since 10-13-2026 (rl4cv issue #68). That blocks only Phase 2's formal specification coverage (FSC) test evaluation, which waits for Vals to restore access. Strict pass@1, the primary outcome, does not need Valkyrie.
+- **Valkyrie is still blocked.** It has returned HTTP 403 since 10-13-2026 ([agents-config issue #68](https://github.com/brando90/agents-config/issues/68), the agent inbox; on 10-14 Vals said a permissions change is the likely cause, with no fix yet). That blocks only Phase 2's formal specification coverage (FSC) test evaluation, which waits for Vals to restore access. Strict pass@1, the primary outcome, does not need Valkyrie.
