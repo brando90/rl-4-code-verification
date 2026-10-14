@@ -4,6 +4,8 @@
 
 **TLDR:** This lists where RL prompts and held-out panels can come from. VeriBench V1 is split into train / validation / test (D-013): only its train split may be trained on, its validation split selects checkpoints, and its test split is held out. Additional training pools come from other sources: FVAPPS (the largest public Lean spec set that comes with Python programs), the Vericoding Lean subset, and synthetic VeriBench-style tasks. Every pool must pass license checks and contamination screens before it is used.
 
+For the target file structure and a complete Python/Lean pair, start with the [VeriBench data format guide](veribench_data_format/README.md). It also explains the distinction between a source/Lean example and the conversation format used for supervised fine-tuning.
+
 Environment families refer to the plan's families (see [PLAN.md §4](PLAN.md#4-environment-families-and-reward-channels)).
 Sizes are as reported by the sources on 09-30-2026.
 Every row marked "verify" has to be checked before use; nothing here has been downloaded yet.

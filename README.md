@@ -4,6 +4,8 @@
 
 **TLDR:** This project tests whether the ρ–H environment-utility law generalizes from math to RL for Lean 4 code verification, and uses it to pick the environments and rewards that most improve VeriBench. The law comes from Varun and Brando's ICLR 2027 submission: before RL, it measures usable signal density ρ and effective coverage H under the starting policy, and from them predicts held-out RL gains across model scale. The measurement and prediction code is implemented and tested (it reproduces the paper's 14B numbers exactly). Five gated experiments are designed, starting with the first-ever VeriBench numbers for small open Qwen models.
 
+**Creating training data? Start with the [VeriBench data format guide and complete Python/Lean examples](docs/veribench_data_format/README.md).** It explains the required sections, meaningful proved properties, validation commands, and training-data eligibility; the original example archive is included.
+
 ## The question
 
 The paper shows, in math, that the held-out utility of an RL prompt distribution can be forecast before training. It fits a five-coefficient model at 1.7B–8B, and that model predicted untouched 14B curves at 2.29-point RMSE.
@@ -33,6 +35,7 @@ Details: [docs/PLAN.md](docs/PLAN.md).
 | [`docs/DECISIONS.md`](docs/DECISIONS.md) | Decision log, including the open decisions only Brando can make (D-101 to D-107) |
 | [`docs/FACTS_veribench_baselines.md`](docs/FACTS_veribench_baselines.md) | Sourced VeriBench numbers: small-model gap, saturation, judge facts and cost |
 | [`docs/DATASETS.md`](docs/DATASETS.md) | Candidate pools (FVAPPS, Vericoding, VERINA, synthetic) and contamination screens |
+| [`docs/veribench_data_format/`](docs/veribench_data_format/README.md) | Contributor guide, browsable Python/Lean example pair, original archive, provenance, and validation receipt |
 | [`docs/meeting_notes/`](docs/meeting_notes/README.md) | Summaries plus the verbatim meeting notes |
 | [`docs/related_work/`](docs/related_work/README.md) | AlphaApollo and AlphaDiana (Zhanke Zhou's agent systems): summary, AlphaApollo PDF, links to our factorized-metric experiments |
 | [`experiments/`](experiments/README.md) | Three experiments for Brando's two goals (D-007): 01 the shared baseline (running), 02 Varun's question (ρ–H-guided Lean environment design, phases 02A–02D), 03 Allen's coverage question; plus deferred ideas. Each has a design README, and 01 has a locked protocol, run script and agent prompt |

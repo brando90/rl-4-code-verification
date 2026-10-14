@@ -78,6 +78,8 @@ This initial comparison tests the expanded pool as one intervention; it does not
 
 ## Data and execution contract
 
+Both owners should use the [VeriBench data format guide and complete Python/Lean example pair](../../../docs/veribench_data_format/README.md) when assembling new targets. It explains the required sections, proof checks, semantic coverage, and conversion into the existing training conversation schema.
+
 For new training, VeriBench V1 has **train 539 / validation 135 / test 222**. Training uses train tasks only; validation supports development; test never chooses the recipe. The older `02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_a_lean_env_pools_warm_start_rho_h_probes/expt_v3` held out all 896 VeriBench V1 tasks and retains that historical rule. Newly mixing its outputs still requires a joint screen against the protected validation/test data and a source/duplicate-group check.
 
 Exclude external HumanEval-derived data. Existing `humaneval_set` tasks assigned to VeriBench V1 train by the frozen split are a different case and remain governed by that split. VeriBench-Infinity is not automatically a training pool: identify source tasks and all variants, assign protected groups, and prove disjointness before admitting any material. Use only existing approved sources in the first comparison.

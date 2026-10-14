@@ -1,0 +1,53 @@
+{
+  "checked_date": "10-13-2026",
+  "scope": "Unmodified documentation copies of the supplied example pair; not a new benchmark reference acceptance.",
+  "python": {
+    "command": "python3 docs/veribench_data_format/examples/py_src/my_add.py",
+    "exit_code": 0,
+    "stdout": "All tests passed.\n"
+  },
+  "lean": {
+    "command": "lean +leanprover/lean4:v4.22.0 <temporary-copy-with-print-axioms>.lean",
+    "version": "Lean (version 4.22.0, arm64-apple-darwin23.6.0, commit ba2cbbf09d4978f416e0ebd1fceeebc2c4138c05, Release)",
+    "exit_code": 0,
+    "stdout": "3\n0\n5\n7\nfalse\nfalse\n5\n99\n8\n42\n7\n35\n9\n18\n/var/folders/ym/nmb6wx4n4g1c61lp9hwx4h4c0000gn/T/rl4cv-format-gayofomt/Check.lean:159:37: warning: unused variable `hPre`\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\n3\n0\n5\nfalse\n'MyAddNonNegative.right_identity_thm' does not depend on any axioms\n'MyAddNonNegative.left_identity_thm' does not depend on any axioms\n'MyAddNonNegative.commutativity_thm' does not depend on any axioms\n'MyAddNonNegative.associativity_thm' does not depend on any axioms\n'MyAddNonNegative.correctness_thm' does not depend on any axioms\n'MyAddNonNegative.myAddNonNegative_equivalence_thm' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+    "stderr": "",
+    "named_theorems": [
+      "MyAddNonNegative.right_identity_thm",
+      "MyAddNonNegative.left_identity_thm",
+      "MyAddNonNegative.commutativity_thm",
+      "MyAddNonNegative.associativity_thm",
+      "MyAddNonNegative.correctness_thm",
+      "MyAddNonNegative.myAddNonNegative_equivalence_thm"
+    ]
+  },
+  "archive_and_extracted_hashes": "See provenance.json; both extracted members match archive and source tree byte for byte.",
+  "repository_tests": {
+    "host": "skampere1",
+    "tested_base": "2bdfa0feef97f7711b72b36252724b2daa42bcaf",
+    "patch_sha256": "c9a807f8dfa791d82fb6af95fd47104cc915afe8cbbf291d0f153f80ac6febd9",
+    "command": "env -u CODEX_HOME PYTHONPATH=<owned-checkout>/src PYTHONDONTWRITEBYTECODE=1 VERIBENCH_ROOT=<existing-veribench> PATH=<existing-environment>/bin:$PATH make test",
+    "exit_code": 0,
+    "passed": 323,
+    "skipped": 24,
+    "seconds": 282.79,
+    "stdout": "python -m pytest -q\n.........sssssss...........................................ssssssssss..s [ 20%]\nss...................................................................... [ 41%]\n......................................s................................. [ 62%]\n........................................................................ [ 83%]\n........................................................                 [100%]\n323 passed, 24 skipped in 282.79s (0:04:42)\n",
+    "integrated_upstream": "d617748",
+    "integration_note": "Subsequent upstream changes affected four experiment status/receipt files only; no executable code or tests changed."
+  },
+  "named_theorem_dependencies": {
+    "checked": 6,
+    "allowed": 6,
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "other_checks": [
+    "Archive and both extracted files match recorded SHA-256 hashes.",
+    "Relative guide links and anchors resolve.",
+    "Exact staged diff and archive members inspected; credential-pattern scan clear.",
+    "git diff --cached --check passed."
+  ]
+}
