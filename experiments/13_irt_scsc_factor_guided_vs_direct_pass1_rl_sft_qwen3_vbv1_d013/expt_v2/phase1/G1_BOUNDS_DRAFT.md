@@ -28,10 +28,11 @@ PASS requires every completion to satisfy both paired log-loss upper endpoints <
 
 ## Remaining implementation before locking
 
-- Complete the A3 missing-data forecast wrapper and bind the manifest, exclusions, feature/fold/policy metadata and all frozen imported implementations.
-- Implement completion bounds for every additional reported metric, including area under the receiver-operating curve, cell Pearson/Spearman/Kendall, calibration bins and their bootstrap intervals. Point rank bounds can search the number of additional positives and the smallest/largest fixed ranks. For diagnostic bootstrap intervals, enumeration or mathematically valid outer ranges must account for duplicated cells and completion-dependent undefined draws; independent copies of a duplicated cell are not an exact completion. Label any outer range explicitly. Never use a loose bound to create PASS or FAIL.
-- Test both holdout schemes, incomplete predictions, undefined metrics, all 217 exclusions, preserved denominators, no target-label access during fitting/selection, and pre-read hash refusals.
-- Freeze the final method and its implementation hashes in `locks/G1_A3.json`, then run the required integration suite and publish before fitting. This draft does not authorize a fit and is not a complete G1 evaluator.
+The source-bound loader now propagates canonical exclusions to every ladder alias before inspecting measurements, rejects unlisted missingness/inequality and sealed rows, and retains the complete declared grid. Train/validation local features have been prepared from 1,348 hash-verified source files (539/135 tasks), with zero test sources opened and zero fits. Source-family categories are one-hot encoded only within the training fold.
+
+The forecast wrapper now records every inner and outer fit receipt and observation count, and exposes a durable forecast sink before evaluating completion bounds. A separate A3 wrapper imports frozen model fitting routines while allowing an unavailable M1 reward predictor to remain missing without suppressing M2. The bounds evaluator reports available M2 diagnostics even when the selected candidate is unavailable.
+
+Before actual fitting, finish the execution driver with publication/prerequisite checks and exclusive fit attempts, freeze final input/configuration/implementation hashes in `locks/G1_A3.json`, run the required integration suite, and publish. The current draft remains non-executable; no actual-data recovery or model fit is authorized by it.
 
 ## Implementation progress, 10-14-2026
 

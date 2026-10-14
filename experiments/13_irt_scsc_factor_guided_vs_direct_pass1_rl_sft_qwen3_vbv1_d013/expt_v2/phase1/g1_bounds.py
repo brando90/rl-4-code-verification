@@ -202,8 +202,6 @@ def assess_g1_a3(y, predictions, groups, policies, *, implementation_admitted, d
     missing = [name for name in required if name not in predictions
                or np.asarray(predictions[name]).shape != y.shape
                or not np.isfinite(predictions[name]).all()]
-    if missing:
-        return {'status': 'INCONCLUSIVE', 'missing_required_models': missing, 'disable_arm_C': True}
     metrics = {}; contrasts = {}
     for name, p in predictions.items():
         if p is None or np.asarray(p).shape != y.shape or not np.isfinite(p).all():
@@ -231,6 +229,11 @@ def assess_g1_a3(y, predictions, groups, policies, *, implementation_admitted, d
                 'predicted_mean': float(np.asarray(p)[ix].mean()),
                 'observed_mean': [float(np.nansum(y[ix])/ix.sum()),
                                   float((np.nansum(y[ix])+np.isnan(y[ix]).sum())/ix.sum())]})
+    if missing:
+        return {'status': 'INCONCLUSIVE', 'missing_required_models': missing, 'disable_arm_C': True,
+                'metrics':metrics,'paired_log_loss_contrasts':{},'declared_cells':len(y),
+                'excluded_cells':int(np.isnan(y).sum()),'implementation_admitted':bool(implementation_admitted),
+                'fit_repeated_per_completion':False,'threshold_source':'PROTOCOL section 4; A3 admission record'}
     selected = predictions['selected']
     for baseline in ('M0', 'M1'):
         contrasts[baseline] = bound_linear(y, *coefficients(selected, 'log_loss_contrast', predictions[baseline]),

@@ -1,18 +1,20 @@
-# Experiment 13 version 2 Phase 1: CPU preparation while devices are busy
+# Experiment 13 version 2 Phase 1: LP-1 startup stop and retained preparation
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/README.md>
 
-**TLDR:** `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013` passed G0. Phase 1 CPU preparation continues while LP-1 (generation resource and probability admission) waits for a device. No usable default device route was available in the 10-14-2026 snapshot below; this is not a scientific failure or experiment completion.
+**TLDR:** G0 remains PASS. LP-1, the generation resource and probability admission, is INCOMPLETE: one attempt produced 0/8 responses because the launcher supplied a graphics processor identifier where vLLM expected a numeric index. Cleanup passed, the lease was released after 0.014593276 device-hours, and automatic launch was retired. The no-retry rule stops downstream execution; no anchor or Phase 2 run occurred.
 
-## Current preparation
+## Current state — 10-14-2026 15:36 PDT
 
-The [LP-1 generation admission freeze](LP1_FREEZE.md) now specifies the actual generator/trainer route, eight-response probe, sampler, token caps and a single bounded attempt. Own runtime/model deployments on skampere2/3 and the local route passed 132 file bindings and eight package-version checks each without model inference. The final lock must be pushed before the private automatic launch plan is armed.
+The frozen LP-1 attempt started on an idle, unreserved skampere1 device at 15:30 PDT and failed before producing any response. See the [failure report](../RESULTS_LP1.md) and [result receipt](../LP1/result.json). Lease release and process cleanup are verified. The private launch plan was retired; the fifteen-minute poller remains observation-only and all ten cron entries are unchanged. No retry is admitted.
 
-The existing fifteen-minute device poller observes skampere1/2/3 and Mercury1/2. When the published launch plan exists, it invokes the independently checked dispatcher. Only the dispatcher can claim a lease, after fresh device, foreign-lease, reservation and storage checks. Busy devices remain a wait condition. The ten installed cron lines remain intact.
+Retained preparation includes the anchor generation/scoring runners, four 4,312-cell train-only manifests, sampler/token caps, source-bound A3 missingness loader, conjunctive and two-parameter logistic item-response fitting controls, and completion bounds. Features for 539 train/135 validation tasks are prepared without test content or actual-data fitting. The final G1 driver and executable lock were not completed; [G1_A3_DRAFT.json](../locks/G1_A3_DRAFT.json) remains non-executable. These are tested preparation artifacts, not measured Phase 1 results.
 
-The anchor generation runner preserves exclusive batch/cell attempts, all raw outputs and the full 539 × 8 denominator. Four train-only manifests and the probe have been prepared. Historical Base receipts use a different sampler, so new Base generation is required. The final scoring wrapper and G1 input bindings are still being prepared. The [G1 draft](G1_BOUNDS_DRAFT.md) binds the missing-data forecast, conjunctive and two-parameter logistic item-response models, five initializations, finite-gradient/invariance controls and actual-pattern synthetic recovery procedure. No actual-data fit has run.
+Required publication suite: **528 passed, 23 skipped, zero failed in 247.80 seconds**, with Lean integration required ([receipt](scoring_inputs_publication_test.json)).
 
-## Verified resource state
+The following resource snapshot and preparation records are historical; they explain the earlier WAIT and do not supersede the terminal LP-1 result.
+
+## Historical verified resource state
 
 Snapshot: 10-14-2026 14:14 PDT. The [machine-readable receipt](resource_inventory_10-14-2026.json) records exit codes, resolved process ownership, storage bytes and the hash of the private raw inventory. These are point-in-time operational counts; confidence intervals and p-values are not applicable (p-val=n/a).
 
@@ -28,7 +30,7 @@ All compute-process owners resolved. Idle utilization alone was not treated as a
 
 The scheduler controller `ilc.stanford.edu` was reachable. `showaccount` listed zero account associations. A non-submitting `sbatch --test-only --partition=il --account=infolab --gres=gpu:1 --time=00:10:00 --wrap=true` returned exit 1 with `Invalid account or account/partition combination specified`. No scheduler job was submitted. Gated nodes therefore do not supply an alternative allocation under the current account.
 
-The experiment-13 registry at `$WR/leases/registry.json` has zero leases and zero device-hours. The inspected experiment-08 shared registry had 33 released records and no unreleased record; experiment 09's old preflight lease was expired. No separate lease file was found in the bounded experiment-12/14 work-root inventory. These historical checks confer no allocation: repeat every process, lease and master-reservation check immediately before any claim, as PLAN section 7 requires.
+At that snapshot, the experiment-13 registry at `$WR/leases/registry.json` had zero leases and zero device-hours. The inspected experiment-08 shared registry had 33 released records and no unreleased record; experiment 09's old preflight lease was expired. No separate lease file was found in the bounded experiment-12/14 work-root inventory. These historical checks confer no allocation: repeat every process, lease and master-reservation check immediately before any claim, as PLAN section 7 requires.
 
 ## Preparation retained
 
@@ -39,14 +41,9 @@ The experiment-13 registry at `$WR/leases/registry.json` has zero leases and zer
 
 The required publication suite passed: `E13_REQUIRE_LEAN_INTEGRATION=1 make test`, 433 passed, 23 skipped, zero failed in 222.90 seconds. [Verification receipt](publication_test.json).
 
-## Exact continuation
+## Transition
 
-1. Publish the final LP-1 lock after required tests, install the private plan naming its verified main revision, and verify a first dispatch. Continue while the device condition is WAIT.
-2. Complete and publish anchor scoring and the final historical input/bounds lock before any actual-data fit. Keep excluded historical cells missing in all fitting and tuning.
-3. After LP-1 passes once and its report is published, generate and score Base, half-schedule and full-schedule batch 1. Freeze calibration, item parameters and F2 before independent full-schedule batch 2.
-4. Publish G1 and H2 with the arm-C transition, then continue Phase 2. Validated Valkyrie formal specification coverage remains a separate later pending step.
-
-No new permission is needed. Do not replay G0 or a probe. No model generation, fit, optimizer update or device claim has occurred at this freeze. The watchdog monitors the owner and registered dispatcher children; automatic owner replacement is not configured.
+PLAN section 5 requires LP-1 admission before anchor generation. The attempt did not pass, and the explicit no-retry rule remains binding. No downstream run is admitted. G0 remains PASS; anchors, calibration, G1/H2 and Phase 2 remain unmeasured. The watchdog completion notice follows verified publication of this stop.
 
 ## Earlier CPU preparation record, 10-14-2026 14:47 PDT
 
@@ -61,5 +58,5 @@ Required publication suite: **502 passed, 23 skipped, zero failed in 230.51 seco
 
 Publication verification: `E13_REQUIRE_LEAN_INTEGRATION=1 make test` exited 0; **512 passed, 23 skipped, zero failed in 240.62 seconds**. Receipt: [LP1_publication_test.json](LP1_publication_test.json).
 
-**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 passed G0; CPU preparation and device polling continue while generation waits. All downstream scientific gates remain unattempted.
-**Snapshot:** G0 PASS; skampere devices occupied 24/24; Mercury local free space 31.16/12.10 GiB; scheduler associations 0; anchor cells 0/17,248; training updates 0.
+**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 stops at incomplete LP-1 startup under the no-retry rule; G0 remains PASS and later scientific gates are unmeasured.
+**Snapshot:** LP-1 attempts 1; responses 0/8; tokens 0; optimizer updates 0; retries 0; device-hours 0.014593276; cleanup PASS; lease RELEASED.

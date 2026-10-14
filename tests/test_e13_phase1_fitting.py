@@ -45,8 +45,25 @@ def test_failed_pattern_controls_block_admission(monkeypatch):
     assert not receipt['M3']['admitted']
 
 
+def test_unavailable_reward_predictor_does_not_suppress_strict_model(monkeypatch):
+    m=load('forecast_a3');calls=[]
+    def fitted(y,n,metadata,features,target_metadata,target_features,target_item_indices,prior_scale=1.):
+        calls.append((y.copy(),n.copy()))
+        return np.full((1,2),.4),{'admitted':True,'starts':[]}
+    monkeypatch.setattr(m,'_fit_predict',fitted)
+    h={'policy_index':[0,1,2,0,1,2],'item_index':[0,0,0,1,1,1],
+       'strict':[0,1,0,1,0,1],'observed':[True]*6,'q1':[1]*6,'compile':[1]*6,'honest':[0,1,0,1,0,1]}
+    predictions,receipts=m.forecast_a3(history=h,policy_metadata=np.zeros((3,2)),item_features=np.zeros((2,0)),
+        target_metadata=np.zeros((1,2)),target_features=np.zeros((2,0)),target_item_indices=[0,1],
+        earlier_successes=np.zeros((1,2)),earlier_trials=np.zeros((1,2)),earlier_reward=np.array([[np.nan,.5]]),
+        calibration_x=[0.,1.],calibration_y=[0.,1.],calibration_trials=[1,1])
+    assert predictions['M1'] is None and not receipts['M1']['admitted']
+    assert np.all(predictions['M2']==.4) and receipts['M2']['admitted']
+    assert len(calls)==21
+
+
 def test_missing_labels_never_enter_fit_or_inner_selection(monkeypatch):
-    m = load('nested_a3'); traces = []; evaluation_labels = []
+    m = load('nested_a3'); traces = []; evaluation_labels = []; frozen = []
     systems = [{'label': f'{size}-{f}', 'size': f'{size}B', 'fraction': f,
                 'cumulative_assistant_tokens': int(f*100)}
                for size in (1.7,4,8) for f in (.25,.5,.75,1.)]
@@ -73,11 +90,15 @@ def test_missing_labels_never_enter_fit_or_inner_selection(monkeypatch):
         assert all(len(p) == len(y) for p in predictions.values())
         return 'M3', {'M3': .7, 'M3e': .7}
     def assess(y, *args, **kwargs):
+        assert len(frozen)==len(evaluation_labels)+1
+        assert len(frozen[-1]['cell_ids'])==len(y)
         evaluation_labels.append(y); return {'status': 'INCONCLUSIVE'}
     monkeypatch.setattr(m, 'validated_forecast', predict)
     monkeypatch.setattr(m, 'select_candidate', selection)
     monkeypatch.setattr(m, 'assess_g1_a3', assess)
-    m.run_forecast(rows, systems, {t:[1.,2.] for t in tasks}, {t:t for t in tasks}, excluded_ids=excluded, draws=1)
+    m.run_forecast(rows, systems, {t:[1.,2.] for t in tasks}, {t:t for t in tasks}, excluded_ids=excluded,
+                   draws=1,forecast_sink=frozen.append)
     assert sum(traces) > 0
     assert all(np.isnan(y).sum() == 3 for y in evaluation_labels)
     assert len(evaluation_labels) == 2
+    assert all(len(f['inner_folds'])==3 for x in frozen for f in x['folds'])

@@ -1,0 +1,113 @@
+{
+  "gate": "LP1",
+  "status": "INCOMPLETE",
+  "classification": "generation_startup_device_identifier_incompatibility",
+  "scientific_probability_verdict": "UNMEASURED",
+  "lock_revision": "d831d0fe9eeff11487b7449530abf3f672b7d474",
+  "lock_sha256": "298c6165e2697b56c97334ad32e83bc5f63c08b7dd433aff97dd94a4778c89d0",
+  "attempts": 1,
+  "retries": 0,
+  "responses_declared": 8,
+  "responses_generated": 0,
+  "generated_tokens": 0,
+  "trainer_probability_calls": 0,
+  "optimizer_updates": 0,
+  "median_absolute_logprob_error": null,
+  "p99_absolute_logprob_error": null,
+  "unsupported_tokens": null,
+  "importance_truncation_fraction": null,
+  "evidence": "vLLM 0.10.0 converts CUDA_VISIBLE_DEVICES entry to int during model architecture inspection; launcher supplied the leased GPU UUID",
+  "exception_type": "ValueError",
+  "host": "skampere1",
+  "device_index": 2,
+  "device_uuid": "GPU-e98e645a-d860-3666-a80b-2cea81363c51",
+  "lease_id": "e13v2-8a1599b292e3403780130a73d59c7f66",
+  "lease_started_local": "10-14-2026 15:30:06 PDT",
+  "lease_released_local": "10-14-2026 15:30:58 PDT",
+  "lease_seconds": 52.535794258117676,
+  "device_hours": 0.014593276182810465,
+  "lease_status": "RELEASED",
+  "cleanup_verified": true,
+  "owned_marked_processes_remaining": 0,
+  "automatic_launch_plan_retired": true,
+  "transition": "No LP-1 PASS; PLAN section 5 generation prerequisite unmet; PLAN section 4 no retries from L1v2. No anchors, G1/H2 or Phase 2 admitted.",
+  "interpretation": "Technical startup failure; no claim about reward utility or generator/trainer probability agreement; p-val=n/a",
+  "private_evidence_bindings": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1/attempt.json",
+      "sha256": "a818a676c98900a2c960ab8539d942ded609316fde9b30e0209491035d806de5"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1/cleanup.json",
+      "sha256": "3f7a3e3d583cd1371f879b81a53f3851550ef3c945685c5818160ec5d58ed7d7"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1/generate.log",
+      "sha256": "31bd322fedb2969476ba4ae40be2fc4a20d1733439931224de373ee0bc8cb0e8"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1/generation/00000.started.json",
+      "sha256": "237313d05a392d7c59249d1363ce28f3ef21f177c778f2aab4bfff06e6f05fd1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1/generation/00001.started.json",
+      "sha256": "4986e044bae0239bfb0c8e242b32cb733a86a2650b076d769b5917bc9d7396a1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1/generation/00002.started.json",
+      "sha256": "a8e65cecab735bc650ca51aefac16752c84d27aea3a7765ee7f790d708ea364c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1/generation/00003.started.json",
+      "sha256": "c49e1ffb29419872b0c1dfd49f7e2e63f559e896b7b92e3e1b124825a8895048"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1/generation/00004.started.json",
+      "sha256": "a7bc2119855f180953cca04b882d0559aa026fdffff9ea00be1ba61108597ca9"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1/generation/00005.started.json",
+      "sha256": "23ab801363f8ef7e052420138389ba5d05871a6f52af04f79ddaec72ba74e45a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1/generation/00006.started.json",
+      "sha256": "adb43b364730a0a3dcd0c169ca76115be34aca151f6441cdc874acd3c68b6330"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1/generation/00007.started.json",
+      "sha256": "2f6f6b47d5138df1aaf49458435fad83dd3886d2c2d42c04b52de8d45121b913"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1/generation/attempt.json",
+      "sha256": "a59e28de737f60b49a82b577dc73912d83da83eb16f4e6455aa3f14043b612fb"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1/generation/terminal.json",
+      "sha256": "186012ea9b34e2a894bdf77f4e0b1a912c1dbf1680059f9f000b42ef52fd4917"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1/result.json",
+      "sha256": "de98550a74ba491660ffc8f2b289b0711e5e5f53834caf59ee9dbe1a3c680003"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_dispatch/attempt.json",
+      "sha256": "05ce8733560e26789085859870273737065fadb79d9f7fcd2ead68a56bb33bb4"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_dispatch/result.json",
+      "sha256": "f3baf25cf86f9c3bf938961cf57276d2b7c27e8978d3bf025013deba78bed08b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/LP1_dispatch/execution.log",
+      "sha256": "6dd0f6ac8aa8cb2d8b00555f1872da6b31243336163cbb5f275f2b7127bc89ee"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/leases/registry.json",
+      "sha256": "c75980b35e6d487470d67029d01aaae4c0c8400dfc4a597103a2f442de461723"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/device_watch/launch_plan.retired_LP1_10-14-2026.json",
+      "sha256": "8c9bddb0804897bde666a5ad7e2134d454a21053b31ced8cfb87e0e39e104e34"
+    }
+  ]
+}

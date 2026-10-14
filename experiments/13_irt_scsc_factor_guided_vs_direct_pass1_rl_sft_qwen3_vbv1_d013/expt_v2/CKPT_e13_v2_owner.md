@@ -2,30 +2,30 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2_owner.md>
 
-**TLDR:** G0 PASS under A3: primary 4B dense-only bounds 89–97/135 (threshold 21), predictive AUC bounds 0.670652174–0.904643963 (threshold 0.65), exact across 221,184 configurations; 23 tasks affected by 34 excluded cells. Phase 1 CPU preparation continues while generation waits for an idle device; no training has run.
+**TLDR:** G0 remains PASS. LP-1, the generation resource and probability admission, is INCOMPLETE: one attempt produced 0/8 responses because the launcher supplied a graphics processor identifier where vLLM expected a numeric index. Cleanup passed, the lease was released after 0.014593276 device-hours, and automatic launch was retired. The no-retry rule stops downstream execution; no anchor or Phase 2 run occurred.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-14-2026 15:17 PDT
+Last updated: 10-14-2026 15:36 PDT
 
-## Goal
-- Complete Phase 1 then Phase 2 for 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013 version 2 under PLAN and amendments; stop only at binding transitions or real blockers.
+## Goal and terminal state
+Complete Phase 1 then Phase 2 under PLAN and amendments, or publish a binding stop. The current execution stops at the unmet LP-1 prerequisite, with its original one-attempt failure retained. [LP-1 report](RESULTS_LP1.md) and [aggregate evidence receipt](LP1/result.json).
+
 ## What ran
-- Single writer `codex-rl4cv-e13v2-owner-g0`, PID 1243923, Astra/high, full access/never. Prior owner idle and untouched. Watchdog run `e13v2_g0_owner_10-14-2026`, additive cron verified, six tests passed; shared recovery lock/ledger retained.
-- Published wrapper/tests/lock at `a717d069d0e47864c9ce6b47be0f3a11afd4781c`, remote verified. Required suite 433 passed / 23 skipped in 260.05s. G0 one invocation, 118.686s, exit 0; nine hashes checked before data. No outer fallback.
-- Fifteen-minute device polls continue, no claims. Added exclusive anchor/probe ledgers, installed-runtime generation/trainer path, lease/dispatcher and fenced cleanup, A3 missing-data nested forecasts, real-pattern recovery controls and nonlinear metric bounds. 49 focused synthetic tests pass; full required suite 502 passed / 23 skipped / zero failed in 230.51s. Private train-only token manifests prepared; no model or actual fit run.
-## Results
-- Primary 4B exact dense-only 89–97/135, AUC 0.670652174–0.904643963; minimum-AUC conditional 95% group interval [0.524992589,0.811120839], p-val=n/a. 23 tasks affected, 34/2160 excluded cells, 221184 configurations. [Report](RESULTS_G0.md).
-- Secondary 1.7B PASS (dense 103–111, AUC .671605–.937688); 8B INCONCLUSIVE (dense 90–100, AUC .557486–.909091), nongating. No undefined completion. F0v2 .50 underpredicts primary share .659259–.718519; F1v2 untested.
-- All 217 exclusions enforced (13 train/204 validation). Opaque data remain sealed. Original R2/A2 evidence preserved. No model calls, graphics processor claim, anchor generation, fit or training.
-## Stuck / blocked
-- Generation waits before LP-1; CPU preparation continues: skampere1/2/3 occupied 24/24; Mercury1/2 are permitted generation-only alternatives if bounded storage and probability admission hold; their 16 GiB devices cannot yet use the prepared single-device full trainer route. Scheduler has zero associations and its allocation test exits 1 (invalid account). [Evidence and continuation](phase1/README.md). Validated Valkyrie formal-specification judge unavailable, not probed; Phase 2 coverage scoring remains pending that route.
-## Next steps
-- Publish final LP-1 lock after required tests; install `$WR/device_watch/launch_plan.json` naming its verified main revision, then verify first dispatcher output. Three routes passed 132 CPU-only bindings each. Continue anchor scoring and final G1 input lock during device WAIT; no human action needed.
-- Four anchor batches needed (historical Base sampler incompatible): Base, 50%, full batch 1, then freeze calibration/items/F2, then independent full batch 2. Freeze G1 bounds lock before any fit. No G0 retry.
-## Brando to-do
-- None: resource availability is a wait while CPU preparation continues. No blocker or completion email sent.
+- Single writer `codex-rl4cv-e13v2-owner-g0`, PID 1243923, Astra/high, full access/never; prior owner idle and untouched. Watchdog run `e13v2_g0_owner_10-14-2026`; all ten additive cron entries retained.
+- G0 wrapper/tests/lock published at `a717d069d0e47864c9ce6b47be0f3a11afd4781c`, followed by exactly one G0 invocation and result `120c558`. Primary 4B PASS: dense-only 89–97/135 (threshold 21), predictive area under the curve 0.670652174–0.904643963 (threshold 0.65); 23 affected tasks, 34/2160 excluded cells, 221184 exact configurations. Conditional 95% group interval at minimum area: [0.524992589, 0.811120839], p-val=n/a. Secondary 1.7B PASS; 8B INCONCLUSIVE, nongating.
+- LP-1 freeze `d831d0fe9eeff11487b7449530abf3f672b7d474` preceded arming. At 15:30 PDT a fresh idle-device/foreign-lease/reservation check admitted skampere1 device 2. One attempt failed during vLLM engine construction, before responses or trainer evaluation: UUID-to-integer conversion error. This is a launcher compatibility defect omitted from the CPU preflight, not measured probability disagreement.
+- Lease duration 52.535794 seconds, 0.014593276 device-hours. Both cleanup checks passed; no marked process remains. Canonical and active lease records are RELEASED. The private launch plan is retired, so subsequent observation polls cannot start another probe.
+- Prepared generation/scoring, sampler/token caps, missing-risk fitting controls, A3 bounds/input loader and source features for 539 train/135 validation tasks. No test source opened; no actual-data fit. Required suite exited 0: 528 passed, 23 skipped, zero failed in 247.80 seconds. Final G1 driver and executable lock remain unfinished; the draft is non-executable.
+
+## Transition and remaining work
+PLAN section 5 fixes LP-1 before anchors; PLAN section 4 and the explicit master instruction prohibit retries from L1v2 onward. Without LP-1 PASS, no anchor, calibration, G1/H2 or Phase 2 is admitted. G0 remains unchanged. This stop is an unmet technical prerequisite, not a claimed G1/H2/T1 failure. No corrected-launcher retry was performed. Formal specification coverage's Valkyrie HTTP 403 remains a separate unreached limitation.
+
+## Closeout
+Publish the failure and retained preparation, verify remote main, then send the authorized stopped notice through the watchdog only. Notification is pending this publication. No user action is required for closeout, and no device wait is being treated as a blocker.
 
 ## Log
+- 10-14-2026 15:36 PDT -- LP-1 INCOMPLETE at startup after one frozen attempt, responses 0/8, tokens/optimizer updates/retries 0. Device UUID was incompatible with installed vLLM numeric-index parsing. Cleanup verified; lease RELEASED after 0.014593276 device-hours; automatic launch plan retired without changing cron. Required suite 528 passed/23 skipped/0 failed, direct exit 0. Publishing honest prerequisite stop and retained CPU preparation; completion notice follows verified publication.
+- 10-14-2026 15:29 PDT -- LP-1 automatic launch armed after verified d831d0f publication; dispatcher PID 3760150 registered, returned WAIT, zero claims. Ten cron lines unchanged and one live owner. Anchor scoring passes four focused tests including real capped-source Lean; G1 missing-input/bounds controls pass 41 synthetic tests. Prepared 539 train/135 validation feature records from 1,348 hash-bound sources, no test content or actual fits. Required publication suite running; continue final G1 driver and calibration preparation.
 - 10-14-2026 15:17 PDT -- LP-1 freeze prepared: three CPU-verified routes, 132 bindings each, eight-response probe, 30-minute device cap (0.6-hour cumulative prelaunch/attempt allowance), zero optimizer updates/retries. Own remote runtime/model deployments complete within 50 GiB per-node preparation allowance. Required suite passed 512/23/0 in 240.62s, direct exit 0; publish before arming private launch plan. No model inference, fit or lease.
 - 10-14-2026 14:53 PDT -- Runner/preparation publication verified: required Lean integration suite 502 passed, 23 skipped, zero failed in 230.51s. Public draft lock binds prospective G1 implementation; final lock and source-data loader remain before actual fits. Runtime/export copies to remote hosts continue; no lease, generation or actual fit.
 - 10-14-2026 14:51 PDT -- Continued master-directed CPU preparation. Added anchor/LP-1 runtime, strict one-attempt ledgers, lease accounting and marker-fenced cleanup, A3 nested forecasts and actual-risk-pattern controls. 49 focused tests pass. Prepared 539 train prompts, maximum 7753 tokens; exact context 15945 preserves 8192 new tokens. Five private manifests hash-bound, no model generation/fit. Remote nodes lack skampere1 mounts; own environment copies underway on skampere2/3 within 50 GiB per-node preparation allowance. Full required suite passed 502/23/0 in 230.51s; next freeze and arm automatic launcher.
@@ -85,3 +85,6 @@ Last updated: 10-14-2026 15:17 PDT
 - R1 preparation was never executed; three draft scripts are preserved privately at `$WR/state/unexecuted_r1_preparation/`. No train allowlist, L1v2 lock, historical factors, fitted model or training exists.
 - Terminal closeout: gate result pushed as `6e9c7c2bc1c2435f1455ec7667b1933e8e16174b` and verified on remote `main`. The watchdog recorded exactly one `stopped` notification as `sent` to `brando.science@gmail.com` without carbon copy. Both owned cron entries were retired; all unrelated entries were preserved. No registered experiment child remains alive. Durable receipt: `$WR/state/completion.json`. No downstream run is admitted.
 - Binding stop: R0 failed. This condition is terminal, not an infrastructure retry or an account handoff. The parent retains the unresolved measurement dependency for its planned reinforcement-learning comparison.
+
+**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 stops at incomplete LP-1 startup under the no-retry rule; G0 remains PASS and later scientific gates are unmeasured.
+**Snapshot:** LP-1 attempts 1; responses 0/8; tokens 0; optimizer updates 0; retries 0; device-hours 0.014593276; cleanup PASS; lease RELEASED.

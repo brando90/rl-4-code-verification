@@ -55,6 +55,16 @@ def test_missing_predictions_are_never_imputed():
         MOD.bound_policy_pearson([0, 1, np.nan], [.1, np.nan, .2], ['a', 'b', 'c'])
 
 
+def test_failed_candidate_still_reports_available_strict_model():
+    y=np.array([0.,1.,0.,1.,0.,1.]);p=np.array([.1,.8,.3,.7,.2,.9])
+    result=MOD.assess_g1_a3(y,{'selected':np.full(6,np.nan),'M0':p,'M1':p,'M2':p},
+                           ['a','a','b','b','c','c'],['small','small','mid','mid','large','large'],
+                           implementation_admitted=False,draws=11)
+    assert result['status']=='INCONCLUSIVE' and result['disable_arm_C']
+    assert 'log_loss' in result['metrics']['M2']
+    assert result['metrics']['selected']['status']=='UNAVAILABLE'
+
+
 @pytest.mark.parametrize('metric', ['auc', 'pearson', 'spearman', 'kendall'])
 @pytest.mark.parametrize('p', [[.1, .1, .5, .5, .9, .9], [.5]*6, [.1,.2,.3,.4,.5,.6]])
 def test_nonlinear_point_bounds_match_all_binary_completions(metric, p):

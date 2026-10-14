@@ -11,7 +11,7 @@ from scipy.special import expit
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'prediction'))
 from irt_v2 import conditional_counts, objective, START_SEEDS
 from recovery_v2 import recover_pattern
-from forecast_v2 import forecast_panel
+from forecast_a3 import forecast_a3 as forecast_panel
 
 
 def numerical_controls():
