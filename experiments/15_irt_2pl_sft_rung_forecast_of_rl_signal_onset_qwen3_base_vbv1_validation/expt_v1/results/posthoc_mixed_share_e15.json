@@ -1,0 +1,743 @@
+{
+ "note": "post hoc, computed after the frozen primary analysis; no verdict",
+ "gate": 0.05,
+ "draws": 10000,
+ "per_rung": {
+  "0.25|1.7B": {
+   "realized_mixed_share": 0.007407407407407408,
+   "arms": {
+    "irt_2pl": {
+     "expected_mixed_share": 0.059157677194872305,
+     "signed_error": 0.0517502697874649,
+     "abs_error": 0.0517502697874649,
+     "abs_error_boot_lo": 0.030721667670896454,
+     "abs_error_boot_hi": 0.07325817458548865
+    },
+    "irt_1pl": {
+     "expected_mixed_share": 0.21537191243359308,
+     "signed_error": 0.20796450502618566,
+     "abs_error": 0.20796450502618566,
+     "abs_error_boot_lo": 0.15573906223463668,
+     "abs_error_boot_hi": 0.2650070760129406
+    },
+    "b1_last_rung": {
+     "expected_mixed_share": 0.01639002870630335,
+     "signed_error": 0.008982621298895942,
+     "abs_error": 0.008982621298895942,
+     "abs_error_boot_lo": 0.00022834760171395845,
+     "abs_error_boot_hi": 0.033841928729304555
+    },
+    "b2_scalar_curve": {
+     "expected_mixed_share": 0.11347519382658987,
+     "signed_error": 0.10606778641918246,
+     "abs_error": 0.10606778641918246,
+     "abs_error_boot_lo": 0.09125297160436764,
+     "abs_error_boot_hi": 0.11347519382658987
+    }
+   }
+  },
+  "0.25|4B": {
+   "realized_mixed_share": 0.15555555555555556,
+   "arms": {
+    "irt_2pl": {
+     "expected_mixed_share": 0.08529439155062664,
+     "signed_error": -0.07026116400492892,
+     "abs_error": 0.07026116400492892,
+     "abs_error_boot_lo": 0.02393828208733273,
+     "abs_error_boot_hi": 0.12056958835465682
+    },
+    "irt_1pl": {
+     "expected_mixed_share": 0.05478899362741226,
+     "signed_error": -0.10076656192814329,
+     "abs_error": 0.10076656192814329,
+     "abs_error_boot_lo": 0.052770241768288054,
+     "abs_error_boot_hi": 0.1527674757007913
+    },
+    "b1_last_rung": {
+     "expected_mixed_share": 0.023055745937206128,
+     "signed_error": -0.13249980961834942,
+     "abs_error": 0.13249980961834942,
+     "abs_error_boot_lo": 0.07810270609679046,
+     "abs_error_boot_hi": 0.19175906887760868
+    },
+    "b2_scalar_curve": {
+     "expected_mixed_share": 0.06700531238982321,
+     "signed_error": -0.08855024316573235,
+     "abs_error": 0.08855024316573235,
+     "abs_error_boot_lo": 0.029290983906473084,
+     "abs_error_boot_hi": 0.155216909832399
+    }
+   }
+  },
+  "0.25|8B": {
+   "realized_mixed_share": 0.17037037037037037,
+   "arms": {
+    "irt_2pl": {
+     "expected_mixed_share": 0.1980661452839659,
+     "signed_error": 0.02769577491359554,
+     "abs_error": 0.02769577491359554,
+     "abs_error_boot_lo": 0.0015550797482397581,
+     "abs_error_boot_hi": 0.07502511711393736
+    },
+    "irt_1pl": {
+     "expected_mixed_share": 0.4480594797406452,
+     "signed_error": 0.2776891093702748,
+     "abs_error": 0.2776891093702748,
+     "abs_error_boot_lo": 0.21817964828956019,
+     "abs_error_boot_hi": 0.3345662701567275
+    },
+    "b1_last_rung": {
+     "expected_mixed_share": 0.054598568103931565,
+     "signed_error": -0.1157718022664388,
+     "abs_error": 0.1157718022664388,
+     "abs_error_boot_lo": 0.06190047180211103,
+     "abs_error_boot_hi": 0.17428937134919342
+    },
+    "b2_scalar_curve": {
+     "expected_mixed_share": 0.5281451927056794,
+     "signed_error": 0.357774822335309,
+     "abs_error": 0.357774822335309,
+     "abs_error_boot_lo": 0.29110815566864234,
+     "abs_error_boot_hi": 0.4170340815945683
+    }
+   }
+  },
+  "0.25|14B": {
+   "realized_mixed_share": 0.18518518518518517,
+   "arms": {
+    "irt_2pl": {
+     "expected_mixed_share": 0.33585763822862086,
+     "signed_error": 0.15067245304343568,
+     "abs_error": 0.15067245304343568,
+     "abs_error_boot_lo": 0.10270173722615018,
+     "abs_error_boot_hi": 0.19721925654514585
+    },
+    "irt_1pl": {
+     "expected_mixed_share": 0.2502411366822815,
+     "signed_error": 0.06505595149709631,
+     "abs_error": 0.06505595149709631,
+     "abs_error_boot_lo": 0.014836397606381422,
+     "abs_error_boot_hi": 0.11439919015801762
+    },
+    "b1_last_rung": {
+     "expected_mixed_share": 0.12251879727398908,
+     "signed_error": -0.0626663879111961,
+     "abs_error": 0.0626663879111961,
+     "abs_error_boot_lo": 0.014636417561107217,
+     "abs_error_boot_hi": 0.11304165166837198
+    },
+    "b2_scalar_curve": {
+     "expected_mixed_share": 0.5075011606489058,
+     "signed_error": 0.32231597546372065,
+     "abs_error": 0.32231597546372065,
+     "abs_error_boot_lo": 0.255649308797054,
+     "abs_error_boot_hi": 0.38157523472297994
+    }
+   }
+  },
+  "0.5|1.7B": {
+   "realized_mixed_share": 0.08148148148148149,
+   "arms": {
+    "irt_2pl": {
+     "expected_mixed_share": 0.033912089882509565,
+     "signed_error": -0.04756939159897192,
+     "abs_error": 0.04756939159897192,
+     "abs_error_boot_lo": 0.0071096742330960016,
+     "abs_error_boot_hi": 0.09492483009628803
+    },
+    "irt_1pl": {
+     "expected_mixed_share": 0.08607965470028163,
+     "signed_error": 0.004598173218800142,
+     "abs_error": 0.004598173218800142,
+     "abs_error_boot_lo": 0.0006206744987253303,
+     "abs_error_boot_hi": 0.04404765166051369
+    },
+    "b1_last_rung": {
+     "expected_mixed_share": 0.004862155737700285,
+     "signed_error": -0.0766193257437812,
+     "abs_error": 0.0766193257437812,
+     "abs_error_boot_lo": 0.03217488129933675,
+     "abs_error_boot_hi": 0.1259259259259259
+    },
+    "b2_scalar_curve": {
+     "expected_mixed_share": 0.037969862382734684,
+     "signed_error": -0.043511619098746804,
+     "abs_error": 0.043511619098746804,
+     "abs_error_boot_lo": 0.006474582061709762,
+     "abs_error_boot_hi": 0.09536347095059865
+    }
+   }
+  },
+  "0.5|4B": {
+   "realized_mixed_share": 0.16296296296296298,
+   "arms": {
+    "irt_2pl": {
+     "expected_mixed_share": 0.24648834410011553,
+     "signed_error": 0.08352538113715255,
+     "abs_error": 0.08352538113715255,
+     "abs_error_boot_lo": 0.03743092774107416,
+     "abs_error_boot_hi": 0.13006061706689032
+    },
+    "irt_1pl": {
+     "expected_mixed_share": 0.22840574280076106,
+     "signed_error": 0.06544277983779809,
+     "abs_error": 0.06544277983779809,
+     "abs_error_boot_lo": 0.018010127953192658,
+     "abs_error_boot_hi": 0.11267136447612175
+    },
+    "b1_last_rung": {
+     "expected_mixed_share": 0.1316718958042286,
+     "signed_error": -0.031291067158734365,
+     "abs_error": 0.031291067158734365,
+     "abs_error_boot_lo": 0.00190407329135471,
+     "abs_error_boot_hi": 0.07656427078776888
+    },
+    "b2_scalar_curve": {
+     "expected_mixed_share": 0.49584998904307914,
+     "signed_error": 0.33288702608011617,
+     "abs_error": 0.33288702608011617,
+     "abs_error_boot_lo": 0.2662203594134495,
+     "abs_error_boot_hi": 0.39214628533937546
+    }
+   }
+  },
+  "0.5|8B": {
+   "realized_mixed_share": 0.21481481481481482,
+   "arms": {
+    "irt_2pl": {
+     "expected_mixed_share": 0.3029436503387069,
+     "signed_error": 0.08812883552389209,
+     "abs_error": 0.08812883552389209,
+     "abs_error_boot_lo": 0.03279527834561823,
+     "abs_error_boot_hi": 0.1426327882328166
+    },
+    "irt_1pl": {
+     "expected_mixed_share": 0.7092647003612483,
+     "signed_error": 0.49444988554643354,
+     "abs_error": 0.49444988554643354,
+     "abs_error_boot_lo": 0.3809326934957736,
+     "abs_error_boot_hi": 0.6008855280164602
+    },
+    "b1_last_rung": {
+     "expected_mixed_share": 0.1572181604526661,
+     "signed_error": -0.057596654362148725,
+     "abs_error": 0.057596654362148725,
+     "abs_error_boot_lo": 0.012135839351901297,
+     "abs_error_boot_hi": 0.10750418546023191
+    },
+    "b2_scalar_curve": {
+     "expected_mixed_share": 0.9911042878969287,
+     "signed_error": 0.7762894730821139,
+     "abs_error": 0.7762894730821139,
+     "abs_error_boot_lo": 0.7022153990080399,
+     "abs_error_boot_hi": 0.8429561397487806
+    }
+   }
+  },
+  "0.5|14B": {
+   "realized_mixed_share": 0.2222222222222222,
+   "arms": {
+    "irt_2pl": {
+     "expected_mixed_share": 0.2986208975596849,
+     "signed_error": 0.0763986753374627,
+     "abs_error": 0.0763986753374627,
+     "abs_error_boot_lo": 0.018550386947237398,
+     "abs_error_boot_hi": 0.13447029344149644
+    },
+    "irt_1pl": {
+     "expected_mixed_share": 0.3009123954346154,
+     "signed_error": 0.07869017321239319,
+     "abs_error": 0.07869017321239319,
+     "abs_error_boot_lo": 0.025696799772207544,
+     "abs_error_boot_hi": 0.13291148106942705
+    },
+    "b1_last_rung": {
+     "expected_mixed_share": 0.1616152286529541,
+     "signed_error": -0.0606069935692681,
+     "abs_error": 0.0606069935692681,
+     "abs_error_boot_lo": 0.008250003611599966,
+     "abs_error_boot_hi": 0.11722643331245138
+    },
+    "b2_scalar_curve": {
+     "expected_mixed_share": 0.7759526383263874,
+     "signed_error": 0.5537304161041652,
+     "abs_error": 0.5537304161041652,
+     "abs_error_boot_lo": 0.4796563420300911,
+     "abs_error_boot_hi": 0.6203970827708318
+    }
+   }
+  },
+  "0.75|1.7B": {
+   "realized_mixed_share": 0.11851851851851852,
+   "arms": {
+    "irt_2pl": {
+     "expected_mixed_share": 0.11132992036866772,
+     "signed_error": -0.007188598149850803,
+     "abs_error": 0.007188598149850803,
+     "abs_error_boot_lo": 0.0005064950428580053,
+     "abs_error_boot_hi": 0.040475557460787036
+    },
+    "irt_1pl": {
+     "expected_mixed_share": 0.16661642749416533,
+     "signed_error": 0.04809790897564681,
+     "abs_error": 0.04809790897564681,
+     "abs_error_boot_lo": 0.017968266346157866,
+     "abs_error_boot_hi": 0.0810087741249438
+    },
+    "b1_last_rung": {
+     "expected_mixed_share": 0.06543773456856057,
+     "signed_error": -0.05308078394995795,
+     "abs_error": 0.05308078394995795,
+     "abs_error_boot_lo": 0.014712589868792779,
+     "abs_error_boot_hi": 0.09666115796124494
+    },
+    "b2_scalar_curve": {
+     "expected_mixed_share": 0.164499018436353,
+     "signed_error": 0.04598049991783448,
+     "abs_error": 0.04598049991783448,
+     "abs_error_boot_lo": 0.00153605547339003,
+     "abs_error_boot_hi": 0.09783235176968634
+    }
+   }
+  },
+  "0.75|4B": {
+   "realized_mixed_share": 0.15555555555555556,
+   "arms": {
+    "irt_2pl": {
+     "expected_mixed_share": 0.2344541554385008,
+     "signed_error": 0.07889859988294523,
+     "abs_error": 0.07889859988294523,
+     "abs_error_boot_lo": 0.04408425114245515,
+     "abs_error_boot_hi": 0.11657093907299837
+    },
+    "irt_1pl": {
+     "expected_mixed_share": 0.22333973756598868,
+     "signed_error": 0.06778418201043312,
+     "abs_error": 0.06778418201043312,
+     "abs_error_boot_lo": 0.032824450253428235,
+     "abs_error_boot_hi": 0.10546862116521673
+    },
+    "b1_last_rung": {
+     "expected_mixed_share": 0.13224310874938966,
+     "signed_error": -0.0233124468061659,
+     "abs_error": 0.0233124468061659,
+     "abs_error_boot_lo": 0.001117506645343916,
+     "abs_error_boot_hi": 0.0696707252882145
+    },
+    "b2_scalar_curve": {
+     "expected_mixed_share": 0.5216336689509022,
+     "signed_error": 0.3660781133953467,
+     "abs_error": 0.3660781133953467,
+     "abs_error_boot_lo": 0.29941144672868003,
+     "abs_error_boot_hi": 0.4253373726546059
+    }
+   }
+  },
+  "0.75|8B": {
+   "realized_mixed_share": 0.24444444444444444,
+   "arms": {
+    "irt_2pl": {
+     "expected_mixed_share": 0.28648210216825376,
+     "signed_error": 0.042037657723809324,
+     "abs_error": 0.042037657723809324,
+     "abs_error_boot_lo": 0.003233082063832678,
+     "abs_error_boot_hi": 0.09360820697233826
+    },
+    "irt_1pl": {
+     "expected_mixed_share": 0.42282737887850513,
+     "signed_error": 0.1783829344340607,
+     "abs_error": 0.1783829344340607,
+     "abs_error_boot_lo": 0.10150803326941245,
+     "abs_error_boot_hi": 0.25343685250639675
+    },
+    "b1_last_rung": {
+     "expected_mixed_share": 0.18073251247406005,
+     "signed_error": -0.06371193197038438,
+     "abs_error": 0.06371193197038438,
+     "abs_error_boot_lo": 0.015210625683819829,
+     "abs_error_boot_hi": 0.11533792862185725
+    },
+    "b2_scalar_curve": {
+     "expected_mixed_share": 0.9663324550253519,
+     "signed_error": 0.7218880105809075,
+     "abs_error": 0.7218880105809075,
+     "abs_error_boot_lo": 0.6478139365068334,
+     "abs_error_boot_hi": 0.7885546772475741
+    }
+   }
+  },
+  "0.75|14B": {
+   "realized_mixed_share": 0.25925925925925924,
+   "arms": {
+    "irt_2pl": {
+     "expected_mixed_share": 0.28996958691342506,
+     "signed_error": 0.030710327654165814,
+     "abs_error": 0.030710327654165814,
+     "abs_error_boot_lo": 0.0016645649637889227,
+     "abs_error_boot_hi": 0.08483426315111824
+    },
+    "irt_1pl": {
+     "expected_mixed_share": 0.3074354324081605,
+     "signed_error": 0.04817617314890127,
+     "abs_error": 0.04817617314890127,
+     "abs_error_boot_lo": 0.004045189694107729,
+     "abs_error_boot_hi": 0.0999298913723042
+    },
+    "b1_last_rung": {
+     "expected_mixed_share": 0.1886354649508441,
+     "signed_error": -0.07062379430841514,
+     "abs_error": 0.07062379430841514,
+     "abs_error_boot_lo": 0.024541190774352448,
+     "abs_error_boot_hi": 0.12088453127278218
+    },
+    "b2_scalar_curve": {
+     "expected_mixed_share": 0.8205024159003452,
+     "signed_error": 0.561243156641086,
+     "abs_error": 0.561243156641086,
+     "abs_error_boot_lo": 0.4871690825670119,
+     "abs_error_boot_hi": 0.63531723071516
+    }
+   }
+  },
+  "1.0|1.7B": {
+   "realized_mixed_share": 0.14814814814814814,
+   "arms": {
+    "irt_2pl": {
+     "expected_mixed_share": 0.1716187892333091,
+     "signed_error": 0.023470641085160948,
+     "abs_error": 0.023470641085160948,
+     "abs_error_boot_lo": 0.0015568149481294128,
+     "abs_error_boot_hi": 0.059826453893289465
+    },
+    "irt_1pl": {
+     "expected_mixed_share": 0.22077656897705128,
+     "signed_error": 0.07262842082890314,
+     "abs_error": 0.07262842082890314,
+     "abs_error_boot_lo": 0.035459148079595854,
+     "abs_error_boot_hi": 0.11448679508900046
+    },
+    "b1_last_rung": {
+     "expected_mixed_share": 0.10183293907730667,
+     "signed_error": -0.04631520907084147,
+     "abs_error": 0.04631520907084147,
+     "abs_error_boot_lo": 0.009408410412293886,
+     "abs_error_boot_hi": 0.08672753773353716
+    },
+    "b2_scalar_curve": {
+     "expected_mixed_share": 0.34905142753861534,
+     "signed_error": 0.2009032793904672,
+     "abs_error": 0.2009032793904672,
+     "abs_error_boot_lo": 0.14164402013120794,
+     "abs_error_boot_hi": 0.26016253864972644
+    }
+   }
+  },
+  "1.0|4B": {
+   "realized_mixed_share": 0.23703703703703705,
+   "arms": {
+    "irt_2pl": {
+     "expected_mixed_share": 0.2293477944783407,
+     "signed_error": -0.007689242558696352,
+     "abs_error": 0.007689242558696352,
+     "abs_error_boot_lo": 0.0007008584499492336,
+     "abs_error_boot_hi": 0.05510112038604366
+    },
+    "irt_1pl": {
+     "expected_mixed_share": 0.2180450518668572,
+     "signed_error": -0.01899198517017986,
+     "abs_error": 0.01899198517017986,
+     "abs_error_boot_lo": 0.0009814708300251698,
+     "abs_error_boot_hi": 0.06606171889971282
+    },
+    "b1_last_rung": {
+     "expected_mixed_share": 0.1285006946987576,
+     "signed_error": -0.10853634233827944,
+     "abs_error": 0.10853634233827944,
+     "abs_error_boot_lo": 0.0511232990026474,
+     "abs_error_boot_hi": 0.16772759658318973
+    },
+    "b2_scalar_curve": {
+     "expected_mixed_share": 0.4827912901520453,
+     "signed_error": 0.24575425311500826,
+     "abs_error": 0.24575425311500826,
+     "abs_error_boot_lo": 0.1716801790409342,
+     "abs_error_boot_hi": 0.31982832718908233
+    }
+   }
+  },
+  "1.0|8B": {
+   "realized_mixed_share": 0.23703703703703705,
+   "arms": {
+    "irt_2pl": {
+     "expected_mixed_share": 0.2996834454574235,
+     "signed_error": 0.06264640842038643,
+     "abs_error": 0.06264640842038643,
+     "abs_error_boot_lo": 0.016781100193223195,
+     "abs_error_boot_hi": 0.10860879801838673
+    },
+    "irt_1pl": {
+     "expected_mixed_share": 0.36926481818478246,
+     "signed_error": 0.13222778114774542,
+     "abs_error": 0.13222778114774542,
+     "abs_error_boot_lo": 0.06626495687478566,
+     "abs_error_boot_hi": 0.1990815198389449
+    },
+    "b1_last_rung": {
+     "expected_mixed_share": 0.20705581152880634,
+     "signed_error": -0.029981225508230708,
+     "abs_error": 0.029981225508230708,
+     "abs_error_boot_lo": 0.0017062849027139075,
+     "abs_error_boot_hi": 0.0742970351157365
+    },
+    "b2_scalar_curve": {
+     "expected_mixed_share": 0.9347693635015721,
+     "signed_error": 0.6977323264645351,
+     "abs_error": 0.6977323264645351,
+     "abs_error_boot_lo": 0.623658252390461,
+     "abs_error_boot_hi": 0.7718064005386092
+    }
+   }
+  },
+  "1.0|14B": {
+   "realized_mixed_share": 0.28888888888888886,
+   "arms": {
+    "irt_2pl": {
+     "expected_mixed_share": 0.30300369689373013,
+     "signed_error": 0.014114808004841273,
+     "abs_error": 0.014114808004841273,
+     "abs_error_boot_lo": 0.000891751423723293,
+     "abs_error_boot_hi": 0.060942037636915365
+    },
+    "irt_1pl": {
+     "expected_mixed_share": 0.3031532363792269,
+     "signed_error": 0.014264347490338058,
+     "abs_error": 0.014264347490338058,
+     "abs_error_boot_lo": 0.0009954591122607118,
+     "abs_error_boot_hi": 0.06348360819523596
+    },
+    "b1_last_rung": {
+     "expected_mixed_share": 0.21451481801492198,
+     "signed_error": -0.07437407087396689,
+     "abs_error": 0.07437407087396689,
+     "abs_error_boot_lo": 0.02250946576948519,
+     "abs_error_boot_hi": 0.12963310820085028
+    },
+    "b2_scalar_curve": {
+     "expected_mixed_share": 0.7869084480487051,
+     "signed_error": 0.4980195591598162,
+     "abs_error": 0.4980195591598162,
+     "abs_error_boot_lo": 0.41653807767833473,
+     "abs_error_boot_hi": 0.5720936332338903
+    }
+   }
+  }
+ },
+ "pooled": {
+  "0.25": {
+   "sizes": [
+    "1.7B",
+    "4B",
+    "8B",
+    "14B"
+   ],
+   "comparisons": {
+    "b1_last_rung-minus-irt_2pl": {
+     "point": 0.004885239836363804,
+     "lo": -0.03279922863711321,
+     "hi": 0.041037741005436425,
+     "test": "paired task bootstrap of the absolute mixed-share error, 10000 draws, 135 tasks; p-val=n/a"
+    },
+    "b1_last_rung-minus-irt_1pl": {
+     "point": -0.08288887668170496,
+     "lo": -0.12241528266816666,
+     "hi": -0.04028791322284289,
+     "test": "paired task bootstrap of the absolute mixed-share error, 10000 draws, 135 tasks; p-val=n/a"
+    },
+    "b2_scalar_curve-minus-irt_2pl": {
+     "point": 0.14358229140862985,
+     "lo": 0.11914665703543843,
+     "hi": 0.16313746389922043,
+     "test": "paired task bootstrap of the absolute mixed-share error, 10000 draws, 135 tasks; p-val=n/a"
+    },
+    "b2_scalar_curve-minus-irt_1pl": {
+     "point": 0.0558081748905611,
+     "lo": 0.02079496605392902,
+     "hi": 0.08899477547361367,
+     "test": "paired task bootstrap of the absolute mixed-share error, 10000 draws, 135 tasks; p-val=n/a"
+    }
+   }
+  },
+  "0.5": {
+   "sizes": [
+    "1.7B",
+    "4B",
+    "8B",
+    "14B"
+   ],
+   "comparisons": {
+    "b1_last_rung-minus-irt_2pl": {
+     "point": -0.017377060690886716,
+     "lo": -0.05981813556096829,
+     "hi": 0.028463996357946244,
+     "test": "paired task bootstrap of the absolute mixed-share error, 10000 draws, 135 tasks; p-val=n/a"
+    },
+    "b1_last_rung-minus-irt_1pl": {
+     "point": -0.10426674274537315,
+     "lo": -0.15702192751841118,
+     "hi": -0.05404092284679663,
+     "test": "paired task bootstrap of the absolute mixed-share error, 10000 draws, 135 tasks; p-val=n/a"
+    },
+    "b2_scalar_curve-minus-irt_2pl": {
+     "point": 0.35269906269191575,
+     "lo": 0.317334574515956,
+     "hi": 0.38581813875704746,
+     "test": "paired task bootstrap of the absolute mixed-share error, 10000 draws, 135 tasks; p-val=n/a"
+    },
+    "b2_scalar_curve-minus-irt_1pl": {
+     "point": 0.26580938063742926,
+     "lo": 0.24166006926836314,
+     "hi": 0.2808294755269932,
+     "test": "paired task bootstrap of the absolute mixed-share error, 10000 draws, 135 tasks; p-val=n/a"
+    }
+   }
+  },
+  "0.75": {
+   "sizes": [
+    "1.7B",
+    "4B",
+    "8B",
+    "14B"
+   ],
+   "comparisons": {
+    "b1_last_rung-minus-irt_2pl": {
+     "point": 0.012973443406038052,
+     "lo": -0.03207952857654557,
+     "hi": 0.04956150507925018,
+     "test": "paired task bootstrap of the absolute mixed-share error, 10000 draws, 135 tasks; p-val=n/a"
+    },
+    "b1_last_rung-minus-irt_1pl": {
+     "point": -0.032928060383529634,
+     "lo": -0.08146653101051254,
+     "hi": 0.017764734087911953,
+     "test": "paired task bootstrap of the absolute mixed-share error, 10000 draws, 135 tasks; p-val=n/a"
+    },
+    "b2_scalar_curve-minus-irt_2pl": {
+     "point": 0.38408864928110087,
+     "lo": 0.32845957631006223,
+     "hi": 0.4300634184471863,
+     "test": "paired task bootstrap of the absolute mixed-share error, 10000 draws, 135 tasks; p-val=n/a"
+    },
+    "b2_scalar_curve-minus-irt_1pl": {
+     "point": 0.33818714549153317,
+     "lo": 0.2918451001105848,
+     "hi": 0.3837941560648973,
+     "test": "paired task bootstrap of the absolute mixed-share error, 10000 draws, 135 tasks; p-val=n/a"
+    }
+   }
+  },
+  "1.0": {
+   "sizes": [
+    "1.7B",
+    "4B",
+    "8B",
+    "14B"
+   ],
+   "comparisons": {
+    "b1_last_rung-minus-irt_2pl": {
+     "point": 0.03782143693055837,
+     "lo": -0.008890228500733158,
+     "hi": 0.06837484501068089,
+     "test": "paired task bootstrap of the absolute mixed-share error, 10000 draws, 135 tasks; p-val=n/a"
+    },
+    "b1_last_rung-minus-irt_1pl": {
+     "point": 0.005273578288538007,
+     "lo": -0.041029064350034096,
+     "hi": 0.03965368613266423,
+     "test": "paired task bootstrap of the absolute mixed-share error, 10000 draws, 135 tasks; p-val=n/a"
+    },
+    "b2_scalar_curve-minus-irt_2pl": {
+     "point": 0.38362207951518545,
+     "lo": 0.3167016780106467,
+     "hi": 0.43539987353137993,
+     "test": "paired task bootstrap of the absolute mixed-share error, 10000 draws, 135 tasks; p-val=n/a"
+    },
+    "b2_scalar_curve-minus-irt_1pl": {
+     "point": 0.3510742208731651,
+     "lo": 0.2854570727855481,
+     "hi": 0.4053077275758786,
+     "test": "paired task bootstrap of the absolute mixed-share error, 10000 draws, 135 tasks; p-val=n/a"
+    }
+   }
+  }
+ },
+ "onset": {
+  "1.7B": {
+   "realized_by_rung": {
+    "0": 0.0,
+    "0.125": 0.022222222222222223,
+    "0.25": 0.007407407407407408,
+    "0.5": 0.08148148148148149,
+    "0.75": 0.11851851851851852,
+    "1.0": 0.14814814814814814
+   },
+   "first_rung_realized_at_gate": "0.5",
+   "first_target_rung_forecast_at_gate": {
+    "irt_2pl": "0.25",
+    "irt_1pl": "0.25",
+    "b1_last_rung": "0.75",
+    "b2_scalar_curve": "0.25"
+   }
+  },
+  "4B": {
+   "realized_by_rung": {
+    "0": 0.022222222222222223,
+    "0.125": 0.02962962962962963,
+    "0.25": 0.15555555555555556,
+    "0.5": 0.16296296296296298,
+    "0.75": 0.15555555555555556,
+    "1.0": 0.23703703703703705
+   },
+   "first_rung_realized_at_gate": "0.25",
+   "first_target_rung_forecast_at_gate": {
+    "irt_2pl": "0.25",
+    "irt_1pl": "0.25",
+    "b1_last_rung": "0.5",
+    "b2_scalar_curve": "0.25"
+   }
+  },
+  "8B": {
+   "realized_by_rung": {
+    "0": 0.0,
+    "0.125": 0.07407407407407407,
+    "0.25": 0.17037037037037037,
+    "0.5": 0.21481481481481482,
+    "0.75": 0.24444444444444444,
+    "1.0": 0.23703703703703705
+   },
+   "first_rung_realized_at_gate": "0.125",
+   "first_target_rung_forecast_at_gate": {
+    "irt_2pl": "0.25",
+    "irt_1pl": "0.25",
+    "b1_last_rung": "0.25",
+    "b2_scalar_curve": "0.25"
+   }
+  },
+  "14B": {
+   "realized_by_rung": {
+    "0": 0.05185185185185185,
+    "0.125": 0.14814814814814814,
+    "0.25": 0.18518518518518517,
+    "0.5": 0.2222222222222222,
+    "0.75": 0.25925925925925924,
+    "1.0": 0.28888888888888886
+   },
+   "first_rung_realized_at_gate": "0",
+   "first_target_rung_forecast_at_gate": {
+    "irt_2pl": "0.25",
+    "irt_1pl": "0.25",
+    "b1_last_rung": "0.25",
+    "b2_scalar_curve": "0.25"
+   }
+  }
+ }
+}
