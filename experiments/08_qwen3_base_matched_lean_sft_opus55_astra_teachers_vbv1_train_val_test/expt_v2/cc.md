@@ -112,7 +112,10 @@ Solve the entire assigned task, including every required file, question and subt
   - disk space.
 
   When a generation or scoring driver dies, it relaunches the identical resumable command once per incident. When your session dies or blocks, or nothing progresses for more than 2 hours, it emails `brando.science@gmail.com` only (no CC), deduplicated. When `$WORK/v2/STATUS_e08v2` says `DONE`, it removes its own cron lines.
-- **Test the watchdog** with a fake mailer and one harmless simulated failure before relying on it. `../expt_v1/scripts/watchdog_e08.sh` is the pattern to copy.
+- **The watchdog also wakes you up.** A Codex session does not wake itself after it ends a turn. Each tick, if your pane shows no running turn (no "esc to interrupt"), `STATUS_e08v2` is not terminal, and at least 30 minutes have passed since the last nudge, it types this continuation brief into your pane with `tmux send-keys` and Enter: "Continue experiment 08 v2 from expt_v2/CKPT_e08v2.md: check every job's progress and do the next runbook step (cc.md). Solve the entire assigned task; do not stop until STATUS_e08v2 is terminal." It records each nudge.
+- **Do not end your turn while work remains.** Prefer bounded in-turn waits while jobs run, e.g. `timeout 1800 bash -c 'until <done-condition>; do sleep 60; done'`, followed by a progress check. The nudge is the fallback.
+- **Checkpoint location.** Your checkpoint is `expt_v2/CKPT_e08v2.md`, not a new `CKPT_*.md` at the repository root (the launcher's opening line names a default; this runbook overrides it).
+- **Test the watchdog** with a fake mailer and one harmless simulated failure (including one simulated nudge into a throwaway tmux session) before relying on it. `../expt_v1/scripts/watchdog_e08.sh` is the pattern to copy.
 - **Near a context or usage limit,** update the checkpoint with the exact next command and stop cleanly. The master relaunches from the checkpoint. Keep one writer.
 
 ## 9. Teardown
