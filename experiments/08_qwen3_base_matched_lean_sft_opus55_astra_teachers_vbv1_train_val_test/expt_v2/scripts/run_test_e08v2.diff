@@ -1,0 +1,11 @@
+--- experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/run_ladder_e08.sh
++++ experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v2/scripts/run_test_e08v2.sh
+@@ -19,7 +19,7 @@
+ case "$SPLIT" in validation) IDS="$EXP/expt_v1/results/split/vbv1_validation_task_ids.txt"; N_TASKS=135 ;; test) IDS="$EXP/expt_v1/results/split/vbv1_test_task_ids.txt"; N_TASKS=222 ;; *) echo "bad split" >&2; exit 2 ;; esac
+ # This fresh process reads the current guard even when the adopted pipeline predates a recovery fix.
+ if [ "$SPLIT" = test ]; then
+-  "$REPO/.venv/bin/python" "$EXP/expt_v1/scripts/test_admission_e08.py" "$LABEL" "$MODEL" "$REV"
++  "$REPO/.venv/bin/python" "$EXP/expt_v2/scripts/test_admission_e08v2.py" "$LABEL" "$MODEL" "$REV"
+ fi
+ OUT="$WORK/ladder/$SPLIT"; mkdir -p "$OUT/raw" "$OUT/jobs" "$OUT/scores" "$OUT/scored" "$OUT/summaries" "$OUT/ids" "$OUT/logs"
+ BATCH="${BATCH:-1024}"; SCORE_PAR="${SCORE_PAR:-4}"; STAGGER_S="${STAGGER_S:-180}"
