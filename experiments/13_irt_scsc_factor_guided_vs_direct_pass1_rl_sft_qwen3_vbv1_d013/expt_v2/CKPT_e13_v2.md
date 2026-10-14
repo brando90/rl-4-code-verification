@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-14-2026 14:22 PDT
+Last updated: 10-14-2026 15:16 PDT
 
 ## Task and owner
 
@@ -161,6 +161,12 @@ Last updated: 10-14-2026 14:22 PDT
 - **G0 PASS, verified.** The lock `a717d06` (14:03) precedes the result `120c558` (14:11), and the frozen files are unchanged between them. The 4B primary stratum gives dense-only 89–97/135 and AUC 0.6707–0.9046, by exact enumeration over 221,184 configurations; the admission verdict rule is applied. The 1.7B stratum passes, and the 8B stratum is INCONCLUSIVE (secondary, not gating). F0v2 (0.50) underpredicted.
 - **GPU wait.** All 24 large GPUs are occupied by other users: skampere1's 8 A100s (`enyijolivia`, since about 14:02), and skampere2's H200s and skampere3's B200s (`vmadan`, `alexspan`, `srivatsavad`, `ruhana`, `aryangul`). The `ilc` Slurm route lacks an account association. This is a wait, not a scientific failure.
 - **Owner steered at 14:20 (queued, not idle).** It does the GPU-free Phase 1 work now: LP-1 code, the sampler, the anchor runner, IRT fitting and its PROTOCOL § 4 validation, and the G1 bounds lock draft. It arms a 15-minute poller that claims only idle GPUs, and may use mercury's idle 16 GB RTX A4000s for generation. It is working (25 min, 71% context), and its watchdog lines are present.
+
+## Check-in 10-14-2026 15:14 PDT: Phase 1 preparation without GPUs; poller armed
+
+- **Owner working.** It is 39 minutes into its turn, with one context compaction and no exits. Since the last check-in it pushed three commits: `77dbf1a` (resource-wait record), `9101488` (probability checks, G1 bounds draft lock `G1_A3_DRAFT.json`, device polling) and `b52342e` (Phase 1 runners and missing-data fit controls). It is now finishing the LP-1 lock, so the poller can launch LP-1's single attempt.
+- **Additive crontab.** It holds 10 lines: 7 identical to the pre-version-2 backup, plus the watchdog, its `@reboot` line and the 15-minute `phase1/device_watch.py` poller. Leases: 0, device-hours: 0.
+- **GPUs still busy** (skampere1 has 17 compute processes from other users). No action was needed.
 
 ## Exact next commands (master)
 
