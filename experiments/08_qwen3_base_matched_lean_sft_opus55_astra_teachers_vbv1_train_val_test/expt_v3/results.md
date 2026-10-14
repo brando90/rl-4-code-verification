@@ -2,19 +2,20 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/results.md>
 
-**Status:** PREPARING. **Last updated:** 10-13-2026 17:53 PDT.
+**Status:** PREPARED, NOT LOCKED. **Last updated:** 10-14-2026 14:00 PDT.
 
 | Phase | State | Evidence |
 |---|---|---|
-| Existing validation analysis | DONE | 4 sizes ×135 tasks ×8 known samples; [report](RESULTS_continuation_audit.md) |
-| Cached train candidate inventory | DONE | 685 candidates /360 already-covered train tasks; [manifest](results/cached_train_candidates.csv) |
-| Earlier external pool inventory | DONE | 587 pairs /455 tasks before conversion and joint screening |
+| Existing validation analysis | DONE | 4 sizes x 135 tasks x 8 known samples; [report](RESULTS_continuation_audit.md) |
+| Failure taxonomy of the step-658 validation outputs | DONE (10-14-2026, zero model calls) | per size: no file 183 / 134 / 106 / 85, compile error 844 / 846 / 870 / 865, kernel success 53 / 100 / 104 / 130 of 1,080; [report](RESULTS_failure_taxonomy.md), [JSON](results/failure_taxonomy.json) |
+| Cached train candidate inventory | DONE | 685 candidates / 360 already-covered train tasks; [manifest](results/cached_train_candidates.csv) |
+| Earlier external pool inventory | DONE | 587 pairs / 455 tasks before conversion and joint screening |
 | Source availability and hashes | DONE | 685/685 cached responses and 587/587 earlier Lean files verified; [receipt](results/host_data_verification.json) |
-| Corpus conversion and admission | PENDING | No accepted expansion count yet |
-| Prospective training protocol | DRAFT DESIGN | [Meeting plan](../../meetings/oct_13_2026/PLAN.md); not frozen |
-| Deterministic verification | DONE | 323 tests passed, 24 skipped on Linux; [receipt](results/verification.json) |
-| New training and evaluation | NOT LAUNCHED | Version 2 closed PARTIAL (17:49 PDT), with 0/5,328 new outputs; Vals route restoration required |
+| Corpus conversion and admission | DONE (10-14-2026, host) | 2,585 / 2,587 admitted: 1,315 originals, 685 cached, 585 / 587 MBPP (2 `over_length_cap`); 0 duplicates, 0 held-out hits over 7,761 texts; new loss tokens 5,429,531 rendered; [manifest](results/admitted_corpus_manifest.csv), [stats](results/admitted_corpus_stats.json), [MBPP encoding](mbpp_conversion_spec.md) |
+| Prospective training protocol | DRAFT, NOT LOCKED | [PROTOCOL.md](PROTOCOL.md): two conditions, 5,752,936 additional loss tokens each, half/full validation, frozen gates, meeting decision rule |
+| Deterministic verification | DONE | Linux 323 passed / 24 skipped on 10-13 ([receipt](results/verification.json)); macOS 10-14: 320 passed, 36 skipped, the 4 known macOS-only failures |
+| New training and evaluation | NOT LAUNCHED | owners Lethan (1.7B/8B) and Rakshit (4B/14B) after the lock; version 2 remains PARTIAL (Vals route HTTP 403 since 10-13-2026) |
 
-The audit is deterministic reuse of existing data, not a new model experiment. Tests and publication are recorded in [CKPT_continuation.md](CKPT_continuation.md). Raw training data remain on the execution host.
+The preparation is deterministic reuse of existing data, not a new model experiment. Host files live under `/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/` (candidate corpus SHA-256 `7fa02557…`); version-1 and version-2 host files are untouched. Checkpoint: [CKPT_continuation.md](CKPT_continuation.md).
 
-**TLDR-end:** [rl4cv: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] The next matched training study has a data-reuse inventory and owner-specific plan; gains from more data or exposure are unmeasured.
+**TLDR-end:** [rl4cv: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] The taxonomy, the admitted 2,585-example candidate corpus and the draft two-condition protocol are ready for the owners; gains from more exposure or more data remain unmeasured until they lock and train.

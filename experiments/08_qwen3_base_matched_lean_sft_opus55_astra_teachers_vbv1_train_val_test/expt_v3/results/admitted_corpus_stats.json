@@ -1,0 +1,156 @@
+{
+ "by_source": {
+  "cached_cap_excluded": {
+   "admitted": 685,
+   "admitted_loss_tokens": 2924523,
+   "admitted_per_family": {
+    "aerospace_set_real": 2,
+    "aerospace_set_synthetic": 19,
+    "compilers_set_real": 4,
+    "compilers_set_synthetic": 8,
+    "concurrent_set_real": 5,
+    "concurrent_set_synthetic": 13,
+    "critical_infra_set_real": 5,
+    "critical_infra_set_synthetic": 16,
+    "crypto_set_real": 16,
+    "crypto_set_synthetic": 3,
+    "easy_set": 14,
+    "finance_set_real": 6,
+    "finance_set_synthetic": 6,
+    "gov_cert_set_real": 3,
+    "gov_cert_set_synthetic": 16,
+    "hardware_set_real": 4,
+    "hardware_set_synthetic": 19,
+    "humaneval_set": 19,
+    "hypervisor_set_real": 3,
+    "hypervisor_set_synthetic": 15,
+    "medical_oss_set_real": 10,
+    "medical_oss_set_synthetic": 14,
+    "memory_bugs_set_real": 6,
+    "memory_bugs_set_synthetic": 13,
+    "os_embedded_set_real": 9,
+    "os_embedded_set_synthetic": 15,
+    "realcode_set": 1,
+    "regulated_set_real": 5,
+    "regulated_set_synthetic": 11,
+    "rfc_set_real": 14,
+    "rfc_set_synthetic": 2,
+    "security_set": 389
+   },
+   "admitted_prompt_tokens": 2406558,
+   "admitted_unique_tasks": 360,
+   "candidates": 685,
+   "rejections_by_reason": {}
+  },
+  "mbpp_lean_warmstart_v3": {
+   "admitted": 585,
+   "admitted_loss_tokens": 2505008,
+   "admitted_per_family": {
+    "mbpp": 585
+   },
+   "admitted_prompt_tokens": 1941475,
+   "admitted_unique_tasks": 453,
+   "candidates": 587,
+   "rejections_by_reason": {
+    "over_length_cap": 2
+   }
+  },
+  "v1_selected": {
+   "admitted": 1315,
+   "admitted_loss_tokens": 5751621,
+   "admitted_per_family": {
+    "aerospace_set_real": 4,
+    "aerospace_set_synthetic": 30,
+    "compilers_set_real": 6,
+    "compilers_set_synthetic": 22,
+    "concurrent_set_real": 7,
+    "concurrent_set_synthetic": 21,
+    "critical_infra_set_real": 11,
+    "critical_infra_set_synthetic": 22,
+    "crypto_set_real": 20,
+    "crypto_set_synthetic": 4,
+    "easy_set": 46,
+    "finance_set_real": 12,
+    "finance_set_synthetic": 15,
+    "gov_cert_set_real": 4,
+    "gov_cert_set_synthetic": 26,
+    "hardware_set_real": 7,
+    "hardware_set_synthetic": 28,
+    "humaneval_set": 73,
+    "hypervisor_set_real": 6,
+    "hypervisor_set_synthetic": 23,
+    "medical_oss_set_real": 16,
+    "medical_oss_set_synthetic": 19,
+    "memory_bugs_set_real": 8,
+    "memory_bugs_set_synthetic": 22,
+    "os_embedded_set_real": 10,
+    "os_embedded_set_synthetic": 18,
+    "realcode_set": 3,
+    "regulated_set_real": 7,
+    "regulated_set_synthetic": 22,
+    "rfc_set_real": 34,
+    "rfc_set_synthetic": 2,
+    "security_set": 767
+   },
+   "admitted_prompt_tokens": 4617702,
+   "admitted_unique_tasks": 476,
+   "candidates": 1315,
+   "rejections_by_reason": {}
+  }
+ },
+ "duplicate_pairs_first_50": [],
+ "files": {
+  "corpus_host_only": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/s_v3_candidates.jsonl",
+  "corpus_sha256": "7fa0255741a2b6046ceda0dfda43664334ca603a0aeca9fc2424af43c849726b",
+  "manifest_csv": "admitted_corpus_manifest.csv",
+  "manifest_sha256": "3ed7cb7a0844a56d9072498651a2b7b38e15e017d781847d6fcd7825b2f2980e"
+ },
+ "heldout_screen": {
+  "n_exact": 0,
+  "n_near": 0,
+  "n_pool": 7761,
+  "n_protected": 714,
+  "shingle_n": 5,
+  "threshold": 0.7
+ },
+ "inputs": {
+  "addendum_sha256": "a7a0fc1b7be6b4ede41fd6b31e1e1dcae3d2fd320a6cddf9b311cf55855a18f5",
+  "cached_candidates_csv_sha256": "323cf11fa8e494af462414994b717297fdf447f8ab73b0a7ee73e666b7a0b0a4",
+  "mbpp_sha256": "2a3380227dedcb53aa449d50e2823e4a34bfb25ecdcf5b0c1c618b280d6b3c8a",
+  "s_v1_sha256": "885d4ae2d6cf193bddc43df6ad6274cacfa8c98a5e5ecd63bd2519472f5e7354",
+  "split_manifest_sha256": "157ce781ed9e4ac93a1a1fe0c49f2ee2ae907be1260402485c8f6fa3d06e0e24",
+  "system_prompt_sha256": "dc051963de1199dd4f77c9f8f96218eb45be331c819b8e76693b063b206143cd",
+  "veribench_pin": "c11b99badfa386fd26810b208eef1eb8dc9f6806"
+ },
+ "n_duplicate_pairs": 0,
+ "prepared_for": "Lethan (1.7B/8B) and Rakshit (4B/14B); no training launched",
+ "rules": {
+  "dedup": "exact rl4cv.screens.norm_hash on the Lean file, then word-5-gram Jaccard >= 0.70 against every already admitted Lean file; originals always kept; cached candidates visited in (task_id, opus55 before astra, sample) order, then MBPP rows in file order",
+  "heldout_screen": "rl4cv.screens.screen over file + full assistant text + each fenced block against 714 validation/test Python and gold Lean texts; exact or Jaccard >= 0.70 rejects",
+  "mbpp_envelope": "FILE: <required path>\\n```lean\\n<kept Lean bytes>\\n```\\n (newline added only if the file lacks one); rejected when extraction does not round-trip",
+  "order_key": "sha256('rl4cv-e08-v3-sft-order-v1:' + source + '|' + task_id + '|' + teacher + '|' + sample); final training order fixed by PROTOCOL.md",
+  "render": "Qwen3 Base tokenizer chat template (template_check.render): byte and token prefix, loss span = '<think>\\n\\n</think>\\n\\n' + response + '<|im_end|>\\n', total <= 16,384"
+ },
+ "status": "candidate_corpus_prepared_not_locked",
+ "tokenizer": {
+  "model": [
+   "Qwen/Qwen3-8B-Base",
+   "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"
+  ],
+  "size": "8B"
+ },
+ "totals": {
+  "admitted": 2585,
+  "admitted_loss_tokens_total": 11181152,
+  "admitted_new": 1270,
+  "admitted_new_loss_tokens": 5429531,
+  "candidates": 2587,
+  "rejections_by_reason": {
+   "over_length_cap": 2
+  },
+  "unique_mbpp_tasks_admitted": 453,
+  "unique_tasks_admitted": 929,
+  "unique_veribench_train_tasks_admitted": 476
+ },
+ "written_utc": "2026-10-14T20:11:36+00:00"
+}
