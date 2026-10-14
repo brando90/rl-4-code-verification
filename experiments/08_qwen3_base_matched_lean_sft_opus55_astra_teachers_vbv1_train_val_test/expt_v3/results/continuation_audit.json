@@ -1,0 +1,270 @@
+{
+  "method": "Post hoc; 10000 paired task bootstrap draws, seed 0, all eight samples together; percentile 95% intervals; single training seed; no hypothesis test.",
+  "paired_14B_minus_8B_pass_rate": {
+    "ci95": [
+      0.007407407407407408,
+      0.040740740740740744
+    ],
+    "mean": 0.024074074074074074,
+    "p_value": null
+  },
+  "source_sha256": {
+    "experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_a_lean_env_pools_warm_start_rho_h_probes/expt_v3/results/sft_manifest.json": "c12acd65b6d1156ad45839dcc8d7232799aa30e414d378252e5086a602b1a123",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/generated_lean_screen.json": "65a0f859c7273e547ce3ef54ac026ccaee8625da7e5abbaed9adaee609fb7aac",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_14B_f1p0_validation_per_task.csv": "e45121fa0812a3b3916d99f32457e4a35c0116e0fd9a9393ee54d8ae4fca90fb",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_1p7B_f1p0_validation_per_task.csv": "9c968477744009ab33b7fcfef67248cb26e0aa181a7783a7d532b45187d0b3c4",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_4B_f1p0_validation_per_task.csv": "8fd8dace0a7f4d47f1f4ea536873cafddbceda78ca90b105f44bac8b893b3e2a",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder/sft_8B_f1p0_validation_per_task.csv": "4e189d46aa1096c03691aff102ac8e8d3646471b5fffde4d86010a16195b8731",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/scored_cells.jsonl": "de5146e8a251f0f369910fb211feca9c4a24fd288099eeefa91a7178febdf90e",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/sft_schedule.json": "e0d6d896a1f4c085629ac90dc8fda9c52e6e5bf511a5a8b42fb30c769e575f8b",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/sft_set_manifest.csv": "8364ac11de3b0dae4d43e28d0835486a953c41fec94a3d4f7456d5bf677728aa",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/sft_set_stats.json": "e03720cb4e7fbf4e5fb3aa0fe218dd17738a412a5f9f0cec37f00d4744e9cbc8",
+    "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/split/vbv1_split_manifest.csv": "157ce781ed9e4ac93a1a1fe0c49f2ee2ae907be1260402485c8f6fa3d06e0e24"
+  },
+  "split": "VeriBench V1 validation",
+  "status": "existing_data_audit_only_no_new_training",
+  "systems": {
+    "14B": {
+      "additional_extractions_to_gate": 0,
+      "cap_reduction_to_gate": 0,
+      "capped": 84,
+      "cells_declared": 1080,
+      "cells_known": 1080,
+      "extracted": 995,
+      "historical_gate_pass": true,
+      "mixed_share": {
+        "ci95": [
+          0.21481481481481482,
+          0.37037037037037035
+        ],
+        "mean": 0.28888888888888886,
+        "p_value": null
+      },
+      "mixed_tasks": 39,
+      "observed_25_to_75_percent_share": {
+        "ci95": [
+          0.14074074074074075,
+          0.2742592592592566
+        ],
+        "mean": 0.2074074074074074,
+        "p_value": null
+      },
+      "pass_rate": {
+        "ci95": [
+          0.08333333333333333,
+          0.16203703703703703
+        ],
+        "mean": 0.12037037037037036,
+        "p_value": null
+      },
+      "success_count_histogram_0_to_8": [
+        96,
+        8,
+        8,
+        6,
+        8,
+        1,
+        5,
+        3,
+        0
+      ],
+      "successes": 130,
+      "tasks": 135,
+      "tasks_with_2_to_6_successes": 28
+    },
+    "1p7B": {
+      "additional_extractions_to_gate": 75,
+      "cap_reduction_to_gate": 76,
+      "capped": 184,
+      "cells_declared": 1080,
+      "cells_known": 1080,
+      "extracted": 897,
+      "historical_gate_pass": false,
+      "mixed_share": {
+        "ci95": [
+          0.08888888888888889,
+          0.21481481481481482
+        ],
+        "mean": 0.14814814814814814,
+        "p_value": null
+      },
+      "mixed_tasks": 20,
+      "observed_25_to_75_percent_share": {
+        "ci95": [
+          0.037037037037037035,
+          0.13333333333333333
+        ],
+        "mean": 0.08148148148148149,
+        "p_value": null
+      },
+      "pass_rate": {
+        "ci95": [
+          0.026851851851851852,
+          0.07592592592592592
+        ],
+        "mean": 0.049074074074074076,
+        "p_value": null
+      },
+      "success_count_histogram_0_to_8": [
+        115,
+        9,
+        2,
+        2,
+        1,
+        6,
+        0,
+        0,
+        0
+      ],
+      "successes": 53,
+      "tasks": 135,
+      "tasks_with_2_to_6_successes": 11
+    },
+    "4B": {
+      "additional_extractions_to_gate": 26,
+      "cap_reduction_to_gate": 26,
+      "capped": 134,
+      "cells_declared": 1080,
+      "cells_known": 1080,
+      "extracted": 946,
+      "historical_gate_pass": false,
+      "mixed_share": {
+        "ci95": [
+          0.17018518518518536,
+          0.3111111111111111
+        ],
+        "mean": 0.23703703703703705,
+        "p_value": null
+      },
+      "mixed_tasks": 32,
+      "observed_25_to_75_percent_share": {
+        "ci95": [
+          0.0962962962962963,
+          0.2222222222222222
+        ],
+        "mean": 0.15555555555555556,
+        "p_value": null
+      },
+      "pass_rate": {
+        "ci95": [
+          0.06018518518518518,
+          0.13055555555555556
+        ],
+        "mean": 0.09259259259259259,
+        "p_value": null
+      },
+      "success_count_histogram_0_to_8": [
+        102,
+        10,
+        6,
+        6,
+        3,
+        3,
+        3,
+        1,
+        1
+      ],
+      "successes": 100,
+      "tasks": 135,
+      "tasks_with_2_to_6_successes": 21
+    },
+    "8B": {
+      "additional_extractions_to_gate": 0,
+      "cap_reduction_to_gate": 0,
+      "capped": 106,
+      "cells_declared": 1080,
+      "cells_known": 1080,
+      "extracted": 974,
+      "historical_gate_pass": true,
+      "mixed_share": {
+        "ci95": [
+          0.16296296296296298,
+          0.3111111111111111
+        ],
+        "mean": 0.23703703703703705,
+        "p_value": null
+      },
+      "mixed_tasks": 32,
+      "observed_25_to_75_percent_share": {
+        "ci95": [
+          0.08888888888888889,
+          0.2075925925925899
+        ],
+        "mean": 0.14814814814814814,
+        "p_value": null
+      },
+      "pass_rate": {
+        "ci95": [
+          0.06296296296296296,
+          0.13425925925925927
+        ],
+        "mean": 0.0962962962962963,
+        "p_value": null
+      },
+      "success_count_histogram_0_to_8": [
+        103,
+        10,
+        2,
+        4,
+        9,
+        2,
+        3,
+        2,
+        0
+      ],
+      "successes": 104,
+      "tasks": 135,
+      "tasks_with_2_to_6_successes": 20
+    }
+  },
+  "thresholds": {
+    "historical": "extraction >=972/1080; capped <=108/1080; mixed >=7/135",
+    "meeting_diagnostic": "2..6 successes out of 8; empirical task difficulty, not SCSC or a new pass gate"
+  },
+  "training": {
+    "admitted_expanded_examples": null,
+    "candidate_families": {
+      "aerospace_set_real": 2,
+      "aerospace_set_synthetic": 19,
+      "compilers_set_real": 4,
+      "compilers_set_synthetic": 8,
+      "concurrent_set_real": 5,
+      "concurrent_set_synthetic": 13,
+      "critical_infra_set_real": 5,
+      "critical_infra_set_synthetic": 16,
+      "crypto_set_real": 16,
+      "crypto_set_synthetic": 3,
+      "easy_set": 14,
+      "finance_set_real": 6,
+      "finance_set_synthetic": 6,
+      "gov_cert_set_real": 3,
+      "gov_cert_set_synthetic": 16,
+      "hardware_set_real": 4,
+      "hardware_set_synthetic": 19,
+      "humaneval_set": 19,
+      "hypervisor_set_real": 3,
+      "hypervisor_set_synthetic": 15,
+      "medical_oss_set_real": 10,
+      "medical_oss_set_synthetic": 14,
+      "memory_bugs_set_real": 6,
+      "memory_bugs_set_synthetic": 13,
+      "os_embedded_set_real": 9,
+      "os_embedded_set_synthetic": 15,
+      "realcode_set": 1,
+      "regulated_set_real": 5,
+      "regulated_set_synthetic": 11,
+      "rfc_set_real": 14,
+      "rfc_set_synthetic": 2,
+      "security_set": 389
+    },
+    "candidate_raw_lean_hashes": 685,
+    "candidate_tasks": 360,
+    "cap_excluded_candidates": 685,
+    "examples": 1315,
+    "loss_tokens": 5752936,
+    "mbpp_pairs_before_conversion": 587,
+    "mbpp_tasks_before_joint_screen": 455,
+    "new_source_tasks_from_cap_candidates": 0,
+    "tasks": 476
+  }
+}
