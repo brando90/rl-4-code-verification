@@ -4,7 +4,7 @@
 
 **TLDR:** This is the resume record for version 2: a one-time test evaluation of 1.7B, 4B and 14B at step 658, so all four sizes are compared after identical SFT (same data, 658 updates, 5,752,936 tokens). The binding protocol is `PROTOCOL_v2.md` and the runbook is `cc.md`.
 
-**Created:** 10-13-2026 17:02 PDT (Claude master). **Last updated:** 10-13-2026 17:49 PDT
+**Created:** 10-13-2026 17:02 PDT (Claude master). **Last updated:** 10-13-2026 17:51 PDT
 
 ## Goal
 - Complete the matched step-658 evaluation; this attempt closed PARTIAL at the runbook route-controls gate.
@@ -19,11 +19,11 @@
 - All six reused summaries reproduce exact v1 scope fields; terminal independent 108 factor/score checks PASS; reused 8B paired metrics also exact.
 - Control ratings 0/50; fixed-audit ratings 0/1,080; additional eligibility unknown for 5,328 cells. No model request admitted, no charge receipts. Forecasts unresolved.
 - Terminal full make test: 338 passed / 4 skipped in 293.25 s; Python compilation and git diff --check PASS.
-- START duplication discovered after upstream merge (master 17:09, worker 17:18); no further START. DONE not sent yet.
+- START duplication discovered after upstream merge (master 17:09, worker 17:18); no further START. PARTIAL DONE sent once at 17:51:20 PDT to the required To/CC; marker exists.
 ## Stuck / blocked
 - Vals-side managed AWS/Daytona restoration needed for the existing organization; see `results/judge_route_blocker_v2.json`.
 ## Next steps
-- [p 10/10] Terminal report/analysis verified; publish explicit paths, send one required PARTIAL DONE email, then commit its receipt.
+- [p 10/10] Terminal report/analysis published on main at `c7940fe`; DONE email and teardown complete. No worker action remains until the external route is repaired.
 - Resume only after route repair: reverify Vals payer/frozen bundle and supported CLI/service registration; archive positively unserved control entries before a bounded identical admission. Never replay a possibly served rating.
 - Preserve the exact published generation manifest/protocol and shard layouts. Existing drivers resume with GPUs 4 / 1 / 2,3 only after rechecking idle devices and leases; do not take another owner's GPU.
 - Canonical checkpoint here; local named copy `$WORK/v2/CKPT_codexv-rl4cv-e08v2-matched-test.md`; every failed attempt remains under `$WORK/v2`.
@@ -57,3 +57,5 @@
 - 10-13-2026 17:38 PDT -- master (Claude, laptop) handing off: Brando is moving computers, so the laptop watch ends. Verified at 17:37: STATUS RUNNING; drivers for 1.7B (GPU 4), 4B (GPU 1) and 14B (GPUs 2,3) fresh and at 99–100% utilization; host watchdog cron (*/15 + @reboot, tag e08v2-matched-test) live. Recovery now rests on the worker and that watchdog; any new master resumes from this file.
 
 - 10-13-2026 17:49 PDT -- terminal analysis: all six reused summaries and 8B paired metrics exact; independent 108 checks PASS; full make test 338 passed / 4 skipped in 293.25 s. All new cells and 1,130 control/fixed-audit ratings listed missing; additional main eligibility unresolved. Publishing PARTIAL report next.
+
+- 10-13-2026 17:51 PDT -- PARTIAL report published/remote bytes verified at c7940fe; required DONE email sent once at 17:51:20 PDT (SMTP), marker written immediately. Terminal status PARTIAL, resources released; publishing notification receipt. Last full suite 338 passed / 4 skipped, staged whitespace/secret scan PASS; CSV LF normalization preserves every record.
