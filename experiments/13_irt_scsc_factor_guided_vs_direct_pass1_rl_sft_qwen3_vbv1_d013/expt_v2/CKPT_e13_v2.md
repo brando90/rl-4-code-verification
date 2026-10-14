@@ -6,11 +6,11 @@
 
 - **Plan:** revision 2, after the single light review (FAIL, with all 13 findings fixed).
 - **Admission:** G0 was admitted under A3 on 10-14-2026 ([admission record](R2_A3_ADMISSION_10-14-2026.md)).
-- **G0:** PASS (`120c558`). Next is Phase 1; its generation waits for an idle GPU, and the owner runs [cc_resume_g0.md](cc_resume_g0.md) onward.
+- **G0:** PASS (`120c558`). LP-1 attempt 1 stopped on a launcher defect before measuring anything, and [Amendment A4](AMENDMENT_A4_technical_gate_infrastructure_attempts_10-14-2026.md) admits attempt 2 after a fix. The owner runs [cc_resume_g0.md](cc_resume_g0.md) onward.
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-14-2026 15:16 PDT
+Last updated: 10-14-2026 16:16 PDT
 
 ## Task and owner
 
@@ -167,6 +167,17 @@ Last updated: 10-14-2026 15:16 PDT
 - **Owner working.** It is 39 minutes into its turn, with one context compaction and no exits. Since the last check-in it pushed three commits: `77dbf1a` (resource-wait record), `9101488` (probability checks, G1 bounds draft lock `G1_A3_DRAFT.json`, device polling) and `b52342e` (Phase 1 runners and missing-data fit controls). It is now finishing the LP-1 lock, so the poller can launch LP-1's single attempt.
 - **Additive crontab.** It holds 10 lines: 7 identical to the pre-version-2 backup, plus the watchdog, its `@reboot` line and the 15-minute `phase1/device_watch.py` poller. Leases: 0, device-hours: 0.
 - **GPUs still busy** (skampere1 has 17 compute processes from other users). No action was needed.
+
+## Check-in 10-14-2026 16:14 PDT: LP-1 attempt 1 failed on a launcher defect; Amendment A4 adopted
+
+- **LP-1 attempt 1** (`d831d0f` lock, then `50cf118` and `10335d1`). At 15:30 the poller found skampere1 GPUs 2 and 7 idle and claimed GPU 2, an A100. vLLM 0.10.0 then raised a `ValueError` during engine construction, because the launcher put the GPU UUID in `CUDA_VISIBLE_DEVICES` instead of an integer index. The attempt produced 0/8 responses and 0 tokens, with every admission statistic unmeasured, after 0.014593276 device-hours. Cleanup passed and the lease was released. The owner applied the brief's no-retry rule literally, published LP-1 INCOMPLETE and went idle; the watchdog emailed once at 15:38.
+- **Master decision at 16:16 PDT:** [Amendment A4](AMENDMENT_A4_technical_gate_infrastructure_attempts_10-14-2026.md), adopted after the observation and disclosed as such. A technical gate (LP-1, LP, T1–T4) whose attempt ended on an infrastructure defect before computing any admission statistic may run again after a fix. Conditions:
+  - every scientific setting stays byte-identical;
+  - a regression test, a preflight check and a successor lock come first;
+  - at most 3 attempts per gate, with every attempt published.
+
+  An attempt that measures its statistics is final. The scientific gates keep the no-retry rule.
+- **Next.** The same owner (`codex-rl4cv-e13v2-owner-g0`) receives A4: fix the device mapping, add the preflight and `locks/LP1_A4.json`, push, then let the poller run LP-1 attempt 2. skampere1 GPUs 1, 2, 4 and 7 were idle at 16:14.
 
 ## Exact next commands (master)
 
