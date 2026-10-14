@@ -1,0 +1,2130 @@
+[
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "concurrent_set_synthetic__my_hazard_pointer_can_free",
+  "group": "high_score_failing",
+  "category": "helper_mapping",
+  "v1_mapping": {
+   "MyHazardPointerCanFree.MyHazardPointerCanFree": "MyHazardPointerCanFree.preCondition",
+   "MyHazardPointerCanFree.MyHazardPointerCanFreeImp": "MyHazardPointerCanFree.preCondition"
+  },
+  "n_tests": 8,
+  "gold_symbols": [
+   {
+    "name": "MyHazardPointerCanFree",
+    "full_name": "MyHazardPointerCanFree.MyHazardPointerCanFree",
+    "namespace": "MyHazardPointerCanFree",
+    "header": "(protectors : Nat) : Bool"
+   },
+   {
+    "name": "MyHazardPointerCanFreeImp",
+    "full_name": "MyHazardPointerCanFree.MyHazardPointerCanFreeImp",
+    "namespace": "MyHazardPointerCanFree",
+    "header": "(protectors : Nat) : Bool"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "MyHazardPointerCanFree 0 = true",
+    "symbols": {
+     "MyHazardPointerCanFree": "MyHazardPointerCanFree.MyHazardPointerCanFree"
+    },
+    "symbol_suffixes": {
+     "MyHazardPointerCanFree": ""
+    }
+   },
+   {
+    "statement": "MyHazardPointerCanFree 1 = false",
+    "symbols": {
+     "MyHazardPointerCanFree": "MyHazardPointerCanFree.MyHazardPointerCanFree"
+    },
+    "symbol_suffixes": {
+     "MyHazardPointerCanFree": ""
+    }
+   },
+   {
+    "statement": "MyHazardPointerCanFree 4 = false",
+    "symbols": {
+     "MyHazardPointerCanFree": "MyHazardPointerCanFree.MyHazardPointerCanFree"
+    },
+    "symbol_suffixes": {
+     "MyHazardPointerCanFree": ""
+    }
+   },
+   {
+    "statement": "MyHazardPointerCanFree 10 = false",
+    "symbols": {
+     "MyHazardPointerCanFree": "MyHazardPointerCanFree.MyHazardPointerCanFree"
+    },
+    "symbol_suffixes": {
+     "MyHazardPointerCanFree": ""
+    }
+   },
+   {
+    "statement": "MyHazardPointerCanFree 2 = false",
+    "symbols": {
+     "MyHazardPointerCanFree": "MyHazardPointerCanFree.MyHazardPointerCanFree"
+    },
+    "symbol_suffixes": {
+     "MyHazardPointerCanFree": ""
+    }
+   },
+   {
+    "statement": "MyHazardPointerCanFreeImp 0 = true",
+    "symbols": {
+     "MyHazardPointerCanFreeImp": "MyHazardPointerCanFree.MyHazardPointerCanFreeImp"
+    },
+    "symbol_suffixes": {
+     "MyHazardPointerCanFreeImp": ""
+    }
+   },
+   {
+    "statement": "MyHazardPointerCanFreeImp 1 = false",
+    "symbols": {
+     "MyHazardPointerCanFreeImp": "MyHazardPointerCanFree.MyHazardPointerCanFreeImp"
+    },
+    "symbol_suffixes": {
+     "MyHazardPointerCanFreeImp": ""
+    }
+   },
+   {
+    "statement": "MyHazardPointerCanFreeImp 4 = false",
+    "symbols": {
+     "MyHazardPointerCanFreeImp": "MyHazardPointerCanFree.MyHazardPointerCanFreeImp"
+    },
+    "symbol_suffixes": {
+     "MyHazardPointerCanFreeImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def MyHazardPointerCanFree.preCondition (protectors : Int) : Bool := default\ndef MyHazardPointerCanFree.canFree (protectors : Int) : Bool := default\ndef MyHazardPointerCanFree.canFree? (protectors : Int) : Option Bool := default\ndef MyHazardPointerCanFree.checkHarness : Bool := default\ndef MyHazardPointerCanFree.Pre (protectors : Int) : Prop := default\ndef MyHazardPointerCanFree.spec_prop (protectors : Int) : Prop := default\ndef MyHazardPointerCanFree.can_free_iff_zero_prop (protectors : Int) : Prop := default\ndef MyHazardPointerCanFree.gate_open_iff_prop (protectors : Int) : Prop := default\ndef MyHazardPointerCanFree.protected_blocks_prop (protectors : Int) : Prop := default\ndef MyHazardPointerCanFree.no_raise_on_pre_prop (protectors : Int) : Prop := default\ndef MyHazardPointerCanFree.raise_on_bad_input_prop (protectors : Int) : Prop := default\ndef MyHazardPointerCanFree.succeeds_iff_pre_prop (protectors : Int) : Prop := default\ndef MyHazardPointerCanFree.antitone_prop (p q : Int) : Prop := default\ndef MyHazardPointerCanFree.zero_frees_prop : Prop := default\ndef MyHazardPointerCanFree.Post_prop (protectors : Int) : Prop := default\ndef MyHazardPointerCanFree.spec_bool (p : Int) : Bool := default\ndef MyHazardPointerCanFree.can_free_iff_zero_bool (p : Int) : Bool := default\ndef MyHazardPointerCanFree.gate_open_iff_bool (p : Int) : Bool := default\ndef MyHazardPointerCanFree.protected_blocks_bool (p : Int) : Bool := default\ndef MyHazardPointerCanFree.no_raise_on_pre_bool (p : Int) : Bool := default\ndef MyHazardPointerCanFree.raise_on_bad_input_bool (p : Int) : Bool := default\ndef MyHazardPointerCanFree.succeeds_iff_pre_bool (p : Int) : Bool := default\ndef MyHazardPointerCanFree.antitone_bool (p q : Int) : Bool := default\ndef MyHazardPointerCanFree.zero_frees_bool : Bool := default\ndef MyHazardPointerCanFree.post_bool (p : Int) : Bool := default\ndef MyHazardPointerCanFree.window : List Int := default\ndef MyHazardPointerCanFree.canFreeImp (protectors : Int) : Option Bool := default\nexample : canFree? 0 = some true := by decide\nexample : canFree? 1 = some false := by decide\nexample : canFree? 4 = some false := by decide\nexample : canFree? 10 = some false := by decide\nexample : canFree? 2 = some false := by decide\nexample : canFree? (-1) = none := by decide\n",
+  "candidate_n_examples": 30
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "concurrent_set_synthetic__my_lww_register_pick_left",
+  "group": "high_score_failing",
+  "category": "helper_mapping",
+  "v1_mapping": {
+   "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.preCondition",
+   "MyLwwRegisterPickLeft.MyLwwRegisterPickLeftImp": "MyLwwRegisterPickLeft.preCondition"
+  },
+  "n_tests": 8,
+  "gold_symbols": [
+   {
+    "name": "MyLwwRegisterPickLeft",
+    "full_name": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft",
+    "namespace": "MyLwwRegisterPickLeft",
+    "header": "(leftTs rightTs : Nat) : Bool"
+   },
+   {
+    "name": "MyLwwRegisterPickLeftImp",
+    "full_name": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeftImp",
+    "namespace": "MyLwwRegisterPickLeft",
+    "header": "(leftTs rightTs : Nat) : Bool"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "MyLwwRegisterPickLeft 5 3 = true",
+    "symbols": {
+     "MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft"
+    },
+    "symbol_suffixes": {
+     "MyLwwRegisterPickLeft": ""
+    }
+   },
+   {
+    "statement": "MyLwwRegisterPickLeft 3 5 = false",
+    "symbols": {
+     "MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft"
+    },
+    "symbol_suffixes": {
+     "MyLwwRegisterPickLeft": ""
+    }
+   },
+   {
+    "statement": "MyLwwRegisterPickLeft 4 4 = true",
+    "symbols": {
+     "MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft"
+    },
+    "symbol_suffixes": {
+     "MyLwwRegisterPickLeft": ""
+    }
+   },
+   {
+    "statement": "MyLwwRegisterPickLeft 0 0 = true",
+    "symbols": {
+     "MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft"
+    },
+    "symbol_suffixes": {
+     "MyLwwRegisterPickLeft": ""
+    }
+   },
+   {
+    "statement": "MyLwwRegisterPickLeft 0 1 = false",
+    "symbols": {
+     "MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft"
+    },
+    "symbol_suffixes": {
+     "MyLwwRegisterPickLeft": ""
+    }
+   },
+   {
+    "statement": "MyLwwRegisterPickLeftImp 5 3 = true",
+    "symbols": {
+     "MyLwwRegisterPickLeftImp": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeftImp"
+    },
+    "symbol_suffixes": {
+     "MyLwwRegisterPickLeftImp": ""
+    }
+   },
+   {
+    "statement": "MyLwwRegisterPickLeftImp 3 5 = false",
+    "symbols": {
+     "MyLwwRegisterPickLeftImp": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeftImp"
+    },
+    "symbol_suffixes": {
+     "MyLwwRegisterPickLeftImp": ""
+    }
+   },
+   {
+    "statement": "MyLwwRegisterPickLeftImp 4 4 = true",
+    "symbols": {
+     "MyLwwRegisterPickLeftImp": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeftImp"
+    },
+    "symbol_suffixes": {
+     "MyLwwRegisterPickLeftImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def MyLwwRegisterPickLeft.preCondition (leftTs rightTs : Int) : Bool := default\ndef MyLwwRegisterPickLeft.pickLeft (leftTs rightTs : Int) : Bool := default\ndef MyLwwRegisterPickLeft.pickLeft? (leftTs rightTs : Int) : Option Bool := default\ndef MyLwwRegisterPickLeft.Pre (leftTs rightTs : Int) : Prop := default\ndef MyLwwRegisterPickLeft.spec_prop (leftTs rightTs : Int) : Prop := default\ndef MyLwwRegisterPickLeft.tie_prop (leftTs rightTs : Int) : Prop := default\ndef MyLwwRegisterPickLeft.newer_right_prop (leftTs rightTs : Int) : Prop := default\ndef MyLwwRegisterPickLeft.totality_prop (leftTs rightTs : Int) : Prop := default\ndef MyLwwRegisterPickLeft.antisymmetry_prop (leftTs rightTs : Int) : Prop := default\ndef MyLwwRegisterPickLeft.transitivity_prop (a b c : Int) : Prop := default\ndef MyLwwRegisterPickLeft.guard_prop (leftTs rightTs : Int) : Prop := default\ndef MyLwwRegisterPickLeft.guard_agrees_prop (leftTs rightTs : Int) : Prop := default\ndef MyLwwRegisterPickLeft.Post_prop (leftTs rightTs : Int) : Prop := default\ndef MyLwwRegisterPickLeft.specB (l r : Int) : Bool := default\ndef MyLwwRegisterPickLeft.tieB (l r : Int) : Bool := default\ndef MyLwwRegisterPickLeft.newerRightB (l r : Int) : Bool := default\ndef MyLwwRegisterPickLeft.totalityB (l r : Int) : Bool := default\ndef MyLwwRegisterPickLeft.antisymmB (l r : Int) : Bool := default\ndef MyLwwRegisterPickLeft.transB (a b c : Int) : Bool := default\ndef MyLwwRegisterPickLeft.guardB (l r : Int) : Bool := default\ndef MyLwwRegisterPickLeft.guardAgreesB (l r : Int) : Bool := default\ndef MyLwwRegisterPickLeft.postB (l r : Int) : Bool := default\ndef MyLwwRegisterPickLeft.sampleTs : List Int := default\ndef MyLwwRegisterPickLeft.pickLeftImp (leftTs rightTs : Int) : Bool := default\ndef MyLwwRegisterPickLeft.pickLeftImp? (leftTs rightTs : Int) : Option Bool := default\nexample : pickLeft 5 3 = true := by decide\nexample : pickLeft 3 5 = false := by decide\nexample : pickLeft 4 4 = true := by decide\nexample : pickLeft 0 0 = true := by decide\nexample : pickLeft 0 1 = false := by decide\nexample : pickLeft 9 9 = true := by decide\n",
+  "candidate_n_examples": 37
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "easy_set__1_myadd",
+  "group": "high_score_failing",
+  "category": "partial_applicability",
+  "v1_mapping": {
+   "MyAdd.myAdd": "MyAdd.myAdd",
+   "MyAdd.myAddImp": "MyAdd.myAddImp"
+  },
+  "n_tests": 14,
+  "gold_symbols": [
+   {
+    "name": "myAdd",
+    "full_name": "MyAdd.myAdd",
+    "namespace": "MyAdd",
+    "header": ": Nat \u2192 Nat \u2192 Nat"
+   },
+   {
+    "name": "myAddImp",
+    "full_name": "MyAdd.myAddImp",
+    "namespace": "MyAdd",
+    "header": "(a b : Nat) : Nat"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "myAdd 1 2 = 3",
+    "symbols": {
+     "myAdd": "MyAdd.myAdd"
+    },
+    "symbol_suffixes": {
+     "myAdd": ""
+    }
+   },
+   {
+    "statement": "myAdd 0 0 = 0",
+    "symbols": {
+     "myAdd": "MyAdd.myAdd"
+    },
+    "symbol_suffixes": {
+     "myAdd": ""
+    }
+   },
+   {
+    "statement": "myAdd 2 3 = 5",
+    "symbols": {
+     "myAdd": "MyAdd.myAdd"
+    },
+    "symbol_suffixes": {
+     "myAdd": ""
+    }
+   },
+   {
+    "statement": "myAdd 7 0 = 7",
+    "symbols": {
+     "myAdd": "MyAdd.myAdd"
+    },
+    "symbol_suffixes": {
+     "myAdd": ""
+    }
+   },
+   {
+    "statement": "\u00ac (myAdd 2 3 = 6)",
+    "symbols": {
+     "myAdd": "MyAdd.myAdd"
+    },
+    "symbol_suffixes": {
+     "myAdd": ""
+    }
+   },
+   {
+    "statement": "\u00ac (myAdd 4 1 = 2)",
+    "symbols": {
+     "myAdd": "MyAdd.myAdd"
+    },
+    "symbol_suffixes": {
+     "myAdd": ""
+    }
+   },
+   {
+    "statement": "myAdd 5 0 = 5",
+    "symbols": {
+     "myAdd": "MyAdd.myAdd"
+    },
+    "symbol_suffixes": {
+     "myAdd": ""
+    }
+   },
+   {
+    "statement": "myAdd 0 8 = 8",
+    "symbols": {
+     "myAdd": "MyAdd.myAdd"
+    },
+    "symbol_suffixes": {
+     "myAdd": ""
+    }
+   },
+   {
+    "statement": "myAdd 3 4 = myAdd 4 3",
+    "symbols": {
+     "myAdd": "MyAdd.myAdd"
+    },
+    "symbol_suffixes": {
+     "myAdd": ""
+    }
+   },
+   {
+    "statement": "myAdd (myAdd 2 3) 4 = myAdd 2 (myAdd 3 4)",
+    "symbols": {
+     "myAdd": "MyAdd.myAdd"
+    },
+    "symbol_suffixes": {
+     "myAdd": ""
+    }
+   },
+   {
+    "statement": "myAddImp 1 2 = 3",
+    "symbols": {
+     "myAddImp": "MyAdd.myAddImp"
+    },
+    "symbol_suffixes": {
+     "myAddImp": ""
+    }
+   },
+   {
+    "statement": "myAddImp 0 0 = 0",
+    "symbols": {
+     "myAddImp": "MyAdd.myAddImp"
+    },
+    "symbol_suffixes": {
+     "myAddImp": ""
+    }
+   },
+   {
+    "statement": "myAddImp 2 3 = 5",
+    "symbols": {
+     "myAddImp": "MyAdd.myAddImp"
+    },
+    "symbol_suffixes": {
+     "myAddImp": ""
+    }
+   },
+   {
+    "statement": "\u00ac (myAddImp 2 3 = 6)",
+    "symbols": {
+     "myAddImp": "MyAdd.myAddImp"
+    },
+    "symbol_suffixes": {
+     "myAddImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def MyAdd.pre (a b : Int) : Bool := default\ndef MyAdd.errMsg (a b : Int) : String := default\ndef MyAdd.myAdd (a b : Int) : Except String Int := default\ndef MyAdd.addNat (m n : Nat) : Nat := default\ndef MyAdd.isOkWith (r : Except String Int) (v : Int) : Bool := default\ndef MyAdd.isErrorWith (r : Except String Int) (m : String) : Bool := default\ndef MyAdd.raised (r : Except String Int) : Bool := default\ndef MyAdd.resEq (r s : Except String Int) : Bool := default\ndef MyAdd.render (r : Except String Int) : String := default\ndef MyAdd.Pre (a b : Int) : Prop := default\ndef MyAdd.sum_prop (a b : Int) : Prop := default\ndef MyAdd.raises_prop (a b : Int) : Prop := default\ndef MyAdd.nonneg_prop (a b : Int) : Prop := default\ndef MyAdd.mono_prop (a b : Int) : Prop := default\ndef MyAdd.comm_prop (a b : Int) : Prop := default\ndef MyAdd.zeroAdd_prop (n : Int) : Prop := default\ndef MyAdd.addZero_prop (n : Int) : Prop := default\ndef MyAdd.assoc_prop (a b c : Int) : Prop := default\ndef MyAdd.natLayer_prop (m n : Nat) : Prop := default\ndef MyAdd.Post_prop (a b : Int) (r : Except String Int) : Prop := default\ndef MyAdd.sumCheck (a b : Int) : Bool := default\ndef MyAdd.raisesCheck (a b : Int) : Bool := default\ndef MyAdd.nonnegCheck (a b : Int) : Bool := default\ndef MyAdd.monoCheck (a b : Int) : Bool := default\ndef MyAdd.commCheck (a b : Int) : Bool := default\ndef MyAdd.zeroAddCheck (n : Int) : Bool := default\ndef MyAdd.addZeroCheck (n : Int) : Bool := default\ndef MyAdd.assocCheck (a b c : Int) : Bool := default\ndef MyAdd.natLayerCheck (m n : Nat) : Bool := default\ndef MyAdd.postCheck (a b : Int) : Bool := default\ndef MyAdd.testInts : List Int := default\ndef MyAdd.myAddImp (a b : Int) : Except String Int := default\nexample : isOkWith (myAdd 1 2) 3 = true := by decide\nexample : isOkWith (myAdd 0 0) 0 = true := by decide\nexample : raised (myAdd (-1) 0) = true := by decide\nexample : raised (myAdd 0 (-2)) = true := by decide\n",
+  "candidate_n_examples": 29
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "easy_set__33_myminimum",
+  "group": "high_score_failing",
+  "category": "partial_applicability",
+  "v1_mapping": {
+   "MyMinList.myMinList": "MyMinimum.myMinList",
+   "MyMinList.myMinListImperative": "MyMinimum.minList"
+  },
+  "n_tests": 12,
+  "gold_symbols": [
+   {
+    "name": "myMinList",
+    "full_name": "MyMinList.myMinList",
+    "namespace": "MyMinList",
+    "header": ": List Nat \u2192 Nat"
+   },
+   {
+    "name": "myMinListImperative",
+    "full_name": "MyMinList.myMinListImperative",
+    "namespace": "MyMinList",
+    "header": "(xs : List Nat) : Nat"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "myMinList [7, 3, 9, 2] = 2",
+    "symbols": {
+     "myMinList": "MyMinList.myMinList"
+    },
+    "symbol_suffixes": {
+     "myMinList": ""
+    }
+   },
+   {
+    "statement": "myMinList [5] = 5",
+    "symbols": {
+     "myMinList": "MyMinList.myMinList"
+    },
+    "symbol_suffixes": {
+     "myMinList": ""
+    }
+   },
+   {
+    "statement": "myMinList [] = 0",
+    "symbols": {
+     "myMinList": "MyMinList.myMinList"
+    },
+    "symbol_suffixes": {
+     "myMinList": ""
+    }
+   },
+   {
+    "statement": "myMinList [3, 1, 4] = 1",
+    "symbols": {
+     "myMinList": "MyMinList.myMinList"
+    },
+    "symbol_suffixes": {
+     "myMinList": ""
+    }
+   },
+   {
+    "statement": "myMinList [10, 5] = 5",
+    "symbols": {
+     "myMinList": "MyMinList.myMinList"
+    },
+    "symbol_suffixes": {
+     "myMinList": ""
+    }
+   },
+   {
+    "statement": "myMinList [3, 3, 3] = 3",
+    "symbols": {
+     "myMinList": "MyMinList.myMinList"
+    },
+    "symbol_suffixes": {
+     "myMinList": ""
+    }
+   },
+   {
+    "statement": "myMinList [] \u2260 42",
+    "symbols": {
+     "myMinList": "MyMinList.myMinList"
+    },
+    "symbol_suffixes": {
+     "myMinList": ""
+    }
+   },
+   {
+    "statement": "myMinListImperative [7, 3, 9, 2] = 2",
+    "symbols": {
+     "myMinListImperative": "MyMinList.myMinListImperative"
+    },
+    "symbol_suffixes": {
+     "myMinListImperative": ""
+    }
+   },
+   {
+    "statement": "myMinListImperative [5] = 5",
+    "symbols": {
+     "myMinListImperative": "MyMinList.myMinListImperative"
+    },
+    "symbol_suffixes": {
+     "myMinListImperative": ""
+    }
+   },
+   {
+    "statement": "myMinListImperative [] = 0",
+    "symbols": {
+     "myMinListImperative": "MyMinList.myMinListImperative"
+    },
+    "symbol_suffixes": {
+     "myMinListImperative": ""
+    }
+   },
+   {
+    "statement": "myMinListImperative [10, 3, 7, 1] = 1",
+    "symbols": {
+     "myMinListImperative": "MyMinList.myMinListImperative"
+    },
+    "symbol_suffixes": {
+     "myMinListImperative": ""
+    }
+   },
+   {
+    "statement": "myMinListImperative [] \u2260 100",
+    "symbols": {
+     "myMinListImperative": "MyMinList.myMinListImperative"
+    },
+    "symbol_suffixes": {
+     "myMinListImperative": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def MyMinimum.minI (a b : Int) : Int := default\ndef MyMinimum.preB (xs : List Int) : Bool := default\ndef MyMinimum.minAux (m : Int) (ys : List Int) : Int := default\ndef MyMinimum.minList : List Int \u2192 Int := default\ndef MyMinimum.myMinList (xs : List Int) : Option Int := default\ndef MyMinimum.Pre (xs : List Int) : Prop := default\ndef MyMinimum.defined_prop (xs : List Int) : Prop := default\ndef MyMinimum.mem_prop (xs : List Int) : Prop := default\ndef MyMinimum.lower_bound_prop (xs : List Int) : Prop := default\ndef MyMinimum.greatest_prop (xs : List Int) : Prop := default\ndef MyMinimum.nonneg_prop (xs : List Int) : Prop := default\ndef MyMinimum.error_prop (xs : List Int) : Prop := default\ndef MyMinimum.singleton_prop (x : Int) : Prop := default\ndef MyMinimum.Post_prop (xs : List Int) : Prop := default\ndef MyMinimum.definedCheck (xs : List Int) : Bool := default\ndef MyMinimum.memCheck (xs : List Int) : Bool := default\ndef MyMinimum.lowerBoundCheck (xs : List Int) : Bool := default\ndef MyMinimum.greatestCheck (xs : List Int) (b : Int) : Bool := default\ndef MyMinimum.nonnegCheck (xs : List Int) : Bool := default\ndef MyMinimum.errorCheck (xs : List Int) : Bool := default\ndef MyMinimum.singletonCheck (x : Int) : Bool := default\ndef MyMinimum.postCheck (xs : List Int) : Bool := default\ndef MyMinimum.toInts (xs : List Nat) : List Int := default\ndef MyMinimum.toShiftedInts (xs : List Nat) : List Int := default\ndef MyMinimum.sampleLists : List (List Int) := default\ndef MyMinimum.minLoopImp (init : Int) (ys : List Int) : Int := default\ndef MyMinimum.myMinListImp (xs : List Int) : Option Int := default\nexample : myMinList [7, 3, 9, 2] = some 2 := by decide\nexample : myMinList [5] = some 5 := by decide\nexample : myMinList ([] : List Int) = none := by decide\nexample : myMinList [1, -2] = none := by decide\nexample : myMinList [-3] = none := by decide\nexample : myMinList [0, 0, 1] = some 0 := by decide\n",
+  "candidate_n_examples": 30
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "humaneval_set__humaneval_22_filter_integers",
+  "group": "high_score_failing",
+  "category": "partial_applicability",
+  "v1_mapping": {
+   "FilterIntegers.filter_integers": "humaneval_22_filter_integers.filter_integers",
+   "FilterIntegers.filter_integersImp": "humaneval_22_filter_integers.filter_integers_imp"
+  },
+  "n_tests": 13,
+  "gold_symbols": [
+   {
+    "name": "filter_integers",
+    "full_name": "FilterIntegers.filter_integers",
+    "namespace": "FilterIntegers",
+    "header": "(values : List Int) : List Int"
+   },
+   {
+    "name": "filter_integersImp",
+    "full_name": "FilterIntegers.filter_integersImp",
+    "namespace": "FilterIntegers",
+    "header": "(values : List Int) : List Int"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "filter_integers ([]: List Int) = []",
+    "symbols": {
+     "filter_integers": "FilterIntegers.filter_integers"
+    },
+    "symbol_suffixes": {
+     "filter_integers": ""
+    }
+   },
+   {
+    "statement": "filter_integers [4, 9] = [4, 9]",
+    "symbols": {
+     "filter_integers": "FilterIntegers.filter_integers"
+    },
+    "symbol_suffixes": {
+     "filter_integers": ""
+    }
+   },
+   {
+    "statement": "filter_integers [3, 3, 3] = [3, 3, 3]",
+    "symbols": {
+     "filter_integers": "FilterIntegers.filter_integers"
+    },
+    "symbol_suffixes": {
+     "filter_integers": ""
+    }
+   },
+   {
+    "statement": "filter_integers [1, -2, 0, 3] = [1, -2, 0, 3]",
+    "symbols": {
+     "filter_integers": "FilterIntegers.filter_integers"
+    },
+    "symbol_suffixes": {
+     "filter_integers": ""
+    }
+   },
+   {
+    "statement": "filter_integers [42] = [42]",
+    "symbols": {
+     "filter_integers": "FilterIntegers.filter_integers"
+    },
+    "symbol_suffixes": {
+     "filter_integers": ""
+    }
+   },
+   {
+    "statement": "filter_integers [-1, -2, -3] = [-1, -2, -3]",
+    "symbols": {
+     "filter_integers": "FilterIntegers.filter_integers"
+    },
+    "symbol_suffixes": {
+     "filter_integers": ""
+    }
+   },
+   {
+    "statement": "\u00ac (filter_integers [] = [1])",
+    "symbols": {
+     "filter_integers": "FilterIntegers.filter_integers"
+    },
+    "symbol_suffixes": {
+     "filter_integers": ""
+    }
+   },
+   {
+    "statement": "\u00ac (filter_integers [1, 2, 3] = [3, 2, 1])",
+    "symbols": {
+     "filter_integers": "FilterIntegers.filter_integers"
+    },
+    "symbol_suffixes": {
+     "filter_integers": ""
+    }
+   },
+   {
+    "statement": "filter_integersImp ([]: List Int) = []",
+    "symbols": {
+     "filter_integersImp": "FilterIntegers.filter_integersImp"
+    },
+    "symbol_suffixes": {
+     "filter_integersImp": ""
+    }
+   },
+   {
+    "statement": "filter_integersImp [4, 9] = [4, 9]",
+    "symbols": {
+     "filter_integersImp": "FilterIntegers.filter_integersImp"
+    },
+    "symbol_suffixes": {
+     "filter_integersImp": ""
+    }
+   },
+   {
+    "statement": "filter_integersImp [3, 3, 3] = [3, 3, 3]",
+    "symbols": {
+     "filter_integersImp": "FilterIntegers.filter_integersImp"
+    },
+    "symbol_suffixes": {
+     "filter_integersImp": ""
+    }
+   },
+   {
+    "statement": "filter_integersImp [1, -2, 0, 3] = [1, -2, 0, 3]",
+    "symbols": {
+     "filter_integersImp": "FilterIntegers.filter_integersImp"
+    },
+    "symbol_suffixes": {
+     "filter_integersImp": ""
+    }
+   },
+   {
+    "statement": "\u00ac (filter_integersImp [1, 2] = [2, 1])",
+    "symbols": {
+     "filter_integersImp": "FilterIntegers.filter_integersImp"
+    },
+    "symbol_suffixes": {
+     "filter_integersImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def humaneval_22_filter_integers.isInt : PyVal \u2192 Bool := default\ndef humaneval_22_filter_integers.asInt : PyVal \u2192 Option Int := default\ndef humaneval_22_filter_integers.toInt : PyVal \u2192 Int := default\ndef humaneval_22_filter_integers.isIntVal (n : Int) : PyVal \u2192 Bool := default\ndef humaneval_22_filter_integers.filter_integers (values : List PyVal) : List Int := default\ndef humaneval_22_filter_integers.Pre (_values : List PyVal) : Prop := default\ndef humaneval_22_filter_integers.filter_integers_mem_prop (values : List PyVal) : Prop := default\ndef humaneval_22_filter_integers.filter_integers_filter_prop (values : List PyVal) : Prop := default\ndef humaneval_22_filter_integers.filter_integers_length_prop (values : List PyVal) : Prop := default\ndef humaneval_22_filter_integers.filter_integers_sublist_prop (values : List PyVal) : Prop := default\ndef humaneval_22_filter_integers.filter_integers_append_prop (xs ys : List PyVal) : Prop := default\ndef humaneval_22_filter_integers.filter_integers_all_int_prop (ns : List Int) : Prop := default\ndef humaneval_22_filter_integers.Post_prop (values : List PyVal) : Prop := default\ndef humaneval_22_filter_integers.sample (k : Nat) : List PyVal := default\ndef humaneval_22_filter_integers.isSubseq : List Int \u2192 List Int \u2192 Bool := default\ndef humaneval_22_filter_integers.filter_integers_imp (values : List PyVal) : List Int := default\ndef humaneval_22_filter_integers.filter_integers_loop (values : List PyVal) (acc : Array Int) : Array Int := default\nexample : filter_integers [] = [] := by decide\nexample : filter_integers [PyVal.str \"a\", PyVal.float 3.14, PyVal.int 5] = [5] := by decide\n",
+  "candidate_n_examples": 16
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "hypervisor_set_synthetic__my_interrupt_route",
+  "group": "high_score_failing",
+  "category": "helper_mapping",
+  "v1_mapping": {
+   "MyInterruptRoute.myInterruptRoute": "MyInterruptRoute.postCheck",
+   "MyInterruptRoute.myInterruptRouteImp": "MyInterruptRoute.postCheck"
+  },
+  "n_tests": 8,
+  "gold_symbols": [
+   {
+    "name": "myInterruptRoute",
+    "full_name": "MyInterruptRoute.myInterruptRoute",
+    "namespace": "MyInterruptRoute",
+    "header": "(target receiver : Nat) (masked : Bool) : Bool"
+   },
+   {
+    "name": "myInterruptRouteImp",
+    "full_name": "MyInterruptRoute.myInterruptRouteImp",
+    "namespace": "MyInterruptRoute",
+    "header": "(target receiver : Nat) (masked : Bool) : Bool"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "myInterruptRoute 1 1 false = true",
+    "symbols": {
+     "myInterruptRoute": "MyInterruptRoute.myInterruptRoute"
+    },
+    "symbol_suffixes": {
+     "myInterruptRoute": ""
+    }
+   },
+   {
+    "statement": "myInterruptRoute 0 0 false = true",
+    "symbols": {
+     "myInterruptRoute": "MyInterruptRoute.myInterruptRoute"
+    },
+    "symbol_suffixes": {
+     "myInterruptRoute": ""
+    }
+   },
+   {
+    "statement": "myInterruptRoute 2 2 true = false",
+    "symbols": {
+     "myInterruptRoute": "MyInterruptRoute.myInterruptRoute"
+    },
+    "symbol_suffixes": {
+     "myInterruptRoute": ""
+    }
+   },
+   {
+    "statement": "myInterruptRoute 1 2 false = false",
+    "symbols": {
+     "myInterruptRoute": "MyInterruptRoute.myInterruptRoute"
+    },
+    "symbol_suffixes": {
+     "myInterruptRoute": ""
+    }
+   },
+   {
+    "statement": "myInterruptRoute 2 1 true = false",
+    "symbols": {
+     "myInterruptRoute": "MyInterruptRoute.myInterruptRoute"
+    },
+    "symbol_suffixes": {
+     "myInterruptRoute": ""
+    }
+   },
+   {
+    "statement": "myInterruptRoute 3 3 false = true",
+    "symbols": {
+     "myInterruptRoute": "MyInterruptRoute.myInterruptRoute"
+    },
+    "symbol_suffixes": {
+     "myInterruptRoute": ""
+    }
+   },
+   {
+    "statement": "myInterruptRouteImp 1 1 false = true",
+    "symbols": {
+     "myInterruptRouteImp": "MyInterruptRoute.myInterruptRouteImp"
+    },
+    "symbol_suffixes": {
+     "myInterruptRouteImp": ""
+    }
+   },
+   {
+    "statement": "myInterruptRouteImp 3 3 false = true",
+    "symbols": {
+     "myInterruptRouteImp": "MyInterruptRoute.myInterruptRouteImp"
+    },
+    "symbol_suffixes": {
+     "myInterruptRouteImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def MyInterruptRoute.myInterruptRoute (targetVM receiverVM : Int) (masked : Bool) : Bool := default\ndef MyInterruptRoute.preB (targetVM receiverVM : Int) (_masked : Bool) : Bool := default\ndef MyInterruptRoute.myInterruptRoute? (targetVM receiverVM : Int) (masked : Bool) : Option Bool := default\ndef MyInterruptRoute.Pre (targetVM receiverVM : Int) (_masked : Bool) : Prop := default\ndef MyInterruptRoute.route_spec_prop (t r : Int) (m : Bool) : Prop := default\ndef MyInterruptRoute.masked_no_delivery_prop (t r : Int) (m : Bool) : Prop := default\ndef MyInterruptRoute.isolation_prop (t r : Int) (m : Bool) : Prop := default\ndef MyInterruptRoute.delivery_prop (t r : Int) (m : Bool) : Prop := default\ndef MyInterruptRoute.symm_prop (t r : Int) (m : Bool) : Prop := default\ndef MyInterruptRoute.result_defined_prop (t r : Int) (m : Bool) : Prop := default\ndef MyInterruptRoute.Post_prop (t r : Int) (m : Bool) : Prop := default\ndef MyInterruptRoute.routeSpecCheck (t r : Int) (m : Bool) : Bool := default\ndef MyInterruptRoute.maskedCheck (t r : Int) (m : Bool) : Bool := default\ndef MyInterruptRoute.isolationCheck (t r : Int) (m : Bool) : Bool := default\ndef MyInterruptRoute.deliveryCheck (t r : Int) (m : Bool) : Bool := default\ndef MyInterruptRoute.symmCheck (t r : Int) (m : Bool) : Bool := default\ndef MyInterruptRoute.resultDefinedCheck (t r : Int) (m : Bool) : Bool := default\ndef MyInterruptRoute.postCheck (t r : Int) (m : Bool) : Bool := default\ndef MyInterruptRoute.preCheck (t r : Int) (m : Bool) : Bool := default\ndef MyInterruptRoute.sampleIds : List Int := default\ndef MyInterruptRoute.wideIds : List Int := default\ndef MyInterruptRoute.sampleFlags : List Bool := default\ndef MyInterruptRoute.checkAll (ids : List Int) (f : Int \u2192 Int \u2192 Bool \u2192 Bool) : Bool := default\ndef MyInterruptRoute.myInterruptRouteImp (targetVM receiverVM : Int) (masked : Bool) : Bool := default\ndef MyInterruptRoute.myInterruptRouteImp? (targetVM receiverVM : Int) (masked : Bool) : Option Bool := default\nexample : myInterruptRoute 1 1 false = true := by decide\nexample : myInterruptRoute 0 0 false = true := by decide\nexample : myInterruptRoute 2 2 true = false := by decide\nexample : myInterruptRoute 1 2 false = false := by decide\nexample : myInterruptRoute 2 1 true = false := by decide\nexample : myInterruptRoute 3 3 false = true := by decide\n",
+  "candidate_n_examples": 38
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "memory_bugs_set_synthetic__my_bump_alloc_fits",
+  "group": "high_score_failing",
+  "category": "helper_mapping",
+  "v1_mapping": {
+   "MyBumpAllocFits.my_bump_alloc_fits": "MyBumpAllocFits.preCondition",
+   "MyBumpAllocFits.my_bump_alloc_fitsImp": "MyBumpAllocFits.preCondition"
+  },
+  "n_tests": 7,
+  "gold_symbols": [
+   {
+    "name": "my_bump_alloc_fits",
+    "full_name": "MyBumpAllocFits.my_bump_alloc_fits",
+    "namespace": "MyBumpAllocFits",
+    "header": "(offset : Nat) (size : Nat) (capacity : Nat) : Bool"
+   },
+   {
+    "name": "my_bump_alloc_fitsImp",
+    "full_name": "MyBumpAllocFits.my_bump_alloc_fitsImp",
+    "namespace": "MyBumpAllocFits",
+    "header": "(offset : Nat) (size : Nat) (capacity : Nat) : Bool"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "my_bump_alloc_fits 4 3 10 = true",
+    "symbols": {
+     "my_bump_alloc_fits": "MyBumpAllocFits.my_bump_alloc_fits"
+    },
+    "symbol_suffixes": {
+     "my_bump_alloc_fits": ""
+    }
+   },
+   {
+    "statement": "my_bump_alloc_fits 0 0 0 = true",
+    "symbols": {
+     "my_bump_alloc_fits": "MyBumpAllocFits.my_bump_alloc_fits"
+    },
+    "symbol_suffixes": {
+     "my_bump_alloc_fits": ""
+    }
+   },
+   {
+    "statement": "my_bump_alloc_fits 9 4 10 = false",
+    "symbols": {
+     "my_bump_alloc_fits": "MyBumpAllocFits.my_bump_alloc_fits"
+    },
+    "symbol_suffixes": {
+     "my_bump_alloc_fits": ""
+    }
+   },
+   {
+    "statement": "\u00ac (my_bump_alloc_fits 9 4 10 = true)",
+    "symbols": {
+     "my_bump_alloc_fits": "MyBumpAllocFits.my_bump_alloc_fits"
+    },
+    "symbol_suffixes": {
+     "my_bump_alloc_fits": ""
+    }
+   },
+   {
+    "statement": "my_bump_alloc_fitsImp 4 3 10 = true",
+    "symbols": {
+     "my_bump_alloc_fitsImp": "MyBumpAllocFits.my_bump_alloc_fitsImp"
+    },
+    "symbol_suffixes": {
+     "my_bump_alloc_fitsImp": ""
+    }
+   },
+   {
+    "statement": "my_bump_alloc_fitsImp 0 0 0 = true",
+    "symbols": {
+     "my_bump_alloc_fitsImp": "MyBumpAllocFits.my_bump_alloc_fitsImp"
+    },
+    "symbol_suffixes": {
+     "my_bump_alloc_fitsImp": ""
+    }
+   },
+   {
+    "statement": "my_bump_alloc_fitsImp 9 4 10 = false",
+    "symbols": {
+     "my_bump_alloc_fitsImp": "MyBumpAllocFits.my_bump_alloc_fitsImp"
+    },
+    "symbol_suffixes": {
+     "my_bump_alloc_fitsImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def MyBumpAllocFits.preCondition (offset size capacity : Int) : Bool := default\ndef MyBumpAllocFits.myBumpAllocFits (offset size capacity : Int) : Bool := default\ndef MyBumpAllocFits.myBumpAllocFits? (offset size capacity : Int) : Option Bool := default\ndef MyBumpAllocFits.check : Bool := default\ndef MyBumpAllocFits.Pre (offset size capacity : Int) : Prop := default\ndef MyBumpAllocFits.fits_spec_prop (offset size capacity : Int) : Prop := default\ndef MyBumpAllocFits.fits_reject_prop (offset size capacity : Int) : Prop := default\ndef MyBumpAllocFits.monotone_capacity_prop (offset size capacity capacity' : Int) : Prop := default\ndef MyBumpAllocFits.antitone_size_prop (offset size size' capacity : Int) : Prop := default\ndef MyBumpAllocFits.antitone_offset_prop (offset offset' size capacity : Int) : Prop := default\ndef MyBumpAllocFits.exact_fit_prop (offset size : Int) : Prop := default\ndef MyBumpAllocFits.zero_size_prop (offset capacity : Int) : Prop := default\ndef MyBumpAllocFits.empty_arena_prop (offset size : Int) : Prop := default\ndef MyBumpAllocFits.safe_bump_prop (offset size capacity : Int) : Prop := default\ndef MyBumpAllocFits.assert_ok_prop (offset size capacity : Int) : Prop := default\ndef MyBumpAllocFits.assert_fail_prop (offset size capacity : Int) : Prop := default\ndef MyBumpAllocFits.nat_agreement_prop (offset size capacity : Nat) : Prop := default\ndef MyBumpAllocFits.Post_prop (offset size capacity : Int) : Prop := default\ndef MyBumpAllocFits.testInts : List Int := default\ndef MyBumpAllocFits.fitsReference (offset size capacity : Int) : Bool := default\ndef MyBumpAllocFits.postCheck (offset size capacity : Int) : Bool := default\ndef MyBumpAllocFits.myBumpAllocFitsImp (offset size capacity : Int) : Bool := default\ndef MyBumpAllocFits.myBumpAllocFitsImp? (offset size capacity : Int) : Option Bool := default\nexample : myBumpAllocFits 4 3 10 = true := by decide\nexample : myBumpAllocFits 9 4 10 = false := by decide\nexample : myBumpAllocFits 0 0 0 = true := by decide\nexample : myBumpAllocFits 9 4 10 \u2260 myBumpAllocFits 4 3 10 := by decide\nexample : myBumpAllocFits? 4 3 10 = some true := by decide\nexample : myBumpAllocFits? 9 4 10 = some false := by decide\n",
+  "candidate_n_examples": 33
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "os_embedded_set_synthetic__my_power_transition_ok",
+  "group": "high_score_failing",
+  "category": "helper_mapping",
+  "v1_mapping": {
+   "MyPowerTransitionOk.myPowerTransitionOk": "MyPowerTransitionOk.preCondB",
+   "MyPowerTransitionOk.myPowerTransitionOkImp": "MyPowerTransitionOk.preCondB"
+  },
+  "n_tests": 9,
+  "gold_symbols": [
+   {
+    "name": "myPowerTransitionOk",
+    "full_name": "MyPowerTransitionOk.myPowerTransitionOk",
+    "namespace": "MyPowerTransitionOk",
+    "header": "(src : Nat) (dst : Nat) : Bool"
+   },
+   {
+    "name": "myPowerTransitionOkImp",
+    "full_name": "MyPowerTransitionOk.myPowerTransitionOkImp",
+    "namespace": "MyPowerTransitionOk",
+    "header": "(src : Nat) (dst : Nat) : Bool"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "myPowerTransitionOk 0 1 = true",
+    "symbols": {
+     "myPowerTransitionOk": "MyPowerTransitionOk.myPowerTransitionOk"
+    },
+    "symbol_suffixes": {
+     "myPowerTransitionOk": ""
+    }
+   },
+   {
+    "statement": "myPowerTransitionOk 1 0 = true",
+    "symbols": {
+     "myPowerTransitionOk": "MyPowerTransitionOk.myPowerTransitionOk"
+    },
+    "symbol_suffixes": {
+     "myPowerTransitionOk": ""
+    }
+   },
+   {
+    "statement": "myPowerTransitionOk 1 2 = true",
+    "symbols": {
+     "myPowerTransitionOk": "MyPowerTransitionOk.myPowerTransitionOk"
+    },
+    "symbol_suffixes": {
+     "myPowerTransitionOk": ""
+    }
+   },
+   {
+    "statement": "myPowerTransitionOk 0 2 = false",
+    "symbols": {
+     "myPowerTransitionOk": "MyPowerTransitionOk.myPowerTransitionOk"
+    },
+    "symbol_suffixes": {
+     "myPowerTransitionOk": ""
+    }
+   },
+   {
+    "statement": "myPowerTransitionOk 2 0 = false",
+    "symbols": {
+     "myPowerTransitionOk": "MyPowerTransitionOk.myPowerTransitionOk"
+    },
+    "symbol_suffixes": {
+     "myPowerTransitionOk": ""
+    }
+   },
+   {
+    "statement": "myPowerTransitionOkImp 0 1 = true",
+    "symbols": {
+     "myPowerTransitionOkImp": "MyPowerTransitionOk.myPowerTransitionOkImp"
+    },
+    "symbol_suffixes": {
+     "myPowerTransitionOkImp": ""
+    }
+   },
+   {
+    "statement": "myPowerTransitionOkImp 1 0 = true",
+    "symbols": {
+     "myPowerTransitionOkImp": "MyPowerTransitionOk.myPowerTransitionOkImp"
+    },
+    "symbol_suffixes": {
+     "myPowerTransitionOkImp": ""
+    }
+   },
+   {
+    "statement": "myPowerTransitionOkImp 1 2 = true",
+    "symbols": {
+     "myPowerTransitionOkImp": "MyPowerTransitionOk.myPowerTransitionOkImp"
+    },
+    "symbol_suffixes": {
+     "myPowerTransitionOkImp": ""
+    }
+   },
+   {
+    "statement": "myPowerTransitionOkImp 0 2 = false",
+    "symbols": {
+     "myPowerTransitionOkImp": "MyPowerTransitionOk.myPowerTransitionOkImp"
+    },
+    "symbol_suffixes": {
+     "myPowerTransitionOkImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def MyPowerTransitionOk.preCondB (src dst : Int) : Bool := default\ndef MyPowerTransitionOk.myPowerTransitionOk (src dst : Int) : Bool := default\ndef MyPowerTransitionOk.myPowerTransitionOk? (src dst : Int) : Option Bool := default\ndef MyPowerTransitionOk.check : Bool := default\ndef MyPowerTransitionOk.Pre (src dst : Int) : Prop := default\ndef MyPowerTransitionOk.guard_charact_prop (src dst : Int) : Prop := default\ndef MyPowerTransitionOk.accepts_prop : Prop := default\ndef MyPowerTransitionOk.rejects_prop : Prop := default\ndef MyPowerTransitionOk.off_terminal_prop (src dst : Int) : Prop := default\ndef MyPowerTransitionOk.no_self_loop_prop (src dst : Int) : Prop := default\ndef MyPowerTransitionOk.one_step_prop (src dst : Int) : Prop := default\ndef MyPowerTransitionOk.sleep_hub_prop (src dst : Int) : Prop := default\ndef MyPowerTransitionOk.enter_off_prop (src dst : Int) : Prop := default\ndef MyPowerTransitionOk.sound_states_prop (src dst : Int) : Prop := default\ndef MyPowerTransitionOk.guarded_prop (src dst : Int) : Prop := default\ndef MyPowerTransitionOk.raises_prop : Prop := default\ndef MyPowerTransitionOk.Post_prop (src dst : Int) : Prop := default\ndef MyPowerTransitionOk.testInts : List Int := default\ndef MyPowerTransitionOk.myPowerTransitionOkImp (src dst : Int) : Bool := default\ndef MyPowerTransitionOk.myPowerTransitionOkImp? (src dst : Int) : Option Bool := default\nexample : myPowerTransitionOk 0 1 = true := by decide\nexample : myPowerTransitionOk 1 0 = true := by decide\nexample : myPowerTransitionOk 1 2 = true := by decide\nexample : myPowerTransitionOk 0 2 = false := by decide\nexample : myPowerTransitionOk 2 0 = false := by decide\nexample : myPowerTransitionOk 2 1 = false := by decide\n",
+  "candidate_n_examples": 41
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "regulated_set_synthetic__my_dose_interval_ok",
+  "group": "high_score_failing",
+  "category": "helper_mapping",
+  "v1_mapping": {
+   "MyDoseIntervalOk.myDoseIntervalOk": "MyDoseIntervalOk.PostB",
+   "MyDoseIntervalOk.myDoseIntervalOkImp": "MyDoseIntervalOk.PostB"
+  },
+  "n_tests": 8,
+  "gold_symbols": [
+   {
+    "name": "myDoseIntervalOk",
+    "full_name": "MyDoseIntervalOk.myDoseIntervalOk",
+    "namespace": "MyDoseIntervalOk",
+    "header": "(nowMin : Nat) (lastMin : Nat) (minInterval : Nat) : Bool"
+   },
+   {
+    "name": "myDoseIntervalOkImp",
+    "full_name": "MyDoseIntervalOk.myDoseIntervalOkImp",
+    "namespace": "MyDoseIntervalOk",
+    "header": "(nowMin : Nat) (lastMin : Nat) (minInterval : Nat) : Bool"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "myDoseIntervalOk 160 100 60 = true",
+    "symbols": {
+     "myDoseIntervalOk": "MyDoseIntervalOk.myDoseIntervalOk"
+    },
+    "symbol_suffixes": {
+     "myDoseIntervalOk": ""
+    }
+   },
+   {
+    "statement": "myDoseIntervalOk 100 100 0 = true",
+    "symbols": {
+     "myDoseIntervalOk": "MyDoseIntervalOk.myDoseIntervalOk"
+    },
+    "symbol_suffixes": {
+     "myDoseIntervalOk": ""
+    }
+   },
+   {
+    "statement": "myDoseIntervalOk 130 100 60 = false",
+    "symbols": {
+     "myDoseIntervalOk": "MyDoseIntervalOk.myDoseIntervalOk"
+    },
+    "symbol_suffixes": {
+     "myDoseIntervalOk": ""
+    }
+   },
+   {
+    "statement": "myDoseIntervalOk 0 0 1 = false",
+    "symbols": {
+     "myDoseIntervalOk": "MyDoseIntervalOk.myDoseIntervalOk"
+    },
+    "symbol_suffixes": {
+     "myDoseIntervalOk": ""
+    }
+   },
+   {
+    "statement": "myDoseIntervalOkImp 160 100 60 = true",
+    "symbols": {
+     "myDoseIntervalOkImp": "MyDoseIntervalOk.myDoseIntervalOkImp"
+    },
+    "symbol_suffixes": {
+     "myDoseIntervalOkImp": ""
+    }
+   },
+   {
+    "statement": "myDoseIntervalOkImp 100 100 0 = true",
+    "symbols": {
+     "myDoseIntervalOkImp": "MyDoseIntervalOk.myDoseIntervalOkImp"
+    },
+    "symbol_suffixes": {
+     "myDoseIntervalOkImp": ""
+    }
+   },
+   {
+    "statement": "myDoseIntervalOkImp 130 100 60 = false",
+    "symbols": {
+     "myDoseIntervalOkImp": "MyDoseIntervalOk.myDoseIntervalOkImp"
+    },
+    "symbol_suffixes": {
+     "myDoseIntervalOkImp": ""
+    }
+   },
+   {
+    "statement": "myDoseIntervalOkImp 0 0 1 = false",
+    "symbols": {
+     "myDoseIntervalOkImp": "MyDoseIntervalOk.myDoseIntervalOkImp"
+    },
+    "symbol_suffixes": {
+     "myDoseIntervalOkImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def MyDoseIntervalOk.preCondB (now last minInterval : Int) : Bool := default\ndef MyDoseIntervalOk.gate (now last minInterval : Int) : Bool := default\ndef MyDoseIntervalOk.doseIntervalOk (now last minInterval : Int) : Option Bool := default\ndef MyDoseIntervalOk.Pre (now last minInterval : Int) : Prop := default\ndef MyDoseIntervalOk.decision_reached_prop (r : Option Bool) : Prop := default\ndef MyDoseIntervalOk.decision_matches_condition_prop (now last minInterval : Int) (r : Option Bool) : Prop := default\ndef MyDoseIntervalOk.accept_iff_prop (now last minInterval : Int) (r : Option Bool) : Prop := default\ndef MyDoseIntervalOk.reject_iff_prop (now last minInterval : Int) (r : Option Bool) : Prop := default\ndef MyDoseIntervalOk.elapsed_iff_prop (now last minInterval : Int) (r : Option Bool) : Prop := default\ndef MyDoseIntervalOk.fail_closed_prop (now last minInterval : Int) : Prop := default\ndef MyDoseIntervalOk.monotone_now_prop (now now' last minInterval : Int) : Prop := default\ndef MyDoseIntervalOk.antitone_interval_prop (now last minInterval minInterval' : Int) : Prop := default\ndef MyDoseIntervalOk.boundary_prop (last minInterval : Int) : Prop := default\ndef MyDoseIntervalOk.Post_prop (now last minInterval : Int) (r : Option Bool) : Prop := default\ndef MyDoseIntervalOk.DecisionReachedB (now last minInterval : Int) : Bool := default\ndef MyDoseIntervalOk.DecisionMatchesConditionB (now last minInterval : Int) : Bool := default\ndef MyDoseIntervalOk.AcceptIffB (now last minInterval : Int) : Bool := default\ndef MyDoseIntervalOk.RejectIffB (now last minInterval : Int) : Bool := default\ndef MyDoseIntervalOk.ElapsedIffB (now last minInterval : Int) : Bool := default\ndef MyDoseIntervalOk.FailClosedB (now last minInterval : Int) : Bool := default\ndef MyDoseIntervalOk.PostB (now last minInterval : Int) : Bool := default\ndef MyDoseIntervalOk.MonotoneNowB (now now' last minInterval : Int) : Bool := default\ndef MyDoseIntervalOk.AntitoneIntervalB (now last minInterval minInterval' : Int) : Bool := default\ndef MyDoseIntervalOk.BoundaryB (last minInterval : Int) : Bool := default\ndef MyDoseIntervalOk.PreCrossCheckB (now last minInterval : Int) : Bool := default\ndef MyDoseIntervalOk.testGrid : List Int := default\ndef MyDoseIntervalOk.smallGrid : List Int := default\ndef MyDoseIntervalOk.doseIntervalOkImp (now last minInterval : Int) : Option Bool := default\nexample : doseIntervalOk 160 100 60 = some true := by decide\nexample : doseIntervalOk 100 100 0 = some true := by decide\nexample : doseIntervalOk 130 100 60 = some false := by decide\nexample : doseIntervalOk 0 0 1 = some false := by decide\nexample : doseIntervalOk (-1) 0 0 = none := by decide\nexample : doseIntervalOk 1 (-1) 0 = none := by decide\n",
+  "candidate_n_examples": 27
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "security_set__security_6858__safe__104_unsafehttpparse_safe",
+  "group": "high_score_failing",
+  "category": "partial_applicability",
+  "v1_mapping": {
+   "SafeHttpParse.safeHttpParse": "UnsafeHttpParseSafe.safeHttpParse",
+   "SafeHttpParse.safeHttpParseImp": "UnsafeHttpParseSafe.safeHttpParseImp"
+  },
+  "n_tests": 12,
+  "gold_symbols": [
+   {
+    "name": "safeHttpParse",
+    "full_name": "SafeHttpParse.safeHttpParse",
+    "namespace": "SafeHttpParse",
+    "header": "(url : List Char) (bufSize : Nat) : Bool"
+   },
+   {
+    "name": "safeHttpParseImp",
+    "full_name": "SafeHttpParse.safeHttpParseImp",
+    "namespace": "SafeHttpParse",
+    "header": "(url : List Char) (bufSize : Nat) : Bool"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "safeHttpParse ['/','i','n','d','e','x'] 256 = true",
+    "symbols": {
+     "safeHttpParse": "SafeHttpParse.safeHttpParse"
+    },
+    "symbol_suffixes": {
+     "safeHttpParse": ""
+    }
+   },
+   {
+    "statement": "safeHttpParse (List.replicate 300 'A') 256 = false",
+    "symbols": {
+     "safeHttpParse": "SafeHttpParse.safeHttpParse"
+    },
+    "symbol_suffixes": {
+     "safeHttpParse": ""
+    }
+   },
+   {
+    "statement": "safeHttpParse [] 256 = true",
+    "symbols": {
+     "safeHttpParse": "SafeHttpParse.safeHttpParse"
+    },
+    "symbol_suffixes": {
+     "safeHttpParse": ""
+    }
+   },
+   {
+    "statement": "safeHttpParse (List.replicate 256 'B') 256 = true",
+    "symbols": {
+     "safeHttpParse": "SafeHttpParse.safeHttpParse"
+    },
+    "symbol_suffixes": {
+     "safeHttpParse": ""
+    }
+   },
+   {
+    "statement": "safeHttpParse ['/','a','b'] 10 = true",
+    "symbols": {
+     "safeHttpParse": "SafeHttpParse.safeHttpParse"
+    },
+    "symbol_suffixes": {
+     "safeHttpParse": ""
+    }
+   },
+   {
+    "statement": "safeHttpParse [] 0 = true",
+    "symbols": {
+     "safeHttpParse": "SafeHttpParse.safeHttpParse"
+    },
+    "symbol_suffixes": {
+     "safeHttpParse": ""
+    }
+   },
+   {
+    "statement": "safeHttpParse (List.replicate 257 'C') 256 = false",
+    "symbols": {
+     "safeHttpParse": "SafeHttpParse.safeHttpParse"
+    },
+    "symbol_suffixes": {
+     "safeHttpParse": ""
+    }
+   },
+   {
+    "statement": "safeHttpParse ['X'] 0 = false",
+    "symbols": {
+     "safeHttpParse": "SafeHttpParse.safeHttpParse"
+    },
+    "symbol_suffixes": {
+     "safeHttpParse": ""
+    }
+   },
+   {
+    "statement": "safeHttpParseImp ['/','i'] 256 = true",
+    "symbols": {
+     "safeHttpParseImp": "SafeHttpParse.safeHttpParseImp"
+    },
+    "symbol_suffixes": {
+     "safeHttpParseImp": ""
+    }
+   },
+   {
+    "statement": "safeHttpParseImp (List.replicate 300 'A') 256 = false",
+    "symbols": {
+     "safeHttpParseImp": "SafeHttpParse.safeHttpParseImp"
+    },
+    "symbol_suffixes": {
+     "safeHttpParseImp": ""
+    }
+   },
+   {
+    "statement": "safeHttpParseImp [] 0 = true",
+    "symbols": {
+     "safeHttpParseImp": "SafeHttpParse.safeHttpParseImp"
+    },
+    "symbol_suffixes": {
+     "safeHttpParseImp": ""
+    }
+   },
+   {
+    "statement": "safeHttpParseImp (List.replicate 256 'B') 256 = true",
+    "symbols": {
+     "safeHttpParseImp": "SafeHttpParse.safeHttpParseImp"
+    },
+    "symbol_suffixes": {
+     "safeHttpParseImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def UnsafeHttpParseSafe.safeHttpParse {\u03b1 : Type} (url : List \u03b1) (bufSize : Nat) : Bool := default\ndef UnsafeHttpParseSafe.check (candidate : List Char \u2192 Nat \u2192 Bool) : Bool := default\ndef UnsafeHttpParseSafe.Pre {\u03b1 : Type} (_url : List \u03b1) (_bufSize : Nat) : Prop := default\ndef UnsafeHttpParseSafe.parse_correct_prop {\u03b1 : Type} (url : List \u03b1) (bufSize : Nat) : Prop := default\ndef UnsafeHttpParseSafe.reject_prop {\u03b1 : Type} (url : List \u03b1) (bufSize : Nat) : Prop := default\ndef UnsafeHttpParseSafe.no_overflow_prop {\u03b1 : Type} (url : List \u03b1) (bufSize : Nat) : Prop := default\ndef UnsafeHttpParseSafe.oversized_rejected_prop {\u03b1 : Type} (url : List \u03b1) (bufSize : Nat) : Prop := default\ndef UnsafeHttpParseSafe.empty_accept_prop (\u03b1 : Type) (bufSize : Nat) : Prop := default\ndef UnsafeHttpParseSafe.exact_fit_prop {\u03b1 : Type} (url : List \u03b1) : Prop := default\ndef UnsafeHttpParseSafe.one_over_prop {\u03b1 : Type} (url : List \u03b1) : Prop := default\ndef UnsafeHttpParseSafe.monotone_buf_prop {\u03b1 : Type} (url : List \u03b1) (b\u2081 b\u2082 : Nat) : Prop := default\ndef UnsafeHttpParseSafe.length_only_prop {\u03b1 \u03b2 : Type} (u : List \u03b1) (v : List \u03b2) (bufSize : Nat) : Prop := default\ndef UnsafeHttpParseSafe.Post_prop {\u03b1 : Type} (url : List \u03b1) (bufSize : Nat) : Prop := default\ndef UnsafeHttpParseSafe.PostBool {\u03b1 : Type} (url : List \u03b1) (bufSize : Nat) : Bool := default\ndef UnsafeHttpParseSafe.safeHttpParseImp {\u03b1 : Type} (url : List \u03b1) (bufSize : Nat) : Bool := default\nexample : safeHttpParse \"/index.html\".toList 256 = true := by decide\nexample : safeHttpParse (List.replicate 300 'A') 256 = false := by decide\nexample : safeHttpParse ([] : List Char) 256 = true := by decide\nexample : safeHttpParse (List.replicate 256 'B') 256 = true := by decide\nexample : safeHttpParse (List.replicate 257 'C') 256 = false := by decide\nexample : check (fun u b => safeHttpParse u b) = true := by decide\n",
+  "candidate_n_examples": 20
+ },
+ {
+  "system": "leanstral",
+  "task_id": "aerospace_set_synthetic__my_arming_interlock",
+  "group": "low_score_passing",
+  "category": "zero_self_test_factor",
+  "v1_mapping": {
+   "MyArmingInterlock.myArmingInterlock": "PyroArmingInterlock.myArmingInterlock",
+   "MyArmingInterlock.myArmingInterlockImp": "PyroArmingInterlock.myArmingInterlock"
+  },
+  "n_tests": 7,
+  "gold_symbols": [
+   {
+    "name": "myArmingInterlock",
+    "full_name": "MyArmingInterlock.myArmingInterlock",
+    "namespace": "MyArmingInterlock",
+    "header": "(busArmed : Bool) (inhibitClear : Bool) (rangeGreen : Bool) : Bool"
+   },
+   {
+    "name": "myArmingInterlockImp",
+    "full_name": "MyArmingInterlock.myArmingInterlockImp",
+    "namespace": "MyArmingInterlock",
+    "header": "(busArmed : Bool) (inhibitClear : Bool) (rangeGreen : Bool) : Bool"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "myArmingInterlock true true true = true",
+    "symbols": {
+     "myArmingInterlock": "MyArmingInterlock.myArmingInterlock"
+    },
+    "symbol_suffixes": {
+     "myArmingInterlock": ""
+    }
+   },
+   {
+    "statement": "myArmingInterlock true false true = false",
+    "symbols": {
+     "myArmingInterlock": "MyArmingInterlock.myArmingInterlock"
+    },
+    "symbol_suffixes": {
+     "myArmingInterlock": ""
+    }
+   },
+   {
+    "statement": "myArmingInterlock false true true = false",
+    "symbols": {
+     "myArmingInterlock": "MyArmingInterlock.myArmingInterlock"
+    },
+    "symbol_suffixes": {
+     "myArmingInterlock": ""
+    }
+   },
+   {
+    "statement": "myArmingInterlock true true false = false",
+    "symbols": {
+     "myArmingInterlock": "MyArmingInterlock.myArmingInterlock"
+    },
+    "symbol_suffixes": {
+     "myArmingInterlock": ""
+    }
+   },
+   {
+    "statement": "myArmingInterlockImp true true true = true",
+    "symbols": {
+     "myArmingInterlockImp": "MyArmingInterlock.myArmingInterlockImp"
+    },
+    "symbol_suffixes": {
+     "myArmingInterlockImp": ""
+    }
+   },
+   {
+    "statement": "myArmingInterlockImp true false true = false",
+    "symbols": {
+     "myArmingInterlockImp": "MyArmingInterlock.myArmingInterlockImp"
+    },
+    "symbol_suffixes": {
+     "myArmingInterlockImp": ""
+    }
+   },
+   {
+    "statement": "myArmingInterlockImp false true true = false",
+    "symbols": {
+     "myArmingInterlockImp": "MyArmingInterlock.myArmingInterlockImp"
+    },
+    "symbol_suffixes": {
+     "myArmingInterlockImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def PyroArmingInterlock.Pre (_busArmed _inhibitClear _rangeGreen : Bool) : Prop := default\ndef PyroArmingInterlock.myArmingInterlock (busArmed inhibitClear rangeGreen : Bool) : Bool := default\ndef PyroArmingInterlock.determinism_prop (a b c : Bool) : Prop := default\ndef PyroArmingInterlock.correctness_prop (a b c : Bool) : Prop := default\ndef PyroArmingInterlock.safety_prop (a b c : Bool) : Prop := default\n",
+  "candidate_n_examples": 0
+ },
+ {
+  "system": "leanstral",
+  "task_id": "aerospace_set_synthetic__my_safing_vote",
+  "group": "low_score_passing",
+  "category": "zero_self_test_factor",
+  "v1_mapping": {
+   "MySafingVote.mySafingVote": "MySafingVote.mySafingVote",
+   "MySafingVote.mySafingVoteImp": "MySafingVote.mySafingVote"
+  },
+  "n_tests": 7,
+  "gold_symbols": [
+   {
+    "name": "mySafingVote",
+    "full_name": "MySafingVote.mySafingVote",
+    "namespace": "MySafingVote",
+    "header": "(overTemp : Bool) (underVolt : Bool) (lostComms : Bool) : Bool"
+   },
+   {
+    "name": "mySafingVoteImp",
+    "full_name": "MySafingVote.mySafingVoteImp",
+    "namespace": "MySafingVote",
+    "header": "(overTemp : Bool) (underVolt : Bool) (lostComms : Bool) : Bool"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "mySafingVote false false false = false",
+    "symbols": {
+     "mySafingVote": "MySafingVote.mySafingVote"
+    },
+    "symbol_suffixes": {
+     "mySafingVote": ""
+    }
+   },
+   {
+    "statement": "mySafingVote true false false = true",
+    "symbols": {
+     "mySafingVote": "MySafingVote.mySafingVote"
+    },
+    "symbol_suffixes": {
+     "mySafingVote": ""
+    }
+   },
+   {
+    "statement": "mySafingVote false true false = true",
+    "symbols": {
+     "mySafingVote": "MySafingVote.mySafingVote"
+    },
+    "symbol_suffixes": {
+     "mySafingVote": ""
+    }
+   },
+   {
+    "statement": "mySafingVote false false true = true",
+    "symbols": {
+     "mySafingVote": "MySafingVote.mySafingVote"
+    },
+    "symbol_suffixes": {
+     "mySafingVote": ""
+    }
+   },
+   {
+    "statement": "mySafingVoteImp false false false = false",
+    "symbols": {
+     "mySafingVoteImp": "MySafingVote.mySafingVoteImp"
+    },
+    "symbol_suffixes": {
+     "mySafingVoteImp": ""
+    }
+   },
+   {
+    "statement": "mySafingVoteImp true false false = true",
+    "symbols": {
+     "mySafingVoteImp": "MySafingVote.mySafingVoteImp"
+    },
+    "symbol_suffixes": {
+     "mySafingVoteImp": ""
+    }
+   },
+   {
+    "statement": "mySafingVoteImp false true false = true",
+    "symbols": {
+     "mySafingVoteImp": "MySafingVote.mySafingVoteImp"
+    },
+    "symbol_suffixes": {
+     "mySafingVoteImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def MySafingVote.Pre (_overTemp _underVolt _lostComms : Bool) : Prop := default\ndef MySafingVote.Post_prop (overTemp underVolt lostComms : Bool) (result : Bool) : Prop := default\ndef MySafingVote.mySafingVote : Bool \u2192 Bool \u2192 Bool \u2192 Bool := default\ndef MySafingVote.deterministic_prop (a b c : Bool) : Prop := default\ndef MySafingVote.or_idempotent_prop (x : Bool) : Prop := default\ndef MySafingVote.or_assoc_prop (a b c : Bool) : Prop := default\ndef MySafingVote.or_comm_prop (a b : Bool) : Prop := default\ndef MySafingVote.false_or_prop (a : Bool) : Prop := default\ndef MySafingVote.true_or_prop (a : Bool) : Prop := default\ndef MySafingVote.or_self_prop (a : Bool) : Prop := default\ndef MySafingVote.propagation_prop (a b c : Bool) : Prop := default\n",
+  "candidate_n_examples": 0
+ },
+ {
+  "system": "leanstral",
+  "task_id": "aerospace_set_synthetic__my_sensor_watchdog_fresh",
+  "group": "low_score_passing",
+  "category": "zero_self_test_factor",
+  "v1_mapping": {
+   "MySensorWatchdogFresh.mySensorWatchdogFresh": "MySensorWatchdogFresh.mySensorWatchdogFresh",
+   "MySensorWatchdogFresh.mySensorWatchdogFreshImp": "MySensorWatchdogFresh.mySensorWatchdogFresh"
+  },
+  "n_tests": 5,
+  "gold_symbols": [
+   {
+    "name": "mySensorWatchdogFresh",
+    "full_name": "MySensorWatchdogFresh.mySensorWatchdogFresh",
+    "namespace": "MySensorWatchdogFresh",
+    "header": "(nowMs : Nat) (stampMs : Nat) (maxAgeMs : Nat) : Bool"
+   },
+   {
+    "name": "mySensorWatchdogFreshImp",
+    "full_name": "MySensorWatchdogFresh.mySensorWatchdogFreshImp",
+    "namespace": "MySensorWatchdogFresh",
+    "header": "(nowMs : Nat) (stampMs : Nat) (maxAgeMs : Nat) : Bool"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "mySensorWatchdogFresh 105 100 10 = true",
+    "symbols": {
+     "mySensorWatchdogFresh": "MySensorWatchdogFresh.mySensorWatchdogFresh"
+    },
+    "symbol_suffixes": {
+     "mySensorWatchdogFresh": ""
+    }
+   },
+   {
+    "statement": "mySensorWatchdogFresh 99 100 10 = false",
+    "symbols": {
+     "mySensorWatchdogFresh": "MySensorWatchdogFresh.mySensorWatchdogFresh"
+    },
+    "symbol_suffixes": {
+     "mySensorWatchdogFresh": ""
+    }
+   },
+   {
+    "statement": "mySensorWatchdogFresh 111 100 10 = false",
+    "symbols": {
+     "mySensorWatchdogFresh": "MySensorWatchdogFresh.mySensorWatchdogFresh"
+    },
+    "symbol_suffixes": {
+     "mySensorWatchdogFresh": ""
+    }
+   },
+   {
+    "statement": "mySensorWatchdogFreshImp 105 100 10 = true",
+    "symbols": {
+     "mySensorWatchdogFreshImp": "MySensorWatchdogFresh.mySensorWatchdogFreshImp"
+    },
+    "symbol_suffixes": {
+     "mySensorWatchdogFreshImp": ""
+    }
+   },
+   {
+    "statement": "mySensorWatchdogFreshImp 99 100 10 = false",
+    "symbols": {
+     "mySensorWatchdogFreshImp": "MySensorWatchdogFresh.mySensorWatchdogFreshImp"
+    },
+    "symbol_suffixes": {
+     "mySensorWatchdogFreshImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def MySensorWatchdogFresh.mySensorWatchdogFresh (nowMs stampMs maxAgeMs : Nat) : Bool := default\ndef MySensorWatchdogFresh.Pre (nowMs stampMs maxAgeMs : Nat) : Prop := default\ndef MySensorWatchdogFresh.Post_prop (nowMs stampMs maxAgeMs : Nat) : Prop := default\n",
+  "candidate_n_examples": 0
+ },
+ {
+  "system": "leanstral",
+  "task_id": "aerospace_set_synthetic__my_tmr_voter",
+  "group": "low_score_passing",
+  "category": "zero_self_test_factor",
+  "v1_mapping": {
+   "MyTmrVoter.myTmrVoter": "MyTmrVoter.myTmrVoter",
+   "MyTmrVoter.myTmrVoterImp": "MyTmrVoter.myTmrVoter"
+  },
+  "n_tests": 7,
+  "gold_symbols": [
+   {
+    "name": "myTmrVoter",
+    "full_name": "MyTmrVoter.myTmrVoter",
+    "namespace": "MyTmrVoter",
+    "header": "(a : Bool) (b : Bool) (c : Bool) : Bool"
+   },
+   {
+    "name": "myTmrVoterImp",
+    "full_name": "MyTmrVoter.myTmrVoterImp",
+    "namespace": "MyTmrVoter",
+    "header": "(a : Bool) (b : Bool) (c : Bool) : Bool"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "myTmrVoter true true false = true",
+    "symbols": {
+     "myTmrVoter": "MyTmrVoter.myTmrVoter"
+    },
+    "symbol_suffixes": {
+     "myTmrVoter": ""
+    }
+   },
+   {
+    "statement": "myTmrVoter true false false = false",
+    "symbols": {
+     "myTmrVoter": "MyTmrVoter.myTmrVoter"
+    },
+    "symbol_suffixes": {
+     "myTmrVoter": ""
+    }
+   },
+   {
+    "statement": "myTmrVoter false true true = true",
+    "symbols": {
+     "myTmrVoter": "MyTmrVoter.myTmrVoter"
+    },
+    "symbol_suffixes": {
+     "myTmrVoter": ""
+    }
+   },
+   {
+    "statement": "myTmrVoter false false false = false",
+    "symbols": {
+     "myTmrVoter": "MyTmrVoter.myTmrVoter"
+    },
+    "symbol_suffixes": {
+     "myTmrVoter": ""
+    }
+   },
+   {
+    "statement": "myTmrVoterImp true true false = true",
+    "symbols": {
+     "myTmrVoterImp": "MyTmrVoter.myTmrVoterImp"
+    },
+    "symbol_suffixes": {
+     "myTmrVoterImp": ""
+    }
+   },
+   {
+    "statement": "myTmrVoterImp true false false = false",
+    "symbols": {
+     "myTmrVoterImp": "MyTmrVoter.myTmrVoterImp"
+    },
+    "symbol_suffixes": {
+     "myTmrVoterImp": ""
+    }
+   },
+   {
+    "statement": "myTmrVoterImp false true true = true",
+    "symbols": {
+     "myTmrVoterImp": "MyTmrVoter.myTmrVoterImp"
+    },
+    "symbol_suffixes": {
+     "myTmrVoterImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def MyTmrVoter.myTmrVoter : Bool \u2192 Bool \u2192 Bool \u2192 Bool := default\ndef MyTmrVoter.Pre (a b c : Bool) : Prop := default\ndef MyTmrVoter.Post_prop (a b c : Bool) : Prop := default\n",
+  "candidate_n_examples": 0
+ },
+ {
+  "system": "leanstral",
+  "task_id": "compilers_set_real__my_cpython_dis_jump_target",
+  "group": "low_score_passing",
+  "category": "zero_self_test_factor",
+  "v1_mapping": {
+   "MyCpythonDisJumpTarget.myCpythonDisJumpTarget": "MyCPythonDisJumpTarget.myCPythonDisJumpTarget",
+   "MyCpythonDisJumpTarget.myCpythonDisJumpTargetImp": "MyCPythonDisJumpTarget.myCPythonDisJumpTarget"
+  },
+  "n_tests": 7,
+  "gold_symbols": [
+   {
+    "name": "myCpythonDisJumpTarget",
+    "full_name": "MyCpythonDisJumpTarget.myCpythonDisJumpTarget",
+    "namespace": "MyCpythonDisJumpTarget",
+    "header": "(kind arg offset caches : Nat) : Option Nat"
+   },
+   {
+    "name": "myCpythonDisJumpTargetImp",
+    "full_name": "MyCpythonDisJumpTarget.myCpythonDisJumpTargetImp",
+    "namespace": "MyCpythonDisJumpTarget",
+    "header": "(kind arg offset caches : Nat) : Option Nat"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "myCpythonDisJumpTarget 1 3 10 0 = some 18",
+    "symbols": {
+     "myCpythonDisJumpTarget": "MyCpythonDisJumpTarget.myCpythonDisJumpTarget"
+    },
+    "symbol_suffixes": {
+     "myCpythonDisJumpTarget": ""
+    }
+   },
+   {
+    "statement": "myCpythonDisJumpTarget 1 3 10 2 = some 22",
+    "symbols": {
+     "myCpythonDisJumpTarget": "MyCpythonDisJumpTarget.myCpythonDisJumpTarget"
+    },
+    "symbol_suffixes": {
+     "myCpythonDisJumpTarget": ""
+    }
+   },
+   {
+    "statement": "myCpythonDisJumpTarget 2 7 99 4 = some 14",
+    "symbols": {
+     "myCpythonDisJumpTarget": "MyCpythonDisJumpTarget.myCpythonDisJumpTarget"
+    },
+    "symbol_suffixes": {
+     "myCpythonDisJumpTarget": ""
+    }
+   },
+   {
+    "statement": "myCpythonDisJumpTarget 0 7 99 4 = none",
+    "symbols": {
+     "myCpythonDisJumpTarget": "MyCpythonDisJumpTarget.myCpythonDisJumpTarget"
+    },
+    "symbol_suffixes": {
+     "myCpythonDisJumpTarget": ""
+    }
+   },
+   {
+    "statement": "\u00ac (myCpythonDisJumpTarget 1 1 0 1 = some 2)",
+    "symbols": {
+     "myCpythonDisJumpTarget": "MyCpythonDisJumpTarget.myCpythonDisJumpTarget"
+    },
+    "symbol_suffixes": {
+     "myCpythonDisJumpTarget": ""
+    }
+   },
+   {
+    "statement": "myCpythonDisJumpTargetImp 1 3 10 2 = some 22",
+    "symbols": {
+     "myCpythonDisJumpTargetImp": "MyCpythonDisJumpTarget.myCpythonDisJumpTargetImp"
+    },
+    "symbol_suffixes": {
+     "myCpythonDisJumpTargetImp": ""
+    }
+   },
+   {
+    "statement": "myCpythonDisJumpTargetImp 0 7 99 4 = none",
+    "symbols": {
+     "myCpythonDisJumpTargetImp": "MyCpythonDisJumpTarget.myCpythonDisJumpTargetImp"
+    },
+    "symbol_suffixes": {
+     "myCpythonDisJumpTargetImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def MyCPythonDisJumpTarget.myCPythonDisJumpTarget (kind arg offset caches : Nat) : Option Nat := default\ndef MyCPythonDisJumpTarget.Pre (kind arg offset caches : Nat) : Prop := default\ndef MyCPythonDisJumpTarget.relative_jump_prop (kind arg offset caches : Nat) : Prop := default\ndef MyCPythonDisJumpTarget.absolute_jump_prop (kind arg offset caches : Nat) : Prop := default\ndef MyCPythonDisJumpTarget.non_jump_prop (kind arg offset caches : Nat) : Prop := default\n",
+  "candidate_n_examples": 0
+ },
+ {
+  "system": "leanstral",
+  "task_id": "concurrent_set_real__my_cas_success",
+  "group": "low_score_passing",
+  "category": "zero_self_test_factor",
+  "v1_mapping": {
+   "MyCasSuccess.MyCasSuccess": "MyCAS.myCAS",
+   "MyCasSuccess.MyCasSuccessImp": "MyCAS.myCAS"
+  },
+  "n_tests": 8,
+  "gold_symbols": [
+   {
+    "name": "MyCasSuccess",
+    "full_name": "MyCasSuccess.MyCasSuccess",
+    "namespace": "MyCasSuccess",
+    "header": "(current expected : Nat) : Bool"
+   },
+   {
+    "name": "MyCasSuccessImp",
+    "full_name": "MyCasSuccess.MyCasSuccessImp",
+    "namespace": "MyCasSuccess",
+    "header": "(current expected : Nat) : Bool"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "MyCasSuccess 4 4 = true",
+    "symbols": {
+     "MyCasSuccess": "MyCasSuccess.MyCasSuccess"
+    },
+    "symbol_suffixes": {
+     "MyCasSuccess": ""
+    }
+   },
+   {
+    "statement": "MyCasSuccess 4 5 = false",
+    "symbols": {
+     "MyCasSuccess": "MyCasSuccess.MyCasSuccess"
+    },
+    "symbol_suffixes": {
+     "MyCasSuccess": ""
+    }
+   },
+   {
+    "statement": "MyCasSuccess 0 0 = true",
+    "symbols": {
+     "MyCasSuccess": "MyCasSuccess.MyCasSuccess"
+    },
+    "symbol_suffixes": {
+     "MyCasSuccess": ""
+    }
+   },
+   {
+    "statement": "MyCasSuccess 9 1 = false",
+    "symbols": {
+     "MyCasSuccess": "MyCasSuccess.MyCasSuccess"
+    },
+    "symbol_suffixes": {
+     "MyCasSuccess": ""
+    }
+   },
+   {
+    "statement": "MyCasSuccess 8 8 = true",
+    "symbols": {
+     "MyCasSuccess": "MyCasSuccess.MyCasSuccess"
+    },
+    "symbol_suffixes": {
+     "MyCasSuccess": ""
+    }
+   },
+   {
+    "statement": "MyCasSuccessImp 4 4 = true",
+    "symbols": {
+     "MyCasSuccessImp": "MyCasSuccess.MyCasSuccessImp"
+    },
+    "symbol_suffixes": {
+     "MyCasSuccessImp": ""
+    }
+   },
+   {
+    "statement": "MyCasSuccessImp 4 5 = false",
+    "symbols": {
+     "MyCasSuccessImp": "MyCasSuccess.MyCasSuccessImp"
+    },
+    "symbol_suffixes": {
+     "MyCasSuccessImp": ""
+    }
+   },
+   {
+    "statement": "MyCasSuccessImp 0 0 = true",
+    "symbols": {
+     "MyCasSuccessImp": "MyCasSuccess.MyCasSuccessImp"
+    },
+    "symbol_suffixes": {
+     "MyCasSuccessImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def MyCAS.myCAS (current expected : Nat) : Bool := default\ndef MyCAS.Pre (current expected : Nat) : Prop := default\ndef MyCAS.success_prop (current expected : Nat) : Prop := default\n",
+  "candidate_n_examples": 0
+ },
+ {
+  "system": "leanstral",
+  "task_id": "concurrent_set_real__my_h2_flow_window_after_send",
+  "group": "low_score_passing",
+  "category": "zero_self_test_factor",
+  "v1_mapping": {
+   "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSend": "MyH2FlowWindowAfterSend.myH2FlowWindowAfterSend",
+   "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSendImp": "MyH2FlowWindowAfterSend.myH2FlowWindowAfterSend"
+  },
+  "n_tests": 8,
+  "gold_symbols": [
+   {
+    "name": "MyH2FlowWindowAfterSend",
+    "full_name": "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSend",
+    "namespace": "MyH2FlowWindowAfterSend",
+    "header": "(window frameLen : Nat) : Nat"
+   },
+   {
+    "name": "MyH2FlowWindowAfterSendImp",
+    "full_name": "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSendImp",
+    "namespace": "MyH2FlowWindowAfterSend",
+    "header": "(window frameLen : Nat) : Nat"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "MyH2FlowWindowAfterSend 10 3 = 7",
+    "symbols": {
+     "MyH2FlowWindowAfterSend": "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSend"
+    },
+    "symbol_suffixes": {
+     "MyH2FlowWindowAfterSend": ""
+    }
+   },
+   {
+    "statement": "MyH2FlowWindowAfterSend 5 5 = 0",
+    "symbols": {
+     "MyH2FlowWindowAfterSend": "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSend"
+    },
+    "symbol_suffixes": {
+     "MyH2FlowWindowAfterSend": ""
+    }
+   },
+   {
+    "statement": "MyH2FlowWindowAfterSend 0 0 = 0",
+    "symbols": {
+     "MyH2FlowWindowAfterSend": "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSend"
+    },
+    "symbol_suffixes": {
+     "MyH2FlowWindowAfterSend": ""
+    }
+   },
+   {
+    "statement": "MyH2FlowWindowAfterSend 9 0 = 9",
+    "symbols": {
+     "MyH2FlowWindowAfterSend": "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSend"
+    },
+    "symbol_suffixes": {
+     "MyH2FlowWindowAfterSend": ""
+    }
+   },
+   {
+    "statement": "MyH2FlowWindowAfterSend 100 1 = 99",
+    "symbols": {
+     "MyH2FlowWindowAfterSend": "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSend"
+    },
+    "symbol_suffixes": {
+     "MyH2FlowWindowAfterSend": ""
+    }
+   },
+   {
+    "statement": "MyH2FlowWindowAfterSendImp 10 3 = 7",
+    "symbols": {
+     "MyH2FlowWindowAfterSendImp": "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSendImp"
+    },
+    "symbol_suffixes": {
+     "MyH2FlowWindowAfterSendImp": ""
+    }
+   },
+   {
+    "statement": "MyH2FlowWindowAfterSendImp 5 5 = 0",
+    "symbols": {
+     "MyH2FlowWindowAfterSendImp": "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSendImp"
+    },
+    "symbol_suffixes": {
+     "MyH2FlowWindowAfterSendImp": ""
+    }
+   },
+   {
+    "statement": "MyH2FlowWindowAfterSendImp 0 0 = 0",
+    "symbols": {
+     "MyH2FlowWindowAfterSendImp": "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSendImp"
+    },
+    "symbol_suffixes": {
+     "MyH2FlowWindowAfterSendImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def MyH2FlowWindowAfterSend.myH2FlowWindowAfterSend (window frameLen : Nat) : Nat := default\ndef MyH2FlowWindowAfterSend.Pre (window frameLen : Nat) : Prop := default\ndef MyH2FlowWindowAfterSend.Post_prop (window frameLen result : Nat) : Prop := default\ndef MyH2FlowWindowAfterSend.Post_nonneg (window frameLen result : Nat) : Prop := default\n",
+  "candidate_n_examples": 0
+ },
+ {
+  "system": "leanstral",
+  "task_id": "concurrent_set_synthetic__my_lww_register_pick_left",
+  "group": "low_score_passing",
+  "category": "zero_self_test_factor",
+  "v1_mapping": {
+   "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.myLwwRegisterPickLeft",
+   "MyLwwRegisterPickLeft.MyLwwRegisterPickLeftImp": "MyLwwRegisterPickLeft.myLwwRegisterPickLeft"
+  },
+  "n_tests": 8,
+  "gold_symbols": [
+   {
+    "name": "MyLwwRegisterPickLeft",
+    "full_name": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft",
+    "namespace": "MyLwwRegisterPickLeft",
+    "header": "(leftTs rightTs : Nat) : Bool"
+   },
+   {
+    "name": "MyLwwRegisterPickLeftImp",
+    "full_name": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeftImp",
+    "namespace": "MyLwwRegisterPickLeft",
+    "header": "(leftTs rightTs : Nat) : Bool"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "MyLwwRegisterPickLeft 5 3 = true",
+    "symbols": {
+     "MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft"
+    },
+    "symbol_suffixes": {
+     "MyLwwRegisterPickLeft": ""
+    }
+   },
+   {
+    "statement": "MyLwwRegisterPickLeft 3 5 = false",
+    "symbols": {
+     "MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft"
+    },
+    "symbol_suffixes": {
+     "MyLwwRegisterPickLeft": ""
+    }
+   },
+   {
+    "statement": "MyLwwRegisterPickLeft 4 4 = true",
+    "symbols": {
+     "MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft"
+    },
+    "symbol_suffixes": {
+     "MyLwwRegisterPickLeft": ""
+    }
+   },
+   {
+    "statement": "MyLwwRegisterPickLeft 0 0 = true",
+    "symbols": {
+     "MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft"
+    },
+    "symbol_suffixes": {
+     "MyLwwRegisterPickLeft": ""
+    }
+   },
+   {
+    "statement": "MyLwwRegisterPickLeft 0 1 = false",
+    "symbols": {
+     "MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft"
+    },
+    "symbol_suffixes": {
+     "MyLwwRegisterPickLeft": ""
+    }
+   },
+   {
+    "statement": "MyLwwRegisterPickLeftImp 5 3 = true",
+    "symbols": {
+     "MyLwwRegisterPickLeftImp": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeftImp"
+    },
+    "symbol_suffixes": {
+     "MyLwwRegisterPickLeftImp": ""
+    }
+   },
+   {
+    "statement": "MyLwwRegisterPickLeftImp 3 5 = false",
+    "symbols": {
+     "MyLwwRegisterPickLeftImp": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeftImp"
+    },
+    "symbol_suffixes": {
+     "MyLwwRegisterPickLeftImp": ""
+    }
+   },
+   {
+    "statement": "MyLwwRegisterPickLeftImp 4 4 = true",
+    "symbols": {
+     "MyLwwRegisterPickLeftImp": "MyLwwRegisterPickLeft.MyLwwRegisterPickLeftImp"
+    },
+    "symbol_suffixes": {
+     "MyLwwRegisterPickLeftImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def MyLwwRegisterPickLeft.myLwwRegisterPickLeft (left_ts right_ts : Nat) : Bool := default\ndef MyLwwRegisterPickLeft.Pre (_left_ts _right_ts : Nat) : Prop := default\ndef MyLwwRegisterPickLeft.Post_prop (left_ts right_ts : Nat) : Prop := default\n",
+  "candidate_n_examples": 0
+ },
+ {
+  "system": "leanstral",
+  "task_id": "concurrent_set_synthetic__my_rcu_epoch_can_reclaim",
+  "group": "low_score_passing",
+  "category": "zero_self_test_factor",
+  "v1_mapping": {
+   "MyRcuEpochCanReclaim.MyRcuEpochCanReclaim": "MyRcuEpochCanReclaim.myRcuEpochCanReclaim",
+   "MyRcuEpochCanReclaim.MyRcuEpochCanReclaimImp": "MyRcuEpochCanReclaim.myRcuEpochCanReclaim"
+  },
+  "n_tests": 8,
+  "gold_symbols": [
+   {
+    "name": "MyRcuEpochCanReclaim",
+    "full_name": "MyRcuEpochCanReclaim.MyRcuEpochCanReclaim",
+    "namespace": "MyRcuEpochCanReclaim",
+    "header": "(retiredEpoch minReaderEpoch : Nat) : Bool"
+   },
+   {
+    "name": "MyRcuEpochCanReclaimImp",
+    "full_name": "MyRcuEpochCanReclaim.MyRcuEpochCanReclaimImp",
+    "namespace": "MyRcuEpochCanReclaim",
+    "header": "(retiredEpoch minReaderEpoch : Nat) : Bool"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "MyRcuEpochCanReclaim 3 4 = true",
+    "symbols": {
+     "MyRcuEpochCanReclaim": "MyRcuEpochCanReclaim.MyRcuEpochCanReclaim"
+    },
+    "symbol_suffixes": {
+     "MyRcuEpochCanReclaim": ""
+    }
+   },
+   {
+    "statement": "MyRcuEpochCanReclaim 3 3 = false",
+    "symbols": {
+     "MyRcuEpochCanReclaim": "MyRcuEpochCanReclaim.MyRcuEpochCanReclaim"
+    },
+    "symbol_suffixes": {
+     "MyRcuEpochCanReclaim": ""
+    }
+   },
+   {
+    "statement": "MyRcuEpochCanReclaim 4 3 = false",
+    "symbols": {
+     "MyRcuEpochCanReclaim": "MyRcuEpochCanReclaim.MyRcuEpochCanReclaim"
+    },
+    "symbol_suffixes": {
+     "MyRcuEpochCanReclaim": ""
+    }
+   },
+   {
+    "statement": "MyRcuEpochCanReclaim 0 1 = true",
+    "symbols": {
+     "MyRcuEpochCanReclaim": "MyRcuEpochCanReclaim.MyRcuEpochCanReclaim"
+    },
+    "symbol_suffixes": {
+     "MyRcuEpochCanReclaim": ""
+    }
+   },
+   {
+    "statement": "MyRcuEpochCanReclaim 0 0 = false",
+    "symbols": {
+     "MyRcuEpochCanReclaim": "MyRcuEpochCanReclaim.MyRcuEpochCanReclaim"
+    },
+    "symbol_suffixes": {
+     "MyRcuEpochCanReclaim": ""
+    }
+   },
+   {
+    "statement": "MyRcuEpochCanReclaimImp 3 4 = true",
+    "symbols": {
+     "MyRcuEpochCanReclaimImp": "MyRcuEpochCanReclaim.MyRcuEpochCanReclaimImp"
+    },
+    "symbol_suffixes": {
+     "MyRcuEpochCanReclaimImp": ""
+    }
+   },
+   {
+    "statement": "MyRcuEpochCanReclaimImp 3 3 = false",
+    "symbols": {
+     "MyRcuEpochCanReclaimImp": "MyRcuEpochCanReclaim.MyRcuEpochCanReclaimImp"
+    },
+    "symbol_suffixes": {
+     "MyRcuEpochCanReclaimImp": ""
+    }
+   },
+   {
+    "statement": "MyRcuEpochCanReclaimImp 4 3 = false",
+    "symbols": {
+     "MyRcuEpochCanReclaimImp": "MyRcuEpochCanReclaim.MyRcuEpochCanReclaimImp"
+    },
+    "symbol_suffixes": {
+     "MyRcuEpochCanReclaimImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def MyRcuEpochCanReclaim.myRcuEpochCanReclaim (retired_epoch min_reader_epoch : Nat) : Bool := default\ndef MyRcuEpochCanReclaim.Pre (retired_epoch min_reader_epoch : Nat) : Prop := default\ndef MyRcuEpochCanReclaim.Post_prop (retired_epoch min_reader_epoch : Nat) (result : Bool) : Prop := default\ndef MyRcuEpochCanReclaim.can_reclaim_when_strictly_newer_prop (retired_epoch min_reader_epoch : Nat) : Prop := default\ndef MyRcuEpochCanReclaim.cannot_reclaim_when_equal_prop (retired_epoch : Nat) : Prop := default\ndef MyRcuEpochCanReclaim.cannot_reclaim_when_older_prop (retired_epoch min_reader_epoch : Nat) : Prop := default\n",
+  "candidate_n_examples": 0
+ },
+ {
+  "system": "leanstral",
+  "task_id": "concurrent_set_synthetic__my_vector_clock_merge_le_target",
+  "group": "low_score_passing",
+  "category": "zero_self_test_factor",
+  "v1_mapping": {
+   "MyVectorClockMergeLeTarget.myVectorClockMergeLeTarget": "VectorClockMergeLeTarget.myVectorClockMergeLeTarget",
+   "MyVectorClockMergeLeTarget.myVectorClockMergeLeTargetImp": "VectorClockMergeLeTarget.myVectorClockMergeLeTarget"
+  },
+  "n_tests": 8,
+  "gold_symbols": [
+   {
+    "name": "myVectorClockMergeLeTarget",
+    "full_name": "MyVectorClockMergeLeTarget.myVectorClockMergeLeTarget",
+    "namespace": "MyVectorClockMergeLeTarget",
+    "header": "(a1_le_c1 b1_le_c1 a2_le_c2 b2_le_c2 : Bool) : Bool"
+   },
+   {
+    "name": "myVectorClockMergeLeTargetImp",
+    "full_name": "MyVectorClockMergeLeTarget.myVectorClockMergeLeTargetImp",
+    "namespace": "MyVectorClockMergeLeTarget",
+    "header": "(a1_le_c1 b1_le_c1 a2_le_c2 b2_le_c2 : Bool) : Bool"
+   }
+  ],
+  "gold_tests": [
+   {
+    "statement": "myVectorClockMergeLeTarget true true true true = true",
+    "symbols": {
+     "myVectorClockMergeLeTarget": "MyVectorClockMergeLeTarget.myVectorClockMergeLeTarget"
+    },
+    "symbol_suffixes": {
+     "myVectorClockMergeLeTarget": ""
+    }
+   },
+   {
+    "statement": "myVectorClockMergeLeTarget false true true true = false",
+    "symbols": {
+     "myVectorClockMergeLeTarget": "MyVectorClockMergeLeTarget.myVectorClockMergeLeTarget"
+    },
+    "symbol_suffixes": {
+     "myVectorClockMergeLeTarget": ""
+    }
+   },
+   {
+    "statement": "myVectorClockMergeLeTarget true false true true = false",
+    "symbols": {
+     "myVectorClockMergeLeTarget": "MyVectorClockMergeLeTarget.myVectorClockMergeLeTarget"
+    },
+    "symbol_suffixes": {
+     "myVectorClockMergeLeTarget": ""
+    }
+   },
+   {
+    "statement": "myVectorClockMergeLeTarget true true false true = false",
+    "symbols": {
+     "myVectorClockMergeLeTarget": "MyVectorClockMergeLeTarget.myVectorClockMergeLeTarget"
+    },
+    "symbol_suffixes": {
+     "myVectorClockMergeLeTarget": ""
+    }
+   },
+   {
+    "statement": "myVectorClockMergeLeTarget true true true false = false",
+    "symbols": {
+     "myVectorClockMergeLeTarget": "MyVectorClockMergeLeTarget.myVectorClockMergeLeTarget"
+    },
+    "symbol_suffixes": {
+     "myVectorClockMergeLeTarget": ""
+    }
+   },
+   {
+    "statement": "myVectorClockMergeLeTargetImp true true true true = true",
+    "symbols": {
+     "myVectorClockMergeLeTargetImp": "MyVectorClockMergeLeTarget.myVectorClockMergeLeTargetImp"
+    },
+    "symbol_suffixes": {
+     "myVectorClockMergeLeTargetImp": ""
+    }
+   },
+   {
+    "statement": "myVectorClockMergeLeTargetImp false true true true = false",
+    "symbols": {
+     "myVectorClockMergeLeTargetImp": "MyVectorClockMergeLeTarget.myVectorClockMergeLeTargetImp"
+    },
+    "symbol_suffixes": {
+     "myVectorClockMergeLeTargetImp": ""
+    }
+   },
+   {
+    "statement": "myVectorClockMergeLeTargetImp true true true false = false",
+    "symbols": {
+     "myVectorClockMergeLeTargetImp": "MyVectorClockMergeLeTarget.myVectorClockMergeLeTargetImp"
+    },
+    "symbol_suffixes": {
+     "myVectorClockMergeLeTargetImp": ""
+    }
+   }
+  ],
+  "candidate_skeleton": "def VectorClockMergeLeTarget.myVectorClockMergeLeTarget (a1_le_c1 b1_le_c1 a2_le_c2 b2_le_c2 : Bool) : Bool := default\ndef VectorClockMergeLeTarget.Pre (_a1_le_c1 _b1_le_c1 _a2_le_c2 _b2_le_c2 : Bool) : Prop := default\ndef VectorClockMergeLeTarget.Post_prop (a1_le_c1 b1_le_c1 a2_le_c2 b2_le_c2 : Bool) (result : Bool) : Prop := default\n",
+  "candidate_n_examples": 0
+ }
+]
