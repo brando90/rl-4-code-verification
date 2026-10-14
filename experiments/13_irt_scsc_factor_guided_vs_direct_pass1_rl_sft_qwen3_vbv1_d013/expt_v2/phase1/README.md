@@ -6,11 +6,11 @@
 
 ## Current preparation
 
-`device_watch.py` now polls all five direct-access nodes every 15 minutes. Its first live poll on 10-14-2026 at 14:24 PDT and first scheduled poll at 14:30 PDT completed with zero candidates; all prior nine cron lines were preserved exactly and one line appended. It records every observation under `$WR/device_watch/` and never claims devices or starts a model. Candidate availability still needs current foreign-lease/master-reservation checks and the enforcing experiment-13 launcher before execution.
+The [LP-1 generation admission freeze](LP1_FREEZE.md) now specifies the actual generator/trainer route, eight-response probe, sampler, token caps and a single bounded attempt. Own runtime/model deployments on skampere2/3 and the local route passed 132 file bindings and eight package-version checks each without model inference. The final lock must be pushed before the private automatic launch plan is armed.
 
-`sampler.json` records the prospective protocol sampler. `probability.py` checks actual generator/trainer token alignment, assistant and end-of-sequence masks, support errors, probability differences and importance truncation; it does not itself establish a passed LP-1 gate. `g1_bounds.py` supplies exact linear-metric and paired-bootstrap completion bounds and bounded policy-correlation enumeration. Their 29 synthetic tests pass, and 112 independent coefficient checks match the frozen evaluator. The full required suite passed 462 tests with 23 skips and zero failures in 223.40 seconds ([receipt](preparation_test.json)). The [G1 method draft](G1_BOUNDS_DRAFT.md) lists the remaining wrapper/diagnostic work. No real probability probe, fit, anchor, or training call has run. The frozen `prediction/` models remain unchanged.
+The existing fifteen-minute device poller observes skampere1/2/3 and Mercury1/2. When the published launch plan exists, it invokes the independently checked dispatcher. Only the dispatcher can claim a lease, after fresh device, foreign-lease, reservation and storage checks. Busy devices remain a wait condition. The ten installed cron lines remain intact.
 
-CPU work continues on the lease launcher, the actual trainer probability runtime, anchor runner and complete G1 missing-data/bounds harness. No automatic execution or completed admission lock is claimed.
+The anchor generation runner preserves exclusive batch/cell attempts, all raw outputs and the full 539 × 8 denominator. Four train-only manifests and the probe have been prepared. Historical Base receipts use a different sampler, so new Base generation is required. The final scoring wrapper and G1 input bindings are still being prepared. The [G1 draft](G1_BOUNDS_DRAFT.md) binds the missing-data forecast, conjunctive and two-parameter logistic item-response models, five initializations, finite-gradient/invariance controls and actual-pattern synthetic recovery procedure. No actual-data fit has run.
 
 ## Verified resource state
 
@@ -41,16 +41,14 @@ The required publication suite passed: `E13_REQUIRE_LEAN_INTEGRATION=1 make test
 
 ## Exact continuation
 
-Continue implementation in the same owned checkout while polling. Execute only after an idle supported device and a checked storage route become available, or a valid scheduler account association is provisioned. No new permission is needed. Do not replay G0.
+1. Publish the final LP-1 lock after required tests, install the private plan naming its verified main revision, and verify a first dispatch. Continue while the device condition is WAIT.
+2. Complete and publish anchor scoring and the final historical input/bounds lock before any actual-data fit. Keep excluded historical cells missing in all fitting and tuning.
+3. After LP-1 passes once and its report is published, generate and score Base, half-schedule and full-schedule batch 1. Freeze calibration, item parameters and F2 before independent full-schedule batch 2.
+4. Publish G1 and H2 with the arm-C transition, then continue Phase 2. Validated Valkyrie formal specification coverage remains a separate later pending step.
 
-1. Refresh the device/process inventory and every required foreign lease and master reservation. Finish the experiment-13 lease launcher with identity checks, bounded accounting and exit release; the currently empty registry alone is not an enforcing launcher.
-2. Finish and publish LP-1's bounded device plan, actual trainer/generator implementation and hashes, train-only probability probe, sampler/support/assistant masks and token caps. No LP-1 lock or executable generation runner is claimed to be finished by this resource report.
-3. Run generation-only probability admission once. Generate the first three anchor batches only after admission. Before any fit, publish the A3 G1 bounds lock: fit with excluded cells missing, freeze forecasts, and bound held-out outcomes without refitting for each completion.
-4. Freeze calibration, item parameters and F2; generate independent batch 2; report G1/H2 and the arm-C transition. Then follow PLAN section 6's Phase 2 gates. Validated Valkyrie formal specification coverage remains a separate later blocker.
+No new permission is needed. Do not replay G0 or a probe. No model generation, fit, optimizer update or device claim has occurred at this freeze. The watchdog monitors the owner and registered dispatcher children; automatic owner replacement is not configured.
 
-Zero LP-1 probability measurements, anchor cells, fits, optimizer updates or device claims have occurred. PLAN section 7 forbids claiming busy devices; PROTOCOL sections 6 and 8 require a real allocation and permit no training beyond admitted diagnostic work on resource failure. No PLAN section 4 scientific failure transition has been triggered. The watchdog remains armed for owner/process monitoring; automatic device-triggered execution or executor replacement is not installed.
-
-## CPU preparation, 10-14-2026 14:47 PDT
+## Earlier CPU preparation record, 10-14-2026 14:47 PDT
 
 The prospective generation runner (`panel.py`, `runtime.py`) retains exclusive batch/slot attempts, full token and probability receipts, the 539 × 8 denominator and batch-2 prerequisite. It calls installed vLLM 0.10.0 and the clean NeMo RL distributed-tensor worker for sequential probability evaluation, with no optimizer. CPU imports succeeded; actual device admission is unmeasured. The installed newer worker needs an absent `nemo-automodel` package, so the original installed worker is the technical candidate before any efficacy outcome.
 
@@ -59,6 +57,9 @@ Train-only tokenization prepared an eight-response LP-1 probe and four 4,312-cel
 The generation and probability code is prospective until the final runtime/device/manifest lock is published. Remote hosts do not mount skampere1 files, so verified own runtime/export deployment is required for automatic remote execution. Mercury generation is explicitly permitted by the master's 10-14 steer when bounded storage and admission hold; percentage-free disk alone is not a terminal blocker.
 
 Required publication suite: **502 passed, 23 skipped, zero failed in 230.51 seconds**, with Lean integration required. [Receipt](runner_publication_test.json). All 49 focused generation, missingness/bounds, lease and cleanup tests passed. The [G1 lock draft](../locks/G1_A3_DRAFT.json) binds the prospective implementation; final input bindings and publication still precede actual fits.
+
+
+Publication verification: `E13_REQUIRE_LEAN_INTEGRATION=1 make test` exited 0; **512 passed, 23 skipped, zero failed in 240.62 seconds**. Receipt: [LP1_publication_test.json](LP1_publication_test.json).
 
 **TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 passed G0; CPU preparation and device polling continue while generation waits. All downstream scientific gates remain unattempted.
 **Snapshot:** G0 PASS; skampere devices occupied 24/24; Mercury local free space 31.16/12.10 GiB; scheduler associations 0; anchor cells 0/17,248; training updates 0.

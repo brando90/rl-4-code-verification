@@ -81,3 +81,31 @@ def test_independent_batch_requires_freeze():
     with pytest.raises(ValueError, match='freeze'):
         M.check_prerequisites('full2', lp1={'status': 'PASS'})
     M.check_prerequisites('full2', lp1={'status': 'PASS'}, calibration={'status': 'FROZEN', 'F2': .75})
+
+
+def test_batch_preserves_all_slots_and_per_cell_seeds(tmp_path):
+    manifest, train = fixture(); calls = []
+    def batch(cells):
+        calls.append([c['seed'] for c in cells])
+        return [generated(c) for c in cells]
+    result = M.generate_once(manifest, train, tmp_path, None, lease_check=lambda: None,
+                             prerequisites={}, batch_size=3, generate_batch=batch)
+    assert [len(c) for c in calls] == [3,3,2]
+    assert [s for chunk in calls for s in chunk] == [c['seed'] for c in manifest['cells']]
+    assert result['completed'] == 8 and len(list(tmp_path.glob('*.generation.json'))) == 8
+
+
+def test_malformed_batch_preserves_all_returned_raws_and_forbids_retry(tmp_path):
+    manifest, train = fixture()
+    def batch(cells):
+        raws = [generated(c) for c in cells]
+        raws[0]['output_token_ids'] = [-1]
+        return raws
+    with pytest.raises(ValueError):
+        M.generate_once(manifest, train, tmp_path, None, lease_check=lambda: None,
+                        prerequisites={}, batch_size=8, generate_batch=batch)
+    assert len(json.loads((tmp_path/'batch_00000.raw.json').read_text())) == 8
+    assert len(list(tmp_path.glob('*.started.json'))) == 8
+    with pytest.raises(FileExistsError):
+        M.generate_once(manifest, train, tmp_path, None, lease_check=lambda: None,
+                        prerequisites={}, batch_size=8, generate_batch=batch)

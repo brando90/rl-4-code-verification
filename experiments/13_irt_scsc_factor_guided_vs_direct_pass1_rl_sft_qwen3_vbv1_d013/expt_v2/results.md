@@ -4,7 +4,7 @@
 
 **TLDR:** G0 PASS under A3: primary 4B dense-only bounds 89–97/135 (threshold 21), predictive AUC bounds 0.670652174–0.904643963 (threshold 0.65), exact across 221,184 configurations; 23 tasks affected by 34 excluded cells. Phase 1 CPU preparation continues while generation waits for a device; no training has run.
 
-Last updated: 10-14-2026 14:29 PDT
+Last updated: 10-14-2026 15:17 PDT
 Status: **G0 PASS; Phase 1 CPU preparation running, generation waiting for devices.** [Resource evidence and continuation](phase1/README.md). [Full G0 bounds and evaluator outputs](RESULTS_G0.md) · [Verified exclusions and frozen method](reproduction/README_G0_A3.md).
 
 | Stage | Status | Measured / declared |
@@ -18,7 +18,7 @@ Status: **G0 PASS; Phase 1 CPU preparation running, generation waiting for devic
 | A3 diagnosis | COMPLETE; rule 3(i) satisfied | 49/49 classified; all four unequal cells (c) |
 | A3 admission | G0 ADMITTED (master, 10-14-2026) | 217/33,456 ordinary cells excluded; 33,239 kept; worst-case completions for every G0/G1 statistic |
 | G0 | PASS, exact worst-case bounds | 4B 89–97/135 dense-only; AUC 0.670652174–0.904643963; 23 affected tasks |
-| Phase 1 | CPU preparation running; device wait | Observation-only poller armed; sampler/probability checks and partial bounds tested; LP-1 unattempted |
+| Phase 1 | CPU preparation running; device wait | LP-1 runtime and three routes verified on CPU; final freeze prepared; LP-1 unattempted |
 | Phase 2 | NOT RUN; later gates pending | No reinforcement learning |
 
 Fresh-owner setup: `codex-rl4cv-e13v2-owner-g0` is the sole active writer; the previous owner remains idle. Seven prior cron entries were preserved byte-for-byte and two watchdog entries added. Six watchdog self-tests passed. Exclusions are 13 train + 204 validation, with no test IDs; all four public class-(c) cells are excluded. No historical cell was rerun. Required full suite passed: 433 passed, 23 skipped, 0 failed in 260.05 seconds; Lean integration required. G0 uses existing data and central processors, with zero model-call spend or graphics processor hours. Result-publication suite also passed 433 tests with 23 skips in 233.01 seconds. Phase 1 device inventory currently finds all skampere1/2/3 accelerators occupied and Mercury1/2 disks below required headroom; no allocation or generation has begun. The scheduler account has zero associations and its non-submitting allocation test failed (exit 1, invalid account). This is a resource block, not a failed gate or completion; [continuation](phase1/README.md) records the unfinished LP-1 implementation and lock work.
@@ -40,6 +40,15 @@ A1 permits at most five attempts each for R0 and R1; every attempt remains recor
 The generation runner, actual NeMo probability path, exclusive attempt ledgers, lease/dispatcher, missing-data nested forecasts and recovery/bounds controls are implemented. Forty-nine focused synthetic tests pass; full required publication verification passed 502 tests with 23 skips and zero failures in 230.51 seconds. Train-only prompt preparation covers 539 tasks, four batches of 4312 responses and an eight-response probe, with maximum prompt 7753/context 15945/output 8192 tokens. No model generation, actual-data fit, optimizer update or GPU lease has occurred.
 
 Remote execution needs own deployments because the nodes do not mount skampere1 files. Environment copies to skampere2/3 are underway within a bounded 50 GiB preparation allowance per node. Mercury remains a permitted generation-only alternative subject to actual admission and bounded storage. Device contention is a wait, with preparation continuing; no completion or blocker email.
+
+## LP-1 runtime and device-plan freeze — 10-14-2026 15:17 PDT
+
+[Generation admission freeze](phase1/LP1_FREEZE.md) and [lock](locks/LP1.json) bind one eight-response probe, 8,192 new tokens per response, a 30-minute device cap and no optimizer updates or retries. All three skampere deployments passed 132 file bindings and eight package-version checks each, with zero model calls/device allocations. Own remote runtime/model copies are complete; at least 8 GiB local scratch is required at claim time. The existing fifteen-minute poller will invoke the dispatcher once its private plan names the verified published lock revision; all ten cron lines are retained.
+
+The dispatcher checks published bytes, fresh device processes, canonical foreign leases and master reservations; it releases only after verified marked-process cleanup. Unknown cleanup retains the lease for adoption. Mercury generation-only routes remain allowed when admitted. Busy devices remain WAIT while anchor scoring and the final G1 input lock are completed. No actual-data fit or downstream gate has run.
+
+
+Publication verification: `E13_REQUIRE_LEAN_INTEGRATION=1 make test` exited 0; **512 passed, 23 skipped, zero failed in 240.62 seconds**. Receipt: [LP1_publication_test.json](phase1/LP1_publication_test.json).
 
 **TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 G0 passes with exact completion bounds; Phase 1 CPU preparation and device polling continue.
 **Snapshot:** 4B dense-only 89–97/135; AUC 0.670652174–0.904643963; 23 affected tasks; G0 one run; Phase 1 anchors 0/17,248.

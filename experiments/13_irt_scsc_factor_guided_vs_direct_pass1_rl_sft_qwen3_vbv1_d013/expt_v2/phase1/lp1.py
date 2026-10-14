@@ -55,10 +55,16 @@ def run(config_path):
     if marker != lease['id']: raise ValueError('execution marker/lease mismatch')
     root = Path(config['attempt_root']); root.mkdir(parents=True, exist_ok=True)
     write_new(root/'attempt.json', {'started_unix': time.time(), 'lease_id': marker,
-                                  'declared_responses': 8, 'optimizer_updates': 0, 'retries': 0})
+                                  'declared_responses': 8, 'optimizer_updates': 0, 'retries': 0,
+                                  'pid': os.getpid(), 'pgid': os.getpgid(os.getpid()),
+                                  'start_ticks': Path('/proc/self/stat').read_text().rsplit(')',1)[1].split()[19],
+                                  'boot_id': Path('/proc/sys/kernel/random/boot_id').read_text().strip()})
     deadline = time.monotonic()+config['maximum_seconds']
     result = {'status': 'INCOMPLETE', 'optimizer_updates': 0, 'retries': 0}
     cleanup_receipts = []
+    def interrupted(signum, frame):
+        raise TimeoutError('supervisor interrupted by signal '+str(signum))
+    prior_handlers = {sig: signal.signal(sig, interrupted) for sig in (signal.SIGTERM, signal.SIGHUP)}
     try:
         for stage in ('generate', 'trainer'):
             check_lease(config)
@@ -85,8 +91,12 @@ def run(config_path):
     finally:
         cleanup_receipts.append(cleanup(marker))
         result['cleanup_verified'] = all(r['verified'] for r in cleanup_receipts)
+        if not result['cleanup_verified']:
+            result['probability_status'] = result['status']
+            result['status'] = 'INCOMPLETE'
         write_new(root/'cleanup.json', cleanup_receipts)
         write_new(root/'result.json', result)
+        for sig, handler in prior_handlers.items(): signal.signal(sig, handler)
     return result
 
 

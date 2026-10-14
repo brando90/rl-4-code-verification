@@ -1,0 +1,93 @@
+{
+  "checked_local": "10-14-2026 15:10 PDT",
+  "scope": "Read-only foreign lease/reservation review, not an allocation",
+  "canonical_registry": "/lfs/skampere1/0/brando9/rl4cv_e08/pipeline/leases.json",
+  "registry_sha256": "f9c0b769f9254ccaaf642b4179091fcc5387263cfef8afd1b0a6e0e920c6eecd",
+  "registry_records": 33,
+  "unreleased_records": 0,
+  "legacy_technical_controls_reconciled": 8,
+  "legacy_preflight_reconciled": 1,
+  "legacy_file_bindings": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e09/technical_control/admission_retry/lease.json",
+      "sha256": "2bcf8f1026f65aa1677014c7c26a451b1c4ba512f3e616e19ca7d08902059bf8"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e09/technical_control/admission_retry/release.json",
+      "sha256": "6ca7fb69fab879e5d35191f214d4c436c308ce9aa6573eb7277c63f947385d1b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e09/technical_control/contention_retry/lease.json",
+      "sha256": "7e92f2550ac92bf79aeacb1a742a19bd847da6146c1481cd3c811431ceb2bb58"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e09/technical_control/contention_retry/release.json",
+      "sha256": "4ba0f058b3f94802ab2858833137aedd702d5c29e4fe5b97d5d150cc53ef7a43"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e09/technical_control/context32768_guard/lease.json",
+      "sha256": "9a21bbaa34b74999f78c5b8916da4af8d3345b4037ce558da37b17847900edab"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e09/technical_control/context32768_guard/release.json",
+      "sha256": "f385adfcf13cdf9588729dbb702413b2fae11b289f40791cf42f16dfebb46b4a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e09/technical_control/device_order_fix/lease.json",
+      "sha256": "4813ba658784bfabe86ace62c87904fd7a40dedb6e9bf617e74cf40d2cf8f590"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e09/technical_control/device_order_fix/release.json",
+      "sha256": "b8ac251cb99007a23b7a01fa9f62f20e45767393b788da2fd6d6e23c0d2e9915"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e09/technical_control/engine_profile_fix/lease.json",
+      "sha256": "848a4eedc76447e5c5e6826d23f2028e75fe1a7a346e723140993d4eaf89abb0"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e09/technical_control/engine_profile_fix/release.json",
+      "sha256": "7a8ffb8bbaf1939c9ab4281fc0c3adab963ae58423be30a7d6a4b3ff12ee4101"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e09/technical_control/profile_scope_fix/lease.json",
+      "sha256": "2054c06cbb9a37abeb60e4c650982a884abda056e9db2fb0989e2433564edb8d"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e09/technical_control/profile_scope_fix/release.json",
+      "sha256": "7a53fb4f4d1035c70bff24282888317ac507495cb58a0d082f2c9e507ff3c8fb"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e09/technical_control/replay_probability_diagnostic/lease.json",
+      "sha256": "c88d135122b0af514675025d73e31cc2a049281d5a382378e08d1c370ddee938"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e09/technical_control/replay_probability_diagnostic/release.json",
+      "sha256": "ecf3cb1f4a2b59502337e1fd855e1dcf64eb0a7795855e7ffcb38ca22e50ef7e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e09/technical_control/scheduler_config_fix/lease.json",
+      "sha256": "3c1fefbea934c26dcb140a49f675a21d0b45bf291241ab3b0b6f69a94331bb88"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e09/technical_control/scheduler_config_fix/release.json",
+      "sha256": "c7a77c376a7fc7c12eac8c6a4dbe85044d81ebfa12a57878289e1d1d185d8be3"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e09/gpu_preflight_lease.json",
+      "sha256": "60c5c083bb457a5b5e246ae0352ebf9c3f58dfce8dd36fa116245ef0c7d73225"
+    }
+  ],
+  "remote_e06_registry_paths_found": 0,
+  "master_reservation_evidence": "CKPT_MASTER_tmuxnone_cxd_01a11d6a.md section 27: completed; all leases released",
+  "at_claim": "Read canonical registry and every GPU process anew; reject reservations or uncertain ownership",
+  "additional_review": {
+    "rl4cv_e12": {
+      "root_exists": true,
+      "lease_reservation_paths_found_depth3": 0
+    },
+    "rl4cv_e14": {
+      "root_exists": true,
+      "lease_reservation_paths_found_depth3": 0
+    }
+  }
+}

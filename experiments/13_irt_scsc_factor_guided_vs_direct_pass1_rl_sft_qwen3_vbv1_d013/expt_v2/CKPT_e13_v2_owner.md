@@ -5,7 +5,7 @@
 **TLDR:** G0 PASS under A3: primary 4B dense-only bounds 89–97/135 (threshold 21), predictive AUC bounds 0.670652174–0.904643963 (threshold 0.65), exact across 221,184 configurations; 23 tasks affected by 34 excluded cells. Phase 1 CPU preparation continues while generation waits for an idle device; no training has run.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-14-2026 14:53 PDT
+Last updated: 10-14-2026 15:17 PDT
 
 ## Goal
 - Complete Phase 1 then Phase 2 for 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013 version 2 under PLAN and amendments; stop only at binding transitions or real blockers.
@@ -20,12 +20,13 @@ Last updated: 10-14-2026 14:53 PDT
 ## Stuck / blocked
 - Generation waits before LP-1; CPU preparation continues: skampere1/2/3 occupied 24/24; Mercury1/2 are permitted generation-only alternatives if bounded storage and probability admission hold; their 16 GiB devices cannot yet use the prepared single-device full trainer route. Scheduler has zero associations and its allocation test exits 1 (invalid account). [Evidence and continuation](phase1/README.md). Validated Valkyrie formal-specification judge unavailable, not probed; Phase 2 coverage scoring remains pending that route.
 ## Next steps
-- G0 published at `120c558`, initial CPU preparation at `9101488`. Publish/test the completed runner and bound-control step; verify own environment/export deployment on skampere2/3, freeze LP-1 launch configuration and G1 bounds lock, then arm automatic lease-checked LP-1. Device contention remains WAIT; no human action needed.
+- Publish final LP-1 lock after required tests; install `$WR/device_watch/launch_plan.json` naming its verified main revision, then verify first dispatcher output. Three routes passed 132 CPU-only bindings each. Continue anchor scoring and final G1 input lock during device WAIT; no human action needed.
 - Four anchor batches needed (historical Base sampler incompatible): Base, 50%, full batch 1, then freeze calibration/items/F2, then independent full batch 2. Freeze G1 bounds lock before any fit. No G0 retry.
 ## Brando to-do
 - None: resource availability is a wait while CPU preparation continues. No blocker or completion email sent.
 
 ## Log
+- 10-14-2026 15:17 PDT -- LP-1 freeze prepared: three CPU-verified routes, 132 bindings each, eight-response probe, 30-minute device cap (0.6-hour cumulative prelaunch/attempt allowance), zero optimizer updates/retries. Own remote runtime/model deployments complete within 50 GiB per-node preparation allowance. Required suite passed 512/23/0 in 240.62s, direct exit 0; publish before arming private launch plan. No model inference, fit or lease.
 - 10-14-2026 14:53 PDT -- Runner/preparation publication verified: required Lean integration suite 502 passed, 23 skipped, zero failed in 230.51s. Public draft lock binds prospective G1 implementation; final lock and source-data loader remain before actual fits. Runtime/export copies to remote hosts continue; no lease, generation or actual fit.
 - 10-14-2026 14:51 PDT -- Continued master-directed CPU preparation. Added anchor/LP-1 runtime, strict one-attempt ledgers, lease accounting and marker-fenced cleanup, A3 nested forecasts and actual-risk-pattern controls. 49 focused tests pass. Prepared 539 train prompts, maximum 7753 tokens; exact context 15945 preserves 8192 new tokens. Five private manifests hash-bound, no model generation/fit. Remote nodes lack skampere1 mounts; own environment copies underway on skampere2/3 within 50 GiB per-node preparation allowance. Full required suite passed 502/23/0 in 230.51s; next freeze and arm automatic launcher.
 - 10-14-2026 14:34 PDT -- CPU-preparation publication verification: 462 passed, 23 skipped, zero failed in 223.40s with required Lean integration; 112 independent synthetic coefficient checks match the frozen evaluator. First scheduled device poll at 14:30 verified, zero candidates/claims; watchdog reports one live owner. Continue same-writer CPU work under queued master follow-up, no gate retry or notification.

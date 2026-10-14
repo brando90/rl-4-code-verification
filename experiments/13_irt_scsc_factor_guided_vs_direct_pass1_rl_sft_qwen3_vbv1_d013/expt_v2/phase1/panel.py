@@ -73,7 +73,8 @@ def check_prerequisites(batch, lp1=None, calibration=None):
         raise ValueError('independent batch 2 requires calibration/item/F2 freeze')
 
 
-def generate_once(manifest, train_ids, root, generate, *, lease_check, prerequisites):
+def generate_once(manifest, train_ids, root, generate, *, lease_check, prerequisites,
+                  batch_size=1, generate_batch=None):
     """Call a supplied frozen engine once per slot; no implicit retry or refill.
 
     `generate` returns the exact token/log-probability receipt. Infrastructure
@@ -81,6 +82,10 @@ def generate_once(manifest, train_ids, root, generate, *, lease_check, prerequis
     Scoring is separate: length-capped responses remain eligible for strict 1.
     """
     cells = validate_manifest(manifest, train_ids)
+    if type(batch_size) is not int or not 1 <= batch_size <= 32:
+        raise ValueError('batch size outside declared resource envelope')
+    if batch_size != 1 and generate_batch is None:
+        raise ValueError('batched generation requires a batch engine')
     check_prerequisites(manifest['batch'], **prerequisites)
     root = Path(root); root.mkdir(parents=True, exist_ok=True)
     lease_check()
@@ -88,27 +93,22 @@ def generate_once(manifest, train_ids, root, generate, *, lease_check, prerequis
                                     'declared_cells': len(cells), 'retries': 0})
     completed = 0
     try:
-        for index, cell in enumerate(cells):
+        for offset in range(0, len(cells), batch_size):
             lease_check()
-            write_new(root / f'{index:05d}.started.json', {'cell_id': cell['cell_id'], 'seed': cell['seed']})
-            raw = generate(cell)
-            if raw['prompt_token_ids'] != cell['prompt_token_ids']:
-                raise ValueError('engine changed prompt tokens')
-            output = raw['output_token_ids']
-            if not output or len(output) > 8192 or len(raw['generation_logprobs']) != len(output):
-                raise ValueError('invalid generation receipt')
-            if raw['finish_reason'] not in ('stop', 'length'):
-                raise ValueError('unmeasured finish reason')
-            if raw['finish_reason'] == 'length' and len(output) != 8192:
-                raise ValueError('generation used an undeclared context cap')
-            if any(t in manifest['terminal_token_ids'] for t in output[:-1]):
-                raise ValueError('response continued after a terminal token')
-            if raw['finish_reason'] == 'stop' and output[-1] not in manifest['terminal_token_ids']:
-                raise ValueError('unknown stop action')
-            row = {**cell, **raw, 'cell_id': cell['cell_id'], 'split': 'train',
-                   'at_token_cap': raw['finish_reason'] == 'length'}
-            write_new(root / f'{index:05d}.generation.json', row)
-            completed += 1
+            chunk = cells[offset:offset+batch_size]
+            for index, cell in enumerate(chunk, start=offset):
+                write_new(root / f'{index:05d}.started.json', {'cell_id': cell['cell_id'], 'seed': cell['seed']})
+            raws = generate_batch(chunk) if generate_batch else [generate(chunk[0])]
+            # Preserve the entire returned batch even if one receipt is malformed.
+            write_new(root / f'batch_{offset:05d}.raw.json', raws)
+            if len(raws) != len(chunk):
+                raise ValueError('batch engine omitted or added a response')
+            for index, (cell, raw) in enumerate(zip(chunk, raws), start=offset):
+                validate_generation(cell, raw, manifest)
+                row = {**cell, **raw, 'cell_id': cell['cell_id'], 'split': 'train',
+                       'at_token_cap': raw['finish_reason'] == 'length'}
+                write_new(root / f'{index:05d}.generation.json', row)
+                completed += 1
     except BaseException as exc:
         write_new(root / 'terminal.json', {'status': 'INCOMPLETE', 'completed': completed,
                   'declared': len(cells), 'error_type': type(exc).__name__, 'retries': 0})
@@ -116,3 +116,22 @@ def generate_once(manifest, train_ids, root, generate, *, lease_check, prerequis
     result = {'status': 'COMPLETE', 'completed': completed, 'declared': len(cells), 'retries': 0}
     write_new(root / 'terminal.json', result)
     return result
+
+
+def validate_generation(cell, raw, manifest):
+    """Check one unchanged token receipt without using its scorer outcome."""
+    if raw['prompt_token_ids'] != cell['prompt_token_ids']:
+        raise ValueError('engine changed prompt tokens')
+    output = raw['output_token_ids']
+    if not output or len(output) > 8192 or len(raw['generation_logprobs']) != len(output):
+        raise ValueError('invalid generation receipt')
+    if any(type(token) is not int or token < 0 for token in output):
+        raise ValueError('invalid generated token identity')
+    if raw['finish_reason'] not in ('stop', 'length'):
+        raise ValueError('unmeasured finish reason')
+    if raw['finish_reason'] == 'length' and len(output) != 8192:
+        raise ValueError('generation used an undeclared context cap')
+    if any(t in manifest['terminal_token_ids'] for t in output[:-1]):
+        raise ValueError('response continued after a terminal token')
+    if raw['finish_reason'] == 'stop' and output[-1] not in manifest['terminal_token_ids']:
+        raise ValueError('unknown stop action')

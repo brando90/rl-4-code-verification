@@ -39,13 +39,14 @@ def test_claim_and_release_account_exactly_once(tmp_path):
     assert json.loads((root/'registry.json').read_text())['device_hours'] == pytest.approx(.05)
 
 
-@pytest.mark.parametrize('condition', ['busy','unknown','small','disk','budget','reservation','expired_foreign'])
+@pytest.mark.parametrize('condition', ['busy','unknown','small','disk','host_ram','budget','reservation','expired_foreign'])
 def test_unavailable_or_reserved_device_never_claimed(condition, tmp_path):
     root, foreign, inventory, kw = setup(tmp_path)
     if condition == 'busy': inventory['idle_device_indices'] = []
     if condition == 'unknown': inventory['inventory_complete'] = False
     if condition == 'small': inventory['devices'][0]['memory_mib'] = 16000
     if condition == 'disk': inventory['local_storage']['available_bytes'] = 1
+    if condition == 'host_ram': kw['minimum_host_available_bytes'] = 100
     if condition == 'budget': kw['cumulative_limit_hours'] = .1
     if condition == 'reservation':
         foreign.write_text(json.dumps({'reserved': {'host':'fixture','gpus':[0],'owner':'other'}}))

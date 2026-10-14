@@ -13,9 +13,25 @@ from panel import digest, generate_once, write_new
 
 
 def check_bindings(config):
+    import importlib.metadata
+    model = Path(config['model'])
+    required = {Path(__file__).resolve(), Path(__file__).with_name('panel.py').resolve(),
+                Path(__file__).with_name('probability.py').resolve(), Path(__file__).with_name('lp1.py').resolve(),
+                Path(config['manifest']).resolve(), Path(config['train_ids']).resolve(),
+                Path(config['policy_config']).resolve()}
+    model_files = [p for p in model.iterdir() if p.is_file()]
+    if not any(p.suffix in ('.bin', '.safetensors') for p in model_files):
+        raise ValueError('no frozen model weights')
+    required.update(p.resolve() for p in model_files)
+    bound = {Path(b['path']).resolve() for b in config['bindings']}
+    if not required <= bound:
+        raise ValueError('runtime configuration omits required source, input or export bindings')
     for binding in config['bindings']:
         if digest(binding['path']) != binding['sha256']:
             raise ValueError('runtime hash mismatch: ' + binding['path'])
+    for package, version in config['runtime_versions'].items():
+        if importlib.metadata.version(package) != version:
+            raise ValueError('runtime package version mismatch: '+package)
 
 
 def check_lease(config):
@@ -53,31 +69,36 @@ def generation(config):
     tokenizer = AutoTokenizer.from_pretrained(config['model'], local_files_only=True)
     # Lazy model initialization: attempt ledger is durable before GPU work starts.
     engines = []
-    def generate(cell):
+    def generate_batch(cells):
         if not engines:
             engines.append(LLM(model=config['model'], tokenizer=config['model'], dtype='bfloat16',
                 tensor_parallel_size=1, max_model_len=manifest['max_model_len'],
                 gpu_memory_utilization=config['gpu_memory_utilization'], enforce_eager=True,
-                max_num_seqs=1, trust_remote_code=False, enable_prefix_caching=False,
-                generation_config='vllm', seed=1302100))
-        sampling = SamplingParams(n=1, temperature=1., top_p=1., top_k=-1, min_p=0.,
+                max_num_seqs=config['batch_size'], trust_remote_code=False, enable_prefix_caching=False,
+                generation_config='vllm', seed=1302100, logprobs_mode='raw_logprobs'))
+        sampling = [SamplingParams(n=1, temperature=1., top_p=1., top_k=-1, min_p=0.,
             repetition_penalty=1., presence_penalty=0., frequency_penalty=0.,
             max_tokens=8192, min_tokens=0, ignore_eos=False, stop=None,
             stop_token_ids=manifest['terminal_token_ids'], seed=cell['seed'], logprobs=0,
-            include_stop_str_in_output=True)
-        request = engines[0].generate([{'prompt_token_ids': cell['prompt_token_ids']}],
-                                     sampling, use_tqdm=False)[0]
-        output = request.outputs[0]
-        ids = list(output.token_ids)
-        return {'prompt_token_ids': list(request.prompt_token_ids), 'output_token_ids': ids,
+            include_stop_str_in_output=True) for cell in cells]
+        requests = engines[0].generate([{'prompt_token_ids': cell['prompt_token_ids']} for cell in cells],
+                                      sampling, use_tqdm=False)
+        rows = []
+        for request in requests:
+            if len(request.outputs) != 1: raise ValueError('unexpected generation multiplicity')
+            output = request.outputs[0]
+            ids = list(output.token_ids)
+            rows.append({'prompt_token_ids': list(request.prompt_token_ids), 'output_token_ids': ids,
                 'generation_logprobs': [float(lp[token].logprob) if math.isfinite(lp[token].logprob) else None
                                        for lp, token in zip(output.logprobs, ids)],
                 'finish_reason': output.finish_reason,
-                'completion': tokenizer.decode(ids, skip_special_tokens=False)}
+                'completion': tokenizer.decode(ids, skip_special_tokens=False)})
+        return rows
     prerequisites = {key: json.loads(Path(path).read_text()) if path else None
                      for key, path in config['prerequisites'].items()}
-    return generate_once(manifest, train_ids, config['generation_root'], generate,
-                         lease_check=lambda: check_lease(config), prerequisites=prerequisites)
+    return generate_once(manifest, train_ids, config['generation_root'], None,
+                         lease_check=lambda: check_lease(config), prerequisites=prerequisites,
+                         batch_size=config['batch_size'], generate_batch=generate_batch)
 
 
 def trainer(config):

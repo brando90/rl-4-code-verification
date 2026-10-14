@@ -37,6 +37,9 @@ for row in out['processes'].splitlines():
 out['process_owners']=owners
 p='/lfs/'+out['host']+'/0'; v=os.statvfs(p)
 out['local_storage']={'path':p,'available_bytes':v.f_bavail*v.f_frsize,'total_bytes':v.f_blocks*v.f_frsize}
+mem={line.split(':')[0]:int(line.split()[1])*1024 for line in pathlib.Path('/proc/meminfo').read_text().splitlines() if line.startswith(('MemTotal:','MemAvailable:'))}
+out['host_memory']={'available_bytes':mem['MemAvailable'],'total_bytes':mem['MemTotal']}
+out['boot_id']=pathlib.Path('/proc/sys/kernel/random/boot_id').read_text().strip()
 print(json.dumps(out))
 '''
 
@@ -79,6 +82,9 @@ def classify(raw: dict) -> dict:
     total, available = storage['total_bytes'], storage['available_bytes']
     if not (0 <= available <= total and total > 0):
         raise ValueError('invalid storage counters')
+    memory = raw.get('host_memory')
+    if memory is not None and not 0 <= memory['available_bytes'] <= memory['total_bytes']:
+        raise ValueError('invalid host memory counters')
     # PLAN's default route: local storage with normal host headroom. A different
     # bounded storage route needs its own declared, checked execution manifest.
     headroom = available / total >= .05
@@ -87,6 +93,7 @@ def classify(raw: dict) -> dict:
     return {'host': raw['host'], 'checked_utc': raw['checked_utc'],
             'inventory_complete': True, 'devices': list(devices.values()),
             'local_storage': storage, 'default_storage_headroom': headroom,
+            'host_memory': memory, 'boot_id': raw.get('boot_id'),
             'idle_device_indices': sorted(idle),
             'candidate_indices_pending_lease_checks': sorted(idle) if headroom else [],
             'device_claims': 0}

@@ -58,7 +58,8 @@ def foreign_conflicts(host, index, gpu_uuid, sources):
 
 
 def claim(root, inventory, index, *, sources, reservation_bindings, seconds,
-          cumulative_limit_hours, storage_required_bytes, minimum_memory_mib, now=None):
+          cumulative_limit_hours, storage_required_bytes, minimum_memory_mib,
+          minimum_host_available_bytes=0, now=None):
     now = time.time() if now is None else now
     if not 0 < seconds <= 7200 or not 0 < cumulative_limit_hours <= 8:
         raise ValueError('undeclared resource budget')
@@ -69,6 +70,10 @@ def claim(root, inventory, index, *, sources, reservation_bindings, seconds,
         raise RuntimeError('device memory below frozen route requirement')
     if inventory['local_storage']['available_bytes'] < storage_required_bytes:
         raise RuntimeError('bounded storage requirement is not met')
+    if minimum_host_available_bytes:
+        memory = inventory.get('host_memory')
+        if not memory or memory['available_bytes'] < minimum_host_available_bytes:
+            raise RuntimeError('host memory headroom is insufficient or unknown')
     for b in reservation_bindings:
         if digest(b['path']) != b['sha256']:
             raise RuntimeError('reservation evidence changed; refresh it before claiming')
@@ -90,7 +95,10 @@ def claim(root, inventory, index, *, sources, reservation_bindings, seconds,
                   'started_unix': now, 'expires_unix': now+seconds,
                   'reserved_device_hours': seconds/3600, 'foreign_registry_evidence': evidence,
                   'reservation_bindings': reservation_bindings,
-                  'supervisor_pid': os.getpid(), 'inventory': inventory}
+                  'supervisor_pid': os.getpid(),
+                  'supervisor_start_ticks': Path('/proc/self/stat').read_text().rsplit(')',1)[1].split()[19],
+                  'supervisor_boot_id': Path('/proc/sys/kernel/random/boot_id').read_text().strip(),
+                  'inventory': inventory}
         registry['leases'].append(record)
         atomic_json(root/'registry.json', registry)
         atomic_json(root/(lease_id+'.json'), record)

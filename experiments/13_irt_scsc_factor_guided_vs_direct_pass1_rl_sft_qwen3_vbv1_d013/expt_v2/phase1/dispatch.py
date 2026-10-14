@@ -13,13 +13,15 @@ import subprocess
 import sys
 
 from device_watch import observe
-from lease import claim, release, atomic_json
+from lease import claim, release
 from panel import digest, write_new
 
 
 def published(plan):
     lock_path = Path(plan['lock'])
     lock = json.loads(lock_path.read_text())
+    if lock.get('gate') != 'LP1' or lock.get('status') != 'FROZEN':
+        raise RuntimeError('LP-1 lock is not final')
     repository = Path(plan['repository'])
     revision = plan['published_revision']
     subprocess.run(['git', 'merge-base', '--is-ancestor', revision, 'origin/main'], cwd=repository, check=True)
@@ -30,6 +32,10 @@ def published(plan):
     for binding in lock['bindings']:
         if digest(binding['path']) != binding['sha256']:
             raise RuntimeError('LP-1 input changed: '+binding['path'])
+    if lock['G0_result'] not in {b['path'] for b in lock['bindings']}:
+        raise RuntimeError('G0 prerequisite is not bound')
+    if json.loads(Path(lock['G0_result']).read_text())['status'] != 'PASS':
+        raise RuntimeError('LP-1 requires published G0 PASS')
     if digest(plan['configuration']) != lock['configuration_sha256']:
         raise RuntimeError('dispatch configuration differs from frozen lock')
     return json.loads(Path(plan['configuration']).read_text())
@@ -39,6 +45,14 @@ def command(host, argv, **kwargs):
     local = socket.gethostname().split('.')[0] == host
     args = argv if local else ['ssh', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=15', host, shlex.join(argv)]
     return subprocess.run(args, **kwargs)
+
+
+def retire_remote_lease(host, path, lease_id):
+    script = ('import json,pathlib,sys; p=pathlib.Path(sys.argv[1]); d=json.loads(p.read_text()); '
+              'assert d["id"]==sys.argv[2]; d["status"]="RELEASED"; '
+              't=p.with_suffix(".retired.tmp"); t.write_text(json.dumps(d)); t.replace(p)')
+    command(host, ['python3', '-c', script, path, lease_id],
+            capture_output=True, text=True, check=True, timeout=30)
 
 
 def dispatch(plan_path):
@@ -52,6 +66,7 @@ def dispatch(plan_path):
         subprocess.run([sys.executable, str(Path(__file__).resolve().parents[1]/'watchdog_e13v2.py'),
                         '--root', plan['watchdog_root'], '--run', plan['watchdog_run'],
                         'register', '--role', 'lp1-dispatch', '--pid', str(os.getpid())], check=True)
+        reasons = []
         for route in config['routes']:
             inventory = observe(route['host'])
             if not inventory['inventory_complete']: continue
@@ -60,8 +75,10 @@ def dispatch(plan_path):
                     lease = claim(plan['lease_root'], inventory, index,
                         sources=config['foreign_registries'], reservation_bindings=config['reservation_bindings'],
                         seconds=config['maximum_seconds'], cumulative_limit_hours=config['cumulative_limit_hours'],
-                        storage_required_bytes=route['storage_required_bytes'], minimum_memory_mib=route['minimum_memory_mib'])
-                except RuntimeError:
+                        storage_required_bytes=route['storage_required_bytes'], minimum_memory_mib=route['minimum_memory_mib'],
+                        minimum_host_available_bytes=route.get('minimum_host_available_bytes',0))
+                except RuntimeError as exc:
+                    reasons.append({'host': route['host'], 'index': index, 'reason': str(exc)})
                     continue
                 # A second current process census closes the preparation/claim gap.
                 fresh = observe(route['host'])
@@ -92,15 +109,19 @@ def dispatch(plan_path):
                     retrieved = command(host, receipt_command, capture_output=True, text=True, check=True, timeout=30)
                     receipt = json.loads(retrieved.stdout)
                     receipt['supervisor_exit_code'] = result.returncode
+                    if result.returncode != 0 and receipt['status'] == 'PASS':
+                        receipt.update(status='INCOMPLETE', probability_status='PASS')
                     write_new(root/'result.json', receipt)
                     clean = bool(receipt.get('cleanup_verified'))
+                    if clean:
+                        retire_remote_lease(host, route['lease_path'], lease['id'])
                     release(plan['lease_root'], lease['id'], cleanup_verified=clean)
                     return receipt
                 except BaseException:
                     # Never silently clear a lease after an unknown remote exit.
                     release(plan['lease_root'], lease['id'], cleanup_verified=False)
                     raise
-        return {'status': 'WAIT_FOR_IDLE_UNRESERVED_DEVICE'}
+        return {'status': 'WAIT_FOR_IDLE_UNRESERVED_DEVICE', 'candidate_rejections': reasons}
 
 
 def main():

@@ -1,5 +1,5 @@
 {
-  "status": "PROSPECTIVE_CONFIGURATION_NOT_YET_LP1_LOCKED",
+  "status": "FROZEN_BY_LP1_LOCK",
   "temperature": 1.0,
   "top_p": 1.0,
   "top_k": -1,
@@ -16,11 +16,30 @@
   "probability_thresholds": {
     "unsupported_tokens": 0,
     "median_absolute_logprob_error": 0.01,
-    "p99_absolute_logprob_error": 0.10,
+    "p99_absolute_logprob_error": 0.1,
     "importance_ratio_cap": 2.0,
     "importance_truncation_fraction": 0.01,
     "quantile_method": "linear"
   },
   "threshold_source": "PROTOCOL sections 5 and 6; LP-1 generation-only admission under PLAN section 5",
-  "seed_policy": "Freeze batch seeds and per-cell seed derivation in LP-1 before generation; batch 2 distinct from all fitting batches"
+  "seed_policy": "first four SHA-256 bytes big-endian of e13v2-anchor NUL batch_seed NUL task NUL sample; all 17256 prepared seeds distinct",
+  "terminal_token_ids": [
+    151643,
+    151645
+  ],
+  "max_model_len": 15945,
+  "max_parallel_sequences": 32,
+  "probe_responses": 8,
+  "chat_template_kwargs": {
+    "enable_thinking": true,
+    "add_generation_prompt": true
+  },
+  "template_sha256": "05a87b8f96bdbfaa533267d231964d56045df3368b0e1b21b0a704c0c88b8a09",
+  "batch_seeds": {
+    "lp1": 1302101,
+    "base": 1302111,
+    "half": 1302121,
+    "full1": 1302131,
+    "full2": 1302141
+  }
 }
