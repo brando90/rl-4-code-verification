@@ -4,8 +4,8 @@
 
 **TLDR:** Version 2's read-only R2 diagnosis under adopted A3 is complete: 2/49 exceptions are class (a), 0/49 (b), 4/49 (c), and 43/49 (d). All four unequal ordinary cells are historical-record irreproducibility (c), satisfying A3's classification condition. The master must enforce exclusions and full-manifest bounds before G0. Original R2 FAIL under A2 remains unchanged; no new cell measurement, fitting or reinforcement learning ran.
 
-Last updated: 10-14-2026 13:15 PDT
-Status: **A3 diagnosis COMPLETE — classification condition satisfied; exclusion/bounds admission audit is next.**
+Last updated: 10-14-2026 14:25 PDT (master)
+Status: **G0 ADMITTED under A3 rule 3; G0 not yet computed.** See the [admission record](R2_A3_ADMISSION_10-14-2026.md). Next, a fresh owner verifies the exclusion manifest, freezes the A3 wrapper and its lock, then runs G0 once ([brief](cc_resume_g0.md)).
 
 | Stage | Status | Measured / declared |
 |---|---|---|
@@ -16,10 +16,11 @@ Status: **A3 diagnosis COMPLETE — classification condition satisfied; exclusio
 | L1v2 | FROZEN | 51 verified bindings; F0v2 0.50, F1v2 0.85; zero validation/test factors at freeze |
 | R2 | FAIL under A2 | 38,784/38,784 accounted; 38,562 measured; 175 typed limits; 47 unresolved; 48 one-time retries |
 | A3 diagnosis | COMPLETE; rule 3(i) satisfied | 49/49 classified; all four unequal cells (c) |
-| G0 | NOT RUN; master exclusion/bounds audit pending | 0/135 validation tasks |
+| A3 admission | G0 ADMITTED (master, 10-14-2026) | 217/33,456 ordinary cells excluded; 33,239 kept; worst-case completions for every G0/G1 statistic |
+| G0 | NOT RUN; wrapper and lock to be frozen first | 0/135 validation tasks |
 | Phases 1 and 2 | NOT RUN; later gates pending | No fitting or reinforcement learning |
 
-[Read-only diagnosis](RESULTS_R2_diagnosis.md) · [Adopted A3 and owner recommendation](AMENDMENT_A3_PROPOSED_R2_diagnosis_and_admission_10-14-2026.md). **Next:** master verifies exclusion and full-manifest worst-case bounds under A3 rule 3(ii–iii), then records admission. All 49 exceptions plus 168 existing typed ordinary limits are listed privately: 217/33,456 excluded, 33,239 retained measured/equal. No class (b) defect is demonstrated; its repair/re-measurement set is empty. Opaque unresolved reasons are `RuntimeError` for 2/2; no sealed details opened, public PASS stands. Required integration suite after synchronizing main `d3c2777`: 382 passed, 23 skipped, 0 failed in 164.19 seconds. The second synchronization to `69ae5be` added independent experiment-15 tests: 14/14 passed in 47.06 seconds. This is diagnosis only; no G0 or cell rerun occurred.
+[Read-only diagnosis](RESULTS_R2_diagnosis.md) · [Adopted A3 and owner recommendation](AMENDMENT_A3_PROPOSED_R2_diagnosis_and_admission_10-14-2026.md). **Admission recorded** 10-14-2026 14:25 PDT under A3 rule 3(ii–iii) ([record](R2_A3_ADMISSION_10-14-2026.md)). Next, the fresh owner verifies the manifest and freezes the wrapper before G0. All 49 exceptions plus 168 existing typed ordinary limits are listed privately: 217/33,456 excluded, 33,239 retained measured/equal. No class (b) defect is demonstrated; its repair/re-measurement set is empty. Opaque unresolved reasons are `RuntimeError` for 2/2; no sealed details opened, public PASS stands. Required integration suite after synchronizing main `d3c2777`: 382 passed, 23 skipped, 0 failed in 164.19 seconds. The second synchronization to `69ae5be` added independent experiment-15 tests: 14/14 passed in 47.06 seconds. This is diagnosis only; no G0 or cell rerun occurred.
 
 [L1v2 lock report](RESULTS_L1v2.md) · [R1 report](RESULTS_R1_attempt_1.md) · [Attempt-2 report](RESULTS_R0_attempt_2.md) · [Unchanged attempt-1 report](RESULTS_R0_terminal.md) · [Owner checkpoint](CKPT_e13_v2_owner.md). The full historical denominator stays 38,784 = 21,504 base + 20,520 ladder − 3,240 overlap. The 5,400 unavailable ladder cells remain separately declared. Splits: train 539, validation 135, test 222.
 

@@ -2,10 +2,15 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2.md>
 
-**TLDR:** The master's resumable record for experiment 13 version 2. The plan is at revision 2 after the single light review (FAIL, all 13 findings fixed). The SNAP owner is **RUNNING** on skampere1 in tmux `codex-rl4cv-e13v2-owner` (Codex `gpt-6-astra` high, full access), launched 10-13-2026 11:41 PDT.
+**TLDR:** The master's resumable record for experiment 13 version 2.
+
+- **Plan:** revision 2, after the single light review (FAIL, with all 13 findings fixed).
+- **Admission:** G0 was admitted under A3 on 10-14-2026 ([admission record](R2_A3_ADMISSION_10-14-2026.md)).
+- **Next:** a fresh SNAP owner runs G0 onward from [cc_resume_g0.md](cc_resume_g0.md).
+- **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-14-2026 13:00 PDT
+Last updated: 10-14-2026 14:25 PDT
 
 ## Task and owner
 
@@ -123,7 +128,20 @@ Last updated: 10-14-2026 13:00 PDT
   - It paused its own hourly check-in (cron `c6d0f8df` deleted).
   - It sends no brief to the owner while the ultracode workflow owns experiment 13.
 
+## 10-14-2026 13:41–14:25 PDT: master resumed; G0 admitted under A3
+
+- **Handback.** The ultracode master adopted A3 (`57c3bb6`) and the owner published the diagnosis (`8c7976d`). The ultracode master then handed the version 2 master role back: "please resume the v2 master role now".
+- **Decision: G0 ADMITTED under A3 rule 3** ([R2_A3_ADMISSION_10-14-2026.md](R2_A3_ADMISSION_10-14-2026.md)). All 4 unequal cells are class (c); the 217-cell private exclusion manifest exists (SHA-256 `c00b35ab…4128`); the opaque PASS stands.
+- **Why a wrapper is needed.** The frozen `reproduction/g0.py` (L1v2 SHA-256 `5042467c…`, checked equal on the Mac) refuses unless R2 is PASS, and treats any missing sample as an INCOMPLETE stratum. G0 therefore runs through a new wrapper, `g0_a3.py`:
+  - it reuses the frozen `evaluate` unchanged;
+  - it evaluates the frozen rule at every feasible completion of the excluded cells: PASS if the minima clear the thresholds, FAIL if a maximum misses one, INCONCLUSIVE otherwise;
+  - its code, tests and lock are pushed before any G0 statistic is computed.
+- **Transitions.** An INCONCLUSIVE gate does not advance. G1 fits treat excluded cells as missing, and the held-out G1 metrics are bounded; this is disclosed.
+- **Brief.** [cc_resume_g0.md](cc_resume_g0.md), with the verbatim SNAP pre-approval line.
+
 ## Exact next commands (master)
+
+0. **Resume:** dispatch a fresh owner in a new tmux session `codex-rl4cv-e13v2-owner-g0`, seeded with `expt_v2/cc_resume_g0.md` and using the same client, flags and fallbacks as item 2. Never type into the old owner session.
 
 1. **Preflight, once SNAP answers:**
 
