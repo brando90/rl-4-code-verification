@@ -2,34 +2,41 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2_owner.md>
 
-**TLDR:** Version 2 completed full reproduction and Amendment A2 retries; R2 fails ordinary oracle equality and the unresolved ceiling. Downstream measurement is not admitted; the full failure report is prepared.
+**TLDR:** Read-only R2 diagnosis under adopted A3 is complete: all four unequal ordinary cells are historical-record irreproducibility, class (c). A3's classification condition is satisfied; exclusion/bounds enforcement awaits the master. Original R2 FAIL under A2 remains unchanged. No new cell measurement or G0 ran.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-13-2026 21:22 PDT
+Last updated: 10-14-2026 13:15 PDT
 
 ## Goal
-- Complete version-2 execution through admitted gates or a published PLAN § 4 failure. R2 fails under Amendment A2; downstream work is not admitted.
+- Deliver the master's read-only R2 diagnosis and recommendation under adopted A3. This owner round ends after publication; further execution belongs to the version 2 master with one writer.
+
 ## What ran
-- Original R2 completed naturally: 38,784/38,784 cells, unchanged coordinator. A2 retried exactly 46 ordinary and two opaque untyped cells once, in separate route processes.
-- Corrected A2 launch: 10-13-2026 20:57:06 PDT, code `90089e2`, tmux `e13v2-a2-r2-resource`, scope `e13v2-a2-r2.scope`; original limits and code retained. Public result completed before 21:18:55 PDT.
-- Required publication suite: `E13_REQUIRE_LEAN_INTEGRATION=1 make test`, 333 passed / 23 unrelated skips, 174.31 seconds; no historical-cell rerun.
+- Read existing ordinary ledgers, both A2 attempts, retained historical records and resource snapshots; classify all 49 A3 exceptions plus one supplemental typed retry. Separate opaque read-only process returned count/reason codes only; no test per-cell detail was opened.
+- Pulled main before diagnosis and again before applying the 13:00 master addendum; adopted A3 at `57c3bb6`. Appended recommendation to that document; no separate proposal or scientific code edit.
+- Required suite after synchronizing concurrent experiment-12 code/tests from main `d3c2777`: `E13_REQUIRE_LEAN_INTEGRATION=1 make test`, 382 passed / 23 skipped / 0 failed, 164.19 seconds (initial suite: 333/23, 170.80 seconds). After the second clean synchronization to `69ae5be`, all 14 newly added experiment-15 tests passed in 47.06 seconds; no shared code changed. Logs and hashes in [diagnosis](RESULTS_R2_diagnosis.md). No historical-cell rerun, model call or graphics processing unit launch.
+
 ## Results
-- **R2 FAIL under A2**: 38,562 measured + 175 typed limits + 47 unresolved = 38,784 accounted. Zero integrity defects; component consistency PASS on both routes.
-- Ordinary: 33,239/33,243 measured oracle-equal (four value mismatches, all statuses equal); 168 typed limits; 45 unresolved / 33,456 exceeds maximum 33. Retries: 45 unresolved, one typed limit.
-- Opaque: measured equality PASS, 5,319 measured + seven typed limits + two unresolved / 5,328; two identical retries remain unresolved, within maximum five. No test details inspected.
-- R0 attempt 2 PASS 30/30; R1 attempt 1 PASS 400/400; L1v2 frozen before validation/test factors. All version-1 and attempt-1 scientific evidence unchanged.
-- Ledger: 38,784 first attempts, 48 second attempts, zero running attempts or registered live measurement children. Original/effective hashes and source bindings verified.
-- Fenced watchdog supervised the run; its two owned schedule entries are now retired. No terminal marker or terminal email. Owner remains native process 887384, full access/no approvals.
+- A3 ordered classes over 49: (a) 2/49, (b) 0/49, (c) 4/49, (d) 43/49. All four measured inequalities are value-only, historical/current status `scored`, validation split, class (c). Their original compile-failure cause was not retained; timeout/nondeterminism is not asserted.
+- Forty-five unresolved ordinary cells: two have explicit oracle timeouts; the other 43 do not meet an earlier class. Supplemental previously typed retry: one frontend timeout, class (a). Opaque unresolved codes: 2/2 `RuntimeError`; public measured equality PASS stands.
+- Rule-selected class (b) repair/re-measurement set is empty. Private exclusion manifest lists 217/33,456 ordinary cells (49 exceptions plus 168 typed limits), leaving 33,239 measured/equal without changing the full denominator.
+- Original R2 counts remain 38,562 measured + 175 typed limits + 47 unresolved = 38,784. No original receipt or lock rewritten. Verified 1,057 selected ordinary evidence files, 11 relevant frozen code/environment bindings and all 42 version-1 files unchanged.
+- R0 attempt 2 PASS 30/30; R1 attempt 1 PASS 400/400; L1v2 remains frozen. No G0, anchors, fitting, training or Phase 2 evaluation this round. All counts deterministic, p-val=n/a.
+
 ## Stuck / blocked
-- Scientific admission failure, not an account/resource blocker. No G0, anchors, fitting, training or Phase 2 test evaluation is admitted. The reinforcement-learning hypothesis remains untested.
-- Watchdog retirement briefly cleared the account schedule through a mistaken `crontab -` read. Seven unrelated entries restored byte-for-byte and independently checked against the later E08 backup; helper corrected to `-l`. The 21:20 periodic monitor checks may have been missed; no active job was killed or measurement changed.
+- No account or access blocker. A3 rule 3(i) is satisfied, but this diagnosis round does not certify exclusion/bounds enforcement or launch G0. Master must complete rule 3(ii–iii) admission checks.
+- Validated Valkyrie route is down according to the master brief; not probed. Later judge-dependent work remains subject to that dependency.
+- Fenced watchdog entries remain retired from the completed measurement run. No schedule or other owner's process was touched this round; any later master resumption must re-arm additively per A3.
+
 ## Next steps
-- Publish the completed [R2 report](RESULTS_R2.md) and public receipts to main; retain frozen evidence. No further scientific attempt is authorized by this runbook.
-- Execution checkout remains at the user-specified work root: it is the live owner's working directory and contains absolute-path-bound scientific evidence/code. Owner retains cleanup responsibility; remove only after live consumers retire and bound reproduction evidence is preserved and verified at its canonical location.
+- Publish [RESULTS_R2_diagnosis.md](RESULTS_R2_diagnosis.md), the appended [A3 recommendation](AMENDMENT_A3_PROPOSED_R2_diagnosis_and_admission_10-14-2026.md), this checkpoint and results.md to main after the passing required suite.
+- Hand the master the private classification/exclusion manifests and evidence hashes. Recommend enforcing exclusions and valid full-manifest worst-case bounds before admission; no class (b) repair, fixture/train gate rerun or third cell attempt is selected. Bound-sensitive verdicts are INCONCLUSIVE.
+- Retain this execution checkout and absolute-path-bound evidence for the master; no cleanup or new writer launched.
+
 ## Brando to-do
-- None for this gate disposition.
+- None for this read-only deliverable. The version 2 master owns the next admission audit under adopted A3.
 
 ## Log
+- 10-14-2026 13:15 PDT -- Read-only A3 diagnosis complete: 49/49 classified, (a) 2, (b) 0, (c) 4, (d) 43; all four unequal cells (c). Supplemental typed A2 retry (a), opaque unresolved 2/2 RuntimeError by aggregate-only process. All 50 requested ordinary cells have private evidence-bound diagnosis; 1,057 ordinary raw files, 11 relevant L1 bindings and 42 version-1 files verified unchanged. Zero cell/model calls or GPU launches. Adopted A3 read at 57c3bb6 after the master addendum; no second proposal. Recommend master exclusion/bounds audit, 217/33,456 excluded and 33,239 retained; no class (b) repair set. Required suite initially 333/23 in 170.80 seconds; after clean rebase onto concurrent code at d3c2777, 382 passed / 23 skipped / 0 failed in 164.19 seconds. Second clean synchronization to 69ae5be adds independent experiment-15 tests: 14/14 passed in 47.06 seconds. Publishing diagnosis and appended recommendation; no G0 or notification.
 - 10-13-2026 21:22 PDT -- R2 under A2 completed FAIL: ordinary four measured value mismatches / 33,243 and 45 unresolved above maximum 33; opaque equality PASS and two unresolved within maximum five. All 48 allowed retries finished (47 unresolved, one typed limit). Final audit verifies original and effective hashes, 38,784 first attempts / 48 second attempts, unchanged source bindings, and zero live measurement children. Cleanup total 336 descendants from 178 terminal workers, zero forced kills or cleanup retries. Required publication suite 333 passed / 23 skipped in 174.31 seconds. Retirement incident: incorrect crontab read briefly cleared the schedule after measurements ended; restored seven unrelated entries by 21:20:23 PDT, verified against three snapshots, corrected helper. Owned entries retired; no terminal marker/email. Report and public receipts prepared; no downstream execution.
 - 10-13-2026 20:54 PDT -- Original coordinator completed naturally; no original process or running attempt remains. A2 first launch failed before route-data access or any retry: the requested cap differs from kernel page representation by 2,048 bytes. A zero-cell control reproduced the exact representation. Separate launcher and supplemental lock preserve all original A2 and measurement files; 22 synthetic tests passed. Required full suite passed 333 tests with 23 unrelated skips in 172.52 seconds; Lean integration required. Original cleanup total: 335 registered descendants from 177 completed workers, zero forced kills/retries. No terminal notification or marker.
 - 10-13-2026 17:43 PDT -- Original reproduction at 29,533/38,784 receipts (ordinary 24,205/33,456), coordinator alive and zero retries. Preservation verified again: original L1v2 lock, 50 unchanged bindings plus authorized PLAN amendment, 42 version-1 files and 47 frozen attempt-1 files. Fenced cleanup totals 95 descendants from 50 terminal workers, zero forced kills or measurement retries. Shared index refreshed to `e9f7620`; checkout-lifecycle changes do not alter gate definitions. This execution checkout remains active under the owner; cleanup waits for all live consumers and preservation of bound evidence. The 50% and full 4B exports each passed ten file-hash checks as metadata preparation only. A2 remains published and unexecuted, awaiting original completion. After synchronizing concurrent work, the required full suite passed 319 tests with 23 unrelated skips in 296.51 seconds.
