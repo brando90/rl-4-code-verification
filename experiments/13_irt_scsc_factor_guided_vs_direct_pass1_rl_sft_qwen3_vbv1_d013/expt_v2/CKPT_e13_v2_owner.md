@@ -5,7 +5,9 @@
 **TLDR:** Experiment 13 version 2 stops at a final measured LP-1 FAIL under A4. Attempt 2 completed 8/8 responses and 40,035 generated tokens; its 99th-percentile log-probability error 0.124769325 exceeds the frozen 0.10 ceiling. Other criteria pass. A4 forbids attempt 3 after statistics; cleanup passed, both leases are released, and no downstream run is admitted. G0 remains PASS.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-14-2026 16:38 PDT
+Last updated: 10-14-2026 16:42 PDT
+
+Closeout verified: report and final G1 method published at `77558aa`; the A4 watchdog recorded exactly one stopped notification as **sent** to `brando.science@gmail.com`. Its receipt shows zero live experiment children, both leases released and all twelve cron lines preserved. [Completion receipt](LP1_A4/completion.json).
 
 ## Final LP-1 result — 10-14-2026 16:38 PDT
 
@@ -13,7 +15,7 @@ Last updated: 10-14-2026 16:38 PDT
 
 The lease lasted 362.776132 seconds (0.100771148 device-hours), including the non-probe preflight; cumulative usage is 0.115364424/0.6 device-hours. Four cleanup checks passed without signals; no marked process remains and both leases are RELEASED. The private launch plan is retired; all twelve cron lines remain unchanged. The ignored Ray destructor error happened after the probability receipts and does not reclassify this measured FAIL as infrastructure incompleteness.
 
-A4 rule 5 makes a measured verdict final. No attempt 3, anchor generation, calibration, G1/H2 evaluation or Phase 2 is admitted. The final G1 driver and executable method lock were prepared before any fit and are being published with this result; their LP-1 prerequisite prevents execution. All actual-data fits remain zero. Notification follows verified publication through the A4 watchdog.
+A4 rule 5 makes a measured verdict final. No attempt 3, anchor generation, calibration, G1/H2 evaluation or Phase 2 is admitted. The final G1 driver and executable method lock were prepared before any fit and are published with this result; their LP-1 prerequisite prevents execution. All actual-data fits remain zero. The A4 watchdog notification was sent after verified publication.
 
 Final preparation/result publication verification: **552 passed, 23 skipped, zero failures in 243.53 seconds**, direct exit 0 with Lean integration required. Seven focused G1 driver checks cover frozen publication/input refusal, phase chronology and retained partial-fit receipts. The final [G1 method lock](locks/G1_A3.json) and [driver](phase1/g1_driver.py) are complete; no actual-data fit ran. [Test receipt](phase1/G1_A3_publication_test.json).
 

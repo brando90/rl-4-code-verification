@@ -10,7 +10,7 @@
 
 The lease lasted 362.776132 seconds (0.100771148 device-hours), including the non-probe preflight; cumulative usage is 0.115364424/0.6 device-hours. Four cleanup checks passed without signals; no marked process remains and both leases are RELEASED. The private launch plan is retired; all twelve cron lines remain unchanged. The ignored Ray destructor error happened after the probability receipts and does not reclassify this measured FAIL as infrastructure incompleteness.
 
-A4 rule 5 makes a measured verdict final. No attempt 3, anchor generation, calibration, G1/H2 evaluation or Phase 2 is admitted. The final G1 driver and executable method lock were prepared before any fit and are being published with this result; their LP-1 prerequisite prevents execution. All actual-data fits remain zero. Notification follows verified publication through the A4 watchdog.
+A4 rule 5 makes a measured verdict final. No attempt 3, anchor generation, calibration, G1/H2 evaluation or Phase 2 is admitted. The final G1 driver and executable method lock were prepared before any fit and are published with this result; their LP-1 prerequisite prevents execution. All actual-data fits remain zero. The A4 watchdog recorded one stopped notice as sent at 16:42 PDT after verified publication ([receipt](../LP1_A4/completion.json)).
 
 ## Earlier A4 preparation (historical)
 

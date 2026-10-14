@@ -6,6 +6,8 @@
 
 Final preparation/result publication verification: **552 passed, 23 skipped, zero failures in 243.53 seconds**, direct exit 0 with Lean integration required. Seven focused G1 driver checks cover frozen publication/input refusal, phase chronology and retained partial-fit receipts. The final [G1 method lock](locks/G1_A3.json) and [driver](phase1/g1_driver.py) are complete; no actual-data fit ran. [Test receipt](phase1/G1_A3_publication_test.json).
 
+Closeout verified: report and final G1 method published at `77558aa`; the A4 watchdog recorded exactly one stopped notification as **sent** to `brando.science@gmail.com`. Its receipt shows zero live experiment children, both leases released and all twelve cron lines preserved. [Completion receipt](LP1_A4/completion.json).
+
 ## Attempt 2 result — 10-14-2026 16:38 PDT
 
 **Verdict: FAIL, final under A4 rule 5.** All 8/8 fixed probe responses and 40,035 generated tokens have trainer probability receipts. The 99th-percentile error exceeds its 0.10 ceiling by 0.0247693253. No threshold, seed, model hash, sampler, cap, scorer or probe identity changed. [Machine-readable result and evidence hashes](LP1_A4/attempt2_result.json).
@@ -33,7 +35,7 @@ The trainer's teardown logged an ignored policy-destructor exception: it attempt
 
 A4 says an attempt computing admission statistics is final, PASS or FAIL. Its maximum of three is not permission to retry a measured failure. Attempt 3 is **not admitted**. PLAN section 5's LP-1 prerequisite remains unmet, and PROTOCOL section 8 disallows training beyond admitted diagnostics after a technical failure. G0 remains PASS. Anchor responses are 0/17,248; calibration, G1/H2 and Phase 2 remain unmeasured.
 
-The final G1 execution driver and method lock were prepared during this attempt, before any fit. They retain publication, input-hash, library-version and phase-order checks; the failed LP-1 prerequisite prevents execution. Their tests/publication are retained with the other Phase 1 preparation. The scientific training comparison has not been run. Completion notification through the A4 watchdog follows verified result publication.
+The final G1 execution driver and method lock were prepared during this attempt, before any fit. They retain publication, input-hash, library-version and phase-order checks; the failed LP-1 prerequisite prevents execution. Their tests/publication are retained with the other Phase 1 preparation. The scientific training comparison has not been run. The A4 watchdog completion notification is recorded above.
 
 ## Adopted A4 continuation — 10-14-2026 16:23 PDT
 
