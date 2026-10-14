@@ -4,7 +4,7 @@
 
 **TLDR:** Qwen3 1.7B, 4B, 8B and 14B are compared after identical supervised fine-tuning (SFT): 1,315 examples, 658 updates and 5,752,936 loss tokens on VeriBench V1; execution status is **PARTIAL**.
 
-**Last updated:** 10-13-2026 17:49 PDT
+**Last updated:** 10-13-2026 17:51 PDT
 
 **Status:** PARTIAL — Vals managed AWS unavailable for BrandoMiranda-fellow; route controls unadmitted, generation stopped under the runbook partial rule
 
@@ -138,6 +138,8 @@ The validated judge is GPT-6 Sol high plus Claude Opus 5.5 max, three ratings pe
 Full `make test`: 338 passed, 4 skipped in 293.25 seconds (terminal run). `git diff --check` passes. All six reused systems reproduce every original scope field exactly, including means, bounds and intervals. The independent CSV summarizer checks every factor mean and SCSC across all nine systems and three scopes (108 checks); unknown-only cohorts are checked as unavailable. Version 1 files remain unchanged.
 
 Scientific inputs: [protocol](PROTOCOL_v2.md), [input checks](results/inputs_check.json), [manifest](results/test_manifest_v2.json), [route identity](results/route_identity_v2.json), [forecast scores](results/forecast_evaluation_v2.json), [independent check](results/independent_factor_check_v2.json). Runtime state and failed attempts stay under `/lfs/skampere1/0/brando9/rl4cv_e08/v2/`. The [checkpoint log](CKPT_e08v2.md) retains launch, environment recovery and publication history.
+
+Closeout: the partial report was published at `c7940fe` and its remote bytes verified. The required PARTIAL DONE email was sent once at 17:51:20 PDT with the specified team CCs ([receipt](results/done_email_receipt_v2.json)). All owned jobs/services, leases, port claims and cron entries are retired ([teardown](results/teardown_v2.json)); the resumable checkpoint remains.
 
 **TLDR-end:** [rl4cv: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v2 matched step-658 test] The matched-budget test evaluation is partial; measured and unknown cells, paired comparisons and every forecast are reported above.
 
