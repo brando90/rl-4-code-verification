@@ -4,22 +4,25 @@
 
 **TLDR:** This is the resume record for version 2: a one-time test evaluation of 1.7B, 4B and 14B at step 658, so all four sizes are compared after identical SFT (same data, 658 updates, 5,752,936 tokens). The binding protocol is `PROTOCOL_v2.md` and the runbook is `cc.md`.
 
-**Created:** 10-13-2026 17:02 PDT (Claude master). **Last updated:** 10-13-2026 17:22 PDT
+**Created:** 10-13-2026 17:02 PDT (Claude master). **Last updated:** 10-13-2026 17:30 PDT
 
 ## Goal
-Compare four Qwen3 sizes at step 658 / 5,752,936 supervised fine-tuning tokens on VeriBench V1 test, preserving version 1.
+- Finish experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v2: 5,328 new test cells, all ratings, matched four-size report and one DONE email.
 ## What ran
-- **Launch receipt, 10-13-2026 17:07 PDT:** host skampere1; tmux `codexv-rl4cv-e08v2-matched-test`; client `codex-vals` (Vals ChatGPT workspace, `CODEX_HOME=~/.codex-vals`); model `gpt-6-astra`, effort `high`; flags `--dangerously-bypass-approvals-and-sandbox` (full access, approval never), observed in `/proc/2972451/cmdline`; PID 2972451; deployment `deploy_e6c90b4a14374fbe81cb42a3fc065263`; clone `$WORK/rl-4-code-verification` at `f2c63f8`. First actions observed: read `cc.md`, refreshed agents-config, read `INDEX_RULES.md`. `[RUN START]` email sent 17:09 PDT to all four of Brando's inboxes.
-- **Model choice:** Codex `gpt-6-astra` high, because this is a well-specified but integrity-critical pipeline adaptation, on the Vals workspace that ran version 1. Fallbacks: personal Codex `gpt-6-astra` high (`~/.codex`), then `clauded-vals` `claude-fable-5-1` high, then `clauded`.
-- Session `codexv-rl4cv-e08v2-matched-test`; deployment `deploy_e6c90b4a14374fbe81cb42a3fc065263`; gpt-6-astra / high (verified process 2972451, native child 2972470); danger-full-access / never.
-- Runbook read fully; rules refreshed; main f2c63f8; version 1 DONE and no live writer; installed scipy/psutil into test environment; baseline: 328 passed / 4 skipped / 4 inherited CODEX_HOME failures; environment-corrected full suite: 338 passed / 4 skipped in 292.21 s (includes six admission tests).
+- One writer: tmux `codexv-rl4cv-e08v2-matched-test`, PID 2972470 (launcher 2972451), gpt-6-astra/high, full access/never, deployment deploy_e6c90b4a14374fbe81cb42a3fc065263.
+- Published admission `25bbe01`; all inputs and fresh judge bundle hashes match. Full make test: 338 passed / 4 skipped in 293.84 s; command uses env -u CODEX_HOME and node-local Lean.
+- GPU plan: 1.7B=4, 4B=1, 14B=2,3, ~70–75 GB/device, compute-bound, estimated 1–4 h/system; explicit CUDA_VISIBLE_DEVICES; shared leases released at merged generation. Devices 0/7 belong to others.
+- Resumable drivers named `rl4cv-e08v2-test-<label>`; runtime `$WORK/v2`. Cron every 15 min + reboot; child-aware recovery and idle nudge self-tests PASS.
+- Controls service: port 9860, claimed block 9860–9869; health/authentication verified, exact 25 control prompts; no judge calls yet.
 ## Results
-- 0/5,328 new cells generated; no judge calls. All five input hash checks PASS; route identity and 3/3 freshly downloaded judge files match version 1. START email sent 17:18 PDT. Results ledger: `experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v2/results.md`.
+- 0/5,328 new cells so far. All six reused-system summaries reproduce original values exactly; independent 108 factor/score checks PASS.
+- Master START email 17:09 and worker START 17:18 (duplicate discovered only after upstream merge); START marker prevents another. DONE not sent.
 ## Stuck / blocked
-- Nothing; test process uses `env -u CODEX_HOME` only; no source repair. Home repository alias missing, actual checkout CLAUDE.md loaded.
+- Initial generators failed before outputs: inherited CUDA_HOME=12.4. Environment-only recovery pins 12.8/private caches; all failed logs and identities retained. Verify live utilization next.
 ## Next steps
-- [p 10/10] Publish admission manifest and scripts: `git diff --check`, explicit stage, commit/pull/push; then launch leased driver sessions (cc.md §§ 2–3).
-- Runtime root `/lfs/skampere1/0/brando9/rl4cv_e08/v2`; one writer; expected runtime 8–16 h; judge estimate ~$225 plus ~$3 controls, Vals route only; allowance unknown.
+- [p 10/10] Publish prepared controls/scripts, then `.venv/bin/python expt_v2/scripts/judge_rl4cv_e08v2.py admit --suite rl4cv-e08v2-controls` (from experiment directory; repo-relative path otherwise).
+- Supervise generation/scoring; after controls pass and 3/3 score files exist, build/freeze/publish test judge pack before admission, then run cc.md §§ 4–9.
+- Local named resume copy: `$WORK/v2/CKPT_codexv-rl4cv-e08v2-matched-test.md`. Fallbacks from master: personal Codex, Vals Claude, personal Claude; allowance unknown. Judge ~$225 + ~$3 controls, Vals only.
 ## Brando to-do
 - None.
 
@@ -34,3 +37,11 @@ Compare four Qwen3 sizes at step 658 / 5,752,936 supervised fine-tuning tokens o
 - 10-13-2026 17:11 PDT -- master dispatched the worker (codex-vals gpt-6-astra high, full access verified, PID 2972451) and sent [RUN START]; runbook § 8 now adds the idle-nudge watchdog and the checkpoint location.
 
 - 10-13-2026 17:22 PDT -- integrated master launch receipt/runbook update; preserving both logs. Master START email at 17:09 was learned after worker START at 17:18; no further START email. Canonical checkpoint here; launch-named local copy lives in $WORK/v2.
+
+- 10-13-2026 17:23 PDT -- admission published at 25bbe01; GPU plan recorded before launch; idle-nudge self-test PASS; six reused-system summaries reproduce every original scope field exactly and independent 108 factor/score checks PASS (new cells still unknown).
+
+- 10-13-2026 17:23 PDT -- launch recheck found other users on GPUs 0 and 7; 1.7B guard rejected GPU 0, so its zero-cell launch is moved to idle GPU 4. Other users untouched.
+
+- 10-13-2026 17:28 PDT -- initial generators failed before any output (nvcc 12.4 rejects --compress-mode); environment corrected to CUDA 12.8, fixed sampling unchanged. Resume 1.7B/4B now; let 14B initialization finish/fail before identical resume.
+
+- 10-13-2026 17:30 PDT -- controls deployed with exact prompts; full make test 338 passed / 4 skipped in 293.84 s; all three CUDA-environment resumes initiated, failed attempts retained. Publishing controls/scripts before the first judge call.

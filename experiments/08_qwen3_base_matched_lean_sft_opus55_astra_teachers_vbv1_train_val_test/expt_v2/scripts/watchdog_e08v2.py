@@ -34,6 +34,20 @@ def notify(root, key, message, mailer):
     marker.write_text(message+'\n')
 
 
+def nudge(config, state, now):
+    session = config.get('owner_session')
+    if not session or now - state.get('last_nudge', config['started']) < 1800:
+        return False
+    pane = subprocess.run(['tmux', 'capture-pane', '-p', '-t', session], capture_output=True, text=True)
+    if pane.returncode or 'esc to interrupt' in pane.stdout.lower():
+        return False
+    subprocess.run(['tmux', 'send-keys', '-t', session, '-l', config['continuation']], check=True)
+    subprocess.run(['tmux', 'send-keys', '-t', session, 'Enter'], check=True)
+    state['last_nudge'] = now
+    state.setdefault('nudges', []).append({'at': now, 'session': session})
+    return True
+
+
 def check(root=RUNTIME, mailer=None):
     wd = root / 'watchdog'
     wd.mkdir(parents=True, exist_ok=True)
@@ -75,6 +89,9 @@ def check(root=RUNTIME, mailer=None):
                 notify(wd, name+'_stale', f'Version 2 {name} has no progress for over two hours.', mailer)
         if not alive(config.get('owner')):
             notify(wd, 'owner_dead', 'Version 2 coordinator died; resume CKPT_codexv-rl4cv-e08v2-matched-test.md. Healthy jobs preserved.', mailer)
+        if status == 'BLOCKED':
+            notify(wd, 'owner_blocked', 'Version 2 coordinator is blocked; see expt_v2/CKPT_e08v2.md.', mailer)
+        nudge(config, state, now)
         if shutil.disk_usage(root).free < 20*1024**3:
             notify(wd, 'disk_low', 'Version 2 runtime has less than 20 GiB free.', mailer)
         state['checked_at'] = now
@@ -97,7 +114,20 @@ def selftest():
             assert len((root/'mail.log').read_text().splitlines())==2
         finally:
             subprocess.run(['tmux','kill-session','-t',session],capture_output=True)
-        return {'selftest':'PASS','relaunches':1,'fake_emails':2,'duplicate_notifications':0}
+        session += '-nudge'
+        subprocess.run(['tmux','new-session','-d','-s',session,'bash --noprofile --norc'],check=True)
+        try:
+            state = {}
+            cfg.update(owner_session=session, started=time.time()-3600, continuation=f'touch {root}/nudged')
+            assert nudge(cfg, state, time.time())
+            for _ in range(30):
+                if (root/'nudged').exists(): break
+                time.sleep(0.1)
+            assert (root/'nudged').exists()
+            assert not nudge(cfg, state, time.time())
+        finally:
+            subprocess.run(['tmux','kill-session','-t',session],capture_output=True)
+        return {'selftest':'PASS','relaunches':1,'fake_emails':2,'duplicate_notifications':0,'simulated_nudges':1}
 
 
 if __name__ == '__main__':

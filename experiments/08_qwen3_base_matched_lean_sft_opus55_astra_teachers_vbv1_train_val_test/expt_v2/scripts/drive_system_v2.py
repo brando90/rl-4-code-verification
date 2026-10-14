@@ -43,9 +43,16 @@ def main():
                 lease.save(registry)
         env = os.environ.copy()
         env.update(E08_WORK=str(RUNTIME), SCORE_PAR='4', CUDA_VISIBLE_DEVICES=gpu_csv,
-                   ELAN_HOME=str(Path.home() / '.elan'))
+                   ELAN_HOME=str(Path.home() / '.elan'), CUDA_HOME='/usr/local/cuda-12.8',
+                   FLASHINFER_WORKSPACE_BASE=str(RUNTIME / 'cache_flashinfer' / label),
+                   VLLM_CACHE_ROOT=str(RUNTIME / 'cache_vllm' / label))
         cmd = ['bash', str(HERE / 'run_test_e08v2.sh'), 'test', label, model, 'local', gpu_csv, '1']
         log = RUNTIME / f'logs/driver_{label}.log'
+        previous = state / f'{label}.json'
+        if previous.exists():
+            history = state / 'attempts'
+            history.mkdir(exist_ok=True)
+            (history / f'{label}.{time.time_ns()}.json').write_bytes(previous.read_bytes())
         with log.open('a') as out:
             child = subprocess.Popen(cmd, env=env, stdout=out, stderr=subprocess.STDOUT)
             receipt = dict(identity=lease.identity(os.getpid()), child=lease.identity(child.pid), lease_id=lease_id, command=cmd, started=lease.ts())
