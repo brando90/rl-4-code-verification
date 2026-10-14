@@ -82,7 +82,7 @@ Version 1: applicability 3,224/4,674 = 0.690; P1 Spearman 0.891; P2 area 0.640; 
 - **Applicability (≥ 1 evaluable test).** The static census maps at least one test in 3,572/4,626 compiling cells with tests (0.772) before any probe, against 3,911 cells with any symbol mapped in version 1; the probe can add up to 252 cells. Type-unknown attrition then removes some. Expected: unchanged to slightly higher.
 - **Fully applicable share** (new primary cohort for P2/P3). Static upper bound 3,129/4,626 = 0.676 before probes (≤ 3,381 = 0.731 after). Cells with a recorded result or argument type mismatch (272 and 266) are the likely losses. Expected: 0.55–0.70.
 - **P1** moves little: system ranks are dominated by compile rate and the helper/partial cases concentrate in two systems.
-- **P2 rises.** The inspected false failures were all at SCSC = 1.0 (Claude Opus 5 max); removing helper mappings (394 cells change entry point, 364 cells had a helper excluded) and moving partial cells to missing removes high-score "failures". Expected area above 0.640.
+- **P2 rises.** The inspected false failures were all at SCSC = 1.0 (Claude Opus 5 max); removing helper mappings (pre-amendment census: 394 cells change entry point, 364 cells had a helper excluded; after V2-A1 the frozen census records 379 and 364) and moving partial cells to missing removes high-score "failures". Expected area above 0.640.
 - **P3 rises** for the same reason, from 0.151.
 - **Missingness rises**: cells the probe cannot decide (dose interval pattern) become missing instead of helper-mapped failures; the bounds report them.
 

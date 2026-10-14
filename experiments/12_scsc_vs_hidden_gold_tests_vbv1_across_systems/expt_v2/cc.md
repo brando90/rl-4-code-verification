@@ -37,12 +37,16 @@ python3 - <<'EOF'
 import hashlib, json, pathlib
 from rl4cv.forecast import verify_forecast
 E = pathlib.Path('experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems')
+# Both forecast files must verify; the pinned inputs come from the amendment A1 file, because
+# V2-A1 changed adapter_v2.py and reran the census after the original freeze (PROTOCOL section 8).
 assert verify_forecast(E/'expt_v2/forecasts/e12_v2_forecast.json')
-f = json.loads((E/'expt_v2/forecasts/e12_v2_forecast.json').read_text())['inputs']
+assert verify_forecast(E/'expt_v2/forecasts/e12_v2_forecast_amendment_A1.json')
+f = json.loads((E/'expt_v2/forecasts/e12_v2_forecast_amendment_A1.json').read_text())['inputs']
 for name, path in [('adapter_v2.py_sha256', 'expt_v2/scripts/adapter_v2.py'), ('mapping_census_v2.json_sha256', 'expt_v2/results/mapping_census_v2.json'),
+                   ('static_controls_v2.json_sha256', 'expt_v2/results/static_controls_v2.json'),
                    ('hidden_tests_manifest.json_sha256', 'expt_v1/results/hidden_tests_manifest.json'), ('input_manifest_A1.json_sha256', 'expt_v1/results/input_manifest_A1.json')]:
     assert hashlib.sha256((E/path).read_bytes()).hexdigest() == f[name], name
-print('forecast and pinned inputs verified')
+print('both forecasts and the amendment-pinned inputs verified')
 EOF
 ```
 
@@ -74,7 +78,7 @@ Send the Rule 70 `[RUN START]` and `[RUN DONE]` emails (To `brando.science@gmail
 
 Create `analyze_v2.py` from `../expt_v1/scripts/analyze_e12.py` with the cohorts of `PROTOCOL.md` § 5 (primary P2/P3 cohort = fully applicable; sensitivities S-V2a–d). Seed 20261009, 10,000 task-cluster draws. Report every prediction of `forecasts/e12_v2_forecast.json` as "x [lo, hi] p-val=n/a, threshold source, verdict", failed ones exactly like held ones, with denominators (cells, tasks, systems). Then:
 
-- `results.md`: append the evaluation sections below the census (never edit the census); per-system table; sensitivities; the 20 inspected disagreements selected by the version-1 rule; the paired version-1 versus version-2 table on the 394 changed-entry-point cells and the 20 version-1 inspected rows.
+- `results.md`: append the evaluation sections below the census (never edit the census); per-system table; sensitivities; the 20 inspected disagreements selected by the version-1 rule; the paired version-1 versus version-2 table on the 379 changed-entry-point cells (post-V2-A1 census; 394 before the amendment) and the 20 version-1 inspected rows.
 - `../results.md` (version 1): only the one-line pointer at the top changes.
 - `experiments/README.md` row 12 and `docs/DECISIONS.md` if a decision is needed (coordinate with the master session).
 - `CKPT_e12_v2.md`: DONE with the outcome hash, commits and the exact verification commands.

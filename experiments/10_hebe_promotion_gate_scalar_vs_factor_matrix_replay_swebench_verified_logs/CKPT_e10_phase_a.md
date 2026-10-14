@@ -5,7 +5,7 @@
 **TLDR:** Rule 44 checkpoint for running phase A of experiment 10 (`experiments/10_hebe_promotion_gate_scalar_vs_factor_matrix_replay_swebench_verified_logs`) on the real data under its LOCKED protocol revision 3, with zero model calls, on skampere1. Worker: Claude Code (`claude-fable-5-1`, effort max), dispatched 10-14-2026 by the master session `oct14-cc-rl4cv-master-ultracode-progress`. Outcome: primary replay DONE and scored (no gate recommendation under the frozen rules); matched-test-lists sensitivity BLOCKED by its own shape stop rule.
 
 Created: 10-14-2026 13:05 PDT
-Last updated: 10-14-2026 13:16 PDT
+Last updated: 10-14-2026 13:40 PDT
 
 ## Goal
 
@@ -52,3 +52,4 @@ Population P_near (1 ≤ net_V ≤ 10), q = 0.5, 1,000/1,000 splits admitted, 1,
 
 - 10-14-2026 13:05 PDT: lock verified, host prepared, primary running, sensitivity blocked by the 420-versus-421 stop rule, START email sent.
 - 10-14-2026 13:16 PDT: primary finished 13:04:56 (exit 0), output copied and scored; results.md, README and this checkpoint written; status commit `52a08d6` pushed; results commit being pushed.
+- 10-14-2026 13:40 PDT -- Results commit landed as `a2a10ef` (independent check PASS: lock pins verified, numbers match e10_primary.json). Finished host sessions rl4cv-e10-phase-a-10-14 and rl4cv-e10-phase-a-sens-10-14 closed by the master. Open: Brando's choice of a dated amendment (shape 164 x 421) or expt_v2 for the matched-test-lists sensitivity.

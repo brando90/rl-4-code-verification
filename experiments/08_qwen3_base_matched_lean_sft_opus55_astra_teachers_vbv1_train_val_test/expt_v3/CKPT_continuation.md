@@ -2,7 +2,7 @@
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_continuation.md>
 **TLDR:** Failure taxonomy of the four step-658 validation ladders is published (zero model calls); the shared corpus admission runs on skampere1 and the two-condition protocol is drafted but not locked; no training launched.
 Created: 10-13-2026 17:41 PDT
-Last updated: 10-14-2026 14:02 PDT
+Last updated: 10-14-2026 13:40 PDT
 ## Goal
 - Help Lethan (1.7B/8B) and Rakshit (4B/14B) improve matched warm starts: (a) failure taxonomy, (b) shared corpus admission, (c) draft two-condition protocol. Prepared for them; no training launched by this worker.
 ## What ran
@@ -32,3 +32,4 @@ Last updated: 10-14-2026 14:02 PDT
 - 10-14-2026 13:20 PDT -- Taxonomy computed for 4 x 1,080 validation cells; RUN START email sent (Gmail connector); Lean rechecks launched in tmux.
 - 10-14-2026 13:45 PDT -- Taxonomy with task-bootstrap intervals and sampled error kinds published; admission job running; PROTOCOL draft in progress.
 - 10-14-2026 14:02 PDT -- Taxonomy committed (a6ac53b, macOS tests 320 passed / 36 skipped / 4 known failures); admission finished EXIT=0 (2,585 / 2,587 admitted); PROTOCOL draft, README, results.md updated; publishing (b)+(c).
+- 10-14-2026 13:40 PDT -- Master note after independent check: the taxonomy commit on origin/main is `5fab36b` (a6ac53b was the pre-rebase SHA) and the admission/protocol commit is `9e22abb`; the PDT stamps in the three 10-14 lines above run about 45 minutes fast against the commit clock (commits authored 13:14-13:16 PDT, host admit.log 13:11 PDT). Idle tmux `rl4cv-e08v3-admission-10-14` closed by the master; host corpus and manifests unaffected.

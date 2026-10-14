@@ -5,7 +5,7 @@
 **TLDR:** Rule 44 checkpoint for experiment `15_irt_2pl_sft_rung_forecast_of_rl_signal_onset_qwen3_base_vbv1_validation` (Q2 of the VeriBench item response theory (IRT) idea page), owned by the Claude Code ultracode worker (claude-fable-5-1, effort max) dispatched by the master session on 10-14-2026 during the Valkyrie outage. Zero model calls, zero GPU; everything ran on Brando's Mac from committed validation-split files. DONE: verdict NO ADVANTAGE under the frozen rule.
 
 Created: 10-14-2026 13:09 PDT
-Last updated: 10-14-2026 13:14 PDT
+Last updated: 10-14-2026 13:40 PDT
 
 ## Goal
 
@@ -49,3 +49,4 @@ Nothing. Valkyrie is down but this experiment made no model calls. The git harne
 
 - 10-14-2026 13:09 PDT: checkpoint created after the synthetic checks and unit tests passed; no real outcome read.
 - 10-14-2026 13:14 PDT: real run complete, verdict NO ADVANTAGE; results.md written; post hoc mixed-share analysis added and labelled.
+- 10-14-2026 13:40 PDT -- Master note after independent check: the 13:10 line's full-suite count should read 383 passed (334 was a typo); results commit `fc6c494`; forecast hashes: ledger/sidecar use the canonical-JSON digest 06847d32..., analysis_e15.json the raw-file digest d835b7b0..., same unchanged file. Idea-page status line in brando90/veribench still to be added.
