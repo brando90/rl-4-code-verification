@@ -35,5 +35,11 @@ A2's unresolved tolerance was selected after the original opaque public observat
 
 A1 permits at most five attempts each for R0 and R1; every attempt remains recorded. Later gates retain the no-retry rule. A2 authorized the completed untyped-cell retries; adopted A3 now governs exception classification and exclusion/bounds admission without changing the original A2 result.
 
+## Phase 1 CPU preparation — 10-14-2026 14:51 PDT
+
+The generation runner, actual NeMo probability path, exclusive attempt ledgers, lease/dispatcher, missing-data nested forecasts and recovery/bounds controls are implemented. Forty-nine focused synthetic tests pass; full required publication verification passed 502 tests with 23 skips and zero failures in 230.51 seconds. Train-only prompt preparation covers 539 tasks, four batches of 4312 responses and an eight-response probe, with maximum prompt 7753/context 15945/output 8192 tokens. No model generation, actual-data fit, optimizer update or GPU lease has occurred.
+
+Remote execution needs own deployments because the nodes do not mount skampere1 files. Environment copies to skampere2/3 are underway within a bounded 50 GiB preparation allowance per node. Mercury remains a permitted generation-only alternative subject to actual admission and bounded storage. Device contention is a wait, with preparation continuing; no completion or blocker email.
+
 **TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 G0 passes with exact completion bounds; Phase 1 CPU preparation and device polling continue.
 **Snapshot:** 4B dense-only 89–97/135; AUC 0.670652174–0.904643963; 23 affected tasks; G0 one run; Phase 1 anchors 0/17,248.

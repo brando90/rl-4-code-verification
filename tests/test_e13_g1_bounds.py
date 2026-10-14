@@ -6,6 +6,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 from scipy.stats import pearsonr
+from scipy.stats import spearmanr, kendalltau, rankdata
 
 PATH = Path(__file__).resolve().parents[1] / 'experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/g1_bounds.py'
 SPEC = importlib.util.spec_from_file_location('e13_g1_bounds', PATH)
@@ -52,3 +53,33 @@ def test_policy_mean_integer_search_matches_cell_completions():
 def test_missing_predictions_are_never_imputed():
     with pytest.raises(ValueError):
         MOD.bound_policy_pearson([0, 1, np.nan], [.1, np.nan, .2], ['a', 'b', 'c'])
+
+
+@pytest.mark.parametrize('metric', ['auc', 'pearson', 'spearman', 'kendall'])
+@pytest.mark.parametrize('p', [[.1, .1, .5, .5, .9, .9], [.5]*6, [.1,.2,.3,.4,.5,.6]])
+def test_nonlinear_point_bounds_match_all_binary_completions(metric, p):
+    y = np.array([0., np.nan, np.nan, 1., np.nan, 0.])
+    out = MOD.bound_binary_association(y, p, metric)
+    values = []
+    for c in completions(y):
+        if metric == 'auc':
+            k = c.sum(); v = (rankdata(p)[c == 1].sum()-k*(k+1)/2)/(k*(len(c)-k))
+        elif np.ptp(p) == 0: continue
+        else: v = {'pearson': pearsonr, 'spearman': spearmanr, 'kendall': kendalltau}[metric](c, p).statistic
+        values.append(v)
+    if values:
+        assert out['minimum'] == pytest.approx(min(values), abs=1e-12)
+        assert out['maximum'] == pytest.approx(max(values), abs=1e-12)
+    else:
+        assert out['minimum'] is None and out['undefined_possible']
+
+
+@pytest.mark.parametrize('metric', ['auc', 'pearson', 'spearman', 'kendall'])
+def test_bootstrap_relaxation_encloses_consistent_cell_completions(metric):
+    y = np.array([0., np.nan, 1., np.nan, 0., 1.]); p = np.array([.1,.4,.8,.3,.2,.9])
+    groups = np.array(['a','a','b','b','c','c'])
+    bound = MOD.bound_association_interval(y, p, groups, metric, draws=41)
+    for complete in completions(y):
+        exact = MOD.bound_association_interval(complete, p, groups, metric, draws=41)
+        for key in ('bootstrap_lower_endpoint_range', 'bootstrap_upper_endpoint_range'):
+            assert bound[key][0] <= exact[key][0]+1e-12 <= exact[key][1]+1e-12 <= bound[key][1]+2e-12

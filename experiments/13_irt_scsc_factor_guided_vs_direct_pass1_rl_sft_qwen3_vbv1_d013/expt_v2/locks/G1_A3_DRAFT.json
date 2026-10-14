@@ -1,0 +1,85 @@
+{
+  "status": "DRAFT_NOT_EXECUTABLE",
+  "scope": "Prospective A3 fixed-forecast G1 bounds and missing-risk fitting controls",
+  "must_finalize_and_publish_before_actual_phase1_fit": true,
+  "exclusion_manifest_sha256": "c00b35abaecda874820d4b1b29015655e248c19f319fa574fefa3d0804124128",
+  "completion_refits": false,
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 1302031,
+    "unit": "task groups",
+    "quantile": "linear"
+  },
+  "enumeration_limit": 1048576,
+  "fit_controls": {
+    "initializations": [
+      1302011,
+      1302012,
+      1302013,
+      1302014,
+      1302015
+    ],
+    "max_probability_disagreement": 0.02,
+    "recovery_seed": 1302041,
+    "actual_missingness_and_conditional_risk_sets": true
+  },
+  "bindings": [
+    {
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/G1_BOUNDS_DRAFT.md",
+      "sha256": "c0b304bbc25127f1f671dceda670b694c606e41089e85c69a1baba734e32508c"
+    },
+    {
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/fit_controls.py",
+      "sha256": "3cb7dae3cf1908fbca723f7c263030f583fbaccc68405d8793db5a5c907a0414"
+    },
+    {
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/g1_bounds.py",
+      "sha256": "3c32b6e71d84da493f3f31fa3b03521e41f0d25a8990515c36b85e6cc1e640e3"
+    },
+    {
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/nested_a3.py",
+      "sha256": "662926b161dc3b487cfcb0ebdea46f4b3a4a422b47b4e84f15c906a64fab435f"
+    },
+    {
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/prediction/evaluation_v2.py",
+      "sha256": "1c2153c930ce7aaac2faff89a208f3a858fca42d037270205ce6ff01929cb6c3"
+    },
+    {
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/prediction/features_v2.py",
+      "sha256": "dc2cb5430e41f31e01e416389ee353358aa61244ad9299337496f12ca276a480"
+    },
+    {
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/prediction/forecast_v2.py",
+      "sha256": "1f5a21da15dcba3c9e7faa6fcdd158f03751fae5c5cb417ebcd67d7f04599f2e"
+    },
+    {
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/prediction/irt_v2.py",
+      "sha256": "4c39e896ddfeb2828f4141c2a95c44109431f8a87c02e870eda769c3fa213856"
+    },
+    {
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/prediction/marginal_v2.py",
+      "sha256": "f7ba9c08f57eca5b5104a5fef187c4938a44b3fec59031d0b19a402c3dc1814c"
+    },
+    {
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/prediction/nested_forecast_v2.py",
+      "sha256": "3dfd2370387d0cf9f985734283f30c109430e717a9130d2d1c5c9e4548040980"
+    },
+    {
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/prediction/recovery_v2.py",
+      "sha256": "406a2e033eb2dfaebbbb2eeac8135d8e5b948e594d14f8409ce12db2961826b0"
+    },
+    {
+      "path": "tests/test_e13_g1_bounds.py",
+      "sha256": "5c6f7e28634757518b5112e58df5f37b06da2a51d4a2e0c374f0ccdfb345feca"
+    },
+    {
+      "path": "tests/test_e13_phase1_fitting.py",
+      "sha256": "766ea2b2cf4f485b2704c0e99dcb2d7323c59d34b7a83820e0d70b665b7f6094"
+    }
+  ],
+  "remaining_before_final_lock": [
+    "Bind exact ordinary-row/feature/metadata input manifests and their loader",
+    "Pass and bind complete publication tests",
+    "Publish final G1_A3.json before any actual-data fit"
+  ]
+}

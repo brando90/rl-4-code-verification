@@ -5,6 +5,7 @@ import itertools
 import math
 import numpy as np
 from scipy.stats import pearsonr
+from scipy.stats import rankdata, spearmanr, kendalltau
 
 
 def validate(y, p=None):
@@ -88,7 +89,7 @@ def bound_linear(y, a, b, groups, *, draws=10000, seed=1302031):
             'excluded_cells': int(np.isnan(y).sum())}, (low, high)
 
 
-def bound_policy_pearson(y, p, policies, *, limit=2**20):
+def bound_policy_pearson(y, p, policies, *, limit=2**20, kind='pearson'):
     """Exact finite search over per-policy missing-success totals, when bounded."""
     y, p = validate(y, p); policies = np.asarray(policies)
     if policies.shape != y.shape:
@@ -114,10 +115,141 @@ def bound_policy_pearson(y, p, policies, *, limit=2**20):
         if np.ptp(observed) == 0:
             undefined = True
             continue
-        rho = float(pearsonr(observed, predicted).statistic)
+        rho = float({'pearson': pearsonr, 'spearman': spearmanr, 'kendall': kendalltau}[kind](observed, predicted).statistic)
         if minimum is None or rho < minimum:
             minimum = rho; witnesses['minimum_missing_success_counts'] = list(completion)
         if maximum is None or rho > maximum:
             maximum = rho; witnesses['maximum_missing_success_counts'] = list(completion)
     return {'minimum': minimum, 'maximum': maximum, 'undefined_possible': undefined,
             'exact': True, 'configurations': total, 'policy_order': unique.tolist(), **witnesses}
+
+
+def bound_binary_association(y, p, metric):
+    """Exact point extrema by missing-positive count and ordered score sums.
+
+    For fixed total positives, each metric is monotone in the positive score
+    (or average-rank) sum. Ties use average ranks, matching the frozen evaluator.
+    """
+    y, p = validate(y, p)
+    if metric not in ('auc', 'pearson', 'spearman', 'kendall'):
+        raise ValueError('unsupported association')
+    n = len(y); missing = np.isnan(y); known_positive = y == 1
+    scores = p if metric == 'pearson' else rankdata(p)
+    ordered = np.sort(scores[missing]); cumulative = np.r_[0., np.cumsum(ordered)]
+    base = float(scores[known_positive].sum()); known = int(known_positive.sum())
+    _, ties = np.unique(p, return_counts=True)
+    untied_pairs = (n*(n-1) - np.sum(ties*(ties-1))) / 2
+    values = []; undefined = False
+    for k in range(len(ordered)+1):
+        positive = known + k
+        if positive == 0 or positive == n or (metric != 'auc' and np.ptp(p) == 0):
+            undefined = True; continue
+        low = base + cumulative[k]
+        high = base + cumulative[-1] - cumulative[len(ordered)-k]
+        for score_sum in (low, high):
+            if metric == 'auc':
+                value = (score_sum-positive*(positive+1)/2)/(positive*(n-positive))
+            elif metric == 'kendall':
+                value = (2*score_sum-positive*(n+1))/math.sqrt(positive*(n-positive)*untied_pairs)
+            else:
+                denominator = math.sqrt(positive*(n-positive)/n * np.sum((scores-scores.mean())**2))
+                value = (score_sum-positive*scores.mean())/denominator
+            values.append(float(np.clip(value, 0 if metric == 'auc' else -1, 1)))
+    return {'minimum': min(values) if values else None, 'maximum': max(values) if values else None,
+            'undefined_possible': undefined, 'exact': True,
+            'missing_positive_counts': len(ordered)+1}
+
+
+def bound_association_interval(y, p, groups, metric, *, draws=10000, seed=1302031):
+    """Outer bootstrap-endpoint bounds, preserving fixed original-cell labels.
+
+    Repeated copies of a missing cell may vary independently only in the bounding
+    relaxation. This enlarges the feasible set; it is never reported as exact.
+    If defined resamples can depend on completion, full metric-range endpoint
+    bounds avoid claiming a quantile bound across different retained draw sets.
+    """
+    y, p = validate(y, p); groups = np.asarray(groups)
+    if groups.shape != y.shape or draws < 1:
+        raise ValueError('invalid grouped association input')
+    result = bound_binary_association(y, p, metric)
+    indices = [np.flatnonzero(groups == g) for g in np.unique(groups)]
+    rng = np.random.default_rng(seed); lows = []; highs = []; ambiguous = False
+    for _ in range(draws):
+        ix = np.concatenate([indices[i] for i in rng.integers(0, len(indices), len(indices))])
+        b = bound_binary_association(y[ix], p[ix], metric)
+        if b['undefined_possible'] and np.isnan(y[ix]).any():
+            ambiguous = True; break
+        if b['minimum'] is not None:
+            lows.append(b['minimum']); highs.append(b['maximum'])
+    floor = 0. if metric == 'auc' else -1.
+    if ambiguous:
+        lower = upper = [floor, 1.]
+    elif lows:
+        q = np.quantile([lows, highs], [.025, .975], axis=1)
+        lower, upper = q[0].tolist(), q[1].tolist()
+    else:
+        lower = upper = [None, None]
+    return {**result, 'bootstrap_lower_endpoint_range': lower,
+            'bootstrap_upper_endpoint_range': upper, 'bootstrap_bounds_exact': not np.isnan(y).any(),
+            'bootstrap_bound_method': 'full range if completion changes defined draws; otherwise repeated-cell relaxation',
+            'completion_dependent_defined_draws': ambiguous, 'draws': draws, 'seed': seed}
+
+
+def assess_g1_a3(y, predictions, groups, policies, *, implementation_admitted, draws=10000):
+    """Apply the frozen G1 criteria to fixed forecasts at every held-out completion."""
+    y = validate(y)
+    required = ('selected', 'M0', 'M1', 'M2')
+    missing = [name for name in required if name not in predictions
+               or np.asarray(predictions[name]).shape != y.shape
+               or not np.isfinite(predictions[name]).all()]
+    if missing:
+        return {'status': 'INCONCLUSIVE', 'missing_required_models': missing, 'disable_arm_C': True}
+    metrics = {}; contrasts = {}
+    for name, p in predictions.items():
+        if p is None or np.asarray(p).shape != y.shape or not np.isfinite(p).all():
+            metrics[name] = {'status': 'UNAVAILABLE'}; continue
+        validate(y, p)
+        metrics[name] = {m: bound_linear(y, *coefficients(p, m), groups, draws=draws)[0]
+                        for m in ('log_loss', 'mean_bias', 'mean_absolute_error', 'brier',
+                                  'observed_mean', 'predicted_mean')}
+        metrics[name].update({m: bound_association_interval(y, p, groups, m, draws=draws)
+                             for m in ('auc', 'pearson', 'spearman', 'kendall')})
+        for kind in ('pearson', 'spearman', 'kendall'):
+            metrics[name]['policy_'+kind] = {
+                **bound_policy_pearson(y, p, policies, kind=kind),
+                'bootstrap_lower_endpoint_range': [-1., 1.],
+                'bootstrap_upper_endpoint_range': [-1., 1.],
+                'bootstrap_bounds_exact': False,
+                'bootstrap_bound_method': 'conservative full correlation range; point bounds gate only'}
+        metrics[name]['policies'] = len(np.unique(policies))
+        bins = np.minimum((np.asarray(p)*10).astype(int), 9)
+        metrics[name]['calibration_bins'] = []
+        for bin_id in np.unique(bins):
+            ix = bins == bin_id
+            metrics[name]['calibration_bins'].append({'bin': int(bin_id), 'cells': int(ix.sum()),
+                'groups': len(np.unique(np.asarray(groups)[ix])),
+                'predicted_mean': float(np.asarray(p)[ix].mean()),
+                'observed_mean': [float(np.nansum(y[ix])/ix.sum()),
+                                  float((np.nansum(y[ix])+np.isnan(y[ix]).sum())/ix.sum())]})
+    selected = predictions['selected']
+    for baseline in ('M0', 'M1'):
+        contrasts[baseline] = bound_linear(y, *coefficients(selected, 'log_loss_contrast', predictions[baseline]),
+                                          groups, draws=draws)[0]
+    rho = metrics['selected']['policy_pearson']; bias = metrics['selected']['mean_bias']
+    # Point associations must all be defined, as in PROTOCOL section 4.
+    undefined = any(metrics['selected'][m]['undefined_possible']
+                    for m in ('auc', 'pearson', 'spearman', 'kendall', 'policy_pearson'))
+    passed = (implementation_admitted and not undefined and rho['exact'] and rho['minimum'] >= .8
+              and all(c['bootstrap_upper_endpoint_range'][1] < 0 for c in contrasts.values())
+              and bias['bootstrap_lower_endpoint_range'][1] <= 0
+              and bias['bootstrap_upper_endpoint_range'][0] >= 0)
+    failed = (not implementation_admitted
+              or (rho['exact'] and rho['maximum'] is not None and rho['maximum'] < .8)
+              or any(c['bootstrap_upper_endpoint_range'][0] >= 0 for c in contrasts.values())
+              or bias['bootstrap_lower_endpoint_range'][0] > 0
+              or bias['bootstrap_upper_endpoint_range'][1] < 0)
+    status = 'PASS' if passed else 'FAIL' if failed else 'INCONCLUSIVE'
+    return {'status': status, 'disable_arm_C': status != 'PASS', 'metrics': metrics,
+            'paired_log_loss_contrasts': contrasts, 'implementation_admitted': bool(implementation_admitted),
+            'declared_cells': len(y), 'excluded_cells': int(np.isnan(y).sum()),
+            'fit_repeated_per_completion': False, 'threshold_source': 'PROTOCOL section 4; A3 admission record'}

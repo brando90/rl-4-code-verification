@@ -33,5 +33,13 @@ PASS requires every completion to satisfy both paired log-loss upper endpoints <
 - Test both holdout schemes, incomplete predictions, undefined metrics, all 217 exclusions, preserved denominators, no target-label access during fitting/selection, and pre-read hash refusals.
 - Freeze the final method and its implementation hashes in `locks/G1_A3.json`, then run the required integration suite and publish before fitting. This draft does not authorize a fit and is not a complete G1 evaluator.
 
-**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] The draft gives exact fixed-forecast bounds for linear metrics, paired bootstrap endpoints and finite policy-correlation searches; the complete wrapper and diagnostic bounds remain to implement before locking or fitting.
-**Snapshot:** actual Phase 1 fits 0; target-completion refits forbidden; paired draws 10,000; policy-correlation search cap 2^20; G1 lock not yet created.
+## Implementation progress, 10-14-2026
+
+`nested_a3.py` preserves the frozen nested holdouts and model implementations, masks every listed excluded outcome/factor, uses observed earlier-rung counts and rewards, omits missing inner targets, and never fits a full-schedule target. `fit_controls.py` sends the actual observed strict and three conditional risk-count matrices to the frozen synthetic recovery implementation before admitting each fold. Five initializations, finite gradients, location/scale invariance and chain consistency remain required. Actual data have not been fitted.
+
+`g1_bounds.py` now provides exact point bounds for binary-label area under the curve and cell Pearson/Spearman/Kendall associations by enumerating missing-positive totals and extremal ordered score sums. Bootstrap endpoint bounds relax repeated copies only outward; when completion changes the defined-draw set, the full metric range is reported. Policy correlations use exact integer-count enumeration up to the existing 2^20 limit; their bootstrap endpoints conservatively use [-1,1]. Calibration-bin observed means receive full-denominator bounds. These outer intervals are disclosed and cannot replace the exact gate statistics.
+
+Before execution, the final lock must bind these files, the exclusion manifest, frozen prediction dependencies, input manifests, tests and configuration. This document is still a draft and does not authorize an actual fit.
+
+**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] The draft gives exact fixed-forecast bounds for linear metrics, paired bootstrap endpoints and finite policy-correlation searches; the missing-data wrapper and diagnostic bounds are implemented, while the final input-bound lock remains before actual fitting.
+**Snapshot:** actual Phase 1 fits 0; target-completion refits forbidden; paired draws 10,000; policy-correlation search cap 2^20; G1 draft lock prepared; actual fitting remains unattempted.

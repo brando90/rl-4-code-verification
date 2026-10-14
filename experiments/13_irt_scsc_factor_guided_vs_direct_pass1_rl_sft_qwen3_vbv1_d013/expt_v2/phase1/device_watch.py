@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Observe device availability; this poller never claims a device or starts a model.
+"""Observe devices and, when a published launch plan exists, start its dispatcher.
 
 A candidate still needs current foreign-lease/reservation checks and an E13 lease
-at launch. Keeping polling separate prevents an unfinished LP-1 lock from running.
+at launch. The independent dispatcher requires the final published LP-1 lock.
 """
 from __future__ import annotations
 
@@ -19,6 +19,7 @@ import shlex
 import socket
 import subprocess
 import tempfile
+import sys
 
 HOSTS = ('skampere1', 'skampere2', 'skampere3', 'mercury1', 'mercury2')
 
@@ -138,10 +139,19 @@ def main():
     parser.add_argument('--root', type=Path, required=True)
     args = parser.parse_args()
     receipt = poll(args.root)
+    plan = args.root / 'launch_plan.json'
+    if plan.is_file():
+        # The dispatcher independently verifies publication, bindings, resources
+        # and fresh foreign leases; its own lock/attempt ledger forbids a retry.
+        with (args.root/'dispatch.log').open('a') as output:
+            child = subprocess.Popen([sys.executable, str(Path(__file__).with_name('dispatch.py')),
+                                      '--plan', str(plan)], stdout=output, stderr=subprocess.STDOUT,
+                                     start_new_session=True)
+        receipt['dispatcher_pid'] = child.pid
     print(json.dumps({'checked_utc': receipt['checked_utc'],
                       'candidates': {h: r['candidate_indices_pending_lease_checks']
                                      for h, r in receipt['nodes'].items()},
-                      'device_claims': 0, 'automatic_launch_enabled': False}))
+                      'device_claims': 0, 'automatic_launch_enabled': plan.is_file()}))
 
 
 if __name__ == '__main__':

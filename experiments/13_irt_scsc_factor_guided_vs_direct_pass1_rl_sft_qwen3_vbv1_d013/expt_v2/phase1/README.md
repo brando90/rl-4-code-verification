@@ -50,5 +50,15 @@ Continue implementation in the same owned checkout while polling. Execute only a
 
 Zero LP-1 probability measurements, anchor cells, fits, optimizer updates or device claims have occurred. PLAN section 7 forbids claiming busy devices; PROTOCOL sections 6 and 8 require a real allocation and permit no training beyond admitted diagnostic work on resource failure. No PLAN section 4 scientific failure transition has been triggered. The watchdog remains armed for owner/process monitoring; automatic device-triggered execution or executor replacement is not installed.
 
+## CPU preparation, 10-14-2026 14:47 PDT
+
+The prospective generation runner (`panel.py`, `runtime.py`) retains exclusive batch/slot attempts, full token and probability receipts, the 539 × 8 denominator and batch-2 prerequisite. It calls installed vLLM 0.10.0 and the clean NeMo RL distributed-tensor worker for sequential probability evaluation, with no optimizer. CPU imports succeeded; actual device admission is unmeasured. The installed newer worker needs an absent `nemo-automodel` package, so the original installed worker is the technical candidate before any efficacy outcome.
+
+Train-only tokenization prepared an eight-response LP-1 probe and four 4,312-cell anchor manifests. Maximum prompt length is 7,753 tokens; model context is 15,945 = 7,753 + 8,192, preserving the full new-token cap. Terminal tokens are 151643 and 151645; both belong in the assistant probability mask. The full-export chat template uses thinking enabled. Public hashes/counts are in `manifest_preparation.json`; private prompts/IDs remain under the work root. No model weights were loaded for this preparation.
+
+The generation and probability code is prospective until the final runtime/device/manifest lock is published. Remote hosts do not mount skampere1 files, so verified own runtime/export deployment is required for automatic remote execution. Mercury generation is explicitly permitted by the master's 10-14 steer when bounded storage and admission hold; percentage-free disk alone is not a terminal blocker.
+
+Required publication suite: **502 passed, 23 skipped, zero failed in 230.51 seconds**, with Lean integration required. [Receipt](runner_publication_test.json). All 49 focused generation, missingness/bounds, lease and cleanup tests passed. The [G1 lock draft](../locks/G1_A3_DRAFT.json) binds the prospective implementation; final input bindings and publication still precede actual fits.
+
 **TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 passed G0; CPU preparation and device polling continue while generation waits. All downstream scientific gates remain unattempted.
 **Snapshot:** G0 PASS; skampere devices occupied 24/24; Mercury local free space 31.16/12.10 GiB; scheduler associations 0; anchor cells 0/17,248; training updates 0.
