@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/results.md>
 
-**TLDR:** G0 PASS under A3: primary 4B dense-only bounds 89–97/135 (threshold 21), predictive AUC bounds 0.670652174–0.904643963 (threshold 0.65), exact across 221,184 configurations; 23 tasks affected by 34 excluded cells. Phase 1 generation admission is next; no training has run.
+**TLDR:** G0 PASS under A3: primary 4B dense-only bounds 89–97/135 (threshold 21), predictive AUC bounds 0.670652174–0.904643963 (threshold 0.65), exact across 221,184 configurations; 23 tasks affected by 34 excluded cells. Phase 1 is resource-blocked before generation admission; no training has run.
 
-Last updated: 10-14-2026 14:10 PDT
-Status: **G0 PASS; Phase 1 preparation in progress.** [Full G0 bounds and evaluator outputs](RESULTS_G0.md) · [Verified exclusions and frozen method](reproduction/README_G0_A3.md).
+Last updated: 10-14-2026 14:16 PDT
+Status: **G0 PASS; Phase 1 resource-blocked before LP-1.** [Resource evidence and continuation](phase1/README.md). [Full G0 bounds and evaluator outputs](RESULTS_G0.md) · [Verified exclusions and frozen method](reproduction/README_G0_A3.md).
 
 | Stage | Status | Measured / declared |
 |---|---|---|
@@ -18,10 +18,10 @@ Status: **G0 PASS; Phase 1 preparation in progress.** [Full G0 bounds and evalua
 | A3 diagnosis | COMPLETE; rule 3(i) satisfied | 49/49 classified; all four unequal cells (c) |
 | A3 admission | G0 ADMITTED (master, 10-14-2026) | 217/33,456 ordinary cells excluded; 33,239 kept; worst-case completions for every G0/G1 statistic |
 | G0 | PASS, exact worst-case bounds | 4B 89–97/135 dense-only; AUC 0.670652174–0.904643963; 23 affected tasks |
-| Phase 1 | Generation admission preparation | Base must be regenerated: historical sampler differs; no anchors/fits yet |
+| Phase 1 | RESOURCE BLOCK before generation admission | No usable current device route; zero anchors/fits; LP-1 unattempted |
 | Phase 2 | NOT RUN; later gates pending | No reinforcement learning |
 
-Fresh-owner setup: `codex-rl4cv-e13v2-owner-g0` is the sole active writer; the previous owner remains idle. Seven prior cron entries were preserved byte-for-byte and two watchdog entries added. Six watchdog self-tests passed. Exclusions are 13 train + 204 validation, with no test IDs; all four public class-(c) cells are excluded. No historical cell was rerun. Required full suite passed: 433 passed, 23 skipped, 0 failed in 260.05 seconds; Lean integration required. G0 uses existing data and central processors, with zero model-call spend or graphics processor hours. Result-publication suite also passed 433 tests with 23 skips in 233.01 seconds. Phase 1 device inventory currently finds all skampere1/2/3 accelerators occupied and Mercury1/2 disks below required headroom; no allocation or generation has begun.
+Fresh-owner setup: `codex-rl4cv-e13v2-owner-g0` is the sole active writer; the previous owner remains idle. Seven prior cron entries were preserved byte-for-byte and two watchdog entries added. Six watchdog self-tests passed. Exclusions are 13 train + 204 validation, with no test IDs; all four public class-(c) cells are excluded. No historical cell was rerun. Required full suite passed: 433 passed, 23 skipped, 0 failed in 260.05 seconds; Lean integration required. G0 uses existing data and central processors, with zero model-call spend or graphics processor hours. Result-publication suite also passed 433 tests with 23 skips in 233.01 seconds. Phase 1 device inventory currently finds all skampere1/2/3 accelerators occupied and Mercury1/2 disks below required headroom; no allocation or generation has begun. The scheduler account has zero associations and its non-submitting allocation test failed (exit 1, invalid account). This is a resource block, not a failed gate or completion; [continuation](phase1/README.md) records the unfinished LP-1 implementation and lock work.
 
 [Read-only diagnosis](RESULTS_R2_diagnosis.md) · [Adopted A3 and owner recommendation](AMENDMENT_A3_PROPOSED_R2_diagnosis_and_admission_10-14-2026.md). **Admission recorded** 10-14-2026 14:25 PDT under A3 rule 3(ii–iii) ([record](R2_A3_ADMISSION_10-14-2026.md)). The fresh owner verified the manifest and published wrapper/tests/lock at `a717d06` before G0. All 49 exceptions plus 168 existing typed ordinary limits are listed privately: 217/33,456 excluded, 33,239 retained measured/equal. No class (b) defect is demonstrated; its repair/re-measurement set is empty. Opaque unresolved reasons are `RuntimeError` for 2/2; no sealed details opened, public PASS stands. Required integration suite after synchronizing main `d3c2777`: 382 passed, 23 skipped, 0 failed in 164.19 seconds. The second synchronization to `69ae5be` added independent experiment-15 tests: 14/14 passed in 47.06 seconds. That earlier publication was diagnosis only; G0 is now reported above, with no cell rerun.
 
@@ -35,5 +35,5 @@ A2's unresolved tolerance was selected after the original opaque public observat
 
 A1 permits at most five attempts each for R0 and R1; every attempt remains recorded. Later gates retain the no-retry rule. A2 authorized the completed untyped-cell retries; adopted A3 now governs exception classification and exclusion/bounds admission without changing the original A2 result.
 
-**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 G0 passes with exact completion bounds; Phase 1 generation admission is next.
+**TLDR-end:** [rl4cv: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013] Version 2 G0 passes with exact completion bounds; Phase 1 is resource-blocked before generation admission.
 **Snapshot:** 4B dense-only 89–97/135; AUC 0.670652174–0.904643963; 23 affected tasks; G0 one run; Phase 1 anchors 0/17,248.

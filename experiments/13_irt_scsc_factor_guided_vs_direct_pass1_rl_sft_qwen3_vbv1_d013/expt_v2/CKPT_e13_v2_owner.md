@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2_owner.md>
 
-**TLDR:** G0 PASS under A3: primary 4B dense-only bounds 89–97/135 (threshold 21), predictive AUC bounds 0.670652174–0.904643963 (threshold 0.65), exact across 221,184 configurations; 23 tasks affected by 34 excluded cells. Phase 1 generation admission is next; no training has run.
+**TLDR:** G0 PASS under A3: primary 4B dense-only bounds 89–97/135 (threshold 21), predictive AUC bounds 0.670652174–0.904643963 (threshold 0.65), exact across 221,184 configurations; 23 tasks affected by 34 excluded cells. Phase 1 is resource-blocked before generation admission; no training has run.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-14-2026 14:10 PDT
+Last updated: 10-14-2026 14:16 PDT
 
 ## Goal
 - Complete Phase 1 then Phase 2 for 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013 version 2 under PLAN and amendments; stop only at binding transitions or real blockers.
@@ -17,14 +17,16 @@ Last updated: 10-14-2026 14:10 PDT
 - Secondary 1.7B PASS (dense 103–111, AUC .671605–.937688); 8B INCONCLUSIVE (dense 90–100, AUC .557486–.909091), nongating. No undefined completion. F0v2 .50 underpredicts primary share .659259–.718519; F1v2 untested.
 - All 217 exclusions enforced (13 train/204 validation). Opaque data remain sealed. Original R2/A2 evidence preserved. No model calls, graphics processor claim, anchor generation, fit or training.
 ## Stuck / blocked
-- Generation admission waits for a viable device route: all skampere1/2/3 devices occupied; Mercury1/2 idle 16 GiB devices have only 32/13 GiB local free space, below required headroom. Scheduler inventory pending. Validated Valkyrie formal-specification judge unavailable, not probed; Phase 2 coverage scoring remains pending that route.
+- Generation admission is resource-blocked before LP-1: skampere1/2/3 occupied 24/24; Mercury1/2 local free space 31.16/12.10 GiB, below required headroom. Scheduler has zero associations and its allocation test exits 1 (invalid account). [Evidence and continuation](phase1/README.md). Validated Valkyrie formal-specification judge unavailable, not probed; Phase 2 coverage scoring remains pending that route.
 ## Next steps
-- G0 result-publication suite passed 433/23 in 233.01s; publish report/receipts/indexes. Then read PLAN §5 and PROTOCOL §§4–6; inventory generation/trainer environment, all GPU processes/leases/reservations; freeze LP-1 before execution.
+- G0 report/receipts/indexes published and remote verified at `120c558`. When a valid device route exists, repeat inventory/leases/reservations, finish the enforcing own lease launcher and generation runner, freeze/publish LP-1, then run it once. No ready runner or automatic device-triggered resumption is claimed.
 - Four anchor batches needed (historical Base sampler incompatible): Base, 50%, full batch 1, then freeze calibration/items/F2, then independent full batch 2. Freeze G1 bounds lock before any fit. No G0 retry.
 ## Brando to-do
-- None.
+- A valid compute route is needed: an idle supported device with sufficient storage, or a provisioned scheduler account association. Existing task approval remains sufficient; no confirmation is requested.
 
 ## Log
+- 10-14-2026 14:16 PDT -- Resource block verified before LP-1: 24/24 skampere devices occupied; Mercury1/2 free space 31.16/12.10 GiB; scheduler account associations zero, non-submitting allocation test exits 1. Required publication suite passed 433/23/0 in 222.90s; operational evidence/continuation prepared for publication; no gate failure, lease, anchor or training call. Own registry empty, foreign released leases preserved; watchdog monitoring remains armed.
+
 - 10-14-2026 14:10 PDT -- G0 result publication verified: required suite 433 passed / 23 skipped / zero failed in 233.01s; full extrema outputs and result/attempt hashes retained. Phase 1 inventory finds all skampere devices busy and Mercury local disks below headroom; no lease or model call.
 - 10-14-2026 14:07 PDT -- G0 completed once after a717d06 publication: PASS. Exact 4B dense-only 89–97/135, AUC 0.670652174–0.904643963, 23 affected tasks/34 excluded cells, 221184 states; runtime 118.686s. 1.7B passes, secondary 8B inconclusive; no fallback. Full report prepared; Phase 1 LP-1 generation admission starts with lease/trainer inventory.
 - 10-14-2026 14:03 PDT -- Freeze verification complete: required full suite 433 passed / 23 skipped / 0 failed in 260.05s. Pulled e0fb245, read its documentation-only issue-reference correction, updated admission binding before publication. No G0 statistic.
