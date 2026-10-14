@@ -4,7 +4,7 @@
 
 **TLDR:** This is the resume record for version 2: a one-time test evaluation of 1.7B, 4B and 14B at step 658, so all four sizes are compared after identical SFT (same data, 658 updates, 5,752,936 tokens). The binding protocol is `PROTOCOL_v2.md` and the runbook is `cc.md`.
 
-**Created:** 10-13-2026 17:02 PDT (Claude master). **Last updated:** 10-13-2026 17:53 PDT
+**Created:** 10-13-2026 17:02 PDT (Claude master). **Last updated:** 10-13-2026 17:59 PDT
 
 ## Goal
 - Complete the matched step-658 evaluation; this attempt closed PARTIAL at the runbook route-controls gate.
@@ -18,7 +18,7 @@
 - 0/5,328 new generations persisted before the first batch returned; all 5,328 cells remain unknown. Reused matched 8,880 cells and diagnostic 1,776 retain original factors.
 - All six reused summaries reproduce exact v1 scope fields; terminal independent 108 factor/score checks PASS; reused 8B paired metrics also exact.
 - Control ratings 0/50; fixed-audit ratings 0/1,080; additional eligibility unknown for 5,328 cells. No model request admitted, no charge receipts. Forecasts unresolved.
-- Terminal full make test: 338 passed / 4 skipped in 293.25 s; Python compilation and git diff --check PASS.
+- Latest full make test after concurrent main merge: 343 passed / 4 skipped in 290.40 s; original terminal run 338/4; Python compilation and git diff --check PASS.
 - START duplication discovered after upstream merge (master 17:09, worker 17:18); no further START. PARTIAL DONE sent once at 17:51:20 PDT to the required To/CC; marker exists.
 ## Stuck / blocked
 - Vals-side managed AWS/Daytona restoration needed for the existing organization; see `results/judge_route_blocker_v2.json`.
@@ -61,3 +61,5 @@
 - 10-13-2026 17:51 PDT -- PARTIAL report published/remote bytes verified at c7940fe; required DONE email sent once at 17:51:20 PDT (SMTP), marker written immediately. Terminal status PARTIAL, resources released; publishing notification receipt. Last full suite 338 passed / 4 skipped, staged whitespace/secret scan PASS; CSV LF normalization preserves every record.
 
 - 10-13-2026 17:53 PDT -- processed delayed master update: git pull --ff-only is current, ee2cff7 is already an ancestor, and re-read cc.md §0.4/§8. scipy/psutil installed; full suite 338 passed / 4 skipped; e13 code untouched; idle-nudge watchdog was tested and retired only at terminal closeout. Fresh supported-CLI read-only check still reports managed AWS unavailable. PARTIAL remains terminal; canonical checkpoint here, no new root checkpoint or duplicate DONE email.
+
+- 10-13-2026 17:59 PDT -- preserved concurrent main updates via clean merge; full make test 343 passed / 4 skipped in 290.40 s. No new experiment calls or changes to e13; PARTIAL blocker and one-DONE-email marker retained.
