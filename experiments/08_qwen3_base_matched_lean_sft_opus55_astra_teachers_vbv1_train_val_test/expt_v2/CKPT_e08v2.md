@@ -4,7 +4,7 @@
 
 **TLDR:** This is the resume record for version 2: a one-time test evaluation of 1.7B, 4B and 14B at step 658, so all four sizes are compared after identical SFT (same data, 658 updates, 5,752,936 tokens). The binding protocol is `PROTOCOL_v2.md` and the runbook is `cc.md`.
 
-**Created:** 10-13-2026 17:02 PDT (Claude master). **Last updated:** 10-13-2026 17:51 PDT
+**Created:** 10-13-2026 17:02 PDT (Claude master). **Last updated:** 10-13-2026 17:53 PDT
 
 ## Goal
 - Complete the matched step-658 evaluation; this attempt closed PARTIAL at the runbook route-controls gate.
@@ -59,3 +59,5 @@
 - 10-13-2026 17:49 PDT -- terminal analysis: all six reused summaries and 8B paired metrics exact; independent 108 checks PASS; full make test 338 passed / 4 skipped in 293.25 s. All new cells and 1,130 control/fixed-audit ratings listed missing; additional main eligibility unresolved. Publishing PARTIAL report next.
 
 - 10-13-2026 17:51 PDT -- PARTIAL report published/remote bytes verified at c7940fe; required DONE email sent once at 17:51:20 PDT (SMTP), marker written immediately. Terminal status PARTIAL, resources released; publishing notification receipt. Last full suite 338 passed / 4 skipped, staged whitespace/secret scan PASS; CSV LF normalization preserves every record.
+
+- 10-13-2026 17:53 PDT -- processed delayed master update: git pull --ff-only is current, ee2cff7 is already an ancestor, and re-read cc.md §0.4/§8. scipy/psutil installed; full suite 338 passed / 4 skipped; e13 code untouched; idle-nudge watchdog was tested and retired only at terminal closeout. Fresh supported-CLI read-only check still reports managed AWS unavailable. PARTIAL remains terminal; canonical checkpoint here, no new root checkpoint or duplicate DONE email.
