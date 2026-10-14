@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-10-13T17:18:13-07:00",
+  "host": "skampere1",
+  "verdict": "PASS",
+  "route": "Vals Valkyrie: valk run start --agent vb103_judge",
+  "organization": {
+    "environment": "bench",
+    "S3_BUCKET": "fellow-brando-miranda",
+    "LOG_GROUP": "fellows/brando-miranda",
+    "default_sandbox_provider": "daytona"
+  },
+  "payer": "Vals gateway credential mapped only inside Valkyrie by fellows/brandoModelGatewayApiKey; unchanged authorized route",
+  "credential_source": "Valkyrie mapped Vals-managed secret fellows/brandoModelGatewayApiKey inside sandbox; no provider key on host",
+  "host_config_source": "~/.config/valkyrie/valkyrie.yaml",
+  "bundle_source": "Fresh valk agent download vb103_judge on this host",
+  "bundle_hashes": {
+    "contract.yaml": "cadb016cc6aa991d94f32390dae2fb25cfe3e9d71de828153c2ed2cba37cf05f",
+    "judge_call.py": "9314c8107eef1c940a98a5f0dfba84546bc315aef5637405c97987f34a02b061",
+    "setup.sh": "78329d7b038de0d635f3e0d1eb1306ee708e3dc16b0c4b3168d01c598b32c999"
+  },
+  "frozen_reference": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/coordinator_judge_recovery_10-11-2026.json",
+  "bundle_matches_version1": true,
+  "estimated_judge_charge_usd": 225,
+  "estimated_controls_charge_usd": 3,
+  "reported_charge_usd": null,
+  "model_calls_so_far": 0
+}
