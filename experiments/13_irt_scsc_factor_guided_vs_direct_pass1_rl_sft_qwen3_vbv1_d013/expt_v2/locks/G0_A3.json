@@ -1,0 +1,71 @@
+{
+  "name": "G0_A3",
+  "frozen_at_utc": "2026-10-14T21:02:49.497199+00:00",
+  "bindings": {
+    "g0": {
+      "root": "repo",
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/reproduction/g0.py",
+      "sha256": "5042467c7c9e04eced96ffd67c8789f2c318a44208f180ffe07e351b4034bfd9"
+    },
+    "wrapper": {
+      "root": "repo",
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/reproduction/g0_a3.py",
+      "sha256": "57674246299145547777040e8dce68532ca5976e4103e40edcc4bc29e2e42339"
+    },
+    "tests": {
+      "root": "repo",
+      "path": "tests/test_e13_g0_a3.py",
+      "sha256": "5ddf889df252f3b4cf8d005a636b0c625da3122bef6ad68610d66d772d954dbc"
+    },
+    "admission": {
+      "root": "repo",
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/R2_A3_ADMISSION_10-14-2026.md",
+      "sha256": "86fce2b491aa916b434fc62c76777ed3be3d4c80ab6e4078d2cfb573eb5b526a"
+    },
+    "evaluation": {
+      "root": "repo",
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/prediction/evaluation_v2.py",
+      "sha256": "1c2153c930ce7aaac2faff89a208f3a858fca42d037270205ce6ff01929cb6c3"
+    },
+    "exclusions": {
+      "root": "work",
+      "path": "R2_diagnosis_10-14-2026/a3_ordinary_exclusions_private.json",
+      "sha256": "c00b35abaecda874820d4b1b29015655e248c19f319fa574fefa3d0804124128"
+    },
+    "ordinary_manifest": {
+      "root": "work",
+      "path": "R2/ordinary_manifest.jsonl",
+      "sha256": "2b6b764f481c4a1cd87d47a67a1746e5bbbd78f79571131fa1ca2383cd163eba"
+    },
+    "ordinary_results": {
+      "root": "work",
+      "path": "R2/ordinary/results.jsonl",
+      "sha256": "d0574c96b2b90f9882aacffae5cfb1db75f9bc3d1cefcca060f66d134c9ae5ca"
+    },
+    "opaque_public": {
+      "root": "repo",
+      "path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/R2_A2/opaque_public_receipt.json",
+      "sha256": "a7d295aefa88fce0f4fc6edc7775c9582f2ae7755e14776b1960ef809dfaa636"
+    }
+  },
+  "public_class_c": [
+    "sft_4B_f0p5/security_set__security_6858__vulnerabilities__137_unsafehmaclength/4",
+    "sft_8B_f0p125/security_set__security_6858__vulnerabilities__95_unsafecerttransparency/1",
+    "sft_8B_f1p0/security_set__security_6858__vulnerabilities__137_unsafehmaclength/3",
+    "sft_8B_f1p0/security_set__security_6858__vulnerabilities__144_unsafeintegeroverflowalloc/2"
+  ],
+  "thresholds": {
+    "dense_only_minimum": 21,
+    "validation_tasks": 135,
+    "auc_minimum": 0.65
+  },
+  "enumeration_limit": 1048576,
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 1302051,
+    "implementation": "unchanged g0.evaluate"
+  },
+  "single_run_output": "G0_A3",
+  "fallback": "If membership/label configurations exceed 2^20, use [0,1] AUC outer bounds; feasible displayed witnesses are not certified extrema. Dense-only bounds remain exact. No approximation can create a favorable verdict.",
+  "chronology": "No G0 statistic computed before publication; run verifies every binding and publication before parsing validation rows."
+}
