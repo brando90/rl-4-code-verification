@@ -5,7 +5,7 @@
 **TLDR:** Rule 44 checkpoint for the worker that finished the 10-13-2026 meeting folder (summary, action items, index, meetings index) and carried its decisions into `docs/DECISIONS.md` (D-017), `docs/PLAN.md` (§ 12) and `experiments/README.md` (08 row, meetings link). Zero model calls; no training; no test-split outcome read for any selection or forecast.
 
 **Created:** 10-14-2026 12:56 PDT
-**Last updated:** 10-14-2026 13:12 PDT
+**Last updated:** 10-14-2026 13:06 PDT
 
 ## Goal
 
@@ -42,5 +42,6 @@ Finish the 10-13-2026 meeting record (summary, action items, folder index, meeti
 ## Log
 
 - 10-14-2026 12:56 PDT: started; fetched `origin/main` (`d5c97ec`); read inputs.
-- 10-14-2026 13:12 PDT: wrote the four meeting files and the three document edits; whitespace and link checks clean.
-- 10-14-2026 13:14 PDT: `make test` on this Mac: 320 passed, 36 skipped, 4 failed, 31.40 s; the 4 failures are exactly the pre-existing macOS-only ones (`tests/test_e13_v2_a2.py::test_a2_process_retry_and_resume_preserve_originals`; `tests/test_e13_v2_watchdog.py::test_concurrent_recovery_starts_one_process`, `::test_orphaned_child_is_adopted_without_relaunch`, `::test_owned_unique_tmux_kill_case`), matching the recorded baseline; no new failure, so the push proceeds.
+- 10-14-2026 about 13:02 PDT: wrote the four meeting files and the three document edits; whitespace and link checks clean.
+- 10-14-2026 about 13:03 PDT: `make test` on this Mac: 320 passed, 36 skipped, 4 failed, 31.40 s; the 4 failures are exactly the pre-existing macOS-only ones (`tests/test_e13_v2_a2.py::test_a2_process_retry_and_resume_preserve_originals`; `tests/test_e13_v2_watchdog.py::test_concurrent_recovery_starts_one_process`, `::test_orphaned_child_is_adopted_without_relaunch`, `::test_owned_unique_tmux_kill_case`), matching the recorded baseline; no new failure, so the push proceeds.
+- 10-14-2026 13:05 PDT: pushed to `origin/main` after a clean rebase onto `57c3bb6` (another worker's experiment 13 commit): `c9fe074` (meeting folder and meetings index) and `1890b85` (D-017, PLAN § 12, experiments index). This checkpoint update (timestamps corrected to the wall clock) is the only later change.
