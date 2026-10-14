@@ -4,7 +4,7 @@
 
 **TLDR:** Qwen3 Base gives essentially zero reinforcement-learning (RL) signal on VeriBench V1 at the three measured sizes (experiment 05), so it needs a supervised fine-tuning (SFT) warm start. This experiment splits VeriBench V1 into train / validation / test (539 / 135 / 222 tasks; decision D-013). It asks two frontier teachers through Vals Valkyrie (Claude Opus 5.5 and GPT-6 Astra) for four single-call Lean files per train task, and keeps only files the Lean kernel fully verifies. It then fine-tunes Qwen3 Base 1.7B, 4B, 8B and 14B with one identical recipe (same data, order, token budget and hyperparameters at every size, as Varun requires). The validation split measures how many SFT tokens it takes before every size gives usable RL signal; each selected trained checkpoint is evaluated on the test split once after selection (historical Base/teacher test results were already inspected).
 
-**Owner:** Rakshit Kaushik (@rakshit-kaushik), tracking issue [#7](https://github.com/brando90/rl-4-code-verification/issues/7). **Set up by:** Claude Code master session for Brando, 10-07-2026. **Status:** DONE / frozen verdict PARTIAL (10-11-2026); see [results.md](results.md).
+**Owner:** Rakshit Kaushik (@rakshit-kaushik), tracking issue [#7](https://github.com/brando90/rl-4-code-verification/issues/7). **Set up by:** Claude Code master session for Brando, 10-07-2026. **Status:** Version 1 DONE / frozen verdict PARTIAL (10-11-2026); see [results.md](results.md). **Version 2 RUNNING (10-13-2026):** one-time test evaluation of 1.7B, 4B and 14B at step 658, so all four sizes are compared after identical SFT (same data, 658 updates, 5,752,936 tokens); see [expt_v2/PROTOCOL_v2.md](expt_v2/PROTOCOL_v2.md) and [expt_v2/results.md](expt_v2/results.md).
 
 ## Origin
 
@@ -105,7 +105,8 @@ My guess at what is needed: the 25% rung (~1M tokens) teaches the file format; n
 | Validation ladder, selection | DONE: all 20 trained rungs and 25,920 validation cells; frozen PARTIAL selection |
 | Test evaluation | DONE: all 10,656 test factor cells and 4,302 judge ratings known; all 60 fixed audit files per system; final analysis reproduced |
 | Execution cleanup | DONE: judge services/tunnels stopped, port claim archived, pipeline watchdog retired, monitor STOP recorded |
-| RL (version 2) | Not started; no common passing fraction and no follow-on study authorized |
+| Version 2: matched step-658 test (1.7B, 4B, 14B; Brando, 10-13-2026) | RUNNING: protocol locked and forecast frozen before generation; [expt_v2/results.md](expt_v2/results.md) |
+| RL | Not started; no common passing fraction and no follow-on RL study authorized |
 
 Version 1 is complete with PARTIAL selection: 8B step 658 and 14B step 334 are unmatched diagnostics; neither 1.7B nor 4B passes a rung. The final test table, intervals, audit, charges and preserved limitations are in [results.md](results.md); [all joined test factors](expt_v1/results/test_factor_cells.csv) are available without raw model text.
 
