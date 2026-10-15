@@ -10,8 +10,7 @@ HERE=Path(__file__).resolve().parent
 sys.path.insert(0,str(HERE.parent/'phase1'))
 from hidden_runtime import Runtime,ADDRESS_SPACE
 from score_anchor_ledger import MemorySlots,finish_attempt
-from selected_coverage_inputs import authority,IDENTITY
-from evaluation_contract import identities
+from selected_coverage_inputs import authority,IDENTITY,verify_evidence
 from selected_coverage import validate
 from technical_driver import read,reference
 from technical_ledger import published
@@ -94,15 +93,10 @@ def run(plan):
     validate(inputs,allowed)
     if set(allowed)!={t['task_id'] for t in tasks} or any(inputs[k]!=selection['run'][k] for k in ('arm','run_seed','boundary')):
         raise ValueError('hidden coverage population differs from selected checkpoint')
-    population=identities(sorted(t['task_id'] for t in tasks),'test',**selection['run'])
-    indexes={cell['cell_id']:index for index,cell in enumerate(population)}
-    scored={row['cell_id']:row for row in data['rows']}
+    verify_evidence(inputs,tasks,data,score_lock['configuration']['root'],selection['run'])
     refs=[lock['inputs'],reference(Path(config['test_ids']))]
     for cell in inputs['cells']:
-        strict=read(cell['strict']);saved=read(strict['strict_receipt'])
-        expected=Path(score_lock['configuration']['root'])/f"{indexes[cell['cell_id']]:05d}"/'result.json'
-        if Path(strict['strict_receipt']['path']).resolve()!=expected.resolve() or saved!=scored[cell['cell_id']]:
-            raise ValueError('hidden source is detached from published selected scoring')
+        strict=read(cell['strict'])
         refs += [cell['strict'],cell['suite'],strict['strict_receipt']]
         refs += [ref for ref in (cell.get('source'),strict.get('oracle_receipt')) if ref]
     if any(bound.get(ref['path'])!=ref['sha256'] for ref in refs):raise ValueError('hidden coverage physical input unbound')

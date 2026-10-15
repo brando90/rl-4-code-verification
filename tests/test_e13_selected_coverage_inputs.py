@@ -91,3 +91,24 @@ def test_unfrozen_or_wrong_checkpoint_cannot_open_coverage_inputs(tmp_path,monke
         plan[key]=put(Path(plan[key]['path']),value)
     with pytest.raises(ValueError):m.prepare(plan)
     assert not Path(plan['output']).exists()
+
+
+def test_normalized_sample_evidence_rejoins_the_full_published_population(tmp_path):
+    tasks,data,root,run=fixture(tmp_path);inputs=m.normalize(tasks,data,root,run,output=tmp_path/'out')
+    assert m.verify_evidence(inputs,tasks,data,root,run)
+    data['rows'].pop()
+    with pytest.raises(ValueError,match='population changed'):m.verify_evidence(inputs,tasks,data,root,run)
+
+
+@pytest.mark.parametrize('changed',('source_copy','receipt_copy','modified_normalized'))
+def test_equal_bytes_elsewhere_or_changed_normalized_outcome_cannot_replace_saved_evidence(tmp_path,changed):
+    tasks,data,root,run=fixture(tmp_path);inputs=m.normalize(tasks,data,root,run,output=tmp_path/'out')
+    cell=inputs['cells'][1];strict=m.read(cell['strict'])
+    if changed=='source_copy':
+        path=tmp_path/'elsewhere.lean';path.write_bytes(Path(cell['source']['path']).read_bytes());cell['source']=m.reference(path)
+    elif changed=='receipt_copy':
+        strict['strict_receipt']=put(tmp_path/'elsewhere.json',m.read(strict['strict_receipt']))
+        cell['strict']=put(Path(cell['strict']['path']),strict)
+    else:
+        strict['strict']=1;cell['strict']=put(Path(cell['strict']['path']),strict)
+    with pytest.raises(ValueError,match='selected|published'):m.verify_evidence(inputs,tasks,data,root,run)

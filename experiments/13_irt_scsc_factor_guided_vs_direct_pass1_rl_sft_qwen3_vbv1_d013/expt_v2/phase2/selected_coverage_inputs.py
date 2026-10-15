@@ -99,6 +99,46 @@ def normalize(tasks,scoring,score_root,run,*,output):
     write_new(root/'inputs.json',result);return result
 
 
+def verify_evidence(inputs,tasks,scoring,score_root,run):
+    """Rejoin normalized samples to the published full score table and exact saved attempt files."""
+    population=identities(sorted(t['task_id'] for t in tasks),'test',**run)
+    table={r['cell_id']:r for r in scoring['rows']}
+    if len(population)!=3552 or len(table)!=3552 or len(scoring['rows'])!=3552 or set(table)!={c['cell_id'] for c in population}:
+        raise ValueError('full selected-test evidence population changed')
+    chosen={c['cell_id']:c for c in inputs['cells']}
+    if len(chosen)!=222 or len(inputs['cells'])!=222 or set(chosen)!={c['cell_id'] for c in population if c['sample_idx']==0}:
+        raise ValueError('fixed selected-test evidence sample changed')
+    for index,cell in enumerate(population):
+        row=table[cell['cell_id']]
+        if any(row.get(k)!=cell[k] for k in IDENTITY) or row.get('cleanup_verified') is not True:
+            raise ValueError('published selected-test evidence identity or cleanup changed')
+        if cell['sample_idx']!=0:continue
+        candidate=chosen[cell['cell_id']];strict=read(candidate['strict']);saved=read(strict['strict_receipt'])
+        folder=Path(score_root)/f'{index:05d}'
+        if (any(candidate.get(k)!=cell[k] for k in IDENTITY)
+                or Path(strict['strict_receipt']['path']).resolve()!=(folder/'result.json').resolve()
+                or saved!=row or any(strict.get(k)!=v for k,v in saved.items() if k!='compile')):
+            raise ValueError('coverage evidence is detached from the published selected score')
+        attempt=folder/f"attempt_{row.get('attempts',0)}";source=attempt/'solution.lean'
+        if candidate.get('source') is None:
+            if row.get('attempts',0) and source.exists():raise ValueError('existing selected candidate was omitted')
+        elif (not row.get('attempts',0) or Path(candidate['source']['path']).resolve()!=source.resolve()
+                or digest(source)!=candidate['source']['sha256']):
+            raise ValueError('coverage candidate differs from the selected attempt source')
+        if row['status']=='measured':
+            oracle=strict.get('oracle_receipt')
+            if oracle is None or Path(oracle['path']).resolve()!=(attempt/'evidence/oracle/oracle.json').resolve():
+                raise ValueError('coverage compilation evidence is detached from selected attempt')
+            if read(oracle).get('compile') is not strict.get('compile'):raise ValueError('selected compilation evidence changed')
+        elif strict.get('compile') is not None or strict.get('oracle_receipt') is not None:
+            raise ValueError('unmeasured official compilation must remain unknown')
+        if strict.get('frontend') is not None:
+            ref=strict['frontend'];path=attempt/'evidence/components/frontend.json'
+            if Path(ref['path']).resolve()!=path.resolve() or digest(path)!=ref['sha256']:
+                raise ValueError('coverage component evidence is detached from selected attempt')
+    return True
+
+
 def prepare(plan):
     tasks,score,lock,data=authority(plan)
     result=normalize(tasks,data,lock['configuration']['root'],plan['run'],output=plan['output'])
