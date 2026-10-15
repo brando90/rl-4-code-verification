@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/results.md>
 
-**TLDR:** Experiment 13 version 2 continues under adopted A5 to select a separate numerical condition, v2-S2. S1's measured LP-1 FAIL remains final (99th-percentile error 0.124769325 > 0.10 over 40,035 tokens). Two candidates, float16 then float32, are being frozen with a seeded disjoint eight-task train probe before measurement. G0 remains PASS; no actual-data fit or downstream generation has run.
+**TLDR:** Experiment 13 version 2-S2 selects float16: C1 passed all A5 development margins on 8/8 train responses and 51,472 tokens (99th-percentile error 0.016339779 ≤ 0.08). C2 is not run. The S2 lock is frozen pending tested publication and one original-probe confirmation; Phase 1 remains pending that result. S1's measured LP-1 FAIL remains final (0.124769325 > 0.10).
 
-Last updated: 10-14-2026 17:26 PDT
-Status: **ACTIVE: A5 premeasurement preparation; S1 FAIL retained.**
+Last updated: 10-14-2026 17:41 PDT
+Status: **ACTIVE: float16 selected; S2 confirmation freeze/testing.**
 
 ## Current A5 continuation — 10-14-2026 17:26 PDT
 
@@ -18,6 +18,12 @@ Budget/device plan: at most 3.0 new device-hours for all A5 development and conf
 Next: publish candidate list, probe hash, code, tests and first development lock; arm the existing poller; measure each candidate once in order, stopping at the first that clears all 20% margins. Freeze the selected condition before its one confirmation on the original probe. Infrastructure attempts obey A4; statistics make a result final. No Brando action is needed. Busy devices mean waiting, not ending the experiment.
 
 Publication verification (10-14-2026 17:33 PDT): required Lean integration suite exited 0, **558 passed, 23 skipped, zero failures in 245.04 seconds**. [Test receipt](phase1/LP1_A5_publication_test.json). The [candidate list](phase1/LP1_A5_candidates.json), disjoint probe hash and [C1 lock](locks/LP1_A5_C1.json) are frozen before any device measurement; each route verified 135 bindings and eight installed versions. Next action after push: arm C1 through the retained poller.
+
+Active execution (10-14-2026 17:34 PDT): candidate freeze **`6251b77`** is pushed. C1 float16 claimed skampere1 GPU 0, UUID `GPU-4a898d48-860a-9abc-bda7-59057400018e`, lease `e13v2-dce3f3537dae4af8b9155a09d3c21e24`, after fresh process/foreign-lease checks. Non-probe preflight is running within the same 0.5-hour allocation. The 15-minute poller remains armed; exclusive dispatch prevents duplicate execution. No admission statistics yet.
+
+Development selection (10-14-2026 17:41 PDT): **C1 float16 qualifies** on 8/8 responses, 51,472 generated tokens: unsupported 0, median error 0.0000225788681 ≤0.008, 99th percentile 0.0163397789 ≤0.08, truncation 0 ≤0.008. C2 will not run. [Report](RESULTS_LP1_A5.md), [evidence](LP1_A5/C1_result.json), [selected-condition lock](locks/LP1_A5_S2.json). The released lease used 0.103803370463/0.5 hours; A5 total 0.103803370463/3.0. No actual-data fit or optimizer update. Next: required tests, push the S2 lock, then one original-probe confirmation with unchanged thresholds.
+
+Confirmation-freeze verification (10-14-2026 17:45 PDT): **558 passed, 23 skipped, zero failures in 251.97 seconds**, direct exit 0 with Lean integration required. [Receipt](phase1/LP1_A5_S2_publication_test.json). No confirmation call has run; publish this lock before arming.
 
 ## Historical S1 closeout (final within S1)
 
