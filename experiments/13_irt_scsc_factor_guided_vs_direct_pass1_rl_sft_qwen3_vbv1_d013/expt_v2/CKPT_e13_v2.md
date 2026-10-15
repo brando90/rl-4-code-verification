@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 05:18 PDT
+Last updated: 10-15-2026 06:18 PDT
 
 ## Task and owner
 
@@ -262,6 +262,12 @@ Last updated: 10-15-2026 05:18 PDT
 - **Owner working** (11 h 56 min). The final-analysis driver is published (`2029faa`). It is preparing the prospective pilot-lock helper, which binds the runtime, probes, final scientific gates and resource limits, with the cost recipe still pending.
 - **Half scoring closed** (`9a3dd32`): 4,303/4,312 measured, 9 unavailable (8 deterministic timeouts, 1 frontend failure), **0 strict successes** (bounds [0, 0.00209]). Base scoring also had 0/4,311. **Watch item:** under the frozen Phase 2 sampler (temperature 1, top-p 1, float16), neither Base nor the 50% rung solves any train task. If the full1 rung (the Phase 2 start) is also near zero, three risks follow, all governed by the frozen rules with no change made: arm A gets almost no strict signal; H2 (mixed-group AUC) may be one-class; T5 (A's learning gate) may fail. For comparison, the historical validation ladder used for G0 had 14–21 later-positive tasks among the zero-earlier-success subset. full1 scoring is the decisive number.
 - **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 06:14 PDT: all three anchor panels generated (3 × 4,312); full1 scoring running
+
+- **Generation complete.** Base, half and full1 each have 4,312/4,312 responses (12,936 in total), with 0 missing and 0 retries; full1 generation took 9.71 device-hours (`0e46249`). Every lease is released, and cumulative device-hours are 26.07 across 56 leases. Scoring so far: base 0/4,311 strict successes, half 0/4,303. The full1 scoring lock is frozen (`3ddd8b3`) and the unchanged scorer is RUNNING, at 1,660/4,312 saved receipts at 06:11. Scoring cost so far: base 14.4 and half 16.7 processor-hours, 0 device-hours.
+- **Next, per PLAN § 5.** Publish the full1 scoring, then run the single calibration with frozen items and F2, then independent batch 2 (still unarmed), then G1/H2. The full1 strict-success count decides the watch item recorded at 05:14.
+- **Healthy.** The owner is working (12 h 56 min, 994 tests passing). The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
 
 ## Exact next commands (master)
 
