@@ -71,3 +71,15 @@ The [immutable full1 generation receipt](anchors_S2/full1_generation.json) binds
 Full1 scoring freeze (10-15-2026 05:59 PDT): [lock](locks/ANCHOR_SCORE_S2_full1.json) binds all 4,312 responses and 43 implementation/provenance files, all hashes verified. SHA-256 `3f512e519c4d0a148b302c41e81d0a62d1b8f87634a80e832e51c6fe81349152`. Generation publication `0e46249e074fb9c23e81088dc374f1c0d3041214` precedes the freeze. Required suite: **988 passed, 3 skipped, zero failures in 474.72 seconds**, direct exit 0 ([receipt](anchors_S2/full1_scoring_lock_test.json)). No full1 scoring has run; the single unchanged scoring launch follows this publication.
 
 Full1 scoring launch (10-15-2026 06:11 PDT): the published `3ddd8b393b45e71fe4611c6dabdba8bc92772350` lock precedes the one unchanged scoring launch. Timed parent 2428165 and scorer 2428166 (birth 30782966) verify; the scorer is registered under the existing watchdog. It retains 1,660/4,312 cell receipts, with cleanup verified on 1,660. [Launch receipt](anchors_S2/full1_scoring_launch.json) preserves the first useful observation of 55 clean cells at 06:01 PDT; no complete-panel verdict is inferred for unfinished cells. Required publication suite: **994 passed, 3 skipped, zero failures in 573.05 seconds**, direct exit 0 ([receipt](phase2/selected_hidden_publication_test.json)).
+
+## Full batch 1 scoring closure — 10-15-2026 06:49 PDT
+
+Full batch 1 scoring closed: 4,302/4,312 measured, 10 missing, 0 strict successes, 0 retries; no integrity defects or unresolved cleanup.
+
+Every missing cell remains in the declared denominator. [Scoring receipt](anchors_S2/full1_scoring.json), [strict diagnostic](anchors_S2/full1_strict_diagnostic.json), and [processor/storage cost](anchors_S2/full1_scoring_cost.json) retain the original frozen scoring lock and physical ledger hashes.
+
+Strict mean completion bounds: [0.0, 0.002319109461966605]. The frozen 10,000-draw, seed-1302031 whole-task-group bootstrap over 400 train groups has 95% endpoint intervals [0.0, 0.0009328358208955224] (minimum) and [0.0, 0.003856624319419238] (maximum), giving outer envelope [0.0, 0.003856624319419238]. These are descriptive intervals conditional on the fixed model and eight responses per task, with no repeated-training or fit uncertainty; p-value is not applicable. If all observed responses are zero, this bootstrap does not provide a distribution-free population upper confidence bound. This is a calibration panel, not a held-out efficacy result or admission gate.
+
+Processor usage: 17.35165 hours (user 45358.22 s plus system 17107.72 s); elapsed 2869.3 s, zero device-hours for scoring. Retained scoring files: 78,780, 184,196,752 logical bytes and 416,026,624 allocated bytes. Generation cost is separately reported above. Required suite: 1,005 passed, 3 skipped, direct exit 0. Calibration has not run.
+
+Missing-cell causes (no task identifiers): deterministic_resource_limit / TimeoutExpired: 6; unresolved_measurement / RuntimeError: 4.
