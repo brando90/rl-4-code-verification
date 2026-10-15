@@ -4,18 +4,20 @@
 
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
-Last updated: 10-15-2026 02:52 PDT
+Last updated: 10-15-2026 03:04 PDT
 Status: **ACTIVE: base scoring closed; half/full generation.**
 
-## Current Phase 1 state — 10-15-2026 02:52 PDT
+## Current Phase 1 state — 10-15-2026 03:04 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
-What ran: base generation COMPLETE 4,312/4,312; scoring closed, 4,311 measured, one unresolved parser error, zero strict successes. Missing outcome remains in the denominator; no retry. Half generation 3,904/4,312 and full batch 1 2,880/4,312 continue. Required suite 883 passed, 3 skipped. Hosted judge and hidden-test controls remain final PASS. No actual mutation measurement, fit, independent batch 2, new validation/test outcome or experiment optimizer update has run.
+What ran: base generation COMPLETE 4,312/4,312; scoring closed, 4,311 measured, one unresolved parser error, zero strict successes. Missing outcome remains in the denominator; no retry. Half generation 4,000/4,312 and full batch 1 3,008/4,312 continue. Required suite 890 passed, 3 skipped. Hosted judge and hidden-test controls remain final PASS. No actual mutation measurement, fit, independent batch 2, new validation/test outcome or experiment optimizer update has run.
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Eighteen cron lines preserve the original schedule additively. Busy devices remain a wait condition. No Brando action is needed.
 
 Next: publish half/full generation receipts and scoring locks as each closes, then score their full manifests. Continue Phase 2 preparation in parallel. Freeze calibration/items/F2 before full batch 2, then G1/H2 and Phase 2; G1 method is already frozen before any actual fit.
+
+Monitor checkpoint and leased execution preparation (10-15-2026 03:04 PDT): [snapshot freeze and device supervisor](phase2/README.md) retain the exact paused pilot state and model bytes, fixed diagnostic inputs and paired seeds, one stage reservation and the canonical per-run lease. The learning-controller fence remains held through child cleanup; generation requires its same-snapshot non-probe preflight, and no automatic replay is admitted. Seven new tests and all 14 focused checks pass, including a real failing child, changed-state/lease refusal, paired snapshot seeds and a competing controller. Required suite: **890 passed, 3 skipped, zero failures in 452.22 seconds**, direct exit 0 ([receipt](phase2/monitor_snapshot_supervisor_publication_test.json)). These are preparation only; no monitor or actual Phase 2 device measurement ran. Half/full batch 1 retain 4,000/3,008 of 4,312 each; no actual fit or experiment optimizer update has run.
 
 Hosted monitor preparation (10-15-2026 02:52 PDT): [monitor authority and shared judge transport](phase2/README.md) require the published current-checkpoint snapshot, matching completed processor evidence and source bindings frozen before learning. Exclusive admissions, ambiguous-call retention, actual executable verification and missing-rating/charge accounting remain unchanged. Fourteen focused tests pass, including refusal of another checkpoint's evidence and a method absent from the pilot freeze. Required suite: **883 passed, 3 skipped, zero failures in 470.65 seconds**, direct exit 0 ([receipt](phase2/monitor_hosted_publication_test.json)). No new model call or actual monitor measurement occurred. Half/full batch 1 retain 3,904/2,880 of 4,312 each and continue; base scoring is already published. No actual fit or experiment optimizer update has run.
 
