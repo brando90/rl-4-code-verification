@@ -5,9 +5,9 @@
 **TLDR:** v2-S2 T1 attempt 1 is INCOMPLETE-INFRA: generation 8/8, trainer probabilities 0/8, no admission statistic. Ray rejected a 148-byte Unix-socket path against Linux's 107-byte limit. Cleanup is verified and all three leases are released; A4 permits attempt 2 after a tested repair and successor-lock publication. The experiment continues; C is disabled, H2/F2 unavailable, batch 2 skipped.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-15-2026 16:02 PDT
+Last updated: 10-15-2026 16:03 PDT
 
-## Current state — 10-15-2026 16:02 PDT
+## Current state — 10-15-2026 16:03 PDT
 
 Goal: complete the experiment through its admitted gates, or publish the binding transition result. Continue under A6 with unchanged S2 numerics and rollout sampler.
 
@@ -15,9 +15,11 @@ What ran: [LP freeze](phase2/LP_A6_S2_FREEZE.md) published at `970d274`; T1 atte
 
 Supervision: owner PID 1243923 remains the only writer. The T1 controller exited after HALTED, all three leases are released and cleanup is verified. Cumulative T1 usage is 0.168878405/2.0 device-hours. Watchdog and cron remain armed; no automatic gate retry is running.
 
-Next: publish the verified source/lock step, then the A4 admission record for the [Ray socket repair](phase2/T1_A4_REPAIR.md) and successor LP. Then publish the A4 admission record binding those exact revisions and run complete T1 attempt 2. The installed Ray error was reproduced, a real socket and zero-device CPU cluster passed, and all nine focused tests pass. Attempt-1 outputs never enter the final gate statistic. A4 allows at most three attempts.
+Next: after publishing the [A4 admission record](locks/T1_A4.json), verify its exact published successor chain and launch complete T1 attempt 2 through the unchanged lease registry. Repair/LP/regression publication `d5961c9` passed the required full suite (1,124 passed, 3 skipped). Attempt 1 remains published at `dacef27`; all prior outputs are excluded, the 2.0-hour cumulative cap is unchanged, and at most three attempts are allowed.
 
 Brando to-do: none. Existing SNAP preapproval covers the frozen technical allocation; no provider charge or inherited experiment-08 budget is used.
+
+T1 A4 admission freeze (10-15-2026 16:03 PDT): [admission record](locks/T1_A4.json), hash `e922b33096633c4512019d333ddb3216468c3824dff9f628c370fa46d03491e9`, binds tested source/LP revision `d5961c9`, published regression PASS and failed-attempt revision `dacef27`. All 4,681 successor bindings verify, seven infrastructure changes/additions are enumerated, and scientific signature/allocation are unchanged. No new test or gate was rerun for this metadata-only reference binding; the just-completed required suite passed 1,124 tests. No attempt-2 claim yet.
 
 T1 A4 repair preparation (10-15-2026 15:54 PDT): [repair method](phase2/T1_A4_REPAIR.md), nine focused checks PASS, real installed Ray error reproduced, zero-device cluster health task completed. The successor binds 4,681 files, retains 4,674 prior hashes, and keeps the complete scientific signature and allocation hash unchanged. Device-free planned-path preflight passes at 101/107 bytes; empty preparation directories removed. Required integration suite **1,124 passed, 3 skipped, zero failures in 608.36 seconds**, direct exit 0 ([receipt](phase2/T1_A4_full_test.json)); no attempt-2 claim or model call.
 

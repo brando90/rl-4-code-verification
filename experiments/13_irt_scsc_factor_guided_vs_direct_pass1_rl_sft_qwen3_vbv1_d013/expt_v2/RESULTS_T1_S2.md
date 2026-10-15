@@ -13,3 +13,5 @@ All three leases are RELEASED with verified cleanup. Cumulative T1 usage is **0.
 Required Lean integration: **1,121 passed, 3 skipped, zero failures in 497.20 seconds**, direct exit 0 ([receipt](phase2/T1_A6_publication_test.json)). This verifies the published implementation; it does not turn the observed infrastructure defect into a gate PASS. The repair is pending at this publication.
 
 The [Ray path repair and successor LP](phase2/T1_A4_REPAIR.md) now pass nine focused checks and the required full suite (1,124 passed, 3 skipped, direct exit 0). All scientific settings and caps are unchanged. The separate A4 record binds their published revision before attempt 2.
+
+The repair was pushed at `d5961c9`. The [A4 admission lock](locks/T1_A4.json) now binds its exact successor LP, regression result and the published failed attempt. Attempt 2 is the next complete-gate execution after this lock publication; attempt 1 remains unchanged.
