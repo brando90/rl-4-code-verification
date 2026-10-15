@@ -18,7 +18,7 @@ def verify(config):
         HERE.parent/'phase1/runtime.py',HERE.parent/'phase1/device_binding.py',Path(config['manifest']),Path(config['allowlist']),Path(config['policy_config'])]
     for key in ('model','tokenizer'):
         files=[p for p in Path(config[key]).iterdir()if p.is_file()]
-        if not any(p.suffix=='.safetensors'for p in files):raise ValueError('frozen weights absent')
+        if not any(p.suffix in ('.bin','.safetensors')for p in files):raise ValueError('frozen weights absent')
         required+=files
     if any(table.get(str(p))!=digest(p)for p in required):raise ValueError('missing diagnostic dependency')
     for name,version in config['runtime_versions'].items():
