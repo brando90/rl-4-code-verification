@@ -4,20 +4,22 @@
 
 **TLDR:** v2-S2 T1 is final PASS: 8/8 train responses, 44,844 output tokens; median absolute log-probability error 0.0000327482 and p99 0.0176024, unsupported/truncated tokens 0/44,844. All six leases released; cumulative 0.355751673/2.0 device-hours. Continue to T2, T3 and T4 before the audits and pilot. C disabled, H2/F2 unavailable, batch 2 skipped.
 
-Last updated: 10-15-2026 16:37 PDT
-**Status:** T1 PASS; T2 waiting after an unadmitted device collision.
+Last updated: 10-15-2026 16:44 PDT
+**Status:** T1 PASS; T2 attempt 1 admitted and generating its train batch.
 
-## Current state — 10-15-2026 16:37 PDT
+## Current state — 10-15-2026 16:44 PDT
 
 Goal: complete Experiment 13 v2 under A6 through its admitted gates, or publish the binding transition result.
 
 What ran: [LP freeze](phase2/LP_A6_S2_FREEZE.md) and A4 successor preceded the final [T1 PASS](RESULTS_T1_S2.md). The complete attempt 2 used 0.186873268 device-hours; attempt 1's 0.168878405 remains charged. No optimizer update, actual mutation audit or new held-out response exists.
 
-Supervision: owner PID 1243923 is the single writer. T1 is published final PASS. T2 controller 3549788 exited after a pre-runtime device collision; its unused reservation was released with verified cleanup. No numbered T2 attempt or active lease exists. The watchdog remains armed.
+Supervision: owner PID 1243923 is the single writer. The published wait recovery passed its actual non-probe preflight on idle device 2. T2 attempt 1 is admitted; resumed controller PID 554111 and poller PID 106888 are watchdog-registered. The prior collision reservation remains released and charged.
 
-Next: after pushing the tested additive wait lock, launch the bound watchdog poller and resume T2 through fresh idle-device checks. Original LP/science and every completed result remain unchanged. The failed health reservation counts inside T2’s 8.0-hour per-attempt and 10.0-hour cumulative limits; the overall technical allocation remains 23.75 device-hours.
+Next: supervise the unchanged T2 generation, scoring, single update, export and refit probability check. Publish its final verdict before T3, then T4, the train audits and the pilot. The 8.0-hour per-attempt, 10.0-hour cumulative T2 limits and 23.75-device-hour overall technical allocation remain unchanged.
 
 Brando to-do: none. Existing SNAP preapproval covers the frozen allocation.
+
+T2 attempt 1 admission (10-15-2026 16:44 PDT): the additive wait recovery was published at `fd7edca` before claiming device 2. The unchanged non-probe engine preflight passed, one numbered attempt was admitted, and controller PID 554111 is executing the fixed 256-response train generation under the watchdog ([launch receipt](phase2/T2_A6_launch.json)). No optimizer update or gate statistic exists. The earlier device collision remains charged at 0.015054962 device-hours; the 8.0/10.0-hour limits are unchanged. The just-completed required integration suite passed 1,133 tests with 3 skipped, direct exit 0; this publication copies launch evidence and updates documentation only.
 
 T2 pre-admission device wait (10-15-2026 16:28 PDT): a foreign execution occupied device 0 after the idle observations. The final guard stopped before runtime construction; zero responses, optimizer updates, admission statistics and numbered T2 attempts. Cleanup verified, lease released, 0.015054962 device-hours retained. [Reconciliation method](phase2/T2_PREFLIGHT_WAIT.md) adds a tested wait-only wrapper while retaining all 4,681 existing LP bindings. Fourteen focused checks pass; required integration **1,133 passed, 3 skipped, zero failures in 601.42 seconds**, direct exit 0 ([receipt](phase2/T2_preflight_wait_publication_test.json)). No device is currently held.
 

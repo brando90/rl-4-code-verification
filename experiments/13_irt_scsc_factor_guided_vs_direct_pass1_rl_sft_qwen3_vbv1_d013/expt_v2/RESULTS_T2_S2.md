@@ -1,8 +1,12 @@
-# Experiment 13 v2-S2 T2: waiting for an idle device before admission
+# Experiment 13 v2-S2 T2: attempt 1 admitted after the device wait
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/RESULTS_T2_S2.md>
 
-**TLDR:** T1 is published PASS. T2 has no numbered admission or gate verdict: another execution arrived on its reserved device before runtime construction, and the final device guard stopped the launch. The experiment continues through a published device-wait reconciliation, with every frozen scientific binding and resource cap unchanged.
+**TLDR:** T1 is published PASS. T2 attempt 1 passed the actual non-probe preflight on idle device 2 and is generating its fixed train batch under the unchanged learning-pilot freeze. The previous device collision produced no probe response or statistic and remains charged; no T2 verdict exists yet.
+
+T2 attempt 1 admission (10-15-2026 16:44 PDT): the additive wait recovery was published at `fd7edca` before claiming device 2. The unchanged non-probe engine preflight passed, one numbered attempt was admitted, and controller PID 554111 is executing the fixed 256-response train generation under the watchdog ([launch receipt](phase2/T2_A6_launch.json)). No optimizer update or gate statistic exists. The earlier device collision remains charged at 0.015054962 device-hours; the 8.0/10.0-hour limits are unchanged. The just-completed required integration suite passed 1,133 tests with 3 skipped, direct exit 0; this publication copies launch evidence and updates documentation only.
+
+The following table preserves the earlier pre-admission collision snapshot.
 
 | Observation | Saved value |
 |---|---:|
