@@ -2,20 +2,26 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2_owner.md>
 
-**TLDR:** v2-S2 continues under the A6 clarification at `80fdd2a`. Diagnostic attempt 1 is INCOMPLETE-INFRA (0/512 responses, no statistic); attempt 2 generation is closed after the tested repair and successor lock were pushed at `d9df333`; scoring inputs are published at ab5ed48 and the single scoring run is active; soundness is unmeasured. Historical G1 is final INCONCLUSIVE, arm C is disabled, H2/F2 are UNAVAILABLE and independent batch 2 is skipped. The original cumulative 2.0 device-hour allocation remains binding.
+**TLDR:** v2-S2 A6 is final **SOUND**, attempt 2: compile 48/512 (496 measured), strict 48/512 (496 measured); bounds [0.09375, 0.125] and [0.09375, 0.125], respectively. Continue to the learning-pilot lock and unchanged technical gates under A6. Attempt 1 remains INCOMPLETE-INFRA with zero responses; no replay is admitted. G1 is final INCONCLUSIVE, C disabled, H2/F2 UNAVAILABLE and batch 2 skipped.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-15-2026 10:22 PDT
+Last updated: 10-15-2026 10:37 PDT
 
-## Current state — 10-15-2026 10:22 PDT
+## Current state — 10-15-2026 10:37 PDT
 
-Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
+Goal: complete the experiment through its admitted gates, or publish the binding transition result. Continue to the learning-pilot lock and unchanged technical gates under A6.
 
-What ran: all three train anchor score manifests closed with 12,916/12,936 measured, zero strict successes, 20 preserved missing outcomes; calibration final, C not admitted. Historical G1 completed once, INCONCLUSIVE in both holdout schemes. A6 diagnostic attempt 1 stopped before engine construction, 0/512 responses and no admission statistic; cleanup/release verified. Hosted and hidden controls remain final PASS. No independent batch 2, actual mutation measurement, Phase 2 optimizer update or new held-out response ran.
+What ran: G0 PASS; S1 LP-1 final FAIL; separately frozen S2 LP-1 PASS. Three anchor panels, calibration and historical G1 closed once; C is disabled. A6 attempt 1 is INCOMPLETE-INFRA, 0/512 responses. Attempt 2 generated 512/512 and its scoring/analysis exited 0 with final SOUND; compile 48/512 (496 measured), strict 48/512 (496 measured); bounds [0.09375, 0.125] and [0.09375, 0.125], respectively. H2/F2 remain UNAVAILABLE and independent batch 2 remains unarmed.
 
-Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; watchdog `$WR/watchdog_a5` remains active. Both earlier workers exited. Attempt 2 worker PID 3609618, start ticks 31692891, exited; its device-0 lease is released after verified cleanup. The 18-line additive cron schedule is preserved. The tested successor lock is published at `d9df333`; actual engine health preflight PASS. No Brando action is needed.
+Supervision: single writer PID 1243923 in `codex-rl4cv-e13v2-owner-g0`; generation and scoring processes exited, cleanup verified, both A6 leases released. Cumulative A6 device usage 1.406306960/2.0 hours. Existing cron lines preserved. No frozen artifact or scientific setting changed after publication.
 
-Next: supervise the existing single scoring run through its final aggregate and timing; publish its soundness verdict without retry. Continue to the learning-pilot lock only if A6 is SOUND. Retain at most three attempts and charge all time against the same 2.0 device-hours.
+Next: Continue to the learning-pilot lock and unchanged technical gates under A6. Freeze/publish the pilot lock and allocation before any technical call.
+
+Brando to-do: none to close this gate. Execution continues through the existing authorized plan.
+
+A6 final diagnostic (10-15-2026 10:37 PDT): **SOUND**, compile 48/512 (496 measured), strict 48/512 (496 measured); bounds [0.09375, 0.125] and [0.09375, 0.125], respectively. All 512 responses were generated and all scoring slots accounted once, with zero retries and unresolved cleanups. [Report](RESULTS_A6_DIAGNOSTIC_S2.md), [aggregate receipt](phase1/A6_S2_result.json). The report retains the 95% whole-task-group bootstrap intervals and missing-status counts; p-val=n/a (operational criterion, no hypothesis test). Cumulative device time **1.406306960/2.0 hours**; both leases released. Continue to the learning-pilot lock and unchanged technical gates under A6. No independent batch 2, learning-pilot lock, actual Phase 2 technical gate, mutation audit, optimizer update or new held-out response has run.
+
+Final A6 publication verification: required Lean integration **1,121 passed, 3 skipped, zero failures in 491.85 seconds**, direct exit 0 ([receipt](phase1/A6_final_publication_test.json)). The public result matches the single saved analysis; every provenance hash verifies. No generation or scoring replay occurred.
 
 A6 scoring supervision (10-15-2026 10:22 PDT): 495/512 closed cell receipts; remaining workers and their Lean children are alive within the frozen timeouts. No aggregate or admission verdict exists. Required Lean integration **1,121 passed, 3 skipped, zero failures in 523.96 seconds**, direct exit 0 ([receipt](phase1/A6_scoring_publication_test.json)). All 218 prepared technical-runtime bindings verify unchanged; no technical gate or learning call was made. The existing single scoring controller remains supervised; neither generation nor scoring is relaunched.
 

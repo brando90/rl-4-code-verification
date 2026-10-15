@@ -1,4 +1,37 @@
-# Experiment 13 v2-S2: A6 diagnostic attempts and pending soundness
+# Experiment 13 v2-S2: final A6 pipeline diagnostic
+
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/RESULTS_A6_DIAGNOSTIC_S2.md>
+
+**TLDR:** **SOUND**, final attempt 2. The fixed 64-task × 8-sample train diagnostic generated 512/512 responses and was scored once. Attempt 1 remains INCOMPLETE-INFRA with zero responses. Continue to the learning-pilot lock and technical gates.
+
+Published analysis date: 10-15-2026 10:37 PDT. The [aggregate receipt](phase1/A6_S2_result.json) binds the single saved result, full scoring population, timing and input locks. No output enters a comparison statistic.
+
+| Outcome | Successes / declared | Measured / declared | Full-denominator rate bounds | 95% whole-task-group bootstrap outer envelope |
+|---|---:|---:|---|---|
+| compile | 48/512 | 496/512 | [0.093750000, 0.125000000] | [0.044230769, 0.190476190] |
+| strict | 48/512 | 496/512 | [0.093750000, 0.125000000] | [0.044230769, 0.190476190] |
+
+Intervals use the already-published 10,000 draws at seed 1302603 over 61 whole selected train task groups, retaining all eight samples. They condition on this fixed policy/cohort, exclude training-run uncertainty and are descriptive; p-val=n/a (no hypothesis test). A degenerate zero bootstrap is not a population upper bound. The aggregate receipt preserves both endpoint intervals as well as their outer envelope. Missing observations remain unknown, not imputed.
+
+The unchanged A6 criterion is strict successes > 0 and compile rate ≥ one tenth of the historical validation rate. The historical full-schedule policy compiled and strictly succeeded on **100/1,080** responses for each metric: **0.092592593 [0.053700397, 0.132980148], p-val=n/a**, 95% percentile bootstrap over 100 validation task groups. Thus the diagnostic needs at least **5/512 compiling responses** and at least **1/512 strict success**. The frozen full-denominator completion bounds determine the verdict.
+
+Generation retained 2,958,502 tokens, 101/512 cap-limited responses and 0/512 missing generations. Scoring has 0 unresolved cleanups and 0 retries. Missing-status counts: `{"deterministic_resource_limit": 15, "unresolved_measurement": 1}`. Extraction-method counts: `{"file_blocks": 395, "no_lean_block": 101, "unavailable": 16}`.
+
+The repair/attempt-2 lock was pushed at `d9df333` before generation. It accepted the existing bound `pytorch_model.bin` without changing model bytes, prompts, template, float16 numerics or the scorer. The actual engine passed its non-probe health request before diagnostic responses. The diagnostic used the unchanged historical evaluation sampler: temperature 0.6, top-p 0.95, top-k 20 and 12,288 new tokens. The task-ID SHA-256 remains `f6a7c30330782ead62fed3a2c1af1c2b9dbbe3f05d64bcb2584773c9ae61421b`; IDs and raw responses stay private.
+
+Attempt 1 consumed 0.0038115982876883612 device-hours and produced 0/512 responses before engine construction. Its .safetensors-only format guard was corrected with the published regression, preflight and successor lock under A4/A6 clarification. Attempt 2 consumed 1.402495361765 device-hours; cumulative usage is 1.406306960053/2.0, including health and cleanup. Both leases are released with cleanup verified. No third generation attempt is admitted after these responses.
+
+The single scoring/analysis run exited 0, consuming 11393.67 user + 3081.26 system processor-seconds = 4.020813889 processor-hours, with 1753.33 seconds elapsed. Generation processor counters were not recorded and remain unavailable. Exact timing and raw evidence hashes are retained.
+
+Historical G1 remains final INCONCLUSIVE; arm C stays disabled. H2/F2 stay UNAVAILABLE for the null predictor, original F2=0.75 is preserved, and independent batch 2 remains skipped and unarmed. No Phase 2 optimizer update or new held-out response has run. S1 LP-1 FAIL and S2 LP-1 PASS remain unchanged.
+
+Final A6 publication verification: required Lean integration **1,121 passed, 3 skipped, zero failures in 491.85 seconds**, direct exit 0 ([receipt](phase1/A6_final_publication_test.json)). The public result matches the single saved analysis; every provenance hash verifies. No generation or scoring replay occurred.
+
+## Earlier infrastructure and generation chronology
+
+The following is the earlier publication, retained as historical evidence; its pending-status language is superseded by the final result above.
+
+### Experiment 13 v2-S2: A6 diagnostic attempts and pending soundness
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/RESULTS_A6_DIAGNOSTIC_S2.md>
 
