@@ -1,0 +1,159 @@
+{
+  "condition": "v2-S2",
+  "gate": "T1",
+  "attempt": 2,
+  "status": "CLOSED",
+  "result_sha256": "37fdb5de6b9bd2b83633ac1e353c9d1f2ce22de92d31b62a81591c50326ccb05",
+  "token_table_sha256": "84c64c5a3ed753bb8d0d29f26bb162a2d69c1b0790c1bd40403deea282526cf9",
+  "device_hours": 0.3557516730493969,
+  "attempt_device_hours": 0.18687326802147758,
+  "leases": [
+    {
+      "id": "e13v2-eb9edf0ab34f4f0081c3625a8740b5f2",
+      "host": "skampere1",
+      "index": 0,
+      "uuid": "GPU-4a898d48-860a-9abc-bda7-59057400018e",
+      "run_key": "T1/1/preflight",
+      "status": "RELEASED",
+      "started_unix": 1792103550.8472624,
+      "released_unix": 1792103708.8362107,
+      "device_hours": 0.04388581898477342
+    },
+    {
+      "id": "e13v2-469b2bf5d75147e0aadd7729dd30fdd6",
+      "host": "skampere1",
+      "index": 0,
+      "uuid": "GPU-4a898d48-860a-9abc-bda7-59057400018e",
+      "run_key": "T1/1/generate",
+      "status": "RELEASED",
+      "started_unix": 1792103737.866724,
+      "released_unix": 1792104069.2914476,
+      "device_hours": 0.09206242322921752
+    },
+    {
+      "id": "e13v2-5b8b4d6c02014054913ce2efa0fd6c25",
+      "host": "skampere1",
+      "index": 0,
+      "uuid": "GPU-4a898d48-860a-9abc-bda7-59057400018e",
+      "run_key": "T1/1/probabilities",
+      "status": "RELEASED",
+      "started_unix": 1792104084.2457447,
+      "released_unix": 1792104202.7943308,
+      "device_hours": 0.03293016281392839
+    },
+    {
+      "id": "e13v2-3fe3f77495b044ab87dc06950d6eace3",
+      "host": "skampere1",
+      "index": 0,
+      "uuid": "GPU-4a898d48-860a-9abc-bda7-59057400018e",
+      "run_key": "T1/2/preflight",
+      "status": "RELEASED",
+      "started_unix": 1792105548.1499107,
+      "released_unix": 1792105708.7273111,
+      "device_hours": 0.04460483345720503
+    },
+    {
+      "id": "e13v2-3743eac5178043f2abb415aa68768a5a",
+      "host": "skampere1",
+      "index": 0,
+      "uuid": "GPU-4a898d48-860a-9abc-bda7-59057400018e",
+      "run_key": "T1/2/generate",
+      "status": "RELEASED",
+      "started_unix": 1792105738.4519129,
+      "released_unix": 1792106057.1701407,
+      "device_hours": 0.08853284107314216
+    },
+    {
+      "id": "e13v2-004948be7ee04e3f84b1f3864f43b287",
+      "host": "skampere1",
+      "index": 0,
+      "uuid": "GPU-4a898d48-860a-9abc-bda7-59057400018e",
+      "run_key": "T1/2/probabilities",
+      "status": "RELEASED",
+      "started_unix": 1792106072.013511,
+      "released_unix": 1792106265.4616475,
+      "device_hours": 0.053735593491130405
+    }
+  ],
+  "stages": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase2/technical/T1/attempt_2/costs/generate.json",
+      "sha256": "c5b0a53527cb011b6439475eae176fd66f032be3bd815b706277bc329be81c34",
+      "receipt": {
+        "accounted_cpu_hours": 0.09224139833333334,
+        "admission_statistics_computed": false,
+        "allocated_bytes": 1880064,
+        "condition": "v2-S2",
+        "cpu_scope": "controller plus waited-for child usage; detached/unreaped service usage is not inferred",
+        "device_hours": 0.08853284107314216,
+        "files": 23,
+        "includes": "all wall time between owned claim and verified release, including initialization, idle reservation and cleanup",
+        "lease_id": "e13v2-3743eac5178043f2abb415aa68768a5a",
+        "leases": 1,
+        "logical_bytes": 1818028,
+        "own_system_seconds": 15.110868,
+        "own_user_seconds": 40.75366000000001,
+        "stage": "generate",
+        "status": "RECORDED",
+        "storage_counts_symlink_targets": false,
+        "storage_scope": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase2/technical/T1/attempt_2",
+        "waited_child_system_seconds": 40.431658,
+        "waited_child_user_seconds": 235.77284799999998,
+        "wall_seconds": 318.3819805980311
+      }
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase2/technical/T1/attempt_2/costs/preflight.json",
+      "sha256": "efc03a21c3b8550fee43ef5371bd03067efc6abca824eabfb5df09c321cb7868",
+      "receipt": {
+        "accounted_cpu_hours": 0.04719118972222222,
+        "admission_statistics_computed": false,
+        "allocated_bytes": 110592,
+        "condition": "v2-S2",
+        "cpu_scope": "controller plus waited-for child usage; detached/unreaped service usage is not inferred",
+        "device_hours": 0.04460483345720503,
+        "files": 14,
+        "includes": "all wall time between owned claim and verified release, including initialization, idle reservation and cleanup",
+        "lease_id": "e13v2-3fe3f77495b044ab87dc06950d6eace3",
+        "leases": 1,
+        "logical_bytes": 67656,
+        "own_system_seconds": 13.906462,
+        "own_user_seconds": 41.441348,
+        "stage": "preflight",
+        "status": "RECORDED",
+        "storage_counts_symlink_targets": false,
+        "storage_scope": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase2/technical/T1/attempt_2",
+        "waited_child_system_seconds": 40.794157,
+        "waited_child_user_seconds": 73.74631600000001,
+        "wall_seconds": 160.2769903379958
+      }
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase2/technical/T1/attempt_2/costs/probabilities.json",
+      "sha256": "f3429388fcec8d294a3aa79ada62932bd8c2da7818167d561ffea9be4975ef78",
+      "receipt": {
+        "accounted_cpu_hours": 0.03755979777777777,
+        "admission_statistics_computed": false,
+        "allocated_bytes": 4362240,
+        "condition": "v2-S2",
+        "cpu_scope": "controller plus waited-for child usage; detached/unreaped service usage is not inferred",
+        "device_hours": 0.053735593491130405,
+        "files": 87,
+        "includes": "all wall time between owned claim and verified release, including initialization, idle reservation and cleanup",
+        "lease_id": "e13v2-004948be7ee04e3f84b1f3864f43b287",
+        "leases": 1,
+        "logical_bytes": 4232972,
+        "own_system_seconds": 14.506720000000001,
+        "own_user_seconds": 41.838683,
+        "stage": "probabilities",
+        "status": "RECORDED",
+        "storage_counts_symlink_targets": false,
+        "storage_scope": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase2/technical/T1/attempt_2",
+        "waited_child_system_seconds": 25.618983,
+        "waited_child_user_seconds": 53.25088599999998,
+        "wall_seconds": 193.04092644399498
+      }
+    }
+  ],
+  "statistic_recomputed": false
+}

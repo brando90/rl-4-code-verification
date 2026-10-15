@@ -2,22 +2,24 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/results.md>
 
-**TLDR:** v2-S2 T1 attempt 2 is running after the published A4 socket-path repair. Both non-probe preflights passed; generation is active and no admission statistic exists. Attempt 1 remains INCOMPLETE-INFRA, with its 0.168878405 device-hours retained inside the unchanged 2.0-hour cap. C is disabled, H2/F2 unavailable, batch 2 skipped.
+**TLDR:** v2-S2 T1 is final PASS: 8/8 train responses, 44,844 output tokens; median absolute log-probability error 0.0000327482 and p99 0.0176024, unsupported/truncated tokens 0/44,844. All six leases released; cumulative 0.355751673/2.0 device-hours. Continue to T2, T3 and T4 before the audits and pilot. C disabled, H2/F2 unavailable, batch 2 skipped.
 
-Last updated: 10-15-2026 16:13 PDT
-**Status:** T1 attempt 2 controller active after published A4 repair; no gate verdict.
+Last updated: 10-15-2026 16:19 PDT
+**Status:** T1 PASS; T2 preparation follows publication.
 
-## Current state — 10-15-2026 16:13 PDT
+## Current state — 10-15-2026 16:19 PDT
 
-Goal: complete the experiment through its admitted gates, or publish the binding transition result. Continue under A6 with unchanged S2 numerics and rollout sampler.
+Goal: complete Experiment 13 v2 under A6 through its admitted gates, or publish the binding transition result.
 
-What ran: [LP freeze](phase2/LP_A6_S2_FREEZE.md) published at `970d274`; T1 attempt 1 generated eight responses, then Ray socket construction failed before trainer probabilities. [Attempt report](RESULTS_T1_S2.md) retains the evidence and unchanged caps. No admission statistic, optimizer update, actual mutation audit or new held-out response exists.
+What ran: [LP freeze](phase2/LP_A6_S2_FREEZE.md) and A4 successor preceded the final [T1 PASS](RESULTS_T1_S2.md). The complete attempt 2 used 0.186873268 device-hours; attempt 1's 0.168878405 remains charged. No optimizer update, actual mutation audit or new held-out response exists.
 
-Supervision: single owner PID 1243923 remains active. The verified attempt-2 controller PID 3398075 is watchdog-registered; both non-probe checks passed and the eight-response generation is running on freshly leased idle skampere1 device 0. Repair `d5961c9` and A4 admission `b37c6af` were pushed before claim; the full published successor chain verifies. Attempt 1 remains closed and charged at 0.168878405 device-hours.
+Supervision: owner PID 1243923 is the single writer. T1 controller 3398075 exited 0, both attempts are closed, all six leases are released and cleanup verified. The watchdog remains armed.
 
-Next: supervise complete T1 attempt 2 through preflight, generation and trainer probabilities; publish its single final gate result before transitioning. The attempt cap remains 1.5 device-hours and cumulative T1 cap 2.0; no automatic gate retry or scientific change. Independent batch 2 stays skipped.
+Next: publish T1, prepare T2 with this same-science published PASS, then launch its once-only 256-response update probe through the experiment-13 registry. T2 retains 8.0 hours per attempt and 10.0 cumulative. The overall technical allocation is 23.75 device-hours; the learning pilot is not yet admitted.
 
-Brando to-do: none. Existing SNAP preapproval covers the frozen technical allocation; no provider charge or inherited experiment-08 budget is used.
+Brando to-do: none. Existing SNAP preapproval covers the frozen allocation.
+
+T1 final publication (10-15-2026 16:19 PDT): **PASS**, 8/8 train responses, 44,844 output tokens; median error 0.000032748153898864985 ≤0.01, p99 0.017602388858795164 ≤0.10, unsupported 0 and importance-truncated 0. [Report](RESULTS_T1_S2.md), [exact saved result](phase2/T1_A6_S2_result.json), [anonymous token table](phase2/T1_A6_S2_tokens.csv). Cumulative 0.355751673/2.0 device-hours, six released leases, no optimizer update. The just-completed required suite passed 1,124 tests with 3 skipped, direct exit 0; this publication only copies existing evidence and changes documentation. No statistic or completed gate was recomputed.
 
 T1 attempt 2 launch (10-15-2026 16:06 PDT): [launch receipt](phase2/T1_A4_attempt2_launch.json), controller PID 3398075, skampere1 device 0, exact published successor chain verified before claim. Non-probe engine and Ray socket preflights both passed; numbered attempt 2 is admitted and generation is running. No gate statistic or optimizer update exists. Required integration: **1,124 passed, 3 skipped, zero failures in 529.99 seconds**, direct exit 0 ([receipt](phase2/T1_A4_attempt2_publication_test.json)).
 
