@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 02:18 PDT
+Last updated: 10-15-2026 03:18 PDT
 
 ## Task and owner
 
@@ -242,6 +242,12 @@ Last updated: 10-15-2026 02:18 PDT
 
 - **Anchors.** Base is **COMPLETE** at 4,312/4,312, with 0 exhausted cells across 17 segments. half 3,584/4,312 and full1 2,560/4,312 are RUNNING on owned GPUs 0–1. Batch 2 (`full2`) correctly waits for the frozen calibration, item parameters and F2 (PLAN § 5 step 3). Cumulative device-hours are 21.04 across 48 leases.
 - **Owner working** (8 h 56 min) on the Phase 2 monitor runtime and hidden-test helpers. They reject changed snapshot identities, reuse saved strict-score evidence and keep incomplete hidden-test coverage unknown. The judge-pack adapter's 16 focused tests pass.
+- **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 03:14 PDT: base COMPLETE; half 3,840 and full1 3,072 of 4,312
+
+- **Anchors.** Base is COMPLETE at 4,312/4,312 and in Lean scoring. half 3,840/4,312 and full1 3,072/4,312 are RUNNING on owned GPUs 0–1, with 0 exhausted cells. Cumulative device-hours are 22.57 across 51 leases.
+- **Owner working** (9 h 56 min) on the Phase 2 monitor processing (score the fixed generated monitor once and freeze independent hidden inputs) and the pilot token-budget code, which uses every fixed A-pilot slot without imputing missing lengths. 20 focused tests pass.
 - **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
 
 ## Exact next commands (master)
