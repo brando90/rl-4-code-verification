@@ -44,7 +44,7 @@ BENCH_PREFIX = "veribench-rl4cv-e08v2"
 ROUTE_V1 = EXP / "results" / "route_identity_v2.json"                 # 10-13-2026 record (old per-user AWS route); never rewritten
 ROUTE = EXP / "results" / "route_identity_hosted_v2.json"             # hosted-route evidence written by `preflight`
 SERVICES = WORK / "private" / "services.json"                         # written by deploy_service_e08v2.py deploy/register
-BUNDLE_SAME_AS_V1 = ("contract.yaml", "judge_call.py", "setup.sh")    # pushed byte-identical; the secret is remapped at run start
+BUNDLE_SAME_AS_V1 = ("contract.yaml", "judge_call.py", "setup.sh")    # byte-identical, except contract.yaml may carry the slash-free secret name
 
 sys.path[:0] = [str(X100 / "scripts"), str(E103 / "scripts"), str(REPO / "src")]
 from rl4cv import valkyrie_hosted as hosted   # noqa: E402  hosted transport (10-14-2026); scientific settings unchanged
@@ -257,8 +257,8 @@ def judge_config(name: str) -> dict:
 
 def preflight() -> int:
     """Hosted-route evidence before any admission (D-108): organization, credential kind, sandbox provider, the gateway
-    secret's name and the judge bundle, which must be byte-identical to version 1's (the gateway secret is remapped at
-    `run start`, see `hosted.secret_args`). Zero model calls."""
+    secret's name and the judge bundle, which must be byte-identical to version 1's except, in contract.yaml, the gateway
+    secret renamed to the slash-free name (every `run start` also remaps it, see `hosted.secret_args`). Zero model calls."""
     out = hosted.preflight(require_secrets=[hosted.GATEWAY_SECRET], require_agents=[AGENT], env=env())
     out.update(route="Vals Valkyrie (hosted): valk run start --agent " + AGENT, model_calls_so_far=0,
                payer=f"Vals model gateway credential mapped only inside Valkyrie by organization secret {hosted.GATEWAY_SECRET} (D-108)",
@@ -271,12 +271,14 @@ def preflight() -> int:
         dest.mkdir(parents=True, exist_ok=True)
         got = cli(["agent", "download", AGENT, "--output-dir", str(dest)], timeout=600)
         files = {p.name: p for p in dest.rglob("*") if p.is_file()}
-        hashes = {n: sha(files[n].read_bytes()) for n in BUNDLE_SAME_AS_V1 if n in files}
-        out["bundle_hashes"] = hashes
-        if got.returncode or not hashes:
+        match = {n: hosted.matches_frozen(files[n].read_bytes(), frozen.get(n), allow_secret_rename=n == "contract.yaml")
+                 for n in BUNDLE_SAME_AS_V1 if n in files}
+        out["bundle_hashes"] = {n: sha(files[n].read_bytes()) for n in match}
+        out["bundle_match_vs_version1"] = match
+        if got.returncode or not match:
             problems.append(f"valkyrie agent download {AGENT} failed (rc={got.returncode})")
         else:
-            problems += [f"{n} differs from version 1's frozen bundle" for n in BUNDLE_SAME_AS_V1 if hashes.get(n) != frozen.get(n)]
+            problems += [f"{n} differs from version 1's frozen bundle" for n in BUNDLE_SAME_AS_V1 if not match.get(n)]
             out["bundle_matches_version1"] = not problems
         out["run_secret_override"] = hosted.secret_args()
     out["verdict"] = "FAIL" if problems else "PASS"

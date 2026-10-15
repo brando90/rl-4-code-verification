@@ -8,15 +8,17 @@ nothing. A custom benchmark service is registered on the Tracker instead:
     valkyrie secret set <benchmark>-bearer            # value "Bearer <token>", piped on stdin
     valkyrie benchmark service set <benchmark> <url> --auth-secret <benchmark>-bearer --auth-header Authorization
 
-The frozen agent bundles (vb103_judge, vb103_single_call, vb106_rater_v2) are pushed byte-identical; their
-contract.yaml still names the old slash secret, which a tenant cannot create, so every `run start` remaps it with
-`--secret MODEL_GATEWAY_API_KEY brandoModelGatewayApiKey` (run secrets override contract secrets).
+The frozen agent bundles (vb103_judge, vb103_single_call, vb106_rater_v2) named the gateway secret
+`fellows/brandoModelGatewayApiKey`, which a hosted tenant cannot create. Whether a bundle is pushed unchanged or with
+only that name made slash-free, every `run start` here passes `--secret MODEL_GATEWAY_API_KEY brandoModelGatewayApiKey`
+(run secrets override contract secrets), so both work.
 
 Registration needs a login (`valkyrie login`), not an access key, and must be repeated after every tunnel
 restart because the URL changes. Secret values never reach the command line, logs or receipts.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import re
@@ -31,6 +33,7 @@ SECRET_NAME_RE = re.compile(r"^[A-Za-z0-9_+=.@-]{1,128}$")
 # Slash-free tenant secret holding the Vals model-gateway credential (same name and override as veribench's helper).
 GATEWAY_SECRET = os.environ.get("VB_GATEWAY_SECRET", "brandoModelGatewayApiKey")
 GATEWAY_ENV = "MODEL_GATEWAY_API_KEY"
+OLD_GATEWAY_SECRET = "fellows/brandoModelGatewayApiKey"   # per-user-AWS name; a hosted tenant cannot create it
 DEAD_ENV = ("VALKYRIE_CONFIG_PATH", "VALKYRIE_ENV")
 WHOAMI_RE = re.compile(r"^(?P<who>.+?) in (?P<org>.+?) on (?P<url>\S+) \(using (?P<credential>[^)]+)\)\s*$")
 PROVIDER_RE = re.compile(r"^(?P<default>[* ]) (?P<name>\S+) (?:→|->) (?P<secret>\S+)\s*$")
@@ -72,6 +75,21 @@ def secret_args() -> list[str]:
     if not SECRET_NAME_RE.match(GATEWAY_SECRET):
         raise HostedValkyrieError(f"invalid gateway secret name {GATEWAY_SECRET!r}")
     return ["--secret", GATEWAY_ENV, GATEWAY_SECRET]
+
+
+def matches_frozen(data: bytes, frozen_sha256: str | None, *, allow_secret_rename: bool = False) -> str | None:
+    """'identical' when `data` hashes to the frozen digest; with `allow_secret_rename`, 'secret_renamed_only' when the
+    only change is the old slash gateway secret renamed to GATEWAY_SECRET; otherwise None."""
+    if not frozen_sha256:
+        return None
+    if hashlib.sha256(data).hexdigest() == frozen_sha256:
+        return "identical"
+    if allow_secret_rename:
+        text = data.decode("utf-8", errors="strict")
+        restored = re.sub(r"(?<![/\w])" + re.escape(GATEWAY_SECRET) + r"(?!\w)", OLD_GATEWAY_SECRET, text)
+        if restored != text and hashlib.sha256(restored.encode("utf-8")).hexdigest() == frozen_sha256:
+            return "secret_renamed_only"
+    return None
 
 
 def parse_whoami(text: str) -> dict:

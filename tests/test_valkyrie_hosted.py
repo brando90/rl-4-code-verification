@@ -213,6 +213,7 @@ def test_gateway_secret_is_remapped_at_run_start():
     batch = (E09 / "judge_batch_e09.py").read_text()
     assert "*task_filter, *hosted.secret_args()]" in judge and "*hosted.secret_args()]" in batch
     assert 'BUNDLE_SAME_AS_V1 = ("contract.yaml", "judge_call.py", "setup.sh")' in judge
+    assert 'allow_secret_rename=n == "contract.yaml"' in judge
 
 
 def test_argon_admit_remaps_gateway_secret(tmp_path, monkeypatch):
@@ -225,3 +226,54 @@ def test_argon_admit_remaps_gateway_secret(tmp_path, monkeypatch):
     args = list(seen[0])
     i = args.index("--secret")
     assert args[i:i + 3] == ["--secret", "MODEL_GATEWAY_API_KEY", "brandoModelGatewayApiKey"]
+
+
+def test_matches_frozen_accepts_only_the_secret_rename():
+    import hashlib
+    old = b"name: vb103_judge\nsecrets:\n  MODEL_GATEWAY_API_KEY: fellows/brandoModelGatewayApiKey\n"
+    frozen = hashlib.sha256(old).hexdigest()
+    renamed = old.replace(b"fellows/brandoModelGatewayApiKey", b"brandoModelGatewayApiKey")
+    assert hosted.matches_frozen(old, frozen, allow_secret_rename=True) == "identical"
+    assert hosted.matches_frozen(renamed, frozen, allow_secret_rename=True) == "secret_renamed_only"
+    assert hosted.matches_frozen(renamed, frozen) is None
+    assert hosted.matches_frozen(renamed + b"extra: 1\n", frozen, allow_secret_rename=True) is None
+    assert hosted.matches_frozen(old, None) is None
+
+
+def test_e08v2_judge_preflight_with_stubbed_frozen_modules(tmp_path, monkeypatch):
+    import hashlib
+    for name in ("common", "prompts", "build_inputs", "judge_run", "judge_pack"):
+        monkeypatch.setitem(sys.modules, name, types.ModuleType(name))
+    judge = load(E08V2 / "judge_rl4cv_e08v2.py", "judge_rl4cv_e08v2_preflight_under_test")
+    old = {"contract.yaml": b"secrets:\n  MODEL_GATEWAY_API_KEY: fellows/brandoModelGatewayApiKey\n",
+           "judge_call.py": b"print('judge')\n", "setup.sh": b"#!/bin/sh\n"}
+    v1 = tmp_path / "route_identity_v2.json"
+    v1.write_text(json.dumps({"bundle_hashes": {n: hashlib.sha256(b).hexdigest() for n, b in old.items()}}))
+    monkeypatch.setattr(judge, "ROUTE_V1", v1)
+    monkeypatch.setattr(judge, "ROUTE", tmp_path / "route_identity_hosted_v2.json")
+    monkeypatch.setattr(judge, "WORK", tmp_path / "work")
+    monkeypatch.setattr(judge, "relative", lambda p: str(p))
+    cli = FakeCli()
+    real_run = hosted.run
+    monkeypatch.setattr(hosted, "run", lambda args, **kw: real_run(args, **{**kw, "runner": cli}))
+
+    def run_with(files):
+        def fake_cli(args, timeout=1800):
+            dest = Path(args[args.index("--output-dir") + 1]) / "vb103_judge"
+            dest.mkdir(parents=True)
+            for n, b in files.items():
+                (dest / n).write_bytes(b)
+            return subprocess.CompletedProcess(args, 0, "", "")
+        monkeypatch.setattr(judge, "cli", fake_cli)
+        import time
+        time.sleep(1.01)   # fresh timestamped download dir
+        rc = judge.preflight()
+        return rc, json.loads((tmp_path / "route_identity_hosted_v2.json").read_text())
+
+    renamed = {**old, "contract.yaml": old["contract.yaml"].replace(b"fellows/", b"")}
+    rc, out = run_with(renamed)
+    assert rc == 0 and out["verdict"] == "PASS" and out["bundle_match_vs_version1"]["contract.yaml"] == "secret_renamed_only"
+    assert out["run_secret_override"] == ["--secret", "MODEL_GATEWAY_API_KEY", "brandoModelGatewayApiKey"]
+    assert "account" not in out["identity"]
+    rc, out = run_with({**old, "judge_call.py": b"print('changed')\n"})
+    assert rc == 1 and out["verdict"] == "FAIL" and any("judge_call.py differs" in p for p in out["problems"])
