@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/RESULTS_A6_DIAGNOSTIC_S2.md>
 
-**TLDR:** **Attempt 1 INCOMPLETE-INFRA; soundness unmeasured. Attempt 2 is generating after repair publication.** The first A6 launch produced **0/512 responses**, zero generated tokens and zero scores. The launcher rejected the frozen `pytorch_model.bin` export because its preflight mistakenly required a `.safetensors` file. No engine was constructed and no admission statistic exists.
+**TLDR:** **Attempt 1 INCOMPLETE-INFRA; soundness unmeasured. Attempt 2 generation is complete; official scoring is pending.** The first A6 launch produced **0/512 responses**, zero generated tokens and zero scores. The launcher rejected the frozen `pytorch_model.bin` export because its preflight mistakenly required a `.safetensors` file. No engine was constructed and no admission statistic exists.
 
 The published execution freeze `f5af95c` preceded the launch. Device 0 on skampere1 was claimed only after two complete idle observations, fresh foreign-lease/reservation checks and numeric UUID-to-index mapping. The worker exited with code 1 in `a6_runtime.verify`, before `build_engine` or a diagnostic prompt could run. Cleanup verified with no signals, and the lease was released. Consumed device time was **0.0038115982876883612 hours**; **1.9961884017123116 of 2.0 hours** remains, without any reset. At the close of attempt 1, no owned device lease remained active. The [attempt receipt](phase1/A6_diagnostic_attempt1.json) binds raw logs, process identity, runtime, cleanup and release evidence.
 
@@ -18,6 +18,10 @@ Applied-repair preflight: [PASS](phase1/A6_attempt2_preflight.json), 295 unique 
 
 Publication verification: required Lean integration **1,042 passed, 3 skipped, zero failures; direct exit 0**, 505.09 seconds ([receipt](phase2/A6_attempt2_publication_test.json)).
 
-Attempt 2 is running after `d9df333`, with the actual engine health preflight PASS ([launch receipt](phase1/A6_attempt2_launch.json)). Soundness remains unmeasured until the complete frozen cohort is scored.
+Attempt 2 launched after `d9df333`, with the actual engine health preflight PASS ([launch receipt](phase1/A6_attempt2_launch.json)). Soundness remains unmeasured until the complete frozen cohort is scored.
 
 Progress at 10-15-2026 09:42 PDT: attempt 2 has 416/512 durable responses on its original leased device 0; no scoring or admission statistic has run. The cumulative allowance remains 2.0 device-hours.
+
+A6 generation closure and scoring freeze (10-15-2026 10:07 PDT): attempt 2 saved **512/512 responses**, 2,958,502 generated tokens, 0 missing responses and 101 cap-limited responses. Cleanup and lease release verified; device time 1.402495362 hours for attempt 2, 1.406306960/2.0 cumulative including attempt 1. No generation replay is admitted. The [generation receipt](phase1/A6_attempt2_generation.json) and [complete scoring-input lock](locks/A6_DIAGNOSTIC_SCORE.json) retain every declared slot. Soundness remains unmeasured; one official scoring/analysis run follows publication. Required Lean integration **1,121 passed, 3 skipped, zero failures in 488.93 seconds**, direct exit 0 ([receipt](phase1/A6_scoring_input_publication_test.json)).
+
+The original sampler, prompts, model, numerical setting and scorer remain unchanged. The scoring lock binds all 512 generation statuses, each retained response, the train grouping, original reference, analysis implementation and timed launcher. Bootstrap settings remain the published 10,000 whole-train-group draws at seed 1302603. No scoring or diagnostic threshold statistic has been computed.

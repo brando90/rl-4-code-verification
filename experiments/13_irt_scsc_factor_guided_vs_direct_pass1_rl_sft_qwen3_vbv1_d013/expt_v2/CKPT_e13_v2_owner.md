@@ -2,20 +2,22 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2_owner.md>
 
-**TLDR:** v2-S2 continues under the A6 clarification at `80fdd2a`. Diagnostic attempt 1 is INCOMPLETE-INFRA (0/512 responses, no statistic); attempt 2 is generating after the tested repair and successor lock were pushed at `d9df333`. Historical G1 is final INCONCLUSIVE, arm C is disabled, H2/F2 are UNAVAILABLE and independent batch 2 is skipped. The original cumulative 2.0 device-hour allocation remains binding.
+**TLDR:** v2-S2 continues under the A6 clarification at `80fdd2a`. Diagnostic attempt 1 is INCOMPLETE-INFRA (0/512 responses, no statistic); attempt 2 generation is closed after the tested repair and successor lock were pushed at `d9df333`; scoring inputs are frozen; soundness is unmeasured. Historical G1 is final INCONCLUSIVE, arm C is disabled, H2/F2 are UNAVAILABLE and independent batch 2 is skipped. The original cumulative 2.0 device-hour allocation remains binding.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-15-2026 09:54 PDT
+Last updated: 10-15-2026 10:07 PDT
 
-## Current state — 10-15-2026 09:54 PDT
+## Current state — 10-15-2026 10:07 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
 What ran: all three train anchor score manifests closed with 12,916/12,936 measured, zero strict successes, 20 preserved missing outcomes; calibration final, C not admitted. Historical G1 completed once, INCONCLUSIVE in both holdout schemes. A6 diagnostic attempt 1 stopped before engine construction, 0/512 responses and no admission statistic; cleanup/release verified. Hosted and hidden controls remain final PASS. No independent batch 2, actual mutation measurement, Phase 2 optimizer update or new held-out response ran.
 
-Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; watchdog `$WR/watchdog_a5` remains active. Both earlier workers exited. Attempt 2 worker PID 3609618, start ticks 31692891, holds one active device-0 lease after two fresh idle observations. The 18-line additive cron schedule is preserved. The tested successor lock is published at `d9df333`; actual engine health preflight PASS. No Brando action is needed.
+Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; watchdog `$WR/watchdog_a5` remains active. Both earlier workers exited. Attempt 2 worker PID 3609618, start ticks 31692891, exited; its device-0 lease is released after verified cleanup. The 18-line additive cron schedule is preserved. The tested successor lock is published at `d9df333`; actual engine health preflight PASS. No Brando action is needed.
 
-Next: supervise attempt 2 through cleanup/release, publish its complete generation inventory and scoring-input lock, then score the frozen cohort once. Continue to the learning-pilot lock only if A6 is SOUND. Retain at most three attempts and charge all time against the same 2.0 device-hours.
+Next: after publishing the complete generation inventory and scoring-input lock, score the frozen cohort once with the timed watchdog-registered launcher. Continue to the learning-pilot lock only if A6 is SOUND. Retain at most three attempts and charge all time against the same 2.0 device-hours.
+
+A6 generation closure and scoring freeze (10-15-2026 10:07 PDT): attempt 2 saved **512/512 responses**, 2,958,502 generated tokens, 0 missing responses and 101 cap-limited responses. Cleanup and lease release verified; device time 1.402495362 hours for attempt 2, 1.406306960/2.0 cumulative including attempt 1. No generation replay is admitted. The [generation receipt](phase1/A6_attempt2_generation.json) and [complete scoring-input lock](locks/A6_DIAGNOSTIC_SCORE.json) retain every declared slot. Soundness remains unmeasured; one official scoring/analysis run follows publication. Required Lean integration **1,121 passed, 3 skipped, zero failures in 488.93 seconds**, direct exit 0 ([receipt](phase1/A6_scoring_input_publication_test.json)).
 
 A6 evaluation preparation (10-15-2026 09:54 PDT): [evaluation routing successors](phase2/A6_PHASE2_METHOD.md) reach the A6 learning admission and retain the original historical sampler, full validation/test populations, selection, scorer, missingness and bounded infrastructure recovery. All function bodies match the original after explicit source-name normalization. Twenty-four focused authored checks pass; required Lean integration **1,121 passed, 3 skipped, zero failures in 557.77 seconds**, direct exit 0 ([receipt](phase2/A6_evaluation_routing_publication_test.json)). No actual held-out task or outcome was accessed. A6 diagnostic attempt 2 has 480/512 durable responses, no scoring or soundness verdict. Learning remains unadmitted until a SOUND diagnostic and the subsequent gates.
 
