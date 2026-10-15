@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 15:20 PDT
+Last updated: 10-15-2026 16:18 PDT
 
 ## Task and owner
 
@@ -333,6 +333,12 @@ Last updated: 10-15-2026 15:20 PDT
 - **Gateway restored.** SSH through whale works again at 15:14, after refusing from 11:15. The Cisco/Duo request to Brando is withdrawn (no longer needed).
 - **Owner stall, cause found.** Around 10:45 the Codex session hit "Falling back from WebSockets to HTTPS transport. unexpected status 503 Service Unavailable" and **"Selected model is at capacity"** (`gpt-6-astra`). Its turn ended while it was assembling the learning-pilot freeze (`PREPARED_FOR_LP_FREEZE`, 18 components, unpublished). The stale 07:25 hold was then submitted twice into the same error, and the owner sat idle about 4.5 h. No leases were held, the crontab is unchanged (18 lines, 7 non-e13 identical), and there were no exits. The watchdog checks process liveness, not model availability, so it did not flag this.
 - **Resumed at 15:16 PDT** with an A6 continuation and the pre-approval line: finish the learning-pilot freeze for A, B and P, then LP and T1–T4, the audits, and the pilot with T5 on B. The model responded and the owner is working. If capacity fails again, fall back under Rule 48 to `clauded` with `claude-fable-5-1` high in a new tmux session, keeping one writer.
+
+## Check-in 10-15-2026 16:14 PDT: learning-pilot technical gates frozen; T1 attempt 2 under A4
+
+- **Progress since the resume.** `970d274` (15:31) froze the v2-S2 learning-pilot technical gates after the SOUND A6 diagnostic. `dacef27` (15:48) recorded T1 attempt 1 as an infrastructure failure. `d5961c9` and `b37c6af` (16:02–16:03) pushed the Ray socket-path repair and bound the unchanged S2 science **before** attempt 2, which is A4-compliant. Status: "T1 infrastructure repair; no gate verdict or experiment stop."
+- **T1 attempt 2 is in progress, with no verdict yet.** The suite ran 1,124 passed, 3 skipped, 0 failed. There are no active leases at 16:14 (the last technical lease was released after 0.0885 device-hours), and cumulative device-hours are 27.78 across 63 leases.
+- **Healthy.** The owner is working (59 min, model available). The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
 
 ## Exact next commands (master)
 
