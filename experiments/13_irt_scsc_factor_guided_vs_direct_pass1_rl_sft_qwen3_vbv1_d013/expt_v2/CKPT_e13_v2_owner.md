@@ -5,13 +5,13 @@
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-14-2026 22:38 PDT
+Last updated: 10-14-2026 22:51 PDT
 
-## Current Phase 1 state — 10-14-2026 22:38 PDT
+## Current Phase 1 state — 10-14-2026 22:51 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
-What ran: v2-S2 anchors retain Base 2,464, half 1,760 and full batch 1 1,056 of 4,312 responses per policy at 10-14-2026 22:38 PDT, all RUNNING. The full-panel cron PATH defect is repaired additively with unchanged scientific bindings; fresh engine preflight passed and new responses are durable. Hosted judge and hidden-test controls remain final PASS. The required suite passed 748 tests, with 3 skipped. Actual benchmark mutation audits, anchor scores, actual-data fits, independent full batch 2 and experiment optimizer updates remain zero.
+What ran: v2-S2 anchors retain Base 2,624, half 1,824 and full batch 1 1,152 of 4,312 responses per policy at 10-14-2026 22:51 PDT, all RUNNING. The full-panel cron PATH defect is repaired additively with unchanged scientific bindings. Hosted judge and hidden-test controls remain final PASS. The sequential technical driver and reward-group assembly passed the required suite: 759 passed, 3 skipped. Actual benchmark mutation audits, anchor scores, actual-data fits, independent full batch 2 and experiment optimizer updates remain zero.
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Eighteen cron lines equal the prior sixteen plus two environment-corrected anchor-poller entries. Busy devices remain a wait condition. No Brando action is needed.
 
@@ -192,3 +192,6 @@ Pilot configuration and stage preparation (10-14-2026 22:25 PDT): the [policy de
 
 
 Anchor cron recovery and resource poller (10-14-2026 22:38 PDT): [retained evidence](phase1/ANCHOR_CRON_PATH_RECOVERY.json) corrects the earlier full-panel wait report. Cron had been invoking the frozen controller, but its minimal command path lacked `rg`; it failed before claiming a device. The minimal-environment regression reproduced exit 1 and passed with the same installed binary available on an owned path (exit 0). Two environment-corrected entries were appended, preserving all prior 16 lines byte for byte (18 total); all 84 anchor-lock bindings remain unchanged. Controller 551414 claimed an idle A100 on device 2, passed the actual-engine one-token preflight, and resumed the retained panel without rerunning any completed cell. All three panels are now RUNNING: Base 2,464, half 1,760, full batch 1 1,056 of 4,312 each. [Technical resource polling](phase2/technical_resources.py) separately prepares per-gate/per-attempt accounting and fresh post-claim device checks under the future pilot lock. Required suite: **748 passed, 3 skipped, zero failures in 413.40 seconds**, direct exit 0 ([receipt](phase2/resource_poller_publication_test.json)). No actual Phase 2 device call, anchor score, fit or experiment optimizer update has run.
+
+
+Sequential technical driver preparation (10-14-2026 22:51 PDT): [driver and exact reward-group assembly](phase2/README.md) integrate local T1–T3 stages with published same-science prerequisites, real health preflight before the counted attempt, separate processor scoring, bounded leased execution and exclusive final evaluation. T3 resolves the actual prior update from the published T2 input inventory; its future hash is not fabricated in the prospective lock. Generation/scoring joins preserve all slots, missing rewards and independent placebo draws. Eleven focused authored checks passed; required suite **759 passed, 3 skipped, zero failures in 416.14 seconds**, direct exit 0 ([receipt](phase2/technical_driver_publication_test.json)). This remains preparation: full LP configuration/allocation, T4 cost measurement, train audits and the learning controller are still required, after Phase 1. Anchors continue at Base 2,624, half 1,824, full batch 1 1,152 of 4,312 each; no actual scores, fits or experiment optimizer update has run.
