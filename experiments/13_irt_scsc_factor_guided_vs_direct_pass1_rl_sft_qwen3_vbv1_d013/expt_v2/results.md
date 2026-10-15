@@ -4,14 +4,14 @@
 
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
-Last updated: 10-14-2026 18:43 PDT
+Last updated: 10-14-2026 19:15 PDT
 Status: **ACTIVE: v2-S2 anchors generating on three owned A100 leases.**
 
 ## Current Phase 1 state — 10-14-2026 18:30 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
-What ran: all nine host/policy routes and the original export pins verified; required suite 587 passed, 23 skipped. Published freeze `d4948f3` precedes every anchor call. Base, half and full batch 1 are generating on skampere1 devices 2, 1 and 0; all three engine preflights passed. The first 32/4,312 responses per policy are durable, with no retries and no scoring or actual-data fit. [Device plan](phase1/ANCHORS_S2.md): at most three devices, two-hour leases, 256-cell segments, 144 device-hour ceiling across four batches. Closed A5 remains 0.207209183243/3.0 hours.
+What ran: all nine host/policy routes and the original export pins verified; required suite 587 passed, 23 skipped. Published freeze `d4948f3` precedes every anchor call. Base, half and full batch 1 are generating on skampere1 devices 2, 1 and 0; all three engine preflights passed. As of 10-14-2026 19:10 PDT, Base 320, half 256 and full batch 1 256 of 4,312 responses per policy are durable, with no retries and no scoring or actual-data fit. [Device plan](phase1/ANCHORS_S2.md): at most three devices, two-hour leases, 256-cell segments, 144 device-hour ceiling across four batches. Closed A5 remains 0.207209183243/3.0 hours.
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Sixteen cron lines equal the prior fourteen plus two anchor-poller entries. Busy devices remain a wait condition. No Brando action is needed.
 
@@ -22,6 +22,8 @@ Anchor freeze verification (10-14-2026 18:34 PDT): all nine host/policy routes p
 Anchor launch (10-14-2026 18:38 PDT): freeze `d4948f3` is published. Three independently claimed skampere1 A100s are active: Base device 2, half device 1 and full batch 1 device 0. All three actual-engine non-probe preflights passed; complete 4,312-cell manifests are now generating. [Launch receipt](phase1/ANCHORS_S2_armed.json). The crontab equals its 14-line backup plus exactly two anchor-poller lines (16 total), including reboot. No completed cell is repeated, no actual-data fit or optimizer update has run, and no full-batch-2 plan exists. The owner continues calibration and analysis implementation while generation runs.
 
 First-prefix verification (10-14-2026 18:43 PDT): 32 complete responses per policy, 96/12,936 initial declared cells, zero second attempts; token counts are 57,714 Base, 174,337 half and 172,880 full batch 1. No score is inferred from generation completion. Launch-publication suite exited 0: **587 passed, 23 skipped in 262.47 seconds**; evidence and raw-receipt hashes are in [the launch receipt](phase1/ANCHORS_S2_armed.json). Generation continues automatically under the frozen leases.
+
+Calibration-method verification (10-14-2026 19:15 PDT): [method](phase1/CALIBRATION_S2_METHOD.md) and [executable lock](locks/CALIBRATION_S2_METHOD.json) bind 22 files before any new scoring or actual-data fit. Required integration suite: **627 passed, 23 skipped, zero failures in 261.28 seconds**, direct exit 0; [receipt](phase1/CALIBRATION_S2_publication_test.json). The marginal calibration, fixed conditional strict forecast and independent-batch evaluator retain missing denominators, five starts, actual-pattern recovery, prior sensitivity, paired group intervals and one-attempt ledgers. Generation progress is Base 384/4,312, half 288/4,312 and full batch 1 288/4,312, with zero second attempts. Base/half/full controllers remain active; independent batch 2 stays unarmed. The [durable scoring ledger](phase1/SCORING_S2_LEDGER.md) also passes its eight recovery checks; it wraps the unchanged scorer. Next: publish each complete generation panel and its scoring-input lock, score all declared cells, then freeze calibration/items/F2 before independent batch 2. Central-processor Phase 2 implementation continues while the complete panels generate.
 
 ## Historical A5 continuation — 10-14-2026 17:26 PDT
 
