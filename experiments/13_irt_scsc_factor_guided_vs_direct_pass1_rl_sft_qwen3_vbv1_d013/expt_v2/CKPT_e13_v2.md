@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 13:12 PDT
+Last updated: 10-15-2026 14:12 PDT
 
 ## Task and owner
 
@@ -321,6 +321,12 @@ Last updated: 10-15-2026 13:12 PDT
 - **Routes.** whale (171.64.75.72:22) still resets at key exchange, and the direct route still times out because the VPN is not connected. This is the same failure since 11:15. Brando was asked once at 12:10, in chat and by phone push; no new push.
 - **Published state unchanged** since `031cd17` (10:41): the last owner status is "A6 final SOUND; continue to the learning-pilot lock". That is about 2.5 h without an owner push, which cannot be explained without SSH.
 - **Next.** Retry at the next hourly check-in. Once reachable, inspect the pane and resume the owner if idle (A6 continuation with the pre-approval line).
+
+## Check-in 10-15-2026 14:10 PDT: SNAP still unreachable (3 h); no owner commits since 10:41
+
+- **Routes.** whale still resets at key exchange (since 11:15), and the direct route times out with no VPN. If whale has blocked this Mac's IP after repeated connections, further probing could extend the block, so from now on each check-in makes **one** probe per route. The VPN request to Brando (12:10) is still open.
+- **Published state unchanged** since owner commit `031cd17` (10:41), about 3.5 h. The owner's watchdog emails Brando on a stop; nothing is visible from the Mac.
+- **Next.** Same as 13:10: once reachable, inspect the pane and resume the owner if idle.
 
 ## Exact next commands (master)
 
