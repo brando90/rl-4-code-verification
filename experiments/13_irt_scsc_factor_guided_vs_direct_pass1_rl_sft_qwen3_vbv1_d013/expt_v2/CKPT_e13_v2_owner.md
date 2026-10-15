@@ -5,17 +5,19 @@
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-15-2026 02:41 PDT
+Last updated: 10-15-2026 02:52 PDT
 
-## Current Phase 1 state — 10-15-2026 02:41 PDT
+## Current Phase 1 state — 10-15-2026 02:52 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
-What ran: base generation COMPLETE 4,312/4,312; scoring closed, 4,311 measured, one unresolved parser error, zero strict successes. Missing outcome remains in the denominator; no retry. Half generation 3,808/4,312 and full batch 1 2,816/4,312 continue. Required suite 875 passed, 3 skipped. Hosted judge and hidden-test controls remain final PASS. No actual mutation measurement, fit, independent batch 2, new validation/test outcome or experiment optimizer update has run.
+What ran: base generation COMPLETE 4,312/4,312; scoring closed, 4,311 measured, one unresolved parser error, zero strict successes. Missing outcome remains in the denominator; no retry. Half generation 3,904/4,312 and full batch 1 2,880/4,312 continue. Required suite 883 passed, 3 skipped. Hosted judge and hidden-test controls remain final PASS. No actual mutation measurement, fit, independent batch 2, new validation/test outcome or experiment optimizer update has run.
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Eighteen cron lines preserve the original schedule additively. Busy devices remain a wait condition. No Brando action is needed.
 
 Next: publish half/full generation receipts and scoring locks as each closes, then score their full manifests. Continue Phase 2 preparation in parallel. Freeze calibration/items/F2 before full batch 2, then G1/H2 and Phase 2; G1 method is already frozen before any actual fit.
+
+Hosted monitor preparation (10-15-2026 02:52 PDT): [monitor authority and shared judge transport](phase2/README.md) require the published current-checkpoint snapshot, matching completed processor evidence and source bindings frozen before learning. Exclusive admissions, ambiguous-call retention, actual executable verification and missing-rating/charge accounting remain unchanged. Fourteen focused tests pass, including refusal of another checkpoint's evidence and a method absent from the pilot freeze. Required suite: **883 passed, 3 skipped, zero failures in 470.65 seconds**, direct exit 0 ([receipt](phase2/monitor_hosted_publication_test.json)). No new model call or actual monitor measurement occurred. Half/full batch 1 retain 3,904/2,880 of 4,312 each and continue; base scoring is already published. No actual fit or experiment optimizer update has run.
 
 Base scoring closure and monitor preparation (10-15-2026 02:41 PDT): [base report](RESULTS_ANCHORS_S2.md) accounts for 4,312/4,312 responses: 4,311 measured, zero strict successes and one unresolved deterministic parser error, with zero retries, integrity defects or unresolved cleanup. Full-denominator strict mean bounds [0, 0.00023191094619666049]; descriptive 95% task-group bootstrap outer envelope [0, 0.0007062146892655367], conditional on this fixed train panel, not a held-out claim or admission gate. Processor cost is 14.387216666666665 hours and 1,545.45 elapsed seconds. [Monitor runtime/hidden/judge-pack helpers](phase2/README.md) pass 19 focused checks; a prepublication rendered-prompt/label collision was fixed and the full suite rerun: **875 passed, 3 skipped, zero failures in 453.39 seconds**, direct exit 0 ([receipt](phase2/monitor_runtime_coverage_publication_test.json)). No actual monitor measurement used that code. Half/full batch 1 retain 3,808/2,816 of 4,312 each and continue generating. No actual fit, independent batch 2 or experiment optimizer update has run.
 

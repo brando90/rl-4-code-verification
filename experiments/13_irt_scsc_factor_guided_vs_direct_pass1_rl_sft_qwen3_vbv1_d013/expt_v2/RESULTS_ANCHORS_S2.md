@@ -4,6 +4,8 @@
 
 **TLDR:** The base anchor generation is complete: 4,312/4,312 responses on 539 train tasks, eight samples each. No cells are missing or retried. Base scoring is closed with 4,311 measured responses, zero strict successes and one unresolved parser error; the half- and full-schedule panels continue generating.
 
+S1's measured generation-admission failure remains final (99th-percentile probability error 0.124769325 > 0.10). These anchors use the separately admitted S2 float16 condition; its one original-probe confirmation passed without changing the thresholds ([admission report](RESULTS_LP1_A5.md)).
+
 Recorded: 10-15-2026 01:47 PDT. Condition: **v2-S2**, float16. Generation freeze `d4948f3e57af06fdff660f271a9602e0df3a092c` precedes every response; its bound files still match.
 
 | Base generation accounting | Observed value |
