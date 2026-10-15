@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 10:45 PDT
+Last updated: 10-15-2026 11:18 PDT
 
 ## Task and owner
 
@@ -302,6 +302,12 @@ Last updated: 10-15-2026 10:45 PDT
 
 - **Verdict SOUND** (`$WR/phase1/A6/analysis/result.json`). This is `sft_4B_f1p0` on 64 train tasks × 8 samples, with the frozen S2 float16 runtime and the historical evaluation sampler (temperature 0.6, top-p 0.95, top-k 20). Compile and strict successes are both **48/496 measured (9.7%)**. 16 are missing (15 deterministic resource limits, 1 unresolved); extraction found 395 Lean file blocks and 101 responses with no Lean block. The threshold was strict > 0 and compile ≥ 0.926% (≥ 5/512), against a historical full-schedule validation rate of 100/1,080 = 9.26%.
 - **Meaning.** The pipeline (prompts, template, float16 numerics, official scorer) reproduces the historical success rate under the historical sampler. The 0/12,916 strict successes under the frozen rollout sampler (temperature 1, top-p 1) are a sampler effect, not a defect. Per A6, Phase 2 proceeds (LP, T1–T4, audits, pilot) with T5 applied to arm B's own reward and A's curve descriptive.
+
+## Check-in 10-15-2026 11:15 PDT: SSH gateway refusing; published state only
+
+- **SNAP unreachable from the Mac.** `ssh skampere1` (ProxyJump `brando9@whale.stanford.edu`, configured route verified) failed 3/3 with "Connection closed by UNKNOWN port 65535". A direct gateway test returned `kex_exchange_identification: read: Connection reset by peer` from 171.64.75.72:22. TCP is reachable, but the gateway resets during key exchange, which points to throttling or a temporary block rather than authentication. Following `machine/snap.md` connection recovery, there were no repeated hammering attempts and no Cisco/Duo request. A bounded background retry runs every 5 minutes for up to 30 minutes.
+- **Published state (GitHub).** There have been no new experiment-13 commits since `e2d45e4` (10:45). The owner's last status (10:37): "A6 final SOUND; continue to the learning-pilot lock and unchanged technical gates under A6". The owner runs on skampere1 independently of the Mac, under its watchdog.
+- **No action possible this hour.** Verify owner liveness, leases and the crontab once the gateway answers.
 
 ## Exact next commands (master)
 
