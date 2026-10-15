@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-14-2026 19:20 PDT
+Last updated: 10-14-2026 20:18 PDT
 
 ## Task and owner
 
@@ -200,6 +200,12 @@ Last updated: 10-14-2026 19:20 PDT
 - **Anchors running.** Generation was frozen at `d4948f3` (18:35); `937b2e7` (18:43) recorded the leases and the first verified batches. Base, half and full1 each completed segment 0 (256/4,312 responses, 0 exhausted, cleanup verified). Segment 1 is running on owned skampere1 GPUs 0, 1 and 2, which were idle at claim. Cumulative device-hours across all experiment 13 v2 leases: 1.81.
 - **Throughput is below the plan.** A 256-response segment takes about 0.41–0.55 device-hours, which projects to about 8–9 device-hours per 4,312-response batch against PLAN § 5's 1–1.5. The likely cause is the S2-bound eager vLLM mode with a 32-sequence batch limit, both frozen by the lock, so no change is made. T4's cost re-estimate must use the measured S2 throughput.
 - **Owner working** (about 2 h) on Phase 2 trainer preparation (NeMo RL loss, checkpoint and scheduler paths) while the anchors run. The crontab has 16 lines, the 7 non-e13 lines identical to the backup. The old owner's idle launcher (PID 886575) is untouched. No action was needed.
+
+## Check-in 10-14-2026 20:14 PDT: anchors 768 + 512 + 512 of 3 × 4,312; Phase 2 technical code in progress
+
+- **Anchors.** base 768/4,312, half 512/4,312, full1 512/4,312, with 0 exhausted cells, each segment 256 responses with cleanup verified. Three owned A100 leases are active (skampere1 GPUs 0–2). Cumulative device-hours are 3.879 across 14 leases. At about 0.5 device-hours per 256-response segment per GPU, the batches finish around 03:00–04:00 PDT on 10-15.
+- **Owner working** (2 h 56 min) on Phase 2 technical-gate code ahead of LP and T1–T3. It published `1df6974` (empty Adam state preserved through native checkpoint save and restore), and is separating raw training receipts from gate evaluation, with T3 replaying T2's saved batch and state. The tests pass.
+- **Healthy.** The crontab has 16 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
 
 ## Exact next commands (master)
 
