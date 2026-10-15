@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 11:18 PDT
+Last updated: 10-15-2026 12:12 PDT
 
 ## Task and owner
 
@@ -309,6 +309,12 @@ Last updated: 10-15-2026 11:18 PDT
 - **Published state (GitHub).** There have been no new experiment-13 commits since `e2d45e4` (10:45). The owner's last status (10:37): "A6 final SOUND; continue to the learning-pilot lock and unchanged technical gates under A6". The owner runs on skampere1 independently of the Mac, under its watchdog.
 - **No action possible this hour.** Verify owner liveness, leases and the crontab once the gateway answers.
 - **Retry result (11:40 PDT).** The gateway was still refusing after 6 tries at 5-minute intervals: TCP 22 open, reset at key exchange. The direct route (`ProxyJump=none`) times out off-campus. The only remaining route is the Stanford VPN, which needs Brando's sign-in and Duo; it is optional because the owner runs autonomously. No owner commits since `031cd17` (10:41). The hourly check-in retries the gateway at 12:07.
+
+## Check-in 10-15-2026 12:10 PDT: gateway still refusing; owner silent on GitHub since 10:41
+
+- **SNAP unreachable.** `ssh skampere1` gives "Connection closed by UNKNOWN port 65535", and whale (171.64.75.72:22) resets at key exchange: the same failure since 11:15. The direct route needs the Stanford VPN, which needs Brando's sign-in and Duo. Brando was asked once to connect it, following the `machine/snap.md` rule to ask only when the remaining route requires a human step.
+- **Published state unchanged.** There have been no experiment-13 owner commits since `031cd17` (10:41), and results.md still reads "A6 final SOUND; continue to the learning-pilot lock" (10:37). That is about 1.5 h without a push against the owner's usual 10–20 minutes, so it may be building a large step, idle at its prompt, or blocked on GitHub from SNAP. It cannot be verified without SSH.
+- **Next.** Once SSH works: check the pane and process tree; if idle with work remaining, send the A6 continuation (learning-pilot lock, LP, T1–T4) with the pre-approval line. Then verify leases and the crontab.
 
 ## Exact next commands (master)
 
