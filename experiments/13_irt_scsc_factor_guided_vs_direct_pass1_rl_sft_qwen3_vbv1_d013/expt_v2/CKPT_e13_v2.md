@@ -6,11 +6,11 @@
 
 - **Plan:** revision 2, after the single light review (FAIL, with all 13 findings fixed).
 - **Admission:** G0 was admitted under A3 on 10-14-2026 ([admission record](R2_A3_ADMISSION_10-14-2026.md)).
-- **G0:** PASS (`120c558`). LP-1 under S1 is a measured FAIL (99th-percentile error 0.1248 > 0.10). [Amendment A5](AMENDMENT_A5_numerics_condition_S2_after_LP1_fail_10-14-2026.md) opens one numerics-only condition, S2, selected on a development probe and confirmed once.
+- **G0:** PASS (`120c558`). LP-1 failed under S1 bf16 (p99 0.1248) and passed under v2-S2 float16 ([A5](AMENDMENT_A5_numerics_condition_S2_after_LP1_fail_10-14-2026.md); p99 0.0176, `2b2f8b5`). Phase 1 anchors are in preparation.
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-14-2026 17:17 PDT
+Last updated: 10-14-2026 18:16 PDT
 
 ## Task and owner
 
@@ -188,6 +188,12 @@ Last updated: 10-14-2026 17:17 PDT
   - S2 is confirmed **once** on the original frozen probe with unchanged thresholds; if it fails, version 2 stops;
   - device use is capped at 3.0 device-hours.
 - **Next.** Brief the owner with A5. G1's driver and method lock (`G1_A3.json`) are published and unexecuted.
+
+## Check-in 10-14-2026 18:14 PDT: v2-S2 float16 LP-1 PASS; Phase 1 anchors in preparation
+
+- **A5 order verified.** The candidate list and disjoint development probe were frozen at `6251b77` (17:33), before any measurement. C1 float16 passed development (p99 0.0163 ≤ 0.08 margin; median 2.3e-5; unsupported 0/51,472; truncation 0); C2 was not run. The S2 lock (`f8ecbfa`, 17:46) preceded the confirmation and is unchanged after it.
+- **Confirmation PASS** on the original probe (`2b2f8b5`, 17:58). Over 8/8 responses and 44,844 tokens: unsupported 0, median 3.3e-5, **p99 0.0176 ≤ 0.10**, truncation 0. The S1 bf16 FAIL (0.1248) stays final. A5 used 0.207 of 3.0 device-hours; the suite ran 558 passed, 23 skipped.
+- **Owner working** (56 min) on the float16 anchor runtime and dispatch, with tests for resume, the one-retry limit and lease accounting. The crontab has 14 lines, the 7 non-e13 lines identical to the backup. No action was needed.
 
 ## Exact next commands (master)
 
