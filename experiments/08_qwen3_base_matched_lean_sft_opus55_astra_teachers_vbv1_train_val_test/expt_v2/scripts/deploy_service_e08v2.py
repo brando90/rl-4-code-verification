@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""TLDR: Deploy, inspect and tear down experiment 08's collect-only single-call VeriBench service (experiment 103's `vb_service_single_call`, imported unmodified from this clone's pinned checkout) serving the 539-task train pack on claimed port 9740 behind a bearer-protected cloudflared tunnel, registered as benchmark `rl4cv-e08-vbv1-train` in a private copy of the host Valkyrie configuration (PROTOCOL § 3, runbook § 4.1; zero model calls). Adapted from experiment 02A v3's `deploy_service_e02a.py`."""
+"""TLDR: Deploy, inspect and tear down experiment 08's collect-only single-call VeriBench service (experiment 103's `vb_service_single_call`, imported unmodified from this clone's pinned checkout) serving the 539-task train pack on claimed port 9740 behind a bearer-protected cloudflared tunnel, registered as benchmark `rl4cv-e08-vbv1-train` through the hosted CLI (explicit legacy transport retains private YAML) (PROTOCOL § 3, runbook § 4.1; zero model calls). Adapted from experiment 02A v3's `deploy_service_e02a.py`."""
 from __future__ import annotations
 
 import argparse
@@ -18,6 +18,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
+sys.path.insert(0, str(REPO_ROOT / "src"))
+from rl4cv.valkyrie_transport import Transport
+
 EXP = Path(__file__).resolve().parents[1]
 WORK = Path(os.environ.get("E08_WORK", "/lfs/skampere1/0/brando9/rl4cv_e08/v2"))
 PRIVATE = WORK / "private"
@@ -118,8 +121,11 @@ def cmd_deploy(a) -> int:
         raise SystemExit("a live deployment is recorded; run teardown first (a new tunnel URL orphans a running run)")
     if listening(PORT):
         raise SystemExit(f"port {PORT} is already listening; refusing to bind (check ss -tlnp and valkyrie_port_claims)")
+    transport = Transport(PRIVATE / "valkyrie.yaml")
+    if transport.mode == "hosted":
+        transport.preflight(registration=True)
     for p, what in ((PACK, "pack"), (SERVICE_DIR, "service dir"), (KERNEL_AXIOMS, "kernel axiom checker"), (LAKE_DIR, "lake dir"),
-                    (UVICORN, "uvicorn"), (CLOUDFLARED, "cloudflared"), (HOST_CONFIG, "host Valkyrie config")):
+                    (UVICORN, "uvicorn"), (CLOUDFLARED, "cloudflared")):
         if not p.exists():
             raise SystemExit(f"{what} missing: {p}")
     n_pack = len([p for p in PACK.iterdir() if p.is_dir()])
@@ -160,13 +166,13 @@ def cmd_deploy(a) -> int:
             os.killpg(proc.pid, signal.SIGTERM)
         raise SystemExit(f"tunnel answered an unauthenticated probe with {unauth}; refusing")
     tunnel_limits = task_limits(url, bearer)
-    import yaml
-    target = PRIVATE / "valkyrie.yaml"
-    cfg = yaml.safe_load(target.read_text()) if target.exists() else yaml.safe_load(HOST_CONFIG.read_text())   # keep earlier instances registered
-    cfg.setdefault("custom_benchmark_services", {})[BENCHMARK] = url
-    cfg.setdefault("benchmark_auth", {})[BENCHMARK] = "Bearer " + bearer
-    target.write_text(yaml.safe_dump(cfg))
-    os.chmod(target, 0o600)
+    try:
+        registration = transport.register(BENCHMARK, url, bearer_path, HOST_CONFIG)
+    except Exception:
+        # Registration did not complete: stop only the two children created by this invocation.
+        for proc in (tunnel, service):
+            os.killpg(proc.pid, signal.SIGTERM)
+        raise
     service_hashes = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(SERVICE_DIR.glob("*.py"))}
     veribench_head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=REPO_ROOT / "external/veribench", capture_output=True, text=True).stdout.strip()
     receipt = {"deployed_utc": stamp(), "host": os.uname().nodename, "benchmark": BENCHMARK, "port": PORT, "port_claim": PORT_CLAIM,
@@ -176,7 +182,7 @@ def cmd_deploy(a) -> int:
                "veribench_checkout": veribench_head, "pack_dir": str(PACK), "pack_task_count": n_pack,
                "control_pack": True, "grade_mode": "collect_only (VB_COLLECT_ONLY=1)", "sandbox_lean": "none (VB_NO_COMPILER=1)",
                "agent_timeout_s": AGENT_TIMEOUT_S, "agent_client_timeout_s": AGENT_CLIENT_TIMEOUT_S, "per_task_limit_local": limits,
-               "per_task_limit_tunnel": tunnel_limits, "valkyrie_config": str(target), "inference_calls": 0}
+               "per_task_limit_tunnel": tunnel_limits, "bearer_file": str(bearer_path), **registration, "inference_calls": 0}
     write_json(receipt_path, receipt)
     public = {k: v for k, v in receipt.items() if k not in ("tunnel_url",)}
     public["tunnel_url"] = "recorded in $WORK/private/deployment.json (not published)"

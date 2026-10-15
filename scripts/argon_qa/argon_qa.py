@@ -19,6 +19,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO / "src"))
+from rl4cv.valkyrie_transport import Transport
+
 HOME = Path(os.environ.get("RL4CV_ARGON_QA_HOME", "~/.cache/rl4cv-argon-qa")).expanduser()
 VERIBENCH = Path(os.environ.get("VERIBENCH_ROOT", "~/veribench")).expanduser()
 SERVICE_DIR = (VERIBENCH / "experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge"
@@ -26,7 +29,6 @@ SERVICE_DIR = (VERIBENCH / "experiments/103_single_call_baselines_all_models_vbv
 AGENT_DIR = (VERIBENCH / "experiments/106_simulated_expert_raters_icl_from_human_labels_leave_one_agent_out_fsc_judge"
              / "scripts/valkyrie_rater_agent_v2")
 VALKYRIE_VENV = Path("~/.local/share/uv/tools/valkyrie").expanduser()
-VALKYRIE = shutil.which("valkyrie") or str(Path("~/.local/bin/valkyrie").expanduser())
 CLOUDFLARED = shutil.which("cloudflared") or "/opt/homebrew/bin/cloudflared"
 HOST_CONFIG = Path("~/.config/valkyrie/valkyrie.yaml").expanduser()
 
@@ -48,7 +50,8 @@ DEFAULT_CONTEXT = ("CLAUDE.md", "experiments/README.md", "docs/DECISIONS.md")
 DEFAULT_OMIT = (r"/judge/harvests/", r"/judge/judge_pack_[^/]*\.json$", r"task_ids[^/]*\.txt$",
                 r"/orchestration/jobs_gpu[^/]*\.txt$", r"/orchestration/shared_queue\.txt$")
 PROVIDER_ENV = ("ANTHROPIC_API_KEY", "OPENAI_API_KEY", "GEMINI_API_KEY", "GOOGLE_API_KEY",
-                "CLAUDE_CODE_OAUTH_TOKEN", "AUTH_DISABLED", "PYTHONPATH", "PYTHONHOME")
+                "MODEL_GATEWAY_API_KEY", "VALKYRIE_API_KEY", "TRACKER_SERVICE_URL",
+                "CLAUDE_CODE_OAUTH_TOKEN", "ANTHROPIC_AUTH_TOKEN", "AUTH_DISABLED", "PYTHONPATH", "PYTHONHOME")
 SECRET_RES = (re.compile(r"(api[_-]?key|token|password|secret|auth|bearer)\s*[:=]\s*[\"']?[A-Za-z0-9_\-/+]{16,}", re.I),
               re.compile(r"sk-ant-[A-Za-z0-9_\-]{10,}"), re.compile(r"\bsk-[A-Za-z0-9]{20,}"),
               re.compile(r"AKIA[0-9A-Z]{16}"), re.compile(r"ghp_[A-Za-z0-9]{20,}"), re.compile(r"hf_[A-Za-z]{30,}"))
@@ -107,10 +110,12 @@ def clean_env(**extra: str) -> dict:
     return env
 
 
+def transport() -> Transport:
+    return Transport(HOME / "valkyrie.yaml")
+
+
 def valkyrie(*args: str, timeout: float = 600) -> subprocess.CompletedProcess:
-    env = clean_env(VALKYRIE_CONFIG_PATH=str(HOME / "valkyrie.yaml"), VALKYRIE_ENV="bench")
-    return subprocess.run([VALKYRIE, *args], env=env, stdin=subprocess.DEVNULL, capture_output=True,
-                          text=True, timeout=timeout)
+    return transport().run(list(args), timeout=timeout)
 
 
 # ------------------------------------------------------------------------------------------------- build
@@ -247,6 +252,9 @@ def cmd_deploy(args) -> int:
     old = read_json(receipt_path, {})
     if alive(old.get("service_pid")) or alive(old.get("tunnel_pid")):
         raise SystemExit("a live deployment is recorded; run teardown first (a new tunnel URL orphans a running run)")
+    selected = transport()
+    if selected.mode == "hosted":
+        selected.preflight(registration=True)
     logs = private_dir("logs")
     bearer_path = HOME / "service_bearer"
     if not bearer_path.exists():
@@ -284,14 +292,14 @@ def cmd_deploy(args) -> int:
         for proc in (service, tunnel):
             proc.terminate()
         raise SystemExit(f"tunnel answered an unauthenticated probe with {unauth}; refusing")
-    import yaml
-    cfg = yaml.safe_load(HOST_CONFIG.read_text())
-    cfg.setdefault("custom_benchmark_services", {})[BENCHMARK] = url
-    cfg.setdefault("benchmark_auth", {})[BENCHMARK] = "Bearer " + bearer
-    (HOME / "valkyrie.yaml").write_text(yaml.safe_dump(cfg))
-    os.chmod(HOME / "valkyrie.yaml", 0o600)
+    try:
+        registration = selected.register(BENCHMARK, url, bearer_path, HOST_CONFIG)
+    except Exception:
+        for proc in (tunnel, service):
+            proc.terminate()
+        raise
     write_json(receipt_path, {
-        "deployed_utc": stamp(), "benchmark": BENCHMARK, "port": PORT, "tunnel_url": url,
+        "deployed_utc": stamp(), **registration, "bearer_file": str(bearer_path), "benchmark": BENCHMARK, "port": PORT, "tunnel_url": url,
         "service_pid": service.pid, "tunnel_pid": tunnel.pid, "local_health": 200, "local_unauthenticated": 401,
         "tunnel_health": 200, "tunnel_unauthenticated": unauth,
         "service_code": str(SERVICE_DIR), "veribench_head": subprocess.run(
@@ -306,6 +314,9 @@ def cmd_admit(args) -> int:
     state = read_json(HOME / "run.json", {})
     if state.get("run_id") and not args.force:
         raise SystemExit(f"run {state['run_id']} is already admitted; refusing a second admission")
+    selected = transport()
+    selected.require_receipt(read_json(HOME / "deployment.json", {}))
+    selected.preflight()
     command = ["run", "start", "--agent", AGENT, "--benchmark", BENCHMARK, "--dataset", "default", "--model", MODEL,
                "--concurrency", "2", "--label", args.label]
     for key, value in RUN_KWARGS.items():
@@ -315,14 +326,16 @@ def cmd_admit(args) -> int:
     found = re.findall(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", done.stdout + done.stderr)
     if done.returncode or not found:
         raise SystemExit(f"admission failed (rc={done.returncode}); see logs/admit.log")
-    write_json(HOME / "run.json", {"run_id": found[0], "admitted_utc": stamp(), "agent": AGENT, "model": MODEL,
+    write_json(HOME / "run.json", {"run_id": found[0], **selected.identity(), "admitted_utc": stamp(), "agent": AGENT, "model": MODEL,
                                    "benchmark": BENCHMARK, "kwargs": RUN_KWARGS, "command": ["valkyrie", *command]})
     print("admitted run", found[0])
     return 0
 
 
 def cmd_status(args) -> int:
-    run_id = read_json(HOME / "run.json")["run_id"]
+    state = read_json(HOME / "run.json")
+    transport().require_receipt(state)
+    run_id = state["run_id"]
     done = valkyrie("run", "tasks", run_id)
     print(done.stdout[-4000:] or done.stderr[-2000:])
     return done.returncode
@@ -336,7 +349,9 @@ RECEIPT_KEYS = ("task_id", "selector", "status", "started", "ended", "wall_secon
 
 
 def cmd_harvest(args) -> int:
-    run_id = read_json(HOME / "run.json")["run_id"]
+    state = read_json(HOME / "run.json")
+    transport().require_receipt(state)
+    run_id = state["run_id"]
     raw = private_dir("raw", run_id)
     results, artifacts = raw / "results.json", raw / "artifacts"
     shutil.rmtree(artifacts, ignore_errors=True)

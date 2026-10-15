@@ -19,6 +19,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[4]
+sys.path.insert(0, str(REPO / "src"))
+from rl4cv.valkyrie_transport import Transport
+
 EXP = Path(__file__).resolve().parents[1]
 WORK = Path(os.environ.get("E08_WORK", "/lfs/skampere1/0/brando9/rl4cv_e08/v2"))
 EXT = REPO / "external" / "veribench"
@@ -227,16 +230,20 @@ def build_test(systems_path: Path, cells_dir: Path, smoke_items: int = 1) -> dic
 # --------------------------------------------------------------------------------------------------
 # Admit / poll / harvest (one Valkyrie run per (suite, config); every rating is one declared call)
 # --------------------------------------------------------------------------------------------------
+def transport() -> Transport:
+    return Transport(WORK / "private" / "valkyrie.yaml")
+
+
 def env() -> dict[str, str]:
-    out = {k: v for k, v in os.environ.items() if k not in PROVIDER_ENV}
-    out.update(VALKYRIE_ENV="bench", VALKYRIE_CONFIG_PATH=str(WORK / "private" / "valkyrie.yaml"))
-    # Cron may supply only system paths; use the experiment interpreter's installed CLI.
+    out = transport().env()
+    # Retain interpreter-local CLI discovery for cron.
     out["PATH"] = str(Path(sys.executable).parent) + os.pathsep + out.get("PATH", os.defpath)
     return out
 
 
 def cli(args: list[str], timeout: int = 1800) -> subprocess.CompletedProcess:
-    return subprocess.run(["valk"] + args, env=env(), stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=timeout)
+    return subprocess.run([transport().binary] + args, env=env(), stdin=subprocess.DEVNULL,
+                          capture_output=True, text=True, timeout=timeout)
 
 
 def load_state() -> dict:
@@ -271,8 +278,15 @@ def _admit_locked(suite: str, configs: list[str], concurrency: int) -> int:
     assert published.returncode == 0 and published.stdout == spec['pack_receipt'].read_bytes(), 'Judge pack is not the exact published manifest'
     route = read_json(EXP / 'results/route_identity_v2.json')
     assert route and route.get('verdict') == 'PASS', 'Vals route identity not verified'
+    selected = transport()
+    selected.require_receipt(route)
+    selected.preflight()
+    if selected.mode == "hosted":
+        selected.endpoint(spec["benchmark"], WORK / "private")
     if spec['system']:
-        assert read_json(RESULTS / 'controls_check.json', {}).get('verdict') == 'PASS', 'Route controls have not passed'
+        controls = read_json(RESULTS / 'controls_check.json', {})
+        assert controls.get('verdict') == 'PASS', 'Route controls have not passed'
+        selected.require_receipt(controls)
     if spec["system"]:
         ids_file = RESULTS / f"task_ids_{spec['system']}.txt"
     else:
@@ -288,10 +302,8 @@ def _admit_locked(suite: str, configs: list[str], concurrency: int) -> int:
         end = start + len(wanted_ids)
         assert all_ids[start:end] == wanted_ids, 'Manifest IDs are not one exact ordered slice'
         task_slice = f'{start}:{end}'
-        import yaml
-        cfg_private = yaml.safe_load((WORK / 'private/valkyrie.yaml').read_text())
-        url = cfg_private['custom_benchmark_services'][spec['benchmark']]
-        request = urllib.request.Request(url + '/verify-task-ids?' + urllib.parse.urlencode({'slice': task_slice, 'dataset': 'default'}), headers={'Authorization': cfg_private['benchmark_auth'][spec['benchmark']]})
+        url, auth = selected.endpoint(spec['benchmark'], WORK / 'private')
+        request = urllib.request.Request(url + '/verify-task-ids?' + urllib.parse.urlencode({'slice': task_slice, 'dataset': 'default'}), headers={'Authorization': auth})
         with urllib.request.urlopen(request, timeout=60) as response:
             assert json.load(response)['task_ids'] == wanted_ids, 'Live service slice differs from the manifest'
         task_filter = ['--slice', task_slice]
@@ -319,7 +331,7 @@ def _admit_locked(suite: str, configs: list[str], concurrency: int) -> int:
         for k, v in kwargs.items():
             args += ["-k", k, v]
         entry = {"config": name, "selector": cfg["selector"], "kwargs": kwargs, "concurrency": concurrency, "expected_cells": n_tasks, "suite": suite, "benchmark": spec["benchmark"],
-                 "admitted_at": stamp(), "phase": "admitting", "command": args, "task_ids_sha256": sha(ids_file.read_bytes()), "verified_task_slice": task_slice}
+                 **selected.identity(), "admitted_at": stamp(), "phase": "admitting", "command": args, "task_ids_sha256": sha(ids_file.read_bytes()), "verified_task_slice": task_slice}
         state["runs"][key] = entry
         save_state(state)
         try:
@@ -357,6 +369,7 @@ def poll() -> int:
     state = load_state()
     summary = {}
     for name, entry in state["runs"].items():
+        transport().require_receipt(entry)
         run_id = entry.get("run_id")
         if not run_id:
             summary[name] = {"phase": entry.get("phase")}
@@ -404,6 +417,7 @@ def harvest(suite: str, configs: list[str]) -> int:
         if not entry or not entry.get("run_id"):
             print(f"{key}: not admitted, nothing to harvest")
             continue
+        transport().require_receipt(entry)
         raw = WORK / "judge" / "raw" / key.replace("/", "__")
         raw.mkdir(parents=True, exist_ok=True)
         results_path, artifacts = raw / "results.json", raw / "artifacts"
@@ -453,7 +467,7 @@ def harvest(suite: str, configs: list[str]) -> int:
         counts: dict[str, int] = {}
         for cell in cells:
             counts[cell["status"]] = counts.get(cell["status"], 0) + 1
-        out = {"written_utc": stamp(), "suite": suite, "config": name, "run_id": entry["run_id"], "n_cells": len(cells), "status_counts": counts, "charges_usd": round(charges, 4), "cells": cells,
+        out = {**{k: entry[k] for k in ("transport", "valkyrie_bin", "tracker_url", "organization", "valkyrie_config") if k in entry}, "written_utc": stamp(), "suite": suite, "config": name, "run_id": entry["run_id"], "n_cells": len(cells), "status_counts": counts, "charges_usd": round(charges, 4), "cells": cells,
                "receipt_inventory": {"missing": sorted(set(pack_cells) - set(receipts)),
                                      "extra": sorted(set(receipts) - set(pack_cells)),
                                      "duplicates": sorted(set(duplicate_receipts))}}
@@ -501,6 +515,7 @@ def controls_check() -> int:
             out["configs"][name] = {"missing": True}
             out["verdict"] = "FAIL"
             continue
+        transport().require_receipt(h)
         cells_by_id = {c["task_id"]: c for c in h["cells"]}
         inventory = h.get("receipt_inventory")
         exact = (len(cells_by_id) == len(h["cells"]) == len(wanted) and set(cells_by_id) == set(wanted)
@@ -527,6 +542,7 @@ def controls_check() -> int:
                                 "exact_receipt_inventory": exact, "transport_matches": transport_ok,
                                 "expected_envelope": {"selector": judge_config(name)["selector"], "effort": judge_config(name).get("compute_effort") or judge_config(name).get("reasoning_effort"),
                                               "max_tokens": judge_config(name)["max_tokens"], "rubric": judge_config(name)["rubric"]}}
+    out.update(transport().identity())
     write_json(RESULTS / "controls_check.json", out)
     print(json.dumps({"verdict": out["verdict"], **{n: {k: v["fraction"] for k, v in c.get("per_kind", {}).items()} for n, c in out["configs"].items()}}))
     return 0 if out["verdict"] == "PASS" else 1
