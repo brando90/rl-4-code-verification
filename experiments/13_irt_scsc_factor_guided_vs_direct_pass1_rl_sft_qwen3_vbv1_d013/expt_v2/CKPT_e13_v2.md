@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 14:12 PDT
+Last updated: 10-15-2026 15:20 PDT
 
 ## Task and owner
 
@@ -327,6 +327,12 @@ Last updated: 10-15-2026 14:12 PDT
 - **Routes.** whale still resets at key exchange (since 11:15), and the direct route times out with no VPN. If whale has blocked this Mac's IP after repeated connections, further probing could extend the block, so from now on each check-in makes **one** probe per route. The VPN request to Brando (12:10) is still open.
 - **Published state unchanged** since owner commit `031cd17` (10:41), about 3.5 h. The owner's watchdog emails Brando on a stop; nothing is visible from the Mac.
 - **Next.** Same as 13:10: once reachable, inspect the pane and resume the owner if idle.
+
+## Check-in 10-15-2026 15:14 PDT: gateway back; owner had stalled on OpenAI model capacity; resumed
+
+- **Gateway restored.** SSH through whale works again at 15:14, after refusing from 11:15. The Cisco/Duo request to Brando is withdrawn (no longer needed).
+- **Owner stall, cause found.** Around 10:45 the Codex session hit "Falling back from WebSockets to HTTPS transport. unexpected status 503 Service Unavailable" and **"Selected model is at capacity"** (`gpt-6-astra`). Its turn ended while it was assembling the learning-pilot freeze (`PREPARED_FOR_LP_FREEZE`, 18 components, unpublished). The stale 07:25 hold was then submitted twice into the same error, and the owner sat idle about 4.5 h. No leases were held, the crontab is unchanged (18 lines, 7 non-e13 identical), and there were no exits. The watchdog checks process liveness, not model availability, so it did not flag this.
+- **Resumed at 15:16 PDT** with an A6 continuation and the pre-approval line: finish the learning-pilot freeze for A, B and P, then LP and T1–T4, the audits, and the pilot with T5 on B. The model responded and the owner is working. If capacity fails again, fall back under Rule 48 to `clauded` with `claude-fable-5-1` high in a new tmux session, keeping one writer.
 
 ## Exact next commands (master)
 
