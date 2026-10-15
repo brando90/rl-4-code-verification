@@ -1,6 +1,6 @@
 # Hosted Valkyrie transport for active RL4CV launchers
 
-**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/docs/valkyrie_hosted_transport.md> (intended; pending coordinator publication)
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/docs/valkyrie_hosted_transport.md>
 
 **TLDR:** The experiment 08 version 2 service/judge and reusable Argon review launcher default to hosted Valkyrie. Historical receipts require an explicitly selected legacy executable; migration never admits a study or clears a scientific hold.
 
@@ -39,6 +39,10 @@ The experiment 01 judge, experiment 02 phase A version 3 deployer/identity/teach
 
 `tests/test_valkyrie_transport.py` uses synthetic credentials, an executable fake command-line interface (CLI) and controlled child-process substitutes. It checks supported registration/authentication arguments, secret stdin, login versus access-key registration, selected Tracker/organization, explicit legacy retention, current endpoint receipts, failure cleanup, hold preservation and non-replay of ambiguous admissions. It makes no model or sandbox calls.
 
-Run `make test` before publication on Linux. Existing experiment 13 process-identity tests use `/proc` and fail on macOS at the unchanged base as well. The coordinator owns the Linux full-suite check, actual login/provider/bundle/service verification, bounded live controls, publication and checkout cleanup. Preserve all scientific holds independently of transport readiness.
+On 10-14-2026, `make test` on skampere1 passed **590 tests, with 5 skipped**, in 224.79 seconds (exit 0). The same launcher source passed 41 targeted checks on macOS; unrelated process-identity tests require Linux `/proc` and fail on the unchanged macOS base too. Subsequent integration preserved the tested code bytes while incorporating concurrent experiment-13 result commits.
+
+The coordinator deployed an isolated service using the actual updated experiment-08 version-2 deployer on unused port 9869 and benchmark `rl4cv-hosted-migration-01a13cbe`. Authenticated local/tunnel health returned 200; unauthenticated requests returned 401; the hosted task listing and service task-ID check both matched the single control. The actual updated judge module's CLI function then admitted run `46dee95d-794a-46f0-b1e7-cb6f3aff6f0b` and successfully executed start, status, results and output (exit 0, FINISHED, 1/1 tasks). The registry-probe agent made zero model calls. This verifies deployment, saved user registration, Daytona, secret injection, the launcher transport and artifact retrieval; it does not establish judge agreement or approve a held scientific run.
+
+Private receipts/logs are retained with the coordinator's `valkyrie-hosted-completion-10-14-2026` record. The isolated test service is removed after collection. Existing services, results and scientific holds are preserved.
 
 Sources: [custom service registration](https://docs.valkyrie.vals.ai/benchmarks/custom-services), [hosted configuration](https://docs.valkyrie.vals.ai/get-started/configuration), and the installed `valkyrie benchmark service set --help` / `valkyrie secret set --help` plus pinned CLI source.
