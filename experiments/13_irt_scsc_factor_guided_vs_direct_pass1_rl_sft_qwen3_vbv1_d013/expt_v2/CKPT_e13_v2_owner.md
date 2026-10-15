@@ -2,22 +2,24 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2_owner.md>
 
-**TLDR:** v2-S2 T1 attempt 1 is INCOMPLETE-INFRA: generation 8/8, trainer probabilities 0/8, no admission statistic. Ray rejected a 148-byte Unix-socket path against Linux's 107-byte limit. Cleanup is verified and all three leases are released; A4 permits attempt 2 after a tested repair and successor-lock publication. The experiment continues; C is disabled, H2/F2 unavailable, batch 2 skipped.
+**TLDR:** v2-S2 T1 attempt 2 is running after the published A4 socket-path repair. Both non-probe preflights passed; generation is active and no admission statistic exists. Attempt 1 remains INCOMPLETE-INFRA, with its 0.168878405 device-hours retained inside the unchanged 2.0-hour cap. C is disabled, H2/F2 unavailable, batch 2 skipped.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-15-2026 16:03 PDT
+Last updated: 10-15-2026 16:13 PDT
 
-## Current state — 10-15-2026 16:03 PDT
+## Current state — 10-15-2026 16:13 PDT
 
 Goal: complete the experiment through its admitted gates, or publish the binding transition result. Continue under A6 with unchanged S2 numerics and rollout sampler.
 
 What ran: [LP freeze](phase2/LP_A6_S2_FREEZE.md) published at `970d274`; T1 attempt 1 generated eight responses, then Ray socket construction failed before trainer probabilities. [Attempt report](RESULTS_T1_S2.md) retains the evidence and unchanged caps. No admission statistic, optimizer update, actual mutation audit or new held-out response exists.
 
-Supervision: owner PID 1243923 remains the only writer. The T1 controller exited after HALTED, all three leases are released and cleanup is verified. Cumulative T1 usage is 0.168878405/2.0 device-hours. Watchdog and cron remain armed; no automatic gate retry is running.
+Supervision: single owner PID 1243923 remains active. The verified attempt-2 controller PID 3398075 is watchdog-registered; both non-probe checks passed and the eight-response generation is running on freshly leased idle skampere1 device 0. Repair `d5961c9` and A4 admission `b37c6af` were pushed before claim; the full published successor chain verifies. Attempt 1 remains closed and charged at 0.168878405 device-hours.
 
-Next: after publishing the [A4 admission record](locks/T1_A4.json), verify its exact published successor chain and launch complete T1 attempt 2 through the unchanged lease registry. Repair/LP/regression publication `d5961c9` passed the required full suite (1,124 passed, 3 skipped). Attempt 1 remains published at `dacef27`; all prior outputs are excluded, the 2.0-hour cumulative cap is unchanged, and at most three attempts are allowed.
+Next: supervise complete T1 attempt 2 through preflight, generation and trainer probabilities; publish its single final gate result before transitioning. The attempt cap remains 1.5 device-hours and cumulative T1 cap 2.0; no automatic gate retry or scientific change. Independent batch 2 stays skipped.
 
 Brando to-do: none. Existing SNAP preapproval covers the frozen technical allocation; no provider charge or inherited experiment-08 budget is used.
+
+T1 attempt 2 launch (10-15-2026 16:06 PDT): [launch receipt](phase2/T1_A4_attempt2_launch.json), controller PID 3398075, skampere1 device 0, exact published successor chain verified before claim. Non-probe engine and Ray socket preflights both passed; numbered attempt 2 is admitted and generation is running. No gate statistic or optimizer update exists. Required integration: **1,124 passed, 3 skipped, zero failures in 529.99 seconds**, direct exit 0 ([receipt](phase2/T1_A4_attempt2_publication_test.json)).
 
 T1 A4 admission freeze (10-15-2026 16:03 PDT): [admission record](locks/T1_A4.json), hash `e922b33096633c4512019d333ddb3216468c3824dff9f628c370fa46d03491e9`, binds tested source/LP revision `d5961c9`, published regression PASS and failed-attempt revision `dacef27`. All 4,681 successor bindings verify, seven infrastructure changes/additions are enumerated, and scientific signature/allocation are unchanged. No new test or gate was rerun for this metadata-only reference binding; the just-completed required suite passed 1,124 tests. No attempt-2 claim yet.
 
