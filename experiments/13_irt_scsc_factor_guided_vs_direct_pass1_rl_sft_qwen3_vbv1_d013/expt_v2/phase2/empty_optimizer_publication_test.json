@@ -1,0 +1,29 @@
+{
+  "actual_phase2_model_calls": 0,
+  "command": "E13_REQUIRE_LEAN_INTEGRATION=1 make test",
+  "condition": "v2-S2",
+  "correction": "preserve initial empty optimizer/scheduler state around native zero-learning-rate dummy step; first actual Adam update has step counter 1",
+  "exit_code": 0,
+  "experiment_optimizer_updates": 0,
+  "failed": 0,
+  "initial_worker_seeding": "Python, NumPy, Torch host and visible CUDA seeded once from fixed run_seed; resumes restore saved state",
+  "installed_library_edits": 0,
+  "installed_torch_state_dict_source_sha256": "ebada45759776f80908a7cdf986381f6c2c083bb4e773fd35f8892e093e010bf",
+  "log_sha256": "2de36d46e848f3be669772fc09ed3816774a6ca4901be2fc0b475a0d11a9d25b",
+  "passed": 647,
+  "regression_after": {
+    "exit_code": 0,
+    "passed": 14,
+    "seconds": 13.98
+  },
+  "regression_before": {
+    "exit_code": 1,
+    "failed": 1,
+    "log_sha256": "ab9aec5fd7802265b53692b76d91f99f21a770de33d5e0ef6687adcfea414d21",
+    "passed": 2
+  },
+  "seconds": 270.76,
+  "skipped": 23,
+  "stage": "Phase 2 pre-measurement checkpoint correction",
+  "status": "PASS"
+}

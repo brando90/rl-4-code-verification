@@ -43,7 +43,7 @@ from tokenizers.models import WordLevel
 from nemo_rl.utils.native_checkpoint import save_checkpoint
 from training_checkpoint import save,restore,export,verify_files
 from trainer_core import update
-from worker_state import parameter_digest,optimizer_digest
+from worker_state import parameter_digest,optimizer_digest,initialize_rng
 assert not torch.cuda.is_available()
 torch.set_num_threads(1);torch.manual_seed(17)
 root=Path(sys.argv[2]);source=root/'source';source.mkdir()
@@ -83,8 +83,21 @@ class Policy:
  def save_checkpoint(self,weights,optimizer,tokenizer_path):
   save_checkpoint(worker.model,weights,worker.optimizer,worker.scheduler,optimizer,tokenizer,tokenizer_path)
 policy=Policy();original_get=ray.get;ray.get=lambda value:value
+initialize_rng(worker,13011)
+seeded=(random.random(),float(np.random.random()),torch.rand(3))
+initialize_rng(worker,13011)
+repeated=(random.random(),float(np.random.random()),torch.rand(3))
+assert seeded[:2]==repeated[:2] and torch.equal(seeded[2],repeated[2])
+initialize_rng(worker,13012)
+assert seeded[0]!=random.random()
+try:initialize_rng(worker,True)
+except ValueError:pass
+else:raise AssertionError('boolean is not a paired run seed')
 try:
+ initial_parameters=parameter_digest(worker);initial_optimizer=optimizer_digest(worker)
  saved=save(policy,root/'native',provenance={'fixture':'authored CPU model','update':0})
+ assert parameter_digest(worker)==initial_parameters
+ assert optimizer_digest(worker)==initial_optimizer, 'native saver must not advance initially empty Adam state'
  before=parameter_digest(worker);optim=optimizer_digest(worker)
  ids=torch.tensor([[3,4,5,1]])
  def fixture_step():
@@ -93,6 +106,7 @@ try:
   loss.backward();worker.optimizer.step();worker.scheduler.step()
   return float(loss.detach()),parameter_digest(worker),optimizer_digest(worker)
  first=fixture_step();assert first[1]!=before and first[2]!=optim
+ assert all(int(state['step'])==1 for state in worker.optimizer.state.values())
  restore(policy,root/'native')
  assert parameter_digest(worker)==before and optimizer_digest(worker)==optim
  second=fixture_step();assert first==second,(first,second)

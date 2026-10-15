@@ -62,3 +62,12 @@ def optimizer_digest(worker):
     update({'optimizer':worker.optimizer.state_dict(),'scheduler':worker.scheduler.state_dict()})
     return {'sha256':digest.hexdigest(),'optimizer_type':type(worker.optimizer).__name__,
             'scheduler_type':type(worker.scheduler).__name__}
+
+
+def initialize_rng(worker,seed):
+    """Set the paired run's initial worker randomness once, before its first measured update."""
+    import random,numpy as np,torch
+    if type(seed) is not int or not 0<=seed<2**63:raise ValueError('invalid paired run seed')
+    random.seed(seed);np.random.seed(seed%(2**32));torch.manual_seed(seed)
+    if torch.cuda.is_available():torch.cuda.manual_seed_all(seed)
+    return {'seed':seed,'cuda_generators':torch.cuda.device_count() if torch.cuda.is_available() else 0}

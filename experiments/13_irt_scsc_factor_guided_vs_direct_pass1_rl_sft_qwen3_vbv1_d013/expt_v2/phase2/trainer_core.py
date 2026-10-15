@@ -15,7 +15,7 @@ if str(PHASE1) not in sys.path:sys.path.insert(0,str(PHASE1))
 from runtime import check_lease
 from training_data import build
 from training_checkpoint import write_new,digest,save,restore,owned_call
-from worker_state import parameter_digest,optimizer_digest
+from worker_state import parameter_digest,optimizer_digest,initialize_rng
 
 
 def plain(value):
@@ -56,6 +56,8 @@ def policy_session(config,*,checkpoint=None,init_optimizer=True):
         if checkpoint is not None:
             if not init_optimizer:raise ValueError('resuming training requires optimizer state')
             restore(policy,checkpoint)
+        else:
+            owned_call(policy,initialize_rng,config['run_seed'])
         yield policy,tokenizer
     finally:
         if policy is not None:policy.shutdown()

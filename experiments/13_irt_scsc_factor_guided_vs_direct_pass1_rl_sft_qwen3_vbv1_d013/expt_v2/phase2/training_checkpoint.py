@@ -65,21 +65,50 @@ def owned_call(policy,function,*args):
     return ray.get([worker.__ray_call__.remote(function,*args) for worker in workers])
 
 
+
+def capture_empty_optimizer(worker,path):
+    """Retain the exact empty state before PyTorch's native saver materializes Adam moments."""
+    import torch
+    if worker.optimizer.state:return {'captured':False}
+    path=Path(path)
+    with path.open('xb') as out:
+        torch.save({'optimizer':worker.optimizer.state_dict(),'scheduler':worker.scheduler.state_dict()},out)
+        out.flush();os.fsync(out.fileno())
+    return {'captured':True,'sha256':digest(path)}
+
+
+def restore_empty_optimizer(worker,path):
+    """Undo only the saver's zero-learning-rate dummy step, not an experiment update."""
+    import torch
+    path=Path(path)
+    if not path.exists():return {'restored':False}
+    state=torch.load(path,map_location='cpu',weights_only=True)
+    if state['optimizer']['state']:raise ValueError('initial optimizer override is not empty')
+    worker.optimizer.load_state_dict(state['optimizer']);worker.scheduler.load_state_dict(state['scheduler'])
+    return {'restored':True}
+
+
 def save(policy,root,*,provenance):
     """Save native weights/optimizer/scheduler and each worker's random state exactly once."""
     from worker_state import parameter_digest,optimizer_digest,save_rng
     import ray
     root=Path(root);root.mkdir(parents=True,exist_ok=False)
     write_new(root/'attempt.json',{'condition':'v2-S2','operation':'save','provenance':provenance})
-    policy.save_checkpoint(str(root/'weights'),str(root/'optimizer'),str(root/'tokenizer'))
-    # Native optimizer checkpointing can materialize initially empty Adam state.
-    # The recorded state is the exact saved state, after that installed operation.
+    initial=ray.get([worker.__ray_call__.remote(capture_empty_optimizer,str(root/f'empty_optimizer_{rank:04d}.pt'))
+                     for rank,worker in enumerate(policy.worker_group.workers)])
+    try:
+        policy.save_checkpoint(str(root/'weights'),str(root/'optimizer'),str(root/'tokenizer'))
+    finally:
+        ray.get([worker.__ray_call__.remote(restore_empty_optimizer,str(root/f'empty_optimizer_{rank:04d}.pt'))
+                 for rank,worker in enumerate(policy.worker_group.workers)])
+    # Native bytes retain the installed format. An explicitly bound empty-state
+    # supplement cancels the saver's dummy step on both save and restore.
     parameters=owned_call(policy,parameter_digest);optimizers=owned_call(policy,optimizer_digest)
     random_states=ray.get([worker.__ray_call__.remote(save_rng,str(root/f'rng_{rank:04d}.pt'))
                           for rank,worker in enumerate(policy.worker_group.workers)])
     sync_tree(root)
     result={'condition':'v2-S2','status':'COMPLETE','provenance':provenance,
-            'parameters':parameters,'optimizers':optimizers,'random_states':random_states,
+            'parameters':parameters,'optimizers':optimizers,'random_states':random_states,'empty_optimizer_supplements':initial,
             'worker_count':len(parameters),'bindings':file_bindings(root)}
     write_new(root/'receipt.json',result)
     return result
@@ -91,6 +120,12 @@ def restore_worker(worker,root,rank,expected):
     from worker_state import parameter_digest,optimizer_digest,restore_rng
     root=Path(root)
     load_checkpoint(worker.model,str(root/'weights'),worker.optimizer,worker.scheduler,str(root/'optimizer'))
+    supplement=root/f'empty_optimizer_{rank:04d}.pt'
+    recorded=expected['empty_optimizer_supplements'][rank]
+    if recorded['captured']:
+        if digest(supplement)!=recorded['sha256']:raise ValueError('initial optimizer supplement changed')
+        restore_empty_optimizer(worker,supplement)
+    elif supplement.exists():raise ValueError('unrecorded initial optimizer override')
     if parameter_digest(worker)!=expected['parameters'][rank]:raise ValueError('restored weights differ')
     if optimizer_digest(worker)!=expected['optimizers'][rank]:raise ValueError('restored optimizer/scheduler differ')
     rng=root/f'rng_{rank:04d}.pt'
