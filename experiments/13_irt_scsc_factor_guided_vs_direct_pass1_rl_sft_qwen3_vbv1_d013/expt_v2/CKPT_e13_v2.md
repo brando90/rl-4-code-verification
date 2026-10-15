@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 03:18 PDT
+Last updated: 10-15-2026 04:18 PDT
 
 ## Task and owner
 
@@ -248,6 +248,12 @@ Last updated: 10-15-2026 03:18 PDT
 
 - **Anchors.** Base is COMPLETE at 4,312/4,312, and its Lean scoring is closed (`1876843`): 4,311 measured, 1 unresolved deterministic parser error kept in the denominator, **0 strict successes** (full-denominator strict-mean bounds [0, 0.000232]), 0 retries. half 3,840/4,312 and full1 3,072/4,312 are RUNNING on owned GPUs 0–1, with 0 exhausted cells. Cumulative device-hours are 22.57 across 51 leases.
 - **Owner working** (9 h 56 min) on the Phase 2 monitor processing (score the fixed generated monitor once and freeze independent hidden inputs) and the pilot token-budget code, which uses every fixed A-pilot slot without imputing missing lengths. 20 focused tests pass.
+- **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 04:14 PDT: base and half anchors COMPLETE; full1 3,584 of 4,312
+
+- **Anchors.** Base (scored: 0 strict successes out of 4,311 measured) and **half are COMPLETE** at 4,312/4,312 each, with 0 exhausted cells. full1 is at 3,584/4,312 (3 segments left), RUNNING on owned GPU 0. Batch 2 waits for the frozen calibration and F2. Cumulative device-hours are 24.55 across 54 leases.
+- **Owner working** (10 h 56 min). Learning-report and evaluation-snapshot code: it preserves failed-run counts and the exact model at each retained token checkpoint, and evaluation admission requires a published checkpoint selection and a test-analysis method frozen before training. The required suite is running.
 - **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
 
 ## Exact next commands (master)
