@@ -17,3 +17,5 @@ Historical G1 completed once and is [final INCONCLUSIVE](RESULTS_G1_S2.md); arm 
 Applied-repair preflight: [PASS](phase1/A6_attempt2_preflight.json), 295 unique successor input/source bindings verified in the exact frozen runtime, predecessor evidence checked, then the released-lease guard correctly refused a model call. No device was claimed. During preparation, a duplicated amendment binding and use of the coordinator rather than frozen runtime were caught before launch and corrected; neither created an experiment attempt. The original runtime and environment settings remain unchanged except for the recorded checkpoint-format acceptance fix.
 
 Publication verification: required Lean integration **1,042 passed, 3 skipped, zero failures; direct exit 0**, 505.09 seconds ([receipt](phase2/A6_attempt2_publication_test.json)).
+
+Attempt 2 is running after `d9df333`, with the actual engine health preflight PASS ([launch receipt](phase1/A6_attempt2_launch.json)). Soundness remains unmeasured until the complete frozen cohort is scored.

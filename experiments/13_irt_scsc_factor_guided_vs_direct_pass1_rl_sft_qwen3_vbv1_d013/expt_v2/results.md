@@ -2,20 +2,22 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/results.md>
 
-**TLDR:** v2-S2 continues under the A6 clarification at `80fdd2a`. Diagnostic attempt 1 is INCOMPLETE-INFRA (0/512 responses, no statistic); the checkpoint-format fix and attempt-2 successor lock are ready for publication. Historical G1 is final INCONCLUSIVE, arm C is disabled, H2/F2 are UNAVAILABLE and independent batch 2 is skipped. The original cumulative 2.0 device-hour allocation remains binding.
+**TLDR:** v2-S2 continues under the A6 clarification at `80fdd2a`. Diagnostic attempt 1 is INCOMPLETE-INFRA (0/512 responses, no statistic); attempt 2 is generating after the tested repair and successor lock were pushed at `d9df333`. Historical G1 is final INCONCLUSIVE, arm C is disabled, H2/F2 are UNAVAILABLE and independent batch 2 is skipped. The original cumulative 2.0 device-hour allocation remains binding.
 
-Last updated: 10-15-2026 08:31 PDT
-**Status:** A6 infrastructure recovery admitted; attempt 2 freezes before launch. G1 final INCONCLUSIVE; C disabled.
+Last updated: 10-15-2026 08:43 PDT
+**Status:** A6 attempt 2 generating after d9df333; actual engine health preflight PASS. G1 final INCONCLUSIVE; C disabled.
 
-## Current state — 10-15-2026 08:25 PDT
+## Current state — 10-15-2026 08:43 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
 What ran: all three train anchor score manifests closed with 12,916/12,936 measured, zero strict successes, 20 preserved missing outcomes; calibration final, C not admitted. Historical G1 completed once, INCONCLUSIVE in both holdout schemes. A6 diagnostic attempt 1 stopped before engine construction, 0/512 responses and no admission statistic; cleanup/release verified. Hosted and hidden controls remain final PASS. No independent batch 2, actual mutation measurement, Phase 2 optimizer update or new held-out response ran.
 
-Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; watchdog `$WR/watchdog_a5` remains active. Both earlier workers exited and all leases are released. The 18-line additive cron schedule is preserved. Attempt 2 launches only after the tested successor lock is pushed. No Brando action is needed.
+Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; watchdog `$WR/watchdog_a5` remains active. Both earlier workers exited. Attempt 2 worker PID 3609618, start ticks 31692891, holds one active device-0 lease after two fresh idle observations. The 18-line additive cron schedule is preserved. The tested successor lock is published at `d9df333`; actual engine health preflight PASS. No Brando action is needed.
 
-Next: publish final G1, attempt-1 INCOMPLETE-INFRA evidence, the format fix, preflight and successor lock; claim an idle device for attempt 2, then score the complete frozen cohort once. Continue to the learning-pilot lock only if A6 is SOUND. Retain at most three attempts and charge all time against the same 2.0 device-hours.
+Next: supervise attempt 2 through cleanup/release, publish its complete generation inventory and scoring-input lock, then score the frozen cohort once. Continue to the learning-pilot lock only if A6 is SOUND. Retain at most three attempts and charge all time against the same 2.0 device-hours.
+
+A6 attempt 2 launch (10-15-2026 08:34 PDT): the repair and successor lock were pushed at `d9df333` before claim. Idle skampere1 device 0 is leased through the experiment-13 registry; worker PID 3609618, start ticks 31692891, is watchdog-registered. The actual vLLM engine loaded the existing `pytorch_model.bin` in float16 and passed its non-probe health request. The complete 512-response generation is running; 32/512 responses are durable at 08:40 PDT, with no scoring or admission statistic yet. The lease reserves 1.996111111 hours, retaining attempt 1’s 0.003811598 hours inside the unchanged 2.0-hour cumulative cap. [Launch evidence](phase1/A6_attempt2_launch.json). No batch 2 or Phase 2 learning is armed. Launch-status publication check: **1,042 passed, 3 skipped, zero failures in 496.17 seconds**, direct exit 0 ([receipt](phase2/A6_attempt2_launch_publication_test.json)).
 
 A6 successor publication verification (10-15-2026 08:31 PDT): **1,042 passed, 3 skipped, zero failures in 505.09 seconds**, direct exit 0 with required Lean integration ([receipt](phase2/A6_attempt2_publication_test.json)). Applied-format preflight verifies 295 unique bindings in the frozen runtime; all 286 unchanged original hashes and every scientific setting are preserved. Attempt 2 is admitted by clarification `80fdd2a`, starts only after this publication, and shares the unchanged 2.0 device-hour allocation; 0.003811598 already consumed. No new response or statistic exists.
 
