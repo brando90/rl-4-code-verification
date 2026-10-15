@@ -2,22 +2,26 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/results.md>
 
-**TLDR:** v2-S2 learning-pilot freeze prepared for arms A, B and P after the final SOUND A6 diagnostic. The 4,676-binding lock and 23.75-device-hour technical allocation admit T1 only after publication; no technical measurement or optimizer update has run. C remains disabled; H2/F2 remain UNAVAILABLE and batch 2 stays skipped.
+**TLDR:** v2-S2 T1 attempt 1 is INCOMPLETE-INFRA: generation 8/8, trainer probabilities 0/8, no admission statistic. Ray rejected a 148-byte Unix-socket path against Linux's 107-byte limit. Cleanup is verified and all three leases are released; A4 permits attempt 2 after a tested repair and successor-lock publication. The experiment continues; C is disabled, H2/F2 unavailable, batch 2 skipped.
 
-Last updated: 10-15-2026 15:26 PDT
-**Status:** LP freeze ready; T1 launch follows publication.
+Last updated: 10-15-2026 15:47 PDT
+**Status:** T1 infrastructure repair; no gate verdict or experiment stop.
 
-## Current state — 10-15-2026 15:26 PDT
+## Current state — 10-15-2026 15:47 PDT
 
 Goal: complete the experiment through its admitted gates, or publish the binding transition result. Continue under A6 with unchanged S2 numerics and rollout sampler.
 
-What ran: prior gates remain final: G0 PASS, S1 admission FAIL, S2 admission PASS, anchors/calibration closed, G1 INCONCLUSIVE, A6 SOUND. The prospective [LP freeze](phase2/LP_A6_S2_FREEZE.md) now binds arms A/B/P, all six published prerequisites, exact runtime/probes, gate thresholds and resource limits. No Phase 2 technical measurement, actual mutation-audit measurement, optimizer update or new held-out response exists.
+What ran: [LP freeze](phase2/LP_A6_S2_FREEZE.md) published at `970d274`; T1 attempt 1 generated eight responses, then Ray socket construction failed before trainer probabilities. [Attempt report](RESULTS_T1_S2.md) retains the evidence and unchanged caps. No admission statistic, optimizer update, actual mutation audit or new held-out response exists.
 
-Supervision: same owner PID 1243923 in `codex-rl4cv-e13v2-owner-g0` resumed after the model-capacity interruption; watchdog confirms one owner, no live experiment child and no active owned device lease. The 18-line crontab is unchanged. Health check confirms local workspace/storage and credentials; shared DFS fullness is outside this run's locally bound output/cache paths. All original scientific outcomes and published hashes are preserved.
+Supervision: owner PID 1243923 remains the only writer. The T1 controller exited after HALTED, all three leases are released and cleanup is verified. Cumulative T1 usage is 0.168878405/2.0 device-hours. Watchdog and cron remain armed; no automatic gate retry is running.
 
-Next: publish the tested LP lock and allocation; bind their published revision in the executable T1 plan; launch the watchdog-registered controller. It waits 15 minutes between idle-device polls and runs the non-probe preflight before admitting an attempt. Publish T1 before T2/T3, then T4, train audits and the measured pilot allocation. T5 uses B's own reward; A lengths still set the token budget.
+Next: reproduce the 148-byte socket-path defect without devices, repair shared trainer path handling and add a preflight; freeze a successor LP with byte-identical science and unchanged allocation, publish after required tests, then run complete T1 attempt 2. Attempt-1 outputs never enter the final gate statistic. A4 allows at most three attempts.
 
 Brando to-do: none. Existing SNAP preapproval covers the frozen technical allocation; no provider charge or inherited experiment-08 budget is used.
+
+T1 infrastructure closure (10-15-2026 15:47 PDT): [attempt 1 INCOMPLETE-INFRA](RESULTS_T1_S2.md), no statistic, 0.168878405 device-hours, zero active leases. Actual failure is Ray Unix socket path length, not a model/scorer outcome. Required integration suite 1,121 passed, 3 skipped, zero failures, direct exit 0 in 497.20 seconds. A4 repair and successor freeze follow; no completion email or terminal marker.
+
+T1 launch (10-15-2026 15:34 PDT): controller PID 1618977 binds the published LP revision `970d274`; device 0 was process-free in both observations and clear of foreign reservations. The [launch receipt](phase2/T1_A6_launch.json) now records the actual non-probe engine PASS and numbered attempt 1 admission; generation is running and no gate statistic exists. No retry was launched. The numerical-table CSV line endings were normalized to LF with exact parsed-row equality, retaining initial hashes; all scientific artifacts and saved outcomes are unchanged.
 
 LP prospective freeze (10-15-2026 15:26 PDT): [method and limits](phase2/LP_A6_S2_FREEZE.md), LP SHA-256 `357e16348cf2c3a19cf5e5e7659473a7ed09b798d36e94b7e82118c015f5db81`, allocation `fb37d2cb2d6499ffb6166903423286696fcc52a4d4f0559d90eb9d9986b7da47`. All 4,676 physical bindings verified; six final published Phase 1 prerequisites retained. The unpublished 18-component cost recipe was corrected before any measurement to use an explicit train-only cost proxy rather than requiring the later audit at T4; previous draft bytes are privately preserved. [Anonymous numerical tables](phase1/numerical_results/README.md) copy every closed anchor and A6 scoring slot; no measurement was repeated.
 
