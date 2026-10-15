@@ -14,6 +14,10 @@ A fresh trainer validates its initial fixed seed before constructing a model. Ne
 
 A4 permits at most three attempts of LP and T1–T4 only for a reproducible infrastructure failure before admission statistics, with a tested published fix, unchanged scientific settings/caps and retained prior attempts. No primitive grants an automatic retry. Statistics make a technical result final. T5, L2, pilot/main and test evaluation keep their no-retry rules. The future supervisor must preserve this boundary and publish every result.
 
+## Isolated execution stages
+
+`technical_runtime.py` provides separately launched non-probe preflight, generation, probability recomputation, update, replay and native export stages. It verifies authored source and dynamic-input hashes, installed versions, fixed model/tokenizer files, train-only manifests, terminal masks and the current numeric leased device. A complete generation ledger and unchanged cell identities are required before probability recomputation. Nonfinite trainer values remain explicit missing values for the final evaluator; the worker never converts them to successful agreement or runs a gate comparison. An existing attempt directory refuses repetition. The driver, publication/prerequisite checks, bounded allocation and cleanup supervisor remain required before actual device use.
+
 ## Evaluators
 
 - **T1:** Import the unchanged `phase1/probability.py` assessment. Require every declared train cell with unchanged token IDs and assistant/end-of-sequence masks. Zero unsupported tokens; median absolute error at most 0.01, 99th percentile at most 0.10, importance truncation at most 1%.

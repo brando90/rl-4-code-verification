@@ -4,7 +4,7 @@
 
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
-Last updated: 10-14-2026 20:26 PDT
+Last updated: 10-14-2026 20:40 PDT
 Status: **ACTIVE: v2-S2 anchors generating on three owned A100 leases.**
 
 ## Current Phase 1 state — 10-14-2026 20:26 PDT
@@ -35,6 +35,9 @@ Pre-measurement optimizer-state correction (10-14-2026 20:05 PDT): source inspec
 
 
 Technical-evaluator preparation (10-14-2026 20:26 PDT): [prospective method](phase2/TECHNICAL_METHOD_DRAFT.md) separates the raw original update, exact saved-batch replay and final gate comparisons. T1–T3 retain the stated thresholds; the prospective T5 evaluator uses both fixed A seeds, all scheduled slots and explicit missing-outcome bounds. Its pooling definition still requires the future LP lock. The required suite passed **652 tests, 23 skipped, zero failures in 265.01 seconds**, direct exit 0; [receipt](phase2/technical_measurements_publication_test.json). No experiment update or technical-gate measurement has run. Base 1,088/4,312, half 768/4,312 and full batch 1 704/4,312 responses are durable; all three controllers remain RUNNING, zero second attempts. Full batch 2 remains unarmed.
+
+
+Isolated-runtime and hosted-metadata preparation (10-14-2026 20:40 PDT): [technical runtime](phase2/technical_runtime.py) separates six bound stages and preserves exact probability masks and unsupported-token receipts; full required suite **655 passed, 23 skipped, zero failures in 278.06 seconds**, direct exit 0 ([receipt](phase2/technical_runtime_publication_test.json)). No actual Phase 2 device call or experiment optimizer update. A single metadata-only hosted run completed 1/1 tasks with one authenticated registry read, HTTP 200, 507 entries and zero model calls; both pinned judge selectors are present without configured fallbacks. [Sanitized metadata evidence](phase2/coverage_registry_metadata.json). Owned service/tunnel exited, port released, and only their unique remote registration/auth secret were removed. Model-query controls and coverage admission remain pending; the historical 403 is retained. Anchor counts: Base 1,248, half 896, full batch 1 768 of 4,312 each, all RUNNING with zero second attempts.
 
 
 ## Historical A5 continuation — 10-14-2026 17:26 PDT
@@ -142,4 +145,4 @@ The anchor scorer now uses frozen extraction, independent official strict scorin
 PLAN section 5's LP-1 prerequisite is unmet and section 4's no-retry rule applies. G0 remains PASS, but no anchors, calibration, G1/H2 or Phase 2 were run. The final G1 driver and executable lock were not completed; the retained draft is non-executable. The latest required suite passed 528 tests with 23 skips, zero failures in 247.80 seconds; [verification receipt](phase1/scoring_inputs_publication_test.json). No scientific failure is inferred from the unmeasured probability statistics. Report and retained preparation published at `50cf118`, verified on remote main. At 15:38 PDT the watchdog recorded exactly one stopped notification as sent to `brando.science@gmail.com`; zero live experiment children and zero active leases. [Completion receipt](LP1/completion.json).
 
 **TLDR-end:** [rl4cv: Experiment 13 v2-S2] S2 admission passes and all three initial anchor panels are generating; calibration/H2 and scoring are published before measurement. Phase 2 preparation continues while the full panels finish.
-**Snapshot:** At 10-14-2026 20:26 PDT: base 1,088/4,312; half 768/4,312; full batch 1 704/4,312; second attempts 0; actual-data fits 0; optimizer updates 0; required tests 652 passed, 23 skipped.
+**Snapshot:** At 10-14-2026 20:40 PDT: base 1,248/4,312; half 896/4,312; full batch 1 768/4,312; second attempts 0; actual-data fits 0; optimizer updates 0; required tests 655 passed, 23 skipped.
