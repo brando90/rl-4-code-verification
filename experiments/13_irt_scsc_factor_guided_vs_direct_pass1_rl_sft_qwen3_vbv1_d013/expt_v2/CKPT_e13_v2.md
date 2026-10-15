@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 08:15 PDT
+Last updated: 10-15-2026 09:24 PDT
 
 ## Task and owner
 
@@ -285,6 +285,12 @@ Last updated: 10-15-2026 08:15 PDT
 - **A6 applied by the owner.** `7a447c8` waives batch 2 (H2 and F2 UNAVAILABLE) and freezes the historical G1 and the diagnostic cohort. `f5af95c` freezes the diagnostic execution: historical full-schedule 4B validation compile and strict rates are both 100/1,080 = 9.26%, the sound threshold is strict > 0 and compile ≥ 5/512, the cohort is 64 train tasks (task-ID hash `f6a7c303…`), and the allocation is ≤ 2.0 device-hours.
 - **Attempt 1 failed on infrastructure.** Its lease (`…c8536902…`, 0.0038 device-hours) ended on "frozen weights absent" (a `pytorch_model.bin` checkpoint) before any generation. The owner prepared a fix and passed a device-free preflight, but recorded `rerun_admitted: false`, reading A6's "once-only" literally.
 - **Master clarification at 08:15 PDT,** appended to A6. A4 applies to the diagnostic: an infrastructure attempt that generates nothing may be rerun after a fix, a regression test, a preflight and a successor lock, with at most 3 attempts. A scored attempt is final. The owner was steered accordingly. Healthy: no active leases; the crontab has 18 lines, the 7 non-e13 lines identical to the backup.
+
+## Check-in 10-15-2026 09:20 PDT: G1 INCONCLUSIVE (C stays disabled); A6 diagnostic attempt 2 at 256 of 512
+
+- **G1 published** (`d9df333`, [RESULTS_G1_S2.md](RESULTS_G1_S2.md)): **INCONCLUSIVE**. In both holdout schemes no IRT candidate passed inner admission, so the selected forecast and its paired contrasts are unavailable; C stays disabled. Descriptively, on 3,240 full-schedule cells (58 excluded), M1 (calibrated earlier-rung factored reward) beats M0 (smoothed earlier-rung strict rate): log loss [0.173, 0.222] against [0.230, 0.259], and AUC [0.866, 0.929] against [0.832, 0.874]. These are point ranges over missing-label completions, with p-val n/a.
+- **A6 diagnostic attempt 2.** The format repair and attempt-2 lock (`d9df333`, 08:31) were pushed before the run, and the engine preflight passed (`64406dd`). It is RUNNING on owned GPU 0 at 256/512 responses saved, with no scoring yet. The owner has also prepared the A6 Phase 2 admission and B's own-reward feasibility gate (`bbe36cd`).
+- **Healthy.** The owner is working (16 h). The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
 
 ## Exact next commands (master)
 
