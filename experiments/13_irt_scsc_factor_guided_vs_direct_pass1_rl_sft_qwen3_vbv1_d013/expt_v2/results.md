@@ -4,14 +4,14 @@
 
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
-Last updated: 10-14-2026 20:55 PDT
-Status: **ACTIVE: v2-S2 anchors generating on three owned A100 leases.**
+Last updated: 10-14-2026 21:18 PDT
+Status: **ACTIVE: v2-S2 Base and half anchors generating; full batch 1 waiting for an idle device.**
 
-## Current Phase 1 state — 10-14-2026 20:55 PDT
+## Current Phase 1 state — 10-14-2026 21:18 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
-What ran: published anchor freeze `d4948f3` precedes all anchor calls and three passing engine preflights. At 10-14-2026 20:55 PDT, Base 1,408, half 1,024 and full batch 1 896 of 4,312 responses per policy are durable, with zero second attempts and no scoring or actual-data fit. All three controllers are RUNNING; segment leases release and reclaim after verified cleanup. [Device plan](phase1/ANCHORS_S2.md): at most three devices, two-hour leases, 256-cell segments, 144 device-hour ceiling across four batches. Closed A5 remains 0.207209183243/3.0 hours. Phase 2 runtime and metadata evidence are published; 50 train-only judge control ratings are frozen but unrun. Required tests: 683 passed, 3 skipped; no experiment optimizer update.
+What ran: v2-S2 anchors retain Base 1,632, half 1,184 and full batch 1 1,024 of 4,312 responses per policy at 10-14-2026 21:17 PDT. Base and half controllers are RUNNING; full batch 1 is WAIT_FOR_IDLE_DEVICE after an ownership-inspection interruption before new generation, verified cleanup and lease release. Completed cells are preserved; the 15-minute poller remains armed. Anchor freeze `d4948f3` and the 144 device-hour ceiling remain unchanged. Hosted controls are frozen at `f59b423` but unrun: service-name registration failed before judge admission, and a lowercase infrastructure successor is prepared. No anchor scoring, actual-data fit, independent full batch 2 or experiment optimizer update has run.
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Sixteen cron lines equal the prior fourteen plus two anchor-poller entries. Busy devices remain a wait condition. No Brando action is needed.
 
@@ -42,6 +42,8 @@ Isolated-runtime and hosted-metadata preparation (10-14-2026 20:40 PDT): [techni
 
 Hosted judge control freeze (10-14-2026 20:55 PDT): [method](phase2/COVERAGE_CONTROLS_S2.md) and [lock](locks/COVERAGE_CONTROLS_S2.json) prospectively bind 50 ratings on five train tasks, five control types and two unchanged validated members, with 328 private file bindings verified. The coordinator migration record independently verifies the existing Vals-managed credential's provenance; own hosted metadata read is successful. No judge rating has run. Conservative price estimate: $38.88518 for one request per rating, $77.77036 including the validated agent's bounded transient retry; existing task SNAP preapproval applies, with no new funding route. Required suite: **683 passed, 3 skipped, zero failures in 270.76 seconds**, direct exit 0 ([receipt](phase2/coverage_controls_publication_test.json)); the owned pinned external checkout enabled 20 previously skipped checks. Publish before admitting either member. Anchors: Base 1,408, half 1,024, full batch 1 896 of 4,312 each, all RUNNING, zero second attempts; no anchor scores, actual-data fits, independent batch 2 or experiment optimizer updates.
 
+
+Service registration and training preparation (10-14-2026 21:18 PDT): the first hosted service registration returned HTTP 422 before any judge admission; [evidence and successor](phase2/COVERAGE_SERVICE_REGISTRATION_S2.md) preserve the original lock and lowercase only the registration name. Zero judge runs, ratings or control statistics; own service/tunnel exited, port and unused authentication secret released. The successor retains 327/328 private bindings and every scientific/control hash. [Online ability and training scoring preparation](phase2/ONLINE_ABILITY_PREPARATION.md) passes 11 focused checks, including actual frozen Lean scoring; the required integration suite passed **694 tests, 3 skips, zero failures in 306.23 seconds**, direct exit 0 ([receipt](phase2/registration_training_publication_test.json)). No actual-data fit or optimizer update. Full-schedule anchor segment 4 passed its non-probe preflight, then failed closed on an unreadable compute-process environment before generation. That process exited before ownership could be resolved. Verified cleanup and lease release permitted resumption through unchanged checks, retaining all 1,024 completed cells and zero new generation attempts in the interrupted segment. Full-schedule generation is now WAIT_FOR_IDLE_DEVICE under the 15-minute poller; Base 1,632 and half-schedule 1,184 of 4,312 responses continue.
 
 ## Historical A5 continuation — 10-14-2026 17:26 PDT
 
@@ -147,5 +149,5 @@ The anchor scorer now uses frozen extraction, independent official strict scorin
 
 PLAN section 5's LP-1 prerequisite is unmet and section 4's no-retry rule applies. G0 remains PASS, but no anchors, calibration, G1/H2 or Phase 2 were run. The final G1 driver and executable lock were not completed; the retained draft is non-executable. The latest required suite passed 528 tests with 23 skips, zero failures in 247.80 seconds; [verification receipt](phase1/scoring_inputs_publication_test.json). No scientific failure is inferred from the unmeasured probability statistics. Report and retained preparation published at `50cf118`, verified on remote main. At 15:38 PDT the watchdog recorded exactly one stopped notification as sent to `brando.science@gmail.com`; zero live experiment children and zero active leases. [Completion receipt](LP1/completion.json).
 
-**TLDR-end:** [rl4cv: Experiment 13 v2-S2] S2 admission passes and all three initial anchor panels are generating; calibration/H2 and scoring are published before measurement. Phase 2 preparation continues while the full panels finish.
-**Snapshot:** At 10-14-2026 20:55 PDT: base 1,408/4,312; half 1,024/4,312; full batch 1 896/4,312; second attempts 0; actual-data fits 0; optimizer updates 0; judge ratings 0/50; required tests 683 passed, 3 skipped.
+**TLDR-end:** [rl4cv: Experiment 13 v2-S2] S2 admission passes and initial anchor generation continues, with full batch 1 waiting for an idle device; calibration/H2 and scoring are published before measurement. Phase 2 preparation continues while the full panels finish.
+**Snapshot:** At 10-14-2026 21:17 PDT: Base 1,632/4,312 RUNNING; half 1,184/4,312 RUNNING; full batch 1 1,024/4,312 WAIT_FOR_IDLE_DEVICE; anchor scores 0; actual-data fits 0; optimizer updates 0; judge ratings 0/50.

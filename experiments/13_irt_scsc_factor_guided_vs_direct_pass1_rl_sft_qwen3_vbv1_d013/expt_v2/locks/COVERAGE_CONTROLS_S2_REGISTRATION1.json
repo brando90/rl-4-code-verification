@@ -1,0 +1,63 @@
+{
+  "bindings": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/coverage_S2/prepared_registration1.json",
+      "sha256": "a2736c5a978c925aa299d6e6fb1fde44caec47a1726a21098aadaa4f1c0c00dd"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/coverage_controls.py",
+      "sha256": "e02c51b6c7d25a25a12b343b4d5bddf698fc9d8e7b53bbd12625bc5d2d4e6c23"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/tests/test_e13_coverage_controls.py",
+      "sha256": "7580174f96de1afff3a39992a05fe0e1a4ecd6f765d4a3c7a23f61a69bc95d59"
+    }
+  ],
+  "concurrency": 5,
+  "condition": "v2-S2",
+  "configuration": {
+    "benchmark_prefix": "veribench-rl4cv-e13v2-s2",
+    "bundle": "/lfs/skampere1/0/brando9/rl4cv_e13v2/state/valkyrie_readonly_10-14-2026_1940/download/vb103_judge",
+    "migration_provenance": "/lfs/skampere1/0/brando9/rl4cv_e13v2/state/hosted_migration_source.md",
+    "registry_catalog": "/lfs/skampere1/0/brando9/rl4cv_e13v2/hosted_registry/output/control__e13_registry/registry.json",
+    "route_identity": "/lfs/skampere1/0/brando9/rl4cv_e13v2/state/coverage_route_identity.json",
+    "train_ids": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/split/vbv1_train_task_ids.txt",
+    "work": "/lfs/skampere1/0/brando9/rl4cv_e13v2/coverage_S2"
+  },
+  "control_kinds": 5,
+  "declared_ratings": 50,
+  "gate": "TRAIN_COVERAGE_ROUTE_CONTROLS",
+  "infrastructure_correction": {
+    "after": "veribench-rl4cv-e13v2-s2-controls",
+    "before": "veribench-rl4cv-e13v2-S2-controls",
+    "changed_scientific_settings": [],
+    "prior_gate_statistics": 0,
+    "prior_judge_runs": 0,
+    "prior_model_calls": 0,
+    "reason": "hosted registration HTTP 422 Invalid benchmark name, before any judge admission",
+    "unchanged_private_bindings": 327
+  },
+  "interpretation": "Transport validation only; these ratings are not experiment efficacy outcomes. Actual coverage remains three repeats/member.",
+  "maximum_query_attempts": 100,
+  "members": [
+    "H2_sol_high",
+    "H2_opus55_max"
+  ],
+  "model_calls_before_freeze": 0,
+  "payer": "Vals via coordinator-migrated existing managed gateway credential; no personal provider key",
+  "predecessor_lock_sha256": "8de2f366d9ea93990e4eff7ddd0bfe01216ad9c66430f71c793c52b3c6cb6412",
+  "private_binding_count": 328,
+  "private_manifest_sha256": "75134fad2f1b826934213a98d7871bdcef6dcdc54bf0d6880ede3b4ab0cb7ee1",
+  "private_prepared": "/lfs/skampere1/0/brando9/rl4cv_e13v2/coverage_S2/prepared_registration1.json",
+  "repeats_per_control_per_member": 1,
+  "rubric": "H2_human_mirror_conventions_demos",
+  "rubric_fingerprint": "469a2ac3875c1ffc2efaa75290c5c854151191e87fefe76cd5abfc9f219b36c9",
+  "status": "FROZEN",
+  "threshold_source": "Frozen experiment-08 controls_check: oracle>=4/vacuous<=1/blank=0/shuffled<=1 at >=90%; half-deleted 1..4 at >=80%, complete receipts/envelopes required",
+  "train_tasks": 5,
+  "worst_case_estimate_usd_by_member": {
+    "H2_opus55_max": 21.44259,
+    "H2_sol_high": 17.44259
+  },
+  "worst_case_estimate_usd_including_allowed_transient_retry": 77.77036
+}

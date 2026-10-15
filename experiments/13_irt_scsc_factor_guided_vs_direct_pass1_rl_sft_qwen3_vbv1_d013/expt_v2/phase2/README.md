@@ -26,6 +26,8 @@ The authored tiny-Qwen central-processor regression exercises actual native chec
 
 `arm_rewards.py` prepares each complete group before generation: A/B/P share task and rollout randomness, P records independent placebo draws immediately, and C records positive normalized fixed-item gradient weights and its information-mixture task. Rewards use the frozen strict, family and weighted functions. A missing component measurement stays missing for A/B/C; P retains its independently observed pre-generation reward even when a later diagnostic score is unavailable. These are prospective primitives, not a learning admission. Authored tests cover paired randomness, immutable group weights, exact reward guards and independence from missing diagnostic scores.
 
+[Online ability and training scoring preparation](ONLINE_ABILITY_PREPARATION.md) now adds five-start, train-only fixed-item current-ability refits and a durable scorer preserving actual arm/seed/update identities. These helpers have no actual experiment outcomes yet and still require the parent pilot execution lock.
+
 ## Remaining before LP
 
 Complete the supervised generation/refit and technical-gate driver around these primitives; choose and freeze the memory configuration using installed capabilities; bind source, checkpoint, tokenizer, probe, sampler, masks, optimizer, scheduler, limits and all device routes. Float32 master weights and optimizer state make memory planning distinct from the successful inference-only LP-1. The unchanged eager, 32-sequence generator is substantially slower than PLAN's original estimate; the prospective allocation must use measured S2 throughput and T4 costs.
