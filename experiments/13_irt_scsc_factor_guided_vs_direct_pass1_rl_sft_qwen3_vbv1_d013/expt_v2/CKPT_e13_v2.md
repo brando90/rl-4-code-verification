@@ -218,6 +218,7 @@ Last updated: 10-14-2026 22:18 PDT
 - **Anchors.** base 2,048 and half 1,536 of 4,312 are running on owned GPUs 0–1, with 0 exhausted. full1 is out of HALTED_INFRA and now in **WAIT_FOR_IDLE_DEVICE** at 1,024 of 4,312; the owner handled the foreign `/proc` permission case. skampere1 GPUs 2 and 4 were idle at 22:14, so the poller should claim one. Cumulative device-hours are 9.72 across 25 leases.
 - **Owner working** (4 h 56 min) on the Phase 2 pilot configuration. Arm-selection tests: G1 or H2 FAIL or INCONCLUSIVE keeps A, B and P; an unfinished gate raises an error instead of counting as a failure; G0 FAIL raises an error.
 - **Healthy.** The crontab has 16 lines, the 7 non-e13 lines identical to the backup. No action this hour; check next hour that full1 resumed on an idle device.
+- **Coverage-judge route controls PASS** ([RESULTS_COVERAGE_CONTROLS_S2.md](RESULTS_COVERAGE_CONTROLS_S2.md); freeze `f59b423`, registration successor `1151dd6`, result `f41dbc9`). All 50/50 train-only ratings were measured through hosted Valkyrie with the Vals-managed gateway credential: 50 model-query attempts, 0 retries, reported charges $2.98. GPT-6 Sol high and Opus 5.5 max each meet every frozen control: oracle, vacuous, blank and shuffled 5/5, and half-deleted 4/5 against a required 4/5. This clears the 10-13 HTTP 403 blocker for Phase 2 coverage scoring. The train mutation audit, the coverage monitor and the hidden-gold controls still come before learning.
 
 ## Exact next commands (master)
 
