@@ -36,6 +36,8 @@ The authored tiny-Qwen central-processor regression exercises actual native chec
 
 ## Remaining before LP
 
+The [hidden-test control freeze](HIDDEN_CONTROLS_S2.md) admits a separate train-only check of the unchanged corrected experiment-12 adapter. Its 64-group cohort, 708 tests, deterministic mutant candidates and thresholds are bound before measurement. `hidden_runtime.py` preserves incomplete applicability as missing and keeps exclusive per-cell attempts; `hidden_controls.py` chooses mutants by compilation alone. The benchmark controls remain unrun at this freeze, and their result must admit the route before any independent training coverage measurement.
+
 Complete the supervised generation/refit and technical-gate driver around these primitives; choose and freeze the memory configuration using installed capabilities; bind source, checkpoint, tokenizer, probe, sampler, masks, optimizer, scheduler, limits and all device routes. Float32 master weights and optimizer state make memory planning distinct from the successful inference-only LP-1. The unchanged eager, 32-sequence generator is substantially slower than PLAN's original estimate; the prospective allocation must use measured S2 throughput and T4 costs.
 
 Complete the train-only mutation and independent coverage controls required by PROTOCOL section 3 before learning. The separate pending validated formal-specification-coverage test evaluation does not waive the train coverage prerequisite. Keep all judge scientific settings pinned through the hosted Valkyrie transport migration.
