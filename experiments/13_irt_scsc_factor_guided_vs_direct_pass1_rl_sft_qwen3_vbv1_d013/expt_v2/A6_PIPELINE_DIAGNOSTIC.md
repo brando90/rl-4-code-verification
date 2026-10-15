@@ -1,0 +1,13 @@
+# Experiment 13 v2-S2: A6 train-only pipeline diagnostic
+
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/A6_PIPELINE_DIAGNOSTIC.md>
+
+**TLDR:** The historical full-schedule 4B validation policy compiled and strictly succeeded on **100/1,080 samples (9.2593%)** for each outcome. The 64-task train cohort is frozen before any diagnostic generation. This diagnostic precedes the learning-pilot lock and never enters comparison statistics.
+
+The existing experiment 08 ladder contains 135 validation tasks × 8 samples, with all 1,080 scores known. Both compile and strict rates are **0.0925926 [0.0537004, 0.1329801], p-val=n/a** (descriptive reference, no hypothesis test). The 95% percentile interval resamples 100 whole validation task groups, retaining all eight samples, for 10,000 draws at seed 1302602. It is conditional on the fixed historical policy and excludes training-run uncertainty. The [reference receipt](phase1/A6_historical_reference.json) binds the saved per-sample scores and independently checks strict labels against the published ladder table. The 134 absent extracted Lean files retain their original observed-zero scorer result; none is newly imputed. Historical row `split` denotes the task family; the frozen split manifest supplies validation membership.
+
+The [cohort lock](locks/A6_DIAGNOSTIC_COHORT.json) selects 64 without replacement from sorted 539 train IDs with NumPy default_rng seed 1302601, then sorts them. The task-ID file SHA-256 is `f6a7c30330782ead62fed3a2c1af1c2b9dbbe3f05d64bcb2584773c9ae61421b`. IDs remain private. Each task has sample indices 0–7, using historical sample seed `91 * 100003 + sample_idx`.
+
+The once-only diagnostic uses `sft_4B_f1p0`, unchanged S2 float16 numerics, prompts, template and official scorer; temperature 0.6, top-p 0.95, top-k 20 and a 12,288-token cap. Under A6 it is sound only if strict successes exceed zero and compile rate is at least **0.009259259259259259** (one tenth of the historical rate): at least five compiling responses out of 512. Missing results remain unavailable with full-denominator bounds; uncertain admission cannot establish soundness. An unsound result stops before the learning-pilot lock and requires diagnosis; a defect fix needs its own amendment.
+
+Status: **COHORT FROZEN; EXECUTION NOT YET ADMITTED.** The executable, exact runtime/input dependencies and bounded device allocation will be published before generation. No diagnostic response, Phase 2 optimizer update or new held-out measurement has run.

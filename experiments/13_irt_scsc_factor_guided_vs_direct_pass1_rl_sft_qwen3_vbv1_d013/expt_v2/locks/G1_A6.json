@@ -1,0 +1,53 @@
+{
+  "condition": "v2-S2",
+  "gate": "G1_A6",
+  "status": "FROZEN",
+  "original_G1": {
+    "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/locks/G1_A3.json",
+    "sha256": "4fc3872b1bd39c3ffdd28d82c27fcc551f9c3485bfba03990c0771bdc125334c",
+    "revision": "77558aa"
+  },
+  "amendment": {
+    "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/AMENDMENT_A6_zero_strict_signal_rollout_sampler_10-15-2026.md",
+    "revision": "f879459"
+  },
+  "prerequisites": {
+    "lp1": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/LP1_A5/C1_confirmation_result.json",
+      "sha256": "9e236aaef3892e13bdd1851066ca8daa4f32b6902520e4be2679f5b3c2906aef",
+      "published_revision": "2b2f8b5"
+    },
+    "calibration": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/locks/CALIBRATION_S2.json",
+      "sha256": "0aa5b224892e19437a2118265b18fe8fc5b013ccaea6f614c3542ad94149fcc9",
+      "published_revision": "65bbc29"
+    },
+    "h2_f2_a6": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/H2_F2_A6_result.json",
+      "sha256": "60c05c08e286b58ae4c2ecf833b440afa4e3ec2c96b04b84b6845fb8698a0a05",
+      "published_revision": "SELF"
+    }
+  },
+  "changes": [
+    "replace independent-batch-2 prerequisite with A6 null-predictor waiver"
+  ],
+  "unchanged": "original G1 method, inputs, fit body, five starts, validation, forecasts, bounds, bootstrap, thresholds and no-retry rule",
+  "bindings": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/g1_a6.py",
+      "sha256": "03722443d8953b7145c807b8a4c95ba7f543efbce9cde3b2c0867d5dba82a212"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/tests/test_e13_g1_a6.py",
+      "sha256": "ce48d9820c6cfdfd010f1ce0ace2da40cec1a5c71e8ec4785983c4066f824b28"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/AMENDMENT_A6_zero_strict_signal_rollout_sampler_10-15-2026.md",
+      "sha256": "b7a609612bac1b80bbd3197cfd2469943ec19b7811c715fa6220aafcc330d0a1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/state/launch_g1_a6.py",
+      "sha256": "6cdfcdf2f5fc96d8cf16b165bef056fbb94e0e87fb289da230f50ce8a9c18798"
+    }
+  ]
+}

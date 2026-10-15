@@ -4,8 +4,8 @@
 
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
-Last updated: 10-15-2026 07:09 PDT
-Status: **ACTIVE: calibration frozen; C not admitted; independent batch 2 and final Phase 1 gates next.**
+Last updated: 10-15-2026 07:33 PDT
+Status: **ACTIVE under A6: batch 2 skipped; H2/F2 unavailable; historical G1 and train-only pipeline diagnostic precede LP.**
 
 ## Current Phase 1 state — 10-15-2026 07:09 PDT
 
@@ -15,7 +15,9 @@ What ran: base generation COMPLETE 4,312/4,312; scoring closed, 4,311 measured, 
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`; full1 scoring and the single calibration controller exited normally; calibration timed PID 937306, birth 31132173, was watchdog-registered and retains processor timing. Eighteen cron lines preserve the original schedule additively. Busy devices remain a wait condition. No Brando action is needed.
 
-Next: freeze and publish independent full-batch-2 routes against the published calibration/F2, then arm the existing device poller. Generate and score all 4,312 cells, publish G1/H2, and continue eligible A/B/P to Phase 2. C calibration failure is final; no substitute weights or refit.
+Next: execute historical G1 and the A6 train-only diagnostic after their respective publication locks. No independent batch 2; C remains disabled.
+
+A6 continuation (10-15-2026 07:33 PDT): independent batch 2 is skipped and unarmed; H2 and F2 are UNAVAILABLE for the null fixed predictor, with original F2 = 0.75 preserved. Arm C remains off. Historical full-schedule validation compile and strict rates are each 100/1,080; the seeded 64-task train cohort is frozen ([diagnostic specification](A6_PIPELINE_DIAGNOSTIC.md)). G1 will run once on its unchanged historical ladder through the A6 prerequisite wrapper. No diagnostic generation or Phase 2 learning has run. Next: publish this freeze, run historical G1, freeze the diagnostic executable/resources, and run the 512-response diagnostic once before LP. T5 will use B’s own reward; A remains descriptive, with unchanged token-budget rule. Claims remain scoped to the frozen rollout sampler’s zero-strict-signal regime. Required integration suite: **1,019 passed, 3 skipped, zero failures in 472.32 seconds**, direct exit 0 ([receipt](phase1/A6_reference_G1_publication_test.json)). Sixteen focused G1 checks pass; all 27 original G1 implementation bindings and six input bindings verify unchanged.
 
 Calibration closure (10-15-2026 07:09 PDT): the single run under input freeze `cc0dc01a30069ce1542a070061db41184186e14d` completed and [froze 29 artifacts plus F2](locks/CALIBRATION_S2.json). **Arm C calibration is not admitted**: command and theorem-fraction models have 3 and 45 empty items; the implementation/example model fails its frozen calibration-bias criterion; the conditional strict forecast is unavailable and the C variance check is INCONCLUSIVE. The [report](RESULTS_CALIBRATION_S2.md) retains 12,916/12,936 observed responses, all 20 missing responses, exact controls and intervals. No retry or substitute fit occurred. The full1 placebo distribution remains frozen on 4,302/4,312 measured outputs. Independent batch 2 and final G1/H2 still follow PLAN section 5; B/P do not require C calibration. The [coverage publication helper](phase2/selected_publication.py) passes five new authored checks and all 28 focused checks, including the unchanged judge renderer, with no held-out measurement or model call. Required suite **1,010 passed, 3 skipped, zero failures in 464.97 seconds**, direct exit 0 ([receipt](phase1/calibration_result_publication_test.json)).
 
