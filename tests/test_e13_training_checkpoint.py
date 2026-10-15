@@ -42,7 +42,7 @@ from tokenizers import Tokenizer
 from tokenizers.models import WordLevel
 from nemo_rl.utils.native_checkpoint import save_checkpoint
 from training_checkpoint import save,restore,export,verify_files
-from trainer_core import update
+from trainer_core import update,replay_saved
 from worker_state import parameter_digest,optimizer_digest,initialize_rng
 assert not torch.cuda.is_available()
 torch.set_num_threads(1);torch.manual_seed(17)
@@ -130,10 +130,14 @@ try:
   truncated_importance_sampling_ratio=2.,token_level_loss=True,sequence_level_importance_ratios=False)
  receipt=update(policy,groups,pad_token_id=2,terminal_token_ids=[1],loss_config=loss_config,
   root=root/'core_update',provenance={'fixture':'authored CPU update'},lease_check=lambda:None,replay=True)
- assert receipt['status']=='MEASURED' and receipt['optimizer_updates']==1 and receipt['parameter_change']
+ assert receipt['status']=='MEASURED' and receipt['optimizer_updates']==1 and receipt['before_parameters']!=receipt['after_parameters']
  assert receipt['replay']['maximum_loss_difference']==0.
  assert receipt['replay']['parameter_digest_equal'] and receipt['replay']['optimizer_digest_equal']
  assert receipt['counts']['declared_slots']==8 and receipt['counts']['generated_tokens']==16
+ separate=replay_saved(policy,root/'core_update',root=root/'separate_replay',loss_config=loss_config,lease_check=lambda:None)
+ assert separate['pre_update_state_verified'] and separate['metrics']==receipt['metrics']
+ assert separate['parameters']==receipt['after_parameters']
+ assert not separate['admission_statistics_computed'] and separate['continued_learning_updates']==0
  state=parameter_digest(worker);optim=optimizer_digest(worker)
  for row in rows:row['reward']=None
  missing=update(policy,groups,pad_token_id=2,terminal_token_ids=[1],loss_config=loss_config,

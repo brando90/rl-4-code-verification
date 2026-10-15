@@ -37,6 +37,8 @@ def policy_session(config,*,checkpoint=None,init_optimizer=True):
     from nemo_rl.distributed.virtual_cluster import RayVirtualCluster
     from nemo_rl.distributed.ray_actor_environment_registry import ACTOR_ENVIRONMENT_REGISTRY
     from nemo_rl.models.policy.lm_policy import Policy
+    if checkpoint is None and (type(config.get('run_seed')) is not int or not 0<=config['run_seed']<2**63):
+        raise ValueError('a fixed initial run seed is required before model construction')
     check_lease(config)
     policy_config=json.loads(Path(config['policy_config']).read_text())
     if (policy_config['precision']!='float16' or policy_config['generation']['vllm_cfg']['precision']!='float16'
@@ -141,12 +143,42 @@ def update(policy,groups,*,pad_token_id,terminal_token_ids,loss_config,root,prov
             # Restore the durable first update for any subsequent refit inspection.
             restore(policy,root/'after')
         result={'condition':'v2-S2','status':'MEASURED','counts':counts,'optimizer_updates':1,
-            'diagnostic_replay_updates':int(replay),'metrics':metrics,'training_seconds':elapsed,
-            'parameter_change':before['parameters']!=after_parameters,'replay':replay_result,
+            'diagnostic_replay_updates':int(replay),'admission_statistics_computed':bool(replay),'metrics':metrics,'training_seconds':elapsed,
+            'before_parameters':before['parameters'],'after_parameters':after_parameters,'replay':replay_result,
             'before_receipt_sha256':digest(root/'before/receipt.json'),
             'after_receipt_sha256':digest(root/'after/receipt.json'),'batch_sha256':digest(batch_path)}
         write_new(root/'result.json',result);return result
     except Exception as exc:
         write_new(root/'error.json',{'condition':'v2-S2','status':'INCOMPLETE','error_type':type(exc).__name__,
             'error':str(exc),'provenance':provenance,'rerun_admitted':False})
+        raise
+
+
+def replay_saved(policy,source_root,*,root,loss_config,lease_check):
+    """Execute T3's single diagnostic replay from T2's saved inputs, without regenerating or rerunning T2."""
+    import torch
+    from nemo_rl.algorithms.loss_functions import ClippedPGLossFn
+    from nemo_rl.distributed.batched_data_dict import BatchedDataDict
+    source=Path(source_root);original=json.loads((source/'result.json').read_text())
+    if original.get('status')!='MEASURED' or original.get('optimizer_updates')!=1:
+        raise ValueError('T3 requires a completed source update')
+    for key,path in [('before_receipt_sha256',source/'before/receipt.json'),
+                     ('after_receipt_sha256',source/'after/receipt.json'),('batch_sha256',source/'batch.pt')]:
+        if digest(path)!=original[key]:raise ValueError('source update evidence changed')
+    root=Path(root);root.mkdir(parents=True,exist_ok=False)
+    write_new(root/'attempt.json',{'condition':'v2-S2','source_result_sha256':digest(source/'result.json'),
+        'batch_sha256':original['batch_sha256'],'diagnostic_replay_updates':1,'started_unix':time.time()})
+    try:
+        lease_check();policy.prepare_for_training();restore(policy,source/'before')
+        data=BatchedDataDict(torch.load(source/'batch.pt',map_location='cpu',weights_only=True))
+        metrics=plain(policy.train(data,ClippedPGLossFn(loss_config),gbs=original['counts']['declared_slots'],mbs=1))
+        result={'condition':'v2-S2','status':'MEASURED','source_result_sha256':digest(source/'result.json'),
+            'batch_sha256':original['batch_sha256'],'pre_update_state_verified':True,
+            'metrics':metrics,'parameters':owned_call(policy,parameter_digest),
+            'optimizer':owned_call(policy,optimizer_digest),'diagnostic_replay_updates':1,
+            'continued_learning_updates':0,'admission_statistics_computed':False}
+        write_new(root/'result.json',result);return result
+    except Exception as exc:
+        write_new(root/'error.json',{'condition':'v2-S2','status':'INCOMPLETE','error_type':type(exc).__name__,
+            'error':str(exc),'admission_statistics_computed':False,'rerun_admitted':False})
         raise

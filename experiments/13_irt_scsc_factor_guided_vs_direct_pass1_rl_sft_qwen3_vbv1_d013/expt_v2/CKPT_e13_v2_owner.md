@@ -5,13 +5,13 @@
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-14-2026 20:05 PDT
+Last updated: 10-14-2026 20:26 PDT
 
-## Current Phase 1 state — 10-14-2026 18:30 PDT
+## Current Phase 1 state — 10-14-2026 20:26 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
-What ran: all nine host/policy routes and the original export pins verified; required suite 587 passed, 23 skipped. Published freeze `d4948f3` precedes every anchor call. Base, half and full batch 1 are generating on skampere1 devices 2, 1 and 0; all three engine preflights passed. As of 10-14-2026 19:10 PDT, Base 320, half 256 and full batch 1 256 of 4,312 responses per policy are durable, with no retries and no scoring or actual-data fit. [Device plan](phase1/ANCHORS_S2.md): at most three devices, two-hour leases, 256-cell segments, 144 device-hour ceiling across four batches. Closed A5 remains 0.207209183243/3.0 hours.
+What ran: published freeze `d4948f3` precedes all anchor calls and three passing engine preflights. As of 10-14-2026 20:26 PDT, Base 1,088, half 768 and full batch 1 704 of 4,312 responses per policy are durable, with zero second attempts and no scoring or actual-data fit. All three controllers are RUNNING; segment leases release and reclaim after verified cleanup. [Device plan](phase1/ANCHORS_S2.md): at most three devices, two-hour leases, 256-cell segments, 144 device-hour ceiling across four batches. Closed A5 remains 0.207209183243/3.0 hours. Phase 2 technical-method preparation passed 652 tests with 23 skips; no experiment optimizer update.
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Sixteen cron lines equal the prior fourteen plus two anchor-poller entries. Busy devices remain a wait condition. No Brando action is needed.
 
@@ -32,6 +32,9 @@ Phase 2 runtime-primitives verification (10-14-2026 19:56 PDT): [checkpoint/upda
 
 
 Pre-measurement optimizer-state correction (10-14-2026 20:05 PDT): source inspection found that the installed native checkpoint saver initializes an empty Adam optimizer through a zero-learning-rate dummy step. This leaves weights unchanged but advances Adam’s counter. A regression reproduced that change (one failure); the wrapper now saves a hash-bound empty-state supplement and restores it after native save/load, preserving the intended first real update at counter 1. Installed library bytes are unchanged. Fresh training workers now initialize from the fixed paired-run seed once; resumes restore saved randomness. Required suite: **647 passed, 23 skipped, zero failures in 270.76 seconds**, direct exit 0; [evidence](phase2/empty_optimizer_publication_test.json). No experiment optimizer update or technical-gate statistic preceded the correction. At 20:05 PDT, Base 896/4,312, half 640/4,312 and full batch 1 576/4,312 responses are durable, all controllers RUNNING, zero second attempts. All 28 bindings in each active anchor lock and all 22 calibration-method bindings were verified unchanged; the 16-line crontab still exactly matches its additive installation.
+
+
+Technical-evaluator preparation (10-14-2026 20:26 PDT): [prospective method](phase2/TECHNICAL_METHOD_DRAFT.md) separates the raw original update, exact saved-batch replay and final gate comparisons. T1–T3 retain the stated thresholds; the prospective T5 evaluator uses both fixed A seeds, all scheduled slots and explicit missing-outcome bounds. Its pooling definition still requires the future LP lock. The required suite passed **652 tests, 23 skipped, zero failures in 265.01 seconds**, direct exit 0; [receipt](phase2/technical_measurements_publication_test.json). No experiment update or technical-gate measurement has run. Base 1,088/4,312, half 768/4,312 and full batch 1 704/4,312 responses are durable; all three controllers remain RUNNING, zero second attempts. Full batch 2 remains unarmed.
 
 
 ## Historical A5 continuation — 10-14-2026 17:26 PDT
@@ -166,4 +169,4 @@ Failure report and retained preparation published as `50cf118726b101b916c88ffd30
 - Binding stop: R0 failed. This condition is terminal, not an infrastructure retry or an account handoff. The parent retains the unresolved measurement dependency for its planned reinforcement-learning comparison.
 
 **TLDR-end:** [rl4cv: Experiment 13 v2-S2] S2 admission passes and all three initial anchor panels are generating; calibration/H2 and scoring are published before measurement. Phase 2 preparation continues while the full panels finish.
-**Snapshot:** At 20:05 PDT: base 896/4,312; half 640/4,312; full batch 1 576/4,312; second attempts 0; actual-data fits 0; optimizer updates 0; required tests 647 passed, 23 skipped.
+**Snapshot:** At 10-14-2026 20:26 PDT: base 1,088/4,312; half 768/4,312; full batch 1 704/4,312; second attempts 0; actual-data fits 0; optimizer updates 0; required tests 652 passed, 23 skipped.
