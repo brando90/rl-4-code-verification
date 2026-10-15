@@ -1,0 +1,71 @@
+{
+  "admission_statistics_computed": true,
+  "cell_status_counts": {
+    "C1": {
+      "incomplete": 1,
+      "measured": 63
+    },
+    "C2": {
+      "compile_failure": 1,
+      "incomplete": 1,
+      "measured": 62
+    },
+    "C3": {
+      "incomplete": 1,
+      "measured": 60,
+      "no_compiling_mutant": 3
+    },
+    "C4": {
+      "incomplete": 57,
+      "measured": 7
+    }
+  },
+  "cleanup_signals": 0,
+  "cleanup_verified": true,
+  "completed": 64,
+  "condition": "v2-S2",
+  "controller_wall_seconds_to_cleanup": 417.948,
+  "controls": {
+    "C1": {
+      "n_pass": 697,
+      "n_tests": 708,
+      "pass": true,
+      "threshold": 0.98
+    },
+    "C2": {
+      "eligible_C1_tasks": 63,
+      "pass": true,
+      "recovered": 60,
+      "threshold": 0.95
+    },
+    "C3": {
+      "compiling_mutants": 61,
+      "killed": 54,
+      "minimum_compiling": 50,
+      "pass": true,
+      "threshold": 0.6
+    },
+    "C4": {
+      "declared": 64,
+      "pass": true,
+      "rejected_or_failing": 63,
+      "threshold": 0.95
+    }
+  },
+  "declared": 64,
+  "device_hours": 0,
+  "lean_invocations": 585,
+  "lock_sha256": "12181b9dd3b2001dca75f5d93f71cffbb0b19ff1ad5d858dce1fa141d7ce5553",
+  "model_calls": 0,
+  "per_test_unknown_counts": {
+    "C1": 11,
+    "C2": 11,
+    "C3": 11,
+    "C4": 637
+  },
+  "private_artifact_bytes": 36977993,
+  "private_result_sha256": "e09aeb1e157c616013190660ae177889c521780e1c46022a3650e7301551f027",
+  "published_freeze": "4b8efd4b05c366214dd1faee52294f7c79e39d0d",
+  "rows_sha256": "2883a45f917ced5bba08989ff1fe085249d75d5f51c7c31aea4540d53a5b6a6e",
+  "status": "PASS"
+}
