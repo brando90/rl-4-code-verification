@@ -6,11 +6,11 @@
 
 - **Plan:** revision 2, after the single light review (FAIL, with all 13 findings fixed).
 - **Admission:** G0 was admitted under A3 on 10-14-2026 ([admission record](R2_A3_ADMISSION_10-14-2026.md)).
-- **G0:** PASS (`120c558`). LP-1 failed under S1 bf16 (p99 0.1248) and passed under v2-S2 float16 ([A5](AMENDMENT_A5_numerics_condition_S2_after_LP1_fail_10-14-2026.md); p99 0.0176, `2b2f8b5`). Phase 1 anchors are in preparation.
+- **G0:** PASS (`120c558`). LP-1 under v2-S2 float16 is PASS. All three anchors have 0 strict successes under the frozen rollout sampler, and C calibration is not admitted. [Amendment A6](AMENDMENT_A6_zero_strict_signal_rollout_sampler_10-15-2026.md): skip batch 2, run a pipeline diagnostic, and apply T5 to arm B.
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 06:18 PDT
+Last updated: 10-15-2026 07:19 PDT
 
 ## Task and owner
 
@@ -268,6 +268,17 @@ Last updated: 10-15-2026 06:18 PDT
 - **Generation complete.** Base, half and full1 each have 4,312/4,312 responses (12,936 in total), with 0 missing and 0 retries; full1 generation took 9.71 device-hours (`0e46249`). Every lease is released, and cumulative device-hours are 26.07 across 56 leases. Scoring so far: base 0/4,311 strict successes, half 0/4,303. The full1 scoring lock is frozen (`3ddd8b3`) and the unchanged scorer is RUNNING, at 1,660/4,312 saved receipts at 06:11. Scoring cost so far: base 14.4 and half 16.7 processor-hours, 0 device-hours.
 - **Next, per PLAN § 5.** Publish the full1 scoring, then run the single calibration with frozen items and F2, then independent batch 2 (still unarmed), then G1/H2. The full1 strict-success count decides the watch item recorded at 05:14.
 - **Healthy.** The owner is working (12 h 56 min, 994 tests passing). The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 07:14 PDT: full1 0 strict successes; calibration fails for C; Amendment A6 adopted
+
+- **Anchors scored.** full1 (the Phase 2 start) has **0/4,302** strict successes, with 10 missing (`3631acd`). Across all three panels: 0/12,916 strict successes, well-formed outputs (Q1) 9.6%, 7.6% and 12.9%, and **compile among well-formed outputs (Q2) 0/1,294**. The single calibration (`cc0dc01`, then `65bbc29`) fails admission for arm C. The d and p models have 3 and 45 empty items; the t and Q1 bias intervals exclude zero; the conditional strict forecast is unavailable; the C variance check is INCONCLUSIVE. C is disabled, which is final, and F2 (0.75) and the placebo distribution are frozen.
+- **Diagnosis.** The frozen rollout sampler (temperature 1, top-p 1, top-k off, 8,192 tokens) differs from the historical evaluation sampler (temperature 0.6, top-p 0.95, top-k 20, 12,288 tokens; `phase2/evaluation_contract.py`), which gave nonzero strict success on validation. Under the frozen plan, batch 2 (for H2) measures nothing, and T5 (A must learn) would stop Phase 2 on reward sparsity before B − A.
+- **Master decision at 07:19 PDT:** [Amendment A6](AMENDMENT_A6_zero_strict_signal_rollout_sampler_10-15-2026.md), prospective, before any Phase 2 learning, validation or test data:
+  1. Skip batch 2; H2 and F2 are reported UNAVAILABLE.
+  2. Run a once-only, train-only pipeline diagnostic first: 64 tasks × 8 samples from full1, frozen S2 runtime with the historical sampler. It is sound if strict > 0 and the compile rate is at least 1/10 of the historical rate; otherwise stop and diagnose.
+  3. Apply T5 to B's own reward: a moving-average rise of at least 0.02 from updates 1–10 to 21–30, with one extension to 60. A's curve is descriptive.
+
+  Claims are scoped to the zero-signal regime. Before A6, the owner was told to hold batch 2 (07:25 queued, 07:27 immediate).
 
 ## Exact next commands (master)
 
