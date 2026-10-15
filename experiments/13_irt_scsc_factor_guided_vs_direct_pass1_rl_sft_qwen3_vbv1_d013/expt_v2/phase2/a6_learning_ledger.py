@@ -51,6 +51,14 @@ def verify_learning(plan):
             raise ValueError('B own-reward pilot feasibility did not pass')
         if execution['T5_sha256'] != plan['T5']['sha256'] or not execution['token_budget']['one_percent_matching_feasible']:
             raise ValueError('main token-matching admission missing')
+        budget=published(plan['A_budget'],repo)
+        expected={'condition':'v2-S2','gate':'A_PILOT_TOKEN_BUDGET','status':'FROZEN',
+            'arm':'A','seeds':[1301,1302],'horizon':30,'pilot_slots':15360,'LP_sha256':plan['LP']['sha256'],
+            'pilot_execution_sha256':t5['pilot_execution_sha256']}
+        if (any(budget.get(k)!=v for k,v in expected.items())
+                or execution.get('A_budget_sha256')!=plan['A_budget']['sha256']
+                or execution['token_budget']!=budget['token_budget']):
+            raise ValueError('main budget must equal the published complete A-pilot budget')
         if execution['main_seeds'] != list(MAIN_SEEDS): raise ValueError('main seed blocks changed')
     return lp, execution, science
 

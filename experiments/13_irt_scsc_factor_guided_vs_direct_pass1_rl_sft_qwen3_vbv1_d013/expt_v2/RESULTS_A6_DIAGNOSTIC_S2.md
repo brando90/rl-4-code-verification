@@ -1,10 +1,10 @@
-# Experiment 13 v2-S2: A6 diagnostic launcher failure before measurement
+# Experiment 13 v2-S2: A6 diagnostic attempts and pending soundness
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/RESULTS_A6_DIAGNOSTIC_S2.md>
 
-**TLDR:** **Attempt 1 INCOMPLETE-INFRA; soundness unmeasured. Attempt 2 admitted after repair publication.** The single A6 launch produced **0/512 responses**, zero generated tokens and zero scores. The launcher rejected the frozen `pytorch_model.bin` export because its preflight mistakenly required a `.safetensors` file. No engine was constructed and no admission statistic exists.
+**TLDR:** **Attempt 1 INCOMPLETE-INFRA; soundness unmeasured. Attempt 2 is generating after repair publication.** The first A6 launch produced **0/512 responses**, zero generated tokens and zero scores. The launcher rejected the frozen `pytorch_model.bin` export because its preflight mistakenly required a `.safetensors` file. No engine was constructed and no admission statistic exists.
 
-The published execution freeze `f5af95c` preceded the launch. Device 0 on skampere1 was claimed only after two complete idle observations, fresh foreign-lease/reservation checks and numeric UUID-to-index mapping. The worker exited with code 1 in `a6_runtime.verify`, before `build_engine` or a diagnostic prompt could run. Cleanup verified with no signals, and the lease was released. Consumed device time was **0.0038115982876883612 hours**; **1.9961884017123116 of 2.0 hours** remains, without any reset. No owned device lease remains active. The [attempt receipt](phase1/A6_diagnostic_attempt1.json) binds raw logs, process identity, runtime, cleanup and release evidence.
+The published execution freeze `f5af95c` preceded the launch. Device 0 on skampere1 was claimed only after two complete idle observations, fresh foreign-lease/reservation checks and numeric UUID-to-index mapping. The worker exited with code 1 in `a6_runtime.verify`, before `build_engine` or a diagnostic prompt could run. Cleanup verified with no signals, and the lease was released. Consumed device time was **0.0038115982876883612 hours**; **1.9961884017123116 of 2.0 hours** remains, without any reset. At the close of attempt 1, no owned device lease remained active. The [attempt receipt](phase1/A6_diagnostic_attempt1.json) binds raw logs, process identity, runtime, cleanup and release evidence.
 
 This is neither SOUND nor UNSOUND: strict successes and compile rate are unavailable, not zero. No bootstrap interval or p-value can be computed without observations. The historical reference (100/1,080 for both outcomes), 64-task cohort, prompt tokens, model bytes, numerics, sampler, token cap and scorer remain frozen. The failure says nothing about model capability or the rollout sampler.
 
@@ -19,3 +19,5 @@ Applied-repair preflight: [PASS](phase1/A6_attempt2_preflight.json), 295 unique 
 Publication verification: required Lean integration **1,042 passed, 3 skipped, zero failures; direct exit 0**, 505.09 seconds ([receipt](phase2/A6_attempt2_publication_test.json)).
 
 Attempt 2 is running after `d9df333`, with the actual engine health preflight PASS ([launch receipt](phase1/A6_attempt2_launch.json)). Soundness remains unmeasured until the complete frozen cohort is scored.
+
+Progress at 10-15-2026 09:42 PDT: attempt 2 has 416/512 durable responses on its original leased device 0; no scoring or admission statistic has run. The cumulative allowance remains 2.0 device-hours.
