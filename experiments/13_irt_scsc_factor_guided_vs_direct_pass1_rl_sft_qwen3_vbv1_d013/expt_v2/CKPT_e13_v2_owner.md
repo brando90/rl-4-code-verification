@@ -5,13 +5,13 @@
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-14-2026 22:51 PDT
+Last updated: 10-14-2026 23:10 PDT
 
-## Current Phase 1 state — 10-14-2026 22:51 PDT
+## Current Phase 1 state — 10-14-2026 23:10 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
-What ran: v2-S2 anchors retain Base 2,624, half 1,824 and full batch 1 1,152 of 4,312 responses per policy at 10-14-2026 22:51 PDT, all RUNNING. The full-panel cron PATH defect is repaired additively with unchanged scientific bindings. Hosted judge and hidden-test controls remain final PASS. The sequential technical driver and reward-group assembly passed the required suite: 759 passed, 3 skipped. Actual benchmark mutation audits, anchor scores, actual-data fits, independent full batch 2 and experiment optimizer updates remain zero.
+What ran: v2-S2 anchors retain Base 2,816, half 1,952 and full batch 1 1,248 of 4,312 responses per policy at 10-14-2026 23:10 PDT, all RUNNING. The full-panel cron PATH defect is repaired additively with unchanged scientific bindings. Hosted judge and hidden-test controls remain final PASS. Measured stage cost accounting and the prospective 32-group/128-cell audit cohort passed the required suite: 764 passed, 3 skipped. Actual benchmark mutation audits, anchor scores, actual-data fits, independent full batch 2 and experiment optimizer updates remain zero.
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Eighteen cron lines equal the prior sixteen plus two environment-corrected anchor-poller entries. Busy devices remain a wait condition. No Brando action is needed.
 
@@ -195,3 +195,6 @@ Anchor cron recovery and resource poller (10-14-2026 22:38 PDT): [retained evide
 
 
 Sequential technical driver preparation (10-14-2026 22:51 PDT): [driver and exact reward-group assembly](phase2/README.md) integrate local T1–T3 stages with published same-science prerequisites, real health preflight before the counted attempt, separate processor scoring, bounded leased execution and exclusive final evaluation. T3 resolves the actual prior update from the published T2 input inventory; its future hash is not fabricated in the prospective lock. Generation/scoring joins preserve all slots, missing rewards and independent placebo draws. Eleven focused authored checks passed; required suite **759 passed, 3 skipped, zero failures in 416.14 seconds**, direct exit 0 ([receipt](phase2/technical_driver_publication_test.json)). This remains preparation: full LP configuration/allocation, T4 cost measurement, train audits and the learning controller are still required, after Phase 1. Anchors continue at Base 2,624, half 1,824, full batch 1 1,152 of 4,312 each; no actual scores, fits or experiment optimizer update has run.
+
+
+Cost accounting and train audit cohort freeze (10-14-2026 23:10 PDT): [measured stage costs](phase2/costs.py) retain processor, elapsed, storage and closed-lease device costs, including preparation failures; missing costs prevent a complete resource estimate, and projections explicitly include the protocol’s 25% reserve. The [prospective audit cohort](phase2/TRAIN_AUDIT_COHORT_S2.md) freezes 32 train groups and four variants each (128 declared cells), reproducing seed 1302251 before any anchor score. All 11 cohort bindings verify. Source inputs and the executable availability rule still require publication before actual audit or monitoring measurements. Required suite: **764 passed, 3 skipped, zero failures in 399.48 seconds**, direct exit 0 ([receipt](phase2/cost_stage_publication_test.json)). Anchors retain Base 2,816, half 1,952 and full batch 1 1,248 of 4,312 each, all RUNNING; no actual benchmark audit, anchor score, fit, independent batch 2 or experiment optimizer update has run.

@@ -1,0 +1,81 @@
+{
+  "actual_anchor_scores": 0,
+  "actual_benchmark_audit_measurements": 0,
+  "audit_groups": 32,
+  "audit_tasks": 32,
+  "audit_variants": 128,
+  "baseline": "full1 sample 0",
+  "bindings": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase2/technical_preparation/audit_cohort_frozen.json",
+      "sha256": "02bd5932cc022ee3a3ee8b659f0d198fe8b1eff18adc2aa3ee8f8a40f9b92879"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase2/technical_preparation/audit_cohort_draft.json",
+      "sha256": "04b6585c37edd3c02cad63b114f4059a525cc49b3781743219767bbc2754b33b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/features/train.json",
+      "sha256": "d8f32b372b894f1eb2f0f0740fd0cb889dcb2d9e9d74338e4bc635ea4aff74c0"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/split/vbv1_train_task_ids.txt",
+      "sha256": "03c4167cb086f37a86369e79115ff17035ac85bf6e3533e91a1a6c5c0e4b81c6"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/manifests/full1.manifest.json",
+      "sha256": "f822e5b8acec48f8b2d1d99ee1f66d1385282e8aa306eb20929812e6cbc7f665"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/audit_mutations.py",
+      "sha256": "39f3291813919886938df2594d002f4618d2867f4ae2346df10c147e407034c1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/tests/test_e13_audit_mutations.py",
+      "sha256": "924ecf381f63d82643dd8b9d3b21b98abb7e85fde8705b29cf73761b1a100470"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/locks/ANCHOR_S2_full1.json",
+      "sha256": "bba7314f0656b89632adf4a38a50311f5abaff982909956d8d8d605b8239a769"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/PROTOCOL.md",
+      "sha256": "cb964b51636b104e725c1a548102193f2bde6b3c8d3bde6e537c950c4b948721"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/PLAN.md",
+      "sha256": "892583053eeda58cec2c78c9678acc8dd90e4bc894adb1dea41f8aae4ea4bd39"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/TRAIN_AUDIT_COHORT_S2.md",
+      "sha256": "d75bc89d63c29d54cb180179ac48cd4d22cdaa42b733ab26e6944156b0b214b8"
+    }
+  ],
+  "condition": "v2-S2",
+  "coverage": "separate corrected hidden tests and validated compiled FSC, three repeats/member then median/member and mean/5",
+  "gate": "TRAIN_AUDIT_COHORT",
+  "monitor": "same cohort at each own B/C run start and updates 10,20,30; >10% theorem-count or available independent-coverage drop while reward increases stops that arm; no reward retuning",
+  "numpy_version": "2.5.4",
+  "operators": {
+    "deletion": "remove last ceil(n/2) named theorem commands by source order",
+    "padding": "append eight fresh digest-named Nat addition identities",
+    "substitution": "replace every named theorem command with same-short-name Nat addition identity"
+  },
+  "original_measurements": "reuse existing published full1 strict/component receipts without rescoring",
+  "previous_private_draft_sha256": "04b6585c37edd3c02cad63b114f4059a525cc49b3781743219767bbc2754b33b",
+  "private_cohort": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase2/technical_preparation/audit_cohort_frozen.json",
+  "private_cohort_sha256": "02bd5932cc022ee3a3ee8b659f0d198fe8b1eff18adc2aa3ee8f8a40f9b92879",
+  "python_version": "3.12.3",
+  "scope": "cohort and fixed mutation operators only; no new measurement admission",
+  "selection_implementation": "numpy.random.default_rng(1302251).permutation(sorted_train_group_ids)[:32]; first lexical task per group",
+  "selection_seed": 1302251,
+  "status": "FROZEN",
+  "train_groups": 400,
+  "train_tasks": 539,
+  "variants": [
+    "original",
+    "padding",
+    "deletion",
+    "substitution"
+  ]
+}

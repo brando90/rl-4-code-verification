@@ -17,6 +17,7 @@ from technical_ledger import pilot_lock, published, admit, check_preflight, eval
 from technical_resources import reserve
 from technical_stage import prepare, launch_local
 from pilot_configuration import select_arms
+from costs import snapshot, stage_cost
 
 ORDER = {'T1': ('generate', 'probabilities'),
          'T2': ('generate_update', 'score', 'update', 'export', 'generate_refit', 'probabilities_refit'),
@@ -45,7 +46,7 @@ def authorize(plan):
     config_path = Path(plan['configuration'])
     bound = {str(Path(b['path']).resolve()): b['sha256'] for b in lock['bindings']}
     for path in (config_path.resolve(), Path(__file__).resolve(), HERE/'technical_resources.py',
-                 HERE/'technical_stage.py', HERE/'technical_measurements.py', HERE/'rollout_groups.py'):
+                 HERE/'technical_stage.py', HERE/'technical_measurements.py', HERE/'rollout_groups.py', HERE/'costs.py'):
         if bound.get(str(path)) != digest(path): raise ValueError('technical driver/configuration is not bound')
     configuration = json.loads(config_path.read_text())
     if configuration['condition'] != 'v2-S2' or configuration['host'] != socket.gethostname().split('.')[0]:
@@ -196,6 +197,7 @@ def tick(plan):
         if state['status'] in ('COMPLETE', 'HALTED', 'RESOURCE_EXHAUSTED'): return state
         if state['status'] == 'RUNNING':
             return {**state, 'status': 'RECOVERY_REQUIRED', 'reason': 'adopt existing stage evidence; no automatic replay'}
+        (root/'costs').mkdir(exist_ok=True)
         while True:
             key = state['next_stage']
             if key == 'evaluate':
@@ -203,8 +205,12 @@ def tick(plan):
                 state.update(status='COMPLETE', result=result); atomic_json(state_path, state); return state
             if key == 'score':
                 state.update(status='RUNNING'); atomic_json(state_path, state)
-                result = cpu_scores(config, root, state['admission'])
-                write_new(root/'score/result.json', result)
+                before = snapshot(root)
+                try:
+                    result = cpu_scores(config, root, state['admission'])
+                    write_new(root/'score/result.json', result)
+                finally:
+                    write_new(root/'costs'/f'{key}.json', stage_cost(before, snapshot(root), stage=key))
             else:
                 seconds = config['stage_seconds'][gate][key]
                 resource_plan = {**plan['resource_plan'], 'LP': plan['LP'], 'repository': plan['repository']}
@@ -213,6 +219,7 @@ def tick(plan):
                     state.update(status=reserved['status']); atomic_json(state_path, state); return state
                 lease = reserved['lease']
                 state.update(status='RUNNING', lease_id=lease['id']); atomic_json(state_path, state)
+                before = snapshot(root)
                 # Preparation failure precedes a process launch; release that
                 # unused owned lease, preserving the reserved stage identity.
                 try:
@@ -231,6 +238,14 @@ def tick(plan):
                     if canonical['status'] != 'RELEASED':
                         cleaned = cleanup(lease['id'])
                         release(resource_plan['lease_root'], lease['id'], cleanup_verified=cleaned['verified'])
+                        (root/key).mkdir(parents=True, exist_ok=True)
+                        write_new(root/key/'parent_cleanup.json', cleaned)
+                    else:
+                        cleanup_path = root/key/'dispatch/dispatch_cleanup.json'
+                        cleaned = json.loads(cleanup_path.read_text()) if cleanup_path.exists() else None
+                    canonical = json.loads((Path(resource_plan['lease_root'])/(lease['id']+'.json')).read_text())
+                    write_new(root/'costs'/f'{key}.json', stage_cost(before, snapshot(root), stage=key,
+                              lease=canonical, cleanup=cleaned))
                 if result['status'] != 'RUNTIME_FINISHED':
                     state.update(status='HALTED', stage_result=result); atomic_json(state_path, state); return state
             if key == 'preflight':

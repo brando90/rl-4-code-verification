@@ -100,6 +100,9 @@ def test_preparation_exception_releases_claim_and_leaves_durable_unresolved_stat
                         calls.append(('release', marker, cleanup_verified)))
     with pytest.raises(ValueError, match='authored preparation defect'): m.tick(plan)
     assert calls == ['claim:preflight', 'cleanup:preflight', ('release', 'preflight', True)]
+    cost = json.loads((tmp_path/'work/T1/attempt_1/costs/preflight.json').read_text())
+    assert cost['stage'] == 'preflight' and cost['wall_seconds'] >= 0
+    assert (tmp_path/'work/T1/attempt_1/preflight/parent_cleanup.json').exists()
     assert m.tick(plan)['status'] == 'RECOVERY_REQUIRED'
 
 
@@ -147,7 +150,7 @@ def test_T3_source_is_resolved_only_from_the_published_T2_inventory(tmp_path, mo
              'calibration': {'condition': 'v2-S2', 'status': 'FROZEN', 'C_calibration_admitted': True},
              'G1': {'gate': 'G1', 'status': 'PASS'}, 'H2': {'gate': 'H2', 'status': 'PASS'}}
     paths = [config_path, PHASE/'technical_driver.py', PHASE/'technical_resources.py',
-             PHASE/'technical_stage.py', PHASE/'technical_measurements.py', PHASE/'rollout_groups.py']
+             PHASE/'technical_stage.py', PHASE/'technical_measurements.py', PHASE/'rollout_groups.py', PHASE/'costs.py']
     lock = {'bindings': m.bindings(paths), 'science': {k: config[k] for k in ('probability_probe', 'update_probe')},
             'phase1_results': gates, 'eligible_arms': ['A', 'B', 'C', 'P']}
     t2 = {'gate': 'T2', 'condition': 'v2-S2', 'status': 'PASS', 'science_sha256': 'science-sha',
