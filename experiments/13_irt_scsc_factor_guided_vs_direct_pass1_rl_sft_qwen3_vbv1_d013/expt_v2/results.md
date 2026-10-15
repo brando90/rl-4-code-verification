@@ -4,7 +4,7 @@
 
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
-Last updated: 10-15-2026 01:47 PDT
+Last updated: 10-15-2026 01:56 PDT
 Status: **ACTIVE: base generation complete; half/full generating; scoring freeze next.**
 
 ## Current Phase 1 state — 10-15-2026 01:47 PDT
@@ -15,7 +15,9 @@ What ran: base generation COMPLETE, 4,312/4,312 responses, zero missing or secon
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Eighteen cron lines preserve the original schedule additively. Busy devices remain a wait condition. No Brando action is needed.
 
-Next: publish the base generation report, then its scoring-input lock after required tests, then run its scorer once. Continue Phase 2 implementation while half/full manifests generate. Freeze calibration/items/F2 before full batch 2, then G1/H2 and Phase 2; G1 method is already frozen before any actual fit.
+Next: publish the verified base scoring-input lock, then launch its single scoring ledger under the existing watchdog. Continue Phase 2 implementation while half/full manifests generate. Freeze calibration/items/F2 before full batch 2, then G1/H2 and Phase 2; G1 method is already frozen before any actual fit.
+
+Base scoring freeze (10-15-2026 01:56 PDT): [lock](locks/ANCHOR_SCORE_S2_base.json) binds all 4,312 base responses and 43 implementation/provenance dependencies, all bytes verified; SHA-256 `9c4107dada7005106169696b21c763ef074ab028219d0ca32beb201504e644a2`. The [generation report](anchors_S2/base_generation.json) is published at `608f20ca54e5b5675122b890f2a291daece5d195`. Required suite: **857 passed, 3 skipped, zero failures in 448.12 seconds**, direct exit 0 ([receipt](anchors_S2/base_scoring_lock_test.json)). The live cleanup preflight verified with zero signals. No base score has run; launch follows this publication under the existing watchdog, retaining processor timing. Half/full generation continues.
 
 Base generation and evaluation preparation (10-15-2026 01:47 PDT): [base generation report](RESULTS_ANCHORS_S2.md) accounts for all 4,312 responses, zero missing or retries, 9,324,934 generated tokens and 17 released leases totaling 6.9587135382493335 device-hours. Scoring has not started. [Evaluation scoring, selection and monitor preparation](phase2/README.md) adds the unchanged capped Lean oracle with identical-cell infrastructure-only retry, pre-main selection authority and exact boundary provenance, plus fixed 32-task monitor plans with current checkpoint weights frozen before generation. Eleven authored tests pass. Required suite: **857 passed, 3 skipped, zero failures in 458.48 seconds**, direct exit 0 ([receipt](phase2/evaluation_scoring_monitor_publication_test.json)). Half/full generation continues; actual mutation measurements, fits, new validation/test outcomes and optimizer updates remain zero.
 
