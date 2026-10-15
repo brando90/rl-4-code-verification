@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 04:18 PDT
+Last updated: 10-15-2026 05:18 PDT
 
 ## Task and owner
 
@@ -254,6 +254,12 @@ Last updated: 10-15-2026 04:18 PDT
 
 - **Anchors.** Base (scored: 0 strict successes out of 4,311 measured) and **half are COMPLETE** at 4,312/4,312 each, with 0 exhausted cells. full1 is at 3,584/4,312 (3 segments left), RUNNING on owned GPU 0. Batch 2 waits for the frozen calibration and F2. Cumulative device-hours are 24.55 across 54 leases.
 - **Owner working** (10 h 56 min). Learning-report and evaluation-snapshot code: it preserves failed-run counts and the exact model at each retained token checkpoint, and evaluation admission requires a published checkpoint selection and a test-analysis method frozen before training. The required suite is running.
+- **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 05:14 PDT: full1 anchors 4,096 of 4,312 (final segment running)
+
+- **Anchors.** Base and half are COMPLETE at 4,312/4,312 each. full1 is at 4,096/4,312, with its final segment 17 (216 responses) RUNNING on owned GPU 0 under a lease with 7,102 s left, and 0 exhausted cells. Cumulative device-hours are 25.59 across 56 leases.
+- **Owner working** (11 h 56 min). The final-analysis driver is published (`2029faa`). It is preparing the prospective pilot-lock helper, which binds the runtime, probes, final scientific gates and resource limits, with the cost recipe still pending.
 - **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
 
 ## Exact next commands (master)
