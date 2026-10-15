@@ -1,0 +1,36 @@
+{
+  "batch": "half",
+  "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+  "cleanup_verified_cells": 1778,
+  "command": [
+    "/usr/bin/time",
+    "-v",
+    "-o",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/anchors_S2/half/scoring_time.txt",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/venv/bin/python",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/score_anchor_ledger.py",
+    "--plan",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/anchors_S2/half/scoring_plan.json"
+  ],
+  "condition": "v2-S2",
+  "declared": 4312,
+  "lock_sha256": "389cf914e339fe0320cda8ba84edeb3e6438513aeb6a62ca54c7bceeefe1ad4a",
+  "log": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/anchors_S2/half/scoring_execution.log",
+  "model_calls": 0,
+  "observed_at": "10-15-2026 04:15 PDT",
+  "observed_completed_cells": 1778,
+  "pid": 1846735,
+  "plan_sha256": "e95447125b7f612fb257f921b99f8239f98dbed336ff4750508bb9ce43bdde8c",
+  "processor_timing": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/anchors_S2/half/scoring_time.txt",
+  "processor_timing_pending": true,
+  "published_revision": "7fba7c9",
+  "scorer_pid": 1846736,
+  "start_ticks": "30076982",
+  "started_unix": 1792062179.5290542,
+  "status": "RUNNING",
+  "status_counts": {
+    "measured": 1777,
+    "unresolved_measurement": 1
+  },
+  "watchdog_registration_verified": true
+}
