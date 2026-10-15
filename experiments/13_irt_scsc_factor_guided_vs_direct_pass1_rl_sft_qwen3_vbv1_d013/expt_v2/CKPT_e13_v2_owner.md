@@ -5,13 +5,13 @@
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-14-2026 23:38 PDT
+Last updated: 10-14-2026 23:53 PDT
 
-## Current Phase 1 state — 10-14-2026 23:38 PDT
+## Current Phase 1 state — 10-14-2026 23:53 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
-What ran: v2-S2 anchors retain Base 3,104, half 2,176 and full batch 1 1,440 of 4,312 responses each at 10-14-2026 23:38 PDT, all RUNNING. Hosted judge and hidden-test controls remain final PASS. Train-only hosted audit pack and complete-group token-boundary generation preparation passed the required suite: 781 passed, 3 skipped. The frozen audit cohort has 339 extracted reference tests on 31/32 tasks; every task remains. Actual benchmark mutation audits, anchor scores, actual-data fits, independent full batch 2 and experiment optimizer updates remain zero.
+What ran: v2-S2 anchors retain Base 3,232, half 2,304 and full batch 1 1,536 of 4,312 responses each at 10-14-2026 23:53 PDT, all RUNNING. Hosted judge and hidden-test controls remain final PASS. The prospective available-coverage monitor and learning admission/runtime helpers passed the required suite: 793 passed, 3 skipped. The frozen 32-task audit cohort remains unchanged. Actual benchmark mutation audits, anchor scores, actual-data fits, independent full batch 2 and experiment optimizer updates remain zero.
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Eighteen cron lines equal the prior sixteen plus two environment-corrected anchor-poller entries. Busy devices remain a wait condition. No Brando action is needed.
 
@@ -204,3 +204,6 @@ Train audit processor preparation (10-14-2026 23:26 PDT): [input provenance and 
 
 
 Hosted audit pack and token-boundary generation preparation (10-14-2026 23:38 PDT): [helpers](phase2/README.md) use the actual frozen judge renderer, pack parser and three-repeat/member ensemble aggregator on authored inputs, with zero model calls. The learning generator retains whole eight-response groups at token boundaries and never generates an unused tail. Seven focused checks pass. Required suite: **781 passed, 3 skipped, zero failures in 418.01 seconds**, direct exit 0 ([receipt](phase2/audit_pack_generation_publication_test.json)). [Fixed-cohort hidden-suite inputs](phase2/train_audit_hidden_suites.json) contain 339 reference tests on 31/32 tasks; the no-test task and all its variants remain declared with unavailable hidden-test coverage. Actual audits still require source/execution freezes and hosted admission. Anchors retain Base 3,104, half 2,176 and full batch 1 1,440 of 4,312 responses each, all RUNNING; no anchor score, actual audit measurement, fit or experiment optimizer update has run.
+
+
+Coverage-monitor and learning-admission preparation (10-14-2026 23:53 PDT): the [prospective monitor method](phase2/MONITOR_S2_METHOD.md) implements the protocol’s available-coverage wording before any candidate audit score: functioning routes and terminal accounting for all 32 tasks, exact paired observed comparisons, full-manifest bounds, and unchanged greater-than-10% drop/mean-reward-increase rule. An unavailable route cannot establish continuation; inapplicable cells are retained. [Learning admission/runtime helpers](phase2/README.md) enforce published prerequisites, fixed seeds, bound implementations and exclusive stage reservations. Eighteen focused tests pass. Required suite: **793 passed, 3 skipped, zero failures in 427.19 seconds**, direct exit 0 ([receipt](phase2/monitor_learning_publication_test.json)). The bounded launcher/controller, hosted audit admission and complete LP/resource locks remain pending. Anchors retain Base 3,232, half 2,304 and full batch 1 1,536 of 4,312 responses each, all RUNNING; actual audit measurements, anchor scores, fits and experiment optimizer updates remain zero.

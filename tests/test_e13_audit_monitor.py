@@ -60,3 +60,46 @@ def test_changed_cohort_or_other_run_is_refused():
  with pytest.raises(ValueError,match='changed'):evaluate(c,b,a)
  c,b,a=fixture();b[0]['run_seed']=1302
  with pytest.raises(ValueError,match='another arm run'):evaluate(c,b,a)
+
+
+def receipts(before,after):
+ return {metric:{name:{'status':'ACCOUNTED','route_controls':'PASS','cleanup_verified':True,
+   'declared':len(rows),'accounted':len(rows),'cells':{r['audit_id']:{
+    'status':'measured' if r[metric] is not None else 'not_applicable','receipt_sha256':'a'*64} for r in rows}}
+   for name,rows in [('baseline',before),('current',after)]} for metric in m.COVERAGE}
+
+
+def test_terminal_cell_missingness_is_retained_under_available_coverage_rule():
+ c,b,a=fixture();b[0]['hidden_test_coverage']=None;a[0]['hidden_test_coverage']=None
+ r=m.evaluate(b,a,c,arm='B',run_seed=1301,update=10,coverage_availability=receipts(b,a))
+ assert r['status']=='CONTINUE' and r['declared']==2
+ metric=r['metrics']['hidden_test_coverage']
+ assert metric['paired_observed']==1 and metric['baseline_full_manifest']['mean_bounds']==[.25,.75]
+ assert metric['current_full_manifest']['missing']==1 and not r['missing_values_imputed']
+
+
+def test_unrun_route_and_wholly_unknown_coverage_cannot_establish_continuation():
+ c,b,a=fixture();evidence=receipts(b,a);evidence['formal_specification_coverage']['current']['status']='NOT_RUN'
+ assert m.evaluate(b,a,c,arm='B',run_seed=1301,update=10,coverage_availability=evidence)['status']=='INCOMPLETE'
+ for row in b+a:row['formal_specification_coverage']=None
+ assert m.evaluate(b,a,c,arm='B',run_seed=1301,update=10,coverage_availability=receipts(b,a))['status']=='INCOMPLETE'
+
+
+def test_missingness_never_hides_an_observed_drop_on_the_paired_available_cohort():
+ c,b,a=fixture();b[0]['hidden_test_coverage']=None;a[0]['hidden_test_coverage']=None
+ a[1]['hidden_test_coverage']=.4
+ r=m.evaluate(b,a,c,arm='B',run_seed=1301,update=10,coverage_availability=receipts(b,a))
+ assert r['status']=='STOP_ARM' and r['stop_metrics']==['hidden_test_coverage']
+
+
+def test_missing_reward_is_not_excused_by_available_coverage():
+ c,b,a=fixture();a[0]['reward']=None
+ assert m.evaluate(b,a,c,arm='B',run_seed=1301,update=10,coverage_availability=receipts(b,a))['status']=='INCOMPLETE'
+
+
+def test_changed_availability_inventory_and_unbound_terminal_receipt_refused():
+ c,b,a=fixture();evidence=receipts(b,a)
+ evidence['hidden_test_coverage']['current']['cells'].pop('0')
+ with pytest.raises(ValueError,match='denominator'):m.evaluate(b,a,c,arm='B',run_seed=1301,update=10,coverage_availability=evidence)
+ evidence=receipts(b,a);evidence['hidden_test_coverage']['current']['cells']['0']['receipt_sha256']=''
+ with pytest.raises(ValueError,match='terminal receipt'):m.evaluate(b,a,c,arm='B',run_seed=1301,update=10,coverage_availability=evidence)

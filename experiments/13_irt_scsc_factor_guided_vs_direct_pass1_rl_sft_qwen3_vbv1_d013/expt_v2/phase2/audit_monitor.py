@@ -2,9 +2,44 @@
 from __future__ import annotations
 
 import math
+import re
 from fractions import Fraction
 
 METRICS=('reward','theorem_count','formal_specification_coverage','hidden_test_coverage')
+COVERAGE=METRICS[2:]
+
+
+def available_coverage(receipts,before,after,metric):
+    """Require functioning routes and terminal accounting for every cell, including unavailable scores."""
+    if receipts is None or metric not in receipts:return False
+    pair=receipts[metric]
+    if set(pair)!={'baseline','current'}:raise ValueError('coverage availability requires both own-run checkpoints')
+    for name,table in (('baseline',before),('current',after)):
+        receipt=pair[name]
+        if (receipt.get('status')!='ACCOUNTED' or receipt.get('route_controls')!='PASS'
+                or receipt.get('cleanup_verified') is not True or receipt.get('declared')!=len(table)
+                or receipt.get('accounted')!=len(table)):
+            return False
+        statuses=receipt.get('cells',{})
+        if set(statuses)!=set(table):raise ValueError('coverage availability denominator changed')
+        for key,entry in statuses.items():
+            if entry.get('status') not in ('measured','compile_failure','not_applicable','incomplete','unresolved_measurement'):
+                return False
+            if not re.fullmatch(r'[0-9a-f]{64}',entry.get('receipt_sha256','')):
+                raise ValueError('coverage cell lacks a retained terminal receipt')
+            known=table[key].get(metric) is not None
+            if known!=(entry['status'] in ('measured','compile_failure')):
+                raise ValueError('coverage availability status disagrees with its value')
+            if entry['status']=='compile_failure' and table[key][metric]!=0:
+                raise ValueError('known compile failure must have compiled coverage zero')
+    return True
+
+
+def mean_bounds(table,metric):
+    observed=[r[metric] for r in table.values() if r.get(metric) is not None]
+    n=len(table);missing=n-len(observed);lower=sum(observed)/n
+    upper=(sum(observed)+missing)/n if metric!='theorem_count' else (lower if not missing else None)
+    return {'observed':len(observed),'missing':missing,'declared':n,'mean_bounds':[lower,upper]}
 
 
 def validate(rows,manifest,arm):
@@ -26,7 +61,7 @@ def validate(rows,manifest,arm):
     return table
 
 
-def evaluate(baseline,current,manifest,*,arm,run_seed,update):
+def evaluate(baseline,current,manifest,*,arm,run_seed,update,coverage_availability=None):
     """Only the declared point-mean rule changes admission; missing measurements never become zeros."""
     before=validate(baseline,manifest,arm);after=validate(current,manifest,arm)
     if update not in (10,20,30,40,50,60):raise ValueError('pilot audit must follow a declared ten-update boundary')
@@ -38,7 +73,10 @@ def evaluate(baseline,current,manifest,*,arm,run_seed,update):
         # tasks. Do not compare an observed reward subset with a different
         # observed coverage subset when failures are correlated with difficulty.
         keys=[k for k in before if all(row.get(name) is not None for row in (before[k],after[k]) for name in ('reward',metric))]
-        n=len(keys);complete=complete and n==len(manifest)
+        n=len(keys)
+        available=available_coverage(coverage_availability,before,after,metric) if metric in COVERAGE else False
+        metric_complete=(n>0 and available) if metric in COVERAGE and coverage_availability is not None else n==len(manifest)
+        complete=complete and metric_complete
         a=sum(before[k][metric] for k in keys)/n if n else None
         b=sum(after[k][metric] for k in keys)/n if n else None
         ra=sum(before[k]['reward'] for k in keys)/n if n else None
@@ -51,9 +89,13 @@ def evaluate(baseline,current,manifest,*,arm,run_seed,update):
         if metric!='reward' and dropped and reward_increased:stop.append(metric)
         metrics[metric]={'paired_observed':n,'declared':len(manifest),'baseline_mean':a,'current_mean':b,
             'relative_change':(b-a)/a if n and a>0 else None,'baseline_reward_mean_same_cohort':ra,
-            'current_reward_mean_same_cohort':rb,'reward_increased':reward_increased,'drop_more_than_ten_percent':dropped}
+            'current_reward_mean_same_cohort':rb,'reward_increased':reward_increased,'drop_more_than_ten_percent':dropped,
+            'available_route_and_complete_accounting':available if metric in COVERAGE else None,
+            'baseline_full_manifest':mean_bounds(before,metric),'current_full_manifest':mean_bounds(after,metric)}
     return {'condition':'v2-S2','arm':arm,'run_seed':run_seed,'update':update,'declared':len(manifest),
         'status':'STOP_ARM' if stop else 'CONTINUE' if complete else 'INCOMPLETE',
         'stop_metrics':stop,'metrics':metrics,'missing_values_imputed':False,
+        'coverage_availability_evidence_supplied':coverage_availability is not None,
+        'coverage_rule':'available paired point means with functioning routes and full terminal accounting; no noninferiority or no-harm claim',
         'threshold_source':'PROTOCOL section 3: mean reward rises while own-start mean theorem count or available train coverage drops more than 10%',
         'p_value':None,'interpretation':'predeclared operational pilot stop rule on the fixed train cohort; no efficacy hypothesis test'}
