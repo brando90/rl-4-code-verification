@@ -41,8 +41,13 @@ PROVIDER_ENV = ("VALKYRIE_API_KEY", "TRACKER_SERVICE_URL", "ANTHROPIC_API_KEY", 
                 "CLAUDE_CODE_OAUTH_TOKEN", "ANTHROPIC_AUTH_TOKEN", "PYTHONPATH", "PYTHONHOME")
 UUID_RE = re.compile(r"[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}")
 BENCH_PREFIX = "veribench-rl4cv-e08v2"
+ROUTE_V1 = EXP / "results" / "route_identity_v2.json"                 # 10-13-2026 record (old per-user AWS route); never rewritten
+ROUTE = EXP / "results" / "route_identity_hosted_v2.json"             # hosted-route evidence written by `preflight`
+SERVICES = WORK / "private" / "services.json"                         # written by deploy_service_e08v2.py deploy/register
+BUNDLE_SAME_AS_V1 = ("judge_call.py", "setup.sh")                     # contract.yaml changes only by the slash-free secret name
 
-sys.path[:0] = [str(X100 / "scripts"), str(E103 / "scripts")]
+sys.path[:0] = [str(X100 / "scripts"), str(E103 / "scripts"), str(REPO / "src")]
+from rl4cv import valkyrie_hosted as hosted   # noqa: E402  hosted transport (10-14-2026); scientific settings unchanged
 import common                          # noqa: E402  frozen, imported not edited
 common.EXPT = X100
 import prompts                         # noqa: E402
@@ -228,11 +233,9 @@ def build_test(systems_path: Path, cells_dir: Path, smoke_items: int = 1) -> dic
 # Admit / poll / harvest (one Valkyrie run per (suite, config); every rating is one declared call)
 # --------------------------------------------------------------------------------------------------
 def env() -> dict[str, str]:
-    out = {k: v for k, v in os.environ.items() if k not in PROVIDER_ENV}
-    out.update(VALKYRIE_ENV="bench", VALKYRIE_CONFIG_PATH=str(WORK / "private" / "valkyrie.yaml"))
-    # Cron may supply only system paths; use the experiment interpreter's installed CLI.
-    out["PATH"] = str(Path(sys.executable).parent) + os.pathsep + out.get("PATH", os.defpath)
-    return out
+    # The hosted CLI reads only its login (or VALKYRIE_API_KEY / VALKYRIE_URL); cron may supply only system paths,
+    # so the experiment interpreter's installed CLI comes first.
+    return hosted.cli_env(PROVIDER_ENV)
 
 
 def cli(args: list[str], timeout: int = 1800) -> subprocess.CompletedProcess:
@@ -252,6 +255,38 @@ def judge_config(name: str) -> dict:
     return json.loads((X100 / f"configs/{name}.json").read_text())
 
 
+def preflight() -> int:
+    """Hosted-route evidence before any admission (D-108): organization, credential kind, sandbox provider, the gateway
+    secret's name and the judge bundle, whose prompt and call code must be byte-identical to version 1's. Zero model calls."""
+    out = hosted.preflight(require_secrets=[hosted.GATEWAY_SECRET], require_agents=[AGENT], env=env())
+    out.update(route="Vals Valkyrie (hosted): valk run start --agent " + AGENT, model_calls_so_far=0,
+               payer=f"Vals model gateway credential mapped only inside Valkyrie by organization secret {hosted.GATEWAY_SECRET} (D-108)",
+               credential_source=f"Valkyrie organization secret {hosted.GATEWAY_SECRET}; no provider key on host", frozen_reference=relative(ROUTE_V1))
+    out["identity"] = {k: v for k, v in out.get("identity", {}).items() if k != "account"}
+    problems = out["problems"]
+    if not problems:
+        frozen = read_json(ROUTE_V1, {}).get("bundle_hashes", {})
+        dest = WORK / "private" / "bundle_check" / datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        dest.mkdir(parents=True, exist_ok=True)
+        got = cli(["agent", "download", AGENT, "--output-dir", str(dest)], timeout=600)
+        files = {p.name: p for p in dest.rglob("*") if p.is_file()}
+        hashes = {n: sha(files[n].read_bytes()) for n in ("contract.yaml", *BUNDLE_SAME_AS_V1) if n in files}
+        out["bundle_hashes"] = hashes
+        if got.returncode or not hashes:
+            problems.append(f"valkyrie agent download {AGENT} failed (rc={got.returncode})")
+        else:
+            problems += [f"{n} differs from version 1's frozen bundle" for n in BUNDLE_SAME_AS_V1 if hashes.get(n) != frozen.get(n)]
+            contract = files["contract.yaml"].read_text() if "contract.yaml" in files else ""
+            if hosted.GATEWAY_SECRET not in contract or re.search(r"[A-Za-z0-9_-]+/" + re.escape(hosted.GATEWAY_SECRET), contract):
+                problems.append(f"contract.yaml does not map the slash-free secret {hosted.GATEWAY_SECRET}; push the renamed bundle")
+            out["bundle_matches_version1_except_secret_name"] = not problems
+    out["verdict"] = "FAIL" if problems else "PASS"
+    write_json(ROUTE, out)
+    print(json.dumps({"verdict": out["verdict"], "organization": out.get("identity", {}).get("organization"),
+                      "default_provider": out.get("default_provider"), "problems": problems}))
+    return 0 if out["verdict"] == "PASS" else 1
+
+
 def request_benchmark(spec: dict, name: str) -> str:
     return f"rl4cv-e08v2-judge-{spec['benchmark']}-{(spec['system'] or 'controls')}-{name}"[:120]
 
@@ -269,8 +304,8 @@ def _admit_locked(suite: str, configs: list[str], concurrency: int) -> int:
     assert pack and pack.get("verdict") == "PASS", f"{suite}: pack verdict is not PASS"
     published = subprocess.run(["git", "show", f"origin/main:{spec['pack_receipt'].relative_to(REPO)}"], cwd=REPO, capture_output=True)
     assert published.returncode == 0 and published.stdout == spec['pack_receipt'].read_bytes(), 'Judge pack is not the exact published manifest'
-    route = read_json(EXP / 'results/route_identity_v2.json')
-    assert route and route.get('verdict') == 'PASS', 'Vals route identity not verified'
+    route = read_json(ROUTE)
+    assert route and route.get('verdict') == 'PASS', 'Hosted Vals route not verified: run `judge_rl4cv_e08v2.py preflight`'
     if spec['system']:
         assert read_json(RESULTS / 'controls_check.json', {}).get('verdict') == 'PASS', 'Route controls have not passed'
     if spec["system"]:
@@ -288,10 +323,8 @@ def _admit_locked(suite: str, configs: list[str], concurrency: int) -> int:
         end = start + len(wanted_ids)
         assert all_ids[start:end] == wanted_ids, 'Manifest IDs are not one exact ordered slice'
         task_slice = f'{start}:{end}'
-        import yaml
-        cfg_private = yaml.safe_load((WORK / 'private/valkyrie.yaml').read_text())
-        url = cfg_private['custom_benchmark_services'][spec['benchmark']]
-        request = urllib.request.Request(url + '/verify-task-ids?' + urllib.parse.urlencode({'slice': task_slice, 'dataset': 'default'}), headers={'Authorization': cfg_private['benchmark_auth'][spec['benchmark']]})
+        url, auth = hosted.lookup_local(SERVICES, spec['benchmark'])
+        request = urllib.request.Request(url + '/verify-task-ids?' + urllib.parse.urlencode({'slice': task_slice, 'dataset': 'default'}), headers={'Authorization': auth})
         with urllib.request.urlopen(request, timeout=60) as response:
             assert json.load(response)['task_ids'] == wanted_ids, 'Live service slice differs from the manifest'
         task_filter = ['--slice', task_slice]
@@ -575,6 +608,7 @@ def main() -> int:
     p = sub.add_parser("build-test")
     p.add_argument("--systems", type=Path, required=True, help="JSON with 'systems' (label, source, e05_label); normally results/selection.json's test_manifest")
     p.add_argument("--cells-dir", type=Path, default=EXP / "results" / "ladder", help="dir with <label>_test_cells.csv from analyze_ladder.py --split test")
+    sub.add_parser("preflight")
     p = sub.add_parser("admit")
     p.add_argument("--suite", required=True)
     p.add_argument("--configs", nargs="+", default=list(CONFIGS))
@@ -595,6 +629,8 @@ def main() -> int:
         m = build_test(a.systems, a.cells_dir)
         print(json.dumps({"verdict": m["verdict"], "per_system": m["per_system"], "n_tasks": m["n_tasks"], "n_declared_ratings": m["n_declared_ratings"], "skipped": len(m["cells_not_judged"])}))
         return 0 if m["verdict"] == "PASS" else 1
+    if a.cmd == "preflight":
+        return preflight()
     if a.cmd == "admit":
         return admit(a.suite, a.configs, a.concurrency)
     if a.cmd == "poll":

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""TLDR: Deploy, inspect and tear down experiment 08's collect-only single-call VeriBench service (experiment 103's `vb_service_single_call`, imported unmodified from this clone's pinned checkout) serving the 539-task train pack on claimed port 9740 behind a bearer-protected cloudflared tunnel, registered as benchmark `rl4cv-e08-vbv1-train` in a private copy of the host Valkyrie configuration (PROTOCOL § 3, runbook § 4.1; zero model calls). Adapted from experiment 02A v3's `deploy_service_e02a.py`."""
+"""TLDR: Deploy, inspect and tear down experiment 08's collect-only single-call VeriBench service (experiment 103's `vb_service_single_call`, imported unmodified from this clone's pinned checkout) serving the 539-task train pack on claimed port 9740 behind a bearer-protected cloudflared tunnel, registered on the hosted Valkyrie Tracker as benchmark `rl4cv-e08-vbv1-train` with `valkyrie benchmark service set --auth-secret` (PROTOCOL § 3, runbook § 4.1; zero model calls). Adapted from experiment 02A v3's `deploy_service_e02a.py`; ported from the private `valkyrie.yaml` registration to the hosted setup on 10-14-2026 (`rl4cv.valkyrie_hosted`)."""
 from __future__ import annotations
 
 import argparse
@@ -18,6 +18,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
+sys.path.insert(0, str(REPO_ROOT / "src"))
+from rl4cv import valkyrie_hosted as hosted   # noqa: E402
 EXP = Path(__file__).resolve().parents[1]
 WORK = Path(os.environ.get("E08_WORK", "/lfs/skampere1/0/brando9/rl4cv_e08/v2"))
 PRIVATE = WORK / "private"
@@ -27,7 +29,7 @@ KERNEL_AXIOMS = REPO_ROOT / "external/veribench/scripts/scsc/kernel_axioms.py"
 LAKE_DIR = WORK / "grading" / "lean_src"                      # never compiled by the collect-only service; the path must merely exist
 UVICORN = Path("/lfs/skampere1/0/brando9/vb103_venv/bin/uvicorn")   # shared service interpreter (benchmark_service installed), used read-only
 CLOUDFLARED = Path("/lfs/skampere1/0/brando9/vb-e2-service-20260916/bin/cloudflared")
-HOST_CONFIG = Path.home() / ".config/valkyrie/valkyrie.yaml"
+SERVICES = PRIVATE / "services.json"      # host-local benchmark -> tunnel URL + bearer file (mode 0600); replaces the private valkyrie.yaml
 BENCHMARK, PORT, PORT_CLAIM = "rl4cv-e08-vbv1-train", 9740, "9860-9869"   # /lfs/skampere1/0/brando9/valkyrie_port_claims/rl4cv-e08_9860-9869.txt
 PACK = WORK / "pack_train539"
 NAME = "teachers"   # receipt name; judge instances override BENCHMARK / PORT / PACK / NAME / EXPECTED_TASKS from the command line
@@ -119,12 +121,15 @@ def cmd_deploy(a) -> int:
     if listening(PORT):
         raise SystemExit(f"port {PORT} is already listening; refusing to bind (check ss -tlnp and valkyrie_port_claims)")
     for p, what in ((PACK, "pack"), (SERVICE_DIR, "service dir"), (KERNEL_AXIOMS, "kernel axiom checker"), (LAKE_DIR, "lake dir"),
-                    (UVICORN, "uvicorn"), (CLOUDFLARED, "cloudflared"), (HOST_CONFIG, "host Valkyrie config")):
+                    (UVICORN, "uvicorn"), (CLOUDFLARED, "cloudflared")):
         if not p.exists():
             raise SystemExit(f"{what} missing: {p}")
     n_pack = len([p for p in PACK.iterdir() if p.is_dir()])
     if EXPECTED_TASKS and n_pack != EXPECTED_TASKS:
         raise SystemExit(f"pack holds {n_pack} task dirs, expected {EXPECTED_TASKS}")
+    identity = hosted.preflight(require_login=True, env=hosted.cli_env(PROVIDER_ENV))   # registration needs a login
+    if identity["verdict"] != "PASS":
+        raise SystemExit("hosted Valkyrie preflight failed: " + "; ".join(identity["problems"]))
     bearer_path = PRIVATE / ("service_bearer" if NAME == "teachers" else f"service_bearer_{NAME}")
     if not bearer_path.exists():
         bearer_path.write_text(secrets.token_urlsafe(36))
@@ -160,13 +165,12 @@ def cmd_deploy(a) -> int:
             os.killpg(proc.pid, signal.SIGTERM)
         raise SystemExit(f"tunnel answered an unauthenticated probe with {unauth}; refusing")
     tunnel_limits = task_limits(url, bearer)
-    import yaml
-    target = PRIVATE / "valkyrie.yaml"
-    cfg = yaml.safe_load(target.read_text()) if target.exists() else yaml.safe_load(HOST_CONFIG.read_text())   # keep earlier instances registered
-    cfg.setdefault("custom_benchmark_services", {})[BENCHMARK] = url
-    cfg.setdefault("benchmark_auth", {})[BENCHMARK] = "Bearer " + bearer
-    target.write_text(yaml.safe_dump(cfg))
-    os.chmod(target, 0o600)
+    try:
+        registration = register(url, bearer_path)
+    except hosted.HostedValkyrieError as exc:
+        for proc in (service, tunnel):
+            os.killpg(proc.pid, signal.SIGTERM)
+        raise SystemExit(f"{exc}; service and tunnel stopped")
     service_hashes = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(SERVICE_DIR.glob("*.py"))}
     veribench_head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=REPO_ROOT / "external/veribench", capture_output=True, text=True).stdout.strip()
     receipt = {"deployed_utc": stamp(), "host": os.uname().nodename, "benchmark": BENCHMARK, "port": PORT, "port_claim": PORT_CLAIM,
@@ -176,13 +180,53 @@ def cmd_deploy(a) -> int:
                "veribench_checkout": veribench_head, "pack_dir": str(PACK), "pack_task_count": n_pack,
                "control_pack": True, "grade_mode": "collect_only (VB_COLLECT_ONLY=1)", "sandbox_lean": "none (VB_NO_COMPILER=1)",
                "agent_timeout_s": AGENT_TIMEOUT_S, "agent_client_timeout_s": AGENT_CLIENT_TIMEOUT_S, "per_task_limit_local": limits,
-               "per_task_limit_tunnel": tunnel_limits, "valkyrie_config": str(target), "inference_calls": 0}
+               "per_task_limit_tunnel": tunnel_limits, "valkyrie_identity": identity, "valkyrie_registration": registration,
+               "local_service_registry": str(SERVICES), "inference_calls": 0}
     write_json(receipt_path, receipt)
     public = {k: v for k, v in receipt.items() if k not in ("tunnel_url",)}
     public["tunnel_url"] = "recorded in $WORK/private/deployment.json (not published)"
+    public["valkyrie_identity"] = public_identity(identity)
     write_json(PUBLIC_RECEIPT if NAME == "teachers" else PUBLIC_RECEIPT.with_name(f"deployment_e08_{NAME}.json"), public)
     print(json.dumps({k: public[k] for k in ("benchmark", "port", "pack_task_count", "local_health", "local_unauthenticated_health", "tunnel_health",
                                              "tunnel_unauthenticated_health", "per_task_limit_tunnel")}))
+    return 0
+
+
+def public_identity(identity: dict) -> dict:
+    """The preflight evidence without the account e-mail (the private receipt keeps it)."""
+    return {**identity, "identity": {k: v for k, v in identity.get("identity", {}).items() if k != "account"}}
+
+
+def register(url: str, bearer_path: Path) -> dict:
+    """Register BENCHMARK on the hosted Tracker (organization secret + service URL) and record it host-locally."""
+    registration = hosted.register_service(BENCHMARK, url, bearer_path.read_text().strip(), env=hosted.cli_env(PROVIDER_ENV))
+    hosted.record_local(SERVICES, BENCHMARK, url, bearer_path, registration)
+    return registration
+
+
+def cmd_register(a) -> int:
+    """Re-register a live deployment (after `valkyrie login`, an organization switch, or a service started before 10-14-2026)."""
+    receipt_path = PRIVATE / ("deployment.json" if NAME == "teachers" else f"deployment_{NAME}.json")
+    r = read_json(receipt_path, {})
+    if not r or not alive(r.get("service_pid")) or not alive(r.get("tunnel_pid")):
+        raise SystemExit("no live deployment is recorded; run deploy")
+    bearer_path = PRIVATE / ("service_bearer" if NAME == "teachers" else f"service_bearer_{NAME}")
+    if probe(r["tunnel_url"] + "/health", bearer_path.read_text().strip()) != 200:
+        raise SystemExit("the recorded tunnel is not healthy; run teardown and deploy")
+    identity = hosted.preflight(require_login=True, env=hosted.cli_env(PROVIDER_ENV))
+    if identity["verdict"] != "PASS":
+        raise SystemExit("hosted Valkyrie preflight failed: " + "; ".join(identity["problems"]))
+    try:
+        registration = register(r["tunnel_url"], bearer_path)
+    except hosted.HostedValkyrieError as exc:
+        raise SystemExit(str(exc))
+    r.update(valkyrie_identity=identity, valkyrie_registration=registration, local_service_registry=str(SERVICES))
+    write_json(receipt_path, r)
+    pub_path = PUBLIC_RECEIPT if NAME == "teachers" else PUBLIC_RECEIPT.with_name(f"deployment_e08_{NAME}.json")
+    pub = read_json(pub_path, {})
+    pub.update(valkyrie_identity=public_identity(identity), valkyrie_registration=registration)
+    write_json(pub_path, pub)
+    print(json.dumps({"benchmark": BENCHMARK, "registered_utc": registration["registered_utc"], "auth_secret": registration["auth_secret"]}))
     return 0
 
 
@@ -225,7 +269,7 @@ def cmd_teardown(a) -> int:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("cmd", choices=["deploy", "status", "teardown"])
+    ap.add_argument("cmd", choices=["deploy", "register", "status", "teardown"])
     ap.add_argument("--name", default=None, help="judge instance name (default: the teacher service)")
     ap.add_argument("--benchmark", default=None)
     ap.add_argument("--port", type=int, default=None)
@@ -239,7 +283,7 @@ def main() -> int:
         EXPECTED_TASKS = a.expected_tasks if a.expected_tasks is not None else 0
         if PORT == 9740 or BENCHMARK == "rl4cv-e08-vbv1-train":
             raise SystemExit("a judge instance needs its own --benchmark and --port in the claimed block 9860-9869")
-    return {"deploy": cmd_deploy, "status": cmd_status, "teardown": cmd_teardown}[a.cmd](a)
+    return {"deploy": cmd_deploy, "register": cmd_register, "status": cmd_status, "teardown": cmd_teardown}[a.cmd](a)
 
 
 if __name__ == "__main__":

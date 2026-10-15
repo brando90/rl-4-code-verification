@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""TLDR: Run a read-only QA review of committed repository snapshots by Gemini 4 Argon through Valkyrie's existing `vb106_rater_v2` transport agent on the Vals model gateway: build packets, self-check them offline, deploy a collect-only benchmark service, admit, harvest and tear down."""
+"""TLDR: Run a read-only QA review of committed repository snapshots by Gemini 4 Argon through Valkyrie's existing `vb106_rater_v2` transport agent on the Vals model gateway: build packets, self-check them offline, deploy a collect-only benchmark service registered on the hosted Valkyrie Tracker (10-14-2026), admit, harvest and tear down."""
 from __future__ import annotations
 
 import argparse
@@ -19,6 +19,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO / "src"))
+from rl4cv import valkyrie_hosted as hosted  # noqa: E402
 HOME = Path(os.environ.get("RL4CV_ARGON_QA_HOME", "~/.cache/rl4cv-argon-qa")).expanduser()
 VERIBENCH = Path(os.environ.get("VERIBENCH_ROOT", "~/veribench")).expanduser()
 SERVICE_DIR = (VERIBENCH / "experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge"
@@ -26,9 +28,10 @@ SERVICE_DIR = (VERIBENCH / "experiments/103_single_call_baselines_all_models_vbv
 AGENT_DIR = (VERIBENCH / "experiments/106_simulated_expert_raters_icl_from_human_labels_leave_one_agent_out_fsc_judge"
              / "scripts/valkyrie_rater_agent_v2")
 VALKYRIE_VENV = Path("~/.local/share/uv/tools/valkyrie").expanduser()
+UVICORN = Path(os.environ.get("RL4CV_ARGON_QA_UVICORN", VALKYRIE_VENV / "bin/uvicorn")).expanduser()   # an env with benchmark_service
 VALKYRIE = shutil.which("valkyrie") or str(Path("~/.local/bin/valkyrie").expanduser())
 CLOUDFLARED = shutil.which("cloudflared") or "/opt/homebrew/bin/cloudflared"
-HOST_CONFIG = Path("~/.config/valkyrie/valkyrie.yaml").expanduser()
+HOST_CONFIG = Path("~/.config/valkyrie/valkyrie.yaml").expanduser()   # pre-10-14-2026 hosts only: scanned for old key values
 
 AGENT, MODEL, BENCHMARK, PORT = "vb106_rater_v2", "google/gemini-4-argon", "rl4cv-argon-qa", 9741
 RUN_KWARGS = {"max_tokens": "65536", "reasoning_effort": "high", "temperature": "1.0", "benchmark": BENCHMARK}
@@ -108,7 +111,7 @@ def clean_env(**extra: str) -> dict:
 
 
 def valkyrie(*args: str, timeout: float = 600) -> subprocess.CompletedProcess:
-    env = clean_env(VALKYRIE_CONFIG_PATH=str(HOME / "valkyrie.yaml"), VALKYRIE_ENV="bench")
+    env = hosted.cli_env(PROVIDER_ENV)
     return subprocess.run([VALKYRIE, *args], env=env, stdin=subprocess.DEVNULL, capture_output=True,
                           text=True, timeout=timeout)
 
@@ -247,6 +250,11 @@ def cmd_deploy(args) -> int:
     old = read_json(receipt_path, {})
     if alive(old.get("service_pid")) or alive(old.get("tunnel_pid")):
         raise SystemExit("a live deployment is recorded; run teardown first (a new tunnel URL orphans a running run)")
+    if not UVICORN.exists():
+        raise SystemExit(f"uvicorn missing: {UVICORN} (set RL4CV_ARGON_QA_UVICORN to an env with benchmark_service)")
+    identity = hosted.preflight(require_login=True, env=hosted.cli_env(PROVIDER_ENV))
+    if identity["verdict"] != "PASS":
+        raise SystemExit("hosted Valkyrie preflight failed: " + "; ".join(identity["problems"]))
     logs = private_dir("logs")
     bearer_path = HOME / "service_bearer"
     if not bearer_path.exists():
@@ -261,7 +269,7 @@ def cmd_deploy(args) -> int:
                     VB_SETUP_TIMEOUT_S="900", VB_RESOURCES_VCPU="2", VB_RESOURCES_MEMORY="4",
                     VB_RESOURCES_DISK="20")
     local = f"http://127.0.0.1:{PORT}"
-    service = subprocess.Popen([str(VALKYRIE_VENV / "bin/uvicorn"), "main:app", "--host", "127.0.0.1",
+    service = subprocess.Popen([str(UVICORN), "main:app", "--host", "127.0.0.1",
                                 "--port", str(PORT)], cwd=str(SERVICE_DIR), env=env, stdin=subprocess.DEVNULL,
                                stdout=open(logs / "service.log", "ab"), stderr=subprocess.STDOUT,
                                start_new_session=True)
@@ -284,13 +292,15 @@ def cmd_deploy(args) -> int:
         for proc in (service, tunnel):
             proc.terminate()
         raise SystemExit(f"tunnel answered an unauthenticated probe with {unauth}; refusing")
-    import yaml
-    cfg = yaml.safe_load(HOST_CONFIG.read_text())
-    cfg.setdefault("custom_benchmark_services", {})[BENCHMARK] = url
-    cfg.setdefault("benchmark_auth", {})[BENCHMARK] = "Bearer " + bearer
-    (HOME / "valkyrie.yaml").write_text(yaml.safe_dump(cfg))
-    os.chmod(HOME / "valkyrie.yaml", 0o600)
+    try:
+        registration = hosted.register_service(BENCHMARK, url, bearer, env=hosted.cli_env(PROVIDER_ENV))
+    except hosted.HostedValkyrieError as exc:
+        for proc in (service, tunnel):
+            proc.terminate()
+        raise SystemExit(f"{exc}; service and tunnel stopped")
+    hosted.record_local(HOME / "services.json", BENCHMARK, url, bearer_path, registration)
     write_json(receipt_path, {
+        "valkyrie_identity": identity, "valkyrie_registration": registration,
         "deployed_utc": stamp(), "benchmark": BENCHMARK, "port": PORT, "tunnel_url": url,
         "service_pid": service.pid, "tunnel_pid": tunnel.pid, "local_health": 200, "local_unauthenticated": 401,
         "tunnel_health": 200, "tunnel_unauthenticated": unauth,

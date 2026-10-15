@@ -12,8 +12,9 @@ The first test, on experiment 01, is in `experiments/01_small_open_models_veribe
 
 ## Requirements
 
-- An authenticated Valkyrie configuration at `~/.config/valkyrie/valkyrie.yaml`. It is read and copied privately; its contents are never printed or committed.
-- The Valkyrie uv tool environment at `~/.local/share/uv/tools/valkyrie`, which provides `uvicorn`, `benchmark_service` and `yaml`. Run the script with its interpreter.
+- A hosted Valkyrie login on this host (`valkyrie login`, then `valkyrie whoami`), a default sandbox provider (`valkyrie provider list`) and the slash-free gateway secret `brandoModelGatewayApiKey`. `deploy` registers the service on the Tracker with `valkyrie benchmark service set rl4cv-argon-qa <tunnel> --auth-secret rl4cv-argon-qa-bearer`, which needs the login (an access key can't). `valkyrie.yaml` is no longer read by Valkyrie (10-14-2026).
+- The `vb106_rater_v2` bundle pushed to the current organization (`valkyrie agent push <dir>`; old bundles did not migrate).
+- A Python environment that provides `uvicorn` and `benchmark_service`: the Valkyrie uv tool environment at `~/.local/share/uv/tools/valkyrie` if it still has them, otherwise set `RL4CV_ARGON_QA_UVICORN` to another environment's `uvicorn`. Run the script with that interpreter.
 - A VeriBench clone at `$VERIBENCH_ROOT` (default `~/veribench`). The tool runs that clone's experiment 103 service code read-only and imports experiment 106's agent source, which the self-check uses.
 - `cloudflared` on `PATH`.
 - Free local port 9741.
@@ -31,7 +32,7 @@ $PY scripts/argon_qa/argon_qa.py harvest --out <dir>   # writes <dir>/responses/
 $PY scripts/argon_qa/argon_qa.py teardown       # stops the service and tunnel, checks the port is free
 ```
 
-Private state (the pack, bearer, private Valkyrie configuration copy, logs and raw downloads) stays in `~/.cache/rl4cv-argon-qa/` (mode 0700; override with `RL4CV_ARGON_QA_HOME`).
+Private state (the pack, bearer, local service registry `services.json`, logs and raw downloads) stays in `~/.cache/rl4cv-argon-qa/` (mode 0700; override with `RL4CV_ARGON_QA_HOME`).
 
 ## How a packet is built
 
