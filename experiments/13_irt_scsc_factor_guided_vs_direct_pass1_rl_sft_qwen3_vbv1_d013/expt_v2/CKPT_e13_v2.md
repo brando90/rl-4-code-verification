@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 09:24 PDT
+Last updated: 10-15-2026 10:18 PDT
 
 ## Task and owner
 
@@ -291,6 +291,12 @@ Last updated: 10-15-2026 09:24 PDT
 - **G1 published** (`d9df333`, [RESULTS_G1_S2.md](RESULTS_G1_S2.md)): **INCONCLUSIVE**. In both holdout schemes no IRT candidate passed inner admission, so the selected forecast and its paired contrasts are unavailable; C stays disabled. Descriptively, on 3,240 full-schedule cells (58 excluded), M1 (calibrated earlier-rung factored reward) beats M0 (smoothed earlier-rung strict rate): log loss [0.173, 0.222] against [0.230, 0.259], and AUC [0.866, 0.929] against [0.832, 0.874]. These are point ranges over missing-label completions, with p-val n/a.
 - **A6 diagnostic attempt 2.** The format repair and attempt-2 lock (`d9df333`, 08:31) were pushed before the run, and the engine preflight passed (`64406dd`). It is RUNNING on owned GPU 0 at 256/512 responses saved, with no scoring yet. The owner has also prepared the A6 Phase 2 admission and B's own-reward feasibility gate (`bbe36cd`).
 - **Healthy.** The owner is working (16 h). The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 10:14 PDT: A6 diagnostic generation complete; scoring 490 of 512
+
+- **A6 diagnostic attempt 2.** Generation is complete for 512 responses, and the lease was released at 1.4025 device-hours, within the 2.0 allocation; cumulative experiment device-hours are 27.48. The unchanged official scorer has closed 490/512 cell receipts, and the analysis (SOUND or UNSOUND) is pending. The learning-pilot lock stays unadmitted until a SOUND verdict is published.
+- **Owner working** (16 h 56 min), monitoring scoring and running the publication checks in parallel. The master armed a background wait (task `by41jbt7b`) for the analysis result.
+- **Healthy.** No active leases. The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
 
 ## Exact next commands (master)
 
