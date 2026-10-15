@@ -4,18 +4,20 @@
 
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
-Last updated: 10-15-2026 03:30 PDT
+Last updated: 10-15-2026 03:40 PDT
 Status: **ACTIVE: base scoring closed; half/full generation.**
 
-## Current Phase 1 state — 10-15-2026 03:30 PDT
+## Current Phase 1 state — 10-15-2026 03:40 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
-What ran: base generation COMPLETE 4,312/4,312; scoring closed, 4,311 measured, one unresolved parser error, zero strict successes. Missing outcome remains in the denominator; no retry. Half generation 4,224/4,312 and full batch 1 3,232/4,312 continue. Required suite 897 passed, 3 skipped. Hosted judge and hidden-test controls remain final PASS. No actual mutation measurement, fit, independent batch 2, new validation/test outcome or experiment optimizer update has run.
+What ran: base generation COMPLETE 4,312/4,312; scoring closed, 4,311 measured, one unresolved parser error, zero strict successes. Missing outcome remains in the denominator; no retry. Half generation 4,288/4,312 and full batch 1 3,328/4,312 continue. Required suite 903 passed, 3 skipped. Hosted judge and hidden-test controls remain final PASS. No actual mutation measurement, fit, independent batch 2, new validation/test outcome or experiment optimizer update has run.
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Eighteen cron lines preserve the original schedule additively. Busy devices remain a wait condition. No Brando action is needed.
 
 Next: publish half/full generation receipts and scoring locks as each closes, then score their full manifests. Continue Phase 2 preparation in parallel. Freeze calibration/items/F2 before full batch 2, then G1/H2 and Phase 2; G1 method is already frozen before any actual fit.
+
+Monitor processor orchestration (10-15-2026 03:40 PDT): [strict scoring and independent hidden-test execution](phase2/README.md) require the published same-checkpoint snapshot and pre-learning source bindings. The full generation inventory is retained before scoring; completed cells are recovered without repeating measurements. Interrupted parent writes preserve existing rows and cost receipts, and resumed timing is marked incomplete where necessary. Six new tests and all 13 focused checks pass. Required suite: **903 passed, 3 skipped, zero failures in 462.83 seconds**, direct exit 0 ([receipt](phase2/monitor_processing_publication_test.json)). No actual monitor or experiment optimizer update ran. Half/full batch 1 retain 4,288/3,328 of 4,312 each; no actual fit has run.
 
 Monitor measurement and decision preparation (10-15-2026 03:30 PDT): [retained evidence and final decision helpers](phase2/README.md) join all 32 cells, preserve unavailable coverage, check physical source/receipt bytes and require the same published own-run baseline and pre-learning method. A pre-publication regression fix keeps independent hidden-test status separate from official compilation status. The unchanged operational stop survives another route's incomplete measurements; no observed failure is retried. Seven new tests and all 21 focused checks pass. Required suite: **897 passed, 3 skipped, zero failures in 479.55 seconds**, direct exit 0 ([receipt](phase2/monitor_decision_publication_test.json)). No actual monitor decision, model call or optimizer update occurred. Half/full batch 1 retain 4,224/3,232 of 4,312 each; base scoring is published and no actual fit has run. The crontab still matches its preserved 18-line installed schedule byte for byte.
 
