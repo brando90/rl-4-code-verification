@@ -4,18 +4,20 @@
 
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
-Last updated: 10-15-2026 03:40 PDT
-Status: **ACTIVE: base scoring closed; half/full generation.**
+Last updated: 10-15-2026 03:50 PDT
+Status: **ACTIVE: base scoring closed; half generation closed; full batch 1 generating.**
 
-## Current Phase 1 state — 10-15-2026 03:40 PDT
+## Current Phase 1 state — 10-15-2026 03:50 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
-What ran: base generation COMPLETE 4,312/4,312; scoring closed, 4,311 measured, one unresolved parser error, zero strict successes. Missing outcome remains in the denominator; no retry. Half generation 4,288/4,312 and full batch 1 3,328/4,312 continue. Required suite 903 passed, 3 skipped. Hosted judge and hidden-test controls remain final PASS. No actual mutation measurement, fit, independent batch 2, new validation/test outcome or experiment optimizer update has run.
+What ran: base generation COMPLETE 4,312/4,312; scoring closed, 4,311 measured, one unresolved parser error, zero strict successes. Missing outcome remains in the denominator; no retry. Half generation COMPLETE 4,312/4,312; full batch 1 3,392/4,312 continues. Required suite 912 passed, 3 skipped. Hosted judge and hidden-test controls remain final PASS. No actual mutation measurement, fit, independent batch 2, new validation/test outcome or experiment optimizer update has run.
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Eighteen cron lines preserve the original schedule additively. Busy devices remain a wait condition. No Brando action is needed.
 
-Next: publish half/full generation receipts and scoring locks as each closes, then score their full manifests. Continue Phase 2 preparation in parallel. Freeze calibration/items/F2 before full batch 2, then G1/H2 and Phase 2; G1 method is already frozen before any actual fit.
+Next: freeze, test and publish the half scoring lock, then score its full manifest. Publish full batch 1 generation and its scoring lock when generation closes. Continue Phase 2 preparation in parallel. Freeze calibration/items/F2 before full batch 2, then G1/H2 and Phase 2; G1 method is already frozen before any actual fit.
+
+Half-panel generation and monitor coordination (10-15-2026 03:50 PDT): [half-generation report](RESULTS_ANCHORS_S2.md) closes 4,312/4,312 responses, zero missing/retries, 22,953,131 generated tokens and 9.079613708257675 device-hours over 17 released, cleaned leases. Half scoring has not run; its scoring freeze follows this publication. Full batch 1 retains 3,392/4,312 responses. [Monitor coordination and publication preparation](phase2/README.md) retain idle waits, final failed attempts, claim cleanup, the exact validated hosted recipe and source-bound decision inputs. Nine new tests and all 18 focused checks pass. Required suite: **912 passed, 3 skipped, zero failures in 462.14 seconds**, direct exit 0 ([receipt](phase2/monitor_driver_publication_test.json)). No actual monitor, calibration fit, independent batch 2 or experiment optimizer update ran.
 
 Monitor processor orchestration (10-15-2026 03:40 PDT): [strict scoring and independent hidden-test execution](phase2/README.md) require the published same-checkpoint snapshot and pre-learning source bindings. The full generation inventory is retained before scoring; completed cells are recovered without repeating measurements. Interrupted parent writes preserve existing rows and cost receipts, and resumed timing is marked incomplete where necessary. Six new tests and all 13 focused checks pass. Required suite: **903 passed, 3 skipped, zero failures in 462.83 seconds**, direct exit 0 ([receipt](phase2/monitor_processing_publication_test.json)). No actual monitor or experiment optimizer update ran. Half/full batch 1 retain 4,288/3,328 of 4,312 each; no actual fit has run.
 

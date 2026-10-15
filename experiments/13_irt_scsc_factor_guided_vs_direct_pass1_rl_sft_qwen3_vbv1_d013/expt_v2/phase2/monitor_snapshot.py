@@ -15,7 +15,7 @@ from training_checkpoint import digest,write_new
 HERE=Path(__file__).resolve().parent
 SOURCES=('monitor_snapshot.py','monitor_supervisor.py','monitor_runtime.py','monitor_preparation.py',
          'monitor_cpu.py','monitor_coverage.py','monitor_hosted.py','hosted_coverage.py','coverage_pack.py','audit_monitor.py',
-         'monitor_measurements.py','monitor_decision.py','monitor_processing.py')
+         'monitor_measurements.py','monitor_decision.py','monitor_processing.py','monitor_driver.py','monitor_publication.py')
 
 
 def freeze(plan):

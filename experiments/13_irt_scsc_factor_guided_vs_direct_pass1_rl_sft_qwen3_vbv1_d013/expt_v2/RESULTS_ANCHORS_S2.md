@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/RESULTS_ANCHORS_S2.md>
 
-**TLDR:** The base anchor generation is complete: 4,312/4,312 responses on 539 train tasks, eight samples each. No cells are missing or retried. Base scoring is closed with 4,311 measured responses, zero strict successes and one unresolved parser error; the half- and full-schedule panels continue generating.
+**TLDR:** The base anchor generation is complete: 4,312/4,312 responses on 539 train tasks, eight samples each. No cells are missing or retried. Base scoring is closed with 4,311 measured responses, zero strict successes and one unresolved parser error; half-schedule generation is also complete, and full-schedule batch 1 continues generating.
 
 S1's measured generation-admission failure remains final (99th-percentile probability error 0.124769325 > 0.10). These anchors use the separately admitted S2 float16 condition; its one original-probe confirmation passed without changing the thresholds ([admission report](RESULTS_LP1_A5.md)).
 
@@ -41,3 +41,11 @@ The [terminal scoring receipt](anchors_S2/base_scoring.json) and [descriptive di
 Half-schedule and full-schedule batch 1 continue generating. All three scored panels must be published before the one calibration execution, item freeze and F2 forecast; independent batch 2 remains unarmed. No fit or experiment optimizer update has run.
 
 Closure-publication verification: **875 passed, 3 skipped, zero failures in 453.39 seconds**, direct exit 0 with Lean integration required ([receipt](phase2/monitor_runtime_coverage_publication_test.json)).
+
+## Half-schedule generation closed — 10-15-2026 03:43 PDT
+
+The v2-S2 half-schedule panel is **COMPLETE: 4,312/4,312** responses on all 539 train tasks, eight samples each, with zero missing or second-attempt cells. It generated **22,953,131 tokens**, with 15,515,768 prompt tokens. Output length ranges from 1 to 8,192 tokens; 1,114/4,312 responses reached the fixed cap. All **17/17 leases are released**, every segment cleanup verifies, and allocated generation cost is **9.079613708257675 device-hours**.
+
+The [immutable half-generation receipt](anchors_S2/half_generation.json) binds the original `d4948f3` generation publication, unchanged generation-lock hash `9d35a9ed34c25046b19e73e50dad89fdb62babd37acb643a6364ad1f5554178f`, full manifest and private response inventory. These are fixed-manifest accounting counts; confidence intervals and p-values do not apply. Token-cap responses retain the unchanged oracle's scoring semantics. No half-panel strict score has been computed. Its scoring lock follows this generation publication, before the unchanged scorer runs. Full-schedule batch 1 continues; no actual calibration fit, independent batch 2 or experiment optimizer update has run.
+
+Half-generation publication verification: **912 passed, 3 skipped, zero failures in 462.14 seconds**, direct exit 0 with Lean integration required ([receipt](phase2/monitor_driver_publication_test.json)). Full batch 1 retains 3,392/4,312 responses at 10-15-2026 03:50 PDT.
