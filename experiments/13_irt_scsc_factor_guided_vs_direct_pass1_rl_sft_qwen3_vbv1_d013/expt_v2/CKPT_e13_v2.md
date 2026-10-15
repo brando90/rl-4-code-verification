@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 00:18 PDT
+Last updated: 10-15-2026 01:18 PDT
 
 ## Task and owner
 
@@ -230,6 +230,12 @@ Last updated: 10-15-2026 00:18 PDT
 
 - **Anchors.** The owner's durable counts are base 3,456, half 2,528 and full1 1,696 of 4,312; finished-segment receipts show 3,328, 2,304 and 1,536. All three are RUNNING on owned GPUs 0–2, with 0 exhausted cells. Cumulative device-hours are 14.79 across 36 leases. Base should finish around 02:00 PDT, and half and full1 around 05:00–08:00 PDT.
 - **Owner working** (6 h 56 min). It is publishing the train-audit and learning launchers. Its required suite ran 803 passed, 3 skipped, 0 failed in 414 s.
+- **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 01:14 PDT: anchors 4,096+, 3,040 and 2,080 of 4,312
+
+- **Anchors.** Finished-segment receipts show base 4,096 (one final segment left), half 2,816 (3,040 durable) and full1 2,048 (2,080 durable) of 4,312. All are RUNNING on owned GPUs 0–2, with 0 exhausted cells. Cumulative device-hours are 18.22 across 43 leases.
+- **Owner working** (7 h 56 min). It is preparing evaluation scoring with the same historical strict oracle as the anchors: completed scores are recovered from receipts, an infrastructure retry reuses the identical frozen output, and missing outcomes stay explicit instead of counting as zeros. Recent commits are the evaluation-generation analysis and the learning launchers.
 - **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
 
 ## Exact next commands (master)
