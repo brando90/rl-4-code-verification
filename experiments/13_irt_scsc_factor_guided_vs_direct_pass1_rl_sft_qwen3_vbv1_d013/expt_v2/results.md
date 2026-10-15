@@ -4,20 +4,24 @@
 
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
-Last updated: 10-14-2026 18:34 PDT
-Status: **ACTIVE: v2-S2 LP-1 PASS; Phase 1 anchor preparation.**
+Last updated: 10-14-2026 18:43 PDT
+Status: **ACTIVE: v2-S2 anchors generating on three owned A100 leases.**
 
 ## Current Phase 1 state — 10-14-2026 18:30 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
-What ran: 15 focused anchor checks passed; no anchor generation or actual-data fit has run. New generation ledgers preserve completed cells and permit only one identical retry of missing cells. Three host routes are being prepared and hash-verified without model execution. [Prospective device plan](phase1/ANCHORS_S2.md): at most three independent devices, two-hour leases, 256-cell segments, 144 device-hour ceiling across four full batches. Closed A5 usage remains 0.207209183243/3.0 hours; its leases are released.
+What ran: all nine host/policy routes and the original export pins verified; required suite 587 passed, 23 skipped. Published freeze `d4948f3` precedes every anchor call. Base, half and full batch 1 are generating on skampere1 devices 2, 1 and 0; all three engine preflights passed. The first 32/4,312 responses per policy are durable, with no retries and no scoring or actual-data fit. [Device plan](phase1/ANCHORS_S2.md): at most three devices, two-hour leases, 256-cell segments, 144 device-hour ceiling across four batches. Closed A5 remains 0.207209183243/3.0 hours.
 
-Supervision: same sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`. Fourteen cron lines are preserved. The anchor poller will be added only after code, tests and locks are published. Busy devices are a wait condition; no human action is needed.
+Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Sixteen cron lines equal the prior fourteen plus two anchor-poller entries. Busy devices remain a wait condition. No Brando action is needed.
 
-Next: finish route verification, required Lean integration tests and publication; arm Base, half and full batch 1. Then score, freeze calibration/items/F2, generate full batch 2 and evaluate G1/H2. Verify `G1_A3.json` before any fit. The separate validated-judge transport remains pending its own admission; it does not block anchor generation.
+Next: finish calibration/analysis implementation while the full manifests generate; publish each completed generation/scoring gate. Freeze calibration/items/F2 before full batch 2; then G1/H2 and Phase 2. G1's existing method lock has verified before any fit. The validated-judge transport retains its separate admission requirements.
 
 Anchor freeze verification (10-14-2026 18:34 PDT): all nine host/policy routes passed source, weight and installed-version verification without model calls. Original Base revision and both experiment-08 export checksum manifests match. Foreign registry: 33/33 released, 17 legacy files reconciled; every future claim rechecks these and discovers new reservation paths. Required integration suite: **587 passed, 23 skipped, zero failures in 254.43 seconds**, direct exit 0. [Receipt](phase1/ANCHORS_S2_publication_test.json), [routes](phase1/ANCHORS_S2_route_verification.json). The three initial generation locks are frozen; full batch 2 remains unarmed until calibration/items/F2 are published. G1's existing lock verifies 27 source and six input bindings with zero actual fits. Next: push and arm the additive anchor poller.
+
+Anchor launch (10-14-2026 18:38 PDT): freeze `d4948f3` is published. Three independently claimed skampere1 A100s are active: Base device 2, half device 1 and full batch 1 device 0. All three actual-engine non-probe preflights passed; complete 4,312-cell manifests are now generating. [Launch receipt](phase1/ANCHORS_S2_armed.json). The crontab equals its 14-line backup plus exactly two anchor-poller lines (16 total), including reboot. No completed cell is repeated, no actual-data fit or optimizer update has run, and no full-batch-2 plan exists. The owner continues calibration and analysis implementation while generation runs.
+
+First-prefix verification (10-14-2026 18:43 PDT): 32 complete responses per policy, 96/12,936 initial declared cells, zero second attempts; token counts are 57,714 Base, 174,337 half and 172,880 full batch 1. No score is inferred from generation completion. Launch-publication suite exited 0: **587 passed, 23 skipped in 262.47 seconds**; evidence and raw-receipt hashes are in [the launch receipt](phase1/ANCHORS_S2_armed.json). Generation continues automatically under the frozen leases.
 
 ## Historical A5 continuation — 10-14-2026 17:26 PDT
 
