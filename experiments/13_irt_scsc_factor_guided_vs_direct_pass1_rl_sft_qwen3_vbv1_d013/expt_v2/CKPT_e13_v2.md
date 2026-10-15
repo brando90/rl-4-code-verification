@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-14-2026 18:16 PDT
+Last updated: 10-14-2026 19:20 PDT
 
 ## Task and owner
 
@@ -194,6 +194,12 @@ Last updated: 10-14-2026 18:16 PDT
 - **A5 order verified.** The candidate list and disjoint development probe were frozen at `6251b77` (17:33), before any measurement. C1 float16 passed development (p99 0.0163 ≤ 0.08 margin; median 2.3e-5; unsupported 0/51,472; truncation 0); C2 was not run. The S2 lock (`f8ecbfa`, 17:46) preceded the confirmation and is unchanged after it.
 - **Confirmation PASS** on the original probe (`2b2f8b5`, 17:58). Over 8/8 responses and 44,844 tokens: unsupported 0, median 3.3e-5, **p99 0.0176 ≤ 0.10**, truncation 0. The S1 bf16 FAIL (0.1248) stays final. A5 used 0.207 of 3.0 device-hours; the suite ran 558 passed, 23 skipped.
 - **Owner working** (56 min) on the float16 anchor runtime and dispatch, with tests for resume, the one-retry limit and lease accounting. The crontab has 14 lines, the 7 non-e13 lines identical to the backup. No action was needed.
+
+## Check-in 10-14-2026 19:14 PDT: v2-S2 anchors generating on three A100s
+
+- **Anchors running.** Generation was frozen at `d4948f3` (18:35); `937b2e7` (18:43) recorded the leases and the first verified batches. Base, half and full1 each completed segment 0 (256/4,312 responses, 0 exhausted, cleanup verified). Segment 1 is running on owned skampere1 GPUs 0, 1 and 2, which were idle at claim. Cumulative device-hours across all experiment 13 v2 leases: 1.81.
+- **Throughput is below the plan.** A 256-response segment takes about 0.41–0.55 device-hours, which projects to about 8–9 device-hours per 4,312-response batch against PLAN § 5's 1–1.5. The likely cause is the S2-bound eager vLLM mode with a 32-sequence batch limit, both frozen by the lock, so no change is made. T4's cost re-estimate must use the measured S2 throughput.
+- **Owner working** (about 2 h) on Phase 2 trainer preparation (NeMo RL loss, checkpoint and scheduler paths) while the anchors run. The crontab has 16 lines, the 7 non-e13 lines identical to the backup. The old owner's idle launcher (PID 886575) is untouched. No action was needed.
 
 ## Exact next commands (master)
 
