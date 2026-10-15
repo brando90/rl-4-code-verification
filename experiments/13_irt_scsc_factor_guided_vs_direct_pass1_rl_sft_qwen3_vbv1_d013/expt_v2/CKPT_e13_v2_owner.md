@@ -5,17 +5,19 @@
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-15-2026 02:08 PDT
+Last updated: 10-15-2026 02:41 PDT
 
-## Current Phase 1 state — 10-15-2026 02:08 PDT
+## Current Phase 1 state — 10-15-2026 02:41 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
-What ran: base generation COMPLETE 4,312/4,312; scoring RUNNING from published lock b2556da, 1,849 durable results. Half generation 3,520/4,312 and full batch 1 2,560/4,312 continue. Required suite 865 passed, 3 skipped. Hosted judge and hidden-test controls remain final PASS. No actual mutation measurement, fit, independent batch 2, new validation/test outcome or experiment optimizer update has run.
+What ran: base generation COMPLETE 4,312/4,312; scoring closed, 4,311 measured, one unresolved parser error, zero strict successes. Missing outcome remains in the denominator; no retry. Half generation 3,808/4,312 and full batch 1 2,816/4,312 continue. Required suite 875 passed, 3 skipped. Hosted judge and hidden-test controls remain final PASS. No actual mutation measurement, fit, independent batch 2, new validation/test outcome or experiment optimizer update has run.
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Eighteen cron lines preserve the original schedule additively. Busy devices remain a wait condition. No Brando action is needed.
 
-Next: supervise the base scoring ledger to completion and publish its full-denominator result. Continue Phase 2 implementation while half/full manifests generate. Freeze calibration/items/F2 before full batch 2, then G1/H2 and Phase 2; G1 method is already frozen before any actual fit.
+Next: publish half/full generation receipts and scoring locks as each closes, then score their full manifests. Continue Phase 2 preparation in parallel. Freeze calibration/items/F2 before full batch 2, then G1/H2 and Phase 2; G1 method is already frozen before any actual fit.
+
+Base scoring closure and monitor preparation (10-15-2026 02:41 PDT): [base report](RESULTS_ANCHORS_S2.md) accounts for 4,312/4,312 responses: 4,311 measured, zero strict successes and one unresolved deterministic parser error, with zero retries, integrity defects or unresolved cleanup. Full-denominator strict mean bounds [0, 0.00023191094619666049]; descriptive 95% task-group bootstrap outer envelope [0, 0.0007062146892655367], conditional on this fixed train panel, not a held-out claim or admission gate. Processor cost is 14.387216666666665 hours and 1,545.45 elapsed seconds. [Monitor runtime/hidden/judge-pack helpers](phase2/README.md) pass 19 focused checks; a prepublication rendered-prompt/label collision was fixed and the full suite rerun: **875 passed, 3 skipped, zero failures in 453.39 seconds**, direct exit 0 ([receipt](phase2/monitor_runtime_coverage_publication_test.json)). No actual monitor measurement used that code. Half/full batch 1 retain 3,808/2,816 of 4,312 each and continue generating. No actual fit, independent batch 2 or experiment optimizer update has run.
 
 Hidden-test control PASS (10-14-2026 22:07 PDT): [report](RESULTS_HIDDEN_CONTROLS_S2.md) follows freeze `4b8efd4`, one run, 64/64 task receipts and verified cleanup. C1: 697/708 gold tests applicable and passing, with 11 unevaluable; C2: 60/63 eligible renamed tasks recovered; C3: 54/61 compiling mutants killed, with three tasks lacking a candidate and one compiling mutant incompletely applicable; C4: 63/64 wrong-task controls rejected or failing. Every original threshold passes and every miss remains. No model or graphics-device calls; controller wall time 417.948 seconds. The authored mutation builder and technical-attempt ledger passed their focused checks and the required suite: **731 passed, 3 skipped, zero failures in 446.40 seconds**, direct exit 0 ([receipt](phase2/mutation_ledger_publication_test.json)). Both coverage routes are admitted, but the actual train mutation/monitor manifest and measurements, full pilot driver and Phase 1 completion still precede learning. Anchors: Base 2,144/4,312 and half 1,536/4,312 RUNNING; full batch 1 1,024/4,312 WAIT_FOR_IDLE_DEVICE.
 

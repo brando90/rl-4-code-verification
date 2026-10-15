@@ -28,6 +28,7 @@ def authorize(plan):
         if digest(path) != sha: raise ValueError('hosted audit binding changed')
     config = lock['configuration']
     required = {str(Path(__file__).resolve()), str(Path(__file__).resolve().parent/'audit_coverage.py'),
+                str(Path(__file__).resolve().parent/'coverage_pack.py'),
                 config['prepared'], config['inputs'], config['cpu_rows'], config['train_ids'], config['route_identity'],
                 str(Path(__file__).resolve().parent/'coverage_controls.py'),
                 str(REPO/'src/rl4cv/valkyrie_transport.py')}

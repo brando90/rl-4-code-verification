@@ -71,20 +71,28 @@ def test_actual_frozen_prompt_render_pack_roundtrip_and_aggregation(tmp_path,mon
     task=h.PACK/'authored__0';(task/'tests').mkdir(parents=True)
     (task/'tests/gold.lean').write_text(Path(inputs['cells'][0]['source']['path']).read_text())
     (task/'instruction.md').write_text('Authored task\n```python\ndef identity(n):\n    return n\n```\n')
+    # Two compiled files expose accidental reuse of the rendered system prompt
+    # as the experiment label on subsequent files and in manifest metadata.
+    receipt=tmp_path/'strict_second.json'
+    receipt.write_text(json.dumps({'status':'measured','compile':True,'source_sha256':inputs['cells'][2]['source']['sha256']}))
+    rows[2].update(compile=True,strict_receipt={'path':str(receipt),'sha256':m.digest(receipt)})
     manifest=m.build(config,inputs,rows,module=h)
-    assert manifest['n_declared_ratings']==6 and manifest['compiled_files']==1
-    assert manifest['round_trip']=={'n_round_trip':3,'failures':[]} and len(manifest['cells_not_judged'])==127
+    assert manifest['n_declared_ratings']==12 and manifest['compiled_files']==2
+    assert manifest['round_trip']=={'n_round_trip':6,'failures':[]} and len(manifest['cells_not_judged'])==126
     assert len({r['prompt_sha256'] for r in manifest['cells']})==1
-    assert [r['repeat'] for r in manifest['cells']]==[1,2,3]
-    assert all(r['task_id_vb']=='audit_0/original' for r in manifest['cells'])
+    assert [r['repeat'] for r in manifest['cells']]==[1,2,3,1,2,3]
+    assert {r['task_id_vb'] for r in manifest['cells']}=={'audit_0/original',inputs['cells'][2]['cell_id']}
+    assert all(r['system']==m.SYSTEM for r in manifest['cells'])
+    assert all(r['system']==m.SYSTEM for r in json.loads((h.PRIVATE/'items.json').read_text()))
     assert manifest['model_calls']==0
     with pytest.raises(FileExistsError):m.build(config,inputs,rows,module=h)
     harvest=h.RESULTS/'harvests';harvest.mkdir()
     for member,values in zip(m.CONFIGS,([0,4,5],[1,2,5])):
         records=[{'task_id_vb':'audit_0/original','sample_idx':0,'is_audit_only':True,'item':'audit_000',
                   'status':'measured','score_raw':v} for v in values]
+        records += [{**r,'task_id_vb':inputs['cells'][2]['cell_id'],'item':'audit_002'} for r in records]
         (harvest/f'cells_train_audit__{member}.json').write_text(json.dumps({'cells':records,'charges_usd':0.}))
     assert h.fsc(m.SYSTEM)==0
     aggregate=json.loads((h.RESULTS/'fsc_train_audit.json').read_text())
     assert aggregate['cells']['audit_0/original#0']['FSC']==.6
-    assert m.combine(inputs,rows,aggregate,train=train)['coverage_known']==2
+    assert m.combine(inputs,rows,aggregate,train=train)['coverage_known']==3
