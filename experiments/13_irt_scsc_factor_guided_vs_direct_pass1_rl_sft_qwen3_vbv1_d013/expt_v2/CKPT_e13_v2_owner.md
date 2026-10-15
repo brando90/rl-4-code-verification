@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2_owner.md>
 
-**TLDR:** Experiment 13 version 2-S2 selects float16: C1 passed all A5 development margins on 8/8 train responses and 51,472 tokens (99th-percentile error 0.016339779 ≤ 0.08). C2 is not run. The S2 lock is frozen pending tested publication and one original-probe confirmation; Phase 1 remains pending that result. S1's measured LP-1 FAIL remains final (0.124769325 > 0.10).
+**TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-14-2026 17:41 PDT
+Last updated: 10-14-2026 17:54 PDT
 
 ## Current A5 continuation — 10-14-2026 17:26 PDT
 
@@ -24,6 +24,10 @@ Active execution (10-14-2026 17:34 PDT): candidate freeze **`6251b77`** is pushe
 Development selection (10-14-2026 17:41 PDT): **C1 float16 qualifies** on 8/8 responses, 51,472 generated tokens: unsupported 0, median error 0.0000225788681 ≤0.008, 99th percentile 0.0163397789 ≤0.08, truncation 0 ≤0.008. C2 will not run. [Report](RESULTS_LP1_A5.md), [evidence](LP1_A5/C1_result.json), [selected-condition lock](locks/LP1_A5_S2.json). The released lease used 0.103803370463/0.5 hours; A5 total 0.103803370463/3.0. No actual-data fit or optimizer update. Next: required tests, push the S2 lock, then one original-probe confirmation with unchanged thresholds.
 
 Confirmation-freeze verification (10-14-2026 17:45 PDT): **558 passed, 23 skipped, zero failures in 251.97 seconds**, direct exit 0 with Lean integration required. [Receipt](phase1/LP1_A5_S2_publication_test.json). No confirmation call has run; publish this lock before arming.
+
+Final S2 confirmation (10-14-2026 17:54 PDT): **PASS**, 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539 ≤0.01, 99th percentile 0.0176023889 ≤0.10, truncation 0 ≤0.01. Lock/result chronology: candidate freeze `6251b77` → C1 development → S2 freeze `f8ecbfa` → one original-probe confirmation. [Report](RESULTS_LP1_A5.md), [evidence](LP1_A5/C1_confirmation_result.json). Both A5 leases are released; A5 used 0.207209183243/3.0 hours. S1 FAIL is retained; C2 not run. Next: freeze an adequate anchor resource plan and resumable cell ledger, preserve the full-export tokenization across base/half/full, then generate and score the complete train anchor panel under float16. The existing G1 method lock must verify before any actual-data fit. No Brando action needed.
+
+Final admission publication check (10-14-2026 17:58 PDT): required Lean integration suite exited 0, **558 passed, 23 skipped, zero failures in 233.80 seconds**. [Receipt](LP1_A5/publication_test.json). Final S2 confirmation PASS is ready to publish; anchor implementation/resource preparation continues without any further admission measurement.
 
 ## Historical S1 closeout (final within S1)
 

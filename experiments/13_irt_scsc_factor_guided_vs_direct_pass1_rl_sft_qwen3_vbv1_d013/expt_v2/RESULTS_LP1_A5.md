@@ -2,9 +2,30 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/RESULTS_LP1_A5.md>
 
-**TLDR:** C1 float16 qualifies on the disjoint eight-task train development probe under every A5 margin, so it is selected as v2-S2. C2 float32 is not run. The selected setting is frozen in `locks/LP1_A5_S2.json`; original-probe confirmation has not run and must wait for this lock's tested publication. S1's measured failure remains final: 99th-percentile error 0.124769325 > 0.10 on 8/8 responses and 40,035 tokens.
+**TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
-Last updated: 10-14-2026 17:41 PDT
+Last updated: 10-14-2026 17:54 PDT
+
+## Final original-probe confirmation: PASS
+
+The selected float16 setting and `LP1_A5_S2.json` were pushed at **`f8ecbfa` before the confirmation launch**. The original eight-task probe, original per-task seeds, sampler, 8,192-token cap and original thresholds were unchanged. This is the only S2 confirmation attempt and its measured verdict is final. [Confirmation evidence](LP1_A5/C1_confirmation_result.json).
+
+| Criterion | Confirmation measured value | Original LP-1 ceiling | Verdict |
+|---|---:|---:|---|
+| Unsupported generated tokens | 0 / 44,844 | 0 | PASS |
+| Median absolute log-probability error | 3.2748153898865e-05 | 0.01 | PASS |
+| 99th-percentile absolute log-probability error | 0.0176023888587952 | 0.10 | PASS |
+| Importance-ratio truncation at cap 2 | 0 / 44,844 = 0 | 0.01 | PASS |
+
+Coverage is **8/8 responses**, 44,844 supported generated tokens, 28,164 prompt tokens, five terminal-token finishes and three token-cap finishes. Zero optimizer updates and zero retries. The fixed-probe technical statistics have no inferential interval or hypothesis test (p-val=n/a); this is numerical admission, not evidence of learning or reward efficacy.
+
+Fresh process/foreign-lease checks admitted skampere1 GPU 0 under new lease `e13v2-fc3db0de27f5464190c46426461eae0c`. The actual float16 engine passed its one-token non-probe preflight before the numbered attempt. The lease is RELEASED after all four cleanup checks passed without signals. Confirmation used **0.103405812780 device-hours** (372.260926 seconds) under its 0.5-hour cap. **A5 total is 0.207209183243/3.0 device-hours** across development and confirmation; S1's 0.115364423990 hours remain separate. Both A5 plans are retired, no A5 lease remains active, and the final private registry snapshot preserves the closed A5 accounting before any later phase allocation.
+
+The same ignored post-probability trainer destructor exception is retained in the confirmation log; process exit was 0 and cleanup passed. It neither changes this verdict nor permits a retry. No more A5 candidate or confirmation measurement is allowed.
+
+Transition: **continue PLAN §5 under v2-S2**, with a new float16 train anchor panel, then frozen calibration/items/F2, independent batch 2 and G1/H2 using the already published G1 driver/lock before any fit. Later Phase 2 technical gates remain mandatory. The current milestone admits generation; it does not claim that a training update, coverage audit, G1 or H2 has passed.
+
+Final admission publication check (10-14-2026 17:58 PDT): required Lean integration suite exited 0, **558 passed, 23 skipped, zero failures in 233.80 seconds**. [Receipt](LP1_A5/publication_test.json). Final S2 confirmation PASS is ready to publish; anchor implementation/resource preparation continues without any further admission measurement.
 
 ## Development result: C1 selected
 
@@ -31,7 +52,7 @@ The complete lease consumed **0.103803370463 device-hours** (373.692134 seconds)
 
 The trainer log retains the same ignored `Policy.__del__` teardown exception seen under S1: after explicit Ray shutdown, its destructor attempts automatic Ray initialization with an overlong temporary socket path. All eight probability receipts were already complete, the stage exited 0 and all four marked-process cleanup checks passed without signals. This is retained as a teardown limitation, not reclassified as an unmeasured infrastructure attempt.
 
-## Selected condition and pending confirmation
+## Selected condition and confirmation freeze (historical)
 
 [LP1_A5_S2.json](locks/LP1_A5_S2.json) freezes float16 identically for vLLM 0.10.0 and NeMo RL 0.4.0, with installed versions unchanged. It names the numerical change, all source replacements and each changed runtime binding, and preserves every unchanged S1 scientific binding at its prior hash. Every later generation/training path must use this condition if confirmation passes. Actual Phase 2 cost and training stability remain subject to the frozen later technical gates.
 

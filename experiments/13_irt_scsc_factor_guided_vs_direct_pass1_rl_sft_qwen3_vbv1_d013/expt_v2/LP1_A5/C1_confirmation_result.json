@@ -1,0 +1,217 @@
+{
+  "a5_stage": "confirmation",
+  "admission_statistics_computed": true,
+  "attempt_counted": true,
+  "attempt_number": 1,
+  "candidate": "C1",
+  "cleanup_verified": true,
+  "condition": "v2-S2",
+  "eos_tokens_in_mask": 5,
+  "generated_tokens": 44844,
+  "importance_ratio_cap": 2.0,
+  "importance_truncated_tokens": 0,
+  "importance_truncation_fraction": 0.0,
+  "interpretation": "Technical fixed-probe admission; p-val=n/a; no optimizer update",
+  "lease_id": "e13v2-fc3db0de27f5464190c46426461eae0c",
+  "median_absolute_logprob_error": 3.2748153898864985e-05,
+  "numerical_dtype": "float16",
+  "optimizer_updates": 0,
+  "p99_absolute_logprob_error": 0.017602388858795164,
+  "prompt_tokens": 28164,
+  "quantile_method": "linear",
+  "resource_seconds": 358.33600805699825,
+  "responses": 8,
+  "retries": 0,
+  "route": "skampere1-single-device-sequential-generation-and-trainer",
+  "sampler": {
+    "max_new_tokens": 8192,
+    "temperature": 1.0,
+    "top_k": -1,
+    "top_p": 1.0
+  },
+  "status": "PASS",
+  "supervisor_exit_code": 0,
+  "supported_tokens": 44844,
+  "terminal_token_ids": [
+    151643,
+    151645
+  ],
+  "threshold_source": "PROTOCOL sections 5 and 6; PLAN section 5 LP-1",
+  "token_cap_finishes": 3,
+  "unsupported_tokens": 0,
+  "S1_final": {
+    "status": "FAIL",
+    "responses": 8,
+    "generated_tokens": 40035,
+    "p99_absolute_logprob_error": 0.12476932525634762,
+    "threshold": 0.1
+  },
+  "freeze_revision": "f8ecbfa",
+  "collected_local": "10-14-2026 17:54 PDT",
+  "lease": {
+    "id": "e13v2-fc3db0de27f5464190c46426461eae0c",
+    "status": "RELEASED",
+    "host": "skampere1",
+    "index": 0,
+    "uuid": "GPU-4a898d48-860a-9abc-bda7-59057400018e",
+    "started_unix": 1792025181.0613797,
+    "released_unix": 1792025553.3223057,
+    "device_hours": 0.10340581278006236
+  },
+  "A5_device_hours_used": 0.20720918324258594,
+  "A5_device_hour_cap": 3.0,
+  "per_run_device_hour_cap": 0.5,
+  "raw_evidence": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/attempt.json",
+      "sha256": "2628fb8435b1adc08e9500b202447a9dd1746c3b4981f70664080eca184f2183"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/cleanup.json",
+      "sha256": "5b3f6456c95de3225649f2e1488ae1250392726295df695170a9939f9e94f5d4"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generate.log",
+      "sha256": "3a981aea619a82d14c2dbf0f69ac08854baabac8450fbdefa6dbd2c78afb63b1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00000.generation.json",
+      "sha256": "36cc1ce53f0bc95976429bc3926d3b03e0105a77e379001f571c3c70e619b410"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00000.probability.json",
+      "sha256": "81d1732d13453114468ad7609bb441f07c4fcd96b330a7aebcb75eb348d777fa"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00000.started.json",
+      "sha256": "237313d05a392d7c59249d1363ce28f3ef21f177c778f2aab4bfff06e6f05fd1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00001.generation.json",
+      "sha256": "8e252b52763aec2ad87bf87a863a835746c774726f1d0fcf18e75eb3feedd10f"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00001.probability.json",
+      "sha256": "68b845ffd20efd71d0550e07fd3843c2a6549a55739557d674c90b9dac7638ff"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00001.started.json",
+      "sha256": "4986e044bae0239bfb0c8e242b32cb733a86a2650b076d769b5917bc9d7396a1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00002.generation.json",
+      "sha256": "a0979706273ba1d5410bf882942f9ce0c7bfb82b128834a7d0d80547e0825f4e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00002.probability.json",
+      "sha256": "5734bf103cb440a10e9c92f873eb6b655aae9f6eee4cfdc70991f1534240503e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00002.started.json",
+      "sha256": "a8e65cecab735bc650ca51aefac16752c84d27aea3a7765ee7f790d708ea364c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00003.generation.json",
+      "sha256": "92246c9fc903e31128a8620b5254d6f7295c86d2cadb9c89269aa5a1f8581bb7"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00003.probability.json",
+      "sha256": "64c0044123095aa8d73c29e6ace156044b049651670a6eaf518a53397b6eb6e1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00003.started.json",
+      "sha256": "c49e1ffb29419872b0c1dfd49f7e2e63f559e896b7b92e3e1b124825a8895048"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00004.generation.json",
+      "sha256": "089758f591200e504e0e871e5b5d060a558ff617c6869fae1f93d03779b33290"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00004.probability.json",
+      "sha256": "863a0b5bbcfe1004a20bd424ed2cf2a0ac12400b69e7419df0758ef6180725d6"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00004.started.json",
+      "sha256": "a7bc2119855f180953cca04b882d0559aa026fdffff9ea00be1ba61108597ca9"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00005.generation.json",
+      "sha256": "3d61e00ff03cdffd7df507b1a3cafde460ed317c4acd10cb5bc289c194bdcdf9"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00005.probability.json",
+      "sha256": "4e216ab7ed325b5b4476b05ec65010becfba61d3f71af0420b025c9d49625b53"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00005.started.json",
+      "sha256": "23ab801363f8ef7e052420138389ba5d05871a6f52af04f79ddaec72ba74e45a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00006.generation.json",
+      "sha256": "78ad3908d8b08bfc6fda65140a190215737a8440caaa39899e97ff296448c238"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00006.probability.json",
+      "sha256": "9811707568f91427cf963783eed3675c671b6459de1e42d319f977431cf072af"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00006.started.json",
+      "sha256": "adb43b364730a0a3dcd0c169ca76115be34aca151f6441cdc874acd3c68b6330"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00007.generation.json",
+      "sha256": "974fc8aff9e0d9ba6c4667d5d8983696c89382657c08121ac8c62e13565db6b0"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00007.probability.json",
+      "sha256": "3b5acdad326937016de6f75768a66ecf1fd2b83edf6e5f58e0e6adea37840e99"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/00007.started.json",
+      "sha256": "2f6f6b47d5138df1aaf49458435fad83dd3886d2c2d42c04b52de8d45121b913"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/attempt.json",
+      "sha256": "894f2a99c9588f445195839001563f4e0b91b0f344a326e4e8a8b4dc044c4b1b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/batch_00000.raw.json",
+      "sha256": "031275da5534f503fed7444f9d672ea6cbbcc530a4b41f5ec3450115b7ffeb12"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/terminal.json",
+      "sha256": "cc89c79a7c17db767267903679f32e2da7e3cc9c5ad3c799a98c06a6afe998eb"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/generation/trainer_attempt.json",
+      "sha256": "59d9fc83532eead79fd771b2e0217302034c1ecf995702e0e3574ce3b5f1c7ee"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/launch.json",
+      "sha256": "c55a01a61284683835ae220eca37096848b07a3380d62c0b9e6480f51f057a90"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/preflight.json",
+      "sha256": "fa4d22f23679952046e6bc984f4f80b30574e6cfa774db1a08b4d09fa68ad833"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/preflight.log",
+      "sha256": "eb4625aba18d72a120ef2cfb7ff693de2a2b847382ee6c4801314b5e4ebc56f1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/result.json",
+      "sha256": "a552472ab131f18139df20e08f7ef59b0d1a10e7fa8cbc8b62f863385999ef7e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/statistics_started.json",
+      "sha256": "6bdac277faf1f672da20f5409480308cbcacd6c73b3133cf4991bf394ea9e8a2"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_confirmation/trainer.log",
+      "sha256": "165764d778b89227a786dc8cdf71eb215cb685c2347e663da34976b4210cd59e"
+    }
+  ],
+  "configuration_sha256": "40197b6734be01c423f0bd8f977bf5ace1bc7913586dad3b6bdf63b72a892e45",
+  "gate_lock_sha256": "1c0df04655633dccca8abc6049523a71a8c9d3f10b76fbed4576fda809dbacf3",
+  "uncertainty": "Fixed-probe technical arithmetic; no inferential confidence interval or hypothesis test (p-val=n/a)."
+}
