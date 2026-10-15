@@ -96,6 +96,12 @@ def run(config_path):
         result['admission_statistics_computed'] = True
         write_new(root/'statistics_started.json', {'attempt_number':config.get('attempt_number',1)})
         result.update(assess_probability(rows, eos_token_ids=manifest['terminal_token_ids']))
+        if 'a5_stage' in config:
+            from a5_admission import qualifies
+            result.update(condition='v2-S2', a5_stage=config['a5_stage'],
+                          candidate=config['candidate'], numerical_dtype=config['numerical_dtype'])
+            if config['a5_stage'] == 'development':
+                result['development_qualifies'] = qualifies(result)
         result.update(optimizer_updates=0, retries=0, lease_id=marker,
                       resource_seconds=config['maximum_seconds']-(deadline-time.monotonic()),
                       sampler={'temperature': 1., 'top_p': 1., 'top_k': -1, 'max_new_tokens': 8192},

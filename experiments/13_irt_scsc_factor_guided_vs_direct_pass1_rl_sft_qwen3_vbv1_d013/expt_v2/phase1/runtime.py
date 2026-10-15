@@ -15,11 +15,16 @@ from device_binding import check_visible_device
 
 def check_bindings(config):
     import importlib.metadata
+    if 'numerical_dtype' in config:
+        numerical_dtype(config)
     model = Path(config['model'])
     required = {Path(__file__).resolve(), Path(__file__).with_name('panel.py').resolve(),
                 Path(__file__).with_name('probability.py').resolve(), Path(__file__).with_name('lp1.py').resolve(),
                 Path(config['manifest']).resolve(), Path(config['train_ids']).resolve(),
                 Path(config['policy_config']).resolve(), Path(__file__).with_name('device_binding.py').resolve()}
+    if 'a5_stage' in config:
+        required.add(Path(__file__).with_name('a5_admission.py').resolve())
+        required.add(Path(__file__).with_name('a4_admission.py').resolve())
     model_files = [p for p in model.iterdir() if p.is_file()]
     if not any(p.suffix in ('.bin', '.safetensors') for p in model_files):
         raise ValueError('no frozen model weights')
@@ -52,9 +57,20 @@ def check_lease(config):
                 pass  # Process ended between the census and identity read.
 
 
+def numerical_dtype(config):
+    """Require the same frozen dtype on both installed numerical paths."""
+    dtype = config.get('numerical_dtype', 'bfloat16')
+    if dtype not in ('bfloat16', 'float16', 'float32'):
+        raise ValueError('unsupported numerical dtype')
+    policy = json.loads(Path(config['policy_config']).read_text())
+    if policy['precision'] != dtype or policy['generation']['vllm_cfg']['precision'] != dtype:
+        raise ValueError('generator/trainer numerical dtype mismatch')
+    return dtype
+
+
 def build_engine(config, manifest):
     from vllm import LLM
-    return LLM(model=config['model'], tokenizer=config['model'], dtype='bfloat16',
+    return LLM(model=config['model'], tokenizer=config['model'], dtype=numerical_dtype(config),
         tensor_parallel_size=1, max_model_len=manifest['max_model_len'],
         gpu_memory_utilization=config['gpu_memory_utilization'], enforce_eager=True,
         max_num_seqs=config['batch_size'], trust_remote_code=False, enable_prefix_caching=False,

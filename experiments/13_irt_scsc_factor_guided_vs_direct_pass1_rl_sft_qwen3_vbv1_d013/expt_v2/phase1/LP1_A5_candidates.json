@@ -1,0 +1,79 @@
+{
+  "A5_device_hour_cap": 3.0,
+  "S1_final": "LP1 FAIL: p99=0.12476932525634762 > 0.10; 8 responses, 40035 tokens; retained without retry",
+  "adoption_revision": "f9dd780",
+  "amendment": "A5",
+  "baseline_registry": {
+    "device_hours": 0.11536442399024963,
+    "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/registry_before_A5.json",
+    "sha256": "c2ecddce43dec1f1c956e9b0da4545678988caa1941fb2a83d198a368ef19193"
+  },
+  "candidates": [
+    {
+      "changes": {
+        "policy.generation.vllm_cfg.precision": "float16",
+        "policy.precision": "float16",
+        "vllm.LLM.dtype": "float16"
+      },
+      "configuration_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C1_dispatch_configuration.json",
+      "configuration_sha256": "784eb31cc59478fc37072fd65dbe2f188fdb6a1b915c3fe5936c3a0d62f6507d",
+      "dtype": "float16",
+      "id": "C1"
+    },
+    {
+      "changes": {
+        "policy.generation.vllm_cfg.precision": "float32",
+        "policy.precision": "float32",
+        "vllm.LLM.dtype": "float32"
+      },
+      "configuration_path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A5/C2_dispatch_configuration.json",
+      "configuration_sha256": "9036b26b3d5b6a534a99db40728e49ea1502733f4fb10814af637180ac204367",
+      "dtype": "float32",
+      "id": "C2"
+    }
+  ],
+  "condition": "v2-S2",
+  "confirmation_thresholds": {
+    "importance_truncation_fraction": 0.01,
+    "median_absolute_logprob_error": 0.01,
+    "p99_absolute_logprob_error": 0.1,
+    "unsupported_tokens": 0
+  },
+  "cost_order": "Expected Phase 2 cost: float16 before float32. Same low-precision tensor cores/storage class as S1 versus larger float32 tensors and dtype-selected fallback kernels. Estimate only, no candidate measurement.",
+  "development_draw": {
+    "algorithm": "random.Random(seed).sample(sorted(train minus original LP1 tasks),8)",
+    "generation_seed": "unchanged cell_seed(lp1, task, sample=0)",
+    "ids_serialization": "draw order, UTF-8 task ID plus newline each",
+    "overlap_original_probe": 0,
+    "seed": 1302151,
+    "task_count": 8,
+    "task_ids_sha256": "843f5f033b972a596bee6d463ba0e74dc883a481dca0b5a8cd64ea4390b8004b",
+    "test_count": 0,
+    "train_count": 539,
+    "validation_count": 0
+  },
+  "development_manifest_sha256": "75412ee55bef5d417bce4620a6a276a6fd279c015a1c42a6175c4828b119638c",
+  "development_thresholds": {
+    "importance_truncation_fraction": 0.008,
+    "median_absolute_logprob_error": 0.008,
+    "p99_absolute_logprob_error": 0.08,
+    "unsupported_tokens": 0
+  },
+  "installed_versions": {
+    "nemo-rl": "0.4.0",
+    "numpy": "1.26.4",
+    "omegaconf": "2.3.0",
+    "ray": "2.46.0",
+    "scipy": "1.16.1",
+    "torch": "2.7.1+cu128",
+    "transformers": "4.55.4",
+    "vllm": "0.10.0"
+  },
+  "measured_candidate_attempts": 0,
+  "original_probe_sha256": "19cc85e9d109695577ee24a5d0b403c349543dabe31c962602b68527175b142d",
+  "per_run_device_hour_cap": 0.5,
+  "preflight_in_budget": true,
+  "selection": "First candidate qualifying on all four margins. Stop development immediately; never revisit or append candidates.",
+  "status": "FROZEN",
+  "unchanged": "Sampler, 8192-token output cap, model weights except runtime dtype cast, model context, original confirmation tasks and seeds, importance cap 2, probability scorer, all downstream scientific thresholds; automatic attention selection and float32 log-softmax remain installed defaults."
+}

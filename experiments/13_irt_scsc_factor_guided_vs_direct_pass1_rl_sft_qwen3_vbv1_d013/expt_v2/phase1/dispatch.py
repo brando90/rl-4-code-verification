@@ -40,7 +40,10 @@ def published(plan):
     if digest(plan['configuration']) != lock['configuration_sha256']:
         raise RuntimeError('dispatch configuration differs from frozen lock')
     config = json.loads(Path(plan['configuration']).read_text())
-    if 'attempt_number' in lock:
+    if lock.get('amendment') == 'A5':
+        from a5_admission import validate_dispatch
+        validate_dispatch(lock, config)
+    elif 'attempt_number' in lock:
         bound = {b['path'] for b in lock['bindings']}
         if not set(lock['previous_attempts']+[lock['previous_configuration']]) <= bound:
             raise RuntimeError('A4 provenance is not bound')

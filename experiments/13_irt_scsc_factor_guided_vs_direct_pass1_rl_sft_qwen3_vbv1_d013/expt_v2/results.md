@@ -2,10 +2,24 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/results.md>
 
-**TLDR:** Experiment 13 version 2 stops at a final measured LP-1 FAIL under A4. Attempt 2 completed 8/8 responses and 40,035 generated tokens; its 99th-percentile log-probability error 0.124769325 exceeds the frozen 0.10 ceiling. Other criteria pass. A4 forbids attempt 3 after statistics; cleanup passed, both leases are released, and no downstream run is admitted. G0 remains PASS.
+**TLDR:** Experiment 13 version 2 continues under adopted A5 to select a separate numerical condition, v2-S2. S1's measured LP-1 FAIL remains final (99th-percentile error 0.124769325 > 0.10 over 40,035 tokens). Two candidates, float16 then float32, are being frozen with a seeded disjoint eight-task train probe before measurement. G0 remains PASS; no actual-data fit or downstream generation has run.
 
-Last updated: 10-14-2026 16:42 PDT
-Status: **STOPPED: final measured LP-1 FAIL under A4; attempt 3 not admitted.** [LP-1 failure and evidence](RESULTS_LP1.md) · [G0 PASS and exact bounds](RESULTS_G0.md).
+Last updated: 10-14-2026 17:26 PDT
+Status: **ACTIVE: A5 premeasurement preparation; S1 FAIL retained.**
+
+## Current A5 continuation — 10-14-2026 17:26 PDT
+
+Goal: select and confirm v2-S2 under [adopted A5](AMENDMENT_A5_numerics_condition_S2_after_LP1_fail_10-14-2026.md), then complete Phase 1 and Phase 2 if admitted. S1's failure below is historical and final; its stop is superseded only by the separate A5 condition.
+
+What ran: code-only implementation and 40 focused checks passed; six watchdog/fake-mailer checks passed. The old owner is idle at its prompt with no experiment child. This writer remains PID 1243923 in `codex-rl4cv-e13v2-owner-g0`. Fresh watchdog root `$WR/watchdog_a5`, run `e13v2_a5_owner_10-14-2026`, is registered. The installed cron schedule equals the twelve-line backup plus two A5 lines (14 total); the existing 15-minute device poller is retained. No A5 device call has started.
+
+Budget/device plan: at most 3.0 new device-hours for all A5 development and confirmation, at most 0.5 per run, including the one-token non-probe preflight and cleanup. The canonical experiment-13 registry retains S1's 0.115364424 hours; the A5 baseline is snapshotted before new allocations. Devices on skampere1/2/3 must be process-free and free of foreign leases/reservations at claim and recheck. This sequential generation/trainer route requires at least 40,000 MiB device memory; the permitted 16 GiB mercury generation-only route is not needed for this probe.
+
+Next: publish candidate list, probe hash, code, tests and first development lock; arm the existing poller; measure each candidate once in order, stopping at the first that clears all 20% margins. Freeze the selected condition before its one confirmation on the original probe. Infrastructure attempts obey A4; statistics make a result final. No Brando action is needed. Busy devices mean waiting, not ending the experiment.
+
+Publication verification (10-14-2026 17:33 PDT): required Lean integration suite exited 0, **558 passed, 23 skipped, zero failures in 245.04 seconds**. [Test receipt](phase1/LP1_A5_publication_test.json). The [candidate list](phase1/LP1_A5_candidates.json), disjoint probe hash and [C1 lock](locks/LP1_A5_C1.json) are frozen before any device measurement; each route verified 135 bindings and eight installed versions. Next action after push: arm C1 through the retained poller.
+
+## Historical S1 closeout (final within S1)
 
 Closeout verified: report and final G1 method published at `77558aa`; the A4 watchdog recorded exactly one stopped notification as **sent** to `brando.science@gmail.com`. Its receipt shows zero live experiment children, both leases released and all twelve cron lines preserved. [Completion receipt](LP1_A4/completion.json).
 

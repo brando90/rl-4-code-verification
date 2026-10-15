@@ -4,6 +4,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import random
 from pathlib import Path
 import time
 
@@ -33,12 +34,21 @@ def cell_seed(batch, task, sample):
     return int.from_bytes(hashlib.sha256(key.encode()).digest()[:4], 'big')
 
 
+def development_tasks(train_ids):
+    """Seeded outcome-blind train draw disjoint from the unchanged LP-1 tasks."""
+    original = set(sorted(train_ids, key=lambda t: hashlib.sha256(
+        ('e13v2-lp1\0' + t).encode()).hexdigest())[:8])
+    return random.Random(1302151).sample(sorted(set(train_ids) - original), 8)
+
+
 def validate_manifest(manifest, train_ids):
     batch = manifest['batch']; cells = manifest['cells']
+    development = batch == 'lp1_a5_dev'
+    probe = batch == 'lp1' or development
     train = set(train_ids)
-    if batch not in BATCHES or len(train_ids) != 539 or len(train) != 539:
+    if (batch not in BATCHES and not development) or len(train_ids) != 539 or len(train) != 539:
         raise ValueError('incorrect batch or train allowlist')
-    if len(cells) != (8 if batch == 'lp1' else 539 * 8):
+    if len(cells) != (8 if probe else 539 * 8):
         raise ValueError('incomplete declared panel')
     seen = set(); seeds = set()
     for cell in cells:
@@ -46,7 +56,7 @@ def validate_manifest(manifest, train_ids):
         expected = f'{batch}/{task}/{sample}'
         if task not in train or cell['split'] != 'train' or cell['cell_id'] != expected:
             raise ValueError('cell is outside the declared train cohort')
-        if (task, sample) in seen or cell['seed'] != cell_seed(batch, task, sample):
+        if (task, sample) in seen or cell['seed'] != cell_seed('lp1' if development else batch, task, sample):
             raise ValueError('duplicate cell or changed seed')
         if cell['seed'] in seeds:
             raise ValueError('seed collision in declared batch')
@@ -56,8 +66,11 @@ def validate_manifest(manifest, train_ids):
             raise ValueError('invalid prompt tokens')
         if len(tokens) + 8192 > manifest['max_model_len']:
             raise ValueError('prompt would shorten frozen generation cap')
-    if batch != 'lp1' and seen != {(t, s) for t in train for s in range(8)}:
+    if not probe and seen != {(t, s) for t in train for s in range(8)}:
         raise ValueError('anchor denominator changed')
+    if development:
+        if seen != {(t, 0) for t in development_tasks(train_ids)}:
+            raise ValueError('changed or overlapping A5 development probe')
     if batch == 'lp1':
         ranked = sorted(train, key=lambda t: hashlib.sha256(('e13v2-lp1\0' + t).encode()).hexdigest())[:8]
         if seen != {(t, 0) for t in ranked}:
@@ -66,7 +79,7 @@ def validate_manifest(manifest, train_ids):
 
 
 def check_prerequisites(batch, lp1=None, calibration=None):
-    if batch != 'lp1' and (not lp1 or lp1.get('status') != 'PASS'):
+    if batch not in ('lp1', 'lp1_a5_dev') and (not lp1 or lp1.get('status') != 'PASS'):
         raise ValueError('anchor generation requires published LP-1 PASS')
     if batch == 'full2' and (not calibration or calibration.get('status') != 'FROZEN'
                              or calibration.get('F2') != .75):
