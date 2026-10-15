@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 10:18 PDT
+Last updated: 10-15-2026 10:45 PDT
 
 ## Task and owner
 
@@ -297,6 +297,11 @@ Last updated: 10-15-2026 10:18 PDT
 - **A6 diagnostic attempt 2.** Generation is complete for 512 responses, and the lease was released at 1.4025 device-hours, within the 2.0 allocation; cumulative experiment device-hours are 27.48. The unchanged official scorer has closed 490/512 cell receipts, and the analysis (SOUND or UNSOUND) is pending. The learning-pilot lock stays unadmitted until a SOUND verdict is published.
 - **Owner working** (16 h 56 min), monitoring scoring and running the publication checks in parallel. The master armed a background wait (task `by41jbt7b`) for the analysis result.
 - **Healthy.** No active leases. The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## 10-15-2026 10:37 PDT: A6 pipeline diagnostic SOUND
+
+- **Verdict SOUND** (`$WR/phase1/A6/analysis/result.json`). This is `sft_4B_f1p0` on 64 train tasks × 8 samples, with the frozen S2 float16 runtime and the historical evaluation sampler (temperature 0.6, top-p 0.95, top-k 20). Compile and strict successes are both **48/496 measured (9.7%)**. 16 are missing (15 deterministic resource limits, 1 unresolved); extraction found 395 Lean file blocks and 101 responses with no Lean block. The threshold was strict > 0 and compile ≥ 0.926% (≥ 5/512), against a historical full-schedule validation rate of 100/1,080 = 9.26%.
+- **Meaning.** The pipeline (prompts, template, float16 numerics, official scorer) reproduces the historical success rate under the historical sampler. The 0/12,916 strict successes under the frozen rollout sampler (temperature 1, top-p 1) are a sampler effect, not a defect. Per A6, Phase 2 proceeds (LP, T1–T4, audits, pilot) with T5 applied to arm B's own reward and A's curve descriptive.
 
 ## Exact next commands (master)
 
