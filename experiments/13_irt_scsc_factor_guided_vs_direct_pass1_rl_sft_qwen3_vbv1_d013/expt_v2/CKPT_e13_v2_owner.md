@@ -5,9 +5,9 @@
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-15-2026 06:49 PDT
+Last updated: 10-15-2026 06:58 PDT
 
-## Current Phase 1 state — 10-15-2026 06:49 PDT
+## Current Phase 1 state — 10-15-2026 06:58 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
@@ -15,7 +15,9 @@ What ran: base generation COMPLETE 4,312/4,312; scoring closed, 4,311 measured, 
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`; full1 scorer PID 2428166 exited normally; all 4,312 receipts have verified cleanup and processor timing is retained. Eighteen cron lines preserve the original schedule additively. Busy devices remain a wait condition. No Brando action is needed.
 
-Next: freeze and publish the calibration inputs, then run the single calibration. Continue Phase 2 execution preparation in parallel. Freeze calibration/items/F2 before full batch 2, then G1/H2 and Phase 2; G1 method is already frozen before any actual fit.
+Next: launch the single calibration under its published method and input lock; publish fitted artifacts and F2 before independent full batch 2. Continue Phase 2 execution preparation in parallel. Freeze calibration/items/F2 before full batch 2, then G1/H2 and Phase 2; G1 method is already frozen before any actual fit.
+
+Calibration input freeze (10-15-2026 06:58 PDT): [input lock](locks/CALIBRATION_S2_INPUTS.json), SHA-256 `59f9754df5e44aef605be8b45b2e27f85af59c46609d6624e41a7d06d66fac49`, binds all three published scoring tables, all 12,936 declared train responses, 539 tasks, 400 task groups, the unchanged method and the timed one-shot launcher. All 15 bindings match. Missing observations retain their original status and are not imputed. Calibration and independent full batch 2 are absent. The method, five fixed initializations, actual-pattern synthetic recovery, numerical checks, sensitivity fits and F2 = 0.75 remain unchanged. Required suite **1,005 passed, 3 skipped, zero failures in 460.95 seconds**, direct exit 0 ([receipt](phase1/calibration_inputs_publication_test.json)). The first actual calibration follows this publication.
 
 Full1 scoring closure (10-15-2026 06:49 PDT): [scoring report](RESULTS_ANCHORS_S2.md) accounts for all 4,312 cells. Full batch 1 scoring closed: 4,302/4,312 measured, 10 missing, 0 strict successes, 0 retries; no integrity defects or unresolved cleanup. Full-denominator strict mean bounds [0.0, 0.002319109461966605]; descriptive 95% task-group bootstrap outer envelope [0.0, 0.003856624319419238], conditional on the fixed train panel, p-value not applicable (no hypothesis test). Processor cost: 17.35165 hours and 2869.3 elapsed seconds. Required suite **1,005 passed, 3 skipped, zero failures in 469.70 seconds**, direct exit 0 ([receipt](anchors_S2/full1_scoring_publication_test.json)). No actual calibration, independent batch 2, mutation measurement, new held-out outcome or experiment optimizer update ran.
 
