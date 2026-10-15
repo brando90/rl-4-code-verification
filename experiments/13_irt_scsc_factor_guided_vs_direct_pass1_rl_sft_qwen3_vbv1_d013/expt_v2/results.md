@@ -4,10 +4,10 @@
 
 **TLDR:** v2-S2 continues under the A6 clarification at `80fdd2a`. Diagnostic attempt 1 is INCOMPLETE-INFRA (0/512 responses, no statistic); attempt 2 is generating after the tested repair and successor lock were pushed at `d9df333`. Historical G1 is final INCONCLUSIVE, arm C is disabled, H2/F2 are UNAVAILABLE and independent batch 2 is skipped. The original cumulative 2.0 device-hour allocation remains binding.
 
-Last updated: 10-15-2026 09:10 PDT
+Last updated: 10-15-2026 09:30 PDT
 **Status:** A6 attempt 2 generating after d9df333; actual engine health preflight PASS. G1 final INCONCLUSIVE; C disabled.
 
-## Current state — 10-15-2026 09:10 PDT
+## Current state — 10-15-2026 09:30 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
@@ -16,6 +16,8 @@ What ran: all three train anchor score manifests closed with 12,916/12,936 measu
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; watchdog `$WR/watchdog_a5` remains active. Both earlier workers exited. Attempt 2 worker PID 3609618, start ticks 31692891, holds one active device-0 lease after two fresh idle observations. The 18-line additive cron schedule is preserved. The tested successor lock is published at `d9df333`; actual engine health preflight PASS. No Brando action is needed.
 
 Next: supervise attempt 2 through cleanup/release, publish its complete generation inventory and scoring-input lock, then score the frozen cohort once. Continue to the learning-pilot lock only if A6 is SOUND. Retain at most three attempts and charge all time against the same 2.0 device-hours.
+
+A6 learning and monitor preparation (10-15-2026 09:30 PDT): [controller successors](phase2/A6_PHASE2_METHOD.md) preserve A/P pilots at 30 updates and route B’s sole extension through its published own-reward T5 decision. B monitor checkpoints 40/50/60 retain the original paired cohort, sampler, scoring and stop rule. Eleven focused authored checks pass; required Lean integration suite **1,078 passed, 3 skipped, zero failures in 511.09 seconds**, direct exit 0 ([receipt](phase2/A6_learning_monitor_publication_test.json)). Attempt 2 has 320/512 durable responses, remains active on its original lease and has no scoring or soundness verdict. All 295 attempt-2 bindings verify unchanged. No batch 2 or actual Phase 2 gate is armed.
 
 A6 Phase 2 preparation (10-15-2026 08:50 PDT): [prospective admission and B-reward feasibility implementation](phase2/A6_PHASE2_METHOD.md) requires SOUND A6 and the exact H2/F2 waiver, keeps C disabled, and preserves every technical execution/measurement function. B’s actual reward-group receipts determine T5; A lengths remain the token-budget source. Twenty-five focused authored checks pass, including exclusive gate evaluation and the sole B extension. No learning-pilot lock or actual technical/learning gate is admitted; attempt 2 continues separately. Required Lean integration suite: **1,067 passed, 3 skipped, zero failures in 511.40 seconds**, direct exit 0 ([receipt](phase2/A6_phase2_preparation_publication_test.json)). Attempt 2 has 192/512 durable responses at 09:09 PDT, no scoring yet.
 
