@@ -260,6 +260,7 @@ Last updated: 10-15-2026 05:18 PDT
 
 - **Anchors.** Base and half are COMPLETE at 4,312/4,312 each. full1 is at 4,096/4,312, with its final segment 17 (216 responses) RUNNING on owned GPU 0 under a lease with 7,102 s left, and 0 exhausted cells. Cumulative device-hours are 25.59 across 56 leases.
 - **Owner working** (11 h 56 min). The final-analysis driver is published (`2029faa`). It is preparing the prospective pilot-lock helper, which binds the runtime, probes, final scientific gates and resource limits, with the cost recipe still pending.
+- **Half scoring closed** (`9a3dd32`): 4,303/4,312 measured, 9 unavailable (8 deterministic timeouts, 1 frontend failure), **0 strict successes** (bounds [0, 0.00209]). Base scoring also had 0/4,311. **Watch item:** under the frozen Phase 2 sampler (temperature 1, top-p 1, float16), neither Base nor the 50% rung solves any train task. If the full1 rung (the Phase 2 start) is also near zero, three risks follow, all governed by the frozen rules with no change made: arm A gets almost no strict signal; H2 (mixed-group AUC) may be one-class; T5 (A's learning gate) may fail. For comparison, the historical validation ladder used for G0 had 14–21 later-positive tasks among the zero-earlier-success subset. full1 scoring is the decisive number.
 - **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
 
 ## Exact next commands (master)
