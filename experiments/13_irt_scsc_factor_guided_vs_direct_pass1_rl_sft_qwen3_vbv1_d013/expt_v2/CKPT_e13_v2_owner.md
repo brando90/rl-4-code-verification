@@ -5,13 +5,13 @@
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-15-2026 00:14 PDT
+Last updated: 10-15-2026 00:26 PDT
 
-## Current Phase 1 state — 10-15-2026 00:14 PDT
+## Current Phase 1 state — 10-15-2026 00:26 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
-What ran: v2-S2 anchors retain Base 3,456, half 2,528 and full batch 1 1,696 of 4,312 responses each at 10-15-2026 00:14 PDT, all RUNNING. Hosted judge and hidden-test controls remain final PASS. Hosted train-audit admission and bounded learning-stage supervision passed the required suite: 803 passed, 3 skipped. Actual benchmark mutation audits, anchor scores, actual-data fits, independent full batch 2 and experiment optimizer updates remain zero.
+What ran: v2-S2 anchors retain Base 3,584, half 2,592 and full batch 1 1,792 of 4,312 responses each at 10-15-2026 00:26 PDT, all RUNNING. Hosted judge and hidden-test controls remain final PASS. Historical evaluation contract and bounded learning-resource preparation passed the required suite: 813 passed, 3 skipped. Actual benchmark mutation audits, anchor scores, actual-data fits, independent full batch 2, evaluation measurements and experiment optimizer updates remain zero.
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Eighteen cron lines equal the prior sixteen plus two environment-corrected anchor-poller entries. Busy devices remain a wait condition. No Brando action is needed.
 
@@ -210,3 +210,6 @@ Coverage-monitor and learning-admission preparation (10-14-2026 23:53 PDT): the 
 
 
 Hosted audit and learning supervision preparation (10-15-2026 00:14 PDT): [launchers](phase2/README.md) retain one immutable hosted admission per judge member, actual executable and complete declared receipt checks, missing ratings/charges and repeated-rating variability. The learning launcher binds each stage to its published run admission and canonical local lease, resolves a fresh numeric device index, retains child identity and releases only after verified cleanup. Ten focused checks pass, including a real failing non-device child and unresolved-cleanup retention. Required suite: **803 passed, 3 skipped, zero failures in 414.12 seconds**, direct exit 0 ([receipt](phase2/hosted_learning_supervisor_publication_test.json)). These are preparation; actual audit inputs/service/execution locks and the complete learning controller still precede calls. Anchors retain Base 3,456, half 2,528 and full batch 1 1,696 of 4,312 responses each, all RUNNING. No actual audit measurement, anchor score, fit or experiment optimizer update has run.
+
+
+Evaluation and learning-resource preparation (10-15-2026 00:26 PDT): the [evaluation method](phase2/EVALUATION_S2_METHOD.md) preserves historical ladder sampling (temperature 0.6, top-p 0.95, top-k 20, 12,288 tokens, thinking on and the historical seed mapping), full validation/test counts, missing-value bounds and later-checkpoint tie selection. The [learning resource poller](phase2/README.md) retains per-run and cumulative limits, every failed/unresolved lease charge, busy-device waits and fresh ownership checks. Ten focused tests pass. Required suite: **813 passed, 3 skipped, zero failures in 420.84 seconds**, direct exit 0 ([receipt](phase2/evaluation_learning_resources_publication_test.json)). Evaluation execution/analysis and the complete learning controller remain preparation work. Anchors retain Base 3,584, half 2,592 and full batch 1 1,792 of 4,312 responses each, all RUNNING. No anchor score, actual audit, fit, new evaluation or experiment optimizer update has run.
