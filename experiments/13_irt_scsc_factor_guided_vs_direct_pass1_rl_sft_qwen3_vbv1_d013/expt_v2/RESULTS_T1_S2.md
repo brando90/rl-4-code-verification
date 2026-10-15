@@ -11,3 +11,5 @@ The trainer failed in `ray.init`, before model construction or any trainer proba
 All three leases are RELEASED with verified cleanup. Cumulative T1 usage is **0.168878405 device-hours**, inside the unchanged **1.5-hour per-attempt and 2.0-hour cumulative** caps. The complete technical allocation stays 23.75 device-hours. A4 admits the next numbered complete-gate attempt only after a verified infrastructure repair; at most three attempts, and any computed gate statistic is final. No optimizer update, mutation-audit measurement or new held-out response occurred.
 
 Required Lean integration: **1,121 passed, 3 skipped, zero failures in 497.20 seconds**, direct exit 0 ([receipt](phase2/T1_A6_publication_test.json)). This verifies the published implementation; it does not turn the observed infrastructure defect into a gate PASS. The repair is pending at this publication.
+
+The [Ray path repair and successor LP](phase2/T1_A4_REPAIR.md) now pass nine focused checks and the required full suite (1,124 passed, 3 skipped, direct exit 0). All scientific settings and caps are unchanged. The separate A4 record binds their published revision before attempt 2.

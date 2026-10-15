@@ -4,10 +4,10 @@
 
 **TLDR:** v2-S2 T1 attempt 1 is INCOMPLETE-INFRA: generation 8/8, trainer probabilities 0/8, no admission statistic. Ray rejected a 148-byte Unix-socket path against Linux's 107-byte limit. Cleanup is verified and all three leases are released; A4 permits attempt 2 after a tested repair and successor-lock publication. The experiment continues; C is disabled, H2/F2 unavailable, batch 2 skipped.
 
-Last updated: 10-15-2026 15:47 PDT
+Last updated: 10-15-2026 16:02 PDT
 **Status:** T1 infrastructure repair; no gate verdict or experiment stop.
 
-## Current state — 10-15-2026 15:47 PDT
+## Current state — 10-15-2026 16:02 PDT
 
 Goal: complete the experiment through its admitted gates, or publish the binding transition result. Continue under A6 with unchanged S2 numerics and rollout sampler.
 
@@ -15,9 +15,11 @@ What ran: [LP freeze](phase2/LP_A6_S2_FREEZE.md) published at `970d274`; T1 atte
 
 Supervision: owner PID 1243923 remains the only writer. The T1 controller exited after HALTED, all three leases are released and cleanup is verified. Cumulative T1 usage is 0.168878405/2.0 device-hours. Watchdog and cron remain armed; no automatic gate retry is running.
 
-Next: reproduce the 148-byte socket-path defect without devices, repair shared trainer path handling and add a preflight; freeze a successor LP with byte-identical science and unchanged allocation, publish after required tests, then run complete T1 attempt 2. Attempt-1 outputs never enter the final gate statistic. A4 allows at most three attempts.
+Next: publish the verified source/lock step, then the A4 admission record for the [Ray socket repair](phase2/T1_A4_REPAIR.md) and successor LP. Then publish the A4 admission record binding those exact revisions and run complete T1 attempt 2. The installed Ray error was reproduced, a real socket and zero-device CPU cluster passed, and all nine focused tests pass. Attempt-1 outputs never enter the final gate statistic. A4 allows at most three attempts.
 
 Brando to-do: none. Existing SNAP preapproval covers the frozen technical allocation; no provider charge or inherited experiment-08 budget is used.
+
+T1 A4 repair preparation (10-15-2026 15:54 PDT): [repair method](phase2/T1_A4_REPAIR.md), nine focused checks PASS, real installed Ray error reproduced, zero-device cluster health task completed. The successor binds 4,681 files, retains 4,674 prior hashes, and keeps the complete scientific signature and allocation hash unchanged. Device-free planned-path preflight passes at 101/107 bytes; empty preparation directories removed. Required integration suite **1,124 passed, 3 skipped, zero failures in 608.36 seconds**, direct exit 0 ([receipt](phase2/T1_A4_full_test.json)); no attempt-2 claim or model call.
 
 T1 infrastructure closure (10-15-2026 15:47 PDT): [attempt 1 INCOMPLETE-INFRA](RESULTS_T1_S2.md), no statistic, 0.168878405 device-hours, zero active leases. Actual failure is Ray Unix socket path length, not a model/scorer outcome. Required integration suite 1,121 passed, 3 skipped, zero failures, direct exit 0 in 497.20 seconds. A4 repair and successor freeze follow; no completion email or terminal marker.
 

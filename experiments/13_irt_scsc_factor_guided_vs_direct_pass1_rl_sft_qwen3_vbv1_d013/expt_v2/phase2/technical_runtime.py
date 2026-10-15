@@ -35,7 +35,7 @@ def verify(config,stage):
     # Every authored runtime dependency must be explicit, including the unchanged
     # admitted device binding, probability and common-tokenizer engine paths.
     for name in ('technical_runtime.py','generation_core.py','trainer_core.py','training_checkpoint.py',
-                 'training_data.py','worker_state.py'):
+                 'training_data.py','worker_state.py','ray_paths.py'):
         bound(config,HERE/name)
     for name in ('runtime.py','device_binding.py','anchor_runtime.py','panel.py','probability.py'):
         bound(config,PHASE1/name)
@@ -138,6 +138,10 @@ def probabilities(config,cells):
 
 def run(config,stage):
     verify(config,stage)
+    if stage in ('preflight','evaluation_preflight'):
+        from ray_paths import preflight as socket_preflight
+        write_new(Path(config['attempt_root'])/'ray_socket_preflight.json',
+                  socket_preflight(config['ray_temp']))
     if stage=='evaluation_preflight':
         import runtime,evaluation_generation
         runtime.build_engine=lambda c,m:evaluation_generation.build_engine(c)
