@@ -6,11 +6,11 @@
 
 - **Plan:** revision 2, after the single light review (FAIL, with all 13 findings fixed).
 - **Admission:** G0 was admitted under A3 on 10-14-2026 ([admission record](R2_A3_ADMISSION_10-14-2026.md)).
-- **G0:** PASS (`120c558`). LP-1 attempt 1 stopped on a launcher defect before measuring anything, and [Amendment A4](AMENDMENT_A4_technical_gate_infrastructure_attempts_10-14-2026.md) admits attempt 2 after a fix. The owner runs [cc_resume_g0.md](cc_resume_g0.md) onward.
+- **G0:** PASS (`120c558`). LP-1 under S1 is a measured FAIL (99th-percentile error 0.1248 > 0.10). [Amendment A5](AMENDMENT_A5_numerics_condition_S2_after_LP1_fail_10-14-2026.md) opens one numerics-only condition, S2, selected on a development probe and confirmed once.
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-14-2026 16:16 PDT
+Last updated: 10-14-2026 17:17 PDT
 
 ## Task and owner
 
@@ -178,6 +178,16 @@ Last updated: 10-14-2026 16:16 PDT
 
   An attempt that measures its statistics is final. The scientific gates keep the no-retry rule.
 - **Next.** The same owner (`codex-rl4cv-e13v2-owner-g0`) receives A4: fix the device mapping, add the preflight and `locks/LP1_A4.json`, push, then let the poller run LP-1 attempt 2. skampere1 GPUs 1, 2, 4 and 7 were idle at 16:14.
+
+## Check-in 10-14-2026 17:14 PDT: LP-1 attempt 2 measured FAIL under S1; Amendment A5 adopted
+
+- **LP-1 attempt 2** (lock `957efca`, result `77558aa`, closeout `d1d675c`). It ran on skampere1 GPU 0 (A100) from 16:30:46 to 16:36:49, with the numeric device mapping and a passing engine preflight. Over 8/8 responses and 40,035 tokens: unsupported 0, median error 0.000303 (≤ 0.01), truncation at cap 2 0/40,035, all passing. The 99th-percentile error was **0.1248 > 0.10, FAIL**, final under A4. Cumulative usage is 0.115 of 0.6 device-hours, both leases are released, the watchdog emailed once, and the owner went idle.
+- **Master decision at 17:17 PDT:** [Amendment A5](AMENDMENT_A5_numerics_condition_S2_after_LP1_fail_10-14-2026.md), adopted after the observation and disclosed as such. S1 (bfloat16 vLLM 0.10.0 with the bfloat16 NeMo RL 0.4.0 trainer) is final at LP-1 FAIL. One separately versioned condition, S2, may change only numerical execution, identically for generator and trainer. The rules:
+  - at most 4 candidates, frozen in cost order before any measurement;
+  - S2 is the first candidate to clear every criterion with a 20% margin on a disjoint, train-only development probe;
+  - S2 is confirmed **once** on the original frozen probe with unchanged thresholds; if it fails, version 2 stops;
+  - device use is capped at 3.0 device-hours.
+- **Next.** Brief the owner with A5. G1's driver and method lock (`G1_A3.json`) are published and unexecuted.
 
 ## Exact next commands (master)
 
