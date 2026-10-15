@@ -4,18 +4,20 @@
 
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
-Last updated: 10-14-2026 23:26 PDT
+Last updated: 10-14-2026 23:38 PDT
 Status: **ACTIVE: all three v2-S2 anchor panels generating.**
 
-## Current Phase 1 state — 10-14-2026 23:26 PDT
+## Current Phase 1 state — 10-14-2026 23:38 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
-What ran: v2-S2 anchors retain Base 2,976, half 2,080 and full batch 1 1,344 of 4,312 responses each at 10-14-2026 23:26 PDT, all RUNNING. The cron PATH repair preserves the original anchor freeze. Hosted judge and hidden-test controls remain final PASS. Train-audit input and processor execution preparation passed the required suite: 774 passed, 3 skipped, including an authored real oracle/hidden-test path. The 32-group/128-cell cohort remains frozen. Actual benchmark mutation audits, anchor scores, actual-data fits, independent full batch 2 and experiment optimizer updates remain zero.
+What ran: v2-S2 anchors retain Base 3,104, half 2,176 and full batch 1 1,440 of 4,312 responses each at 10-14-2026 23:38 PDT, all RUNNING. Hosted judge and hidden-test controls remain final PASS. Train-only hosted audit pack and complete-group token-boundary generation preparation passed the required suite: 781 passed, 3 skipped. The frozen audit cohort has 339 extracted reference tests on 31/32 tasks; every task remains. Actual benchmark mutation audits, anchor scores, actual-data fits, independent full batch 2 and experiment optimizer updates remain zero.
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Eighteen cron lines equal the prior sixteen plus two environment-corrected anchor-poller entries. Busy devices remain a wait condition. No Brando action is needed.
 
 Next: complete Phase 2 runtime preparation while the full manifests generate; publish each completed generation/scoring gate. Freeze calibration/items/F2 before full batch 2; then G1/H2 and Phase 2. G1's existing method lock has verified before any fit. The validated-judge transport retains its separate admission requirements.
+
+Hosted audit pack and token-boundary generation preparation (10-14-2026 23:38 PDT): [helpers](phase2/README.md) use the actual frozen judge renderer, pack parser and three-repeat/member ensemble aggregator on authored inputs, with zero model calls. The learning generator retains whole eight-response groups at token boundaries and never generates an unused tail. Seven focused checks pass. Required suite: **781 passed, 3 skipped, zero failures in 418.01 seconds**, direct exit 0 ([receipt](phase2/audit_pack_generation_publication_test.json)). [Fixed-cohort hidden-suite inputs](phase2/train_audit_hidden_suites.json) contain 339 reference tests on 31/32 tasks; the no-test task and all its variants remain declared with unavailable hidden-test coverage. Actual audits still require source/execution freezes and hosted admission. Anchors retain Base 3,104, half 2,176 and full batch 1 1,440 of 4,312 responses each, all RUNNING; no anchor score, actual audit measurement, fit or experiment optimizer update has run.
 
 Train audit processor preparation (10-14-2026 23:26 PDT): [input provenance and bounded execution](phase2/README.md) preserve the fixed 128-cell audit denominator, reuse original anchor scores, and require published full-batch-1 receipt identities before mutation scoring. Every new mutation has one recorded processor attempt; completed results recover without replay. Corrected hidden-test results remain independent, and partial applicability is diagnostic rather than a fabricated full-coverage value. Ten focused tests pass, including the actual unchanged Lean oracle and hidden-test adapter on an authored fixture. Required suite: **774 passed, 3 skipped, zero failures in 415.56 seconds**, direct exit 0 ([receipt](phase2/audit_cpu_publication_test.json)). Hosted audit inputs and the final execution lock remain pending. Anchors retain Base 2,976, half 2,080 and full batch 1 1,344 of 4,312 responses each, all RUNNING; actual benchmark audits, anchor scores, fits, independent batch 2 and experiment optimizer updates remain zero.
 
