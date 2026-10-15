@@ -205,3 +205,23 @@ def test_e09_judge_service_registers_on_tracker(tmp_path, monkeypatch):
                            "--auth-secret", "rl4cv-e09-batch-bearer", "--auth-header", "Authorization"]]
     receipt = json.loads(judge.receipt.read_text())
     assert receipt["valkyrie_registration"]["auth_secret"] == "rl4cv-e09-batch-bearer"
+
+
+def test_gateway_secret_is_remapped_at_run_start():
+    assert hosted.secret_args() == ["--secret", "MODEL_GATEWAY_API_KEY", "brandoModelGatewayApiKey"]
+    judge = (E08V2 / "judge_rl4cv_e08v2.py").read_text()
+    batch = (E09 / "judge_batch_e09.py").read_text()
+    assert "*task_filter, *hosted.secret_args()]" in judge and "*hosted.secret_args()]" in batch
+    assert 'BUNDLE_SAME_AS_V1 = ("contract.yaml", "judge_call.py", "setup.sh")' in judge
+
+
+def test_argon_admit_remaps_gateway_secret(tmp_path, monkeypatch):
+    argon = load(REPO / "scripts/argon_qa/argon_qa.py", "argon_qa_admit_under_test")
+    monkeypatch.setattr(argon, "HOME", tmp_path)
+    seen = []
+    monkeypatch.setattr(argon, "valkyrie", lambda *args, **kw: seen.append(args) or subprocess.CompletedProcess(
+        args, 0, "run 01234567-89ab-cdef-0123-456789abcdef admitted", ""))
+    assert argon.cmd_admit(types.SimpleNamespace(label="t", force=False)) == 0
+    args = list(seen[0])
+    i = args.index("--secret")
+    assert args[i:i + 3] == ["--secret", "MODEL_GATEWAY_API_KEY", "brandoModelGatewayApiKey"]

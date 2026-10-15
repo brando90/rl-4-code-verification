@@ -317,7 +317,7 @@ def cmd_admit(args) -> int:
     if state.get("run_id") and not args.force:
         raise SystemExit(f"run {state['run_id']} is already admitted; refusing a second admission")
     command = ["run", "start", "--agent", AGENT, "--benchmark", BENCHMARK, "--dataset", "default", "--model", MODEL,
-               "--concurrency", "2", "--label", args.label]
+               "--concurrency", "2", "--label", args.label, *hosted.secret_args()]
     for key, value in RUN_KWARGS.items():
         command += ["-k", key, value]
     done = valkyrie(*command)

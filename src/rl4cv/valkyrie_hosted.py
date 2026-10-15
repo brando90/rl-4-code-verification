@@ -8,6 +8,10 @@ nothing. A custom benchmark service is registered on the Tracker instead:
     valkyrie secret set <benchmark>-bearer            # value "Bearer <token>", piped on stdin
     valkyrie benchmark service set <benchmark> <url> --auth-secret <benchmark>-bearer --auth-header Authorization
 
+The frozen agent bundles (vb103_judge, vb103_single_call, vb106_rater_v2) are pushed byte-identical; their
+contract.yaml still names the old slash secret, which a tenant cannot create, so every `run start` remaps it with
+`--secret MODEL_GATEWAY_API_KEY brandoModelGatewayApiKey` (run secrets override contract secrets).
+
 Registration needs a login (`valkyrie login`), not an access key, and must be repeated after every tunnel
 restart because the URL changes. Secret values never reach the command line, logs or receipts.
 """
@@ -24,7 +28,9 @@ from pathlib import Path
 from typing import Callable, Iterable
 
 SECRET_NAME_RE = re.compile(r"^[A-Za-z0-9_+=.@-]{1,128}$")
-GATEWAY_SECRET = "brandoModelGatewayApiKey"   # slash-free tenant secret holding the Vals model-gateway credential
+# Slash-free tenant secret holding the Vals model-gateway credential (same name and override as veribench's helper).
+GATEWAY_SECRET = os.environ.get("VB_GATEWAY_SECRET", "brandoModelGatewayApiKey")
+GATEWAY_ENV = "MODEL_GATEWAY_API_KEY"
 DEAD_ENV = ("VALKYRIE_CONFIG_PATH", "VALKYRIE_ENV")
 WHOAMI_RE = re.compile(r"^(?P<who>.+?) in (?P<org>.+?) on (?P<url>\S+) \(using (?P<credential>[^)]+)\)\s*$")
 PROVIDER_RE = re.compile(r"^(?P<default>[* ]) (?P<name>\S+) (?:→|->) (?P<secret>\S+)\s*$")
@@ -59,6 +65,13 @@ def run(args: list[str], *, env: dict[str, str] | None = None, input: str | None
     return runner([executable(), *args], env=cli_env() if env is None else env, input=input,
                   stdin=None if input is not None else subprocess.DEVNULL, capture_output=True, text=True,
                   timeout=timeout)
+
+
+def secret_args() -> list[str]:
+    """`valkyrie run start` arguments that map the gateway credential to the slash-free organization secret."""
+    if not SECRET_NAME_RE.match(GATEWAY_SECRET):
+        raise HostedValkyrieError(f"invalid gateway secret name {GATEWAY_SECRET!r}")
+    return ["--secret", GATEWAY_ENV, GATEWAY_SECRET]
 
 
 def parse_whoami(text: str) -> dict:
