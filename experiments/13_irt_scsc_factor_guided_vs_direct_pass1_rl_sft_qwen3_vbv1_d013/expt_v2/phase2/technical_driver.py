@@ -21,10 +21,11 @@ from costs import snapshot, stage_cost
 
 ORDER = {'T1': ('generate', 'probabilities'),
          'T2': ('generate_update', 'score', 'update', 'export', 'generate_refit', 'probabilities_refit'),
-         'T3': ('replay',)}
+         'T3': ('replay',), 'T4': ('evaluation_generate','evaluation_score')}
 KINDS = {'generate': 'generate', 'probabilities': 'probabilities', 'generate_update': 'generate',
          'update': 'update', 'export': 'export', 'generate_refit': 'generate',
-         'probabilities_refit': 'probabilities', 'replay': 'replay', 'preflight': 'preflight'}
+         'probabilities_refit': 'probabilities', 'replay': 'replay', 'preflight': 'preflight',
+         'evaluation_generate':'evaluation_generate'}
 
 
 def reference(path):
@@ -77,6 +78,13 @@ def authorize(plan):
                 or result.get('status') != 'PASS' or result.get('science_sha256') != science
                 or result.get('admission_statistics_computed') is not True):
             raise ValueError('preceding gate has no published same-science PASS')
+    if gate == 'T4':
+        for name in ('evaluation_generation.py','evaluation_contract.py','score_evaluation.py','cost_recipe.py'):
+            source=HERE/name
+            if bound.get(str(source))!=digest(source):raise ValueError('T4 executable dependency unbound')
+        for key in ('evaluation_probe','cost_recipe'):
+            if configuration[key]!=lock['science'][key]:raise ValueError('T4 prospective inputs differ from LP')
+            read(configuration[key])
     if gate == 'T3':
         # Resolve a future result through its published T2 input inventory; its
         # unknown hash must not be fabricated in the prospective LP lock.
@@ -97,6 +105,9 @@ def dynamic_config(config, gate, key, root, lease):
     value.update(stage=stage, stage_root=str(stage_root/'output'), attempt_root=str(stage_root/'health'),
                  lease_path=str(stage_root/'lease.json'), lease_id=lease['id'],
                  ray_temp=str(stage_root/'ray'))
+    if gate=='T4':
+        stage='evaluation_preflight' if key=='preflight' else 'evaluation_generate'
+        value.update(stage=stage,manifest=config['evaluation_probe']['path'],allowlist=value['train_ids'],max_model_len=32768)
     probe = 'update_probe' if key == 'generate_update' else 'probability_probe'
     value['cells_path'] = config[probe]['path']
     if key == 'probabilities': value['generation_root'] = str(root/'generate/output')
@@ -116,6 +127,7 @@ def dynamic_config(config, gate, key, root, lease):
         raise ValueError('immutable runtime input changed before materialization')
     paths = {Path(b['path']) for b in value['bindings']}
     paths.add(Path(value['cells_path']))
+    if gate=='T4':paths.add(Path(value['manifest']))
     if key == 'update': paths.add(Path(value['groups_path']))
     for field in ('generation_root', 'checkpoint', 'source_update'):
         if value.get(field): paths.update(p for p in Path(value[field]).rglob('*') if p.is_file())
@@ -149,7 +161,43 @@ def cpu_scores(config, root, execution):
     return {'status': 'COMPLETE', 'groups': reference(path), 'scoring': reference(Path(score_config['root'])/'result.json')}
 
 
-def evaluate(gate, config, root, admission):
+def evaluation_scores(config,root,execution):
+    from score_evaluation import score_manifest
+    manifest=read(config['evaluation_probe']);generation=root/'evaluation_generate/output'
+    terminal=json.loads((generation/'result.json').read_text())
+    if terminal.get('status')!='COMPLETE' or terminal.get('completed')!=8:
+        raise ValueError('complete train-only evaluation cost probe required')
+    sources={cell['cell_id']:reference(generation/f'{i:05d}.generation.json') for i,cell in enumerate(manifest['cells'])}
+    scoring={**config['scoring'],'root':str(root/'evaluation_score'),'purpose':'T4_train_cost','split':'train',
+             'allowlist':config['runtime']['train_ids']}
+    return score_manifest(manifest,scoring,sources,digest(execution))
+
+
+def evaluate_cost(plan,config,root,admission):
+    from cost_recipe import materialize,gate
+    prepared=published(plan['cost_inputs'],plan['repository'])
+    if (prepared.get('gate'),prepared.get('condition'),prepared.get('status'))!=('T4_COST_INPUTS','v2-S2','FROZEN'):
+        raise ValueError('published T4 measurement inputs required')
+    if prepared.get('LP_sha256')!=plan['LP']['sha256'] or prepared.get('attempt_sha256')!=digest(admission):
+        raise ValueError('T4 cost inputs belong to another admitted attempt')
+    if prepared['recipe']!=config['cost_recipe']:raise ValueError('T4 prospective projection recipe changed')
+    sources=prepared['sources'];artifacts=[Path(plan['cost_inputs']['path']),Path(config['cost_recipe']['path'])]
+    for ref in sources.values():
+        read(ref);artifacts.append(Path(ref['path']))
+    measurements=read(prepared['measurements']);artifacts.append(Path(prepared['measurements']['path']))
+    # The cost-input publication includes the actual T4 generation/scoring and
+    # timed stage costs, not only a hand-written aggregate measurement table.
+    required=[root/'evaluation_generate/output/result.json',root/'evaluation_score/result.json',
+              root/'costs/evaluation_generate.json',root/'costs/evaluation_score.json']
+    supplied={str(Path(ref['path']).resolve()):ref['sha256'] for ref in sources.values()}
+    if any(supplied.get(str(path.resolve()))!=digest(path) for path in required):
+        raise ValueError('T4 measured cost probe provenance missing')
+    recipe=read(config['cost_recipe'])
+    return evaluate_once(Path(admission).parent,bindings(artifacts),lambda:gate(materialize(recipe,sources),measurements))
+
+
+def evaluate(gate, config, root, admission, *, plan=None):
+    if gate=='T4':return evaluate_cost(plan,config,root,admission)
     from technical_measurements import t1, t2, t3
     cells = read(config['probability_probe']); expected = [c['cell_id'] for c in cells]
     artifacts = []
@@ -182,7 +230,7 @@ def tick(plan):
     """Run until a device wait or final gate; publication of the next gate is external."""
     lock, config, science = authorize(plan)
     gate = plan['gate']
-    if gate not in ORDER: raise ValueError('T4 is the separate measured-cost gate')
+    if gate not in ORDER: raise ValueError('unregistered technical gate')
     root = Path(config['work_root'])/gate/f"attempt_{plan['attempt']}"
     root.mkdir(parents=True, exist_ok=True)
     with (root/'controller.lock').open('a') as handle:
@@ -201,14 +249,18 @@ def tick(plan):
         while True:
             key = state['next_stage']
             if key == 'evaluate':
-                result = evaluate(gate, config, root, state['admission'])
+                if gate=='T4' and plan.get('cost_inputs') is None:
+                    state['status']='WAIT_FOR_COST_INPUT_PUBLICATION';atomic_json(state_path,state);return state
+                result = evaluate(gate, config, root, state['admission'],plan=plan) if gate=='T4' else evaluate(gate,config,root,state['admission'])
                 state.update(status='COMPLETE', result=result); atomic_json(state_path, state); return state
-            if key == 'score':
+            if key in ('score','evaluation_score'):
                 state.update(status='RUNNING'); atomic_json(state_path, state)
                 before = snapshot(root)
                 try:
-                    result = cpu_scores(config, root, state['admission'])
-                    write_new(root/'score/result.json', result)
+                    if key=='score':
+                        result = cpu_scores(config, root, state['admission'])
+                        write_new(root/'score/result.json', result)
+                    else:evaluation_scores(config,root,state['admission'])
                 finally:
                     write_new(root/'costs'/f'{key}.json', stage_cost(before, snapshot(root), stage=key))
             else:

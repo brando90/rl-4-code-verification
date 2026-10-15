@@ -4,18 +4,22 @@
 
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
-Last updated: 10-15-2026 01:56 PDT
-Status: **ACTIVE: base generation complete; half/full generating; scoring freeze next.**
+Last updated: 10-15-2026 02:08 PDT
+Status: **ACTIVE: base scoring; half/full generation.**
 
-## Current Phase 1 state — 10-15-2026 01:47 PDT
+## Current Phase 1 state — 10-15-2026 02:08 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
-What ran: base generation COMPLETE, 4,312/4,312 responses, zero missing or second attempts, 9,324,934 generated tokens and 6.9587135382493335 allocated device-hours; all 17 leases released and cleanup verified. Half retains 3,328/4,312 and full batch 1 2,368/4,312; generation continues. Hosted judge and hidden-test controls remain final PASS. Required suite: 857 passed, 3 skipped. Actual anchor scores, benchmark mutation measurements, fits, independent batch 2, evaluation measurements and experiment optimizer updates remain zero.
+What ran: base generation COMPLETE 4,312/4,312; scoring RUNNING from published lock b2556da, 1,849 durable results. Half generation 3,520/4,312 and full batch 1 2,560/4,312 continue. Required suite 865 passed, 3 skipped. Hosted judge and hidden-test controls remain final PASS. No actual mutation measurement, fit, independent batch 2, new validation/test outcome or experiment optimizer update has run.
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Eighteen cron lines preserve the original schedule additively. Busy devices remain a wait condition. No Brando action is needed.
 
-Next: publish the verified base scoring-input lock, then launch its single scoring ledger under the existing watchdog. Continue Phase 2 implementation while half/full manifests generate. Freeze calibration/items/F2 before full batch 2, then G1/H2 and Phase 2; G1 method is already frozen before any actual fit.
+Next: supervise the base scoring ledger to completion and publish its full-denominator result. Continue Phase 2 implementation while half/full manifests generate. Freeze calibration/items/F2 before full batch 2, then G1/H2 and Phase 2; G1 method is already frozen before any actual fit.
+
+T4 resource-cost execution preparation (10-15-2026 02:08 PDT): the [technical driver and receipt-based projection](phase2/README.md) now retain the separate evaluation-context health check, eight train-only historical-sampler cost responses, processor scoring, published measured-input wait and exclusive final comparison. All eight resource categories remain explicit, unknown costs remain unavailable and the reserve is fixed at 25 percent. A projection alone does not admit learning or invent idle capacity. Eight new regressions and all 27 focused technical checks pass. Required suite: **865 passed, 3 skipped, zero failures in 476.32 seconds**, direct exit 0 ([receipt](phase2/T4_cost_driver_publication_test.json)). The first focused run had one authored fixture missing required verdict metadata; that fixture was corrected before these passing runs. Base scoring retains 1,849/4,312 results; half/full generation retains 3,520/2,560 of 4,312 each. No actual Phase 2 measurement or optimizer update has run.
+
+Base scoring launch (10-15-2026 01:59 PDT): published lock `b2556da71fc0750b373ce5091da44f5451082573` precedes the unchanged scorer. Process 623680 (birth tick 29324576), timed by process 623675, is registered as `score-base` under the existing watchdog. At this observation 285/4,312 durable cell results exist; cleanup verifies on 285/285. The full-panel verdict and processor cost remain pending ([launch receipt](anchors_S2/base_scoring_launch.json)). Half generation retains 3,424/4,312 and full batch 1 2,496/4,312. No actual fit, Phase 2 measurement or experiment optimizer update has run.
 
 Base scoring freeze (10-15-2026 01:56 PDT): [lock](locks/ANCHOR_SCORE_S2_base.json) binds all 4,312 base responses and 43 implementation/provenance dependencies, all bytes verified; SHA-256 `9c4107dada7005106169696b21c763ef074ab028219d0ca32beb201504e644a2`. The [generation report](anchors_S2/base_generation.json) is published at `608f20ca54e5b5675122b890f2a291daece5d195`. Required suite: **857 passed, 3 skipped, zero failures in 448.12 seconds**, direct exit 0 ([receipt](anchors_S2/base_scoring_lock_test.json)). The live cleanup preflight verified with zero signals. No base score has run; launch follows this publication under the existing watchdog, retaining processor timing. Half/full generation continues.
 

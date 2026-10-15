@@ -168,3 +168,66 @@ def test_T3_source_is_resolved_only_from_the_published_T2_inventory(tmp_path, mo
     with pytest.raises(ValueError, match='actual source update'): m.authorize(plan)
     t2['status'] = 'FAIL'
     with pytest.raises(ValueError, match='same-science PASS'): m.authorize(plan)
+
+
+def test_T4_health_then_cost_probe_waits_for_publication_without_replaying(tmp_path,monkeypatch):
+    plan,calls,reserve=fixture(tmp_path,monkeypatch)
+    lock,config,_=m.authorize(plan);plan['gate']='T4'
+    config['stage_seconds']['T4']={'preflight':600,'evaluation_generate':600}
+    def admit_t4(root,gate,**kw):
+        calls.append('admit');assert gate=='T4' and 'run:preflight' in calls
+        path=put(Path(root)/gate/'attempt_1/attempt.json',{'attempt':1})
+        return path.parent,{'attempt':1}
+    monkeypatch.setattr(m,'admit',admit_t4)
+    def scoring(config,root,execution):
+        calls.append('score');put(root/'evaluation_score/result.json',{'accounted':8})
+    monkeypatch.setattr(m,'evaluation_scores',scoring)
+    monkeypatch.setattr(m,'evaluate',lambda *a,**kw:calls.append('evaluate') or {'gate':'T4','status':'PASS'})
+    state=m.tick(plan)
+    assert state['status']=='WAIT_FOR_COST_INPUT_PUBLICATION'
+    assert calls==['claim:preflight','prepare:preflight','run:preflight','admit',
+                   'claim:evaluation_generate','prepare:evaluation_generate','run:evaluation_generate','score']
+    assert m.tick(plan)['status']=='WAIT_FOR_COST_INPUT_PUBLICATION' and calls.count('score')==1
+    plan['cost_inputs']={'path':'authored published inputs'}
+    assert m.tick(plan)['status']=='COMPLETE' and calls[-1]=='evaluate'
+    assert m.tick(plan)['status']=='COMPLETE' and calls.count('evaluate')==1
+
+
+def test_T4_materialization_uses_evaluation_engine_context_and_train_manifest(tmp_path):
+    static=put(tmp_path/'static.json',{});cells=put(tmp_path/'cells.json',[])
+    probe=put(tmp_path/'evaluation_probe.json',{'purpose':'T4_train_cost'})
+    config={'runtime':{'bindings':[m.reference(static)],'train_ids':'authored_train_ids'},
+            'probability_probe':m.reference(cells),'evaluation_probe':m.reference(probe)}
+    path=m.dynamic_config(config,'T4','preflight',tmp_path/'work',{'id':'lease'})
+    rendered=json.loads(path.read_text())
+    assert rendered['stage']=='evaluation_preflight' and rendered['max_model_len']==32768
+    assert rendered['allowlist']=='authored_train_ids' and rendered['manifest']==str(probe)
+    assert m.reference(probe) in rendered['bindings']
+
+
+def test_T4_cost_evaluation_requires_actual_probe_receipts_before_exclusive_statistic(tmp_path,monkeypatch):
+    root=tmp_path/'work';attempt=put(tmp_path/'admission/attempt.json',{
+        'gate':'T4','attempt':1,'LP_sha256':'LP','science_sha256':'science'})
+    recipe=put(tmp_path/'recipe.json',{'prospective':True});measured=put(tmp_path/'measurements.json',{'authored':True})
+    source=put(tmp_path/'source.json',{'authored':True})
+    inputs={'gate':'T4_COST_INPUTS','condition':'v2-S2','status':'FROZEN','LP_sha256':'LP',
+            'attempt_sha256':m.digest(attempt),'recipe':m.reference(recipe),
+            'sources':{'initial':m.reference(source)},'measurements':m.reference(measured)}
+    inputs_path=put(tmp_path/'inputs.json',inputs)
+    plan={'repository':str(tmp_path),'LP':{'sha256':'LP'},'cost_inputs':m.reference(inputs_path)}
+    config={'cost_recipe':m.reference(recipe)}
+    monkeypatch.setattr(m,'published',lambda ref,repo:json.loads(Path(ref['path']).read_text()))
+    for name in ('evaluation_generate/output/result.json','evaluation_score/result.json',
+                 'costs/evaluation_generate.json','costs/evaluation_score.json'):
+        put(root/name,{'authored':True})
+    with pytest.raises(ValueError,match='provenance'):m.evaluate_cost(plan,config,root,attempt)
+    assert not (attempt.parent/'evaluation_attempt.json').exists()
+    for name in ('evaluation_generate/output/result.json','evaluation_score/result.json',
+                 'costs/evaluation_generate.json','costs/evaluation_score.json'):
+        inputs['sources'][name]=m.reference(root/name)
+    put(inputs_path,inputs);plan['cost_inputs']=m.reference(inputs_path)
+    import cost_recipe
+    monkeypatch.setattr(cost_recipe,'materialize',lambda recipe,sources:{'projection':'authored'})
+    monkeypatch.setattr(cost_recipe,'gate',lambda projection,measurements:{'condition':'v2-S2','gate':'T4','status':'PASS','admission_statistics_computed':True})
+    assert m.evaluate_cost(plan,config,root,attempt)['status']=='PASS'
+    with pytest.raises(RuntimeError,match='already closed'):m.evaluate_cost(plan,config,root,attempt)

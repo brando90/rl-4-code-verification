@@ -15,7 +15,7 @@ from training_checkpoint import digest,write_new
 from runtime import check_lease,numerical_dtype
 from generation_core import validate_cells
 
-STAGES=('preflight','generate','probabilities','update','replay','export')
+STAGES=('preflight','generate','probabilities','update','replay','export','evaluation_preflight','evaluation_generate')
 
 
 def bound(config,path):
@@ -57,6 +57,14 @@ def verify(config,stage):
         manifest=json.loads(bound(config,config['manifest']).read_text())
         if manifest['max_model_len']!=15945 or manifest['terminal_token_ids']!=config['terminal_token_ids']:
             raise ValueError('health preflight context or terminal mask changed')
+    if stage in ('evaluation_preflight','evaluation_generate'):
+        from evaluation_generation import validate_manifest
+        for name in ('evaluation_generation.py','evaluation_contract.py'):bound(config,HERE/name)
+        manifest=json.loads(bound(config,config['manifest']).read_text())
+        if manifest.get('purpose')!='T4_train_cost' or config['allowlist']!=config['train_ids']:
+            raise ValueError('technical evaluation must remain a frozen train-only cost probe')
+        if config['max_model_len']!=32768:raise ValueError('evaluation context changed')
+        validate_manifest(manifest,Path(config['train_ids']).read_text().splitlines())
     if stage=='update':bound(config,config['groups_path'])
     if stage=='replay':bound(config,Path(config['source_update'])/'result.json')
     if config.get('checkpoint'):
@@ -130,6 +138,14 @@ def probabilities(config,cells):
 
 def run(config,stage):
     verify(config,stage)
+    if stage=='evaluation_preflight':
+        import runtime,evaluation_generation
+        runtime.build_engine=lambda c,m:evaluation_generation.build_engine(c)
+        runtime.preflight(config);return
+    if stage=='evaluation_generate':
+        from evaluation_generation import generate
+        manifest=json.loads(Path(config['manifest']).read_text())
+        return generate(config,manifest,list(range(8)),root=config['stage_root'])
     if stage=='preflight':
         import runtime,anchor_runtime
         runtime.build_engine=anchor_runtime.build_engine

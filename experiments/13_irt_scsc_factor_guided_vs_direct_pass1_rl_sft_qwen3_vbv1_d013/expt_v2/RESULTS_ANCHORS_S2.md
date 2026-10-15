@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/RESULTS_ANCHORS_S2.md>
 
-**TLDR:** The base anchor generation is complete: 4,312/4,312 responses on 539 train tasks, eight samples each. No cells are missing or retried. Scoring has not started; the half- and full-schedule panels continue generating.
+**TLDR:** The base anchor generation is complete: 4,312/4,312 responses on 539 train tasks, eight samples each. No cells are missing or retried. Base scoring is active under its published input lock; the half- and full-schedule panels continue generating.
 
 Recorded: 10-15-2026 01:47 PDT. Condition: **v2-S2**, float16. Generation freeze `d4948f3e57af06fdff660f271a9602e0df3a092c` precedes every response; its bound files still match.
 
@@ -25,3 +25,5 @@ At this observation, half-schedule generation retains 3,328/4,312 responses and 
 Next, publish the base scoring-input lock before invoking the unchanged scorer. No score or actual-data fit has been computed. Required verification before this publication: **857 passed, 3 skipped, zero failures in 458.48 seconds**, direct exit 0, with Lean integration required ([receipt](phase2/evaluation_scoring_monitor_publication_test.json)).
 
 Base scoring freeze (10-15-2026 01:56 PDT): [lock](locks/ANCHOR_SCORE_S2_base.json) binds all 4,312 base responses and 43 implementation/provenance dependencies, all bytes verified; SHA-256 `9c4107dada7005106169696b21c763ef074ab028219d0ca32beb201504e644a2`. The [generation report](anchors_S2/base_generation.json) is published at `608f20ca54e5b5675122b890f2a291daece5d195`. Required suite: **857 passed, 3 skipped, zero failures in 448.12 seconds**, direct exit 0 ([receipt](anchors_S2/base_scoring_lock_test.json)). The live cleanup preflight verified with zero signals. No base score has run; launch follows this publication under the existing watchdog, retaining processor timing. Half/full generation continues.
+
+Base scoring launch (10-15-2026 01:59 PDT): published lock `b2556da71fc0750b373ce5091da44f5451082573` precedes the unchanged scorer. Process 623680 (birth tick 29324576), timed by process 623675, is registered as `score-base` under the existing watchdog. At this observation 285/4,312 durable cell results exist; cleanup verifies on 285/285. The full-panel verdict and processor cost remain pending ([launch receipt](anchors_S2/base_scoring_launch.json)). Half generation retains 3,424/4,312 and full batch 1 2,496/4,312. No actual fit, Phase 2 measurement or experiment optimizer update has run.

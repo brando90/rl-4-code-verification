@@ -120,3 +120,15 @@ def test_uncertain_cleanup_keeps_the_lease_reserved(tmp_path, monkeypatch):
     result = m.launch_local(path, lease_root=leases, route_environment={})
     assert result['status'] == result['released']['status'] == 'CLEANUP_REQUIRED'
     assert result['cleanup_verified'] is False
+
+
+def test_T4_requires_its_distinct_nonprobe_engine_preflight(tmp_path,monkeypatch):
+    kwargs,config,lease_root,ledger=fixture(tmp_path,monkeypatch);kwargs['gate']='T4'
+    with pytest.raises(ValueError,match='evaluation-context'):m.prepare(**kwargs)
+    config['stage']='evaluation_preflight';kwargs['config_path'].write_text(json.dumps(config))
+    plan_path=m.prepare(**kwargs);plan=json.loads(plan_path.read_text())
+    execution=json.loads(Path(plan['execution']).read_text())
+    assert execution['gate']=='T4' and execution['attempt']==0 and execution['status']=='PREFLIGHT_RESERVED'
+    assert not ledger.exists()
+    kwargs['gate']='T1';kwargs['preparation_root']=tmp_path/'wrong'
+    with pytest.raises(ValueError,match='evaluation-context'):m.prepare(**kwargs)
