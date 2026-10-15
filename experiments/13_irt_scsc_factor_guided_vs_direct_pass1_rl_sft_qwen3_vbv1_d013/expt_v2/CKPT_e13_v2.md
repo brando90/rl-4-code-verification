@@ -308,6 +308,7 @@ Last updated: 10-15-2026 11:18 PDT
 - **SNAP unreachable from the Mac.** `ssh skampere1` (ProxyJump `brando9@whale.stanford.edu`, configured route verified) failed 3/3 with "Connection closed by UNKNOWN port 65535". A direct gateway test returned `kex_exchange_identification: read: Connection reset by peer` from 171.64.75.72:22. TCP is reachable, but the gateway resets during key exchange, which points to throttling or a temporary block rather than authentication. Following `machine/snap.md` connection recovery, there were no repeated hammering attempts and no Cisco/Duo request. A bounded background retry runs every 5 minutes for up to 30 minutes.
 - **Published state (GitHub).** There have been no new experiment-13 commits since `e2d45e4` (10:45). The owner's last status (10:37): "A6 final SOUND; continue to the learning-pilot lock and unchanged technical gates under A6". The owner runs on skampere1 independently of the Mac, under its watchdog.
 - **No action possible this hour.** Verify owner liveness, leases and the crontab once the gateway answers.
+- **Retry result (11:40 PDT).** The gateway was still refusing after 6 tries at 5-minute intervals: TCP 22 open, reset at key exchange. The direct route (`ProxyJump=none`) times out off-campus. The only remaining route is the Stanford VPN, which needs Brando's sign-in and Duo; it is optional because the owner runs autonomously. No owner commits since `031cd17` (10:41). The hourly check-in retries the gateway at 12:07.
 
 ## Exact next commands (master)
 
