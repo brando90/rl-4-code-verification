@@ -5,13 +5,13 @@
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-15-2026 00:47 PDT
+Last updated: 10-15-2026 01:07 PDT
 
-## Current Phase 1 state — 10-15-2026 00:47 PDT
+## Current Phase 1 state — 10-15-2026 01:07 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
-What ran: v2-S2 anchors retain Base 3,808, half 2,816 and full batch 1 1,888 of 4,312 responses each at 10-15-2026 00:47 PDT, all RUNNING. Hosted judge and hidden-test controls remain final PASS. Learning prefix/checkpoint transitions and complete train mutation analysis passed the required suite: 823 passed, 3 skipped. Actual benchmark mutation audits, anchor scores, actual-data fits, independent full batch 2, evaluation measurements and experiment optimizer updates remain zero.
+What ran: v2-S2 anchors retain Base 4,032, half 2,944 and full batch 1 2,048 of 4,312 responses each at 10-15-2026 01:07 PDT, all RUNNING. Hosted judge and hidden-test controls remain final PASS. Learning controller and checkpoint-retention preparation passed the required suite: 834 passed, 3 skipped. Actual benchmark mutation audits, anchor scores, actual-data fits, independent full batch 2, evaluation measurements and experiment optimizer updates remain zero.
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Eighteen cron lines equal the prior sixteen plus two environment-corrected anchor-poller entries. Busy devices remain a wait condition. No Brando action is needed.
 
@@ -216,3 +216,6 @@ Evaluation and learning-resource preparation (10-15-2026 00:26 PDT): the [evalua
 
 
 Learning steps and mutation analysis preparation (10-15-2026 00:47 PDT): [helpers](phase2/README.md) freeze prompt-group plans and placebo/C values before responses, join the actual complete generation prefix to scoring, retain missing rewards and account wholly unmeasured updates without inventing a new checkpoint. Export identities and exact files are checked against the native checkpoint. The mutation report retains all 128 cells, all 96 original-to-mutation comparisons and every known reward increase with strict/theorem/independent-coverage changes. It does not itself admit learning. Ten focused tests pass. Required suite: **823 passed, 3 skipped, zero failures in 446.05 seconds**, direct exit 0 ([receipt](phase2/learning_steps_audit_analysis_publication_test.json)). A final missing-strict-label validation was added after an earlier passing 822-test suite, and the full suite rerun; no scientific measurement was affected. The complete sequence controller and tensor-retention implementation remain separately under preparation. Anchors retain Base 3,808, half 2,816 and full batch 1 1,888 of 4,312 responses each, all RUNNING. No anchor score, actual audit, fit, new evaluation or experiment optimizer update has run.
+
+
+Learning controller and retention preparation (10-15-2026 01:07 PDT): the [sequence controller](phase2/README.md) waits for published own-run monitor decisions, checks cleanup before advancing, permits only the fixed T5 extension and stops interrupted stages for receipt reconciliation without replay. Tensor retention runs under the sole controller fence after durable accounting and verified device/scorer cleanup; it preserves current state, all token-boundary exports and incomplete evidence, and writes complete inventories before deletion. Eleven authored tests pass, including real removal of tiny fixture files and refusal on unresolved cleanup or a wrong monitor checkpoint. Required suite: **834 passed, 3 skipped, zero failures in 414.95 seconds**, direct exit 0 ([receipt](phase2/learning_controller_retention_publication_test.json)). Prospective execution locks and actual technical gates still precede learning. Anchors retain Base 4,032, half 2,944 and full batch 1 2,048 of 4,312 responses each, all RUNNING. No actual anchor score, mutation measurement, fit, experiment optimizer update or experiment tensor retirement has run.
