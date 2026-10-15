@@ -13,7 +13,8 @@ from training_checkpoint import digest
 
 HERE=Path(__file__).resolve().parent
 SOURCES=('evaluation_authority.py','evaluation_snapshot.py','evaluation_runtime.py','evaluation_supervisor.py',
-         'evaluation_generation.py','evaluation_contract.py','learning_report.py','evaluation_selection.py')
+         'evaluation_generation.py','evaluation_contract.py','learning_report.py','evaluation_selection.py',
+         'evaluation_driver.py','evaluation_ledger.py','evaluation_stage.py','evaluation_processing.py','score_evaluation.py','costs.py')
 
 
 def authorize(plan):
