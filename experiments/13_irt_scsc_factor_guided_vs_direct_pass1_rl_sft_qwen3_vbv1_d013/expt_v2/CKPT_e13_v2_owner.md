@@ -5,7 +5,7 @@
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-14-2026 19:15 PDT
+Last updated: 10-14-2026 19:35 PDT
 
 ## Current Phase 1 state — 10-14-2026 18:30 PDT
 
@@ -15,7 +15,7 @@ What ran: all nine host/policy routes and the original export pins verified; req
 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Sixteen cron lines equal the prior fourteen plus two anchor-poller entries. Busy devices remain a wait condition. No Brando action is needed.
 
-Next: finish calibration/analysis implementation while the full manifests generate; publish each completed generation/scoring gate. Freeze calibration/items/F2 before full batch 2; then G1/H2 and Phase 2. G1's existing method lock has verified before any fit. The validated-judge transport retains its separate admission requirements.
+Next: complete Phase 2 runtime preparation while the full manifests generate; publish each completed generation/scoring gate. Freeze calibration/items/F2 before full batch 2; then G1/H2 and Phase 2. G1's existing method lock has verified before any fit. The validated-judge transport retains its separate admission requirements.
 
 Anchor freeze verification (10-14-2026 18:34 PDT): all nine host/policy routes passed source, weight and installed-version verification without model calls. Original Base revision and both experiment-08 export checksum manifests match. Foreign registry: 33/33 released, 17 legacy files reconciled; every future claim rechecks these and discovers new reservation paths. Required integration suite: **587 passed, 23 skipped, zero failures in 254.43 seconds**, direct exit 0. [Receipt](phase1/ANCHORS_S2_publication_test.json), [routes](phase1/ANCHORS_S2_route_verification.json). The three initial generation locks are frozen; full batch 2 remains unarmed until calibration/items/F2 are published. G1's existing lock verifies 27 source and six input bindings with zero actual fits. Next: push and arm the additive anchor poller.
 
@@ -24,6 +24,9 @@ Anchor launch (10-14-2026 18:38 PDT): freeze `d4948f3` is published. Three indep
 First-prefix verification (10-14-2026 18:43 PDT): 32 complete responses per policy, 96/12,936 initial declared cells, zero second attempts; token counts are 57,714 Base, 174,337 half and 172,880 full batch 1. No score is inferred from generation completion. Launch-publication suite exited 0: **587 passed, 23 skipped in 262.47 seconds**; evidence and raw-receipt hashes are in [the launch receipt](phase1/ANCHORS_S2_armed.json). Generation continues automatically under the frozen leases.
 
 Calibration-method verification (10-14-2026 19:15 PDT): [method](phase1/CALIBRATION_S2_METHOD.md) and [executable lock](locks/CALIBRATION_S2_METHOD.json) bind 22 files before any new scoring or actual-data fit. Required integration suite: **627 passed, 23 skipped, zero failures in 261.28 seconds**, direct exit 0; [receipt](phase1/CALIBRATION_S2_publication_test.json). The marginal calibration, fixed conditional strict forecast and independent-batch evaluator retain missing denominators, five starts, actual-pattern recovery, prior sensitivity, paired group intervals and one-attempt ledgers. Generation progress is Base 384/4,312, half 288/4,312 and full batch 1 288/4,312, with zero second attempts. Base/half/full controllers remain active; independent batch 2 stays unarmed. The [durable scoring ledger](phase1/SCORING_S2_LEDGER.md) also passes its eight recovery checks; it wraps the unchanged scorer. Next: publish each complete generation panel and its scoring-input lock, score all declared cells, then freeze calibration/items/F2 before independent batch 2. Central-processor Phase 2 implementation continues while the complete panels generate.
+
+Phase 2 foundation verification (10-14-2026 19:35 PDT): [implementation preparation](phase2/README.md) covers paired prompt streams, complete eight-response token boundaries, installed NeMo leave-one-out batch construction, explicit missing-reward masks and replay-state helpers. Required integration suite: **640 passed, 23 skipped, zero failures in 257.79 seconds**, direct exit 0; [receipt](phase2/publication_test.json). This is preparation, not LP or training admission. Actual GPU update/refit/replay, resource admission and train coverage controls remain to be implemented and frozen. The calibration/H2 method and resumable scorer are already published at `f8f16be`; zero new scores, actual-data fits or optimizer updates have run. At 19:32 PDT, Base 544/4,312, half 416/4,312 and full batch 1 384/4,312 responses are durable, with no second attempts. All three controllers remain active; their segment leases release and reclaim automatically after verified cleanup. Full batch 2 stays unarmed.
+
 
 ## Historical A5 continuation — 10-14-2026 17:26 PDT
 
@@ -156,5 +159,5 @@ Failure report and retained preparation published as `50cf118726b101b916c88ffd30
 - Terminal closeout: gate result pushed as `6e9c7c2bc1c2435f1455ec7667b1933e8e16174b` and verified on remote `main`. The watchdog recorded exactly one `stopped` notification as `sent` to `brando.science@gmail.com` without carbon copy. Both owned cron entries were retired; all unrelated entries were preserved. No registered experiment child remains alive. Durable receipt: `$WR/state/completion.json`. No downstream run is admitted.
 - Binding stop: R0 failed. This condition is terminal, not an infrastructure retry or an account handoff. The parent retains the unresolved measurement dependency for its planned reinforcement-learning comparison.
 
-**TLDR-end:** [rl4cv: Experiment 13 v2] LP-1 attempt 2 fails the frozen probability-tail criterion; the measured verdict is final under A4.
-**Snapshot:** Responses 8/8; tokens 40,035; median error 0.000302777; p99 error 0.124769325 > 0.10; optimizer updates 0; cumulative device-hours 0.115364424; leases RELEASED.
+**TLDR-end:** [rl4cv: Experiment 13 v2-S2] S2 admission passes and all three initial anchor panels are generating; calibration/H2 and scoring are published before measurement. Phase 2 preparation continues while the full panels finish.
+**Snapshot:** At 19:32 PDT: base 544/4,312; half 416/4,312; full batch 1 384/4,312; second attempts 0; actual-data fits 0; optimizer updates 0; required tests 640 passed, 23 skipped.
