@@ -207,25 +207,10 @@ def test_e09_judge_service_registers_on_tracker(tmp_path, monkeypatch):
     assert receipt["valkyrie_registration"]["auth_secret"] == "rl4cv-e09-batch-bearer"
 
 
-def test_gateway_secret_is_remapped_at_run_start():
-    assert hosted.secret_args() == ["--secret", "MODEL_GATEWAY_API_KEY", "brandoModelGatewayApiKey"]
+def test_judge_requires_the_renamed_contract():
     judge = (E08V2 / "judge_rl4cv_e08v2.py").read_text()
-    batch = (E09 / "judge_batch_e09.py").read_text()
-    assert "*task_filter, *hosted.secret_args()]" in judge and "*hosted.secret_args()]" in batch
     assert 'BUNDLE_SAME_AS_V1 = ("contract.yaml", "judge_call.py", "setup.sh")' in judge
-    assert 'allow_secret_rename=n == "contract.yaml"' in judge
-
-
-def test_argon_admit_remaps_gateway_secret(tmp_path, monkeypatch):
-    argon = load(REPO / "scripts/argon_qa/argon_qa.py", "argon_qa_admit_under_test")
-    monkeypatch.setattr(argon, "HOME", tmp_path)
-    seen = []
-    monkeypatch.setattr(argon, "valkyrie", lambda *args, **kw: seen.append(args) or subprocess.CompletedProcess(
-        args, 0, "run 01234567-89ab-cdef-0123-456789abcdef admitted", ""))
-    assert argon.cmd_admit(types.SimpleNamespace(label="t", force=False)) == 0
-    args = list(seen[0])
-    i = args.index("--secret")
-    assert args[i:i + 3] == ["--secret", "MODEL_GATEWAY_API_KEY", "brandoModelGatewayApiKey"]
+    assert 'allow_secret_rename=n == "contract.yaml"' in judge and 'match.get("contract.yaml") == "identical"' in judge
 
 
 def test_matches_frozen_accepts_only_the_secret_rename():
@@ -273,7 +258,8 @@ def test_e08v2_judge_preflight_with_stubbed_frozen_modules(tmp_path, monkeypatch
     renamed = {**old, "contract.yaml": old["contract.yaml"].replace(b"fellows/", b"")}
     rc, out = run_with(renamed)
     assert rc == 0 and out["verdict"] == "PASS" and out["bundle_match_vs_version1"]["contract.yaml"] == "secret_renamed_only"
-    assert out["run_secret_override"] == ["--secret", "MODEL_GATEWAY_API_KEY", "brandoModelGatewayApiKey"]
     assert "account" not in out["identity"]
-    rc, out = run_with({**old, "judge_call.py": b"print('changed')\n"})
+    rc, out = run_with(old)
+    assert rc == 1 and any("push the renamed bundle" in p for p in out["problems"])
+    rc, out = run_with({**renamed, "judge_call.py": b"print('changed')\n"})
     assert rc == 1 and out["verdict"] == "FAIL" and any("judge_call.py differs" in p for p in out["problems"])

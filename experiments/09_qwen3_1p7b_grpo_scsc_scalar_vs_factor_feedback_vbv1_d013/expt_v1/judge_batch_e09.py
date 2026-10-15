@@ -4,13 +4,9 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
-import sys
 import time
 
 from fsc_queue import CONFIGS, six_rating_result
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[3] / 'src'))
-from rl4cv import valkyrie_hosted as hosted  # noqa: E402  run-start remap of the gateway secret (10-14-2026)
 
 
 def sha(data):
@@ -96,7 +92,7 @@ def admit_exact(b, suite, batch, manifest, ids_file):
                 kwargs[key] = cfg[key]
         args = ['run', 'start', '--agent', b.AGENT, '--benchmark', manifest['benchmark'],
                 '--dataset', 'default', '--model', cfg['selector'], '--concurrency', '8',
-                '--label', f'rl4cv-e09-{batch[:16]}-{name}', '--task-ids-file', str(ids_file), *hosted.secret_args()]
+                '--label', f'rl4cv-e09-{batch[:16]}-{name}', '--task-ids-file', str(ids_file)]
         for key, value in kwargs.items():
             args += ['-k', key, value]
         entry = {'config': name, 'selector': cfg['selector'], 'kwargs': kwargs,
