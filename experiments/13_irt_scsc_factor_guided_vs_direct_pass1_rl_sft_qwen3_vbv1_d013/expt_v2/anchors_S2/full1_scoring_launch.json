@@ -1,0 +1,36 @@
+{
+  "batch": "full1",
+  "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+  "cleanup_verified_cells": 55,
+  "command": [
+    "/usr/bin/time",
+    "-v",
+    "-o",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/anchors_S2/full1/scoring_time.txt",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/venv/bin/python",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/score_anchor_ledger.py",
+    "--plan",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/anchors_S2/full1/scoring_plan.json"
+  ],
+  "condition": "v2-S2",
+  "declared": 4312,
+  "lock_sha256": "3f512e519c4d0a148b302c41e81d0a62d1b8f87634a80e832e51c6fe81349152",
+  "log": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/anchors_S2/full1/scoring_execution.log",
+  "model_calls": 0,
+  "observed_at": "10-15-2026 06:01 PDT",
+  "observed_completed_cells": 55,
+  "pid": 2428165,
+  "plan_sha256": "932eb34e52e7560e7b34382a37aafd6e20f3de64f41e291941b9cb8d546ab0ad",
+  "processor_timing": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/anchors_S2/full1/scoring_time.txt",
+  "processor_timing_pending": true,
+  "published_revision": "3ddd8b393b45e71fe4611c6dabdba8bc92772350",
+  "scorer_pid": 2428166,
+  "scorer_start_ticks": 30782966,
+  "start_ticks": "30782966",
+  "started_unix": 1792069239.3670783,
+  "status": "RUNNING",
+  "status_counts": {
+    "measured": 55
+  },
+  "watchdog_registration_verified": true
+}
