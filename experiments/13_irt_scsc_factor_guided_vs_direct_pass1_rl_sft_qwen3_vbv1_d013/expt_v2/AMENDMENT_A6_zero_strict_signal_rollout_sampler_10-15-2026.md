@@ -59,3 +59,16 @@ A6 makes three changes, all before any Phase 2 learning update, validation outco
 5. **Scope of claims.** Results hold for the regime the frozen rollout sampler produces, where strict reward has essentially no gradient at the start. They make no claim about regimes where A has signal, for example lower-temperature rollouts; a later version could test that prospectively.
 
 G0 PASS, the S2 admission, the failed C calibration, the frozen placebo distribution and every other frozen artifact are unchanged.
+
+## Clarification, 10-15-2026 08:15 PDT (master): infrastructure attempts of the diagnostic
+
+**What "once-only" means.** In rule 2, "once-only" forbids rerunning the diagnostic after it has measured anything. [A4](AMENDMENT_A4_technical_gate_infrastructure_attempts_10-14-2026.md) applies to this diagnostic as it does to the other technical gates.
+
+**What a rerun requires.** An attempt that ends on a reproducible infrastructure defect before generating any diagnostic response may be rerun once that defect is fixed. Attempt 1 ended this way at about 08:00 PDT. Its lease held 0.0038 device-hours and it failed on "frozen weights absent" with a `pytorch_model.bin` checkpoint, before generating anything. The rerun needs:
+
+- a fix that changes no scientific setting;
+- a regression test, a preflight check and a successor lock, all pushed first;
+- at most 3 attempts in total, every attempt published;
+- the frozen 2.0 device-hour allocation, used cumulatively.
+
+**What stays final.** An attempt that generates and scores the cohort is final, whether the pipeline is SOUND or UNSOUND.

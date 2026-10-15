@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 07:19 PDT
+Last updated: 10-15-2026 08:15 PDT
 
 ## Task and owner
 
@@ -279,6 +279,12 @@ Last updated: 10-15-2026 07:19 PDT
   3. Apply T5 to B's own reward: a moving-average rise of at least 0.02 from updates 1–10 to 21–30, with one extension to 60. A's curve is descriptive.
 
   Claims are scoped to the zero-signal regime. Before A6, the owner was told to hold batch 2 (07:25 queued, 07:27 immediate).
+
+## Check-in 10-15-2026 08:14 PDT: A6 applied; diagnostic attempt 1 failed on infrastructure; A6 clarified at 08:15
+
+- **A6 applied by the owner.** `7a447c8` waives batch 2 (H2 and F2 UNAVAILABLE) and freezes the historical G1 and the diagnostic cohort. `f5af95c` freezes the diagnostic execution: historical full-schedule 4B validation compile and strict rates are both 100/1,080 = 9.26%, the sound threshold is strict > 0 and compile ≥ 5/512, the cohort is 64 train tasks (task-ID hash `f6a7c303…`), and the allocation is ≤ 2.0 device-hours.
+- **Attempt 1 failed on infrastructure.** Its lease (`…c8536902…`, 0.0038 device-hours) ended on "frozen weights absent" (a `pytorch_model.bin` checkpoint) before any generation. The owner prepared a fix and passed a device-free preflight, but recorded `rerun_admitted: false`, reading A6's "once-only" literally.
+- **Master clarification at 08:15 PDT,** appended to A6. A4 applies to the diagnostic: an infrastructure attempt that generates nothing may be rerun after a fix, a regression test, a preflight and a successor lock, with at most 3 attempts. A scored attempt is final. The owner was steered accordingly. Healthy: no active leases; the crontab has 18 lines, the 7 non-e13 lines identical to the backup.
 
 ## Exact next commands (master)
 
