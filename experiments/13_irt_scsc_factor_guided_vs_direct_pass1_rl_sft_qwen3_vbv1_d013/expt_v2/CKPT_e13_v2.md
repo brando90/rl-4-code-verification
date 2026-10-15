@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-14-2026 21:20 PDT
+Last updated: 10-14-2026 22:18 PDT
 
 ## Task and owner
 
@@ -212,6 +212,12 @@ Last updated: 10-14-2026 21:20 PDT
 - **Anchors.** base 1,536 and half 1,024 of 4,312 are running on GPUs 1–2, with 0 exhausted and 0 second attempts. full1 is at 1,024 of 4,312 and **HALTED_INFRA**. Segment 5 errored with `PermissionError: /proc/2264522/environ`: the foreign-process check read another user's process after a new job took GPU 0. Nothing was attempted (`attempted_in_segment: None`), cleanup was verified and PID 2264522 has since exited. The owner is investigating the dispatcher. Cumulative device-hours are 7.67 across 21 leases, under the 144 device-hour, four-batch anchor ceiling.
 - **Phase 2 preparation.** Commits `a73dc86`, `69726e1` and `f59b423`: technical evaluators, isolated stages and arm rewards. Coverage-judge controls are frozen before any rating (`locks/COVERAGE_CONTROLS_S2.json`: 50 train-only control ratings, members GPT-6 Sol high and Opus 5.5 max). The only hosted Valkyrie run was metadata-only: 1/1 tasks, HTTP 200, **0 model calls**, through the coordinator-migrated Vals-managed gateway credential and no personal key. Required tests: 683 passed.
 - **Healthy.** The owner is working (3 h 56 min). The crontab has 16 lines, the 7 non-e13 lines identical to the backup. No action this hour; if full1 is still halted next hour, steer the owner to treat an unreadable foreign `/proc` entry as "device busy" and resume full1 on the next idle device.
+
+## Check-in 10-14-2026 22:14 PDT: base 2,048, half 1,536 and full1 1,024 of 4,312; full1 waiting for an idle device
+
+- **Anchors.** base 2,048 and half 1,536 of 4,312 are running on owned GPUs 0–1, with 0 exhausted. full1 is out of HALTED_INFRA and now in **WAIT_FOR_IDLE_DEVICE** at 1,024 of 4,312; the owner handled the foreign `/proc` permission case. skampere1 GPUs 2 and 4 were idle at 22:14, so the poller should claim one. Cumulative device-hours are 9.72 across 25 leases.
+- **Owner working** (4 h 56 min) on the Phase 2 pilot configuration. Arm-selection tests: G1 or H2 FAIL or INCONCLUSIVE keeps A, B and P; an unfinished gate raises an error instead of counting as a failure; G0 FAIL raises an error.
+- **Healthy.** The crontab has 16 lines, the 7 non-e13 lines identical to the backup. No action this hour; check next hour that full1 resumed on an idle device.
 
 ## Exact next commands (master)
 
