@@ -2,22 +2,26 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/results.md>
 
-**TLDR:** v2-S2 A6 is final **SOUND**, attempt 2: compile 48/512 (496 measured), strict 48/512 (496 measured); bounds [0.09375, 0.125] and [0.09375, 0.125], respectively. Continue to the learning-pilot lock and unchanged technical gates under A6. Attempt 1 remains INCOMPLETE-INFRA with zero responses; no replay is admitted. G1 is final INCONCLUSIVE, C disabled, H2/F2 UNAVAILABLE and batch 2 skipped.
+**TLDR:** v2-S2 learning-pilot freeze prepared for arms A, B and P after the final SOUND A6 diagnostic. The 4,676-binding lock and 23.75-device-hour technical allocation admit T1 only after publication; no technical measurement or optimizer update has run. C remains disabled; H2/F2 remain UNAVAILABLE and batch 2 stays skipped.
 
-Last updated: 10-15-2026 10:37 PDT
-**Status:** A6 final SOUND; Continue to the learning-pilot lock and unchanged technical gates under A6.
+Last updated: 10-15-2026 15:26 PDT
+**Status:** LP freeze ready; T1 launch follows publication.
 
-## Current state — 10-15-2026 10:37 PDT
+## Current state — 10-15-2026 15:26 PDT
 
-Goal: complete the experiment through its admitted gates, or publish the binding transition result. Continue to the learning-pilot lock and unchanged technical gates under A6.
+Goal: complete the experiment through its admitted gates, or publish the binding transition result. Continue under A6 with unchanged S2 numerics and rollout sampler.
 
-What ran: G0 PASS; S1 LP-1 final FAIL; separately frozen S2 LP-1 PASS. Three anchor panels, calibration and historical G1 closed once; C is disabled. A6 attempt 1 is INCOMPLETE-INFRA, 0/512 responses. Attempt 2 generated 512/512 and its scoring/analysis exited 0 with final SOUND; compile 48/512 (496 measured), strict 48/512 (496 measured); bounds [0.09375, 0.125] and [0.09375, 0.125], respectively. H2/F2 remain UNAVAILABLE and independent batch 2 remains unarmed.
+What ran: prior gates remain final: G0 PASS, S1 admission FAIL, S2 admission PASS, anchors/calibration closed, G1 INCONCLUSIVE, A6 SOUND. The prospective [LP freeze](phase2/LP_A6_S2_FREEZE.md) now binds arms A/B/P, all six published prerequisites, exact runtime/probes, gate thresholds and resource limits. No Phase 2 technical measurement, actual mutation-audit measurement, optimizer update or new held-out response exists.
 
-Supervision: single writer PID 1243923 in `codex-rl4cv-e13v2-owner-g0`; generation and scoring processes exited, cleanup verified, both A6 leases released. Cumulative A6 device usage 1.406306960/2.0 hours. Existing cron lines preserved. No frozen artifact or scientific setting changed after publication.
+Supervision: same owner PID 1243923 in `codex-rl4cv-e13v2-owner-g0` resumed after the model-capacity interruption; watchdog confirms one owner, no live experiment child and no active owned device lease. The 18-line crontab is unchanged. Health check confirms local workspace/storage and credentials; shared DFS fullness is outside this run's locally bound output/cache paths. All original scientific outcomes and published hashes are preserved.
 
-Next: Continue to the learning-pilot lock and unchanged technical gates under A6. Freeze/publish the pilot lock and allocation before any technical call.
+Next: publish the tested LP lock and allocation; bind their published revision in the executable T1 plan; launch the watchdog-registered controller. It waits 15 minutes between idle-device polls and runs the non-probe preflight before admitting an attempt. Publish T1 before T2/T3, then T4, train audits and the measured pilot allocation. T5 uses B's own reward; A lengths still set the token budget.
 
-Brando to-do: none to close this gate. Execution continues through the existing authorized plan.
+Brando to-do: none. Existing SNAP preapproval covers the frozen technical allocation; no provider charge or inherited experiment-08 budget is used.
+
+LP prospective freeze (10-15-2026 15:26 PDT): [method and limits](phase2/LP_A6_S2_FREEZE.md), LP SHA-256 `357e16348cf2c3a19cf5e5e7659473a7ed09b798d36e94b7e82118c015f5db81`, allocation `fb37d2cb2d6499ffb6166903423286696fcc52a4d4f0559d90eb9d9986b7da47`. All 4,676 physical bindings verified; six final published Phase 1 prerequisites retained. The unpublished 18-component cost recipe was corrected before any measurement to use an explicit train-only cost proxy rather than requiring the later audit at T4; previous draft bytes are privately preserved. [Anonymous numerical tables](phase1/numerical_results/README.md) copy every closed anchor and A6 scoring slot; no measurement was repeated.
+
+LP publication verification: Required Lean integration: **1,121 passed, 3 skipped, zero failures in 600.54 seconds**, direct exit 0 ([receipt](phase2/LP_A6_freeze_publication_test.json)). All 13,448 exported numerical rows match their saved scoring receipts; staged additions contain no private train identifiers or credential patterns.
 
 A6 final diagnostic (10-15-2026 10:37 PDT): **SOUND**, compile 48/512 (496 measured), strict 48/512 (496 measured); bounds [0.09375, 0.125] and [0.09375, 0.125], respectively. All 512 responses were generated and all scoring slots accounted once, with zero retries and unresolved cleanups. [Report](RESULTS_A6_DIAGNOSTIC_S2.md), [aggregate receipt](phase1/A6_S2_result.json). The report retains the 95% whole-task-group bootstrap intervals and missing-status counts; p-val=n/a (operational criterion, no hypothesis test). Cumulative device time **1.406306960/2.0 hours**; both leases released. Continue to the learning-pilot lock and unchanged technical gates under A6. No independent batch 2, learning-pilot lock, actual Phase 2 technical gate, mutation audit, optimizer update or new held-out response has run.
 
