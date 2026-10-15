@@ -1,0 +1,216 @@
+{
+  "actual_bundle_verified": true,
+  "admission_statistics_computed": true,
+  "aggregation": "route controls: one rating per member/control; actual coverage remains three repeats/member",
+  "condition": "v2-S2",
+  "configs": {
+    "H2_opus55_max": {
+      "charges_usd": 2.3933504,
+      "exact_receipt_inventory": true,
+      "expected_envelope": {
+        "effort": "max",
+        "max_tokens": 32000,
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "anthropic/claude-opus-5-5-no-fallback"
+      },
+      "per_kind": {
+        "control_blank": {
+          "fraction": 1.0,
+          "measured": 5,
+          "min_fraction": 0.9,
+          "n": 5,
+          "ok": 5,
+          "pass": true,
+          "rule": "score_raw == 0",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "control_halfdel": {
+          "fraction": 0.8,
+          "measured": 5,
+          "min_fraction": 0.8,
+          "n": 5,
+          "ok": 4,
+          "pass": true,
+          "rule": "1 <= score_raw <= 4",
+          "scores": [
+            3,
+            3,
+            4,
+            5,
+            3
+          ]
+        },
+        "control_oracle": {
+          "fraction": 1.0,
+          "measured": 5,
+          "min_fraction": 0.9,
+          "n": 5,
+          "ok": 5,
+          "pass": true,
+          "rule": "score_raw >= 4",
+          "scores": [
+            5,
+            5,
+            5,
+            5,
+            5
+          ]
+        },
+        "control_shuffled": {
+          "fraction": 1.0,
+          "measured": 5,
+          "min_fraction": 0.9,
+          "n": 5,
+          "ok": 5,
+          "pass": true,
+          "rule": "score_raw <= 1",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "control_vacuous": {
+          "fraction": 1.0,
+          "measured": 5,
+          "min_fraction": 0.9,
+          "n": 5,
+          "ok": 5,
+          "pass": true,
+          "rule": "score_raw <= 1",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "reported_charge_cells": 25,
+      "run_id": "bf2a9d4e-db45-475b-b950-409b5b072403",
+      "status_counts": {
+        "measured": 25
+      },
+      "transport_matches": true
+    },
+    "H2_sol_high": {
+      "charges_usd": 0.5906425000000001,
+      "exact_receipt_inventory": true,
+      "expected_envelope": {
+        "effort": "high",
+        "max_tokens": 32000,
+        "rubric": "H2_human_mirror_conventions_demos",
+        "selector": "openai/gpt-6-sol-high"
+      },
+      "per_kind": {
+        "control_blank": {
+          "fraction": 1.0,
+          "measured": 5,
+          "min_fraction": 0.9,
+          "n": 5,
+          "ok": 5,
+          "pass": true,
+          "rule": "score_raw == 0",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "control_halfdel": {
+          "fraction": 0.8,
+          "measured": 5,
+          "min_fraction": 0.8,
+          "n": 5,
+          "ok": 4,
+          "pass": true,
+          "rule": "1 <= score_raw <= 4",
+          "scores": [
+            4,
+            3,
+            4,
+            5,
+            3
+          ]
+        },
+        "control_oracle": {
+          "fraction": 1.0,
+          "measured": 5,
+          "min_fraction": 0.9,
+          "n": 5,
+          "ok": 5,
+          "pass": true,
+          "rule": "score_raw >= 4",
+          "scores": [
+            5,
+            5,
+            5,
+            5,
+            5
+          ]
+        },
+        "control_shuffled": {
+          "fraction": 1.0,
+          "measured": 5,
+          "min_fraction": 0.9,
+          "n": 5,
+          "ok": 5,
+          "pass": true,
+          "rule": "score_raw <= 1",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "control_vacuous": {
+          "fraction": 1.0,
+          "measured": 5,
+          "min_fraction": 0.9,
+          "n": 5,
+          "ok": 5,
+          "pass": true,
+          "rule": "score_raw <= 1",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "reported_charge_cells": 25,
+      "run_id": "cb83b609-eaac-4b64-ae29-0f78dfbdfedf",
+      "status_counts": {
+        "measured": 25
+      },
+      "transport_matches": true
+    }
+  },
+  "declared_ratings": 50,
+  "gate": "TRAIN_COVERAGE_ROUTE_CONTROLS",
+  "private_result_sha256": "8fc7ddd6ca7f9f163fbef005828c5e200a7ec4dafdc651dac490b664ab4edb89",
+  "publication_lock": "locks/COVERAGE_CONTROLS_S2_REGISTRATION1.json",
+  "request_attempts_histogram": {
+    "1": 50
+  },
+  "sandbox_charges_reported": false,
+  "source_sha256": "ee8a4a02dc7ae0f4d79602e788cf078448972984e121f3985ab35102d6857356",
+  "status": "PASS",
+  "total_reported_model_charges_usd": 2.9839929,
+  "train_tasks": 5
+}
