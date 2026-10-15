@@ -5,7 +5,7 @@
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-15-2026 07:33 PDT
+Last updated: 10-15-2026 07:53 PDT
 
 ## Current Phase 1 state — 10-15-2026 07:09 PDT
 
@@ -16,6 +16,8 @@ What ran: base generation COMPLETE 4,312/4,312; scoring closed, 4,311 measured, 
 Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`; full1 scoring and the single calibration controller exited normally; calibration timed PID 937306, birth 31132173, was watchdog-registered and retains processor timing. Eighteen cron lines preserve the original schedule additively. Busy devices remain a wait condition. No Brando action is needed.
 
 Next: execute historical G1 and the A6 train-only diagnostic after their respective publication locks. No independent batch 2; C remains disabled.
+
+A6 execution preparation (10-15-2026 07:53 PDT): the historical reference, 64-task cohort and H2/F2 waiver are published at `7a447c8`. Historical G1 launched once (timed PID 1621591, birth 31404495; watchdog role G1-S2-A6), with its first holdout forecast saved; no rerun ([launch receipt](phase1/G1_A6_launch.json)). The diagnostic [execution and resource freeze](A6_PIPELINE_DIAGNOSTIC.md) binds 288 dependencies, 512 responses, identical anchor prompt tokens on all 64 tasks and a separate 2.0 device-hour cap. Fourteen focused tests pass, including the actual frozen Lean oracle, strict/compile boundaries, missing observations, one attempt and foreign-lease protection. The diagnostic has zero responses and no device claim; launch follows this publication. Required integration suite: **1,033 passed, 3 skipped, zero failures in 502.76 seconds**, direct exit 0 ([receipt](phase2/A6_diagnostic_publication_test.json)). A device-free import check caught and corrected the diagnostic launcher’s local package path before publication; the exact historical sampler dependency now imports from the bound repository source. No Phase 2 learning or new held-out measurement has run.
 
 A6 continuation (10-15-2026 07:33 PDT): independent batch 2 is skipped and unarmed; H2 and F2 are UNAVAILABLE for the null fixed predictor, with original F2 = 0.75 preserved. Arm C remains off. Historical full-schedule validation compile and strict rates are each 100/1,080; the seeded 64-task train cohort is frozen ([diagnostic specification](A6_PIPELINE_DIAGNOSTIC.md)). G1 will run once on its unchanged historical ladder through the A6 prerequisite wrapper. No diagnostic generation or Phase 2 learning has run. Next: publish this freeze, run historical G1, freeze the diagnostic executable/resources, and run the 512-response diagnostic once before LP. T5 will use B’s own reward; A remains descriptive, with unchanged token-budget rule. Claims remain scoped to the frozen rollout sampler’s zero-strict-signal regime. Required integration suite: **1,019 passed, 3 skipped, zero failures in 472.32 seconds**, direct exit 0 ([receipt](phase1/A6_reference_G1_publication_test.json)). Sixteen focused G1 checks pass; all 27 original G1 implementation bindings and six input bindings verify unchanged.
 
