@@ -1,0 +1,39 @@
+{
+  "condition": "v2-S2",
+  "declared_ratings": 50,
+  "gate_statistics_computed": false,
+  "local_health": 200,
+  "lock_publication": "1151dd6e9cff3df86b324ec5c83d027f7af064d3",
+  "lock_sha256": "3a51d92f0f71f521c24bb4057d3c450962169bd127b6a0e02cfb0eef367a1e33",
+  "registration_name": "veribench-rl4cv-e13v2-s2-controls",
+  "runs": {
+    "controls/H2_opus55_max": {
+      "admitted_at": "2026-10-15T04:23:32+00:00",
+      "expected_cells": 25,
+      "kwargs": {
+        "benchmark": "rl4cv-e13v2-S2-controls-H2_opus55_max",
+        "compute_effort": "max",
+        "judge_config": "H2_opus55_max",
+        "max_tokens": "32000"
+      },
+      "run_id": "bf2a9d4e-db45-475b-b950-409b5b072403",
+      "selector": "anthropic/claude-opus-5-5-no-fallback"
+    },
+    "controls/H2_sol_high": {
+      "admitted_at": "2026-10-15T04:23:12+00:00",
+      "expected_cells": 25,
+      "kwargs": {
+        "benchmark": "rl4cv-e13v2-S2-controls-H2_sol_high",
+        "judge_config": "H2_sol_high",
+        "max_tokens": "32000",
+        "reasoning_effort": "high"
+      },
+      "run_id": "cb83b609-eaac-4b64-ae29-0f78dfbdfedf",
+      "selector": "openai/gpt-6-sol-high"
+    }
+  },
+  "stage": "train-only hosted coverage route controls",
+  "status": "ADMITTED",
+  "tunnel_health": 200,
+  "unauthenticated_health": 401
+}

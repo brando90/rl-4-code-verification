@@ -28,6 +28,8 @@ The authored tiny-Qwen central-processor regression exercises actual native chec
 
 [Online ability and training scoring preparation](ONLINE_ABILITY_PREPARATION.md) now adds five-start, train-only fixed-item current-ability refits and a durable scorer preserving actual arm/seed/update identities. These helpers have no actual experiment outcomes yet and still require the parent pilot execution lock.
 
+`technical_supervisor.py` now provides a bounded single-stage worker around the runtime. It requires a published pilot lock and a bound execution receipt, keeps non-probe preflight reservations outside the three-attempt technical-gate count, checks the claimed device, reserves 90 seconds for cleanup, and persists failures and cleanup evidence. A zero process exit is only a runtime receipt; the parent driver must still verify complete artifacts before computing a gate statistic. The supervisor refuses an existing stage directory and does not retry a gate. Four authored tests cover timeout evidence, cleanup failure, duplicate launch refusal and rejection of a non-pilot lock. The full admission/resource driver remains to be completed before a device call.
+
 ## Remaining before LP
 
 Complete the supervised generation/refit and technical-gate driver around these primitives; choose and freeze the memory configuration using installed capabilities; bind source, checkpoint, tokenizer, probe, sampler, masks, optimizer, scheduler, limits and all device routes. Float32 master weights and optimizer state make memory planning distinct from the successful inference-only LP-1. The unchanged eager, 32-sequence generator is substantially slower than PLAN's original estimate; the prospective allocation must use measured S2 throughput and T4 costs.
