@@ -4,18 +4,20 @@
 
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
-Last updated: 10-15-2026 01:29 PDT
-Status: **ACTIVE: all three v2-S2 anchor panels generating.**
+Last updated: 10-15-2026 01:47 PDT
+Status: **ACTIVE: base generation complete; half/full generating; scoring freeze next.**
 
-## Current Phase 1 state — 10-15-2026 01:29 PDT
+## Current Phase 1 state — 10-15-2026 01:47 PDT
 
 Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
 
-What ran: v2-S2 anchors retain Base 4,224, half 3,136 and full batch 1 2,208 of 4,312 responses each at 10-15-2026 01:29 PDT, all RUNNING. Hosted judge and hidden-test controls remain final PASS. Historical evaluation generation and full-denominator analysis preparation passed the required suite: 846 passed, 3 skipped. Actual benchmark mutation audits, anchor scores, actual-data fits, independent full batch 2, evaluation measurements and experiment optimizer updates remain zero.
+What ran: base generation COMPLETE, 4,312/4,312 responses, zero missing or second attempts, 9,324,934 generated tokens and 6.9587135382493335 allocated device-hours; all 17 leases released and cleanup verified. Half retains 3,328/4,312 and full batch 1 2,368/4,312; generation continues. Hosted judge and hidden-test controls remain final PASS. Required suite: 857 passed, 3 skipped. Actual anchor scores, benchmark mutation measurements, fits, independent batch 2, evaluation measurements and experiment optimizer updates remain zero.
 
-Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Eighteen cron lines equal the prior sixteen plus two environment-corrected anchor-poller entries. Busy devices remain a wait condition. No Brando action is needed.
+Supervision: sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`, controllers under `$WR/anchor_watch`. Eighteen cron lines preserve the original schedule additively. Busy devices remain a wait condition. No Brando action is needed.
 
-Next: complete Phase 2 runtime preparation while the full manifests generate; publish each completed generation/scoring gate. Freeze calibration/items/F2 before full batch 2; then G1/H2 and Phase 2. G1's existing method lock has verified before any fit. The validated-judge transport retains its separate admission requirements.
+Next: publish the base generation report, then its scoring-input lock after required tests, then run its scorer once. Continue Phase 2 implementation while half/full manifests generate. Freeze calibration/items/F2 before full batch 2, then G1/H2 and Phase 2; G1 method is already frozen before any actual fit.
+
+Base generation and evaluation preparation (10-15-2026 01:47 PDT): [base generation report](RESULTS_ANCHORS_S2.md) accounts for all 4,312 responses, zero missing or retries, 9,324,934 generated tokens and 17 released leases totaling 6.9587135382493335 device-hours. Scoring has not started. [Evaluation scoring, selection and monitor preparation](phase2/README.md) adds the unchanged capped Lean oracle with identical-cell infrastructure-only retry, pre-main selection authority and exact boundary provenance, plus fixed 32-task monitor plans with current checkpoint weights frozen before generation. Eleven authored tests pass. Required suite: **857 passed, 3 skipped, zero failures in 458.48 seconds**, direct exit 0 ([receipt](phase2/evaluation_scoring_monitor_publication_test.json)). Half/full generation continues; actual mutation measurements, fits, new validation/test outcomes and optimizer updates remain zero.
 
 Evaluation generation and analysis preparation (10-15-2026 01:29 PDT): [helpers](phase2/README.md) preserve the historical evaluation sampler/text rendering under S2, retain malformed-response neighbors, and require complete evaluation populations. The analysis retains three paired seeds, all 222×16 test slots per seed, core/IndustrySet denominators, missing-value bounds, unbiased pass@4/pass@16, exact paired-seed sign swaps, frozen-family Holm adjustment and 10,000 descriptive paired seed/task-group bootstrap draws. Failed runs without a selected checkpoint remain entirely unmeasured; unavailable C and forecast errors are explicit. Twelve authored tests pass. Required suite: **846 passed, 3 skipped, zero failures in 434.80 seconds**, direct exit 0 ([receipt](phase2/evaluation_generation_analysis_publication_test.json)). This follows an 845-test passing run before the additional failed-run-accounting regression. Actual evaluation admission, scoring and source/selection/analysis locks remain required. Anchors retain Base 4,224, half 3,136 and full batch 1 2,208 of 4,312 responses each, all RUNNING. No actual anchor score, mutation measurement, fit, new validation/test outcome or experiment optimizer update has run.
 
