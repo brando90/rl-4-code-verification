@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 12:12 PDT
+Last updated: 10-15-2026 13:12 PDT
 
 ## Task and owner
 
@@ -315,6 +315,12 @@ Last updated: 10-15-2026 12:12 PDT
 - **SNAP unreachable.** `ssh skampere1` gives "Connection closed by UNKNOWN port 65535", and whale (171.64.75.72:22) resets at key exchange: the same failure since 11:15. The direct route needs the Stanford VPN, which needs Brando's sign-in and Duo. Brando was asked once to connect it, following the `machine/snap.md` rule to ask only when the remaining route requires a human step.
 - **Published state unchanged.** There have been no experiment-13 owner commits since `031cd17` (10:41), and results.md still reads "A6 final SOUND; continue to the learning-pilot lock" (10:37). That is about 1.5 h without a push against the owner's usual 10–20 minutes, so it may be building a large step, idle at its prompt, or blocked on GitHub from SNAP. It cannot be verified without SSH.
 - **Next.** Once SSH works: check the pane and process tree; if idle with work remaining, send the A6 continuation (learning-pilot lock, LP, T1–T4) with the pre-approval line. Then verify leases and the crontab.
+
+## Check-in 10-15-2026 13:10 PDT: SNAP still unreachable; no owner commits since 10:41
+
+- **Routes.** whale (171.64.75.72:22) still resets at key exchange, and the direct route still times out because the VPN is not connected. This is the same failure since 11:15. Brando was asked once at 12:10, in chat and by phone push; no new push.
+- **Published state unchanged** since `031cd17` (10:41): the last owner status is "A6 final SOUND; continue to the learning-pilot lock". That is about 2.5 h without an owner push, which cannot be explained without SSH.
+- **Next.** Retry at the next hourly check-in. Once reachable, inspect the pane and resume the owner if idle (A6 continuation with the pre-approval line).
 
 ## Exact next commands (master)
 
