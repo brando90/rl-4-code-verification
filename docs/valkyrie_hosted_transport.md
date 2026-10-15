@@ -6,7 +6,7 @@
 
 ## Transport selection
 
-Use `RL4CV_VALKYRIE_TRANSPORT=hosted` (default) and `VALKYRIE_BIN=valkyrie-hosted` on Stanford Network Analysis Project (SNAP) hosts, where the plain executable is deliberately retained as legacy. Otherwise the helper discovers `valkyrie-hosted`, then uses `valkyrie`. The selected executable must expose the hosted `whoami`, `provider list`, `secret set` and `benchmark service set` commands. The installed implementation was checked at upstream revision `865135f90c4212eec497d49696af63b6d293c92c` on 10-14-2026.
+Use `RL4CV_VALKYRIE_TRANSPORT=hosted` (default) and `VALKYRIE_BIN=valkyrie-hosted` on Stanford Network Analysis Project (SNAP) hosts. The independently deployed shared `valk`/`valkyrie` aliases now route through hosted compatibility; the old client is available as `valk-legacy`. Otherwise the helper discovers `valkyrie-hosted`, then uses `valkyrie`. The selected executable must expose the hosted `whoami`, `provider list`, `secret set` and `benchmark service set` commands. The installed implementation was checked at upstream revision `865135f90c4212eec497d49696af63b6d293c92c` on 10-14-2026.
 
 Hosted mode uses supported saved login or `VALKYRIE_API_KEY` authentication and optional `VALKYRIE_URL`. It removes obsolete `VALKYRIE_ENV`, `VALKYRIE_CONFIG_PATH` and `TRACKER_SERVICE_URL` overrides, along with direct model-provider credentials. The actual Tracker and organization reported by `whoami` bind deployment and run receipts, including when the Tracker comes from a saved login. A different authenticated Tracker or organization is rejected before fetching or changing a recorded run.
 
@@ -43,6 +43,6 @@ On 10-14-2026, `make test` on skampere1 passed **590 tests, with 5 skipped**, in
 
 The coordinator deployed an isolated service using the actual updated experiment-08 version-2 deployer on unused port 9869 and benchmark `rl4cv-hosted-migration-01a13cbe`. Authenticated local/tunnel health returned 200; unauthenticated requests returned 401; the hosted task listing and service task-ID check both matched the single control. The actual updated judge module's CLI function then admitted run `46dee95d-794a-46f0-b1e7-cb6f3aff6f0b` and successfully executed start, status, results and output (exit 0, FINISHED, 1/1 tasks). The registry-probe agent made zero model calls. This verifies deployment, saved user registration, Daytona, secret injection, the launcher transport and artifact retrieval; it does not establish judge agreement or approve a held scientific run.
 
-Private receipts/logs are retained with the coordinator's `valkyrie-hosted-completion-10-14-2026` record. The isolated test service is removed after collection. Existing services, results and scientific holds are preserved.
+Private receipts/logs are retained with the coordinator's `valkyrie-hosted-completion-10-14-2026` record. The isolated test service and tunnel were stopped after collection; both owned registration aliases and auth secrets were removed, and port 9869 is free. Existing services, results and scientific holds are preserved.
 
 Sources: [custom service registration](https://docs.valkyrie.vals.ai/benchmarks/custom-services), [hosted configuration](https://docs.valkyrie.vals.ai/get-started/configuration), and the installed `valkyrie benchmark service set --help` / `valkyrie secret set --help` plus pinned CLI source.
