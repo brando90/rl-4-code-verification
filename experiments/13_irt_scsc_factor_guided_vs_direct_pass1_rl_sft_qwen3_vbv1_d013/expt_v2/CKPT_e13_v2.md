@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-14-2026 23:18 PDT
+Last updated: 10-15-2026 00:18 PDT
 
 ## Task and owner
 
@@ -224,6 +224,12 @@ Last updated: 10-14-2026 23:18 PDT
 
 - **Anchors.** All three batches are RUNNING on owned GPUs 0–2: base 2,816/4,312, half 1,792/4,312 and full1 1,280/4,312 (resumed after the permission fix). There are 0 exhausted cells, and the only error is full1's pre-attempt segment-5 halt, in which no cell was attempted. Cumulative device-hours are 12.14 across 31 leases. At the observed rate, base finishes around 03:30 PDT, and half and full1 around 06:00–08:00 PDT on 10-15.
 - **Owner working** (5 h 56 min) on the Phase 2 train mutation-audit inputs, which tie each mutation to its source and scoring receipt and keep missing inputs among all 128 declared slots. Cost accounting and the audit cohort are published at `07d4c11`, with 764 tests passing.
+- **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 00:14 PDT: anchors 3,456, 2,528 and 1,696 of 4,312 durable
+
+- **Anchors.** The owner's durable counts are base 3,456, half 2,528 and full1 1,696 of 4,312; finished-segment receipts show 3,328, 2,304 and 1,536. All three are RUNNING on owned GPUs 0–2, with 0 exhausted cells. Cumulative device-hours are 14.79 across 36 leases. Base should finish around 02:00 PDT, and half and full1 around 05:00–08:00 PDT.
+- **Owner working** (6 h 56 min). It is publishing the train-audit and learning launchers. Its required suite ran 803 passed, 3 skipped, 0 failed in 414 s.
 - **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
 
 ## Exact next commands (master)
