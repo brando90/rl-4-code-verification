@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-14-2026 22:18 PDT
+Last updated: 10-14-2026 23:18 PDT
 
 ## Task and owner
 
@@ -219,6 +219,12 @@ Last updated: 10-14-2026 22:18 PDT
 - **Owner working** (4 h 56 min) on the Phase 2 pilot configuration. Arm-selection tests: G1 or H2 FAIL or INCONCLUSIVE keeps A, B and P; an unfinished gate raises an error instead of counting as a failure; G0 FAIL raises an error.
 - **Healthy.** The crontab has 16 lines, the 7 non-e13 lines identical to the backup. No action this hour; check next hour that full1 resumed on an idle device.
 - **Coverage-judge route controls PASS** ([RESULTS_COVERAGE_CONTROLS_S2.md](RESULTS_COVERAGE_CONTROLS_S2.md); freeze `f59b423`, registration successor `1151dd6`, result `f41dbc9`). All 50/50 train-only ratings were measured through hosted Valkyrie with the Vals-managed gateway credential: 50 model-query attempts, 0 retries, reported charges $2.98. GPT-6 Sol high and Opus 5.5 max each meet every frozen control: oracle, vacuous, blank and shuffled 5/5, and half-deleted 4/5 against a required 4/5. This clears the 10-13 HTTP 403 blocker for Phase 2 coverage scoring. The train mutation audit, the coverage monitor and the hidden-gold controls still come before learning.
+
+## Check-in 10-14-2026 23:14 PDT: base 2,816, half 1,792 and full1 1,280 of 4,312, all running
+
+- **Anchors.** All three batches are RUNNING on owned GPUs 0–2: base 2,816/4,312, half 1,792/4,312 and full1 1,280/4,312 (resumed after the permission fix). There are 0 exhausted cells, and the only error is full1's pre-attempt segment-5 halt, in which no cell was attempted. Cumulative device-hours are 12.14 across 31 leases. At the observed rate, base finishes around 03:30 PDT, and half and full1 around 06:00–08:00 PDT on 10-15.
+- **Owner working** (5 h 56 min) on the Phase 2 train mutation-audit inputs, which tie each mutation to its source and scoring receipt and keep missing inputs among all 128 declared slots. Cost accounting and the audit cohort are published at `07d4c11`, with 764 tests passing.
+- **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
 
 ## Exact next commands (master)
 
