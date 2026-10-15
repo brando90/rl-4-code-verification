@@ -4,10 +4,22 @@
 
 **TLDR:** v2-S2 float16 passes its one final LP-1 confirmation on the original probe: 8/8 responses, 44,844 tokens; unsupported 0, median error 0.0000327481539, 99th percentile 0.0176023889 and truncation 0, all within unchanged thresholds. Phase 1 continues under S2. C1 was selected on the disjoint development probe; C2 was not run. S1's measured FAIL remains final (99th-percentile error 0.124769325 >0.10).
 
-Last updated: 10-14-2026 17:54 PDT
+Last updated: 10-14-2026 18:34 PDT
 Status: **ACTIVE: v2-S2 LP-1 PASS; Phase 1 anchor preparation.**
 
-## Current A5 continuation — 10-14-2026 17:26 PDT
+## Current Phase 1 state — 10-14-2026 18:30 PDT
+
+Goal: complete Phase 1 and Phase 2 under v2-S2, or publish the binding transition result. S1 LP-1 FAIL remains final; S2 confirmation PASS is published at `2b2f8b5`.
+
+What ran: 15 focused anchor checks passed; no anchor generation or actual-data fit has run. New generation ledgers preserve completed cells and permit only one identical retry of missing cells. Three host routes are being prepared and hash-verified without model execution. [Prospective device plan](phase1/ANCHORS_S2.md): at most three independent devices, two-hour leases, 256-cell segments, 144 device-hour ceiling across four full batches. Closed A5 usage remains 0.207209183243/3.0 hours; its leases are released.
+
+Supervision: same sole writer PID 1243923, session `codex-rl4cv-e13v2-owner-g0`; active watchdog `$WR/watchdog_a5`. Fourteen cron lines are preserved. The anchor poller will be added only after code, tests and locks are published. Busy devices are a wait condition; no human action is needed.
+
+Next: finish route verification, required Lean integration tests and publication; arm Base, half and full batch 1. Then score, freeze calibration/items/F2, generate full batch 2 and evaluate G1/H2. Verify `G1_A3.json` before any fit. The separate validated-judge transport remains pending its own admission; it does not block anchor generation.
+
+Anchor freeze verification (10-14-2026 18:34 PDT): all nine host/policy routes passed source, weight and installed-version verification without model calls. Original Base revision and both experiment-08 export checksum manifests match. Foreign registry: 33/33 released, 17 legacy files reconciled; every future claim rechecks these and discovers new reservation paths. Required integration suite: **587 passed, 23 skipped, zero failures in 254.43 seconds**, direct exit 0. [Receipt](phase1/ANCHORS_S2_publication_test.json), [routes](phase1/ANCHORS_S2_route_verification.json). The three initial generation locks are frozen; full batch 2 remains unarmed until calibration/items/F2 are published. G1's existing lock verifies 27 source and six input bindings with zero actual fits. Next: push and arm the additive anchor poller.
+
+## Historical A5 continuation — 10-14-2026 17:26 PDT
 
 Goal: select and confirm v2-S2 under [adopted A5](AMENDMENT_A5_numerics_condition_S2_after_LP1_fail_10-14-2026.md), then complete Phase 1 and Phase 2 if admitted. S1's failure below is historical and final; its stop is superseded only by the separate A5 condition.
 
