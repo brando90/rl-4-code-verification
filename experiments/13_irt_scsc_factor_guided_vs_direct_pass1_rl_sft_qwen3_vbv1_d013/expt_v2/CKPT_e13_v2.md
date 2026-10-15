@@ -246,7 +246,7 @@ Last updated: 10-15-2026 03:18 PDT
 
 ## Check-in 10-15-2026 03:14 PDT: base COMPLETE; half 3,840 and full1 3,072 of 4,312
 
-- **Anchors.** Base is COMPLETE at 4,312/4,312 and in Lean scoring. half 3,840/4,312 and full1 3,072/4,312 are RUNNING on owned GPUs 0–1, with 0 exhausted cells. Cumulative device-hours are 22.57 across 51 leases.
+- **Anchors.** Base is COMPLETE at 4,312/4,312, and its Lean scoring is closed (`1876843`): 4,311 measured, 1 unresolved deterministic parser error kept in the denominator, **0 strict successes** (full-denominator strict-mean bounds [0, 0.000232]), 0 retries. half 3,840/4,312 and full1 3,072/4,312 are RUNNING on owned GPUs 0–1, with 0 exhausted cells. Cumulative device-hours are 22.57 across 51 leases.
 - **Owner working** (9 h 56 min) on the Phase 2 monitor processing (score the fixed generated monitor once and freeze independent hidden inputs) and the pilot token-budget code, which uses every fixed A-pilot slot without imputing missing lengths. 20 focused tests pass.
 - **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
 
