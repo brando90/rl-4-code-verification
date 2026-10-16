@@ -2,6 +2,14 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/results.md>
 
+<!-- E08_V3_FINAL_RESULTS -->
+## Version 3 continuation — Phase A complete, Phase B waiting for devices
+
+**Last updated:** 10-16-2026 02:00 PDT. `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3` is **INCOMPLETE: 8,640/17,280 validation cells known**. Both conditions at 1.7B/4B have finished their exact token schedules, all eight exports, four paired comparisons and eight namespace diagnostics. [Live results and intervals](expt_v3/results.md), [Phase A verification](expt_v3/results/phase_a_validation_verification.json).
+
+Replay 4B half and expansion 4B full pass the frozen gates. All four 1.7B rungs fail format/cap gates, excluding a primary four-size common checkpoint; the complete large-model manifest and separate 4B/8B/14B sensitivity remain mandatory. Phase B's exact four-device 8B and eight-device 14B controllers are running but report WAITING_DEVICES on both prepared hosts. Zero paid experimental model calls; version 3 has not evaluated the test split. Final forecast assessment, publication and DONE notification await all declared work.
+<!-- /E08_V3_FINAL_RESULTS -->
+
 > **Version 2 — PARTIAL / route blocked (10-13-2026):** The matched step-658 extension stopped at its route-controls gate: Valkyrie authenticates, but managed AWS is unavailable for the existing organization. No new generation batch persisted (0/5,328 cells); all missing identities and unresolved forecasts are published in [expt_v2/results.md](expt_v2/results.md). Reused results reproduce exactly, and version 1 below remains unchanged.
 
 **TLDR:** Matched supervised fine-tuning is complete at all four sizes (658 updates and 5,752,936 real loss tokens each), with all 20 trained validation rungs and 25,920/25,920 validation cells complete. The frozen verdict is **PARTIAL**: 8B step 658 and 14B step 334 passed at different fractions; 1.7B and 4B passed no rung. All **10,656/10,656 test cells have complete factors**, using all **4,302/4,302 validated-judge ratings** over 717 files, including all 60 fixed audit files per system. Final results reproduce exactly; services are stopped and the completed study is closed without a follow-on run.

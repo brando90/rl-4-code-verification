@@ -46,3 +46,7 @@ Execution and recovery events: [runtime ledger](results/runtime_progress.md).
 | 4b_f1p0 | 0.0194 [-0.0019, 0.0426] |
 
 **TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is 8640/17,280; incomplete comparisons remain unresolved.
+
+<!-- E08_V3_PHASE_A_STATUS -->
+Phase A complete (10-16-2026 02:00 PDT): four training runs, eight exports, all 8,640 phase cells and eight namespace diagnostics checked. Phase B controllers are alive and waiting for eligible devices; the full experiment remains incomplete. [Verification](results/phase_a_validation_verification.json).
+<!-- /E08_V3_PHASE_A_STATUS -->

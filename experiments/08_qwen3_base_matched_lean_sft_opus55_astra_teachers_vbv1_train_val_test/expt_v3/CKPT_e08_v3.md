@@ -1,23 +1,23 @@
 # Matched replay versus expansion continuation checkpoint
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
-**TLDR:** All Phase A training/generation verified; all eight Phase A rungs scored and seven diagnostics checked; replay 4B half and expansion 4B full pass gates and all remaining cells still required.
+**TLDR:** All Phase A training/generation verified; Phase A complete, all eight rungs and diagnostics checked; replay 4B half and expansion 4B full pass gates and all remaining cells still required.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-16-2026 01:57 PDT
+Last updated: 10-16-2026 02:07 PDT
 ## Goal
 - Complete all 17,280 validation cells, paired bootstrap, namespace diagnostic, forecast assessment, publication and actual DONE notification; zero paid experimental model calls; test split unopened.
 ## Current execution
 - Sole writer recovery-01: native gpt-6-astra/ultra, never/danger-full-access; PID 2580398, boot 839e7dd6-64e1-4a80-9498-31d30b3cc2df, start 36376767. Host owner_ack.json matches all six recovery-dispatch hashes at acceptance; initial transfer remains historical.
-- Phase A PID 2265174/start 37543344 adopts four existing scorers and starts both E4 rungs; Phase B PID 2265309/start 37543366 waits for Phase A. Runtime /lfs/skampere1/0/brando9/rl4cv_e08/sft_v3.
+- Phase A DONE (former PID 2265174/start 37543344); Phase B PID 2265309/start 37543366 has live E8/E14 remote controllers waiting for devices. Runtime /lfs/skampere1/0/brando9/rl4cv_e08/sft_v3.
 - E/R 1.7B and 4B training and eight exports verified: 23,021,424 additional loss tokens, 41,508,194 processed real tokens. [Receipt](results/phase_a_training_verification.json). Both retained post-export exit 2 incidents were reconciled without replay.
-- Eight complete generated rungs = 8,640 exact cells. All generation children exited 0; all eight Phase A rungs scored/analyzed (8,640/17,280 cells). Replay 4B half and expansion 4B full pass gates; seven namespace diagnostics have zero score delta.
+- Eight complete generated rungs = 8,640 exact cells. All generation children exited 0; all eight Phase A rungs scored/analyzed (8,640/17,280 cells). Replay 4B half and expansion 4B full pass gates; eight namespace diagnostics have zero score delta.
 - Primary scoring and namespace diagnostics use eight workers per rung, at most six combined jobs (48 active compilation slots), frozen 600s timeout; expired orphan children cleaned separately by exact pidfd guard. All generation finished; future remote shell launches use immutable snapshots.
 - All four training sizes and exact generator environments verified on skampere2/3. Pending large-model routes remain remote. 14B training must use eight devices; inference uses the frozen permitted layout.
-- Latest full suite: 1,287 passed / 17 skipped / 6 subtests / 331.82s; 16 focused recovery checks plus 6 subtests pass. Latest native Vals weekly usage 50%, credits 0. Keep personal reserve and original finite deadline/attempt limits.
+- Latest full suite: 1,287 passed / 17 skipped / 6 subtests / 287.62s; 16 focused recovery checks plus 6 subtests pass. Latest native Vals weekly usage 52%, credits 0. Keep personal reserve and original finite deadline/attempt limits.
 ## Waits and recovery
-- Host recovery cron every five minutes/reboot; orphan cleanup every minute; alternate capacity probe every15min, inactive until explicit resource wait. All tested; watch OBSERVING, no issues. Fresh capacity: all skampere2 devices occupied; skampere3 GPUs 2/5 unoccupied but fewer than four eligible. No whole-node route available currently; continue independent work.
+- Host recovery cron every five minutes/reboot; orphan cleanup every minute; alternate capacity probe every15min. Current-state wait checks pass (unchanged/heartbeat DEFER; scheduler failure WAKE). Final release is prepared after checked publication; remote controllers remain alive. No eligible local/remote GPU block or Slurm association. Original deadline 10-18-2026 21:21 PDT.
 - Slurm association was already requested 10-14; do not duplicate. Inventory and real release events are in host recovery_config.json. No paid cloud or smaller 14B training layout.
 ## Next steps
-- [p 10/10] Finish and publish all eight priority scoring/namespace rungs; preserve every native failure and missing cell; then let Phase B run 8B/14B under exact admission.
+- [p 10/10] Preserve live Phase B controllers and admit exact 8B/14B layouts when devices become available; finish all remaining 8,640 cells, their diagnostics and paired comparisons.
 - [p 9/10] After all declared cells: analyze_validation.py, finalize_results.py, verify/publish parent and v3 reports, actual deduplicated DONE email, checked completion receipt, retire only owned cron entries.
 ## Brando to-do
 - None. START already sent; checkout and native evidence retained. See [continuation runbook](RUNBOOK_continuation_owner.md).
@@ -87,3 +87,9 @@ Last updated: 10-16-2026 01:57 PDT
 - 10-16-2026 01:37 PDT -- Expansion 4B full passes gates (981 extracted,98 capped,36/135 mixed);153/1,080 kernel successes,0.1417 [0.0972,0.1907]. Paired expansion-minus-replay +0.0194 [−0.0019,0.0426],10,000 task-bootstrap draws seed0,p-val=n/a. Exact primary and namespace checks pass, diagnostic unchanged. Coverage7,560/17,280; only expansion4B half remains in Phase A. Native namespace exit0 reconciles transient observer poll race; no job failure.
 
 - 10-16-2026 01:57 PDT -- All Phase A primary cells complete:8,640/17,280. Expansion4B half fails format/cap (953 extracted,127 capped,35/135 mixed),125/1,080 kernel successes =0.1157 [0.0769,0.1583]. Matched expansion-minus-replay +0.0324 [0.0111,0.0546],10,000 paired task-bootstrap draws seed0,p-val=n/a; training-seed variation unmeasured. Exact keys/hashes/tables pass. Final namespace diagnostic running, Phase B still gated on it.
+
+- 10-16-2026 02:00 PDT -- Phase A DONE: four trained runs/eight exports,8,640 exact primary cells,four paired comparisons,eight namespace diagnostics and192 original-error receipts checked. Three namespace cells changed,zero score deltas/unknowns. Phase B E8/E14 controllers launched and native output says WAITING_DEVICES on both prepared hosts. Published phase_a_validation_verification.json; no completion/DONE claim for the full experiment.
+
+- 10-16-2026 02:05 PDT -- External-capacity continuation prepared after Phase A checks: exact E8/E14 controller identities alive, shared admission records absent, local four-device predicate false, Slurm association absent and all allowed eight-GPU nodes non-idle. Current-state shadow checks DEFER/DEFER/WAKE pass; prior real admission/capacity wake tests retained. Native Vals weekly use52%,credits0. Final resource wait/release will be written only after publication; no full-completion receipt or DONE mail.
+
+- 10-16-2026 02:07 PDT -- Final Phase A publication checks pass:1,287 tests,17 skipped,6 subtests in287.62s. All available scientific work complete; resource wait/release prepared as final mutation after this publication. E8/E14 controllers remain alive with no admission. Full experiment stays INCOMPLETE:8,640 known/17,280 declared; no DONE notification sent.

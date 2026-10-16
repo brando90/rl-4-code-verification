@@ -1,0 +1,151 @@
+{
+  "status": "PHASE_A_COMPLETE",
+  "observed_unix": 1792141145.211066,
+  "known_primary_cells": 8640,
+  "declared_phase_a_cells": 8640,
+  "declared_full_experiment_cells": 17280,
+  "primary_systems": 8,
+  "paired_comparisons": {
+    "1p7b_f0p5": {
+      "ci95": [
+        -0.003703703703703704,
+        0.02962962962962963
+      ],
+      "draws": 10000,
+      "mean": 0.012037037037037037,
+      "p_value": null,
+      "seed": 0,
+      "unit": "task with eight attempts together"
+    },
+    "1p7b_f1p0": {
+      "ci95": [
+        -0.025925925925925925,
+        0.007407407407407408
+      ],
+      "draws": 10000,
+      "mean": -0.009259259259259259,
+      "p_value": null,
+      "seed": 0,
+      "unit": "task with eight attempts together"
+    },
+    "4b_f0p5": {
+      "ci95": [
+        0.011111111111111112,
+        0.05462962962962963
+      ],
+      "draws": 10000,
+      "mean": 0.032407407407407406,
+      "p_value": null,
+      "seed": 0,
+      "unit": "task with eight attempts together"
+    },
+    "4b_f1p0": {
+      "ci95": [
+        -0.001851851851851852,
+        0.04259259259259259
+      ],
+      "draws": 10000,
+      "mean": 0.019444444444444445,
+      "p_value": null,
+      "seed": 0,
+      "unit": "task with eight attempts together"
+    }
+  },
+  "namespace_systems": 8,
+  "namespace_changed_cells": 3,
+  "namespace_unknown_cells": 0,
+  "namespace_original_error_samples": 192,
+  "all_namespace_deltas_zero": true,
+  "training_runs_verified": 4,
+  "exports_verified": 8,
+  "additional_loss_tokens": 23021424,
+  "processed_real_tokens": 41508194,
+  "passing_rungs": [
+    "v3_E_4b_f1p0",
+    "v3_R_4b_f0p5"
+  ],
+  "phase_a_scheduler": {
+    "pid": 2265174,
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "start_ticks": "37543344"
+  },
+  "phase_b_scheduler": {
+    "pid": 2265309,
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "start_ticks": "37543366"
+  },
+  "phase_b_jobs": {
+    "train_E_8b": {
+      "status": "RUNNING",
+      "identity": {
+        "pid": 798430,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37963394"
+      }
+    },
+    "train_E_14b": {
+      "status": "RUNNING",
+      "identity": {
+        "pid": 798432,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37963395"
+      }
+    }
+  },
+  "phase_b_native_status": "WAITING_DEVICES on skampere2 and skampere3 for both expansion8B and14B",
+  "all_experiment_work_complete": false,
+  "paid_model_spend_usd": 0,
+  "test_split_evaluated": false,
+  "artifact_sha256": {
+    "results/ladder/v3_E_1p7b_f0p5_validation_cells.csv": "93044a0abeffac4f3a654490cb60241ff37e4b262fad0460dbaccb34f1b5c9b3",
+    "results/ladder/v3_E_1p7b_f0p5_validation_per_task.csv": "c4b5f1ae3fcf0dbaa78e1bbf1ff7f6795b423cd5dd777210b7c08ca29b23bd60",
+    "results/ladder/v3_E_1p7b_f0p5_taxonomy.csv": "efb1ca95551f0e0919d68c68921e08fbff9940f9ac0767a8c01b056e2aab39df",
+    "results/namespace_diagnostic/v3_E_1p7b_f0p5.json": "93e7e3876e10a0ef44fed5b47be238097daedadffba2cdf3e9ffb176e32bff54",
+    "results/namespace_diagnostic/v3_E_1p7b_f0p5_cells.csv": "0da070c675dbb699070eb132e8eb9515c451ab0d0871f170cbe3a985e3c523a2",
+    "results/ladder/v3_E_1p7b_f1p0_validation_cells.csv": "5ab4f6d3402919a60448277641006dc7b276bf38f9c4e497f45703275421f4fa",
+    "results/ladder/v3_E_1p7b_f1p0_validation_per_task.csv": "caaa51f82608fe3a6e829054bf44ed50065db09ffc76b12b9ecd6eb597deafea",
+    "results/ladder/v3_E_1p7b_f1p0_taxonomy.csv": "869320a8c00b7bac7d88e3627e0690a6b21f47bb25ac492120029b9c450d9fe5",
+    "results/namespace_diagnostic/v3_E_1p7b_f1p0.json": "d29061308135647ba5cee17a817e9add168b73acae7a3e01a8ed3e857752e9ae",
+    "results/namespace_diagnostic/v3_E_1p7b_f1p0_cells.csv": "e8070e887c5b0cd44a4b39ecc8b3ae3e9bc8801e96ee01df48f3e721732050a8",
+    "results/ladder/v3_E_4b_f0p5_validation_cells.csv": "66aba00999e0f843e475f11eb08fb6f9fef6eaea040c472a75bfaddb4b2ae7c8",
+    "results/ladder/v3_E_4b_f0p5_validation_per_task.csv": "c56df094fbdc613a2497a6f5c0f69dd71ebd63372ba1b7c934debe932a3939cb",
+    "results/ladder/v3_E_4b_f0p5_taxonomy.csv": "39e60b5d938f8482cf6c65d1b926619afe99961026f5c98f25af0b298ce244d8",
+    "results/namespace_diagnostic/v3_E_4b_f0p5.json": "837a6af6877b93cf56c2293e025915ceb6e5e9e005d68d6df7b24fb976cc8a63",
+    "results/namespace_diagnostic/v3_E_4b_f0p5_cells.csv": "5a3962b11e81f97f626504355b821245a82609d749642f35f1c92cf602bc05d6",
+    "results/ladder/v3_E_4b_f1p0_validation_cells.csv": "316c976cb3af264bf26621220bd48ecadf96f3661a89e8527872f3cc0fdeb74e",
+    "results/ladder/v3_E_4b_f1p0_validation_per_task.csv": "3a50d8764911f9efd365d3ef85279a4f6554dbc31fd51ce3d5ffda70122505d0",
+    "results/ladder/v3_E_4b_f1p0_taxonomy.csv": "b418411752a49df54609ff95d0eb01ea9aff58735834015b8794a9c15d33657d",
+    "results/namespace_diagnostic/v3_E_4b_f1p0.json": "dc50b9c41dae90475fe0e5f0f19f606d36f01c99d589f06227614ff6c01df576",
+    "results/namespace_diagnostic/v3_E_4b_f1p0_cells.csv": "d0a5e7277a3023cc4a2f6263b5dc66e55c5eb52fc2271d81f68a2c16187e96c1",
+    "results/ladder/v3_R_1p7b_f0p5_validation_cells.csv": "d08e26ebc32dc5ac037dc91bc7e2857bb725e55598109864541c5f5ab254d4ef",
+    "results/ladder/v3_R_1p7b_f0p5_validation_per_task.csv": "1a676f1a5fc43fef6c9ddf7d107767bf7004f82b91f1e5e9fad309a8069b889d",
+    "results/ladder/v3_R_1p7b_f0p5_taxonomy.csv": "ce7cddd264d69d25c089c599b4babecf88eb8b45534143894a3e3486e6e1c4e3",
+    "results/namespace_diagnostic/v3_R_1p7b_f0p5.json": "f9e9fe8461b6c3bae4033da5c195078175bc8218eee67b28b3a25d1d6e57530d",
+    "results/namespace_diagnostic/v3_R_1p7b_f0p5_cells.csv": "aac794a792b702e1d0837fe93ff6495b8a3bc558661e1de8db19e1965b76d273",
+    "results/ladder/v3_R_1p7b_f1p0_validation_cells.csv": "d8f38a6dcb90a356e695059187f7bd468b1d87ce7c2372be4229f8ebdfcb7e98",
+    "results/ladder/v3_R_1p7b_f1p0_validation_per_task.csv": "e525febc5543ea6426ea473637d3af372304213d7cc648249bcf018cf36b5095",
+    "results/ladder/v3_R_1p7b_f1p0_taxonomy.csv": "a248bc048fe09965146cd29bfe91b4bb027280beb09f880b720a75e9d763a0e9",
+    "results/namespace_diagnostic/v3_R_1p7b_f1p0.json": "9f8e9c91f5615eed967803ec0694ca8396e478df3c3cddac478ae430775d5ddc",
+    "results/namespace_diagnostic/v3_R_1p7b_f1p0_cells.csv": "a5a4115aab6094aa9717c55b62a1510d92890b7ec37fdcdd067737c2bc160775",
+    "results/ladder/v3_R_4b_f0p5_validation_cells.csv": "5ce41c1d5783c79eafea12726b291501fbe5f4e92184bf5c33ff729d04fa5a76",
+    "results/ladder/v3_R_4b_f0p5_validation_per_task.csv": "9894afe929d31802eeab9e0a5a8f5545bcd121423db15426a8ece41e683cf6ca",
+    "results/ladder/v3_R_4b_f0p5_taxonomy.csv": "58ee82357b8a5aa38d02a481ba533ce5fe6245802aba22416745f7af9674e8bd",
+    "results/namespace_diagnostic/v3_R_4b_f0p5.json": "9309bc627d9a95236a30768c35dcca15f43ad9c36e1bb0dc29079ed6386f5fec",
+    "results/namespace_diagnostic/v3_R_4b_f0p5_cells.csv": "33b255eb486af141d2d9bcdf475b42379f34ae6af412d946accd5a1313e251bd",
+    "results/ladder/v3_R_4b_f1p0_validation_cells.csv": "58d03baca252292cf3d9ea29b686d6a336d8767975bc3f89394feefb905a804a",
+    "results/ladder/v3_R_4b_f1p0_validation_per_task.csv": "4057ace29f8217c23220a0b3bfb7b34f59fa90869102f19b79648526f28c9d8c",
+    "results/ladder/v3_R_4b_f1p0_taxonomy.csv": "e2a6f1830a2e40f5da17edc9b49a2363c739b324708359f75159cc38b2c4726f",
+    "results/namespace_diagnostic/v3_R_4b_f1p0.json": "e05ee95771bdb5c71dd944919fc303854d4f0c50901090518fa6665cc3741667",
+    "results/namespace_diagnostic/v3_R_4b_f1p0_cells.csv": "39a4d5e3097b9bf29399cba94983caeb47fa766b1522a937e7521ce4b060a857",
+    "results/phase_a_training_verification.json": "e61c45fa9428fe6f86a3f72cdc1fc43fdb99963038cabbc112788d791269ad02",
+    "results/phase_a_generation_verification.json": "258cb0ff6b6dae07dee48d006ac051ddf0dbe2b3161d4fd97adf5765ff86cc2d"
+  },
+  "verification_command": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/verify_publication_rungs.py (all eight Phase A labels)",
+  "full_tests": {
+    "passed": 1287,
+    "skipped": 17,
+    "subtests_passed": 6,
+    "seconds": 287.62,
+    "log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/test_phase_a_complete_recovery01.log"
+  }
+}
