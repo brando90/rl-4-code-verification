@@ -2,6 +2,7 @@
   "forecast_sha256": "7e4ebbe567792d6509bbac2b78b3c5acd782591fea959c0f3a44ff07744efd5f",
   "forecast_canonical_sha256": "dc0db39bb62527d24d26c44a128103182afb9e4d28c575c0528eacc773269684",
   "rule": "Earliest fraction with a selected condition; both fractions retained in the full decision table",
+  "interpretation_note": "The original operational hit compares the earliest selected winner. The frozen question asks which condition reaches a common checkpoint; common_checkpoint_assessment separately reports the earliest fraction within each condition. These can disagree when both conditions qualify at different fractions; neither verdict replaces the other.",
   "primary": {
     "prediction": {
       "condition": "neither",
@@ -17,7 +18,12 @@
       "condition": null,
       "fraction": null
     },
-    "hit": null
+    "hit": null,
+    "common_checkpoint_assessment": {
+      "status": "INCOMPLETE",
+      "earliest_fraction_per_condition": null,
+      "predicted_common_checkpoint_reached": null
+    }
   },
   "sensitivity": {
     "prediction": {
@@ -29,6 +35,11 @@
       "condition": null,
       "fraction": null
     },
-    "hit": null
+    "hit": null,
+    "common_checkpoint_assessment": {
+      "status": "INCOMPLETE",
+      "earliest_fraction_per_condition": null,
+      "predicted_common_checkpoint_reached": null
+    }
   }
 }

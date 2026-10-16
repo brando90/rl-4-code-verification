@@ -1,9 +1,130 @@
 {
+  "cell_coverage": {
+    "v3_E_14b_f0p5": {
+      "cells_csv": "results/coverage/v3_E_14b_f0p5.csv",
+      "declared": 1080,
+      "failed_or_unknown": 0,
+      "known": 0,
+      "missing": 1080
+    },
+    "v3_E_14b_f1p0": {
+      "cells_csv": "results/coverage/v3_E_14b_f1p0.csv",
+      "declared": 1080,
+      "failed_or_unknown": 0,
+      "known": 0,
+      "missing": 1080
+    },
+    "v3_E_1p7b_f0p5": {
+      "cells_csv": "results/coverage/v3_E_1p7b_f0p5.csv",
+      "declared": 1080,
+      "failed_or_unknown": 0,
+      "known": 1080,
+      "missing": 0
+    },
+    "v3_E_1p7b_f1p0": {
+      "cells_csv": "results/coverage/v3_E_1p7b_f1p0.csv",
+      "declared": 1080,
+      "failed_or_unknown": 0,
+      "known": 1080,
+      "missing": 0
+    },
+    "v3_E_4b_f0p5": {
+      "cells_csv": "results/coverage/v3_E_4b_f0p5.csv",
+      "declared": 1080,
+      "failed_or_unknown": 0,
+      "known": 1080,
+      "missing": 0
+    },
+    "v3_E_4b_f1p0": {
+      "cells_csv": "results/coverage/v3_E_4b_f1p0.csv",
+      "declared": 1080,
+      "failed_or_unknown": 0,
+      "known": 1080,
+      "missing": 0
+    },
+    "v3_E_8b_f0p5": {
+      "cells_csv": "results/coverage/v3_E_8b_f0p5.csv",
+      "declared": 1080,
+      "failed_or_unknown": 0,
+      "known": 0,
+      "missing": 1080
+    },
+    "v3_E_8b_f1p0": {
+      "cells_csv": "results/coverage/v3_E_8b_f1p0.csv",
+      "declared": 1080,
+      "failed_or_unknown": 0,
+      "known": 0,
+      "missing": 1080
+    },
+    "v3_R_14b_f0p5": {
+      "cells_csv": "results/coverage/v3_R_14b_f0p5.csv",
+      "declared": 1080,
+      "failed_or_unknown": 0,
+      "known": 0,
+      "missing": 1080
+    },
+    "v3_R_14b_f1p0": {
+      "cells_csv": "results/coverage/v3_R_14b_f1p0.csv",
+      "declared": 1080,
+      "failed_or_unknown": 0,
+      "known": 0,
+      "missing": 1080
+    },
+    "v3_R_1p7b_f0p5": {
+      "cells_csv": "results/coverage/v3_R_1p7b_f0p5.csv",
+      "declared": 1080,
+      "failed_or_unknown": 0,
+      "known": 1080,
+      "missing": 0
+    },
+    "v3_R_1p7b_f1p0": {
+      "cells_csv": "results/coverage/v3_R_1p7b_f1p0.csv",
+      "declared": 1080,
+      "failed_or_unknown": 0,
+      "known": 1080,
+      "missing": 0
+    },
+    "v3_R_4b_f0p5": {
+      "cells_csv": "results/coverage/v3_R_4b_f0p5.csv",
+      "declared": 1080,
+      "failed_or_unknown": 0,
+      "known": 1080,
+      "missing": 0
+    },
+    "v3_R_4b_f1p0": {
+      "cells_csv": "results/coverage/v3_R_4b_f1p0.csv",
+      "declared": 1080,
+      "failed_or_unknown": 0,
+      "known": 1080,
+      "missing": 0
+    },
+    "v3_R_8b_f0p5": {
+      "cells_csv": "results/coverage/v3_R_8b_f0p5.csv",
+      "declared": 1080,
+      "failed_or_unknown": 0,
+      "known": 0,
+      "missing": 1080
+    },
+    "v3_R_8b_f1p0": {
+      "cells_csv": "results/coverage/v3_R_8b_f1p0.csv",
+      "declared": 1080,
+      "failed_or_unknown": 0,
+      "known": 0,
+      "missing": 1080
+    }
+  },
+  "complete_rung_cells": 8640,
   "declared_cells": 17280,
   "forecast_assessment": {
     "forecast_canonical_sha256": "dc0db39bb62527d24d26c44a128103182afb9e4d28c575c0528eacc773269684",
     "forecast_sha256": "7e4ebbe567792d6509bbac2b78b3c5acd782591fea959c0f3a44ff07744efd5f",
+    "interpretation_note": "The original operational hit compares the earliest selected winner. The frozen question asks which condition reaches a common checkpoint; common_checkpoint_assessment separately reports the earliest fraction within each condition. These can disagree when both conditions qualify at different fractions; neither verdict replaces the other.",
     "primary": {
+      "common_checkpoint_assessment": {
+        "earliest_fraction_per_condition": null,
+        "predicted_common_checkpoint_reached": null,
+        "status": "INCOMPLETE"
+      },
       "hit": null,
       "outcome": {
         "condition": null,
@@ -22,6 +143,11 @@
     },
     "rule": "Earliest fraction with a selected condition; both fractions retained in the full decision table",
     "sensitivity": {
+      "common_checkpoint_assessment": {
+        "earliest_fraction_per_condition": null,
+        "predicted_common_checkpoint_reached": null,
+        "status": "INCOMPLETE"
+      },
       "hit": null,
       "outcome": {
         "condition": null,

@@ -19,6 +19,20 @@ def outcome(decisions):
     return {'status': 'COMPLETE', 'condition': 'neither', 'fraction': None}
 
 
+def common_checkpoints(decisions, expected):
+    """Expose forecast reachability separately from the earliest selected winner."""
+    if any(decisions[f]['status'] != 'COMPLETE' for f in ('f0p5', 'f1p0')):
+        return {'status': 'INCOMPLETE', 'earliest_fraction_per_condition': None,
+                'predicted_common_checkpoint_reached': None}
+    earliest = {c: next((f for f in ('f0p5', 'f1p0')
+                         if decisions[f]['common_checkpoint'][c]), None) for c in ('R', 'E')}
+    reached = (all(f is None for f in earliest.values()) if expected['condition'] == 'neither'
+               else earliest[expected['condition']] == expected['fraction'])
+    return {'status': 'COMPLETE', 'earliest_fraction_per_condition': earliest,
+            'predicted_common_checkpoint_reached': reached,
+            'both_conditions_qualify': all(f is not None for f in earliest.values())}
+
+
 def assess(summary):
     path = HERE / 'forecasts/e08_v3_forecast.json'
     actual_hash = hashlib.sha256(path.read_bytes()).hexdigest()
@@ -31,12 +45,14 @@ def assess(summary):
     assert any(row['file'] == path.name and row['sha256'] == FROZEN_CANONICAL_SHA256 for row in ledger)
     result = {'forecast_sha256': actual_hash,
               'forecast_canonical_sha256': FROZEN_CANONICAL_SHA256,
-              'rule': 'Earliest fraction with a selected condition; both fractions retained in the full decision table'}
+              'rule': 'Earliest fraction with a selected condition; both fractions retained in the full decision table',
+              'interpretation_note': 'The original operational hit compares the earliest selected winner. The frozen question asks which condition reaches a common checkpoint; common_checkpoint_assessment separately reports the earliest fraction within each condition. These can disagree when both conditions qualify at different fractions; neither verdict replaces the other.'}
     for key, pred in [('primary', 'primary_prediction'), ('sensitivity', 'three_size_sensitivity_prediction')]:
         actual = outcome(summary[key])
         expected = forecast[pred]
         hit = None if actual['status'] != 'COMPLETE' else all(actual[k] == expected[k] for k in ('condition', 'fraction'))
-        result[key] = {'prediction': expected, 'outcome': actual, 'hit': hit}
+        result[key] = {'prediction': expected, 'outcome': actual, 'hit': hit,
+                       'common_checkpoint_assessment': common_checkpoints(summary[key], expected)}
     return result
 
 

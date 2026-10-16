@@ -80,3 +80,23 @@ def test_incomplete_or_fabricated_diagnostic_evidence_rejected(tmp_path, corrupt
 def test_reduced_bootstrap_cannot_claim_frozen_analysis():
     with pytest.raises(AssertionError):
         m.validate_bootstrap({'draws': 999, 'seed': 0})
+
+
+def test_plausible_but_wrong_bootstrap_rejected():
+    value = {'draws': 10000, 'seed': 0, 'unit': 'task with eight attempts together',
+             'mean': .5, 'ci95': [.1, .9]}
+    with pytest.raises(AssertionError, match='cell evidence'):
+        m.validate_bootstrap(value, [0] * 135)
+    value.update(mean=0, ci95=[0, 0])
+    m.validate_bootstrap(value, [0] * 135)
+
+
+def test_training_summary_cannot_hide_step_token_mismatch():
+    schedule = {'steps': [{'step': 1, 'loss_tokens': 3, 'cumulative_loss_tokens': 3, 'prompt_tokens': 2}]}
+    receipt = {'status': 'PASS', 'token_counts_match': True, 'steps': 1,
+               'loss_tokens': 3, 'processed_real_tokens': 5}
+    rows = [{'step': '1', 'loss_tokens': '3', 'cumulative_loss_tokens': '3', 'processed_tokens': '5'}]
+    m.validate_training(receipt, rows, schedule)
+    rows[0]['loss_tokens'] = '4'
+    with pytest.raises(AssertionError, match='loss_tokens mismatch'):
+        m.validate_training(receipt, rows, schedule)

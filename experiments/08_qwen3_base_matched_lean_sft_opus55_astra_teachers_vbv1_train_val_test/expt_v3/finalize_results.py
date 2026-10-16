@@ -22,6 +22,7 @@ def validate():
     assert summary.get('known_cells') == summary.get('declared_cells') == 17280, 'Validation remains incomplete'
     expected_labels = {s['label'] for s in manifest['systems']}
     assert len(expected_labels) == 16 and set(summary['systems']) == expected_labels
+    validate_metrics(summary, manifest)
     pairs = summary['paired_E_minus_R']
     assert set(pairs) == {f'{s}_{f}' for s in ('1p7b', '4b', '8b', '14b') for f in ('f0p5', 'f1p0')}
     for value in pairs.values():
@@ -62,6 +63,10 @@ def validate():
         primary = {(r['task_id'], r['sample_idx']): r for r in rows}
         assert all(r['original_sha256'] == primary[r['task_id'], r['sample_idx']]['lean_sha256'] for r in dr)
         validate_namespace(diag, dr, primary)
+        if not diag['unknown_cells']:
+            deltas = [sum(float(r['diagnostic_kernel_binary']) - float(r['original_kernel_binary'])
+                          for r in dr if r['task_id'] == task) / 8 for task in manifest['task_ids']]
+            validate_bootstrap(diag['paired_task_bootstrap_delta'], deltas)
         errors = diag['original_first_error_sample']
         assert errors['compile_error_population'] == result['failure_taxonomy'].get('compile_error', 0)
         assert errors['sampled_cells'] == min(24, errors['compile_error_population']) == len(errors['receipts'])
@@ -78,9 +83,12 @@ def validate():
         for short in ('1p7b', '4b', '8b', '14b'):
             label = f'v3_{condition}_{short}'
             receipt = read(HERE / f'results/train_logs/{label}_summary.json')
-            assert receipt['status'] == 'PASS' and receipt['token_counts_match']
-            assert receipt['steps'] == len(schedule['steps'])
-            assert receipt['loss_tokens'] == schedule['steps'][-1]['cumulative_loss_tokens']
+            steps_path = HERE / f'results/train_logs/{label}_steps.csv'
+            validate_training(receipt, list(csv.DictReader(steps_path.open())), schedule)
+            schedule_path = HERE / f'results/sft_schedule_v3_{condition}.json'
+            assert receipt['schedule_sha256'] == digest(schedule_path)
+            for p in (steps_path, HERE / f'results/train_logs/{label}_summary.json'):
+                files[str(p.relative_to(HERE))] = digest(p)
             for fraction in ('f0p5', 'f1p0'):
                 step = schedule['checkpoints'][fraction]['step']
                 export = WORK / f'ckpt/{label}/hf/step_{step}'
@@ -105,11 +113,73 @@ def validate():
     return receipt, summary, forecast
 
 
-def validate_bootstrap(value):
+def validate_bootstrap(value, values=None):
     assert value['draws'] == 10000 and value['seed'] == 0
     assert value['unit'] == 'task with eight attempts together'
     assert len(value['ci95']) == 2 and -1 <= value['ci95'][0] <= value['ci95'][1] <= 1
     assert -1 <= value['mean'] <= 1
+    if values is not None:
+        import numpy as np
+        values = np.asarray(values, dtype=float)
+        draws = np.random.default_rng(0).integers(0, len(values), (10000, len(values)))
+        expected = np.quantile(values[draws].mean(axis=1), [.025, .975])
+        assert np.allclose(value['ci95'], expected, atol=1e-12, rtol=0), 'Bootstrap interval differs from cell evidence'
+        assert abs(value['mean'] - values.mean()) < 1e-12, 'Bootstrap mean differs from cell evidence'
+
+
+def validate_training(receipt, rows, schedule):
+    assert receipt['status'] == 'PASS' and receipt['token_counts_match']
+    assert receipt['steps'] == len(rows) == len(schedule['steps'])
+    for row, step in zip(rows, schedule['steps']):
+        for key in ('step', 'loss_tokens', 'cumulative_loss_tokens'):
+            assert int(row[key]) == step[key], f'Training {key} mismatch'
+        assert int(row['processed_tokens']) == step['prompt_tokens'] + step['loss_tokens']
+    assert receipt['loss_tokens'] == sum(int(r['loss_tokens']) for r in rows)
+    assert receipt['processed_real_tokens'] == sum(int(r['processed_tokens']) for r in rows)
+
+
+def validate_metrics(summary, manifest):
+    """Recompute reported gates and intervals from the committed cell tables."""
+    from analyze_validation import base, decision
+    vectors = {}
+    for label, result in summary['systems'].items():
+        rows = list(csv.DictReader((HERE / result['cells_csv']).open()))
+        native, notes = base.cells_for(result['system'], manifest['task_ids'], 'validation')
+        assert not notes['duplicates_rejected'] and not notes['extras_rejected'] and not notes['n_missing']
+        grouped = {task: [] for task in manifest['task_ids']}
+        for row in rows:
+            assert row['known'] == 'True' and float(row['kernel_binary']) in (0, 1)
+            source = native[row['task_id'], int(row['sample_idx'])]
+            assert source['known'] and float(row['kernel_binary']) == source['kernel_binary']
+            assert row['lean_sha256'] == (source['lean_sha256'] or '')
+            assert row['extracted'] == str(source['extracted']) and row['capped'] == str(source['capped'])
+            grouped[row['task_id']].append(row)
+        assert all(len(v) == 8 and {int(r['sample_idx']) for r in v} == set(range(8)) for v in grouped.values())
+        tasks = list(csv.DictReader((HERE / result['per_task_csv']).open()))
+        assert [r['task_id'] for r in tasks] == manifest['task_ids']
+        counts = [sum(float(r['kernel_binary']) for r in grouped[t]) for t in manifest['task_ids']]
+        assert all(int(r['k_kernel_binary']) == count and int(r['samples_known']) == 8 for r, count in zip(tasks, counts))
+        values = [count / 8 for count in counts]; vectors[label] = values
+        for key, vals in [('pass_rate', values), ('pass_at_8', [v > 0 for v in values]),
+                          ('mixed_share', [0 < v < 1 for v in values])]:
+            validate_bootstrap(result['task_bootstrap'][key], vals)
+        gates = result['gates']
+        for key, count, passed in [
+            ('a_extraction', sum(r['extracted'] == 'True' for r in rows), sum(r['extracted'] == 'True' for r in rows) >= 972),
+            ('b_capped', sum(r['capped'] == 'True' for r in rows), sum(r['capped'] == 'True' for r in rows) <= 108),
+            ('c_mixed', sum(0 < v < 1 for v in values), sum(0 < v < 1 for v in values) >= 7)]:
+            assert gates[key]['n'] == count and gates[key]['pass'] == passed
+        assert gates['pass'] == all(gates[k]['pass'] for k in ('a_extraction', 'b_capped', 'c_mixed'))
+    for short in ('1p7b', '4b', '8b', '14b'):
+        for fraction in ('f0p5', 'f1p0'):
+            key = f'{short}_{fraction}'
+            if f'v3_E_{key}' not in vectors or f'v3_R_{key}' not in vectors:
+                assert key not in summary['paired_E_minus_R']
+                continue
+            e, r = vectors[f'v3_E_{key}'], vectors[f'v3_R_{key}']
+            validate_bootstrap(summary['paired_E_minus_R'][key], [a - b for a, b in zip(e, r)])
+    assert summary['primary'] == decision(summary['systems'], ('1p7b', '4b', '8b', '14b'), summary['paired_E_minus_R'])
+    assert summary['sensitivity'] == decision(summary['systems'], ('4b', '8b', '14b'), summary['paired_E_minus_R'])
 
 
 def validate_namespace(diag, rows, primary):
@@ -139,6 +209,8 @@ def validate_namespace(diag, rows, primary):
         assert read(Path(receipt['path']).with_suffix('.json')) == receipt
     assert all(v is None or v in (0, 1) for v in values)
     assert all(r['diagnostic_kernel_binary'] != '' for r in rows if r['changed'] != 'True')
+    assert all(float(r['diagnostic_kernel_binary']) == float(r['original_kernel_binary'])
+               and r['transformed_sha256'] == r['original_sha256'] for r in rows if r['changed'] != 'True')
     assert all(float(r['original_kernel_binary']) == float(primary[r['task_id'], r['sample_idx']]['kernel_binary']) for r in rows)
     assert diag['original_successes'] == sum(float(r['original_kernel_binary']) for r in rows)
     assert diag['diagnostic_successes_known'] == sum(v or 0 for v in values)
@@ -173,7 +245,7 @@ Primary four-size result: `{json.dumps(summary['primary'])}`.
 
 Pre-registered 4B/8B/14B sensitivity: `{json.dumps(summary['sensitivity'])}`.
 
-Forecast assessment: primary hit={forecast['primary']['hit']}; sensitivity hit={forecast['sensitivity']['hit']}. Namespace repairs are diagnostic only; all changed cells were executed, with {receipt['namespace_unknown_cells']} native timeout outcomes retained as unknown and no point estimate for affected rungs. Zero paid model/judge calls; the test split remains unopened and hosted coverage judging remains deferred.
+Forecast assessment under the original earliest-selected-winner interpretation: primary hit={forecast['primary']['hit']}; sensitivity hit={forecast['sensitivity']['hit']}. The frozen question also asks which condition reaches a common checkpoint: earliest fraction within each condition is reported separately, with primary predicted checkpoint reached={forecast['primary']['common_checkpoint_assessment']['predicted_common_checkpoint_reached']} and sensitivity predicted checkpoint reached={forecast['sensitivity']['common_checkpoint_assessment']['predicted_common_checkpoint_reached']}. Both interpretations are retained when they disagree. Namespace repairs are diagnostic only; all changed cells were executed, with {receipt['namespace_unknown_cells']} native timeout outcomes retained as unknown and no point estimate for affected rungs. Zero paid model/judge calls; the test split remains unopened and hosted coverage judging remains deferred.
 '''
     original = parent.read_text()
     parent.write_text(replace_block(original, 'E08_V3_FINAL_RESULTS', block))

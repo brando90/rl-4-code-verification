@@ -36,3 +36,12 @@ def test_existing_frozen_forecast_checks_file_and_canonical_hashes():
     assert result['forecast_sha256'] == m.FROZEN_SHA256
     assert result['forecast_canonical_sha256'] == m.FROZEN_CANONICAL_SHA256
     assert result['primary']['hit'] is None and result['sensitivity']['hit'] is None
+
+
+def test_both_condition_fractions_remain_visible():
+    d = {'f0p5': {'status': 'COMPLETE', 'selected': 'R', 'common_checkpoint': {'R': True, 'E': False}},
+         'f1p0': {'status': 'COMPLETE', 'selected': 'E', 'common_checkpoint': {'R': False, 'E': True}}}
+    assert m.outcome(d)['condition'] == 'R'
+    common = m.common_checkpoints(d, {'condition': 'E', 'fraction': 'f1p0'})
+    assert common['earliest_fraction_per_condition'] == {'R': 'f0p5', 'E': 'f1p0'}
+    assert common['predicted_common_checkpoint_reached'] and common['both_conditions_qualify']

@@ -1,0 +1,219 @@
+{
+  "status": "OWNERSHIP_ACCEPTED",
+  "attempt": "recovery-02",
+  "owner_session": "codex-rl4cv-e08v3-recovery-02",
+  "thread_id": "01a14419-c41a-72e3-8f88-2c552a5a5ec0",
+  "owner": {
+    "pid": 3022155,
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "start_ticks": "38249185",
+    "cmdline": "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/bin/codex exec --dangerously-bypass-approvals-and-sandbox -m gpt-6-astra -c model_reasoning_effort=\"ultra\" -c check_for_update_on_startup=false --json SNAP PRE-APPROVAL "
+  },
+  "timestamp_utc": "2026-10-16T09:48:07.963020+00:00",
+  "cwd": "/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification",
+  "runtime_evidence": "/lfs/skampere1/0/brando9/.codex-vals/sessions/2026/10/16/rollout-2026-10-16T02-45-01-01a14419-c41a-72e3-8f88-2c552a5a5ec0.jsonl",
+  "effective_settings": {
+    "model": "gpt-6-astra",
+    "effort": "ultra",
+    "approval_policy": "never",
+    "sandbox_policy": {
+      "type": "danger-full-access"
+    },
+    "cwd": "/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification"
+  },
+  "input_hashes": {
+    "CKPT_e08_v3.md": {
+      "expected": "7c37bf474a52370b625eaef0ca96d879e78b0e8e77033d310389dd566394545f",
+      "actual": "7c37bf474a52370b625eaef0ca96d879e78b0e8e77033d310389dd566394545f",
+      "match": true
+    },
+    "RUNBOOK_continuation_owner.md": {
+      "expected": "5749ad8456db4108a1e5ac67eafef68d7fd27dc32bb97b57d5ac3e083a16c8d5",
+      "actual": "5749ad8456db4108a1e5ac67eafef68d7fd27dc32bb97b57d5ac3e083a16c8d5",
+      "match": true
+    },
+    "PROTOCOL.md": {
+      "expected": "3a2728e4e7bbbd5c709f5b5ba6c2f6e1242930f7d4376665ecce5e3a6bf8bb76",
+      "actual": "3a2728e4e7bbbd5c709f5b5ba6c2f6e1242930f7d4376665ecce5e3a6bf8bb76",
+      "match": true
+    },
+    "results/sft_schedule_v3_E.json": {
+      "expected": "506204e7f8e5e2527d2a8be3cb02e89d293e8b54bbcf6a77bc97d9105bfeb738",
+      "actual": "506204e7f8e5e2527d2a8be3cb02e89d293e8b54bbcf6a77bc97d9105bfeb738",
+      "match": true
+    },
+    "results/sft_schedule_v3_R.json": {
+      "expected": "a80244138b5b58083f053ae3b1f5b12ce2dc09ffe925eaaac85e4921cba45254",
+      "actual": "a80244138b5b58083f053ae3b1f5b12ce2dc09ffe925eaaac85e4921cba45254",
+      "match": true
+    },
+    "forecasts/e08_v3_forecast.json": {
+      "expected": "7e4ebbe567792d6509bbac2b78b3c5acd782591fea959c0f3a44ff07744efd5f",
+      "actual": "7e4ebbe567792d6509bbac2b78b3c5acd782591fea959c0f3a44ff07744efd5f",
+      "match": true
+    }
+  },
+  "dispatch_manifest_sha256": "4e3ad3676758ea8e4ea5c65db4f8de1dab84573383730c88f09b07b4a9268204",
+  "dispatch_manifest": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/recovery_dispatch.json",
+  "adopted_processes": [
+    {
+      "pid": 3066041,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "38277673",
+      "key": "phase_b_scheduler"
+    },
+    {
+      "pid": 3066164,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "38277678",
+      "key": "train_E_8b"
+    },
+    {
+      "pid": 798432,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "37963395",
+      "key": "train_E_14b"
+    }
+  ],
+  "token_validation": {
+    "status": "PASS",
+    "runs": {
+      "v3_E_1p7b": {
+        "steps_verified": 667,
+        "loss_tokens": 5757776,
+        "mismatch_count": 0
+      },
+      "v3_E_4b": {
+        "steps_verified": 667,
+        "loss_tokens": 5757776,
+        "mismatch_count": 0
+      },
+      "v3_R_1p7b": {
+        "steps_verified": 658,
+        "loss_tokens": 5752936,
+        "mismatch_count": 0
+      },
+      "v3_R_4b": {
+        "steps_verified": 658,
+        "loss_tokens": 5752936,
+        "mismatch_count": 0
+      }
+    },
+    "total_steps_verified": 2650,
+    "loss_tokens": 23021424,
+    "token_counts_match": true,
+    "new_E_8b_logged_steps": 0
+  },
+  "usage_evidence": {
+    "limit_id": "codex",
+    "limit_name": null,
+    "primary": {
+      "used_percent": 53.0,
+      "window_minutes": 10080,
+      "resets_at": 1792649584
+    },
+    "secondary": null,
+    "credits": {
+      "has_credits": false,
+      "unlimited": false,
+      "balance": "0"
+    },
+    "individual_limit": null,
+    "spend_control_reached": null,
+    "plan_type": "pro",
+    "rate_limit_reached_type": null
+  },
+  "experimental_paid_spend_usd": 0,
+  "test_split_opened": false,
+  "watch_status": "INSTALLED_FAILURE_TESTED",
+  "ownership_accepted": true,
+  "watch_evidence": {
+    "script": "/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/recovery_watch.py",
+    "config": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/recovery_config.json",
+    "state": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/recovery_state.json",
+    "cadence_seconds": 300,
+    "reboot": true
+  },
+  "first_useful_output": {
+    "phase_a_training_reverified": true,
+    "new_E_8b_failure": {
+      "native_exit": {
+        "identity": {
+          "pid": 2427582,
+          "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+          "start_ticks": "265030012"
+        },
+        "started_unix": 1792143818.770852,
+        "command": [
+          "bash",
+          "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/code/expt_v3/.train_continuation_E_8b_1792143818679978471.sh",
+          "E",
+          "8b",
+          "2,4,5,7"
+        ],
+        "child": {
+          "pid": 2427663,
+          "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+          "start_ticks": "265030020"
+        },
+        "exit_code": 1,
+        "ended_unix": 1792143885.6281056
+      },
+      "driver_log": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/ckpt/v3_E_8b/driver_logs/segment_to_step_335.log",
+      "cause": "Ray auto-discovery selected unrelated cluster; node_ip_address.json missing; failed before updates",
+      "logged_steps": 0
+    },
+    "recovered_training": {
+      "status": "PASS",
+      "verified_steps": 96,
+      "loss_tokens": 803444,
+      "mismatch_count": 0,
+      "checked_unix": 1792144546.250003,
+      "native_logs": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/ckpt/v3_E_8b/logs",
+      "remote": {
+        "status": "RUNNING",
+        "host": "skampere3",
+        "identity": {
+          "pid": 2898873,
+          "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+          "start_ticks": "265067171"
+        },
+        "gpus": "2,4,5,7",
+        "tensor_parallel_size": 4,
+        "started_unix": 1792144190.3449187,
+        "receipt": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/remote_E_8b.exit.json",
+        "wrapper_snapshot": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/code/expt_v3/.train_continuation_E_8b_1792144190295966539.sh",
+        "wrapper_sha256": "faf1ac04edfb863fc528c585a92e4b03c6228693ed6c5b8c346bb06d187904b1"
+      },
+      "schedule_sha256": "506204e7f8e5e2527d2a8be3cb02e89d293e8b54bbcf6a77bc97d9105bfeb738",
+      "adopted_phase_b_scheduler": {
+        "pid": 3066041,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "38277673"
+      },
+      "preserved_E14_controller": {
+        "pid": 798432,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37963395"
+      }
+    }
+  },
+  "previous_owner_exited": {
+    "identity": {
+      "pid": 2580346,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "36376757"
+    },
+    "attempt": "recovery-01",
+    "candidate": "codex_vals",
+    "started_unix": 1792125177.3148472,
+    "status": "EXITED",
+    "child": {
+      "pid": 2580365,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "36376761"
+    },
+    "exit_code": 0,
+    "ended_unix": 1792142067.6298056
+  }
+}

@@ -30,6 +30,9 @@ grep -q '^\*\*Status:\*\* LOCKED' "$HERE/PROTOCOL.md"
 export E08_CHECKPOINT_DIR="$ROOT/checkpoints" E08_LOG_DIR="$ROOT/logs" E08_TENSORBOARD_DIR="$ROOT/tb" E08_RUN_NAME="rl4cv-e08-v3-${CONDITION}-${SHORT}-${MODE}"
 # Keep dashboard UNIX sockets below Linux's 107-byte pathname limit.
 export RAY_TMPDIR="/tmp/e8v3_$(id -u)/${CONDITION}_${SHORT}_${MODE:0:1}"
+# Ray's auto discovery scans unrelated host processes even with a private temp
+# directory. Each admitted continuation owns a fresh local cluster on its GPUs.
+export RAY_ADDRESS=local
 mkdir -p "$RAY_TMPDIR" "$ROOT/driver_logs" "$ROOT/hf"
 unset PYTHONPATH
 cd "${E08_NEMO_ROOT:-$WORK/nemo_rl}"
