@@ -1,0 +1,174 @@
+{
+  "e08_v3_E_1.7B.yaml": {
+    "base_config_sha256": "38a1e4e8af3ef3621dd970a257e218c6ac16a7fb2eb7f57a4829b0c5108790ef",
+    "changes": {
+      "policy.scheduler[0].kwargs.start_factor": {
+        "after": 0.047619047619047616,
+        "before": 0.05
+      },
+      "policy.scheduler[0].kwargs.total_iters": {
+        "after": 21,
+        "before": 20
+      },
+      "policy.scheduler[1].kwargs.T_max": {
+        "after": 646,
+        "before": 638
+      },
+      "policy.scheduler[2].milestones[0]": {
+        "after": 21,
+        "before": 20
+      },
+      "sft.max_num_steps": {
+        "after": 667,
+        "before": 658
+      }
+    },
+    "config_sha256": "96a546e53556c2b3afbe61e9bf45d3cf62e72dae02ea11f086276a494a41941e",
+    "runtime_changes": {
+      "checkpoint_root": "sft_v3/ckpt/v3_<R|E>_<size>",
+      "model_path": "ckpt/<size>/hf/step_658",
+      "optimizer": "fresh at step 0; native resume only between continuation rungs",
+      "train_data": "sft_v3/s_v3_<R|E>_nemo.jsonl"
+    }
+  },
+  "e08_v3_E_14B.yaml": {
+    "base_config_sha256": "4244709493df989ebae42a5a0fa05d698b3d8cbb32eec2138db9be4235dd91f3",
+    "changes": {
+      "policy.scheduler[0].kwargs.start_factor": {
+        "after": 0.047619047619047616,
+        "before": 0.05
+      },
+      "policy.scheduler[0].kwargs.total_iters": {
+        "after": 21,
+        "before": 20
+      },
+      "policy.scheduler[1].kwargs.T_max": {
+        "after": 646,
+        "before": 638
+      },
+      "policy.scheduler[2].milestones[0]": {
+        "after": 21,
+        "before": 20
+      },
+      "sft.max_num_steps": {
+        "after": 667,
+        "before": 658
+      }
+    },
+    "config_sha256": "aae3684f23ea98060f3cabda3dc5248611d023b3e916f30afc97676733973392",
+    "runtime_changes": {
+      "checkpoint_root": "sft_v3/ckpt/v3_<R|E>_<size>",
+      "model_path": "ckpt/<size>/hf/step_658",
+      "optimizer": "fresh at step 0; native resume only between continuation rungs",
+      "train_data": "sft_v3/s_v3_<R|E>_nemo.jsonl"
+    }
+  },
+  "e08_v3_E_4B.yaml": {
+    "base_config_sha256": "5a3113cdd2d6bb4832e929a8221a12ce1c98dfe4379d1efc99369b633b87aaf2",
+    "changes": {
+      "policy.scheduler[0].kwargs.start_factor": {
+        "after": 0.047619047619047616,
+        "before": 0.05
+      },
+      "policy.scheduler[0].kwargs.total_iters": {
+        "after": 21,
+        "before": 20
+      },
+      "policy.scheduler[1].kwargs.T_max": {
+        "after": 646,
+        "before": 638
+      },
+      "policy.scheduler[2].milestones[0]": {
+        "after": 21,
+        "before": 20
+      },
+      "sft.max_num_steps": {
+        "after": 667,
+        "before": 658
+      }
+    },
+    "config_sha256": "a0f7be9c837ec0f19adddb8f5f9ce2389e94f4b375c14d50f5eb1823dbf80cee",
+    "runtime_changes": {
+      "checkpoint_root": "sft_v3/ckpt/v3_<R|E>_<size>",
+      "model_path": "ckpt/<size>/hf/step_658",
+      "optimizer": "fresh at step 0; native resume only between continuation rungs",
+      "train_data": "sft_v3/s_v3_<R|E>_nemo.jsonl"
+    }
+  },
+  "e08_v3_E_8B.yaml": {
+    "base_config_sha256": "031dc04f91c1cf56a1f22f2d7268613bbae38560ec5f94645b3cf57766670ec7",
+    "changes": {
+      "policy.scheduler[0].kwargs.start_factor": {
+        "after": 0.047619047619047616,
+        "before": 0.05
+      },
+      "policy.scheduler[0].kwargs.total_iters": {
+        "after": 21,
+        "before": 20
+      },
+      "policy.scheduler[1].kwargs.T_max": {
+        "after": 646,
+        "before": 638
+      },
+      "policy.scheduler[2].milestones[0]": {
+        "after": 21,
+        "before": 20
+      },
+      "sft.max_num_steps": {
+        "after": 667,
+        "before": 658
+      }
+    },
+    "config_sha256": "31e8b3142c88456ee8f764357b55db332b395ccdf002b71f6625ec04e998b242",
+    "runtime_changes": {
+      "checkpoint_root": "sft_v3/ckpt/v3_<R|E>_<size>",
+      "model_path": "ckpt/<size>/hf/step_658",
+      "optimizer": "fresh at step 0; native resume only between continuation rungs",
+      "train_data": "sft_v3/s_v3_<R|E>_nemo.jsonl"
+    }
+  },
+  "e08_v3_R_1.7B.yaml": {
+    "base_config_sha256": "38a1e4e8af3ef3621dd970a257e218c6ac16a7fb2eb7f57a4829b0c5108790ef",
+    "changes": {},
+    "config_sha256": "9f93d4b3921bfb316763fb15af06ea5ddae1ae0c26692d4b8e2ea641c832e434",
+    "runtime_changes": {
+      "checkpoint_root": "sft_v3/ckpt/v3_<R|E>_<size>",
+      "model_path": "ckpt/<size>/hf/step_658",
+      "optimizer": "fresh at step 0; native resume only between continuation rungs",
+      "train_data": "sft_v3/s_v3_<R|E>_nemo.jsonl"
+    }
+  },
+  "e08_v3_R_14B.yaml": {
+    "base_config_sha256": "4244709493df989ebae42a5a0fa05d698b3d8cbb32eec2138db9be4235dd91f3",
+    "changes": {},
+    "config_sha256": "b2516f8950949b08a8ade6345542165c3c0a50b1306491223308b15b8b971d5f",
+    "runtime_changes": {
+      "checkpoint_root": "sft_v3/ckpt/v3_<R|E>_<size>",
+      "model_path": "ckpt/<size>/hf/step_658",
+      "optimizer": "fresh at step 0; native resume only between continuation rungs",
+      "train_data": "sft_v3/s_v3_<R|E>_nemo.jsonl"
+    }
+  },
+  "e08_v3_R_4B.yaml": {
+    "base_config_sha256": "5a3113cdd2d6bb4832e929a8221a12ce1c98dfe4379d1efc99369b633b87aaf2",
+    "changes": {},
+    "config_sha256": "228558ebeec088eeaa34009adc347a772285f1ba7c2dce22f665d81a6f4d21ec",
+    "runtime_changes": {
+      "checkpoint_root": "sft_v3/ckpt/v3_<R|E>_<size>",
+      "model_path": "ckpt/<size>/hf/step_658",
+      "optimizer": "fresh at step 0; native resume only between continuation rungs",
+      "train_data": "sft_v3/s_v3_<R|E>_nemo.jsonl"
+    }
+  },
+  "e08_v3_R_8B.yaml": {
+    "base_config_sha256": "031dc04f91c1cf56a1f22f2d7268613bbae38560ec5f94645b3cf57766670ec7",
+    "changes": {},
+    "config_sha256": "060efd0cbc3c55417ad51a0c6d6ecb6b08aa887461dace991a9b46b0f4fc98b9",
+    "runtime_changes": {
+      "checkpoint_root": "sft_v3/ckpt/v3_<R|E>_<size>",
+      "model_path": "ckpt/<size>/hf/step_658",
+      "optimizer": "fresh at step 0; native resume only between continuation rungs",
+      "train_data": "sft_v3/s_v3_<R|E>_nemo.jsonl"
+    }
+  }
+}
