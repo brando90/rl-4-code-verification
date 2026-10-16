@@ -5,9 +5,9 @@
 **TLDR:** v2-S2 T1 is final PASS: 8/8 train responses, 44,844 output tokens; median absolute log-probability error 0.0000327482 and p99 0.0176024, unsupported/truncated tokens 0/44,844. All six leases released; cumulative 0.355751673/2.0 device-hours. Continue to T2, T3 and T4 before the audits and pilot. C disabled, H2/F2 unavailable, batch 2 skipped.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-15-2026 17:55 PDT
+Last updated: 10-15-2026 17:57 PDT
 
-## Current state — 10-15-2026 17:55 PDT
+## Current state — 10-15-2026 17:57 PDT
 
 Goal: complete Experiment 13 v2 under A6 through its admitted gates, or publish the binding transition result.
 
@@ -15,9 +15,11 @@ What ran: [LP freeze](phase2/LP_A6_S2_FREEZE.md) and A4 successor preceded the f
 
 Supervision: owner PID 1243923 is the single writer. The original T2 controller exited after the missing-provenance infrastructure failure. All T2 device leases are released and cleanup verified. No optimizer update or T2 statistic was computed.
 
-Next: publish the tested metadata repair and LP successor, then bind their published revision in the A4 admission lock before complete attempt 2. The fixed probes, seeds, scientific signature and 8.0/10.0-hour limits remain unchanged.
+Next: run complete T2 attempt 2 after publication and fresh non-probe engine preflight, with the same fixed probes and no reuse of failed-attempt outputs. The fixed probes, seeds, scientific signature and 8.0/10.0-hour limits remain unchanged.
 
 Brando to-do: none. Existing SNAP preapproval covers the frozen allocation.
+
+T2 A4 admission freeze (10-15-2026 17:57 PDT): [admission lock](locks/T2_A4.json), hash `169d4c62e7e68e1f9456216a2a8b71f1cce951080c12aa05d0a5fe14546ac2aa`, binds tested repair/LP revision `9b55f35`, regression PASS and failed-attempt revision `0266ac5`. All 4,685 successor bindings verify; seven infrastructure changes/additions are enumerated, with 4,678 prior hashes and the scientific signature/allocation unchanged. Required integration already passed 1,174 tests with 3 skipped and direct exit 0; this publication only binds references and records status. Complete attempt 2 may proceed after publication and a fresh non-probe engine preflight.
 
 T2 A4 repair verification (10-15-2026 17:55 PDT): [metadata repair](phase2/T2_A4_REPAIR.md), 34 focused checks PASS, original missing-provenance failure reproduced before any update call. The successor retains 4,678 previous hashes, lists seven changed/added bindings, and leaves the scientific signature/allocation unchanged. Planned-attempt non-probe metadata preflight PASS. Required integration **1,174 passed, 3 skipped, zero failures in 507.02 seconds**, direct exit 0 ([receipt](phase2/T2_A4_full_test.json)). Attempt 1 remains published INCOMPLETE-INFRA, 0.601555353 device-hours charged; no attempt-2 claim or measurement yet.
 
