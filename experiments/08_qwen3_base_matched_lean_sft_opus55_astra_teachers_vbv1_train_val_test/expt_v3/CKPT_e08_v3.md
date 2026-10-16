@@ -1,15 +1,15 @@
 # Matched replay versus expansion continuation checkpoint
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
-**TLDR:** All Phase A training/generation verified; seven rungs scored and seven diagnostics checked; replay 4B half and expansion 4B full pass gates and all remaining cells still required.
+**TLDR:** All Phase A training/generation verified; all eight Phase A rungs scored and seven diagnostics checked; replay 4B half and expansion 4B full pass gates and all remaining cells still required.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-16-2026 01:37 PDT
+Last updated: 10-16-2026 01:57 PDT
 ## Goal
 - Complete all 17,280 validation cells, paired bootstrap, namespace diagnostic, forecast assessment, publication and actual DONE notification; zero paid experimental model calls; test split unopened.
 ## Current execution
 - Sole writer recovery-01: native gpt-6-astra/ultra, never/danger-full-access; PID 2580398, boot 839e7dd6-64e1-4a80-9498-31d30b3cc2df, start 36376767. Host owner_ack.json matches all six recovery-dispatch hashes at acceptance; initial transfer remains historical.
 - Phase A PID 2265174/start 37543344 adopts four existing scorers and starts both E4 rungs; Phase B PID 2265309/start 37543366 waits for Phase A. Runtime /lfs/skampere1/0/brando9/rl4cv_e08/sft_v3.
 - E/R 1.7B and 4B training and eight exports verified: 23,021,424 additional loss tokens, 41,508,194 processed real tokens. [Receipt](results/phase_a_training_verification.json). Both retained post-export exit 2 incidents were reconciled without replay.
-- Eight complete generated rungs = 8,640 exact cells. All generation children exited 0; all four 1.7B, both replay 4B and expansion 4B full scored/analyzed (7,560/17,280 cells). Replay 4B half and expansion 4B full pass gates; seven namespace diagnostics have zero score delta.
+- Eight complete generated rungs = 8,640 exact cells. All generation children exited 0; all eight Phase A rungs scored/analyzed (8,640/17,280 cells). Replay 4B half and expansion 4B full pass gates; seven namespace diagnostics have zero score delta.
 - Primary scoring and namespace diagnostics use eight workers per rung, at most six combined jobs (48 active compilation slots), frozen 600s timeout; expired orphan children cleaned separately by exact pidfd guard. All generation finished; future remote shell launches use immutable snapshots.
 - All four training sizes and exact generator environments verified on skampere2/3. Pending large-model routes remain remote. 14B training must use eight devices; inference uses the frozen permitted layout.
 - Latest full suite: 1,287 passed / 17 skipped / 6 subtests / 331.82s; 16 focused recovery checks plus 6 subtests pass. Latest native Vals weekly usage 50%, credits 0. Keep personal reserve and original finite deadline/attempt limits.
@@ -85,3 +85,5 @@ Last updated: 10-16-2026 01:37 PDT
 - 10-16-2026 01:22 PDT -- Replay 1.7B half namespace coverage and hashes pass for all1,080 cells; zero changed/unknown cells and delta0 [0,0] under10,000 paired task-bootstrap draws seed0,p-val=n/a. One native timeout retained in24 original-error sample receipts. Six diagnostics complete; only both expansion4B primary scorers and their subsequent diagnostics remain in Phase A. Recovery inventory reconciled to both current scheduler identities; native Vals weekly use50%,credits0, rules refresh unchanged at01:15.
 
 - 10-16-2026 01:37 PDT -- Expansion 4B full passes gates (981 extracted,98 capped,36/135 mixed);153/1,080 kernel successes,0.1417 [0.0972,0.1907]. Paired expansion-minus-replay +0.0194 [−0.0019,0.0426],10,000 task-bootstrap draws seed0,p-val=n/a. Exact primary and namespace checks pass, diagnostic unchanged. Coverage7,560/17,280; only expansion4B half remains in Phase A. Native namespace exit0 reconciles transient observer poll race; no job failure.
+
+- 10-16-2026 01:57 PDT -- All Phase A primary cells complete:8,640/17,280. Expansion4B half fails format/cap (953 extracted,127 capped,35/135 mixed),125/1,080 kernel successes =0.1157 [0.0769,0.1583]. Matched expansion-minus-replay +0.0324 [0.0111,0.0546],10,000 paired task-bootstrap draws seed0,p-val=n/a; training-seed variation unmeasured. Exact keys/hashes/tables pass. Final namespace diagnostic running, Phase B still gated on it.
