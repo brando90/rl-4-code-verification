@@ -116,3 +116,9 @@ Matched half-budget expansion minus replay is +0.0120 [−0.0037, 0.0296]. Both 
 ## 10-16-2026 01:15 PDT — fifth checked namespace diagnostic
 
 Expansion 1.7B full has 1,080 exact diagnostic cells, zero changed or unknown cells, and delta 0 [0,0] under 10,000 paired task-bootstrap draws, seed 0, p-val=n/a. All 24 original-error sample receipts and source hashes pass; two native timeouts remain in that sample. Five diagnostics are now checked, and primary coverage remains 6,480/17,280. [Diagnostic receipt](namespace_diagnostic/v3_E_1p7b_f1p0.json).
+
+## 10-16-2026 01:22 PDT — sixth checked namespace diagnostic
+
+Replay 1.7B half passes exact coverage and hash checks for all 1,080 diagnostic cells. Zero identifiers changed, zero scores are unknown, and the paired delta is 0 [0,0], 10,000 task-bootstrap draws, seed 0, p-val=n/a. Its 24 original-error sample receipts retain one native timeout. Six diagnostics are checked; only both expansion 4B primary scorers and their following namespace checks remain in Phase A. [Diagnostic receipt](namespace_diagnostic/v3_R_1p7b_f0p5.json).
+
+Recovery configuration now records the exact current six-rung scheduler identities, observed 50% Vals weekly usage and zero credits. The existing finite deadline, retry limits and scientific caps are unchanged. Shared rules refreshed at 01:15 PDT with no changes.
