@@ -303,3 +303,12 @@ Expansion 14B model initialization is complete on all eight devices. Native opti
 
 
 10-16-2026 14:30 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 07:47 PDT — expansion 14B native milestone
+
+Expansion 14B model initialization is complete on all eight devices. Native optimizer updates verified: 1/667, with 12,881 loss tokens; every observed step matches the frozen schedule. The native process and scheduler are live; no scientific cap changed. The replay sequencer remains bound to exact expansion and scheduler identities. The first measured update took 927.443 seconds; this is not yet a steady-state throughput estimate. The selected skampere1 Ethernet link is 1 Gb/s, while skampere2 and skampere3 have 10 Gb/s links. Healthy native children remain preserved.
+
+[Checked native evidence](E14_repaired_admission_recovery02.json). Validation remains 12,960/17,280 known primary cells.
+
+
+10-16-2026 14:47 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.

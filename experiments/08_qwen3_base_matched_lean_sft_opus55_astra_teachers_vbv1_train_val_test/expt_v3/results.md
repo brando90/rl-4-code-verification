@@ -4,7 +4,7 @@
 
 **TLDR:** Phase A: DONE; Phase B: RUNNING. 12,960/17,280 validation cells known. [Execution events and verified training progress](results/runtime_progress.md).
 
-**Status:** RUNNING. **Last updated:** 10-16-2026 07:30 PDT.
+**Status:** RUNNING. **Last updated:** 10-16-2026 07:47 PDT.
 
 Known validation cells: **12960/17,280**; 12960 belong to complete rungs. [Every missing/failed cell](results/coverage) remains in the declared denominator; no paid model calls.
 
@@ -54,5 +54,7 @@ Execution update (10-16-2026 07:08 PDT): [14B initialization timed out before an
 Execution update (10-16-2026 07:20 PDT): [Repaired 14B expansion](results/E14_repaired_admission_recovery02.json) has 0 token-verified updates; the original zero-update failure is preserved. Finalization now verifies and publishes every deterministic error receipt. All 1,368 tests pass; known validation cells remain 12,960/17,280.
 
 Execution update (10-16-2026 07:30 PDT): [Expansion 14B model initialized; 0 updates verified](results/E14_repaired_admission_recovery02.json), totaling 0 loss tokens. Every observed token count matches the frozen schedule.
+
+Execution update (10-16-2026 07:47 PDT): [Expansion 14B model initialized; 1 updates verified](results/E14_repaired_admission_recovery02.json), totaling 12,881 loss tokens. Every observed token count matches the frozen schedule.
 
 **TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is 12960/17,280; incomplete comparisons remain unresolved.

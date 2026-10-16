@@ -2,7 +2,7 @@
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
 **TLDR:** All Phase A training/generation verified; Phase A complete, all eight rungs and diagnostics checked; replay 4B half and expansion 4B full pass gates and all remaining cells still required.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-16-2026 07:30 PDT
+Last updated: 10-16-2026 07:47 PDT
 ## Goal
 - Complete all 17,280 validation cells, paired bootstrap, namespace diagnostic, forecast assessment, publication and actual DONE notification; zero paid experimental model calls; test split unopened.
 ## Current execution
@@ -11,7 +11,7 @@ Last updated: 10-16-2026 07:30 PDT
 - E/R 1.7B and 4B training and eight exports verified: 23,021,424 additional loss tokens, 41,508,194 processed real tokens. [Receipt](results/phase_a_training_verification.json). Both retained post-export exit 2 incidents were reconciled without replay.
 - Eight complete Phase A generated rungs = 8,640 exact cells. All generation children exited 0; all eight Phase A rungs scored/analyzed (8,640/17,280 cells). Replay 4B half and expansion 4B full pass gates; eight namespace diagnostics have zero score delta.
 - Primary scoring and namespace diagnostics use eight workers per rung, at most six combined jobs (48 active compilation slots), frozen 600s timeout; expired orphan children cleaned separately by exact pidfd guard. Phase A generation finished; Phase B uses immutable remote shell snapshots.
-- Expansion14B model initialized on eight GPUs across three hosts; 0 token-verified updates, 0 loss tokens. Prior initialization failure retained; replay sequencer preserves exact identities and waits for verified expansion completion.
+- Expansion14B model initialized on eight GPUs across three hosts; 1 token-verified updates, 12,881 loss tokens. Prior initialization failure retained; replay sequencer preserves exact identities and waits for verified expansion completion.
 - Latest full suite: 1,368 passed / 17 skipped / 6 subtests / 312.27s; 54 focused finalization and continuation checks pass. Original deadline and attempt limits unchanged.
 ## Waits and recovery
 - Host recovery and native continuation crons every five minutes/reboot; native route installed UNARMED. Orphan cleanup every minute; capacity probe every 15min. Active owner; old external wait disarmed. Original deadline 10-18-2026 21:21 PDT and six-recovery/two-Vals limits unchanged; actual fallback exclusions updated.
@@ -156,3 +156,7 @@ Last updated: 10-16-2026 07:30 PDT
 - 10-16-2026 07:30 PDT -- Expansion 14B model initialization is complete on all eight devices. Native optimizer updates verified: 0/667, with 0 loss tokens; every observed step matches the frozen schedule. The native process and scheduler are live; no scientific cap changed. The replay sequencer remains bound to exact expansion and scheduler identities. [Native milestone](results/E14_repaired_admission_recovery02.json).
 
 - 10-16-2026 14:30 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+- 10-16-2026 07:47 PDT -- Expansion 14B model initialization is complete on all eight devices. Native optimizer updates verified: 1/667, with 12,881 loss tokens; every observed step matches the frozen schedule. The native process and scheduler are live; no scientific cap changed. The replay sequencer remains bound to exact expansion and scheduler identities. The first measured update took 927.443 seconds; this is not yet a steady-state throughput estimate. The selected skampere1 Ethernet link is 1 Gb/s, while skampere2 and skampere3 have 10 Gb/s links. Healthy native children remain preserved. [Native milestone](results/E14_repaired_admission_recovery02.json).
+
+- 10-16-2026 14:47 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
