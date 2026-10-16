@@ -5,17 +5,17 @@
 **TLDR:** v2-S2 T1 is final PASS: 8/8 train responses, 44,844 output tokens; median absolute log-probability error 0.0000327482 and p99 0.0176024, unsupported/truncated tokens 0/44,844. All six leases released; cumulative 0.355751673/2.0 device-hours. Continue to T2, T3 and T4 before the audits and pilot. C disabled, H2/F2 unavailable, batch 2 skipped.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-15-2026 19:00 PDT
+Last updated: 10-15-2026 19:20 PDT
 
-## Current state — 10-15-2026 19:00 PDT
+## Current state — 10-15-2026 19:20 PDT
 
 Goal: complete Experiment 13 v2 under A6 through its admitted gates, or publish the binding transition result.
 
-What ran: final T1 PASS, then T2 attempt 2's complete 256-response generation and scoring. The scorer retained 255 measurements and one deterministic timeout, all cleanup verified. The same controller has reserved device 0 for the single update; no completed update or T2 verdict exists yet.
+What ran: final T1 PASS; T2 attempts 1 and 2 are INCOMPLETE-INFRA before their real optimizer updates or admission statistics. Attempt 2 retained all 256 train generations, 255 measured scores plus one timeout, recomputed trainer probabilities and its partial native before-checkpoint. The CPU-offloaded state hashing path failed on an unsupported collective.
 
-Supervision: owner PID 1243923 remains the single writer. T2 attempt-2 controller PID 3497257 remains watchdog-registered; adopt it, never relaunch. Attempt 1 and every earlier cost remain retained.
+Supervision: owner PID 1243923 remains the single writer. T2 attempt-2 controller 3497257 has halted; its direct exit and verified cleanup are collected. All seven T2 leases are released. No active device or numbered attempt 3 exists.
 
-Next: supervise the single update, export and refit. Publish this attempt's final T2 result before T3/T4, audits and the pilot. Do not relaunch the active controller. The 8.0/10.0-hour attempt/cumulative limits remain unchanged; batch 2 stays disarmed.
+Next: preserve attempt 2, then fix the byte-preserving single-rank state hash, add a reproducing regression and preflight, pass required tests and publish a successor lock before complete attempt 3. A4 permits at most three attempts; the 8.0/10.0-hour attempt/cumulative limits are unchanged. Batch 2 remains disarmed.
 
 Brando to-do: none. Existing SNAP preapproval covers the frozen allocation.
 
@@ -338,3 +338,5 @@ T4 resource-cost execution preparation (10-15-2026 02:08 PDT): the [technical dr
 T2 attempt 2 generation closure (10-15-2026 18:38 PDT): **256/256 responses** retained, 1,292,105 output tokens; device cleanup verified and lease released after 0.494777962 device-hours ([receipt](phase2/T2_A4_attempt2_generation.json)). The same controller is running the frozen official scorer. No optimizer update, T2 admission statistic or held-out measurement exists at this snapshot. Attempt 1 remains INCOMPLETE-INFRA, with its outputs excluded and all earlier costs retained. Required Lean integration: **1,174 passed, 3 skipped, zero failures in 504.84 seconds**, direct exit 0 ([receipt](phase2/T2_A4_attempt2_publication_test.json)).
 
 T2 attempt 2 scoring closure (10-15-2026 19:00 PDT): **256/256 receipts, 255 measured and one deterministic timeout**, cleanup verified for every cell ([receipt](phase2/T2_A4_attempt2_scoring.json)). The missing result remains masked; no response was repeated or replaced. Processor cost is 1.137382396 hours and elapsed scoring time 1582.049700 seconds. The same controller reserved idle skampere1 device 0 for its single update ([reservation snapshot](phase2/T2_A4_attempt2_update_launch.json)); no completed update or gate verdict exists at this snapshot. Source code is unchanged since required Lean integration passed 1,174 tests with 3 skipped and direct exit 0 ([receipt](phase2/T2_A4_attempt2_publication_test.json)).
+
+T2 attempt 2 infrastructure closure (10-15-2026 19:20 PDT): **INCOMPLETE-INFRA**, CPU-offloaded distributed-tensor state hashing requested an unsupported CPU collective while saving the before-update checkpoint. The full 256-response generation/scoring and trainer probability recomputation remain retained; **zero experiment optimizer updates and gate statistics** completed. The native saver's zero-learning-rate optimizer initialization is separately disclosed in the [failure evidence](phase2/T2_A6_attempt2_result.json). Cleanup is verified and all seven T2 leases are released; attempt 2 used **0.797922019** device-hours, cumulative **1.399477372/10.0** ([resources](phase2/T2_A6_attempt2_resources.json)). Under A4, repair the byte-preserving state-hash path, reproduce the defect in a regression, add a real checkpoint-state preflight, and publish the successor before complete attempt 3. Attempt 3 is the final permitted infrastructure attempt; all scientific settings and caps stay unchanged. The unchanged source last passed required integration with 1,174 passed, 3 skipped and direct exit 0.
