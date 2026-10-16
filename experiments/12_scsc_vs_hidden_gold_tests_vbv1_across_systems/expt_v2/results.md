@@ -4,8 +4,8 @@
 
 **TLDR:** The corrected adapter (amended once, V2-A1, before any evaluation) was run in mapping-only mode (no Lean, no model calls) over the 11 primary systems' 4,626 compiling cells with extracted tests on `skampere1` (26.2 s). It maps every gold symbol in 3,121 cells before any probe (version 1 recorded 3,444 after its Lean probes), leaves 263 cells to the agreement probe, changes the entry point in 379 of the 3,624 cells both versions map, and excludes a helper in 364 cells. Static controls on all 882 gold suites: gold maps to itself at step 1 in 882/882; renamed gold is never mapped to a wrong symbol statically (0/882; 855 deferred to the probe). No pass rate, correlation or hidden outcome was computed, and none may be until the frozen forecast is read against Emily's evaluation.
 
-**Status:** RUNNING — all four dynamic controls PASS; full primary evaluation is next.
-**Last updated:** 10-15-2026 21:04 PDT
+**Status:** RUNNING — all four controls PASS; full primary evaluation is executing on skampere1.
+**Last updated:** 10-15-2026 21:07 PDT
 
 ## Static controls over all 882 gold suites (`results/static_controls_v2.json`, 10.2 s)
 
@@ -85,7 +85,7 @@ Both frozen forecasts and all five amendment-pinned inputs verified. All 64 adap
 | Hash and adapter preflight | DONE | Both forecasts, five pinned inputs; 64/64 tests |
 | Runtime and analysis scripts | DONE | 13/13 new tests; full suite 1,191 passed / 18 skipped |
 | Dynamic controls C1–C4 | DONE | 591/591 self-tests; 48/50 renamed recovery; 44/50 mutant kills; 49/50 wrong-task rejections |
-| Full primary evaluation | PENDING | 0/4,626 eligible groups; 9,856 declared cells |
+| Full primary evaluation | IN PROGRESS | 4,626 eligible groups admitted; 5,230 other cells recorded; 9,856 declared cells |
 | Analysis and final publication | PENDING | Frozen predictions unchanged |
 
 Verification at 10-15-2026 20:39 PDT: full repository suite **1,191 passed / 18 skipped**; 77 current targeted checks pass. Synthetic Lean bridge: 2/2 tests evaluable, one passing and one deliberately failing. Pinned toolchain, Mathlib manifest and version-1 helper hashes match.
@@ -108,3 +108,7 @@ All **50/50 prescribed tasks** completed, process exit 0. [Complete per-task rec
 | C4: wrong-task candidate rejected or failing | 49/50 = 98% | ≥95% | PASS |
 
 The two renamed-gold misses, six surviving mutants and one unrejected wrong-task pair remain in the receipt. No adapter, forecast, gold-reference or version-1 file was changed. Primary evaluation can now proceed for all 4,626 eligible groups, retaining the 9,856 declared cells.
+
+## Full primary evaluation — started 10-15-2026 21:07 PDT
+
+Session `rl4cv-e12v2-evaluate` is executing all 4,626 eligible groups using copied version-1 modules and two low-priority Lean workers. The initial ledger contains the other **5,230 cells** (including 154 no-test cells and two missing-file cells); all **9,856 declared cells** remain in the accounting and conservative bounds. First copied modules and completed candidate receipts were verified. [Launch and frozen runtime manifest](results/evaluation_launch_v2.json). Results will be published every 500 unique groups; analyses wait for full completion.
