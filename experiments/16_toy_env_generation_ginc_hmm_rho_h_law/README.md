@@ -4,6 +4,10 @@
 
 Created 10-15-2026 by ultimate_brando9 (Brando's assistant) as night 1 of a nightly series Brando asked for on 10-14-2026. Everything runs on one 4-CPU machine with no GPU (no SNAP cluster access yet). Live numbers: [results.md](results.md). Checkpoint: [CKPT_e16_toy_env_gen.md](CKPT_e16_toy_env_gen.md).
 
+## Night 2 continuation
+
+The active `16_toy_env_generation_ginc_hmm_rho_h_law/expt_v2` run uses four-token outputs, exact KL regularization, generated mixture candidates and a prospective held-out-scale forecast. See [protocol](expt_v2/PROTOCOL.md), [live results](results.md) and [checkpoint](CKPT_e16_night2.md). This folder remains active because its oracle and experiment modules are imported by `tests/test_e16_ginc_toy.py`, and the nightly continuation depends on its results.
+
 ## Goal
 
 - **Brando's question (10-14-2026, voice note):** "the goal of the project is to see if … using the predictive laws that Varun had for the other project … we can use those laws to … automatically generate environments for new benchmarks", starting from toy benchmarks such as GINC (hidden Markov model mixtures) or "something simpler … some sort of Gaussian thing … some MDP that we know and we can control", and then "see how it generalizes to other tasks".

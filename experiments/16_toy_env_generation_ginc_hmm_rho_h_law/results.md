@@ -2,7 +2,23 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/ub9/e16-toy-env-generation/experiments/16_toy_env_generation_ginc_hmm_rho_h_law/results.md>
 
-Design: [README.md](README.md). All numbers below are real CPU runs from 10-14-2026 23:40 to 10-15-2026 00:12 PDT; raw rows are in `expt_v1/results/`.
+Design: [README.md](README.md). Night 1 measurements are preserved below in `expt_v1/results/`; the Night 2 continuation uses `expt_v2/results/pilot_v3/`.
+
+## Night 2: 16_toy_env_generation_ginc_hmm_rho_h_law — RUNNING
+
+**Status:** RUNNING (started 10-15-2026 20:23 PDT). **Last updated:** 10-15-2026 20:23 PDT.
+
+[Prospective protocol](expt_v2/PROTOCOL.md) · [Night 2 checkpoint](CKPT_e16_night2.md).
+
+| Phase | Status | Evidence |
+|---|---|---|
+| Four-token oracle, exact KL and mixtures | DONE | 10 focused tests passed; 4 proposals frozen |
+| Stronger pretraining and 64 probes | IN PROGRESS | 4/4 starting policies; n4 probes in progress |
+| Correlation prerequisite | PENDING | Required absolute correlation <0.85 |
+| Full sweep and prospective forecast | PENDING | 0/384 budget cells measured |
+| Analysis and publication | PENDING | $0 spend; CPU only |
+
+Night 1 below is preserved. Equation 7's H is effective coverage, distinct from conditional entropy; Night 2 reports both; the operative admission gate preserves the original pooled coverage metric (see the documented protocol clarification). Positive utility is an acceptance criterion, not an assumption.
 
 ## Night 1 (10-14/15-2026): verdict NOT YET MEANINGFUL (formally CHOICE ONLY)
 
@@ -84,7 +100,7 @@ Run first. Every candidate lowered both targets at n4 (target A −3.35 to −37
 3. Deepen the scale axis: pretraining steps grow with model size so n4 is clearly stronger than n3.
 4. Code and run the known-MDP sanity family.
 
-**TLDR-end:** [rl4cv: e16 toy env generation] Night 1 ran the full toy pipeline on CPU with real numbers: the ρ–H law picked the least harmful environment (regret 0.00 vs 12.63 pts for random), but so did trivial baselines, every RL run lowered the target (0/288 positive), and log ρ and H were 0.995 correlated. Verdict NOT YET MEANINGFUL; night 2 adds a KL penalty, mixture candidates and multi-token answers.
+**Historical Night 1 summary:** Night 1 ran the full toy pipeline on CPU with real numbers: the ρ–H law picked the least harmful environment (regret 0.00 vs 12.63 pts for random), but so did trivial baselines, every RL run lowered the target (0/288 positive), and log ρ and H were 0.995 correlated. Verdict NOT YET MEANINGFUL; night 2 adds a KL penalty, mixture candidates and multi-token answers.
 
 **Snapshot:**
 ```
@@ -93,4 +109,14 @@ n3 e10  kl=0.0  env 0.725->0.833  target 0.502->0.477
 n3 e10  kl=1.0  env 0.725->0.818  target 0.502->0.501
 n2 e04  kl=0.0  env 0.291->0.857  target 0.483->0.239
 n2 e04  kl=1.0  env 0.291->0.529  target 0.483->0.467
+```
+
+**TLDR-end:** [rl4cv: 16_toy_env_generation_ginc_hmm_rho_h_law] Night 2 is running on CPU with four trained starting policies; full-candidate probes precede the frozen 384-cell sweep. No reinforcement-learning utility has been measured yet.
+
+**Snapshot:**
+```text
+Night 2 starting joint accuracy, 4,000 target prompts
+n1: 0.26550   n2: 0.30550
+n3: 0.31900   n4: 0.36125
+K_out=4; KL coefficient=1.0; spend=$0
 ```
