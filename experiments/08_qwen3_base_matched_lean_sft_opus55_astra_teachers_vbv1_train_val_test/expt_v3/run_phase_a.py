@@ -112,11 +112,12 @@ def main(phase='a'):
             else:
                 launch('gen_' + label, args + ['{gpus}', str(generation_devices), 'generation'], generation_devices)
             if state['jobs'].get('gen_' + label, {}).get('status') == 'DONE':
-                # Eight scorer processes per rung; at most two simultaneous scoring/diagnostic rungs.
+                # Eight workers per rung; four simultaneous scoring/diagnostic rungs.
                 active_scores = sum(k.startswith(('score_', 'namespace_')) for k in running)
-                if active_scores < 2:
+                if active_scores < 4:
                     launch('score_' + label, args + ['none', '1', 'score'])
-        if changed and any(k.startswith('score_') and v['status'] == 'DONE' for k, v in state['jobs'].items()):
+        if (changed or state.get('analysis_error')) and any(
+                k.startswith('score_') and v['status'] == 'DONE' for k, v in state['jobs'].items()):
             result = subprocess.run([PY, str(HERE / 'analyze_validation.py')], capture_output=True, text=True)
             (logs / 'analysis.log').write_text(result.stdout + result.stderr)
             if result.returncode:
@@ -128,7 +129,7 @@ def main(phase='a'):
             label = system['label']
             if (HERE / f'results/ladder/{label}_validation_cells.csv').exists():
                 active_scores = sum(k.startswith(('score_', 'namespace_')) for k in running)
-                if active_scores < 2:
+                if active_scores < 4:
                     launch('namespace_' + label, [PY, str(HERE / 'namespace_diagnostic.py'), label])
         complete = (all(state['jobs'].get('score_' + s['label'], {}).get('status') == 'DONE' for s in systems)
                     and all(state['jobs'].get('namespace_' + s['label'], {}).get('status') == 'DONE' for s in systems)

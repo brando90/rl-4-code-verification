@@ -95,7 +95,9 @@ def validate():
     write(HERE / 'results/namespace_summary_v3.json', namespace)
     receipt = {'status': 'VALIDATED', 'known_cells': len(seen), 'declared_cells': 17280,
                'systems': 16, 'training_verified': True, 'namespace_complete': True,
+               'namespace_diagnostic_executed': True,
                'namespace_unknown_cells': sum(s['unknown_cells'] for s in namespace.values()),
+               'namespace_paired_delta_available': all(s['unknown_cells'] == 0 for s in namespace.values()),
                'forecast_assessed': True, 'training': training, 'artifact_sha256': files,
                'paid_model_spend_usd': 0, 'test_split_opened': False,
                'validated_local': datetime.now(ZoneInfo('America/Los_Angeles')).strftime('%m-%d-%Y %H:%M %Z')}
@@ -111,23 +113,35 @@ def validate_bootstrap(value):
 
 
 def validate_namespace(diag, rows, primary):
-    assert diag['declared_cells'] == 1080 and diag['unknown_cells'] == 0, 'Namespace diagnostic remains incomplete'
-    validate_bootstrap(diag['paired_task_bootstrap_delta'])
+    # Complete diagnostic coverage may include a native timeout at the frozen cap.
+    # Such an unknown is retained, never retried or silently converted to zero.
+    assert diag['declared_cells'] == len(rows) == 1080, 'Namespace diagnostic remains incomplete'
+    values = [None if r['diagnostic_kernel_binary'] == '' else float(r['diagnostic_kernel_binary']) for r in rows]
+    assert diag['unknown_cells'] == values.count(None)
+    if diag['unknown_cells']:
+        assert 'paired_task_bootstrap_delta' not in diag, 'Unknown diagnostic values cannot have a point estimate'
+    else:
+        validate_bootstrap(diag['paired_task_bootstrap_delta'])
     changed = {(r['task_id'], int(r['sample_idx'])): r for r in rows if r['changed'] == 'True'}
     receipts = {(r['task_id'], r['sample_idx']): r for r in diag['changed_receipts']}
     assert len(receipts) == len(diag['changed_receipts']) == diag['changed_cells'] == len(changed)
     assert set(receipts) == set(changed)
     for key, row in changed.items():
         receipt = receipts[key]
-        assert receipt['kernel_binary'] in (0, 1) and not receipt['compile_timeout']
+        if receipt['compile_timeout']:
+            assert receipt['kernel_binary'] is None and row['diagnostic_kernel_binary'] == ''
+            assert receipt['compiles'] is False
+        else:
+            assert receipt['kernel_binary'] in (0, 1)
+            assert float(row['diagnostic_kernel_binary']) == receipt['kernel_binary']
         assert receipt['original_sha256'] == row['original_sha256']
         assert receipt['transformed_sha256'] == row['transformed_sha256'] == digest(receipt['path'])
-        assert float(row['diagnostic_kernel_binary']) == receipt['kernel_binary']
         assert read(Path(receipt['path']).with_suffix('.json')) == receipt
-    assert all(float(r['diagnostic_kernel_binary']) in (0, 1) for r in rows)
+    assert all(v is None or v in (0, 1) for v in values)
+    assert all(r['diagnostic_kernel_binary'] != '' for r in rows if r['changed'] != 'True')
     assert all(float(r['original_kernel_binary']) == float(primary[r['task_id'], r['sample_idx']]['kernel_binary']) for r in rows)
     assert diag['original_successes'] == sum(float(r['original_kernel_binary']) for r in rows)
-    assert diag['diagnostic_successes_known'] == sum(float(r['diagnostic_kernel_binary']) for r in rows)
+    assert diag['diagnostic_successes_known'] == sum(v or 0 for v in values)
 
 
 def replace_block(text, name, body):
@@ -148,6 +162,7 @@ def main():
     block = 'Final checks: 17,280/17,280 exact cells, all eight training receipts and sixteen exports verified. '
     block += '[Completion evidence](results/completion_validation_v3.json); [namespace diagnostic](results/namespace_summary_v3.json); '
     block += '[frozen forecast assessment](results/forecast_assessment_v3.json).'
+    block += f" Namespace diagnostics executed for every changed cell; {receipt['namespace_unknown_cells']} native timeout outcomes remain unknown. Paired diagnostic deltas are reported only for fully known rungs."
     report.write_text(replace_block(text, 'E08_V3_FINAL_CHECKS', block))
     parent = HERE.parent / 'results.md'
     block = f'''## Matched replay versus expansion continuation: expt_v3
@@ -158,13 +173,13 @@ Primary four-size result: `{json.dumps(summary['primary'])}`.
 
 Pre-registered 4B/8B/14B sensitivity: `{json.dumps(summary['sensitivity'])}`.
 
-Forecast assessment: primary hit={forecast['primary']['hit']}; sensitivity hit={forecast['sensitivity']['hit']}. Namespace repairs are diagnostic only. Zero paid model/judge calls; the test split remains unopened and hosted coverage judging remains deferred.
+Forecast assessment: primary hit={forecast['primary']['hit']}; sensitivity hit={forecast['sensitivity']['hit']}. Namespace repairs are diagnostic only; all changed cells were executed, with {receipt['namespace_unknown_cells']} native timeout outcomes retained as unknown and no point estimate for affected rungs. Zero paid model/judge calls; the test split remains unopened and hosted coverage judging remains deferred.
 '''
     original = parent.read_text()
     parent.write_text(replace_block(original, 'E08_V3_FINAL_RESULTS', block))
     body = f'''Completed 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3.
 
-All 17,280 declared validation cells, eight training schedules, sixteen exports, paired task bootstraps, namespace diagnostics and the frozen forecast assessment are checked.
+All 17,280 declared primary validation cells, eight training schedules, sixteen exports, paired task bootstraps and the frozen forecast assessment are checked. Namespace diagnostics executed every changed cell; {receipt['namespace_unknown_cells']} native timeout outcomes remain unknown, with no point estimate for affected rungs.
 Primary: {json.dumps(summary['primary'])}
 Sensitivity: {json.dumps(summary['sensitivity'])}
 Report: https://github.com/brando90/rl-4-code-verification/blob/main/{HERE.relative_to(HERE.parents[2])}/results.md

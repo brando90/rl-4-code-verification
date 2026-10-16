@@ -1,28 +1,40 @@
-# Matched replay versus admitted expansion continuation results
+# Matched replay versus expansion continuation results
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/results.md>
 
-**Status:** RUNNING: priority-size continuations. **Last updated:** 10-15-2026 23:53 PDT.
+**Status:** RUNNING. **Last updated:** 10-16-2026 00:02 PDT.
 
-| Phase | State | Evidence |
-|---|---|---|
-| Existing validation analysis | DONE | 4 sizes x 135 tasks x 8 known samples; [report](RESULTS_continuation_audit.md) |
-| Failure taxonomy of the step-658 validation outputs | DONE (10-14-2026, zero model calls) | per size: no file 183 / 134 / 106 / 85, compile error 844 / 846 / 870 / 865, kernel success 53 / 100 / 104 / 130 of 1,080; [report](RESULTS_failure_taxonomy.md), [JSON](results/failure_taxonomy.json) |
-| Cached train candidate inventory | DONE | 685 candidates / 360 already-covered train tasks; [manifest](results/cached_train_candidates.csv) |
-| Earlier external pool inventory | DONE | 587 pairs / 455 tasks before conversion and joint screening |
-| Source availability and hashes | DONE | 685/685 cached responses and 587/587 earlier Lean files verified; [receipt](results/host_data_verification.json) |
-| Corpus conversion and admission | DONE (10-14-2026, host) | 2,585 / 2,587 admitted: 1,315 originals, 685 cached, 585 / 587 MBPP (2 `over_length_cap`); 0 duplicates, 0 held-out hits over 7,761 texts; new loss tokens 5,429,531 rendered; [manifest](results/admitted_corpus_manifest.csv), [stats](results/admitted_corpus_stats.json), [MBPP encoding](mbpp_conversion_spec.md) |
-| Prospective training protocol | LOCKED | [PROTOCOL.md](PROTOCOL.md): two conditions, 5,752,936 additional loss tokens each, half/full validation, frozen gates, meeting decision rule |
-| Deterministic verification | DONE | Linux 323 passed / 24 skipped on 10-13 ([receipt](results/verification.json)); macOS 10-14: 320 passed, 36 skipped, the 4 known macOS-only failures |
-| Disposable expansion dry run | PASS | 8/8 token counts matched; 75,345 loss tokens; fixed-set loss 0.289257 → 0.252943; 2/2 exported-model Lean samples; weights deleted; [receipt](results/dry_run_v3.json) |
-| Priority-size production | TRAINING AND GENERATION VERIFIED; SCORING RUNNING | All four continuations and eight exports pass exact token/checksum checks ([training receipt](results/phase_a_training_verification.json)); all eight raw rungs pass exact keys, frozen prompts, sampling, model paths and token cap: 8,640/8,640 Phase A generated cells ([generation receipt](results/phase_a_generation_verification.json)). Ten 135-task scorer samples have completed; no full scored rung yet. Phase B waits for Phase A scoring and namespace completion. |
-| Frozen scorer orphan cleanup | ACTIVE | 25 exact expired Lean children retired with SIGTERM; five observed live Lean children excluded from signals. Primary scorer and its 600s timeout unchanged; bounded per-minute host guard stops at original deadline or both phases DONE. [Receipt](results/lean_orphan_cleanup_recovery01.json) |
-| Persistent execution/recovery ownership | ACTIVE | Recovery-01: six current input hashes and 667/667 training token counts verified; native Astra/ultra full access confirmed; host watch every five minutes/reboot; harmless failure test and 5 focused tests pass; [receipt](results/owner_acceptance_v3.json), [supervision](RUNBOOK_recovery_supervision.md) |
-| Deterministic continuation inputs | DONE | Replay steps 334/658 (2,880,477/5,752,936 loss tokens); expansion 335/667 (2,878,589/5,757,776); [schedules](results/sft_schedule_v3_E.json) |
-| Prospective forecast and validation cells | DONE | [forecast](forecasts/e08_v3_forecast.json), 16 systems × 135 tasks × 8 samples = 17,280 unique cells |
-| Four-size formatter and start weights | DONE | 2,585 examples match all four tokenizers and NeMo loss spans; all four step-658 weight exports pass full SHA-256 verification |
-| Current full test suite | DONE | 1,259 passed, 17 skipped, 6 subtests passed in 294.97 seconds with isolated test environment; 14 focused orphan-cleanup checks pass |
+Known complete validation cells: **1080/17,280**. Unknown systems remain pending; no paid model calls.
 
-The locked experiment now continues training from the version-1 step-658 weights. The disposable inference check required a CUDA compiler-path repair; the retry reused the same weights and frozen sampling settings. Host files live under `/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/` (candidate corpus SHA-256 `7fa02557…`); version-1 and version-2 host files are untouched. Recovery details, retained generation interruption and verification status: [runtime ledger](results/runtime_progress.md). Execution checkpoint: [CKPT_e08_v3.md](CKPT_e08_v3.md); historical preparation: [CKPT_continuation.md](CKPT_continuation.md).
+| System | Known / declared | Extracted | Capped | Mixed /135 | Gates | Pass rate [95% interval] |
+|---|---:|---:|---:|---:|---|---|
+| v3_R_1p7b_f0p5 | 0/1,080 | — | — | — | PENDING | — |
+| v3_R_1p7b_f1p0 | 0/1,080 | — | — | — | PENDING | — |
+| v3_R_4b_f0p5 | 0/1,080 | — | — | — | PENDING | — |
+| v3_R_4b_f1p0 | 0/1,080 | — | — | — | PENDING | — |
+| v3_R_8b_f0p5 | 0/1,080 | — | — | — | PENDING | — |
+| v3_R_8b_f1p0 | 0/1,080 | — | — | — | PENDING | — |
+| v3_R_14b_f0p5 | 0/1,080 | — | — | — | PENDING | — |
+| v3_R_14b_f1p0 | 0/1,080 | — | — | — | PENDING | — |
+| v3_E_1p7b_f0p5 | 1,080/1,080 | 936 | 144 | 18 | FAIL | 0.0491 [0.0250, 0.0769] |
+| v3_E_1p7b_f1p0 | 0/1,080 | — | — | — | PENDING | — |
+| v3_E_4b_f0p5 | 0/1,080 | — | — | — | PENDING | — |
+| v3_E_4b_f1p0 | 0/1,080 | — | — | — | PENDING | — |
+| v3_E_8b_f0p5 | 0/1,080 | — | — | — | PENDING | — |
+| v3_E_8b_f1p0 | 0/1,080 | — | — | — | PENDING | — |
+| v3_E_14b_f0p5 | 0/1,080 | — | — | — | PENDING | — |
+| v3_E_14b_f1p0 | 0/1,080 | — | — | — | PENDING | — |
 
-**TLDR-end:** [rl4cv: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test] The taxonomy, the admitted 2,585-example candidate corpus and the locked two-condition protocol are ready; gains from more exposure or more data remain unmeasured until training and validation finish.
+Gates are protocol-defined: ≥972 extracted, ≤108 capped, ≥7 mixed tasks, with every input known. Intervals resample 135 tasks with all eight attempts, 10,000 draws, seed 0; p-val=n/a. Training-seed variation is unmeasured. Mixed-share Wilson intervals, failure taxonomy, diversity and paired comparisons are in [the full summary](results/validation_summary_v3.json) and [per-cell/per-task tables](results/ladder).
+
+Primary four-size decision: `{"f0p5": {"status": "INCOMPLETE", "selected": null}, "f1p0": {"status": "INCOMPLETE", "selected": null}}`.
+
+Three-size sensitivity (4B/8B/14B): `{"f0p5": {"status": "INCOMPLETE", "selected": null}, "f1p0": {"status": "INCOMPLETE", "selected": null}}`.
+
+Hosted Smooth Conjunctive Score for Code verification judging remains deferred at $0 spend. Namespace escaping is a separate diagnostic and never changes primary scores; [diagnostic tables](results/namespace_diagnostic). The test split remains unopened.
+
+Frozen forecast assessment: [prediction and measured outcome](results/forecast_assessment_v3.json). Incomplete outcomes have no hit/miss verdict.
+
+Execution and recovery events: [runtime ledger](results/runtime_progress.md).
+
+**TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is 1080/17,280; incomplete comparisons remain unresolved.

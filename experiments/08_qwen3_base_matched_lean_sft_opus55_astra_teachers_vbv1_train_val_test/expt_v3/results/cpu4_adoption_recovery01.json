@@ -1,0 +1,86 @@
+{
+  "status": "PASS",
+  "observed_unix": 1792133926.6692574,
+  "reason": "128 logical CPUs, 71-83 percent idle, 1886GiB available; protocol section9 permits concurrency changes",
+  "max_combined_rungs": 4,
+  "workers_per_rung": 8,
+  "maximum_active_compilation_slots": 32,
+  "frozen_timeout_seconds": 600,
+  "phases": {
+    "a": {
+      "old_scheduler": {
+        "pid": 1968738,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "36815884"
+      },
+      "new_scheduler": {
+        "pid": 282540,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37251708"
+      },
+      "adopted_children": {
+        "score_v3_E_1p7b_f0p5": {
+          "pid": 2318546,
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "start_ticks": "36841895"
+        },
+        "score_v3_E_1p7b_f1p0": {
+          "pid": 2318547,
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "start_ticks": "36841895"
+        }
+      },
+      "session": "rl4cv-e08-v3-phase-a-cpu4",
+      "log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/phase_a_scheduler_cpu4.log"
+    },
+    "b": {
+      "old_scheduler": {
+        "pid": 652391,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "36742141"
+      },
+      "new_scheduler": {
+        "pid": 284442,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37251741"
+      },
+      "adopted_children": {},
+      "session": "rl4cv-e08-v3-phase-b-cpu4",
+      "log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/phase_b_scheduler_cpu4.log"
+    }
+  },
+  "first_useful_workload": {
+    "observed_unix": 1792134022.011636,
+    "running_primary_rungs": {
+      "score_v3_E_1p7b_f1p0": {
+        "pid": 2318547,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "36841895"
+      },
+      "score_v3_R_1p7b_f0p5": {
+        "pid": 282913,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37251714"
+      },
+      "score_v3_R_1p7b_f1p0": {
+        "pid": 282928,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37251714"
+      },
+      "score_v3_R_4b_f0p5": {
+        "pid": 359664,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37259715"
+      }
+    },
+    "native_log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/phase_a_logs/score_v3_R_1p7b_f0p5.log",
+    "first_scoring_started_local": "10-15-2026 23:58:47",
+    "unchanged_adopted_children": 2
+  },
+  "full_tests": {
+    "passed": 1268,
+    "skipped": 17,
+    "subtests_passed": 6,
+    "seconds": 299.4
+  }
+}
