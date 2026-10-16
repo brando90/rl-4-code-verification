@@ -1,0 +1,230 @@
+{
+  "schema": 1,
+  "status": "PREPARED_RELEASE_PENDING",
+  "prepared_unix": 1792162972.9192626,
+  "owner": {
+    "pid": 3022155,
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "start_ticks": "38249185"
+  },
+  "attempt": "recovery-02",
+  "known_primary_cells": 12960,
+  "declared_primary_cells": 17280,
+  "remaining_primary_cells": 4320,
+  "reason": "Measured healthy14B transport is too slow for the fixed deadline; no faster currently eligible route. Preserve ongoing native work and reserve remaining coordination allowance.",
+  "scientific_scope_unchanged": true,
+  "paid_experiment_calls": 0,
+  "test_split_opened": false,
+  "independent_work_complete": true,
+  "independent_work": [
+    "PhaseA complete and checked",
+    "All8B training/validation/namespace/results complete and published",
+    "All17,280cells retained in manifest/coverage",
+    "PhaseB scheduler, exact multihost admission and replay sequencing implemented/tested",
+    "Strict16rung final validation, native-error audit, namespace, paired bootstrap and frozen forecast assessment implemented/tested",
+    "Bounded guarded publication and deduplicated actual DONE delivery implemented/tested"
+  ],
+  "source_hashes_checked": 67,
+  "full_suite_passed": 1368,
+  "full_suite_skipped": 17,
+  "full_suite_subtests": 6,
+  "native_tests_receipt_sha256": "a68dbf03540935027ed0ac302dc74925b6b841d25c9737195ad47b3fa77018e7",
+  "native_admission": {
+    "status": "RUNNING",
+    "host": "skampere1",
+    "identity": {
+      "pid": 3830693,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "39855743"
+    },
+    "gpus": "1,2",
+    "tensor_parallel_size": 8,
+    "route": "multinode_2_2_4",
+    "allocation": {
+      "skampere1": {
+        "gpus": [
+          1,
+          2
+        ],
+        "uuids": [
+          "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+          "GPU-e98e645a-d860-3666-a80b-2cea81363c51"
+        ],
+        "interface": "enp44s0f0",
+        "inventory": [
+          {
+            "index": 1,
+            "uuid": "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+            "total_mib": 81920,
+            "used_mib": 0,
+            "free_mib": 81153,
+            "utilization": 0
+          },
+          {
+            "index": 2,
+            "uuid": "GPU-e98e645a-d860-3666-a80b-2cea81363c51",
+            "total_mib": 81920,
+            "used_mib": 0,
+            "free_mib": 81153,
+            "utilization": 0
+          }
+        ],
+        "existing_contexts": [],
+        "cooperative_sharing": false
+      },
+      "skampere2": {
+        "gpus": [
+          3,
+          5
+        ],
+        "uuids": [
+          "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+          "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257"
+        ],
+        "interface": "ens3f0np0",
+        "inventory": [
+          {
+            "index": 3,
+            "uuid": "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+            "total_mib": 143771,
+            "used_mib": 1551,
+            "free_mib": 141606,
+            "utilization": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257",
+            "total_mib": 143771,
+            "used_mib": 1551,
+            "free_mib": 141606,
+            "utilization": 0
+          }
+        ],
+        "existing_contexts": [
+          {
+            "uuid": "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+            "pid": 1439216,
+            "memory_mib": 1542,
+            "uid": 23621,
+            "start_ticks": "852085859",
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d"
+          },
+          {
+            "uuid": "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257",
+            "pid": 1441067,
+            "memory_mib": 1542,
+            "uid": 23621,
+            "start_ticks": "852086653",
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d"
+          }
+        ],
+        "cooperative_sharing": true
+      },
+      "skampere3": {
+        "gpus": [
+          2,
+          4,
+          5,
+          7
+        ],
+        "uuids": [
+          "GPU-d781dd11-80f3-8979-073a-4248052fe3f6",
+          "GPU-9b167139-7ecf-47bd-e09d-27a60c24783f",
+          "GPU-e7551271-928d-689f-5095-a60da72fc720",
+          "GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5"
+        ],
+        "interface": "enp81s0f0np0",
+        "inventory": [
+          {
+            "index": 2,
+            "uuid": "GPU-d781dd11-80f3-8979-073a-4248052fe3f6",
+            "total_mib": 183359,
+            "used_mib": 0,
+            "free_mib": 182632,
+            "utilization": 0
+          },
+          {
+            "index": 4,
+            "uuid": "GPU-9b167139-7ecf-47bd-e09d-27a60c24783f",
+            "total_mib": 183359,
+            "used_mib": 0,
+            "free_mib": 182632,
+            "utilization": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-e7551271-928d-689f-5095-a60da72fc720",
+            "total_mib": 183359,
+            "used_mib": 0,
+            "free_mib": 182632,
+            "utilization": 0
+          },
+          {
+            "index": 7,
+            "uuid": "GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5",
+            "total_mib": 183359,
+            "used_mib": 0,
+            "free_mib": 182632,
+            "utilization": 0
+          }
+        ],
+        "existing_contexts": [],
+        "cooperative_sharing": false
+      }
+    },
+    "started_unix": 1792159967.139769,
+    "receipt": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/remote_E_14b.exit.json",
+    "wrapper_snapshot": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_E_14b_1792159855671537768/train_multinode.sh",
+    "wrapper_sha256": "17b89925ea537820f55cb5539b9aee21e173a5f3aeb52b39595cdad480890099",
+    "root": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_E_14b_1792159855671537768",
+    "gpu_proof_sha256": "4ad8ca37fbacc11d79e0753101df62cc7766a6179f305fd072f16dcf609ec1d8"
+  },
+  "phase_b_scheduler": {
+    "pid": 3792417,
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "start_ticks": "39839037"
+  },
+  "replay_sequence_status": "WAIT_EXPANSION",
+  "expected_remote_admissions": [
+    "remote_R_14b.json"
+  ],
+  "admissions_absent_at_recording": true,
+  "deadline_unix": 1792383686.05276,
+  "max_recoveries": 6,
+  "candidate_caps": {
+    "codex_vals": 2,
+    "claude_vals": 2,
+    "codex_stanford": 1,
+    "claude_stanford": 1,
+    "codex_personal": 1,
+    "claude_personal": 1,
+    "cursor_personal": 1,
+    "antigravity_existing": 1,
+    "grok_existing": 1
+  },
+  "cron_markers": [
+    "# rl4cv-e08-v3-recovery",
+    "# rl4cv-e08-v3-orphan-cleanup",
+    "# rl4cv-e08-v3-capacity-event",
+    "# rl4cv-e08-v3-native-continuation"
+  ],
+  "native_publisher_cadence_seconds": 300,
+  "takeover_condition": "Matching explicit release plus exact current owner and recovery runner both exited; validated source map and unchanged deadline/caps.",
+  "work_events": [
+    "native job completion or failure",
+    "checkpoint export and declared validation results",
+    "eligible Slurm capacity change under the finite probe"
+  ],
+  "completion_requirements": [
+    "all17,280primarycells known",
+    "all16systems checked",
+    "training token counts and exports checked",
+    "namespace diagnostics, error receipts, bootstrap and forecast assessed",
+    "passing final full suite",
+    "verified remote scientific publication",
+    "actual deduplicated DONE notification",
+    "verified notification publication"
+  ],
+  "completion_claimed": false,
+  "done_notification_sent": false
+}

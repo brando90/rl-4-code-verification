@@ -321,3 +321,5 @@ Expansion14B has two verified optimizer updates, 21,133 loss tokens, matching th
 
 
 10-16-2026 15:00 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+Native handoff preparation is checked against67current source/input hashes and the1,368-pass suite. The current owner still holds mutations until the final host release record is written after this publication. [Concrete preparation](native_handoff_preparation_recovery02.json).
