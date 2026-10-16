@@ -3,7 +3,7 @@
 set -euo pipefail
 CONDITION="${1:?R or E}"; SHORT="${2:?1p7b,4b,8b,14b}"; GPUS="${3:?device IDs}"; MODE="${4:-production}"
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORK=/lfs/skampere1/0/brando9/rl4cv_e08
+WORK="${E08_WORK:-/lfs/skampere1/0/brando9/rl4cv_e08}"
 case "$CONDITION" in R|E) ;; *) exit 2;; esac
 case "$SHORT" in 1p7b) SIZE=1.7B;; 4b) SIZE=4B;; 8b) SIZE=8B;; 14b) SIZE=14B;; *) exit 2;; esac
 export CUDA_VISIBLE_DEVICES="$GPUS"
@@ -44,7 +44,7 @@ for K in $STEPS; do
     for F in tokenizer.json tokenizer_config.json vocab.json merges.txt generation_config.json; do
       if [ ! -f "$ROOT/hf/step_$K/$F" ] && [ -f "$E08_MODEL_PATH/$F" ]; then cp "$E08_MODEL_PATH/$F" "$ROOT/hf/step_$K/$F"; fi
     done
-    (cd "$ROOT/hf/step_$K" && find . -maxdepth 1 -type f ! -name SHA256SUMS -printf '%f\n' | sort | xargs sha256sum > SHA256SUMS)
+    (cd "$ROOT/hf/step_$K" && find . -maxdepth 1 -type f ! -name 'SHA256SUMS*' -printf '%f\n' | sort | xargs sha256sum > SHA256SUMS.tmp && mv SHA256SUMS.tmp SHA256SUMS)
     export CUDA_VISIBLE_DEVICES="$GPUS"
   fi
   echo "$(date -u +%FT%TZ) exported $CONDITION $SIZE step $K"
