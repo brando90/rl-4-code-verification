@@ -1,6 +1,7 @@
 """Publish complete validation rungs, failure categories and paired task-bootstrap comparisons."""
 from __future__ import annotations
 import csv
+import fcntl
 from collections import Counter
 from datetime import datetime
 import json
@@ -39,6 +40,14 @@ def coverage_rows(rows, ids):
             for t in ids for k in range(8)]
 
 
+def completed_scored_rows(path, status):
+    # collect.py writes its canonical JSONL before its controller exits. Only the
+    # exact DONE handoff makes that file a stable scientific input.
+    if status != 'DONE' or not path.exists():
+        return []
+    return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+
+
 def decision(systems, sizes, paired):
     by_fraction = {}
     for fraction in ('f0p5', 'f1p0'):
@@ -66,11 +75,16 @@ def main():
     ids = manifest['task_ids']
     draws = np.random.default_rng(0).integers(0, len(ids), (10000, len(ids)))
     systems, vectors, coverage = {}, {}, {}
+    jobs = {}
+    for phase in ('a', 'b'):
+        path = WORK / f'phase_{phase}_state.json'
+        if path.exists():
+            jobs.update(json.loads(path.read_text()).get('jobs', {}))
     coverage_dir = HERE / 'results/coverage'; coverage_dir.mkdir(exist_ok=True)
     for system in manifest['systems']:
         label = system['label']
         scored = WORK / f'ladder/validation/scored/scored_{label}_g8.jsonl'
-        rows = [json.loads(l) for l in scored.read_text().splitlines()] if scored.exists() else []
+        rows = completed_scored_rows(scored, jobs.get('score_' + label, {}).get('status'))
         cells = coverage_rows(rows, ids)
         path = coverage_dir / f'{label}.csv'
         with path.open('w') as stream:
@@ -165,4 +179,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    with (WORK / 'results_publication.lock').open('a') as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        main()

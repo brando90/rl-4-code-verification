@@ -46,8 +46,8 @@
       "cells_csv": "results/coverage/v3_E_8b_f0p5.csv",
       "declared": 1080,
       "failed_or_unknown": 0,
-      "known": 0,
-      "missing": 1080
+      "known": 1080,
+      "missing": 0
     },
     "v3_E_8b_f1p0": {
       "cells_csv": "results/coverage/v3_E_8b_f1p0.csv",
@@ -113,7 +113,7 @@
       "missing": 1080
     }
   },
-  "complete_rung_cells": 8640,
+  "complete_rung_cells": 9720,
   "declared_cells": 17280,
   "forecast_assessment": {
     "forecast_canonical_sha256": "dc0db39bb62527d24d26c44a128103182afb9e4d28c575c0528eacc773269684",
@@ -160,7 +160,7 @@
       }
     }
   },
-  "known_cells": 8640,
+  "known_cells": 9720,
   "paired_E_minus_R": {
     "1p7b_f0p5": {
       "ci95": [
@@ -664,6 +664,115 @@
         }
       }
     },
+    "v3_E_8b_f0p5": {
+      "cells_csv": "results/ladder/v3_E_8b_f0p5_validation_cells.csv",
+      "diagnostics": {
+        "all_pass_share": 0.0074,
+        "ic_tests_rate": 0.10648,
+        "mean_generated_tokens": 4831.8,
+        "mean_pass_rate": 0.10648,
+        "mean_proof_fraction": 0.10648,
+        "n_tasks_with_diversity": 131,
+        "pass_at_8_share": 0.2222,
+        "within_task_diversity_mean_pairwise_jaccard": 0.1329
+      },
+      "failure_taxonomy": {
+        "compile_error": 845,
+        "kernel_success": 115,
+        "no_lean_extracted": 120
+      },
+      "gates": {
+        "a_extraction": {
+          "n": 960,
+          "of": 1080,
+          "pass": false,
+          "share": 0.8889,
+          "threshold": 0.9
+        },
+        "b_capped": {
+          "n": 119,
+          "of": 1080,
+          "pass": false,
+          "share": 0.1102,
+          "threshold": 0.1
+        },
+        "c_mixed": {
+          "n": 29,
+          "of": 135,
+          "pass": true,
+          "share": 0.2148,
+          "threshold": 0.05,
+          "wilson95": [
+            0.1539,
+            0.2915
+          ]
+        },
+        "complete": true,
+        "n_declared": 1080,
+        "n_known": 1080,
+        "pass": false
+      },
+      "notes": {
+        "duplicates_rejected": 0,
+        "extras_rejected": 0,
+        "missing": [],
+        "n_missing": 0,
+        "n_unparseable_theorem_types": 0,
+        "n_vacuous_cells": 0,
+        "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/scored/scored_v3_E_8b_f0p5_g8.jsonl"
+      },
+      "per_task_csv": "results/ladder/v3_E_8b_f0p5_validation_per_task.csv",
+      "scored_sha256": "9ed776cd148285671ec3279bf97154a73441f6d5859742824501d77c8af75a52",
+      "split": "validation",
+      "status": "COMPLETE",
+      "system": {
+        "condition": "E",
+        "fraction": "f0p5",
+        "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ckpt/v3_E_8b/hf/step_335",
+        "label": "v3_E_8b_f0p5",
+        "loss_tokens": 2878589,
+        "size": "8B",
+        "source": "e08",
+        "start_hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_658",
+        "start_weights_sha256_manifest": "3085508bfd29932193b556c2f769eabe83b26e2d96dd59ef7412cfbcbf8f397d",
+        "step": 335
+      },
+      "task_bootstrap": {
+        "mixed_share": {
+          "ci95": [
+            0.14814814814814814,
+            0.28888888888888886
+          ],
+          "draws": 10000,
+          "mean": 0.21481481481481482,
+          "p_value": null,
+          "seed": 0,
+          "unit": "task with eight attempts together"
+        },
+        "pass_at_8": {
+          "ci95": [
+            0.15555555555555556,
+            0.2962962962962963
+          ],
+          "draws": 10000,
+          "mean": 0.2222222222222222,
+          "p_value": null,
+          "seed": 0,
+          "unit": "task with eight attempts together"
+        },
+        "pass_rate": {
+          "ci95": [
+            0.06759259259259259,
+            0.15
+          ],
+          "draws": 10000,
+          "mean": 0.10648148148148148,
+          "p_value": null,
+          "seed": 0,
+          "unit": "task with eight attempts together"
+        }
+      }
+    },
     "v3_R_1p7b_f0p5": {
       "cells_csv": "results/ladder/v3_R_1p7b_f0p5_validation_cells.csv",
       "diagnostics": {
@@ -1107,7 +1216,6 @@
     "v3_R_8b_f1p0",
     "v3_R_14b_f0p5",
     "v3_R_14b_f1p0",
-    "v3_E_8b_f0p5",
     "v3_E_8b_f1p0",
     "v3_E_14b_f0p5",
     "v3_E_14b_f1p0"

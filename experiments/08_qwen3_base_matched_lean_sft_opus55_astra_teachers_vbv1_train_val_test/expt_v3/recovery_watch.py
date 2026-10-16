@@ -76,11 +76,30 @@ def completed(root, here):
     """A success marker alone cannot complete the experiment."""
     receipt = read(root / 'completion_receipt.json', {})
     summary = read(here / 'results/validation_summary_v3.json', {})
-    return bool(receipt.get('status') == 'COMPLETE' and receipt.get('published_commit')
+    basic = bool(receipt.get('status') == 'COMPLETE' and receipt.get('published_commit')
                 and receipt.get('notification_sent') and receipt.get('training_verified')
                 and receipt.get('namespace_complete') and receipt.get('forecast_assessed')
                 and summary.get('known_cells') == summary.get('declared_cells') == 17280
                 and len(summary.get('systems', {})) == 16)
+    if not basic:
+        return False
+    try:
+        validation_path = here / 'results/completion_validation_v3.json'
+        mail_path = here / 'results/email_done_v3.json'
+        validation, mail = read(validation_path, {}), read(mail_path, {})
+        return bool(all(read(root / f'phase_{p}_state.json', {}).get('status') == 'DONE' for p in ('a', 'b'))
+                    and receipt.get('final_tests', {}).get('status') == 'PASS'
+                    and receipt.get('science_commit') and receipt.get('notification_commit') == receipt['published_commit']
+                    and receipt.get('validation_sha256') == hashlib.sha256(validation_path.read_bytes()).hexdigest()
+                    and receipt.get('email_sha256') == hashlib.sha256(mail_path.read_bytes()).hexdigest()
+                    and validation.get('status') == 'VALIDATED' and validation.get('known_cells') == 17280
+                    and validation.get('declared_cells') == 17280 and validation.get('systems') == 16
+                    and mail.get('status') == 'SENT' and mail.get('all_recipients_accepted') is True
+                    and mail.get('subject', '').endswith(': COMPLETE')
+                    and mail.get('to') == 'brando.science@gmail.com'
+                    and set(mail.get('cc', [])) == {'brandojazz@gmail.com', 'brando9@stanford.edu', 'brando@vals.ai'})
+    except (OSError, ValueError, TypeError):
+        return False
 
 
 def resource_snapshot(root):
@@ -171,6 +190,49 @@ def resource_wait_observation(root, config, state, ack, release, issues, now):
     return {'status': 'DEFER', 'reason': wait.get('reason'), 'expected_remote_admissions': expected}
 
 
+def native_continuation_observation(root, config, ack, release, issues, now):
+    """A tested ordinary-code publisher can own an explicitly released finite wait."""
+    arm = optional_record(root / 'native_continuation_arm.json')
+    native = optional_record(root / 'native_continuation_state.json')
+    key = lambda r: {k: r.get(k) for k in ('pid', 'boot_id', 'start_ticks')}
+    valid = (arm.get('schema') == 1 and arm.get('armed') is True and ack.get('owner')
+             and key(arm.get('owner', {})) == key(ack['owner']) == key(release.get('owner', {}))
+             and arm.get('attempt') == ack.get('attempt') == release.get('attempt')
+             and release.get('released') is True and release.get('mode') == 'NATIVE_CONTINUATION'
+             and arm.get('deadline_unix') == config['recovery_deadline_unix']
+             and now < config['recovery_deadline_unix']
+             and arm.get('max_recoveries') == config['max_recoveries']
+             and arm.get('candidate_caps') == {c['name']: c['max_attempts'] for c in config['candidates']})
+    if not valid:
+        return {'status': 'NOT_ARMED'}
+    if any(not issue.endswith(':stale_work_progress') for issue in issues):
+        return {'status': 'NEEDS_RECOVERY', 'reason': 'native workload issue'}
+    if native.get('status') == 'BLOCKED':
+        return {'status': 'NEEDS_RECOVERY', 'reason': native.get('error', 'ambiguous notification')}
+    if native.get('status') in ('MAIL_SENDING', 'NOTIFIED'):
+        try:
+            mail = read(Path(config['experiment']) / 'results/email_done_v3.json', {})
+            valid_mail = (mail.get('status') == 'SENT' and mail.get('all_recipients_accepted') is True
+                          and mail.get('subject') == '[RUN DONE] rl4cv-e08-v3-sft-continuation: COMPLETE'
+                          and mail.get('body') == (root / 'completion_email_body.txt').read_text()
+                          and mail.get('to') == 'brando.science@gmail.com'
+                          and set(mail.get('cc', [])) == {'brandojazz@gmail.com', 'brando9@stanford.edu', 'brando@vals.ai'})
+        except (OSError, ValueError, TypeError, KeyError):
+            valid_mail = False
+        if not valid_mail:
+            return {'status': 'NEEDS_RECOVERY', 'reason': 'ambiguous notification'}
+    if native.get('status') == 'RETRY_PUBLICATION' and not 0 < native.get('publication_failures', 0) < 3:
+        return {'status': 'NEEDS_RECOVERY', 'reason': 'publication retry cap reached'}
+    recent = native.get('checked_unix', arm.get('armed_unix', 0))
+    if not isinstance(recent, (int, float)) or now - recent > 900:
+        return {'status': 'NEEDS_RECOVERY', 'reason': 'native publisher heartbeat stale'}
+    if native.get('status') not in (None, 'OWNER_ACTIVE', 'WAITING_NATIVE_WORK', 'WAITING_NATIVE_HANDOFF',
+                                    'PUBLISHED_NATIVE_PROGRESS', 'RUNNING', 'MAIL_SENDING', 'NOTIFIED',
+                                    'RETRY_PUBLICATION'):
+        return {'status': 'NEEDS_RECOVERY', 'reason': native.get('status')}
+    return {'status': 'DEFER', 'reason': 'finite tested native publication and closeout route'}
+
+
 def tick(root, config, launch=True):
     now = time.time()
     here = Path(config['experiment'])
@@ -214,6 +276,8 @@ def tick(root, config, launch=True):
     else:
         resource_wait = resource_wait_observation(root, config, state, ack, release, issues, now)
         state['resource_wait_observation'] = resource_wait
+        native_wait = native_continuation_observation(root, config, ack, release, issues, now)
+        state['native_continuation_observation'] = native_wait
         # Recent tmux launch has not written its PID yet. Do not duplicate it.
         pending = state.get('pending_launch', {})
         if pending and now - pending['started_unix'] < 300:
@@ -222,6 +286,8 @@ def tick(root, config, launch=True):
             state['status'] = 'RECOVERY_DEADLINE_REACHED'
         elif len(state['attempts']) >= config['max_recoveries']:
             state['status'] = 'RECOVERY_ATTEMPTS_EXHAUSTED'
+        elif native_wait['status'] == 'DEFER':
+            state['status'] = 'DEFERRED_NATIVE_CONTINUATION'
         elif owner_live and resource_wait['status'] in ('DEFER', 'WAKE'):
             state['status'] = 'AWAITING_RELEASED_OWNER_EXIT'
         elif resource_wait['status'] == 'DEFER':
