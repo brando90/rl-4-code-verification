@@ -343,3 +343,26 @@ def test_upstream_merge_cannot_push_unvalidated_report_bytes(tmp_path, monkeypat
     assert git(repo, 'ls-remote', 'origin', 'refs/heads/main').stdout.split()[0] == remote_commit
     assert 'validated local' in p.read_text() and 'upstream' in p.read_text()
     assert len(git(repo, 'rev-list', '--parents', '-n', '1', 'HEAD').stdout.split()) == 3
+
+
+@pytest.mark.parametrize('exit_code,age,matching,expected', [
+    (0, 10, True, 'EXITED_AWAITING_SCHEDULER'), (0, 181, True, 'CHILD_DEAD'),
+    (1, 10, True, 'CHILD_DEAD'), (0, 10, False, 'CHILD_DEAD')])
+def test_successful_exit_handoff_is_exact_and_bounded(tmp_path, exit_code, age, matching, expected):
+    now = time.time(); owner = watch.identity(os.getpid())
+    dead = {'pid': 999999999, 'boot_id': 'old-boot', 'start_ticks': '1'}
+    receipt = tmp_path / 'exit.json'
+    watch.write(receipt, {'identity': dead if matching else owner, 'exit_code': exit_code, 'ended_unix': now - age})
+    watch.write(tmp_path / 'phase_a_state.json', {'status': 'RUNNING', 'identity': owner, 'jobs': {
+        'score_fixture': {'status': 'RUNNING', 'identity': dead, 'exit_receipt': str(receipt)}}})
+    assert watch.phase_observation(tmp_path, 'a', now)['jobs']['score_fixture']['status'] == expected
+
+
+def test_native_successful_exit_waits_without_publication_or_failure(tmp_path, monkeypatch):
+    config, _, _ = arm(tmp_path, monkeypatch)
+    def pending(*args): raise native.NativeHandoffPending('successful native exit')
+    monkeypatch.setattr(native, 'progress', pending)
+    command = Mock(); monkeypatch.setattr(native, 'run', command)
+    assert native.tick(tmp_path, config) == 'WAITING_NATIVE_HANDOFF'
+    command.assert_not_called()
+    assert watch.read(tmp_path / 'native_continuation_state.json').get('publication_failures', 0) == 0

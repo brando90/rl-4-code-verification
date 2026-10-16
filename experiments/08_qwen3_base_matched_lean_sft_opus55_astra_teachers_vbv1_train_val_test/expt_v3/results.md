@@ -2,11 +2,11 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/results.md>
 
-**TLDR:** Phase A: DONE; Phase B: RUNNING. 9,720/17,280 validation cells known. [Execution events and verified training progress](results/runtime_progress.md).
+**TLDR:** Phase A: DONE; Phase B: RUNNING. 10,800/17,280 validation cells known. [Execution events and verified training progress](results/runtime_progress.md).
 
-**Status:** RUNNING. **Last updated:** 10-16-2026 05:07 PDT.
+**Status:** RUNNING. **Last updated:** 10-16-2026 05:16 PDT.
 
-Known validation cells: **9720/17,280**; 9720 belong to complete rungs. [Every missing/failed cell](results/coverage) remains in the declared denominator; no paid model calls.
+Known validation cells: **10800/17,280**; 10800 belong to complete rungs. [Every missing/failed cell](results/coverage) remains in the declared denominator; no paid model calls.
 
 | System | Known / declared | Extracted | Capped | Mixed /135 | Gates | Pass rate [95% interval] |
 |---|---:|---:|---:|---:|---|---|
@@ -23,7 +23,7 @@ Known validation cells: **9720/17,280**; 9720 belong to complete rungs. [Every m
 | v3_E_4b_f0p5 | 1,080/1,080 | 953 | 127 | 35 | FAIL | 0.1157 [0.0769, 0.1583] |
 | v3_E_4b_f1p0 | 1,080/1,080 | 981 | 98 | 36 | PASS | 0.1417 [0.0972, 0.1907] |
 | v3_E_8b_f0p5 | 1,080/1,080 | 960 | 119 | 29 | FAIL | 0.1065 [0.0676, 0.1500] |
-| v3_E_8b_f1p0 | 0/1,080 | — | — | — | INCOMPLETE | — |
+| v3_E_8b_f1p0 | 1,080/1,080 | 1011 | 70 | 39 | PASS | 0.1556 [0.1093, 0.2056] |
 | v3_E_14b_f0p5 | 0/1,080 | — | — | — | INCOMPLETE | — |
 | v3_E_14b_f1p0 | 0/1,080 | — | — | — | INCOMPLETE | — |
 
@@ -47,4 +47,4 @@ Execution and recovery events: [runtime ledger](results/runtime_progress.md).
 | 4b_f0p5 | 0.0324 [0.0111, 0.0546] |
 | 4b_f1p0 | 0.0194 [-0.0019, 0.0426] |
 
-**TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is 9720/17,280; incomplete comparisons remain unresolved.
+**TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is 10800/17,280; incomplete comparisons remain unresolved.

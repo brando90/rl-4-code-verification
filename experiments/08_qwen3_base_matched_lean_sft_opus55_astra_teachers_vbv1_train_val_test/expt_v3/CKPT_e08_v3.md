@@ -2,17 +2,17 @@
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
 **TLDR:** All Phase A training/generation verified; Phase A complete, all eight rungs and diagnostics checked; replay 4B half and expansion 4B full pass gates and all remaining cells still required.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-16-2026 05:08 PDT
+Last updated: 10-16-2026 05:17 PDT
 ## Goal
 - Complete all 17,280 validation cells, paired bootstrap, namespace diagnostic, forecast assessment, publication and actual DONE notification; zero paid experimental model calls; test split unopened.
 ## Current execution
 - Sole writer recovery-02: native gpt-6-astra/ultra, never/danger-full-access; PID 3022155, boot 839e7dd6-64e1-4a80-9498-31d30b3cc2df, start 38249185. Six current hashes and all 2,650 Phase A token counts reverified. [Receipt](results/owner_recovery02_v3.json).
-- Phase A DONE. Replay 8B training, all658 updates and both exports are fully verified. Half generation has1,080 exact validated cells and its scorer is active; full generation is running. Total generated coverage11,880/17,280; primary known coverage9,720/17,280. Expansion full scoring continues;14B waits for eight eligible devices. [Verified handoff](results/recovery02_R8_exports_generation.json).
+- Phase A DONE. Expansion 8B full passes all frozen gates:1,011 extracted,70 capped,39/135 mixed;168/1,080 successes (0.1556 [0.1093,0.2056],95% task-block bootstrap,10,000 draws seed0,p-val=n/a). Namespace delta0 [0,0]. Both replay8B generated rungs are verified and scoring is active. Known primary cells10,800/17,280;generated cells12,960/17,280. Fourteen-billion-parameter training still awaits eight eligible devices. [Checked result](results/recovery02_E8_full_R8_generation.json).
 - E/R 1.7B and 4B training and eight exports verified: 23,021,424 additional loss tokens, 41,508,194 processed real tokens. [Receipt](results/phase_a_training_verification.json). Both retained post-export exit 2 incidents were reconciled without replay.
 - Eight complete Phase A generated rungs = 8,640 exact cells. All generation children exited 0; all eight Phase A rungs scored/analyzed (8,640/17,280 cells). Replay 4B half and expansion 4B full pass gates; eight namespace diagnostics have zero score delta.
 - Primary scoring and namespace diagnostics use eight workers per rung, at most six combined jobs (48 active compilation slots), frozen 600s timeout; expired orphan children cleaned separately by exact pidfd guard. Phase A generation finished; Phase B uses immutable remote shell snapshots.
 - All four training sizes and exact generator environments verified on skampere2/3. Pending large-model routes remain remote. 14B training must use eight devices; inference uses the frozen permitted layout.
-- Latest full suite: 1,316 passed / 17 skipped / 6 subtests / 319.22s; 53 focused recovery/closeout checks plus 6 subtests pass. Native Vals weekly usage 65%, credits 0; original deadline and attempt limits unchanged.
+- Latest full suite: 1,321 passed / 17 skipped / 6 subtests / 308.91s; 58 focused recovery/closeout checks plus 6 subtests pass. Native Vals weekly usage 65%, credits 0; original deadline and attempt limits unchanged.
 ## Waits and recovery
 - Host recovery and native continuation crons every five minutes/reboot; native route installed UNARMED. Orphan cleanup every minute; capacity probe every 15min. Active owner; old external wait disarmed. Original deadline 10-18-2026 21:21 PDT and six-recovery/two-Vals limits unchanged; actual fallback exclusions updated.
 - Slurm association was already requested 10-14; do not duplicate. Inventory and real release events are in host recovery_config.json. No paid cloud or smaller 14B training layout.
@@ -116,3 +116,7 @@ Last updated: 10-16-2026 05:08 PDT
 - 10-16-2026 05:08 PDT -- Replay 8B training, all658 updates and both exports are fully verified. Half generation has1,080 exact validated cells and its scorer is active; full generation is running. Total generated coverage11,880/17,280; primary known coverage9,720/17,280. Expansion full scoring continues;14B waits for eight eligible devices. Both local and remote training/generation exit0 identities agree; controller full-checksum export installs match shared manifests. Notification authentication-only preflight passed;zero messages sent. Tested source hashes unchanged from c3890a1.
 
 - 10-16-2026 12:08 UTC: deterministic native continuation verified 9,720/17,280 primary cells. Completed native jobs: 41. Zero paid experimental calls; test split unopened.
+
+- 10-16-2026 05:17 PDT -- Expansion 8B full passes all frozen gates:1,011 extracted,70 capped,39/135 mixed;168/1,080 successes (0.1556 [0.1093,0.2056],95% task-block bootstrap,10,000 draws seed0,p-val=n/a). Namespace delta0 [0,0]. Both replay8B generated rungs are verified and scoring is active. Known primary cells10,800/17,280;generated cells12,960/17,280. Fourteen-billion-parameter training still awaits eight eligible devices. Successful-child handoff handling now requires matching boot/start identity,exit0 and age≤180s;58focused checks and the1,321-test full suite pass. Native continuation remains installed UNARMED.
+
+- 10-16-2026 12:17 UTC: deterministic native continuation verified 10,800/17,280 primary cells. Completed native jobs: 44. Zero paid experimental calls; test split unopened.

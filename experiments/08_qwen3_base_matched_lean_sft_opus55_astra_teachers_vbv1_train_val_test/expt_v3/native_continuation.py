@@ -24,6 +24,10 @@ class PublicationFailure(RuntimeError):
     """Retry only ordinary publication, under the original deadline and a finite cap."""
 
 
+class NativeHandoffPending(RuntimeError):
+    """An exact successful child exited before the healthy scheduler recorded DONE."""
+
+
 def sent_receipt_valid(root):
     try:
         mail = read(HERE / 'results/email_done_v3.json', {})
@@ -129,6 +133,8 @@ def progress(root):
         obs = phase_observation(root, p, time.time())
         assert phase['status'] == 'DONE' or (obs['scheduler_alive'] and obs['heartbeat_age_seconds'] < 180)
         assert all(j['status'] not in ('FAILED', 'CHILD_DEAD') for j in obs['jobs'].values())
+        if any(j['status'] == 'EXITED_AWAITING_SCHEDULER' for j in obs['jobs'].values()):
+            raise NativeHandoffPending(f'Phase {p} awaits a successful child handoff')
     # Only DONE native jobs may add artifacts to a publication.
     done = sorted(k for k, v in jobs.items() if v['status'] == 'DONE')
     for key in done:
@@ -359,6 +365,10 @@ def tick(root, config):
                 state['status'] = 'PUBLISHED_NATIVE_PROGRESS'
             state['checked_unix'] = time.time(); write(state_path, state)
             return state['status']
+    except NativeHandoffPending as error:
+        state.update(status='WAITING_NATIVE_HANDOFF', detail=str(error), checked_unix=time.time())
+        write(state_path, state)
+        return state['status']
     except BaseException as error:
         # An SMTP send whose receipt was not persisted is never automatically replayed.
         failures = state.get('publication_failures', 0) + int(isinstance(error, PublicationFailure))

@@ -57,6 +57,12 @@ def phase_observation(root, phase, now):
             # Legacy scheduler records PID only: observation may flag death but never kill/restart it.
             live = alive(rec) if rec else bool(identity(job.get('pid', 0)))
             status = 'RUNNING' if live else 'CHILD_DEAD'
+            if not live and rec and job.get('exit_receipt'):
+                receipt = read(Path(job['exit_receipt']), {})
+                ended = receipt.get('ended_unix')
+                if (receipt.get('identity') == rec and receipt.get('exit_code') == 0
+                        and isinstance(ended, (int, float)) and 0 <= now - ended <= 180):
+                    status = 'EXITED_AWAITING_SCHEDULER'
         log = root / f'phase_{phase}_logs/{key}.log'
         jobs[key] = {'status': status, 'pid': job.get('pid'), 'identity_verified': bool(rec),
                      'log_age_seconds': now - log.stat().st_mtime if log.exists() else None}

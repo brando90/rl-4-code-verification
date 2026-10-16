@@ -209,3 +209,12 @@ The existing SMTP connection passed authentication and NOOP250 without sending a
 
 
 10-16-2026 12:08 UTC: deterministic native continuation verified 9,720/17,280 primary cells. Completed native jobs: 41. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 05:17 PDT — expansion 8B full passes gates; all 8B generation complete
+
+Expansion 8B full passes all frozen gates:1,011 extracted,70 capped,39/135 mixed;168/1,080 successes (0.1556 [0.1093,0.2056],95% task-block bootstrap,10,000 draws seed0,p-val=n/a). Namespace delta0 [0,0]. Both replay8B generated rungs are verified and scoring is active. Known primary cells10,800/17,280;generated cells12,960/17,280. Fourteen-billion-parameter training still awaits eight eligible devices. [Checked score/generation receipt](recovery02_E8_full_R8_generation.json). All135 tasks retain eight attempts together in the bootstrap. Training-seed variation remains unmeasured. The namespace diagnostic changes zero cells, retains every original-error sample and does not modify the primary scores. The paired replay comparison remains incomplete until its scorers finish.
+
+The actual successful-child transition exposed a short gap between native exit0 and scheduler DONE. Recovery now labels only exact matching exit0 receipts aged at most180seconds as awaiting the scheduler; nonzero exits, mismatched identities and overdue transitions remain failures. The native publisher waits at that boundary without consuming a publication retry. Focused tests:58passed plus6subtests. Full suite:1,321passed,17skipped,6subtests in308.91s. Updated tested-source fingerprints remain unarmed; recovery-02 is still the active owner.
+
+
+10-16-2026 12:17 UTC: deterministic native continuation verified 10,800/17,280 primary cells. Completed native jobs: 44. Zero paid experimental calls; test split unopened.
