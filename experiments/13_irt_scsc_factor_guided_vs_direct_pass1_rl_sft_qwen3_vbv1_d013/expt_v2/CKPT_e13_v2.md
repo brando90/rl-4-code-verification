@@ -2,15 +2,15 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2.md>
 
-**TLDR:** The master's resumable record for experiment 13 version 2.
+**TLDR:** The master's resumable record for experiment 13 version 2. **Version 2 is TERMINAL**: Phase 2 stopped at T2 on 10-16-2026 (`625a2e6`), a gate stop under PLAN § 4.
 
-- **Plan:** revision 2, after the single light review (FAIL, with all 13 findings fixed).
-- **Admission:** G0 was admitted under A3 on 10-14-2026 ([admission record](R2_A3_ADMISSION_10-14-2026.md)).
-- **G0:** PASS (`120c558`). LP-1 under v2-S2 float16 is PASS. All three anchors have 0 strict successes under the frozen rollout sampler, and C calibration is not admitted. [Amendment A6](AMENDMENT_A6_zero_strict_signal_rollout_sampler_10-15-2026.md): skip batch 2, run a pipeline diagnostic, and apply T5 to arm B.
-- **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
+- **Why T2 failed.** Its single technical update used the strict reward. Under the frozen rollout sampler, all 255 measured rewards were 0, so every advantage was zero, the gradient was zero, and all 399 parameter tensors stayed unchanged. T2 requires a changed weight hash.
+- **What was not measured.** The reward comparison (B against A, and the placebo) was never run, so nothing here shows that the factored reward is ineffective.
+- **Master's own miss.** A6 applied T5 to arm B's own reward but left T2 on the strict reward.
+- **Next.** This is Brando's decision; see "Final state 10-16-2026" below.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 17:18 PDT
+Last updated: 10-16-2026 13:04 PDT
 
 ## Task and owner
 
@@ -346,7 +346,43 @@ Last updated: 10-15-2026 17:18 PDT
 - **T2** (one real update, weight hash and refit check). A pre-admission device collision was charged 0.015 device-hours, produced no statistic, and recovered through a published wait (`fd7edca`). Attempt 1 was admitted on idle device 2 at 16:44 (`53b53fe`). Train generation of 256 responses is complete (`a4d9b5d`), and official scoring was at 254/256 at 17:14. No T2 verdict yet. Cumulative device-hours: 28.39 across 67 leases.
 - **Healthy.** The owner is working (2 h, model available). The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
 
+## Final state 10-16-2026 (13:04 PDT): Phase 2 stopped at T2
+
+**Results, by stage.** Statistics are p-val n/a unless an interval is shown.
+
+| Stage | Result | Key numbers |
+|---|---|---|
+| G0 (A3 worst-case completions) | PASS (`120c558`) | 4B dense-only 89–97/135 (threshold 21); AUC 0.671–0.905 (threshold 0.65), exact over 221,184 configurations. 1.7B PASS, 8B INCONCLUSIVE |
+| LP-1, S1 (bfloat16) | FAIL, final | p99 log-probability error 0.1248 > 0.10 |
+| LP-1, S2 (float16, A5) | PASS | p99 0.0176, median 3.3e-5, unsupported 0/44,844, truncation 0 |
+| Anchors (rollout sampler: temperature 1, top-p 1) | 0 strict successes | base 0/4,311, half 0/4,303, full1 0/4,302. Well-formed outputs (Q1): 9.6%, 7.6%, 12.9%. Compile among them (Q2): 0/1,294 |
+| Arm C calibration | Not admitted | d and p empty items; t and Q1 bias excludes zero; no strict forecast. C disabled |
+| G1 (historical ladder) | INCONCLUSIVE | No admitted IRT candidate. Descriptively, M1 (calibrated earlier-rung factored reward) beats M0 (strict-rate baseline): log loss 0.173–0.222 against 0.230–0.259, AUC 0.866–0.929 against 0.832–0.874, over 3,240 cells |
+| H2 and F2 | UNAVAILABLE | Predictor null; batch 2 skipped under A6 |
+| A6 pipeline diagnostic | SOUND | 48/496 strict and compile (9.7%) at the historical sampler (temperature 0.6, top-p 0.95, top-k 20), against a historical 9.26% (100/1,080) |
+| T1 | PASS | Same as the S2 LP-1 numbers: p99 0.0176 ≤ 0.10, unsupported 0, truncation 0 |
+| **T2** | **FAIL, final (attempt 3)** | One optimizer step on an all-zero-advantage batch: 0/255 strict rewards, 31/32 usable groups, 0 nonzero-gradient updates. All 399 tensors (4,411,424,256 elements) unchanged: before and after SHA-256 `7fed4022…16ae`. Refit median 3.27e-5 PASS. Attempts 1–2 were INCOMPLETE-INFRA under A4. T2 used 4.37/10.0 device-hours |
+
+**Closeout facts.**
+
+- **Not run:** T3, T4, the audits, T5, the pilots, the main runs, validation selection and the test evaluation.
+- **Device use:** 32.20 device-hours across 78 leases, all RELEASED.
+- **Owner:** `codex-rl4cv-e13v2-owner-g0` closed out and exited; its tmux session is gone.
+  - It stalled about 4.5 h on 10-15 when OpenAI reported its model at capacity, then was resumed at 15:16.
+  - The old idle owner session `codex-rl4cv-e13v2-owner` (launcher PID 886575) is untouched; Brando may close it.
+- **Cron.** The master retired experiment 13's 11 cron lines on 10-16, removing only lines under `$WR/`. The crontab went from 24 to 13 lines, the rest unchanged; the backup is `$WR/state/crontab_before_e13v2_retire_10-16-2026.txt`. Hourly master check-ins (cron `3c401c57`) are stopped, because Brando is out of Claude credits for the week.
+
+**What it means.** Under the frozen rollout sampler, the SFT start policy never solves a training task (0/12,916 anchors, 0/255 in T2). A strict-reward update is therefore a no-op, and version 2's T2, written for a reward with signal, cannot pass. The pipeline itself is sound (A6 diagnostic).
+
+**Brando's decision.** Choose one:
+
+1. **Accept the stop.** Report version 2 as terminal at T2 in the zero-signal regime.
+2. **Version 3, prospective (recommended).** Choose the rollout sampler so that arm A has nonzero strict signal; for example, use the historical sampler, with probability agreement re-measured for truncated sampling. Operationalize T2 and T5 on an arm with nonzero advantage. Keep G0, the A3 exclusions and the frozen judge route.
+3. **A7.** Re-run T2 and T5 on arm B's reward as a separately versioned S2-B condition. It would be disclosed as written after T2's measured failure, making it the fourth post-observation amendment; the master advises option 2 instead.
+
 ## Exact next commands (master)
+
+**Version 2 is terminal. No master action until Brando chooses from "Final state 10-16-2026".** For version 3, write `expt_v3/PLAN.md` prospectively from the observations above, run one light QA only if Brando asks, then dispatch a SNAP owner using the procedure below.
 
 0. **Resume:** dispatch a fresh owner in a new tmux session `codex-rl4cv-e13v2-owner-g0`, seeded with `expt_v2/cc_resume_g0.md` and using the same client, flags and fallbacks as item 2. Never type into the old owner session.
 
