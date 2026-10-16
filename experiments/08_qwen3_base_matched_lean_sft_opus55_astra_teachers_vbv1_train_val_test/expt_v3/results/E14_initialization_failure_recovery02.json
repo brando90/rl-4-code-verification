@@ -1,0 +1,672 @@
+{
+  "status": "FAILED_INITIALIZATION_ZERO_UPDATES_CLEANED",
+  "checked_unix": 1792159275.6341395,
+  "root": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_E_14b_1792158063511085961",
+  "admission": {
+    "status": "RUNNING",
+    "host": "skampere1",
+    "identity": {
+      "pid": 2886242,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "39675147"
+    },
+    "gpus": "1,2",
+    "tensor_parallel_size": 8,
+    "route": "multinode_2_2_4",
+    "allocation": {
+      "skampere1": {
+        "gpus": [
+          1,
+          2
+        ],
+        "uuids": [
+          "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+          "GPU-e98e645a-d860-3666-a80b-2cea81363c51"
+        ],
+        "interface": "enp44s0f0",
+        "inventory": [
+          {
+            "index": 1,
+            "uuid": "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+            "total_mib": 81920,
+            "used_mib": 0,
+            "free_mib": 81153,
+            "utilization": 0
+          },
+          {
+            "index": 2,
+            "uuid": "GPU-e98e645a-d860-3666-a80b-2cea81363c51",
+            "total_mib": 81920,
+            "used_mib": 0,
+            "free_mib": 81153,
+            "utilization": 0
+          }
+        ],
+        "existing_contexts": [],
+        "cooperative_sharing": false
+      },
+      "skampere2": {
+        "gpus": [
+          3,
+          5
+        ],
+        "uuids": [
+          "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+          "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257"
+        ],
+        "interface": "ens3f0np0",
+        "inventory": [
+          {
+            "index": 3,
+            "uuid": "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+            "total_mib": 143771,
+            "used_mib": 1551,
+            "free_mib": 141606,
+            "utilization": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257",
+            "total_mib": 143771,
+            "used_mib": 1551,
+            "free_mib": 141606,
+            "utilization": 0
+          }
+        ],
+        "existing_contexts": [
+          {
+            "uuid": "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+            "pid": 1439216,
+            "memory_mib": 1542,
+            "uid": 23621,
+            "start_ticks": "852085859",
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d"
+          },
+          {
+            "uuid": "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257",
+            "pid": 1441067,
+            "memory_mib": 1542,
+            "uid": 23621,
+            "start_ticks": "852086653",
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d"
+          }
+        ],
+        "cooperative_sharing": true
+      },
+      "skampere3": {
+        "gpus": [
+          2,
+          4,
+          5,
+          7
+        ],
+        "uuids": [
+          "GPU-d781dd11-80f3-8979-073a-4248052fe3f6",
+          "GPU-9b167139-7ecf-47bd-e09d-27a60c24783f",
+          "GPU-e7551271-928d-689f-5095-a60da72fc720",
+          "GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5"
+        ],
+        "interface": "enp81s0f0np0",
+        "inventory": [
+          {
+            "index": 2,
+            "uuid": "GPU-d781dd11-80f3-8979-073a-4248052fe3f6",
+            "total_mib": 183359,
+            "used_mib": 0,
+            "free_mib": 182632,
+            "utilization": 0
+          },
+          {
+            "index": 4,
+            "uuid": "GPU-9b167139-7ecf-47bd-e09d-27a60c24783f",
+            "total_mib": 183359,
+            "used_mib": 0,
+            "free_mib": 182632,
+            "utilization": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-e7551271-928d-689f-5095-a60da72fc720",
+            "total_mib": 183359,
+            "used_mib": 0,
+            "free_mib": 182632,
+            "utilization": 0
+          },
+          {
+            "index": 7,
+            "uuid": "GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5",
+            "total_mib": 183359,
+            "used_mib": 0,
+            "free_mib": 182632,
+            "utilization": 0
+          }
+        ],
+        "existing_contexts": [],
+        "cooperative_sharing": false
+      }
+    },
+    "started_unix": 1792158161.1719897,
+    "receipt": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/remote_E_14b.exit.json",
+    "wrapper_snapshot": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_E_14b_1792158063511085961/train_multinode.sh",
+    "wrapper_sha256": "17b89925ea537820f55cb5539b9aee21e173a5f3aeb52b39595cdad480890099",
+    "root": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_E_14b_1792158063511085961",
+    "gpu_proof_sha256": "bde80b738547dbe06b94b78972c997af0894cce243e79d66b212265050cf4df5"
+  },
+  "native_exit": {
+    "identity": {
+      "pid": 2886242,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "39675147"
+    },
+    "started_unix": 1792158161.207885,
+    "command": [
+      "bash",
+      "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_E_14b_1792158063511085961/train_multinode.sh",
+      "E",
+      "14b",
+      "0,1,2,3,4,5,6,7"
+    ],
+    "child": {
+      "pid": 2886845,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "39675169"
+    },
+    "exit_code": 1,
+    "ended_unix": 1792158793.8819222
+  },
+  "coordinator_exit": {
+    "identity": {
+      "pid": 2686433,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "39665347"
+    },
+    "started_unix": 1792158063.2162275,
+    "command": [
+      "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+      "/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/multinode_training.py",
+      "E"
+    ],
+    "child": {
+      "pid": 2686529,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "39665351"
+    },
+    "exit_code": 1,
+    "ended_unix": 1792158814.567183
+  },
+  "controller_exit": {
+    "identity": {
+      "pid": 798432,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "37963395"
+    },
+    "started_unix": 1792141043.6853938,
+    "command": [
+      "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python",
+      "/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/remote_training.py",
+      "E",
+      "--size",
+      "14b"
+    ],
+    "child": {
+      "pid": 798455,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "37963398"
+    },
+    "exit_code": 1,
+    "ended_unix": 1792159049.6933959
+  },
+  "controller_job": {
+    "status": "FAILED",
+    "pid": 798432,
+    "identity": {
+      "pid": 798432,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "37963395"
+    },
+    "key": "train_E_14b",
+    "command": [
+      "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python",
+      "/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/remote_training.py",
+      "E",
+      "--size",
+      "14b"
+    ],
+    "exit_receipt": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/phase_b_logs/train_E_14b.attempt_1.exit.json",
+    "started_unix": 1792141043.652523,
+    "attempt": 1,
+    "exit_code": 1,
+    "ended_unix": 1792159069.5686028
+  },
+  "scheduler_identity": {
+    "pid": 3066041,
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "start_ticks": "38277673"
+  },
+  "sequencer_exit": {
+    "identity": {
+      "pid": 3645715,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "39732112"
+    },
+    "started_unix": 1792158730.8641129,
+    "command": [
+      "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python",
+      "/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/multinode_sequence.py",
+      "--config",
+      "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/multinode_sequence_recovery02_config.json"
+    ],
+    "child": {
+      "pid": 3645732,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "39732116"
+    },
+    "exit_code": 1,
+    "ended_unix": 1792158820.9662156
+  },
+  "sequencer_state": {
+    "status": "BLOCKED",
+    "identity": {
+      "pid": 3645732,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "39732116"
+    },
+    "config": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/multinode_sequence_recovery02_config.json",
+    "deadline_unix": 1792383686.05276,
+    "started_unix": 1792158730.901809,
+    "checked_unix": 1792158820.957319,
+    "error": "AssertionError: Expansion native failure; no automatic replay"
+  },
+  "route_result": {
+    "status": "FAIL",
+    "root": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_E_14b_1792158063511085961",
+    "started_unix": 1792158063.6016054,
+    "condition": "E",
+    "gpu_proof": {
+      "status": "PASS",
+      "workers": [
+        {
+          "host": "skampere1",
+          "uuid": "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+          "pid": 2854399,
+          "start_ticks": "39671334",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "torch": "2.7.1+cu128",
+          "nccl": [
+            2,
+            26,
+            2
+          ],
+          "interface": "=enp44s0f0"
+        },
+        {
+          "host": "skampere1",
+          "uuid": "GPU-e98e645a-d860-3666-a80b-2cea81363c51",
+          "pid": 2854404,
+          "start_ticks": "39671335",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "torch": "2.7.1+cu128",
+          "nccl": [
+            2,
+            26,
+            2
+          ],
+          "interface": "=enp44s0f0"
+        },
+        {
+          "host": "skampere2",
+          "uuid": "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+          "pid": 342600,
+          "start_ticks": "1233446939",
+          "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+          "torch": "2.7.1+cu128",
+          "nccl": [
+            2,
+            26,
+            2
+          ],
+          "interface": "=ens3f0np0"
+        },
+        {
+          "host": "skampere2",
+          "uuid": "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257",
+          "pid": 342611,
+          "start_ticks": "1233446940",
+          "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+          "torch": "2.7.1+cu128",
+          "nccl": [
+            2,
+            26,
+            2
+          ],
+          "interface": "=ens3f0np0"
+        },
+        {
+          "host": "skampere3",
+          "uuid": "GPU-d781dd11-80f3-8979-073a-4248052fe3f6",
+          "pid": 3757760,
+          "start_ticks": "266460446",
+          "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+          "torch": "2.7.1+cu128",
+          "nccl": [
+            2,
+            26,
+            2
+          ],
+          "interface": "=enp81s0f0np0"
+        },
+        {
+          "host": "skampere3",
+          "uuid": "GPU-9b167139-7ecf-47bd-e09d-27a60c24783f",
+          "pid": 3757615,
+          "start_ticks": "266460445",
+          "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+          "torch": "2.7.1+cu128",
+          "nccl": [
+            2,
+            26,
+            2
+          ],
+          "interface": "=enp81s0f0np0"
+        },
+        {
+          "host": "skampere3",
+          "uuid": "GPU-e7551271-928d-689f-5095-a60da72fc720",
+          "pid": 3757836,
+          "start_ticks": "266460448",
+          "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+          "torch": "2.7.1+cu128",
+          "nccl": [
+            2,
+            26,
+            2
+          ],
+          "interface": "=enp81s0f0np0"
+        },
+        {
+          "host": "skampere3",
+          "uuid": "GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5",
+          "pid": 3757835,
+          "start_ticks": "266460448",
+          "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+          "torch": "2.7.1+cu128",
+          "nccl": [
+            2,
+            26,
+            2
+          ],
+          "interface": "=enp81s0f0np0"
+        }
+      ],
+      "collectives": [
+        {
+          "rank": 0,
+          "status": "PASS"
+        },
+        {
+          "rank": 1,
+          "status": "PASS"
+        },
+        {
+          "rank": 2,
+          "status": "PASS"
+        },
+        {
+          "rank": 3,
+          "status": "PASS"
+        },
+        {
+          "rank": 4,
+          "status": "PASS"
+        },
+        {
+          "rank": 5,
+          "status": "PASS"
+        },
+        {
+          "rank": 6,
+          "status": "PASS"
+        },
+        {
+          "rank": 7,
+          "status": "PASS"
+        }
+      ],
+      "world_size": 8,
+      "tensor_parallel_size": 8,
+      "training_updates": 0
+    },
+    "error": "AssertionError: Native training failed or original deadline reached; reconcile exact receipt",
+    "transport_exits": {
+      "skampere1": 0,
+      "skampere2": 0,
+      "skampere3": 0
+    },
+    "cleanup": {
+      "skampere1": {
+        "status": "STOPPED",
+        "host": "skampere1",
+        "identity": {
+          "pid": 2737003,
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "start_ticks": "39666733"
+        },
+        "gpus": "1,2",
+        "uuids": [
+          "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+          "GPU-e98e645a-d860-3666-a80b-2cea81363c51"
+        ],
+        "interpreter": "/tmp/e08v3_mg_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python",
+        "venvs": "/tmp/e08v3_mg_22003/venvs",
+        "cache": "/tmp/e08v3_mn_22003/cache",
+        "started_unix": 1792158077.5523925,
+        "deadline_unix": 1792383686.05276,
+        "watchdog_identity": {
+          "pid": 2739518,
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "start_ticks": "39666794"
+        },
+        "node_id": "d45cc8a304e2c8ecb48ff9f2ddc5426e6e779e7f62bddbc7dd10306d",
+        "gcs_address": "172.24.75.194:57749",
+        "session_name": "session_2026-10-16_06-41-17_714241_2737003",
+        "children": [
+          {
+            "pid": 2739525,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "39666801"
+          },
+          {
+            "pid": 2742267,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "39666866"
+          },
+          {
+            "pid": 2744732,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "39666952"
+          },
+          {
+            "pid": 2739525,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "39666801"
+          },
+          {
+            "pid": 2742267,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "39666866"
+          },
+          {
+            "pid": 2744732,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "39666952"
+          }
+        ],
+        "remaining_children": [],
+        "watchdog_exit_code": -15,
+        "ended_unix": 1792158798.6687078
+      },
+      "skampere2": {
+        "status": "STOPPED",
+        "host": "skampere2",
+        "identity": {
+          "pid": 321398,
+          "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+          "start_ticks": "1233442871"
+        },
+        "gpus": "3,5",
+        "uuids": [
+          "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+          "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257"
+        ],
+        "interpreter": "/tmp/e08v3_mg_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python",
+        "venvs": "/tmp/e08v3_mg_22003/venvs",
+        "cache": "/tmp/e08v3_mn_22003/cache",
+        "started_unix": 1792158082.9465196,
+        "deadline_unix": 1792383686.05276,
+        "watchdog_identity": {
+          "pid": 321706,
+          "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+          "start_ticks": "1233442931"
+        },
+        "node_id": "45fb8c5bca6c000d952ab58ae5cbcab7675a6368978ced9afa314512",
+        "gcs_address": "172.24.75.194:57749",
+        "session_name": "session_2026-10-16_06-41-17_714241_2737003",
+        "children": [
+          {
+            "pid": 321896,
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+            "start_ticks": "1233442971"
+          },
+          {
+            "pid": 321896,
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+            "start_ticks": "1233442971"
+          }
+        ],
+        "remaining_children": [],
+        "watchdog_exit_code": -15,
+        "ended_unix": 1792158808.4809957
+      },
+      "skampere3": {
+        "status": "STOPPED",
+        "host": "skampere3",
+        "identity": {
+          "pid": 3687462,
+          "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+          "start_ticks": "266459287"
+        },
+        "gpus": "2,4,5,7",
+        "uuids": [
+          "GPU-d781dd11-80f3-8979-073a-4248052fe3f6",
+          "GPU-9b167139-7ecf-47bd-e09d-27a60c24783f",
+          "GPU-e7551271-928d-689f-5095-a60da72fc720",
+          "GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5"
+        ],
+        "interpreter": "/tmp/e08v3_mg_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python",
+        "venvs": "/tmp/e08v3_mg_22003/venvs",
+        "cache": "/tmp/e08v3_mn_22003/cache",
+        "started_unix": 1792158111.758458,
+        "deadline_unix": 1792383686.05276,
+        "watchdog_identity": {
+          "pid": 3689047,
+          "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+          "start_ticks": "266459320"
+        },
+        "node_id": "00a6704208863877af4ded5d10f75544e44e8b121ea7efa0b39b6da5",
+        "gcs_address": "172.24.75.194:57749",
+        "session_name": "session_2026-10-16_06-41-17_714241_2737003",
+        "children": [
+          {
+            "pid": 3690444,
+            "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+            "start_ticks": "266459358"
+          },
+          {
+            "pid": 3690444,
+            "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+            "start_ticks": "266459358"
+          }
+        ],
+        "remaining_children": [],
+        "watchdog_exit_code": -15,
+        "ended_unix": 1792158809.005724
+      }
+    },
+    "ended_unix": 1792158813.2737882
+  },
+  "dtensor_workers": [
+    {
+      "host": "skampere1",
+      "pid": 2962462,
+      "start_ticks": "39677291",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df"
+    },
+    {
+      "host": "skampere1",
+      "pid": 2966767,
+      "start_ticks": "39677378",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df"
+    },
+    {
+      "host": "skampere2",
+      "pid": 484063,
+      "start_ticks": "1233452901",
+      "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d"
+    },
+    {
+      "host": "skampere2",
+      "pid": 485679,
+      "start_ticks": "1233452996",
+      "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d"
+    },
+    {
+      "host": "skampere3",
+      "pid": 3879687,
+      "start_ticks": "266466361",
+      "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0"
+    },
+    {
+      "host": "skampere3",
+      "pid": 3879897,
+      "start_ticks": "266466400",
+      "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0"
+    },
+    {
+      "host": "skampere3",
+      "pid": 3880455,
+      "start_ticks": "266466490",
+      "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0"
+    },
+    {
+      "host": "skampere3",
+      "pid": 3880910,
+      "start_ticks": "266466584",
+      "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0"
+    }
+  ],
+  "cleanup_checks": {
+    "skampere1": {
+      "checked": 18,
+      "remaining": []
+    },
+    "skampere2": {
+      "checked": 7,
+      "remaining": []
+    },
+    "skampere3": {
+      "checked": 11,
+      "remaining": []
+    }
+  },
+  "native_training_updates": 0,
+  "checkpoints": 0,
+  "exports": 0,
+  "native_error": "TCPStore wait timeout after600000ms while rank0 read frozen59,073,377,555-byte pytorch_model.bin from shared storage.",
+  "native_error_log_sha256": "73c140646dcd37096aa29a6a22170d103e63f9bb4bf21fbd715971eab35f3091",
+  "native_error_log": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_E_14b_1792158063511085961/native_segment_to_step_335_failure.log",
+  "inference": "Cold baseline read exceeded fixed native communicator wait; observed advancing80MB/s reads, not stalled I/O.",
+  "repair": "Read and SHA256-verify the unchanged baseline on all3hosts before fresh GPU admission. No timeout, training/model/data/sampling/token cap changes.",
+  "scientific_caps_changed": false,
+  "paid_model_calls": 0,
+  "test_split_opened": false
+}

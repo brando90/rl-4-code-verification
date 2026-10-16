@@ -272,3 +272,14 @@ Full suite1,358passed/17skipped/6subtests,324.34s;30focused checks. [Admission a
 
 
 10-16-2026 13:51 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 07:08 PDT — retained cold-read initialization failure and cache preparation
+
+The first14B native initialization failed before any optimizer update: rank0 was still reading the frozen59,073,377,555-byte weight file at approximately80MB/s when peer ranks reached PyTorch TCPStore fixed600,000ms timeout. The error, original controller/driver/route receipts and logs are retained. All36checked identities are absent, all participant/local leases released; no checkpoint/export/training scalar exists. The replay sequencer stopped without a dispatch.
+
+Recovery now SHA256-verifies and reads the unchanged baseline into all3hosts caches before GPU admission, bounded by30minutes and the original absolute deadline. Expected model hash140d9e8d22c741587ddb40c9ffa6140850879a45263a8a6bbd0fcfafbbdb48c3; no model/token/timeout/config changes. The read allocates noGPU. Capacity and exact eight-device proof are repeated afterward. Original native failure is preserved; this repairs initialization with zero duplicated training updates.
+
+Full suite1,362passed/17skipped/6subtests,291.07s;34focused checks. [Failure and identity checks](E14_initialization_failure_recovery02.json), [native error log rendering; original hash retained](E14_initialization_native_error_recovery02.log.txt), [cache-read status](model_cache_read_recovery02.json). No scientific training restart has occurred yet.
+
+
+10-16-2026 14:08 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.

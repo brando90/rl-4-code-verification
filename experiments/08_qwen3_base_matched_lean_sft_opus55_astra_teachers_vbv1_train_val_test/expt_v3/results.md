@@ -4,7 +4,7 @@
 
 **TLDR:** Phase A: DONE; Phase B: RUNNING. 12,960/17,280 validation cells known. [Execution events and verified training progress](results/runtime_progress.md).
 
-**Status:** RUNNING. **Last updated:** 10-16-2026 06:51 PDT.
+**Status:** RUNNING. **Last updated:** 10-16-2026 07:08 PDT.
 
 Known validation cells: **12960/17,280**; 12960 belong to complete rungs. [Every missing/failed cell](results/coverage) remains in the declared denominator; no paid model calls.
 
@@ -49,8 +49,6 @@ Execution and recovery events: [runtime ledger](results/runtime_progress.md).
 | 8b_f0p5 | -0.0009 [-0.0269, 0.0250] |
 | 8b_f1p0 | 0.0037 [-0.0194, 0.0259] |
 
-Execution update (10-16-2026 06:40 PDT): [eight-GPU communication and cleanup passed](results/multinode_eight_gpu_recovery02.json), and1,342tests pass. The unchanged14Btraining will use this checked three-host route; full-model memory and first native update remain to verify.
-
-Execution update (10-16-2026 06:51 PDT): [14B expansion admitted with0token-verified updates](results/E14_native_admission_recovery02.json). The finite replay sequencer passes30focused checks;1,358tests pass overall. Validation remains12,960/17,280.
+Execution update (10-16-2026 07:08 PDT): [14B initialization timed out before any update; cleanup verified](results/E14_initialization_failure_recovery02.json). [Baseline cache preparation](results/model_cache_read_recovery02.json) repairs the cold read without changing scientific caps or the native timeout. Full suite1,362tests pass; validation remains12,960/17,280.
 
 **TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is 12960/17,280; incomplete comparisons remain unresolved.

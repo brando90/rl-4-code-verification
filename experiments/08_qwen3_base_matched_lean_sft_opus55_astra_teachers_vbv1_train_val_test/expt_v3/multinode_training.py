@@ -195,12 +195,17 @@ def run_once(condition, probe_only=False):
     canonical = RUNTIME / f'remote_{condition}_14b.json'
     if canonical.exists():
         raise WaitingCapacity('Canonical admission exists; preserve its owner')
+    model_cache = None
+    if not probe_only:
+        from warm_multinode_model import warm
+        model_cache = warm(deadline)
     root = RUNTIME / f'multinode_{condition}_14b_{time.time_ns()}'; root.mkdir()
     plan = {'condition': condition, 'deadline_unix': deadline, 'probe_only': probe_only,
             'identity': identity(os.getpid()), 'created_unix': time.time(),
             'startup_deadline_unix': min(deadline, time.time() + 300),
             'planning_peak_memory_gib_per_rank': 73.18, 'memory_estimate_is_upper_bound': False,
-            'foreign_process_changes_authorized': False, 'scientific_configuration_changed': False}
+            'foreign_process_changes_authorized': False, 'scientific_configuration_changed': False,
+            'model_cache_read': model_cache}
     stop = threading.Event()
     def heartbeat():
         while not stop.is_set():
