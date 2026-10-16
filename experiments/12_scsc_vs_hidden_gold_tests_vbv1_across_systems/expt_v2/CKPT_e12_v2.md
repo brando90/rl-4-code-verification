@@ -5,7 +5,7 @@
 **TLDR:** Execute 12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v2 end to end under the frozen adapter, zero model/judge calls and $0 spend.
 
 **Created:** 10-14-2026 13:20 PDT
-**Last updated:** 10-15-2026 21:07 PDT
+**Last updated:** 10-15-2026 21:17 PDT
 **Status:** RUNNING — full primary evaluation (4,626 groups; 9,856 declared cells)
 
 ## Goal
@@ -36,3 +36,4 @@
 - 10-15-2026 20:52 PDT — Controls interim: 26/50 tasks; C1 293/293, C2 25/26, C3 23/26, C4 25/26. No gate verdict before completion. Midrun receipt published; both workers continue.
 - 10-15-2026 21:04 PDT — Controls completed, exit 0: C1 591/591, C2 48/50, C3 44/50, C4 49/50; all unchanged gates pass. Recomputed every aggregate and per-test partition; control receipt SHA-256 `2108817b87ce8ac38820f1b5c2d91e543176a4a489092c5afb9a30bedd842453`. No primary outcome yet.
 - 10-15-2026 21:07 PDT — Controls published as `6a70084` via `a827b33`. Full primary evaluation launched and useful execution verified: 5,230 preclassified cells plus first evaluated groups, copied modules and two Lean workers at nice 19; immutable manifest in results/evaluation_launch_v2.json.
+- 10-15-2026 21:17 PDT — Added final all-cell receipt audit and Markdown report renderer; both compile, all 77 focused tests pass. Dedicated environment now contains test dependencies independently of the inherited shared Python path. Full evaluation continues unchanged; final audit, analysis, report inspection and full suite remain pending.
