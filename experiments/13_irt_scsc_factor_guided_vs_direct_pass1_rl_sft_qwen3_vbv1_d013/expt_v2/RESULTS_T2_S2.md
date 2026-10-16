@@ -2,7 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/RESULTS_T2_S2.md>
 
-**TLDR:** Attempt 2 has generated all 256 train responses and is running official scoring after verified device cleanup. Attempt 1 remains INCOMPLETE-INFRA, with all costs retained. T1 remains PASS; no T2 verdict exists.
+**TLDR:** Attempt 2 has generated and scored the complete 256-response train cohort: 255 measured, one deterministic timeout, all cleanup verified. The controller reserved an idle device for its single update. Attempt 1 remains INCOMPLETE-INFRA; T1 remains PASS and no T2 verdict exists.
+
+T2 attempt 2 scoring closure (10-15-2026 19:00 PDT): **256/256 receipts, 255 measured and one deterministic timeout**, cleanup verified for every cell ([receipt](phase2/T2_A4_attempt2_scoring.json)). The missing result remains masked; no response was repeated or replaced. Processor cost is 1.137382396 hours and elapsed scoring time 1582.049700 seconds. The same controller reserved idle skampere1 device 0 for its single update ([reservation snapshot](phase2/T2_A4_attempt2_update_launch.json)); no completed update or gate verdict exists at this snapshot. Source code is unchanged since required Lean integration passed 1,174 tests with 3 skipped and direct exit 0 ([receipt](phase2/T2_A4_attempt2_publication_test.json)).
 
 T2 attempt 2 generation closure (10-15-2026 18:38 PDT): **256/256 responses** retained, 1,292,105 output tokens; device cleanup verified and lease released after 0.494777962 device-hours ([receipt](phase2/T2_A4_attempt2_generation.json)). The same controller is running the frozen official scorer. No optimizer update, T2 admission statistic or held-out measurement exists at this snapshot. Attempt 1 remains INCOMPLETE-INFRA, with its outputs excluded and all earlier costs retained. Required Lean integration: **1,174 passed, 3 skipped, zero failures in 504.84 seconds**, direct exit 0 ([receipt](phase2/T2_A4_attempt2_publication_test.json)).
 
