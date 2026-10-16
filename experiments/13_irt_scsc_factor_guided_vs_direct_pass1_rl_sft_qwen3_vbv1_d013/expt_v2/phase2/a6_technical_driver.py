@@ -108,6 +108,8 @@ def dynamic_config(config, gate, key, root, lease):
     if gate=='T4':
         stage='evaluation_preflight' if key=='preflight' else 'evaluation_generate'
         value.update(stage=stage,manifest=config['evaluation_probe']['path'],allowlist=value['train_ids'],max_model_len=32768)
+    value['provenance'] = {'condition': 'v2-S2', 'gate': gate, 'stage': stage,
+                           'attempt_root': str(root), 'run_seed': value.get('run_seed')}
     probe = 'update_probe' if key == 'generate_update' else 'probability_probe'
     value['cells_path'] = config[probe]['path']
     if key == 'probabilities': value['generation_root'] = str(root/'generate/output')

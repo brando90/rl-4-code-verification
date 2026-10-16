@@ -26,9 +26,23 @@ def bound(config,path):
     return path
 
 
+def provenance_preflight(config):
+    """Check required update metadata without constructing a model or reading a probe."""
+    value = config.get('provenance')
+    if (not isinstance(value, dict) or value.get('condition') != 'v2-S2'
+            or type(value.get('run_seed')) is not int
+            or value['run_seed'] != config.get('run_seed')):
+        raise ValueError('missing or inconsistent runtime provenance')
+    return {'condition': 'v2-S2', 'status': 'PASS', 'scope': 'non-probe infrastructure only',
+            'provenance': value, 'model_calls': 0, 'optimizer_updates': 0,
+            'admission_statistics_computed': False}
+
+
 def verify(config,stage):
     if stage not in STAGES or config.get('condition')!='v2-S2':raise ValueError('unregistered S2 stage')
     if config.get('stage')!=stage:raise ValueError('stage differs from the bound execution request')
+    if stage in ('preflight', 'evaluation_preflight', 'update'):
+        provenance_preflight(config)
     paths=[str(Path(b['path']).resolve()) for b in config['bindings']]
     if not paths or len(paths)!=len(set(paths)):raise ValueError('duplicate or empty runtime binding list')
     for b in config['bindings']:bound(config,b['path'])
@@ -139,6 +153,7 @@ def probabilities(config,cells):
 def run(config,stage):
     verify(config,stage)
     if stage in ('preflight','evaluation_preflight'):
+        write_new(Path(config['attempt_root'])/'provenance_preflight.json', provenance_preflight(config))
         from ray_paths import preflight as socket_preflight
         write_new(Path(config['attempt_root'])/'ray_socket_preflight.json',
                   socket_preflight(config['ray_temp']))

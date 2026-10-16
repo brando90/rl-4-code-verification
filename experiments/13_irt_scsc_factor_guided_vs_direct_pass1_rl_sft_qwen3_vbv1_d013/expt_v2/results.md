@@ -4,10 +4,10 @@
 
 **TLDR:** v2-S2 T1 is final PASS: 8/8 train responses, 44,844 output tokens; median absolute log-probability error 0.0000327482 and p99 0.0176024, unsupported/truncated tokens 0/44,844. All six leases released; cumulative 0.355751673/2.0 device-hours. Continue to T2, T3 and T4 before the audits and pilot. C disabled, H2/F2 unavailable, batch 2 skipped.
 
-Last updated: 10-15-2026 17:44 PDT
+Last updated: 10-15-2026 17:55 PDT
 **Status:** T1 PASS; T2 attempt 1 INCOMPLETE-INFRA, A4 metadata repair in preparation.
 
-## Current state — 10-15-2026 17:44 PDT
+## Current state — 10-15-2026 17:55 PDT
 
 Goal: complete Experiment 13 v2 under A6 through its admitted gates, or publish the binding transition result.
 
@@ -15,9 +15,11 @@ What ran: [LP freeze](phase2/LP_A6_S2_FREEZE.md) and A4 successor preceded the f
 
 Supervision: owner PID 1243923 is the single writer. The original T2 controller exited after the missing-provenance infrastructure failure. All T2 device leases are released and cleanup verified. No optimizer update or T2 statistic was computed.
 
-Next: reproduce and fix the missing update metadata, add a preflight, run required integration and publish the complete A4 successor before attempt 2. The fixed probes, seeds, scientific signature and 8.0/10.0-hour limits remain unchanged.
+Next: publish the tested metadata repair and LP successor, then bind their published revision in the A4 admission lock before complete attempt 2. The fixed probes, seeds, scientific signature and 8.0/10.0-hour limits remain unchanged.
 
 Brando to-do: none. Existing SNAP preapproval covers the frozen allocation.
+
+T2 A4 repair verification (10-15-2026 17:55 PDT): [metadata repair](phase2/T2_A4_REPAIR.md), 34 focused checks PASS, original missing-provenance failure reproduced before any update call. The successor retains 4,678 previous hashes, lists seven changed/added bindings, and leaves the scientific signature/allocation unchanged. Planned-attempt non-probe metadata preflight PASS. Required integration **1,174 passed, 3 skipped, zero failures in 507.02 seconds**, direct exit 0 ([receipt](phase2/T2_A4_full_test.json)). Attempt 1 remains published INCOMPLETE-INFRA, 0.601555353 device-hours charged; no attempt-2 claim or measurement yet.
 
 T2 attempt 1 infrastructure closure (10-15-2026 17:44 PDT): **INCOMPLETE-INFRA**, missing `provenance` in the generated update configuration raised `KeyError` before the update function was called. All 256 train responses and scoring receipts remain retained (255 measured, one timeout), with **zero optimizer updates and admission statistics**. All four T2 reservations are released and cleanup verified; cumulative **0.601555353/10.0 device-hours**. [Failure evidence](phase2/T2_A6_attempt1_result.json), [resource receipts](phase2/T2_A6_attempt1_resources.json). Under A4, publish the metadata-only fix, reproducing regression, preflight and successor lock before complete numbered attempt 2; failed-attempt outputs never enter its statistics. The current unchanged implementation passed 1,157 tests with 3 skipped, direct exit 0.
 
