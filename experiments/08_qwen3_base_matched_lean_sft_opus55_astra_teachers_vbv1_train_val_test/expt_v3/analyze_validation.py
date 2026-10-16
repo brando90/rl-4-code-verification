@@ -33,14 +33,15 @@ def decision(systems, sizes, paired):
         passing = {c: all(systems[label]['gates']['pass'] for label in labs) for c, labs in labels.items()}
         selected = None
         if passing['E'] and passing['R']:
-            floors = {c: min(systems[label]['diagnostics']['mean_pass_rate'] for label in labs) for c, labs in labels.items()}
+            floors = {c: min(systems[label]['task_bootstrap']['pass_rate']['mean'] for label in labs) for c, labs in labels.items()}
             no_harm = all(paired[f'{s}_{fraction}']['ci95'][1] >= 0 for s in sizes)
-            selected = 'E' if floors['E'] > floors['R'] and no_harm else 'R_or_inconclusive'
+            selected = 'E' if floors['E'] > floors['R'] and no_harm else 'R'
         elif passing['E']:
             selected = 'E'
         elif passing['R']:
             selected = 'R'
-        by_fraction[fraction] = {'status': 'COMPLETE', 'common_checkpoint': passing, 'selected': selected}
+        by_fraction[fraction] = {'status': 'COMPLETE', 'common_checkpoint': passing, 'selected': selected,
+                                'selection_rule': 'E only with a higher minimum success rate and no wholly negative paired interval; otherwise retain R when both pass'}
     return by_fraction
 
 
@@ -122,6 +123,12 @@ def main():
               'Three-size sensitivity (4B/8B/14B): `' + json.dumps(summary['sensitivity']) + '`.', '',
               'Hosted Smooth Conjunctive Score for Code verification judging remains deferred at $0 spend. Namespace escaping is a separate diagnostic and never changes primary scores.', '',
               '**TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is ' + str(1080 * len(systems)) + '/17,280; incomplete comparisons remain unresolved.']
+    comparison = ['', '| Size and fraction | Expansion minus replay success rate [95% interval] |',
+                  '|---|---:|']
+    for key, value in paired.items():
+        comparison.append(f'| {key} | {value["mean"]:.4f} [{value["ci95"][0]:.4f}, {value["ci95"][1]:.4f}] |')
+    if paired:
+        lines[-1:-1] = comparison + ['']
     (HERE / 'results.md').write_text('\n'.join(lines) + '\n')
     print(json.dumps({'complete_systems': len(systems), 'known_cells': 1080 * len(systems)}))
 

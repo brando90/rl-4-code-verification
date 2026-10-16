@@ -1,31 +1,32 @@
 # Matched replay versus expansion continuation checkpoint
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
-**TLDR:** Protocol locked and pushed; disposable eight-step expansion dry run is active on GPU 1.
-Created: 10-15-2026 20:22 PDT
-Last updated: 10-15-2026 20:36 PDT
+**TLDR:** Dry run PASS; priority-size production queue launched; validation outcomes pending.
+Created: 10-15-2026 20:22 PDT; last updated: 10-15-2026 20:53 PDT
 ## Goal
-- Complete replay versus expansion SFT continuations and 17,280 validation cells at four sizes; $0 paid calls.
-## What ran
-- Session `codex-rl4cv-e08v3-run`, owned checkout `/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification`; full access, approval never.
-- Input commit `27ffa74`; lock commit `18f5217`; publication merge `00c1173`. START email sent to all four requested inboxes.
-- Four-tokenizer NeMo rendering: 2,585/2,585 passed at all four sizes; all four start exports hash-verified; full make test 1,183 passed / 17 skipped.
-## Results
-- Replay half/full steps 334/658: 2,880,477/5,752,936 loss tokens.
-- Expansion half/full steps 335/667: 2,878,589/5,757,776 loss tokens; full mix 684 original + 353 cached + 297 MBPP.
-## Stuck / blocked
-- 14B eight-device route unavailable now: skampere1 must retain an idle device; skampere2/3 occupied; ilc showaccount is empty. Existing association request already filed; no duplicate sent. Other sizes can proceed.
-- Hosted judge milestone deferred; this task permits zero paid calls.
-## Next steps
-- [p 9/10] Inspect `/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/dry_driver.log` and `dry_exit_code`; wrapper verifies token counts, fixed-set loss decrease and generation, then removes disposable weights.
-- [p 9/10] After dry receipt PASS, launch `python3 experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/run_phase_a.py` in a new persistent terminal; monitor state and publish each completed rung.
-- Phase B follows priority-size results; no substitute tensor-parallel layout for 14B without resolving the existing gradient-semantics limitation.
-## Brando to-do
-- None.
-## Resource plan
-- A100-80GB compute-bound SFT; estimated up to 80GB/device, dry run 5–15 minutes, production 66/107/123/115 minutes per size-condition plus validation. Host memory/storage verified before launch; no paid API calls.
-- Phase A 1.7B on one and 4B on two devices, choosing idle unleased devices under both registry locks; leave device 0 free.
-- Recovery owner is this live SNAP session; unattended restart is not yet armed. Temporary checkout cleanup owned here after completion.
+- Complete replay versus expansion supervised fine-tuning and 17,280 validation cells at four sizes; $0 paid calls.
+## Execution and evidence
+- Owner `codex-rl4cv-e08v3-run`; checkout `/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification`; full access, approval never.
+- Input `27ffa74`, lock `18f5217`, publication `77ab4d2`; START email sent to all four requested inboxes.
+- All 2,585 examples matched NeMo at all four tokenizers; four step-658 exports hash-verified; full suite 1,183 passed / 17 skipped before lock.
+- Replay half/full steps 334/658: 2,880,477/5,752,936 loss tokens; expansion 335/667: 2,878,589/5,757,776.
+- [Dry receipt](results/dry_run_v3.json): 8/8 exact step counts, 75,345 loss tokens; fixed-set loss 0.289257→0.252943; 2/2 generated Lean files; disposable weights removed.
+- First inference attempt failed on inherited CUDA 12.4 compiler. Retry used CUDA 12.8 and isolated FlashInfer cache; no repeated training steps or scientific-setting changes.
+- Persistent terminal `rl4cv-e08-v3-phase-a-recovery`; ordinary scheduler state `/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/phase_a_state.json`.
+## Resource plan and blockers
+- 1.7B expansion training on GPU 1; first 9/9 observed step token counts matched; 4B waiting for two idle unleased devices plus one idle reserve. Device 0 remains reserved for Experiment 13.
+- 14B eight-device route unavailable: skampere1 must retain an idle device; skampere2/3 occupied; ilc showaccount empty (existing association request, no duplicate sent).
+- Phase A: four continuations, eight validation rungs, zero-call namespace diagnostics; Phase B: 8B four devices, 14B eight devices when available.
+- Runtime uses local disks; shared DFS low-headroom warning recorded. Hosted judge and test evaluation remain deferred.
+## Next steps / exact continuation
+- [p 9/10] Inspect phase_a_state.json, phase_a_driver.log, phase_a_logs and ckpt/*/driver_logs under the runtime root; track checkpoint exports, publish completed gate/taxonomy tables.
+- Scheduler marks child failures NEEDS_RECOVERY and refuses blind restarts with RUNNING identities; this live owner handles recovery and publication. No unattended agent recovery is claimed.
+- [p 9/10] Finish Phase A; then run Phase B without changing 14B tensor-parallel semantics. Send DONE only with the actual terminal status.
+- Cleanup disposable checkout after all consumers stop and artifacts are published. Brando to-do: none.
 ## Log
 - 10-15-2026 20:22 PDT -- Prepared schedules and forecast; static checks running before lock.
 - 10-15-2026 20:33 PDT -- Static checks passed (1,183 tests, all corpus/tokenizer/weight checks); locked recommended defaults before dry run.
 - 10-15-2026 20:36 PDT -- START mail sent; dry session rl4cv-e08-v3-dry admitted GPU 1 under shared leases; training steps observed.
+- 10-15-2026 20:48 PDT -- Dry inference recovered with CUDA 12.8; complete dry receipt PASS and disposable weights removed; Phase A queue launched.
+- 10-15-2026 20:50 PDT -- First production initialization failed before updates because Ray dashboard UNIX socket path exceeded 107 bytes; shortened temp directory, preserved failure logs, verified previous coordinator exited, reconciled FAILED state and restarted.
+- 10-15-2026 20:52 PDT -- Production 1.7B expansion verified through step 9; all nine loss-token counts match the frozen schedule.
+- 10-15-2026 20:53 PDT -- Updated full suite passed: 1,184 passed / 17 skipped / zero failures in 339.81 seconds.

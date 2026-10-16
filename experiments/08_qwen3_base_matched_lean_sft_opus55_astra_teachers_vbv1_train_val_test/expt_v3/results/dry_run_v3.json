@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "steps": 8,
+  "loss_tokens": 75345,
+  "schedule_sha256": "506204e7f8e5e2527d2a8be3cb02e89d293e8b54bbcf6a77bc97d9105bfeb738",
+  "token_counts_match": true,
+  "scalar_tags": [
+    "ray/node.0.gpu.0.mem_gb",
+    "ray/node.0.gpu.0.util",
+    "ray/node.0.gpu.1.mem_gb",
+    "ray/node.0.gpu.1.util",
+    "ray/node.0.gpu.2.mem_gb",
+    "ray/node.0.gpu.2.util",
+    "ray/node.0.gpu.3.mem_gb",
+    "ray/node.0.gpu.3.util",
+    "ray/node.0.gpu.4.mem_gb",
+    "ray/node.0.gpu.4.util",
+    "ray/node.0.gpu.5.mem_gb",
+    "ray/node.0.gpu.5.util",
+    "ray/node.0.gpu.6.mem_gb",
+    "ray/node.0.gpu.6.util",
+    "ray/node.0.gpu.7.mem_gb",
+    "ray/node.0.gpu.7.util",
+    "ray/node.0.mem_gb",
+    "ray/node.0.mem_total_gb",
+    "ray/ray/ray_step",
+    "timing/train/checkpointing",
+    "timing/train/data_processing",
+    "timing/train/policy_training",
+    "timing/train/total_step_time",
+    "timing/train/valid_tokens_per_sec_per_gpu",
+    "timing/validation/total_validation_time",
+    "train/global_valid_seqs",
+    "train/global_valid_toks",
+    "train/grad_norm",
+    "train/loss",
+    "train/lr",
+    "train/num_unmasked_tokens",
+    "train/num_valid_samples",
+    "validation/val_loss"
+  ],
+  "training_step_wall_seconds": 96.45826315879822,
+  "processed_real_tokens": 131310,
+  "fixed_set_eval_loss": {
+    "before": 0.2892571687698364,
+    "after": 0.2529434263706207
+  },
+  "generation": [
+    {
+      "task_id": "aerospace_set_real__my_fprime_crc_match",
+      "sample_idx": 0,
+      "extraction": "file_blocks",
+      "generated_tokens": 4251,
+      "finish_reason": "stop"
+    },
+    {
+      "task_id": "aerospace_set_real__my_fprime_sequence_nonempty",
+      "sample_idx": 0,
+      "extraction": "file_blocks",
+      "generated_tokens": 3692,
+      "finish_reason": "stop"
+    }
+  ],
+  "export_sha256_manifest": "03f821c95003ceb74f82eb6397ea4aea056ad956c8a9a51120421caa5fcc5b3c"
+}
