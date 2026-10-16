@@ -229,3 +229,10 @@ Clean full suite:1,323passed,17skipped,6subtests,321.47s;79 focused checks pass.
 
 
 10-16-2026 12:33 UTC: deterministic native continuation verified 10,800/17,280 primary cells. Completed native jobs: 44. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 05:51 PDT — bounded native continuation
+
+Native continuation now enforces the original deadline across analysis, validation, file hashing and publication-lock waits using a supervised private process group. Exact owned-group cleanup preserves existing scheduler/training processes. Git blob reads and final export checksum commands use bounded execution and inherit ownership locks. Already-verified completion permits only bounded, idempotent cron cleanup after expiry. Five new checks exercise stalled analysis and finalization, blocked publication-lock acquisition, orphan-command cleanup with an unrelated live child preserved, and verified completion cleanup after expiry. Full suite:1,328passed,17skipped,6subtests,338.02s. Focused checks:84passed plus6subtests. [Exact source hashes and tests](native_continuation_tests_recovery02.json). Native execution returns UNARMED; no production handoff, scientific restart or notification occurred.
+
+
+10-16-2026 12:51 UTC: deterministic native continuation verified 10,800/17,280 primary cells. Completed native jobs: 44. Zero paid experimental calls; test split unopened.

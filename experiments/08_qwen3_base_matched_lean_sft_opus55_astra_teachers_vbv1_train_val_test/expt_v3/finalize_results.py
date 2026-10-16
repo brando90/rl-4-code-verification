@@ -16,7 +16,7 @@ HERE = Path(__file__).resolve().parent
 WORK = Path('/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3')
 
 
-def validate():
+def validate(checksum_runner=None):
     manifest = read(HERE / 'results/ladder_manifest_v3.json')
     summary = read(HERE / 'results/validation_summary_v3.json', {})
     assert summary.get('known_cells') == summary.get('declared_cells') == 17280, 'Validation remains incomplete'
@@ -92,7 +92,11 @@ def validate():
             for fraction in ('f0p5', 'f1p0'):
                 step = schedule['checkpoints'][fraction]['step']
                 export = WORK / f'ckpt/{label}/hf/step_{step}'
-                subprocess.run(['sha256sum', '--check', '--quiet', 'SHA256SUMS'], cwd=export, check=True)
+                command = ['sha256sum', '--check', '--quiet', 'SHA256SUMS']
+                if checksum_runner is None:
+                    subprocess.run(command, cwd=export, check=True, timeout=3600)
+                else:
+                    checksum_runner(command, export)
                 checksum = HERE / f'results/train_logs/{label}_{fraction}_SHA256SUMS'
                 checksum.write_bytes((export / 'SHA256SUMS').read_bytes())
                 files[str(checksum.relative_to(HERE))] = hashlib.sha256(checksum.read_bytes()).hexdigest()
@@ -227,8 +231,8 @@ def replace_block(text, name, body):
     return text.rstrip() + '\n\n' + block + '\n'
 
 
-def main():
-    receipt, summary, forecast = validate()
+def main(checksum_runner=None):
+    receipt, summary, forecast = validate(checksum_runner=checksum_runner)
     report = HERE / 'results.md'
     text = report.read_text()
     block = 'Final checks: 17,280/17,280 exact cells, all eight training receipts and sixteen exports verified. '

@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "checked_unix": 1792153963.0053437,
+  "checked_unix": 1792155043.386009,
   "input_sha256": {
     "../../../../../../ultimate-utils/py_src/uutils/emailing.py": "b853ee23709dc6a093821d59d10e21a4973ed605267e6c170fdcc6b0df1374de",
     "../../../external/veribench_scorer/scripts/scsc/kernel_axioms.py": "5dbbdcae75ba8b22911fcb43ab1fcde45a1475cf92742a39a29ebe41116de287",
@@ -12,7 +12,7 @@
     "../../../src/rl4cv/screens.py": "a92d4af7968a6c1fe717b2fbad44acbe145c8f258ec3d3dba56bf7b1ea182510",
     "../../../tests/test_e08_v3_capacity_event.py": "42802fd3a395c48467ef2434621eb3f5ad8c87b21b05a091422507492cc60cff",
     "../../../tests/test_e08_v3_finalize.py": "0337cddc74a426f221e0c106de8f29d4d4e6c8439a7cfcd78c9223b03292a99e",
-    "../../../tests/test_e08_v3_native_continuation.py": "ae1b1a87713c954e6a446876af7966ee5c335589b2ae145a32e82029c3d65b16",
+    "../../../tests/test_e08_v3_native_continuation.py": "c3eb7f89b15513de614458d2b9a674f7641c854492687496cd829dbb79a566df",
     "../../../tests/test_e08_v3_recovery.py": "b1d435a3bd5ad3b977a3cfb7f81a8cf24c69c9fc5daa05d6d4204fa1f16f34bb",
     "../expt_v1/scripts/analyze_ladder.py": "54996b9357cd35bbb9f6dfc93376b17aff7005f1fe61977d6969efbbdb5eb8db",
     "../expt_v1/scripts/score_teacher_files.py": "e77aa53f26a78b64dcb978c874b0336c5f75c7a15656740fde67e29ed5f00000",
@@ -30,14 +30,14 @@
     "configs/e08_v3_R_8B.yaml": "060efd0cbc3c55417ad51a0c6d6ecb6b08aa887461dace991a9b46b0f4fc98b9",
     "dry_run.sh": "1777a9994da27de87aa1409460b2b20379fdcbc2361fa79201cbe58ef4700d8d",
     "failure_taxonomy.py": "10c6f574bcfa4c551224c362e46414f74ccf98bf582ac6ea8d3e6ce5360fc303",
-    "finalize_results.py": "1fefce1ec03c58a97517d1e75995a524e7e30f4602293067ebc3ed6e215ff393",
+    "finalize_results.py": "d39bcb937c668067c0cd7b39e46fd7dcbce8f1cb30a584e2d8e6002a8349c08f",
     "forecasts/e08_v3_forecast.json": "7e4ebbe567792d6509bbac2b78b3c5acd782591fea959c0f3a44ff07744efd5f",
     "forecasts/e08_v3_forecast.sha256": "fbeac84b6b9f39c70735e5ba4fac7e0131405d6cc4dee49bf53c81350055bd96",
     "forecasts/forecast_ledger.jsonl": "d6e913bb563b59d457e9bdb4ea3da3f7ff67fa01227434c4078a2ee548419595",
     "freeze_inputs.py": "3a14355a926ad1381b8b2da9f8536c79f6fbde0f6a37098b046d95776e6a834f",
     "job_process.py": "c067e687beb1f460bfda2e35d5504c02ca693e81270ac967ed6491be21f2ffc5",
     "namespace_diagnostic.py": "37f47756d5ab8a6302488e3d1d90356702efbbd9990219fd609391ba6260df33",
-    "native_continuation.py": "3c819355010cc390fbd89d60487f729e4d5a143dcbfcb1faf5267136ed424682",
+    "native_continuation.py": "6bf1def25108c6696359eb6333e238c1468790deea9157ad0f770fa6d9bc597e",
     "notify_run.py": "243fadb1404d4a449f38b6d30dd175e00afe6cb132a3bc51bb941ccc0a1d653d",
     "prepare_continuation.py": "a6c41c8a88d7ba071635d21c71574b606784b7265766ca34bb628083b35b8c11",
     "prepare_remote.py": "632eb66c89303f3ae2e7378c2d91ff5508e29e147750b9d898954ad22be47ab5",
@@ -64,13 +64,13 @@
     "verify_training.py": "1215a8fae9f093e04ae2781b8cf5cbcb5ca2bb1488ca5a485517a1ea5f25ba6c"
   },
   "failed": 0,
-  "full_suite_passed": 1323,
+  "full_suite_passed": 1328,
   "full_suite_skipped": 17,
   "full_suite_subtests": 6,
-  "full_suite_seconds": 321.47,
-  "full_suite_log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/make_test_recovery02_capacity_native_final.log",
-  "full_suite_log_sha256": "dcc872996ea7846500ef18455131338469b9fcebb345eac7459a144b25b9193e",
-  "focused_checks_passed": 79,
+  "full_suite_seconds": 338.02,
+  "full_suite_log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/make_test_recovery02_supervised_deadline.log",
+  "full_suite_log_sha256": "fd2dd3133fb321d118a6f7c3a4cd93ab1831569c6cd104bbaa4091eda429d4be",
+  "focused_checks_passed": 84,
   "focused_subtests": 6,
   "real_local_git_publication_and_merge_guard": "PASS",
   "parent_death_surviving_child_lock": "PASS",
@@ -86,5 +86,6 @@
     "log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/make_test_recovery02_capacity_native.log",
     "failed": 1,
     "reason": "Misplaced assertion in test fixture; corrected focused tests and clean full suite pass"
-  }
+  },
+  "whole_tick_deadline": "PASS_STALLED_ANALYSIS_FINALIZER_LOCK_ORPHAN_ISOLATION_AND_EXPIRED_COMPLETION_CLEANUP"
 }

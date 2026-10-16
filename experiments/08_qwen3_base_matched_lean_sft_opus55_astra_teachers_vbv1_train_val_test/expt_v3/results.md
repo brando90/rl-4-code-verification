@@ -4,7 +4,7 @@
 
 **TLDR:** Phase A: DONE; Phase B: RUNNING. 10,800/17,280 validation cells known. [Execution events and verified training progress](results/runtime_progress.md).
 
-**Status:** RUNNING. **Last updated:** 10-16-2026 05:33 PDT.
+**Status:** RUNNING. **Last updated:** 10-16-2026 05:51 PDT.
 
 Known validation cells: **10800/17,280**; 10800 belong to complete rungs. [Every missing/failed cell](results/coverage) remains in the declared denominator; no paid model calls.
 
@@ -48,5 +48,7 @@ Execution and recovery events: [runtime ledger](results/runtime_progress.md).
 | 4b_f1p0 | 0.0194 [-0.0019, 0.0426] |
 
 Execution update (10-16-2026 05:33 PDT): Expansion 8B native archive verified:40 files and196,623,888,829 bytes retained locally with full hashes before removing shared originals. Replay 8B archive is running with exact process identity and verified first copy output. Both replay scorers remain active;14B still waits for eight eligible devices. [Archive evidence](results/E8_native_archive_recovery02.json), [continuation checks](results/native_continuation_tests_recovery02.json).
+
+Execution update (10-16-2026 05:51 PDT): native continuation has a tested deadline covering the whole publication/validation process; 1,328 tests pass. [Continuation evidence](results/native_continuation_tests_recovery02.json). The owner remains active and the continuation remains UNARMED.
 
 **TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is 10800/17,280; incomplete comparisons remain unresolved.

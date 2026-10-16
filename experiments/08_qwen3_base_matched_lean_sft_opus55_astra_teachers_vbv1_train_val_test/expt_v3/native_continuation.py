@@ -9,6 +9,7 @@ import json
 import os
 from pathlib import Path
 import re
+import signal
 import subprocess
 import sys
 import time
@@ -98,16 +99,17 @@ def authorization(root, config, now=None):
     return 'AUTHORIZED'
 
 
-def run(command, root, deadline, *, capture=False):
+def run(command, root, deadline, *, capture=False, binary=False, cwd=None):
     remaining = deadline - time.time()
     assert remaining > 0, 'Original recovery deadline reached'
     env = os.environ.copy(); env.pop('CODEX_HOME', None)
     env['PATH'] = str(Path(PY).parent) + ':' + env.get('PATH', '')
     if capture:
-        return subprocess.check_output(command, cwd=REPO, env=env, text=True,
-                                       timeout=min(remaining, 3600), pass_fds=LOCK_FDS).strip()
+        output = subprocess.check_output(command, cwd=cwd or REPO, env=env, text=not binary,
+                                         timeout=min(remaining, 3600), pass_fds=LOCK_FDS)
+        return output if binary else output.strip()
     with (root / 'native_continuation_commands.log').open('a') as log:
-        subprocess.run(command, cwd=REPO, env=env, stdout=log, stderr=subprocess.STDOUT,
+        subprocess.run(command, cwd=cwd or REPO, env=env, stdout=log, stderr=subprocess.STDOUT,
                        check=True, timeout=min(remaining, 3600), pass_fds=LOCK_FDS)
 
 
@@ -219,7 +221,7 @@ def publish(paths, root, deadline, title):
         assert prior.get('status') == 'PREPARED' and set(staged) <= prior.get('sha256', {}).keys(), 'Existing staged work'
         assert prior.get('publisher') == publisher, 'Existing staged work belongs to another owner'
         for path in staged:
-            blob = subprocess.check_output(['git', 'show', ':' + path], cwd=REPO, pass_fds=LOCK_FDS)
+            blob = run(['git', 'show', ':' + path], root, deadline, capture=True, binary=True)
             assert hashlib.sha256(blob).hexdigest() == prior['sha256'][path], 'Existing staged work changed'
         run(['git', 'reset', 'HEAD', '--', *staged], root, deadline)
     before = {str(p.relative_to(REPO)): sha(p) for p in paths}
@@ -244,7 +246,7 @@ def publish(paths, root, deadline, title):
     arm = read(root / 'native_continuation_arm.json', {})
     assert all(sha(HERE / p) == h for p, h in arm.get('input_sha256', {}).items()), 'Published locked source changed'
     for path, expected in before.items():
-        blob = subprocess.check_output(['git', 'show', 'HEAD:' + path], cwd=REPO, pass_fds=LOCK_FDS)
+        blob = run(['git', 'show', 'HEAD:' + path], root, deadline, capture=True, binary=True)
         if hashlib.sha256(blob).hexdigest() != expected:
             raise PublicationFailure('Merge changed validated artifact; revalidation required before push')
     run(['git', 'push', 'origin', 'main'], root, deadline)
@@ -323,7 +325,8 @@ def tick(root, config):
             validate_partial(summary, manifest, jobs)
             if final:
                 import finalize_results
-                finalize_results.main()
+                finalize_results.main(checksum_runner=lambda command, cwd:
+                                      run(command, root, deadline, cwd=cwd))
                 run(['make', 'test'], root, deadline)
                 state['final_tests'] = {'status': 'PASS', 'log': str(root / 'native_continuation_commands.log'),
                                         'completed_unix': time.time()}
@@ -379,6 +382,50 @@ def tick(root, config):
         raise
 
 
+def supervise(action, deadline):
+    """Bound the whole tick, retaining its PID until its private group is stopped.
+
+    The unreaped leader prevents PID/group reuse. Existing schedulers and training
+    children are outside this new session; only this tick and its commands stop.
+    Inherited lock descriptors fence overlapping cron work through cleanup.
+    """
+    pid = os.fork()
+    if pid == 0:
+        try:
+            os.setsid()
+            action()
+        except BaseException:
+            import traceback
+            traceback.print_exc()
+            os._exit(1)
+        os._exit(0)
+    result = None
+    try:
+        while time.time() < deadline:
+            result = os.waitid(os.P_PID, pid, os.WEXITED | os.WNOHANG | os.WNOWAIT)
+            if result is not None:
+                break
+            time.sleep(min(.1, max(0, deadline - time.time())))
+        if result is None:
+            raise TimeoutError('Original recovery deadline reached during native tick')
+        if result.si_code != os.CLD_EXITED or result.si_status != 0:
+            raise RuntimeError(f'Native worker failed: code={result.si_code}, status={result.si_status}')
+    finally:
+        # Do not reap the leader before killing its group, including orphan commands.
+        try:
+            os.killpg(pid, signal.SIGKILL)
+        except ProcessLookupError:
+            os.kill(pid, signal.SIGKILL)  # Forked child may not have called setsid yet.
+        until = time.monotonic() + 5
+        while time.monotonic() < until:
+            reaped, _ = os.waitpid(pid, os.WNOHANG)
+            if reaped:
+                break
+            time.sleep(.05)
+        else:
+            raise RuntimeError('Native worker did not exit after exact owned-group cleanup')
+
+
 def main():
     global LOCK_FDS
     parser = argparse.ArgumentParser(description=__doc__); parser.add_argument('--root', type=Path, default=ROOT)
@@ -389,7 +436,21 @@ def main():
         except BlockingIOError:
             return
         LOCK_FDS = (lock.fileno(),)
-        print(tick(args.root, read(args.root / 'recovery_config.json')), flush=True)
+        config = read(args.root / 'recovery_config.json')
+        deadline = config['recovery_deadline_unix']
+        # An expired tick can only reject work or retire already-verified COMPLETE
+        # crons. Keep that idempotent cleanup bounded independently at 60 seconds.
+        if deadline <= time.time():
+            deadline = time.time() + 60
+        try:
+            supervise(lambda: print(tick(args.root, config), flush=True), deadline)
+        except TimeoutError as error:
+            path = args.root / 'native_continuation_state.json'
+            state = read(path, {})
+            state.update(status='BLOCKED' if state.get('status') == 'MAIL_SENDING' else 'DEADLINE_REACHED',
+                         error=str(error), checked_unix=time.time())
+            write(path, state)
+            raise
 
 
 if __name__ == '__main__':

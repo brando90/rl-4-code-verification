@@ -2,7 +2,7 @@
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
 **TLDR:** All Phase A training/generation verified; Phase A complete, all eight rungs and diagnostics checked; replay 4B half and expansion 4B full pass gates and all remaining cells still required.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-16-2026 05:33 PDT
+Last updated: 10-16-2026 05:51 PDT
 ## Goal
 - Complete all 17,280 validation cells, paired bootstrap, namespace diagnostic, forecast assessment, publication and actual DONE notification; zero paid experimental model calls; test split unopened.
 ## Current execution
@@ -12,7 +12,7 @@ Last updated: 10-16-2026 05:33 PDT
 - Eight complete Phase A generated rungs = 8,640 exact cells. All generation children exited 0; all eight Phase A rungs scored/analyzed (8,640/17,280 cells). Replay 4B half and expansion 4B full pass gates; eight namespace diagnostics have zero score delta.
 - Primary scoring and namespace diagnostics use eight workers per rung, at most six combined jobs (48 active compilation slots), frozen 600s timeout; expired orphan children cleaned separately by exact pidfd guard. Phase A generation finished; Phase B uses immutable remote shell snapshots.
 - All four training sizes and exact generator environments verified on skampere2/3. Pending large-model routes remain remote. 14B training must use eight devices; inference uses the frozen permitted layout.
-- Latest full suite: 1,323 passed / 17 skipped / 6 subtests / 321.47s; 79 focused recovery/closeout/capacity checks plus 6 subtests pass. Native Vals weekly usage67%, credits0; original deadline and attempt limits unchanged.
+- Latest full suite: 1,328 passed / 17 skipped / 6 subtests / 338.02s; 84 focused continuation/recovery/finalization/capacity checks plus 6 subtests pass. Original deadline and attempt limits unchanged.
 ## Waits and recovery
 - Host recovery and native continuation crons every five minutes/reboot; native route installed UNARMED. Orphan cleanup every minute; capacity probe every 15min. Active owner; old external wait disarmed. Original deadline 10-18-2026 21:21 PDT and six-recovery/two-Vals limits unchanged; actual fallback exclusions updated.
 - Slurm association was already requested 10-14; do not duplicate. Inventory and real release events are in host recovery_config.json. No paid cloud or smaller 14B training layout.
@@ -124,3 +124,7 @@ Last updated: 10-16-2026 05:33 PDT
 - 10-16-2026 05:33 PDT -- Expansion 8B native archive verified:40 files and196,623,888,829 bytes retained locally with full hashes before removing shared originals. Replay 8B archive is running with exact process identity and verified first copy output. Both replay scorers remain active;14B still waits for eight eligible devices. [Archive receipt](results/E8_native_archive_recovery02.json). Capacity probe now supports the exact finite native handoff, with actionable alternate-route events reaching the original recovery inventory; no budget reset or allocation. Native route remains UNARMED. All240 original-error samples in ten completed systems independently matched their deterministic selection,counts and original Lean hashes.
 
 - 10-16-2026 12:33 UTC: deterministic native continuation verified 10,800/17,280 primary cells. Completed native jobs: 44. Zero paid experimental calls; test split unopened.
+
+- 10-16-2026 05:51 PDT -- Native continuation now enforces the original deadline across analysis, validation, file hashing and publication-lock waits using a supervised private process group. Exact owned-group cleanup preserves existing scheduler/training processes. Git blob reads and final export checksum commands use bounded execution and inherit ownership locks. Already-verified completion permits only bounded, idempotent cron cleanup after expiry. Five new real process/lock deadline checks pass; full suite1,328passed/17skipped/6subtests. Exact60-file test/arm hash maps refreshed while UNARMED; recovery-02 remains owner.
+
+- 10-16-2026 12:51 UTC: deterministic native continuation verified 10,800/17,280 primary cells. Completed native jobs: 44. Zero paid experimental calls; test split unopened.

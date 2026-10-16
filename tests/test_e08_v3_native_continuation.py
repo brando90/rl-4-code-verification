@@ -184,7 +184,7 @@ def test_complete_follows_science_push_mail_and_notification_push(tmp_path, monk
     monkeypatch.setattr(native, 'authorization', lambda *_: 'AUTHORIZED')
     monkeypatch.setattr(native, 'progress', lambda *_: ({'a': {'status': 'DONE'}, 'b': {'status': 'DONE'}}, {}, ['done']))
     monkeypatch.setattr(analyze_validation, 'main', lambda: events.append('analyze'))
-    monkeypatch.setattr(finalize_results, 'main', lambda: events.append('finalize'))
+    monkeypatch.setattr(finalize_results, 'main', lambda **kwargs: events.append('finalize'))
     monkeypatch.setattr(native, 'validate_partial', lambda *args: events.append('validate'))
     monkeypatch.setattr(native, 'update_ledger', lambda *args: events.append('ledger'))
     monkeypatch.setattr(native, 'publication_paths', lambda *args: [])
@@ -381,3 +381,74 @@ def test_verified_alternate_capacity_event_wakes_existing_inventory(tmp_path, mo
     assert watch.native_continuation_observation(tmp_path, config, ack, release, [], time.time())['reason'] == 'eligible_alternate_capacity_changed'
     event['attempt'] = 'older'; watch.write(tmp_path / 'external_capacity_event.json', event)
     assert watch.native_continuation_observation(tmp_path, config, ack, release, [], time.time())['status'] == 'DEFER'
+
+
+@pytest.mark.parametrize('stage', ['analyze', 'finalize'])
+def test_whole_tick_deadline_stops_stalled_work_before_publication(tmp_path, monkeypatch, stage):
+    config, _, _ = arm(tmp_path, monkeypatch)
+    import analyze_validation
+    import finalize_results
+    watch.write(native.HERE / 'results/ladder_manifest_v3.json', {'systems': []})
+    watch.write(native.HERE / 'results/validation_summary_v3.json', {'systems': {}, 'known_cells': 17280})
+    monkeypatch.setattr(native, 'authorization', lambda *_: 'AUTHORIZED')
+    monkeypatch.setattr(native, 'progress', lambda *_: ({'a': {'status': 'DONE'}, 'b': {'status': 'DONE'}}, {}, ['done']))
+    entered = tmp_path / 'entered'; forbidden = tmp_path / 'published'
+    def stall(**kwargs):
+        entered.touch(); time.sleep(30)
+    monkeypatch.setattr(analyze_validation, 'main', stall if stage == 'analyze' else lambda: None)
+    monkeypatch.setattr(finalize_results, 'main', stall if stage == 'finalize' else lambda **kwargs: None)
+    monkeypatch.setattr(native, 'validate_partial', lambda *args: None)
+    monkeypatch.setattr(native, 'publish', lambda *args: forbidden.touch())
+    monkeypatch.setattr(native, 'run', lambda *args, **kwargs: forbidden.touch())
+    started = time.monotonic()
+    with pytest.raises(TimeoutError, match='deadline'):
+        native.supervise(lambda: native.tick(tmp_path, config), time.time() + 1)
+    assert time.monotonic() - started < 5 and entered.exists() and not forbidden.exists()
+    with native.publication_lock(tmp_path): pass
+
+
+def test_whole_tick_deadline_bounds_publication_lock_wait(tmp_path):
+    entered = tmp_path / 'entered'
+    def action():
+        with native.publication_lock(tmp_path): entered.touch()
+    with (tmp_path / 'results_publication.lock').open('a') as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        with pytest.raises(TimeoutError): native.supervise(action, time.time() + .5)
+    assert not entered.exists()
+
+
+def test_supervisor_cleans_orphan_commands_but_preserves_external_child(tmp_path, monkeypatch):
+    child_path = tmp_path / 'orphan.json'; lock_path = tmp_path / 'recovery.lock'
+    external = subprocess.Popen([sys.executable, '-c', 'import time; time.sleep(30)'])
+    child = None
+    try:
+        with lock_path.open('a') as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            monkeypatch.setattr(native, 'LOCK_FDS', (lock.fileno(),))
+            def action():
+                code = ('import json,os,time; from pathlib import Path; from recovery_watch import identity; '
+                        f'Path({str(child_path)!r}).write_text(json.dumps(identity(os.getpid()))); time.sleep(30)')
+                subprocess.Popen([sys.executable, '-c', code], cwd=HERE, pass_fds=native.LOCK_FDS)
+                until = time.monotonic() + 5
+                while not child_path.exists() and time.monotonic() < until: time.sleep(.02)
+                assert child_path.exists()
+                # Simulate a checksum caller exiting while its command still runs.
+            native.supervise(action, time.time() + 10)
+        child = watch.read(child_path)
+        until = time.monotonic() + 5
+        while watch.alive(child) and time.monotonic() < until: time.sleep(.02)
+        assert not watch.alive(child) and external.poll() is None
+        with lock_path.open('a') as lock: fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    finally:
+        external.terminate(); external.wait(timeout=5)
+
+
+def test_expired_cli_allows_only_verified_completion_cleanup(tmp_path, monkeypatch):
+    watch.write(tmp_path / 'recovery_config.json', {'recovery_deadline_unix': time.time() - 10})
+    monkeypatch.setattr(sys, 'argv', ['native_continuation.py', '--root', str(tmp_path)])
+    monkeypatch.setattr(native, 'completed', lambda *_: True)
+    monkeypatch.setattr(native, 'authorization', lambda *_: pytest.fail('Expired completion must not authorize work'))
+    monkeypatch.setattr(native, 'retire_owned_crons', lambda root: (root / 'retired').touch())
+    native.main()
+    assert (tmp_path / 'retired').exists()
+    assert watch.read(tmp_path / 'native_continuation_state.json')['status'] == 'COMPLETE'
