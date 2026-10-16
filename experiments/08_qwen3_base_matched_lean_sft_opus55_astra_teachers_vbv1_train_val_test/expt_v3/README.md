@@ -4,7 +4,7 @@
 
 **TLDR:** The locked supervised fine-tuning comparison continues the same starting weights with original-data replay or admitted expansion at matched loss-token budgets. Phase A is complete: four training runs, eight exports, 8,640 validation cells, four paired comparisons and eight namespace diagnostics. Phase B is running; the full 17,280-cell experiment remains incomplete. [Live results](results.md).
 
-**Status:** RUNNING (10-16-2026). [PROTOCOL.md](PROTOCOL.md) was locked and published before training on 10-15-2026. Expansion 8B has resumed on four skampere3 devices after a retained zero-update infrastructure failure; 14B waits for its frozen eight-device layout.
+**Status:** RUNNING (10-16-2026). [PROTOCOL.md](PROTOCOL.md) was locked and published before training on 10-15-2026. Expansion 8B training and both exports are verified after a retained zero-update infrastructure failure. Its half validation generation is complete, scoring is active and full generation/replay are queued or running; 14B waits for its frozen eight-device layout.
 **Execution owner:** recovery-02, the sole writer under Brando's continuation dispatch; [checkpoint and current identities](CKPT_e08_v3.md). The original Lethan/Rakshit assignments are historical. B denotes billion model parameters; MBPP means Mostly Basic Python Problems.
 
 ## Question and decision

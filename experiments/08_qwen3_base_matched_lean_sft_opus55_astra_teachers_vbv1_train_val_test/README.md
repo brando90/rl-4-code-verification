@@ -6,7 +6,7 @@
 
 **Owner:** Rakshit Kaushik (@rakshit-kaushik), tracking issue [#7](https://github.com/brando90/rl-4-code-verification/issues/7). **Set up by:** Claude Code master session for Brando, 10-07-2026. **Status:** Version 1 DONE / frozen verdict PARTIAL (10-11-2026); see [results.md](results.md). **Version 2 PARTIAL / route blocked (10-13-2026):** matched step-658 test evaluation stopped under the runbook controls gate; Vals managed AWS access is unavailable, 0/5,328 new cells persisted, and all unknowns are listed. Reused results remain complete; see [expt_v2/PROTOCOL_v2.md](expt_v2/PROTOCOL_v2.md) and [expt_v2/results.md](expt_v2/results.md).
 
-**Matched continuation (10-16-2026):** [expt_v3](expt_v3/README.md) is locked and running under one execution owner. Both replay and expansion at 1.7B/4B are complete (8,640/17,280 validation cells, eight namespace diagnostics); expansion 8B is training on skampere3, while 14B waits for eight eligible devices. [Live results](expt_v3/results.md).
+**Matched continuation (10-16-2026):** [expt_v3](expt_v3/README.md) is locked and running under one execution owner. Both replay and expansion at 1.7B/4B are complete (8,640/17,280 validation cells, eight namespace diagnostics); expansion 8B training and both exports are verified, validation and replay are underway, and 14B waits for eight eligible devices. [Live results](expt_v3/results.md).
 
 ## Origin
 

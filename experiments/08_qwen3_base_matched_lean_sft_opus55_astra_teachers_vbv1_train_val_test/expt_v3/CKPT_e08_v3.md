@@ -2,15 +2,15 @@
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
 **TLDR:** All Phase A training/generation verified; Phase A complete, all eight rungs and diagnostics checked; replay 4B half and expansion 4B full pass gates and all remaining cells still required.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-16-2026 03:27 PDT
+Last updated: 10-16-2026 03:50 PDT
 ## Goal
 - Complete all 17,280 validation cells, paired bootstrap, namespace diagnostic, forecast assessment, publication and actual DONE notification; zero paid experimental model calls; test split unopened.
 ## Current execution
 - Sole writer recovery-02: native gpt-6-astra/ultra, never/danger-full-access; PID 3022155, boot 839e7dd6-64e1-4a80-9498-31d30b3cc2df, start 38249185. Six current hashes and all 2,650 Phase A token counts reverified. [Receipt](results/owner_recovery02_v3.json).
-- Phase A DONE. Phase B PID3066041/start38277673 adopts unchanged E14 controller; recovered E8 training on skampere3 GPUs2,4,5,7, all 667 native updates verified at 5,757,776 loss tokens; half export copied/checksummed, full export pending; half generation queued. Runtime /lfs/skampere1/0/brando9/rl4cv_e08/sft_v3.
+- Phase A DONE. Expansion 8B training and both exports are fully verified; its half checkpoint has 1,080 exact generated cells and CPU scoring is active. Full-checkpoint generation and matched replay controllers are running; 14B awaits eight eligible devices. [Checked handoff](results/recovery02_E8_completion.json).
 - E/R 1.7B and 4B training and eight exports verified: 23,021,424 additional loss tokens, 41,508,194 processed real tokens. [Receipt](results/phase_a_training_verification.json). Both retained post-export exit 2 incidents were reconciled without replay.
 - Eight complete generated rungs = 8,640 exact cells. All generation children exited 0; all eight Phase A rungs scored/analyzed (8,640/17,280 cells). Replay 4B half and expansion 4B full pass gates; eight namespace diagnostics have zero score delta.
-- Primary scoring and namespace diagnostics use eight workers per rung, at most six combined jobs (48 active compilation slots), frozen 600s timeout; expired orphan children cleaned separately by exact pidfd guard. All generation finished; future remote shell launches use immutable snapshots.
+- Primary scoring and namespace diagnostics use eight workers per rung, at most six combined jobs (48 active compilation slots), frozen 600s timeout; expired orphan children cleaned separately by exact pidfd guard. Phase A generation finished; Phase B uses immutable remote shell snapshots.
 - All four training sizes and exact generator environments verified on skampere2/3. Pending large-model routes remain remote. 14B training must use eight devices; inference uses the frozen permitted layout.
 - Latest full suite: 1,294 passed / 17 skipped / 6 subtests / 299.84s; 45 focused recovery/closeout checks plus 6 subtests pass. Native Vals weekly usage at acceptance 53%, credits 0. Latest native Vals use 56%, credits 0; personal allowance exhausted. Original finite deadline/attempt limits unchanged.
 ## Waits and recovery
@@ -98,3 +98,5 @@ Last updated: 10-16-2026 03:27 PDT
 - 10-16-2026 03:18 PDT -- Expansion 8B half native checkpoint 335 verifies every count and 2,878,589 loss tokens; complete export manifest present, controller checksum transfer pending. Native optimizer resume begins 336 and verifies through 418. Final-code full suite 1,294 passed/17 skipped/6 subtests in 299.84s. Finite route inventory refreshed; original deadline/caps unchanged. [Half evidence](results/recovery02_E8_half.json).
 
 - 10-16-2026 03:27 PDT -- Expansion 8B full native training verifies 667/667 updates, 5,757,776 loss tokens and 10,383,459 processed tokens. Half export passed controller checksum transfer; half generation controller admitted to the queue. Full export pending. [Full training receipt](results/recovery02_E8_full_training.json).
+
+- 10-16-2026 03:50 PDT -- Expansion 8B training and both exports are fully verified; its half checkpoint has 1,080 exact generated cells and CPU scoring is active. Full-checkpoint generation and matched replay controllers are running; 14B awaits eight eligible devices. Generated coverage 9,720/17,280; primary known coverage remains 8,640/17,280. All 60 completed Phase A native checkpoint files archived locally with full hashes before removing shared copies (143,511,424,012 bytes); exports/logs retained. Cross-node TP8 source support documented, but actual route unverified and current maximum six eligible GPUs.
