@@ -90,8 +90,10 @@ def main(phase='a'):
                 key = f'train_{condition}_{short}'
                 if condition == 'R' and state['jobs'].get(f'verify_E_{short}', {}).get('status') != 'DONE':
                     continue
-                if short == '14b':
-                    launch(key, [PY, str(HERE / 'remote_training.py'), condition])
+                route_path = ROOT / 'training_routes.json'
+                routes = json.loads(route_path.read_text()) if route_path.exists() else {}
+                if short == '14b' or routes.get(key) == 'remote':
+                    launch(key, [PY, str(HERE / 'remote_training.py'), condition, '--size', short])
                 else:
                     launch(key, ['bash', str(HERE / 'train_continuation.sh'), condition, short, '{gpus}'], n)
                 if state['jobs'].get(key, {}).get('status') == 'DONE':

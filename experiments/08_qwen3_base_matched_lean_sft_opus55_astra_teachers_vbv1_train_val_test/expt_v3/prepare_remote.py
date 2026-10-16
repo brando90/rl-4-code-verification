@@ -20,6 +20,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--archive-local', action='store_true')
     args = parser.parse_args()
+    (TARGET / 'sft_v3').mkdir(parents=True, exist_ok=True)
     exit_path = SOURCE / 'sft_v3/remote_stage_nemo_recovery-01.exit'
     if args.archive_local:
         archive = TARGET / 'nemo_rl_env.tar.zst'

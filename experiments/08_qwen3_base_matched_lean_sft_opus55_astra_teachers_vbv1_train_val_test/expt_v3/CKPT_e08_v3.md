@@ -2,7 +2,7 @@
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
 **TLDR:** Recovery-01 accepted; completed 1.7B training reconciled; Phase A resumed with isolated children.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-15-2026 21:45 PDT
+Last updated: 10-15-2026 22:04 PDT
 ## Goal
 - Complete replay/expansion supervised fine-tuning and all 17,280 validation cells at four sizes; $0 paid calls.
 ## What ran
@@ -14,10 +14,10 @@ Last updated: 10-15-2026 21:45 PDT
 - Half export remains 335/335 verified, 2,878,589 tokens; validation 0/17,280 known. Dry receipt PASS remains frozen.
 ## Stuck / blocked
 - Expansion wrapper exit 2 reconciled after both checksum checks and 667 counts. Old scheduler termination also ended its tmux generation children; zero durable rows, exact infrastructure retries queued; interruption receipt retained. New jobs use separate sessions and exact exit receipts.
-- Original staging PID1788378 exited; shared NeMo copy incomplete. Resumed owned rsync and preparing a compressed environment transfer; no partial environment execution. Remote eight-device availability remains unresolved.
-- Personal Codex weekly used 96%; finishing reserve only. Distinct Vals Codex authenticated, recent 37% used (stale observation); fresh continuation runtime still to verify. Dedicated Claude Vals/Stanford grants also authenticated; ordinary profile paths misleadingly report logged out.
+- Both local remote environments verified via complete compressed archive, exact NeMo pin and CPU imports. Baseline 14B checks pass. Superseded owned small-file rsync stopped with partial copy retained; queued priority replay may use remote free devices at frozen 1/2 layouts. Remote eight-device availability remains unresolved.
+- Personal Codex weekly used 96%; finishing reserve only. Current Vals owner is verified Astra/ultra full access; latest weekly used 39%. Dedicated Claude Vals/Stanford grants also authenticated; ordinary profile paths misleadingly report logged out.
 ## Next steps
-- [p 10/10] Current owner recovery-01, thread01a142fc-0eff-7551-a40c-322e33c6c9cb, PID2580398/start36376767; native Astra/ultra never/full-access, 37% weekly usage. Fresh owner_ack.json verifies all six recovery_dispatch hashes; original transfer is historical. Phase A scheduler resumed, E4B past step60.
+- [p 10/10] Current owner recovery-01, thread01a142fc-0eff-7551-a40c-322e33c6c9cb, PID2580398/start36376767; native Astra/ultra never/full-access, 37% weekly usage. Fresh owner_ack.json verifies all six recovery_dispatch hashes; original transfer is historical. Phase A scheduler running; E4B step335/335 and export verified, 2,878,589 tokens. Phase B running WAITING_PHASE_A.
 - [p 9/10] Complete Phase A; publish each rung; implement Phase B using verified wrappers, relocate/verify staged environment, admit 14B only at frozen 8-device layout. Analysis errors are blockers, not success.
 - Original manifest hashes stay historical; later handoffs compare current `recovery_dispatch.json`. Required end state: 17,280 exact cells, paired bootstrap, namespace diagnostic, forecast, published parent/results and deduplicated DONE email.
 ## Brando to-do
@@ -35,3 +35,4 @@ Last updated: 10-15-2026 21:45 PDT
 - 10-15-2026 21:29 PDT -- Expansion 1.7B completed all 667 updates; 667/667 token counts match 5,757,776 loss tokens. Final export underway. Full deterministic suite passed: 1,212 passed / 17 skipped in 305.20 seconds.
 - 10-15-2026 21:32 PDT -- Full expansion export checksum check passed; retained wrapper exit 2 after export (post-loop syntax error; current script syntax passes). Both validation generations are live. Published recovery implementation and full training log, preparing verified Vals owner transfer for personal quota reserve.
 - 10-15-2026 21:45 PDT -- Recovery-01 verified 6/6 hashes, 667/667 counts and both exports; reconciled exit2 without retraining; retained two interrupted generation batches and isolated new children; Phase A resumed. Phase B/forecast implementation and clean-environment full tests underway.
+- 10-15-2026 22:04 PDT -- E4B half checkpoint verified (335 steps, 2,878,589 tokens and export checksums); both remote copied environments verified; latest full suite 1,224 passed/17 skipped. Phase B waits on Phase A; preparing queued replay on spare remote devices with unchanged layouts.

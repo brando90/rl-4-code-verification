@@ -16,3 +16,5 @@
 **TLDR-end:** [rl4cv: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3] Recovery has reconciled completed training and resumed Phase A; validation coverage is still 0/17,280. Zero paid experiment calls; test split unopened.
 
 - 10-15-2026 21:49 PDT: Compressed 11 GB environment archive built; preparing local extraction on candidate remote nodes while keeping large checkpoints on shared storage. Live 4B shell retains its original inode and bytes while future launches gain the environment-path override.
+
+- 10-15-2026 22:04 PDT: Expansion 4B half checkpoint verified: 335/335 exact token counts, 2,878,589 loss tokens, all export checksums pass. [Training receipt](train_logs/v3_E_4b_half_verification.json), [step table](train_logs/v3_E_4b_half_steps.csv). Remote environments on skampere2/skampere3 pass archive, exact NeMo pin, Python/PyTorch imports and baseline 14B checks; published evidence is [remote preparation](remote_preparation_v3.json). The latest full suite passes 1,224 tests / 17 skipped in 360.11 seconds.
