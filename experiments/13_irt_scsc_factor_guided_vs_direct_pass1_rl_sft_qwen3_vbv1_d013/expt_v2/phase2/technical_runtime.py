@@ -166,6 +166,9 @@ def run(config,stage):
         manifest=json.loads(Path(config['manifest']).read_text())
         return generate(config,manifest,list(range(8)),root=config['stage_root'])
     if stage=='preflight':
+        bound(config,HERE/'checkpoint_state_preflight.py')
+        from checkpoint_state_preflight import run as checkpoint_preflight
+        checkpoint_preflight(config)
         import runtime,anchor_runtime
         runtime.build_engine=anchor_runtime.build_engine
         # Frozen non-probe engine construction checks the physical device, then
