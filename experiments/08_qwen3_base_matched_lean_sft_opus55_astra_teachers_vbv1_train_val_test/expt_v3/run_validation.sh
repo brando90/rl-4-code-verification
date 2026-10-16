@@ -87,6 +87,7 @@ EOF
 
 if [ ! -f "$OUT/raw/gen_${NAME}.jsonl" ]; then
   [ "$PHASE" != score ] || { echo "Generation is incomplete" >&2; exit 2; }
+  (cd "$MODEL" && sha256sum --check --quiet SHA256SUMS)
   if [ "$TP" -gt 1 ]; then NSH=1; gen_tp; else
     NFILE="$OUT/ids/${LABEL}.nshards"
     if [ -f "$NFILE" ] && [ "$(cat "$NFILE")" != "$N" ]; then echo "$LABEL was started with $(cat "$NFILE") shards; resume with that many GPUs (got $N)" >&2; exit 2; fi

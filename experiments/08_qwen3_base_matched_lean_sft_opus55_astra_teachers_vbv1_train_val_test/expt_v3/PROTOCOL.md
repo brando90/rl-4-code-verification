@@ -4,7 +4,7 @@
 
 **TLDR:** Continue each frozen step-658 checkpoint (1.7B, 4B, 8B, 14B) under two conditions at the same additional budget of 5,752,936 loss tokens: replay of the original 1,315-example corpus, or the original corpus plus the admitted expansion. Evaluate on the 135 x 8 validation manifest at half and full budget with the frozen format/signal gates, apply the meeting's prospective decision rule, and only then judge the SCSC >= 0.25 milestone. Defaults resolved under Brando’s 10-15-2026 dispatch; lock publication precedes every version-3 supervised fine-tuning (SFT) step, including the disposable dry run.
 
-**Status:** LOCKED. **Lock:** 10-15-2026 20:33 PDT, input/code commit `27ffa740affb6e40cee53525e8ec06f4640aa105`; this lock precedes every version-3 training step. Resulting lock commit is recorded separately in CKPT_e08_v3.md. Version 1 (`../PROTOCOL.md`) and version 2 stay frozen; this version changes only what is listed here.
+**Status:** LOCKED. **Lock:** 10-15-2026 20:33 PDT, input/code commit `27ffa740affb6e40cee53525e8ec06f4640aa105`; this lock precedes every version-3 training step. Lock publication commit: `18f5217cf41c49c538bcc78904f1cb571f28e934` (10-15-2026 20:33:28 PDT), also recorded in CKPT_e08_v3.md. Version 1 (`../PROTOCOL.md`) and version 2 stay frozen; this version changes only what is listed here.
 
 ## 1. Question and conditions
 
