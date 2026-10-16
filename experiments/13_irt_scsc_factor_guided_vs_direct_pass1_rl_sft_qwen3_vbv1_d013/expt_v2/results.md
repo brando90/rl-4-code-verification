@@ -4,20 +4,22 @@
 
 **TLDR:** v2-S2 T1 is final PASS: 8/8 train responses, 44,844 output tokens; median absolute log-probability error 0.0000327482 and p99 0.0176024, unsupported/truncated tokens 0/44,844. All six leases released; cumulative 0.355751673/2.0 device-hours. Continue to T2, T3 and T4 before the audits and pilot. C disabled, H2/F2 unavailable, batch 2 skipped.
 
-Last updated: 10-15-2026 17:12 PDT
-**Status:** T1 PASS; T2 train generation complete, official scoring running.
+Last updated: 10-15-2026 17:39 PDT
+**Status:** T1 PASS; T2 generation and scoring closed, single-update stage running.
 
-## Current state — 10-15-2026 17:12 PDT
+## Current state — 10-15-2026 17:39 PDT
 
 Goal: complete Experiment 13 v2 under A6 through its admitted gates, or publish the binding transition result.
 
 What ran: [LP freeze](phase2/LP_A6_S2_FREEZE.md) and A4 successor preceded the final [T1 PASS](RESULTS_T1_S2.md). The complete attempt 2 used 0.186873268 device-hours; attempt 1's 0.168878405 remains charged. No optimizer update, actual mutation audit or new held-out response exists.
 
-Supervision: owner PID 1243923 is the single writer. The published wait recovery passed its actual non-probe preflight on idle device 2. T2 attempt 1 has completed all 256 train generations; official scoring is running with no device held at this snapshot. Resumed controller PID 554111 and poller PID 106888 are watchdog-registered. The prior collision reservation remains released and charged.
+Supervision: owner PID 1243923 is the single writer. The published wait recovery passed its actual non-probe preflight on idle device 2. T2 attempt 1 has completed 256 train generations and 256 scoring receipts (255 measured, one deterministic timeout). The single-update stage has reserved idle device 1; no T2 verdict exists. Resumed controller PID 554111 and poller PID 106888 are watchdog-registered. The prior collision reservation remains released and charged.
 
-Next: supervise T2 scoring, the single update, export and refit probability check; generation is closed. Publish its final verdict before T3, then T4, the train audits and the pilot. The 8.0-hour per-attempt, 10.0-hour cumulative T2 limits and 23.75-device-hour overall technical allocation remain unchanged.
+Next: supervise the single T2 update, export and refit probability check; generation and scoring are closed. Publish its final verdict before T3, then T4, the train audits and the pilot. The 8.0-hour per-attempt, 10.0-hour cumulative T2 limits and 23.75-device-hour overall technical allocation remain unchanged.
 
 Brando to-do: none. Existing SNAP preapproval covers the frozen allocation.
+
+T2 scoring closure (10-15-2026 17:39 PDT): **256/256 receipts accounted, 255 measured and one deterministic timeout**, zero retries and unresolved cleanups ([receipt](phase2/T2_A6_scoring.json)). The timeout remains missing, with its group masked in the frozen trainer. The original controller advanced to its one update, reserving idle skampere1 device 1 through the experiment-13 registry. No completed update or T2 verdict exists at this snapshot. Existing tested code is unchanged (1,157 passed, 3 skipped, direct exit 0).
 
 T2 train-generation closure (10-15-2026 17:12 PDT): **256/256 responses** saved, 1,262,519 output tokens; cleanup verified and lease released after 0.495864773 device-hours ([receipt](phase2/T2_A6_generation.json)). The original controller has advanced to the frozen official scorer. No optimizer update, T2 statistic or held-out measurement exists at this snapshot. The current tested code is unchanged since the required suite passed 1,157 tests with 3 skipped and direct exit 0.
 
