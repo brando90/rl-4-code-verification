@@ -1,0 +1,479 @@
+[
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "concurrent_set_synthetic__my_hazard_pointer_can_free",
+  "scsc": 1.0,
+  "v1_hidden_all_pass": 0,
+  "v2_hidden_all_pass": true,
+  "v1_hidden_pass_rate": 0.25,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": true,
+  "v2_fully_applicable": true,
+  "v1_mapping": {
+   "MyHazardPointerCanFree.MyHazardPointerCanFree": "MyHazardPointerCanFree.preCondition",
+   "MyHazardPointerCanFree.MyHazardPointerCanFreeImp": "MyHazardPointerCanFree.preCondition"
+  },
+  "v2_mapping": {
+   "MyHazardPointerCanFree.MyHazardPointerCanFree": "MyHazardPointerCanFree.canFree",
+   "MyHazardPointerCanFree.MyHazardPointerCanFreeImp": "MyHazardPointerCanFree.canFree"
+  },
+  "v2_n_pass": 8,
+  "v2_n_evaluable": 8,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "helper_mapping",
+  "v1_group": "high_score_failing"
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "concurrent_set_synthetic__my_lww_register_pick_left",
+  "scsc": 1.0,
+  "v1_hidden_all_pass": 0,
+  "v2_hidden_all_pass": true,
+  "v1_hidden_pass_rate": 0.625,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": true,
+  "v2_fully_applicable": true,
+  "v1_mapping": {
+   "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.preCondition",
+   "MyLwwRegisterPickLeft.MyLwwRegisterPickLeftImp": "MyLwwRegisterPickLeft.preCondition"
+  },
+  "v2_mapping": {
+   "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.pickLeft",
+   "MyLwwRegisterPickLeft.MyLwwRegisterPickLeftImp": "MyLwwRegisterPickLeft.pickLeft"
+  },
+  "v2_n_pass": 8,
+  "v2_n_evaluable": 8,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "helper_mapping",
+  "v1_group": "high_score_failing"
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "easy_set__1_myadd",
+  "scsc": 1.0,
+  "v1_hidden_all_pass": 0,
+  "v2_hidden_all_pass": null,
+  "v1_hidden_pass_rate": 1.0,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": false,
+  "v2_fully_applicable": false,
+  "v1_mapping": {
+   "MyAdd.myAdd": "MyAdd.myAdd",
+   "MyAdd.myAddImp": "MyAdd.myAddImp"
+  },
+  "v2_mapping": {
+   "MyAdd.myAdd": "MyAdd.myAdd",
+   "MyAdd.myAddImp": "MyAdd.myAddImp"
+  },
+  "v2_n_pass": 1,
+  "v2_n_evaluable": 1,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "partial_applicability",
+  "v1_group": "high_score_failing"
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "easy_set__33_myminimum",
+  "scsc": 1.0,
+  "v1_hidden_all_pass": 0,
+  "v2_hidden_all_pass": null,
+  "v1_hidden_pass_rate": 1.0,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": false,
+  "v2_fully_applicable": false,
+  "v1_mapping": {
+   "MyMinList.myMinList": "MyMinimum.myMinList",
+   "MyMinList.myMinListImperative": "MyMinimum.minList"
+  },
+  "v2_mapping": {
+   "MyMinList.myMinList": "MyMinimum.myMinList",
+   "MyMinList.myMinListImperative": "MyMinimum.minList"
+  },
+  "v2_n_pass": 5,
+  "v2_n_evaluable": 5,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "partial_applicability",
+  "v1_group": "high_score_failing"
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "humaneval_set__humaneval_22_filter_integers",
+  "scsc": 1.0,
+  "v1_hidden_all_pass": 0,
+  "v2_hidden_all_pass": null,
+  "v1_hidden_pass_rate": 1.0,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": false,
+  "v2_fully_applicable": false,
+  "v1_mapping": {
+   "FilterIntegers.filter_integers": "humaneval_22_filter_integers.filter_integers",
+   "FilterIntegers.filter_integersImp": "humaneval_22_filter_integers.filter_integers_imp"
+  },
+  "v2_mapping": {
+   "FilterIntegers.filter_integers": "humaneval_22_filter_integers.filter_integers",
+   "FilterIntegers.filter_integersImp": "humaneval_22_filter_integers.filter_integers_imp"
+  },
+  "v2_n_pass": 1,
+  "v2_n_evaluable": 1,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "partial_applicability",
+  "v1_group": "high_score_failing"
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "hypervisor_set_synthetic__my_interrupt_route",
+  "scsc": 1.0,
+  "v1_hidden_all_pass": 0,
+  "v2_hidden_all_pass": true,
+  "v1_hidden_pass_rate": 0.625,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": true,
+  "v2_fully_applicable": true,
+  "v1_mapping": {
+   "MyInterruptRoute.myInterruptRoute": "MyInterruptRoute.postCheck",
+   "MyInterruptRoute.myInterruptRouteImp": "MyInterruptRoute.postCheck"
+  },
+  "v2_mapping": {
+   "MyInterruptRoute.myInterruptRoute": "MyInterruptRoute.myInterruptRoute",
+   "MyInterruptRoute.myInterruptRouteImp": "MyInterruptRoute.myInterruptRouteImp"
+  },
+  "v2_n_pass": 8,
+  "v2_n_evaluable": 8,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "helper_mapping",
+  "v1_group": "high_score_failing"
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "memory_bugs_set_synthetic__my_bump_alloc_fits",
+  "scsc": 1.0,
+  "v1_hidden_all_pass": 0,
+  "v2_hidden_all_pass": true,
+  "v1_hidden_pass_rate": 0.5714285714285714,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": true,
+  "v2_fully_applicable": true,
+  "v1_mapping": {
+   "MyBumpAllocFits.my_bump_alloc_fits": "MyBumpAllocFits.preCondition",
+   "MyBumpAllocFits.my_bump_alloc_fitsImp": "MyBumpAllocFits.preCondition"
+  },
+  "v2_mapping": {
+   "MyBumpAllocFits.my_bump_alloc_fits": "MyBumpAllocFits.myBumpAllocFits",
+   "MyBumpAllocFits.my_bump_alloc_fitsImp": "MyBumpAllocFits.myBumpAllocFitsImp"
+  },
+  "v2_n_pass": 7,
+  "v2_n_evaluable": 7,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "helper_mapping",
+  "v1_group": "high_score_failing"
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "os_embedded_set_synthetic__my_power_transition_ok",
+  "scsc": 1.0,
+  "v1_hidden_all_pass": 0,
+  "v2_hidden_all_pass": true,
+  "v1_hidden_pass_rate": 0.6666666666666666,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": true,
+  "v2_fully_applicable": true,
+  "v1_mapping": {
+   "MyPowerTransitionOk.myPowerTransitionOk": "MyPowerTransitionOk.preCondB",
+   "MyPowerTransitionOk.myPowerTransitionOkImp": "MyPowerTransitionOk.preCondB"
+  },
+  "v2_mapping": {
+   "MyPowerTransitionOk.myPowerTransitionOk": "MyPowerTransitionOk.myPowerTransitionOk",
+   "MyPowerTransitionOk.myPowerTransitionOkImp": "MyPowerTransitionOk.myPowerTransitionOkImp"
+  },
+  "v2_n_pass": 9,
+  "v2_n_evaluable": 9,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "helper_mapping",
+  "v1_group": "high_score_failing"
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "regulated_set_synthetic__my_dose_interval_ok",
+  "scsc": 1.0,
+  "v1_hidden_all_pass": 0,
+  "v2_hidden_all_pass": null,
+  "v1_hidden_pass_rate": 0.5,
+  "v2_hidden_pass_rate": null,
+  "v1_fully_applicable": true,
+  "v2_fully_applicable": false,
+  "v1_mapping": {
+   "MyDoseIntervalOk.myDoseIntervalOk": "MyDoseIntervalOk.PostB",
+   "MyDoseIntervalOk.myDoseIntervalOkImp": "MyDoseIntervalOk.PostB"
+  },
+  "v2_mapping": {},
+  "v2_n_pass": 0,
+  "v2_n_evaluable": 0,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "helper_mapping",
+  "v1_group": "high_score_failing"
+ },
+ {
+  "system": "claude-opus-5-max",
+  "task_id": "security_set__security_6858__safe__104_unsafehttpparse_safe",
+  "scsc": 1.0,
+  "v1_hidden_all_pass": 0,
+  "v2_hidden_all_pass": null,
+  "v1_hidden_pass_rate": 1.0,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": false,
+  "v2_fully_applicable": false,
+  "v1_mapping": {
+   "SafeHttpParse.safeHttpParse": "UnsafeHttpParseSafe.safeHttpParse",
+   "SafeHttpParse.safeHttpParseImp": "UnsafeHttpParseSafe.safeHttpParseImp"
+  },
+  "v2_mapping": {
+   "SafeHttpParse.safeHttpParse": "UnsafeHttpParseSafe.safeHttpParse",
+   "SafeHttpParse.safeHttpParseImp": "UnsafeHttpParseSafe.safeHttpParseImp"
+  },
+  "v2_n_pass": 9,
+  "v2_n_evaluable": 9,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "partial_applicability",
+  "v1_group": "high_score_failing"
+ },
+ {
+  "system": "leanstral",
+  "task_id": "aerospace_set_synthetic__my_arming_interlock",
+  "scsc": 0.0,
+  "v1_hidden_all_pass": 1,
+  "v2_hidden_all_pass": true,
+  "v1_hidden_pass_rate": 1.0,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": true,
+  "v2_fully_applicable": true,
+  "v1_mapping": {
+   "MyArmingInterlock.myArmingInterlock": "PyroArmingInterlock.myArmingInterlock",
+   "MyArmingInterlock.myArmingInterlockImp": "PyroArmingInterlock.myArmingInterlock"
+  },
+  "v2_mapping": {
+   "MyArmingInterlock.myArmingInterlock": "PyroArmingInterlock.myArmingInterlock",
+   "MyArmingInterlock.myArmingInterlockImp": "PyroArmingInterlock.myArmingInterlock"
+  },
+  "v2_n_pass": 7,
+  "v2_n_evaluable": 7,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "zero_self_test_factor",
+  "v1_group": "low_score_passing"
+ },
+ {
+  "system": "leanstral",
+  "task_id": "aerospace_set_synthetic__my_safing_vote",
+  "scsc": 0.0,
+  "v1_hidden_all_pass": 1,
+  "v2_hidden_all_pass": true,
+  "v1_hidden_pass_rate": 1.0,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": true,
+  "v2_fully_applicable": true,
+  "v1_mapping": {
+   "MySafingVote.mySafingVote": "MySafingVote.mySafingVote",
+   "MySafingVote.mySafingVoteImp": "MySafingVote.mySafingVote"
+  },
+  "v2_mapping": {
+   "MySafingVote.mySafingVote": "MySafingVote.mySafingVote",
+   "MySafingVote.mySafingVoteImp": "MySafingVote.mySafingVote"
+  },
+  "v2_n_pass": 7,
+  "v2_n_evaluable": 7,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "zero_self_test_factor",
+  "v1_group": "low_score_passing"
+ },
+ {
+  "system": "leanstral",
+  "task_id": "aerospace_set_synthetic__my_sensor_watchdog_fresh",
+  "scsc": 0.0,
+  "v1_hidden_all_pass": 1,
+  "v2_hidden_all_pass": true,
+  "v1_hidden_pass_rate": 1.0,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": true,
+  "v2_fully_applicable": true,
+  "v1_mapping": {
+   "MySensorWatchdogFresh.mySensorWatchdogFresh": "MySensorWatchdogFresh.mySensorWatchdogFresh",
+   "MySensorWatchdogFresh.mySensorWatchdogFreshImp": "MySensorWatchdogFresh.mySensorWatchdogFresh"
+  },
+  "v2_mapping": {
+   "MySensorWatchdogFresh.mySensorWatchdogFresh": "MySensorWatchdogFresh.mySensorWatchdogFresh",
+   "MySensorWatchdogFresh.mySensorWatchdogFreshImp": "MySensorWatchdogFresh.mySensorWatchdogFresh"
+  },
+  "v2_n_pass": 5,
+  "v2_n_evaluable": 5,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "zero_self_test_factor",
+  "v1_group": "low_score_passing"
+ },
+ {
+  "system": "leanstral",
+  "task_id": "aerospace_set_synthetic__my_tmr_voter",
+  "scsc": 0.0,
+  "v1_hidden_all_pass": 1,
+  "v2_hidden_all_pass": true,
+  "v1_hidden_pass_rate": 1.0,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": true,
+  "v2_fully_applicable": true,
+  "v1_mapping": {
+   "MyTmrVoter.myTmrVoter": "MyTmrVoter.myTmrVoter",
+   "MyTmrVoter.myTmrVoterImp": "MyTmrVoter.myTmrVoter"
+  },
+  "v2_mapping": {
+   "MyTmrVoter.myTmrVoter": "MyTmrVoter.myTmrVoter",
+   "MyTmrVoter.myTmrVoterImp": "MyTmrVoter.myTmrVoter"
+  },
+  "v2_n_pass": 7,
+  "v2_n_evaluable": 7,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "zero_self_test_factor",
+  "v1_group": "low_score_passing"
+ },
+ {
+  "system": "leanstral",
+  "task_id": "compilers_set_real__my_cpython_dis_jump_target",
+  "scsc": 0.0,
+  "v1_hidden_all_pass": 1,
+  "v2_hidden_all_pass": true,
+  "v1_hidden_pass_rate": 1.0,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": true,
+  "v2_fully_applicable": true,
+  "v1_mapping": {
+   "MyCpythonDisJumpTarget.myCpythonDisJumpTarget": "MyCPythonDisJumpTarget.myCPythonDisJumpTarget",
+   "MyCpythonDisJumpTarget.myCpythonDisJumpTargetImp": "MyCPythonDisJumpTarget.myCPythonDisJumpTarget"
+  },
+  "v2_mapping": {
+   "MyCpythonDisJumpTarget.myCpythonDisJumpTarget": "MyCPythonDisJumpTarget.myCPythonDisJumpTarget",
+   "MyCpythonDisJumpTarget.myCpythonDisJumpTargetImp": "MyCPythonDisJumpTarget.myCPythonDisJumpTarget"
+  },
+  "v2_n_pass": 7,
+  "v2_n_evaluable": 7,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "zero_self_test_factor",
+  "v1_group": "low_score_passing"
+ },
+ {
+  "system": "leanstral",
+  "task_id": "concurrent_set_real__my_cas_success",
+  "scsc": 0.0,
+  "v1_hidden_all_pass": 1,
+  "v2_hidden_all_pass": true,
+  "v1_hidden_pass_rate": 1.0,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": true,
+  "v2_fully_applicable": true,
+  "v1_mapping": {
+   "MyCasSuccess.MyCasSuccess": "MyCAS.myCAS",
+   "MyCasSuccess.MyCasSuccessImp": "MyCAS.myCAS"
+  },
+  "v2_mapping": {
+   "MyCasSuccess.MyCasSuccess": "MyCAS.myCAS",
+   "MyCasSuccess.MyCasSuccessImp": "MyCAS.myCAS"
+  },
+  "v2_n_pass": 8,
+  "v2_n_evaluable": 8,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "zero_self_test_factor",
+  "v1_group": "low_score_passing"
+ },
+ {
+  "system": "leanstral",
+  "task_id": "concurrent_set_real__my_h2_flow_window_after_send",
+  "scsc": 0.0,
+  "v1_hidden_all_pass": 1,
+  "v2_hidden_all_pass": true,
+  "v1_hidden_pass_rate": 1.0,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": true,
+  "v2_fully_applicable": true,
+  "v1_mapping": {
+   "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSend": "MyH2FlowWindowAfterSend.myH2FlowWindowAfterSend",
+   "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSendImp": "MyH2FlowWindowAfterSend.myH2FlowWindowAfterSend"
+  },
+  "v2_mapping": {
+   "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSend": "MyH2FlowWindowAfterSend.myH2FlowWindowAfterSend",
+   "MyH2FlowWindowAfterSend.MyH2FlowWindowAfterSendImp": "MyH2FlowWindowAfterSend.myH2FlowWindowAfterSend"
+  },
+  "v2_n_pass": 8,
+  "v2_n_evaluable": 8,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "zero_self_test_factor",
+  "v1_group": "low_score_passing"
+ },
+ {
+  "system": "leanstral",
+  "task_id": "concurrent_set_synthetic__my_lww_register_pick_left",
+  "scsc": 0.0,
+  "v1_hidden_all_pass": 1,
+  "v2_hidden_all_pass": true,
+  "v1_hidden_pass_rate": 1.0,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": true,
+  "v2_fully_applicable": true,
+  "v1_mapping": {
+   "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.myLwwRegisterPickLeft",
+   "MyLwwRegisterPickLeft.MyLwwRegisterPickLeftImp": "MyLwwRegisterPickLeft.myLwwRegisterPickLeft"
+  },
+  "v2_mapping": {
+   "MyLwwRegisterPickLeft.MyLwwRegisterPickLeft": "MyLwwRegisterPickLeft.myLwwRegisterPickLeft",
+   "MyLwwRegisterPickLeft.MyLwwRegisterPickLeftImp": "MyLwwRegisterPickLeft.myLwwRegisterPickLeft"
+  },
+  "v2_n_pass": 8,
+  "v2_n_evaluable": 8,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "zero_self_test_factor",
+  "v1_group": "low_score_passing"
+ },
+ {
+  "system": "leanstral",
+  "task_id": "concurrent_set_synthetic__my_rcu_epoch_can_reclaim",
+  "scsc": 0.0,
+  "v1_hidden_all_pass": 1,
+  "v2_hidden_all_pass": true,
+  "v1_hidden_pass_rate": 1.0,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": true,
+  "v2_fully_applicable": true,
+  "v1_mapping": {
+   "MyRcuEpochCanReclaim.MyRcuEpochCanReclaim": "MyRcuEpochCanReclaim.myRcuEpochCanReclaim",
+   "MyRcuEpochCanReclaim.MyRcuEpochCanReclaimImp": "MyRcuEpochCanReclaim.myRcuEpochCanReclaim"
+  },
+  "v2_mapping": {
+   "MyRcuEpochCanReclaim.MyRcuEpochCanReclaim": "MyRcuEpochCanReclaim.myRcuEpochCanReclaim",
+   "MyRcuEpochCanReclaim.MyRcuEpochCanReclaimImp": "MyRcuEpochCanReclaim.myRcuEpochCanReclaim"
+  },
+  "v2_n_pass": 8,
+  "v2_n_evaluable": 8,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "zero_self_test_factor",
+  "v1_group": "low_score_passing"
+ },
+ {
+  "system": "leanstral",
+  "task_id": "concurrent_set_synthetic__my_vector_clock_merge_le_target",
+  "scsc": 0.0,
+  "v1_hidden_all_pass": 1,
+  "v2_hidden_all_pass": true,
+  "v1_hidden_pass_rate": 1.0,
+  "v2_hidden_pass_rate": 1.0,
+  "v1_fully_applicable": true,
+  "v2_fully_applicable": true,
+  "v1_mapping": {
+   "MyVectorClockMergeLeTarget.myVectorClockMergeLeTarget": "VectorClockMergeLeTarget.myVectorClockMergeLeTarget",
+   "MyVectorClockMergeLeTarget.myVectorClockMergeLeTargetImp": "VectorClockMergeLeTarget.myVectorClockMergeLeTarget"
+  },
+  "v2_mapping": {
+   "MyVectorClockMergeLeTarget.myVectorClockMergeLeTarget": "VectorClockMergeLeTarget.myVectorClockMergeLeTarget",
+   "MyVectorClockMergeLeTarget.myVectorClockMergeLeTargetImp": "VectorClockMergeLeTarget.myVectorClockMergeLeTarget"
+  },
+  "v2_n_pass": 8,
+  "v2_n_evaluable": 8,
+  "v2_helper_mapped_failure": false,
+  "v1_category": "zero_self_test_factor",
+  "v1_group": "low_score_passing"
+ }
+]

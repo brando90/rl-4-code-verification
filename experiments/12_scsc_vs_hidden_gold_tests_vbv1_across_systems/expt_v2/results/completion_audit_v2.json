@@ -1,0 +1,51 @@
+{
+ "complete": true,
+ "n_declared": 9856,
+ "n_systems": 11,
+ "n_tasks": 896,
+ "outcomes_sha256": "5ecab23e05ce1cd87262aadc016b598e044c332f21efb88ca2bdb1b28c66c438",
+ "counts": {
+  "noncompiling": 5074,
+  "no_tests": 154,
+  "file_missing": 2,
+  "evaluated": 3394,
+  "receipts": 4626,
+  "modules_reused": 4626,
+  "not_applicable": 1232
+ },
+ "eligible_per_test_status_counts": {
+  "pass": 39230,
+  "type_unknown": 2811,
+  "unmapped": 13706,
+  "fail": 220
+ },
+ "lean_receipt_status_counts": {
+  "ok": 3717,
+  "error": 318
+ },
+ "lean_receipt_seconds_total": 26060.78854696825,
+ "lean_receipt_seconds_max": 42.741987312969286,
+ "runtime_hashes": {
+  "adapter_v2.py": "da6fbe366b26e8518894ba5dd0d236de9e3f258f53e30c5181be08ebcfc7f430",
+  "runtime_v2.py": "27c08103824fb6e19af406812ac47e2dffaff28a6481ff63e3a0d0edfede0763",
+  "evaluate_v2.py": "096c9bbc00930fab0ae05e3921f7373ca34038e3270e96125427cc09c431a001",
+  "support_v2.py": "3bd7b63814ed510993c5aff81685dbcba5d1d48eb5a6e8383dadc24117c597fc"
+ },
+ "frozen_inputs": {
+  "adapter_v2.py": "da6fbe366b26e8518894ba5dd0d236de9e3f258f53e30c5181be08ebcfc7f430",
+  "mapping_census_v2.json": "d4246759f2bf427fcae5e28a20670f90900bec78fc506033e8eeb5d27c04249a",
+  "static_controls_v2.json": "47ee17a674b084f10ce42446c2ec4ae3b555210c53be74a8ec850eb3fd18f77d",
+  "hidden_tests_manifest.json": "f23f995671c12cded73f11447abd585d5a62c5ebf7b3c56aa1a2bf4d719e5b17",
+  "input_manifest_A1.json": "20ae9005857f6cff5d18325e5aa128e11b1eda7cb6833dfecffc93a21af1c5a0"
+ },
+ "checks": [
+  "all original cell fields unchanged",
+  "complete unique declared panel",
+  "source hashes match",
+  "per-test outcomes independently reconstructed",
+  "all partitions consistent",
+  "copied module hashes match",
+  "bounded retry receipts",
+  "frozen runtime and input hashes"
+ ]
+}
