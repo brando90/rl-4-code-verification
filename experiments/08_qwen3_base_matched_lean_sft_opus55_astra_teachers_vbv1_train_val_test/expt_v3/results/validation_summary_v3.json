@@ -34,8 +34,20 @@
       }
     }
   },
-  "known_cells": 3240,
-  "paired_E_minus_R": {},
+  "known_cells": 4320,
+  "paired_E_minus_R": {
+    "1p7b_f1p0": {
+      "ci95": [
+        -0.025925925925925925,
+        0.007407407407407408
+      ],
+      "draws": 10000,
+      "mean": -0.009259259259259259,
+      "p_value": null,
+      "seed": 0,
+      "unit": "task with eight attempts together"
+    }
+  },
   "primary": {
     "f0p5": {
       "selected": null,
@@ -275,6 +287,115 @@
         }
       }
     },
+    "v3_R_1p7b_f1p0": {
+      "cells_csv": "results/ladder/v3_R_1p7b_f1p0_validation_cells.csv",
+      "diagnostics": {
+        "all_pass_share": 0.0,
+        "ic_tests_rate": 0.06019,
+        "mean_generated_tokens": 5111.9,
+        "mean_pass_rate": 0.06019,
+        "mean_proof_fraction": 0.06019,
+        "n_tasks_with_diversity": 129,
+        "pass_at_8_share": 0.2,
+        "within_task_diversity_mean_pairwise_jaccard": 0.107
+      },
+      "failure_taxonomy": {
+        "compile_error": 881,
+        "kernel_success": 65,
+        "no_lean_extracted": 134
+      },
+      "gates": {
+        "a_extraction": {
+          "n": 946,
+          "of": 1080,
+          "pass": false,
+          "share": 0.8759,
+          "threshold": 0.9
+        },
+        "b_capped": {
+          "n": 134,
+          "of": 1080,
+          "pass": false,
+          "share": 0.1241,
+          "threshold": 0.1
+        },
+        "c_mixed": {
+          "n": 27,
+          "of": 135,
+          "pass": true,
+          "share": 0.2,
+          "threshold": 0.05,
+          "wilson95": [
+            0.1412,
+            0.2754
+          ]
+        },
+        "complete": true,
+        "n_declared": 1080,
+        "n_known": 1080,
+        "pass": false
+      },
+      "notes": {
+        "duplicates_rejected": 0,
+        "extras_rejected": 0,
+        "missing": [],
+        "n_missing": 0,
+        "n_unparseable_theorem_types": 0,
+        "n_vacuous_cells": 5,
+        "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/scored/scored_v3_R_1p7b_f1p0_g8.jsonl"
+      },
+      "per_task_csv": "results/ladder/v3_R_1p7b_f1p0_validation_per_task.csv",
+      "scored_sha256": "a4f22e7e6cb26eb09d66b6aea8a79ab0a48256e14cda8cd2d96949940ccb6a77",
+      "split": "validation",
+      "status": "COMPLETE",
+      "system": {
+        "condition": "R",
+        "fraction": "f1p0",
+        "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ckpt/v3_R_1p7b/hf/step_658",
+        "label": "v3_R_1p7b_f1p0",
+        "loss_tokens": 5752936,
+        "size": "1.7B",
+        "source": "e08",
+        "start_hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/1.7B/hf/step_658",
+        "start_weights_sha256_manifest": "925d110f5a598d18cc9160f0758c5c64d1097956cb4db3057c9ade82ca6fafb4",
+        "step": 658
+      },
+      "task_bootstrap": {
+        "mixed_share": {
+          "ci95": [
+            0.13333333333333333,
+            0.26666666666666666
+          ],
+          "draws": 10000,
+          "mean": 0.2,
+          "p_value": null,
+          "seed": 0,
+          "unit": "task with eight attempts together"
+        },
+        "pass_at_8": {
+          "ci95": [
+            0.13333333333333333,
+            0.26666666666666666
+          ],
+          "draws": 10000,
+          "mean": 0.2,
+          "p_value": null,
+          "seed": 0,
+          "unit": "task with eight attempts together"
+        },
+        "pass_rate": {
+          "ci95": [
+            0.03796296296296296,
+            0.08611111111111111
+          ],
+          "draws": 10000,
+          "mean": 0.06018518518518518,
+          "p_value": null,
+          "seed": 0,
+          "unit": "task with eight attempts together"
+        }
+      }
+    },
     "v3_R_4b_f0p5": {
       "cells_csv": "results/ladder/v3_R_4b_f0p5_validation_cells.csv",
       "diagnostics": {
@@ -388,7 +509,6 @@
   "uncertainty": "10000 percentile paired task-bootstrap draws, seed 0; eight attempts together; single training seed; p-val=n/a",
   "unknown_systems": [
     "v3_R_1p7b_f0p5",
-    "v3_R_1p7b_f1p0",
     "v3_R_4b_f1p0",
     "v3_R_8b_f0p5",
     "v3_R_8b_f1p0",

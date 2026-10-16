@@ -1,15 +1,15 @@
 # Matched replay versus expansion continuation checkpoint
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
-**TLDR:** All Phase A training/generation verified; three rungs scored, with replay4B half passing gates and all remaining cells still required.
+**TLDR:** All Phase A training/generation verified; four rungs scored, with replay 4B half passing gates and all remaining cells still required.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-16-2026 00:54 PDT
+Last updated: 10-16-2026 01:03 PDT
 ## Goal
 - Complete all 17,280 validation cells, paired bootstrap, namespace diagnostic, forecast assessment, publication and actual DONE notification; zero paid experimental model calls; test split unopened.
 ## Current execution
 - Sole writer recovery-01: native gpt-6-astra/ultra, never/danger-full-access; PID 2580398, boot 839e7dd6-64e1-4a80-9498-31d30b3cc2df, start 36376767. Host owner_ack.json matches all six recovery-dispatch hashes at acceptance; initial transfer remains historical.
 - Phase A PID 2265174/start 37543344 adopts four existing scorers and starts both E4 rungs; Phase B PID 2265309/start 37543366 waits for Phase A. Runtime /lfs/skampere1/0/brando9/rl4cv_e08/sft_v3.
 - E/R 1.7B and 4B training and eight exports verified: 23,021,424 additional loss tokens, 41,508,194 processed real tokens. [Receipt](results/phase_a_training_verification.json). Both retained post-export exit 2 incidents were reconciled without replay.
-- Eight complete generated rungs = 8,640 exact cells. All generation children exited 0; both E1.7 and replay4B half rungs scored/analyzed (3,240/17,280 cells). Half/full: extracted936/959, capped144/121, mixed18/19; both fail frozen format gates.
+- Eight complete generated rungs = 8,640 exact cells. All generation children exited 0; both E1.7, replay 1.7B full and replay 4B half rungs scored/analyzed (4,320/17,280 cells). Half/full: extracted936/959, capped144/121, mixed18/19; both fail frozen format gates.
 - Primary scoring and namespace diagnostics use eight workers per rung, at most six combined jobs (48 active compilation slots), frozen 600s timeout; expired orphan children cleaned separately by exact pidfd guard. All generation finished; future remote shell launches use immutable snapshots.
 - All four training sizes and exact generator environments verified on skampere2/3. Pending large-model routes remain remote. 14B training must use eight devices; inference uses the frozen permitted layout.
 - Latest full suite: 1,287 passed / 17 skipped / 6 subtests / 331.82s; 16 focused recovery checks plus 6 subtests pass. Latest native Vals weekly usage 49%, credits 0. Keep personal reserve and original finite deadline/attempt limits.
@@ -73,3 +73,5 @@ Last updated: 10-16-2026 00:54 PDT
 - 10-16-2026 00:53 PDT -- Six-rung full suite passes 1,287 tests / 17 skipped / 6 subtests in 331.82s. Host watch reports OBSERVING with no issues. Native Vals weekly allowance used 49%, credits 0; original finite recovery limits remain unchanged.
 
 - 10-16-2026 00:54 PDT -- Replay 4B half completes exact 1,080 raw/scored/table cells; 1,006 extracted (>=972), 74 capped (<=108), 31/135 mixed (>=7), all gates PASS. Kernel success 90/1,080 = 0.0833 [0.0537,0.1167], 10,000 task-bootstrap draws seed0, p-val=n/a; training-seed variability unmeasured. Native exit0 retained; namespace diagnostic started. Coverage3,240/17,280; all remaining rungs mandatory.
+
+- 10-16-2026 01:03 PDT -- Replay 1.7B full exact 1,080 cells verified: 946 extracted (<972),134 capped (>108),27/135 mixed (>=7); format/cap FAIL. Kernel65/1,080, mean0.0602 [0.0380,0.0861]. Matched expansion-minus-replay delta−0.0093 [−0.0259,0.0074],10,000 paired task-bootstrap draws seed0,p-val=n/a, training-seed variation unmeasured. Namespace started; coverage4,320/17,280.

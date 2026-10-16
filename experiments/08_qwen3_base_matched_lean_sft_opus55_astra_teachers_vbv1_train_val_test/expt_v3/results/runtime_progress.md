@@ -94,3 +94,9 @@ The full suite passed 1,287 tests, 17 skipped and six subtests in 331.82 seconds
 Replay 4B at half budget has all 1,080 raw, scored and table cells checked against the exact manifest and hashes. All gates pass: 1,006/1,080 extracted (minimum 972), 74 capped (maximum 108), and 31/135 mixed tasks (minimum 7), mixed-share Wilson 95% interval [0.1668, 0.3075]. Kernel success is 90/1,080 = 0.0833 [0.0537, 0.1167], 10,000 task-bootstrap draws over 135 tasks with eight attempts together, seed 0, p-val=n/a; training-seed variability is unmeasured. Taxonomy: 74 no Lean file, 916 compile errors, 90 kernel successes. [Tables and frozen gates](../results.md), [full summary](validation_summary_v3.json).
 
 The native scorer exited 0 and its namespace diagnostic started. Checked coverage is now 3,240/17,280. No matched expansion4B rung is complete yet, so its paired condition comparison is pending. Primary and sensitivity decisions remain incomplete.
+
+## 10-16-2026 01:03 PDT — first matched condition comparison
+
+Replay 1.7B at full budget has all 1,080 exact raw/scored/table cells verified. Extraction 946/1,080 is below the required 972; capped count 134 exceeds 108. Mixed tasks pass at 27/135 (minimum 7), Wilson 95% interval [0.1412, 0.2754]. Kernel success is 65/1,080 = 0.0602 [0.0380, 0.0861]. Taxonomy: 134 no Lean file, 881 compile errors, 65 kernel successes; the non-vacuity screen flags five cells.
+
+For the matched full-budget 1.7B pair, expansion minus replay is −0.0093 [−0.0259, 0.0074]; the interval spans zero. Intervals use 10,000 paired task-bootstrap draws over 135 tasks with eight attempts together, seed 0, p-val=n/a; training-seed variability remains unmeasured. Both conditions fail full-budget 1.7B format/cap gates. Coverage is 4,320/17,280; half-budget and three-size decisions remain incomplete. [Full statistics](validation_summary_v3.json), [live table](../results.md). Native scorer exit 0 and namespace launch are retained.

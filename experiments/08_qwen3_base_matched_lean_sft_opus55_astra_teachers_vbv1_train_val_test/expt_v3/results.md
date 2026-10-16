@@ -2,14 +2,14 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/results.md>
 
-**Status:** RUNNING. **Last updated:** 10-16-2026 00:53 PDT.
+**Status:** RUNNING. **Last updated:** 10-16-2026 01:03 PDT.
 
-Known complete validation cells: **3240/17,280**. Unknown systems remain pending; no paid model calls.
+Known complete validation cells: **4320/17,280**. Unknown systems remain pending; no paid model calls.
 
 | System | Known / declared | Extracted | Capped | Mixed /135 | Gates | Pass rate [95% interval] |
 |---|---:|---:|---:|---:|---|---|
 | v3_R_1p7b_f0p5 | 0/1,080 | — | — | — | PENDING | — |
-| v3_R_1p7b_f1p0 | 0/1,080 | — | — | — | PENDING | — |
+| v3_R_1p7b_f1p0 | 1,080/1,080 | 946 | 134 | 27 | FAIL | 0.0602 [0.0380, 0.0861] |
 | v3_R_4b_f0p5 | 1,080/1,080 | 1006 | 74 | 31 | PASS | 0.0833 [0.0537, 0.1167] |
 | v3_R_4b_f1p0 | 0/1,080 | — | — | — | PENDING | — |
 | v3_R_8b_f0p5 | 0/1,080 | — | — | — | PENDING | — |
@@ -37,4 +37,9 @@ Frozen forecast assessment: [prediction and measured outcome](results/forecast_a
 
 Execution and recovery events: [runtime ledger](results/runtime_progress.md).
 
-**TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is 3240/17,280; incomplete comparisons remain unresolved.
+
+| Size and fraction | Expansion minus replay success rate [95% interval] |
+|---|---:|
+| 1p7b_f1p0 | -0.0093 [-0.0259, 0.0074] |
+
+**TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is 4320/17,280; incomplete comparisons remain unresolved.
