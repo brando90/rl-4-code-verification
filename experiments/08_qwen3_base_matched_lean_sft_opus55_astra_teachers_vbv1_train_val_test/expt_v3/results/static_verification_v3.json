@@ -1,0 +1,46 @@
+{
+  "verified_utc": "2026-10-16T03:28:23.664343+00:00",
+  "checkpoint_files_sha256_check": "PASS for all four step-658 exports (sha256sum --check --quiet SHA256SUMS)",
+  "start_checkpoints": {
+    "1.7B": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/1.7B/hf/step_658",
+      "sha256_manifest": "925d110f5a598d18cc9160f0758c5c64d1097956cb4db3057c9ade82ca6fafb4"
+    },
+    "4B": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_658",
+      "sha256_manifest": "c0588065bf8019c11bbe1404431d2cc57cbd5bc656890d1b1b105b9239108120"
+    },
+    "8B": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_658",
+      "sha256_manifest": "3085508bfd29932193b556c2f769eabe83b26e2d96dd59ef7412cfbcbf8f397d"
+    },
+    "14B": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/hf/step_658",
+      "sha256_manifest": "8c65cc3f0c900fffddb760b5daf77590ea319cdb92039c4df12bc57b9982d0d4"
+    }
+  },
+  "nemo_rl_revision": "c751f811217db7df0d4c94abdeaada6626cfc150",
+  "health": {
+    "local_storage_free_bytes": 4829736931328,
+    "shared_DFS": "98 percent used; relevant experiment weights/data/caches all on LFS; no large DFS writes planned"
+  },
+  "tests_initial": {
+    "passed": 1152,
+    "skipped": 43,
+    "failed": 2,
+    "cause": "missing pinned external/veribench in new owned checkout; restored by local shared clone at c11b99badfa386fd26810b208eef1eb8dc9f6806"
+  },
+  "schedule_regressions": {
+    "passed": 3
+  },
+  "paid_calls": 0,
+  "paid_spend_usd": 0,
+  "tests_final": {
+    "passed": 1183,
+    "skipped": 17,
+    "failed": 0,
+    "seconds": 286.81,
+    "command": "make test",
+    "log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/lock_make_test_retry.log"
+  }
+}
