@@ -6,7 +6,7 @@
 # (`score_scsc.py --skip-tc`) in experiment 08's private grading project, then `collect` and `summarize` as diagnostics (PROTOCOL §§ 9–10).
 # Usage: bash run_ladder_e08.sh <split: validation|test> <label> <model_path_or_hub_id> <revision_or_local> <gpu_ids_csv> [tp]
 #   tp > 1 runs one vLLM process with --tensor-parallel-size tp over all listed GPUs; tp = 1 shards the task list across the GPUs.
-# Env: E08_WORK (default /lfs/skampere1/0/brando9/rl4cv_e08); BATCH (default 1024), SCORE_PAR (default 4), STAGGER_S (default 180).
+# Env: E08_WORK (default /lfs/skampere1/0/brando9/rl4cv_e08); BATCH (default 1024), SCORE_PAR (default 8), STAGGER_S (default 180).
 # Resumable: generation skips finished cells; scored jobs are never rescored; the shard count is fixed per label at first launch.
 set -euo pipefail
 SPLIT="${1:?validation}"; LABEL="${2:?label}"; MODEL="${3:?model}"; REV="${4:?revision or local}"; GPUS="${5:?gpu ids}"; TP="${6:-1}"; PHASE="${7:-all}"
@@ -23,7 +23,7 @@ GOLD_DIR="$SCORER/veribench_dataset/lean_src/veribench"
 IDS="$EXP/expt_v1/results/split/vbv1_validation_task_ids.txt"; N_TASKS=135
 export CUDA_VISIBLE_DEVICES="$GPUS"
 OUT="$WORK/sft_v3/ladder/$SPLIT"; mkdir -p "$OUT/raw" "$OUT/jobs" "$OUT/scores" "$OUT/scored" "$OUT/summaries" "$OUT/ids" "$OUT/logs"
-BATCH="${BATCH:-1024}"; SCORE_PAR="${SCORE_PAR:-4}"; STAGGER_S="${STAGGER_S:-180}"
+BATCH="${BATCH:-1024}"; SCORE_PAR="${SCORE_PAR:-8}"; STAGGER_S="${STAGGER_S:-180}"
 export PYTHONPATH="$REPO/src" VERIBENCH_ROOT="${E08_VERIBENCH_ROOT:-$WORK/rl-4-code-verification/external/veribench}" HF_HOME="${E08_CACHE_ROOT:-$WORK/cache}/huggingface" HF_HUB_OFFLINE=1 PATH="/usr/local/cuda-12.8/bin:$HOME/.elan/bin:$PATH"
 PY="${E08_GEN_PYTHON:-$WORK/venv_gen/bin/python}"
 export CUDA_HOME=/usr/local/cuda-12.8 CUDA_PATH=/usr/local/cuda-12.8

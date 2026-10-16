@@ -1,8 +1,8 @@
 # Matched replay versus expansion continuation checkpoint
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
-**TLDR:** Recovery-01 accepted; completed 1.7B training reconciled; Phase A resumed with isolated children.
+**TLDR:** Recovery-01 active; all four Phase A runs completed their token budgets, final replay export verification and validation continue.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-15-2026 22:04 PDT
+Last updated: 10-15-2026 23:05 PDT
 ## Goal
 - Complete replay/expansion supervised fine-tuning and all 17,280 validation cells at four sizes; $0 paid calls.
 ## What ran
@@ -42,3 +42,7 @@ Last updated: 10-15-2026 22:04 PDT
 - 10-15-2026 22:39 PDT: 1.7B replay all 658 native token counts verified (5,752,936 loss tokens); exports synchronizing home. 4B replay first 195 counts pass. Remote expansion generators PID1451417/GPU2 and PID1464872/GPU7 boot `562c249b-58a5-4d2a-b17d-3377147592a0`, start ticks263549233/263549408, are warming up. All pending gen routes remote; local 4B full generator preserved. Published 5325384, 1,233 passed / 17 skipped; native weekly usage41%.
 
 - 10-15-2026 22:47 PDT: replay 1.7B exports334/658 both fully verified; all658 counts PASS. Native wrapper exit2 was post-export NFS stale handle, not training failure; retained receipt and reconciled DONE without replay. Phase A PID1968738 now adopts all7 surviving jobs; verificationR1.7DONE. Future remote shell launches immutable snapshots; do not replace current original remote shell sources while R4/initialgens run. Forecast canonical/file hash distinction corrected and positive test passes.
+
+- 10-15-2026 23:00 PDT: both expansion 1.7B canonical raw outputs pass exact handoff (2,160 generated cells); scoring now eight workers per rung, maximum two scoring/namespace jobs, with all original children preserved. E4B half and R1.7B full remotely admitted on GPUs2/7; other generation controllers wait for eligible devices. Current Phase A identity remains PID1968738/start36815884; Phase B PID652391/start36742141 waits. Native wrapper source paths stay preserved.
+
+- 10-15-2026 23:05 PDT: replay 4B all 658 counts match; remote export wrapper native exit 0, final canonical copy still active. Three complete raw rungs = 3,240 cells, zero scored rungs yet. Full suite: 1,235 passed / 17 skipped / 322.46s; current native usage 43%. CPU scorer parallelism receipt retained.

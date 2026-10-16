@@ -1,0 +1,77 @@
+{
+  "status": "PASS",
+  "unix": 1792130277.2049344,
+  "change": "CPU scorer parallelism 4 to 8; at most two rungs; namespace workers remain 4",
+  "reason": "128 CPUs, measured approximately 69 percent idle and 1.85 TiB available RAM",
+  "jobs": [
+    {
+      "key": "score_v3_E_1p7b_f0p5",
+      "root_identity": {
+        "pid": 2318546,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "36841895"
+      },
+      "xargs_identity": {
+        "pid": 2318887,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "36842005"
+      },
+      "signals_sent": 4,
+      "children_before": [
+        2318892,
+        2318894,
+        2318902,
+        2318907
+      ],
+      "children_after": [
+        2318892,
+        2318894,
+        2318902,
+        2318907,
+        2422955,
+        2422967,
+        2423016,
+        2423090
+      ],
+      "max_declared_samples": 8
+    },
+    {
+      "key": "score_v3_E_1p7b_f1p0",
+      "root_identity": {
+        "pid": 2318547,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "36841895"
+      },
+      "xargs_identity": {
+        "pid": 2318799,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "36841988"
+      },
+      "signals_sent": 4,
+      "children_before": [
+        2318801,
+        2318804,
+        2318808,
+        2318813
+      ],
+      "children_after": [
+        2318801,
+        2318804,
+        2318808,
+        2318813,
+        2423355,
+        2423380,
+        2423428,
+        2423464
+      ],
+      "max_declared_samples": 8
+    }
+  ],
+  "future_wrapper": {
+    "path": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/run_validation.sh",
+    "sha256_before": "2540bbe77a195cab47469bebe94ef914ba86509becb642c4da75b3992cceef85",
+    "sha256_after": "338c12b78ef47ce2da0f42fb98702e3c8e8ae04bbdf936631b41651f9d32a465",
+    "atomic_local_replacement": true,
+    "remote_generation_sources_unchanged": true
+  }
+}
