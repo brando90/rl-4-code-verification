@@ -5,7 +5,7 @@
 <!-- E08_V3_FINAL_RESULTS -->
 ## Matched replay versus expansion continuation: expt_v3
 
-**Last updated:** 10-16-2026 14:20 UTC. **INCOMPLETE: 12,960/17,280 primary validation cells.** [Live results and task-bootstrap intervals](expt_v3/results.md), [execution ledger](expt_v3/results/runtime_progress.md). Healthy native schedulers continue the frozen manifest. Final validation, publication and DONE notification remain required. Zero paid experimental calls; test split unopened.
+**Last updated:** 10-16-2026 14:30 UTC. **INCOMPLETE: 12,960/17,280 primary validation cells.** [Live results and task-bootstrap intervals](expt_v3/results.md), [execution ledger](expt_v3/results/runtime_progress.md). Healthy native schedulers continue the frozen manifest. Final validation, publication and DONE notification remain required. Zero paid experimental calls; test split unopened.
 <!-- /E08_V3_FINAL_RESULTS -->
 
 > **Version 2 — PARTIAL / route blocked (10-13-2026):** The matched step-658 extension stopped at its route-controls gate: Valkyrie authenticates, but managed AWS is unavailable for the existing organization. No new generation batch persisted (0/5,328 cells); all missing identities and unresolved forecasts are published in [expt_v2/results.md](expt_v2/results.md). Reused results reproduce exactly, and version 1 below remains unchanged.

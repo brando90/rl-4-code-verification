@@ -294,3 +294,12 @@ Full suite: 1,368 passed, 17 skipped, six subtests; 312.27 seconds. Validation r
 
 
 10-16-2026 14:20 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 07:30 PDT — expansion 14B native milestone
+
+Expansion 14B model initialization is complete on all eight devices. Native optimizer updates verified: 0/667, with 0 loss tokens; every observed step matches the frozen schedule. The native process and scheduler are live; no scientific cap changed. The replay sequencer remains bound to exact expansion and scheduler identities.
+
+[Checked native evidence](E14_repaired_admission_recovery02.json). Validation remains 12,960/17,280 known primary cells.
+
+
+10-16-2026 14:30 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
