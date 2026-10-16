@@ -4,10 +4,10 @@
 
 **TLDR:** v2-S2 T1 is final PASS: 8/8 train responses, 44,844 output tokens; median absolute log-probability error 0.0000327482 and p99 0.0176024, unsupported/truncated tokens 0/44,844. All six leases released; cumulative 0.355751673/2.0 device-hours. Continue to T2, T3 and T4 before the audits and pilot. C disabled, H2/F2 unavailable, batch 2 skipped.
 
-Last updated: 10-15-2026 20:12 PDT
+Last updated: 10-15-2026 20:17 PDT
 **Status:** T1 PASS; T2 attempt 2 INCOMPLETE-INFRA; A4 repair and final allowed attempt 3 preparation.
 
-## Current state — 10-15-2026 20:12 PDT
+## Current state — 10-15-2026 20:17 PDT
 
 Goal: complete Experiment 13 v2 under A6 through its admitted gates, or publish the binding transition result.
 
@@ -311,3 +311,5 @@ T2 pre-admission shutdown handoff (10-15-2026 19:55 PDT): the published repair p
 T2 shutdown-handoff repair verified (10-15-2026 20:11 PDT): [method](phase2/T2_A4_HANDOFF_REPAIR.md) and [successor](locks/LP_A6_S2_T2_A4_HANDOFF.json), 4,698 bindings with 4,683 hashes unchanged from numbered attempt 2; 15 cumulative infrastructure changes/additions enumerated. Actual kernel exited-process error reproduced; 23 focused checks passed. Required Lean integration **1,194 passed, 3 skipped, zero failures in 532.46 seconds**, direct exit 0. The repair adds read-only owned-worker shutdown synchronization and explicit pre-admission reconciliation, preserving the device guard, original artifacts, science and caps. No new device claim; numbered attempts remain two, cumulative T2 1.452067459/10.0 device-hours.
 
 T2 published handoff admission freeze (10-15-2026 20:12 PDT): [lock](locks/T2_A4_HANDOFF.json), SHA-256 `3fa26f7de05b7e07c1298b23cb358b01c5294eba77bdcc53151204b75a60ced6`, binds tested repair/LP `884418c`, failed numbered attempt 2 `2eca991`, and unadmitted preflight `a3abaaf`. The complete 15-binding delta retains 4,683 earlier hashes and identical science/caps. After publication, the bound recovery supervisor may seek a fresh idle device, rerun health only in a new receipt directory, then admit final numbered attempt 3 and continue the original gate. No new claim or admission yet; all costs remain charged. Required integration passed 1,194 tests with 3 skipped and direct exit 0; this step only binds published references and status.
+
+Concurrent dispatch correction (10-15-2026 20:17 PDT): merged remote `52ac585` without replacing other projects. Its new [experiment-13 dispatch summary](PROMPT_dispatch_e13_v2_main_pilot.md) incorrectly described an 8B model, item-response curriculum arm P, eight test samples, intermediate T5 extension horizons and a different mail route. Corrected it to the binding 4B warm start, independent placebo, 16-sample test outcome, single B extension to 60, audit-before-pilot order, actual missing anchor outcomes and PLAN watchdog notifications. Hosted judge controls had already resolved the earlier 403; funding/allocation remain required. No frozen scientific artifact or runtime was changed. All experiment-13 runtime and root test sources match the revision that passed 1,194 tests with 3 skipped and direct exit 0.
