@@ -1,0 +1,93 @@
+{
+  "status": "OWNERSHIP_ACCEPTED",
+  "attempt": "continuation-01",
+  "owner_session": "codex-rl4cv-e08v3-owner-continuation",
+  "thread_id": "01a142e9-373b-7ec3-a38f-96ba559bf525",
+  "timestamp_utc": "2026-10-16T04:15:30.427821+00:00",
+  "effective_settings": {
+    "model": "gpt-6-astra",
+    "effort": "ultra",
+    "approval_policy": "never",
+    "sandbox_policy": {
+      "type": "danger-full-access"
+    },
+    "cwd": "/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification"
+  },
+  "input_hashes": {
+    "CKPT_e08_v3.md": {
+      "expected": "fbf258b049bc43f64b95a62a76c78f2cb8eb1a806816cfce6f5bc6d609e7203e",
+      "actual": "fbf258b049bc43f64b95a62a76c78f2cb8eb1a806816cfce6f5bc6d609e7203e",
+      "match": true
+    },
+    "RUNBOOK_continuation_owner.md": {
+      "expected": "f52beac9ae7f2f6906813d3650e9caed867dbc8a443fa5854221d4ad49cf9b61",
+      "actual": "f52beac9ae7f2f6906813d3650e9caed867dbc8a443fa5854221d4ad49cf9b61",
+      "match": true
+    },
+    "PROTOCOL.md": {
+      "expected": "3a2728e4e7bbbd5c709f5b5ba6c2f6e1242930f7d4376665ecce5e3a6bf8bb76",
+      "actual": "3a2728e4e7bbbd5c709f5b5ba6c2f6e1242930f7d4376665ecce5e3a6bf8bb76",
+      "match": true
+    },
+    "results/sft_schedule_v3_E.json": {
+      "expected": "506204e7f8e5e2527d2a8be3cb02e89d293e8b54bbcf6a77bc97d9105bfeb738",
+      "actual": "506204e7f8e5e2527d2a8be3cb02e89d293e8b54bbcf6a77bc97d9105bfeb738",
+      "match": true
+    },
+    "results/sft_schedule_v3_R.json": {
+      "expected": "a80244138b5b58083f053ae3b1f5b12ce2dc09ffe925eaaac85e4921cba45254",
+      "actual": "a80244138b5b58083f053ae3b1f5b12ce2dc09ffe925eaaac85e4921cba45254",
+      "match": true
+    },
+    "forecasts/e08_v3_forecast.json": {
+      "expected": "7e4ebbe567792d6509bbac2b78b3c5acd782591fea959c0f3a44ff07744efd5f",
+      "actual": "7e4ebbe567792d6509bbac2b78b3c5acd782591fea959c0f3a44ff07744efd5f",
+      "match": true
+    }
+  },
+  "dispatch_manifest_sha256": "f412d5c566467b634055c48c8eb44ad73d93c685440d0f8b15a63fb21adc665f",
+  "token_validation": {
+    "condition": "E",
+    "size": "1p7b",
+    "steps_verified": 433,
+    "current_logged_step": 433,
+    "loss_tokens": 3723683,
+    "mismatch_count": 0,
+    "resumed_step": 336,
+    "resumed_actual_tokens": 10082,
+    "resumed_expected_tokens": 10082,
+    "first_step_tokens": 12881,
+    "lr_at_335": 1.0486122846486978e-05,
+    "lr_at_336": 1.0437543096486479e-05
+  },
+  "usage_evidence": {
+    "limit_id": "codex",
+    "limit_name": null,
+    "primary": {
+      "used_percent": 93.0,
+      "window_minutes": 10080,
+      "resets_at": 1792649585
+    },
+    "secondary": null,
+    "credits": {
+      "has_credits": false,
+      "unlimited": false,
+      "balance": "0"
+    },
+    "individual_limit": null,
+    "spend_control_reached": null,
+    "plan_type": "pro",
+    "rate_limit_reached_type": null
+  },
+  "watch_status": "INSTALLED_FAILURE_TESTED",
+  "watch_evidence": {
+    "script": "/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/recovery_watch.py",
+    "state": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/recovery_state.json",
+    "config": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/recovery_config.json",
+    "test": "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/results/recovery_selftest_v3.json",
+    "cadence_seconds": 300,
+    "reboot": "cron @reboot plus five-minute periodic retry",
+    "fresh_cli_continuation": "not yet launched; must verify acknowledgement and useful action"
+  },
+  "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/owner_ack.json"
+}
