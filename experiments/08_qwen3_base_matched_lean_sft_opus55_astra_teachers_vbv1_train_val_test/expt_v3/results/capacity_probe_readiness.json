@@ -1,0 +1,93 @@
+{
+  "status": "PASS",
+  "observed_unix": 1792134687.0137098,
+  "cron_exact_preservation_verified": true,
+  "cadence_seconds": 900,
+  "armed": false,
+  "slurm": {
+    "eligible": false,
+    "association_present": false,
+    "idle_eight_gpu_nodes": [],
+    "inventory": [
+      {
+        "node": "ampere1",
+        "state": "MIXED+PLANNED",
+        "gres": "gpu:a100:8"
+      },
+      {
+        "node": "ampere2",
+        "state": "MIXED+PLANNED",
+        "gres": "gpu:a100:8"
+      },
+      {
+        "node": "ampere3",
+        "state": "MIXED+PLANNED",
+        "gres": "gpu:a100:8"
+      },
+      {
+        "node": "ampere4",
+        "state": "MIXED",
+        "gres": "gpu:a100:8"
+      },
+      {
+        "node": "ampere5",
+        "state": "MIXED+PLANNED",
+        "gres": "gpu:a100:8"
+      },
+      {
+        "node": "ampere6",
+        "state": "MIXED+PLANNED",
+        "gres": "gpu:a100:8"
+      },
+      {
+        "node": "ampere8",
+        "state": "MIXED+PLANNED",
+        "gres": "gpu:a100:8"
+      },
+      {
+        "node": "ampere9",
+        "state": "MIXED+PLANNED",
+        "gres": "gpu:a100:8"
+      },
+      {
+        "node": "blackwell1",
+        "state": "MIXED+PLANNED",
+        "gres": "gpu:b200:8"
+      }
+    ],
+    "requires_allocation_and_preparation": true
+  },
+  "focused_tests": {
+    "passed": 35,
+    "subtests_passed": 6,
+    "seconds": 2.63
+  },
+  "selftest": "capacity_event_selftest.json",
+  "production_probe_result": {
+    "status": "UNARMED_OR_EXPIRED"
+  },
+  "original_deadline_unix": 1792383686.05276,
+  "zero_model_calls_per_poll": true,
+  "local_four_device_route": {
+    "eligible": false,
+    "host": "skampere1",
+    "requested_devices": 4,
+    "available": [
+      0,
+      1,
+      2
+    ],
+    "candidates": [
+      1,
+      2
+    ],
+    "requires_atomic_admission": true,
+    "scope": "8B training or 8B/14B inference; never 14B training"
+  },
+  "full_tests": {
+    "passed": 1286,
+    "skipped": 17,
+    "subtests_passed": 6,
+    "seconds": 385.51
+  }
+}

@@ -34,7 +34,7 @@
       }
     }
   },
-  "known_cells": 1080,
+  "known_cells": 2160,
   "paired_E_minus_R": {},
   "primary": {
     "f0p5": {
@@ -165,6 +165,115 @@
           "unit": "task with eight attempts together"
         }
       }
+    },
+    "v3_E_1p7b_f1p0": {
+      "cells_csv": "results/ladder/v3_E_1p7b_f1p0_validation_cells.csv",
+      "diagnostics": {
+        "all_pass_share": 0.0,
+        "ic_tests_rate": 0.05093,
+        "mean_generated_tokens": 4896.0,
+        "mean_pass_rate": 0.05093,
+        "mean_proof_fraction": 0.05093,
+        "n_tasks_with_diversity": 131,
+        "pass_at_8_share": 0.1407,
+        "within_task_diversity_mean_pairwise_jaccard": 0.1207
+      },
+      "failure_taxonomy": {
+        "compile_error": 904,
+        "kernel_success": 55,
+        "no_lean_extracted": 121
+      },
+      "gates": {
+        "a_extraction": {
+          "n": 959,
+          "of": 1080,
+          "pass": false,
+          "share": 0.888,
+          "threshold": 0.9
+        },
+        "b_capped": {
+          "n": 121,
+          "of": 1080,
+          "pass": false,
+          "share": 0.112,
+          "threshold": 0.1
+        },
+        "c_mixed": {
+          "n": 19,
+          "of": 135,
+          "pass": true,
+          "share": 0.1407,
+          "threshold": 0.05,
+          "wilson95": [
+            0.092,
+            0.2094
+          ]
+        },
+        "complete": true,
+        "n_declared": 1080,
+        "n_known": 1080,
+        "pass": false
+      },
+      "notes": {
+        "duplicates_rejected": 0,
+        "extras_rejected": 0,
+        "missing": [],
+        "n_missing": 0,
+        "n_unparseable_theorem_types": 0,
+        "n_vacuous_cells": 1,
+        "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/scored/scored_v3_E_1p7b_f1p0_g8.jsonl"
+      },
+      "per_task_csv": "results/ladder/v3_E_1p7b_f1p0_validation_per_task.csv",
+      "scored_sha256": "4bc2e08a745435144ef4c26bb79b5002039b81287c749daeed798b7a9d2bb0c7",
+      "split": "validation",
+      "status": "COMPLETE",
+      "system": {
+        "condition": "E",
+        "fraction": "f1p0",
+        "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ckpt/v3_E_1p7b/hf/step_667",
+        "label": "v3_E_1p7b_f1p0",
+        "loss_tokens": 5757776,
+        "size": "1.7B",
+        "source": "e08",
+        "start_hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/1.7B/hf/step_658",
+        "start_weights_sha256_manifest": "925d110f5a598d18cc9160f0758c5c64d1097956cb4db3057c9ade82ca6fafb4",
+        "step": 667
+      },
+      "task_bootstrap": {
+        "mixed_share": {
+          "ci95": [
+            0.08148148148148149,
+            0.2
+          ],
+          "draws": 10000,
+          "mean": 0.14074074074074075,
+          "p_value": null,
+          "seed": 0,
+          "unit": "task with eight attempts together"
+        },
+        "pass_at_8": {
+          "ci95": [
+            0.08148148148148149,
+            0.2
+          ],
+          "draws": 10000,
+          "mean": 0.14074074074074075,
+          "p_value": null,
+          "seed": 0,
+          "unit": "task with eight attempts together"
+        },
+        "pass_rate": {
+          "ci95": [
+            0.027777777777777776,
+            0.07685185185185185
+          ],
+          "draws": 10000,
+          "mean": 0.05092592592592592,
+          "p_value": null,
+          "seed": 0,
+          "unit": "task with eight attempts together"
+        }
+      }
     }
   },
   "uncertainty": "10000 percentile paired task-bootstrap draws, seed 0; eight attempts together; single training seed; p-val=n/a",
@@ -177,7 +286,6 @@
     "v3_R_8b_f1p0",
     "v3_R_14b_f0p5",
     "v3_R_14b_f1p0",
-    "v3_E_1p7b_f1p0",
     "v3_E_4b_f0p5",
     "v3_E_4b_f1p0",
     "v3_E_8b_f0p5",

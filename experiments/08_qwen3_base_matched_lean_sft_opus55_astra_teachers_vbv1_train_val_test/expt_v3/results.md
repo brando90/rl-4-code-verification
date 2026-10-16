@@ -2,9 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/results.md>
 
-**Status:** RUNNING. **Last updated:** 10-16-2026 00:02 PDT.
+**Status:** RUNNING. **Last updated:** 10-16-2026 00:08 PDT.
 
-Known complete validation cells: **1080/17,280**. Unknown systems remain pending; no paid model calls.
+Known complete validation cells: **2160/17,280**. Unknown systems remain pending; no paid model calls.
 
 | System | Known / declared | Extracted | Capped | Mixed /135 | Gates | Pass rate [95% interval] |
 |---|---:|---:|---:|---:|---|---|
@@ -17,7 +17,7 @@ Known complete validation cells: **1080/17,280**. Unknown systems remain pending
 | v3_R_14b_f0p5 | 0/1,080 | — | — | — | PENDING | — |
 | v3_R_14b_f1p0 | 0/1,080 | — | — | — | PENDING | — |
 | v3_E_1p7b_f0p5 | 1,080/1,080 | 936 | 144 | 18 | FAIL | 0.0491 [0.0250, 0.0769] |
-| v3_E_1p7b_f1p0 | 0/1,080 | — | — | — | PENDING | — |
+| v3_E_1p7b_f1p0 | 1,080/1,080 | 959 | 121 | 19 | FAIL | 0.0509 [0.0278, 0.0769] |
 | v3_E_4b_f0p5 | 0/1,080 | — | — | — | PENDING | — |
 | v3_E_4b_f1p0 | 0/1,080 | — | — | — | PENDING | — |
 | v3_E_8b_f0p5 | 0/1,080 | — | — | — | PENDING | — |
@@ -37,4 +37,4 @@ Frozen forecast assessment: [prediction and measured outcome](results/forecast_a
 
 Execution and recovery events: [runtime ledger](results/runtime_progress.md).
 
-**TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is 1080/17,280; incomplete comparisons remain unresolved.
+**TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is 2160/17,280; incomplete comparisons remain unresolved.

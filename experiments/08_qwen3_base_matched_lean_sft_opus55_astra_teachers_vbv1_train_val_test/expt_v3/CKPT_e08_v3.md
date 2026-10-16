@@ -1,20 +1,20 @@
 # Matched replay versus expansion continuation checkpoint
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
-**TLDR:** All Phase A training/generation verified; first scored rung fails format gates, with all remaining cells still required.
+**TLDR:** All Phase A training/generation verified; both E1.7 scored rungs fail format gates, with all remaining cells still required.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-16-2026 00:03 PDT
+Last updated: 10-16-2026 00:16 PDT
 ## Goal
 - Complete all 17,280 validation cells, paired bootstrap, namespace diagnostic, forecast assessment, publication and actual DONE notification; zero paid experimental model calls; test split unopened.
 ## Current execution
 - Sole writer recovery-01: native gpt-6-astra/ultra, never/danger-full-access; PID 2580398, boot 839e7dd6-64e1-4a80-9498-31d30b3cc2df, start 36376767. Host owner_ack.json matches all six recovery-dispatch hashes at acceptance; initial transfer remains historical.
 - Phase A PID 411567/start 37274439 adopts four active scorers; Phase B PID 284442/start 37251741 waits for Phase A. Runtime /lfs/skampere1/0/brando9/rl4cv_e08/sft_v3.
 - E/R 1.7B and 4B training and eight exports verified: 23,021,424 additional loss tokens, 41,508,194 processed real tokens. [Receipt](results/phase_a_training_verification.json). Both retained post-export exit 2 incidents were reconciled without replay.
-- Eight complete generated rungs = 8,640 exact cells. All generation children exited 0; first half-budget E1.7 rung fully scored/analyzed (1,080/17,280 cells); gates FAIL: extracted936/1080, capped144/1080, mixed18/135.
+- Eight complete generated rungs = 8,640 exact cells. All generation children exited 0; both E1.7 rungs scored/analyzed (2,160/17,280 cells). Half/full: extracted936/959, capped144/121, mixed18/19; both fail frozen format gates.
 - Primary scoring and namespace diagnostics use eight workers per rung, at most four combined jobs (32 active compilation slots), frozen 600s timeout; expired orphan children cleaned separately by exact pidfd guard. All current generation children preserved; future remote shell launches use immutable snapshots.
 - All four training sizes and exact generator environments verified on skampere2/3. Pending routes remain remote; healthy local E4B full generation retained. 14B training must use eight devices; inference uses the frozen permitted layout.
-- Latest full suite: 1,268 passed / 17 skipped / 6 subtests / 299.40s; 16 focused recovery checks plus 6 subtests pass. Latest native Vals weekly usage 46%, credits 0. Keep personal reserve and original finite deadline/attempt limits.
+- Latest full suite: 1,286 passed / 17 skipped / 6 subtests / 385.51s; 16 focused recovery checks plus 6 subtests pass. Latest native Vals weekly usage 48%, credits 0. Keep personal reserve and original finite deadline/attempt limits.
 ## Waits and recovery
-- Host cron every five minutes and reboot is installed/tested; watch OBSERVING, no issues. Fresh capacity: all skampere2 devices occupied; only skampere3 GPU2 has zero allocated memory. No whole-node route available currently; continue independent work.
+- Host recovery cron every five minutes/reboot; orphan cleanup every minute; alternate capacity probe every15min, inactive until explicit resource wait. All tested; watch OBSERVING, no issues. Fresh capacity: all skampere2 devices occupied; only skampere3 GPU2 has zero allocated memory. No whole-node route available currently; continue independent work.
 - Slurm association was already requested 10-14; do not duplicate. Inventory and real release events are in host recovery_config.json. No paid cloud or smaller 14B training layout.
 ## Next steps
 - [p 10/10] Finish and publish all eight priority scoring/namespace rungs; preserve every native failure and missing cell; then let Phase B run 8B/14B under exact admission.
@@ -63,3 +63,7 @@ Last updated: 10-16-2026 00:03 PDT
 - 10-16-2026 00:00 PDT: CPU concurrency increased to four rungs (32 active slots) after observed 71–83% idle on 128 CPUs/1.8TiB available RAM. Both original E1.7 scorers preserved; new A/B identities recorded and both R1.7 scorer rungs launched. Diagnostic finalization now validates complete receipt coverage while retaining native timeout unknowns and omitting affected point estimates; all primary 17,280 known-cell gates unchanged. Eighteen focused checks pass; full suite 1,268 passed/17 skipped/6 subtests in299.40s.
 
 - 10-16-2026 00:03 PDT: first full scored rung E1.7-half has 1,080 known cells, extracted936 (gate972), capped144 (limit108), mixed18 (minimum7), kernel53/1080 = 0.0491 [0.0250,0.0769], 10,000 task-bootstrap draws seed0, p-val=n/a. Missing checkout scorer dependency repaired via exact clean pinned clone link; only deterministic analysis rerun. All four active scorer roots adopted unchanged; analysis_error cleared. Native failure retained.
+
+- 10-16-2026 00:16 PDT: full-budget E1.7 completes: 959/1,080 extracted (<972),121 capped (>108),19/135 mixed (>=7),55 kernel successes; 0.0509 [0.0278,0.0769],10,000 task-bootstrap draws seed0,p-val=n/a. Both E1.7 rungs fail gates; all16 remain required. Alternate capacity producer passes35 focused checks/6 subtests and actual harmless event-triggered recovery; installed15min cron, inactive while independent work continues. No eligible local4-device or Slurm8-device route in native preflight.
+
+- 10-16-2026 00:20 PDT: capacity/full validation checks passed1,286/17 skipped/6 subtests in385.51s;35 focused checks pass after explicit14B inference routing case. Native Vals weekly usage48%,credits0. Existing four CPU scoring rungs remain healthy;17 complete sample batches,2 whole rungs analyzed. Global agents-config refresh is up to date.
