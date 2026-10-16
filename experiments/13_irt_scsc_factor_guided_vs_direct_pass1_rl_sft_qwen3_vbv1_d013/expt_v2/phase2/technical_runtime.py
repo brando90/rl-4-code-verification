@@ -167,6 +167,7 @@ def run(config,stage):
         return generate(config,manifest,list(range(8)),root=config['stage_root'])
     if stage=='preflight':
         bound(config,HERE/'checkpoint_state_preflight.py')
+        bound(config,HERE/'worker_shutdown.py')
         from checkpoint_state_preflight import run as checkpoint_preflight
         checkpoint_preflight(config)
         import runtime,anchor_runtime

@@ -5,6 +5,8 @@ from pathlib import Path
 def inspect_worker(worker):
     """Inspect only the owned real worker, without a prompt or optimizer update."""
     from worker_state import complete_tensor,parameter_digest,optimizer_digest
+    from worker_shutdown import process_identity
+    import os
     distributed=0;cpu_offloaded=0
     for value in worker.model.state_dict().values():
         if not hasattr(value,'full_tensor'):continue
@@ -16,7 +18,8 @@ def inspect_worker(worker):
     if distributed==0 or cpu_offloaded==0:
         raise ValueError('checkpoint preflight did not exercise CPU-offloaded DTensors')
     return {'distributed_state_tensors':distributed,'cpu_offloaded_state_tensors':cpu_offloaded,
-            'parameters':parameter_digest(worker),'optimizer':optimizer_digest(worker)}
+            'parameters':parameter_digest(worker),'optimizer':optimizer_digest(worker),
+            'process_identity':process_identity(os.getpid())}
 
 
 def run(config):
@@ -24,12 +27,14 @@ def run(config):
     from trainer_core import policy_session
     from training_checkpoint import owned_call,write_new
     from runtime import check_lease
+    from worker_shutdown import wait_for_workers
     check_lease(config)
     with policy_session(config) as (policy,_):
         policy.prepare_for_training()
         workers=owned_call(policy,inspect_worker)
+    shutdown=wait_for_workers([worker['process_identity'] for worker in workers])
     result={'condition':'v2-S2','status':'PASS','scope':'non-probe checkpoint infrastructure',
-            'workers':workers,'optimizer_updates':0,'generated_responses':0,
+            'workers':workers,'shutdown':shutdown,'optimizer_updates':0,'generated_responses':0,
             'admission_statistics_computed':False}
     write_new(Path(config['attempt_root'])/'dtensor_state_preflight.json',result)
     return result

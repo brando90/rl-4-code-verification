@@ -5,9 +5,9 @@
 **TLDR:** v2-S2 T1 is final PASS: 8/8 train responses, 44,844 output tokens; median absolute log-probability error 0.0000327482 and p99 0.0176024, unsupported/truncated tokens 0/44,844. All six leases released; cumulative 0.355751673/2.0 device-hours. Continue to T2, T3 and T4 before the audits and pilot. C disabled, H2/F2 unavailable, batch 2 skipped.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-15-2026 19:55 PDT
+Last updated: 10-15-2026 20:11 PDT
 
-## Current state — 10-15-2026 19:55 PDT
+## Current state — 10-15-2026 20:11 PDT
 
 Goal: complete Experiment 13 v2 under A6 through its admitted gates, or publish the binding transition result.
 
@@ -346,3 +346,5 @@ T2 A4 CPU-offload repair (10-15-2026 19:45 PDT): [repair](phase2/T2_A4_CPU_REPAI
 T2 final A4 admission freeze (10-15-2026 19:47 PDT): [admission lock](locks/T2_A4_CPU.json), hash `c8b4b2699b39a7d01f8bb26a503d11193a137e50cf1074d0b2387b9c0e77d924`, binds tested repair/LP revision `9b80189`, regression PASS and failed-attempt-2 publication `2eca991`. All 4,690 successor bindings verify, including seven infrastructure changes/additions and 4,683 unchanged prior hashes. Complete attempt 3 may proceed only after this publication and the actual offloaded-model plus non-probe generator preflight. Required integration just passed 1,175 tests with 3 skipped and direct exit 0; this step binds references and status only. No device is currently claimed; cumulative 1.399477372/10.0 device-hours retained.
 
 T2 pre-admission shutdown handoff (10-15-2026 19:55 PDT): the published repair passed real-model hashing for **399/399 CPU-offloaded distributed tensors, 4,411,424,256 elements**, on the claimed idle device. The subsequent unchanged device guard encountered the shutting-down owned Ray worker and raised `PermissionError` reading its process environment, before generator engine construction. [Evidence](phase2/T2_A4_CPU_preflight_failure.json). Zero experiment responses, optimizer updates or admission statistics; **numbered attempt 3 was not admitted**. Cleanup verified, lease released, 0.052590087 additional device-hours charged; cumulative **1.452067459/10.0**. Preserve this preflight and publish a tested shutdown wait plus explicit pre-admission reconciliation. The device guard and scientific settings remain unchanged.
+
+T2 shutdown-handoff repair verified (10-15-2026 20:11 PDT): [method](phase2/T2_A4_HANDOFF_REPAIR.md) and [successor](locks/LP_A6_S2_T2_A4_HANDOFF.json), 4,698 bindings with 4,683 hashes unchanged from numbered attempt 2; 15 cumulative infrastructure changes/additions enumerated. Actual kernel exited-process error reproduced; 23 focused checks passed. Required Lean integration **1,194 passed, 3 skipped, zero failures in 532.46 seconds**, direct exit 0. The repair adds read-only owned-worker shutdown synchronization and explicit pre-admission reconciliation, preserving the device guard, original artifacts, science and caps. No new device claim; numbered attempts remain two, cumulative T2 1.452067459/10.0 device-hours.
