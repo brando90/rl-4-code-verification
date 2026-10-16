@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/results.md>
 
-**Status:** RUNNING. **Last updated:** 10-16-2026 01:10 PDT.
+**Status:** RUNNING. **Last updated:** 10-16-2026 01:14 PDT.
 
 Known complete validation cells: **6480/17,280**. Unknown systems remain pending; no paid model calls.
 
@@ -31,7 +31,7 @@ Primary four-size decision: `{"f0p5": {"status": "INCOMPLETE", "selected": null}
 
 Three-size sensitivity (4B/8B/14B): `{"f0p5": {"status": "INCOMPLETE", "selected": null}, "f1p0": {"status": "INCOMPLETE", "selected": null}}`.
 
-Hosted Smooth Conjunctive Score for Code verification judging remains deferred at $0 spend. Namespace escaping is a separate diagnostic and never changes primary scores; [diagnostic tables](results/namespace_diagnostic). The test split remains unopened.
+Hosted Smooth Conjunctive Score for Code verification judging remains deferred at $0 spend. Five completed namespace diagnostics have been checked; each has zero score delta. Namespace escaping is a separate diagnostic and never changes primary scores; [diagnostic tables](results/namespace_diagnostic). The test split remains unopened.
 
 Frozen forecast assessment: [prediction and measured outcome](results/forecast_assessment_v3.json). Incomplete outcomes have no hit/miss verdict.
 

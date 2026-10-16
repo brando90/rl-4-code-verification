@@ -1,15 +1,15 @@
 # Matched replay versus expansion continuation checkpoint
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
-**TLDR:** All Phase A training/generation verified; six rungs scored and four diagnostics checked; replay 4B half passes gates and all remaining cells still required.
+**TLDR:** All Phase A training/generation verified; six rungs scored and five diagnostics checked; replay 4B half passes gates and all remaining cells still required.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-16-2026 01:12 PDT
+Last updated: 10-16-2026 01:15 PDT
 ## Goal
 - Complete all 17,280 validation cells, paired bootstrap, namespace diagnostic, forecast assessment, publication and actual DONE notification; zero paid experimental model calls; test split unopened.
 ## Current execution
 - Sole writer recovery-01: native gpt-6-astra/ultra, never/danger-full-access; PID 2580398, boot 839e7dd6-64e1-4a80-9498-31d30b3cc2df, start 36376767. Host owner_ack.json matches all six recovery-dispatch hashes at acceptance; initial transfer remains historical.
 - Phase A PID 2265174/start 37543344 adopts four existing scorers and starts both E4 rungs; Phase B PID 2265309/start 37543366 waits for Phase A. Runtime /lfs/skampere1/0/brando9/rl4cv_e08/sft_v3.
 - E/R 1.7B and 4B training and eight exports verified: 23,021,424 additional loss tokens, 41,508,194 processed real tokens. [Receipt](results/phase_a_training_verification.json). Both retained post-export exit 2 incidents were reconciled without replay.
-- Eight complete generated rungs = 8,640 exact cells. All generation children exited 0; all four 1.7B and both replay 4B rungs scored/analyzed (6,480/17,280 cells). Only replay 4B half passes gates among these six; four namespace diagnostics have zero score delta.
+- Eight complete generated rungs = 8,640 exact cells. All generation children exited 0; all four 1.7B and both replay 4B rungs scored/analyzed (6,480/17,280 cells). Only replay 4B half passes gates among these six; five namespace diagnostics have zero score delta.
 - Primary scoring and namespace diagnostics use eight workers per rung, at most six combined jobs (48 active compilation slots), frozen 600s timeout; expired orphan children cleaned separately by exact pidfd guard. All generation finished; future remote shell launches use immutable snapshots.
 - All four training sizes and exact generator environments verified on skampere2/3. Pending large-model routes remain remote. 14B training must use eight devices; inference uses the frozen permitted layout.
 - Latest full suite: 1,287 passed / 17 skipped / 6 subtests / 331.82s; 16 focused recovery checks plus 6 subtests pass. Latest native Vals weekly usage 49%, credits 0. Keep personal reserve and original finite deadline/attempt limits.
@@ -79,3 +79,5 @@ Last updated: 10-16-2026 01:12 PDT
 - 10-16-2026 01:07 PDT -- Replay 4B full exact 1,080 cells verified: 970 extracted (<972), 110 capped (>108), 40/135 mixed (>=7); format/cap FAIL. Kernel 132/1,080 = 0.1222 [0.0833,0.1639], 10,000 task-bootstrap draws, seed0, p-val=n/a. Four completed namespace diagnostics pass exact hashes/coverage; expansion1.7B half changes one cell, others zero, all score deltas 0 [0,0]. Original first-error samples retain one native timeout. Coverage 5,400/17,280.
 
 - 10-16-2026 01:12 PDT -- Replay 1.7B half exact 1,080 cells verified: 955 extracted (<972), 125 capped (>108), 20/135 mixed (>=7); format/cap FAIL. Kernel 40/1,080 = 0.0370 [0.0204,0.0565]. Expansion-minus-replay +0.0120 [−0.0037,0.0296], 10,000 paired task-bootstrap draws, seed0, p-val=n/a. All four 1.7B rungs fail gates, excluding a primary common checkpoint; full manifest and separate three-size assessment remain mandatory. Coverage 6,480/17,280.
+
+- 10-16-2026 01:15 PDT -- Expansion 1.7B full namespace diagnostic verified: exact 1,080 cells, zero changed/unknown cells, delta0 [0,0], 10,000 paired task-bootstrap draws seed0,p-val=n/a. All24 original-error sample receipts verified; two native timeouts retained. Five diagnostics complete; both expansion4B scorers and replay1.7B half diagnostic continue.
