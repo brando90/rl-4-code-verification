@@ -4,7 +4,7 @@
 
 **TLDR:** Phase A: DONE; Phase B: RUNNING. 12,960/17,280 validation cells known. [Execution events and verified training progress](results/runtime_progress.md).
 
-**Status:** RUNNING. **Last updated:** 10-16-2026 07:47 PDT.
+**Status:** RUNNING. **Last updated:** 10-16-2026 08:00 PDT.
 
 Known validation cells: **12960/17,280**; 12960 belong to complete rungs. [Every missing/failed cell](results/coverage) remains in the declared denominator; no paid model calls.
 
@@ -56,5 +56,7 @@ Execution update (10-16-2026 07:20 PDT): [Repaired 14B expansion](results/E14_re
 Execution update (10-16-2026 07:30 PDT): [Expansion 14B model initialized; 0 updates verified](results/E14_repaired_admission_recovery02.json), totaling 0 loss tokens. Every observed token count matches the frozen schedule.
 
 Execution update (10-16-2026 07:47 PDT): [Expansion 14B model initialized; 1 updates verified](results/E14_repaired_admission_recovery02.json), totaling 12,881 loss tokens. Every observed token count matches the frozen schedule.
+
+Execution constraint (10-16-2026 08:00 PDT): **12,960/17,280 primary cells remain checked;4,320are missing.** Expansion14B has2token-matched updates. Its measured transport rate projects about283h remaining training against61.4h before the fixed deadline. Healthy training is preserved, with native completion checks prepared for explicit handoff. [Measurements, limitations and finite continuation](results/E14_two_step_operational_projection_recovery02.json).
 
 **TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is 12960/17,280; incomplete comparisons remain unresolved.

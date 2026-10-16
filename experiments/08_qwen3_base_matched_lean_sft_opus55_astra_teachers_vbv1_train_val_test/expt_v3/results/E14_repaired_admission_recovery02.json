@@ -1,5 +1,5 @@
 {
-  "status": "TRAINING",
+  "status": "TRAINING_WITH_EXTERNAL_BANDWIDTH_CONSTRAINT",
   "admission": {
     "status": "RUNNING",
     "host": "skampere1",
@@ -660,9 +660,9 @@
     "training_updates": 0
   },
   "progress": {
-    "checked_unix": 1792162047.8687768,
-    "checked_steps": 1,
-    "loss_tokens": 12881,
+    "checked_unix": 1792162820.9851325,
+    "checked_steps": 2,
+    "loss_tokens": 21133,
     "token_counts_match": true,
     "first_native_update_verified": true,
     "schedule_sha256": "506204e7f8e5e2527d2a8be3cb02e89d293e8b54bbcf6a77bc97d9105bfeb738",
@@ -670,7 +670,8 @@
     "driver_snapshot": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/E14_initialized_driver_1792162047868584362.log",
     "driver_sha256": "a72dd462825e3fc014682aa603f109f74becc80a5260be69e990d0f4a8921f57",
     "step_seconds": {
-      "1": 927.4431762695312
+      "1": 927.4431762695312,
+      "2": 757.0901489257812
     }
   },
   "retained_failure": "E14_initialization_failure_recovery02.json",
@@ -746,5 +747,7 @@
   "scientific_configuration_changed": false,
   "paid_model_calls": 0,
   "test_split_opened": false,
-  "latest_checked_unix": 1792162047.907388
+  "latest_checked_unix": 1792162820.9851394,
+  "transport_evidence": "E14_transport_observation_recovery02.json",
+  "operational_projection": "E14_two_step_operational_projection_recovery02.json"
 }

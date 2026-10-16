@@ -1,0 +1,63 @@
+{
+  "checked_unix": 1792162579.5783632,
+  "E": {
+    "steps": 667,
+    "half_step": 335,
+    "padded_tokens_half": 5868672,
+    "padded_tokens_full": 11693280,
+    "first_padded_tokens": [
+      21232,
+      17360,
+      18528,
+      17264
+    ],
+    "first_two_seconds_per_padded_token": [
+      0.043681385468610175,
+      0.04361118369388141
+    ],
+    "remaining_half_padded_tokens": 5830080,
+    "remaining_full_padded_tokens": 11654688
+  },
+  "R": {
+    "steps": 658,
+    "half_step": 334,
+    "padded_tokens_half": 5895168,
+    "padded_tokens_full": 11701136,
+    "first_padded_tokens": [
+      21232,
+      18528,
+      19136,
+      16896
+    ]
+  },
+  "operational_projection": {
+    "method": "Illustrative linear scaling using only second update; no statistical confidence interval or steady-state guarantee. Frozen input lengths include EOT and batch padding to8.",
+    "seconds_per_padded_token": 0.04361118369388141,
+    "remaining_hours_until_deadline": 61.41846513039536,
+    "expansion_half_remaining_hours": 70.62685828611781,
+    "both_conditions_remaining_training_hours": 282.93753632943447,
+    "excludes": "checkpoint/export, generation, scoring, diagnostics and publication time",
+    "scientific_forecast_unchanged": true
+  },
+  "slurm_recheck": {
+    "checked_unix": 1792162440,
+    "command": "ssh -o BatchMode=yes -o ConnectTimeout=10 ilc showaccount",
+    "exit_code": 0,
+    "association_rows": 0,
+    "note": "Native command returned headers and no account rows; existing association request is not duplicated."
+  },
+  "training_progress": {
+    "checked_steps": 2,
+    "loss_tokens": 21133,
+    "token_counts_match": true,
+    "native_identity": {
+      "pid": 3830693,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "39855743"
+    },
+    "step_seconds": {
+      "1": 927.4431762695312,
+      "2": 757.0901489257812
+    }
+  }
+}

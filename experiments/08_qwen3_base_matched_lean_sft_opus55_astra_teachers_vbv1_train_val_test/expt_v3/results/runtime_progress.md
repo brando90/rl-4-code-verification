@@ -312,3 +312,12 @@ Expansion 14B model initialization is complete on all eight devices. Native opti
 
 
 10-16-2026 14:47 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 08:00 PDT — measured transport capacity blocker
+
+Expansion14B has two verified optimizer updates, 21,133 loss tokens, matching the frozen schedule. Step times are927.443s and757.090s; normalized by frozen padded input lengths they are0.0436814s/token and0.0436112s/token. Using only the second rate gives an illustrative70.63h to the half checkpoint and282.94h for remainingE/R14 training, excluding exports and validation, versus about61.4h remaining under the original deadline. This is a two-step operational projection, not a confidence interval or a change to the frozen scientific forecast. Exact owned socket deltas show about111MiB/s through the1Gb/s skampere1 link. No configured faster local path or additional device meeting the installed sharing guard exists; Slurm association remains absent. The live native loop has no supported early-checkpoint trigger. Healthy training is preserved; no iterations are replayed and no scientific/recovery cap is extended. Independent implementation/validation machinery is complete and tested; remaining4320primary cells stay unknown. Native continuation is prepared for a final identity-fenced release after this publication, retaining automatic strict completion checks and actual DONE delivery only on complete success.
+
+[Native transport observation](E14_transport_observation_recovery02.json) and [frozen-length operational projection](E14_two_step_operational_projection_recovery02.json).
+
+
+10-16-2026 15:00 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
