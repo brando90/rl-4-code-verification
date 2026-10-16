@@ -1,0 +1,29 @@
+# expt_v3 protocol: known-MDP sanity family (frozen before any RL row)
+
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/ub9/e16-toy-env-generation/experiments/16_toy_env_generation_ginc_hmm_rho_h_law/expt_v3/PROTOCOL.md>
+
+Written 10-16-2026 00:00 PDT by ultimate_brando9, before `results/mdp_v1/rl_*.jsonl` existed. Only start policies and six development trajectories (n4, used to check that the code runs and that RL can move the target) were looked at.
+
+## Why
+
+Night 1 (GINC HMM) was in a forgetting regime; Night 2 (`expt_v2`, Codex on skampere1) got positive point utilities but gains of a few tenths of a point, inside the noise, and the law tied the baselines. A known MDP checks the pipeline itself where the truth is computable: the target value is exact (dynamic programming, no evaluation noise), and an exact-gradient oracle says which training distribution is right without sampling.
+
+## Family
+
+- Chain of 16 states in 4 regions, goal at the end, 4 actions; the correct action moves forward, the rest stay. Each region has its own hidden linear map from state features to the correct action. One action = one generated token.
+- Response = episode from a start state until the goal or the horizon T(s0) = (16 − s0) + slack. Reward = 1 on the goal + N(0, sigma²). Episodes that hit the horizon are capped: kept in the group baseline, not admitted.
+- Target: every start state, slack 4, no noise; exact success probability, averaged over start states.
+- Candidates (22): 16 base settings (one region × slack {0, 6} × sigma {0, 0.5}) and 6 generator mixtures (random 2–4 region subsets, slack {0, 2, 6}, sigma {0, 0.5}; seed 1616).
+- Scales: MLPs with 72 / 276 / 1,604 / 18,692 parameters, behavior-cloned 60 / 80 / 100 / 140 steps on a noisy demonstrator (correct 50%, regions 2–3 four times rarer).
+- RL: GRPO, group 8, batch 16 start states, leave-one-out advantages, token-normalized loss, exact KL to the start policy with coefficient 1.0 on visited states, Adam lr 3e-3. Budgets 25.6k / 51.2k / 102.4k generated tokens. Five training seeds; an observation is the five-seed mean.
+- Probes: 512 start-state groups of 8 under the start policy; rho and H from `rl4cv.experience.measure_environment`, unchanged.
+- Oracle: from the same start policy, as many Adam steps as GRPO took to reach 102.4k tokens, on the exact expected success of the candidate (same KL).
+
+## Tests (same as README T1/T2; Eq. 7 from `rl4cv.utility_model`, unchanged)
+
+- **Gate:** at least 3 candidates with positive n4 utility at 102.4k tokens (five-seed mean) before T1/T2 are read.
+- **Separation:** |corr(log rho, H)| across the 88 (scale, candidate) probes below 0.85.
+- **T1:** Eq. 7 fit on n1–n3 predicts n4 with lower RMSE and higher pairwise rank accuracy than budget-and-scale only.
+- **T2:** at n4 the law's allocation regret is below uniform random and below each of: best fixed candidate from n1–n3, highest start success, highest mixed-group share.
+- **Verdict:** SUCCESS if T1 and T2 hold against every baseline; CHOICE ONLY if T2 beats random but not every baseline; NO ADVANTAGE otherwise. NOT YET MEANINGFUL if the gate fails.
+- **Sanity readouts (descriptive):** Spearman of law prediction and of observed utility against the exact-gradient oracle at n4; whether the high-rho noisy candidates (sigma 0.5) fool the law; five-seed SD of the picked candidate.
