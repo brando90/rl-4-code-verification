@@ -4,8 +4,8 @@
 
 **TLDR:** The corrected adapter (amended once, V2-A1, before any evaluation) was run in mapping-only mode (no Lean, no model calls) over the 11 primary systems' 4,626 compiling cells with extracted tests on `skampere1` (26.2 s). It maps every gold symbol in 3,121 cells before any probe (version 1 recorded 3,444 after its Lean probes), leaves 263 cells to the agreement probe, changes the entry point in 379 of the 3,624 cells both versions map, and excludes a helper in 364 cells. Static controls on all 882 gold suites: gold maps to itself at step 1 in 882/882; renamed gold is never mapped to a wrong symbol statically (0/882; 855 deferred to the probe). No pass rate, correlation or hidden outcome was computed, and none may be until the frozen forecast is read against Emily's evaluation.
 
-**Status:** CENSUS AND STATIC CONTROLS DONE, PROTOCOL LOCKED (+ amendment V2-A1), FORECAST FROZEN (+ amendment A1); EVALUATION PENDING (owner Emily Xia)
-**Last updated:** 10-14-2026 (see CKPT_e12_v2.md for the exact stamp)
+**Status:** RUNNING — runtime implementation verified; dynamic controls are next. Frozen census, protocol and forecasts unchanged.
+**Last updated:** 10-15-2026 20:40 PDT
 
 ## Static controls over all 882 gold suites (`results/static_controls_v2.json`, 10.2 s)
 
@@ -75,3 +75,17 @@ Reading: the entry-point changes concentrate in Claude Code (112), Codex (84), G
 ## What is not here, on purpose
 
 No version-2 hidden pass/fail, pass rate, `hidden_all_pass`, P1, P2, P3 or G-A value exists. The protocol is locked ([PROTOCOL.md](PROTOCOL.md), amendment V2-A1 appended) and the forecast frozen (`forecasts/e12_v2_forecast.json` plus `e12_v2_forecast_amendment_A1.json`) after this census and before any evaluation. Emily's run ([cc.md](cc.md)) produces the outcomes; this page is then extended below this line without changing the census above.
+
+## Execution update — 10-15-2026
+
+Both frozen forecasts and all five amendment-pinned inputs verified. All 64 adapter tests and 13 new runtime, cache, retry and analysis tests pass. Lean reports v4.22.0. The start email was sent. Two low-priority Lean workers will run controls before the primary evaluation; no model or judge calls, graphics processors or Vals spend.
+
+| Phase | Status | Evidence |
+|---|---|---|
+| Hash and adapter preflight | DONE | Both forecasts, five pinned inputs; 64/64 tests |
+| Runtime and analysis scripts | DONE | 13/13 new tests; full suite 1,191 passed / 18 skipped |
+| Dynamic controls C1–C4 | PENDING | No outcome yet |
+| Full primary evaluation | PENDING | 0/4,626 eligible groups; 9,856 declared cells |
+| Analysis and final publication | PENDING | Frozen predictions unchanged |
+
+Verification at 10-15-2026 20:39 PDT: full repository suite **1,191 passed / 18 skipped**; 77 current targeted checks pass. Synthetic Lean bridge: 2/2 tests evaluable, one passing and one deliberately failing. Pinned toolchain, Mathlib manifest and version-1 helper hashes match.
