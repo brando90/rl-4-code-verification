@@ -110,7 +110,7 @@ def main():
         jobs.append({'task_id': row['task_id'], 'sample_idx': int(row['sample_idx']), 'names_escaped': count,
                      'original_sha256': hashlib.sha256(original.encode()).hexdigest(),
                      'transformed_sha256': hashlib.sha256(changed.encode()).hexdigest(), 'path': str(path)})
-    with ProcessPoolExecutor(max_workers=4) as pool:
+    with ProcessPoolExecutor(max_workers=8) as pool:
         results = list(pool.map(check, jobs))
     by_id = {(r['task_id'], r['sample_idx']): r for r in results}
     combined = []
@@ -145,7 +145,7 @@ def main():
         path.parent.mkdir(parents=True, exist_ok=True); path.write_text(text)
         error_jobs.append({'task_id': row['task_id'], 'sample_idx': int(row['sample_idx']),
                            'original_sha256': row['lean_sha256'], 'path': str(path)})
-    with ProcessPoolExecutor(max_workers=4) as pool:
+    with ProcessPoolExecutor(max_workers=8) as pool:
         errors = list(pool.map(original_error, error_jobs))
     summary['original_first_error_sample'] = {
         'selection': "first 24 compile-error cells in ascending sha256('rl4cv-e08-v3-taxonomy-sample:' + task_id + '#' + sample_idx)",

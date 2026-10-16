@@ -1,27 +1,26 @@
 # Matched replay versus expansion continuation checkpoint
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
-**TLDR:** Recovery-01 active; all four Phase A runs completed their token budgets, final replay export verification and validation continue.
+**TLDR:** All Phase A training is verified; five exact generation rungs are complete; scoring and diagnostics continue before Phase B.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-15-2026 23:05 PDT
+Last updated: 10-15-2026 23:21 PDT
 ## Goal
-- Complete replay/expansion supervised fine-tuning and all 17,280 validation cells at four sizes; $0 paid calls.
-## What ran
-- Initial writer transfer: `continuation-01`, thread `01a142e9-373b-7ec3-a38f-96ba559bf525`, session `codex-rl4cv-e08v3-owner-continuation`; actual Astra/ultra, never/danger-full-access verified in native transcript.
-- Adopted Phase A scheduler PID 195490 and expansion wrapper 195690; runtime `/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3`; no healthy job restarted.
-- Host `recovery_watch.py` cron every 5 minutes and reboot; `recovery_state.json`, `recovery_config.json`, [watch runbook](RUNBOOK_recovery_supervision.md); real fake-failure test PASS, 5 focused tests pass; full suite 1,212 passed / 17 skipped in 305.20s.
-## Results
-- Six initial dispatch hashes match; full expansion 1.7B training verified: 667/667 counts, 5,757,776 loss tokens, 10,383,459 processed real tokens; final export hash check PASS. Resume step 336 was correct.
-- Half export remains 335/335 verified, 2,878,589 tokens; validation 0/17,280 known. Dry receipt PASS remains frozen.
-## Stuck / blocked
-- Expansion wrapper exit 2 reconciled after both checksum checks and 667 counts. Old scheduler termination also ended its tmux generation children; zero durable rows, exact infrastructure retries queued; interruption receipt retained. New jobs use separate sessions and exact exit receipts.
-- Both local remote environments verified via complete compressed archive, exact NeMo pin and CPU imports. Baseline 14B checks pass. Superseded owned small-file rsync stopped with partial copy retained; queued priority replay may use remote free devices at frozen 1/2 layouts. Remote eight-device availability remains unresolved.
-- Personal Codex weekly used 96%; finishing reserve only. Current Vals owner is verified Astra/ultra full access; latest weekly used 39%. Dedicated Claude Vals/Stanford grants also authenticated; ordinary profile paths misleadingly report logged out.
+- Complete all 17,280 validation cells, paired bootstrap, namespace diagnostic, forecast assessment, publication and actual DONE notification; zero paid experimental model calls; test split unopened.
+## Current execution
+- Sole writer recovery-01: native gpt-6-astra/ultra, never/danger-full-access; PID 2580398, boot 839e7dd6-64e1-4a80-9498-31d30b3cc2df, start 36376767. Host owner_ack.json matches all six recovery-dispatch hashes at acceptance; initial transfer remains historical.
+- Phase A PID 1968738/start 36815884 adopts all detached jobs; Phase B PID 652391/start 36742141 waits for Phase A. Runtime /lfs/skampere1/0/brando9/rl4cv_e08/sft_v3.
+- E/R 1.7B and 4B training and eight exports verified: 23,021,424 additional loss tokens, 41,508,194 processed real tokens. [Receipt](results/phase_a_training_verification.json). Both retained post-export exit 2 incidents were reconciled without replay.
+- Five complete generated rungs = 5,400 cells; all four 1.7B rungs plus E4B half. Three 4B generators remain healthy. One 135-task scorer sample completed; no whole scored rung yet.
+- Primary scoring and namespace diagnostics use eight workers per rung, at most two combined jobs (sixteen concurrent Lean processes), frozen 600s timeout. All current generation children preserved; future remote shell launches use immutable snapshots.
+- All four training sizes and exact generator environments verified on skampere2/3. Pending routes remain remote; healthy local E4B full generation retained. 14B training must use eight devices; inference uses the frozen permitted layout.
+- Latest full suite: 1,235 passed / 17 skipped / 375.67s. Latest native Vals weekly usage 43%, credits 0. Keep personal reserve and original finite deadline/attempt limits.
+## Waits and recovery
+- Host cron every five minutes and reboot is installed/tested; watch OBSERVING, no issues. Fresh capacity: all skampere2 devices occupied; only skampere3 GPU5 has zero allocated memory. No whole-node route available currently; continue independent work.
+- Slurm association was already requested 10-14; do not duplicate. Inventory and real release events are in host recovery_config.json. No paid cloud or smaller 14B training layout.
 ## Next steps
-- [p 10/10] Current owner recovery-01, thread01a142fc-0eff-7551-a40c-322e33c6c9cb, PID2580398/start36376767; native Astra/ultra never/full-access, 37% weekly usage. Fresh owner_ack.json verifies all six recovery_dispatch hashes; original transfer is historical. Phase A scheduler running; E4B step335/335 and export verified, 2,878,589 tokens. Phase B running WAITING_PHASE_A.
-- [p 9/10] Complete Phase A; publish each rung; implement Phase B using verified wrappers, relocate/verify staged environment, admit 14B only at frozen 8-device layout. Analysis errors are blockers, not success.
-- Original manifest hashes stay historical; later handoffs compare current `recovery_dispatch.json`. Required end state: 17,280 exact cells, paired bootstrap, namespace diagnostic, forecast, published parent/results and deduplicated DONE email.
+- [p 10/10] Finish and publish all eight priority scoring/namespace rungs; preserve every native failure and missing cell; then let Phase B run 8B/14B under exact admission.
+- [p 9/10] After all declared cells: analyze_validation.py, finalize_results.py, verify/publish parent and v3 reports, actual deduplicated DONE email, checked completion receipt, retire only owned cron entries.
 ## Brando to-do
-- None. START already sent; hosted judging/test split deferred. Checkout retained for live consumers.
+- None. START already sent; checkout and native evidence retained. See [continuation runbook](RUNBOOK_continuation_owner.md).
 ## Log
 - 10-15-2026 20:22 PDT -- Prepared schedules and forecast; static checks running before lock.
 - 10-15-2026 20:33 PDT -- Static checks passed (1,183 tests, all corpus/tokenizer/weight checks); locked recommended defaults before dry run.
@@ -48,3 +47,7 @@ Last updated: 10-15-2026 23:05 PDT
 - 10-15-2026 23:05 PDT: replay 4B all 658 counts match; remote export wrapper native exit 0, final canonical copy still active. Three complete raw rungs = 3,240 cells, zero scored rungs yet. Full suite: 1,235 passed / 17 skipped / 322.46s; current native usage 43%. CPU scorer parallelism receipt retained.
 
 - 10-15-2026 23:09 PDT: all four Phase A training/verification jobs DONE; combined public receipt verifies 23,021,424 additional loss tokens and eight export manifests. Four complete raw rungs (4,320 cells), CPU scoring active, no failed jobs. Replay 4B full generator now admitted/queued by the existing scheduler; original live training source is no longer held.
+
+- 10-15-2026 23:15 PDT: five exact raw rungs (5,400 cells); all 1.7B generations complete. First scorer sample completed all 135 mapped tasks; whole-rung score tables pending. Namespace concurrency aligned to eight workers per rung under the existing combined two-job limit, maximum sixteen Lean processes; full checks running.
+
+- 10-15-2026 23:21 PDT: full suite passes 1,235/17 skipped after namespace worker increase; refreshed direct capacity inventory, kept finite route limits and all live workloads.
