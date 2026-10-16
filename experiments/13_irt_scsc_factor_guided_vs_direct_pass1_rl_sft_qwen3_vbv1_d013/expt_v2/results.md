@@ -4,20 +4,21 @@
 
 **TLDR:** v2-S2 T1 is final PASS: 8/8 train responses, 44,844 output tokens; median absolute log-probability error 0.0000327482 and p99 0.0176024, unsupported/truncated tokens 0/44,844. All six leases released; cumulative 0.355751673/2.0 device-hours. Continue to T2, T3 and T4 before the audits and pilot. C disabled, H2/F2 unavailable, batch 2 skipped.
 
-Last updated: 10-15-2026 18:03 PDT
-**Status:** T1 PASS; T2 attempt 2 admitted, train generation running under the published A4 repair.
+Last updated: 10-15-2026 18:38 PDT
+**Status:** T1 PASS; T2 attempt 2 generation complete, official scoring running.
 
-## Current state — 10-15-2026 18:03 PDT
+## Current state — 10-15-2026 18:38 PDT
 
 Goal: complete Experiment 13 v2 under A6 through its admitted gates, or publish the binding transition result.
 
-What ran: [LP freeze](phase2/LP_A6_S2_FREEZE.md) and A4 successor preceded the final [T1 PASS](RESULTS_T1_S2.md). The complete attempt 2 used 0.186873268 device-hours; attempt 1's 0.168878405 remains charged. No optimizer update, actual mutation audit or new held-out response exists.
+What ran: the published learning-pilot freeze and A4 successors preceded final T1 PASS. T2 attempt 2 has completed all 256 train generations (1,292,105 output tokens), released its generation device with verified cleanup, and advanced to official scoring. No optimizer update or T2 statistic exists yet.
 
-Supervision: owner PID 1243923 remains the single writer. T2 attempt-2 controller PID 3497257 is watchdog-registered. Fresh device-1 health, provenance and socket checks passed before numbered admission; generation is running. Attempt 1 and every earlier cost remain retained.
+Supervision: owner PID 1243923 remains the single writer. T2 attempt-2 controller PID 3497257 remains watchdog-registered; adopt it, never relaunch. Attempt 1 and every earlier cost remain retained.
 
-Next: supervise complete T2 attempt 2 through generation, scoring, its one update, export and refit. Publish its final result before T3/T4, audits and the pilot. Never relaunch this controller or reuse attempt-1 outputs. Per-attempt 8.0-hour and cumulative 10.0-hour caps remain unchanged.
+Next: finish this attempt's scoring, one update, export and refit. Publish its final result before T3/T4, audits and the pilot. The 8.0-hour per-attempt and 10.0-hour cumulative T2 limits are unchanged. Independent batch 2 remains disarmed.
 
 Brando to-do: none. Existing SNAP preapproval covers the frozen allocation.
+
 
 T2 attempt 2 launch (10-15-2026 18:03 PDT): published repair `9b55f35` and admission `5b02bd9` preceded the fresh device-1 claim. Actual non-probe engine, provenance metadata and Ray socket checks PASS; complete numbered attempt 2 is admitted and its 256-response train generation is running ([receipt](phase2/T2_A4_attempt2_launch.json)). Controller PID 3497257 is watchdog-registered. Attempt 1 remains INCOMPLETE-INFRA, with 0.601555353 device-hours charged and its outputs excluded. No optimizer update or T2 statistic exists at this snapshot. Required integration passed 1,174 tests with 3 skipped, direct exit 0; this publication changes only status and copied launch evidence.
 
@@ -295,3 +296,5 @@ PLAN section 5's LP-1 prerequisite is unmet and section 4's no-retry rule applie
 
 **TLDR-end:** [rl4cv: Experiment 13 v2-S2] S2 admission passes and initial anchor generation continues, with full batch 1 waiting for an idle device; calibration/H2 and scoring are published before measurement. Phase 2 preparation continues while the full panels finish.
 **Snapshot:** At 10-14-2026 22:07 PDT: Base 2,144/4,312 RUNNING; half 1,536/4,312 RUNNING; full batch 1 1,024/4,312 WAIT_FOR_IDLE_DEVICE; hosted and hidden controls PASS; benchmark mutation audits 0; actual-data fits 0; optimizer updates 0; required tests 731 passed, 3 skipped.
+
+T2 attempt 2 generation closure (10-15-2026 18:38 PDT): **256/256 responses** retained, 1,292,105 output tokens; device cleanup verified and lease released after 0.494777962 device-hours ([receipt](phase2/T2_A4_attempt2_generation.json)). The same controller is running the frozen official scorer. No optimizer update, T2 admission statistic or held-out measurement exists at this snapshot. Attempt 1 remains INCOMPLETE-INFRA, with its outputs excluded and all earlier costs retained. Required Lean integration: **1,174 passed, 3 skipped, zero failures in 504.84 seconds**, direct exit 0 ([receipt](phase2/T2_A4_attempt2_publication_test.json)).
