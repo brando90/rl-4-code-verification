@@ -4,20 +4,22 @@
 
 **TLDR:** v2-S2 T1 is final PASS: 8/8 train responses, 44,844 output tokens; median absolute log-probability error 0.0000327482 and p99 0.0176024, unsupported/truncated tokens 0/44,844. All six leases released; cumulative 0.355751673/2.0 device-hours. Continue to T2, T3 and T4 before the audits and pilot. C disabled, H2/F2 unavailable, batch 2 skipped.
 
-Last updated: 10-15-2026 17:57 PDT
-**Status:** T1 PASS; T2 attempt 1 INCOMPLETE-INFRA, A4 metadata repair verified and admission frozen.
+Last updated: 10-15-2026 18:03 PDT
+**Status:** T1 PASS; T2 attempt 2 admitted, train generation running under the published A4 repair.
 
-## Current state — 10-15-2026 17:57 PDT
+## Current state — 10-15-2026 18:03 PDT
 
 Goal: complete Experiment 13 v2 under A6 through its admitted gates, or publish the binding transition result.
 
 What ran: [LP freeze](phase2/LP_A6_S2_FREEZE.md) and A4 successor preceded the final [T1 PASS](RESULTS_T1_S2.md). The complete attempt 2 used 0.186873268 device-hours; attempt 1's 0.168878405 remains charged. No optimizer update, actual mutation audit or new held-out response exists.
 
-Supervision: owner PID 1243923 is the single writer. The original T2 controller exited after the missing-provenance infrastructure failure. All T2 device leases are released and cleanup verified. No optimizer update or T2 statistic was computed.
+Supervision: owner PID 1243923 remains the single writer. T2 attempt-2 controller PID 3497257 is watchdog-registered. Fresh device-1 health, provenance and socket checks passed before numbered admission; generation is running. Attempt 1 and every earlier cost remain retained.
 
-Next: run complete T2 attempt 2 after publication and fresh non-probe engine preflight, with the same fixed probes and no reuse of failed-attempt outputs. The fixed probes, seeds, scientific signature and 8.0/10.0-hour limits remain unchanged.
+Next: supervise complete T2 attempt 2 through generation, scoring, its one update, export and refit. Publish its final result before T3/T4, audits and the pilot. Never relaunch this controller or reuse attempt-1 outputs. Per-attempt 8.0-hour and cumulative 10.0-hour caps remain unchanged.
 
 Brando to-do: none. Existing SNAP preapproval covers the frozen allocation.
+
+T2 attempt 2 launch (10-15-2026 18:03 PDT): published repair `9b55f35` and admission `5b02bd9` preceded the fresh device-1 claim. Actual non-probe engine, provenance metadata and Ray socket checks PASS; complete numbered attempt 2 is admitted and its 256-response train generation is running ([receipt](phase2/T2_A4_attempt2_launch.json)). Controller PID 3497257 is watchdog-registered. Attempt 1 remains INCOMPLETE-INFRA, with 0.601555353 device-hours charged and its outputs excluded. No optimizer update or T2 statistic exists at this snapshot. Required integration passed 1,174 tests with 3 skipped, direct exit 0; this publication changes only status and copied launch evidence.
 
 T2 A4 admission freeze (10-15-2026 17:57 PDT): [admission lock](locks/T2_A4.json), hash `169d4c62e7e68e1f9456216a2a8b71f1cce951080c12aa05d0a5fe14546ac2aa`, binds tested repair/LP revision `9b55f35`, regression PASS and failed-attempt revision `0266ac5`. All 4,685 successor bindings verify; seven infrastructure changes/additions are enumerated, with 4,678 prior hashes and the scientific signature/allocation unchanged. Required integration already passed 1,174 tests with 3 skipped and direct exit 0; this publication only binds references and records status. Complete attempt 2 may proceed after publication and a fresh non-probe engine preflight.
 

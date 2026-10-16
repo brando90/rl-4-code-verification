@@ -1,8 +1,10 @@
-# Experiment 13 v2-S2 T2: attempt 1 INCOMPLETE-INFRA
+# Experiment 13 v2-S2 T2: attempt 2 running; attempt 1 INCOMPLETE-INFRA
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/RESULTS_T2_S2.md>
 
-**TLDR:** Attempt 1 is INCOMPLETE-INFRA: missing runtime metadata stopped it before any update or admission statistic. The A4 repair passed 1,174 integration tests and is published at `9b55f35`; the admission lock binds it for complete attempt 2. T1 remains PASS; no T2 verdict exists.
+**TLDR:** Complete attempt 2 is admitted after the published A4 metadata repair and successful actual health checks; its fixed train generation is running. Attempt 1 remains INCOMPLETE-INFRA, with all costs retained. T1 remains PASS; no T2 verdict exists.
+
+T2 attempt 2 launch (10-15-2026 18:03 PDT): published repair `9b55f35` and admission `5b02bd9` preceded the fresh device-1 claim. Actual non-probe engine, provenance metadata and Ray socket checks PASS; complete numbered attempt 2 is admitted and its 256-response train generation is running ([receipt](phase2/T2_A4_attempt2_launch.json)). Controller PID 3497257 is watchdog-registered. Attempt 1 remains INCOMPLETE-INFRA, with 0.601555353 device-hours charged and its outputs excluded. No optimizer update or T2 statistic exists at this snapshot. Required integration passed 1,174 tests with 3 skipped, direct exit 0; this publication changes only status and copied launch evidence.
 
 T2 A4 admission freeze (10-15-2026 17:57 PDT): [admission lock](locks/T2_A4.json), hash `169d4c62e7e68e1f9456216a2a8b71f1cce951080c12aa05d0a5fe14546ac2aa`, binds tested repair/LP revision `9b55f35`, regression PASS and failed-attempt revision `0266ac5`. All 4,685 successor bindings verify; seven infrastructure changes/additions are enumerated, with 4,678 prior hashes and the scientific signature/allocation unchanged. Required integration already passed 1,174 tests with 3 skipped and direct exit 0; this publication only binds references and records status. Complete attempt 2 may proceed after publication and a fresh non-probe engine preflight.
 
