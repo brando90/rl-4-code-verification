@@ -4,10 +4,10 @@
 
 **TLDR:** v2-S2 T1 is final PASS: 8/8 train responses, 44,844 output tokens; median absolute log-probability error 0.0000327482 and p99 0.0176024, unsupported/truncated tokens 0/44,844. All six leases released; cumulative 0.355751673/2.0 device-hours. Continue to T2, T3 and T4 before the audits and pilot. C disabled, H2/F2 unavailable, batch 2 skipped.
 
-Last updated: 10-15-2026 20:11 PDT
+Last updated: 10-15-2026 20:12 PDT
 **Status:** T1 PASS; T2 attempt 2 INCOMPLETE-INFRA; A4 repair and final allowed attempt 3 preparation.
 
-## Current state — 10-15-2026 20:11 PDT
+## Current state — 10-15-2026 20:12 PDT
 
 Goal: complete Experiment 13 v2 under A6 through its admitted gates, or publish the binding transition result.
 
@@ -15,7 +15,7 @@ What ran: final T1 PASS; T2 attempts 1 and 2 INCOMPLETE-INFRA. The pre-admission
 
 Supervision: owner PID 1243923 remains the single writer. Controller PID 2188472 has halted; direct exit collected, cleanup verified, all eight T2 leases released. No active device.
 
-Next: publish the owned-worker shutdown synchronization, reproducing regression and explicit pre-admission reconciliation before another health launch. Preserve the original preflight artifacts, unchanged science and 8.0/10.0-hour caps. Attempt 3 remains the final permitted numbered attempt; batch 2 stays disarmed.
+Next: after publishing the handoff admission lock, prepare its exact plan and launch the bound recovery supervisor. Require fresh model/shutdown/generator health before admitting final numbered attempt 3. Preserve the original preflight and all costs; the 8.0/10.0-hour caps and batch-2 disarm remain unchanged.
 
 Brando to-do: none. Existing SNAP preapproval covers the frozen allocation.
 
@@ -309,3 +309,5 @@ T2 final A4 admission freeze (10-15-2026 19:47 PDT): [admission lock](locks/T2_A
 T2 pre-admission shutdown handoff (10-15-2026 19:55 PDT): the published repair passed real-model hashing for **399/399 CPU-offloaded distributed tensors, 4,411,424,256 elements**, on the claimed idle device. The subsequent unchanged device guard encountered the shutting-down owned Ray worker and raised `PermissionError` reading its process environment, before generator engine construction. [Evidence](phase2/T2_A4_CPU_preflight_failure.json). Zero experiment responses, optimizer updates or admission statistics; **numbered attempt 3 was not admitted**. Cleanup verified, lease released, 0.052590087 additional device-hours charged; cumulative **1.452067459/10.0**. Preserve this preflight and publish a tested shutdown wait plus explicit pre-admission reconciliation. The device guard and scientific settings remain unchanged.
 
 T2 shutdown-handoff repair verified (10-15-2026 20:11 PDT): [method](phase2/T2_A4_HANDOFF_REPAIR.md) and [successor](locks/LP_A6_S2_T2_A4_HANDOFF.json), 4,698 bindings with 4,683 hashes unchanged from numbered attempt 2; 15 cumulative infrastructure changes/additions enumerated. Actual kernel exited-process error reproduced; 23 focused checks passed. Required Lean integration **1,194 passed, 3 skipped, zero failures in 532.46 seconds**, direct exit 0. The repair adds read-only owned-worker shutdown synchronization and explicit pre-admission reconciliation, preserving the device guard, original artifacts, science and caps. No new device claim; numbered attempts remain two, cumulative T2 1.452067459/10.0 device-hours.
+
+T2 published handoff admission freeze (10-15-2026 20:12 PDT): [lock](locks/T2_A4_HANDOFF.json), SHA-256 `3fa26f7de05b7e07c1298b23cb358b01c5294eba77bdcc53151204b75a60ced6`, binds tested repair/LP `884418c`, failed numbered attempt 2 `2eca991`, and unadmitted preflight `a3abaaf`. The complete 15-binding delta retains 4,683 earlier hashes and identical science/caps. After publication, the bound recovery supervisor may seek a fresh idle device, rerun health only in a new receipt directory, then admit final numbered attempt 3 and continue the original gate. No new claim or admission yet; all costs remain charged. Required integration passed 1,194 tests with 3 skipped and direct exit 0; this step only binds published references and status.
