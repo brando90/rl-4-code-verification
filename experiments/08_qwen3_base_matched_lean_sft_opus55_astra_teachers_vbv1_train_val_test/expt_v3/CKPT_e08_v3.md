@@ -2,17 +2,17 @@
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
 **TLDR:** All Phase A training/generation verified; Phase A complete, all eight rungs and diagnostics checked; replay 4B half and expansion 4B full pass gates and all remaining cells still required.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-16-2026 03:50 PDT
+Last updated: 10-16-2026 04:16 PDT
 ## Goal
 - Complete all 17,280 validation cells, paired bootstrap, namespace diagnostic, forecast assessment, publication and actual DONE notification; zero paid experimental model calls; test split unopened.
 ## Current execution
 - Sole writer recovery-02: native gpt-6-astra/ultra, never/danger-full-access; PID 3022155, boot 839e7dd6-64e1-4a80-9498-31d30b3cc2df, start 38249185. Six current hashes and all 2,650 Phase A token counts reverified. [Receipt](results/owner_recovery02_v3.json).
-- Phase A DONE. Expansion 8B training and both exports are fully verified; its half checkpoint has 1,080 exact generated cells and CPU scoring is active. Full-checkpoint generation and matched replay controllers are running; 14B awaits eight eligible devices. [Checked handoff](results/recovery02_E8_completion.json).
+- Phase A DONE. Both expansion 8B checkpoints have complete, verified generation (2,160 cells); both primary scorers are active. Replay 8B reached its half checkpoint: all 334 updates match 2,880,477 loss tokens and 5,223,469 processed tokens; native training metadata agrees. Export is in progress. The 14B controller still awaits eight eligible devices. [Checked generation and replay](results/recovery02_E8_generation_R8_start.json).
 - E/R 1.7B and 4B training and eight exports verified: 23,021,424 additional loss tokens, 41,508,194 processed real tokens. [Receipt](results/phase_a_training_verification.json). Both retained post-export exit 2 incidents were reconciled without replay.
-- Eight complete generated rungs = 8,640 exact cells. All generation children exited 0; all eight Phase A rungs scored/analyzed (8,640/17,280 cells). Replay 4B half and expansion 4B full pass gates; eight namespace diagnostics have zero score delta.
+- Eight complete Phase A generated rungs = 8,640 exact cells. All generation children exited 0; all eight Phase A rungs scored/analyzed (8,640/17,280 cells). Replay 4B half and expansion 4B full pass gates; eight namespace diagnostics have zero score delta.
 - Primary scoring and namespace diagnostics use eight workers per rung, at most six combined jobs (48 active compilation slots), frozen 600s timeout; expired orphan children cleaned separately by exact pidfd guard. Phase A generation finished; Phase B uses immutable remote shell snapshots.
 - All four training sizes and exact generator environments verified on skampere2/3. Pending large-model routes remain remote. 14B training must use eight devices; inference uses the frozen permitted layout.
-- Latest full suite: 1,294 passed / 17 skipped / 6 subtests / 299.84s; 45 focused recovery/closeout checks plus 6 subtests pass. Native Vals weekly usage at acceptance 53%, credits 0. Latest native Vals use 56%, credits 0; personal allowance exhausted. Original finite deadline/attempt limits unchanged.
+- Latest full suite: 1,294 passed / 17 skipped / 6 subtests / 616.03s; 45 focused recovery/closeout checks plus 6 subtests pass. Native Vals weekly usage at acceptance 53%, credits 0. Latest native Vals use 62%, credits 0; personal allowance exhausted. Original finite deadline/attempt limits unchanged.
 ## Waits and recovery
 - Host recovery cron every five minutes/reboot; orphan cleanup every minute; capacity probe every 15min. Active owner; old external wait disarmed. Original deadline 10-18-2026 21:21 PDT and six-recovery/two-Vals limits unchanged; actual fallback exclusions updated.
 - Slurm association was already requested 10-14; do not duplicate. Inventory and real release events are in host recovery_config.json. No paid cloud or smaller 14B training layout.
@@ -100,3 +100,11 @@ Last updated: 10-16-2026 03:50 PDT
 - 10-16-2026 03:27 PDT -- Expansion 8B full native training verifies 667/667 updates, 5,757,776 loss tokens and 10,383,459 processed tokens. Half export passed controller checksum transfer; half generation controller admitted to the queue. Full export pending. [Full training receipt](results/recovery02_E8_full_training.json).
 
 - 10-16-2026 03:50 PDT -- Expansion 8B training and both exports are fully verified; its half checkpoint has 1,080 exact generated cells and CPU scoring is active. Full-checkpoint generation and matched replay controllers are running; 14B awaits eight eligible devices. Generated coverage 9,720/17,280; primary known coverage remains 8,640/17,280. All 60 completed Phase A native checkpoint files archived locally with full hashes before removing shared copies (143,511,424,012 bytes); exports/logs retained. Cross-node TP8 source support documented, but actual route unverified and current maximum six eligible GPUs.
+
+- 10-16-2026 04:07 PDT -- Both expansion 8B checkpoints have complete, verified generation (2,160 cells); both primary scorers are active. Replay 8B is training on four devices, with its first 240 native updates matching the frozen token schedule. The 14B controller still awaits eight eligible devices. Generated coverage 10,800/17,280; primary known 8,640/17,280. Replay checked loss tokens 2,043,764; processed tokens 3,725,969. Exact full-generation prompt/sampling/export/hash and both exit-0 receipts independently verified.
+
+- 10-16-2026 04:12 PDT -- Three-host CPU-only Ray/interpreter probe and complete exact child cleanup PASS. First cleanup failure retained and reconciled. GPU communication and native continuation remain unverified; available devices two now/six after replay release, below frozen eight. [Evidence](results/multinode_cpu_recovery02.json).
+
+- 10-16-2026 04:14 PDT -- Replay 8B reached its half checkpoint: all 334 updates match 2,880,477 loss tokens and 5,223,469 processed tokens; native training metadata agrees. Export is in progress. [Exact native half-checkpoint receipt](results/recovery02_R8_half.json).
+
+- 10-16-2026 04:16 PDT -- Full repository suite PASS: 1,294 tests, 17 skips, 6 subtests in 616.03s. Three-host native CPU probe PASS, exact process cleanup independently rechecked. Published frozen generation/replay progress with no changes to scientific caps. Native Vals weekly use62%, credits0; finite recovery caps/deadline unchanged.

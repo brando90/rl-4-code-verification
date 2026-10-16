@@ -1,0 +1,403 @@
+{
+  "status": "PASS_CPU_CONTROL_PLANE_ONLY",
+  "checked_unix": 1792149153.119606,
+  "successful_probe": {
+    "status": "PASS",
+    "root": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_cpu_1792148950",
+    "script_sha256": "6bd4de7b917456a749166743ea97282b128dcdcf236f77b696e0a8249b505db8",
+    "gpu_count": 0,
+    "model_calls": 0,
+    "scientific_settings_changed": false,
+    "started_unix": 1792148951.0883007,
+    "keepers": {
+      "skampere1": {
+        "status": "READY",
+        "host": "skampere1",
+        "identity": {
+          "pid": 1212050,
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "start_ticks": "38754200"
+        },
+        "interpreter": "/tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python",
+        "gpu_count": 0,
+        "started_unix": 1792148952.186721,
+        "node_id": "e5e42da6fb71c5cb69e31dc690c5b4339cfd4b238406247ca642a407",
+        "gcs_address": "172.24.75.194:64399",
+        "session_name": "session_2026-10-16_04-09-12_266002_1212050",
+        "children": [
+          {
+            "pid": 1212087,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "38754257"
+          },
+          {
+            "pid": 1212276,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "38754329"
+          },
+          {
+            "pid": 1212385,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "38754453"
+          }
+        ]
+      },
+      "skampere2": {
+        "status": "READY",
+        "host": "skampere2",
+        "identity": {
+          "pid": 2196492,
+          "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+          "start_ticks": "1232530329"
+        },
+        "interpreter": "/tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python",
+        "gpu_count": 0,
+        "started_unix": 1792148957.4610038,
+        "node_id": "7a2d756acd2d15b98f7c4e651c95b77f1d378aaf06d86283eb6313c9",
+        "gcs_address": "172.24.75.194:64399",
+        "session_name": "session_2026-10-16_04-09-12_266002_1212050",
+        "children": [
+          {
+            "pid": 2196597,
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+            "start_ticks": "1232530411"
+          }
+        ]
+      },
+      "skampere3": {
+        "status": "READY",
+        "host": "skampere3",
+        "identity": {
+          "pid": 1192401,
+          "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+          "start_ticks": "265546883"
+        },
+        "interpreter": "/tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python",
+        "gpu_count": 0,
+        "started_unix": 1792148993.289945,
+        "node_id": "9e4ccc5d77b16faeae7adb35c856bdb80e96109a11f3d1b39a141865",
+        "gcs_address": "172.24.75.194:64399",
+        "session_name": "session_2026-10-16_04-09-12_266002_1212050",
+        "children": [
+          {
+            "pid": 1194688,
+            "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+            "start_ticks": "265547662"
+          }
+        ]
+      }
+    },
+    "workers": [
+      {
+        "host": "skampere1",
+        "python": "/tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python",
+        "resolved_python": "/usr/bin/python3.12",
+        "ray": "2.46.0",
+        "torch": "2.7.1+cu128",
+        "nemo_source": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/nemo_rl",
+        "nemo_worker_sha256": "0335e0e55102a9de5e13b8423770101266d1ac163cf41acf90d1b262472985d6",
+        "gpu_ids": [],
+        "cuda_initialized": false
+      },
+      {
+        "host": "skampere2",
+        "python": "/tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python",
+        "resolved_python": "/usr/bin/python3.12",
+        "ray": "2.46.0",
+        "torch": "2.7.1+cu128",
+        "nemo_source": "/lfs/skampere2/0/brando9/rl4cv_e08_v3_env/nemo_rl/nemo_rl",
+        "nemo_worker_sha256": "0335e0e55102a9de5e13b8423770101266d1ac163cf41acf90d1b262472985d6",
+        "gpu_ids": [],
+        "cuda_initialized": false
+      },
+      {
+        "host": "skampere3",
+        "python": "/tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python",
+        "resolved_python": "/usr/bin/python3.12",
+        "ray": "2.46.0",
+        "torch": "2.7.1+cu128",
+        "nemo_source": "/lfs/skampere3/0/brando9/rl4cv_e08_v3_env/nemo_rl/nemo_rl",
+        "nemo_worker_sha256": "0335e0e55102a9de5e13b8423770101266d1ac163cf41acf90d1b262472985d6",
+        "gpu_ids": [],
+        "cuda_initialized": false
+      }
+    ],
+    "transport_exits": {
+      "skampere1": 0,
+      "skampere2": 0,
+      "skampere3": 0
+    },
+    "cleanup": {
+      "skampere1": {
+        "status": "STOPPED",
+        "host": "skampere1",
+        "identity": {
+          "pid": 1212050,
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "start_ticks": "38754200"
+        },
+        "interpreter": "/tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python",
+        "gpu_count": 0,
+        "started_unix": 1792148952.186721,
+        "node_id": "e5e42da6fb71c5cb69e31dc690c5b4339cfd4b238406247ca642a407",
+        "gcs_address": "172.24.75.194:64399",
+        "session_name": "session_2026-10-16_04-09-12_266002_1212050",
+        "children": [
+          {
+            "pid": 1212087,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "38754257"
+          },
+          {
+            "pid": 1212276,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "38754329"
+          },
+          {
+            "pid": 1212385,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "38754453"
+          },
+          {
+            "pid": 1212087,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "38754257"
+          },
+          {
+            "pid": 1212276,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "38754329"
+          },
+          {
+            "pid": 1212385,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "38754453"
+          }
+        ],
+        "terminated_remaining_group_members": [],
+        "remaining_children": [],
+        "watchdog_exit_code": -15,
+        "ended_unix": 1792149016.5265577
+      },
+      "skampere2": {
+        "status": "STOPPED",
+        "host": "skampere2",
+        "identity": {
+          "pid": 2196492,
+          "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+          "start_ticks": "1232530329"
+        },
+        "interpreter": "/tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python",
+        "gpu_count": 0,
+        "started_unix": 1792148957.4610038,
+        "node_id": "7a2d756acd2d15b98f7c4e651c95b77f1d378aaf06d86283eb6313c9",
+        "gcs_address": "172.24.75.194:64399",
+        "session_name": "session_2026-10-16_04-09-12_266002_1212050",
+        "children": [
+          {
+            "pid": 2196597,
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+            "start_ticks": "1232530411"
+          },
+          {
+            "pid": 2196597,
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+            "start_ticks": "1232530411"
+          }
+        ],
+        "terminated_remaining_group_members": [
+          {
+            "pid": 2196660,
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+            "start_ticks": "1232530414"
+          },
+          {
+            "pid": 2196662,
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+            "start_ticks": "1232530415"
+          }
+        ],
+        "remaining_children": [],
+        "watchdog_exit_code": -15,
+        "ended_unix": 1792149029.61281
+      },
+      "skampere3": {
+        "status": "STOPPED",
+        "host": "skampere3",
+        "identity": {
+          "pid": 1192401,
+          "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+          "start_ticks": "265546883"
+        },
+        "interpreter": "/tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python",
+        "gpu_count": 0,
+        "started_unix": 1792148993.289945,
+        "node_id": "9e4ccc5d77b16faeae7adb35c856bdb80e96109a11f3d1b39a141865",
+        "gcs_address": "172.24.75.194:64399",
+        "session_name": "session_2026-10-16_04-09-12_266002_1212050",
+        "children": [
+          {
+            "pid": 1194688,
+            "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+            "start_ticks": "265547662"
+          },
+          {
+            "pid": 1194688,
+            "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+            "start_ticks": "265547662"
+          }
+        ],
+        "terminated_remaining_group_members": [
+          {
+            "pid": 1194767,
+            "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+            "start_ticks": "265547664"
+          },
+          {
+            "pid": 1194769,
+            "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+            "start_ticks": "265547665"
+          }
+        ],
+        "remaining_children": [],
+        "watchdog_exit_code": -15,
+        "ended_unix": 1792149033.420905
+      }
+    },
+    "ended_unix": 1792149033.8241227
+  },
+  "first_probe": {
+    "result": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_cpu_1792148722/result.json",
+    "sha256": "3919d9a2a35af3fed54784db7e7f0683357004b6a78ff68cb9909616456ea342",
+    "status": "FAIL_CLEANUP_RACE",
+    "workers_passed": true,
+    "cleanup_verified": {
+      "skampere1": {
+        "status": "PASS",
+        "host": "skampere1",
+        "checked_unix": 1792148946.0485232,
+        "exact_records": [
+          {
+            "pid": 1178436,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "38731389"
+          },
+          {
+            "pid": 1178601,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "38731461"
+          },
+          {
+            "pid": 1179108,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "38731531"
+          },
+          {
+            "pid": 1179333,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "38731655"
+          },
+          {
+            "pid": 1178601,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "38731461"
+          },
+          {
+            "pid": 1179108,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "38731531"
+          },
+          {
+            "pid": 1179333,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "38731655"
+          }
+        ],
+        "terminated": [],
+        "remaining": []
+      },
+      "skampere2": {
+        "status": "PASS",
+        "host": "skampere2",
+        "checked_unix": 1792148948.437497,
+        "exact_records": [
+          {
+            "pid": 2147330,
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+            "start_ticks": "1232508154"
+          },
+          {
+            "pid": 2147453,
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+            "start_ticks": "1232508276"
+          },
+          {
+            "pid": 2147453,
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+            "start_ticks": "1232508276"
+          },
+          {
+            "pid": 2147616,
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+            "start_ticks": "1232508379"
+          },
+          {
+            "pid": 2147618,
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+            "start_ticks": "1232508379"
+          }
+        ],
+        "terminated": [],
+        "remaining": []
+      },
+      "skampere3": {
+        "status": "PASS",
+        "host": "skampere3",
+        "checked_unix": 1792148950.312341,
+        "exact_records": [
+          {
+            "pid": 1134301,
+            "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+            "start_ticks": "265522996"
+          },
+          {
+            "pid": 1135046,
+            "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+            "start_ticks": "265523577"
+          },
+          {
+            "pid": 1135046,
+            "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+            "start_ticks": "265523577"
+          },
+          {
+            "pid": 1135105,
+            "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+            "start_ticks": "265523579"
+          },
+          {
+            "pid": 1135107,
+            "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+            "start_ticks": "265523579"
+          }
+        ],
+        "terminated": [
+          {
+            "pid": 1135105,
+            "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+            "start_ticks": "265523579"
+          }
+        ],
+        "remaining": []
+      }
+    }
+  },
+  "gpu_training_admitted": false,
+  "gpu_nccl_tested": false,
+  "native_training_continuation_tested": false,
+  "minimum_14b_training_devices": 8,
+  "eligible_devices_current": 2,
+  "maximum_after_8b_release": 6,
+  "paid_model_calls": 0,
+  "test_split_opened": false
+}

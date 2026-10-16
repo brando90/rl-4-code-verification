@@ -4,9 +4,9 @@
 
 **TLDR:** Phase A: DONE; Phase B: RUNNING. 8,640/17,280 validation cells known. [Execution events and verified training progress](results/runtime_progress.md).
 
-**Status:** RUNNING. **Last updated:** 10-16-2026 03:50 PDT.
+**Status:** RUNNING. **Last updated:** 10-16-2026 04:14 PDT.
 
-Expansion 8B training and both exports are fully verified; its half checkpoint has 1,080 exact generated cells and CPU scoring is active. Full-checkpoint generation and matched replay controllers are running; 14B awaits eight eligible devices. Generated coverage: 9,720/17,280. [Checked execution evidence](results/recovery02_E8_completion.json).
+Both expansion 8B checkpoints have complete, verified generation (2,160 cells); both primary scorers are active. Replay 8B reached its half checkpoint: all 334 updates match 2,880,477 loss tokens and 5,223,469 processed tokens; native training metadata agrees. Export is in progress. The 14B controller still awaits eight eligible devices. Generated coverage: 10,800/17,280. [Generation evidence](results/recovery02_E8_generation_R8_start.json), [replay half checkpoint](results/recovery02_R8_half.json).
 
 Known validation cells: **8640/17,280**; 8640 belong to complete rungs. [Every missing/failed cell](results/coverage) remains in the declared denominator; no paid model calls.
 

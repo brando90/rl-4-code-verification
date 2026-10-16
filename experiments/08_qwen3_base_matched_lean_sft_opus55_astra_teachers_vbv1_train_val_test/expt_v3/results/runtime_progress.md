@@ -172,3 +172,19 @@ Expansion 8B training and both exports are fully verified; its half checkpoint h
 The [lossless Phase A archive](phase_a_native_archive_recovery02.json) retains all 60 native files for replay 1.7B/4B under the same local `sft_v3/ckpt/<label>/checkpoints` paths. Every source/destination hash matched before shared originals were removed, freeing about 133.49 GiB allocated storage (143,511,424,012 apparent bytes copied). All Hugging Face exports and logs remain in place. Completed E8 native archival is now guarded by exact terminal training identities and both verified exports; its named host session is `rl4cv-e08-v3-archive-e8-recovery02`, with process and exit receipts in the runtime root.
 
 [Eight-device cross-host capacity audit](multinode_capacity_recovery02.json): pinned NeMo supports global TP8 placement across nodes, but the isolated cluster, common worker interpreter, bindings and cross-host communication remain unverified. Current direct capacity would total only six eligible devices even after E08 releases its four, so no new route was admitted or scientific setting changed. Original deadline and finite account limits remain unchanged.
+
+## 10-16-2026 04:07 PDT — complete expansion 8B generation and useful replay training
+
+Both expansion 8B checkpoints have complete, verified generation (2,160 cells); both primary scorers are active. Replay 8B is training on four devices, with its first 240 native updates matching the frozen token schedule. The 14B controller still awaits eight eligible devices. Independent verification of the full rung checks all 135 × 8 cell keys, prompts, sampling, step-667 export and both exact process exit-0 receipts. Generated coverage is 10,800/17,280; known primary coverage remains 8,640/17,280 until scoring completes. [Combined evidence](recovery02_E8_generation_R8_start.json), [full generation receipt](remote_generation_v3_E_8b_f1p0.json).
+
+Replay training uses its own isolated Ray cluster and an immutable wrapper whose hash matches the checked expansion wrapper. All 240 consecutive native updates match 2,043,764 loss tokens and 3,725,969 processed tokens. Frozen batches, optimizer policy, parallelism and scientific caps are unchanged.
+
+## 10-16-2026 04:12 PDT — cross-host CPU readiness verified
+
+An isolated, zero-GPU Ray cluster dispatched a CPU task to each of skampere1/2/3 using the same interpreter path. All three report Ray 2.46.0, PyTorch 2.7.1+cu128 and the identical pinned NeMo worker source hash; no CUDA context or model was loaded. All three keeper transports exited 0 and exact owned children were absent at cleanup. The first probe passed its worker checks but left native Ray agent children, and its watchdog exited during a process-exit race; its failed receipt is retained and all exact children were subsequently verified absent. The corrected probe passes complete cleanup. This verifies only CPU control-plane/interpreter readiness, not GPU communication or native continuation. Current capacity remains two eligible idle devices, at most six after replay 8B releases its four; eight-device training remains unadmitted. [Native evidence and retained failure](multinode_cpu_recovery02.json).
+
+## 10-16-2026 04:14 PDT — replay 8B native half checkpoint
+
+Replay 8B reached its half checkpoint: all 334 updates match 2,880,477 loss tokens and 5,223,469 processed tokens; native training metadata agrees. Export is in progress. [Checked receipt](recovery02_R8_half.json). The healthy existing controller retains ownership; no token or model cap changed.
+
+Validation at 10-16-2026 04:16 PDT: all 1,294 repository tests pass, 17 skipped and 6 subtests pass in 616.03s. Actual three-host CPU checks also pass; independent native process checks find every recorded probe identity absent. Native Vals weekly usage is 62% with zero credits; original six-total/two-Vals limits and deadline are unchanged.
