@@ -11,6 +11,8 @@ bash "$HERE/train_continuation.sh" E 1p7b "$GPU" dry
 export CUDA_VISIBLE_DEVICES="$GPU"
 export PYTHONPATH="$REPO/src" HF_HOME="$WORK/cache/huggingface" HF_HUB_OFFLINE=1
 export VERIBENCH_ROOT="$REPO/external/veribench" PATH="/usr/local/cuda-12.8/bin:$PATH"
+export CUDA_HOME=/usr/local/cuda-12.8 CUDA_PATH=/usr/local/cuda-12.8
+export FLASHINFER_WORKSPACE_BASE="$WORK/sft_v3/flashinfer"
 PACK=/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/packs/vbv1_896
 "$WORK/venv_gen/bin/python" -m rl4cv.veribench.generate --pack "$PACK" --model "$D/hf/step_8" \
   --thinking on --seed 91 --stop-token '<|im_end|>' --max-tokens 12288 --temperature 0.6 --top-p 0.95 --top-k 20 \

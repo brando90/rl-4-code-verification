@@ -31,7 +31,8 @@ def main():
         assert int(tokens[i]) == step['loss_tokens'], (i, tokens[i], step['loss_tokens'])
         rows.append({'step': i, 'loss': scalars['train/loss'][i], 'lr': scalars['train/lr'][i],
                      'loss_tokens': int(tokens[i]), 'cumulative_loss_tokens': step['cumulative_loss_tokens'],
-                     'processed_tokens': step['prompt_tokens'] + step['loss_tokens']})
+                     'processed_tokens': step['prompt_tokens'] + step['loss_tokens'],
+                     'step_wall_seconds': scalars.get('timing/train/total_step_time', {}).get(i)})
     out = HERE / 'results/train_logs'
     out.mkdir(exist_ok=True)
     name = 'dry_run' if args.dry else label
@@ -41,6 +42,8 @@ def main():
     receipt = {'status': 'PASS', 'steps': len(rows), 'loss_tokens': sum(r['loss_tokens'] for r in rows),
                'schedule_sha256': hashlib.sha256((HERE / f'results/sft_schedule_v3_{args.condition}.json').read_bytes()).hexdigest(),
                'token_counts_match': True, 'scalar_tags': sorted(scalars)}
+    receipt['training_step_wall_seconds'] = sum(r['step_wall_seconds'] or 0 for r in rows)
+    receipt['processed_real_tokens'] = sum(r['processed_tokens'] for r in rows)
     if args.dry:
         val = scalars.get('validation/val_loss', {})
         assert len(val) >= 2, scalars.keys()

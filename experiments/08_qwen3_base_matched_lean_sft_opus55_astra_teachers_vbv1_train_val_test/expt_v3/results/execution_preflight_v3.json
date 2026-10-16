@@ -1,0 +1,25 @@
+{
+  "checked_local": "10-15-2026 20:48 PDT",
+  "cuda_home": "/usr/local/cuda-12.8",
+  "flashinfer_workspace": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/flashinfer",
+  "first_inference_failure": "Inherited CUDA_HOME selected CUDA 12.4 nvcc, which rejects --compress-mode=size",
+  "recovery": "Set CUDA_HOME and CUDA_PATH to installed CUDA 12.8; isolated compilation cache; reused exported step-8 weights; second attempt exited 0",
+  "namespace_fixture": {
+    "compiles": true,
+    "kernel_binary": 1,
+    "IC_tests": 1,
+    "IC_proofs": 1,
+    "comment_and_string_literals_unchanged": true
+  },
+  "paid_model_calls": 0,
+  "first_production_start_failure": "Ray MetricsHead UNIX socket path exceeded 107 bytes; no training updates ran",
+  "ray_recovery": "Shortened private temp directory to /tmp/e8v3_UID/CONDITION_SIZE_MODE_INITIAL; same config, data, start weights",
+  "deterministic_tests": {
+    "command": "make test",
+    "passed": 1184,
+    "skipped": 17,
+    "failed": 0,
+    "seconds": 339.81,
+    "log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/execution_make_test.log"
+  }
+}

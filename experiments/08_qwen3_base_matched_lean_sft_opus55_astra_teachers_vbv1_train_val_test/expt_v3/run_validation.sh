@@ -26,6 +26,8 @@ OUT="$WORK/sft_v3/ladder/$SPLIT"; mkdir -p "$OUT/raw" "$OUT/jobs" "$OUT/scores" 
 BATCH="${BATCH:-1024}"; SCORE_PAR="${SCORE_PAR:-4}"; STAGGER_S="${STAGGER_S:-180}"
 export PYTHONPATH="$REPO/src" VERIBENCH_ROOT="$WORK/rl-4-code-verification/external/veribench" HF_HOME="$WORK/cache/huggingface" HF_HUB_OFFLINE=1 PATH="/usr/local/cuda-12.8/bin:$HOME/.elan/bin:$PATH"
 PY="$WORK/venv_gen/bin/python"
+export CUDA_HOME=/usr/local/cuda-12.8 CUDA_PATH=/usr/local/cuda-12.8
+export FLASHINFER_WORKSPACE_BASE="$WORK/sft_v3/flashinfer"
 NAME="${LABEL}_g8"; K=8
 IFS=, read -ra G <<< "$GPUS"; N=${#G[@]}
 ts() { date '+%m-%d-%Y %H:%M:%S'; }

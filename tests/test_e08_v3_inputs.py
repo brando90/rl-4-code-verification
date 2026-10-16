@@ -47,3 +47,22 @@ def test_forecast_is_frozen_and_has_no_observed_outcomes():
     path = V3 / 'forecasts/e08_v3_forecast.json'
     assert verify_forecast(path)
     assert json.loads(path.read_text())['outcomes_observed'] is False
+
+
+def test_condition_selection_retains_replay_on_tie_or_clear_harm():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location('e08_v3_analysis', V3 / 'analyze_validation.py')
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    sizes = ('4b', '8b', '14b')
+    systems = {f'v3_{c}_{s}_f0p5': {'gates': {'pass': True},
+               'task_bootstrap': {'pass_rate': {'mean': .2}}} for c in ('R', 'E') for s in sizes}
+    paired = {f'{s}_f0p5': {'ci95': [-.01, .02]} for s in sizes}
+    assert module.decision(systems, sizes, paired)['f0p5']['selected'] == 'R'
+    for s in sizes:
+        systems[f'v3_E_{s}_f0p5']['task_bootstrap']['pass_rate']['mean'] = .3
+    assert module.decision(systems, sizes, paired)['f0p5']['selected'] == 'E'
+    paired['14b_f0p5']['ci95'] = [-.1, -.01]
+    assert module.decision(systems, sizes, paired)['f0p5']['selected'] == 'R'
+    del systems['v3_R_14b_f0p5']
+    assert module.decision(systems, sizes, paired)['f0p5']['status'] == 'INCOMPLETE'
