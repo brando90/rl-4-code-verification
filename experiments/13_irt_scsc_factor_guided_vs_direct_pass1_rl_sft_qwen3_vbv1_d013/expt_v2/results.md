@@ -4,10 +4,10 @@
 
 **TLDR:** v2-S2 T1 is final PASS: 8/8 train responses, 44,844 output tokens; median absolute log-probability error 0.0000327482 and p99 0.0176024, unsupported/truncated tokens 0/44,844. All six leases released; cumulative 0.355751673/2.0 device-hours. Continue to T2, T3 and T4 before the audits and pilot. C disabled, H2/F2 unavailable, batch 2 skipped.
 
-Last updated: 10-15-2026 19:45 PDT
+Last updated: 10-15-2026 19:47 PDT
 **Status:** T1 PASS; T2 attempt 2 INCOMPLETE-INFRA; A4 repair and final allowed attempt 3 preparation.
 
-## Current state — 10-15-2026 19:45 PDT
+## Current state — 10-15-2026 19:47 PDT
 
 Goal: complete Experiment 13 v2 under A6 through its admitted gates, or publish the binding transition result.
 
@@ -15,7 +15,7 @@ What ran: final T1 PASS; T2 attempts 1 and 2 are INCOMPLETE-INFRA before their r
 
 Supervision: owner PID 1243923 remains the single writer. T2 attempt-2 controller 3497257 has halted; its direct exit and verified cleanup are collected. All seven T2 leases are released. No active device or numbered attempt 3 exists.
 
-Next: publish the tested CPU-offload repair and LP successor, then bind their published revision in the A4 admission lock before complete attempt 3. A4 permits at most three attempts; the 8.0/10.0-hour attempt/cumulative limits are unchanged. Batch 2 remains disarmed.
+Next: after admission-lock publication, launch complete attempt 3 through the owned lease controller; first require the actual frozen-model state-hash preflight and existing non-probe engine health check. A4 permits at most three attempts; the 8.0/10.0-hour attempt/cumulative limits are unchanged. Batch 2 remains disarmed.
 
 Brando to-do: none. Existing SNAP preapproval covers the frozen allocation.
 
@@ -303,3 +303,5 @@ T2 attempt 2 scoring closure (10-15-2026 19:00 PDT): **256/256 receipts, 255 mea
 T2 attempt 2 infrastructure closure (10-15-2026 19:20 PDT): **INCOMPLETE-INFRA**, CPU-offloaded distributed-tensor state hashing requested an unsupported CPU collective while saving the before-update checkpoint. The full 256-response generation/scoring and trainer probability recomputation remain retained; **zero experiment optimizer updates and gate statistics** completed. The native saver's zero-learning-rate optimizer initialization is separately disclosed in the [failure evidence](phase2/T2_A6_attempt2_result.json). Cleanup is verified and all seven T2 leases are released; attempt 2 used **0.797922019** device-hours, cumulative **1.399477372/10.0** ([resources](phase2/T2_A6_attempt2_resources.json)). Under A4, repair the byte-preserving state-hash path, reproduce the defect in a regression, add a real checkpoint-state preflight, and publish the successor before complete attempt 3. Attempt 3 is the final permitted infrastructure attempt; all scientific settings and caps stay unchanged. The unchanged source last passed required integration with 1,174 passed, 3 skipped and direct exit 0.
 
 T2 A4 CPU-offload repair (10-15-2026 19:45 PDT): [repair](phase2/T2_A4_CPU_REPAIR.md) and [successor](locks/LP_A6_S2_T2_A4_CPU.json) preserve the complete scientific signature and caps, retaining 4,683 previous hashes with seven infrastructure changes/additions. The exact collective failure is reproduced and fixed in installed CPU distributed-tensor regression; 21 focused checks PASS. Required Lean integration **1,175 passed, 3 skipped, zero failures in 527.88 seconds**, direct exit 0. Real offloaded-model hashing and the existing non-probe generator health check are required before attempt 3 is admitted. No new device claim, experiment response or optimizer update; both failed attempts and cumulative 1.399477372/10.0 device-hours remain retained.
+
+T2 final A4 admission freeze (10-15-2026 19:47 PDT): [admission lock](locks/T2_A4_CPU.json), hash `c8b4b2699b39a7d01f8bb26a503d11193a137e50cf1074d0b2387b9c0e77d924`, binds tested repair/LP revision `9b80189`, regression PASS and failed-attempt-2 publication `2eca991`. All 4,690 successor bindings verify, including seven infrastructure changes/additions and 4,683 unchanged prior hashes. Complete attempt 3 may proceed only after this publication and the actual offloaded-model plus non-probe generator preflight. Required integration just passed 1,175 tests with 3 skipped and direct exit 0; this step binds references and status only. No device is currently claimed; cumulative 1.399477372/10.0 device-hours retained.
