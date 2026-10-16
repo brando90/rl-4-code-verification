@@ -72,7 +72,7 @@ The host watch can defer a new model owner only after an explicit, identity-fenc
 
 ## Diagnostic completion and current CPU concurrency
 
-Recovery-01 increased combined primary-scoring/namespace concurrency to four rungs, eight workers each, after observed CPU/memory headroom; scientific timeouts and scoring bytes stay frozen. Current scheduler identities and preserved children are in [the adoption receipt](results/cpu4_adoption_recovery01.json).
+Recovery-01 increased combined primary-scoring/namespace concurrency to six rungs, eight workers each, after observed CPU/memory headroom; scientific timeouts and scoring bytes stay frozen. Current scheduler identities and preserved children are in [the latest adoption receipt](results/cpu6_adoption_recovery01.json).
 
 `namespace_complete` means every changed cell has a structurally verified, hash-matching native diagnostic receipt. A native 600-second timeout remains an unknown diagnostic score and is explicitly counted in `namespace_unknown_cells`; affected rungs have no paired diagnostic point estimate. Never retry a native timeout merely to obtain a number or convert it to zero. All 17,280 primary validation cells must still be known for final completion.
 
