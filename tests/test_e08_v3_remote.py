@@ -59,6 +59,7 @@ def test_priority_replay_preserves_one_device_layout(tmp_path, monkeypatch, caps
     launched = []
     monkeypatch.setattr(m.subprocess, 'Popen', lambda command, **kwargs: launched.append((command, kwargs)) or SimpleNamespace(pid=42))
     monkeypatch.setattr(m, 'identity', lambda _: {'pid': 42, 'boot_id': 'boot', 'start_ticks': '123'})
+    monkeypatch.setattr(m, 'snapshot_wrapper', lambda *a: (tmp_path / '.frozen_wrapper.sh', 'wrapper-hash'))
     assert m.remote(args) == 0
     result = json.loads(capsys.readouterr().out)
     assert result['gpus'] == '2' and result['tensor_parallel_size'] == 1
@@ -66,3 +67,12 @@ def test_priority_replay_preserves_one_device_layout(tmp_path, monkeypatch, caps
     assert launched[0][1]['env']['E08_NEMO_ROOT'] == '/owned/verified/nemo_rl'
     assert launched[0][1]['env']['CUDA_VISIBLE_DEVICES'] == '2'
     assert launched[0][1]['env']['E08_CACHE_ROOT'] == '/owned/verified/cache'
+
+
+def test_launched_wrapper_survives_source_replacement(tmp_path, monkeypatch):
+    monkeypatch.setattr(m, 'HERE', tmp_path)
+    source = tmp_path / 'train_continuation.sh'; source.write_text('echo original\n')
+    path, digest = m.snapshot_wrapper(source.name, 'E_14b')
+    replacement = tmp_path / 'new.sh'; replacement.write_text('echo updated\n'); replacement.replace(source)
+    assert path.parent == source.parent and path.read_text() == 'echo original\n'
+    assert m.hashlib.sha256(path.read_bytes()).hexdigest() == digest

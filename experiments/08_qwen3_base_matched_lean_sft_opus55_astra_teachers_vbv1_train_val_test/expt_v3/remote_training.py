@@ -2,6 +2,7 @@
 from __future__ import annotations
 import argparse
 import fcntl
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -16,6 +17,15 @@ HERE = Path(__file__).resolve().parent
 LOCAL = Path('/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3')
 SHARED = Path('/dfs/scratch0/brando9/rl4cv_e08_v3_remote')
 LAYOUTS = {'1p7b': 1, '4b': 2, '8b': 4, '14b': 8}
+
+
+def snapshot_wrapper(name, job):
+    """NFS may invalidate an open replaced file; never replace a launched script."""
+    data = (HERE / name).read_bytes()
+    path = HERE / f'.{Path(name).stem}_{job}_{time.time_ns()}.sh'
+    with path.open('xb') as stream:
+        stream.write(data)
+    return path, hashlib.sha256(data).hexdigest()
 
 
 def ssh(host, command):
@@ -93,13 +103,15 @@ def remote(args):
                                            E08_NEMO_ROOT=ready.get('host_environments', {}).get(host, str(SHARED / 'nemo_rl')))
         env['E08_CACHE_ROOT'] = str(Path(env['E08_NEMO_ROOT']).parent / 'cache')
         receipt = root / f'remote_{args.condition}_{short}.exit.json'
+        wrapper, wrapper_sha = snapshot_wrapper('train_continuation.sh', f'{args.condition}_{short}')
         command = ['/usr/bin/python3', str(HERE / 'job_process.py'), '--receipt', str(receipt), '--',
-                   'bash', str(HERE / 'train_continuation.sh'), args.condition, short, gpus]
+                   'bash', str(wrapper), args.condition, short, gpus]
         with (root / f'remote_{args.condition}_{short}.log').open('a') as log:
             child = subprocess.Popen(command, env=env, stdin=subprocess.DEVNULL, stdout=log,
                                      stderr=subprocess.STDOUT, start_new_session=True)
         record = {'status': 'RUNNING', 'host': host, 'identity': identity(child.pid),
-                  'gpus': gpus, 'tensor_parallel_size': needed, 'started_unix': time.time(), 'receipt': str(receipt)}
+                  'gpus': gpus, 'tensor_parallel_size': needed, 'started_unix': time.time(), 'receipt': str(receipt),
+                  'wrapper_snapshot': str(wrapper), 'wrapper_sha256': wrapper_sha}
         write(path, record); print(json.dumps(record)); return 0
 
 

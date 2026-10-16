@@ -12,7 +12,7 @@ import subprocess
 import sys
 import time
 from recovery_watch import alive, identity, read, write
-from remote_training import ssh
+from remote_training import ssh, snapshot_wrapper
 
 HERE = Path(__file__).resolve().parent
 LOCAL = Path('/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3')
@@ -121,15 +121,17 @@ def remote(args):
                    E08_FLASHINFER_WORKSPACE=environment['root'] + '/flashinfer/' + args.label,
                    BATCH='1024', CUDA_VISIBLE_DEVICES=gpus)
         receipt = root / f'remote_gen_{args.label}.exit.json'
+        wrapper, wrapper_sha = snapshot_wrapper('run_validation.sh', args.label)
         command = ['/usr/bin/python3', str(HERE / 'job_process.py'), '--receipt', str(receipt), '--',
-                   'bash', str(HERE / 'run_validation.sh'), 'validation', args.label, str(model), 'local', gpus,
+                   'bash', str(wrapper), 'validation', args.label, str(model), 'local', gpus,
                    str(needed), 'generation']
         with (root / f'remote_gen_{args.label}.log').open('a') as log:
             child = subprocess.Popen(command, env=env, stdin=subprocess.DEVNULL, stdout=log,
                                      stderr=subprocess.STDOUT, start_new_session=True)
         record = {'status': 'RUNNING', 'host': host, 'identity': identity(child.pid), 'gpus': gpus,
                   'tensor_parallel_size': needed, 'started_unix': time.time(), 'receipt': str(receipt),
-                  'export_sha256': digest(model / 'SHA256SUMS'), 'model': str(model)}
+                  'export_sha256': digest(model / 'SHA256SUMS'), 'model': str(model),
+                  'wrapper_snapshot': str(wrapper), 'wrapper_sha256': wrapper_sha}
         write(path, record); print(json.dumps(record)); return 0
 
 

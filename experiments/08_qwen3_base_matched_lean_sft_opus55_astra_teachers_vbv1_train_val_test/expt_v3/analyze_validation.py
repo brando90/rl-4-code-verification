@@ -83,9 +83,9 @@ def main():
             elif not r.get('compiles'): category = 'compile_error'
             elif not r.get('n_theorems_proved'): category = 'compiles_zero_proved'
             elif (int(r.get('n_theorems_proved') or 0) < int(r.get('n_theorems_stated') or 0)
-                  or int(cell['n_vacuous']) or cell['unparseable'] == 'True'): category = 'compiles_unproved_or_vacuous'
+                  or int(cell['n_vacuous']) or cell['unparseable'] == 'True'): category = 'compiles_partially_proved_or_vacuous'
             elif float(cell['kernel_binary']) == 1: category = 'kernel_success'
-            else: category = 'compiles_all_proved_not_success'
+            else: category = 'compiles_all_proved_not_kernel_success'
             counts[category] += 1
             taxonomy.append({'task_id': cell['task_id'], 'sample_idx': cell['sample_idx'], 'category': category,
                              'capped': cell['capped'], 'lean_sha256': cell['lean_sha256']})

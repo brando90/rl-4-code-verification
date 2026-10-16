@@ -1,0 +1,53 @@
+{
+  "attempt": "recovery-01",
+  "writer": {
+    "pid": 2580398,
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "start_ticks": "36376767"
+  },
+  "checked_unix": 1792129372.3242826,
+  "remote_replay": {
+    "v3_R_1p7b": {
+      "checked_steps": 658,
+      "expected_steps": 658,
+      "loss_tokens": 5752936,
+      "token_counts_match": true,
+      "source": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3",
+      "checked_unix": 1792129122.7844713
+    },
+    "v3_R_4b": {
+      "checked_steps": 195,
+      "expected_steps": 658,
+      "loss_tokens": 1639481,
+      "token_counts_match": true,
+      "source": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3",
+      "checked_unix": 1792129122.9993937
+    }
+  },
+  "generation_progress": {
+    "v3_E_1p7b_f0p5": {
+      "native_completed_prompts_in_first_batch": 281,
+      "declared_cells": 1080,
+      "durable_scored_cells": 0,
+      "host": "skampere3",
+      "identity": {
+        "pid": 1451417,
+        "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+        "start_ticks": "263549233"
+      },
+      "gpus": "2"
+    },
+    "v3_E_1p7b_f1p0": {
+      "native_completed_prompts_in_first_batch": 153,
+      "declared_cells": 1080,
+      "durable_scored_cells": 0,
+      "host": "skampere3",
+      "identity": {
+        "pid": 1464872,
+        "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+        "start_ticks": "263549408"
+      },
+      "gpus": "7"
+    }
+  }
+}

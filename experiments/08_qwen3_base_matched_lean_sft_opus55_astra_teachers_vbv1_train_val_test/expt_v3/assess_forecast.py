@@ -5,7 +5,8 @@ import json
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-FROZEN_SHA256 = 'dc0db39bb62527d24d26c44a128103182afb9e4d28c575c0528eacc773269684'
+FROZEN_SHA256 = '7e4ebbe567792d6509bbac2b78b3c5acd782591fea959c0f3a44ff07744efd5f'
+FROZEN_CANONICAL_SHA256 = 'dc0db39bb62527d24d26c44a128103182afb9e4d28c575c0528eacc773269684'
 
 
 def outcome(decisions):
@@ -22,9 +23,14 @@ def assess(summary):
     path = HERE / 'forecasts/e08_v3_forecast.json'
     actual_hash = hashlib.sha256(path.read_bytes()).hexdigest()
     assert actual_hash == FROZEN_SHA256, 'Prospective forecast was modified'
-    assert (HERE / 'forecasts/e08_v3_forecast.sha256').read_text().split()[0] == FROZEN_SHA256
     forecast = json.loads(path.read_text())
+    canonical = json.dumps(forecast, sort_keys=True, separators=(',', ':'), ensure_ascii=False)
+    assert hashlib.sha256(canonical.encode()).hexdigest() == FROZEN_CANONICAL_SHA256
+    assert (HERE / 'forecasts/e08_v3_forecast.sha256').read_text().split()[0] == FROZEN_CANONICAL_SHA256
+    ledger = [json.loads(line) for line in (HERE / 'forecasts/forecast_ledger.jsonl').read_text().splitlines()]
+    assert any(row['file'] == path.name and row['sha256'] == FROZEN_CANONICAL_SHA256 for row in ledger)
     result = {'forecast_sha256': actual_hash,
+              'forecast_canonical_sha256': FROZEN_CANONICAL_SHA256,
               'rule': 'Earliest fraction with a selected condition; both fractions retained in the full decision table'}
     for key, pred in [('primary', 'primary_prediction'), ('sensitivity', 'three_size_sensitivity_prediction')]:
         actual = outcome(summary[key])

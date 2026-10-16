@@ -2,11 +2,13 @@
 from __future__ import annotations
 import argparse
 from concurrent.futures import ProcessPoolExecutor
+from collections import Counter
 import csv
 import hashlib
 import importlib.util
 import json
 import os
+import re
 from pathlib import Path
 import sys
 import numpy as np
@@ -19,6 +21,7 @@ LAKE = WORK / 'grading/lean_src'
 sys.path[:0] = [str(REPO / 'src'), str(HERE.parent / 'expt_v1/scripts')]
 from rl4cv.rewards import ScoredResponse, reward_kernel_binary
 from score_teacher_files import vacuity
+from failure_taxonomy import KINDS
 
 
 def helpers():
@@ -59,6 +62,23 @@ def check(job):
                 binary = 0
             result.update(kernel_binary=binary, IC_tests=response.ic_tests, IC_proofs=proof,
                           kernel=kernel, nonvacuity=nv, compiles=analysis.compiles)
+    receipt.write_text(json.dumps(result, indent=2) + '\n')
+    return result
+
+
+def original_error(job):
+    """Recover first-error evidence absent from frozen scorer CSVs; no score changes."""
+    diag, _ = helpers()
+    path = Path(job['path']); receipt = path.with_suffix('.json')
+    if receipt.exists():
+        old = json.loads(receipt.read_text())
+        assert old['original_sha256'] == job['original_sha256']
+        return old
+    compiled = diag.compile_file(path, str(LAKE), 600)
+    msg = compiled['errors'][0]['msg'] if compiled['errors'] else ''
+    kind = ('timeout' if compiled['timeout'] else 'recheck_success' if compiled['success']
+            else next((key for key, regex in KINDS if re.search(regex, msg)), 'other' if msg else 'no_error_line'))
+    result = {**job, 'kind': kind, 'first_error': msg, 'compile': compiled}
     receipt.write_text(json.dumps(result, indent=2) + '\n')
     return result
 
@@ -109,6 +129,29 @@ def main():
                'original_successes': sum(r['original_kernel_binary'] for r in combined),
                'diagnostic_successes_known': sum(r['diagnostic_kernel_binary'] or 0 for r in combined),
                'scope': 'Diagnostic only; primary scores, gates and selection unchanged; zero model calls', 'changed_receipts': results}
+    # The baseline taxonomy reports the first 24 hash-selected compilation failures.
+    # Retain that deterministic sample rule for each continuation system, using
+    # original bytes separately from the namespace-transformed copies above.
+    taxonomy = list(csv.DictReader((HERE / f'results/ladder/{args.label}_taxonomy.csv').open()))
+    failed = [r for r in taxonomy if r['category'] == 'compile_error']
+    selected = sorted(failed, key=lambda r: hashlib.sha256(
+        f"rl4cv-e08-v3-taxonomy-sample:{r['task_id']}#{r['sample_idx']}".encode()).hexdigest())[:24]
+    originals = {(r['task_id'], int(r['sample_idx'])): r for r in raw}
+    error_jobs = []
+    for row in selected:
+        text = originals[row['task_id'], int(row['sample_idx'])]['lean']
+        assert hashlib.sha256(text.encode()).hexdigest() == row['lean_sha256']
+        path = root / 'original_error_sample' / row['task_id'] / row['sample_idx'] / 'solution.lean'
+        path.parent.mkdir(parents=True, exist_ok=True); path.write_text(text)
+        error_jobs.append({'task_id': row['task_id'], 'sample_idx': int(row['sample_idx']),
+                           'original_sha256': row['lean_sha256'], 'path': str(path)})
+    with ProcessPoolExecutor(max_workers=4) as pool:
+        errors = list(pool.map(original_error, error_jobs))
+    summary['original_first_error_sample'] = {
+        'selection': "first 24 compile-error cells in ascending sha256('rl4cv-e08-v3-taxonomy-sample:' + task_id + '#' + sample_idx)",
+        'compile_error_population': len(failed), 'sampled_cells': len(errors),
+        'kind_counts': dict(Counter(r['kind'] for r in errors)), 'receipts': errors,
+        'scope': 'Original files; diagnostic sample only; primary scores unchanged; zero model calls'}
     if not summary['unknown_cells']:
         deltas = np.array([sum(r['diagnostic_kernel_binary'] - r['original_kernel_binary']
                               for r in combined if r['task_id'] == task) / 8 for task in manifest['task_ids']])

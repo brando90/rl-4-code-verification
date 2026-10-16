@@ -28,3 +28,11 @@ def test_modified_forecast_cannot_be_assessed(tmp_path, monkeypatch):
     (tmp_path / 'forecasts/e08_v3_forecast.json').write_text('{"edited": true}')
     with pytest.raises(AssertionError, match='Prospective forecast was modified'):
         m.assess({})
+
+
+def test_existing_frozen_forecast_checks_file_and_canonical_hashes():
+    decisions = {'f0p5': {'status': 'INCOMPLETE'}, 'f1p0': {'status': 'INCOMPLETE'}}
+    result = m.assess({'primary': decisions, 'sensitivity': decisions})
+    assert result['forecast_sha256'] == m.FROZEN_SHA256
+    assert result['forecast_canonical_sha256'] == m.FROZEN_CANONICAL_SHA256
+    assert result['primary']['hit'] is None and result['sensitivity']['hit'] is None

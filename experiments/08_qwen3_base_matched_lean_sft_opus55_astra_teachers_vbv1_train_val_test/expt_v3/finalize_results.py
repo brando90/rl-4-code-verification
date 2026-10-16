@@ -62,6 +62,12 @@ def validate():
         primary = {(r['task_id'], r['sample_idx']): r for r in rows}
         assert all(r['original_sha256'] == primary[r['task_id'], r['sample_idx']]['lean_sha256'] for r in dr)
         validate_namespace(diag, dr, primary)
+        errors = diag['original_first_error_sample']
+        assert errors['compile_error_population'] == result['failure_taxonomy'].get('compile_error', 0)
+        assert errors['sampled_cells'] == min(24, errors['compile_error_population']) == len(errors['receipts'])
+        assert errors['kind_counts'] == dict(Counter(r['kind'] for r in errors['receipts']))
+        for error in errors['receipts']:
+            assert error['original_sha256'] == digest(error['path']) == primary[error['task_id'], str(error['sample_idx'])]['lean_sha256']
         namespace[label] = {k: v for k, v in diag.items() if k != 'changed_receipts'}
         for p in (path, tasks_path, taxonomy, cells, diag_path):
             files[str(p.relative_to(HERE))] = hashlib.sha256(p.read_bytes()).hexdigest()
