@@ -5,17 +5,17 @@
 **TLDR:** v2-S2 T1 is final PASS: 8/8 train responses, 44,844 output tokens; median absolute log-probability error 0.0000327482 and p99 0.0176024, unsupported/truncated tokens 0/44,844. All six leases released; cumulative 0.355751673/2.0 device-hours. Continue to T2, T3 and T4 before the audits and pilot. C disabled, H2/F2 unavailable, batch 2 skipped.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-15-2026 19:47 PDT
+Last updated: 10-15-2026 19:55 PDT
 
-## Current state — 10-15-2026 19:47 PDT
+## Current state — 10-15-2026 19:55 PDT
 
 Goal: complete Experiment 13 v2 under A6 through its admitted gates, or publish the binding transition result.
 
-What ran: final T1 PASS; T2 attempts 1 and 2 are INCOMPLETE-INFRA before their real optimizer updates or admission statistics. Attempt 2 retained all 256 train generations, 255 measured scores plus one timeout, recomputed trainer probabilities and its partial native before-checkpoint. The CPU-offloaded state hashing path failed on an unsupported collective.
+What ran: final T1 PASS; T2 attempts 1 and 2 INCOMPLETE-INFRA. The pre-admission actual-model hash repair passed on all 399 offloaded tensors; the subsequent generator guard stopped on an owned-worker shutdown race. No numbered attempt 3 or experiment response exists.
 
-Supervision: owner PID 1243923 remains the single writer. T2 attempt-2 controller 3497257 has halted; its direct exit and verified cleanup are collected. All seven T2 leases are released. No active device or numbered attempt 3 exists.
+Supervision: owner PID 1243923 remains the single writer. Controller PID 2188472 has halted; direct exit collected, cleanup verified, all eight T2 leases released. No active device.
 
-Next: after admission-lock publication, launch complete attempt 3 through the owned lease controller; first require the actual frozen-model state-hash preflight and existing non-probe engine health check. A4 permits at most three attempts; the 8.0/10.0-hour attempt/cumulative limits are unchanged. Batch 2 remains disarmed.
+Next: publish the owned-worker shutdown synchronization, reproducing regression and explicit pre-admission reconciliation before another health launch. Preserve the original preflight artifacts, unchanged science and 8.0/10.0-hour caps. Attempt 3 remains the final permitted numbered attempt; batch 2 stays disarmed.
 
 Brando to-do: none. Existing SNAP preapproval covers the frozen allocation.
 
@@ -344,3 +344,5 @@ T2 attempt 2 infrastructure closure (10-15-2026 19:20 PDT): **INCOMPLETE-INFRA**
 T2 A4 CPU-offload repair (10-15-2026 19:45 PDT): [repair](phase2/T2_A4_CPU_REPAIR.md) and [successor](locks/LP_A6_S2_T2_A4_CPU.json) preserve the complete scientific signature and caps, retaining 4,683 previous hashes with seven infrastructure changes/additions. The exact collective failure is reproduced and fixed in installed CPU distributed-tensor regression; 21 focused checks PASS. Required Lean integration **1,175 passed, 3 skipped, zero failures in 527.88 seconds**, direct exit 0. Real offloaded-model hashing and the existing non-probe generator health check are required before attempt 3 is admitted. No new device claim, experiment response or optimizer update; both failed attempts and cumulative 1.399477372/10.0 device-hours remain retained.
 
 T2 final A4 admission freeze (10-15-2026 19:47 PDT): [admission lock](locks/T2_A4_CPU.json), hash `c8b4b2699b39a7d01f8bb26a503d11193a137e50cf1074d0b2387b9c0e77d924`, binds tested repair/LP revision `9b80189`, regression PASS and failed-attempt-2 publication `2eca991`. All 4,690 successor bindings verify, including seven infrastructure changes/additions and 4,683 unchanged prior hashes. Complete attempt 3 may proceed only after this publication and the actual offloaded-model plus non-probe generator preflight. Required integration just passed 1,175 tests with 3 skipped and direct exit 0; this step binds references and status only. No device is currently claimed; cumulative 1.399477372/10.0 device-hours retained.
+
+T2 pre-admission shutdown handoff (10-15-2026 19:55 PDT): the published repair passed real-model hashing for **399/399 CPU-offloaded distributed tensors, 4,411,424,256 elements**, on the claimed idle device. The subsequent unchanged device guard encountered the shutting-down owned Ray worker and raised `PermissionError` reading its process environment, before generator engine construction. [Evidence](phase2/T2_A4_CPU_preflight_failure.json). Zero experiment responses, optimizer updates or admission statistics; **numbered attempt 3 was not admitted**. Cleanup verified, lease released, 0.052590087 additional device-hours charged; cumulative **1.452067459/10.0**. Preserve this preflight and publish a tested shutdown wait plus explicit pre-admission reconciliation. The device guard and scientific settings remain unchanged.
