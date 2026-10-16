@@ -4,18 +4,18 @@
 
 **TLDR:** v2-S2 T1 is final PASS: 8/8 train responses, 44,844 output tokens; median absolute log-probability error 0.0000327482 and p99 0.0176024, unsupported/truncated tokens 0/44,844. All six leases released; cumulative 0.355751673/2.0 device-hours. Continue to T2, T3 and T4 before the audits and pilot. C disabled, H2/F2 unavailable, batch 2 skipped.
 
-Last updated: 10-15-2026 20:40 PDT
-**Status:** T1 PASS; T2 attempt 2 INCOMPLETE-INFRA; A4 repair and final allowed attempt 3 preparation.
+Last updated: 10-15-2026 20:47 PDT
+**Status:** T1 PASS; final T2 attempt 3 running after published repair and actual health admission.
 
-## Current state — 10-15-2026 20:40 PDT
+## Current state — 10-15-2026 20:47 PDT
 
 Goal: complete Experiment 13 v2 under A6 through its admitted gates, or publish the binding transition result.
 
-What ran: final T1 PASS; T2 attempts 1 and 2 INCOMPLETE-INFRA. The pre-admission actual-model hash repair passed on all 399 offloaded tensors; the subsequent generator guard stopped on an owned-worker shutdown race. No numbered attempt 3 or experiment response exists.
+What ran: final T1 PASS; both failed T2 attempts and the unadmitted preflight are retained. Complete final attempt 3 passed actual model/shutdown/generator health and is generating its fixed 256-response train cohort. No optimizer update or T2 statistic yet.
 
-Supervision: owner PID 1243923 remains the single writer. Waiting controller PID 3796143 was retired after verifying its birth, no children and zero active leases; its no-claim poll remains retained.
+Supervision: owner PID 1243923 remains the single writer; recovered controller PID 49490 is watchdog-registered. Generation lease e13v2-a25a936c08f743f68e6db4c345dded40 owns skampere1 device 0.
 
-Next: publish the observation-only successor admission, then launch the bound recovery supervisor with its new plan. Require fresh actual model/shutdown/generator health before final numbered T2 attempt 3. Original allocation/caps, all failures and batch-2 disarm remain unchanged.
+Next: supervise the same controller through complete scoring, one update, export, refit and the once-only T2 verdict; publish each closed stage and apply the binding transition. No additional numbered attempt is available. Caps stay 8.0/10.0 hours; batch 2 remains disarmed.
 
 Brando to-do: none. Existing SNAP preapproval covers the frozen allocation.
 
@@ -317,3 +317,7 @@ Concurrent dispatch correction (10-15-2026 20:17 PDT): merged remote `52ac585` w
 T2 reservation-observation reconciliation verified (10-15-2026 20:37 PDT): [method](phase2/T2_A4_OBSERVATION_RECONCILIATION.md) and [successor](locks/LP_A6_S2_T2_A4_OBSERVATION.json). One exact duplicate historical review in experiment 12 caused a no-claim wait; its path/hash are now bound while the original allocator, live foreign checks, allocation hash/caps and scientific settings remain unchanged. Nineteen focused checks and required integration **1,204 passed, 3 skipped, zero failures in 503.52 seconds**, direct exit 0. The sleeping controller was retired without children or active leases. Numbered attempts remain two; T2 usage is 1.452067459/10.0 device-hours. Publish admission, then resume fresh health and final attempt 3.
 
 T2 observation successor admission freeze (10-15-2026 20:40 PDT): [lock](locks/T2_A4_OBSERVATION.json), SHA-256 `17a0ed92fdd6e3aa6d5cadd0e8cfbc930aa35dad15c242162cdfda5a8e1f49fa`, binds published repair/LP `2b9fb66`, 24 cumulative infrastructure changes/additions and 4,682 unchanged hashes. The full scientific signature and original allocation/caps are identical. Required integration passed 1,204 tests with 3 skipped; three new isolated Experiment 08 tests from the concurrent merge also passed. All Experiment 13 runtime/test sources are unchanged since verification. After publication, resume fresh model/shutdown/generator health before final numbered attempt 3. Original failures, no-claim wait and all 1.452067459 device-hours remain retained; no new claim yet.
+
+T2 final numbered attempt 3 admitted (10-15-2026 20:47 PDT): tested repair `2b9fb66` and admission `c107bbc` preceded fresh health. Actual model hashing **399/399 offloaded tensors**, owned-worker exit/census synchronization and non-probe generator/provenance/socket checks PASS. The original gate driver is generating the complete 256-response train cohort on skampere1 device 0, controller PID 49490 under the watchdog ([evidence](phase2/T2_A4_OBSERVATION_attempt3_launch.json)). Both failed numbered attempts and the earlier unadmitted preflight remain retained, with 1.452067459 device-hours already charged before this fresh health; none of their outputs enters the gate statistic. No optimizer update or verdict yet. This is the final permitted A4 numbered attempt; caps remain 8.0/10.0 hours. Required integration passed 1,204 tests with 3 skipped and direct exit 0; source is unchanged.
+
+Final T2 attempt-3 launch publication verification (10-15-2026 20:52 PDT): the merged repository passed required Lean integration **1,220 tests, 3 skipped, zero failures in 523.44 seconds**, direct exit 0 ([receipt](phase2/T2_OBSERVATION_launch_publication_test.json)). The published infrastructure/runtime and scientific settings are unchanged. Fresh health and final numbered admission already succeeded; the saved launch snapshot binds the exact plan, controller, health evidence and retained costs. This publication computes no gate statistic and performs no retry.
