@@ -5,7 +5,7 @@
 **TLDR:** The corrected adapter (amended once, V2-A1, before any evaluation) was run in mapping-only mode (no Lean, no model calls) over the 11 primary systems' 4,626 compiling cells with extracted tests on `skampere1` (26.2 s). It maps every gold symbol in 3,121 cells before any probe (version 1 recorded 3,444 after its Lean probes), leaves 263 cells to the agreement probe, changes the entry point in 379 of the 3,624 cells both versions map, and excludes a helper in 364 cells. Static controls on all 882 gold suites: gold maps to itself at step 1 in 882/882; renamed gold is never mapped to a wrong symbol statically (0/882; 855 deferred to the probe). No pass rate, correlation or hidden outcome was computed, and none may be until the frozen forecast is read against Emily's evaluation.
 
 **Status:** RUNNING — all four controls PASS; full primary evaluation is executing on skampere1.
-**Last updated:** 10-15-2026 21:07 PDT
+**Last updated:** 10-15-2026 21:33 PDT
 
 ## Static controls over all 882 gold suites (`results/static_controls_v2.json`, 10.2 s)
 
@@ -112,3 +112,7 @@ The two renamed-gold misses, six surviving mutants and one unrejected wrong-task
 ## Full primary evaluation — started 10-15-2026 21:07 PDT
 
 Session `rl4cv-e12v2-evaluate` is executing all 4,626 eligible groups using copied version-1 modules and two low-priority Lean workers. The initial ledger contains the other **5,230 cells** (including 154 no-test cells and two missing-file cells); all **9,856 declared cells** remain in the accounting and conservative bounds. First copied modules and completed candidate receipts were verified. [Launch and frozen runtime manifest](results/evaluation_launch_v2.json). Results will be published every 500 unique groups; analyses wait for full completion.
+
+### 500/4,626 groups — 10-15-2026 21:33 PDT
+
+The uninterrupted primary run has completed **500 unique groups**, with **5,730/9,856 declared cells** recorded and **411 fully applicable cells** so far. This is an execution milestone, not a final estimate or forecast verdict. Two low-priority Lean workers remain active. [Exact milestone receipt](results/evaluation_milestone_0500_v2.json).
