@@ -261,3 +261,14 @@ Full suite1,342passed/17skipped/6subtests,334.50s;14focused checks. Deterministi
 
 
 10-16-2026 13:40 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 06:51 PDT — native14B admission and finite replay handoff
+
+Frozen14B expansion admitted on the verified2+2+4 route. The canonical native driver and all participant identities are recorded; the original controller has synchronized live logs. 0 native updates checked against the frozen schedule, totaling0loss tokens. Replay sequencer implementation waits for exact exit0, clean participant release, DONE expansion verification and the scheduler-created live replay controller, then performs fresh locked capacity checks and one durable dispatch.
+
+Replay8B native checkpoints were fully copied and source/destination SHA256-verified:40files,196,623,888,795bytes. Exact dead identities, canonical sizes and export manifests were independently checked before publication; shared native storage is released while exports/logs remain. The sequencer preserves any existing replay admission, waits without changing GPU allocations, retains its dispatch claim before spawning, and stops on native/proof/cleanup failure, changed source/deadline or missing exact receipts. It does not automatically replay a scientific attempt. Existing generators/controllers remain protected by the same locks and reservations. Original deadline and attempt/scientific limits are unchanged.
+
+Full suite1,358passed/17skipped/6subtests,324.34s;30focused checks. [Admission and token progress](E14_native_admission_recovery02.json), [tested sources](native_continuation_tests_recovery02.json). The sequencing process is configured for this exact E14 identity; its first live waiting state must be verified after launch. Native final publication/notification remains UNARMED while recovery-02 owns the task.
+
+
+10-16-2026 13:51 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.

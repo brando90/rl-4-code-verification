@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "checked_unix": 1792158032.4087706,
+  "checked_unix": 1792158685.1436749,
   "input_sha256": {
     "../../../../../../ultimate-utils/py_src/uutils/emailing.py": "b853ee23709dc6a093821d59d10e21a4973ed605267e6c170fdcc6b0df1374de",
     "../../../external/veribench_scorer/scripts/scsc/kernel_axioms.py": "5dbbdcae75ba8b22911fcb43ab1fcde45a1475cf92742a39a29ebe41116de287",
@@ -13,6 +13,7 @@
     "../../../tests/test_e08_v3_capacity_event.py": "42802fd3a395c48467ef2434621eb3f5ad8c87b21b05a091422507492cc60cff",
     "../../../tests/test_e08_v3_finalize.py": "0337cddc74a426f221e0c106de8f29d4d4e6c8439a7cfcd78c9223b03292a99e",
     "../../../tests/test_e08_v3_multinode.py": "2f06035cccdb080eb9a1f81238a3ffd79105bd14b1ae4a953c69a55eaf573ae5",
+    "../../../tests/test_e08_v3_multinode_sequence.py": "12ccdd942fb043b8f81ab93473f096ecd5e165d3d370f31b70f7a9b7fa02acd1",
     "../../../tests/test_e08_v3_native_continuation.py": "c3eb7f89b15513de614458d2b9a674f7641c854492687496cd829dbb79a566df",
     "../../../tests/test_e08_v3_recovery.py": "b1d435a3bd5ad3b977a3cfb7f81a8cf24c69c9fc5daa05d6d4204fa1f16f34bb",
     "../expt_v1/scripts/analyze_ladder.py": "54996b9357cd35bbb9f6dfc93376b17aff7005f1fe61977d6969efbbdb5eb8db",
@@ -38,6 +39,7 @@
     "freeze_inputs.py": "3a14355a926ad1381b8b2da9f8536c79f6fbde0f6a37098b046d95776e6a834f",
     "job_process.py": "c067e687beb1f460bfda2e35d5504c02ca693e81270ac967ed6491be21f2ffc5",
     "multinode_runtime.py": "afac3dcba8171deb416ebbcd691a9085ea29ab7b68e77689d675706dc463900a",
+    "multinode_sequence.py": "190688f201610f86865eb7fb9c8881bd3cfe4056385b986cf91e07e913530a50",
     "multinode_training.py": "cb6e646c8564c46a6cd45ab66dde0c03a684f6090c63aeedc309a3ab6c249bb1",
     "namespace_diagnostic.py": "37f47756d5ab8a6302488e3d1d90356702efbbd9990219fd609391ba6260df33",
     "native_continuation.py": "6bf1def25108c6696359eb6333e238c1468790deea9157ad0f770fa6d9bc597e",
@@ -67,12 +69,12 @@
     "verify_training.py": "1215a8fae9f093e04ae2781b8cf5cbcb5ca2bb1488ca5a485517a1ea5f25ba6c"
   },
   "failed": 0,
-  "full_suite_passed": 1342,
+  "full_suite_passed": 1358,
   "full_suite_skipped": 17,
   "full_suite_subtests": 6,
-  "full_suite_seconds": 334.5,
-  "full_suite_log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/make_test_recovery02_multinode_adapter_clean.log",
-  "full_suite_log_sha256": "7522883988a2456e4ccac378ac9a7557385d4a25795d1ccaf7c7c308b73178cb",
+  "full_suite_seconds": 324.34,
+  "full_suite_log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/make_test_recovery02_multinode_sequence.log",
+  "full_suite_log_sha256": "92835fe4e18b272d39d9ef7117a183db28e7f5e3a6533cda20efb64141036ead",
   "focused_checks_passed": 84,
   "focused_subtests": 6,
   "real_local_git_publication_and_merge_guard": "PASS",
@@ -98,5 +100,7 @@
     "passed": 1338,
     "reason": "Inherited CODEX_HOME intentionally rejected by four existing coordinator fixtures; no source changes; rerun under documented clean test environment"
   },
-  "multinode_gpu_proof": "PASS_EXACT_EIGHT_UUIDS_COLLECTIVES_AND_CLEANUP"
+  "multinode_gpu_proof": "PASS_EXACT_EIGHT_UUIDS_COLLECTIVES_AND_CLEANUP",
+  "multinode_sequence_focused_passed": 16,
+  "multinode_total_focused_passed": 30
 }

@@ -2,7 +2,7 @@
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
 **TLDR:** All Phase A training/generation verified; Phase A complete, all eight rungs and diagnostics checked; replay 4B half and expansion 4B full pass gates and all remaining cells still required.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-16-2026 06:40 PDT
+Last updated: 10-16-2026 06:51 PDT
 ## Goal
 - Complete all 17,280 validation cells, paired bootstrap, namespace diagnostic, forecast assessment, publication and actual DONE notification; zero paid experimental model calls; test split unopened.
 ## Current execution
@@ -12,7 +12,7 @@ Last updated: 10-16-2026 06:40 PDT
 - Eight complete Phase A generated rungs = 8,640 exact cells. All generation children exited 0; all eight Phase A rungs scored/analyzed (8,640/17,280 cells). Replay 4B half and expansion 4B full pass gates; eight namespace diagnostics have zero score delta.
 - Primary scoring and namespace diagnostics use eight workers per rung, at most six combined jobs (48 active compilation slots), frozen 600s timeout; expired orphan children cleaned separately by exact pidfd guard. Phase A generation finished; Phase B uses immutable remote shell snapshots.
 - All four training sizes and exact generator environments verified on skampere2/3. Pending large-model routes remain remote. 14B training must use eight devices; inference uses the frozen permitted layout.
-- Latest full suite: 1,342 passed / 17 skipped / 6 subtests / 334.50s; 14 focused multinode checks pass. Original deadline and attempt limits unchanged.
+- Latest full suite: 1,358 passed / 17 skipped / 6 subtests / 324.34s; 30 focused multinode/admission/sequencing checks pass. Original deadline and attempt limits unchanged.
 ## Waits and recovery
 - Host recovery and native continuation crons every five minutes/reboot; native route installed UNARMED. Orphan cleanup every minute; capacity probe every 15min. Active owner; old external wait disarmed. Original deadline 10-18-2026 21:21 PDT and six-recovery/two-Vals limits unchanged; actual fallback exclusions updated.
 - Slurm association was already requested 10-14; do not duplicate. Inventory and real release events are in host recovery_config.json. No paid cloud or smaller 14B training layout.
@@ -140,3 +140,7 @@ Last updated: 10-16-2026 06:40 PDT
 - 10-16-2026 06:40 PDT -- Eight-device placement and NCCL collectives passed across skampere1 GPUs1/2, skampere2 GPUs3/5, and skampere3 GPUs2/4/5/7. Exact UUIDs and process identities verified; all owned probe processes exited and existing H200 contexts survived. Frozen TP8, model/data/optimizer/sampling/token caps remain unchanged; zero model calls or training updates in probes. Full suite1,342passed/17skipped/6subtests. [Eight-device proof, prior failure and cleanup](results/multinode_eight_gpu_recovery02.json). Training remains unverified until first native update.
 
 - 10-16-2026 13:40 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+- 10-16-2026 06:51 PDT -- Frozen14B expansion admitted on the verified2+2+4 route. The canonical native driver and all participant identities are recorded; the original controller has synchronized live logs. 0 native updates checked against the frozen schedule, totaling0loss tokens. Replay sequencer implementation waits for exact exit0, clean participant release, DONE expansion verification and the scheduler-created live replay controller, then performs fresh locked capacity checks and one durable dispatch. [Native admission](results/E14_native_admission_recovery02.json). Replay8B native checkpoints were fully copied and source/destination SHA256-verified:40files,196,623,888,795bytes. Exact dead identities, canonical sizes and export manifests were independently checked before publication; shared native storage is released while exports/logs remain. The sequencer preserves any existing replay admission, waits without changing GPU allocations, retains its dispatch claim before spawning, and stops on native/proof/cleanup failure, changed source/deadline or missing exact receipts. It does not automatically replay a scientific attempt. Existing generators/controllers remain protected by the same locks and reservations. Original deadline and attempt/scientific limits are unchanged.
+
+- 10-16-2026 13:51 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
