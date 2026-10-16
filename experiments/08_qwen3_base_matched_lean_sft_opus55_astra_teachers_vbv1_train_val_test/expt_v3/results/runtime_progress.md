@@ -122,3 +122,9 @@ Expansion 1.7B full has 1,080 exact diagnostic cells, zero changed or unknown ce
 Replay 1.7B half passes exact coverage and hash checks for all 1,080 diagnostic cells. Zero identifiers changed, zero scores are unknown, and the paired delta is 0 [0,0], 10,000 task-bootstrap draws, seed 0, p-val=n/a. Its 24 original-error sample receipts retain one native timeout. Six diagnostics are checked; only both expansion 4B primary scorers and their following namespace checks remain in Phase A. [Diagnostic receipt](namespace_diagnostic/v3_R_1p7b_f0p5.json).
 
 Recovery configuration now records the exact current six-rung scheduler identities, observed 50% Vals weekly usage and zero credits. The existing finite deadline, retry limits and scientific caps are unchanged. Shared rules refreshed at 01:15 PDT with no changes.
+
+## 10-16-2026 01:37 PDT — passing expansion 4B full checkpoint
+
+Expansion 4B full has all 1,080 exact raw/scored/table cells checked. All gates pass: 981 extracted (minimum 972), 98 capped (maximum 108), and 36/135 mixed tasks (minimum 7), mixed-share Wilson 95% interval [0.1993, 0.3470]. Kernel success is 153/1,080 = 0.1417 [0.0972, 0.1907]. Taxonomy: 99 no Lean file, 828 compile errors, 153 kernel successes.
+
+Matched expansion minus replay is +0.0194 [−0.0019, 0.0426]; the interval spans zero. Intervals use 10,000 paired task-bootstrap draws over 135 tasks with eight attempts together, seed 0, p-val=n/a; training-seed variability is unmeasured. Its namespace diagnostic has zero changed/unknown cells and delta 0 [0,0]; exact 1,080-cell hashes and 24 original-error receipts pass. The brief observer dead-process alert was a normal native exit 0 before the scheduler next polled, now DONE. Seven primary rungs and seven diagnostics are checked; coverage 7,560/17,280. [Live table](../results.md), [diagnostic receipt](namespace_diagnostic/v3_E_4b_f1p0.json).
