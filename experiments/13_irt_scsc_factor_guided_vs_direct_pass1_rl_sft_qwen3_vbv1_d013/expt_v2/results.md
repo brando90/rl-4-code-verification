@@ -4,10 +4,10 @@
 
 **TLDR:** v2-S2 T1 is final PASS: 8/8 train responses, 44,844 output tokens; median absolute log-probability error 0.0000327482 and p99 0.0176024, unsupported/truncated tokens 0/44,844. All six leases released; cumulative 0.355751673/2.0 device-hours. Continue to T2, T3 and T4 before the audits and pilot. C disabled, H2/F2 unavailable, batch 2 skipped.
 
-Last updated: 10-15-2026 20:37 PDT
+Last updated: 10-15-2026 20:40 PDT
 **Status:** T1 PASS; T2 attempt 2 INCOMPLETE-INFRA; A4 repair and final allowed attempt 3 preparation.
 
-## Current state — 10-15-2026 20:37 PDT
+## Current state — 10-15-2026 20:40 PDT
 
 Goal: complete Experiment 13 v2 under A6 through its admitted gates, or publish the binding transition result.
 
@@ -315,3 +315,5 @@ T2 published handoff admission freeze (10-15-2026 20:12 PDT): [lock](locks/T2_A4
 Concurrent dispatch correction (10-15-2026 20:17 PDT): merged remote `52ac585` without replacing other projects. Its new [experiment-13 dispatch summary](PROMPT_dispatch_e13_v2_main_pilot.md) incorrectly described an 8B model, item-response curriculum arm P, eight test samples, intermediate T5 extension horizons and a different mail route. Corrected it to the binding 4B warm start, independent placebo, 16-sample test outcome, single B extension to 60, audit-before-pilot order, actual missing anchor outcomes and PLAN watchdog notifications. Hosted judge controls had already resolved the earlier 403; funding/allocation remain required. No frozen scientific artifact or runtime was changed. All experiment-13 runtime and root test sources match the revision that passed 1,194 tests with 3 skipped and direct exit 0.
 
 T2 reservation-observation reconciliation verified (10-15-2026 20:37 PDT): [method](phase2/T2_A4_OBSERVATION_RECONCILIATION.md) and [successor](locks/LP_A6_S2_T2_A4_OBSERVATION.json). One exact duplicate historical review in experiment 12 caused a no-claim wait; its path/hash are now bound while the original allocator, live foreign checks, allocation hash/caps and scientific settings remain unchanged. Nineteen focused checks and required integration **1,204 passed, 3 skipped, zero failures in 503.52 seconds**, direct exit 0. The sleeping controller was retired without children or active leases. Numbered attempts remain two; T2 usage is 1.452067459/10.0 device-hours. Publish admission, then resume fresh health and final attempt 3.
+
+T2 observation successor admission freeze (10-15-2026 20:40 PDT): [lock](locks/T2_A4_OBSERVATION.json), SHA-256 `17a0ed92fdd6e3aa6d5cadd0e8cfbc930aa35dad15c242162cdfda5a8e1f49fa`, binds published repair/LP `2b9fb66`, 24 cumulative infrastructure changes/additions and 4,682 unchanged hashes. The full scientific signature and original allocation/caps are identical. Required integration passed 1,204 tests with 3 skipped; three new isolated Experiment 08 tests from the concurrent merge also passed. All Experiment 13 runtime/test sources are unchanged since verification. After publication, resume fresh model/shutdown/generator health before final numbered attempt 3. Original failures, no-claim wait and all 1.452067459 device-hours remain retained; no new claim yet.
