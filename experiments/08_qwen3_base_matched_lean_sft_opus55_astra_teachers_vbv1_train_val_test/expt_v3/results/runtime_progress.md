@@ -218,3 +218,14 @@ The actual successful-child transition exposed a short gap between native exit0 
 
 
 10-16-2026 12:17 UTC: deterministic native continuation verified 10,800/17,280 primary cells. Completed native jobs: 44. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 05:33 PDT — verified archive and native capacity-event continuation
+
+Expansion 8B native archive verified:40 files and196,623,888,829 bytes retained locally with full hashes before removing shared originals. Replay 8B archive is running with exact process identity and verified first copy output. Both replay scorers remain active;14B still waits for eight eligible devices. [Completed expansion archive](E8_native_archive_recovery02.json), [replay archive launch/identity](R8_native_archive_started_recovery02.json). All exports and logs remain in place. Shared free capacity after the expansion archive was about1,555GiB; the original1,100GiB admission floor remains unchanged. [240 checked diagnostic error samples](error_samples_recovery02.json) reproduce deterministic selection,counts and every retained original-file hash without new compilations.
+
+[Fresh capacity inventory](capacity_after_8b_generation_recovery02.json): local candidates1,2 do not form a four-device route; Slurm has no account association or idle eligible eight-GPU node. [Cross-host design/readiness](multinode_topology_readiness_recovery02.json) retains the successful CPU proof and exact frozen eight-device layout, while GPU binding/communication remains unverified. The capacity cron now recognizes an explicitly armed native handoff with the same owner/attempt/deadline/caps and completed independent work. Only a verified eligible route change wakes the existing finite recovery inventory; polling churn does not. No scientific allocation or new model call was made.
+
+Clean full suite:1,323passed,17skipped,6subtests,321.47s;79 focused checks pass. The preceding full run had collected a misplaced test assertion before it was fixed; that failed log is retained and superseded by the clean run. The latest actual native invocation returns UNARMED. [Authentication-only mail preflight](notification_auth_preflight_recovery02.json) passed with zero messages sent.
+
+
+10-16-2026 12:33 UTC: deterministic native continuation verified 10,800/17,280 primary cells. Completed native jobs: 44. Zero paid experimental calls; test split unopened.

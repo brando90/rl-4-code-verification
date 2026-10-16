@@ -1,0 +1,56 @@
+{
+  "status": "GPU_ROUTE_UNVERIFIED",
+  "checked_unix": 1792152199.5845997,
+  "frozen_training_devices": 8,
+  "frozen_tensor_parallel_size": 8,
+  "eligible_maximum_after_8b_release": 6,
+  "cpu_control_plane": "PASS_3_HOSTS",
+  "cpu_receipt": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/multinode_cpu_recovery02.json",
+  "source_supported_topologies": [
+    [
+      2,
+      2,
+      4
+    ],
+    [
+      2,
+      6
+    ],
+    [
+      4,
+      4
+    ]
+  ],
+  "scientific_yaml_overrides_required": false,
+  "requirements": [
+    "Atomically reserve exact device UUIDs on every participating host under existing admission locks before starting isolated Ray nodes",
+    "Record per-host keeper boot_id/start_ticks and device maps; preserve legacy training driver identity/exit receipt so the current waiting controller can adopt",
+    "Expose only each node own leased GPU mask; unset driver CUDA_VISIBLE_DEVICES so NeMo does not broadcast the head mask to other nodes",
+    "Use explicit owned RAY_ADDRESS plus the common worker interpreter alias verified in the CPU probe",
+    "Use identical shared model/data/native-checkpoint paths and preserve initial fresh optimizer then native half-to-full optimizer resume",
+    "Keep spare CPU resources for environment builders/initializer actors",
+    "Before admission require bounded exact GPU UUID/rank mapping and NCCL transport receipts; a small transport check is not an eight-rank model-memory validation"
+  ],
+  "proposed_transport_check": {
+    "scope": "NO_MODEL_NO_CORPUS_NO_OPTIMIZER",
+    "checks": [
+      "exact GPU UUID and Ray rank mapping",
+      "small deterministic NCCL all-reduce",
+      "all-gather",
+      "broadcast",
+      "exact owned-process cleanup"
+    ],
+    "executed": false
+  },
+  "source_refs": [
+    "nemo_rl/algorithms/sft.py:128-203,549-571",
+    "nemo_rl/distributed/virtual_cluster.py:96-110,326-335",
+    "nemo_rl/distributed/worker_groups.py:431-434",
+    "nemo_rl/utils/venvs.py:152-184",
+    "nemo_rl/utils/native_checkpoint.py:136-205",
+    "Ray2.46.0 worker.py:445,1034,1549"
+  ],
+  "decision": "No multi-host scientific admission: insufficient eligible capacity and GPU route unverified. Preserve current single-host waiting controller and all healthy 8B children.",
+  "model_calls": 0,
+  "scientific_caps_changed": false
+}

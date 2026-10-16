@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "checked_unix": 1792153057.8362331,
+  "checked_unix": 1792153963.0053437,
   "input_sha256": {
     "../../../../../../ultimate-utils/py_src/uutils/emailing.py": "b853ee23709dc6a093821d59d10e21a4973ed605267e6c170fdcc6b0df1374de",
     "../../../external/veribench_scorer/scripts/scsc/kernel_axioms.py": "5dbbdcae75ba8b22911fcb43ab1fcde45a1475cf92742a39a29ebe41116de287",
@@ -10,8 +10,9 @@
     "../../../src/rl4cv/__init__.py": "dfcf7f0fd009c62b0e7be6e98c6a3353ac5a1f1643efacc2711f9b845292cb2c",
     "../../../src/rl4cv/rewards.py": "fdc5256566f74c459875dfeca91b3956004d35a90fed17d8975e6275c7c6e9e0",
     "../../../src/rl4cv/screens.py": "a92d4af7968a6c1fe717b2fbad44acbe145c8f258ec3d3dba56bf7b1ea182510",
+    "../../../tests/test_e08_v3_capacity_event.py": "42802fd3a395c48467ef2434621eb3f5ad8c87b21b05a091422507492cc60cff",
     "../../../tests/test_e08_v3_finalize.py": "0337cddc74a426f221e0c106de8f29d4d4e6c8439a7cfcd78c9223b03292a99e",
-    "../../../tests/test_e08_v3_native_continuation.py": "a7d226b28088a01e7c91277c8bd6996810a2ad64ce101313aca8a9a44406edf6",
+    "../../../tests/test_e08_v3_native_continuation.py": "ae1b1a87713c954e6a446876af7966ee5c335589b2ae145a32e82029c3d65b16",
     "../../../tests/test_e08_v3_recovery.py": "b1d435a3bd5ad3b977a3cfb7f81a8cf24c69c9fc5daa05d6d4204fa1f16f34bb",
     "../expt_v1/scripts/analyze_ladder.py": "54996b9357cd35bbb9f6dfc93376b17aff7005f1fe61977d6969efbbdb5eb8db",
     "../expt_v1/scripts/score_teacher_files.py": "e77aa53f26a78b64dcb978c874b0336c5f75c7a15656740fde67e29ed5f00000",
@@ -41,11 +42,11 @@
     "prepare_continuation.py": "a6c41c8a88d7ba071635d21c71574b606784b7265766ca34bb628083b35b8c11",
     "prepare_remote.py": "632eb66c89303f3ae2e7378c2d91ff5508e29e147750b9d898954ad22be47ab5",
     "prepare_remote_generation.py": "3d4e9599ffa2fe28540eb502c34bac8d2a385ce0adb5ee83393ed6776cb30d72",
-    "probe_capacity_event.py": "034fa657052b866f79ad422f9bb7c3b1045d5f84d5845964d30f1ad9e26a946f",
+    "probe_capacity_event.py": "595fe754a8bd8c1bfffba04e475c4697b43b9fbc32a72959de5c96d8eb00883c",
     "probe_multinode_cpu.py": "6bd4de7b917456a749166743ea97282b128dcdcf236f77b696e0a8249b505db8",
     "reap_timed_out_lean.py": "4c539ba94dfacfbf6615819306d5afa8d15ae5c80d3b8c4575a3fd02fd7dbce2",
     "recovery_owner.py": "711ba2582cab32494eff25d9de82961ec1c0818da6b5dd21bc074743ebbb3ca4",
-    "recovery_watch.py": "301dc34e5e6f8df42a226c0a1b6baa648d355a3fb4456f27aa31a0f709a6a86d",
+    "recovery_watch.py": "2b08c8a37264fd908eca8570e1307918b683514dc01c1591945262b3b2fc9f62",
     "remote_generation.py": "df83a93b1efd8ebfa9dc96aa5cc05ec25d1cfe2011682e5e23b7c579cad0fa6c",
     "remote_training.py": "c990a1a2a1d6247a83a9bf79a8c267a6c5cd3ca4a09e7e7917b01ed4fcf8c90e",
     "results/generation_prompt_hashes_v3.json": "aacca089a31478e822dcbf812632065841437f4a1973d3ed1ebcf813c2db5535",
@@ -63,13 +64,13 @@
     "verify_training.py": "1215a8fae9f093e04ae2781b8cf5cbcb5ca2bb1488ca5a485517a1ea5f25ba6c"
   },
   "failed": 0,
-  "full_suite_passed": 1321,
+  "full_suite_passed": 1323,
   "full_suite_skipped": 17,
   "full_suite_subtests": 6,
-  "full_suite_seconds": 308.91,
-  "full_suite_log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/make_test_recovery02_handoff.log",
-  "full_suite_log_sha256": "f8ec56ff4933772afdf66d4d73ae65be62d67d9a6d45b58d06a372b65de21c75",
-  "focused_checks_passed": 58,
+  "full_suite_seconds": 321.47,
+  "full_suite_log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/make_test_recovery02_capacity_native_final.log",
+  "full_suite_log_sha256": "dcc872996ea7846500ef18455131338469b9fcebb345eac7459a144b25b9193e",
+  "focused_checks_passed": 79,
   "focused_subtests": 6,
   "real_local_git_publication_and_merge_guard": "PASS",
   "parent_death_surviving_child_lock": "PASS",
@@ -79,5 +80,11 @@
   "production_handoff_armed": false,
   "model_calls": 0,
   "native_exit_handoff_grace_seconds": 180,
-  "success_handoff_identity_exit_age_checks": "PASS"
+  "success_handoff_identity_exit_age_checks": "PASS",
+  "native_capacity_events": "PASS_EXACT_FINITE_RELEASE_AND_ACTIONABLE_CHANGE_ONLY",
+  "superseded_full_suite": {
+    "log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/make_test_recovery02_capacity_native.log",
+    "failed": 1,
+    "reason": "Misplaced assertion in test fixture; corrected focused tests and clean full suite pass"
+  }
 }

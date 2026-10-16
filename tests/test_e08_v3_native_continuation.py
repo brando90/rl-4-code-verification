@@ -366,3 +366,18 @@ def test_native_successful_exit_waits_without_publication_or_failure(tmp_path, m
     assert native.tick(tmp_path, config) == 'WAITING_NATIVE_HANDOFF'
     command.assert_not_called()
     assert watch.read(tmp_path / 'native_continuation_state.json').get('publication_failures', 0) == 0
+
+
+def test_verified_alternate_capacity_event_wakes_existing_inventory(tmp_path, monkeypatch):
+    config, ack, release = arm(tmp_path, monkeypatch)
+    record = watch.read(tmp_path / 'native_continuation_arm.json')
+    record['capacity_baseline'] = {'sequence': 4, 'fingerprint': 'unavailable'}
+    watch.write(tmp_path / 'native_continuation_arm.json', record)
+    route = {'eligible': True, 'alternates': {'slurm': {'nodes': ['ampere1'], 'account': 'infolab'}}}
+    event = {'route': route, 'sequence': 5, 'attempt': ack['attempt'],
+             'deadline_unix': config['recovery_deadline_unix'], 'observed_unix': time.time(),
+             'fingerprint': native.hashlib.sha256(json.dumps(route, sort_keys=True, separators=(',', ':')).encode()).hexdigest()}
+    watch.write(tmp_path / 'external_capacity_event.json', event)
+    assert watch.native_continuation_observation(tmp_path, config, ack, release, [], time.time())['reason'] == 'eligible_alternate_capacity_changed'
+    event['attempt'] = 'older'; watch.write(tmp_path / 'external_capacity_event.json', event)
+    assert watch.native_continuation_observation(tmp_path, config, ack, release, [], time.time())['status'] == 'DEFER'

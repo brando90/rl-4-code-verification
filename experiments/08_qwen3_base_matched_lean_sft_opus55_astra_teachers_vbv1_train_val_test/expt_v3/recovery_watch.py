@@ -236,6 +236,22 @@ def native_continuation_observation(root, config, ack, release, issues, now):
                                     'PUBLISHED_NATIVE_PROGRESS', 'RUNNING', 'MAIL_SENDING', 'NOTIFIED',
                                     'RETRY_PUBLICATION'):
         return {'status': 'NEEDS_RECOVERY', 'reason': native.get('status')}
+    baseline = arm.get('capacity_baseline', {})
+    if not isinstance(baseline, dict):
+        baseline = {}
+    event = optional_record(root / 'external_capacity_event.json')
+    route = event.get('route', {})
+    if (isinstance(route, dict) and route.get('eligible') is True
+            and event.get('attempt') == ack.get('attempt')
+            and event.get('deadline_unix') == config['recovery_deadline_unix']
+            and isinstance(event.get('observed_unix'), (int, float))
+            and arm.get('armed_unix', now) <= event['observed_unix'] <= now
+            and isinstance(event.get('sequence'), int) and isinstance(baseline.get('sequence'), int)
+            and event['sequence'] > baseline['sequence']
+            and event.get('fingerprint') != baseline.get('fingerprint')
+            and event.get('fingerprint') == hashlib.sha256(
+                json.dumps(route, sort_keys=True, separators=(',', ':')).encode()).hexdigest()):
+        return {'status': 'NEEDS_RECOVERY', 'reason': 'eligible_alternate_capacity_changed'}
     return {'status': 'DEFER', 'reason': 'finite tested native publication and closeout route'}
 
 

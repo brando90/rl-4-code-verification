@@ -111,6 +111,23 @@ def test_final_fence_preserves_stale_or_malformed_event(armed, change):
     assert not prior.exists() if change != 'corrupt_event' else prior.read_text() == '{bad'
 
 
+def test_native_continuation_keeps_finite_capacity_inventory(armed):
+    config = m.read(armed / 'recovery_config.json')
+    config.update(max_recoveries=6, candidates=[{'name': 'existing', 'max_attempts': 2}])
+    m.write(armed / 'recovery_config.json', config)
+    release = m.read(armed / 'owner_handoff.json'); release['mode'] = 'NATIVE_CONTINUATION'
+    m.write(armed / 'owner_handoff.json', release)
+    native = {**m.read(armed / 'external_resource_wait.json'), 'armed': True, 'armed_unix': 2,
+              'max_recoveries': 6, 'candidate_caps': {'existing': 2}}
+    native['expected_remote_admissions'] = ['remote_E_14b.json']
+    m.write(armed / 'native_continuation_arm.json', native)
+    unavailable = lambda: {'eligible': False}
+    event = m.observe(armed, 10, lambda: pytest.fail('14B needs eight devices'), unavailable, clock=lambda: 10)
+    assert event['status'] == 'OBSERVED' and not event['route']['eligible']
+    native['candidate_caps']['existing'] = 3; m.write(armed / 'native_continuation_arm.json', native)
+    assert m.observe(armed, 10, unavailable, unavailable)['status'] == 'UNARMED_OR_EXPIRED'
+
+
 def test_four_device_local_route_includes_large_model_inference(armed):
     wait = m.read(armed / "external_resource_wait.json")
     wait["expected_remote_admissions"] = ["remote_gen_v3_E_14b_f0p5.json"]

@@ -22,6 +22,14 @@ def current_wait(root, now):
     config = optional_record(root / 'recovery_config.json')
     ack = optional_record(root / 'owner_ack.json')
     release = optional_record(root / 'owner_handoff.json')
+    mode = 'EXTERNAL_RESOURCE_WAIT'
+    if release.get('mode') == 'NATIVE_CONTINUATION':
+        mode = 'NATIVE_CONTINUATION'
+        arm = optional_record(root / 'native_continuation_arm.json')
+        if (arm.get('armed') is not True or arm.get('max_recoveries') != config.get('max_recoveries')
+                or arm.get('candidate_caps') != {c['name']: c['max_attempts'] for c in config.get('candidates', [])}):
+            return None
+        wait = {**arm, 'status': mode, 'recorded_unix': arm.get('armed_unix')}
     state = optional_record(root / 'recovery_state.json')
     attempts = state.get('attempts', [])
     latest = attempts[-1] if isinstance(attempts, list) and attempts and isinstance(attempts[-1], dict) else {}
@@ -29,10 +37,10 @@ def current_wait(root, now):
     if not all(type(v) in (int, float) and math.isfinite(v) for v in (deadline, started, recorded, now)):
         return None
     expected = wait.get('expected_remote_admissions')
-    if not (wait.get('schema') == 1 and wait.get('status') == 'EXTERNAL_RESOURCE_WAIT'
+    if not (wait.get('schema') == 1 and wait.get('status') == mode
             and wait.get('independent_work_complete') is True
             and wait.get('admissions_absent_at_recording') is True
-            and release.get('released') is True and release.get('mode') == 'EXTERNAL_RESOURCE_WAIT'
+            and release.get('released') is True and release.get('mode') == mode
             and bool(ack.get('owner')) and wait.get('owner') == ack['owner'] == release.get('owner')
             and bool(latest.get('attempt'))
             and wait.get('attempt') == ack.get('attempt') == release.get('attempt') == latest['attempt']
