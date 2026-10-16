@@ -10,7 +10,9 @@ The parent stops repository writes before launching you. Adopt the existing ordi
 
 For recovery attempts, verify the current checkpoint and runbook against host sft_v3/recovery_dispatch.json. The sibling results/continuation_dispatch_v3.json is the immutable initial transfer record; its historical hashes are not the current recovery hashes. Inspect your actual session model, reasoning effort, approval and sandbox settings, and actual first useful workload evidence. Write /lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/owner_ack.json with these hashes, process/child identities, current actual training step or export, token-count validation, ownership accepted and timestamp. A statement that you read the file is not sufficient. Then continue the work: acknowledgement is not completion. Parent will verify this receipt and your watch before ending its turn.
 
-## Immutable experiment and current state
+## Immutable experiment and initial transfer state
+
+Progress details in this transfer-time section are historical. Current execution is recorded in CKPT_e08_v3.md, phase_a_state.json and phase_b_state.json. Recovery-01 has since verified all four Phase A training runs and all eight generation rungs (8,640 cells); scoring and namespace diagnostics remain active/pending.
 
 - Host work: /lfs/skampere1/0/brando9/rl4cv_e08; runtime: sft_v3; canonical source is this checkout.
 - Zero paid model/judge calls. Workloads are pinned local NeMo RL c751f811, vLLM, Lean 4.22.0. CLI subscription coordination does not authorize hosted experiment calls. Test split stays unopened; hosted judge milestone deferred.
@@ -63,3 +65,7 @@ TL;DR: Continue the exact frozen manifest through the named schedulers, preserve
 Remote shell wrappers now launch from unique immutable snapshots beside the source wrapper. Never replace or delete a launched snapshot. Network filesystems may invalidate a remotely open shell script even when a source replacement is atomic; this caused the retained 1.7B replay post-export exit 2. Current legacy remote 4B replay and the two initial remote expansion generators still hold the original source wrapper paths: preserve those paths until they finish. Python dispatcher updates are independent of those open shell files.
 
 The forecast freeze sidecar records canonical JSON without the terminal newline (`dc0db39b…`); the recovery manifest records exact file bytes (`7e4ebbe5…`). Both are intentional immutable checks and must pass.
+
+### Recovery-01 resource-event guard (10-15-2026 23:42 PDT)
+
+The host watch can defer a new model owner only after an explicit, identity-fenced external resource wait and release. It is not armed during active independent work. Follow the exact [resource-wait procedure](RUNBOOK_recovery_supervision.md#explicit-external-resource-wait), keeping the original deadline and attempt caps. Actual remote admission, job completion/failure or scheduler death wakes bounded recovery. The real harmless admission-event test and sixteen focused tests pass. All legacy Phase A shell wrappers have finished; future remote wrappers remain immutable snapshots.

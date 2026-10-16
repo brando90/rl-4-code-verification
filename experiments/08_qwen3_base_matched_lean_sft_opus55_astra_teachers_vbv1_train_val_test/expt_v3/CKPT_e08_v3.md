@@ -1,18 +1,18 @@
 # Matched replay versus expansion continuation checkpoint
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
-**TLDR:** All Phase A training is verified; five exact generation rungs are complete; scoring and diagnostics continue before Phase B.
+**TLDR:** All Phase A training and 8,640 generation cells are verified; scoring and diagnostics continue before Phase B.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-15-2026 23:21 PDT
+Last updated: 10-15-2026 23:42 PDT
 ## Goal
 - Complete all 17,280 validation cells, paired bootstrap, namespace diagnostic, forecast assessment, publication and actual DONE notification; zero paid experimental model calls; test split unopened.
 ## Current execution
 - Sole writer recovery-01: native gpt-6-astra/ultra, never/danger-full-access; PID 2580398, boot 839e7dd6-64e1-4a80-9498-31d30b3cc2df, start 36376767. Host owner_ack.json matches all six recovery-dispatch hashes at acceptance; initial transfer remains historical.
 - Phase A PID 1968738/start 36815884 adopts all detached jobs; Phase B PID 652391/start 36742141 waits for Phase A. Runtime /lfs/skampere1/0/brando9/rl4cv_e08/sft_v3.
 - E/R 1.7B and 4B training and eight exports verified: 23,021,424 additional loss tokens, 41,508,194 processed real tokens. [Receipt](results/phase_a_training_verification.json). Both retained post-export exit 2 incidents were reconciled without replay.
-- Five complete generated rungs = 5,400 cells; all four 1.7B rungs plus E4B half. Three 4B generators remain healthy. One 135-task scorer sample completed; no whole scored rung yet.
+- Eight complete generated rungs = 8,640 exact cells. All generation children exited 0; five 135-task scorer samples completed, no whole scored rung yet.
 - Primary scoring and namespace diagnostics use eight workers per rung, at most two combined jobs (sixteen concurrent Lean processes), frozen 600s timeout. All current generation children preserved; future remote shell launches use immutable snapshots.
 - All four training sizes and exact generator environments verified on skampere2/3. Pending routes remain remote; healthy local E4B full generation retained. 14B training must use eight devices; inference uses the frozen permitted layout.
-- Latest full suite: 1,235 passed / 17 skipped / 375.67s. Latest native Vals weekly usage 43%, credits 0. Keep personal reserve and original finite deadline/attempt limits.
+- Latest full suite: 1,243 passed / 17 skipped / 6 subtests / 352.96s; 16 focused recovery checks plus 6 subtests pass. Latest native Vals weekly usage 45%, credits 0. Keep personal reserve and original finite deadline/attempt limits.
 ## Waits and recovery
 - Host cron every five minutes and reboot is installed/tested; watch OBSERVING, no issues. Fresh capacity: all skampere2 devices occupied; only skampere3 GPU5 has zero allocated memory. No whole-node route available currently; continue independent work.
 - Slurm association was already requested 10-14; do not duplicate. Inventory and real release events are in host recovery_config.json. No paid cloud or smaller 14B training layout.
@@ -53,3 +53,7 @@ Last updated: 10-15-2026 23:21 PDT
 - 10-15-2026 23:21 PDT: full suite passes 1,235/17 skipped after namespace worker increase; refreshed direct capacity inventory, kept finite route limits and all live workloads.
 
 - 10-15-2026 23:26 PDT: six checked raw rungs (6,480 cells), two complete scorer samples. Remote GPU4 contention observed from a different user; own replay half generator healthy and preserved. Event-driven resource-wait guard is being implemented but is not armed; current owner remains active.
+
+- 10-15-2026 23:35 PDT: seven exact raw rungs (7,560 cells), only healthy local E4B full generation remains. Resource-wait guard implemented, 14 focused tests and real harmless event-triggered recovery PASS; not armed. Root owner remains active; full suite running.
+
+- 10-15-2026 23:42 PDT: all eight Phase A raw rungs verified (8,640 exact cells); all four training runs/eight exports already verified. Full suite 1,243/17 skipped/6 subtests; focused recovery 16/6 subtests. Event-wait guard and native harmless test ready but unarmed. Owner active, usage 45%, no paid experimental calls.

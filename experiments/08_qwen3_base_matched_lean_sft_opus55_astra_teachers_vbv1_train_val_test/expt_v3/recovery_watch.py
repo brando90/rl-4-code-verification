@@ -7,6 +7,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import sys
 import time
@@ -82,6 +83,94 @@ def completed(root, here):
                 and len(summary.get('systems', {})) == 16)
 
 
+def resource_snapshot(root):
+    """Ignore heartbeat/poll timestamps; retain execution and scheduler identities."""
+    result = {}
+    for phase in ('a', 'b'):
+        state = read(root / f'phase_{phase}_state.json', {})
+        result[phase] = {
+            'status': state.get('status'), 'identity': state.get('identity'),
+            'analysis_error': state.get('analysis_error'),
+            'jobs': {key: {field: job.get(field) for field in
+                           ('status', 'identity', 'exit_code', 'attempt')}
+                     for key, job in state.get('jobs', {}).items()}}
+    return result
+
+
+def optional_record(path):
+    """Optional wait metadata must never crash or disable ordinary recovery."""
+    try:
+        value = read(path, {})
+        return value if isinstance(value, dict) else {}
+    except (OSError, ValueError):
+        return {}
+
+
+def resource_wait_observation(root, config, state, ack, release, issues, now):
+    """Honor only a released owner's exact, finite, explicit capacity wait."""
+    wait = optional_record(root / 'external_resource_wait.json')
+    if not wait:
+        return {'status': 'NOT_ARMED'}
+    attempts = state.get('attempts', [])
+    latest = attempts[-1] if attempts and isinstance(attempts[-1], dict) else {}
+    expected = wait.get('expected_remote_admissions')
+    valid = (
+        wait.get('schema') == 1 and wait.get('status') == 'EXTERNAL_RESOURCE_WAIT'
+        and wait.get('independent_work_complete') is True
+        and wait.get('admissions_absent_at_recording') is True
+        and release.get('released') is True and release.get('mode') == 'EXTERNAL_RESOURCE_WAIT'
+        and bool(ack.get('owner')) and wait.get('owner') == ack.get('owner') == release.get('owner')
+        and bool(latest.get('attempt')) and wait.get('attempt') == ack.get('attempt') == release.get('attempt') == latest['attempt']
+        and wait.get('deadline_unix') == config['recovery_deadline_unix']
+        and isinstance(wait.get('recorded_unix'), (int, float))
+        and isinstance(latest.get('started_unix'), (int, float))
+        and latest['started_unix'] <= wait['recorded_unix'] <= now < wait['deadline_unix']
+        and isinstance(expected, list) and bool(expected)
+        and all(isinstance(name, str) and re.fullmatch(
+            r'remote_(?:[ER]_(?:8b|14b)|gen_v3_[ER]_(?:8b|14b)_f(?:0p5|1p0))\.json', name)
+                for name in expected)
+        and isinstance(wait.get('phase_snapshot'), dict) and set(wait['phase_snapshot']) == {'a', 'b'})
+    if not valid:
+        return {'status': 'INVALID_WAIT', 'reason': 'owner, attempt, release, deadline or schema mismatch'}
+    # Capacity-idle controllers may have no useful scientific output for hours.
+    # Every failure, dead process and unfinished-scheduler heartbeat still wakes recovery.
+    urgent = [issue for issue in issues if not issue.endswith(':stale_work_progress')]
+    if urgent:
+        return {'status': 'WAKE', 'reason': 'execution_issue', 'issues': urgent}
+    try:
+        if resource_snapshot(root) != wait['phase_snapshot']:
+            return {'status': 'WAKE', 'reason': 'execution_state_changed'}
+    except (OSError, ValueError, TypeError):
+        return {'status': 'WAKE', 'reason': 'execution_state_unreadable'}
+    shared = Path(config.get('remote_runtime', '/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3'))
+    for name in expected:
+        path = shared / name
+        if path.exists():
+            # This is a remote identity: never compare its PID to local /proc.
+            remote = optional_record(path)
+            ident = remote.get('identity')
+            if not isinstance(ident, dict):
+                ident = {}
+            valid_remote = (remote.get('status') in ('RUNNING', 'DONE', 'DONE_RECONCILED')
+                            and remote.get('host') in config.get('remote_hosts', ['skampere2', 'skampere3'])
+                            and remote.get('gpus') and remote.get('receipt')
+                            and all(ident.get(k) for k in ('pid', 'boot_id', 'start_ticks')))
+            return {'status': 'WAKE', 'reason': 'remote_admitted' if valid_remote else 'remote_record_needs_inspection',
+                    'record': name}
+    baseline = wait.get('capacity_baseline')
+    if not isinstance(baseline, dict):
+        baseline = {}
+    event = optional_record(root / 'external_capacity_event.json')
+    route = event.get('route')
+    if isinstance(route, dict) and route.get('eligible') is True:
+        fingerprint = hashlib.sha256(json.dumps(route, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+        if (event.get('fingerprint') == fingerprint and isinstance(event.get('sequence'), int)
+                and isinstance(baseline.get('sequence'), int) and event['sequence'] > baseline['sequence']
+                and fingerprint != baseline.get('fingerprint')):
+            return {'status': 'WAKE', 'reason': 'eligible_capacity_route_changed', 'fingerprint': fingerprint}
+    return {'status': 'DEFER', 'reason': wait.get('reason'), 'expected_remote_admissions': expected}
+
+
 def tick(root, config, launch=True):
     now = time.time()
     here = Path(config['experiment'])
@@ -89,7 +178,7 @@ def tick(root, config, launch=True):
     state = read(state_path, {'attempts': [], 'incidents': []})
     ack = read(root / 'owner_ack.json', {})
     runner = read(root / 'recovery_owner_process.json', {})
-    release = read(root / 'owner_handoff.json', {})
+    release = optional_record(root / 'owner_handoff.json')
     owner_live = alive(ack.get('owner'))
     released = (release.get('released') is True and release.get('owner') == ack.get('owner')
                 and release.get('attempt') == ack.get('attempt'))
@@ -103,7 +192,7 @@ def tick(root, config, launch=True):
             issues.append(f'phase_{phase}:analysis_error')
         if obs['status'] not in ('DONE', 'COMPLETE') and not obs['scheduler_alive']:
             issues.append(f'phase_{phase}:scheduler_dead')
-        if obs.get('heartbeat_age_seconds', 0) > 180:
+        if obs['status'] not in ('DONE', 'COMPLETE') and obs.get('heartbeat_age_seconds', 0) > 180:
             issues.append(f'phase_{phase}:stale_heartbeat')
         if obs.get('work_progress_age_seconds') is not None and obs['work_progress_age_seconds'] > 7200:
             if any(j['status'] == 'RUNNING' for j in obs['jobs'].values()):
@@ -123,6 +212,8 @@ def tick(root, config, launch=True):
     elif runner_live or (owner_live and not released):
         state['status'] = 'OBSERVING_ISSUES' if issues else 'OBSERVING'
     else:
+        resource_wait = resource_wait_observation(root, config, state, ack, release, issues, now)
+        state['resource_wait_observation'] = resource_wait
         # Recent tmux launch has not written its PID yet. Do not duplicate it.
         pending = state.get('pending_launch', {})
         if pending and now - pending['started_unix'] < 300:
@@ -131,6 +222,10 @@ def tick(root, config, launch=True):
             state['status'] = 'RECOVERY_DEADLINE_REACHED'
         elif len(state['attempts']) >= config['max_recoveries']:
             state['status'] = 'RECOVERY_ATTEMPTS_EXHAUSTED'
+        elif owner_live and resource_wait['status'] in ('DEFER', 'WAKE'):
+            state['status'] = 'AWAITING_RELEASED_OWNER_EXIT'
+        elif resource_wait['status'] == 'DEFER':
+            state['status'] = 'DEFERRED_EXTERNAL_RESOURCE'
         else:
             candidates = []
             for candidate in config['candidates']:
