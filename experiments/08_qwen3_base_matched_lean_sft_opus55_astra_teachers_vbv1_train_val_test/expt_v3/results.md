@@ -4,7 +4,9 @@
 
 **TLDR:** Phase A: DONE; Phase B: RUNNING. 8,640/17,280 validation cells known. [Execution events and verified training progress](results/runtime_progress.md).
 
-**Status:** RUNNING. **Last updated:** 10-16-2026 02:58 PDT.
+**Status:** RUNNING. **Last updated:** 10-16-2026 03:18 PDT.
+
+Expansion 8B half training verified 335/335 updates and 2,878,589 loss tokens; native full-segment resume verified beyond 335. [Current training evidence](results/recovery02_E8_half.json). Eight-device 14B capacity is pending.
 
 Known validation cells: **8640/17,280**; 8640 belong to complete rungs. [Every missing/failed cell](results/coverage) remains in the declared denominator; no paid model calls.
 

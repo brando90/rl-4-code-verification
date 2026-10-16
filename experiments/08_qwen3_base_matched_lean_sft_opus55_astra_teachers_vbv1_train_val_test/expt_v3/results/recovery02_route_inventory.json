@@ -1,0 +1,189 @@
+{
+  "checked_unix": 1792145841.6182027,
+  "total_attempt_limit": 6,
+  "attempts_used": 2,
+  "deadline_unix": 1792383686.05276,
+  "candidates": [
+    {
+      "name": "codex_vals",
+      "eligible": true,
+      "max_attempts": 2,
+      "env": {
+        "CODEX_HOME": "/lfs/skampere1/0/brando9/.codex-vals"
+      },
+      "command": [
+        "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/node",
+        "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/codex",
+        "exec",
+        "--dangerously-bypass-approvals-and-sandbox",
+        "-m",
+        "gpt-6-astra",
+        "-c",
+        "model_reasoning_effort=\"ultra\"",
+        "-c",
+        "check_for_update_on_startup=false",
+        "--json"
+      ],
+      "model": "gpt-6-astra",
+      "effort": "ultra",
+      "auth": "Logged in using ChatGPT 10-15-2026 21:17 PDT",
+      "runtime": "Recovery-02 actual Astra/ultra never/danger-full-access; healthy E8 resumed beyond verified half checkpoint; current owner uses final authorized Vals attempt",
+      "usage_last_observed_used_percent": 56.0,
+      "usage_last_observed_utc": "2026-10-16T10:16:42.441Z",
+      "credits": 0,
+      "account_fingerprint": "5d36e206",
+      "funding": "existing ChatGPT subscription, no provider keys"
+    },
+    {
+      "name": "claude_vals",
+      "eligible": false,
+      "max_attempts": 2,
+      "command": [
+        "/dfs/scratch0/brando9/bin/clauded-vals",
+        "-p",
+        "--model",
+        "claude-fable-5-1",
+        "--effort",
+        "max",
+        "--verbose",
+        "--output-format",
+        "stream-json"
+      ],
+      "auth": "dedicated node OAuth subscription wrapper loggedIn=true",
+      "exclusion": "Native 10-15 23:32Z Fable returned 429 org_spend_cap_reached; reset1793491200 after deadline; no fallback; do not retry before relevant reset."
+    },
+    {
+      "name": "codex_stanford",
+      "eligible": false,
+      "max_attempts": 1,
+      "env": {
+        "CODEX_HOME": "/lfs/skampere1/0/brando9/.codex-su"
+      },
+      "command": [
+        "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/node",
+        "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/codex",
+        "exec",
+        "--dangerously-bypass-approvals-and-sandbox",
+        "-m",
+        "gpt-6-astra",
+        "-c",
+        "model_reasoning_effort=\"ultra\"",
+        "-c",
+        "check_for_update_on_startup=false",
+        "--json"
+      ],
+      "auth": "Logged in using ChatGPT",
+      "exclusion": "Cached managed policy excludes never and danger-full-access; native Astra/ultra is read-only/on-request despite local configured full access. Not eligible."
+    },
+    {
+      "name": "claude_stanford",
+      "eligible": false,
+      "max_attempts": 1,
+      "command": [
+        "/dfs/scratch0/brando9/bin/clauded-su",
+        "-p",
+        "--model",
+        "claude-opus-5",
+        "--effort",
+        "max",
+        "--verbose",
+        "--output-format",
+        "stream-json"
+      ],
+      "auth": "dedicated node OAuth subscription wrapper loggedIn=true",
+      "exclusion": "Fable requires usage credits; historical included Opus5 with bypass permissions worked10-08, current max-effort/allowance unverified; candidate limit1 unchanged."
+    },
+    {
+      "name": "codex_personal",
+      "eligible": false,
+      "max_attempts": 1,
+      "env": {
+        "CODEX_HOME": "/lfs/skampere1/0/brando9/.codex"
+      },
+      "command": [
+        "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/node",
+        "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/codex",
+        "exec",
+        "--dangerously-bypass-approvals-and-sandbox",
+        "-m",
+        "gpt-6-astra",
+        "-c",
+        "model_reasoning_effort=\"ultra\"",
+        "-c",
+        "check_for_update_on_startup=false",
+        "--json"
+      ],
+      "auth": "Historical initial owner verified native Astra/ultra full-access never; latest personal weekly allowance exhausted",
+      "exclusion": "Native personal weekly100% used at2026-10-16T04:44:56Z, credits0, reset1792649585 after original deadline; earlier94% reserve is exhausted",
+      "reset_unix": 1792649585,
+      "usage_last_observed_used_percent": 100,
+      "usage_evidence": "/lfs/skampere1/0/brando9/.codex/sessions/2026/10/15/rollout-2026-10-15T20-15-47-01a142b5-679b-7731-b1c0-113c829cf7fd.jsonl:1546"
+    },
+    {
+      "name": "claude_personal",
+      "eligible": false,
+      "max_attempts": 1,
+      "command": [
+        "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/claude",
+        "-p",
+        "--dangerously-skip-permissions",
+        "--model",
+        "claude-fable-5-1",
+        "--effort",
+        "max",
+        "--verbose",
+        "--output-format",
+        "stream-json"
+      ],
+      "exclusion": "auth loggedIn=false; node profiles above are distinct verified grants"
+    },
+    {
+      "name": "cursor_personal",
+      "eligible": false,
+      "max_attempts": 1,
+      "command": [
+        "/dfs/scratch0/brando9/.local/share/cursor-agent/versions/2026.09.18-9a7762b/cursor-agent",
+        "--print",
+        "--output-format",
+        "stream-json",
+        "--force",
+        "--sandbox",
+        "disabled",
+        "--trust",
+        "--model",
+        "claude-fable-5-1-max"
+      ],
+      "auth": "non-model status authenticated brandojazz@gmail.com; Pro plan",
+      "exclusion": "Included remaining allowance and metered spillover controls unknown; actual model/full-access execution unverified; no documented non-model billing command"
+    },
+    {
+      "name": "antigravity_existing",
+      "eligible": false,
+      "max_attempts": 1,
+      "command": [
+        "/dfs/scratch0/brando9/.local/bin/agy",
+        "--dangerously-skip-permissions",
+        "--model",
+        "gemini-4-argon-high",
+        "--effort",
+        "high",
+        "--output-format",
+        "stream-json",
+        "--print"
+      ],
+      "auth": "models metadata succeeded; account label/payer unknown",
+      "exclusion": "Current account/plan, allowance and spending controls unknown; actual execution unverified"
+    },
+    {
+      "name": "grok_existing",
+      "eligible": false,
+      "max_attempts": 1,
+      "executable": "/dfs/scratch0/brando9/.grok/downloads/grok-linux-x86_64",
+      "auth": "cached account label brando@vals.ai; version1.0.34",
+      "exclusion": "Current auth/allowance/spending controls and full-access sandbox profile unknown; no verified launch array"
+    }
+  ],
+  "new_model_probes": 0,
+  "approved_subscription_only": true,
+  "no_limit_reset": true
+}
