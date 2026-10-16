@@ -79,6 +79,14 @@ class RecoveryTests(unittest.TestCase):
             self.assertEqual(watch.tick(self.root, self.config)['status'], 'OBSERVING')
             launch.assert_not_called()
 
+    def test_scheduler_pid_reuse_is_not_liveness(self):
+        record = watch.identity(__import__('os').getpid())
+        record['start_ticks'] = str(int(record['start_ticks']) + 1)
+        watch.write(self.root / 'phase_a_state.json', {'pid': record['pid'], 'identity': record,
+                                                     'status': 'RUNNING', 'jobs': {}})
+        observed = watch.phase_observation(self.root, 'a', time.time())
+        self.assertFalse(observed['scheduler_alive'])
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -26,3 +26,13 @@ def test_owned_block_replacement_preserves_later_other_results():
     replaced = m.replace_block(text, 'OWNED', 'updated result')
     assert replaced.startswith('prior report\n') and replaced.endswith('\nother owner result\n')
     assert 'first result' not in replaced and replaced.count('updated result') == 1
+
+
+def test_unknown_namespace_cells_cannot_claim_completion():
+    with pytest.raises(AssertionError, match='diagnostic remains incomplete'):
+        m.validate_namespace({'declared_cells': 1080, 'unknown_cells': 1}, [], {})
+
+
+def test_reduced_bootstrap_cannot_claim_frozen_analysis():
+    with pytest.raises(AssertionError):
+        m.validate_bootstrap({'draws': 999, 'seed': 0})

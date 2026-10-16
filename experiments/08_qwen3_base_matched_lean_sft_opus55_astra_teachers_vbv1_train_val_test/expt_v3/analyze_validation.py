@@ -21,7 +21,8 @@ base.EXP = HERE
 def estimate(values, draws):
     values = np.asarray(values, dtype=float)
     low, high = np.quantile(values[draws].mean(axis=1), [.025, .975])
-    return {'mean': float(values.mean()), 'ci95': [float(low), float(high)], 'p_value': None}
+    return {'mean': float(values.mean()), 'ci95': [float(low), float(high)], 'p_value': None,
+            'draws': len(draws), 'seed': 0, 'unit': 'task with eight attempts together'}
 
 
 def decision(systems, sizes, paired):

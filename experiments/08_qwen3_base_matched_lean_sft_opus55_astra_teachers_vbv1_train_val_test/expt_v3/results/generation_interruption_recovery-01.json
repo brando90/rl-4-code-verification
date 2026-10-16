@@ -14,5 +14,12 @@
   "retry": "identical 135x8 cells and frozen model/seed/token cap; no alternate samples",
   "prevention": "start_new_session=True for all new scheduler jobs, plus exact boot/start and durable exit receipts",
   "training_replayed": false,
-  "when_unix": 1792125499.0663958
+  "when_unix": 1792125499.0663958,
+  "systems": [
+    "v3_E_1p7b_f0p5",
+    "v3_E_1p7b_f1p0"
+  ],
+  "declared_cells_each": 1080,
+  "manifest_sha256": "6c2fa655e806a09c25781a351f3a894eb955c651d1e489212e2704debf8b9bd9",
+  "interrupted_cell_status": "All 1080 declared cells per system lack durable outputs in this attempt; native aggregate progress cannot identify completed cells. Identical infrastructure retries remain in the frozen denominator."
 }

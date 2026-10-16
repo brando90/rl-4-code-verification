@@ -7,7 +7,8 @@ WORK="${E08_WORK:-/lfs/skampere1/0/brando9/rl4cv_e08}"
 case "$CONDITION" in R|E) ;; *) exit 2;; esac
 case "$SHORT" in 1p7b) SIZE=1.7B;; 4b) SIZE=4B;; 8b) SIZE=8B;; 14b) SIZE=14B;; *) exit 2;; esac
 export CUDA_VISIBLE_DEVICES="$GPUS"
-export HF_HOME="$WORK/cache/huggingface" HF_HUB_OFFLINE=1 UV_CACHE_DIR="$WORK/cache/uv" UV_PYTHON_INSTALL_DIR="$WORK/cache/uv_python"
+CACHE_ROOT="${E08_CACHE_ROOT:-$WORK/cache}"
+export HF_HOME="$CACHE_ROOT/huggingface" HF_HUB_OFFLINE=1 UV_CACHE_DIR="$CACHE_ROOT/uv" UV_PYTHON_INSTALL_DIR="$CACHE_ROOT/uv_python"
 export E08_MODEL_PATH="$WORK/ckpt/$SIZE/hf/step_658"
 ROOT="$WORK/sft_v3/ckpt/v3_${CONDITION}_${SHORT}"
 export E08_TRAIN_JSONL="$WORK/sft_v3/s_v3_${CONDITION}_nemo.jsonl" E08_VAL_JSONL="$WORK/sft_v3/s_v3_${CONDITION}_val_dummy.jsonl"

@@ -65,7 +65,7 @@ def phase_observation(root, phase, now):
                     'namespace_diagnostic/*/*/*/*.json'):
         latest.extend(p.stat().st_mtime for p in root.glob(pattern))
     return {'status': state.get('status'), 'scheduler_pid': state.get('pid'),
-            'scheduler_alive': bool(identity(state.get('pid', 0))),
+            'scheduler_alive': alive(state['identity']) if state.get('identity') else bool(identity(state.get('pid', 0))),
             'heartbeat_age_seconds': now - path.stat().st_mtime,
             'work_progress_age_seconds': now - max(latest) if latest else None,
             'analysis_error': state.get('analysis_error'), 'jobs': jobs}

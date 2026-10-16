@@ -105,7 +105,12 @@ def main(phase='a'):
                 continue
             args = ['bash', str(HERE / 'run_validation.sh'), 'validation', label, s['hf_path'], 'local']
             generation_devices = 1 if phase == 'a' else 4
-            launch('gen_' + label, args + ['{gpus}', str(generation_devices), 'generation'], generation_devices)
+            route_path = ROOT / 'generation_routes.json'
+            routes = json.loads(route_path.read_text()) if route_path.exists() else {}
+            if routes.get('gen_' + label) == 'remote':
+                launch('gen_' + label, [PY, str(HERE / 'remote_generation.py'), label])
+            else:
+                launch('gen_' + label, args + ['{gpus}', str(generation_devices), 'generation'], generation_devices)
             if state['jobs'].get('gen_' + label, {}).get('status') == 'DONE':
                 # Four scorer processes per rung; at most two simultaneous rungs.
                 active_scores = sum(k.startswith(('score_', 'namespace_')) for k in running)

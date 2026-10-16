@@ -12,9 +12,9 @@ set -euo pipefail
 SPLIT="${1:?validation}"; LABEL="${2:?label}"; MODEL="${3:?model}"; REV="${4:?revision or local}"; GPUS="${5:?gpu ids}"; TP="${6:-1}"; PHASE="${7:-all}"
 WORK="${E08_WORK:-/lfs/skampere1/0/brando9/rl4cv_e08}"
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO="$(cd "$HERE/../../.." && pwd)"
+REPO="${E08_REPO:-$(cd "$HERE/../../.." && pwd)}"
 EXP="$REPO/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test"
-E103_PACK=/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/packs/vbv1_896
+E103_PACK="${E08_PACK_ROOT:-/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/packs/vbv1_896}"
 SCORER="$WORK/rl-4-code-verification/external/veribench_scorer"
 SCORE_PY="$SCORER/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/scripts/score_scsc.py"
 LAKE_DIR="$WORK/grading/lean_src"
@@ -24,16 +24,16 @@ IDS="$EXP/expt_v1/results/split/vbv1_validation_task_ids.txt"; N_TASKS=135
 export CUDA_VISIBLE_DEVICES="$GPUS"
 OUT="$WORK/sft_v3/ladder/$SPLIT"; mkdir -p "$OUT/raw" "$OUT/jobs" "$OUT/scores" "$OUT/scored" "$OUT/summaries" "$OUT/ids" "$OUT/logs"
 BATCH="${BATCH:-1024}"; SCORE_PAR="${SCORE_PAR:-4}"; STAGGER_S="${STAGGER_S:-180}"
-export PYTHONPATH="$REPO/src" VERIBENCH_ROOT="$WORK/rl-4-code-verification/external/veribench" HF_HOME="$WORK/cache/huggingface" HF_HUB_OFFLINE=1 PATH="/usr/local/cuda-12.8/bin:$HOME/.elan/bin:$PATH"
-PY="$WORK/venv_gen/bin/python"
+export PYTHONPATH="$REPO/src" VERIBENCH_ROOT="${E08_VERIBENCH_ROOT:-$WORK/rl-4-code-verification/external/veribench}" HF_HOME="${E08_CACHE_ROOT:-$WORK/cache}/huggingface" HF_HUB_OFFLINE=1 PATH="/usr/local/cuda-12.8/bin:$HOME/.elan/bin:$PATH"
+PY="${E08_GEN_PYTHON:-$WORK/venv_gen/bin/python}"
 export CUDA_HOME=/usr/local/cuda-12.8 CUDA_PATH=/usr/local/cuda-12.8
-export FLASHINFER_WORKSPACE_BASE="$WORK/sft_v3/flashinfer"
+export FLASHINFER_WORKSPACE_BASE="${E08_FLASHINFER_WORKSPACE:-$WORK/sft_v3/flashinfer}"
 NAME="${LABEL}_g8"; K=8
 IFS=, read -ra G <<< "$GPUS"; N=${#G[@]}
 ts() { date '+%m-%d-%Y %H:%M:%S'; }
 # Pack view for the split (symlinks into experiment 103's pack; the scorer reads task.toml for its fixed denominator and the trials' config.json for identity).
 VIEW="$WORK/sft_v3/pack_views/$SPLIT"; mkdir -p "$VIEW"
-while read -r tid; do if [ -n "$tid" ] && [ ! -e "$VIEW/$tid" ]; then ln -s "$E103_PACK/$tid" "$VIEW/$tid"; fi; done < "$IDS"
+while read -r tid; do if [ -n "$tid" ] && [ ! -e "$VIEW/$tid" ]; then ln -s "$E103_PACK/$tid" "$VIEW/$tid" 2>/dev/null || [ -L "$VIEW/$tid" ]; fi; done < "$IDS"
 [ "$(ls "$VIEW" | wc -l)" = "$N_TASKS" ] || { echo "pack view has $(ls "$VIEW" | wc -l) tasks, expected $N_TASKS" >&2; exit 2; }
 GEN_ARGS=(--pack "$E103_PACK" --model "$MODEL" --thinking on --seed 91 --stop-token '<|im_end|>' --max-tokens 12288 --temperature 0.6 --top-p 0.95 --top-k 20 --batch "$BATCH")
 [ "$REV" != local ] && GEN_ARGS+=(--revision "$REV")

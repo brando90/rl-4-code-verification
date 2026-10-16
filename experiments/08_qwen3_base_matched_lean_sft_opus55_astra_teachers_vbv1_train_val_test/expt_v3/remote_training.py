@@ -91,6 +91,7 @@ def remote(args):
         gpus = ','.join(d[0].strip() for d in available[:needed])
         env = os.environ.copy(); env.update(E08_WORK=str(SHARED), CUDA_VISIBLE_DEVICES=gpus,
                                            E08_NEMO_ROOT=ready.get('host_environments', {}).get(host, str(SHARED / 'nemo_rl')))
+        env['E08_CACHE_ROOT'] = str(Path(env['E08_NEMO_ROOT']).parent / 'cache')
         receipt = root / f'remote_{args.condition}_{short}.exit.json'
         command = ['/usr/bin/python3', str(HERE / 'job_process.py'), '--receipt', str(receipt), '--',
                    'bash', str(HERE / 'train_continuation.sh'), args.condition, short, gpus]

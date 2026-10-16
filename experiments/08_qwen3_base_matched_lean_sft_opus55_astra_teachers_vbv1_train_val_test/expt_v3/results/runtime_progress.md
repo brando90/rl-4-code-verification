@@ -18,3 +18,13 @@
 - 10-15-2026 21:49 PDT: Compressed 11 GB environment archive built; preparing local extraction on candidate remote nodes while keeping large checkpoints on shared storage. Live 4B shell retains its original inode and bytes while future launches gain the environment-path override.
 
 - 10-15-2026 22:04 PDT: Expansion 4B half checkpoint verified: 335/335 exact token counts, 2,878,589 loss tokens, all export checksums pass. [Training receipt](train_logs/v3_E_4b_half_verification.json), [step table](train_logs/v3_E_4b_half_steps.csv). Remote environments on skampere2/skampere3 pass archive, exact NeMo pin, Python/PyTorch imports and baseline 14B checks; published evidence is [remote preparation](remote_preparation_v3.json). The latest full suite passes 1,224 tests / 17 skipped in 360.11 seconds.
+
+### 10-15-2026 22:30 PDT — verified remote workload and validation staging
+
+Expansion 4B completed all 667 scheduled updates: all native counts match (5,757,776 loss tokens); the final export is finishing. Replay 1.7B on skampere3 GPU 2 reached 399 checked updates with exact token counts, including the half-budget boundary at 334. No training was replayed on recovery.
+
+Both remote hosts import the exact copied generator environment: CPython 3.12.14, vLLM 0.30.0, Torch 2.13.0, Transformers 5.18.0 and FlashInfer 0.6.18.post1. Only the 135 validation instructions and frozen prompt/extraction dependencies were staged; test remains unopened. Two pending 1.7B expansion rungs are routed remotely with one GPU per rung, the unchanged 1,024/56 prompt batches and distinct compile caches. All outputs must pass exact-cell, prompt-hash, sampling and transport checks before canonical CPU scoring.
+
+Scheduler replacement preserved the exact detached expansion 4B and remote replay wrapper identities. Host watch reports OBSERVING, owner alive, no issues; finite execution routes were updated. Completion checks now require the immutable forecast hash, all eight paired comparisons, complete namespace recompiles, matching taxonomy totals, and retained exact raw/scored evidence. Twenty-one focused checks pass; the full suite is running.
+
+- 10-15-2026 22:34 PDT: expansion 4B full export and both checksum manifests verified; native wrapper exited 0 and scheduler verification PASS. Full suite: 1,233 passed / 17 skipped in 337.43 seconds. Local full-budget 4B generation started; replay 4B admitted on skampere3 GPUs 4,5 with the frozen two-device layout. Remote 1.7B generation is still staging exact weights. Phase B waiting coordinator refreshed with no children; 8B training and all Phase B inference use remote admission, 14B training remains exactly eight devices.

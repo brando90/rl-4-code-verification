@@ -1,6 +1,7 @@
 """Check every frozen cell and training receipt before preparing final publication and mail."""
 from __future__ import annotations
 import csv
+from collections import Counter
 from datetime import datetime
 import hashlib
 import json
@@ -9,6 +10,7 @@ import subprocess
 from zoneinfo import ZoneInfo
 from assess_forecast import assess
 from recovery_watch import read, write
+from remote_generation import validate_raw, digest, SHARED
 
 HERE = Path(__file__).resolve().parent
 WORK = Path('/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3')
@@ -20,10 +22,25 @@ def validate():
     assert summary.get('known_cells') == summary.get('declared_cells') == 17280, 'Validation remains incomplete'
     expected_labels = {s['label'] for s in manifest['systems']}
     assert len(expected_labels) == 16 and set(summary['systems']) == expected_labels
+    pairs = summary['paired_E_minus_R']
+    assert set(pairs) == {f'{s}_{f}' for s in ('1p7b', '4b', '8b', '14b') for f in ('f0p5', 'f1p0')}
+    for value in pairs.values():
+        validate_bootstrap(value)
     expected = {(c['system'], c['task_id'], c['sample_idx']) for c in manifest['cells']}
     seen = set(); namespace = {}; files = {}
     for system in manifest['systems']:
         label = system['label']; result = summary['systems'][label]
+        raw = WORK / f'ladder/validation/raw/gen_{label}_g8.jsonl'
+        model_paths = [system['hf_path'], str(SHARED / 'sft_v3' / Path(system['hf_path']).relative_to(WORK))]
+        validate_raw(raw, label, manifest['task_ids'], read(HERE / 'results/generation_prompt_hashes_v3.json'), model_paths)
+        scored = WORK / f'ladder/validation/scored/scored_{label}_g8.jsonl'
+        assert digest(scored) == result['scored_sha256']
+        scored_rows = [json.loads(line) for line in scored.read_text().splitlines() if line.strip()]
+        scored_keys = [(label, r['task_id'], r['sample_idx']) for r in scored_rows]
+        assert len(scored_keys) == len(set(scored_keys)) == 1080
+        assert set(scored_keys) == {k for k in expected if k[0] == label}
+        assert all(r.get('status') == 'scored' for r in scored_rows)
+        files[str(raw)] = digest(raw); files[str(scored)] = digest(scored)
         path = HERE / result['cells_csv']
         rows = list(csv.DictReader(path.open()))
         keys = [(label, r['task_id'], int(r['sample_idx'])) for r in rows]
@@ -36,6 +53,7 @@ def validate():
         taxonomy = HERE / f'results/ladder/{label}_taxonomy.csv'
         tr = list(csv.DictReader(taxonomy.open()))
         assert {(label, r['task_id'], int(r['sample_idx'])) for r in tr} == set(keys) and len(tr) == 1080
+        assert dict(Counter(r['category'] for r in tr)) == result['failure_taxonomy']
         diag_path = HERE / f'results/namespace_diagnostic/{label}.json'
         diag = read(diag_path)
         cells = HERE / f'results/namespace_diagnostic/{label}_cells.csv'
@@ -43,7 +61,7 @@ def validate():
         assert len(dr) == 1080 and {(label, r['task_id'], int(r['sample_idx'])) for r in dr} == set(keys)
         primary = {(r['task_id'], r['sample_idx']): r for r in rows}
         assert all(r['original_sha256'] == primary[r['task_id'], r['sample_idx']]['lean_sha256'] for r in dr)
-        assert diag['declared_cells'] == 1080
+        validate_namespace(diag, dr, primary)
         namespace[label] = {k: v for k, v in diag.items() if k != 'changed_receipts'}
         for p in (path, tasks_path, taxonomy, cells, diag_path):
             files[str(p.relative_to(HERE))] = hashlib.sha256(p.read_bytes()).hexdigest()
@@ -77,6 +95,33 @@ def validate():
                'validated_local': datetime.now(ZoneInfo('America/Los_Angeles')).strftime('%m-%d-%Y %H:%M %Z')}
     write(HERE / 'results/completion_validation_v3.json', receipt)
     return receipt, summary, forecast
+
+
+def validate_bootstrap(value):
+    assert value['draws'] == 10000 and value['seed'] == 0
+    assert value['unit'] == 'task with eight attempts together'
+    assert len(value['ci95']) == 2 and -1 <= value['ci95'][0] <= value['ci95'][1] <= 1
+    assert -1 <= value['mean'] <= 1
+
+
+def validate_namespace(diag, rows, primary):
+    assert diag['declared_cells'] == 1080 and diag['unknown_cells'] == 0, 'Namespace diagnostic remains incomplete'
+    validate_bootstrap(diag['paired_task_bootstrap_delta'])
+    changed = {(r['task_id'], int(r['sample_idx'])): r for r in rows if r['changed'] == 'True'}
+    receipts = {(r['task_id'], r['sample_idx']): r for r in diag['changed_receipts']}
+    assert len(receipts) == len(diag['changed_receipts']) == diag['changed_cells'] == len(changed)
+    assert set(receipts) == set(changed)
+    for key, row in changed.items():
+        receipt = receipts[key]
+        assert receipt['kernel_binary'] in (0, 1) and not receipt['compile_timeout']
+        assert receipt['original_sha256'] == row['original_sha256']
+        assert receipt['transformed_sha256'] == row['transformed_sha256'] == digest(receipt['path'])
+        assert float(row['diagnostic_kernel_binary']) == receipt['kernel_binary']
+        assert read(Path(receipt['path']).with_suffix('.json')) == receipt
+    assert all(float(r['diagnostic_kernel_binary']) in (0, 1) for r in rows)
+    assert all(float(r['original_kernel_binary']) == float(primary[r['task_id'], r['sample_idx']]['kernel_binary']) for r in rows)
+    assert diag['original_successes'] == sum(float(r['original_kernel_binary']) for r in rows)
+    assert diag['diagnostic_successes_known'] == sum(float(r['diagnostic_kernel_binary']) for r in rows)
 
 
 def replace_block(text, name, body):

@@ -65,3 +65,4 @@ def test_priority_replay_preserves_one_device_layout(tmp_path, monkeypatch, caps
     assert launched[0][0][-3:] == ['R', '1p7b', '2']
     assert launched[0][1]['env']['E08_NEMO_ROOT'] == '/owned/verified/nemo_rl'
     assert launched[0][1]['env']['CUDA_VISIBLE_DEVICES'] == '2'
+    assert launched[0][1]['env']['E08_CACHE_ROOT'] == '/owned/verified/cache'
