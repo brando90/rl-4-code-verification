@@ -51,3 +51,5 @@ Last updated: 10-15-2026 23:21 PDT
 - 10-15-2026 23:15 PDT: five exact raw rungs (5,400 cells); all 1.7B generations complete. First scorer sample completed all 135 mapped tasks; whole-rung score tables pending. Namespace concurrency aligned to eight workers per rung under the existing combined two-job limit, maximum sixteen Lean processes; full checks running.
 
 - 10-15-2026 23:21 PDT: full suite passes 1,235/17 skipped after namespace worker increase; refreshed direct capacity inventory, kept finite route limits and all live workloads.
+
+- 10-15-2026 23:26 PDT: six checked raw rungs (6,480 cells), two complete scorer samples. Remote GPU4 contention observed from a different user; own replay half generator healthy and preserved. Event-driven resource-wait guard is being implemented but is not armed; current owner remains active.
