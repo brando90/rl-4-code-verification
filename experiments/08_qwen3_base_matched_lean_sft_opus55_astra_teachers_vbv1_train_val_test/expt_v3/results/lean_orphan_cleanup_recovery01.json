@@ -1,0 +1,588 @@
+{
+  "status": "PASS",
+  "observed_unix": 1792133549.4714139,
+  "incident": "Frozen scorer subprocess timeout kills lake but leaves orphan Lean child. Exact orphan cleanup outside scorer preserves native timeout result.",
+  "frozen_scorer": {
+    "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/external/veribench_scorer/scripts/scsc/run_real_eval.py",
+    "sha256": "6e82b3d1cd6d3686aaec3d45f273cd902b03b962c0c2eca48f2c2b4f25f41fa9",
+    "timeout_seconds": 600,
+    "modified": false
+  },
+  "min_orphan_age_seconds": 620,
+  "maximum_signaled_per_scan": 16,
+  "cadence_seconds": 60,
+  "original_deadline_preserved": true,
+  "live_tree_snapshots": [
+    {
+      "pid": 2965951,
+      "start_ticks": "37155298",
+      "ppid": 2965727,
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f1p0_g8_s5/security_set__security_6858__vulnerabilities__137_unsafehmaclength/verifier/solution.lean"
+    },
+    {
+      "pid": 3004286,
+      "start_ticks": "37173077",
+      "ppid": 3004213,
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f0p5_g8_s4/security_set__security_6858__vulnerabilities__87_unsafednsreply/verifier/solution.lean"
+    },
+    {
+      "pid": 3006915,
+      "start_ticks": "37176637",
+      "ppid": 3006806,
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f1p0_g8_s4/security_set__security_6858__vulnerabilities__78_unsafeenclavekey/verifier/solution.lean"
+    },
+    {
+      "pid": 3218421,
+      "start_ticks": "37195103",
+      "ppid": 3216946,
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f0p5_g8_s5/security_set__security_6858__vulnerabilities__87_unsafednsreply/verifier/solution.lean"
+    },
+    {
+      "pid": 3409764,
+      "start_ticks": "37205341",
+      "ppid": 3408679,
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f0p5_g8_s6/security_set__security_6858__vulnerabilities__78_unsafeenclavekey/verifier/solution.lean"
+    }
+  ],
+  "live_tree_signal_overlap": 0,
+  "actions": [
+    {
+      "argv_sha256": "b23284df6db6f5882a459540fbd97cecefbd1ffb9b2c221290210b9c9df0e57c",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f0p5",
+      "observed_unix": 1792133464.7573538,
+      "pid": 2409043,
+      "ppid": 1,
+      "sample_idx": 2,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f0p5_g8_s2/hypervisor_set_synthetic__my_boot_measure_extend/verifier/solution.lean",
+      "source_sha256": "a9d683afc1c5b462a4ba2c4f1ebd29f25a17be0e7bc90f57581d8a1b450130d0",
+      "start_ticks": "36872686",
+      "still_eligible": false,
+      "task_id": "hypervisor_set_synthetic__my_boot_measure_extend",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "18289ce7f20c14e326fd4b0b15f2177d5aaf91483b266a806ec16b7ed478d1be",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f1p0",
+      "observed_unix": 1792133465.7591567,
+      "pid": 2411764,
+      "ppid": 1,
+      "sample_idx": 0,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f1p0_g8_s0/humaneval_set__humaneval_39_prime_fib/verifier/solution.lean",
+      "source_sha256": "d12ca4e4605b1f58370e72b8bb60d879a94a3c458d9825b2828dcf28275dca53",
+      "start_ticks": "36875180",
+      "still_eligible": false,
+      "task_id": "humaneval_set__humaneval_39_prime_fib",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "9cc5deedf433d1464836e3487d564cccc57c07d6709760d89e0f7771fa4f3e68",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f0p5",
+      "observed_unix": 1792133466.7615218,
+      "pid": 2413478,
+      "ppid": 1,
+      "sample_idx": 0,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f0p5_g8_s0/hypervisor_set_synthetic__my_boot_measure_extend/verifier/solution.lean",
+      "source_sha256": "9556b73e73db351b36942023612cd9a9896e52d61232bb90f351ef1f5c7883a2",
+      "start_ticks": "36876572",
+      "still_eligible": false,
+      "task_id": "hypervisor_set_synthetic__my_boot_measure_extend",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "3ac1746bb6ad9345e7ec837fa2bdac80fcda46b694e3785603370bb6f798e5a2",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f1p0",
+      "observed_unix": 1792133467.7638264,
+      "pid": 2415035,
+      "ppid": 1,
+      "sample_idx": 3,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f1p0_g8_s3/hypervisor_set_synthetic__my_stage2_perm_intersect/verifier/solution.lean",
+      "source_sha256": "1ef48ba6b0f70f4bd01fac416caa34c4295985a67bfbeb3d34c0098b37e0593f",
+      "start_ticks": "36878295",
+      "still_eligible": false,
+      "task_id": "hypervisor_set_synthetic__my_stage2_perm_intersect",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "6afacdea6d6a71cfc72af6a5347637069781dbbcf57140b2b4342b73516b75fc",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f0p5",
+      "observed_unix": 1792133468.7655716,
+      "pid": 2415578,
+      "ppid": 1,
+      "sample_idx": 1,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f0p5_g8_s1/hypervisor_set_synthetic__my_stage2_perm_intersect/verifier/solution.lean",
+      "source_sha256": "2918abc52f3610e119593ba0e4f82b59e445260d62b66a92e7170885737818d8",
+      "start_ticks": "36878810",
+      "still_eligible": false,
+      "task_id": "hypervisor_set_synthetic__my_stage2_perm_intersect",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "f78accf7e76f65664b9b2f7cc5931ea431dbcb7994e8182ff8010ec9ae8c1f89",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f0p5",
+      "observed_unix": 1792133469.7685878,
+      "pid": 2428457,
+      "ppid": 1,
+      "sample_idx": 6,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f0p5_g8_s6/compilers_set_synthetic__my_boolean_double_neg/verifier/solution.lean",
+      "source_sha256": "105db67957312e6828fd7056a3007b8f602b3ddb8ff420397f1fb0d92c32667f",
+      "start_ticks": "36891031",
+      "still_eligible": false,
+      "task_id": "compilers_set_synthetic__my_boolean_double_neg",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "b36422fa0ec53a326ad865eba4b617629275beb25a8bf8952156081388338d5e",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f0p5",
+      "observed_unix": 1792133470.7709556,
+      "pid": 2429368,
+      "ppid": 1,
+      "sample_idx": 4,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f0p5_g8_s4/compilers_set_synthetic__my_boolean_double_neg/verifier/solution.lean",
+      "source_sha256": "530c08f17e4a0838c71b7299861c91cd2469f21a8f272bec5d9a63f4e4509805",
+      "start_ticks": "36891970",
+      "still_eligible": false,
+      "task_id": "compilers_set_synthetic__my_boolean_double_neg",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "7d22887e819b6cfd3cc27a04fd5cb0921291633fbca5524438ab8e57600abb23",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f0p5",
+      "observed_unix": 1792133471.7733707,
+      "pid": 2467847,
+      "ppid": 1,
+      "sample_idx": 5,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f0p5_g8_s5/humaneval_set__humaneval_28_concatenate/verifier/solution.lean",
+      "source_sha256": "96142049cfe955804991ec0b82feebd0e104978686c5ae805640da24f36be2af",
+      "start_ticks": "36907689",
+      "still_eligible": false,
+      "task_id": "humaneval_set__humaneval_28_concatenate",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "8aa12bebb1ba9357d0d3b4f12d4510fa7b4ae2f8a862cc8429c9b2b28ad7c905",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f1p0",
+      "observed_unix": 1792133472.776098,
+      "pid": 2477174,
+      "ppid": 1,
+      "sample_idx": 5,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f1p0_g8_s5/hardware_set_synthetic__my_direct_cache_hit/verifier/solution.lean",
+      "source_sha256": "ff9d7597b078a25501406e1fcb26a6d076a30a70e96324a52b7a3e02dbb5aa37",
+      "start_ticks": "36911552",
+      "still_eligible": false,
+      "task_id": "hardware_set_synthetic__my_direct_cache_hit",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "13654d7cab0f97bd091131cb5dd63262e4c2ab3c63e52e9a640aa700b9c0b356",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f1p0",
+      "observed_unix": 1792133473.7785614,
+      "pid": 2483493,
+      "ppid": 1,
+      "sample_idx": 6,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f1p0_g8_s6/humaneval_set__humaneval_28_concatenate/verifier/solution.lean",
+      "source_sha256": "74ce8a5e08f266f26de11e6a05bdc72bd9895747d73a62397b908925b23aa074",
+      "start_ticks": "36913771",
+      "still_eligible": false,
+      "task_id": "humaneval_set__humaneval_28_concatenate",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "8a90754375c4ec8cdb91a02c1586da34fe0e9c4671dfa2e702a0aba1a43889b1",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f1p0",
+      "observed_unix": 1792133474.781394,
+      "pid": 2499011,
+      "ppid": 1,
+      "sample_idx": 4,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f1p0_g8_s4/hypervisor_set_synthetic__my_stage2_perm_intersect/verifier/solution.lean",
+      "source_sha256": "77f1cc8b755d443ede533d52aff43b13df9f77f1d4a7362208ea9f1d17986779",
+      "start_ticks": "36921360",
+      "still_eligible": false,
+      "task_id": "hypervisor_set_synthetic__my_stage2_perm_intersect",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "da062b77b286168aef4375ec3cf483a1ebb04d001e75a0a524afdacc305c3e4b",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f1p0",
+      "observed_unix": 1792133475.7850034,
+      "pid": 2539941,
+      "ppid": 1,
+      "sample_idx": 7,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f1p0_g8_s7/security_set__security_6858__safe__104_unsafedhcpspoofing_safe/verifier/solution.lean",
+      "source_sha256": "fe3ee7d662efa68ca61b51fd43a74b4f5fd7e6c9a45cff866350c7549bfaf4da",
+      "start_ticks": "36946276",
+      "still_eligible": false,
+      "task_id": "security_set__security_6858__safe__104_unsafedhcpspoofing_safe",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "53396427ec2159c064ad06d0fe3a1e08fcc59396c0af0bbbc75fab89d4f06563",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f0p5",
+      "observed_unix": 1792133476.7880297,
+      "pid": 2578848,
+      "ppid": 1,
+      "sample_idx": 3,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f0p5_g8_s3/security_set__security_6858__vulnerabilities__137_unsafehmaclength/verifier/solution.lean",
+      "source_sha256": "575035594f74483acb2993d3a011fbadfe6142a4c74fcfcab61b9e648d32bd0c",
+      "start_ticks": "36964833",
+      "still_eligible": false,
+      "task_id": "security_set__security_6858__vulnerabilities__137_unsafehmaclength",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "aa4575656159b90c3848b3eed14943ccda28ce46866042316b1af9476770ba3b",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f0p5",
+      "observed_unix": 1792133477.7899845,
+      "pid": 2620913,
+      "ppid": 1,
+      "sample_idx": 6,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f0p5_g8_s6/humaneval_set__humaneval_23_strlen/verifier/solution.lean",
+      "source_sha256": "03c9bc70b67287f876d59aca9fae1725103d4bd6d3e927839ebca35fc2eb5ca1",
+      "start_ticks": "36975499",
+      "still_eligible": false,
+      "task_id": "humaneval_set__humaneval_23_strlen",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "d8371c4d34b07988a59170374533c66f8ec2a6cb60040c4daab31ae077a22c8c",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f0p5",
+      "observed_unix": 1792133478.7915738,
+      "pid": 2623326,
+      "ppid": 1,
+      "sample_idx": 2,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f0p5_g8_s2/security_set__security_6858__vulnerabilities__122_unsafebitlockerorder/verifier/solution.lean",
+      "source_sha256": "a7f98bb3f65cb05bf25cd2b9e9485e737dbaef2ebfb06af71cbc002a7c51682c",
+      "start_ticks": "36976102",
+      "still_eligible": false,
+      "task_id": "security_set__security_6858__vulnerabilities__122_unsafebitlockerorder",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "84763997e9814c92ac707afc9a16df8cb7b042593a04395c741d48584cac2fb6",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f1p0",
+      "observed_unix": 1792133479.793286,
+      "pid": 2649610,
+      "ppid": 1,
+      "sample_idx": 6,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f1p0_g8_s6/hypervisor_set_synthetic__my_boot_measure_extend/verifier/solution.lean",
+      "source_sha256": "89c41d7ad5810af092d5e8f761033e2e711fbedccbbc5fb7dfa9bf32d5e17b46",
+      "start_ticks": "36980914",
+      "still_eligible": false,
+      "task_id": "hypervisor_set_synthetic__my_boot_measure_extend",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "e43f488ae044ff5a3dbc4cca5cd19b7226f0fef73fc3120ad299edf164a67cfe",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f1p0",
+      "observed_unix": 1792133522.3756902,
+      "pid": 2654279,
+      "ppid": 1,
+      "sample_idx": 5,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f1p0_g8_s5/hypervisor_set_synthetic__my_boot_measure_extend/verifier/solution.lean",
+      "source_sha256": "147520bb518c5f2a0b155c3f9dbb8f6f78ed76c1e0d955261b1568f5d7201083",
+      "start_ticks": "36982329",
+      "still_eligible": false,
+      "task_id": "hypervisor_set_synthetic__my_boot_measure_extend",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "34ad0cffe92db91ce56c49656ffc19666ed6c4099c11f15a89e099a05c4a5b96",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f0p5",
+      "observed_unix": 1792133523.377088,
+      "pid": 2667895,
+      "ppid": 1,
+      "sample_idx": 7,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f0p5_g8_s7/security_set__security_6858__vulnerabilities__122_unsafebitlockerorder/verifier/solution.lean",
+      "source_sha256": "1db153161056d988ab93c8a79e57c748968f7b55158a2b49ee9cbc787d020606",
+      "start_ticks": "36984348",
+      "still_eligible": false,
+      "task_id": "security_set__security_6858__vulnerabilities__122_unsafebitlockerorder",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "a0e37c9dbe1dfbbba02a766122c52b8b18379073c3f0ee4b18701d15ad1cf452",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f1p0",
+      "observed_unix": 1792133524.3785684,
+      "pid": 2704031,
+      "ppid": 1,
+      "sample_idx": 4,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f1p0_g8_s4/regulated_set_synthetic__my_brake_torque_request_ok/verifier/solution.lean",
+      "source_sha256": "8ca337329c983b1abd1133ee73c5862b401b556f1ec6f2aa5e14b5c09beb0852",
+      "start_ticks": "36990706",
+      "still_eligible": false,
+      "task_id": "regulated_set_synthetic__my_brake_torque_request_ok",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "62b778c80671dce92fcfb4a0b131ea7ce1ec5f2b188bb602b3e668806058a1af",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f0p5",
+      "observed_unix": 1792133525.380247,
+      "pid": 2712228,
+      "ppid": 1,
+      "sample_idx": 1,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f0p5_g8_s1/security_set__security_6858__vulnerabilities__144_unsafeintegeroverflowalloc/verifier/solution.lean",
+      "source_sha256": "fe99f754d5fdb6710348b4b3ac26bb5c89e17aa6d2112ebc807ca01f1b4dec4d",
+      "start_ticks": "36999200",
+      "still_eligible": false,
+      "task_id": "security_set__security_6858__vulnerabilities__144_unsafeintegeroverflowalloc",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "de2f48e3ad860008489cfd3baf97d1a20668de96012d057b81914f9487b76853",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f0p5",
+      "observed_unix": 1792133526.3819587,
+      "pid": 2733367,
+      "ppid": 1,
+      "sample_idx": 5,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f0p5_g8_s5/security_set__security_6858__safe__87_unsafednsreply_safe/verifier/solution.lean",
+      "source_sha256": "963cff5c15e2ace85a831d7457d6fa6962715877b23bcfaa8717aaeccbb57204",
+      "start_ticks": "37018195",
+      "still_eligible": false,
+      "task_id": "security_set__security_6858__safe__87_unsafednsreply_safe",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "ce81d943417023283c12c57fea323017474b5beea37cbc84b84f050dc837ba08",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f0p5",
+      "observed_unix": 1792133527.3839393,
+      "pid": 2835124,
+      "ppid": 1,
+      "sample_idx": 5,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f0p5_g8_s5/security_set__security_6858__vulnerabilities__104_unsafedhcpspoofing/verifier/solution.lean",
+      "source_sha256": "1cd67c4b27cf96af2d3beee2da8fb73efcb32c5d19a32e83526583ff09d9ba45",
+      "start_ticks": "37082808",
+      "still_eligible": false,
+      "task_id": "security_set__security_6858__vulnerabilities__104_unsafedhcpspoofing",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "9bd378ab1ab4c5a8c605c5726d9c5726d1846b6f8105e2015744014a466384cb",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f1p0",
+      "observed_unix": 1792133528.3861809,
+      "pid": 2835803,
+      "ppid": 1,
+      "sample_idx": 5,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f1p0_g8_s5/security_set__security_6858__safe__87_unsafednsreply_safe/verifier/solution.lean",
+      "source_sha256": "9f8e1efef8b825cdb156d649699ce8d7a60db1a560e8e2df8a59d46336a57c46",
+      "start_ticks": "37083223",
+      "still_eligible": false,
+      "task_id": "security_set__security_6858__safe__87_unsafednsreply_safe",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "c872f8ce123b9f6687707fbbfc424b79bb2459bcbf63df594614455048cd6e41",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f1p0",
+      "observed_unix": 1792133529.3882368,
+      "pid": 2845750,
+      "ppid": 1,
+      "sample_idx": 4,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f1p0_g8_s4/security_set__security_6858__vulnerabilities__122_unsafebitlockerorder/verifier/solution.lean",
+      "source_sha256": "5f9a9831e0b33bf0a895b3aeee3fc7e8d135e3a02bbb58e64470fd14a3822adf",
+      "start_ticks": "37088975",
+      "still_eligible": false,
+      "task_id": "security_set__security_6858__vulnerabilities__122_unsafebitlockerorder",
+      "uid": 22003
+    },
+    {
+      "argv_sha256": "7a5fbb920a2c008d134e6ef31fb839b95604b030e83c32ce292012f513a957ef",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "exe_dev": 66314,
+      "exe_ino": 663100539,
+      "executable": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+      "label": "v3_E_1p7b_f0p5",
+      "observed_unix": 1792133530.3898497,
+      "pid": 2904398,
+      "ppid": 1,
+      "sample_idx": 0,
+      "signals": [
+        "SIGTERM"
+      ],
+      "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_1p7b_f0p5_g8_s0/security_set__security_6858__vulnerabilities__52_unsafechrootescape/verifier/solution.lean",
+      "source_sha256": "85c299cdb3605b8eb75af9a94f17e067e899e4a5f27ef7e626ad34f527f1a976",
+      "start_ticks": "37115657",
+      "still_eligible": false,
+      "task_id": "security_set__security_6858__vulnerabilities__52_unsafechrootescape",
+      "uid": 22003
+    }
+  ],
+  "focused_tests": {
+    "passed": 14,
+    "seconds": 2.7
+  },
+  "scientific_caps_unchanged": true,
+  "native_events": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/lean_orphan_cleanup_events.jsonl",
+  "source": "/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/reap_timed_out_lean.py",
+  "full_tests": {
+    "passed": 1259,
+    "skipped": 17,
+    "subtests_passed": 6,
+    "seconds": 294.97
+  }
+}

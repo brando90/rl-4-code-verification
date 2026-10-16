@@ -51,3 +51,9 @@ The watch accepts completion only when `completion_receipt.json` records `status
 The START email already exists. Send the single DONE email through `notify_run.py` only with verified terminal status and the required four recipients. Preserve compact numeric tables in Git and bulky raw outputs/checkpoints on the host; publish every completed priority rung promptly.
 
 **TLDR-end:** [rl4cv: matched replay versus expansion continuation] Persistent recovery is installed and harmless-failure tested for 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3; complete training, validation and publication remain the owner's objective.
+
+## Expired Lean child cleanup
+
+`reap_timed_out_lean.py --apply` runs once per minute from host cron (`rl4cv-e08-v3-orphan-cleanup`). The frozen scorer kills `lake` at its existing 600-second timeout but can leave the Lean child orphaned. This external guard targets only own-UID, PPID-1 primary scorer children aged at least 620 seconds with the exact Lean executable and a declared raw-cell source hash. It uses pidfds and repeated boot/start/executable/source checks, at most 16 candidates per scan. Live parents, namespace diagnostics, extra arguments and symlink escapes are excluded. Native timeouts and all raw/scored bytes remain unchanged.
+
+Evidence is in host `lean_orphan_cleanup_events.jsonl` and `lean_orphan_cleanup_latest.json`; the initial verified receipt is [published](results/lean_orphan_cleanup_recovery01.json). The same original recovery deadline applies; both phases DONE stops signaling. Retire this owned cron entry with the two owned recovery entries only after checked final publication and notification. Never remove unrelated host cron lines.
