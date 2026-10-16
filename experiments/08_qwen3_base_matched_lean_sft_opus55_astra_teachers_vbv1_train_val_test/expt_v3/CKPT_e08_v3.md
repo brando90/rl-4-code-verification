@@ -2,7 +2,7 @@
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
 **TLDR:** Training adopted without restart; owner hashes/tokens verified; persistent recovery installed and failure-tested.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-15-2026 21:29 PDT
+Last updated: 10-15-2026 21:32 PDT
 ## Goal
 - Complete replay/expansion supervised fine-tuning and all 17,280 validation cells at four sizes; $0 paid calls.
 ## What ran
@@ -10,14 +10,14 @@ Last updated: 10-15-2026 21:29 PDT
 - Adopted Phase A scheduler PID 195490 and expansion wrapper 195690; runtime `/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3`; no healthy job restarted.
 - Host `recovery_watch.py` cron every 5 minutes and reboot; `recovery_state.json`, `recovery_config.json`, [watch runbook](RUNBOOK_recovery_supervision.md); real fake-failure test PASS, 5 focused tests pass; full suite 1,212 passed / 17 skipped in 305.20s.
 ## Results
-- Six initial dispatch hashes match; full expansion 1.7B training verified: 667/667 counts, 5,757,776 loss tokens, 10,383,459 processed real tokens; final export in progress. Resume step 336 was correct.
+- Six initial dispatch hashes match; full expansion 1.7B training verified: 667/667 counts, 5,757,776 loss tokens, 10,383,459 processed real tokens; final export hash check PASS. Resume step 336 was correct.
 - Half export remains 335/335 verified, 2,878,589 tokens; validation 0/17,280 known. Dry receipt PASS remains frozen.
 ## Stuck / blocked
-- Local 4B/inference await devices plus idle reserve; experiment 13 keeps device 0. Remote skampere2 has 0 idle and skampere3 4 idle; 14B requires 8 elsewhere.
+- Expansion wrapper exited 2 after both exports with a post-loop syntax error; current `bash -n` passes. Training+full export verified, but scheduler marks FAILED. Reconcile without retraining; preserve live generation wrappers 2171971 (half) and 2322647 (full).
 - Shared NeMo rsync PID 1788378 still active; preserve it. Copied 14B baseline hash check running; never execute partial environments. Shared free bytes 2,289,713,545,216 at last check.
 - Personal Codex weekly used 96%; finishing reserve only. Distinct Vals Codex authenticated, recent 37% used (stale observation); fresh continuation runtime still to verify. Dedicated Claude Vals/Stanford grants also authenticated; ordinary profile paths misleadingly report logged out.
 ## Next steps
-- [p 10/10] Finish tests/publication of recovery changes, then transfer to Vals Codex through `python3 <expt_v3>/recovery_watch.py` after exact `owner_handoff.json`; verify fresh actual model, hashes and first useful progress before retiring this owner.
+- [p 10/10] Recovery changes published (`d7de65b`, includes `ac3f618`); transfer to Vals Codex through the tested watch after writer release. First repair: reconcile E 1.7B export failure and adopt running validation jobs; then continue R. Read host `handoff_notes_continuation-01.md`.
 - [p 9/10] Complete Phase A; publish each rung; implement Phase B using verified wrappers, relocate/verify staged environment, admit 14B only at frozen 8-device layout. Analysis errors are blockers, not success.
 - Original manifest hashes stay historical; later handoffs compare current `recovery_dispatch.json`. Required end state: 17,280 exact cells, paired bootstrap, namespace diagnostic, forecast, published parent/results and deduplicated DONE email.
 ## Brando to-do
@@ -33,3 +33,4 @@ Last updated: 10-15-2026 21:29 PDT
 - 10-15-2026 21:11 PDT -- Expansion 1.7B reached/exported step 335; all 335 counts match 2,878,589 tokens. Prepared shared-storage route and persistent ownership continuation.
 - 10-15-2026 21:25 -- Accepted ownership with 6/6 hashes and 433/433 token counts; installed five-minute/reboot recovery, passed real harmless-failure test and 5 focused tests; discovered personal quota risk and authenticated alternate subscription routes.
 - 10-15-2026 21:29 PDT -- Expansion 1.7B completed all 667 updates; 667/667 token counts match 5,757,776 loss tokens. Final export underway. Full deterministic suite passed: 1,212 passed / 17 skipped in 305.20 seconds.
+- 10-15-2026 21:32 PDT -- Full expansion export checksum check passed; retained wrapper exit 2 after export (post-loop syntax error; current script syntax passes). Both validation generations are live. Published recovery implementation and full training log, preparing verified Vals owner transfer for personal quota reserve.
