@@ -4,8 +4,8 @@
 
 **TLDR:** The corrected adapter (amended once, V2-A1, before any evaluation) was run in mapping-only mode (no Lean, no model calls) over the 11 primary systems' 4,626 compiling cells with extracted tests on `skampere1` (26.2 s). It maps every gold symbol in 3,121 cells before any probe (version 1 recorded 3,444 after its Lean probes), leaves 263 cells to the agreement probe, changes the entry point in 379 of the 3,624 cells both versions map, and excludes a helper in 364 cells. Static controls on all 882 gold suites: gold maps to itself at step 1 in 882/882; renamed gold is never mapped to a wrong symbol statically (0/882; 855 deferred to the probe). No pass rate, correlation or hidden outcome was computed, and none may be until the frozen forecast is read against Emily's evaluation.
 
-**Status:** RUNNING — runtime implementation verified; dynamic controls are next. Frozen census, protocol and forecasts unchanged.
-**Last updated:** 10-15-2026 20:40 PDT
+**Status:** RUNNING — all 50 dynamic control tasks admitted; primary evaluation awaits the four unchanged gates.
+**Last updated:** 10-15-2026 20:41 PDT
 
 ## Static controls over all 882 gold suites (`results/static_controls_v2.json`, 10.2 s)
 
@@ -84,8 +84,10 @@ Both frozen forecasts and all five amendment-pinned inputs verified. All 64 adap
 |---|---|---|
 | Hash and adapter preflight | DONE | Both forecasts, five pinned inputs; 64/64 tests |
 | Runtime and analysis scripts | DONE | 13/13 new tests; full suite 1,191 passed / 18 skipped |
-| Dynamic controls C1–C4 | PENDING | No outcome yet |
+| Dynamic controls C1–C4 | IN PROGRESS | 50 prescribed tasks; two low-priority Lean workers |
 | Full primary evaluation | PENDING | 0/4,626 eligible groups; 9,856 declared cells |
 | Analysis and final publication | PENDING | Frozen predictions unchanged |
 
 Verification at 10-15-2026 20:39 PDT: full repository suite **1,191 passed / 18 skipped**; 77 current targeted checks pass. Synthetic Lean bridge: 2/2 tests evaluable, one passing and one deliberately failing. Pinned toolchain, Mathlib manifest and version-1 helper hashes match.
+
+Control launch verified at 10-15-2026 20:41 PDT: session `rl4cv-e12v2-controls`, two live Lean processes, first compiled modules present. Implementation commit `7ce7bd0`, landed on main through `7502a82`; [preflight receipt](results/preflight_v2.json).
