@@ -1,0 +1,3179 @@
+{
+  "system": "v3_R_8b_f0p5",
+  "declared_cells": 1080,
+  "changed_cells": 0,
+  "unknown_cells": 0,
+  "original_successes": 116.0,
+  "diagnostic_successes_known": 116.0,
+  "scope": "Diagnostic only; primary scores, gates and selection unchanged; zero model calls",
+  "changed_receipts": [],
+  "original_first_error_sample": {
+    "selection": "first 24 compile-error cells in ascending sha256('rl4cv-e08-v3-taxonomy-sample:' + task_id + '#' + sample_idx)",
+    "compile_error_population": 903,
+    "sampled_cells": 24,
+    "kind_counts": {
+      "type_or_application_mismatch_or_synthesis": 9,
+      "failed_proof_tactic": 6,
+      "other": 4,
+      "failing_test_native_decide_false": 3,
+      "unknown_identifier_or_constant_or_field": 2
+    },
+    "receipts": [
+      {
+        "task_id": "concurrent_set_synthetic__my_or_set_visible",
+        "sample_idx": 7,
+        "original_sha256": "bbf7f9b972c2822ac3226bfeb550b868792a06f5f3d2d89f6dca468f70044c69",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/concurrent_set_synthetic__my_or_set_visible/7/solution.lean",
+        "kind": "type_or_application_mismatch_or_synthesis",
+        "first_error": "Application type mismatch: In the application",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 39,
+              "col": 25,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 45,
+              "col": 53,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 46,
+              "col": 52,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 47,
+              "col": 10,
+              "msg": "Invalid field `all`: The environment does not contain `Function.all`"
+            },
+            {
+              "line": 48,
+              "col": 10,
+              "msg": "Invalid field `all`: The environment does not contain `Function.all`"
+            },
+            {
+              "line": 105,
+              "col": 69,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 112,
+              "col": 63,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 147,
+              "col": 30,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 147,
+              "col": 37,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 147,
+              "col": 43,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 147,
+              "col": 46,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 166,
+              "col": 51,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyOrSetVisible.boolInputs' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 171,
+              "col": 62,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyOrSetVisible.boolInputs' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 175,
+              "col": 80,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyOrSetVisible.boolInputs' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 180,
+              "col": 44,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyOrSetVisible.boolInputs' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 185,
+              "col": 45,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyOrSetVisible.boolInputs' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 188,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 190,
+              "col": 60,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyOrSetVisible.boolInputs' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 193,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 198,
+              "col": 72,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyOrSetVisible.boolInputs' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 203,
+              "col": 74,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyOrSetVisible.boolInputs' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 209,
+              "col": 77,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyOrSetVisible.boolInputs' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 212,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 214,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyOrSetVisible.boolInputs' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 242,
+              "col": 28,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 250,
+              "col": 63,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyOrSetVisible.boolInputs' uses 'sorry' and/or contains errors"
+            }
+          ],
+          "sorry_warnings": 0,
+          "seconds": 8.5
+        }
+      },
+      {
+        "task_id": "security_set__security_6858__vulnerabilities__80_unsafepermlabel",
+        "sample_idx": 4,
+        "original_sha256": "0008b77b2ad56f7e707f1709fa61eb1a7c0fc944e047949142ba65c8e81c3ea6",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/security_set__security_6858__vulnerabilities__80_unsafepermlabel/4/solution.lean",
+        "kind": "failed_proof_tactic",
+        "first_error": "unsolved goals",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 100,
+              "col": 66,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 158,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            }
+          ],
+          "sorry_warnings": 0,
+          "seconds": 5.27
+        }
+      },
+      {
+        "task_id": "security_set__security_6858__vulnerabilities__86_unsafebindercall",
+        "sample_idx": 6,
+        "original_sha256": "0be1e722cb2af62f3de05f0aeb35289f8d1de8d4dca1e2fdde23a6c08707485a",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/security_set__security_6858__vulnerabilities__86_unsafebindercall/6/solution.lean",
+        "kind": "other",
+        "first_error": "type expected, got",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 160,
+              "col": 6,
+              "msg": "type expected, got"
+            },
+            {
+              "line": 248,
+              "col": 63,
+              "msg": "unknown identifier 'otherServiceId'"
+            }
+          ],
+          "sorry_warnings": 0,
+          "seconds": 8.85
+        }
+      },
+      {
+        "task_id": "security_set__security_6858__safe__107_unsafeprofilesandbox_safe",
+        "sample_idx": 2,
+        "original_sha256": "aa90e91cd7bdb98a4de6d75162495b84c4b2a7584ef096dd0d46c263073f6abd",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/security_set__security_6858__safe__107_unsafeprofilesandbox_safe/2/solution.lean",
+        "kind": "type_or_application_mismatch_or_synthesis",
+        "first_error": "type mismatch",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 73,
+              "col": 18,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 73,
+              "col": 65,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 81,
+              "col": 24,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 110,
+              "col": 26,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 110,
+              "col": 29,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 111,
+              "col": 4,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 148,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 152,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 188,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 200,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            }
+          ],
+          "sorry_warnings": 0,
+          "seconds": 8.78
+        }
+      },
+      {
+        "task_id": "security_set__security_6858__safe__80_unsafepermlabel_safe",
+        "sample_idx": 1,
+        "original_sha256": "5182eb189ae811fea06f11ac5224e1bf3afa99b2637fb828098ce91885139203",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/security_set__security_6858__safe__80_unsafepermlabel_safe/1/solution.lean",
+        "kind": "type_or_application_mismatch_or_synthesis",
+        "first_error": "type mismatch",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 84,
+              "col": 2,
+              "msg": "type mismatch"
+            }
+          ],
+          "sorry_warnings": 0,
+          "seconds": 5.65
+        }
+      },
+      {
+        "task_id": "security_set__security_6858__vulnerabilities__32_unsafeleakingcompare",
+        "sample_idx": 1,
+        "original_sha256": "efa074ec7cd9a6f11f1655edd96272e136fe33873b5a359ba4aae13c3426cc44",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/security_set__security_6858__vulnerabilities__32_unsafeleakingcompare/1/solution.lean",
+        "kind": "type_or_application_mismatch_or_synthesis",
+        "first_error": "type mismatch",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 29,
+              "col": 24,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 37,
+              "col": 61,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 38,
+              "col": 61,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 39,
+              "col": 61,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 41,
+              "col": 67,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 42,
+              "col": 67,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 43,
+              "col": 67,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 45,
+              "col": 47,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 46,
+              "col": 49,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 59,
+              "col": 50,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 61,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 62,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 63,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 64,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 79,
+              "col": 13,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 87,
+              "col": 36,
+              "msg": "simp made no progress"
+            },
+            {
+              "line": 98,
+              "col": 36,
+              "msg": "simp made no progress"
+            },
+            {
+              "line": 134,
+              "col": 56,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 143,
+              "col": 41,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 150,
+              "col": 21,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 158,
+              "col": 13,
+              "msg": "simp made no progress"
+            },
+            {
+              "line": 159,
+              "col": 14,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 164,
+              "col": 69,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 165,
+              "col": 14,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 176,
+              "col": 27,
+              "msg": "expected type must not contain free variables"
+            },
+            {
+              "line": 178,
+              "col": 22,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 191,
+              "col": 60,
+              "msg": "omega could not prove the goal:"
+            },
+            {
+              "line": 204,
+              "col": 23,
+              "msg": "unknown constant 'List.length_eq'"
+            },
+            {
+              "line": 204,
+              "col": 13,
+              "msg": "simp made no progress"
+            },
+            {
+              "line": 210,
+              "col": 11,
+              "msg": "simp made no progress"
+            },
+            {
+              "line": 221,
+              "col": 27,
+              "msg": "expected type must not contain free variables"
+            },
+            {
+              "line": 223,
+              "col": 22,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 240,
+              "col": 73,
+              "msg": "unknown constant 'Nat.add_left_cancel''"
+            },
+            {
+              "line": 240,
+              "col": 13,
+              "msg": "simp made no progress"
+            },
+            {
+              "line": 244,
+              "col": 13,
+              "msg": "simp made no progress"
+            },
+            {
+              "line": 245,
+              "col": 6,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 259,
+              "col": 11,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 261,
+              "col": 21,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 262,
+              "col": 29,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 265,
+              "col": 13,
+              "msg": "tactic 'subst' failed, did not find equation for eliminating 'h'"
+            },
+            {
+              "line": 273,
+              "col": 41,
+              "msg": "invalid argument, variable is not a proposition or let-declaration"
+            },
+            {
+              "line": 274,
+              "col": 18,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 275,
+              "col": 29,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 278,
+              "col": 13,
+              "msg": "tactic 'subst' failed, did not find equation for eliminating 'h'"
+            },
+            {
+              "line": 286,
+              "col": 49,
+              "msg": "tactic 'rfl' failed, expected goal to be a binary relation"
+            },
+            {
+              "line": 294,
+              "col": 21,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 308,
+              "col": 11,
+              "msg": "tactic 'simp' failed, nested error:"
+            },
+            {
+              "line": 322,
+              "col": 21,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 327,
+              "col": 74,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 342,
+              "col": 11,
+              "msg": "tactic 'simp' failed, nested error:"
+            },
+            {
+              "line": 353,
+              "col": 8,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 356,
+              "col": 21,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 362,
+              "col": 28,
+              "msg": "tactic 'rfl' failed, expected goal to be a binary relation"
+            },
+            {
+              "line": 383,
+              "col": 21,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 410,
+              "col": 11,
+              "msg": "tactic 'rfl' failed, expected goal to be a binary relation"
+            },
+            {
+              "line": 412,
+              "col": 22,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 417,
+              "col": 10,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 423,
+              "col": 10,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 429,
+              "col": 8,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 433,
+              "col": 47,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 433,
+              "col": 90,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 436,
+              "col": 48,
+              "msg": "tactic 'rfl' failed, expected goal to be a binary relation"
+            },
+            {
+              "line": 446,
+              "col": 47,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 501,
+              "col": 49,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 509,
+              "col": 63,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 528,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 529,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 530,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 531,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 532,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 533,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 534,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 535,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 536,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 537,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 538,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 542,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 544,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 546,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 548,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 550,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 552,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 554,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 556,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 558,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 560,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.byteByByteCheck._lam_0' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 562,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 580,
+              "col": 6,
+              "msg": "unsupported pattern in syntax match"
+            },
+            {
+              "line": 589,
+              "col": 64,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompareImp' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 590,
+              "col": 64,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompareImp' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 591,
+              "col": 64,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompareImp' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 592,
+              "col": 70,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompareImp' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 593,
+              "col": 70,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompareImp' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 594,
+              "col": 70,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompareImp' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 595,
+              "col": 50,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompareImp' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 596,
+              "col": 52,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompareImp' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 597,
+              "col": 53,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompareImp' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 599,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 600,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 601,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 606,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeLeakingCompare.unsafeLeakingCompare._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 607,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 616,
+              "col": 8,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 621,
+              "col": 21,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 628,
+              "col": 48,
+              "msg": "tactic 'rfl' failed, expected goal to be a binary relation"
+            },
+            {
+              "line": 636,
+              "col": 40,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 637,
+              "col": 14,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 649,
+              "col": 14,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 654,
+              "col": 2,
+              "msg": "type mismatch"
+            }
+          ],
+          "sorry_warnings": 30,
+          "seconds": 10.0
+        }
+      },
+      {
+        "task_id": "security_set__security_6858__vulnerabilities__137_unsafehmaclength",
+        "sample_idx": 5,
+        "original_sha256": "b54dfe97d051072a81114a0fd095bcf6a9ed568bc9954c5fda7965188ca578d7",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/security_set__security_6858__vulnerabilities__137_unsafehmaclength/5/solution.lean",
+        "kind": "type_or_application_mismatch_or_synthesis",
+        "first_error": "Application type mismatch: In the application",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 126,
+              "col": 12,
+              "msg": "Application type mismatch: In the application"
+            }
+          ],
+          "sorry_warnings": 0,
+          "seconds": 7.94
+        }
+      },
+      {
+        "task_id": "crypto_set_real__my_pkcs7_unpad_valid",
+        "sample_idx": 0,
+        "original_sha256": "85090001d8c949f74567bac7412279c42b3a7aca097d8125bf7fa28cfa011b77",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/crypto_set_real__my_pkcs7_unpad_valid/0/solution.lean",
+        "kind": "failed_proof_tactic",
+        "first_error": "unsolved goals",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 87,
+              "col": 82,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 101,
+              "col": 43,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 116,
+              "col": 6,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 141,
+              "col": 85,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 303,
+              "col": 2,
+              "msg": "type mismatch"
+            }
+          ],
+          "sorry_warnings": 0,
+          "seconds": 8.75
+        }
+      },
+      {
+        "task_id": "security_set__security_6858__vulnerabilities__161_unsafeinsecurecookiesecure",
+        "sample_idx": 0,
+        "original_sha256": "56ad7d199a90da2c05ecfacb452effae1339a29eeaa6359f6a88f9041b976d88",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/security_set__security_6858__vulnerabilities__161_unsafeinsecurecookiesecure/0/solution.lean",
+        "kind": "type_or_application_mismatch_or_synthesis",
+        "first_error": "failed to synthesize",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 36,
+              "col": 37,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 37,
+              "col": 36,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 47,
+              "col": 7,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 53,
+              "col": 7,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 72,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeInsecureCookieSecure.check' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 74,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 110,
+              "col": 44,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 120,
+              "col": 5,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 144,
+              "col": 31,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 192,
+              "col": 50,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 200,
+              "col": 50,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 223,
+              "col": 44,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 224,
+              "col": 44,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 236,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 250,
+              "col": 32,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 266,
+              "col": 31,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 271,
+              "col": 30,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 288,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeInsecureCookieSecure.check' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 290,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            }
+          ],
+          "sorry_warnings": 2,
+          "seconds": 5.23
+        }
+      },
+      {
+        "task_id": "os_embedded_set_synthetic__my_mutex_can_lock",
+        "sample_idx": 5,
+        "original_sha256": "68c4c2fd276ee1d446a68633f5b057d310b3189630b78587935d7ab5a3cdeffb",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/os_embedded_set_synthetic__my_mutex_can_lock/5/solution.lean",
+        "kind": "failing_test_native_decide_false",
+        "first_error": "tactic 'native_decide' evaluated that the proposition",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 53,
+              "col": 49,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 54,
+              "col": 49,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 89,
+              "col": 68,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 97,
+              "col": 92,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 107,
+              "col": 96,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 150,
+              "col": 2,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 154,
+              "col": 14,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 164,
+              "col": 2,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 198,
+              "col": 35,
+              "msg": "expected type must not contain free variables"
+            },
+            {
+              "line": 243,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 248,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 251,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 256,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 266,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 269,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 271,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 274,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 276,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 279,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 281,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 305,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 308,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            }
+          ],
+          "sorry_warnings": 0,
+          "seconds": 8.14
+        }
+      },
+      {
+        "task_id": "concurrent_set_synthetic__my_or_set_visible",
+        "sample_idx": 5,
+        "original_sha256": "a70a3f3a87c91342f92f087852cd53185e531947c8e15dd9254979c68dd1eac9",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/concurrent_set_synthetic__my_or_set_visible/5/solution.lean",
+        "kind": "type_or_application_mismatch_or_synthesis",
+        "first_error": "Application type mismatch: In the application",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 51,
+              "col": 25,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 54,
+              "col": 63,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 57,
+              "col": 53,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 59,
+              "col": 52,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 61,
+              "col": 26,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 61,
+              "col": 68,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 64,
+              "col": 26,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 67,
+              "col": 32,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 86,
+              "col": 33,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 109,
+              "col": 53,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 135,
+              "col": 26,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 139,
+              "col": 35,
+              "msg": "don't know how to synthesize placeholder for argument 'val'"
+            },
+            {
+              "line": 147,
+              "col": 24,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 155,
+              "col": 26,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 167,
+              "col": 18,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 167,
+              "col": 51,
+              "msg": "expected type must not contain meta variables"
+            },
+            {
+              "line": 165,
+              "col": 73,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 193,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 195,
+              "col": 54,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 208,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 210,
+              "col": 74,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 213,
+              "col": 77,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 215,
+              "col": 26,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 218,
+              "col": 79,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 220,
+              "col": 28,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 223,
+              "col": 84,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 225,
+              "col": 43,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 228,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 229,
+              "col": 79,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 250,
+              "col": 28,
+              "msg": "Application type mismatch: In the application"
+            }
+          ],
+          "sorry_warnings": 3,
+          "seconds": 7.12
+        }
+      },
+      {
+        "task_id": "security_set__security_6858__safe__66_unsaferatelimit_safe",
+        "sample_idx": 6,
+        "original_sha256": "eb54a838c9a9b481fd2c605340ac9c16176eefe4b8e134821c9e95cc44194926",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/security_set__security_6858__safe__66_unsaferatelimit_safe/6/solution.lean",
+        "kind": "type_or_application_mismatch_or_synthesis",
+        "first_error": "Function expected at",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 66,
+              "col": 10,
+              "msg": "Function expected at"
+            },
+            {
+              "line": 117,
+              "col": 64,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 168,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 213,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 262,
+              "col": 8,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 264,
+              "col": 52,
+              "msg": "Application type mismatch: In the application"
+            }
+          ],
+          "sorry_warnings": 0,
+          "seconds": 6.53
+        }
+      },
+      {
+        "task_id": "security_set__security_6858__vulnerabilities__60_unsafebroadcasteavesdrop",
+        "sample_idx": 3,
+        "original_sha256": "cf197d7563247a398033eb61317296f669bd9edeec05cea0c4a79db9c85f1361",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/security_set__security_6858__vulnerabilities__60_unsafebroadcasteavesdrop/3/solution.lean",
+        "kind": "other",
+        "first_error": "type expected, got",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 179,
+              "col": 15,
+              "msg": "type expected, got"
+            }
+          ],
+          "sorry_warnings": 1,
+          "seconds": 7.19
+        }
+      },
+      {
+        "task_id": "easy_set__15_myrepeatstring",
+        "sample_idx": 4,
+        "original_sha256": "99fc915a742dbe436b438ef3ac13a00b9fee604ff5db55101377b14fe1048530",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/easy_set__15_myrepeatstring/4/solution.lean",
+        "kind": "unknown_identifier_or_constant_or_field",
+        "first_error": "Invalid field notation: Function `List.replicate` does not have a usable parameter of type `List ...` for which to substitute `s.data`",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 30,
+              "col": 15,
+              "msg": "Invalid field notation: Function `List.replicate` does not have a usable parameter of type `List ...` for which to substitute `s.data`"
+            },
+            {
+              "line": 47,
+              "col": 58,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.prog' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 49,
+              "col": 51,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.prog' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 51,
+              "col": 54,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.prog' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 52,
+              "col": 50,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.prog' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 55,
+              "col": 54,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.prog' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 56,
+              "col": 50,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.prog' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 58,
+              "col": 46,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.prog' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 60,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 61,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 62,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 63,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 73,
+              "col": 26,
+              "msg": "Invalid field notation: Function `List.replicate` does not have a usable parameter of type `List ...` for which to substitute `s.data`"
+            },
+            {
+              "line": 89,
+              "col": 35,
+              "msg": "expected type must not contain free variables"
+            },
+            {
+              "line": 122,
+              "col": 14,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 132,
+              "col": 24,
+              "msg": "Invalid field notation: Function `List.replicate` does not have a usable parameter of type `List ...` for which to substitute `s.data`"
+            },
+            {
+              "line": 156,
+              "col": 23,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 174,
+              "col": 22,
+              "msg": "unknown constant 'Except.ok_map'"
+            },
+            {
+              "line": 174,
+              "col": 75,
+              "msg": "unknown constant 'Nat.cast_idem'"
+            },
+            {
+              "line": 174,
+              "col": 7,
+              "msg": "tactic 'simp' failed, nested error:"
+            },
+            {
+              "line": 178,
+              "col": 24,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 183,
+              "col": 25,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 180,
+              "col": 75,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 217,
+              "col": 34,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.prog' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 240,
+              "col": 14,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 241,
+              "col": 3,
+              "msg": "unknown identifier 'pre'"
+            },
+            {
+              "line": 236,
+              "col": 14,
+              "msg": "Invalid field notation: Function `List.replicate` does not have a usable parameter of type `List ...` for which to substitute `s.data`"
+            },
+            {
+              "line": 261,
+              "col": 29,
+              "msg": "Invalid field notation: Function `List.replicate` does not have a usable parameter of type `List ...` for which to substitute `s.data`"
+            },
+            {
+              "line": 264,
+              "col": 35,
+              "msg": "Invalid field notation: Function `List.replicate` does not have a usable parameter of type `List ...` for which to substitute `s.data`"
+            },
+            {
+              "line": 268,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 269,
+              "col": 81,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.prog' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 272,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 275,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.prog' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 278,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 283,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.prog' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 287,
+              "col": 29,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 290,
+              "col": 35,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 294,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 298,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.prog' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 301,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 305,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.prog' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 308,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 311,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.prog' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 317,
+              "col": 93,
+              "msg": "omega could not prove the goal:"
+            },
+            {
+              "line": 328,
+              "col": 11,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 334,
+              "col": 61,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.progImp' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 335,
+              "col": 54,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.progImp' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 336,
+              "col": 57,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.progImp' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 337,
+              "col": 53,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.progImp' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 338,
+              "col": 37,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.progImp' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 340,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 341,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 344,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 345,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 349,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyRepeatString.progImp' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 354,
+              "col": 29,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 363,
+              "col": 91,
+              "msg": "unknown constant 'String.asString'"
+            },
+            {
+              "line": 363,
+              "col": 109,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 376,
+              "col": 29,
+              "msg": "Invalid field notation: Function `List.replicate` does not have a usable parameter of type `List ...` for which to substitute `s.data`"
+            },
+            {
+              "line": 377,
+              "col": 31,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 383,
+              "col": 2,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 388,
+              "col": 29,
+              "msg": "Invalid field notation: Function `List.replicate` does not have a usable parameter of type `List ...` for which to substitute `s.data`"
+            }
+          ],
+          "sorry_warnings": 11,
+          "seconds": 8.89
+        }
+      },
+      {
+        "task_id": "security_set__security_6858__safe__124_unsafeandroidbroadcast_safe",
+        "sample_idx": 7,
+        "original_sha256": "c9d7f92eaaee393cb34655e574c319eaa203f98856a6c060abc777c876ecfbd7",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/security_set__security_6858__safe__124_unsafeandroidbroadcast_safe/7/solution.lean",
+        "kind": "failed_proof_tactic",
+        "first_error": "unsolved goals",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 101,
+              "col": 70,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 131,
+              "col": 58,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 138,
+              "col": 63,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'List.mapTR.loop._at_.124_unsafeAndroidBroadcast_safe.boolPairs.spec_0' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 146,
+              "col": 68,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'List.mapTR.loop._at_.124_unsafeAndroidBroadcast_safe.boolPairs.spec_0' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 153,
+              "col": 77,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'List.mapTR.loop._at_.124_unsafeAndroidBroadcast_safe.boolPairs.spec_0' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 156,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 159,
+              "col": 65,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'List.mapTR.loop._at_.124_unsafeAndroidBroadcast_safe.boolPairs.spec_0' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 168,
+              "col": 58,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'List.mapTR.loop._at_.124_unsafeAndroidBroadcast_safe.boolPairs.spec_0' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 175,
+              "col": 63,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'List.mapTR.loop._at_.124_unsafeAndroidBroadcast_safe.boolPairs.spec_0' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 187,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 188,
+              "col": 24,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 234,
+              "col": 82,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'List.mapTR.loop._at_.124_unsafeAndroidBroadcast_safe.boolPairs.spec_0' uses 'sorry' and/or contains errors"
+            }
+          ],
+          "sorry_warnings": 0,
+          "seconds": 7.68
+        }
+      },
+      {
+        "task_id": "humaneval_set__humaneval_23_strlen",
+        "sample_idx": 5,
+        "original_sha256": "772f3fcd55c765b9e804a0643a083a57d4edd4e9f0abe253052cb8f3b33a9a44",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/humaneval_set__humaneval_23_strlen/5/solution.lean",
+        "kind": "failed_proof_tactic",
+        "first_error": "unsolved goals",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 61,
+              "col": 72,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 67,
+              "col": 68,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 74,
+              "col": 62,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 78,
+              "col": 80,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 83,
+              "col": 12,
+              "msg": "Invalid field `replaceChar`: The environment does not contain `String.replaceChar`"
+            },
+            {
+              "line": 88,
+              "col": 74,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 91,
+              "col": 74,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 94,
+              "col": 10,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 95,
+              "col": 13,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 100,
+              "col": 30,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 106,
+              "col": 51,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 109,
+              "col": 10,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 111,
+              "col": 88,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 114,
+              "col": 8,
+              "msg": "simp made no progress"
+            },
+            {
+              "line": 115,
+              "col": 10,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 119,
+              "col": 41,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 124,
+              "col": 10,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 130,
+              "col": 111,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 133,
+              "col": 8,
+              "msg": "simp made no progress"
+            },
+            {
+              "line": 134,
+              "col": 14,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 161,
+              "col": 4,
+              "msg": "tactic 'subst' failed, invalid equality proof, it is not of the form (x = t) or (t = x)"
+            },
+            {
+              "line": 177,
+              "col": 8,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 180,
+              "col": 10,
+              "msg": "unknown constant 'Nat.lt_of_ne_zero'"
+            },
+            {
+              "line": 201,
+              "col": 10,
+              "msg": "Invalid field `replaceChar`: The environment does not contain `String.replaceChar`"
+            },
+            {
+              "line": 209,
+              "col": 28,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 217,
+              "col": 39,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 230,
+              "col": 36,
+              "msg": "Invalid field `replaceChar`: The environment does not contain `String.replaceChar`"
+            },
+            {
+              "line": 231,
+              "col": 42,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 232,
+              "col": 53,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 242,
+              "col": 43,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 247,
+              "col": 42,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 259,
+              "col": 11,
+              "msg": "Invalid field `replaceChar`: The environment does not contain `String.replaceChar`"
+            },
+            {
+              "line": 266,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'humaneval_23_strlen.strOfLen._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 271,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'humaneval_23_strlen.strOfLen._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 276,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'humaneval_23_strlen.strOfLen._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 281,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'humaneval_23_strlen.strOfLen._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 294,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'humaneval_23_strlen.strOfLen._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 298,
+              "col": 39,
+              "msg": "Invalid field `replaceChar`: The environment does not contain `String.replaceChar`"
+            },
+            {
+              "line": 300,
+              "col": 12,
+              "msg": "Invalid field `replaceChar`: The environment does not contain `String.replaceChar`"
+            },
+            {
+              "line": 304,
+              "col": 67,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 304,
+              "col": 92,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 304,
+              "col": 6,
+              "msg": "could not synthesize default value for parameter 'p'' using tactics"
+            },
+            {
+              "line": 306,
+              "col": 11,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 306,
+              "col": 52,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 310,
+              "col": 67,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 310,
+              "col": 111,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 312,
+              "col": 11,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 312,
+              "col": 86,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 316,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 318,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'humaneval_23_strlen.strOfLen._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 353,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'humaneval_23_strlen.strOfLen2._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 364,
+              "col": 9,
+              "msg": "tactic 'unfold' failed to unfold 'humaneval_23_strlen.strlenImp' at"
+            }
+          ],
+          "sorry_warnings": 1,
+          "seconds": 8.7
+        }
+      },
+      {
+        "task_id": "compilers_set_real__my_cpython_ast_increment_location",
+        "sample_idx": 4,
+        "original_sha256": "6d2c0a3a74c4767564455b1bdd010bb4c4a2104409902c7fc87a4ac296ff83d0",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/compilers_set_real__my_cpython_ast_increment_location/4/solution.lean",
+        "kind": "other",
+        "first_error": "omega could not prove the goal:",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 96,
+              "col": 18,
+              "msg": "omega could not prove the goal:"
+            },
+            {
+              "line": 96,
+              "col": 18,
+              "msg": "omega could not prove the goal:"
+            },
+            {
+              "line": 102,
+              "col": 4,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 128,
+              "col": 2,
+              "msg": "omega could not prove the goal:"
+            },
+            {
+              "line": 136,
+              "col": 2,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 144,
+              "col": 2,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 148,
+              "col": 32,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 153,
+              "col": 2,
+              "msg": "omega could not prove the goal:"
+            },
+            {
+              "line": 205,
+              "col": 4,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 208,
+              "col": 6,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 221,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 227,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 230,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 234,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 243,
+              "col": 32,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 247,
+              "col": 36,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 263,
+              "col": 31,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 272,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 276,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'MyCpythonAstIncrementLocation.postCheck' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 329,
+              "col": 57,
+              "msg": "Application type mismatch: In the application"
+            }
+          ],
+          "sorry_warnings": 1,
+          "seconds": 7.96
+        }
+      },
+      {
+        "task_id": "security_set__security_6858__safe__86_unsafebindercall_safe",
+        "sample_idx": 2,
+        "original_sha256": "5050986e98bb971909604ddd6391eb3b78c07cd27de86ea6b890b86fe44eb8e7",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/security_set__security_6858__safe__86_unsafebindercall_safe/2/solution.lean",
+        "kind": "failing_test_native_decide_false",
+        "first_error": "tactic 'native_decide' evaluated that the proposition",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 79,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 253,
+              "col": 43,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 325,
+              "col": 20,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 329,
+              "col": 20,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 333,
+              "col": 20,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 337,
+              "col": 20,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 341,
+              "col": 20,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 345,
+              "col": 20,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 349,
+              "col": 20,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 353,
+              "col": 20,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 357,
+              "col": 20,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 360,
+              "col": 16,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 367,
+              "col": 39,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 369,
+              "col": 8,
+              "msg": "tactic 'introN' failed, insufficient number of binders"
+            },
+            {
+              "line": 434,
+              "col": 66,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 435,
+              "col": 71,
+              "msg": "Application type mismatch: In the application"
+            }
+          ],
+          "sorry_warnings": 0,
+          "seconds": 5.83
+        }
+      },
+      {
+        "task_id": "regulated_set_real__my_autosar_p02_length_ok",
+        "sample_idx": 6,
+        "original_sha256": "8c146fe2cb8321a6ed29c4e7ddb922aebf314cdb9a9273c8e3424733a9551ac1",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/regulated_set_real__my_autosar_p02_length_ok/6/solution.lean",
+        "kind": "failed_proof_tactic",
+        "first_error": "unsolved goals",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 89,
+              "col": 2,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 93,
+              "col": 4,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 96,
+              "col": 12,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 98,
+              "col": 12,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 105,
+              "col": 41,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 286,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 370,
+              "col": 54,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 370,
+              "col": 54,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 370,
+              "col": 54,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 370,
+              "col": 54,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 370,
+              "col": 54,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 370,
+              "col": 54,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 370,
+              "col": 54,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 370,
+              "col": 54,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 370,
+              "col": 54,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 370,
+              "col": 54,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 370,
+              "col": 54,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 370,
+              "col": 54,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 370,
+              "col": 54,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 370,
+              "col": 54,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 370,
+              "col": 54,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            },
+            {
+              "line": 370,
+              "col": 54,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            }
+          ],
+          "sorry_warnings": 0,
+          "seconds": 7.58
+        }
+      },
+      {
+        "task_id": "security_set__security_6858__vulnerabilities__87_unsafednsreply",
+        "sample_idx": 6,
+        "original_sha256": "b7f6a6db821e9072266bc1611764c969e3fe286f3ab325314f0cab471d9daf98",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/security_set__security_6858__vulnerabilities__87_unsafednsreply/6/solution.lean",
+        "kind": "unknown_identifier_or_constant_or_field",
+        "first_error": "unknown identifier 'src_port'",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 68,
+              "col": 40,
+              "msg": "unknown identifier 'src_port'"
+            },
+            {
+              "line": 68,
+              "col": 49,
+              "msg": "unknown identifier 'expected_port'"
+            },
+            {
+              "line": 79,
+              "col": 13,
+              "msg": "unknown identifier 'expected_id'"
+            },
+            {
+              "line": 80,
+              "col": 30,
+              "msg": "unknown identifier 'expected_id'"
+            },
+            {
+              "line": 93,
+              "col": 42,
+              "msg": "unknown identifier 'src_port'"
+            },
+            {
+              "line": 93,
+              "col": 51,
+              "msg": "unknown identifier 'expected_port'"
+            },
+            {
+              "line": 127,
+              "col": 4,
+              "msg": "tactic 'apply' failed, could not unify the conclusion of `h`"
+            },
+            {
+              "line": 129,
+              "col": 2,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 191,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 205,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            }
+          ],
+          "sorry_warnings": 2,
+          "seconds": 5.13
+        }
+      },
+      {
+        "task_id": "security_set__security_6858__safe__60_unsafebroadcasteavesdrop_safe",
+        "sample_idx": 1,
+        "original_sha256": "4813fb08fd67b2914c3b14a34fbf196aa70496959a06daa4b83c88243a7ab7b5",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/security_set__security_6858__safe__60_unsafebroadcasteavesdrop_safe/1/solution.lean",
+        "kind": "type_or_application_mismatch_or_synthesis",
+        "first_error": "failed to synthesize",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 30,
+              "col": 12,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 43,
+              "col": 35,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 47,
+              "col": 35,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 51,
+              "col": 35,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 55,
+              "col": 34,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 59,
+              "col": 36,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 63,
+              "col": 38,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 66,
+              "col": 16,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 69,
+              "col": 12,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 71,
+              "col": 11,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 91,
+              "col": 6,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 106,
+              "col": 6,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 111,
+              "col": 29,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 122,
+              "col": 8,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 127,
+              "col": 29,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 136,
+              "col": 6,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 143,
+              "col": 29,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 167,
+              "col": 6,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 169,
+              "col": 8,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 200,
+              "col": 31,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 236,
+              "col": 10,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 244,
+              "col": 10,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 253,
+              "col": 12,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 260,
+              "col": 8,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 270,
+              "col": 10,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 272,
+              "col": 12,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 282,
+              "col": 12,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 284,
+              "col": 12,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 294,
+              "col": 4,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 305,
+              "col": 10,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 310,
+              "col": 10,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 314,
+              "col": 2,
+              "msg": "tactic 'native_decide' failed, could not evaluate decidable instance. Error: cannot evaluate code because 'UnsafeBroadcastEavesdropSafe.safe_broadcast_send._redArg' uses 'sorry' and/or contains errors"
+            },
+            {
+              "line": 316,
+              "col": 0,
+              "msg": "aborting evaluation since the expression depends on the 'sorry' axiom, which can lead to runtime instability and crashes."
+            },
+            {
+              "line": 322,
+              "col": 45,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 334,
+              "col": 31,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 351,
+              "col": 25,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 356,
+              "col": 46,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 359,
+              "col": 46,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 362,
+              "col": 46,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 365,
+              "col": 45,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 368,
+              "col": 47,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 371,
+              "col": 49,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 374,
+              "col": 16,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 381,
+              "col": 8,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 383,
+              "col": 10,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 386,
+              "col": 12,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 393,
+              "col": 8,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 395,
+              "col": 8,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 403,
+              "col": 4,
+              "msg": "Application type mismatch: In the application"
+            }
+          ],
+          "sorry_warnings": 10,
+          "seconds": 5.51
+        }
+      },
+      {
+        "task_id": "memory_bugs_set_real__my_cpython_pymalloc_small_request",
+        "sample_idx": 4,
+        "original_sha256": "40a9164597c0166ed03bdd0c0d5469cb494f4607520c6090eb146fa50eb6efc7",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/memory_bugs_set_real__my_cpython_pymalloc_small_request/4/solution.lean",
+        "kind": "failing_test_native_decide_false",
+        "first_error": "tactic 'native_decide' evaluated that the proposition",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 53,
+              "col": 62,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 90,
+              "col": 29,
+              "msg": "omega could not prove the goal:"
+            },
+            {
+              "line": 98,
+              "col": 29,
+              "msg": "omega could not prove the goal:"
+            },
+            {
+              "line": 122,
+              "col": 39,
+              "msg": "omega could not prove the goal:"
+            },
+            {
+              "line": 132,
+              "col": 27,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 142,
+              "col": 6,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 146,
+              "col": 10,
+              "msg": "unknown identifier 'myCpythonPymallocSmallSmallRequestChecked'"
+            },
+            {
+              "line": 150,
+              "col": 8,
+              "msg": "tactic 'introN' failed, insufficient number of binders"
+            },
+            {
+              "line": 161,
+              "col": 2,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 226,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 227,
+              "col": 52,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 235,
+              "col": 85,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 238,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 240,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 255,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 256,
+              "col": 44,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 262,
+              "col": 77,
+              "msg": "unknown identifier 'h'"
+            },
+            {
+              "line": 309,
+              "col": 6,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 311,
+              "col": 6,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 313,
+              "col": 4,
+              "msg": "type mismatch"
+            },
+            {
+              "line": 325,
+              "col": 9,
+              "msg": "Application type mismatch: In the application"
+            }
+          ],
+          "sorry_warnings": 0,
+          "seconds": 7.07
+        }
+      },
+      {
+        "task_id": "hypervisor_set_synthetic__my_boot_measure_extend",
+        "sample_idx": 6,
+        "original_sha256": "479006ac4c3d551ff916d36b6367ec3350394bfdf2e92992a62e3991de77081c",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/hypervisor_set_synthetic__my_boot_measure_extend/6/solution.lean",
+        "kind": "other",
+        "first_error": "linarith failed to find a contradiction",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 95,
+              "col": 68,
+              "msg": "linarith failed to find a contradiction"
+            },
+            {
+              "line": 96,
+              "col": 53,
+              "msg": "tactic 'decide' proved that the proposition"
+            },
+            {
+              "line": 99,
+              "col": 31,
+              "msg": "Function expected at"
+            },
+            {
+              "line": 99,
+              "col": 52,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 110,
+              "col": 9,
+              "msg": "unknown constant 'Int.emod_add_mul_left'"
+            },
+            {
+              "line": 105,
+              "col": 88,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 121,
+              "col": 9,
+              "msg": "unknown constant 'Int.emod_add_mul_left'"
+            },
+            {
+              "line": 117,
+              "col": 88,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 132,
+              "col": 9,
+              "msg": "unknown constant 'Int.emod_add_mul_left'"
+            },
+            {
+              "line": 128,
+              "col": 82,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 143,
+              "col": 9,
+              "msg": "unknown constant 'Int.emod_add_mul_left'"
+            },
+            {
+              "line": 139,
+              "col": 84,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 154,
+              "col": 9,
+              "msg": "unknown constant 'Int.emod_add_mul_left'"
+            },
+            {
+              "line": 150,
+              "col": 84,
+              "msg": "unsolved goals"
+            },
+            {
+              "line": 210,
+              "col": 6,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 215,
+              "col": 44,
+              "msg": "unexpected token '=>'; expected ')', ',' or ':'"
+            },
+            {
+              "line": 225,
+              "col": 44,
+              "msg": "unexpected token '=>'; expected ')', ',' or ':'"
+            },
+            {
+              "line": 235,
+              "col": 44,
+              "msg": "unexpected token '=>'; expected ')', ',' or ':'"
+            },
+            {
+              "line": 240,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 245,
+              "col": 44,
+              "msg": "unexpected token '=>'; expected ')', ',' or ':'"
+            },
+            {
+              "line": 255,
+              "col": 44,
+              "msg": "unexpected token '=>'; expected ')', ',' or ':'"
+            },
+            {
+              "line": 260,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 265,
+              "col": 44,
+              "msg": "unexpected token '=>'; expected ')', ',' or ':'"
+            },
+            {
+              "line": 270,
+              "col": 6,
+              "msg": "failed to synthesize"
+            },
+            {
+              "line": 275,
+              "col": 44,
+              "msg": "unexpected token '=>'; expected ')', ',' or ':'"
+            },
+            {
+              "line": 290,
+              "col": 45,
+              "msg": "unexpected token '=>'; expected ')', ',' or ':'"
+            },
+            {
+              "line": 295,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 300,
+              "col": 44,
+              "msg": "unexpected token '=>'; expected ')', ',' or ':'"
+            }
+          ],
+          "sorry_warnings": 0,
+          "seconds": 8.35
+        }
+      },
+      {
+        "task_id": "medical_oss_set_synthetic__my_cumulative_dose_cap",
+        "sample_idx": 3,
+        "original_sha256": "4344f2990229c058feae331e29269b6f8f89b45224ce3dc761d62b4ca63b079a",
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/namespace_diagnostic/v3_R_8b_f0p5/original_error_sample/medical_oss_set_synthetic__my_cumulative_dose_cap/3/solution.lean",
+        "kind": "failed_proof_tactic",
+        "first_error": "tactic 'rewrite' failed, equality or iff proof expected",
+        "compile": {
+          "rc": 1,
+          "success": false,
+          "timeout": false,
+          "errors": [
+            {
+              "line": 116,
+              "col": 8,
+              "msg": "tactic 'rewrite' failed, equality or iff proof expected"
+            },
+            {
+              "line": 119,
+              "col": 8,
+              "msg": "tactic 'rewrite' failed, equality or iff proof expected"
+            },
+            {
+              "line": 150,
+              "col": 6,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 160,
+              "col": 6,
+              "msg": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+            },
+            {
+              "line": 177,
+              "col": 16,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 212,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 214,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 216,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 220,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 222,
+              "col": 0,
+              "msg": ""
+            },
+            {
+              "line": 237,
+              "col": 45,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 241,
+              "col": 81,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 246,
+              "col": 2,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 261,
+              "col": 36,
+              "msg": "tactic 'native_decide' evaluated that the proposition"
+            },
+            {
+              "line": 270,
+              "col": 41,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 271,
+              "col": 48,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 282,
+              "col": 11,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 282,
+              "col": 16,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 282,
+              "col": 23,
+              "msg": "Application type mismatch: In the application"
+            },
+            {
+              "line": 285,
+              "col": 26,
+              "msg": "unexpected term 'hp.left'; expected single reference to variable"
+            },
+            {
+              "line": 369,
+              "col": 72,
+              "msg": "tactic 'rfl' failed, the left-hand side"
+            }
+          ],
+          "sorry_warnings": 0,
+          "seconds": 7.37
+        }
+      }
+    ],
+    "scope": "Original files; diagnostic sample only; primary scores unchanged; zero model calls"
+  },
+  "paired_task_bootstrap_delta": {
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "draws": 10000,
+    "seed": 0,
+    "p_value": null,
+    "unit": "task with eight attempts together"
+  }
+}

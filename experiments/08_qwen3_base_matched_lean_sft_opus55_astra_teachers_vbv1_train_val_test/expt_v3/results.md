@@ -2,11 +2,11 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/results.md>
 
-**TLDR:** Phase A: DONE; Phase B: RUNNING. 10,800/17,280 validation cells known. [Execution events and verified training progress](results/runtime_progress.md).
+**TLDR:** Phase A: DONE; Phase B: RUNNING. 12,960/17,280 validation cells known. [Execution events and verified training progress](results/runtime_progress.md).
 
-**Status:** RUNNING. **Last updated:** 10-16-2026 05:56 PDT.
+**Status:** RUNNING. **Last updated:** 10-16-2026 06:14 PDT.
 
-Known validation cells: **10800/17,280**; 10800 belong to complete rungs. [Every missing/failed cell](results/coverage) remains in the declared denominator; no paid model calls.
+Known validation cells: **12960/17,280**; 12960 belong to complete rungs. [Every missing/failed cell](results/coverage) remains in the declared denominator; no paid model calls.
 
 | System | Known / declared | Extracted | Capped | Mixed /135 | Gates | Pass rate [95% interval] |
 |---|---:|---:|---:|---:|---|---|
@@ -14,8 +14,8 @@ Known validation cells: **10800/17,280**; 10800 belong to complete rungs. [Every
 | v3_R_1p7b_f1p0 | 1,080/1,080 | 946 | 134 | 27 | FAIL | 0.0602 [0.0380, 0.0861] |
 | v3_R_4b_f0p5 | 1,080/1,080 | 1006 | 74 | 31 | PASS | 0.0833 [0.0537, 0.1167] |
 | v3_R_4b_f1p0 | 1,080/1,080 | 970 | 110 | 40 | FAIL | 0.1222 [0.0833, 0.1639] |
-| v3_R_8b_f0p5 | 0/1,080 | — | — | — | INCOMPLETE | — |
-| v3_R_8b_f1p0 | 0/1,080 | — | — | — | INCOMPLETE | — |
+| v3_R_8b_f0p5 | 1,080/1,080 | 1019 | 63 | 35 | PASS | 0.1074 [0.0713, 0.1481] |
+| v3_R_8b_f1p0 | 1,080/1,080 | 1002 | 78 | 38 | PASS | 0.1519 [0.1065, 0.2009] |
 | v3_R_14b_f0p5 | 0/1,080 | — | — | — | INCOMPLETE | — |
 | v3_R_14b_f1p0 | 0/1,080 | — | — | — | INCOMPLETE | — |
 | v3_E_1p7b_f0p5 | 1,080/1,080 | 936 | 144 | 18 | FAIL | 0.0491 [0.0250, 0.0769] |
@@ -46,11 +46,7 @@ Execution and recovery events: [runtime ledger](results/runtime_progress.md).
 | 1p7b_f1p0 | -0.0093 [-0.0259, 0.0074] |
 | 4b_f0p5 | 0.0324 [0.0111, 0.0546] |
 | 4b_f1p0 | 0.0194 [-0.0019, 0.0426] |
+| 8b_f0p5 | -0.0009 [-0.0269, 0.0250] |
+| 8b_f1p0 | 0.0037 [-0.0194, 0.0259] |
 
-Execution update (10-16-2026 05:33 PDT): Expansion 8B native archive verified:40 files and196,623,888,829 bytes retained locally with full hashes before removing shared originals. Replay 8B archive is running with exact process identity and verified first copy output. Both replay scorers remain active;14B still waits for eight eligible devices. [Archive evidence](results/E8_native_archive_recovery02.json), [continuation checks](results/native_continuation_tests_recovery02.json).
-
-Execution update (10-16-2026 05:51 PDT): native continuation has a tested deadline covering the whole publication/validation process; 1,328 tests pass. [Continuation evidence](results/native_continuation_tests_recovery02.json). The owner remains active and the continuation remains UNARMED.
-
-Execution update (10-16-2026 05:56 PDT): [two-host GPU communication passed with explicit Ethernet routing](results/multinode_nccl_recovery02.json); failed default routing and cleanup evidence are retained. Eight-device training readiness remains unverified.
-
-**TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is 10800/17,280; incomplete comparisons remain unresolved.
+**TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is 12960/17,280; incomplete comparisons remain unresolved.

@@ -243,3 +243,10 @@ Two-host GPU transport passed on one A100 and one B200 with exact UUID binding, 
 
 
 10-16-2026 12:56 UTC: deterministic native continuation verified 10,800/17,280 primary cells. Completed native jobs: 44. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 06:15 PDT — replay 8B checked validation
+
+Replay8B half: gatesPASS;1,019 extracted,63 capped,35/135 mixed;116/1,080 successes (0.1074 [0.0713,0.1481]). Matched expansion-minus-replay half delta -0.0009 [-0.0269,0.0250]. Replay8B full: gatesPASS;1,002 extracted,78 capped,38/135 mixed;164/1,080 successes (0.1519 [0.1065,0.2009]). Matched expansion-minus-replay full delta 0.0037 [-0.0194,0.0259]. All intervals are95% task-block bootstrap,10,000 draws seed0,p-val=n/a; training-seed variation is unmeasured. Known primary cells12,960/17,280. Fourteen-billion-parameter work remains required. [Native score/paired diagnostic receipt](recovery02_R8_validation.json). Namespace diagnostics completed for2/2 replay rungs; primary scores are preserved. All missing14B cells remain explicit.
+
+
+10-16-2026 13:15 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.

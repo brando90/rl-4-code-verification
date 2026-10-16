@@ -1,0 +1,299 @@
+{
+  "status": "PASS",
+  "checked_unix": 1792156509.186959,
+  "systems": {
+    "v3_R_8b_f0p5": {
+      "cells_csv": "results/ladder/v3_R_8b_f0p5_validation_cells.csv",
+      "diagnostics": {
+        "all_pass_share": 0.0148,
+        "ic_tests_rate": 0.10741,
+        "mean_generated_tokens": 4577.7,
+        "mean_pass_rate": 0.10741,
+        "mean_proof_fraction": 0.10741,
+        "n_tasks_with_diversity": 132,
+        "pass_at_8_share": 0.2741,
+        "within_task_diversity_mean_pairwise_jaccard": 0.1255
+      },
+      "failure_taxonomy": {
+        "compile_error": 903,
+        "kernel_success": 116,
+        "no_lean_extracted": 61
+      },
+      "gates": {
+        "a_extraction": {
+          "n": 1019,
+          "of": 1080,
+          "pass": true,
+          "share": 0.9435,
+          "threshold": 0.9
+        },
+        "b_capped": {
+          "n": 63,
+          "of": 1080,
+          "pass": true,
+          "share": 0.0583,
+          "threshold": 0.1
+        },
+        "c_mixed": {
+          "n": 35,
+          "of": 135,
+          "pass": true,
+          "share": 0.2593,
+          "threshold": 0.05,
+          "wilson95": [
+            0.1927,
+            0.3391
+          ]
+        },
+        "complete": true,
+        "n_declared": 1080,
+        "n_known": 1080,
+        "pass": true
+      },
+      "notes": {
+        "duplicates_rejected": 0,
+        "extras_rejected": 0,
+        "missing": [],
+        "n_missing": 0,
+        "n_unparseable_theorem_types": 0,
+        "n_vacuous_cells": 1,
+        "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/scored/scored_v3_R_8b_f0p5_g8.jsonl"
+      },
+      "per_task_csv": "results/ladder/v3_R_8b_f0p5_validation_per_task.csv",
+      "scored_sha256": "64a80a6915fc5cb3470117cf37a4f614b033a829be2873ea16cd6b1a98485d21",
+      "split": "validation",
+      "status": "COMPLETE",
+      "system": {
+        "condition": "R",
+        "fraction": "f0p5",
+        "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ckpt/v3_R_8b/hf/step_334",
+        "label": "v3_R_8b_f0p5",
+        "loss_tokens": 2880477,
+        "size": "8B",
+        "source": "e08",
+        "start_hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_658",
+        "start_weights_sha256_manifest": "3085508bfd29932193b556c2f769eabe83b26e2d96dd59ef7412cfbcbf8f397d",
+        "step": 334
+      },
+      "task_bootstrap": {
+        "mixed_share": {
+          "ci95": [
+            0.18518518518518517,
+            0.3333333333333333
+          ],
+          "draws": 10000,
+          "mean": 0.25925925925925924,
+          "p_value": null,
+          "seed": 0,
+          "unit": "task with eight attempts together"
+        },
+        "pass_at_8": {
+          "ci95": [
+            0.2,
+            0.35555555555555557
+          ],
+          "draws": 10000,
+          "mean": 0.2740740740740741,
+          "p_value": null,
+          "seed": 0,
+          "unit": "task with eight attempts together"
+        },
+        "pass_rate": {
+          "ci95": [
+            0.0712962962962963,
+            0.14814814814814814
+          ],
+          "draws": 10000,
+          "mean": 0.10740740740740741,
+          "p_value": null,
+          "seed": 0,
+          "unit": "task with eight attempts together"
+        }
+      }
+    },
+    "v3_R_8b_f1p0": {
+      "cells_csv": "results/ladder/v3_R_8b_f1p0_validation_cells.csv",
+      "diagnostics": {
+        "all_pass_share": 0.0222,
+        "ic_tests_rate": 0.15185,
+        "mean_generated_tokens": 4764.3,
+        "mean_pass_rate": 0.15185,
+        "mean_proof_fraction": 0.15185,
+        "n_tasks_with_diversity": 132,
+        "pass_at_8_share": 0.3037,
+        "within_task_diversity_mean_pairwise_jaccard": 0.1269
+      },
+      "failure_taxonomy": {
+        "compile_error": 838,
+        "kernel_success": 164,
+        "no_lean_extracted": 78
+      },
+      "gates": {
+        "a_extraction": {
+          "n": 1002,
+          "of": 1080,
+          "pass": true,
+          "share": 0.9278,
+          "threshold": 0.9
+        },
+        "b_capped": {
+          "n": 78,
+          "of": 1080,
+          "pass": true,
+          "share": 0.0722,
+          "threshold": 0.1
+        },
+        "c_mixed": {
+          "n": 38,
+          "of": 135,
+          "pass": true,
+          "share": 0.2815,
+          "threshold": 0.05,
+          "wilson95": [
+            0.2125,
+            0.3626
+          ]
+        },
+        "complete": true,
+        "n_declared": 1080,
+        "n_known": 1080,
+        "pass": true
+      },
+      "notes": {
+        "duplicates_rejected": 0,
+        "extras_rejected": 0,
+        "missing": [],
+        "n_missing": 0,
+        "n_unparseable_theorem_types": 0,
+        "n_vacuous_cells": 0,
+        "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/scored/scored_v3_R_8b_f1p0_g8.jsonl"
+      },
+      "per_task_csv": "results/ladder/v3_R_8b_f1p0_validation_per_task.csv",
+      "scored_sha256": "5de7296e235898fc9f20b50b2d32e866210ac2b87c62f0909c45e00df55c770e",
+      "split": "validation",
+      "status": "COMPLETE",
+      "system": {
+        "condition": "R",
+        "fraction": "f1p0",
+        "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ckpt/v3_R_8b/hf/step_658",
+        "label": "v3_R_8b_f1p0",
+        "loss_tokens": 5752936,
+        "size": "8B",
+        "source": "e08",
+        "start_hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_658",
+        "start_weights_sha256_manifest": "3085508bfd29932193b556c2f769eabe83b26e2d96dd59ef7412cfbcbf8f397d",
+        "step": 658
+      },
+      "task_bootstrap": {
+        "mixed_share": {
+          "ci95": [
+            0.2074074074074074,
+            0.35555555555555557
+          ],
+          "draws": 10000,
+          "mean": 0.2814814814814815,
+          "p_value": null,
+          "seed": 0,
+          "unit": "task with eight attempts together"
+        },
+        "pass_at_8": {
+          "ci95": [
+            0.22962962962962963,
+            0.3851851851851852
+          ],
+          "draws": 10000,
+          "mean": 0.3037037037037037,
+          "p_value": null,
+          "seed": 0,
+          "unit": "task with eight attempts together"
+        },
+        "pass_rate": {
+          "ci95": [
+            0.10648148148148148,
+            0.20092592592592592
+          ],
+          "draws": 10000,
+          "mean": 0.15185185185185185,
+          "p_value": null,
+          "seed": 0,
+          "unit": "task with eight attempts together"
+        }
+      }
+    }
+  },
+  "paired": {
+    "8b_f0p5": {
+      "ci95": [
+        -0.026851851851851852,
+        0.025
+      ],
+      "draws": 10000,
+      "mean": -0.000925925925925926,
+      "p_value": null,
+      "seed": 0,
+      "unit": "task with eight attempts together"
+    },
+    "8b_f1p0": {
+      "ci95": [
+        -0.019444444444444445,
+        0.025925925925925925
+      ],
+      "draws": 10000,
+      "mean": 0.003703703703703704,
+      "p_value": null,
+      "seed": 0,
+      "unit": "task with eight attempts together"
+    }
+  },
+  "namespace": {
+    "v3_R_8b_f0p5": {
+      "declared_cells": 1080,
+      "changed_cells": 0,
+      "unknown_cells": 0,
+      "original_successes": 116.0,
+      "diagnostic_successes_known": 116.0,
+      "paired_task_bootstrap_delta": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "draws": 10000,
+        "seed": 0,
+        "p_value": null,
+        "unit": "task with eight attempts together"
+      }
+    },
+    "v3_R_8b_f1p0": {
+      "declared_cells": 1080,
+      "changed_cells": 0,
+      "unknown_cells": 0,
+      "original_successes": 164.0,
+      "diagnostic_successes_known": 164.0,
+      "paired_task_bootstrap_delta": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "draws": 10000,
+        "seed": 0,
+        "p_value": null,
+        "unit": "task with eight attempts together"
+      }
+    }
+  },
+  "known_cells": 12960,
+  "declared_cells": 17280,
+  "training_runs_verified": 6,
+  "training_updates_verified": 3975,
+  "paid_model_calls": 0,
+  "test_split_opened": false,
+  "full_suite_passed": 1328,
+  "events": [
+    "namespace_v3_R_8b_f0p5",
+    "namespace_v3_R_8b_f1p0",
+    "score_v3_R_8b_f0p5",
+    "score_v3_R_8b_f1p0"
+  ]
+}
