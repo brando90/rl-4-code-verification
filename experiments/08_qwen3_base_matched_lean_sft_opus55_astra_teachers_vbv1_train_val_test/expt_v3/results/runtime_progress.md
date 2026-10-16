@@ -250,3 +250,14 @@ Replay8B half: gatesPASS;1,019 extracted,63 capped,35/135 mixed;116/1,080 succes
 
 
 10-16-2026 13:15 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 06:40 PDT — eight-device transport and admission implementation
+
+Eight-device placement and NCCL collectives passed across skampere1 GPUs1/2, skampere2 GPUs3/5, and skampere3 GPUs2/4/5/7. Exact UUIDs and process identities verified; all owned probe processes exited and existing H200 contexts survived. Frozen TP8, model/data/optimizer/sampling/token caps remain unchanged; zero model calls or training updates in probes.
+
+The first attempt failed before model load because Ray mapped an assigned GPU ordinal through a too-short startup CUDA_VISIBLE_DEVICES list. Its native failure and exact cleanup are retained. A host-local interpreter adapter restores the complete leased mask before native Ray imports, then Ray selects the assigned device. No NeMo code or scientific YAML was changed. Two H200s meet cooperative sharing admission: at most4096MiB used, at least102400MiB free, at most10% GPU utilization. Six other devices require exclusive availability. Small collectives do not validate full-model memory or throughput; the empirical73.18GiB/rank estimate is not an upper bound.
+
+Full suite1,342passed/17skipped/6subtests,334.50s;14focused checks. Deterministic original-error audit now verifies288receipts across12rungs,9,026recorded error lines and4native timeouts; parsed error headers are retained, not full compiler transcripts. [Error audit](error_samples_recovery02.json). The first make invocation found no python on the inherited PATH. The next run passed1,338tests but four existing coordinator fixtures correctly rejected inherited CODEX_HOME. Both errors are retained; the final run uses the project PATH and removes CODEX_HOME only from the test child environment. [Proof and cleanup](multinode_eight_gpu_recovery02.json), [tested source hashes](native_continuation_tests_recovery02.json). Persistent participants enforce the original deadline, startup deadline and heartbeat; per-host guardian reservations and local pipeline leases protect all selected devices. The unchanged waiting controller can adopt the canonical training receipt.
+
+
+10-16-2026 13:40 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.

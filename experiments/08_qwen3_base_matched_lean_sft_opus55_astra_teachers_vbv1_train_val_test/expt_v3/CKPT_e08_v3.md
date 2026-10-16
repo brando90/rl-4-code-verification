@@ -2,7 +2,7 @@
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
 **TLDR:** All Phase A training/generation verified; Phase A complete, all eight rungs and diagnostics checked; replay 4B half and expansion 4B full pass gates and all remaining cells still required.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-16-2026 06:15 PDT
+Last updated: 10-16-2026 06:40 PDT
 ## Goal
 - Complete all 17,280 validation cells, paired bootstrap, namespace diagnostic, forecast assessment, publication and actual DONE notification; zero paid experimental model calls; test split unopened.
 ## Current execution
@@ -12,7 +12,7 @@ Last updated: 10-16-2026 06:15 PDT
 - Eight complete Phase A generated rungs = 8,640 exact cells. All generation children exited 0; all eight Phase A rungs scored/analyzed (8,640/17,280 cells). Replay 4B half and expansion 4B full pass gates; eight namespace diagnostics have zero score delta.
 - Primary scoring and namespace diagnostics use eight workers per rung, at most six combined jobs (48 active compilation slots), frozen 600s timeout; expired orphan children cleaned separately by exact pidfd guard. Phase A generation finished; Phase B uses immutable remote shell snapshots.
 - All four training sizes and exact generator environments verified on skampere2/3. Pending large-model routes remain remote. 14B training must use eight devices; inference uses the frozen permitted layout.
-- Latest full suite: 1,328 passed / 17 skipped / 6 subtests / 338.02s; 84 focused continuation/recovery/finalization/capacity checks plus 6 subtests pass. Original deadline and attempt limits unchanged.
+- Latest full suite: 1,342 passed / 17 skipped / 6 subtests / 334.50s; 14 focused multinode checks pass. Original deadline and attempt limits unchanged.
 ## Waits and recovery
 - Host recovery and native continuation crons every five minutes/reboot; native route installed UNARMED. Orphan cleanup every minute; capacity probe every 15min. Active owner; old external wait disarmed. Original deadline 10-18-2026 21:21 PDT and six-recovery/two-Vals limits unchanged; actual fallback exclusions updated.
 - Slurm association was already requested 10-14; do not duplicate. Inventory and real release events are in host recovery_config.json. No paid cloud or smaller 14B training layout.
@@ -136,3 +136,7 @@ Last updated: 10-16-2026 06:15 PDT
 - 10-16-2026 06:15 PDT -- Replay8B half: gatesPASS;1,019 extracted,63 capped,35/135 mixed;116/1,080 successes (0.1074 [0.0713,0.1481]). Matched expansion-minus-replay half delta -0.0009 [-0.0269,0.0250]. Replay8B full: gatesPASS;1,002 extracted,78 capped,38/135 mixed;164/1,080 successes (0.1519 [0.1065,0.2009]). Matched expansion-minus-replay full delta 0.0037 [-0.0194,0.0259]. All intervals are95% task-block bootstrap,10,000 draws seed0,p-val=n/a; training-seed variation is unmeasured. Known primary cells12,960/17,280. Fourteen-billion-parameter work remains required. Completed replay namespace diagnostics:2/2. Every completed native rung, metric,gate and paired interval independently revalidated before publication.
 
 - 10-16-2026 13:15 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+- 10-16-2026 06:40 PDT -- Eight-device placement and NCCL collectives passed across skampere1 GPUs1/2, skampere2 GPUs3/5, and skampere3 GPUs2/4/5/7. Exact UUIDs and process identities verified; all owned probe processes exited and existing H200 contexts survived. Frozen TP8, model/data/optimizer/sampling/token caps remain unchanged; zero model calls or training updates in probes. Full suite1,342passed/17skipped/6subtests. [Eight-device proof, prior failure and cleanup](results/multinode_eight_gpu_recovery02.json). Training remains unverified until first native update.
+
+- 10-16-2026 13:40 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.

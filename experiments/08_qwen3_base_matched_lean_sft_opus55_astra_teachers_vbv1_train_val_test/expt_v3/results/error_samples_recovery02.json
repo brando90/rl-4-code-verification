@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "checked_unix": 1792153671.184708,
+  "checked_unix": 1792157735.2042136,
   "systems": {
     "v3_E_1p7b_f0p5": {
       "error_population": 883,
@@ -61,11 +61,28 @@
       "sampled": 24,
       "selection_and_original_hashes_match": true,
       "diagnostic_sha256": "e05ee95771bdb5c71dd944919fc303854d4f0c50901090518fa6665cc3741667"
+    },
+    "v3_R_8b_f0p5": {
+      "error_population": 903,
+      "sampled": 24,
+      "selection_and_original_hashes_match": true,
+      "diagnostic_sha256": "afb1f407ec0cf2277f876a866212678d01cce94c6c1a213a51d5b4a61dcc23e1"
+    },
+    "v3_R_8b_f1p0": {
+      "error_population": 838,
+      "sampled": 24,
+      "selection_and_original_hashes_match": true,
+      "diagnostic_sha256": "f4e363c594726d5abc016f9692ca4b7c60a27b885b1933ffa4994f33ec1b0534"
     }
   },
-  "verified_error_receipts": 240,
-  "known_primary_cells": 10800,
+  "verified_error_receipts": 288,
+  "known_primary_cells": 12960,
   "no_new_compilations": true,
   "model_calls": 0,
-  "test_split_opened": false
+  "test_split_opened": false,
+  "recorded_error_lines": 9026,
+  "native_timeouts": 4,
+  "recorded_native_errors_match": true,
+  "evidence_limit": "Compiler helper retains parsed error header lines (240-character cap), not complete stdout/stderr transcripts. All recorded messages are preserved and match.",
+  "independent_read_only_audit": "PASS_288_RECEIPTS_AND_12960_PRIMARY_CELL_REWARDS"
 }

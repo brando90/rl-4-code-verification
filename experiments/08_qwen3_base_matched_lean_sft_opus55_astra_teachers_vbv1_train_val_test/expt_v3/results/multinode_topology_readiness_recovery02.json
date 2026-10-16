@@ -1,6 +1,6 @@
 {
-  "status": "GPU_ROUTE_UNVERIFIED",
-  "checked_unix": 1792152199.5845997,
+  "status": "EIGHT_GPU_TRANSPORT_PASS_TRAINING_UNVERIFIED",
+  "checked_unix": 1792158053.0202205,
   "frozen_training_devices": 8,
   "frozen_tensor_parallel_size": 8,
   "eligible_maximum_after_8b_release": 6,
@@ -40,7 +40,8 @@
       "broadcast",
       "exact owned-process cleanup"
     ],
-    "executed": false
+    "executed": true,
+    "status": "PASS"
   },
   "source_refs": [
     "nemo_rl/algorithms/sft.py:128-203,549-571",
@@ -50,7 +51,7 @@
     "nemo_rl/utils/native_checkpoint.py:136-205",
     "Ray2.46.0 worker.py:445,1034,1549"
   ],
-  "decision": "No multi-host scientific admission: insufficient eligible capacity and GPU route unverified. Preserve current single-host waiting controller and all healthy 8B children.",
+  "decision": "Admit the frozen TP8 training using the checked 2+2+4 route after fresh capacity/lease checks. Preserve healthy E14 controller. Verify first native update and actual memory before declaring training operational.",
   "model_calls": 0,
   "scientific_caps_changed": false,
   "two_host_gpu_transport": {
@@ -71,5 +72,140 @@
     "ray_cpu_requirement": "At least selected GPU count plus one CPU per host; pinned environment builder reserves one additional CPU per host after placement.",
     "driver_address": "Explicit owned GCS address overrides local; retain immutable wrapper and exact scientific YAML.",
     "next_acceptance": "Exactly eight eligible UUIDs, private Ray/NeMo binding and GPU communication proof, then first native frozen update with matching tokens."
-  }
+  },
+  "exclusive_devices": 6,
+  "cooperative_shared_devices": 2,
+  "admission_allocation": {
+    "skampere1": {
+      "gpus": [
+        1,
+        2
+      ],
+      "uuids": [
+        "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+        "GPU-e98e645a-d860-3666-a80b-2cea81363c51"
+      ],
+      "interface": "enp44s0f0",
+      "inventory": [
+        {
+          "index": 1,
+          "uuid": "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+          "total_mib": 81920,
+          "used_mib": 0,
+          "free_mib": 81153,
+          "utilization": 0
+        },
+        {
+          "index": 2,
+          "uuid": "GPU-e98e645a-d860-3666-a80b-2cea81363c51",
+          "total_mib": 81920,
+          "used_mib": 0,
+          "free_mib": 81153,
+          "utilization": 0
+        }
+      ],
+      "existing_contexts": [],
+      "cooperative_sharing": false
+    },
+    "skampere2": {
+      "gpus": [
+        3,
+        5
+      ],
+      "uuids": [
+        "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+        "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257"
+      ],
+      "interface": "ens3f0np0",
+      "inventory": [
+        {
+          "index": 3,
+          "uuid": "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+          "total_mib": 143771,
+          "used_mib": 1551,
+          "free_mib": 141606,
+          "utilization": 0
+        },
+        {
+          "index": 5,
+          "uuid": "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257",
+          "total_mib": 143771,
+          "used_mib": 1551,
+          "free_mib": 141606,
+          "utilization": 0
+        }
+      ],
+      "existing_contexts": [
+        {
+          "uuid": "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+          "pid": 1439216,
+          "memory_mib": 1542,
+          "uid": 23621,
+          "start_ticks": "852085859",
+          "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d"
+        },
+        {
+          "uuid": "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257",
+          "pid": 1441067,
+          "memory_mib": 1542,
+          "uid": 23621,
+          "start_ticks": "852086653",
+          "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d"
+        }
+      ],
+      "cooperative_sharing": true
+    },
+    "skampere3": {
+      "gpus": [
+        2,
+        4,
+        5,
+        7
+      ],
+      "uuids": [
+        "GPU-d781dd11-80f3-8979-073a-4248052fe3f6",
+        "GPU-9b167139-7ecf-47bd-e09d-27a60c24783f",
+        "GPU-e7551271-928d-689f-5095-a60da72fc720",
+        "GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5"
+      ],
+      "interface": "enp81s0f0np0",
+      "inventory": [
+        {
+          "index": 2,
+          "uuid": "GPU-d781dd11-80f3-8979-073a-4248052fe3f6",
+          "total_mib": 183359,
+          "used_mib": 0,
+          "free_mib": 182632,
+          "utilization": 0
+        },
+        {
+          "index": 4,
+          "uuid": "GPU-9b167139-7ecf-47bd-e09d-27a60c24783f",
+          "total_mib": 183359,
+          "used_mib": 0,
+          "free_mib": 182632,
+          "utilization": 0
+        },
+        {
+          "index": 5,
+          "uuid": "GPU-e7551271-928d-689f-5095-a60da72fc720",
+          "total_mib": 183359,
+          "used_mib": 0,
+          "free_mib": 182632,
+          "utilization": 0
+        },
+        {
+          "index": 7,
+          "uuid": "GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5",
+          "total_mib": 183359,
+          "used_mib": 0,
+          "free_mib": 182632,
+          "utilization": 0
+        }
+      ],
+      "existing_contexts": [],
+      "cooperative_sharing": false
+    }
+  },
+  "eight_gpu_proof": "multinode_eight_gpu_recovery02.json"
 }
