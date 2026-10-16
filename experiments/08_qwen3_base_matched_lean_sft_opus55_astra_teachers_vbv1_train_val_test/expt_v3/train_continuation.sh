@@ -27,7 +27,8 @@ elif [ "$MODE" = production ]; then
 else exit 2; fi
 grep -q '^\*\*Status:\*\* LOCKED' "$HERE/PROTOCOL.md"
 export E08_CHECKPOINT_DIR="$ROOT/checkpoints" E08_LOG_DIR="$ROOT/logs" E08_TENSORBOARD_DIR="$ROOT/tb" E08_RUN_NAME="rl4cv-e08-v3-${CONDITION}-${SHORT}-${MODE}"
-export RAY_TMPDIR="/tmp/user/$(id -u)/e08v3_${CONDITION}_${SHORT}_${MODE}"
+# Keep dashboard UNIX sockets below Linux's 107-byte pathname limit.
+export RAY_TMPDIR="/tmp/e8v3_$(id -u)/${CONDITION}_${SHORT}_${MODE:0:1}"
 mkdir -p "$RAY_TMPDIR" "$ROOT/driver_logs" "$ROOT/hf"
 unset PYTHONPATH
 cd "$WORK/nemo_rl"

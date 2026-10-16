@@ -5,7 +5,7 @@
 **TLDR:** Execute 12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v2 end to end under the frozen adapter, zero model/judge calls and $0 spend.
 
 **Created:** 10-14-2026 13:20 PDT
-**Last updated:** 10-15-2026 20:46 PDT
+**Last updated:** 10-15-2026 20:52 PDT
 **Status:** RUNNING — dynamic controls C1–C4 (all 50 tasks)
 
 ## Goal
@@ -33,3 +33,4 @@
 - 10-15-2026 20:39 PDT — Implementation verified: full suite 1,191 passed / 18 skipped; 77 current targeted tests; synthetic Lean bridge produced one true and one false. Pinned dependency restored; no scientific input changes.
 - 10-15-2026 20:41 PDT — LANDED implementation `7ce7bd0` via merge `7502a82` on main; retained incoming work, 26 added/affected checks pass. Launched controls session `rl4cv-e12v2-controls`, verified two low-priority Lean processes. See results/preflight_v2.json.
 - 10-15-2026 20:46 PDT — Static module-reuse preflight: 4,626/4,626 candidate hashes match and 4,626/4,626 compiled modules qualify; no primary outcome computed. Controls continue without interruption.
+- 10-15-2026 20:52 PDT — Controls interim: 26/50 tasks; C1 293/293, C2 25/26, C3 23/26, C4 25/26. No gate verdict before completion. Midrun receipt published; both workers continue.

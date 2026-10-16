@@ -5,7 +5,7 @@
 **TLDR:** The corrected adapter (amended once, V2-A1, before any evaluation) was run in mapping-only mode (no Lean, no model calls) over the 11 primary systems' 4,626 compiling cells with extracted tests on `skampere1` (26.2 s). It maps every gold symbol in 3,121 cells before any probe (version 1 recorded 3,444 after its Lean probes), leaves 263 cells to the agreement probe, changes the entry point in 379 of the 3,624 cells both versions map, and excludes a helper in 364 cells. Static controls on all 882 gold suites: gold maps to itself at step 1 in 882/882; renamed gold is never mapped to a wrong symbol statically (0/882; 855 deferred to the probe). No pass rate, correlation or hidden outcome was computed, and none may be until the frozen forecast is read against Emily's evaluation.
 
 **Status:** RUNNING — all 50 dynamic control tasks admitted; primary evaluation awaits the four unchanged gates.
-**Last updated:** 10-15-2026 20:46 PDT
+**Last updated:** 10-15-2026 20:52 PDT
 
 ## Static controls over all 882 gold suites (`results/static_controls_v2.json`, 10.2 s)
 
@@ -93,3 +93,5 @@ Verification at 10-15-2026 20:39 PDT: full repository suite **1,191 passed / 18 
 Control launch verified at 10-15-2026 20:41 PDT: session `rl4cv-e12v2-controls`, two live Lean processes, first compiled modules present. Implementation commit `7ce7bd0`, landed on main through `7502a82`; [preflight receipt](results/preflight_v2.json).
 
 Module-reuse preflight (10-15-2026 20:46 PDT): **4,626/4,626** eligible candidate hashes match and **4,626/4,626** compiled version-1 modules qualify for copying. Zero mismatches or missing modules; [receipt](results/module_reuse_preflight_v2.json). This check computed no primary hidden-test outcome.
+
+Interim controls (10-15-2026 20:52 PDT; [receipt](results/controls_v2_midrun.json)): **26/50 tasks**; gold self-tests **293/293**, renamed-gold recovery **25/26**, mutant detection **23/26**, wrong-task rejection **25/26**. These are fixed-task interim counts (p-val=n/a); all four final gates remain pending.

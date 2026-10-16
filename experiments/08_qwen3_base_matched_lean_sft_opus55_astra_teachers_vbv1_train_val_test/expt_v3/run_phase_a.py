@@ -81,7 +81,7 @@ def main():
             launch('gen_' + label, args + ['{gpus}', '1', 'generation'], 1)
             if state['jobs'].get('gen_' + label, {}).get('status') == 'DONE':
                 # Four scorer processes per rung; at most two simultaneous rungs.
-                active_scores = sum(k.startswith('score_') for k in running)
+                active_scores = sum(k.startswith(('score_', 'namespace_')) for k in running)
                 if active_scores < 2:
                     launch('score_' + label, args + ['none', '1', 'score'])
         if changed and any(k.startswith('score_') and v['status'] == 'DONE' for k, v in state['jobs'].items()):
@@ -90,7 +90,14 @@ def main():
             if result.returncode:
                 state['analysis_error'] = result.returncode
                 save()
+        for system in systems:
+            label = system['label']
+            if (HERE / f'results/ladder/{label}_validation_cells.csv').exists():
+                active_scores = sum(k.startswith(('score_', 'namespace_')) for k in running)
+                if active_scores < 2:
+                    launch('namespace_' + label, [PY, str(HERE / 'namespace_diagnostic.py'), label])
         complete = (all(state['jobs'].get('score_' + s['label'], {}).get('status') == 'DONE' for s in systems)
+                    and all(state['jobs'].get('namespace_' + s['label'], {}).get('status') == 'DONE' for s in systems)
                     and all(state['jobs'].get(f'verify_{c}_{s}', {}).get('status') == 'DONE' for c in ('E', 'R') for s in ('1p7b', '4b')))
         if complete:
             state['status'] = 'DONE'; save(); print('Phase A complete', flush=True); return 0
