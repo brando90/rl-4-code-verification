@@ -49,7 +49,7 @@ The completed `16_toy_env_generation_ginc_hmm_rho_h_law/expt_v2` run used four-t
 - **v1 (pilot_v1):** two targets built from concepts the start policies never saw (held-out concept bank).
 - **v2 (pilot_v2, primary):** the GINC-faithful target. GINC's in-context test uses the pretraining concepts in a new prompt format, so the target is all nine pretraining settings mixed, prefix length 10 (a length no candidate uses). The v1 held-out-concept target stays as the far-transfer secondary.
 
-### Sanity family (designed, not yet coded)
+### Sanity family (`expt_v3`, coded and run 10-15-2026; protocol in [expt_v3/PROTOCOL.md](expt_v3/PROTOCOL.md))
 
 - A known small Markov decision process (MDP): a chain or grid of a few states with Gaussian rewards, where the optimal policy and the value of each training distribution are computable exactly. Knobs: horizon, reward noise, start-state distribution. It checks the ρ–H pipeline in a case where the "right" environment is known analytically.
 
@@ -73,6 +73,12 @@ The completed `16_toy_env_generation_ginc_hmm_rho_h_law/expt_v2` run used four-t
     ├── diag_lr.py            learning-rate diagnostic (after v1)
     ├── diag_kl.py            KL-to-start diagnostic (after v2)
     └── results/pilot_v1, results/pilot_v2   raw JSONL rows, logs, analyses (start_*.pt not committed)
+expt_v3/                      known-MDP sanity family (exact DP target value)
+    ├── PROTOCOL.md           frozen before RL
+    ├── known_mdp.py          chain MDP, exact value, episode sampler
+    ├── run_mdp.py            start policies, probes, GRPO + KL, exact-gradient oracle (one process per scale)
+    ├── analyze_mdp.py        gate, separation, T1/T2, oracle agreement -> analysis_mdp.md/json
+    └── results/mdp_v1        raw JSONL rows and analysis
 ```
 
 ## Reproduce (CPU, about 25 minutes wall clock on 4 cores)
@@ -86,7 +92,15 @@ printf "n4 0:3\nn4 3:6\nn4 6:9\nn4 9:12\nn3 0:6\nn3 6:12\nn2 0:12\nn1 0:12\n" | 
 python analyze.py --run $R --tag v2
 ```
 
-Test: `pytest tests/test_e16_ginc_toy.py` (forward algorithm against brute-force enumeration, sampler statistics, reward and ρ plumbing; numpy only).
+Known MDP (about 4 minutes on 4 cores):
+
+```bash
+cd experiments/16_toy_env_generation_ginc_hmm_rho_h_law/expt_v3
+for s in n1 n2 n3 n4; do python run_mdp.py --scales $s --out results/mdp_v1 & done; wait
+python run_mdp.py --stage start --out results/mdp_v1 && python analyze_mdp.py --run results/mdp_v1
+```
+
+Test: `pytest tests/test_e16_ginc_toy.py tests/test_e16_known_mdp.py` (forward algorithm against brute-force enumeration, sampler statistics, reward and ρ plumbing; numpy only).
 
 **TLDR-end:** [rl4cv: e16 toy env generation] This folder holds the design, CPU code and first pilot for testing whether the ρ–H law can pick training environments for a new target benchmark, on GINC-style HMM tasks with an exact verifier. Night 1 ran end to end, but every RL run lowered the target (a forgetting regime), and log ρ and H came out 0.995 correlated, so the law test is not yet meaningful; night 2 fixes the RL setup first.
 

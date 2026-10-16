@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/ub9/e16-toy-env-generation/experiments/16_toy_env_generation_ginc_hmm_rho_h_law/expt_v3/PROTOCOL.md>
 
-Written 10-16-2026 00:00 PDT by ultimate_brando9, before `results/mdp_v1/rl_*.jsonl` existed. Only start policies and six development trajectories (n4, used to check that the code runs and that RL can move the target) were looked at.
+Written 10-15-2026 23:34 PDT by ultimate_brando9, before `results/mdp_v1/rl_*.jsonl` existed. Only start policies and six development trajectories (n4, used to check that the code runs and that RL can move the target) were looked at.
 
 ## Why
 

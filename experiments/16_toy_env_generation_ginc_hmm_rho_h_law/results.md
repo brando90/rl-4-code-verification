@@ -58,6 +58,39 @@ A metadata name collision initially stored environment diagnostics in the raw `e
 
 Per-cell scores, per-prompt hits, probe rewards, candidate definitions, frozen forecasts and statistics are committed under `expt_v2/results/pilot_v3/`. Ignored starting tensors stay in the user-designated execution checkout on skampere1 at the same relative path, with SHA-256 hashes in the metadata; they are reproducible from the committed code and seeds.
 
+## Night 2b: known-MDP sanity family (`expt_v3`) — CHOICE ONLY, positive transfer established
+
+**Status:** run complete, 10-15-2026 23:35–23:39 PDT, ultimate_brando9's 4-CPU machine, $0. Protocol frozen and committed (899ddc1) before any RL row: [expt_v3/PROTOCOL.md](expt_v3/PROTOCOL.md). Full tables: [expt_v3/results/mdp_v1/analysis_mdp.md](expt_v3/results/mdp_v1/analysis_mdp.md).
+
+A 16-state chain MDP in 4 regions (each region has its own hidden action map), where the target value is exact (dynamic programming, no evaluation noise). Responses are episodes of variable length; episodes that hit the horizon are capped and not admitted, so ρ and H can separate. 22 candidates (16 single-region settings × slack × reward noise σ, plus 6 generator mixtures), 4 MLP scales (72 to 18,692 parameters), GRPO with KL 1.0 to the start policy, budgets 25.6k / 51.2k / 102.4k tokens, five seeds per cell. An exact-gradient oracle trains the same number of steps on the exact noise-free objective.
+
+| check (PROTOCOL.md) | result |
+|---|---|
+| Gate: ≥3 candidates positive at n4, 102.4k tokens | **pass: 20 of 22** (236 of 255 cells positive overall; the mean candidate gains +3.45 pts) |
+| Separation: \|corr(log ρ, H)\| < 0.85 | **pass, barely: 0.820** (by scale 0.80–0.84) |
+| T1: Eq. 7 beats budget+scale only at n4 | passes only formally: RMSE 3.51 vs 3.54 pts, rank accuracy 0.645 vs 0.500 |
+| T2: law regret below random and every baseline | beats random (0.98 vs 4.32 pts), **loses to best fixed candidate from n1–n3** (0.51) |
+
+| choice rule at n4, 102.4k tokens | regret (pts) |
+|---|---|
+| ρ–H law (picks b13_r3_sl0_sg0.5, +6.76 pts, seed SD 1.02) | 0.98 |
+| best fixed from n1–n3 (b12_r3_sl0_sg0.0) | 0.51 |
+| highest mixed-group share | 4.16 |
+| uniform random | 4.32 |
+| exact-gradient oracle's ranking | 3.77 |
+| H only | 4.92 |
+| highest start success | 8.58 |
+| ρ only | 9.70 |
+
+Observed best: b08_r2_sl0_sg0.0, +7.63 pts (seed SD 1.52); the law's pick is within one seed SD of it.
+
+### What the numbers say
+
+1. **The RL setup now transfers.** Unlike Night 1 (0/288) and Night 2 (gains of tenths of a point), gains here are several points with seed SDs of 0.2–1.5 pts, so T1/T2 can be read. Verdict **CHOICE ONLY**: ρ and H together pick well (rank accuracy 0.645, regret 0.98 pts), much better than either alone (regret 9.70 and 4.92), but a skeptic's "best env from the small models" does as well or better.
+2. **ρ counts reward noise as signal.** With σ = 0.5, an already-solved environment (b15, start success 0.99) has the largest ρ of all (110,943 vs 3,079 for the same env without noise) and the law predicts +7.46 pts; observed −2.73, the worst candidate. Across all candidates noise raises log ρ by +0.69 while observed utility is unchanged (+3.58 vs +3.33 pts). This is the law's largest miss and a concrete failure mode for verifiers with noisy or continuous rewards.
+3. **The exact-gradient oracle is not the right "truth" for sampled RL.** It gains 5–7× more (it sees every state with no sampling noise) and favors starting far from the goal (oracle pick m03_r012_sl0, +49.9 pts exact vs +3.81 observed), where sampled episodes rarely succeed. Spearman(observed, oracle) = 0.54; the law tracks observed utility (0.38), not the oracle (0.01).
+4. **Caveats.** One start policy per scale (no pretraining repeats), n2 and n3 start policies are close (target value 0.437 vs 0.444), and the observations are five-seed means without intervals on regret.
+
 ## Night 1 (10-14/15-2026): verdict NOT YET MEANINGFUL (formally CHOICE ONLY)
 
 The pipeline runs end to end (generator → start policies → ρ/H probes → GRPO → target utility → Eq. 7 fit → choice test). But no RL run improved the target, so the law could only rank how much each environment hurts.
@@ -149,14 +182,13 @@ n2 e04  kl=0.0  env 0.291->0.857  target 0.483->0.239
 n2 e04  kl=1.0  env 0.291->0.529  target 0.483->0.467
 ```
 
-**TLDR-end:** [rl4cv: 16_toy_env_generation_ginc_hmm_rho_h_law] Night 2 completed all 384 cells at $0: 224 had positive observed utility, but the law-selected n4 gain was +0.0375 [−0.3500, +0.4500] percentage points (p-val=0.500). Verdict TIE WITH BASELINES; meaningful positive transfer and every-scale entropy decorrelation were not established.
+**TLDR-end:** [rl4cv: 16_toy_env_generation_ginc_hmm_rho_h_law] Night 2 (GINC, Codex on skampere1) completed all 384 cells at $0 with a tie against baselines (law pick +0.0375 pp, interval includes zero). The known-MDP sanity family (expt_v3, same night, 4-CPU machine) finally gives clear positive transfer (20 of 22 candidates, mean +3.45 pts) and separates ρ from H (corr 0.82): the ρ–H law beats random (regret 0.98 vs 4.32 pts) but not the best fixed environment from small models (0.51), verdict CHOICE ONLY, and ρ mistakes reward noise on solved prompts for signal.
 
 **Snapshot:**
 ```text
-completed budget cells: 384/384
-positive joint-utility cells: 224/384 (58.33%)
-coverage correlation: 0.6731 [0.5826, 0.7244]
-n4 law pick: e08
-n4 utility: +0.0375 [-0.3500, +0.4500] percentage points
-verdict: TIE WITH BASELINES
+GINC night 2 (expt_v2): 384/384 cells, n4 law pick e08 +0.0375 pp [-0.35,+0.45], TIE WITH BASELINES
+known MDP (expt_v3):    gate 20/22 positive at n4, corr(log rho,H)=0.820
+                        regret: law 0.98 | best-fixed-small 0.51 | random 4.32 | rho-only 9.70 pts
+                        noisy solved env b15: rho 110,943, predicted +7.46, observed -2.73 pts
+verdict (expt_v3): CHOICE ONLY
 ```
