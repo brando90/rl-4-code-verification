@@ -1,0 +1,49 @@
+{
+  "after_parameters": [
+    {
+      "elements": 4411424256,
+      "sha256": "7fed40220b3d759cd49391bd311b15a5468137d3bf99dff425ac401c838c16ae",
+      "state_tensors": 399
+    }
+  ],
+  "after_receipt_sha256": "3e8963af6941b77ea5037921d320a5f1d35a9f847dfb1c533aacba4a136418d9",
+  "batch_sha256": "948881ead5667a565a5ed559a3da728ea89f500e75422a1f2a70ce88350f8f12",
+  "before_parameters": [
+    {
+      "elements": 4411424256,
+      "sha256": "7fed40220b3d759cd49391bd311b15a5468137d3bf99dff425ac401c838c16ae",
+      "state_tensors": 399
+    }
+  ],
+  "before_receipt_sha256": "2d375672836203d9ddadc1e4bdc45f35dc28288525f216b46ace90fc8e27e8e2",
+  "condition": "v2-S2",
+  "counts": {
+    "all_measured_advantages_zero": true,
+    "all_missing_batch": "unmeasured update; no fabricated reward or optimizer call",
+    "all_zero_measured_batch": "advance installed optimizer/scheduler, recording zero policy-gradient signal",
+    "declared_groups": 32,
+    "declared_slots": 256,
+    "generated_tokens": 1290726,
+    "measured_rewards": 255,
+    "nonzero_advantage_slots": 0,
+    "optimized_tokens": 1244926,
+    "partial_batch_normalization": "actual unmasked assistant tokens across complete admitted groups",
+    "prompt_tokens": 903160,
+    "unmeasured_groups": 1,
+    "usable_groups": 31
+  },
+  "diagnostic_replay_updates": 0,
+  "grad_norm": [
+    0.0
+  ],
+  "loss": [
+    0.0
+  ],
+  "optimizer_updates": 1,
+  "source": {
+    "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase2/technical/T2/attempt_3/update/output/result.json",
+    "sha256": "b90b69851733837ff6d1d3e57182a3344e293cbe86a52373732f53192065e8d4"
+  },
+  "status": "MEASURED",
+  "training_seconds": 6013.33006774704
+}

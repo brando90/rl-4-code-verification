@@ -2,22 +2,22 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/results.md>
 
-**TLDR:** v2-S2 T1 is final PASS: 8/8 train responses, 44,844 output tokens; median absolute log-probability error 0.0000327482 and p99 0.0176024, unsupported/truncated tokens 0/44,844. All six leases released; cumulative 0.355751673/2.0 device-hours. Continue to T2, T3 and T4 before the audits and pilot. C disabled, H2/F2 unavailable, batch 2 skipped.
+**TLDR:** v2-S2 T2 final FAIL: one completed optimizer step left all 399 parameter tensors (4,411,424,256 elements) unchanged. All 256 train responses are retained; 255 scores are measured and one deterministic resource limit remains missing. The fixed 8-response refit passes (median absolute log-probability error 0.0000327482 <= 0.01). PLAN section 4 and A4 stop Phase 2 here; no T3–T5, audits, main learning or selected held-out evaluation is admitted. All 14 T2 leases are released; cumulative T2 use is 4.370285669/10.0 device-hours.
 
-Last updated: 10-15-2026 21:19 PDT
-**Status:** T1 PASS; final T2 attempt 3 generation complete, next stage score.
+Last updated: 10-16-2026 08:53 PDT
+**Status:** STOPPED_AT_T2_FAIL; final attempt 3 measured; terminal closeout verified.
 
-## Current state — 10-15-2026 21:19 PDT
+## Current state — 10-16-2026 08:53 PDT
 
 Goal: complete Experiment 13 v2 under A6 through its admitted gates, or publish the binding transition result.
 
-What ran: final T1 PASS; final T2 attempt 3 generation is complete. The same controller is running the frozen official scorer. No completed optimizer update or gate statistic yet.
+What ran: final attempt 3 completed generation, scoring, one optimizer step, export and refit. Saved once-only T2 result is FAIL; parameter hashes unchanged.
 
-Supervision: owner PID 1243923 and controller PID 49490 retain their original identities; the generation lease is released and processor scoring continues.
+Supervision: prior owner 1243923 and controller 49490 exited. Closeout owner PID 2559986, tmux codex-rl4cv-e13v2-owner-g0, full access/no approvals; watchdog_a5 terminal=stopped, one deduplicated notice sent. Added closeout cron retired, all prior entries retained. Zero active experiment leases/children; other owners’ GPU jobs preserved.
 
-Next: supervise the same controller through complete scoring, one update, export, refit and the once-only T2 verdict; publish each closed stage and apply the binding transition. No additional numbered attempt is available. Caps stay 8.0/10.0 hours; batch 2 remains disarmed.
+Next: no Phase 2 continuation is admitted. Preserve the final gate, failed attempts and private manifests; any different scientific condition requires a separately authorized prospective amendment. Terminal report and receipts are published with this checkpoint.
 
-Brando to-do: none. Existing SNAP preapproval covers the frozen allocation.
+Brando to-do: rotate credentials exposed by existing runtime environment logs (Hugging Face, Weights & Biases, custom-model gateway); values are excluded from publication. No experimental approval is requested.
 
 T2 attempt 2 launch (10-15-2026 18:03 PDT): published repair `9b55f35` and admission `5b02bd9` preceded the fresh device-1 claim. Actual non-probe engine, provenance metadata and Ray socket checks PASS; complete numbered attempt 2 is admitted and its 256-response train generation is running ([receipt](phase2/T2_A4_attempt2_launch.json)). Controller PID 3497257 is watchdog-registered. Attempt 1 remains INCOMPLETE-INFRA, with 0.601555353 device-hours charged and its outputs excluded. No optimizer update or T2 statistic exists at this snapshot. Required integration passed 1,174 tests with 3 skipped, direct exit 0; this publication changes only status and copied launch evidence.
 
@@ -323,3 +323,7 @@ T2 final numbered attempt 3 admitted (10-15-2026 20:47 PDT): tested repair `2b9f
 Final T2 attempt-3 launch publication verification (10-15-2026 20:52 PDT): the merged repository passed required Lean integration **1,220 tests, 3 skipped, zero failures in 523.44 seconds**, direct exit 0 ([receipt](phase2/T2_OBSERVATION_launch_publication_test.json)). The published infrastructure/runtime and scientific settings are unchanged. Fresh health and final numbered admission already succeeded; the saved launch snapshot binds the exact plan, controller, health evidence and retained costs. This publication computes no gate statistic and performs no retry.
 
 T2 final attempt 3 generation closure (10-15-2026 21:19 PDT): **256/256 fresh train responses**, 1,290,726 output tokens, generation cleanup verified and lease released after 0.514747599 device-hours. [Evidence](phase2/T2_A4_CPU_attempt3_generation.json). The same controller is running the frozen official scorer. No completed optimizer update or T2 gate statistic exists at this snapshot. Both earlier failed numbered attempts and the separate unadmitted preflight remain retained and excluded from the final gate; every cost stays charged. No fourth numbered attempt is available. Runtime source is unchanged since required integration passed 1,220 tests with 3 skipped and direct exit 0 (subsequent isolated Experiment 08 test addition also passed).
+
+T2 final closeout (10-16-2026 08:40 PDT): recovered the existing completed attempt-3 result without rerunning generation, scoring, optimization or gate analysis. **FAIL: parameter_change=false**, with one optimizer step, zero nonzero-advantage slots, 31 usable groups and one masked group of the 32 declared. All 256 responses and 1,290,726 output tokens remain counted; 255 measured scores and one missing score. Refit is 8/8 responses, 44,844 tokens, median error 0.0000327482 <= 0.01. Ten saved gate-input hashes verify. All 14 T2 leases are released, cumulative 4.370285669/10.0 device-hours. [Final report](RESULTS_T2_S2.md), [unchanged saved result](phase2/T2_A6_attempt3_result.json), [resources](phase2/T2_A6_attempt3_resources.json). T1 remains PASS; the measured T2 failure is final under A4 and stops Phase 2. This is a feasibility failure, not evidence comparing reward arms. Publication verification is in progress.
+
+T2 terminal publication verification (10-16-2026 08:53 PDT): required Lean integration **1,382 passed, 3 skipped, 6 subtests passed, zero failures in 517.38 seconds**, direct exit 0 ([test receipt](phase2/T2_A6_terminal_publication_test.json)). All 4,706 frozen bindings and ten gate inputs verify. The initial unconfigured-shell test failure was retained and resolved by restoring the prescribed environment and pinned dependency paths; no runtime/scientific source changed. The temporary test alias and added closeout cron line were removed; every prior cron line remains. The watchdog sent exactly one stopped-event email to brando.science@gmail.com, no CC ([closeout receipt](phase2/T2_A6_terminal_closeout.json)). The notice includes the credential-rotation action; no raw environment log or credential value is published. Final experiment state is STOPPED_AT_T2_FAIL; downstream measurement remains unadmitted.

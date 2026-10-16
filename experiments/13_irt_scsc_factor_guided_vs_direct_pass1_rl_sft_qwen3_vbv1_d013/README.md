@@ -12,7 +12,7 @@ The plan has three phases:
 - **Phase 1:** fit and validate a conjunctive item response theory (IRT) model that predicts held-out pass@1 and pass@k.
 - **Phase 2:** run four RL arms from the Qwen3-4B SFT checkpoint: strict reward, SCSC-style factored reward, IRT-guided reward and prompt sampling, and a placebo dense reward.
 
-Status (10-15-2026 10:37 PDT): **v2-S2 A6 final SOUND.** compile 48/512 (496 measured), strict 48/512 (496 measured); bounds [0.09375, 0.125] and [0.09375, 0.125], respectively. Continue to the learning-pilot lock and unchanged technical gates under A6. The [final report](expt_v2/RESULTS_A6_DIAGNOSTIC_S2.md) retains the full population, descriptive intervals, costs and transition. Attempt 1 is INCOMPLETE-INFRA with zero responses; attempt 2 is final after the published format-only repair. Both leases are released; cumulative A6 usage 1.406306960/2.0 device-hours. S1’s measured LP-1 FAIL stays final; A5 separately admitted float16 S2. G0 PASS, historical G1 INCONCLUSIVE, C disabled, H2/F2 UNAVAILABLE and independent batch 2 skipped. No Phase 2 optimizer update or new held-out response has run.
+Status (10-16-2026 08:40 PDT): **v2-S2 STOPPED_AT_T2_FAIL.** One optimizer step completed with unchanged weights and zero nonzero-advantage slots; 256/256 train responses, 255 measured scores and one missing. Refit passes, but PLAN section 4 stops Phase 2. All 14 T2 leases released, 4.370285669/10.0 cumulative device-hours. [Final T2 report](expt_v2/RESULTS_T2_S2.md). Reward-arm comparisons and new held-out outcomes remain unmeasured.
 
 - **Created:** 10-09-2026 by Claude Code (`claude-opus-5-5`) for Brando.
 - **Owner:** fresh version 2 skampere1 owner `codex-rl4cv-e13v2-owner-g0`; the Mac master retains the parent experiment.
