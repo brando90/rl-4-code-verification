@@ -5,8 +5,8 @@
 **TLDR:** Execute 12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v2 end to end under the frozen adapter, zero model/judge calls and $0 spend.
 
 **Created:** 10-14-2026 13:20 PDT
-**Last updated:** 10-15-2026 21:17 PDT
-**Status:** RUNNING — full primary evaluation (4,626 groups; 9,856 declared cells)
+**Last updated:** 10-15-2026 21:33 PDT
+**Status:** RUNNING — full primary evaluation (500/4,626 groups; 5,730/9,856 cells recorded)
 
 ## Goal
 - Complete controls, all 4,626 eligible primary groups, 9,856-cell accounting, analysis and publication.
@@ -20,7 +20,7 @@
 - Nothing blocking. Synthetic Lean runtime: 2/2 evaluable, 1 pass / 1 deliberate failure. Pinned Mathlib manifest and all inherited v1 control helper hashes match. Host one-minute load exceeds 20: use two `nice -n 10` Lean workers. Health audit reported unrelated tool/shared-checkout warnings; local Lean and required data access verified.
 ## Next steps
 - Monitor `tail -n 1 $WORK/evaluation_v2.log`, `$WORK/evaluation_v2.exit` and `tmux has-session -t rl4cv-e12v2-evaluate`; publish every 500 unique groups. Resume command: `$WORK/run_evaluation_v2.sh` (only if the existing worker is gone).
-- After all 4,626 groups finish, run `OPENBLAS_NUM_THREADS=1 $WORK/.venv/bin/python $E/expt_v2/scripts/analyze_v2.py --work $WORK`; publish all tables, 20 inspections, every forecast verdict, final full tests and DONE email. Do not stop at a running-job report.
+- Session `rl4cv-e12v2-analysis` watches evaluator liveness/exit, then automatically runs `$WORK/run_analysis_v2.sh` (full audit → analysis → report). Monitor `$WORK/analysis_watch_v2.json`, `analysis_v2.log` and `analysis_v2.exit`; do not launch a duplicate. Afterward inspect 20 disagreements, publish tables/verdicts, final full tests and DONE email. Do not stop at a running-job report.
 - `WORK=/lfs/skampere1/0/brando9/rl4cv_e12/v2`; `E=experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems`. Read-only v1 root: `/lfs/skampere1/0/brando9/rl4cv_e12`.
 ## Brando to-do
 - None.
@@ -37,3 +37,5 @@
 - 10-15-2026 21:04 PDT — Controls completed, exit 0: C1 591/591, C2 48/50, C3 44/50, C4 49/50; all unchanged gates pass. Recomputed every aggregate and per-test partition; control receipt SHA-256 `2108817b87ce8ac38820f1b5c2d91e543176a4a489092c5afb9a30bedd842453`. No primary outcome yet.
 - 10-15-2026 21:07 PDT — Controls published as `6a70084` via `a827b33`. Full primary evaluation launched and useful execution verified: 5,230 preclassified cells plus first evaluated groups, copied modules and two Lean workers at nice 19; immutable manifest in results/evaluation_launch_v2.json.
 - 10-15-2026 21:17 PDT — Added final all-cell receipt audit and Markdown report renderer; both compile, all 77 focused tests pass. Dedicated environment now contains test dependencies independently of the inherited shared Python path. Full evaluation continues unchanged; final audit, analysis, report inspection and full suite remain pending.
+- 10-15-2026 21:23 PDT — Published audit/report preparation as `631c0d1` via `6550aea`. Verified ordinary-code analysis watch in `rl4cv-e12v2-analysis` (pane 2246905): evaluator alive, 310 groups, waiting for complete successful evaluation; it will run the full receipt audit and 10,000-draw analysis automatically. No extra model calls.
+- 10-15-2026 21:33 PDT — Full evaluation milestone 500/4,626 groups: 5,730/9,856 cells recorded, 411 fully applicable so far; workers healthy. Snapshot results/evaluation_milestone_0500_v2.json; full-set run continues unchanged.
