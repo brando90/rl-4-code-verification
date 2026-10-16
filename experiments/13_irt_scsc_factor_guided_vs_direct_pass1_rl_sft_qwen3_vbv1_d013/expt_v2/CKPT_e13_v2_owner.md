@@ -5,19 +5,21 @@
 **TLDR:** v2-S2 T1 is final PASS: 8/8 train responses, 44,844 output tokens; median absolute log-probability error 0.0000327482 and p99 0.0176024, unsupported/truncated tokens 0/44,844. All six leases released; cumulative 0.355751673/2.0 device-hours. Continue to T2, T3 and T4 before the audits and pilot. C disabled, H2/F2 unavailable, batch 2 skipped.
 
 Created: 10-13-2026 11:44 PDT
-Last updated: 10-15-2026 17:39 PDT
+Last updated: 10-15-2026 17:44 PDT
 
-## Current state — 10-15-2026 17:39 PDT
+## Current state — 10-15-2026 17:44 PDT
 
 Goal: complete Experiment 13 v2 under A6 through its admitted gates, or publish the binding transition result.
 
 What ran: [LP freeze](phase2/LP_A6_S2_FREEZE.md) and A4 successor preceded the final [T1 PASS](RESULTS_T1_S2.md). The complete attempt 2 used 0.186873268 device-hours; attempt 1's 0.168878405 remains charged. No optimizer update, actual mutation audit or new held-out response exists.
 
-Supervision: owner PID 1243923 is the single writer. The published wait recovery passed its actual non-probe preflight on idle device 2. T2 attempt 1 has completed 256 train generations and 256 scoring receipts (255 measured, one deterministic timeout). The single-update stage has reserved idle device 1; no T2 verdict exists. Resumed controller PID 554111 and poller PID 106888 are watchdog-registered. The prior collision reservation remains released and charged.
+Supervision: owner PID 1243923 is the single writer. The original T2 controller exited after the missing-provenance infrastructure failure. All T2 device leases are released and cleanup verified. No optimizer update or T2 statistic was computed.
 
-Next: supervise the single T2 update, export and refit probability check; generation and scoring are closed. Publish its final verdict before T3, then T4, the train audits and the pilot. The 8.0-hour per-attempt, 10.0-hour cumulative T2 limits and 23.75-device-hour overall technical allocation remain unchanged.
+Next: reproduce and fix the missing update metadata, add a preflight, run required integration and publish the complete A4 successor before attempt 2. The fixed probes, seeds, scientific signature and 8.0/10.0-hour limits remain unchanged.
 
 Brando to-do: none. Existing SNAP preapproval covers the frozen allocation.
+
+T2 attempt 1 infrastructure closure (10-15-2026 17:44 PDT): **INCOMPLETE-INFRA**, missing `provenance` in the generated update configuration raised `KeyError` before the update function was called. All 256 train responses and scoring receipts remain retained (255 measured, one timeout), with **zero optimizer updates and admission statistics**. All four T2 reservations are released and cleanup verified; cumulative **0.601555353/10.0 device-hours**. [Failure evidence](phase2/T2_A6_attempt1_result.json), [resource receipts](phase2/T2_A6_attempt1_resources.json). Under A4, publish the metadata-only fix, reproducing regression, preflight and successor lock before complete numbered attempt 2; failed-attempt outputs never enter its statistics. The current unchanged implementation passed 1,157 tests with 3 skipped, direct exit 0.
 
 T2 scoring closure (10-15-2026 17:39 PDT): **256/256 receipts accounted, 255 measured and one deterministic timeout**, zero retries and unresolved cleanups ([receipt](phase2/T2_A6_scoring.json)). The timeout remains missing, with its group masked in the frozen trainer. The original controller advanced to its one update, reserving idle skampere1 device 1 through the experiment-13 registry. No completed update or T2 verdict exists at this snapshot. Existing tested code is unchanged (1,157 passed, 3 skipped, direct exit 0).
 

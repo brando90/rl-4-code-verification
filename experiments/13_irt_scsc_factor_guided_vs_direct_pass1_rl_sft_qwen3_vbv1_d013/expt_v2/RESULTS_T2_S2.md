@@ -1,8 +1,10 @@
-# Experiment 13 v2-S2 T2: attempt 1 admitted after the device wait
+# Experiment 13 v2-S2 T2: attempt 1 INCOMPLETE-INFRA
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/RESULTS_T2_S2.md>
 
-**TLDR:** T1 is published PASS. T2 attempt 1 passed the actual non-probe preflight on idle device 2 and has closed its fixed train generation and scoring and advanced to its single-update stage under the unchanged learning-pilot freeze. The previous device collision produced no probe response or statistic and remains charged; no T2 verdict exists yet.
+**TLDR:** Attempt 1 ended on a reproducible launcher metadata defect before its update function or admission statistic. A4 permits complete attempt 2 only after the fix, regression, preflight and successor are published. T1 remains PASS; no T2 verdict exists.
+
+T2 attempt 1 infrastructure closure (10-15-2026 17:44 PDT): **INCOMPLETE-INFRA**, missing `provenance` in the generated update configuration raised `KeyError` before the update function was called. All 256 train responses and scoring receipts remain retained (255 measured, one timeout), with **zero optimizer updates and admission statistics**. All four T2 reservations are released and cleanup verified; cumulative **0.601555353/10.0 device-hours**. [Failure evidence](phase2/T2_A6_attempt1_result.json), [resource receipts](phase2/T2_A6_attempt1_resources.json). Under A4, publish the metadata-only fix, reproducing regression, preflight and successor lock before complete numbered attempt 2; failed-attempt outputs never enter its statistics. The current unchanged implementation passed 1,157 tests with 3 skipped, direct exit 0.
 
 T2 scoring closure (10-15-2026 17:39 PDT): 256/256 receipts accounted, 255 measured and one deterministic timeout; zero retries and unresolved cleanups ([receipt](phase2/T2_A6_scoring.json)). The timeout stays missing, with its group masked. The original controller reserved idle skampere1 device 1 for the one update. No completed update or T2 verdict exists at this snapshot. The unchanged current code passed required integration with 1,157 passed, 3 skipped, direct exit 0 ([receipt](phase2/selected_coverage_analysis_publication_test.json)).
 
