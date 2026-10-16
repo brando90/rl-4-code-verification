@@ -131,7 +131,7 @@ def main():
         held=make_prompts(spec,512,12)
         baseline=read(out/f'{scale}_meta.json')['start_target']
         def ev(m):
-            return {'target':evaluate(m,target),'env':evaluate(m,held)}
+            return {'target':evaluate(m,target),'env_metrics':evaluate(m,held)}
         curve=grpo(model,ref,pool,max(STEPS),STEPS,ev,args.seed,batch=BATCH,group=GROUP,lr=1e-4,kl_coef=1.)
         rows=[]
         for step,v in curve.items():

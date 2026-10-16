@@ -12,9 +12,27 @@ from .run import HERE, SCALES, STEPS, BATCH, GROUP, K, read, write, sha, specs
 BUDGETS=[s*BATCH*GROUP*K for s in STEPS]
 FEATURES=[RHO_H,RHO_ONLY,H_ONLY,BUDGET_SCALE_ONLY]
 
+def load_rows(path):
+    """Recover the environment label from the immutable cell filename (schema-only repair).
+
+    Initial runner records used `env` for both the label and diagnostic metrics.
+    Preserve those raw bytes; derive the label from its unambiguous named cell.
+    """
+    rows=read(path)['rows']
+    scale, env, seed = path.stem.split('_')
+    for row in rows:
+        if row['scale'] != scale or row['seed'] != int(seed.removeprefix('seed')):
+            raise ValueError(f'cell identity mismatch: {path}')
+        if isinstance(row['env'],dict):
+            row['env_metrics']=row['env']
+            row['env']=env
+        elif row['env'] != env:
+            raise ValueError(f'environment mismatch: {path}')
+    return rows
+
 def training_rows(out):
     paths=sorted(p for s in ('n1','n2','n3') for p in out.glob(f'{s}_*_seed*.json'))
-    rows=[r for p in paths for r in read(p)['rows']]
+    rows=[r for p in paths for r in load_rows(p)]
     expected={(s,e.name,seed,b) for s in ('n1','n2','n3') for e in specs(out) for seed in (0,1) for b in BUDGETS}
     actual={(r['scale'],r['env'],r['seed'],r['tokens']) for r in rows}
     if actual!=expected or len(rows)!=len(expected): raise ValueError(f'incomplete training matrix: {len(rows)}/288')
@@ -73,7 +91,7 @@ def report(out, draws=2000):
     forecast=read(forecast_path)
     for name,digest in forecast['input_hashes'].items():
         if sha(out/name)!=digest: raise ValueError(f'frozen input changed: {name}')
-    rows=[r for s in SCALES for p in sorted(out.glob(f'{s}_*_seed*.json')) for r in read(p)['rows']]
+    rows=[r for s in SCALES for p in sorted(out.glob(f'{s}_*_seed*.json')) for r in load_rows(p)]
     expected={(s,e.name,seed,b) for s in SCALES for e in specs(out) for seed in (0,1) for b in BUDGETS}
     actual={(r['scale'],r['env'],r['seed'],r['tokens']) for r in rows}
     if actual!=expected or len(rows)!=len(expected): raise ValueError(f'incomplete full matrix {len(rows)}/384')

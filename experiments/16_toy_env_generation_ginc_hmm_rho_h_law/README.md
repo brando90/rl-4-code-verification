@@ -6,7 +6,7 @@ Created 10-15-2026 by ultimate_brando9 (Brando's assistant) as night 1 of a nigh
 
 ## Night 2 continuation
 
-The active `16_toy_env_generation_ginc_hmm_rho_h_law/expt_v2` run uses four-token outputs, exact KL regularization, generated mixture candidates and a prospective held-out-scale forecast. See [protocol](expt_v2/PROTOCOL.md), [live results](results.md) and [checkpoint](CKPT_e16_night2.md). This folder remains active because its oracle and experiment modules are imported by `tests/test_e16_ginc_toy.py`, and the nightly continuation depends on its results.
+The completed `16_toy_env_generation_ginc_hmm_rho_h_law/expt_v2` run used four-token outputs, exact Kullback–Leibler (KL) regularization, generated mixtures and a prospective held-out-scale forecast. All 384 budget cells completed; 224 had positive observed joint utility, but the law-selected n4 gain was +0.0375 [−0.3500, +0.4500] percentage points (p-val=0.500): **TIE WITH BASELINES**, without established meaningful transfer. See [protocol](expt_v2/PROTOCOL.md), [live results](results.md) and [checkpoint](CKPT_e16_night2.md). This folder remains active because its oracle and experiment modules are imported by `tests/test_e16_ginc_toy.py`, and the nightly continuation depends on its results.
 
 ## Goal
 

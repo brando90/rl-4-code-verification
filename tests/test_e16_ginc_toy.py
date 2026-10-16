@@ -148,3 +148,19 @@ def test_mixture_proposals_depend_only_on_stable_probe_order():
     assert [len(m.components) for m in a] == [3,5,8,12]
     assert all(np.isclose(sum(m.weights),1.) for m in a)
     assert all(c.length != 10 and c.n_concepts == 64 for m in a for c in m.components)
+
+
+def test_night2_cell_identity_recovers_diagnostic_name_collision(tmp_path):
+    import json
+    import pytest
+    pytest.importorskip('torch')
+    a=import_module('experiments.16_toy_env_generation_ginc_hmm_rho_h_law.expt_v2.analyze')
+    p=tmp_path/'n1_e00_seed0.json'
+    raw={'rows':[{'scale':'n1','env':{'joint':.5,'token_hits':[4,0]},'seed':0,'utility':.1}]}
+    p.write_text(json.dumps(raw))
+    before=p.read_bytes()
+    rows=a.load_rows(p)
+    assert rows[0]['env']=='e00' and rows[0]['env_metrics']==raw['rows'][0]['env']
+    assert p.read_bytes()==before and rows[0]['utility']==.1
+    raw['rows'][0]['seed']=1;p.write_text(json.dumps(raw))
+    with pytest.raises(ValueError,match='identity mismatch'):a.load_rows(p)

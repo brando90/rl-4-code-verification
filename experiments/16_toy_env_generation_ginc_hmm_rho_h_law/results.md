@@ -4,21 +4,59 @@
 
 Design: [README.md](README.md). Night 1 measurements are preserved below in `expt_v1/results/`; the Night 2 continuation uses `expt_v2/results/pilot_v3/`.
 
-## Night 2: 16_toy_env_generation_ginc_hmm_rho_h_law — RUNNING
+## Night 2: 16_toy_env_generation_ginc_hmm_rho_h_law — TIE WITH BASELINES
 
-**Status:** RUNNING (started 10-15-2026 20:23 PDT). **Last updated:** 10-15-2026 20:23 PDT.
+**Status:** EXPERIMENT COMPLETE. **Last updated:** 10-15-2026 20:42 PDT.
 
-[Prospective protocol](expt_v2/PROTOCOL.md) · [Night 2 checkpoint](CKPT_e16_night2.md).
+All **384/384 budget cells** completed (128 training trajectories, two seeds, three correlated budget observations per trajectory). **224/384 (58.33% [56.51, 60.16], p-val=n/a)** have strictly positive observed joint target utility; **79/128** final-budget trajectories are positive. This exceeds the user-chosen 30% prevalence threshold, but counts positive point estimates, not individually significant gains.
 
-| Phase | Status | Evidence |
-|---|---|---|
-| Four-token oracle, exact KL and mixtures | DONE | 10 focused tests passed; 4 proposals frozen |
-| Stronger pretraining and 64 probes | IN PROGRESS | 4/4 starting policies; n4 probes in progress |
-| Correlation prerequisite | PENDING | Required absolute correlation <0.85 |
-| Full sweep and prospective forecast | PENDING | 0/384 budget cells measured |
-| Analysis and publication | PENDING | $0 spend; CPU only |
+**Verdict: TIE WITH BASELINES**, the prospective protocol’s operational label for positive point utility without demonstrated advantage; this is not a statistical equivalence claim. The law selects base environment **e08**, gaining **+0.0375 [−0.3500, +0.4500] percentage points, p-val=0.500**. The interval includes zero, so **MEANINGFUL POSITIVE TRANSFER is not established**.
 
-Night 1 below is preserved. Equation 7's H is effective coverage, distinct from conditional entropy; Night 2 reports both; the operative admission gate preserves the original pooled coverage metric (see the documented protocol clarification). Positive utility is an acceptance criterion, not an assumption.
+[Full outcome tables](expt_v2/results/pilot_v3/RESULTS_night2.md) · [Probe statistics](expt_v2/results/pilot_v3/RESULTS_probes.md) · [Prospective protocol and clarifications](expt_v2/PROTOCOL.md) · [Checkpoint](CKPT_e16_night2.md).
+
+### Largest-scale choice at 51,200 generated tokens
+
+Primary metric: change in joint four-token oracle-match accuracy over the same 4,000 held-out target prompts. Units are percentage points.
+
+| Rule | Choice | Target utility [95% interval] | p-val | Allocation regret |
+|---|---|---:|---:|---:|
+| rho-H | e08 | +0.0375 [-0.3500, +0.4500] | 0.500 | 0.3000 |
+| uniform-random | uniform over 16 | +0.0555 [-0.1875, +0.3064] | 0.250 | 0.2820 |
+| best-fixed-n3 | e09 | +0.1375 [-0.3750, +0.6250] | 0.500 | 0.2000 |
+| highest-pass-variance | e01 | +0.3375 [-0.0750, +0.7500] | 0.250 | 0.0000 |
+| highest-mixed-share | m00 | +0.0125 [-0.3253, +0.3750] | 0.500 | 0.3250 |
+| rho-only | e04 | +0.1625 [-0.2000, +0.5125] | 0.250 | 0.1750 |
+| H-only | e09 | +0.1375 [-0.3750, +0.6250] | 0.500 | 0.2000 |
+
+Intervals: 2,000 bootstrap draws resampling the paired target prompts and two training-seed indices, conditional on the fixed starting checkpoints and frozen choices. One-sided exact paired seed sign-flip tests use the null of zero utility or zero advantage; two seeds permit no p-value below 0.25. The prevalence interval resamples seed clusters separately within each fixed scale, preserving all environments/budgets; it does not include target-prompt or pretraining uncertainty. Allocation regrets are descriptive point estimates against the observed best candidate. The selected e08 final-budget seed utilities are -0.0750 and +0.1500 percentage points (two-seed sample standard deviation 0.1591 points); one pretrained checkpoint per scale gives no pretraining-repeat estimate.
+
+At n4, Equation 7 has root mean squared prediction error **0.3513 [0.2747, 0.4276] percentage points, p-val=n/a**, versus **0.3191 [0.2471, 0.3896]** for budget-and-scale only; pairwise rank accuracy is **0.4722**, versus **0.5000**. Error intervals resample candidate environments with all budgets together and hold the fit fixed; mixtures share components, so these are descriptive intervals, not independent environment-family replication. The law’s mean prediction minus mean observed utility is **+0.3058 percentage points** (predicted mean +0.3446, observed mean +0.0388; 48 n4 environment/budget two-seed means).
+
+### Coverage versus conditional entropy
+
+| Coordinate | Pooled correlation across 64 cells [95% probe bootstrap] | n4 correlation across 16 candidates |
+|---|---:|---:|
+| Original law: effective coverage H | 0.6731 [0.5826, 0.7244] p-val=n/a | 0.8408 [0.7348, 0.8909] p-val=n/a |
+| Four-token conditional entropy | -0.7925 [-0.8148, -0.7601] p-val=n/a | -0.9091 [-0.9267, -0.8780] p-val=n/a |
+
+The original-law coverage gate passes the user-chosen absolute-correlation threshold 0.85, pooled and at every scale (n4 point estimate 0.8408). The n4 interval crosses 0.85, so the point-estimate pass is not proof of population decorrelation. Literal conditional entropy remains strongly correlated at n2–n4; **the every-scale entropy interpretation of the dispatch is not satisfied**. Night 1’s cited 0.995 statistic used coverage, not entropy. This distinction and the operative pooled-coverage gate were documented before reinforcement learning. Probe intervals resample 512 prompt groups within each fixed environment, paired across scales (2,000 draws); entropy uses eight sampled continuations per prompt with exact forward probabilities.
+
+### Starting policies and execution
+
+| Scale | Parameters | Pretraining steps | Joint target accuracy | Token target accuracy |
+|---|---:|---:|---:|---:|
+| n1 | 4,496 | 2,000 | 26.5500% | 42.6313% |
+| n2 | 27,824 | 2,500 | 30.5500% | 46.2812% |
+| n3 | 104,784 | 3,000 | 31.9000% | 47.8750% |
+| n4 | 604,432 | 4,000 | 36.1250% | 51.2062% |
+
+Starting accuracies describe the fixed 4,000-prompt cohort. All runs used central processing units (CPUs), nice 10, one PyTorch thread per training process and at most eight training processes; **$0 spend**, no hosted model calls. Four generated mixtures were included throughout. The law chose a base environment; the best observed mixture at the final n4 budget was m01 (+0.3125 percentage points, descriptive two-seed mean), which does not establish a generated-environment advantage.
+
+Forecast chronology: `forecast_n4.json` was frozen at **10-15-2026 20:37:19 PDT**, before n4 training, with SHA-256 `e06e399faf0f10ae955eea5e115ef1f5ca2be6e8e76ca29f2134967c6977cf82`. All frozen hashes, 384 cell identities and utilities recomputed from per-prompt token hits passed verification. The corrected full repository suite passed **754 tests / 38 skipped**; focused tests passed **11/11**.
+
+A metadata name collision initially stored environment diagnostics in the raw `env` field. The analysis recovers each label from its immutable filename, preserves raw bytes and numerical scores, and validates the scale/seed identity. A one-key serialization correction prevents the collision in later cells. Both fixes have timestamped frozen receipts; **zero training reruns**, with no changes to models, rewards, budgets or selection.
+
+Per-cell scores, per-prompt hits, probe rewards, candidate definitions, frozen forecasts and statistics are committed under `expt_v2/results/pilot_v3/`. Ignored starting tensors stay in the user-designated execution checkout on skampere1 at the same relative path, with SHA-256 hashes in the metadata; they are reproducible from the committed code and seeds.
 
 ## Night 1 (10-14/15-2026): verdict NOT YET MEANINGFUL (formally CHOICE ONLY)
 
@@ -93,7 +131,7 @@ Run first. Every candidate lowered both targets at n4 (target A −3.35 to −37
 - **Learning rate** (`diag_lr.py`, [log](expt_v1/results/pilot_v1/diag_lr.log)): on the held-out-concept target, lower rates only trade in-env gain for less damage. n2, e03, 400 steps: lr 5e-4 in-env +4.0 pts, target −1.8; lr 1e-4 in-env +2.2, target −0.3; lr 3e-5 in-env +0.9, target +0.15 (within noise). The largest target gain in the whole diagnostic is +0.2 pts (n3, lr 3e-5).
 - **KL to the start policy** (`diag_kl.py`, [log](expt_v1/results/pilot_v2/diag_kl.log)), v2 target, 200 steps: KL coefficient 1.0 stops most of the damage while keeping in-env gains (n3, e10: in-env 0.725 → 0.818, target 0.502 → 0.501; n2, e04 (2 concepts): target −1.5 pts instead of −24.4 pts). Still no positive transfer from any single-setting environment.
 
-## Next (night 2, 10-15-2026 23:30)
+## Night 1 planned next steps (historical; Night 2 results above)
 
 1. KL coefficient 1.0 in every run, and candidates that are *mixtures* of settings proposed by the generator (random subsets of the 9 settings, n, l ranges), so some candidates can actually raise the target. Gate: at least 3 of the candidates with positive n4 utility before reading T1/T2.
 2. Separate ρ from H: multi-token answers (predict the next k symbols, reward = exact match or per-symbol partial credit) with a generation cap, so lengths and admission vary.
@@ -111,12 +149,14 @@ n2 e04  kl=0.0  env 0.291->0.857  target 0.483->0.239
 n2 e04  kl=1.0  env 0.291->0.529  target 0.483->0.467
 ```
 
-**TLDR-end:** [rl4cv: 16_toy_env_generation_ginc_hmm_rho_h_law] Night 2 is running on CPU with four trained starting policies; full-candidate probes precede the frozen 384-cell sweep. No reinforcement-learning utility has been measured yet.
+**TLDR-end:** [rl4cv: 16_toy_env_generation_ginc_hmm_rho_h_law] Night 2 completed all 384 cells at $0: 224 had positive observed utility, but the law-selected n4 gain was +0.0375 [−0.3500, +0.4500] percentage points (p-val=0.500). Verdict TIE WITH BASELINES; meaningful positive transfer and every-scale entropy decorrelation were not established.
 
 **Snapshot:**
 ```text
-Night 2 starting joint accuracy, 4,000 target prompts
-n1: 0.26550   n2: 0.30550
-n3: 0.31900   n4: 0.36125
-K_out=4; KL coefficient=1.0; spend=$0
+completed budget cells: 384/384
+positive joint-utility cells: 224/384 (58.33%)
+coverage correlation: 0.6731 [0.5826, 0.7244]
+n4 law pick: e08
+n4 utility: +0.0375 [-0.3500, +0.4500] percentage points
+verdict: TIE WITH BASELINES
 ```
