@@ -4,8 +4,8 @@
 
 **TLDR:** The corrected adapter (amended once, V2-A1, before any evaluation) was run in mapping-only mode (no Lean, no model calls) over the 11 primary systems' 4,626 compiling cells with extracted tests on `skampere1` (26.2 s). It maps every gold symbol in 3,121 cells before any probe (version 1 recorded 3,444 after its Lean probes), leaves 263 cells to the agreement probe, changes the entry point in 379 of the 3,624 cells both versions map, and excludes a helper in 364 cells. Static controls on all 882 gold suites: gold maps to itself at step 1 in 882/882; renamed gold is never mapped to a wrong symbol statically (0/882; 855 deferred to the probe). No pass rate, correlation or hidden outcome was computed, and none may be until the frozen forecast is read against Emily's evaluation.
 
-**Status:** RUNNING — all 50 dynamic control tasks admitted; primary evaluation awaits the four unchanged gates.
-**Last updated:** 10-15-2026 20:52 PDT
+**Status:** RUNNING — all four dynamic controls PASS; full primary evaluation is next.
+**Last updated:** 10-15-2026 21:04 PDT
 
 ## Static controls over all 882 gold suites (`results/static_controls_v2.json`, 10.2 s)
 
@@ -84,7 +84,7 @@ Both frozen forecasts and all five amendment-pinned inputs verified. All 64 adap
 |---|---|---|
 | Hash and adapter preflight | DONE | Both forecasts, five pinned inputs; 64/64 tests |
 | Runtime and analysis scripts | DONE | 13/13 new tests; full suite 1,191 passed / 18 skipped |
-| Dynamic controls C1–C4 | IN PROGRESS | 50 prescribed tasks; two low-priority Lean workers |
+| Dynamic controls C1–C4 | DONE | 591/591 self-tests; 48/50 renamed recovery; 44/50 mutant kills; 49/50 wrong-task rejections |
 | Full primary evaluation | PENDING | 0/4,626 eligible groups; 9,856 declared cells |
 | Analysis and final publication | PENDING | Frozen predictions unchanged |
 
@@ -95,3 +95,16 @@ Control launch verified at 10-15-2026 20:41 PDT: session `rl4cv-e12v2-controls`,
 Module-reuse preflight (10-15-2026 20:46 PDT): **4,626/4,626** eligible candidate hashes match and **4,626/4,626** compiled version-1 modules qualify for copying. Zero mismatches or missing modules; [receipt](results/module_reuse_preflight_v2.json). This check computed no primary hidden-test outcome.
 
 Interim controls (10-15-2026 20:52 PDT; [receipt](results/controls_v2_midrun.json)): **26/50 tasks**; gold self-tests **293/293**, renamed-gold recovery **25/26**, mutant detection **23/26**, wrong-task rejection **25/26**. These are fixed-task interim counts (p-val=n/a); all four final gates remain pending.
+
+## Dynamic control results — 10-15-2026 21:04 PDT
+
+All **50/50 prescribed tasks** completed, process exit 0. [Complete per-task receipt](results/controls_v2.json), SHA-256 `2108817b87ce8ac38820f1b5c2d91e543176a4a489092c5afb9a30bedd842453`. Thresholds are unchanged from PROTOCOL § 3; these are deterministic fixed-control counts, with no sampling interval or significance test (p-val=n/a).
+
+| Control | Measured | Frozen threshold | Verdict |
+|---|---:|---:|---|
+| C1: gold self-tests applicable and passing | 591/591 = 100% | ≥98% | PASS |
+| C2: renamed gold recovered with all tests passing | 48/50 = 96% | ≥95% | PASS |
+| C3: compiling mutants caught by at least one test | 44/50 = 88% | ≥60%, at least 50 compiling mutants | PASS |
+| C4: wrong-task candidate rejected or failing | 49/50 = 98% | ≥95% | PASS |
+
+The two renamed-gold misses, six surviving mutants and one unrejected wrong-task pair remain in the receipt. No adapter, forecast, gold-reference or version-1 file was changed. Primary evaluation can now proceed for all 4,626 eligible groups, retaining the 9,856 declared cells.
