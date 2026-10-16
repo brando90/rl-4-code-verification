@@ -10,7 +10,7 @@
 - **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-15-2026 16:18 PDT
+Last updated: 10-15-2026 17:18 PDT
 
 ## Task and owner
 
@@ -339,6 +339,12 @@ Last updated: 10-15-2026 16:18 PDT
 - **Progress since the resume.** `970d274` (15:31) froze the v2-S2 learning-pilot technical gates after the SOUND A6 diagnostic. `dacef27` (15:48) recorded T1 attempt 1 as an infrastructure failure. `d5961c9` and `b37c6af` (16:02–16:03) pushed the Ray socket-path repair and bound the unchanged S2 science **before** attempt 2, which is A4-compliant. Status: "T1 infrastructure repair; no gate verdict or experiment stop."
 - **T1 attempt 2 is in progress, with no verdict yet.** The suite ran 1,124 passed, 3 skipped, 0 failed. There are no active leases at 16:14 (the last technical lease was released after 0.0885 device-hours), and cumulative device-hours are 27.78 across 63 leases.
 - **Healthy.** The owner is working (59 min, model available). The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 17:14 PDT: T1 PASS; T2 generation complete, scoring 254 of 256
+
+- **T1 PASS** (`0439f49`, 16:19; [RESULTS_T1_S2.md](RESULTS_T1_S2.md)). Measured on attempt 2, after attempt 1 (INCOMPLETE-INFRA, Ray socket path) was repaired under A4: unsupported 0/44,844, median 3.27e-5, p99 0.0176 ≤ 0.10, truncation 0. T1 used 0.356 of 2.0 device-hours, with 0 optimizer updates.
+- **T2** (one real update, weight hash and refit check). A pre-admission device collision was charged 0.015 device-hours, produced no statistic, and recovered through a published wait (`fd7edca`). Attempt 1 was admitted on idle device 2 at 16:44 (`53b53fe`). Train generation of 256 responses is complete (`a4d9b5d`), and official scoring was at 254/256 at 17:14. No T2 verdict yet. Cumulative device-hours: 28.39 across 67 leases.
+- **Healthy.** The owner is working (2 h, model available). The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
 
 ## Exact next commands (master)
 
