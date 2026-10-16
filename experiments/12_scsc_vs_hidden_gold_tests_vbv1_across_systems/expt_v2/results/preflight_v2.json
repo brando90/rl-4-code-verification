@@ -1,0 +1,63 @@
+{
+  "verified_at": "2026-10-15T20:41:49.199487-07:00",
+  "frozen_raw_file_hashes": {
+    "expt_v2/forecasts/e12_v2_forecast.json": "ba543a4f59612797ef32b111ebe6d6796a2dea00d7ea498e301be8157047c961",
+    "expt_v2/forecasts/e12_v2_forecast_amendment_A1.json": "4d321941482db3a44b343a137f81f00c57839b03563955a5ba38aaaabe643661",
+    "expt_v2/scripts/adapter_v2.py": "da6fbe366b26e8518894ba5dd0d236de9e3f258f53e30c5181be08ebcfc7f430",
+    "expt_v2/results/mapping_census_v2.json": "d4246759f2bf427fcae5e28a20670f90900bec78fc506033e8eeb5d27c04249a",
+    "expt_v2/results/static_controls_v2.json": "47ee17a674b084f10ce42446c2ec4ae3b555210c53be74a8ec850eb3fd18f77d",
+    "expt_v1/results/hidden_tests_manifest.json": "f23f995671c12cded73f11447abd585d5a62c5ebf7b3c56aa1a2bf4d719e5b17",
+    "expt_v1/results/input_manifest_A1.json": "20ae9005857f6cff5d18325e5aa128e11b1eda7cb6833dfecffc93a21af1c5a0"
+  },
+  "forecast_canonical_digest_verification": true,
+  "full_suite": {
+    "passed": 1191,
+    "skipped": 18,
+    "failed": 0,
+    "seconds": 277.51,
+    "log": "/lfs/skampere1/0/brando9/rl4cv_e12/v2/initial_make_test.log",
+    "log_sha256": "699d98d6642140040e3f6ac5371cd5c72241dd9f3f9bf5b6089bbe9d2fafe4d8"
+  },
+  "current_e12_targeted": {
+    "passed": 77,
+    "failed": 0
+  },
+  "incoming_merge_and_latest_runtime_checks": {
+    "passed": 26,
+    "failed": 0
+  },
+  "lean_version": "4.22.0",
+  "mathlib_manifest_matches_v1": true,
+  "v1_helper_source_hashes_match_controls": true,
+  "synthetic_runtime": {
+    "n_tests": 2,
+    "n_evaluable": 2,
+    "n_pass": 1,
+    "fully_applicable": true,
+    "hidden_all_pass": false,
+    "receipt": "/lfs/skampere1/0/brando9/rl4cv_e12/v2/synthetic_runtime_check/receipt.json"
+  },
+  "launch": {
+    "session": "rl4cv-e12v2-controls",
+    "shell_pid": 4141821,
+    "python_pid": 4141824,
+    "workers": 2,
+    "python_nice": 10,
+    "observed_lean_nice": 19,
+    "observed_lean_pids": [
+      4146430,
+      4145881
+    ]
+  },
+  "publication_commit": "7502a82",
+  "implementation_commit": "7ce7bd0",
+  "model_calls": 0,
+  "judge_calls": 0,
+  "gpu_use": 0,
+  "vals_spend_usd": 0,
+  "start_email": {
+    "sent": true,
+    "subject": "[RUN START] rl4cv-e12-v2-hidden-gold-tests",
+    "time": "2026-10-15T20:18:56.294814-07:00"
+  }
+}

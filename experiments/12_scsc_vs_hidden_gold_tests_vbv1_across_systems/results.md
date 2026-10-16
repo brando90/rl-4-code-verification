@@ -4,7 +4,7 @@
 
 Experiment `12_scsc_vs_hidden_gold_tests_vbv1_across_systems` compared saved code from 11 primary systems using hidden gold-reference tests with zero experiment model calls: **all three frozen predictions hold for the implemented adapter; mapping limitations qualify correctness claims**.
 
-**Status:** DONE (version 1). **Version 2 (10-15-2026):** implementation and verification are running on skampere1; see [live version-2 results](expt_v2/results.md) (frozen hashes verified, 77 targeted tests pass; dynamic controls and evaluation pending); the version-1 results below are unchanged.
+**Status:** DONE (version 1). **Version 2 (10-15-2026):** the dynamic controls are running on skampere1; see [live version-2 results](expt_v2/results.md) (frozen hashes verified, full suite 1,191 passed / 18 skipped, 77 targeted checks pass; evaluation awaits controls); the version-1 results below are unchanged.
 **Last updated:** 10-10-2026 05:19 PDT (version-1 results); status line 10-15-2026
 
 SCSC means smooth conjunctive score for code verification. It combines internal consistency of tests (IC_tests), internal consistency of proofs (IC_proofs), and formal specification coverage (FSC). A2 changes only mechanical symbol mapping; P1–P3 thresholds remain frozen.
