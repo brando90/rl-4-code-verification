@@ -1,10 +1,10 @@
-# Experiment 08 version 3 protocol — matched replay versus admitted expansion (DRAFT, NOT LOCKED: lock before any training)
+# Experiment 08 version 3 protocol — matched replay versus admitted expansion (LOCKED)
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/PROTOCOL.md>
 
 **TLDR:** Continue each frozen step-658 checkpoint (1.7B, 4B, 8B, 14B) under two conditions at the same additional budget of 5,752,936 loss tokens: replay of the original 1,315-example corpus, or the original corpus plus the admitted expansion. Evaluate on the 135 x 8 validation manifest at half and full budget with the frozen format/signal gates, apply the meeting's prospective decision rule, and only then judge the SCSC >= 0.25 milestone. Defaults resolved under Brando’s 10-15-2026 dispatch; lock publication precedes every version-3 supervised fine-tuning (SFT) step, including the disposable dry run.
 
-**Status:** DRAFT, NOT LOCKED. Recommended defaults resolved; static verification is in progress. Version 1 (`../PROTOCOL.md`) and version 2 stay frozen; this version changes only what is listed here.
+**Status:** LOCKED. **Lock:** 10-15-2026 20:33 PDT, input/code commit `27ffa740affb6e40cee53525e8ec06f4640aa105`; this lock precedes every version-3 training step. Resulting lock commit is recorded separately in CKPT_e08_v3.md. Version 1 (`../PROTOCOL.md`) and version 2 stay frozen; this version changes only what is listed here.
 
 ## 1. Question and conditions
 
@@ -82,4 +82,4 @@ E's update count differs from 658 by its mean loss span, so its training time sc
 - Committed: this protocol with its lock line, schedules, manifests, per-step training logs, checkpoint hashes, per-task validation CSVs, the taxonomy per system, the forecast, and `results.md`. Host only (`/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/`): corpus files, checkpoints, raw generations.
 - Allowed without a new version: ports, concurrency, GPU layout, scorer parallelism, identical re-runs of infrastructure-failed cells. Everything in §§ 1-7 changes only by a new version or a dated, disclosed amendment file.
 
-**TLDR-end:** [rl4cv: 08 expt_v3 › two-condition continuation protocol] Replay versus admitted expansion from the same step-658 weights at 5,752,936 additional loss tokens each, fresh optimizer with an explicit warmup-plus-cosine reset, 135 x 8 validation at half and full budget under the frozen gates and the meeting's decision rule; draft only, lock before training.
+**TLDR-end:** [rl4cv: 08 expt_v3 › two-condition continuation protocol] Replay versus admitted expansion from the same step-658 weights at 5,752,936 additional loss tokens each, fresh optimizer with an explicit warmup-plus-cosine reset, 135 x 8 validation at half and full budget under the frozen gates and the meeting's decision rule; locked before training; primary four-size and three-size sensitivity decisions remain prospective.
