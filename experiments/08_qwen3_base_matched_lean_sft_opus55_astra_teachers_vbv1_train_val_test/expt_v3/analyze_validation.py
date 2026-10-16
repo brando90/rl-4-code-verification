@@ -8,6 +8,7 @@ from pathlib import Path
 import sys
 from zoneinfo import ZoneInfo
 import numpy as np
+from assess_forecast import assess
 
 HERE = Path(__file__).resolve().parent
 WORK = Path('/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3')
@@ -103,6 +104,9 @@ def main():
                'sensitivity': decision(systems, ('4b', '8b', '14b'), paired),
                'uncertainty': '10000 percentile paired task-bootstrap draws, seed 0; eight attempts together; single training seed; p-val=n/a',
                'unknown_systems': [s['label'] for s in manifest['systems'] if s['label'] not in systems]}
+    forecast = assess(summary)
+    (HERE / 'results/forecast_assessment_v3.json').write_text(json.dumps(forecast, indent=2) + '\n')
+    summary['forecast_assessment'] = forecast
     (HERE / 'results/validation_summary_v3.json').write_text(json.dumps(summary, indent=2, sort_keys=True) + '\n')
     now = datetime.now(ZoneInfo('America/Los_Angeles')).strftime('%m-%d-%Y %H:%M %Z')
     lines = ['# Matched replay versus expansion continuation results', '',
@@ -121,7 +125,9 @@ def main():
     lines += ['', 'Gates are protocol-defined: ≥972 extracted, ≤108 capped, ≥7 mixed tasks, with every input known. Intervals resample 135 tasks with all eight attempts, 10,000 draws, seed 0; p-val=n/a. Training-seed variation is unmeasured. Mixed-share Wilson intervals, failure taxonomy, diversity and paired comparisons are in [the full summary](results/validation_summary_v3.json) and [per-cell/per-task tables](results/ladder).', '',
               'Primary four-size decision: `' + json.dumps(summary['primary']) + '`.', '',
               'Three-size sensitivity (4B/8B/14B): `' + json.dumps(summary['sensitivity']) + '`.', '',
-              'Hosted Smooth Conjunctive Score for Code verification judging remains deferred at $0 spend. Namespace escaping is a separate diagnostic and never changes primary scores.', '',
+              'Hosted Smooth Conjunctive Score for Code verification judging remains deferred at $0 spend. Namespace escaping is a separate diagnostic and never changes primary scores; [diagnostic tables](results/namespace_diagnostic). The test split remains unopened.', '',
+              'Frozen forecast assessment: [prediction and measured outcome](results/forecast_assessment_v3.json). Incomplete outcomes have no hit/miss verdict.', '',
+              'Execution and recovery events: [runtime ledger](results/runtime_progress.md).', '',
               '**TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is ' + str(1080 * len(systems)) + '/17,280; incomplete comparisons remain unresolved.']
     comparison = ['', '| Size and fraction | Expansion minus replay success rate [95% interval] |',
                   '|---|---:|']

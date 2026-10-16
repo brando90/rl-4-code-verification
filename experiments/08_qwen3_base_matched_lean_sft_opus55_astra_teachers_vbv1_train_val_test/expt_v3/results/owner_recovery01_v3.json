@@ -1,0 +1,131 @@
+{
+  "attempt": "recovery-01",
+  "owner_session": "codex-rl4cv-e08v3-recovery-01",
+  "thread_id": "01a142fc-0eff-7551-a40c-322e33c6c9cb",
+  "timestamp_utc": "2026-10-16T04:35:18.644037+00:00",
+  "effective_settings": {
+    "model": "gpt-6-astra",
+    "effort": "ultra",
+    "approval_policy": "never",
+    "sandbox_policy": {
+      "type": "danger-full-access"
+    },
+    "cwd": "/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification"
+  },
+  "input_hashes": {
+    "CKPT_e08_v3.md": {
+      "expected": "fcec5f7c1b7182c3423fe51151402b49d0196c3ec552fd71e12feef5e0667731",
+      "actual": "fcec5f7c1b7182c3423fe51151402b49d0196c3ec552fd71e12feef5e0667731",
+      "match": true
+    },
+    "RUNBOOK_continuation_owner.md": {
+      "expected": "f52beac9ae7f2f6906813d3650e9caed867dbc8a443fa5854221d4ad49cf9b61",
+      "actual": "f52beac9ae7f2f6906813d3650e9caed867dbc8a443fa5854221d4ad49cf9b61",
+      "match": true
+    },
+    "PROTOCOL.md": {
+      "expected": "3a2728e4e7bbbd5c709f5b5ba6c2f6e1242930f7d4376665ecce5e3a6bf8bb76",
+      "actual": "3a2728e4e7bbbd5c709f5b5ba6c2f6e1242930f7d4376665ecce5e3a6bf8bb76",
+      "match": true
+    },
+    "results/sft_schedule_v3_E.json": {
+      "expected": "506204e7f8e5e2527d2a8be3cb02e89d293e8b54bbcf6a77bc97d9105bfeb738",
+      "actual": "506204e7f8e5e2527d2a8be3cb02e89d293e8b54bbcf6a77bc97d9105bfeb738",
+      "match": true
+    },
+    "results/sft_schedule_v3_R.json": {
+      "expected": "a80244138b5b58083f053ae3b1f5b12ce2dc09ffe925eaaac85e4921cba45254",
+      "actual": "a80244138b5b58083f053ae3b1f5b12ce2dc09ffe925eaaac85e4921cba45254",
+      "match": true
+    },
+    "forecasts/e08_v3_forecast.json": {
+      "expected": "7e4ebbe567792d6509bbac2b78b3c5acd782591fea959c0f3a44ff07744efd5f",
+      "actual": "7e4ebbe567792d6509bbac2b78b3c5acd782591fea959c0f3a44ff07744efd5f",
+      "match": true
+    }
+  },
+  "dispatch_manifest_sha256": "d4e41858827a5cc8b9fd97486a85e3af2f93745e091173e5c25f48f378dd5143",
+  "token_validation": {
+    "status": "PASS",
+    "steps": 667,
+    "loss_tokens": 5757776,
+    "schedule_sha256": "506204e7f8e5e2527d2a8be3cb02e89d293e8b54bbcf6a77bc97d9105bfeb738",
+    "token_counts_match": true,
+    "scalar_tags": [
+      "ray/node.0.gpu.0.mem_gb",
+      "ray/node.0.gpu.0.util",
+      "ray/node.0.gpu.1.mem_gb",
+      "ray/node.0.gpu.1.util",
+      "ray/node.0.gpu.2.mem_gb",
+      "ray/node.0.gpu.2.util",
+      "ray/node.0.gpu.3.mem_gb",
+      "ray/node.0.gpu.3.util",
+      "ray/node.0.gpu.4.mem_gb",
+      "ray/node.0.gpu.4.util",
+      "ray/node.0.gpu.5.mem_gb",
+      "ray/node.0.gpu.5.util",
+      "ray/node.0.gpu.6.mem_gb",
+      "ray/node.0.gpu.6.util",
+      "ray/node.0.gpu.7.mem_gb",
+      "ray/node.0.gpu.7.util",
+      "ray/node.0.mem_gb",
+      "ray/node.0.mem_total_gb",
+      "ray/ray/ray_step",
+      "timing/train/checkpointing",
+      "timing/train/data_processing",
+      "timing/train/policy_training",
+      "timing/train/total_step_time",
+      "timing/train/valid_tokens_per_sec_per_gpu",
+      "train/global_valid_seqs",
+      "train/global_valid_toks",
+      "train/grad_norm",
+      "train/loss",
+      "train/lr",
+      "train/num_unmasked_tokens",
+      "train/num_valid_samples"
+    ],
+    "training_step_wall_seconds": 2020.8171560764313,
+    "processed_real_tokens": 10383459,
+    "condition": "E",
+    "size": "1p7b",
+    "steps_verified": 667,
+    "current_logged_step": 667,
+    "mismatch_count": 0,
+    "resumed_step": 336,
+    "resumed_actual_tokens": 10082,
+    "resumed_expected_tokens": 10082
+  },
+  "usage_evidence": {
+    "limit_id": "codex",
+    "limit_name": null,
+    "primary": {
+      "used_percent": 37.0,
+      "window_minutes": 10080,
+      "resets_at": 1792649584
+    },
+    "secondary": null,
+    "credits": {
+      "has_credits": false,
+      "unlimited": false,
+      "balance": "0"
+    },
+    "individual_limit": null,
+    "spend_control_reached": null,
+    "plan_type": "pro",
+    "rate_limit_reached_type": null
+  },
+  "first_useful_output": {
+    "verification": "results/train_logs/v3_E_1p7b_summary.json",
+    "exports_sha256_check": {
+      "335": 0,
+      "667": 0
+    },
+    "native_error": "post-export shell parse error exit 2; no training replay needed"
+  },
+  "ownership_accepted": true,
+  "owner": {
+    "pid": 2580398,
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "start_ticks": "36376767"
+  }
+}

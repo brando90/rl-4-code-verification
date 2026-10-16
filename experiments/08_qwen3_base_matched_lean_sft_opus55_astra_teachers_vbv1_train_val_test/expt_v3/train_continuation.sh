@@ -31,7 +31,7 @@ export E08_CHECKPOINT_DIR="$ROOT/checkpoints" E08_LOG_DIR="$ROOT/logs" E08_TENSO
 export RAY_TMPDIR="/tmp/e8v3_$(id -u)/${CONDITION}_${SHORT}_${MODE:0:1}"
 mkdir -p "$RAY_TMPDIR" "$ROOT/driver_logs" "$ROOT/hf"
 unset PYTHONPATH
-cd "$WORK/nemo_rl"
+cd "${E08_NEMO_ROOT:-$WORK/nemo_rl}"
 for K in $STEPS; do
   if [ ! -f "$ROOT/hf/step_$K/SHA256SUMS" ]; then
     if [ ! -d "$E08_CHECKPOINT_DIR/step_$K" ]; then

@@ -1,0 +1,18 @@
+{
+  "attempt": "recovery-01",
+  "cause": "Terminating old scheduler closed its tmux session; generation children shared its session and also terminated",
+  "old_scheduler_pid": 195490,
+  "interrupted_generation_pids": [
+    2171971,
+    2322647
+  ],
+  "durable_generation_rows": 0,
+  "native_progress_counts": [
+    300,
+    54
+  ],
+  "retry": "identical 135x8 cells and frozen model/seed/token cap; no alternate samples",
+  "prevention": "start_new_session=True for all new scheduler jobs, plus exact boot/start and durable exit receipts",
+  "training_replayed": false,
+  "when_unix": 1792125499.0663958
+}
