@@ -1,0 +1,153 @@
+{
+  "cadence_seconds": 300,
+  "recovery_deadline_unix": 1792383686.05276,
+  "max_recoveries": 6,
+  "reboot_behavior": "cron checks surviving files every 5 minutes; boot/start identities fence stale owners; recovery preserves partial training and reconciles jobs",
+  "stop_condition": "completion_receipt checked together with 17280-cell 16-system validation summary; six recovery attempts or 72-hour deadline",
+  "notification": "notify_run.py DONE only after verified experiment terminal status; owner handles meaningful recovery notices",
+  "usage_policy": "reserve personal Codex remaining allowance; meaningful event recovery only; no model calls during normal polls",
+  "candidates": [
+    {
+      "name": "codex_vals",
+      "eligible": true,
+      "max_attempts": 2,
+      "env": {
+        "CODEX_HOME": "/lfs/skampere1/0/brando9/.codex-vals"
+      },
+      "command": [
+        "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/node",
+        "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/codex",
+        "exec",
+        "--dangerously-bypass-approvals-and-sandbox",
+        "-m",
+        "gpt-6-astra",
+        "-c",
+        "model_reasoning_effort=\"ultra\"",
+        "-c",
+        "check_for_update_on_startup=false",
+        "--json"
+      ],
+      "model": "gpt-6-astra",
+      "effort": "ultra",
+      "auth": "Logged in using ChatGPT 10-15-2026 21:17 PDT",
+      "runtime": "recent native gpt-6-astra/high full-access never at 10-15-2026 18:36 PDT; current ultra and useful continuation must be verified",
+      "usage_last_observed_used_percent": 37,
+      "usage_last_observed_utc": "2026-10-16T01:36:45.979Z",
+      "credits": 0,
+      "account_fingerprint": "5d36e206",
+      "funding": "existing ChatGPT subscription, no provider keys"
+    },
+    {
+      "name": "claude_vals",
+      "eligible": false,
+      "max_attempts": 2,
+      "command": [
+        "/dfs/scratch0/brando9/bin/clauded-vals",
+        "-p",
+        "--model",
+        "claude-fable-5-1",
+        "--effort",
+        "max",
+        "--verbose",
+        "--output-format",
+        "stream-json"
+      ],
+      "auth": "dedicated node OAuth subscription wrapper loggedIn=true",
+      "exclusion": "fresh actual model/permissions and allowance not verified; next recovery owner should verify if needed"
+    },
+    {
+      "name": "codex_stanford",
+      "eligible": false,
+      "max_attempts": 1,
+      "env": {
+        "CODEX_HOME": "/lfs/skampere1/0/brando9/.codex-su"
+      },
+      "command": [
+        "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/node",
+        "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/codex",
+        "exec",
+        "--dangerously-bypass-approvals-and-sandbox",
+        "-m",
+        "gpt-6-astra",
+        "-c",
+        "model_reasoning_effort=\"ultra\"",
+        "-c",
+        "check_for_update_on_startup=false",
+        "--json"
+      ],
+      "auth": "Logged in using ChatGPT",
+      "exclusion": "prior native session read-only/on-request despite configured full-access; verify managed policy eligibility with actual useful bounded action"
+    },
+    {
+      "name": "claude_stanford",
+      "eligible": false,
+      "max_attempts": 1,
+      "command": [
+        "/dfs/scratch0/brando9/bin/clauded-su",
+        "-p",
+        "--model",
+        "claude-opus-5",
+        "--effort",
+        "max",
+        "--verbose",
+        "--output-format",
+        "stream-json"
+      ],
+      "auth": "dedicated node OAuth subscription wrapper loggedIn=true",
+      "exclusion": "actual model/full-access and current allowance unverified; historical strongest entitled model opus-5; fable entitlement unknown"
+    },
+    {
+      "name": "codex_personal",
+      "eligible": false,
+      "max_attempts": 1,
+      "env": {
+        "CODEX_HOME": "/lfs/skampere1/0/brando9/.codex"
+      },
+      "command": [
+        "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/node",
+        "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/codex",
+        "exec",
+        "--dangerously-bypass-approvals-and-sandbox",
+        "-m",
+        "gpt-6-astra",
+        "-c",
+        "model_reasoning_effort=\"ultra\"",
+        "-c",
+        "check_for_update_on_startup=false",
+        "--json"
+      ],
+      "auth": "current owner native gpt-6-astra/ultra full-access never",
+      "exclusion": "94 percent weekly used; preserve finishing reserve; no purchased credits",
+      "reset_unix": 1792649585
+    },
+    {
+      "name": "claude_personal",
+      "eligible": false,
+      "max_attempts": 1,
+      "command": [
+        "/dfs/scratch0/brando9/.nvm/versions/node/v24.14.0/bin/claude",
+        "-p",
+        "--dangerously-skip-permissions",
+        "--model",
+        "claude-fable-5-1",
+        "--effort",
+        "max",
+        "--verbose",
+        "--output-format",
+        "stream-json"
+      ],
+      "exclusion": "auth loggedIn=false; node profiles above are distinct verified grants"
+    }
+  ],
+  "other_routes": {
+    "antigravity": "installed; target auth/billing/model/tools unverified",
+    "cursor": "no executable found on current PATH; Macs not yet inventoried",
+    "grok": "no executable found on current PATH; no verified profile",
+    "valkyrie": "not a subscription coordination replacement; measured paid calls prohibited by experiment cap"
+  },
+  "created_local": "10-15-2026 21:21 ",
+  "watch_script": "/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/recovery_watch.py",
+  "runtime_config": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/recovery_config.json",
+  "runtime_state": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/recovery_state.json",
+  "selftest": "results/recovery_selftest_v3.json"
+}

@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/results.md>
 
-**Status:** RUNNING: priority-size continuations. **Last updated:** 10-15-2026 21:11 PDT.
+**Status:** RUNNING: priority-size continuations. **Last updated:** 10-15-2026 21:29 PDT.
 
 | Phase | State | Evidence |
 |---|---|---|
@@ -15,11 +15,12 @@
 | Prospective training protocol | LOCKED | [PROTOCOL.md](PROTOCOL.md): two conditions, 5,752,936 additional loss tokens each, half/full validation, frozen gates, meeting decision rule |
 | Deterministic verification | DONE | Linux 323 passed / 24 skipped on 10-13 ([receipt](results/verification.json)); macOS 10-14: 320 passed, 36 skipped, the 4 known macOS-only failures |
 | Disposable expansion dry run | PASS | 8/8 token counts matched; 75,345 loss tokens; fixed-set loss 0.289257 → 0.252943; 2/2 exported-model Lean samples; weights deleted; [receipt](results/dry_run_v3.json) |
-| Priority-size production | RUNNING | Persistent `rl4cv-e08-v3-phase-a-recovery`; 1.7B expansion training (half checkpoint exported: 335/335 token counts match 2,878,589 loss tokens), 4B awaiting devices; 0/17,280 validation cells known |
+| Priority-size production | RUNNING | Persistent `rl4cv-e08-v3-phase-a-recovery`; 1.7B expansion completed 667/667 matched updates (5,757,776 loss tokens; full export in progress; half export verified), 4B awaiting devices; 0/17,280 validation cells known |
+| Persistent execution/recovery ownership | ACTIVE | Six input hashes and 433/433 training token counts verified; resumed step 336 correct; host watch every five minutes/reboot; harmless failure test and 5 focused tests pass; [receipt](results/owner_acceptance_v3.json), [supervision](RUNBOOK_recovery_supervision.md) |
 | Deterministic continuation inputs | DONE | Replay steps 334/658 (2,880,477/5,752,936 loss tokens); expansion 335/667 (2,878,589/5,757,776); [schedules](results/sft_schedule_v3_E.json) |
 | Prospective forecast and validation cells | DONE | [forecast](forecasts/e08_v3_forecast.json), 16 systems × 135 tasks × 8 samples = 17,280 unique cells |
 | Four-size formatter and start weights | DONE | 2,585 examples match all four tokenizers and NeMo loss spans; all four step-658 weight exports pass full SHA-256 verification |
-| Current full test suite | DONE | 1,184 passed, 17 skipped, 0 failed in 339.81 seconds; includes continuation decision checks |
+| Current full test suite | DONE | 1,212 passed, 17 skipped, 0 failed in 305.20 seconds; includes recovery fencing and failure checks |
 
 The locked experiment now continues training from the version-1 step-658 weights. The disposable inference check required a CUDA compiler-path repair; the retry reused the same weights and frozen sampling settings. Host files live under `/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/` (candidate corpus SHA-256 `7fa02557…`); version-1 and version-2 host files are untouched. Execution checkpoint: [CKPT_e08_v3.md](CKPT_e08_v3.md); historical preparation: [CKPT_continuation.md](CKPT_continuation.md).
 
