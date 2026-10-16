@@ -283,3 +283,14 @@ Full suite1,362passed/17skipped/6subtests,291.07s;34focused checks. [Failure and
 
 
 10-16-2026 14:08 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 07:20 PDT — repaired expansion and complete error-audit gate
+
+The zero-update E14 failure is retained with exact native exits and cleanup evidence. Baseline cache reads passed on all three hosts. The repaired expansion passed the eight-device communication check and is active under a new exact identity, with 0 token-verified optimizer updates (0 loss tokens). The restarted scheduler preserved every completed job and launched only the failed expansion controller as attempt 2.
+
+Final validation now reproduces the deterministic original-error sample, compares the retained native JSON receipts and generated Lean source, verifies first-error text and classification, and publishes the complete audit with its checksum in the completion receipt. The new checks reproduced all 288 existing receipts, 9,026 recorded error lines and four native timeouts without recompilation. Six corruption/retention tests cover altered selection, receipts, messages, categories and source; the final audit will include the four pending 14B groups.
+
+Full suite: 1,368 passed, 17 skipped, six subtests; 312.27 seconds. Validation remains 12,960/17,280 known primary cells. [Admission and token progress](E14_repaired_admission_recovery02.json).
+
+
+10-16-2026 14:20 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.

@@ -2,7 +2,7 @@
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
 **TLDR:** All Phase A training/generation verified; Phase A complete, all eight rungs and diagnostics checked; replay 4B half and expansion 4B full pass gates and all remaining cells still required.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-16-2026 07:08 PDT
+Last updated: 10-16-2026 07:20 PDT
 ## Goal
 - Complete all 17,280 validation cells, paired bootstrap, namespace diagnostic, forecast assessment, publication and actual DONE notification; zero paid experimental model calls; test split unopened.
 ## Current execution
@@ -12,7 +12,7 @@ Last updated: 10-16-2026 07:08 PDT
 - Eight complete Phase A generated rungs = 8,640 exact cells. All generation children exited 0; all eight Phase A rungs scored/analyzed (8,640/17,280 cells). Replay 4B half and expansion 4B full pass gates; eight namespace diagnostics have zero score delta.
 - Primary scoring and namespace diagnostics use eight workers per rung, at most six combined jobs (48 active compilation slots), frozen 600s timeout; expired orphan children cleaned separately by exact pidfd guard. Phase A generation finished; Phase B uses immutable remote shell snapshots.
 - All four training sizes and exact generator environments verified on skampere2/3. Pending large-model routes remain remote. 14B training must use eight devices; inference uses the frozen permitted layout.
-- Latest full suite: 1,362 passed / 17 skipped / 6 subtests / 291.07s; 34 focused multinode/admission/sequencing/cache checks pass. Original deadline and attempt limits unchanged.
+- Latest full suite: 1,368 passed / 17 skipped / 6 subtests / 312.27s; 54 focused finalization and continuation checks pass. Original deadline and attempt limits unchanged.
 ## Waits and recovery
 - Host recovery and native continuation crons every five minutes/reboot; native route installed UNARMED. Orphan cleanup every minute; capacity probe every 15min. Active owner; old external wait disarmed. Original deadline 10-18-2026 21:21 PDT and six-recovery/two-Vals limits unchanged; actual fallback exclusions updated.
 - Slurm association was already requested 10-14; do not duplicate. Inventory and real release events are in host recovery_config.json. No paid cloud or smaller 14B training layout.
@@ -148,3 +148,7 @@ Last updated: 10-16-2026 07:08 PDT
 - 10-16-2026 07:08 PDT -- The first14B native initialization failed before any optimizer update: rank0 was still reading the frozen59,073,377,555-byte weight file at approximately80MB/s when peer ranks reached PyTorch TCPStore fixed600,000ms timeout. The error, original controller/driver/route receipts and logs are retained. All36checked identities are absent, all participant/local leases released; no checkpoint/export/training scalar exists. The replay sequencer stopped without a dispatch. Recovery now SHA256-verifies and reads the unchanged baseline into all3hosts caches before GPU admission, bounded by30minutes and the original absolute deadline. Expected model hash140d9e8d22c741587ddb40c9ffa6140850879a45263a8a6bbd0fcfafbbdb48c3; no model/token/timeout/config changes. The read allocates noGPU. Capacity and exact eight-device proof are repeated afterward. Original native failure is preserved; this repairs initialization with zero duplicated training updates. [Native failure](results/E14_initialization_failure_recovery02.json), [cache read status](results/model_cache_read_recovery02.json).
 
 - 10-16-2026 14:08 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+- 10-16-2026 07:20 PDT -- The zero-update E14 failure is retained with exact native exits and cleanup evidence. Baseline cache reads passed on all three hosts. The repaired expansion passed the eight-device communication check and is active under a new exact identity, with 0 token-verified optimizer updates (0 loss tokens). The restarted scheduler preserved every completed job and launched only the failed expansion controller as attempt 2. Final validation now reproduces the deterministic original-error sample, compares the retained native JSON receipts and generated Lean source, verifies first-error text and classification, and publishes the complete audit with its checksum in the completion receipt. The new checks reproduced all 288 existing receipts, 9,026 recorded error lines and four native timeouts without recompilation. Six corruption/retention tests cover altered selection, receipts, messages, categories and source; the final audit will include the four pending 14B groups. [Repaired admission](results/E14_repaired_admission_recovery02.json).
+
+- 10-16-2026 14:20 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.

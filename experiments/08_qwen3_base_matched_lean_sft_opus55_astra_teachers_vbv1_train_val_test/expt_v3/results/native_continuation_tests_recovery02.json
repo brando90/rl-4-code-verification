@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "checked_unix": 1792159692.417347,
+  "checked_unix": 1792160402.814498,
   "input_sha256": {
     "../../../../../../ultimate-utils/py_src/uutils/emailing.py": "b853ee23709dc6a093821d59d10e21a4973ed605267e6c170fdcc6b0df1374de",
     "../../../external/veribench_scorer/scripts/scsc/kernel_axioms.py": "5dbbdcae75ba8b22911fcb43ab1fcde45a1475cf92742a39a29ebe41116de287",
@@ -11,7 +11,7 @@
     "../../../src/rl4cv/rewards.py": "fdc5256566f74c459875dfeca91b3956004d35a90fed17d8975e6275c7c6e9e0",
     "../../../src/rl4cv/screens.py": "a92d4af7968a6c1fe717b2fbad44acbe145c8f258ec3d3dba56bf7b1ea182510",
     "../../../tests/test_e08_v3_capacity_event.py": "42802fd3a395c48467ef2434621eb3f5ad8c87b21b05a091422507492cc60cff",
-    "../../../tests/test_e08_v3_finalize.py": "0337cddc74a426f221e0c106de8f29d4d4e6c8439a7cfcd78c9223b03292a99e",
+    "../../../tests/test_e08_v3_finalize.py": "0000d1356247a640f8db0f192f1378110342e0e6e10e0c3f077d5ed925d6b40e",
     "../../../tests/test_e08_v3_multinode.py": "2f06035cccdb080eb9a1f81238a3ffd79105bd14b1ae4a953c69a55eaf573ae5",
     "../../../tests/test_e08_v3_multinode_sequence.py": "12ccdd942fb043b8f81ab93473f096ecd5e165d3d370f31b70f7a9b7fa02acd1",
     "../../../tests/test_e08_v3_multinode_warm.py": "7fdb0cc1912a3fa213c963ca19f127bdbe7c53b4593c8eb9631873760f0a5c91",
@@ -33,7 +33,7 @@
     "configs/e08_v3_R_8B.yaml": "060efd0cbc3c55417ad51a0c6d6ecb6b08aa887461dace991a9b46b0f4fc98b9",
     "dry_run.sh": "1777a9994da27de87aa1409460b2b20379fdcbc2361fa79201cbe58ef4700d8d",
     "failure_taxonomy.py": "10c6f574bcfa4c551224c362e46414f74ccf98bf582ac6ea8d3e6ce5360fc303",
-    "finalize_results.py": "d39bcb937c668067c0cd7b39e46fd7dcbce8f1cb30a584e2d8e6002a8349c08f",
+    "finalize_results.py": "a49240216ce4249fedbafc29a305033f634df83a169130b49e0265a9ae1d3a45",
     "forecasts/e08_v3_forecast.json": "7e4ebbe567792d6509bbac2b78b3c5acd782591fea959c0f3a44ff07744efd5f",
     "forecasts/e08_v3_forecast.sha256": "fbeac84b6b9f39c70735e5ba4fac7e0131405d6cc4dee49bf53c81350055bd96",
     "forecasts/forecast_ledger.jsonl": "d6e913bb563b59d457e9bdb4ea3da3f7ff67fa01227434c4078a2ee548419595",
@@ -43,7 +43,7 @@
     "multinode_sequence.py": "190688f201610f86865eb7fb9c8881bd3cfe4056385b986cf91e07e913530a50",
     "multinode_training.py": "a458b66aa2945ce4e53f3bcc850ba717ad0558b65827fbb0e47a95ac64c21bec",
     "namespace_diagnostic.py": "37f47756d5ab8a6302488e3d1d90356702efbbd9990219fd609391ba6260df33",
-    "native_continuation.py": "6bf1def25108c6696359eb6333e238c1468790deea9157ad0f770fa6d9bc597e",
+    "native_continuation.py": "c3f4c5592cc0ddbd50c0d34001497300db8d8ef9aaa71b97aa8251d4e14d0cc2",
     "notify_run.py": "243fadb1404d4a449f38b6d30dd175e00afe6cb132a3bc51bb941ccc0a1d653d",
     "prepare_continuation.py": "a6c41c8a88d7ba071635d21c71574b606784b7265766ca34bb628083b35b8c11",
     "prepare_remote.py": "632eb66c89303f3ae2e7378c2d91ff5508e29e147750b9d898954ad22be47ab5",
@@ -71,12 +71,12 @@
     "warm_multinode_model.py": "e0cec7c8f68bdcb0e7afafbceb8f9e0fa06cc6ed8fa03115d4eb23fc5d35da39"
   },
   "failed": 0,
-  "full_suite_passed": 1362,
+  "full_suite_passed": 1368,
   "full_suite_skipped": 17,
   "full_suite_subtests": 6,
-  "full_suite_seconds": 291.07,
-  "full_suite_log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/make_test_recovery02_model_warm.log",
-  "full_suite_log_sha256": "86b13e470616d9e04db651ceecea81394b718a4e95022c21ec9937e2d4f38416",
+  "full_suite_seconds": 312.27,
+  "full_suite_log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/make_test_recovery02_final_error_audit.log",
+  "full_suite_log_sha256": "a2a6f1714e4244bd12826439a92cf382d0a32e576161c91019c0eb88e68381d1",
   "focused_checks_passed": 84,
   "focused_subtests": 6,
   "real_local_git_publication_and_merge_guard": "PASS",
@@ -105,5 +105,6 @@
   "multinode_gpu_proof": "PASS_EXACT_EIGHT_UUIDS_COLLECTIVES_AND_CLEANUP",
   "multinode_sequence_focused_passed": 16,
   "multinode_total_focused_passed": 34,
-  "multinode_warm_focused_passed": 4
+  "multinode_warm_focused_passed": 4,
+  "final_error_audit_focused_passed": 54
 }

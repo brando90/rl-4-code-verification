@@ -100,3 +100,49 @@ def test_training_summary_cannot_hide_step_token_mismatch():
     rows[0]['loss_tokens'] = '4'
     with pytest.raises(AssertionError, match='loss_tokens mismatch'):
         m.validate_training(receipt, rows, schedule)
+
+
+def original_errors_fixture(tmp_path):
+    taxonomy = []; primary = {}; raw = {}; receipts = {}
+    for i in range(25):
+        task = f't{i}'; path = tmp_path / task / 'solution.lean'; path.parent.mkdir()
+        code = f'example : True := by unknown_tactic_{i}\n'; path.write_text(code)
+        checksum = hashlib.sha256(path.read_bytes()).hexdigest()
+        row = {'task_id': task, 'sample_idx': '0', 'category': 'compile_error', 'lean_sha256': checksum}
+        taxonomy.append(row); primary[task, '0'] = row; raw[task, 0] = {'lean': code}
+        receipt = {'task_id': task, 'sample_idx': 0, 'path': str(path), 'original_sha256': checksum,
+                   'compile': {'timeout': True, 'success': False, 'errors': []},
+                   'kind': 'timeout', 'first_error': ''}
+        path.with_suffix('.json').write_text(json.dumps(receipt)); receipts[task] = receipt
+    chosen = sorted(taxonomy, key=lambda r: hashlib.sha256(
+        f"rl4cv-e08-v3-taxonomy-sample:{r['task_id']}#0".encode()).hexdigest())[:24]
+    errors = {'receipts': [receipts[r['task_id']] for r in chosen], 'compile_error_population': 25,
+              'sampled_cells': 24, 'kind_counts': {'timeout': 24}}
+    return errors, taxonomy, primary, raw
+
+
+def test_original_error_audit_preserves_timeouts_and_native_receipts(tmp_path):
+    args = original_errors_fixture(tmp_path)
+    audit, files = m.validate_original_errors(*args)
+    assert audit['sampled'] == audit['native_timeouts'] == 24
+    assert audit['recorded_error_lines'] == 0 and len(files) == 48
+
+
+@pytest.mark.parametrize('corruption', ['selection', 'native_receipt', 'first_error', 'kind', 'raw_source'])
+def test_original_error_audit_rejects_changed_evidence(tmp_path, corruption):
+    errors, taxonomy, primary, raw = original_errors_fixture(tmp_path)
+    receipt = errors['receipts'][0]; native = Path(receipt['path']).with_suffix('.json')
+    if corruption == 'selection':
+        errors['receipts'][0], errors['receipts'][1] = errors['receipts'][1], errors['receipts'][0]
+    elif corruption == 'native_receipt':
+        changed = json.loads(native.read_text()); changed['compile']['errors'] = [{'msg': 'changed'}]
+        native.write_text(json.dumps(changed))
+    elif corruption == 'first_error':
+        receipt['first_error'] = 'invented'; native.write_text(json.dumps(receipt))
+    elif corruption == 'kind':
+        receipt['kind'] = 'other'; errors['kind_counts'] = {'timeout': 23, 'other': 1}
+        native.write_text(json.dumps(receipt))
+    else:
+        raw[receipt['task_id'], 0]['lean'] = 'different generated source'
+    with pytest.raises(AssertionError):
+        m.validate_original_errors(errors, taxonomy, primary, raw)

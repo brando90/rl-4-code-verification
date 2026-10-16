@@ -6,14 +6,48 @@ from datetime import datetime
 import hashlib
 import json
 from pathlib import Path
+import re
 import subprocess
 from zoneinfo import ZoneInfo
 from assess_forecast import assess
 from recovery_watch import read, write
 from remote_generation import validate_raw, digest, SHARED
+from failure_taxonomy import KINDS
 
 HERE = Path(__file__).resolve().parent
 WORK = Path('/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3')
+
+
+def validate_original_errors(errors, taxonomy, primary, raw):
+    """Reproduce the frozen sample and compare its original native evidence."""
+    failed = [r for r in taxonomy if r['category'] == 'compile_error']
+    selected = sorted(failed, key=lambda r: hashlib.sha256(
+        f"rl4cv-e08-v3-taxonomy-sample:{r['task_id']}#{r['sample_idx']}".encode()).hexdigest())[:24]
+    receipts = errors['receipts']
+    key = lambda r: (r['task_id'], int(r['sample_idx']))
+    assert [key(r) for r in receipts] == [key(r) for r in selected], 'Original error sample selection differs'
+    assert errors['compile_error_population'] == len(failed)
+    assert errors['sampled_cells'] == len(receipts) == min(24, len(failed))
+    assert errors['kind_counts'] == dict(Counter(r['kind'] for r in receipts))
+    native_files = {}; lines = timeouts = 0
+    for row, receipt in zip(selected, receipts):
+        path = Path(receipt['path']); native = path.with_suffix('.json')
+        assert read(native) == receipt, 'Retained native error receipt differs'
+        assert path.read_text() == raw[key(receipt)]['lean'], 'Original error source differs from generation'
+        assert digest(path) == receipt['original_sha256'] == row['lean_sha256'] == primary[
+            receipt['task_id'], str(receipt['sample_idx'])]['lean_sha256']
+        compiled = receipt['compile']
+        message = compiled['errors'][0]['msg'] if compiled['errors'] else ''
+        assert receipt['first_error'] == message, 'First native error message differs'
+        kind = ('timeout' if compiled['timeout'] else 'recheck_success' if compiled['success'] else
+                next((name for name, regex in KINDS if re.search(regex, message)),
+                     'other' if message else 'no_error_line'))
+        assert receipt['kind'] == kind, 'Native error classification differs'
+        lines += len(compiled['errors']); timeouts += int(compiled['timeout'])
+        native_files.update({str(path): digest(path), str(native): digest(native)})
+    return {'error_population': len(failed), 'sampled': len(receipts),
+            'selection_and_original_hashes_match': True, 'recorded_native_errors_match': True,
+            'recorded_error_lines': lines, 'native_timeouts': timeouts}, native_files
 
 
 def validate(checksum_runner=None):
@@ -28,7 +62,7 @@ def validate(checksum_runner=None):
     for value in pairs.values():
         validate_bootstrap(value)
     expected = {(c['system'], c['task_id'], c['sample_idx']) for c in manifest['cells']}
-    seen = set(); namespace = {}; files = {}
+    seen = set(); namespace = {}; files = {}; error_audits = {}
     for system in manifest['systems']:
         label = system['label']; result = summary['systems'][label]
         raw = WORK / f'ladder/validation/raw/gen_{label}_g8.jsonl'
@@ -69,10 +103,11 @@ def validate(checksum_runner=None):
             validate_bootstrap(diag['paired_task_bootstrap_delta'], deltas)
         errors = diag['original_first_error_sample']
         assert errors['compile_error_population'] == result['failure_taxonomy'].get('compile_error', 0)
-        assert errors['sampled_cells'] == min(24, errors['compile_error_population']) == len(errors['receipts'])
-        assert errors['kind_counts'] == dict(Counter(r['kind'] for r in errors['receipts']))
-        for error in errors['receipts']:
-            assert error['original_sha256'] == digest(error['path']) == primary[error['task_id'], str(error['sample_idx'])]['lean_sha256']
+        raw_rows = [json.loads(line) for line in raw.read_text().splitlines() if line.strip()]
+        audit, native_files = validate_original_errors(errors, tr, primary,
+            {(r['task_id'], int(r['sample_idx'])): r for r in raw_rows})
+        error_audits[label] = {**audit, 'diagnostic_sha256': digest(diag_path)}
+        files.update(native_files)
         namespace[label] = {k: v for k, v in diag.items() if k != 'changed_receipts'}
         for p in (path, tasks_path, taxonomy, cells, diag_path):
             files[str(p.relative_to(HERE))] = hashlib.sha256(p.read_bytes()).hexdigest()
@@ -105,12 +140,24 @@ def validate(checksum_runner=None):
     assert all(forecast[k]['outcome']['status'] == 'COMPLETE' for k in ('primary', 'sensitivity'))
     write(HERE / 'results/forecast_assessment_v3.json', forecast)
     write(HERE / 'results/namespace_summary_v3.json', namespace)
+    error_path = HERE / 'results/error_samples_recovery02.json'
+    error_audit = {'status': 'PASS', 'systems': error_audits, 'known_primary_cells': len(seen),
+                   'verified_error_receipts': sum(x['sampled'] for x in error_audits.values()),
+                   'recorded_error_lines': sum(x['recorded_error_lines'] for x in error_audits.values()),
+                   'native_timeouts': sum(x['native_timeouts'] for x in error_audits.values()),
+                   'recorded_native_errors_match': True, 'no_new_compilations': True,
+                   'model_calls': 0, 'test_split_opened': False,
+                   'evidence_limit': 'Compiler helper retains parsed error header lines (240-character cap), '
+                                     'not complete stdout/stderr transcripts. All recorded messages match.'}
+    write(error_path, error_audit); files[str(error_path.relative_to(HERE))] = digest(error_path)
     receipt = {'status': 'VALIDATED', 'known_cells': len(seen), 'declared_cells': 17280,
                'systems': 16, 'training_verified': True, 'namespace_complete': True,
                'namespace_diagnostic_executed': True,
                'namespace_unknown_cells': sum(s['unknown_cells'] for s in namespace.values()),
                'namespace_paired_delta_available': all(s['unknown_cells'] == 0 for s in namespace.values()),
                'forecast_assessed': True, 'training': training, 'artifact_sha256': files,
+               'original_error_receipts_verified': error_audit['verified_error_receipts'],
+               'original_error_audit_sha256': digest(error_path),
                'paid_model_spend_usd': 0, 'test_split_opened': False,
                'validated_local': datetime.now(ZoneInfo('America/Los_Angeles')).strftime('%m-%d-%Y %H:%M %Z')}
     write(HERE / 'results/completion_validation_v3.json', receipt)

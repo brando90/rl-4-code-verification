@@ -208,7 +208,8 @@ def publication_paths(manifest, jobs, final=False):
                          for suffix in ('steps.csv', 'summary.json', 'f0p5_SHA256SUMS', 'f1p0_SHA256SUMS'))
     if final:
         paths.extend(HERE / ('results/' + p) for p in ('completion_validation_v3.json',
-                     'namespace_summary_v3.json', 'email_done_v3.json', 'native_completion_v3.json'))
+                     'namespace_summary_v3.json', 'error_samples_recovery02.json',
+                     'email_done_v3.json', 'native_completion_v3.json'))
     return sorted({p for p in paths if p.is_file()})
 
 
