@@ -2,7 +2,7 @@
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
 **TLDR:** All Phase A training/generation verified; Phase A complete, all eight rungs and diagnostics checked; replay 4B half and expansion 4B full pass gates and all remaining cells still required.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-16-2026 05:51 PDT
+Last updated: 10-16-2026 05:56 PDT
 ## Goal
 - Complete all 17,280 validation cells, paired bootstrap, namespace diagnostic, forecast assessment, publication and actual DONE notification; zero paid experimental model calls; test split unopened.
 ## Current execution
@@ -128,3 +128,7 @@ Last updated: 10-16-2026 05:51 PDT
 - 10-16-2026 05:51 PDT -- Native continuation now enforces the original deadline across analysis, validation, file hashing and publication-lock waits using a supervised private process group. Exact owned-group cleanup preserves existing scheduler/training processes. Git blob reads and final export checksum commands use bounded execution and inherit ownership locks. Already-verified completion permits only bounded, idempotent cron cleanup after expiry. Five new real process/lock deadline checks pass; full suite1,328passed/17skipped/6subtests. Exact60-file test/arm hash maps refreshed while UNARMED; recovery-02 remains owner.
 
 - 10-16-2026 12:51 UTC: deterministic native continuation verified 10,800/17,280 primary cells. Completed native jobs: 44. Zero paid experimental calls; test split unopened.
+
+- 10-16-2026 05:56 PDT -- Two-host GPU transport passed on one A100 and one B200 with exact UUID binding, NCCL2.26.2/PyTorch2.7.1+CUDA12.8, and verified all-reduce/all-gather/broadcast/barrier results. Explicit host Ethernet interfaces and socket transport were required in this probe; default routing failed with a retained socket error and timed-out peer. Both attempts have zero remaining exact worker identities. No model,data or training updates were used; eight-device training remains unverified and capacity remains six. [Transport evidence](results/multinode_nccl_recovery02.json). Atomic eight-device reservations and full native placement remain unimplemented/unverified; preserve healthy single-host controller.
+
+- 10-16-2026 12:56 UTC: deterministic native continuation verified 10,800/17,280 primary cells. Completed native jobs: 44. Zero paid experimental calls; test split unopened.

@@ -52,5 +52,24 @@
   ],
   "decision": "No multi-host scientific admission: insufficient eligible capacity and GPU route unverified. Preserve current single-host waiting controller and all healthy 8B children.",
   "model_calls": 0,
-  "scientific_caps_changed": false
+  "scientific_caps_changed": false,
+  "two_host_gpu_transport": {
+    "status": "PASS_EXPLICIT_ETHERNET",
+    "receipt": "multinode_nccl_recovery02.json",
+    "devices": 2,
+    "model_calls": 0,
+    "eight_rank_training_verified": false
+  },
+  "admission_implementation_notes": {
+    "lock_order": [
+      "E13 registry",
+      "local E08 pipeline",
+      "shared remote admission"
+    ],
+    "preserve_existing_controller": "Canonical remote_E_14b record remains adoptable by the healthy waiting controller.",
+    "participant_reservations": "Every participating host needs a local live guardian identity/gpus record compatible with existing scanners; skampere1 also needs its local pipeline lease.",
+    "ray_cpu_requirement": "At least selected GPU count plus one CPU per host; pinned environment builder reserves one additional CPU per host after placement.",
+    "driver_address": "Explicit owned GCS address overrides local; retain immutable wrapper and exact scientific YAML.",
+    "next_acceptance": "Exactly eight eligible UUIDs, private Ray/NeMo binding and GPU communication proof, then first native frozen update with matching tokens."
+  }
 }

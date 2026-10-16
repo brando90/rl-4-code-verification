@@ -236,3 +236,10 @@ Native continuation now enforces the original deadline across analysis, validati
 
 
 10-16-2026 12:51 UTC: deterministic native continuation verified 10,800/17,280 primary cells. Completed native jobs: 44. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 05:56 PDT — bounded cross-host GPU transport evidence
+
+Two-host GPU transport passed on one A100 and one B200 with exact UUID binding, NCCL2.26.2/PyTorch2.7.1+CUDA12.8, and verified all-reduce/all-gather/broadcast/barrier results. Explicit host Ethernet interfaces and socket transport were required in this probe; default routing failed with a retained socket error and timed-out peer. Both attempts have zero remaining exact worker identities. No model,data or training updates were used; eight-device training remains unverified and capacity remains six. [Full receipts and retained failures](multinode_nccl_recovery02.json), [exact executed probe source](transport_probe_recovery02.py.txt), [admission design and limits](multinode_topology_readiness_recovery02.json). Default workers exited124/1 with no survivors; an intermediate nonblocking-lock attempt allocated no GPU; the Ethernet-pinned attempt exited0/0. Successful collectives took about20.6seconds including initial connection, so this is not a throughput measurement. Original budgets, model states and scientific configuration were untouched.
+
+
+10-16-2026 12:56 UTC: deterministic native continuation verified 10,800/17,280 primary cells. Completed native jobs: 44. Zero paid experimental calls; test split unopened.
