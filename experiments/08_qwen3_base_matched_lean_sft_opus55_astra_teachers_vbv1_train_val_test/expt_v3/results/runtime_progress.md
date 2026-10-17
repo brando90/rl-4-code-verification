@@ -323,3 +323,7 @@ Expansion14B has two verified optimizer updates, 21,133 loss tokens, matching th
 10-16-2026 15:00 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
 
 Native handoff preparation is checked against67current source/input hashes and the1,368-pass suite. The current owner still holds mutations until the final host release record is written after this publication. [Concrete preparation](native_handoff_preparation_recovery02.json).
+
+## 10-17-2026 13:07 PDT — expansion 14B still on the half-budget segment
+
+The original repaired process is alive and has completed 139 of 335 optimizer steps toward the half checkpoint. Mean completed-step time is 759.5 seconds; the last 10 steps average 769.8 seconds. Step 140 was in progress at the log read. No checkpoint exists before step 335, so this job was left running. Replay 14B is not dispatched. Known validation cells remain 12,960/17,280.

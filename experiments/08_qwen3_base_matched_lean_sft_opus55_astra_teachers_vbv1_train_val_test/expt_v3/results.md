@@ -2,9 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/results.md>
 
-**TLDR:** Phase A: DONE; Phase B: RUNNING. 12,960/17,280 validation cells known. [Execution events and verified training progress](results/runtime_progress.md).
+**TLDR:** Phase A: DONE; Phase B: RUNNING. 12,960/17,280 validation cells known. Expansion 14B is at optimizer step 139 of 335 on the half-budget segment. [Execution events and verified training progress](results/runtime_progress.md).
 
-**Status:** RUNNING. **Last updated:** 10-16-2026 08:00 PDT.
+**Status:** RUNNING. **Last updated:** 10-17-2026 13:07 PDT.
 
 Known validation cells: **12960/17,280**; 12960 belong to complete rungs. [Every missing/failed cell](results/coverage) remains in the declared denominator; no paid model calls.
 
@@ -59,4 +59,6 @@ Execution update (10-16-2026 07:47 PDT): [Expansion 14B model initialized; 1 upd
 
 Execution constraint (10-16-2026 08:00 PDT): **12,960/17,280 primary cells remain checked;4,320are missing.** Expansion14B has2token-matched updates. Its measured transport rate projects about283h remaining training against61.4h before the fixed deadline. Healthy training is preserved, with native completion checks prepared for explicit handoff. [Measurements, limitations and finite continuation](results/E14_two_step_operational_projection_recovery02.json).
 
-**TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is 12960/17,280; incomplete comparisons remain unresolved.
+Execution check (10-17-2026 13:07 PDT): the same expansion-14B process is still the live job (`segment_to_step_335.log`, process started 10-16-2026 07:11 PDT). It has completed **139/335** optimizer steps on the half-budget segment, and step 140 was in progress. Over those 139 completed steps the mean step time is 759.5 seconds (minimum 479.67, maximum 1,342.85); the last 10 average 769.8 seconds. At that last-10 rate the remaining 196 steps to the half checkpoint are about 41.9 hours, and the following 332 steps to the full checkpoint are about 71 hours. Recent steps report about 1.6–2.1 TFLOPS and 0.01% model floating-point utilization, so the step time is communication, not a stalled GPU. No second 14B job was started. Validation remains 12,960/17,280. Replay 14B has not started. This rate is an operational projection from the observed steps, p-val=n/a, and it does not change the frozen forecast.
+
+**TLDR-end:** [rl4cv: matched replay versus expansion] 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3 validation coverage is 12960/17,280; expansion 14B is at step 139/335.
