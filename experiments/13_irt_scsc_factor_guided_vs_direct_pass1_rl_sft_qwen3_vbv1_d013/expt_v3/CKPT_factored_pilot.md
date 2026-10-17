@@ -18,8 +18,8 @@ Last updated: 10-16-2026 19:15 PDT
 - Nothing at technical gate. Inherited validated coverage-judge dependency needs reconciliation before zero-cost new SCSC evaluation.
 ## Next steps
 - [p 10/10] Inspect `tail -30 /lfs/skampere1/0/brando9/rl4cv_e13v3/technical_controller.log` and `technical_followthrough.log`; do not launch another update. The original controller's final gradient-list reporting mismatch is corrected in the waiting follow-through; all successful expensive stages must exist before it acts.
-- [p 9/10] Source `b2ac757` is pushed. Queued pilot/progress/publisher sessions are live: PIDs 524882/524898/524909; inspect `pilot_dispatch.log`, `progress.log`, `terminal_publication.log` under the v3 work root. They require actual gate receipts and retain failures.
-- [p 9/10] Resolve inherited coverage/mutation requirements for a local-only pilot, complete paired B/A/P seeds, and publish without fabricated SCSC.
+- [p 9/10] Source `b2ac757` is pushed. Queued pilot/progress/publisher sessions are live: PIDs 524882/524898/622533; inspect `pilot_dispatch.log`, `progress.log`, `terminal_publication_v2.log` under the v3 work root. They require actual gate receipts and retain failures.
+- [p 9/10] Complete the queued paired pilots under the explicit local-only scope in PILOT_EXECUTION.md. Report official SCSC values determined by local factors and bounds for unresolved coverage; never substitute the training proxy.
 ## Brando to-do
 - None.
 ## Log
@@ -31,3 +31,4 @@ Last updated: 10-16-2026 19:15 PDT
 - 10-16-2026 19:15 PDT — Pushed paired-run implementation b2ac757; verified all three queued controllers and their watched process identity. Google Assistant-updates companion read back exactly; original notes and permissions preserved.
 - 10-16-2026 19:18 PDT — Cost accounting retains timed-out scientific outcomes while requiring all eight opportunities and verified cleanup; included validation raw storage. All 73 focused tests pass. No pilot outcome measured.
 - 10-16-2026 19:21 PDT — Verified terminal publication over unrelated remote commits without changing frozen checkout bytes or another writer’s index; all 75 focused tests pass. Publisher waiter will restart on this tested source before technical admission.
+- 10-16-2026 19:22 PDT — Replaced only the idle publisher waiter after checking its PID/start ticks; current publisher PID 622533. Optimizer, replay follow-through and paired dispatcher remained untouched.
