@@ -38,3 +38,32 @@ def test_capped_episodes_use_the_full_horizon():
     assert np.all(ro["tokens"][ro["capped"]] == np.broadcast_to(horizon, ro["tokens"].shape)[ro["capped"]])
     assert np.all(ro["tokens"] == ro["sa_counts"].sum((2, 3)))
     assert np.array_equal(ro["capped"], ~ro["success"])
+
+
+def test_night3_scale_grid_start_values_increase():
+    import run_mdp_v2 as V  # sets the six-scale grid in run_mdp
+    import run_mdp as R
+    from known_mdp import exact_value
+
+    chain = make_chain()
+    means = []
+    for sc in V.SCALES_V2:
+        vals = []
+        for rep in V.REPS:
+            pol = R.start_policy(sc, chain, seed=rep)
+            with torch.no_grad():
+                vals.append(float(exact_value(R.p_correct(pol, chain), TARGET)))
+        means.append(np.mean(vals))
+    assert all(b - a > 0.04 for a, b in zip(means, means[1:]))
+
+
+def test_noise_free_twin_probe_shares_rollouts():
+    import dataclasses
+
+    chain = make_chain()
+    spec = EnvSpec("late_noisy", (12, 13, 14, 15), 6, 0.5)
+    probs = _policy(chain, np.full(N_STATES, 0.7))
+    a = rollout_groups(probs, chain, spec, 64, 8, np.random.default_rng(3))
+    b = rollout_groups(probs, chain, dataclasses.replace(spec, sigma=0.0), 64, 8, np.random.default_rng(3))
+    assert np.array_equal(a["tokens"], b["tokens"]) and np.array_equal(a["success"], b["success"])
+    assert np.array_equal(b["reward"], b["success"].astype(float)) and not np.array_equal(a["reward"], b["reward"])

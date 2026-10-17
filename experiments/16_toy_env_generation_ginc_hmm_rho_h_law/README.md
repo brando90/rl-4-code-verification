@@ -51,6 +51,8 @@ The completed `16_toy_env_generation_ginc_hmm_rho_h_law/expt_v2` run used four-t
 
 ### Sanity family (`expt_v3`, coded and run 10-15-2026; protocol in [expt_v3/PROTOCOL.md](expt_v3/PROTOCOL.md))
 
+Night 3 (10-16-2026, `run_mdp_v2.py`, six scales, three start-policy repeats, bootstrap intervals): **NO ADVANTAGE**. The law picks the noisy, already-solved b15 at every budget (regret 10.78 pts [9.53, 12.28] vs uniform random 4.42 and best fixed from s1–s5 1.47). The toy part is complete; see [results.md](results.md).
+
 - A known small Markov decision process (MDP): a chain or grid of a few states with Gaussian rewards, where the optimal policy and the value of each training distribution are computable exactly. Knobs: horizon, reward noise, start-state distribution. It checks the ρ–H pipeline in a case where the "right" environment is known analytically.
 
 ## What would change the plan

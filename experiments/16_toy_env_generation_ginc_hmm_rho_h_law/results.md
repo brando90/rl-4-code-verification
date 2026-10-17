@@ -2,7 +2,49 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/ub9/e16-toy-env-generation/experiments/16_toy_env_generation_ginc_hmm_rho_h_law/results.md>
 
-Design: [README.md](README.md). Night 1 measurements are preserved below in `expt_v1/results/`; the Night 2 continuation uses `expt_v2/results/pilot_v3/`.
+Design: [README.md](README.md). Night 1 measurements are preserved below in `expt_v1/results/`; the Night 2 continuation uses `expt_v2/results/pilot_v3/`; the known-MDP runs use `expt_v3/results/mdp_v1/` (Night 2b) and `expt_v3/results/mdp_v2/` (Night 3).
+
+## Night 3: known-MDP with start-policy repeats and six scales (`expt_v3`, mdp_v2) — NO ADVANTAGE; the toy part is complete
+
+**Status:** run complete, 10-16-2026 23:36–23:49 PDT, ultimate_brando9's 4-CPU machine, $0. Protocol addendum and code frozen and pushed (483c006) before any RL row: [expt_v3/PROTOCOL.md](expt_v3/PROTOCOL.md) (Night 3 addendum), [run_mdp_v2.py](expt_v3/run_mdp_v2.py), [analyze_mdp_v2.py](expt_v3/analyze_mdp_v2.py). Full tables: [expt_v3/results/mdp_v2/analysis_mdp_v2.md](expt_v3/results/mdp_v2/analysis_mdp_v2.md).
+
+**Takeaway.** With three start policies per scale and a clean scale axis, the ρ–H law picks the worst kind of environment every time: an already-solved region with noisy rewards (b15), because Eq. 7 always prefers the highest ρ and H and reward noise inflates ρ. Its allocation regret is 10.8 pts, worse than picking at random (4.4) and far worse than "the best environment on the small models" (1.5). Night 2b's CHOICE ONLY does not replicate. Removing the noise from ρ fixes that one pick but not the law: a law fit on noise-free ρ and H still does no better than random (4.8 vs 4.4). In this toy, ρ and H measure how learnable an environment is, not how much it helps the target.
+
+Same chain, 22 candidates, 3 budgets (25.6k / 51.2k / 102.4k tokens), 5 seeds, GRPO, KL 1.0 and exact-gradient oracle as Night 2b. New: six scales s1–s6 (38 / 72 / 140 / 276 / 548 / 5,252 parameters; smaller models get fewer behavior-cloning steps), three start-policy repeats each, 15 runs per cell, 5,940 RL rows. The law is fit on s1–s5 and read at s6.
+
+| check (PROTOCOL.md) | result |
+|---|---|
+| Start target value rises with scale (mean of 3 repeats) | 0.181, 0.241, 0.305, 0.378, 0.436, 0.509 (n2/n3 tie fixed) |
+| Gate: ≥3 candidates positive at s6, 102.4k tokens | **pass: 20 of 22** (378 of 396 cells positive; mean candidate +3.68 pts) |
+| Separation: \|corr(log ρ, H)\| < 0.85 | pass, barely: 0.819 over 396 probes (0.800 with noise-free probes) |
+| T1: Eq. 7 beats budget+scale only at s6 | formally: RMSE 3.26 vs 3.59 pts, rank accuracy 0.515 vs 0.500 |
+| T2: law regret below random and every baseline | **fails: worse than random** |
+
+| choice rule at s6 (mean over 3 budgets) | regret (pts) | 95% interval | law minus rule, 95% interval |
+|---|---|---|---|
+| ρ–H law (picks b15_r3_sl6_sg0.5 at every budget) | 10.78 | [9.53, 12.28] | – |
+| ρ only (same pick) | 10.78 | [9.53, 12.28] | [+0.00, +0.00] |
+| highest start success (same pick) | 10.78 | [9.02, 12.28] | [+0.00, +1.58] |
+| H only | 4.77 | [3.84, 6.21] | [+3.57, +8.39] |
+| uniform random | 4.42 | [4.21, 4.93] | [+4.96, +7.78] |
+| highest mixed-group share | 4.20 | [3.98, 4.67] | [+5.20, +7.93] |
+| exact-gradient oracle's ranking | 3.37 | [3.00, 3.98] | [+5.86, +8.70] |
+| best fixed from s1–s5 (b12_r3_sl0_sg0.0) | **1.47** | [0.18, 2.93] | [+8.68, +9.92] |
+
+Intervals: 2,000 bootstrap resamples of start-policy repeats (per scale) and seeds (per repeat), law and best-fixed label refit each time. The law has higher regret than every other rule in 100% of resamples. Bootstrap intervals on a max-minus-pick quantity lean high (resampling adds noise to the max), so the best-fixed interval sits partly above its point value.
+
+At s6, 102.4k tokens: the law's pick b15 gains −3.75 pts (repeat means −1.28 / −4.04 / −5.92); the observed best is b08_r2_sl0_sg0.0 at +8.20 (SD over 15 runs 1.19); law predictions span only +4.5 to +6.3 pts while observed gains span −3.75 to +8.20. Spearman at s6: law vs observed −0.02, law vs oracle 0.19, observed vs oracle 0.66.
+
+**Noise diagnostic (law unchanged).** b15's ρ is 106,797 with noisy rewards and 4,374 on the same rollouts without noise (24×). Plugging the noise-free ρ into the same fitted law lowers b15's prediction from +6.32 to +5.04 pts against an observed −3.75, so the noise accounts for about 1.3 of the 10.1-pt miss. Over the 11 noisy candidates, the mean absolute prediction error goes from 2.71 to 2.50 pts. A law refit on noise-free ρ and H (diagnostic only) picks b06_r1_sl6_sg0.0 with regret 4.77 pts, still no better than random.
+
+### What the numbers say
+
+1. **The failure is robust.** Each start-policy repeat analyzed alone gives the same pick (b15) and law regret of 9.6, 11.1 and 12.3 pts, against 0.1, 2.1 and 3.3 for the best fixed environment. The law also picks b15 in-sample at every training scale, where b15's gain falls from +1.2 (s1) to −0.9 pts (s5).
+2. **Why.** Eq. 7's environment term rises with both log ρ and H (fitted b_ρ = +0.012, b_H = +0.006, no interaction with scale or budget), so it ranks environments the same way at every scale and budget. Nothing in ρ or H says whether training on a region transfers to the target, which is what separates b08/b12 (hard regions, good transfer) from b14/b15 (a region the policy has already solved).
+3. **Night 2b's CHOICE ONLY was luck of one start policy per scale.** With repeats and a clean scale axis the same family gives NO ADVANTAGE: the law's regret interval [9.53, 12.28] is nowhere near Night 2b's 0.98 (a different top scale, so not the same cell, but the same family and law).
+4. **Is the toy part complete? Yes.** Both toy families now give a clear answer with $0 compute: GINC (Night 2) ties the baselines; the known MDP (Night 3) loses to random, with intervals. The law as written doesn't pick training environments for a new target in these toys. Testing a changed law (for example, a target-relevance term next to ρ and H) would be a new experiment with its own protocol; it is not filed as Night 4.
+
+**TLDR:** with 3 start policies per scale, 6 scales and bootstrap intervals, the ρ–H law loses to random in the known MDP (regret 10.8 vs 4.4 pts) because it always picks the noisy, already-solved environment; noise-free ρ doesn't rescue it (4.8). Toy part complete.
 
 ## Night 2: 16_toy_env_generation_ginc_hmm_rho_h_law — TIE WITH BASELINES
 

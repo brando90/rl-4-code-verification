@@ -30,7 +30,7 @@ Night 1 (GINC HMM) was in a forgetting regime; Night 2 (`expt_v2`, Codex on skam
 
 ## Night 3 addendum (mdp_v2), frozen before any Night 3 RL row
 
-Written 10-16-2026 23:50 PDT by ultimate_brando9, before `results/mdp_v2/rl_*.jsonl` existed. Only start policies (`results/mdp_v2/start_*.json`) were looked at. Code: `run_mdp_v2.py` (imports `run_mdp.py` unchanged), `analyze_mdp_v2.py`.
+Written 10-16-2026 23:35 PDT by ultimate_brando9 (committed 23:36:26 in 483c006, before the RL jobs started), before `results/mdp_v2/rl_*.jsonl` existed. Only start policies (`results/mdp_v2/start_*.json`) were looked at. Code: `run_mdp_v2.py` (imports `run_mdp.py` unchanged), `analyze_mdp_v2.py`.
 
 **Why.** Night 2b gave CHOICE ONLY from one start policy per scale, with no interval on regret, and n2/n3 start values tied (0.437 / 0.444), so the scale axis was weak. The noisy candidate b15 had rho 110,943 (36x its noise-free twin) and the law predicted +7.46 where -2.73 was observed.
 
