@@ -4,7 +4,7 @@ import sys
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'phase2'))
-from resource_plan import project
+from resource_plan import project, validate_probe
 
 
 def test_full_paired_and_extension_projection():
@@ -25,3 +25,12 @@ def test_ceiling_does_not_increase_to_fit_a_slow_measurement():
 @pytest.mark.parametrize('missing', [None, float('nan'), float('inf'), 0, -1, True])
 def test_missing_or_invalid_cost_is_not_zero(missing):
     with pytest.raises(ValueError): project(missing, .5, .01, 40e9, 9e9, 100e6)
+
+
+def test_timed_out_outcome_retains_its_measured_cost():
+    probe = {'status': 'COST_PROBE_MEASURED', 'declared': 8, 'measured': 7}
+    scores = {'declared': 8, 'accounted': 8, 'cleanup_unresolved': 0}
+    validate_probe(probe, scores)
+    assert probe['measured'] == 7
+    with pytest.raises(ValueError): validate_probe(probe, {**scores, 'cleanup_unresolved': 1})
+    with pytest.raises(ValueError): validate_probe(probe, {**scores, 'accounted': 7})

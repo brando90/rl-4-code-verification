@@ -39,14 +39,21 @@ def size(root):
     return sum(p.stat().st_size for p in root.rglob('*') if p.is_file() and not p.is_symlink())
 
 
+def validate_probe(probe, scores):
+    if (probe['status'] != 'COST_PROBE_MEASURED' or probe['declared'] != 8
+            or scores['declared'] != 8 or scores['accounted'] != 8 or scores['cleanup_unresolved'] != 0):
+        raise ValueError('all eight cost-probe opportunities and clean resource release required')
+    # A measured timeout still has a real resource cost. It does not become a
+    # correctness zero, and it does not erase the time spent on that opportunity.
+
+
 def prepare():
     t4 = ROOT / 'phase2/technical/T4/attempt_1'
     for directory in (T2, T3):
         if json.loads((directory / 'result.json').read_text())['status'] != 'PASS':
             raise ValueError('preceding technical gate did not pass')
     probe = json.loads((t4 / 'result.json').read_text())
-    if probe['status'] != 'COST_PROBE_MEASURED' or probe['declared'] != 8 or probe['measured'] != 8:
-        raise ValueError('complete eight-cell cost probe required')
+    validate_probe(probe, json.loads((t4 / 'evaluation_score/result.json').read_text()))
     update = json.loads((T2 / 'update/execution.json').read_text())
     generated = json.loads((SOURCE / 'costs/generate_update.json').read_text())
     plan = project(update['device_hours'], generated['device_hours'], probe['generation_cost']['device_hours'],
@@ -55,6 +62,9 @@ def prepare():
                    size(SOURCE / 'generate_update/output') + size(SOURCE / 'score/cells')
                    + (T2 / 'update/output/batch.pt').stat().st_size)
     plan['measured_lean_cpu_hours_per_256'] = json.loads((SOURCE / 'costs/score.json').read_text())['accounted_cpu_hours']
+    evaluation_bytes = size(t4 / 'evaluation_generate/output') + size(t4 / 'evaluation_score')
+    plan['projected_validation_raw_storage_bytes'] = math.ceil(1.25 * evaluation_bytes * plan['maximum_validation_cells'] / 8)
+    plan['projected_storage_bytes'] += plan['projected_validation_raw_storage_bytes']
     plan['projected_scoring_cpu_hours'] = 1.25 * (
         240 * plan['measured_lean_cpu_hours_per_256']
         + plan['maximum_validation_cells'] / 8 * probe['scoring_cost']['accounted_cpu_hours'])
