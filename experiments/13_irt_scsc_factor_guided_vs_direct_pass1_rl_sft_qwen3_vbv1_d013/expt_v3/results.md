@@ -5,7 +5,7 @@
 **TLDR:** The retained 256-rollout factored batch is verified and its one-step optimizer update is running. No learning or validation outcome is measured yet.
 
 **Status:** TECHNICAL_GATES_RUNNING
-**Last updated:** 10-16-2026 19:10 PDT
+**Last updated:** 10-16-2026 19:15 PDT
 
 The exact retained 256-rollout train cohort has been assembled in v3. Its 255 measured scores reproduce 21 positive factored rewards, 14/31 active complete groups and 112/248 nonzero-advantage slots. The incomplete eight-response group remains masked. These are fixed-cohort diagnostics, not evidence of learning or held-out performance (p-val=n/a).
 
@@ -38,6 +38,8 @@ The [strict-input identity certificate](results/strict_input_identity.json) veri
 [Pre-update state identity](results/pre_update_state_identity.json): parameter and optimizer digests match exactly, as do Python, NumPy and CUDA random states. Torch CPU random state advances during the additional probability-recomputation pass. This is disclosed rather than claiming identical random state across reward conditions; every saved loss-input tensor except advantages remains bitwise identical. T3 uses v3’s own exact saved state.
 
 The paired runner and validation adapter are implemented and pass 72 focused tests. The full repository suite passes again: 1,382 tests, 3 skips and 6 subtests in 488.23 seconds ([receipt](results/pilot_publication_tests.json)). They have not performed any pilot update or held-out generation. All 1,080 validation prompt records prepared successfully without a model call. The inherited full main-study allocation is outside this pilot dispatch; the prospective local pilot cost plan is documented in [PILOT_EXECUTION.md](PILOT_EXECUTION.md).
+
+[Google findings companion](https://docs.google.com/document/d/1xkEn8vW800jBucuJANuXD8ph-sMQMofwNZw_nJzjJls/edit?tab=t.sglsb683kh5u): the dated 19:14 PDT evidence update was read back exactly, with previous notes and existing permissions preserved. [Verified background controllers](results/background_controllers.json) record the queued pilot, progress writer and terminal publication watcher; the dispatcher is waiting on the live technical follow-through and has not admitted pilot generation. Source implementation is pushed at `b2ac757`.
 
 <!-- LIVE START -->
 Live receipt status (10-16-2026 19:03 PDT): **TECHNICAL_GATES_RUNNING**. API spend: **$0**.

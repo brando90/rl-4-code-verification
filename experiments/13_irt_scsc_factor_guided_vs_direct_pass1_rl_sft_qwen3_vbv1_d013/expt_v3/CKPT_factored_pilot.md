@@ -5,7 +5,7 @@
 **TLDR:** TECHNICAL_GATES_RUNNING; exact receipts and completed update counts are in results.md. No official SCSC result without validated coverage.
 
 Created: 10-16-2026 18:21 PDT
-Last updated: 10-16-2026 19:03 PDT
+Last updated: 10-16-2026 19:15 PDT
 
 ## Goal
 - Complete `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3` at $0 provider spend.
@@ -18,7 +18,7 @@ Last updated: 10-16-2026 19:03 PDT
 - Nothing at technical gate. Inherited validated coverage-judge dependency needs reconciliation before zero-cost new SCSC evaluation.
 ## Next steps
 - [p 10/10] Inspect `tail -30 /lfs/skampere1/0/brando9/rl4cv_e13v3/technical_controller.log` and `technical_followthrough.log`; do not launch another update. The original controller's final gradient-list reporting mismatch is corrected in the waiting follow-through; all successful expensive stages must exist before it acts.
-- [p 9/10] Publish full-suite success and live progress; then measured T2/T3/T4 results. Full source at launch is retained under `results/launch_source/` where later reporting-only repairs changed files.
+- [p 9/10] Source `b2ac757` is pushed. Queued pilot/progress/publisher sessions are live: PIDs 524882/524898/524909; inspect `pilot_dispatch.log`, `progress.log`, `terminal_publication.log` under the v3 work root. They require actual gate receipts and retain failures.
 - [p 9/10] Resolve inherited coverage/mutation requirements for a local-only pilot, complete paired B/A/P seeds, and publish without fabricated SCSC.
 ## Brando to-do
 - None.
@@ -28,3 +28,4 @@ Last updated: 10-16-2026 19:03 PDT
 - 10-16-2026 18:41 PDT — Full tests pass; exact tensor batches match in every field except advantages, including bitwise identical trainer probabilities. Publishing technical launch and evidence.
 - 10-16-2026 19:03 PDT — Receipt event: TECHNICAL_GATES_RUNNING; completed updates B/1301=0, A/1301=0, P/1301=0, B/1302=0, A/1302=0, P/1302=0.
 - 10-16-2026 19:13 PDT — Implemented six paired trajectories, validation and bounded publication; 72 focused tests and full suite pass. Validation preparation rendered all 1,080 prompts with zero model calls. Disclosed pre-update CPU RNG difference; weights, optimizer and all loss inputs except advantages match strict.
+- 10-16-2026 19:15 PDT — Pushed paired-run implementation b2ac757; verified all three queued controllers and their watched process identity. Google Assistant-updates companion read back exactly; original notes and permissions preserved.
