@@ -27,3 +27,21 @@ Night 1 (GINC HMM) was in a forgetting regime; Night 2 (`expt_v2`, Codex on skam
 - **T2:** at n4 the law's allocation regret is below uniform random and below each of: best fixed candidate from n1–n3, highest start success, highest mixed-group share.
 - **Verdict:** SUCCESS if T1 and T2 hold against every baseline; CHOICE ONLY if T2 beats random but not every baseline; NO ADVANTAGE otherwise. NOT YET MEANINGFUL if the gate fails.
 - **Sanity readouts (descriptive):** Spearman of law prediction and of observed utility against the exact-gradient oracle at n4; whether the high-rho noisy candidates (sigma 0.5) fool the law; five-seed SD of the picked candidate.
+
+## Night 3 addendum (mdp_v2), frozen before any Night 3 RL row
+
+Written 10-16-2026 23:50 PDT by ultimate_brando9, before `results/mdp_v2/rl_*.jsonl` existed. Only start policies (`results/mdp_v2/start_*.json`) were looked at. Code: `run_mdp_v2.py` (imports `run_mdp.py` unchanged), `analyze_mdp_v2.py`.
+
+**Why.** Night 2b gave CHOICE ONLY from one start policy per scale, with no interval on regret, and n2/n3 start values tied (0.437 / 0.444), so the scale axis was weak. The noisy candidate b15 had rho 110,943 (36x its noise-free twin) and the law predicted +7.46 where -2.73 was observed.
+
+**What changes (everything else as above: chain, 22 candidates, 3 budgets, 5 seeds, GRPO, KL 1.0, oracle).**
+- Six scales, smaller models get fewer behavior-cloning steps so the start target value rises clearly: s1 (2 wide, 1 layer, 30 steps, 38 params), s2 (4, 1, 60, 72), s3 (8, 1, 60, 140), s4 (16, 1, 60, 276), s5 (32, 1, 80, 548), s6 (64, 2, 100, 5,252). Mean start target value over 3 repeats: 0.182, 0.241, 0.305, 0.378, 0.436, 0.509. The held-out scale is s6; the law is fit on s1-s5.
+- Three start-policy repeats per scale (behavior-cloning seed 0/1/2), each with its own probes and its own five RL seeds (15 runs per cell).
+- An observation (scale, candidate, budget) is the mean utility over the 15 runs; its rho is the geometric mean and its H the mean over the three repeats' probes. Utility is measured against each repeat's own start value.
+- Each probe is also measured on the candidate's noise-free twin (same start states and rollouts, sigma 0). This is a diagnostic only: the law, gate, T1 and T2 use the standard probe.
+
+**Tests.** Gate, separation (over all 396 probes), T1, T2 and the verdict rule are unchanged, read at s6.
+
+**Intervals.** Allocation regret at s6 for the law and every baseline (rho-only, H-only, uniform random, best fixed from s1-s5, highest start success, highest mixed-group share, exact-gradient oracle) gets a 95% percentile bootstrap interval, 2,000 resamples. A resample draws, independently per scale, 3 of the 3 repeats with replacement and, for each drawn repeat, 5 of the 5 seeds with replacement (the same draw for every candidate and budget, so choices stay paired); probes follow their repeats; the law and the best-fixed label are refit on each resample. Also reported: the interval of the paired difference law minus each baseline, and the share of resamples where the law has lower regret. The point estimates and the verdict come from the full data, not the bootstrap.
+
+**Noise diagnostic.** For every s6 candidate: standard rho next to noise-free rho, and the law's prediction with each (same fitted law). Reported: mean absolute prediction error on the noisy (sigma 0.5) candidates with standard vs noise-free rho, b15 in particular, and, separately labelled as diagnostic, the regret of a law fit on noise-free features.
