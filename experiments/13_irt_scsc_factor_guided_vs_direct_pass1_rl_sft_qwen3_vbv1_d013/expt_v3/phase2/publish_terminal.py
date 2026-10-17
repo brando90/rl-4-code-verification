@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import re
 import subprocess
+import tempfile
 import time
 
 from technical import ROOT, V3
@@ -14,6 +15,28 @@ from cohort import digest
 from pilot_dispatch import alive
 from progress import refresh
 from training_checkpoint import write_new
+
+
+def publication_tree(repo, relative, paths, *, base='origin/main', temporary_root=None):
+    """Overlay owned result files on the latest remote tree without touching the normal index or checkout."""
+    base_sha = subprocess.check_output(['git', 'rev-parse', base], cwd=repo, text=True).strip()
+    if subprocess.check_output(['git', 'diff', '--name-only', 'HEAD', base_sha, '--', *paths], cwd=repo, text=True):
+        raise RuntimeError('remote changed owned result paths; reconcile before publication')
+    with tempfile.TemporaryDirectory(dir=temporary_root) as temporary:
+        env = {**os.environ, 'GIT_INDEX_FILE': str(Path(temporary) / 'index')}
+        def output(*args):
+            return subprocess.check_output(['git', *args], cwd=repo, env=env, text=True)
+        output('read-tree', base_sha)
+        output('add', '--', *paths)
+        filenames = output('diff', '--cached', '--name-only', base_sha).splitlines()
+        if not filenames or any(not name.startswith(relative + '/') for name in filenames):
+            raise RuntimeError('terminal publication path inventory is not exclusively v3')
+        diff = output('diff', '--cached', '--no-ext-diff', base_sha)
+        if re.search(r'(?:sk-(?:proj-)?[A-Za-z0-9_-]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|AKIA[A-Z0-9]{16})', diff):
+            raise RuntimeError('potential credential pattern in staged content; publication stopped')
+        output('diff', '--cached', '--check', base_sha)
+        tree = output('write-tree').strip()
+    return tree, base_sha, filenames
 
 
 def publish(pid, start_ticks):
@@ -49,22 +72,10 @@ def publish(pid, start_ticks):
     paths = [relative + '/results', relative + '/results.md', relative + '/CKPT_factored_pilot.md']
     if (V3 / 'RESULTS_T2_v3.md').exists(): paths.append(relative + '/RESULTS_T2_v3.md')
     subprocess.run(['git', 'fetch', 'origin', 'main'], cwd=repo, check=True)
-    subprocess.run(['git', 'merge-base', '--is-ancestor', 'origin/main', 'HEAD'], cwd=repo, check=True)
-    if subprocess.check_output(['git', 'diff', '--cached', '--name-only'], cwd=repo, text=True):
-        raise RuntimeError('another writer has staged files; do not change its index')
-    subprocess.run(['git', 'add', '--', *paths], cwd=repo, check=True)
-    filenames = subprocess.check_output(['git', 'diff', '--cached', '--name-only'], cwd=repo, text=True).splitlines()
-    if not filenames or any(not name.startswith(relative + '/') for name in filenames):
-        raise RuntimeError('terminal publication path inventory is not exclusively v3')
-    diff = subprocess.check_output(['git', 'diff', '--cached', '--no-ext-diff'], cwd=repo, text=True)
-    # Do not print a suspected credential. Public score receipts contain metrics,
-    # identifiers and hashes, never generated source text or provider credentials.
-    if re.search(r'(?:sk-(?:proj-)?[A-Za-z0-9_-]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|AKIA[A-Z0-9]{16})', diff):
-        raise RuntimeError('potential credential pattern in exact staged content; publication stopped')
-    subprocess.run(['git', 'diff', '--cached', '--check'], cwd=repo, check=True)
-    subprocess.run(['git', 'commit', '-m', 'Record Experiment 13 v3 terminal local pilot evidence'], cwd=repo, check=True)
-    subprocess.run(['git', 'push', 'origin', 'HEAD:main'], cwd=repo, check=True)
-    commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=repo, text=True).strip()
+    tree, base, filenames = publication_tree(repo, relative, paths, temporary_root=ROOT / 'tmp')
+    commit = subprocess.check_output(['git', 'commit-tree', tree, '-p', base, '-m',
+        'Record Experiment 13 v3 terminal local pilot evidence'], cwd=repo, text=True).strip()
+    subprocess.run(['git', 'push', 'origin', commit + ':main'], cwd=repo, check=True)
     write_new(ROOT / 'terminal_publication.json', {'status': 'PUSHED', 'commit': commit, 'files': filenames,
               'api_spend_usd': 0, 'scientific_completion': json.loads((V3 / 'results/live_progress.json').read_text())['status']})
 
