@@ -52,6 +52,12 @@ def run(config):
         from evaluation_generation import generate
         manifest = json.loads(Path(config['manifest']).read_text())
         return generate(config, manifest, list(range(8)), root=config['stage_root'])
+    if stage == 'pilot_evaluation':
+        from pilot_evaluation import install as install_pilot_evaluation
+        install_pilot_evaluation()
+        from evaluation_generation import generate
+        manifest = json.loads(Path(config['manifest']).read_text())
+        return generate(config, manifest, config['indexes'], root=config['stage_root'])
     raise ValueError('unknown stage')
 
 

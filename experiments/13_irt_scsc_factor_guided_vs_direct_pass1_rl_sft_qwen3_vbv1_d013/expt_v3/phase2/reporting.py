@@ -37,7 +37,7 @@ def publish_t2():
 
 **Doc link:** <{prefix}RESULTS_T2_v3.md>
 
-**TLDR:** T2_v3 {result['status']}: gradient norm {result['grad_norm']:.10g}, parameter change {result['parameter_change']}, and refit median absolute log-probability error {refit['median_absolute_logprob_error']:.10g}. The comparison uses the exact same 256 train rollouts and the original saved pre-update weights, optimizer, scheduler and random state; only the reward changes.
+**TLDR:** T2_v3 {result['status']}: gradient norm {result['grad_norm']:.10g}, parameter change {result['parameter_change']}, and refit median absolute log-probability error {refit['median_absolute_logprob_error']:.10g}. The comparison uses the exact same 256 train rollouts and identical pre-update weights, optimizer and scheduler; only advantages differ in the saved loss-input tensors. The CPU random-state difference is disclosed below.
 
 **Measured:** {now}. **Provider spend:** $0; local offline NeMo and vLLM only.
 
@@ -61,6 +61,8 @@ The v3 criterion is the frozen protocol's positive gradient, changed full parame
 Before hash: `{update['before_parameters'][0]['sha256']}`.
 After hash: `{update['after_parameters'][0]['sha256']}`.
 The saved scoring receipt remains `{SCORE_SHA256}`. [Group table and all original generation hashes](results/retained_cohort.json), [gate result](results/T2_v3.json), [update summary](results/T2_v3_update_summary.json), and [permanent strict result](../expt_v2/RESULTS_T2_S2.md) provide the reproducible comparison. Raw checkpoints and the exact replay batch stay at `{T2}`.
+
+[Tensor identity](results/actual_batch_identity.json) verifies that every actual loss-input tensor except advantages is bitwise equal to the strict-run input, including recomputed trainer probabilities (maximum difference 0). [Pre-update state comparison](results/pre_update_state_identity.json) verifies identical parameter/optimizer digests and Python, NumPy and CUDA random states. Torch's CPU random state differs after the additional probability-recomputation pass; the comparison does not claim byte-identical CPU random state across the two reward conditions. T3 restores v3's own exact saved pre-update random state, as required for deterministic replay. The original state was restored before recomputation; no update is repeated to remove this disclosed difference.
 
 These are fixed-cohort technical measurements, with no population efficacy claim or stochastic repeat estimate (p-val=n/a for numerical/hash gates). The active-group difference is the previously recorded 14/31 = 45.16 percentage points, with a group-bootstrap 95% interval [29.03, 61.29] percentage points and two-sided exact McNemar p=0.0001220703125 on 14 versus 0 discordant groups. That interval describes resampling these 31 train groups; it does not quantify seed-to-seed learning uncertainty.
 
