@@ -6,7 +6,7 @@
 
 Existing execution route (Brando, 09-30-2026): experiments run on the Stanford Network Analysis Project (SNAP) cluster, with Emily (@emxia18) assigned to the earlier runs. The shared launcher remains [`scripts/cc_prompt_run_experiment_on_snap.md`](../scripts/cc_prompt_run_experiment_on_snap.md); prior gates remain in [PLAN §6](../docs/PLAN.md#6-experiments-and-gates).
 
-Sherlock preparation (10-18-2026): [08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v4](08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v4/README.md) adds two full 1.7B training replications under a separately labelled Transformers runtime; 0/2 training runs completed. Existing SNAP recovery ownership is preserved.
+Sherlock training (10-18-2026): [08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v4](08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v4/README.md) adds two full 1.7B training replications under a separately labelled Transformers runtime; seed 0 has verified H100 optimizer progress, seed 1 is queued, and 0/2 runs have completed. Existing SNAP recovery ownership is preserved.
 
 Meeting records (transcripts, summaries, action items and plans written from them) are indexed in [meetings/README.md](meetings/README.md); the 10-13-2026 meeting set the warm-start ownership in decision D-017.
 
