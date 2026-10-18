@@ -2,7 +2,7 @@
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/CKPT_e08_v3.md>
 **TLDR:** All Phase A training/generation verified; Phase A complete, all eight rungs and diagnostics checked; replay 4B half and expansion 4B full pass gates and all remaining cells still required.
 Created: 10-15-2026 20:22 PDT
-Last updated: 10-16-2026 08:00 PDT
+Last updated: 10-18-2026 10:30 PDT
 ## Goal
 - Complete all 17,280 validation cells, paired bootstrap, namespace diagnostic, forecast assessment, publication and actual DONE notification; zero paid experimental model calls; test split unopened.
 ## Current execution
@@ -11,10 +11,10 @@ Last updated: 10-16-2026 08:00 PDT
 - E/R 1.7B and 4B training and eight exports verified: 23,021,424 additional loss tokens, 41,508,194 processed real tokens. [Receipt](results/phase_a_training_verification.json). Both retained post-export exit 2 incidents were reconciled without replay.
 - Eight complete Phase A generated rungs = 8,640 exact cells. All generation children exited 0; all eight Phase A rungs scored/analyzed (8,640/17,280 cells). Replay 4B half and expansion 4B full pass gates; eight namespace diagnostics have zero score delta.
 - Primary scoring and namespace diagnostics use eight workers per rung, at most six combined jobs (48 active compilation slots), frozen 600s timeout; expired orphan children cleaned separately by exact pidfd guard. Phase A generation finished; Phase B uses immutable remote shell snapshots.
-- Expansion14B has2verified updates/21,133loss tokens; healthy exact8GPU training continues. Measured1Gb/s transport projects remaining training beyond the original deadline; faster eligible capacity is absent. [Evidence](results/E14_two_step_operational_projection_recovery02.json).
+- Expansion 14B died at step 183/335 on 10-17-2026 22:03 PDT (CUDA out of memory). No step_335 checkpoint. Brando extended the wall-clock deadline to 11-01-2026 21:21 PDT. Waiter `rl4cv-e08-v3-e14-resume` relaunches the frozen eight-device layout when those devices are free, from the step-658 weights. [Evidence](results/E14_two_step_operational_projection_recovery02.json).
 - Latest full suite: 1,368 passed / 17 skipped / 6 subtests / 312.27s; 54 focused finalization and continuation checks pass. Original deadline and attempt limits unchanged.
 ## Waits and recovery
-- Host recovery and native continuation crons every five minutes/reboot; native route installed UNARMED. Orphan cleanup every minute; capacity probe every 15min. Recovery-02 is preparing an explicit native continuation release for the measured capacity blocker; actual host owner_handoff.json is authoritative. Original deadline 10-18-2026 21:21 PDT and six-recovery/two-Vals limits unchanged; actual fallback exclusions updated.
+- Host recovery and native continuation crons every five minutes/reboot. Orphan cleanup every minute; capacity probe every 15min. Wall-clock recovery deadline is 11-01-2026 21:21 PDT (extended 10-18-2026). Six-recovery/two-Vals limits and scientific caps unchanged. The automatic Codex route remains exhausted at 2/2; this Cursor session is the resume owner.
 - Slurm association was already requested 10-14; do not duplicate. Inventory and real release events are in host recovery_config.json. No paid cloud or smaller 14B training layout.
 ## Next steps
 - [p 10/10] Preserve live Phase B controllers and admit exact 8B/14B layouts when devices become available; finish every remaining declared cell, their diagnostics and paired comparisons.
@@ -22,6 +22,7 @@ Last updated: 10-16-2026 08:00 PDT
 ## Brando to-do
 - None. START already sent; checkout and native evidence retained. See [continuation runbook](RUNBOOK_continuation_owner.md).
 ## Log
+- 10-18-2026 10:30 PDT -- Expansion 14B OOM at step 183 reconciled. Deadline extended to 11-01-2026 21:21 PDT. Waiter armed for the frozen eight devices.
 - 10-15-2026 20:22 PDT -- Prepared schedules and forecast; static checks running before lock.
 - 10-15-2026 20:33 PDT -- Static checks passed (1,183 tests, all corpus/tokenizer/weight checks); locked recommended defaults before dry run.
 - 10-15-2026 20:36 PDT -- START mail sent; dry session rl4cv-e08-v3-dry admitted GPU 1 under shared leases; training steps observed.
