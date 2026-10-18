@@ -4,7 +4,7 @@
 
 **TLDR:** The retained 256-rollout factored batch is verified and its one-step optimizer update is running. No learning or validation outcome is measured yet.
 
-**Status:** TECHNICAL_GATES_RUNNING
+**Status:** INCOMPLETE
 **Last updated:** 10-16-2026 19:15 PDT
 
 The exact retained 256-rollout train cohort has been assembled in v3. Its 255 measured scores reproduce 21 positive factored rewards, 14/31 active complete groups and 112/248 nonzero-advantage slots. The incomplete eight-response group remains masked. These are fixed-cohort diagnostics, not evidence of learning or held-out performance (p-val=n/a).
@@ -12,10 +12,10 @@ The exact retained 256-rollout train cohort has been assembled in v3. Its 255 me
 | Stage | Status | Evidence |
 |---|---|---|
 | Retained cohort | DONE | [Every group and original generation hash](results/retained_cohort.json) |
-| T2: one update and eight-response refit | IN PROGRESS | Strict baseline: gradient norm 0; 0/399 changed tensors. Actual NeMo batch confirms 112 nonzero-advantage slots; optimizer/refit unmeasured. |
-| T3: saved-batch replay | PENDING | Requires T2 PASS; maximum loss difference ≤0.001. |
-| T4: eight-cell train evaluation cost | PENDING | Requires T3 PASS. |
-| T5 and paired B/A/P pilot | PENDING | Seeds 1301 and 1302; continuous B reward gate. |
+| T2: one update and eight-response refit | PASS | [Measured result](RESULTS_T2_v3.md) |
+| T3: saved-batch replay | PASS | [Receipt](results/live_progress.json) |
+| T4: eight-cell train evaluation cost | PASS | [Receipt](results/live_progress.json) |
+| T5 and paired B/A/P pilot | INCOMPLETE | See live table below. |
 | Validation pass@1 and SCSC | PENDING | No new held-out outputs or scores. |
 
 All execution is local and offline; API spend is $0. The v2 directory is read-only input. New artifacts live under `/lfs/skampere1/0/brando9/rl4cv_e13v3/`; no v2 receipt is rewritten. The owned repository is its `rl-4-code-verification/` subdirectory, initial revision `de73908cffa501a46f5e628a0701d34dbfd0ac20`.
@@ -42,19 +42,19 @@ The paired runner and validation adapter are implemented and pass 75 focused tes
 [Google findings companion](https://docs.google.com/document/d/1xkEn8vW800jBucuJANuXD8ph-sMQMofwNZw_nJzjJls/edit?tab=t.sglsb683kh5u): the dated 19:14 PDT evidence update was read back exactly, with previous notes and existing permissions preserved. [Verified background controllers](results/background_controllers.json) record the queued pilot, progress writer and terminal publication watcher; the dispatcher is waiting on the live technical follow-through and has not admitted pilot generation. Source implementation is pushed at `9845810`; [the current publisher receipt](results/background_publisher_v2.json) supersedes the original publisher PID.
 
 <!-- LIVE START -->
-Live receipt status (10-16-2026 19:03 PDT): **TECHNICAL_GATES_RUNNING**. API spend: **$0**.
+Live receipt status (10-18-2026 13:10 PDT): **INCOMPLETE**. API spend: **$0**.
 
 | Arm / seed | Completed updates | Latest observed train reward | Active / usable groups | Gradient norm |
 |---|---:|---:|---:|---:|
-| B / 1301 | 0 | unmeasured | unmeasured | unmeasured |
-| A / 1301 | 0 | unmeasured | unmeasured | unmeasured |
-| P / 1301 | 0 | unmeasured | unmeasured | unmeasured |
+| B / 1301 | 9 | 0.008076 | 20/32 | 0.208121 |
+| A / 1301 | 9 | 0.000000 | 0/32 | 0 |
+| P / 1301 | 8 | 0.009904 | 17/32 | 0.256924 |
 | B / 1302 | 0 | unmeasured | unmeasured | unmeasured |
 | A / 1302 | 0 | unmeasured | unmeasured | unmeasured |
 | P / 1302 | 0 | unmeasured | unmeasured | unmeasured |
 
 [Every completed training step](results/pilot_trajectory.csv); [machine-readable gate and validation results](results/live_progress.json).
-Training rows are fixed-run diagnostics (p-val=n/a), not an efficacy claim. Official SCSC remains unmeasured without validated coverage.
+Training rows are fixed-run diagnostics (p-val=n/a), not an efficacy claim. Validation receipts retain grouped-task bootstrap intervals and missingness bounds. Coverage requiring a judge remains unmeasured; a known zero local factor can determine a zero composite.
 <!-- LIVE END -->
 
 **TLDR-end:** [rl-4-code-verification: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3] The exact retained cohort is verified and the factored update is running; optimizer and downstream gates are not yet measured.
