@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/CKPT_factored_pilot.md>
 
-**TLDR:** TECHNICAL_GATES_RUNNING; exact receipts and completed update counts are in results.md. No official SCSC result without validated coverage.
+**TLDR:** INCOMPLETE; exact receipts and completed update counts are in results.md. No official SCSC result without validated coverage.
 
 Created: 10-16-2026 18:21 PDT
-Last updated: 10-16-2026 19:15 PDT
+Last updated: 10-18-2026 13:10 PDT
 
 ## Goal
 - Complete `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3` at $0 provider spend.
@@ -32,3 +32,32 @@ Last updated: 10-16-2026 19:15 PDT
 - 10-16-2026 19:18 PDT — Cost accounting retains timed-out scientific outcomes while requiring all eight opportunities and verified cleanup; included validation raw storage. All 73 focused tests pass. No pilot outcome measured.
 - 10-16-2026 19:21 PDT — Verified terminal publication over unrelated remote commits without changing frozen checkout bytes or another writer’s index; all 75 focused tests pass. Publisher waiter will restart on this tested source before technical admission.
 - 10-16-2026 19:22 PDT — Replaced only the idle publisher waiter after checking its PID/start ticks; current publisher PID 622533. Optimizer, replay follow-through and paired dispatcher remained untouched.
+- 10-16-2026 20:31 PDT — Receipt event: TECHNICAL_GATES_RUNNING; completed updates B/1301=0, A/1301=0, P/1301=0, B/1302=0, A/1302=0, P/1302=0.
+- 10-16-2026 22:16 PDT — Receipt event: TECHNICAL_GATES_RUNNING; completed updates B/1301=0, A/1301=0, P/1301=0, B/1302=0, A/1302=0, P/1302=0.
+- 10-16-2026 22:22 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=0, A/1301=0, P/1301=0, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 01:15 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=0, A/1301=1, P/1301=0, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 01:42 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=1, A/1301=1, P/1301=0, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 02:23 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=1, A/1301=1, P/1301=1, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 04:12 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=1, A/1301=2, P/1301=1, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 04:33 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=2, A/1301=2, P/1301=1, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 05:20 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=2, A/1301=2, P/1301=2, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 07:27 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=2, A/1301=3, P/1301=2, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 07:29 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=3, A/1301=3, P/1301=2, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 08:10 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=3, A/1301=3, P/1301=3, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 10:17 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=3, A/1301=4, P/1301=3, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 10:18 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=4, A/1301=4, P/1301=3, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 11:03 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=4, A/1301=4, P/1301=4, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 13:34 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=5, A/1301=4, P/1301=4, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 13:45 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=5, A/1301=5, P/1301=4, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 14:24 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=5, A/1301=5, P/1301=5, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 16:51 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=6, A/1301=5, P/1301=5, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 16:54 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=6, A/1301=6, P/1301=5, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 17:25 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=6, A/1301=6, P/1301=6, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 19:54 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=7, A/1301=7, P/1301=6, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 20:24 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=7, A/1301=7, P/1301=7, B/1302=0, A/1302=0, P/1302=0.
+- 10-17-2026 23:24 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=7, A/1301=8, P/1301=7, B/1302=0, A/1302=0, P/1302=0.
+- 10-18-2026 01:38 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=8, A/1301=8, P/1301=7, B/1302=0, A/1302=0, P/1302=0.
+- 10-18-2026 04:45 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=8, A/1301=8, P/1301=8, B/1302=0, A/1302=0, P/1302=0.
+- 10-18-2026 06:49 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=8, A/1301=9, P/1301=8, B/1302=0, A/1302=0, P/1302=0.
+- 10-18-2026 08:53 PDT — Receipt event: PILOT_RUNNING; completed updates B/1301=9, A/1301=9, P/1301=8, B/1302=0, A/1302=0, P/1302=0.
+- 10-18-2026 13:10 PDT — Receipt event: INCOMPLETE; completed updates B/1301=9, A/1301=9, P/1301=8, B/1302=0, A/1302=0, P/1302=0.
