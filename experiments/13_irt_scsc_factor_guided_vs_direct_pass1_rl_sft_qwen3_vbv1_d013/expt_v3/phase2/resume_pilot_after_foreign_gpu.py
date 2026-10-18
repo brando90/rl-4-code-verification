@@ -107,6 +107,22 @@ def account(arm, seed, update, admission_path):
     log(f'accounted {arm}_{seed} update {update}')
 
 
+def park_old_lease(work):
+    """Keep the failed attempt's device-hour receipt without blocking a new lease file."""
+    lease = work / 'update_lease.json'
+    if not lease.exists():
+        return
+    parked = work / 'update_attempt1_lease.json'
+    parked_end = work / 'update_attempt1_lease_end.json'
+    if parked.exists():
+        raise RuntimeError(f'parked lease already exists: {parked}')
+    end = work / 'update_lease_end.json'
+    lease.rename(parked)
+    if end.exists():
+        end.rename(parked_end)
+    log(f'parked prior optimizer lease at {parked.name}')
+
+
 def retry_optimizer(arm, seed, update, admission):
     """Run the optimizer once on generations and scores that already exist."""
     root = PILOT / f'{arm}_{seed}'
@@ -125,6 +141,7 @@ def retry_optimizer(arm, seed, update, admission):
             raise RuntimeError(f'failed update archive already exists for {arm}_{seed}')
         failed.rename(dest)
         log(f'preserved failed optimizer attempt for {arm}_{seed} update {update}')
+    park_old_lease(work)
     previous = json.loads((root / f'update_{update-1:05d}/summary.json').read_text())
     provenance = {'condition': 'v3-A7', 'phase': 'pilot', 'arm': arm, 'run_seed': seed,
                   'update': update, 'admission_sha256': digest(ADMISSION)}
@@ -162,10 +179,12 @@ def main():
         archive_without_generations(arm, seed, 1)
     if not (PILOT / 'A_1301/update_00010/summary.json').exists():
         account('A', 1301, 10, ADMISSION)
-    retry_optimizer('B', 1301, 10, admission)
-    retry_optimizer('P', 1301, 9, admission)
-    for arm, seed in (('B', 1301), ('A', 1301), ('P', 1301), ('B', 1302), ('A', 1302), ('P', 1302)):
+    for arm, seed in (('A', 1301), ('B', 1302), ('A', 1302), ('P', 1302)):
         launch(arm, seed)
+    retry_optimizer('B', 1301, 10, admission)
+    launch('B', 1301)
+    retry_optimizer('P', 1301, 9, admission)
+    launch('P', 1301)
     log('pilot resume launched; provider spend remains $0')
 
 
