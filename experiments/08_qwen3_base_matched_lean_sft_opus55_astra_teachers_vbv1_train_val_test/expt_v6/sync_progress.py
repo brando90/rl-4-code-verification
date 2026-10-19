@@ -16,9 +16,11 @@ HOST = "eth127@skampere1.stanford.edu"
 REMOTE = "/lfs/skampere1/0/eth127/rl4cv_tiny_training"
 REL = "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6"
 CANONICAL = Path("/Users/lethan3/Documents/veribench-projects/rl-4-code-verification") / REL
+LAST_PUBLISHED = None
 
 
-def once():
+def once(publish_enabled=False):
+    global LAST_PUBLISHED
     subprocess.run(["ssh", "-S", SOCKET, "-O", "check", HOST], capture_output=True, check=True, timeout=5)
     command = f"/usr/bin/python3 {REMOTE}/repo/{REL}/snapshot.py"
     result = subprocess.run(["ssh", "-S", SOCKET, "-o", "BatchMode=yes", HOST, command],
@@ -74,6 +76,19 @@ def once():
     lines += ["", "[Protocol](PROTOCOL.md) · [Checkpoint](CKPT_tiny_training.md) · [Runtime snapshot](results/runtime_snapshot.json)", "",
         f"**TLDR-end:** [rl4cv: concise Lean training] {status}; the full declared evaluation has 3,240 cells.", ""]
     (HERE / "results.md").write_text("\n".join(lines))
+    signature = tuple((label, (item.get("progress") or {}).get("step", 0) // 100,
+        bool(item.get("training_result")), bool(item.get("generation_verified")),
+        sum(1 for key, value in (item.get("stages") or {}).items() if key.startswith("score_") and value and value.get("status") == "DONE"))
+        for label, item in state["systems"].items()) + (bool(state.get("primary_summary")), bool(state.get("summary")), status)
+    if publish_enabled and signature != LAST_PUBLISHED:
+        try:
+            from publish_progress import publish
+            publication = publish(HERE, SOCKET, HOST, REMOTE, state)
+            (HERE / "results/publication_status.json").write_text(json.dumps(publication, indent=2) + "\n")
+            LAST_PUBLISHED = signature
+        except Exception as exc:
+            (HERE / "results/publication_status.json").write_text(json.dumps({"status": "PUBLICATION_FAILED",
+                "error": str(exc), "local_results_current": True}, indent=2) + "\n")
     CANONICAL.mkdir(parents=True, exist_ok=True)
     (CANONICAL / "results").mkdir(exist_ok=True)
     if CANONICAL != HERE:
@@ -87,10 +102,11 @@ def once():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--watch", action="store_true")
+    parser.add_argument("--publish", action="store_true")
     args = parser.parse_args()
     while True:
         try:
-            status = once()
+            status = once(args.publish)
         except Exception as exc:
             print(json.dumps({"status": "SYNC_FAILED", "error": str(exc)}), flush=True)
             if not args.watch:

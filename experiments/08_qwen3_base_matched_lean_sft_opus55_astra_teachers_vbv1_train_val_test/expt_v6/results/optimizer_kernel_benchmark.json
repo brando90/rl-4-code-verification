@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "torch": "2.7.1+cu128",
+  "cpu_threads": 4,
+  "numerical_control_updates": 5,
+  "max_absolute_differences": {
+    "weights": 1.4901161193847656e-08,
+    "first_moment": 0,
+    "second_moment": 2.9802322387695312e-08
+  },
+  "benchmark": [
+    {
+      "parameters": 50000000,
+      "fused": false,
+      "seconds": [
+        0.21061735996045172,
+        0.14519987208768725,
+        0.14902043400797993,
+        0.15161026699934155
+      ],
+      "steady_median_seconds": 0.14902043400797993
+    },
+    {
+      "parameters": 50000000,
+      "fused": true,
+      "seconds": [
+        0.07801446598023176,
+        0.014666570001281798,
+        0.01585335610434413,
+        0.014717170968651772
+      ],
+      "steady_median_seconds": 0.014717170968651772
+    }
+  ],
+  "training_processes_modified": false,
+  "cuda_allocated": false,
+  "limits": "CPU kernel only; excludes transfers, model compute and checkpoint handoff. Floating-point agreement does not imply bitwise-equivalent future training."
+}

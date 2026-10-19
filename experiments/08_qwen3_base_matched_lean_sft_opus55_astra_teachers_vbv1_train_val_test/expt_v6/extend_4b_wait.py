@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import fcntl
 import os
 from pathlib import Path
 import signal
@@ -49,6 +50,20 @@ def primary_done():
         for label in ("1p7_control", "1p7_mixed") for k in range(8))
 
 
+def publish_primary():
+    """Serialize the ordinary primary watcher and the 4B guard into one results writer."""
+    with (RUN / "primary_analysis.lock").open("a") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        if read(RUN / "analysis/summary_primary.json").get("status") == "PRIMARY_COMPLETE":
+            return 0
+        path = Path(__file__).with_name("analyze_primary.py")
+        env = {**os.environ, "CUDA_VISIBLE_DEVICES": "", "TINY_RUN_ROOT": str(RUN)}
+        with (RUN / "primary_analysis.log").open("a") as log:
+            result = subprocess.run(["/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python", str(path)],
+                env=env, stdout=log, stderr=subprocess.STDOUT, timeout=900)
+        return result.returncode
+
+
 def main():
     stage = read(RUN / "execution/4b_mixed/training.json")
     assert stage.get("status") == "RUNNING"
@@ -77,12 +92,7 @@ def main():
                 raise RuntimeError("original coordinator disappeared; preserve the healthy child and reconcile")
             if not paused and primary_done():
                 try:
-                    path = Path(__file__).with_name("analyze_primary.py")
-                    env = {**os.environ, "CUDA_VISIBLE_DEVICES": "", "TINY_RUN_ROOT": str(RUN)}
-                    with (RUN / "primary_analysis.log").open("w") as log:
-                        analysis = subprocess.run(["/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python", str(path)],
-                            env=env, stdout=log, stderr=subprocess.STDOUT, timeout=900)
-                    record["primary_analysis_exit_code"] = analysis.returncode
+                    record["primary_analysis_exit_code"] = publish_primary()
                 except Exception as exc:
                     record["primary_analysis_error"] = str(exc)
                 # No primary generation/scoring remains. Its subprocess outputs go to
