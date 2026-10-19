@@ -56,6 +56,8 @@ def main():
                 count = sum(block.count(b"\n") for block in iter(lambda: stream.read(1 << 20), b""))
             result["systems"][label]["generated_cells"] = count
     result["summary"] = load(RUN / "analysis/summary.json")
+    result["primary_summary"] = load(RUN / "analysis/summary_primary.json")
+    result["four_wallclock_extension"] = load(RUN / "four_wallclock_extension.json")
     print(json.dumps(result), flush=True)
 
 

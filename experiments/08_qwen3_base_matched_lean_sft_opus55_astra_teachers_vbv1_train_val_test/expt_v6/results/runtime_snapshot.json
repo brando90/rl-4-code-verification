@@ -1,5 +1,5 @@
 {
-  "observed_unix": 1792397471.6430953,
+  "observed_unix": 1792398064.3109298,
   "root": "/lfs/skampere1/0/eth127/rl4cv_tiny_training",
   "systems": {
     "1p7_control": {
@@ -99,7 +99,18 @@
         },
         "test_split_opened": false
       },
-      "progress": null,
+      "progress": {
+        "step": 138,
+        "loss_tokens": 1213031,
+        "tiny_batch": false,
+        "train_loss": 0.27785485695292067,
+        "grad_norm": 1.8578437566757202,
+        "learning_rate": 1.8350776290980942e-05,
+        "elapsed_seconds": 579.825811040937,
+        "peak_gpu_gib": 53.926472663879395,
+        "status": "RUNNING",
+        "condition": "control"
+      },
       "training_result": null,
       "generation_verified": null
     },
@@ -200,7 +211,18 @@
         },
         "test_split_opened": false
       },
-      "progress": null,
+      "progress": {
+        "step": 189,
+        "loss_tokens": 1130665,
+        "tiny_batch": true,
+        "train_loss": 0.12619445690366088,
+        "grad_norm": 3.736750364303589,
+        "learning_rate": 1.858119197699439e-05,
+        "elapsed_seconds": 579.5341286319308,
+        "peak_gpu_gib": 53.926472663879395,
+        "status": "RUNNING",
+        "condition": "mixed"
+      },
       "training_result": null,
       "generation_verified": null
     },
@@ -216,6 +238,25 @@
           "owner": "eth127",
           "foreign_processes_preserved": true
         },
+        "training": {
+          "label": "4b_mixed",
+          "stage": "training",
+          "command": [
+            "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6/experiment.py",
+            "train",
+            "--condition",
+            "mixed"
+          ],
+          "started_unix": 1792397514.9005764,
+          "host": "skampere1.stanford.edu",
+          "cuda_visible_devices": "6",
+          "status": "RUNNING",
+          "pid": 2941031,
+          "start_ticks": "63610520",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "alive": true
+        },
         "smoke": {
           "label": "4b_mixed",
           "stage": "smoke",
@@ -229,11 +270,12 @@
           "started_unix": 1792397393.7168365,
           "host": "skampere1.stanford.edu",
           "cuda_visible_devices": "6",
-          "status": "RUNNING",
+          "status": "DONE",
           "pid": 2922172,
           "start_ticks": "63598401",
           "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
-          "alive": true
+          "ended_unix": 1792397514.8998241,
+          "exit_code": 0
         }
       },
       "preparation": {
@@ -267,7 +309,18 @@
         },
         "test_split_opened": false
       },
-      "progress": null,
+      "progress": {
+        "step": 13,
+        "loss_tokens": 80928,
+        "tiny_batch": false,
+        "train_loss": 0.2406688997158137,
+        "grad_norm": 1.6875,
+        "learning_rate": 9.417273081663578e-06,
+        "elapsed_seconds": 476.1430110989604,
+        "peak_gpu_gib": 38.79157257080078,
+        "status": "RUNNING",
+        "condition": "mixed"
+      },
       "training_result": null,
       "generation_verified": null
     }
@@ -331,5 +384,29 @@
     "checker_sha256": "5caa5003bcfc3ea9a97ee5c2eaea7ad2ecec5eb44a13610198bacb4904d3c5c8",
     "derivation_source_sha256": "8fe470454a8cec22d0c048d793c065c9c73e3bc2ec91eed5e2cfa273838710fd"
   },
-  "summary": null
+  "summary": null,
+  "primary_summary": null,
+  "four_wallclock_extension": {
+    "status": "WAITING_FOR_PRIMARY_SCORING",
+    "training": {
+      "pid": 2941031,
+      "start_ticks": "63610520",
+      "state": "R",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df"
+    },
+    "coordinator": {
+      "pid": 2922150,
+      "start_ticks": "63598365",
+      "state": "S",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df"
+    },
+    "original_hours": 8,
+    "amended_hours": 12,
+    "deadline_unix": 1792440714.9005764,
+    "training_process_restarted": false,
+    "optimizer_or_data_changed": false,
+    "created_unix": 1792397897.2593033,
+    "coordinator_paused": false,
+    "checked_unix": 1792398047.5691004
+  }
 }

@@ -2,7 +2,7 @@
 
 **Doc link:** https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v5/README.md
 
-**TLDR:** Completed: 500 short complete training examples from 25 elementary Python/math topics using Terra at high reasoning. Responses use the existing experiment 08 system prompt, addendum, file envelope, Qwen chat template and assistant-only loss span. This is data preparation; model training has not started.
+**TLDR:** Completed: 500 short complete training examples from 25 elementary Python/math topics using Terra at high reasoning. Responses use the existing experiment 08 system prompt, addendum, file envelope, Qwen chat template and assistant-only loss span. This version records data preparation; subsequent training and the executable-example adaptation are tracked in [version 6](../expt_v6/results.md).
 
 See [live results](results.md) and [protocol](PROTOCOL.md).
 

@@ -58,9 +58,10 @@ def once():
         "- Target budget is 5,752,936 assistant loss tokens. Actual crossing totals: control 5,759,732; augmented 5,753,602. Planned updates: control 664; each augmented condition 904.",
         "- 4B uses full-parameter training with float32 CPU master weights/Adam moments and bfloat16 GPU parameters. It has no new replay control.",
         "- Test evaluation is not performed. Formal specification coverage is unmeasured; no judge-dependent aggregate is claimed.", ""]
-    if state.get("summary"):
-        summary = state["summary"]
-        lines += ["## Validation results", "", "| System | Binary successes / 1,080 | Success rate | Tasks with 2–6 successes / 135 |", "|---|---:|---:|---:|"]
+    if state.get("summary") or state.get("primary_summary"):
+        summary = state.get("summary") or state["primary_summary"]
+        heading = "## Validation results" if state.get("summary") else "## Primary validation results (2,160/3,240 cells; 4B pending)"
+        lines += [heading, "", "| System | Binary successes / 1,080 | Success rate | Tasks with 2–6 successes / 135 |", "|---|---:|---:|---:|"]
         for label, row in summary["systems"].items():
             ci = row.get("success_rate_ci95", [None, None])
             interval = f" [{ci[0]:.4f}, {ci[1]:.4f}]" if ci[0] is not None else ""
