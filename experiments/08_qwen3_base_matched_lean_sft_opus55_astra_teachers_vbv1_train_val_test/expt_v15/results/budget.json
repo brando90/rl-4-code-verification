@@ -9,11 +9,11 @@
   },
   "estimate_not_invoice": true,
   "reservations": {
-    "v18/batch_0000/0": {
+    "v18/batch_0000/1": {
       "purpose": "cleanup",
       "usd": 10,
       "model": "gpt-5.6-terra",
-      "time": 1792435570.9069386
+      "time": 1792435758.1518612
     }
   },
   "charges": {
@@ -12869,6 +12869,21 @@
       },
       "unknown_usage": false,
       "time": 1792435718.940167
+    },
+    "v18/batch_0000/0": {
+      "purpose": "cleanup",
+      "model": "gpt-5.6-terra",
+      "usd": 1.2423358,
+      "base_rate_estimate_usd": 0.6248944000000001,
+      "usage": {
+        "input_tokens": 1294019,
+        "cached_input_tokens": 1201602,
+        "output_tokens": 16645,
+        "reasoning_output_tokens": 6014,
+        "total_tokens": 1310664
+      },
+      "unknown_usage": false,
+      "time": 1792435758.1055534
     }
   },
   "events": [
@@ -26080,10 +26095,32 @@
       "model": "gpt-6-astra",
       "usd": 1.927969,
       "time": 1792435718.9401708
+    },
+    {
+      "event": "settle",
+      "identity": "v18/batch_0000/0",
+      "purpose": "cleanup",
+      "model": "gpt-5.6-terra",
+      "usd": 1.2423358,
+      "time": 1792435758.1055663
+    },
+    {
+      "event": "activate_preapproved_third_tranche",
+      "reason": "Requested bounded work plus in-flight exposure exceeds the earlier allocation; user authorized additional$300.",
+      "time": 1792435758.1518502
+    },
+    {
+      "event": "reserve",
+      "identity": "v18/batch_0000/1",
+      "purpose": "cleanup",
+      "usd": 10,
+      "model": "gpt-5.6-terra",
+      "time": 1792435758.1518626
     }
   ],
   "purpose_caps_authorized": {
     "cleanup": 780,
     "adaptation": 120
-  }
+  },
+  "tranche3activated": true
 }
