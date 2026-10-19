@@ -31,8 +31,10 @@ Created: 10-19-2026 03:51 PDT. Last updated: 10-19-2026 04:05 PDT.
 
 ## Next actions
 
-Publish verified results and compact evidence, mirror version 7 into the canonical
-checkout, then restart the version-6 local observer after the manual Git write.
+The verified results and compact evidence are published at commit `da4a153`.
+Mirror version 7 into the canonical checkout, then restart the version-6 observer.
+This owned checkout remains necessary for that active training observer; remove it
+only after version-6 training/evaluation and publication finish.
 No new training or generations are authorized by this diagnostic.
 
 ## Event log
@@ -45,3 +47,5 @@ No new training or generations are authorized by this diagnostic.
 - 10-19-2026 04:00 PDT: Recorded CPU-admission amendment, preserved 30 completed check records, verified the waiting checker had no children, and ended only that owned process. Started a continuation with the unchanged verifier and original deadline, allowing two diagnostic workers beside eight control scorers.
 
 - 10-19-2026 04:03 PDT: On user request, increased CPU checking from two to twelve workers, preserving 66 complete records and archiving two interrupted checks. All 100 checks completed in about 33 seconds after restart; seen 29/50, fresh 9/50. Linux make test passes.
+
+- 10-19-2026 04:05 PDT: Published complete diagnostic source, all 100 judgments, compiler/proof evidence and passing Linux test receipt to main at da4a153; preserving the checkout for the ongoing version-6 observer.
