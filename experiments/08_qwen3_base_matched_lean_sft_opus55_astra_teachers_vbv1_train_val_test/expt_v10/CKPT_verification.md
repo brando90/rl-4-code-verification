@@ -8,16 +8,18 @@ Created: 10-19-2026 05:17 PDT. Last updated: 10-19-2026 05:28 PDT.
 ## Goal
 - Current-toolchain kernel checks for 10,995 retained Workbook candidates; audit the 74 unresolved cases.
 ## What ran
-- `rl4cv-workbook-verify-v10`:48Lean slots on skampere1, actual controls passed.
-- `rl4cv-workbook-unresolved-v10`:4slots, complete74/74; `rl4cv-gx10-lean-setup-v10` installing native environment.
+- Remote: `rl4cv-workbook-verify-v10` on skampere1,48slots; `rl4cv-gx10-verify-v10` onGX10,16slots. Native controls passed.
+- Local orchestration: `rl4cv-gx10-receipt-relay-v10` and `rl4cv-v10-progress-publish`; both jobs finish independently if relay stops.
 ## Results
-- Snapshot 1087/10,995checked, 923PASS; unresolved recovery6PASS,68still excluded and retained.
+- Latest snapshot: cluster2794/10,995checked, 2478PASS; GX10204/1,600checked, 80PASS. GX10shard is part of the original cohort.
+- Earlier74-case recovery finished:6kernelPASS awaiting annotation/screens,68excluded.
 ## Stuck / blocked
-- No setup blocker:GX10native import and frozen-inspector controls passed;16slots active,64total across hosts.
+- None for execution. Other source ingestion and final training-pool assembly remain pending; no new training.
 ## Next steps
-- SSH skampere1, inspect `/lfs/skampere1/0/eth127/rl4cv_tiny_training/lean_corpus_v10/progress.json` and `driver.log`.
-- SSH cactushacks-gx10, inspect `~/workspace/rl4cv-gx10/verification-v10/lean_corpus_v10/progress.json` and `driver.log`; native16-worker shard is running.
-- Reassemble comments/screens for6recoveries before admitting; publish final row accounting when the queue finishes.
+- Inspect remote `lean_corpus_v10/progress.json` on skampere1 and `~/workspace/rl4cv-gx10/verification-v10/lean_corpus_v10/progress.json` onGX10.
+- Canonical: `/Users/lethan3/Documents/veribench-projects/rl-4-code-verification/`; owned temporary checkout: `/Users/lethan3/Documents/veribench-projects/.worktrees/rl4cv-lean-verify-10-19-2026/`.
+- Root coordinator owns the live publisher checkout; preserve it until both remote runs finish and final receipts are published/mirrored, then remove it under the checkout-cleanup rules.
+- Finalize combined checked training data, protected screens and duplicate removal; retain all rejections/unresolved cases.
 ## Brando to-do
 - None.
 ## Log
@@ -26,3 +28,4 @@ Created: 10-19-2026 05:17 PDT. Last updated: 10-19-2026 05:28 PDT.
 - 10-19-2026 05:27 PDT -- RUNNING, 10-19-2026 05:27 PDT. Cluster: 2,403/10,995 checked, 2,114 PASS with48slots. GX10: 113/1,600 checked, 49 PASS with16slots; setup DONE. The74-case earlier recovery finished with6recoveries pending comment/format reassembly. No new model calls or training.
 - 10-19-2026 05:28 PDT -- Installed native Lean4.22.0/Mathlib79e94a0onGX10; import and three kernel controls passed,16CPU slots active in`rl4cv-gx10-verify-v10`. Combined64slot capacity; exact-source success relay and milestone publisher prepared.
 - 10-19-2026 05:28 PDT -- RUNNING, 10-19-2026 05:28 PDT. Cluster: 2,794/10,995 checked, 2,478 PASS with48slots. GX10: 204/1,600 checked, 80 PASS with16slots; setup DONE. The74-case earlier recovery finished with6recoveries pending comment/format reassembly. No new model calls or training.
+- 10-19-2026 05:29 PDT -- Published5a6a187and9a671e4, verified64CPU slots across hosts, imported55then25exact-source GX10successes, and started receipt relay plus milestone publisher. Temporary checkout retained for that live publisher.

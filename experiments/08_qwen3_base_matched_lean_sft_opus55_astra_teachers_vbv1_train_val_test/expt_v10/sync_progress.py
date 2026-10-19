@@ -36,7 +36,7 @@ def update():
     marker='\n## Latest automatic snapshot\n'
     if marker in text:text=text[:text.index(marker)]
     text+=marker+'\n'+sentence+'\n\nTheGX10shard is a subset of the10,995original cells. Successful exact-source ARM receipts can be reused by unstarted cluster cells; host totals must not be added as distinct statements. Raw evidence remains on its execution host.\n';path.write_text(text);paths.append(path)
-    ckpt=HERE/'CKPT_verification.md';s=ckpt.read_text();s=re.sub(r'Last updated:[^\n]*','Last updated: '+stamp+'.',s,count=1);s+='- '+stamp+' -- '+sentence+'\n';ckpt.write_text(s);paths.append(ckpt)
+    ckpt=HERE/'CKPT_verification.md';s=ckpt.read_text();s=re.sub(r'Last updated:[^\n]*','Last updated: '+stamp+'.',s,count=1);s=re.sub(r'## Results\n.*?(?=## Stuck / blocked)', '## Results\n- '+sentence+'\n', s, count=1, flags=re.S);s+='- '+stamp+' -- '+sentence+'\n';ckpt.write_text(s);paths.append(ckpt)
     print(sentence,flush=True)
     key=(main['completed']//1000,main['state'],setup.get('state'),acc.get('completed',0)//500,acc.get('state'))
     return status,key,paths
