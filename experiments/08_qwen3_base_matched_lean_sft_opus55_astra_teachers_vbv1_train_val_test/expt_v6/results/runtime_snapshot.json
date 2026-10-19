@@ -1,5 +1,5 @@
 {
-  "observed_unix": 1792410850.238289,
+  "observed_unix": 1792410912.879971,
   "root": "/lfs/skampere1/0/eth127/rl4cv_tiny_training",
   "systems": {
     "1p7_control": {
@@ -1168,13 +1168,13 @@
         "test_split_opened": false
       },
       "progress": {
-        "step": 523,
-        "loss_tokens": 3029559,
+        "step": 526,
+        "loss_tokens": 3049296,
         "tiny_batch": false,
-        "train_loss": 0.16688309426563397,
-        "grad_norm": 1.1171875,
-        "learning_rate": 9.659708541621288e-06,
-        "elapsed_seconds": 12905.917397479992,
+        "train_loss": 0.1886252044932553,
+        "grad_norm": 0.9921875,
+        "learning_rate": 9.566988831706037e-06,
+        "elapsed_seconds": 12971.611472782912,
         "peak_gpu_gib": 44.7767219543457,
         "status": "RUNNING",
         "condition": "mixed",
@@ -1268,7 +1268,110 @@
     "derivation_source_sha256": "8fe470454a8cec22d0c048d793c065c9c73e3bc2ec91eed5e2cfa273838710fd"
   },
   "summary": null,
-  "primary_summary": null,
+  "primary_summary": {
+    "status": "PRIMARY_COMPLETE",
+    "full_experiment_status": "4B pending",
+    "cells": 2160,
+    "full_declared_cells": 3240,
+    "systems": {
+      "1p7_control": {
+        "declared_cells": 1080,
+        "scored_cells": 1080,
+        "successes": 99,
+        "success_rate": 0.09166666666666666,
+        "pass_at_8_tasks": 30,
+        "mixed_tasks_1_to_7": 30,
+        "target_tasks_2_to_6": 18,
+        "extracted": 979,
+        "compiles": 99,
+        "capped": 101,
+        "mean_generated_tokens": 4752.766666666666,
+        "mean_IC_tests": 0.09166666666666666,
+        "mean_IC_proofs": 0.09166666666666666,
+        "source_model_paths": [
+          "/lfs/skampere1/0/eth127/rl4cv_tiny_training/onep7/runs/control/hf"
+        ],
+        "success_rate_ci95": [
+          0.05740740740740741,
+          0.13055555555555556
+        ]
+      },
+      "1p7_mixed": {
+        "declared_cells": 1080,
+        "scored_cells": 1080,
+        "successes": 74,
+        "success_rate": 0.06851851851851852,
+        "pass_at_8_tasks": 28,
+        "mixed_tasks_1_to_7": 28,
+        "target_tasks_2_to_6": 16,
+        "extracted": 976,
+        "compiles": 74,
+        "capped": 104,
+        "mean_generated_tokens": 4839.85,
+        "mean_IC_tests": 0.06851851851851852,
+        "mean_IC_proofs": 0.06851851851851852,
+        "source_model_paths": [
+          "/lfs/skampere1/0/eth127/rl4cv_tiny_training/onep7/runs/mixed/hf"
+        ],
+        "success_rate_ci95": [
+          0.041666666666666664,
+          0.09907407407407408
+        ]
+      },
+      "starting_1p7b": {
+        "declared_cells": 1080,
+        "scored_cells": 1080,
+        "successes": 55,
+        "success_rate": 0.05092592592592592,
+        "pass_at_8_tasks": 19,
+        "mixed_tasks_1_to_7": 19,
+        "target_tasks_2_to_6": 14,
+        "extracted": 959,
+        "compiles": 55,
+        "capped": 121,
+        "mean_generated_tokens": 4896.040740740741,
+        "mean_IC_tests": 0.05092592592592592,
+        "mean_IC_proofs": 0.05092592592592592,
+        "source_model_paths": [
+          "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/ckpt/v3_E_1p7b/hf/step_667"
+        ],
+        "comparison_limit": "historical generation/runtime; descriptive baseline",
+        "success_rate_ci95": [
+          0.027777777777777776,
+          0.07685185185185185
+        ]
+      }
+    },
+    "comparisons": {
+      "1p7_mixed_minus_1p7_control": {
+        "difference": -0.023148148148148147,
+        "ci95": [
+          -0.03888888888888889,
+          -0.008333333333333333
+        ],
+        "bootstrap_draws": 10000,
+        "bootstrap_unit": "task, keeping all eight attempts together",
+        "seed": 0,
+        "p_value": null,
+        "interpretation": "negative"
+      },
+      "1p7_mixed_minus_starting_1p7b": {
+        "difference": 0.017592592592592594,
+        "ci95": [
+          -0.000925925925925926,
+          0.037037037037037035
+        ],
+        "bootstrap_draws": 10000,
+        "bootstrap_unit": "task, keeping all eight attempts together",
+        "seed": 0,
+        "p_value": null,
+        "interpretation": "inconclusive"
+      }
+    },
+    "historical_baseline_errors": {},
+    "test_split_opened": false,
+    "formal_specification_coverage": "not measured"
+  },
   "four_wallclock_extension": {
     "status": "SUPERSEDED_BY_FUSED_CONTINUATION",
     "training": {
