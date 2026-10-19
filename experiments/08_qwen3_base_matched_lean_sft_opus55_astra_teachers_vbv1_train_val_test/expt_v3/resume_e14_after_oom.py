@@ -133,6 +133,57 @@ def reconcile_dead_admission():
     log('dead expansion admission reconciled and preserved')
 
 
+LOCAL_INSPECT = r"""
+import json,socket,subprocess
+from pathlib import Path
+def run(*args):return subprocess.check_output(args,text=True,timeout=20)
+devices=[]
+for line in run('nvidia-smi','--query-gpu=index,uuid,memory.total,memory.used,memory.free,utilization.gpu','--format=csv,noheader,nounits').splitlines():
+ a=[x.strip() for x in line.split(',')]
+ devices.append(dict(index=int(a[0]),uuid=a[1],total_mib=int(a[2]),used_mib=int(a[3]),free_mib=int(a[4]),utilization=int(a[5])))
+apps=[]
+for line in run('nvidia-smi','--query-compute-apps=gpu_uuid,pid,used_memory','--format=csv,noheader,nounits').splitlines():
+ if not line.strip() or ',' not in line: continue
+ a=[x.strip() for x in line.split(',')];p=Path('/proc')/a[1]
+ fields=(p/'stat').read_text().rsplit(')',1)[1].split()
+ apps.append(dict(uuid=a[0],pid=int(a[1]),memory_mib=int(a[2]),uid=p.stat().st_uid,start_ticks=fields[19],boot_id=Path('/proc/sys/kernel/random/boot_id').read_text().strip()))
+ip=socket.gethostbyname(socket.gethostname())
+interfaces=json.loads(run('ip','-j','-4','addr','show'))
+interface=next(x['ifname'] for x in interfaces if any(v.get('local')==ip for v in x['addr_info']))
+print(json.dumps(dict(host=socket.gethostname().split('.')[0],devices=devices,apps=apps,interface=interface)))
+"""
+
+
+def inventory(host):
+    """Read this host directly. SSH to the same host returns 255 and was blocking the waiter."""
+    if host == socket.gethostname().split('.')[0]:
+        return json.loads(subprocess.check_output(['/usr/bin/python3', '-c', LOCAL_INSPECT], text=True, timeout=30))
+    try:
+        return multi.inspect_host(host)
+    except subprocess.CalledProcessError as error:
+        raise multi.WaitingCapacity(f'{host}: inventory unreachable (ssh exit {error.returncode})')
+
+
+def reservations():
+    records = [read(path, {}) for path in multi.RUNTIME.glob('remote_*.json')]
+    result = {}
+    local = socket.gethostname().split('.')[0]
+    for host in multi.DEVICE_PLAN:
+        candidates = [row for row in records if row.get('host') == host and row.get('identity') and row.get('gpus')]
+        if host == local:
+            groups = [row['gpus'] for row in candidates if alive(row['identity'])]
+        else:
+            code = ("import sys,json;sys.path.insert(0," + repr(str(multi.SHARED / 'code/expt_v3')) + ");"
+                    "from recovery_watch import alive;records=" + repr(candidates) + ";"
+                    "print(json.dumps([r['gpus'] for r in records if alive(r['identity'])]))")
+            try:
+                groups = json.loads(multi.ssh(host, ['/usr/bin/python3', '-c', code]))
+            except subprocess.CalledProcessError as error:
+                raise multi.WaitingCapacity(f'{host}: reservation check unreachable (ssh exit {error.returncode})')
+        result[host] = [int(item) for group in groups for item in (group.split(',') if isinstance(group, str) else group) if str(item)]
+    return result
+
+
 def capacity():
     import fcntl
     import gpu_lease_e08 as leases
@@ -142,10 +193,10 @@ def capacity():
             fcntl.flock(lock, fcntl.LOCK_EX)
         if (RUNTIME / 'remote_E_14b.json').exists():
             return 'CANONICAL_PRESENT'
-        inventories = {host: multi.inspect_host(host) for host in multi.DEVICE_PLAN}
+        inventories = {host: inventory(host) for host in multi.DEVICE_PLAN}
         try:
             multi.select_devices(inventories, read(multi.E13 / 'registry.json')['leases'],
-                                 leases.live_leases(leases.load()), multi.live_remote_reservations())
+                                 leases.live_leases(leases.load()), reservations())
         except multi.WaitingCapacity as error:
             return 'WAIT: ' + str(error)
     return 'READY'

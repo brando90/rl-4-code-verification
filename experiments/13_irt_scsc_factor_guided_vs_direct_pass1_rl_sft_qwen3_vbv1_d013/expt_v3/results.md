@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/results.md>
 
-**TLDR:** The paired pilot is resuming after the six trajectory processes exited on 10-18-2026. Finished generations are kept. Seed 1302 had no generations and starts update 1 again when a GPU is free. API spend remains $0. No held-out pass@1 result yet.
+**TLDR:** The paired pilot is running again after the trajectory processes exited on foreign-GPU permission errors. Finished generations were kept. Factored seed 1301 has 13 accounted updates; its updates 11–13 mean train reward is 0.00845 against 0.01035 on updates 1–10, so the +0.02 gate is not met. API spend remains $0.
 
 **Status:** PILOT_RUNNING
-**Last updated:** 10-18-2026 19:26 PDT
+**Last updated:** 10-19-2026 13:20 PDT
 
 The exact retained 256-rollout train cohort has been assembled in v3. Its 255 measured scores reproduce 21 positive factored rewards, 14/31 active complete groups and 112/248 nonzero-advantage slots. The incomplete eight-response group remains masked. These are fixed-cohort diagnostics, not evidence of learning or held-out performance (p-val=n/a).
 
@@ -42,19 +42,19 @@ The paired runner and validation adapter are implemented and pass 75 focused tes
 [Google findings companion](https://docs.google.com/document/d/1xkEn8vW800jBucuJANuXD8ph-sMQMofwNZw_nJzjJls/edit?tab=t.sglsb683kh5u): the dated 19:14 PDT evidence update was read back exactly, with previous notes and existing permissions preserved. [Verified background controllers](results/background_controllers.json) record the queued pilot, progress writer and terminal publication watcher; the dispatcher is waiting on the live technical follow-through and has not admitted pilot generation. Source implementation is pushed at `9845810`; [the current publisher receipt](results/background_publisher_v2.json) supersedes the original publisher PID.
 
 <!-- LIVE START -->
-Live receipt status (10-18-2026 19:26 PDT): **PILOT_RUNNING**. Factored seed 1301 update 10 is accounted. Placebo seed 1301 update 9 is in its optimizer step. Strict seed 1301 update 11 is loading on GPU 5. Five empty permission-failed attempts were archived and those arms were restarted. API spend: **$0**.
+Live receipt status (10-19-2026 13:20 PDT): **PILOT_RUNNING**. All six arms exited overnight on `PermissionError` while reading another user's process environment. Empty attempts were archived. Complete generations were kept: three optimizer retries and three next updates are waiting for an idle GPU among devices 0, 5 and 7. Factored seed 1301 updates 1–10 mean reward 0.01035; updates 11–13 mean 0.00845. The pre-registered gate compares updates 21–30 with updates 1–10 and is not met. API spend: **$0**.
 
 | Arm / seed | Completed updates | Latest observed train reward | Active / usable groups | Gradient norm |
 |---|---:|---:|---:|---:|
-| B / 1301 | 9 | 0.008076 | 20/32 | 0.208121 |
-| A / 1301 | 9 | 0.000000 | 0/32 | 0 |
-| P / 1301 | 8 | 0.009904 | 17/32 | 0.256924 |
-| B / 1302 | 0 | unmeasured | unmeasured | unmeasured |
-| A / 1302 | 0 | unmeasured | unmeasured | unmeasured |
-| P / 1302 | 0 | unmeasured | unmeasured | unmeasured |
+| B / 1301 | 13 | 0.006885 | 15/31 | 0.130474 |
+| A / 1301 | 11 | 0.003906 | 1/32 | 0.003559 |
+| P / 1301 | 11 | 0.009561 | 19/32 | 0.294979 |
+| B / 1302 | 2 | 0.012028 | 19/32 | 0.103022 |
+| A / 1302 | 1 | 0.000000 | 0/32 | 0 |
+| P / 1302 | 1 | 0.009427 | 23/32 | 0.288200 |
 
 [Every completed training step](results/pilot_trajectory.csv); [machine-readable gate and validation results](results/live_progress.json).
 Training rows are fixed-run diagnostics (p-val=n/a), not an efficacy claim. Validation receipts retain grouped-task bootstrap intervals and missingness bounds. Coverage requiring a judge remains unmeasured; a known zero local factor can determine a zero composite.
 <!-- LIVE END -->
 
-**TLDR-end:** [rl-4-code-verification: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3] The paired pilot is resuming with finished generations kept; seed 1301 strict update 10 is exporting and no provider calls were added.
+**TLDR-end:** [rl-4-code-verification: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3] The paired pilot is waiting on idle GPUs with 13 factored updates accounted; the +0.02 reward gate is not met and no provider calls were added.
