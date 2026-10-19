@@ -4,14 +4,14 @@
 
 **TLDR:** Check all remaining retained Workbook proof candidates and preserve every failed cell.
 
-Created: 10-19-2026 05:17 PDT. Last updated: 10-19-2026 05:29 PDT.
+Created: 10-19-2026 05:17 PDT. Last updated: 10-19-2026 05:33 PDT.
 ## Goal
 - Current-toolchain kernel checks for 10,995 retained Workbook candidates; audit the 74 unresolved cases.
 ## What ran
 - Remote: `rl4cv-workbook-verify-v10` on skampere1,48slots; `rl4cv-gx10-verify-v10` onGX10,16slots. Native controls passed.
 - Local orchestration: `rl4cv-gx10-receipt-relay-v10` and `rl4cv-v10-progress-publish`; both jobs finish independently if relay stops.
 ## Results
-- RUNNING, 10-19-2026 05:29 PDT. Cluster: 3,202/10,995 checked, 2,845 PASS with48slots. GX10: 273/1,600 checked, 104 PASS with16slots; setup DONE. The74-case earlier recovery finished with6recoveries pending comment/format reassembly. No new model calls or training.
+- RUNNING, 10-19-2026 05:33 PDT. Cluster: 4,190/10,995 checked, 3,756 PASS with48slots. GX10: 501/1,600 checked, 176 PASS with16slots; setup DONE. The74-case earlier recovery finished with6recoveries pending comment/format reassembly. No new model calls or training.
 ## Stuck / blocked
 - None for execution. Other source ingestion and final training-pool assembly remain pending; no new training.
 ## Next steps
@@ -29,3 +29,6 @@ Created: 10-19-2026 05:17 PDT. Last updated: 10-19-2026 05:29 PDT.
 - 10-19-2026 05:28 PDT -- RUNNING, 10-19-2026 05:28 PDT. Cluster: 2,794/10,995 checked, 2,478 PASS with48slots. GX10: 204/1,600 checked, 80 PASS with16slots; setup DONE. The74-case earlier recovery finished with6recoveries pending comment/format reassembly. No new model calls or training.
 - 10-19-2026 05:29 PDT -- Published5a6a187and9a671e4, verified64CPU slots across hosts, imported55then25exact-source GX10successes, and started receipt relay plus milestone publisher. Temporary checkout retained for that live publisher.
 - 10-19-2026 05:29 PDT -- RUNNING, 10-19-2026 05:29 PDT. Cluster: 3,202/10,995 checked, 2,845 PASS with48slots. GX10: 273/1,600 checked, 104 PASS with16slots; setup DONE. The74-case earlier recovery finished with6recoveries pending comment/format reassembly. No new model calls or training.
+- 10-19-2026 05:31 PDT -- RUNNING, 10-19-2026 05:31 PDT. Cluster: 3,524/10,995 checked, 3,145 PASS with48slots. GX10: 342/1,600 checked, 124 PASS with16slots; setup DONE. The74-case earlier recovery finished with6recoveries pending comment/format reassembly. No new model calls or training.
+- 10-19-2026 05:32 PDT -- RUNNING, 10-19-2026 05:32 PDT. Cluster: 3,903/10,995 checked, 3,495 PASS with48slots. GX10: 433/1,600 checked, 152 PASS with16slots; setup DONE. The74-case earlier recovery finished with6recoveries pending comment/format reassembly. No new model calls or training.
+- 10-19-2026 05:33 PDT -- RUNNING, 10-19-2026 05:33 PDT. Cluster: 4,190/10,995 checked, 3,756 PASS with48slots. GX10: 501/1,600 checked, 176 PASS with16slots; setup DONE. The74-case earlier recovery finished with6recoveries pending comment/format reassembly. No new model calls or training.
