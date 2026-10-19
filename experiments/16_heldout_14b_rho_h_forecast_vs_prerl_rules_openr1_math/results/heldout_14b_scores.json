@@ -1,0 +1,164 @@
+{
+  "api_spend_usd": 0,
+  "choices": {
+    "fixed_HL": {
+      "16.0": [
+        "HL"
+      ],
+      "24.0": [
+        "HL"
+      ],
+      "8.0": [
+        "HL"
+      ]
+    },
+    "max_H": {
+      "16.0": [
+        "HL"
+      ],
+      "24.0": [
+        "HL"
+      ],
+      "8.0": [
+        "HL"
+      ]
+    },
+    "max_rho": {
+      "16.0": [
+        "HH"
+      ],
+      "24.0": [
+        "HH"
+      ],
+      "8.0": [
+        "HH"
+      ]
+    },
+    "max_rho_times_H": {
+      "16.0": [
+        "HH"
+      ],
+      "24.0": [
+        "HH"
+      ],
+      "8.0": [
+        "HH"
+      ]
+    },
+    "rho_H_equation_7": {
+      "16.0": [
+        "HL"
+      ],
+      "24.0": [
+        "HL"
+      ],
+      "8.0": [
+        "HL"
+      ]
+    }
+  },
+  "domain": "OpenR1-Math",
+  "environment_order": [
+    "HL",
+    "HH",
+    "LL",
+    "LH"
+  ],
+  "fit_scales": [
+    "1.7B",
+    "4B",
+    "8B"
+  ],
+  "held_out_scale": "14B",
+  "n_budgets": 3,
+  "n_environments": 4,
+  "n_points": 12,
+  "outcomes_already_published": true,
+  "permutation_null": "reassign the four observed utilities to the four cells inside each budget; rho and H stay with the cell",
+  "rank_accuracy": 0.7777777777777778,
+  "rank_pairs": 18,
+  "rank_permutation": {
+    "at_least_as_extreme": 520,
+    "p": 0.03761574074074074,
+    "total": 13824
+  },
+  "rmse_percentage_points": 2.2912412573305936,
+  "rules": {
+    "fixed_HL": {
+      "choice_by_budget_million_tokens": {
+        "16.0": [
+          "HL"
+        ],
+        "24.0": [
+          "HL"
+        ],
+        "8.0": [
+          "HL"
+        ]
+      },
+      "rank_accuracy": 0.6944444444444444,
+      "regret_percentage_points": 0.2866666666666667
+    },
+    "max_H": {
+      "choice_by_budget_million_tokens": {
+        "16.0": [
+          "HL"
+        ],
+        "24.0": [
+          "HL"
+        ],
+        "8.0": [
+          "HL"
+        ]
+      },
+      "rank_accuracy": 0.6111111111111112,
+      "regret_percentage_points": 0.2866666666666667
+    },
+    "max_rho": {
+      "choice_by_budget_million_tokens": {
+        "16.0": [
+          "HH"
+        ],
+        "24.0": [
+          "HH"
+        ],
+        "8.0": [
+          "HH"
+        ]
+      },
+      "rank_accuracy": 0.4444444444444444,
+      "regret_percentage_points": 4.423333333333333
+    },
+    "max_rho_times_H": {
+      "choice_by_budget_million_tokens": {
+        "16.0": [
+          "HH"
+        ],
+        "24.0": [
+          "HH"
+        ],
+        "8.0": [
+          "HH"
+        ]
+      },
+      "rank_accuracy": 0.4444444444444444,
+      "regret_percentage_points": 4.423333333333333
+    },
+    "rho_H_equation_7": {
+      "choice_by_budget_million_tokens": {
+        "16.0": [
+          "HL"
+        ],
+        "24.0": [
+          "HL"
+        ],
+        "8.0": [
+          "HL"
+        ]
+      },
+      "rank_accuracy": 0.7777777777777778,
+      "regret_percentage_points": 0.2866666666666667
+    }
+  },
+  "uniform_regret_percentage_points": 2.7166666666666663
+}
