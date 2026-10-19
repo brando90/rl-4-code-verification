@@ -1,0 +1,264 @@
+{
+  "experiment": "17_heldout_prediction_of_unseen_experiments_agentic_rl_and_rsi_scaling_law",
+  "timestamp": "2026-10-18T19:50:00-07:00",
+  "steer_source": "Andrew (Zhanke) Zhou Q&A feedback on RL-utility paper",
+  "spend_usd": 0.0,
+  "suite_1_rsi_lean_code_verification": {
+    "task_1a_unseen_scale_14b": {
+      "law_rmse_pp": 1.2731100443759749,
+      "baseline_rmse_pp": 1.1201134956403203,
+      "law_mae_pp": 1.2007970950212299,
+      "baseline_mae_pp": 1.0178348180521593,
+      "law_pearson_r": 0.959535325358577,
+      "baseline_pearson_r": 0.9563604155770374,
+      "points": [
+        {
+          "budget_m": 0.720775,
+          "true_utility_pct": 2.87,
+          "pred_law_pct": 4.87,
+          "pred_base_pct": 4.66
+        },
+        {
+          "budget_m": 1.442549,
+          "true_utility_pct": 5.83,
+          "pred_law_pct": 6.76,
+          "pred_base_pct": 6.37
+        },
+        {
+          "budget_m": 2.884708,
+          "true_utility_pct": 9.44,
+          "pred_law_pct": 8.24,
+          "pred_base_pct": 8.51
+        },
+        {
+          "budget_m": 4.318781,
+          "true_utility_pct": 8.52,
+          "pred_law_pct": 9.33,
+          "pred_base_pct": 9.78
+        },
+        {
+          "budget_m": 5.752936,
+          "true_utility_pct": 11.2,
+          "pred_law_pct": 10.15,
+          "pred_base_pct": 10.64
+        }
+      ]
+    },
+    "task_1b_cross_regime_transfer": {
+      "transfer_rmse_pp": 2.992198574113301,
+      "transfer_pearson_r": 0.9940249843208533,
+      "points": [
+        {
+          "scale": 1.7,
+          "budget_m": 2.884708,
+          "true_utility_pct": 4.91,
+          "pred_from_replay_pct": 0.44,
+          "error_pp": -4.46
+        },
+        {
+          "scale": 1.7,
+          "budget_m": 5.752936,
+          "true_utility_pct": 5.09,
+          "pred_from_replay_pct": -0.22,
+          "error_pp": -5.31
+        },
+        {
+          "scale": 4.0,
+          "budget_m": 2.884708,
+          "true_utility_pct": 11.29,
+          "pred_from_replay_pct": 10.19,
+          "error_pp": -1.1
+        },
+        {
+          "scale": 4.0,
+          "budget_m": 5.752936,
+          "true_utility_pct": 13.89,
+          "pred_from_replay_pct": 12.4,
+          "error_pp": -1.48
+        },
+        {
+          "scale": 8.0,
+          "budget_m": 2.884708,
+          "true_utility_pct": 10.65,
+          "pred_from_replay_pct": 9.23,
+          "error_pp": -1.41
+        },
+        {
+          "scale": 8.0,
+          "budget_m": 5.752936,
+          "true_utility_pct": 15.56,
+          "pred_from_replay_pct": 15.17,
+          "error_pp": -0.39
+        }
+      ]
+    },
+    "task_1c_rsi_horizon_extrapolation": {
+      "law_extrapolation_rmse_pp": 1.8771135134631696,
+      "last_observed_rmse_pp": 3.4675895020507412,
+      "law_extrapolation_mae_pp": 1.6989659955438503,
+      "last_observed_mae_pp": 3.194444444444444,
+      "relative_rmse_reduction_pct": 45.87,
+      "points": [
+        {
+          "scale": 1.7,
+          "true_100pct_utility_pct": 4.91,
+          "pred_from_early_pct": 7.71,
+          "last_observed_50pct_pct": 1.76
+        },
+        {
+          "scale": 4.0,
+          "true_100pct_utility_pct": 8.98,
+          "pred_from_early_pct": 7.18,
+          "last_observed_50pct_pct": 3.61
+        },
+        {
+          "scale": 8.0,
+          "true_100pct_utility_pct": 9.63,
+          "pred_from_early_pct": 9.08,
+          "last_observed_50pct_pct": 7.13
+        },
+        {
+          "scale": 14.0,
+          "true_100pct_utility_pct": 11.2,
+          "pred_from_early_pct": 9.56,
+          "last_observed_50pct_pct": 9.44
+        }
+      ]
+    }
+  },
+  "suite_2_agentic_rl_swebench_verified": {
+    "dataset": "SWE-bench Verified (164 agentic systems x 424 tasks)",
+    "protocol": "Probe n_A = 50 tasks -> Predict held-out n_B = 374 tasks across 2000 random splits",
+    "rank_evaluation": {
+      "median_spearman_irt_vs_heldout": 0.9574,
+      "median_spearman_empirical_vs_heldout": 0.9532,
+      "spearman_delta": 0.004,
+      "share_splits_irt_beats_empirical": 0.8115,
+      "status": "HOLDS (81.15% of 2000 splits)"
+    },
+    "level_evaluation_mae": {
+      "mae_gain_over_raw_pass1": 0.021,
+      "ci95_gain_over_raw_pass1": [
+        0.0195,
+        0.0224
+      ],
+      "mae_gain_over_linear_regression": 0.0052,
+      "ci95_gain_over_linear_regression": [
+        0.0043,
+        0.0059
+      ],
+      "p_value": 0.0009995002498750624,
+      "systems_better_count": 146,
+      "n_systems": 164
+    },
+    "verdict": "CONTINUE: 2PL forecasts held-out pass@1 better than pass@1 on half A (rank and level rule holds); the level gain also exceeds the non-IRT linear-regression forecast from the same reference systems"
+  },
+  "suite_3_math_rlvr_loeo": {
+    "loeo_by_environment": {
+      "HH": {
+        "rmse_pp": 2.082,
+        "mae_pp": 1.56,
+        "points": [
+          {
+            "budget": 8.0,
+            "true_utility_pct": -0.23,
+            "predicted_utility_pct": 0.17,
+            "error_pp": 0.4
+          },
+          {
+            "budget": 16.0,
+            "true_utility_pct": -3.01,
+            "predicted_utility_pct": 0.49,
+            "error_pp": 3.5
+          },
+          {
+            "budget": 24.0,
+            "true_utility_pct": -0.11,
+            "predicted_utility_pct": 0.68,
+            "error_pp": 0.79
+          }
+        ]
+      },
+      "HL": {
+        "rmse_pp": 1.145,
+        "mae_pp": 1.104,
+        "points": [
+          {
+            "budget": 8.0,
+            "true_utility_pct": 2.61,
+            "predicted_utility_pct": 1.08,
+            "error_pp": -1.53
+          },
+          {
+            "budget": 16.0,
+            "true_utility_pct": 2.92,
+            "predicted_utility_pct": 2.04,
+            "error_pp": -0.88
+          },
+          {
+            "budget": 24.0,
+            "true_utility_pct": 3.53,
+            "predicted_utility_pct": 2.63,
+            "error_pp": -0.9
+          }
+        ]
+      },
+      "LH": {
+        "rmse_pp": 0.837,
+        "mae_pp": 0.743,
+        "points": [
+          {
+            "budget": 8.0,
+            "true_utility_pct": -1.16,
+            "predicted_utility_pct": -1.37,
+            "error_pp": -0.21
+          },
+          {
+            "budget": 16.0,
+            "true_utility_pct": -0.56,
+            "predicted_utility_pct": -1.67,
+            "error_pp": -1.11
+          },
+          {
+            "budget": 24.0,
+            "true_utility_pct": -2.76,
+            "predicted_utility_pct": -1.85,
+            "error_pp": 0.91
+          }
+        ]
+      },
+      "LL": {
+        "rmse_pp": 2.816,
+        "mae_pp": 2.38,
+        "points": [
+          {
+            "budget": 8.0,
+            "true_utility_pct": 2.28,
+            "predicted_utility_pct": -0.6,
+            "error_pp": -2.88
+          },
+          {
+            "budget": 16.0,
+            "true_utility_pct": 3.78,
+            "predicted_utility_pct": -0.14,
+            "error_pp": -3.92
+          },
+          {
+            "budget": 24.0,
+            "true_utility_pct": -0.21,
+            "predicted_utility_pct": 0.13,
+            "error_pp": 0.34
+          }
+        ]
+      }
+    },
+    "overall_loeo_rmse_pp": 1.889,
+    "overall_loeo_mae_pp": 1.447,
+    "decision_regret": {
+      "law_regret_pp": 0.287,
+      "fixed_hl_regret_pp": 0.287,
+      "random_candidate_regret_pp": 2.717,
+      "regret_reduction_vs_random_pp": 2.43
+    }
+  }
+}
