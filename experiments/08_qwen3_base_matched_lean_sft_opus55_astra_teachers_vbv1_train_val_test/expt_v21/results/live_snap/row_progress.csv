@@ -51,14 +51,14 @@ tiny_comparisons_09,ACCEPTED_REPAIRED,True,72d3ab72d87fe6f702089dd8dd22b0a327a29
 tiny_comparisons_10,ACCEPTED_REPAIRED,True,4607f82f6e697fec1d0b15ab597128307b10527f6e0c8cd7f832298b0b9135f7,,,,Explicit conditional proof and concrete reductions passed the frozen batch checker.
 tiny_comparisons_11,ACCEPTED_REPAIRED,True,495f0929ee0c9c64fe3332518384076853ed9d9264c8bb6f41386c137f5acba8,,,,Explicit conditional proof and concrete reductions passed the frozen batch checker.
 tiny_comparisons_12,ACCEPTED_REPAIRED,True,9575fb59de32dcbefaee04406a6741b77eda802e1b1474181e22e7722c5db1ac,,,,Explicit conditional proof and concrete reductions passed the frozen batch checker.
-tiny_comparisons_13,REPAIR_RUNNING,,,batch_0013,1,,
-tiny_comparisons_14,REPAIR_RUNNING,,,batch_0013,1,,
-tiny_comparisons_15,REPAIR_RUNNING,,,batch_0013,1,,
-tiny_comparisons_16,REPAIR_RUNNING,,,batch_0013,1,,
-tiny_comparisons_17,PENDING,False,,,0,,
-tiny_comparisons_18,PENDING,False,,,0,,
-tiny_comparisons_19,PENDING,False,,,0,,
-tiny_comparisons_20,PENDING,False,,,0,,
+tiny_comparisons_13,ACCEPTED_REPAIRED,True,3ad0f09fd989cdbf2cd1f532aad27e59a30376199ab97d1167cffda02f7bcb89,,,,Replaced all three proofs with explicit conditional reasoning and reflexive concrete computations. Final frozen check passed (hash 3ad0f09f).
+tiny_comparisons_14,ACCEPTED_REPAIRED,True,c00155d9abecd8c624f2b7845bcd7efdb1a93649843558903454140420cb1d2d,,,,"Replaced all three proofs with explicit conditional reasoning, strict-order asymmetry, and reflexive concrete computations. Final frozen check passed (hash c00155d9)."
+tiny_comparisons_15,ACCEPTED_REPAIRED,True,a446b3769c276a530524cea0f3764940043b02a2df47cbff2754ed3df05fac60,,,,Replaced all three proofs with explicit conditional reasoning and reflexive concrete computations. Final frozen check passed (hash a446b376).
+tiny_comparisons_16,ACCEPTED_REPAIRED,True,c6553754ff359307015796b6bfa600ff46cd23f8014303d5fbc8d85a7b27f760,,,,Replaced all three proofs with explicit conditional reasoning and reflexive concrete computations. Final frozen check passed (hash c6553754).
+tiny_comparisons_17,ACCEPTED_REPAIRED,True,daad50d959e523fb6ac970129a237509a953a1446c2e5eecffda2417b0e469a0,,,,Passed frozen batch checker with 3 honest kernel-checked theorems.
+tiny_comparisons_18,ACCEPTED_REPAIRED,True,5d8d0a81f640ec575c719a721eda989de3c4c9433aa016701727e656f7f689dd,,,,Passed frozen batch checker with 3 honest kernel-checked theorems.
+tiny_comparisons_19,ACCEPTED_REPAIRED,True,c41418c5eb79932432b0d77aab3a3cd629bbe8ac003210cb3d1c2b68c498ffd8,,,,Passed frozen batch checker with 3 honest kernel-checked theorems.
+tiny_comparisons_20,ACCEPTED_REPAIRED,True,8939d8579aaa20441e67f39702b380c3ac2608ab70b3a98933a6588fb09e4bc9,,,,Passed frozen batch checker with 3 honest kernel-checked theorems.
 tiny_conditionals_01,ACCEPTED_MECHANICAL_RFL,True,264dcf3d7c15c89200cf3b3f80d574a79a3734c98d8a7f9b605919cd2aa8ece1,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
 tiny_conditionals_02,ACCEPTED_REPAIRED,True,c97234807886cf28a33f5e2b34aa9fb694b889db8fdcb1c14eb25ce30fb9ac66,,,,"Replaced conditional automation and concrete decisions with direct case analysis, order lemmas, and definitional `rfl`; final bounded check passed with 3 honest theorems."
 tiny_conditionals_03,ACCEPTED_REPAIRED,True,f4ae273a137333642f7d822648a1334e025a9b18057022469d858829f040a1dd,,,,"Replaced conditional automation and concrete decisions with direct branch rewrites, strict-to-weak order reasoning, and `rfl`; final bounded check passed with 3 honest theorems."
@@ -187,14 +187,14 @@ tiny_list_counting_05,ACCEPTED_REPAIRED,True,11cf855616f0230515b4bf0dca39f6cdd15
 tiny_list_counting_06,ACCEPTED_REPAIRED,True,c07f25d0d6a5d2b2ed603ea9b0d7a3ff8851edff33deba7e53a3a161192a9015,,,,Direct append-count rewrite and concrete reductions passed the frozen batch checker.
 tiny_list_counting_07,ACCEPTED_REPAIRED,True,d497db01316943c1e2c3f9eaba8869fbcb979c47eeaae62636481e1d5c2eca98,,,,Direct reversal-count rewrite and concrete reductions passed the frozen batch checker.
 tiny_list_counting_08,ACCEPTED_REPAIRED,True,acf81811f833b0b688068f96a96193529dec7aaf02c358a2ced5296acb4aa794,,,,Direct matching-head count rewrite and concrete reductions passed the frozen batch checker.
-tiny_list_counting_09,REPAIR_RUNNING,,,batch_0087,1,,
-tiny_list_counting_10,REPAIR_RUNNING,,,batch_0087,1,,
-tiny_list_counting_11,REPAIR_RUNNING,,,batch_0087,1,,
-tiny_list_counting_12,REPAIR_RUNNING,,,batch_0087,1,,
-tiny_list_counting_13,PENDING,False,,,0,,
-tiny_list_counting_14,PENDING,False,,,0,,
-tiny_list_counting_15,PENDING,False,,,0,,
-tiny_list_counting_16,PENDING,False,,,0,,
+tiny_list_counting_09,ACCEPTED_REPAIRED,True,6cce4a8c70bd392640c0afc676c442ea1df06bf4b587897a8abfe747abd060dd,,,,Frozen checker passed the final exact bytes (hash 6cce4a8c) with three honest theorems and no prohibited axioms.
+tiny_list_counting_10,EXCLUDED_BOUNDED_REPAIR,False,,batch_0087,2,V21 bounded repair ended without an explicit verified proof; not a mathematical impossibility claim.,
+tiny_list_counting_11,EXCLUDED_BOUNDED_REPAIR,False,,batch_0087,2,V21 bounded repair ended without an explicit verified proof; not a mathematical impossibility claim.,
+tiny_list_counting_12,EXCLUDED_BOUNDED_REPAIR,False,,batch_0087,2,V21 bounded repair ended without an explicit verified proof; not a mathematical impossibility claim.,
+tiny_list_counting_13,REPAIR_RUNNING,,,batch_0088,1,,
+tiny_list_counting_14,REPAIR_RUNNING,,,batch_0088,1,,
+tiny_list_counting_15,ACCEPTED_MECHANICAL_RFL,True,3cc56aa641353b5c9f21a9e34c887906942cb722dbb100e701f846d379c2c88a,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
+tiny_list_counting_16,REPAIR_RUNNING,,,batch_0088,1,,
 tiny_list_counting_17,PENDING,False,,,0,,
 tiny_list_counting_18,PENDING,False,,,0,,
 tiny_list_counting_19,PENDING,False,,,0,,
@@ -207,14 +207,14 @@ tiny_list_filtering_05,ACCEPTED_REPAIRED,True,e97533489b1a30692e4727987cca79b3c3
 tiny_list_filtering_06,ACCEPTED_REPAIRED,True,90e67819bfda5596a09cade4b6be05a041041810cb0c5d656faf015eb4ffd7e5,,,,Replaced filtered-membership automation with explicit rewrites and concrete tests with rfl; bounded batch checker passed.
 tiny_list_filtering_07,ACCEPTED_REPAIRED,True,e0e85762c0c9d2628e1b31cc3f604ddaf2f2a34c862c5bdd7a6a0fd1472a21ff,,,,Replaced filtered-membership automation with explicit rewrites and concrete tests with rfl; bounded batch checker passed.
 tiny_list_filtering_08,ACCEPTED_REPAIRED,True,c649db609d018fcee7d5c014f11e9b1ebcc62fb17cc8f00548c09cbe774ceea7,,,,Replaced filtered-membership automation with explicit rewrites and concrete tests with rfl; bounded batch checker passed.
-tiny_list_filtering_09,REPAIR_RUNNING,,,batch_0077,1,,
-tiny_list_filtering_10,REPAIR_RUNNING,,,batch_0077,1,,
-tiny_list_filtering_11,REPAIR_RUNNING,,,batch_0077,1,,
-tiny_list_filtering_12,REPAIR_RUNNING,,,batch_0077,1,,
-tiny_list_filtering_13,PENDING,False,,,0,,
-tiny_list_filtering_14,PENDING,False,,,0,,
-tiny_list_filtering_15,PENDING,False,,,0,,
-tiny_list_filtering_16,PENDING,False,,,0,,
+tiny_list_filtering_09,ACCEPTED_REPAIRED,True,a05b60d154f89742dad29007b588ff408cfbe9ed31bbf4e4ea8f3e47a4ecaa23,,,,Replaced all three targets with explicit filter-membership and definitional proofs. Final bounded checker passed (3 honest theorems; no axioms or native evaluation).
+tiny_list_filtering_10,ACCEPTED_REPAIRED,True,83758ef96cf5e4345454e0f61b9a525bdcd009b8ae92791227bac639c5150830,,,,Replaced all three targets with explicit filter-membership and definitional proofs. Final bounded checker passed (3 honest theorems; no axioms or native evaluation).
+tiny_list_filtering_11,ACCEPTED_REPAIRED,True,f1dd4d7a3cb5090249c538377ecaffac22d0352ba76479df1c635bdac3b07ba2,,,,Replaced all three targets with explicit filter-membership and definitional proofs. Final bounded checker passed (3 honest theorems; no axioms or native evaluation).
+tiny_list_filtering_12,ACCEPTED_REPAIRED,True,e4bfbbe637e8bea7b0635161e31310b37b4552c25bd5c140fca61319d01273a2,,,,Replaced all three targets with explicit filter-membership and definitional proofs. Final bounded checker passed (3 honest theorems; no axioms or native evaluation).
+tiny_list_filtering_13,REPAIR_RUNNING,,,batch_0078,1,,
+tiny_list_filtering_14,REPAIR_RUNNING,,,batch_0078,1,,
+tiny_list_filtering_15,REPAIR_RUNNING,,,batch_0078,1,,
+tiny_list_filtering_16,REPAIR_RUNNING,,,batch_0078,1,,
 tiny_list_filtering_17,PENDING,False,,,0,,
 tiny_list_filtering_18,PENDING,False,,,0,,
 tiny_list_filtering_19,PENDING,False,,,0,,
@@ -237,8 +237,8 @@ tiny_list_lengths_15,ACCEPTED_REPAIRED,True,c475e5abf192c2d87820cba134ab1c9fc7d0
 tiny_list_lengths_16,ACCEPTED_REPAIRED,True,892c1d279a0bc7f20ed3696a1aebb6e329e4a2b767f45dcef1a0290db2e9983c,,,,Final explicit Boolean-order conversion proof and concrete computations passed the frozen checker.
 tiny_list_lengths_17,ACCEPTED_MECHANICAL_RFL,True,8490a5e811f53b47a00b3412dfe906a9a6011e971690b1982085306372921bc9,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
 tiny_list_lengths_18,ACCEPTED_MECHANICAL_RFL,True,50cd1a7f4cb527d1f980807c7da2c18232d83c58ff29377dfa1a07cf4a7262c3,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
-tiny_list_lengths_19,REPAIR_RUNNING,,,batch_0069,1,,
-tiny_list_lengths_20,REPAIR_RUNNING,,,batch_0069,1,,
+tiny_list_lengths_19,ACCEPTED_REPAIRED,True,41f6cadc3ce9bc1826d419dd7a344218e322655c75741b7d1cbc6763dcf70115,,,,Replaced all targets with explicit singleton-length induction or definitional reductions; final bounded checker passed.
+tiny_list_lengths_20,ACCEPTED_REPAIRED,True,38944b8e4ae89a2990526b37f4c5566ad3e6e2b1df340cdf9bdbd392256b0cba,,,,"Replaced all targets with explicit left-list induction, successor-subtraction rewriting, or definitional reductions; final bounded checker passed."
 tiny_list_mapping_01,ACCEPTED_MECHANICAL_RFL,True,b42c209ddc5ec7f211e2beff8b3cbe0626560e3a25a6bf95d32edcbec68936ab,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
 tiny_list_mapping_02,ACCEPTED_MECHANICAL_RFL,True,dec139b53842bc45fee427f8a187e9568105a24d10c827e9ab05a1bf4d3cba68,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
 tiny_list_mapping_03,ACCEPTED_MECHANICAL_RFL,True,93e22dc6e4b069737f1b36bee23771a98754b9f8f1c8387875dbb0613c538ec5,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
@@ -267,14 +267,14 @@ tiny_list_membership_05,ACCEPTED_REPAIRED,True,2a507afeac363bcbedf6a5c3db6d9b974
 tiny_list_membership_06,ACCEPTED_REPAIRED,True,fbb45ed78de719b304643d8a36bde5ed2f03a7ca594766b0fc15037769865e67,,,,"Replaced all three proofs using containment, reverse-membership equivalence, and reflexive concrete computations. Frozen checker passed on final bytes."
 tiny_list_membership_07,ACCEPTED_REPAIRED,True,ee5a7ff05c8525014efc4211a974d1036ee223b4fd8efaca8c8217fef83ad401,,,,Replaced all three proofs using the standard containment equivalence and reflexive prefix computations. Frozen checker passed on final bytes.
 tiny_list_membership_08,ACCEPTED_REPAIRED,True,bf12ae76311b2826cc135d727697b26ebade1dbff5e8ca06f0d39febd7b02141,,,,Replaced all three proofs using the standard containment equivalence and reflexive suffix computations. Frozen checker passed on final bytes.
-tiny_list_membership_09,REPAIR_RUNNING,,,batch_0097,1,,
-tiny_list_membership_10,REPAIR_RUNNING,,,batch_0097,1,,
-tiny_list_membership_11,REPAIR_RUNNING,,,batch_0097,1,,
-tiny_list_membership_12,REPAIR_RUNNING,,,batch_0097,1,,
-tiny_list_membership_13,PENDING,False,,,0,,
-tiny_list_membership_14,PENDING,False,,,0,,
-tiny_list_membership_15,PENDING,False,,,0,,
-tiny_list_membership_16,PENDING,False,,,0,,
+tiny_list_membership_09,EXCLUDED_BOUNDED_REPAIR,False,,batch_0097,2,V21 bounded repair ended without an explicit verified proof; not a mathematical impossibility claim.,
+tiny_list_membership_10,EXCLUDED_BOUNDED_REPAIR,False,,batch_0097,2,V21 bounded repair ended without an explicit verified proof; not a mathematical impossibility claim.,
+tiny_list_membership_11,EXCLUDED_BOUNDED_REPAIR,False,,batch_0097,2,V21 bounded repair ended without an explicit verified proof; not a mathematical impossibility claim.,
+tiny_list_membership_12,EXCLUDED_BOUNDED_REPAIR,False,,batch_0097,2,V21 bounded repair ended without an explicit verified proof; not a mathematical impossibility claim.,
+tiny_list_membership_13,REPAIR_RUNNING,,,batch_0098,1,,
+tiny_list_membership_14,REPAIR_RUNNING,,,batch_0098,1,,
+tiny_list_membership_15,REPAIR_RUNNING,,,batch_0098,1,,
+tiny_list_membership_16,REPAIR_RUNNING,,,batch_0098,1,,
 tiny_list_membership_17,PENDING,False,,,0,,
 tiny_list_membership_18,PENDING,False,,,0,,
 tiny_list_membership_19,PENDING,False,,,0,,
@@ -295,9 +295,9 @@ tiny_list_reversal_13,ACCEPTED_REPAIRED,True,b8650f44f04042b6d5f72019cca84242f7a
 tiny_list_reversal_14,ACCEPTED_REPAIRED,True,8a166f20b14d9f0d22f43ec1b95b2b45eb82c58fb1a1b76120a7929876334e20,,,,Passed bounded checker with reversal permutation count preservation and rfl concrete cases.
 tiny_list_reversal_15,EXCLUDED_BOUNDED_REPAIR,False,,batch_0093,2,V21 bounded repair ended without an explicit verified proof; not a mathematical impossibility claim.,
 tiny_list_reversal_16,EXCLUDED_BOUNDED_REPAIR,False,,batch_0093,2,V21 bounded repair ended without an explicit verified proof; not a mathematical impossibility claim.,
-tiny_list_reversal_17,REPAIR_RUNNING,,,batch_0094,1,,
+tiny_list_reversal_17,ACCEPTED_REPAIRED,True,9c96bb2237bbb4e68358c1815d5102ecd9a3dee5d74c6c0e20c201fde45a22f2,,,,Replaced all targets with explicit reversal/definitional proofs. Final individual kernel check passed (hash 9c96bb2237bbb4e68358c1815d5102ecd9a3dee5d74c6c0e20c201fde45a22f2).
 tiny_list_reversal_18,ACCEPTED_MECHANICAL_RFL,True,486f8d28740a8e3fcb1969f0c100c2b7c7ab457d0a10a05bccb15496dfc1e1fb,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
-tiny_list_reversal_19,REPAIR_RUNNING,,,batch_0094,1,,
+tiny_list_reversal_19,ACCEPTED_REPAIRED,True,d252ad79738ab0951af788b552cf79a2ff308e3dfcdeb4797242465f225aa390,,,,"Replaced all targets with two explicit reverse-append rewrites, associativity, and definitional proofs. Batch kernel check passed (hash d252ad79738ab0951af788b552cf79a2ff308e3dfcdeb4797242465f225aa390)."
 tiny_list_reversal_20,ACCEPTED_MECHANICAL_RFL,True,1dd8dcf63c5f0a7b865d0004b9b6f16f7b989e9e4ab18b51f0c5c01ed45b14c8,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
 tiny_list_slicing_01,ACCEPTED_MECHANICAL_RFL,True,f14bc01dc6542db9c03036df99c34ba3eaadaff5fcae85a73d58bff3f659157a,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
 tiny_list_slicing_02,ACCEPTED_MECHANICAL_RFL,True,14a3df914e0717b346fff0ff143cbdf9eccec55c7044bbd2db0ce4e0add79a0e,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
@@ -395,10 +395,10 @@ tiny_natural_ranges_13,ACCEPTED_REPAIRED,True,639235466579651047075246d6ce770ad7
 tiny_natural_ranges_14,ACCEPTED_MECHANICAL_RFL,True,2ef7f4aa9baecd4202392a9ab973dd669e44c61d8fdff6ee2d87a50ced39392e,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
 tiny_natural_ranges_15,ACCEPTED_MECHANICAL_RFL,True,e35a145fa305d860e92042399940740706c42636affce2097c552d9bfe23e35e,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
 tiny_natural_ranges_16,ACCEPTED_REPAIRED,True,8d215d48ca4465a40103f123d8b89fcb6545d993a3bd6980977fb56ee2f5b132,,,,Replaced all three targets with explicit list-length rewrites and computational proofs; bounded batch check passed (3 honest theorems).
-tiny_natural_ranges_17,REPAIR_RUNNING,,,batch_0119,1,,
+tiny_natural_ranges_17,EXCLUDED_BOUNDED_REPAIR,False,,batch_0119,2,V21 bounded repair ended without an explicit verified proof; not a mathematical impossibility claim.,
 tiny_natural_ranges_18,ACCEPTED_MECHANICAL_RFL,True,7119d5d0d7461ff4ac4325c27c408fe6b6f75661991cbaeafa1f7cbf6f2d1b12,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
 tiny_natural_ranges_19,ACCEPTED_MECHANICAL_RFL,True,0739c29f8ee06cee9db2303eaa24068e3264f9553c3608b33fdd8d5a05c6daa9,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
-tiny_natural_ranges_20,REPAIR_RUNNING,,,batch_0119,1,,
+tiny_natural_ranges_20,ACCEPTED_REPAIRED,True,595305d8c36811093743bb41a0379d53f16d82cf4efd82956c6ff8a3d609f4ae,,,,All four explicit proof replacements passed the frozen compiler and kernel checks on their final bytes.
 tiny_optional_values_01,ACCEPTED_MECHANICAL_RFL,True,c4e886addedcc5bf1937b7889cbaf59a4752c518289bc52e4d3d471411d4a64f,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
 tiny_optional_values_02,ACCEPTED_MECHANICAL_RFL,True,405f09e5d2c7109025926d09511bfe4c3f5fd58c74e88abc74c361370260a678,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
 tiny_optional_values_03,ACCEPTED_MECHANICAL_RFL,True,328cd2020dfd851473d79b3e075c3014193139880bf4403f6623373d97ad0e97,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
@@ -435,10 +435,10 @@ tiny_pairs_13,ACCEPTED_MECHANICAL_RFL,True,ebcfe633f76122a972769f1f781a0791adfeb
 tiny_pairs_14,ACCEPTED_REPAIRED,True,e2c50d82181a992dafae4337c7828e5f76b38116c87e2dd48bdf0d373315ecab,,,,All three explicit proofs passed the frozen batch checker and kernel audit.
 tiny_pairs_15,ACCEPTED_REPAIRED,True,a6cef437f6e05a25b1c375468ed86824a45d8359ffd10f55b91cecfe2ba3f7a4,,,,All three explicit proofs passed the frozen batch checker and kernel audit.
 tiny_pairs_16,EXCLUDED_BOUNDED_REPAIR,False,,batch_0048,2,V21 bounded repair ended without an explicit verified proof; not a mathematical impossibility claim.,
-tiny_pairs_17,REPAIR_RUNNING,,,batch_0049,1,,
-tiny_pairs_18,REPAIR_RUNNING,,,batch_0049,1,,
+tiny_pairs_17,EXCLUDED_BOUNDED_REPAIR,False,,batch_0049,2,V21 bounded repair ended without an explicit verified proof; not a mathematical impossibility claim.,
+tiny_pairs_18,ACCEPTED_REPAIRED,True,e807555459fe372db4539a9c5fac8e0e1102b8fb9f3f98ace83927d387d30a9b,,,,Explicit reassociation and cancellation proof passed the frozen checker and kernel audit.
 tiny_pairs_19,ACCEPTED_MECHANICAL_RFL,True,c066d91b91265e9a926f6515ae7d40f8dec70b9a88e9bf79732614c653933b7d,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
-tiny_pairs_20,REPAIR_RUNNING,,,batch_0049,1,,
+tiny_pairs_20,ACCEPTED_REPAIRED,True,0c74268c154bcc7b9320f7629585e0ba74708cab45456dc4b2d74460ddaeff09,,,,Explicit Boolean truth-table proof passed the frozen checker and kernel audit.
 tiny_parity_01,ACCEPTED_REPAIRED,True,69a042063814ad4548da40b82384e535a0bb82e07967c81df90e390c37c24144,,,,All three explicit replacements passed the bounded checker; kernel report found 3 honest theorems.
 tiny_parity_02,ACCEPTED_REPAIRED,True,756101dfa42e5241067fbd5b9e3281d3c01c2f86eba1a299d8707f1f4c7953cd,,,,All three explicit replacements passed the bounded checker; kernel report found 3 honest theorems.
 tiny_parity_03,ACCEPTED_REPAIRED,True,b8be686e1660a3e0f806df135986644ab03e190b540c42c5b888ecd57339178f,,,,All three explicit replacements passed the bounded checker; kernel report found 3 honest theorems.
@@ -474,11 +474,11 @@ tiny_polynomials_12,ACCEPTED_REPAIRED,True,a214053a517b21c2de65a596816ea38bdf01d
 tiny_polynomials_13,ACCEPTED_REPAIRED,True,92b67c74eed40437d520d3323af0728ea83a41f1b613178b62b5ad2b2cb3799f,,,,Final bytes passed the frozen checker; all three declarations kernel-checked.
 tiny_polynomials_14,ACCEPTED_REPAIRED,True,f3a4352428d3f33d20feda8665447e22f1cf32ccfcb88d37ae48026587f96056,,,,Final bytes passed the frozen checker; all three declarations kernel-checked.
 tiny_polynomials_15,ACCEPTED_REPAIRED,True,ff53839e4c1f4375e04bbc45ca0cdb2ffd94eb9911a84a6f70762b7f786965ed,,,,Final bytes passed the frozen checker; all three declarations kernel-checked.
-tiny_polynomials_16,REPAIR_RUNNING,,,batch_0033,2,,
-tiny_polynomials_17,PENDING,False,,,0,,
-tiny_polynomials_18,PENDING,False,,,0,,
-tiny_polynomials_19,PENDING,False,,,0,,
-tiny_polynomials_20,PENDING,False,,,0,,
+tiny_polynomials_16,EXCLUDED_BOUNDED_REPAIR,False,,batch_0033,2,V21 bounded repair ended without an explicit verified proof; not a mathematical impossibility claim.,
+tiny_polynomials_17,ACCEPTED_REPAIRED,True,227b66a831adafbda12e3aa43800b93a40d331716bbb92704cdf51dd679863c3,,,,"Replaced all targets with explicit unfolding, polynomial construction, and reflexive concrete computations; final batch check passed."
+tiny_polynomials_18,ACCEPTED_REPAIRED,True,3285c08f8d9c4e8fb8703f0e40a94537c6cdc51f33a3dfae02550e23f3fa5e03,,,,Replaced all targets with associativity and reflexive concrete computations; final batch check passed.
+tiny_polynomials_19,ACCEPTED_REPAIRED,True,9085a7ab89005186ee98f771b295290a420e354729dc637f01d2cdabbd8d6f97,,,,"Replaced all targets with distributivity, cancellation, and reflexive concrete computations; final batch check passed."
+tiny_polynomials_20,ACCEPTED_REPAIRED,True,9068f602732dd66b4ca0efa31eeb5d6ab1ae761c65aaacbde54fb2df1e65a54e,,,,Replaced all targets with the square identity and reflexive concrete computations; final batch check passed.
 tiny_safe_indexing_01,ACCEPTED_MECHANICAL_RFL,True,a8cac32c60518f7d09b98c9ebeef6a168a1b5cf7010fe7d3bdb32a6233c2b487,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
 tiny_safe_indexing_02,ACCEPTED_MECHANICAL_RFL,True,e7fa854d78145612785ef80c51313aee6c216cf0677e570533682ffa84d6f73a,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
 tiny_safe_indexing_03,ACCEPTED_MECHANICAL_RFL,True,c69c194b0d1e84944c777d1615c1fb5521636933ef457951d0922939dca292e1,,,,All targeted obligations proved by explicit definitional reflexivity; no model call.
