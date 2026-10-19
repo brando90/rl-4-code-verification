@@ -1,5 +1,5 @@
 {
-  "observed_unix": 1792401068.446995,
+  "observed_unix": 1792401130.9579728,
   "root": "/lfs/skampere1/0/eth127/rl4cv_tiny_training",
   "systems": {
     "1p7_control": {
@@ -521,27 +521,54 @@
           "uuid": "GPU-030a1de4-d323-e947-aaf2-804435744526",
           "total_mib": 81920,
           "used_mib": 0,
-          "allocated_unix": 1792397393.7161067,
-          "pid": 2922150,
+          "allocated_unix": 1792401113.918801,
+          "pid": 849764,
           "owner": "eth127",
           "foreign_processes_preserved": true
         },
-        "training": {
+        "released": {
+          "gpu": "6",
+          "released_unix": 1792401113.4878883
+        },
+        "training_fused": {
           "label": "4b_mixed",
-          "stage": "training",
+          "stage": "training_fused",
           "command": [
             "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
-            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6/experiment.py",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6/resume_4b_fused.py",
             "train",
-            "--condition",
-            "mixed"
+            "--checkpoint",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/fused_handoff/training_state_step_100.pt",
+            "--step",
+            "100"
           ],
-          "started_unix": 1792397514.9005764,
+          "started_unix": 1792401113.9197757,
           "host": "skampere1.stanford.edu",
           "cuda_visible_devices": "6",
           "status": "RUNNING",
-          "pid": 2941031,
-          "start_ticks": "63610520",
+          "pid": 976411,
+          "start_ticks": "63970421",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "alive": true
+        },
+        "training": {
+          "label": "4b_mixed",
+          "stage": "training_fused",
+          "command": [
+            "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6/resume_4b_fused.py",
+            "train",
+            "--checkpoint",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/fused_handoff/training_state_step_100.pt",
+            "--step",
+            "100"
+          ],
+          "started_unix": 1792401113.9197757,
+          "host": "skampere1.stanford.edu",
+          "cuda_visible_devices": "6",
+          "status": "RUNNING",
+          "pid": 976411,
+          "start_ticks": "63970421",
           "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
           "alive": true
         },
@@ -610,7 +637,27 @@
         "condition": "mixed"
       },
       "training_result": null,
-      "generation_verified": null
+      "generation_verified": null,
+      "superseded_training": {
+        "label": "4b_mixed",
+        "stage": "training",
+        "command": [
+          "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+          "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6/experiment.py",
+          "train",
+          "--condition",
+          "mixed"
+        ],
+        "started_unix": 1792397514.9005764,
+        "host": "skampere1.stanford.edu",
+        "cuda_visible_devices": "6",
+        "status": "FAILED",
+        "pid": 2941031,
+        "start_ticks": "63610520",
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "ended_unix": 1792401113.487172,
+        "exit_code": -15
+      }
     }
   },
   "launch": {
@@ -675,7 +722,7 @@
   "summary": null,
   "primary_summary": null,
   "four_wallclock_extension": {
-    "status": "WAITING_FOR_PRIMARY_SCORING",
+    "status": "SUPERSEDED_BY_FUSED_CONTINUATION",
     "training": {
       "pid": 2941031,
       "start_ticks": "63610520",
@@ -695,7 +742,9 @@
     "optimizer_or_data_changed": false,
     "created_unix": 1792398221.8068194,
     "coordinator_paused": false,
-    "checked_unix": 1792401042.87463
+    "checked_unix": 1792401102.8765795,
+    "successor": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/fused_handoff/status.json",
+    "ended_unix": 1792401106.754861
   },
   "four_fused_handoff": {
     "original_trainer": {
@@ -719,10 +768,12 @@
       "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df"
     },
     "user_authorization": "10-19-2026: ok can you deploy that one then",
-    "status": "VERIFYING_CHECKPOINT",
-    "observed_unix": 1792401016.6030216,
+    "status": "RESUMING",
+    "observed_unix": 1792401113.7157376,
     "checkpoint": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/fused_handoff/training_state_step_100.pt",
-    "original_trainer_paused": true
+    "original_trainer_paused": false,
+    "original_completed_updates": 100,
+    "completed_updates_preserved": 100
   },
   "primary_recovery": {
     "status": "GENERATION",
