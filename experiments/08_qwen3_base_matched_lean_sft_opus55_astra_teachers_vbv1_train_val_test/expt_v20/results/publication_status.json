@@ -1,14 +1,36 @@
 {
-  "observed_unix": 1792445012.007645,
+  "observed_unix": 1792446379.8903759,
   "hosts": {
     "snap": {
-      "fresh": false,
-      "error": "Authenticated control socket absent; no network login attempted.",
-      "receipts": 0,
+      "fresh": true,
+      "error": null,
+      "receipts": 25,
       "production_host": null,
-      "progress": {},
-      "generation_progress": {},
-      "terminal": {},
+      "progress": {
+        "step": 1784,
+        "loss_tokens": 2948296,
+        "train_loss": 0.4758597106644601,
+        "grad_norm": 5.645750522613525,
+        "learning_rate": 1.287858226728389e-12,
+        "elapsed_seconds": 1973.4466166220373,
+        "peak_gpu_gib": 43.79223918914795,
+        "rows_consumed": 3568,
+        "pool_counts": "{\"public_proof\": 678, \"python\": 684, \"repair\": 61, \"workbook\": 2145}",
+        "status": "RUNNING",
+        "observed_unix": 1792438701.4472673
+      },
+      "generation_progress": {
+        "completed_newline_rows": 1080,
+        "declared_cells": 1080,
+        "observed_unix": 1792446382.04288,
+        "scope": "Progress only; uniqueness, scoring and full-manifest verification are separate."
+      },
+      "terminal": {
+        "status": "FAILED_AFTER_UPDATES_PRESERVED",
+        "exit_code": 1,
+        "ended_unix": 1792438790.5314786,
+        "no_silent_optimizer_reset": true
+      },
       "summary": null
     }
   }
