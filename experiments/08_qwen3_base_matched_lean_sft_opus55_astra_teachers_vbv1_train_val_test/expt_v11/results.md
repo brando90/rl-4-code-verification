@@ -1,17 +1,31 @@
-# Sol explicit-proof repair status
+# All 68 unresolved Workbook proofs repaired and verified
 
-**Doc link:** https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v11/results.md
+**Doc link:** [experiment home](README.md)
 
-**TLDR:** RUNNING, 10-19-2026 05:43 PDT. Sol/high: 35/68 cases complete, 35 exact-source kernel-verified explicit repairs; 16 running and 17 pending.
+**TLDR:** Complete: all 68 unchanged target statements have explicit Sol/high repairs passing pinned Lean/kernel and warm-start-format checks. Seven exact duplicate statements leave 61 unique training examples. No validation/test-reference overlap was found.
 
-Compiler admission uses the same pinned Lean4.22 and frozen kernel checker, plus the explicit-tactic policy. Every failed/missing case stays in the declared68-case accounting.
+**Last updated:** 10-19-2026 06:05 PDT.
 
-## Latest execution snapshot
+| Check | Result |
+|---|---:|
+| Declared repair cases | 68 |
+| Actual pinned Lean/kernel passes | 68 |
+| FILE extraction and Qwen template/token passes | 68 |
+| Unique training rows | 61 |
+| Duplicate statements excluded from training | 7 |
+| Protected references screened | 764 |
+| Exact / near protected hits | 0 / 0 |
 
-RUNNING, 10-19-2026 05:43 PDT. Sol/high: 35/68 cases complete, 35 exact-source kernel-verified explicit repairs; 16 running and 17 pending.
+## Method and evidence
 
-[All68case rows](results/repair_rows.csv) · [Usage estimate](results/usage.json) · [Frozen dispatch](results/dispatch.json). Raw candidates, logs, final Lean files and training artifacts remain under `/lfs/skampere1/0/eth127/rl4cv_tiny_training/lean_corpus_v11/`.
+Sixteen `gpt-6.1-sol` high-reasoning Codex CLI workers ran on skampere1 with four compiler slots. Every original theorem name, statement and hypothesis is preserved; new proved helper lemmas and explicit replacement proofs were allowed. Final source contains no discouraged automation, sorry, admit, new axioms or native_decide. Each final exact source hash has a successful frozen kernel receipt with allowed axioms only.
 
-## Verification evidence
+The [per-case table](results/final_row_results.csv), [final summary](results/final_summary.json), [statement audit](results/statement_audit.json), [usage](results/usage.json) and [completion](results/completion.json) retain the measured evidence. All seven duplicate exclusions were also checked for statement identity after renaming the root theorem and collapsing whitespace. All 68 final proofs remain available.
 
-The first actual repair passed pinned kernel checks; the separate format preflight passed the frozen FILE extractor, Qwen template/token checks, and all764protected-reference screens. [Format preflight](results/format_preflight.json). [Checker controls](results/checker_controls_completion.json) rejected an unfinished proof and `exact?` while accepting a real explicit proof. The underlying repository src/tests are unchanged from the recorded Linux gate (1,362passed,24skipped,6subtests), with new experiment scripts additionally parsed and exercised end to end. No new training has started.
+Assistant answer lengths: minimum 212, median 389.5, maximum 1,464 tokens; 62/68 below 1,000. The frozen total-conversation cap is 16,384. Configured-rate cost estimate was approximately $7.05, not an invoice; cache-write surcharges are unknown.
+
+## Artifact locations
+
+Runtime root: `/lfs/skampere1/0/eth127/rl4cv_tiny_training/lean_corpus_v11/`. Exact final Lean files and receipts: `final/examples/<task_id>/`; training file: `final/repaired_training.jsonl`, SHA-256 `0119aeeecc699e8c5b80d7b29e8a195399a9db56ff3364bcfe41b3d9652edffb`. Raw CLI records and compiler snapshots remain on the execution host. Sixteen finished micro-worktrees were removed after preserving unique artifacts and verifying their hashes; [cleanup receipt](results/cleanup.json).
+
+This is the completed 68-case repair batch. Broader corpus assembly and the newly authorized 1.7B training campaign are recorded separately in versions 12–14. No training was performed in this repair phase.

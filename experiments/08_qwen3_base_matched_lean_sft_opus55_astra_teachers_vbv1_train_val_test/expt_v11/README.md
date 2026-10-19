@@ -8,4 +8,4 @@
 
 `repair_proofs.py prepare` freezes inputs and creates16isolated workers; `selftest` verifies the checker; `launch` starts Sol/high. Each model writes `proof.lean`, optional `support.lean` and `sketch.txt` in its assigned case folder. The coordinator assembles the unchanged statement, snapshots/checks exact bytes, and retains only actual verified final files.
 
-Runtime: `/lfs/skampere1/0/eth127/rl4cv_tiny_training/lean_corpus_v11/`. All original outcomes remain under adjacent version9/10folders. Only these68cases are assigned; all bulk/GX10checks continue independently. New repaired data requires final format/template/protected-screen checks before training admission.
+Runtime: `/lfs/skampere1/0/eth127/rl4cv_tiny_training/lean_corpus_v11/`. All original outcomes remain under adjacent version9/10folders. Only these68cases are assigned; all bulk/GX10checks continue independently. All 68 repairs passed final format/template/protected-screen checks; 61 unique rows are ready for downstream assembly.

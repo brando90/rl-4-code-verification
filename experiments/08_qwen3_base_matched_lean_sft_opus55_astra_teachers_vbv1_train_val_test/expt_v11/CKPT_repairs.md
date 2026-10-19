@@ -1,29 +1,28 @@
 # Sol proof repair continuation
 
-**Doc link:** https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v11/CKPT_repairs.md
+**Doc link:** [experiment home](README.md)
 
-**TLDR:** Generate and verify explicit repaired proofs for the68remaining unresolved cases.
+**TLDR:** DONE: all 68 repaired and kernel/format verified; 61 unique training rows after seven exact duplicate statements.
 
-Created: 10-19-2026 05:38 PDT. Last updated: 10-19-2026 05:43 PDT.
+Last updated: 10-19-2026 06:05 PDT.
 ## Goal
-- Actual Sol/high proof repair with unchanged target statements and explicit tactics.
-## What ran
--16Sol/high workers `codex-rl4cv-sol-repair-v11-00`…`15`, full-access Codex CLI0.114.0 on skampere1;4native compiler slots.
--Remote owner `rl4cv-sol-repair-watch-v11` observes death, preserves2CLI/8candidate bounds, and owns final format/screens/worker cleanup.
-## Results
--Actual repaired proofs are passing; live counts are inresults/progress.json. Positive, unfinished-proof and exact?-policy controls passed.
--One actual repair passed FILE/template/token checks and764protected screens; all repaired outputs receive the same finalization.
-## Stuck / blocked
--Nothing known. Other corpus verification andGX10work continue independently; no new training.
-## Next steps
--Read `/lfs/skampere1/0/eth127/rl4cv_tiny_training/lean_corpus_v11/progress.json`, `watch.log` and `completion.json`.
--Local publisher: `python3 sync_repairs.py --watch --publish`, native terminal `rl4cv-sol-repair-progress-v11`; only ordinary orchestration runs locally.
--Canonical project `/Users/lethan3/Documents/veribench-projects/rl-4-code-verification/`; temporary owner `/Users/lethan3/Documents/veribench-projects/.worktrees/rl4cv-sol-repair-10-19-2026/`.
--Root coordinator retains that checkout for live publication; preserve/mirror/publish final receipts and remove it after both watcher/publisher exit. Raw worker records stay on the cluster.
-## Brando to-do
--None.
+- Repair the 68 unresolved unchanged Workbook statements with explicit proofs.
+## Completed
+- 16 Sol/high workers finished; 68/68 Lean/kernel and format checks passed, zero protected hits against 764 references.
+- Remote `completion.json` is DONE. Completed micro-worktrees removed after unique artifact preservation.
+- Final training SHA-256: `0119aeeecc699e8c5b80d7b29e8a195399a9db56ff3364bcfe41b3d9652edffb`.
+## Active dependency
+- Versions 12–14 consume this verified output for the user-authorized training campaign; this local checkout remains owned by that active campaign.
+## Next command
+- Read `/lfs/skampere1/0/eth127/rl4cv_tiny_training/lean_corpus_v11/final/summary.json`; downstream training is outside this finished repair batch.
+## User to-do
+- None.
 ## Log
 - 10-19-2026 05:38 PDT -- Prepared actual proof-repair protocol and new bounded Sol/high driver. Existing version10bulk andGX10work remain active.
 - 10-19-2026 05:41 PDT -- RUNNING, 10-19-2026 05:41 PDT. Sol/high: 18/68 cases complete, 18 exact-source kernel-verified explicit repairs; 16 running and 34 pending.
 - 10-19-2026 05:43 PDT -- RUNNING, 10-19-2026 05:43 PDT. Sol/high: 35/68 cases complete, 35 exact-source kernel-verified explicit repairs; 16 running and 17 pending.
 - 10-19-2026 05:45 PDT -- Verified actual Sol repairs and warm-start-format preflight; full16-worker queue plus remote recovery/finalization owner are running.
+- 10-19-2026 05:47 PDT -- RUNNING, 10-19-2026 05:47 PDT. Sol/high: 67/68 cases complete, 67 exact-source kernel-verified explicit repairs; 1 running and 0 pending.
+- 10-19-2026 05:47 PDT -- DONE_WITH_RECORDED_FAILURES, 10-19-2026 05:47 PDT. Sol/high: 68/68 cases complete, 68 exact-source kernel-verified explicit repairs; 0 running and 0 pending. Final formatting/screens admit 61 repaired examples; no new training.
+- 10-19-2026 06:05 PDT -- DONE, 10-19-2026 06:05 PDT. Sol/high: 68/68 cases complete, 68 exact-source kernel-verified explicit repairs; 0 running and 0 pending. Final formatting/screens admit 61 repaired examples; no new training.
+- 10-19-2026 06:05 PDT -- Recorded final DONE receipt, 68 proof/format passes and 61 unique rows; published compact final evidence.

@@ -45,6 +45,8 @@ def usage():
 
 def cleanup():
     root=repair.ROOT
+    prior=root/'cleanup.json'
+    if prior.exists() and json.loads(prior.read_text()).get('state')=='DONE':return
     active=[]
     for p in Path('/proc').iterdir():
         if not p.name.isdigit():continue
@@ -86,7 +88,9 @@ def main():
                 with (repair.ROOT/'finalize.log').open('a') as stream:
                     process=subprocess.run([python,str(repair.HERE/'finalize_repairs.py')],stdout=stream,stderr=subprocess.STDOUT,timeout=900)
                 cleanup()
-                base.write(repair.ROOT/'completion.json',dict(state='DONE_WITH_RECORDED_FAILURES' if process.returncode==0 else 'FINALIZATION_FAILED',finalizer_exit=process.returncode,progress=result,observed_unix=time.time()));return
+                summary=json.loads((repair.ROOT/'final/summary.json').read_text()) if (repair.ROOT/'final/summary.json').exists() else {}
+                clean=result['verified']==68 and summary.get('formatted')==68
+                base.write(repair.ROOT/'completion.json',dict(state=('DONE' if clean else 'DONE_WITH_RECORDED_EXCLUSIONS') if process.returncode==0 else 'FINALIZATION_FAILED',finalizer_exit=process.returncode,progress=result,observed_unix=time.time()));return
             if result['states'].get('PENDING'):repair.launch()
             time.sleep(15)
 
