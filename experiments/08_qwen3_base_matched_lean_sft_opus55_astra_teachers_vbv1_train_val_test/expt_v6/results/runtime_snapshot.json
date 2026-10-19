@@ -1,5 +1,5 @@
 {
-  "observed_unix": 1792400320.4190972,
+  "observed_unix": 1792400378.4481988,
   "root": "/lfs/skampere1/0/eth127/rl4cv_tiny_training",
   "systems": {
     "1p7_control": {
@@ -100,13 +100,13 @@
         "test_split_opened": false
       },
       "progress": {
-        "step": 655,
-        "loss_tokens": 5685599,
+        "step": 664,
+        "loss_tokens": 5759732,
         "tiny_batch": false,
-        "train_loss": 0.20283999841421219,
-        "grad_norm": 1.2342708110809326,
-        "learning_rate": 9.405443914329848e-09,
-        "elapsed_seconds": 2835.474142341991,
+        "train_loss": 0.3099397856950053,
+        "grad_norm": 1.9982788562774658,
+        "learning_rate": 6.130952634464393e-13,
+        "elapsed_seconds": 2869.579022782971,
         "peak_gpu_gib": 57.60470151901245,
         "status": "RUNNING",
         "condition": "control"
@@ -212,13 +212,13 @@
         "test_split_opened": false
       },
       "progress": {
-        "step": 832,
-        "loss_tokens": 5111114,
+        "step": 847,
+        "loss_tokens": 5237538,
         "tiny_batch": false,
-        "train_loss": 0.26327652921067907,
-        "grad_norm": 1.5979400873184204,
-        "learning_rate": 6.621926070524676e-07,
-        "elapsed_seconds": 2836.471209876938,
+        "train_loss": 0.2834206837918851,
+        "grad_norm": 1.4603297710418701,
+        "learning_rate": 4.3100264992604557e-07,
+        "elapsed_seconds": 2895.064572390984,
         "peak_gpu_gib": 57.60470151901245,
         "status": "RUNNING",
         "condition": "mixed"
@@ -310,13 +310,13 @@
         "test_split_opened": false
       },
       "progress": {
-        "step": 81,
-        "loss_tokens": 497687,
-        "tiny_batch": true,
-        "train_loss": 0.16970939827816828,
-        "grad_norm": 3.78125,
-        "learning_rate": 1.9833339532695838e-05,
-        "elapsed_seconds": 2723.7338753769873,
+        "step": 82,
+        "loss_tokens": 508722,
+        "tiny_batch": false,
+        "train_loss": 0.25072637871481684,
+        "grad_norm": 1.1171875,
+        "learning_rate": 1.983298110445971e-05,
+        "elapsed_seconds": 2759.5485289529897,
         "peak_gpu_gib": 42.13953113555908,
         "status": "RUNNING",
         "condition": "mixed"
@@ -407,7 +407,7 @@
     "optimizer_or_data_changed": false,
     "created_unix": 1792398221.8068194,
     "coordinator_paused": false,
-    "checked_unix": 1792400292.585482
+    "checked_unix": 1792400352.5887287
   },
   "four_fused_handoff": {
     "original_trainer": {
@@ -425,14 +425,14 @@
     "deadline_unix": 1792440714.9005764,
     "target_step": 100,
     "controller": {
-      "pid": 328548,
-      "start_ticks": "63872417",
+      "pid": 812018,
+      "start_ticks": "63894818",
       "state": "R",
       "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df"
     },
     "user_authorization": "10-19-2026: ok can you deploy that one then",
     "status": "WAITING_FOR_CHECKPOINT",
-    "observed_unix": 1792400133.9269233
+    "observed_unix": 1792400357.9331613
   },
   "four_fused_restore": null
 }
