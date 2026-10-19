@@ -115,20 +115,25 @@ def main() -> None:
     assert MODEL.joinpath("model.safetensors.index.json").is_file()
     assert json.loads((ROOT / "base/run/result.json").read_text())["status"] == "COMPLETE"
     HOME.mkdir(parents=True, exist_ok=True)
+    failures = 0
     while True:
         gpu, info = empty_gpu()
         if gpu is None:
-            write(HOME / "status.json", {"state": "WAITING_FOR_EMPTY_A100", "devices": info, "observed_unix": time.time()})
+            write(HOME / "status.json", {"state": "WAITING_FOR_EMPTY_A100", "failures": failures, "devices": info, "observed_unix": time.time()})
             time.sleep(30)
             continue
         again, _ = empty_gpu()
         if again != gpu:
             continue
-        write(HOME / "status.json", {"state": "GENERATING", "gpu": gpu, "device": info, "observed_unix": time.time()})
+        write(HOME / "status.json", {"state": "GENERATING", "gpu": gpu, "device": info, "failures": failures, "observed_unix": time.time()})
         code = generate(gpu)
         if code != 0:
-            write(HOME / "status.json", {"state": "GENERATION_FAILED", "exit_code": code, "gpu": gpu, "observed_unix": time.time()})
-            raise SystemExit(code)
+            failures += 1
+            write(HOME / "status.json", {"state": "GENERATION_FAILED_RETRY", "exit_code": code, "gpu": gpu, "failures": failures, "observed_unix": time.time()})
+            if failures >= 3:
+                raise SystemExit(code)
+            time.sleep(20)
+            continue
         receipt = verify()
         write(HOME / "validation" / LABEL / "generation_verified.json", receipt)
         write(HOME / "status.json", {"state": "GENERATION_VERIFIED", **receipt})

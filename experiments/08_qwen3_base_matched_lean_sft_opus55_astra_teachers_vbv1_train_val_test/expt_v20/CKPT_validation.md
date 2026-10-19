@@ -5,7 +5,7 @@
 **TLDR:** Training pass is complete. Validation generation is waiting for an empty A100 after the SciPy import fix.
 
 Created: 10-19-2026 1:15 PDT
-Last updated: 10-19-2026 1:15 PDT
+Last updated: 10-19-2026 1:22 PDT
 
 ## Goal
 - Score all 1,080 frozen validation cells from the completed fresh-base checkpoint. Keep the test split sealed.
@@ -23,3 +23,4 @@ Last updated: 10-19-2026 1:15 PDT
 
 ## Log
 - 10-19-2026 1:15 PDT — Confirmed training COMPLETE and generation import failure. Installed SciPy 1.16.3 and started the empty-GPU validation waiter.
+- 10-19-2026 1:22 PDT — GPU 1 attempt failed on system PyOpenSSL. Installed PyOpenSSL 26.4.0 in the generation environment and restarted the waiter. One failure counts toward a cap of three.
