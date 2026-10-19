@@ -12,6 +12,6 @@ Measure the frozen1,080-attempt VeriBench V1 validation binary success rate, tar
 
 - [Protocol](PROTOCOL.md): prospective data gates, training defaults, resource plan and full evaluation.
 - Runtime root: `/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v20`.
-- Preparation in progress: cached official base revision confirmed; final admitted counts and first-update evidence pending. No V20 production update claimed yet.
+- Training COMPLETE: 1,784/1,784 updates on 3,568 admitted rows. Validation generation is resuming from that checkpoint; scores are not in yet. See [results](results.md).
 - Existing V18 subset initially800 comment-qualified original-task proofs; additional eligible existing tiny, Workbook and public examples are subject to exact manifest admission. Missing comments, broad automation and invalid receipts cause visible exclusions.
 - Training worker owns assembly/execution/death watch; root publishes compact evidence. No new paid generation or Lean compilation is required for this assembly.
