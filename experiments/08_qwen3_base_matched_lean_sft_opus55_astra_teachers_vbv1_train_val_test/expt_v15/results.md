@@ -34,13 +34,13 @@ The later user instruction requires finishing the remaining proof cleanup before
 
 ## Latest automatic snapshot
 
-10-19-2026 11:47 PDT.
+10-19-2026 11:49 PDT.
 
 - current validation: 120/1,080 binary successes; 11.11%, complete manifest.
 - Current training: 5,470/5,470 updates; 13,168,888 assistant loss tokens.
 - Historical partial-cleanup SNAP training: 0 updates; dispatcher unknown. Final second-run ownership is version19.
 - Version13 cleanup snapshot: {'FALLBACK': 1481, 'DONE': 877, 'UNCHANGED': 227}; declared 2,585. Final admission counts are in its immutable completion receipt.
-- Version18 remaining cleanup: {'declared': 2585, 'states': {'PENDING': 1536, 'ACCEPTED_INHERITED': 818, 'UNCHANGED_CHECK_PENDING': 104, 'ACCEPTED_UNCHANGED': 123, 'REPAIR_RUNNING': 4}, 'batches': {'PENDING': 384, 'RUNNING': 1}, 'verified': 941, 'observed_unix': 1792435622.0578942, 'v18_conservative_charge_usd': 0, 'v18_base_estimate_usd': 0, 'cleanup_total_conservative_usd': 469.991219, 'cleanup_reserved_usd': 10, 'tranche3activated': False}.
+- Version18 remaining cleanup: {'declared': 2585, 'states': {'PENDING': 1536, 'ACCEPTED_INHERITED': 818, 'ACCEPTED_UNCHANGED': 227, 'REPAIR_RUNNING': 4}, 'batches': {'PENDING': 384, 'RUNNING': 1}, 'verified': 1045, 'observed_unix': 1792435745.7830548, 'v18_conservative_charge_usd': 0, 'v18_base_estimate_usd': 0, 'cleanup_total_conservative_usd': 469.991219, 'cleanup_reserved_usd': 10, 'tranche3activated': False}.
 - Additional public sources: 729/729 checked; {'FORMAL_CHECK_FAILED': 1, 'FORMAL_PASS': 688, 'LIBRARY_IDENTIFIER': 1, 'SYNTAX_COMPATIBILITY': 39}.
-- Paid work: $240.41 base-rate usage estimate; $475.85 conservatively charged; $50.00 reserved for in-flight work. Estimates are not invoices.
+- Paid work: $241.41 base-rate usage estimate; $477.77 conservatively charged; $10.00 reserved for in-flight work. Estimates are not invoices.
 - Authorized maximum: $900.00; second $300 tranche active: True; third $300 tranche active: False. Goal receipt: False.

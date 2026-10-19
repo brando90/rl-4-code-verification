@@ -9,12 +9,6 @@
   },
   "estimate_not_invoice": true,
   "reservations": {
-    "astra_gx10_codeport_v19": {
-      "purpose": "adaptation",
-      "usd": 40,
-      "model": "gpt-6-astra",
-      "time": 1792435525.33429
-    },
     "v18/batch_0000/0": {
       "purpose": "cleanup",
       "usd": 10,
@@ -12860,6 +12854,21 @@
       },
       "unknown_usage": false,
       "time": 1792433894.1472323
+    },
+    "astra_gx10_codeport_v19": {
+      "purpose": "adaptation",
+      "model": "gpt-6-astra",
+      "usd": 1.927969,
+      "base_rate_estimate_usd": 1.009012,
+      "usage": {
+        "input_tokens": 257116,
+        "cached_input_tokens": 227022,
+        "output_tokens": 9621,
+        "reasoning_output_tokens": 2436,
+        "total_tokens": 266737
+      },
+      "unknown_usage": false,
+      "time": 1792435718.940167
     }
   },
   "events": [
@@ -26063,6 +26072,14 @@
       "usd": 10,
       "model": "gpt-5.6-terra",
       "time": 1792435570.9069405
+    },
+    {
+      "event": "settle",
+      "identity": "astra_gx10_codeport_v19",
+      "purpose": "adaptation",
+      "model": "gpt-6-astra",
+      "usd": 1.927969,
+      "time": 1792435718.9401708
     }
   ],
   "purpose_caps_authorized": {
