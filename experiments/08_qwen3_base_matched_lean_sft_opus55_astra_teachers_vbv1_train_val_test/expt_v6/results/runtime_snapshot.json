@@ -1,5 +1,5 @@
 {
-  "observed_unix": 1792403586.6770444,
+  "observed_unix": 1792403769.8301146,
   "root": "/lfs/skampere1/0/eth127/rl4cv_tiny_training",
   "systems": {
     "1p7_control": {
@@ -16,7 +16,7 @@
         },
         "released": {
           "gpu": "1",
-          "released_unix": 1792400572.9805903
+          "released_unix": 1792403753.2043884
         },
         "generation_retry": {
           "label": "1p7_control",
@@ -61,11 +61,12 @@
           "started_unix": 1792400709.9839292,
           "host": "skampere1.stanford.edu",
           "cuda_visible_devices": "1",
-          "status": "RUNNING",
+          "status": "DONE",
           "pid": 902666,
           "start_ticks": "63930028",
           "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
-          "alive": true
+          "ended_unix": 1792403752.8087804,
+          "exit_code": 0
         },
         "training": {
           "label": "1p7_control",
@@ -150,11 +151,12 @@
           "started_unix": 1792400709.9839292,
           "host": "skampere1.stanford.edu",
           "cuda_visible_devices": "1",
-          "status": "RUNNING",
+          "status": "DONE",
           "pid": 902666,
           "start_ticks": "63930028",
           "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
-          "alive": true
+          "ended_unix": 1792403752.8087804,
+          "exit_code": 0
         }
       },
       "preparation": {
@@ -256,8 +258,12 @@
         "status": "COMPLETE",
         "test_split_opened": false
       },
-      "generation_verified": null,
-      "generated_cells": 896,
+      "generation_verified": {
+        "cells": 1080,
+        "raw_sha256": "2f17185f6183db5ed329e9ff0f67568e470f94f15c15c686177053494e119072",
+        "status": "PASS"
+      },
+      "generated_cells": 1080,
       "superseded_generation": {
         "label": "1p7_control",
         "stage": "generation",
@@ -625,13 +631,13 @@
         "test_split_opened": false
       },
       "progress": {
-        "step": 200,
-        "loss_tokens": 1203390,
+        "step": 203,
+        "loss_tokens": 1218237,
         "tiny_batch": false,
-        "train_loss": 0.22571617055126622,
+        "train_loss": 0.16738547209849752,
         "grad_norm": 1.2734375,
-        "learning_rate": 1.8381900372604197e-05,
-        "elapsed_seconds": 5646.925055414904,
+        "learning_rate": 1.8338316994015214e-05,
+        "elapsed_seconds": 5832.831663716002,
         "peak_gpu_gib": 42.13953113555908,
         "status": "RUNNING",
         "condition": "mixed",
@@ -798,58 +804,8 @@
     "cuda_context_verified": true
   },
   "primary_recovery": {
-    "status": "GENERATION",
-    "label": "1p7_control",
-    "receipt": {
-      "label": "1p7_control",
-      "stage": "generation_retry",
-      "command": [
-        "/usr/bin/python3",
-        "-m",
-        "rl4cv.veribench.generate",
-        "--pack",
-        "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation_pack",
-        "--task-ids",
-        "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/split/vbv1_validation_task_ids.txt",
-        "--model",
-        "/lfs/skampere1/0/eth127/rl4cv_tiny_training/onep7/runs/control/hf",
-        "--label",
-        "1p7_control",
-        "--samples",
-        "8",
-        "--thinking",
-        "on",
-        "--seed",
-        "91",
-        "--stop-token",
-        "<|im_end|>",
-        "--max-tokens",
-        "12288",
-        "--temperature",
-        "0.6",
-        "--top-p",
-        "0.95",
-        "--top-k",
-        "20",
-        "--batch",
-        "128",
-        "--tensor-parallel-size",
-        "1",
-        "--gpu-memory-utilization",
-        "0.85",
-        "--out",
-        "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/raw.jsonl"
-      ],
-      "started_unix": 1792400709.9839292,
-      "host": "skampere1.stanford.edu",
-      "cuda_visible_devices": "1",
-      "status": "RUNNING",
-      "pid": 902666,
-      "start_ticks": "63930028",
-      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df"
-    },
-    "sampling_and_prompts_unchanged": true,
-    "original_output_cells": 0
+    "status": "WAITING_FOR_ORIGINAL_SCORING",
+    "generated_cells": 1080
   },
   "four_fused_restore": {
     "status": "PASS",
