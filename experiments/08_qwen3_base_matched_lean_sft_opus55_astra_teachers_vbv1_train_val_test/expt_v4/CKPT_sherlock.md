@@ -2,10 +2,10 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v4/CKPT_sherlock.md>
 
-**TLDR:** COMPLETE: 2/2 fixed-seed trajectories, all 1,316 updates verified, 36 files hash-archived. Publication and notification closeout remain.
+**TLDR:** COMPLETE: 2/2 fixed-seed trajectories, all 1,316 updates verified, 36 files hash-archived. Results published, DONE sent once, monitor paused; Google sync needs edit access.
 
 Created: 10-18-2026 14:57 PDT
-Last updated: 10-18-2026 21:21 PDT
+Last updated: 10-18-2026 21:25 PDT
 
 ## Goal
 - Complete `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v4` on Sherlock, with two full 658-update runs.
@@ -19,8 +19,8 @@ Last updated: 10-18-2026 21:21 PDT
 ## Stuck / blocked
 - Google companion write returned 403 for connected `brando@vals.ai`; grant Editor access or reconnect as owner. Browser control disabled in Work settings; existing authenticated SSH enabled collection. Private runner independently executed request 9192e85854f246e08cd66674e56e24c5 successfully; existing deployment preserved.
 ## Next steps
-- Publish owned results and update the linked Google companion. Check saved/Gmail receipts before sending the single DONE email; START ID 1a15110b6da2f189, no DONE yet.
-- Pause `monitor-sherlock-training` after verified closeout. Do not rerun submit.sh or either completed trajectory.
+- Once Google editor access is restored, read the companion afresh and sync only training/access status from results.md. Results published as f29c21f; no training work remains.
+- Monitor `monitor-sherlock-training` verified PAUSED. DONE ID 1a15267ee2fc1c9a sent once, To/all four BCCs verified; START ID 1a15110b6da2f189. Do not resend DONE or rerun submit.sh/trajectories.
 - Persistent terminal/archive receipts are inside `results_bundle.tar.gz`; bundle SHA-256 6d1eadbe6417b48f15bb54cf5d27b9be95da5acc5e0b940c999d15e118fe8da2 matches local/scratch/persistent copies.
 ## Brando to-do
 - Restore Google companion edit access only; no training action needed.
@@ -34,3 +34,4 @@ Last updated: 10-18-2026 21:21 PDT
 - 10-18-2026 15:31 PDT — Later launch sample reached 24/658 updates and 197,859 loss tokens; peak allocated device memory 47.85 GiB. Saved the partial step sample and readable screenshot provenance.
 - 10-18-2026 16:37 PDT — Seed 20260830 completed 0:0 at 16:30:35 PDT and all 658 records were collected and checksum-verified. Seed 20260831 started on sh04-01n01 and reached 25 updates; progress age 1.1 seconds, no inspected log failure markers. Root-level terminal/archive receipts absent as expected while collector waits. Google companion updated; monitor remains active.
 - 10-18-2026 21:21 PDT — Verified all four terminal jobs, collected both complete trajectories, matched frozen hashes, validated configurations/shard structures and persistent archive (36 files; 30 independently rehashed metadata files). Existing private runner independently executed a command without Duo. Closeout publication/email/pause in progress.
+- 10-18-2026 21:25 PDT — Results pushed as f29c21f; sent and verified DONE 1a15267ee2fc1c9a with all four required blind copies; monitor verified PAUSED. Google sync remains blocked by 403 for brando@vals.ai (edit-access request outstanding), with exact continuation in results/google_companion_sync.json.
