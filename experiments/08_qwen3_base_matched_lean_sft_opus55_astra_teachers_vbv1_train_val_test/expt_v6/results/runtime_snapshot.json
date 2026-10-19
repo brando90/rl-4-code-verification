@@ -1,5 +1,5 @@
 {
-  "observed_unix": 1792409394.328113,
+  "observed_unix": 1792409698.0152078,
   "root": "/lfs/skampere1/0/eth127/rl4cv_tiny_training",
   "systems": {
     "1p7_control": {
@@ -100,11 +100,12 @@
           "started_unix": 1792407414.3206804,
           "host": "skampere1.stanford.edu",
           "cuda_visible_devices": "",
-          "status": "RUNNING",
+          "status": "DONE",
           "pid": 790644,
           "start_ticks": "64600462",
           "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
-          "alive": true
+          "ended_unix": 1792409697.954544,
+          "exit_code": 0
         },
         "generation_retry": {
           "label": "1p7_control",
@@ -229,11 +230,12 @@
           "started_unix": 1792407414.3199677,
           "host": "skampere1.stanford.edu",
           "cuda_visible_devices": "",
-          "status": "RUNNING",
+          "status": "DONE",
           "pid": 790645,
           "start_ticks": "64600462",
           "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
-          "alive": true
+          "ended_unix": 1792409690.988441,
+          "exit_code": 0
         },
         "smoke": {
           "label": "1p7_control",
@@ -278,11 +280,12 @@
           "started_unix": 1792407414.3239625,
           "host": "skampere1.stanford.edu",
           "cuda_visible_devices": "",
-          "status": "RUNNING",
+          "status": "DONE",
           "pid": 790650,
           "start_ticks": "64600462",
           "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
-          "alive": true
+          "ended_unix": 1792409670.0352747,
+          "exit_code": 0
         },
         "score_7": {
           "label": "1p7_control",
@@ -1163,13 +1166,13 @@
         "test_split_opened": false
       },
       "progress": {
-        "step": 458,
-        "loss_tokens": 2656727,
-        "tiny_batch": false,
-        "train_loss": 0.21887508148670243,
-        "grad_norm": 1.0234375,
-        "learning_rate": 1.1773098707088622e-05,
-        "elapsed_seconds": 11455.798380675958,
+        "step": 474,
+        "loss_tokens": 2734991,
+        "tiny_batch": true,
+        "train_loss": 0.16645755964201808,
+        "grad_norm": 3.0,
+        "learning_rate": 1.1280467521532695e-05,
+        "elapsed_seconds": 11767.948476396967,
         "peak_gpu_gib": 44.7767219543457,
         "status": "RUNNING",
         "condition": "mixed",
