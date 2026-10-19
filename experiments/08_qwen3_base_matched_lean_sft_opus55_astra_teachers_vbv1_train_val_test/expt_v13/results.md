@@ -2,7 +2,7 @@
 
 **Doc link:** [Protocol](PROTOCOL.md)
 
-**TLDR:** The first four Terra/high replacements passed full Lean/kernel, FILE/template and protected-overlap checks. The full remote CPU worker pool is active with shared budget reservations; every original row remains in the denominator.
+**TLDR:** Cleanup phase frozen: 818 replacements passed kernel, format and overlap checks; all 2,585 rows are accounted for. Original fallbacks preserve the remaining cases, and the immutable completion receipt releases the matched second training run.
 
 ## Latest measured snapshot
 
@@ -13,19 +13,47 @@
 | Parsed proof terms | 100234 |
 | Answers with targeted automation | 2358 |
 | No replacement needed | 227 |
-| Current kernel-verified replacements | 26 |
-| Running | 23 |
-| Pending | 2309 |
+| Current kernel-verified replacements | 818 |
+| Running | 0 |
+| Pending | 0 |
 | Temporary budget holds | 0 |
-| Original fallback outcomes | 0 |
+| Original fallback outcomes | 1481 |
 | Calibration final FILE/template passes | 4 |
 | Calibration protected exact / near | 0 / 0 |
-| Settled ordinary-rate estimate USD | 4.1122 |
-| Settled conservative ledger charge USD | 8.3777 |
-| In-flight reserved USD | 230.0 |
-| Second preapproved budget tranche active | False |
+| Settled ordinary-rate estimate USD | 237.3912 |
+| Settled conservative ledger charge USD | 469.9912 |
+| In-flight reserved USD | 0 |
+| Second preapproved budget tranche active | True |
 
-Remote observation Unix time: `1792415730.1925204`. API charges are configured-price estimates, not invoices.
+Remote observation Unix time: `1792430822.8889015`. API charges are configured-price estimates, not invoices.
+
+## Comparison phase freeze
+
+Freeze partial proof-cleanup cohort now for the authorized matched training comparison: budget reservation headroom reduced concurrency to one lane and delayed the second training run. Preserve the healthy active case within its native budget; retain untouched originals for every unresolved/unattempted row. Recorded at 10-19-2026 10:25:25 PDT. See [prospective amendment](AMENDMENT_freeze_comparison.md).
+
+## Frozen result
+
+```json
+{
+  "state": "DONE_PARTIAL",
+  "declared": 2585,
+  "accounted": 2585,
+  "replacements": 818,
+  "original_fallbacks": 1767,
+  "replacements_sha256": "ad84f18d0273a243190f5e213702224a8a979299d61b43aa40b4196c716e1982",
+  "training_sha256": "0ada06ed829d2012c77374af3ad3e1eec02555d2a8ca901d8d218a6a084bd974",
+  "source_sha256": "7fa0255741a2b6046ceda0dfda43664334ca603a0aeca9fc2424af43c849726b",
+  "protected_references": 764,
+  "protected_exact": 0,
+  "protected_near": 0,
+  "observed_unix": 1792430868.9535768,
+  "unchanged_no_targeted_automation": 227,
+  "flagged_original_fallbacks": 1540,
+  "comparison_phase_frozen": true,
+  "freeze_receipt_sha256": "30c25c7a647a1c3af53c23035914ad5e562144ee9df5a59aa97c3372b5aa6299",
+  "freeze_reason": "Freeze partial proof-cleanup cohort now for the authorized matched training comparison: budget reservation headroom reduced concurrency to one lane and delayed the second training run. Preserve the healthy active case within its native budget; retain untouched originals for every unresolved/unattempted row."
+}
+```
 
 ## What was checked
 

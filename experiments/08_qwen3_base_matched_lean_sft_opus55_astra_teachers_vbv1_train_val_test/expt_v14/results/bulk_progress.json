@@ -1,23 +1,31 @@
 {
-  "completed": 195,
+  "completed": 729,
   "declared": 729,
-  "elapsed_seconds": 93.1126127243042,
+  "elapsed_seconds": 575.8236343860626,
   "host": "skampere1.stanford.edu",
   "interpretation": "Formal correctness only; source semantics, comments, template, protected screens and global dedup pending",
-  "observed_unix": 1792415728.7106338,
+  "observed_unix": 1792416211.4216552,
   "outcomes": {
-    "FORMAL_PASS": 195
+    "FORMAL_CHECK_FAILED": 1,
+    "FORMAL_PASS": 688,
+    "LIBRARY_IDENTIFIER": 1,
+    "SYNTAX_COMPATIBILITY": 39
   },
-  "passed": 195,
+  "passed": 688,
   "pid": 2117441,
-  "remaining": 534,
+  "remaining": 0,
   "source_outcomes": {
-    "deepseek_prover_v1": {},
+    "deepseek_prover_v1": {
+      "FORMAL_CHECK_FAILED": 1,
+      "FORMAL_PASS": 471,
+      "LIBRARY_IDENTIFIER": 1,
+      "SYNTAX_COMPATIBILITY": 39
+    },
     "mathlib4": {
-      "FORMAL_PASS": 195
+      "FORMAL_PASS": 217
     }
   },
-  "state": "RUNNING",
+  "state": "DONE",
   "training_admitted": 0,
   "workers": 8
 }

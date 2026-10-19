@@ -66,6 +66,10 @@ def main(partial=False):
     with (final/'row_results.csv').open('w') as stream:
         w=csv.DictWriter(stream,fieldnames=keys,extrasaction='ignore',lineterminator='\n');w.writeheader();w.writerows(reports)
     summary=dict(state='CALIBRATION' if partial else 'DONE' if all(r['state'] in ['DONE','UNCHANGED'] and (r['replaced'] or r['state']=='UNCHANGED') for r in reports) else 'DONE_PARTIAL',declared=2585,accounted=len(reports),replacements=len(retained),original_fallbacks=2585-len(retained),replacements_sha256=base.sha(text),training_sha256=base.sha(alltext),source_sha256=clean.SOURCE_SHA,protected_references=764,protected_exact=screening['n_exact'],protected_near=screening['n_near'],observed_unix=time.time())
+    summary.update(unchanged_no_targeted_automation=sum(r['state']=='UNCHANGED' for r in reports),flagged_original_fallbacks=sum(not r['replaced'] and r['state']!='UNCHANGED' for r in reports))
+    freeze=clean.ROOT/'freeze_for_comparison.json'
+    if freeze.exists():
+        summary.update(comparison_phase_frozen=True,freeze_receipt_sha256=base.sha(freeze.read_bytes()),freeze_reason=json.loads(freeze.read_text())['reason'])
     base.write(final/'summary.json',summary)
     if not partial:base.write(clean.ROOT/'completion.json',summary)
     print(json.dumps(summary),flush=True)

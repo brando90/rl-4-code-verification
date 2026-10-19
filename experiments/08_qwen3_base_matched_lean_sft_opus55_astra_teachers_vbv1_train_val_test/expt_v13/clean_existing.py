@@ -144,9 +144,10 @@ def prepare():
     print(json.dumps(summarize()),flush=True)
 
 def claim(lane):
-    if (ROOT/'provider_hold.json').exists():return None
+    if (ROOT/'provider_hold.json').exists() or (ROOT/'freeze_for_comparison.json').exists():return None
     with (ROOT/'queue.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
+        if (ROOT/'freeze_for_comparison.json').exists():return None
         manifest=json.loads((ROOT/'manifest.json').read_text())
         # Short complete files first provide actual progress and a measured cost estimate.
         for item in sorted(manifest,key=lambda r:(r.get('assistant_tokens',999999),r['index'])):
@@ -260,6 +261,8 @@ def worker(lane,once=False):
         if not (work/'sketch.txt').exists():(work/'sketch.txt').write_text('')
         feedback=None;success=False;status={}
         for attempt in range(int(previous_status.get('attempts',0)),2):
+            if (ROOT/'freeze_for_comparison.json').exists():
+                base.write(folder/'status.json',dict(previous_status,state='FALLBACK',reason='Comparison phase admission closed before another paid attempt.'));return
             identity=f'v13/{folder.name}/{attempt}'
             output=folder/f'output_{attempt}.json';brief=prompt(folder,work,feedback);(folder/f'prompt_{attempt}.md').write_text(brief)
             command=['/usr/local/bin/codex','exec','--dangerously-bypass-approvals-and-sandbox','--skip-git-repo-check','-m',MODEL,'-c',f'model_reasoning_effort="{EFFORT}"','-c','model_context_window=128000','-c','model_auto_compact_token_limit=100000','--json','--output-schema',str(ROOT/'schema.json'),'-o',str(output),'-']

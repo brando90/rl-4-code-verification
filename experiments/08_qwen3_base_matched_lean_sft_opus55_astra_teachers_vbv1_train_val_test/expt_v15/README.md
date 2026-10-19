@@ -2,7 +2,7 @@
 
 **Doc link:** [protocol](PROTOCOL.md)
 
-**TLDR:** Coordinate all-current training, parallel Terra proof cleanup, a comparable cleaned-data continuation and validation-driven improvements within$600 total additional API spend.
+**TLDR:** Coordinate all-current training, parallel Terra proof cleanup, a cleaned-data continuation and validation-driven improvements. The latest user authorization permits up to $900 additional API spend and GX10 execution; [the prospective amendment](AMENDMENT_finish_cleanup_gx10.md) records the scope and historical phase boundaries.
 
 [Runbook](cc.md) · [Live results](results.md) · [Checkpoint](CKPT_campaign.md)
 

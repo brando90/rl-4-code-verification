@@ -43,6 +43,7 @@ def verify_summary(name,item,raw,scored):
         old=read(prior,{})
         if old.get('input_hash')==key:return old.get('passed',False)
         sys.path[:0]=[str(RUN/'repo/src'),str(EXP/'expt_v6')]
+        os.environ['TINY_RUN_ROOT']=str(TRAIN)
         import analyze
         analyze.RUN=prior.parent
         analyze.RUN.mkdir(parents=True,exist_ok=True)
@@ -92,9 +93,40 @@ def pending_trials():
         if not terminal and not summary:waiting.append(dict(trial_id=m.get('trial_id'),pid=m.get('pid'),alive=alive(m.get('pid')),manifest=str(path)))
     return waiting
 
+def settle_coordinator(budget,identity,usage):
+    """Settle one parent call idempotently, reconciling an earlier unknown charge from CLI receipts."""
+    with budget.transaction() as data:
+        reserved=data['reservations'].pop(identity,None)
+        prior=data['charges'].get(identity)
+        if reserved is None and prior is None:raise RuntimeError('Missing parent reservation and charge: '+identity)
+        purpose=(reserved or prior)['purpose']
+        if usage is None and prior is not None:return
+        amount=budget.charge_estimate(usage) if usage is not None else reserved['usd']
+        charge=dict(purpose=purpose,usd=amount,base_rate_estimate_usd=budget.estimate(usage) if usage is not None else None,usage=usage,unknown_usage=usage is None,time=time.time())
+        data['charges'][identity]=charge
+        data['events'].append(dict(event='parent_usage_reconciled' if prior else 'parent_settled',identity=identity,previous_usd=prior.get('usd') if prior else None,usd=amount,time=time.time()))
+        return charge
+
+def recover_finished_calls():
+    sys.path.insert(0,str(EXP/'expt_v13'))
+    import campaign_budget as budget
+    decisions=read(ROOT/'decisions.json',{})
+    for folder in sorted((ROOT/'coordination').glob('*')):
+        run=read(folder/'running.json',{})
+        if not run or (folder/'completion.json').exists() or alive(run.get('pid')):continue
+        used,window=budget.session_usage(folder/'profile',run['started_unix'])
+        settle_coordinator(budget,folder.name,used)
+        packet=read(folder/'input.json',{})
+        event=packet.get('event')
+        result=dict(state='RECOVERED_COMPLETED_CALL',identity=folder.name,returncode=0 if (folder/'final.txt').exists() else -1,execution_verified=False,usage=used,reason='Recovered dead coordinator after parent reservation was prematurely settled; preserved output and actual CLI usage.',observed_unix=time.time())
+        write(folder/'completion.json',result)
+        if event and not any(x.get('identity')==folder.name for x in decisions.get(event,[])):decisions.setdefault(event,[]).append(result)
+    write(ROOT/'decisions.json',decisions)
+    return decisions
+
 def coordinator(event,items,attempt):
     sys.path.insert(0,str(EXP/'expt_v13'))
-    import budget_ledger as budget
+    import campaign_budget as budget
     import clean_existing as cli
     identity=f'adaptation_{event[:16]}_{attempt}'
     if not budget.reserve(identity,'adaptation',RESERVE):
@@ -140,7 +172,7 @@ def coordinator(event,items,attempt):
         reason=repr(exc)
         if process is not None:cli.stop(process)
     finally:
-        budget.settle(identity,used,unknown=used is None)
+        settle_coordinator(budget,identity,used)
     result=dict(state='COORDINATOR_FINISHED',identity=identity,returncode=process.returncode if process else None,stop_reason=reason,usage=used,final_exists=final.exists(),finished_unix=time.time())
     changed=[]
     for p in (ROOT/'trials').glob('*/manifest.json'):
@@ -165,7 +197,7 @@ def main():
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         initial=dict(source_sha256=digest(__file__),runbook_sha256=digest(HERE/'cc.md'),pid=os.getpid(),host=os.uname().nodename,started_unix=time.time(),model=MODEL,effort='high',state='ARMED_WAITING_FOR_OUTCOMES',reboot_recovery='No automatic reboot recovery configured; tmux survives SSH/laptop disconnect only.')
         write(ROOT/'coordinator_launch.json',initial)
-        decisions=read(ROOT/'decisions.json',{})
+        decisions=recover_finished_calls()
         protected=[EXP/'expt_v6/analyze.py',RUN/'repo/src/rl4cv/rewards.py',RUN/'repo/src/rl4cv/veribench/exp103.py',RUN/'repo/external/veribench_scorer/scripts/scsc/kernel_axioms.py']
         frozen={str(p):digest(p) for p in protected}
         write(ROOT/'frozen_evaluator_sources.json',frozen)
@@ -188,7 +220,10 @@ def main():
                 event=hashlib.sha256(json.dumps(packet,sort_keys=True).encode()).hexdigest()
                 attempts=len(decisions.get(event,[]))
                 if event not in decisions or (attempts<2 and decisions[event][-1].get('state')!='BUDGET_EXHAUSTED' and (decisions[event][-1].get('returncode') not in [0,None] or not decisions[event][-1].get('execution_verified'))):
-                    result=coordinator(event,items,attempts)
+                    try:result=coordinator(event,items,attempts)
+                    except Exception as exc:
+                        result=dict(state='COORDINATOR_ERROR',identity=f'adaptation_{event[:16]}_{attempts}',returncode=-1,execution_verified=False,error=repr(exc),observed_unix=time.time())
+                        write(ROOT/'last_coordinator_error.json',result)
                     decisions.setdefault(event,[]).append(result);write(ROOT/'decisions.json',decisions)
                     if result['state']=='BUDGET_EXHAUSTED':write(ROOT/'paid_work_hold.json',dict(reason='Authorized adaptation budget exhausted; preserve/finish healthy deterministic jobs.',observed_unix=time.time()))
             time.sleep(20)

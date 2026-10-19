@@ -1,34 +1,33 @@
-# Current corpus 1.7B continuation is training
+# Current-corpus1.7B run completed:120/1,080validation successes
 
 **Doc link:** [protocol](PROTOCOL.md)
 
-**Status:** RUNNING — production optimizer updates on skampere1 A100 GPU1.
+**TLDR:** Complete first-run training and evaluation:120/1,080binarysuccesses (11.11%), with task-bootstrap95%interval6.94–15.83%. The partial-cleanup dataset was prepared with818verified replacements and zero production updates; its SNAP dispatcher was then fenced. The final second condition waits for version18 cleanup and executes under version19.
 
-**Last updated:** 10-19-2026 06:11 PDT.
+**Last updated:** 10-19-2026 10:30 PDT.
 
-| Phase | Status | Evidence |
-|---|---|---|
-| Prospective protocol | DONE | Frozen before optimizer updates; exact source hashes verified |
-| Corpus admission and tokenization | DONE | 10,940 unique examples; 13,168,888 assistant loss tokens; 5,470 planned updates |
-| Protected-reference screen | DONE | 764 references; zero exact or near hits |
-| Duplicate and proof exclusions | DONE | 2,773 duplicate Workbook statements and 1,100 failing proof candidates excluded |
-| Longest-sequence memory check | DONE | Actual 16,112-token example; finite loss/nonzero gradient; peak38.36GiB; disposable weights discarded |
-| First production update | DONE | Loss1.170485; gradient norm14.0225; identical frozen starting weights reloaded |
-| Full validation and CPU scoring | QUEUED | Automatic pipeline: all135 tasks × eight samples; GPU released before CPU scoring |
-| Cleaned-data comparison | WAITING FOR CLEANUP | Remote watcher freezes accepted replacements and original fallbacks, then starts GPU2 |
-
-## Frozen data and training
-
-| Source | Unique rows |
+| Measurement | Result |
 |---|---:|
-| Original Python-to-Lean | 2,585 |
-| Annotated tiny Python-to-Lean | 500 |
-| Verified Workbook | 7,794 |
-| Explicit Workbook repairs | 61 |
-| Total | 10,940 |
+| Training examples consumed | 10,940 |
+| Optimizer updates | 5,470 |
+| Assistantloss tokens | 13,168,888 |
+| Training time | 7,889seconds |
+| Peak allocatedGPUmemory | 57.60GiB |
+| Declared/scored validation cells | 1,080/1,080 |
+| Binarysuccesses / compilingoutputs | 120/120 |
+| Extractedoutputs | 971 |
+| Length-cappedoutputs | 110 |
+| Tasks with at least one success out of eight | 28/135 |
+| Tasks with two–six successes out of eight | 16/135 |
 
-Training JSONL SHA-256: `6b0cce0608a11b2aa7d31e1343c6db0ba8ade08fdbd62ec68914884064a9df3e`. Starting checkpoint is completed V6 mixed1.7B, verified initial-manifest SHA-256 `0acf7b913175e58d9bc3ead57bd0c0eb0a71669f494918cef404dec77dc9ee7b`. Each row appears once; no sequence truncation. Exact [admission receipt](results/current_prepare_receipt.json), [per-candidate accounting](results/current_row_results.csv), [first update](results/current_first_update.json), [memory control](results/current_smoke_result.json), and [source identity](results/source_lock_verified.json) retain the evidence.
+The primarysuccessrate interval resamples135tasks, retaining their eightattempts,10,000draws,seed0; one trainingseed; p-value not computed. The25%validationtarget is unmet. Frozenprompt/scorer/kernelsettings and test-split isolation are preserved. Independent ordinary-code recomputation matched all1,080cells and the120successes.
 
-Initial estimate2–4hours training from the prior1.7B throughput; shorter-proof step overhead and shared-node load may change this. Validation generation and Lean scoring follow separately. Loss or compilation of training targets is not evidence that validation success improved. No new validation result is available yet.
+Compared descriptively on the samevalidationcohort, current minus previous replay is+1.94percentagepoints, pairedtask-bootstrap95%interval[−0.09,+4.17]; current minus previoustiny-mixed is+4.26points,[+2.13,+6.67]. Those are differentdata/token/continuationregimes; no single-component causalclaim follows. DetailedCPU-onlyfailureanalysis is separate and doesnotchange scores.
 
-**TLDR-end:** [rl-4-code-verification: 1.7B warm start] The10,940-example first continuation is actually training; its full validation/scoring and the subsequent cleaned comparison have remote ordinary-code owners.
+[Summary](results/analysis_v12_current_summary.json) · [All1,080cells](results/analysis_v12_current_cells.csv) · [135taskresults](results/analysis_v12_current_tasks.csv) · [Frozenadmission](results/current_prepare_receipt.json).
+
+The frozenpoolcontains2,585originalPython-to-Lean,500tiny,7,794Workbookand61repairedWorkbookexamples. DatasetSHA256 `6b0cce0608a11b2aa7d31e1343c6db0ba8ade08fdbd62ec68914884064a9df3e`; source/protocolhashesandstartingweightsunchanged. TrainingandrawvalidationoutputsremainonSNAP behindtheartifactmanifest.
+
+## Second-condition continuation
+
+The prepared partial dataset remains frozen evidence, not a completed second training run. See [the migration fence](results/gx10_migration_fence.json), [full-cleanup continuation](../expt_v18/README.md) and [GX10 production protocol](../expt_v19/PROTOCOL.md). No clean-data improvement is claimed before that full run and its validation finish.

@@ -124,7 +124,9 @@ Version 1 is complete with PARTIAL selection: 8B step 658 and 14B step 334 are u
 
 ## Current 1.7B corpus and adaptive continuation campaign
 
-- [Version12](expt_v12/results.md): the10,940-example current-data continuation is training; the comparable cleaned-data branch has an automatic remote launcher.
-- [Version13](expt_v13/results.md): Terra/high proof cleanup of the original2,585 Python-to-Lean answers, preserving implementation/specification/test statements and requiring exact-source kernel checks.
-- [Version14](expt_v14/results.md): GX10 user environment and public Mathlib/DeepSeek candidates; source validation is separate from training admission.
-- [Version15](expt_v15/results.md): outcome-triggered adaptation toward25% complete validation binary success; initial$300 plus conditional additional$300 API authorization, Terra only, test split sealed.
+- [Version12](expt_v12/results.md): the10,940-example first continuation completed all1,080validation cells with120successes (11.11%); the prepared partial-cleanup branch received zero optimizer updates and its dispatcher was fenced.
+- [Version13](expt_v13/results.md): immutable partial cleanup:818verified replacements,227unchanged originals and1,540flagged fallbacks; original implementation/specification/test statements preserved.
+- [Version14](expt_v14/results.md): GX10 user environment and678admitted Mathlib/DeepSeek examples from729formal candidates; source validation and training admission have separate receipts.
+- [Version15](expt_v15/results.md): outcome-triggered adaptation toward25%complete validation binary success; maximum$900additional API authorization. Terra/high teachers; one user-authorized Astra/high code-porting worker only. The test split stays sealed.
+- [Version18](expt_v18/README.md): complete remaining original-pool cleanup, with explicit accepted/excluded rows and no automated-proof fallback in the retained original cohort. Deployment awaits cluster reauthentication.
+- [Version19](expt_v19/README.md): final second1.7B condition through full validation; prefer a truly free suitable A100, with the user-authorized GX10 prepared as fallback. The earlier partial dataset is a discarded hardware control only.

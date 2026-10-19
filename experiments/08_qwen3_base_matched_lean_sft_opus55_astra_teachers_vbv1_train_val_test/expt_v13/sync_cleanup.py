@@ -9,7 +9,7 @@ import time
 
 HERE=Path(__file__).resolve().parent
 REMOTE='/lfs/skampere1/0/eth127/rl4cv_tiny_training/lean_corpus_v13'
-FILES=['dispatch.json','manifest.json','progress.json','row_progress.csv','watch_heartbeat.json','guard_controls.json','saved_alternative_summary.json','checker_controls/completion.json','calibration/summary.json','completion.json','final/summary.json','final/row_results.csv','runtime_manifest.json','watch_error.json']
+FILES=['dispatch.json','manifest.json','progress.json','row_progress.csv','watch_heartbeat.json','guard_controls.json','saved_alternative_summary.json','checker_controls/completion.json','calibration/summary.json','completion.json','final/summary.json','final/row_results.csv','final/contract_receipt.json','runtime_manifest.json','runtime_manifest_freeze.json','freeze_for_comparison.json','watch_error.json']
 
 def once():
     code='import json,pathlib; root=pathlib.Path('+repr(REMOTE)+'); files='+repr(FILES)+'; print(json.dumps({name:(root/name).read_text() for name in files if (root/name).exists()}))'
@@ -18,7 +18,7 @@ def once():
     for name,text in data.items():
         path=out/name.replace('/','_');temp=path.with_suffix(path.suffix+'.tmp');temp.write_text(text);temp.replace(path)
     progress=json.loads(data.get('progress.json','{}'));calibration=json.loads(data.get('calibration/summary.json','{}'));final=json.loads(data.get('final/summary.json','{}'))
-    states=progress.get('states',{})
+    states=progress.get('states',{});frozen=json.loads(data.get('freeze_for_comparison.json','{}'))
     report='''# V13 results: Explicit proof replacements for 2,585 original answers
 
 **Doc link:** [Protocol](PROTOCOL.md)
@@ -32,6 +32,12 @@ def once():
     for label,value in [('Declared answers',2585),('Original files parsed successfully','2585 / 2585'),('Parsed proof terms',100234),('Answers with targeted automation',2358),('No replacement needed',227),('Current kernel-verified replacements',progress.get('verified',0)),('Running',states.get('RUNNING',0)),('Pending',states.get('PENDING',0)),('Temporary budget holds',states.get('BUDGET_HOLD',0)),('Original fallback outcomes',states.get('FALLBACK',0)),('Calibration final FILE/template passes',calibration.get('replacements',0)),('Calibration protected exact / near',str(calibration.get('protected_exact',0))+' / '+str(calibration.get('protected_near',0))),('Settled ordinary-rate estimate USD',round(progress.get('base_rate_estimate_usd',0),4)),('Settled conservative ledger charge USD',round(progress.get('conservative_charge_usd',0),4)),('In-flight reserved USD',progress.get('reserved_usd',0)),('Second preapproved budget tranche active',progress.get('tranche2activated',False))]:
         report+=f'| {label} | {value} |\n'
     report+='\n'+f"Remote observation Unix time: `{progress.get('observed_unix','unknown')}`. API charges are configured-price estimates, not invoices.\n\n"
+    if frozen:
+        old='The first four Terra/high replacements passed full Lean/kernel, FILE/template and protected-overlap checks. The full remote CPU worker pool is active with shared budget reservations; every original row remains in the denominator.'
+        new='Cleanup admission is closed for the matched training comparison. Existing checked replacements are retained; every unattempted/unresolved answer uses its original as an explicit fallback. The finalizer releases the second training run after the last already-admitted case finishes within its original bounds.'
+        if final:new=f"Cleanup phase frozen: {final.get('replacements',0)} replacements passed kernel, format and overlap checks; all 2,585 rows are accounted for. Original fallbacks preserve the remaining cases, and the immutable completion receipt releases the matched second training run."
+        report=report.replace(old,new)
+        report+='## Comparison phase freeze\n\n'+frozen.get('reason','')+' Recorded at '+frozen.get('observed_local','unknown')+'. See [prospective amendment](AMENDMENT_freeze_comparison.md).\n\n'
     if final:report+='## Frozen result\n\n```json\n'+json.dumps(final,indent=2)+'\n```\n\n'
     report+='''## What was checked
 

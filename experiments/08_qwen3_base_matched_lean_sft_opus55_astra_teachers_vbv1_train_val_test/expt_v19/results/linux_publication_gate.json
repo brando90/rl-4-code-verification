@@ -1,0 +1,62 @@
+{
+  "command": "make test",
+  "dependency_bytes": 3105434,
+  "dependency_files_verified": 469,
+  "dependency_manifest_sha256": "d8769cde42d07f82054ef2252d63a326403d45127b73f5e6849a90a5da5e9d31",
+  "earlier_full_attempts": [
+    {
+      "cause": "Missing ripgrep and pinned external checkout assets",
+      "failed": 7,
+      "passed": 1328,
+      "skipped": 55,
+      "subtests_passed": 6
+    },
+    {
+      "cause": "Missing transitive pinned canonical public-context module",
+      "failed": 4,
+      "passed": 1336,
+      "setup_errors": 20,
+      "skipped": 30,
+      "subtests_passed": 6
+    }
+  ],
+  "elapsed_seconds": 90.27748847007751,
+  "exit_code": 0,
+  "external_HTTP_blocked": true,
+  "full_gate_log_sha256": "c2c16e17d6e20fe47b08a96cf19cb0fe62ac07c96fa89def7aab2fa43850026b",
+  "genuine_legacy_emailing_source": {
+    "git_blob_sha1": "47fd13d24daee314f6042f5510cc4069b4e70683",
+    "path": "py_src/uutils/emailing.py",
+    "purpose": "Exists-only legacy dependency gate; never executed",
+    "repository": "brando90/ultimate-utils",
+    "revision": "bb0731f943175cace97c93d09f91833a59dea4c5",
+    "sha256": "29302f329565b41411693978d0613fb10f7068a5e3c7d7b761136a5d4ebc48b6"
+  },
+  "gpu_visible": false,
+  "host": "gx10-84b8",
+  "index_tree": "d9ea0b0f927a25343ffd188d0bfdedf4e64b3fd7",
+  "observed_unix": 1792433063.8609092,
+  "pid": 359788,
+  "preserved_attempt_logs_local": "/Users/lethan3/Documents/veribench-projects/tmp/rl4cv-gx10-linux-gate-v19",
+  "provider_credentials_forwarded": false,
+  "pytest_elapsed_seconds": 87.97,
+  "pytest_passed": 1360,
+  "pytest_skipped": 30,
+  "pytest_subtests_passed": 6,
+  "pytest_warnings": 1,
+  "ripgrep": "14.1.0 (user extracted Ubuntu package)",
+  "scorer_pin": "59059a20d40adf3289869e58302169ad78102877",
+  "source_mismatches": 0,
+  "src_tree": "9ef56964173685ee4d2024866b36fc2ee5fb22a9",
+  "state": "PASS",
+  "targeted_after_dependency_restoration": {
+    "elapsed_seconds": 6.6,
+    "failed": 0,
+    "passed": 40
+  },
+  "temporary_snapshot": "/home/lethan3/workspace/rl4cv-gx10/verify-v19-4360e604ed3a",
+  "tests_tree": "3c1ff16ef5d576cd4da3d96b0b0d5dc0513bb0d2",
+  "tracked_files_checked": 9587,
+  "tracked_source_or_tests_modified": false,
+  "veribench_pin": "c11b99badfa386fd26810b208eef1eb8dc9f6806"
+}

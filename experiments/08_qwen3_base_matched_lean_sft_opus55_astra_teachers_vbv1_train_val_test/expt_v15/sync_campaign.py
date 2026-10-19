@@ -4,6 +4,8 @@ import argparse
 import base64
 import datetime
 import hashlib
+import csv
+import io
 import json
 from pathlib import Path
 import re
@@ -31,6 +33,8 @@ def mapping():
         out['lean_corpus_v13/'+source]='expt_v13/results/live_'+source.replace('/','_')
     for source in ['freeze.json','progress.json','completion.json','controls.json','row_results.csv','watcher.json','watch_status.json']:
         out['public_gap_sources_v14/bulk_validation/'+source]='expt_v14/results/live_bulk_'+source
+    for source in ['dispatch.json','progress.json','completion.json','controls.json','row_progress.csv','watch_heartbeat.json','watch_completion.json','calibration_ok.json','provider_hold.json','coordinator_attention.json','unchanged_audit_completion.json','final/summary.json','final/row_results.csv']:
+        out['lean_corpus_v18/'+source]='expt_v18/results/live_'+source.replace('/','_')
     for source in ['coordinator_launch.json','coordinator_heartbeat.json','decisions.json','goal.json','paid_work_hold.json','scientific_hold.json','budget.json','frozen_evaluator_sources.json']:
         out['adaptive_1p7b_campaign/'+source]='expt_v15/results/'+source
     return out
@@ -62,15 +66,21 @@ print(json.dumps(out))
             assert rel.startswith('adaptive_1p7b_campaign/trials/')
             relative='expt_v15/results/'+rel.removeprefix('adaptive_1p7b_campaign/')
         target=EXP/relative;target.parent.mkdir(parents=True,exist_ok=True)
+        if target.suffix=='.csv':
+            rows=list(csv.reader(io.StringIO(raw.decode(),newline='')))
+            normalized=io.StringIO(newline='');csv.writer(normalized,lineterminator='\n').writerows(rows)
+            normalized_raw=normalized.getvalue().encode()
+            assert list(csv.reader(io.StringIO(normalized_raw.decode(),newline='')))==rows
+            raw=normalized_raw
         if not target.exists() or target.read_bytes()!=raw:target.write_bytes(raw);touched.append(target)
     def obj(rel):
         item=payload.get(rel)
         return json.loads(base64.b64decode(item['data'])) if item else {}
     current=obj('corpus_training_v12/current/run/progress.json');cleaned=obj('corpus_training_v12/cleaned/run/progress.json')
-    cleanup=obj('lean_corpus_v13/progress.json');bulk=obj('public_gap_sources_v14/bulk_validation/progress.json');budget=obj('adaptive_1p7b_campaign/budget.json')
+    cleanup=obj('lean_corpus_v13/progress.json');full_cleanup=obj('lean_corpus_v18/progress.json');bulk=obj('public_gap_sources_v14/bulk_validation/progress.json');budget=obj('adaptive_1p7b_campaign/budget.json')
     charged=sum(x['usd'] for x in budget.get('charges',{}).values());base=sum(x.get('base_rate_estimate_usd') or 0 for x in budget.get('charges',{}).values());held=sum(x['usd'] for x in budget.get('reservations',{}).values())
     now=datetime.datetime.now().astimezone().strftime('%m-%d-%Y %H:%M %Z')
-    status=dict(observed=now,current=current,cleaned=cleaned,cleanup=cleanup,public_source_checks=bulk,budget_conservative_charge=charged,budget_base_rate_estimate=base,budget_reserved=held,second_tranche_active=budget.get('tranche2activated',False),goal=obj('adaptive_1p7b_campaign/goal.json'))
+    status=dict(observed=now,current=current,cleaned=cleaned,cleanup=cleanup,full_cleanup=full_cleanup,public_source_checks=bulk,budget_conservative_charge=charged,budget_base_rate_estimate=base,budget_reserved=held,budget_authorized_maximum=budget.get('total_authorized',600),second_tranche_active=budget.get('tranche2activated',False),third_tranche_active=budget.get('tranche3activated',False),goal=obj('adaptive_1p7b_campaign/goal.json'))
     path=HERE/'results/campaign_status.json';path.write_text(json.dumps(status,indent=2)+'\n');touched.append(path)
     results=HERE/'results.md';text=results.read_text().split('\n## Latest automatic snapshot\n')[0]
     text+='\n## Latest automatic snapshot\n\n'+now+'.\n\n'
@@ -80,14 +90,16 @@ print(json.dumps(out))
         if summary:text+=f'- {condition} validation: {summary.get("successes")}/1,080 binary successes; {summary.get("success_rate",0):.2%}, complete manifest.\n'
         elif terminal:text+=f'- {condition} terminal state: {terminal.get("status")}; details retained in the receipt.\n'
     text+=f'- Current training: {current.get("step",0):,}/5,470 updates; {current.get("loss_tokens",0):,} assistant loss tokens.\n'
-    text+=f'- Cleaned training: {cleaned.get("step",0):,} updates; waits for verified cleanup when zero.\n'
-    text+=f'- Cleanup: {cleanup.get("states",{})}; declared {cleanup.get("declared",2585):,}.\n'
+    text+=f'- Historical partial-cleanup SNAP training: {cleaned.get("step",0):,} updates; dispatcher {obj("corpus_training_v12/cleaned_dispatcher.json").get("state", "unknown")}. Final second-run ownership is version19.\n'
+    text+=f'- Version13 cleanup snapshot: {cleanup.get("states",{})}; declared {cleanup.get("declared",2585):,}. Final admission counts are in its immutable completion receipt.\n'
+    text+=f'- Version18 remaining cleanup: {full_cleanup if full_cleanup else "No remote deployment receipt collected yet"}.\n'
     text+=f'- Additional public sources: {bulk.get("completed",0):,}/{bulk.get("declared",729):,} checked; {bulk.get("outcomes",{})}.\n'
     text+=f'- Paid work: ${base:.2f} base-rate usage estimate; ${charged:.2f} conservatively charged; ${held:.2f} reserved for in-flight work. Estimates are not invoices.\n'
-    text+=f'- Second authorized $300 tranche activated: {status["second_tranche_active"]}. Goal receipt: {bool(status["goal"])}.\n'
+    text+=f'- Authorized maximum: ${status["budget_authorized_maximum"]:.2f}; second $300 tranche active: {status["second_tranche_active"]}; third $300 tranche active: {status["third_tranche_active"]}. Goal receipt: {bool(status["goal"])}.\n'
     results.write_text(text);touched.append(results)
     states=cleanup.get('states',{});done=sum(v for k,v in states.items() if k in ['DONE','CLEANED','FALLBACK','UNCHANGED'])
-    milestone=(current.get('step',0)//250,cleaned.get('step',0)//250,done//50,bulk.get('completed',0)//100,bool(status['goal']),status['second_tranche_active'],bool(obj('corpus_training_v12/current/terminal.json')),bool(obj('corpus_training_v12/cleaned/terminal.json')))
+    full_done=sum(v for k,v in full_cleanup.get('states',{}).items() if k.startswith('ACCEPTED') or k.startswith('EXCLUDED'))
+    milestone=(current.get('step',0)//250,cleaned.get('step',0)//250,done//50,full_done//50,bulk.get('completed',0)//100,bool(status['goal']),status['second_tranche_active'],status['third_tranche_active'],bool(obj('corpus_training_v12/current/terminal.json')),bool(obj('corpus_training_v12/cleaned/terminal.json')),bool(obj('lean_corpus_v18/completion.json')))
     return touched,milestone,status
 
 def mirror(paths):

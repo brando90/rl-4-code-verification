@@ -51,6 +51,7 @@ def recover(rows):
         base.write(folder/'status.json',dict(row,state=state,reason='Driver died; fenced old CLI, settled reserved exposure, preserved artifacts and bounded remaining attempts.'))
 
 def launch_available(ledger):
+    if (clean.ROOT/'freeze_for_comparison.json').exists():return
     spent=sum(v['usd'] for v in ledger['charges'].values() if v['purpose']=='cleanup')
     reserved=sum(v['usd'] for v in ledger['reservations'].values() if v['purpose']=='cleanup')
     cap=480 if ledger['tranche2activated'] else 240
@@ -62,6 +63,47 @@ def launch_available(ledger):
         if capacity<=0:break
         command=f'python3 -u {clean.HERE}/clean_existing.py worker --lane {lane} >> {clean.ROOT}/workers/lane_{lane:02d}/driver.log 2>&1'
         subprocess.run(['tmux','new-session','-d','-s',name,command],check=True);capacity-=1
+
+def finish_frozen_active(row):
+    """Adopt the one already admitted CLI while preventing its old driver from retrying."""
+    folder=clean.ROOT/'cases'/row['task_id'];handoff=folder/'comparison_freeze_handoff.json'
+    if not handoff.exists():
+        # Stop only the ordinary coordinator. Its independently grouped CLI stays healthy.
+        if alive(row.get('driver_pid')):os.kill(row['driver_pid'],signal.SIGSTOP)
+        base.write(handoff,dict(previous=row,old_driver_suspended=True,existing_cli_preserved=True,no_new_attempts=True,observed_unix=time.time()))
+    profile=clean.ROOT/'runtime'/f'lane_{row["lane"]:02d}'
+    used,_=budget.session_usage(profile,row.get('started_unix',time.time()))
+    expired=time.time()-row.get('started_unix',time.time())>900
+    cost_stop=bool(used and budget.charge_estimate(used)>=clean.STOP_ESTIMATE)
+    if alive(row.get('pid')) and not expired and not cost_stop:return False
+    if alive(row.get('pid')):
+        try:os.killpg(row['pid'],signal.SIGTERM)
+        except OSError:pass
+        time.sleep(.5)
+        if alive(row.get('pid')):
+            try:os.killpg(row['pid'],signal.SIGKILL)
+            except OSError:pass
+    if alive(row.get('driver_pid')):
+        try:os.kill(row['driver_pid'],signal.SIGKILL)
+        except OSError:pass
+    identity=row.get('budget_identity');ledger=budget.snapshot()
+    if identity in ledger['reservations']:budget.settle(identity,used,unknown=used is None)
+    try:
+        assert not expired and not cost_stop,'Already-admitted native CLI time/cost bound reached.'
+        result=json.loads((folder/f'output_{row.get("attempt",0)}.json').read_text())
+        assert result['task_id']==folder.name
+        if result['decision']=='cleaned':
+            source=clean.assemble(folder,clean.Path(row['work']));digest=base.sha(source)
+            receipt=json.loads((folder/'checks'/digest/'result.json').read_text())
+            assert receipt['passed'] and clean.kernel_module().valid_report(receipt['kernel_report'])
+            assert receipt['kernel_report']['source_sha256']==digest
+            (folder/'Solution.lean').write_text(source);result.update(verified=True,source_sha256=digest)
+        else:result['verified']=False
+        base.write(folder/'decision.json',result)
+        base.write(folder/'status.json',dict(row,state='DONE',decision=result['decision'],verified=result['verified'],comparison_freeze=True,finished_unix=time.time()))
+    except Exception as exc:
+        base.write(folder/'status.json',dict(row,state='FALLBACK',comparison_freeze=True,reason='Already-admitted case finished without an accepted frozen result',error=repr(exc),finished_unix=time.time()))
+    return True
 
 def finish(reason):
     for p in (clean.ROOT/'cases').glob('*/status.json'):
@@ -94,7 +136,14 @@ def main():
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         deadline=time.time()+24*3600
         while True:
-            rows,data,ledger=snapshot();recover(rows)
+            rows,data,ledger=snapshot()
+            freeze=clean.ROOT/'freeze_for_comparison.json'
+            if freeze.exists():
+                active=[r for r in rows if r['state'] in ['RUNNING','CLAIMED']]
+                if not active:return finish(json.loads(freeze.read_text())['reason'])
+                for row in active:finish_frozen_active(row)
+                time.sleep(2);continue
+            recover(rows)
             active=any(r['state'] in ['RUNNING','CLAIMED'] for r in rows)
             pending=any(r['state'] in ['PENDING','BUDGET_HOLD'] for r in rows)
             if not active and not pending:return finish('All declared rewrite cases reached a terminal result.')

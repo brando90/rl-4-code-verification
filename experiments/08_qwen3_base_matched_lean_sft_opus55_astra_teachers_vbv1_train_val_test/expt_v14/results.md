@@ -2,7 +2,7 @@
 
 **Doc link:** https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v14/results.md
 
-**TLDR:** The GX10 now passes real CUDA and tiny Qwen3 attention/backward/optimizer controls in an isolated user environment. Prepared 217 Mathlib and 512 DeepSeek candidates remain outside training; three Mathlib source controls passed the unchanged kernel inspector. No API calls, pretrained-model downloads or experiment training were launched here.
+**TLDR:** **678 public proof exercises are ready: 209 Mathlib and 469 DeepSeek**, with truthful deterministic proof-step comments and all declared admission gates. All 729 candidates were formally checked, 688 passed, and every one of those 688 received an admission outcome. Use the stable `latest_admission.json` pointer to final version 2. No API calls or experiment training were launched here; GX10 fallback controls also passed.
 
 ## Unattended readiness, observed 10-19-2026
 
@@ -25,10 +25,10 @@ No human Docker group/sudo change is needed for the working user environment. De
 
 | Source | Prepared candidates | Current-kernel controls | Admitted training rows |
 | --- | ---: | ---: | ---: |
-| Mathlib at pinned Lean 4.22 revision | 217 | 3/3 passed | 0 |
-| DeepSeek-Prover-V1 pinned public train artifact | 512, selected from first 3,271 rows | Not run | 0 |
+| Mathlib at pinned Lean 4.22 revision | 217 | 217/217 full-cohort formal passes | 209 |
+| DeepSeek-Prover-V1 pinned public train artifact | 512, selected from first 3,271 rows | 471/512 full-cohort formal passes | 469 |
 
-Mathlib scanned all 6,726 modules. The conservative preparer kept short complete original files, their imports, all declaration context and the last named theorem, skipping broad automation. It is source discovery, not a Lean parser certificate. The Nat/Int/List controls compiled the exact original modules and passed the frozen source-hash-bound kernel inspector. All candidates still need comment/sketch policy checks, actual template/token checks, protected screens and global deduplication. Most of the 217 Mathlib modules concern advanced subjects; prefer relevant Data/Nat, Data/Int, Data/List and Logic examples when a corresponding gap appears rather than adding all 217 automatically.
+Mathlib scanned all 6,726 modules. The conservative preparer kept short complete original files, their imports, all declaration context and the last named theorem, skipping broad automation. Discovery was followed by exact pinned Git-blob/file comparison and current source-hash-bound kernel checks on every complete file. The admitted subset also passed comment/sketch policy, actual template/token checks, protected screens and global deduplication. Many modules concern advanced subjects despite their short proofs; they are auxiliary formal exercises, not a claim of matched Python-task difficulty.
 
 DeepSeek source SHA256 matches its pinned artifact, with all selected rows labeled train. The historical source toolchain is older. Its dataset license is unresolved; the user explicitly authorized provisional use while checking with a mentor. Manifests record that fact; they do not claim license clearance. No whole-corpus proof rewrite was launched.
 
@@ -36,11 +36,23 @@ Public candidates and the DeepSeek source artifact are available to a SNAP-only 
 
 ### Full 729-candidate formal validation extension
 
-Under a [prospective amendment](AMENDMENT_bulk_validation.md), the complete prepared cohort is now undergoing CPU-only pinned kernel verification on SNAP: 217 Mathlib plus 512 DeepSeek rows, eight Lean workers, 60 seconds per compiler operation. All exact upstream source/context comparisons and original prefix-message checks passed before the frozen manifest was written. No source, statement, proof or training pool was changed. [Freeze](results/bulk_freeze.json).
+Under a [prospective amendment](AMENDMENT_bulk_validation.md), the complete prepared cohort completed CPU-only pinned kernel verification on SNAP: 217 Mathlib plus 512 DeepSeek rows, eight Lean workers, 60 seconds per compiler operation. All 217 Mathlib files and 471 DeepSeek files passed (688/729). The 41 DeepSeek failures comprise 39 syntax-compatibility failures, one missing library identifier and one other formal-check failure. All exact upstream source/context comparisons and original prefix-message checks passed before the frozen manifest was written. No source, statement, proof or training pool was changed. [Freeze](results/bulk_freeze.json), [completion](results/bulk_completion.json), [all 729 rows](results/bulk_row_results.csv).
 
 The initial positive control exposed a driver artifact-path bug after the proof itself compiled and passed kernel inspection. The driver treated the Lean module identifier `_stdin` as a file path; it now hashes `evidence_dir/original.olean`. The failed preflight and initial freeze are preserved remotely, and the identical 729-source manifest was re-frozen with the corrected driver. No cohort cell had been compiled before this correction. The watcher correctly recorded and stopped that preflight failure.
 
-Persistent session: `rl4cv-public-source-verify-v14`. Remote batch directory: `/lfs/skampere1/0/eth127/rl4cv_tiny_training/public_gap_sources_v14/bulk_validation/`. The ordinary watcher records heartbeat, driver exit and completion independently of the laptop. Run `python3 expt_v14/sync_bulk.py` from the experiment's parent directory to refresh compact local receipts and the full 729-row table. A formal pass will not mean training admission or English-to-formal semantic verification; comments, actual template/token checks, protected overlap screens, global deduplication and further source checks remain pending.
+Completed session: `rl4cv-public-source-verify-v14`. Remote batch directory: `/lfs/skampere1/0/eth127/rl4cv_tiny_training/public_gap_sources_v14/bulk_validation/`. The ordinary watcher recorded successful completion independently of the laptop. A formal pass does not mean training admission or English-to-formal semantic verification. The separate [training admission amendment](AMENDMENT_training_admission.md) assesses all 688 passes, adds comments describing only visible formal proof operations, and performs the remaining format, token, overlap and deduplication gates. Its final output is version `admission_v2/`; version 1 is preserved and superseded because four direct `let` proof headers needed a truthful local-binding description. Consume only the hash-bound `/lfs/skampere1/0/eth127/rl4cv_tiny_training/public_gap_sources_v14/latest_admission.json` pointer.
+
+These are auxiliary formal proof exercises, without Python implementations or differential tests. They can teach introductions, explicit lemma applications, rewriting and type/context handling; they are not evidence that Python translation failures are resolved. Independent concise full Python-to-Lean examples and semantic test coverage remain central to the next regime. Validation failures can prioritize generic categories; their task statements and solutions remain protected.
+
+### Final training admission, version 2
+
+All **688 formal passes** were declared before admission. **678 were admitted** (209 Mathlib, 469 DeepSeek), totaling **308,320 assistant loss tokens**. Ten were excluded: five failed exact frozen FILE extraction, four had no supported visible operation for a truthful deterministic annotation, and one had a possible untyped fractional exponent requiring semantic review. The 41 earlier formal-check failures are additionally excluded and preserved.
+
+Every admitted file retains all original source bytes and non-comment tokens; only safe full-line comments were inserted. The sketch and inline comments describe visible introductions, named proof terms, rewriting, constructor fields, cases or induction. They do not invent mathematical explanations. Existing current-kernel receipts were revalidated against original source and compiled artifact bytes, and comment insertion was independently round-tripped; annotated bytes were **not recompiled**. All 678 passed the actual frozen FILE extractor and Qwen chat-template/16,384-token checks. Full prompt/answer and standalone statement screens against 764 protected references had **zero exact and zero near matches**. Global deduplication checked every row in the **10,940-row frozen version 12 current pool** and earlier proposed admissions.
+
+Final artifact: `/lfs/skampere1/0/eth127/rl4cv_tiny_training/public_gap_sources_v14/admission_v2/training.jsonl`; SHA256 `b7cdd07367612a5c2a95b6595fcc0606a6e4d4a970ded9125d575b53ae5f4f1a`. Stable pointer: `/lfs/skampere1/0/eth127/rl4cv_tiny_training/public_gap_sources_v14/latest_admission.json`. The pointer binds the exact dataset, freeze, completion and row-table hashes. [Pointer](results/latest_admission.json), [completion](results/admission_completion.json), [all 688 admission rows](results/admission_row_results.csv), [screens](results/admission_protected_screen_summary.json), [freeze](results/admission_freeze.json).
+
+The first admission version is immutable and superseded. A post-pass annotation audit found four direct `let` proof headers that needed to describe local bindings rather than named terms; version 2 corrected those comments and repeated all gates on the identical 688-source cohort. No proof was changed and no model was called. DeepSeek's provisional user-authorized license status remains recorded. A future training regime must merge and freeze this supplement explicitly; the original version 12 pools and runs remain unchanged.
 
 ## Existing training evidence and next regime choices
 

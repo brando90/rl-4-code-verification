@@ -1,0 +1,33 @@
+{
+  "admission_closed": true,
+  "phase": "freeze_for_matched_comparison",
+  "reason": "Freeze partial proof-cleanup cohort now for the authorized matched training comparison: budget reservation headroom reduced concurrency to one lane and delayed the second training run. Preserve the healthy active case within its native budget; retain untouched originals for every unresolved/unattempted row.",
+  "observed_unix": 1792430725.1704547,
+  "observed_local": "10-19-2026 10:25:25 PDT",
+  "states_before": {
+    "DONE": 876,
+    "PENDING": 1445,
+    "UNCHANGED": 227,
+    "FALLBACK": 36,
+    "RUNNING": 1
+  },
+  "verified_before": 817,
+  "active_cases": [
+    {
+      "task_id": "existing_1803",
+      "state": "RUNNING",
+      "lane": 20,
+      "work": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/lean_corpus_v13/workers/lane_20/existing_1803",
+      "pid": 3567872,
+      "driver_pid": 2773276,
+      "attempts": 1,
+      "attempt": 0,
+      "model": "gpt-5.6-terra",
+      "effort": "high",
+      "started_unix": 1792430634.942622,
+      "budget_identity": "v13/existing_1803/0"
+    }
+  ],
+  "declared": 2585,
+  "no_new_paid_calls": true
+}

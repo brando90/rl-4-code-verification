@@ -1,34 +1,33 @@
-# 1.7B campaign: current-data training running, Terra cleanup launched
+# First 1.7B continuation finished at11.1%; final cleanup and second run pending
 
 **Doc link:** [experiment home](README.md)
 
-**TLDR:** The first1.7B continuation is training on A100 GPU1 with10,940 unique examples. The first four Terra/high cleanup workers are executing. The second training run waits for verified replacements; a remote outcome-triggered coordinator is armed for later validation-driven improvements. Additional API budget is$300 initially, plus$300 if needed, maximum$600.
+**TLDR:** The10,940-example continuation completed training and all1,080validation cells:120successes (11.11%). Proofcleanup froze818verified replacements plus originalfallbacks, releasing the second training preparation. The follow-up controller and result publisher had infrastructure failures; those were repaired and their evidence retained.
 
-**Last updated:** 10-19-2026 06:11 PDT.
+**Last updated:** 10-19-2026 10:49 PDT.
 
-| Phase | State | Verified evidence |
+| Phase | State | Result |
 |---|---|---|
-| Current training dataset | DONE | 10,940 rows;13,168,888 assistant loss tokens; zero protected overlap hits |
-| First1.7B continuation | RUNNING | Real production update passed on A100 GPU1; automatic full validation/scoring |
-| Original2,585 proof cleanup | RUNNING | First four Terra/high CLI workers; all2,585 source files parsed into100,234 proof terms |
-| Cleaned1.7B comparison | WAITING | Remote watcher will use verified replacements and flagged original fallbacks, then claim GPU2 |
-| GX10 environment | PROVISIONED | Actual tensor and tiny Qwen3 backward/optimizer controls passed; dynamic dispatch remains Mac-dependent |
-| Additional Mathlib/DeepSeek data | CANDIDATES ONLY | 217 Mathlib plus512 DeepSeek candidates; future training admission requires all gates |
-| Validation-driven adaptation | ARMED | Remote ordinary-code heartbeat verified; no adaptive model call before a completed outcome or actual failed job |
+| First1.7B continuation | COMPLETE | 5,470updates,13,168,888assistantlosstokens;120/1,080validationbinarysuccesses |
+| First-run uncertainty | MEASURED | Task-bootstrap95%interval6.94–15.83%;135tasks, eightattempts each; p-value not computed |
+| Original2,585proofcleanup | DONE_PARTIAL | 818verified replacements,227unchanged originals,1,540flagged originalfallbacks; all2,585accounted |
+| Final cleaned comparison | PREPARING | Partial dataset had zero optimizer updates; final version18 cohort will train under version19 on GX10 |
+| Extra public-source verification | COMPLETE | 688/729formalpasses;41failures retained |
+| Extra public-source admission | AVAILABLE | 678examples passed currentkernel/FILE/template/token/overlap/dedup checks; finalcomment-version pointer recorded separately |
+| Adaptive controller | RECOVERED | Actual first-result recomputation passed; independent ordinary-code death watcher is running |
 
-The first cleanup batch calibrates quality, cost and throughput before broader concurrency. The shared ledger reserves worst in-flight exposure and records conservative token charges; the second authorized$300 tranche is activated only if needed. No other paid model substitution is authorized.
+## What worked and what did not
 
-Each regime, source mix, failure and result will be versioned. Prior V6 matched continuation gave99/1080 successes for replay and74/1080 for the tiny-augmented run; this was a negative result, with details in [the source and failure analysis](../expt_v14/results.md). The new campaign has no validation result yet. Its25% target is adaptive validation binary success over a complete135-task/eight-sample manifest; the test split stays sealed.
+The first run's120/1,080successes compare descriptively with99/1,080for the previous replay condition and74/1,080for the previous tiny-augmented condition. Different data, budgets and continuation histories prevent attributing the change to a single component. The25%goal remains unmet.
 
-[First training run](../expt_v12/results.md) · [Proof cleanup](../expt_v13/results.md) · [GX10 and source preparation](../expt_v14/results.md).
+There were971extractedoutputs and120compilingoutputs. All109unextractedoutputs were length-capped;108of those began with the correctFILEmarker and Lean fence. Among all1,080cells,851extractedoutputs failed compilation and110were capped. Thus failing to finish and failing Lean are distinct problems. A full CPU-only diagnostic pass preserves original scores and will report generic compiler categories; protected task content is not used as teacher data.
 
-## Latest automatic snapshot
+The cleanup's conservative accounting reduced concurrency to one worker near its$480phaseallocation while1,445cases remained pending. The phase was explicitly frozen rather than continuing that slow queue; unfinished or unsuccessful replacements retain the originalanswers, visiblyflagged. Actual ordinary-rate estimate forcleanup is$237.39; conservative accounting charge$469.99, not an invoice.
 
-10-19-2026 09:32 PDT.
+The follow-up controller lacked `TINY_RUN_ROOT` for evaluatorimport, then crashed when its model prematurelysettled theparentreservation and thewrapper settled it again. The model did produce a valid independent120/1,080recomputation but no new training regime before the crash. Repairs set the environment, reconcile settlement idempotently from actualCLIusage, prohibitmanualparentsettlement, and add an independent deathwatcher. Gitpublication also stalled onCSVCRLFrecordterminators; thepublisher now normalizes only serialization and verifies identical parsed fields. No scores, evaluationprompts, splits or proofacceptance were changed.
 
-- Current training: 5,470/5,470 updates; 13,168,888 assistant loss tokens.
-- Cleaned training: 0 updates; waits for verified cleanup when zero.
-- Cleanup: {'PENDING': 1481, 'DONE': 842, 'UNCHANGED': 227, 'FALLBACK': 32, 'RUNNING': 3}; declared 2,585.
-- Additional public sources: 729/729 checked; {'FORMAL_CHECK_FAILED': 1, 'FORMAL_PASS': 688, 'LIBRARY_IDENTIFIER': 1, 'SYNTAX_COMPATIBILITY': 39}.
-- Paid work: $224.37 base-rate usage estimate; $444.41 conservatively charged; $30.00 reserved for in-flight work. Estimates are not invoices.
-- Second authorized $300 tranche activated: True. Goal receipt: False.
+[First-run results](../expt_v12/results.md) · [Cleanup evidence](../expt_v13/results.md) · [Public-source admission](../expt_v14/results.md) · [Recovery amendment](AMENDMENT_recover_followup.md).
+
+## Current execution boundary
+
+The later user instruction requires finishing the remaining proof cleanup before the final second training condition. [The new prospective amendment](AMENDMENT_finish_cleanup_gx10.md) records the $900 maximum, Terra teacher pin and single Astra code-port exception. Version18 deployment and the single version19 checkpoint relay await the dropped cluster connection's human reauthentication. GX10 is reachable; its installed CUDA environment passed small GPU controls, but the full1.7B hardware control and production training have not started. This is an access blocker, not a completed result.

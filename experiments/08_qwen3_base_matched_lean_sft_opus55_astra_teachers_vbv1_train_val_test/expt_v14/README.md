@@ -23,8 +23,10 @@ Candidates remain outside training until pinned Lean/kernel checks, exact target
 - `AMENDMENT_bulk_validation.md`: prospective full 729-candidate CPU validation extension.
 - `bulk_validate.py` and `watch_bulk.py`: frozen source/context verification, eight-worker kernel checks and ordinary completion/death watch.
 - `sync_bulk.py`: collect compact JSON receipts and the full declared-row CSV locally, without changing Git.
+- `AMENDMENT_training_admission.md` and `admit_verified.py`: admit the complete 688-pass cohort through safe comment insertion, actual format/token checks, protected screens and global deduplication against version 12's frozen current pool.
+- `publish_admission.py` and `sync_admission.py`: publish the stable, hash-checked latest-admission pointer and collect compact receipts.
 - `results/`: measured host and dataset preparation receipts.
 
 ## Status
 
-10-19-2026: preparation complete. Both GPU controls passed. Prepared 217 Mathlib and 512 DeepSeek candidates; three fixed Mathlib source/kernel controls passed. The prospective full 729-candidate formal validation batch is now running on SNAP with eight CPU workers; exact original source/context checks and freezing are complete. All candidates remain outside training pending admission gates. Dynamic SNAP-to-GX10 fallback currently needs the Mac's Brev route; the primary cluster workflow can continue independently. See [measured results](results.md).
+10-19-2026: complete. Both GPU controls passed. All 729 prepared files received formal checks; 688 passed. The full 688-pass admission cohort yielded **678 ready auxiliary proof exercises: 209 Mathlib and 469 DeepSeek**, with deterministic comments, actual format/token gates, zero protected-screen hits and global deduplication against all 10,940 frozen version 12 current rows. Ten candidates remain excluded with recorded reasons. Use `/lfs/skampere1/0/eth127/rl4cv_tiny_training/public_gap_sources_v14/latest_admission.json`, which points to final `admission_v2/training.jsonl`; version 1 is preserved and superseded. No model calls or training were launched in this experiment. Dynamic SNAP-to-GX10 fallback currently needs the Mac's Brev route. See [measured results](results.md).

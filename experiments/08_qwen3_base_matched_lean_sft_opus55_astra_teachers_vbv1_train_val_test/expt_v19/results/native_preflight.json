@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "scope": "Native ARM Lean/frozen kernel only; complete scorer/import/prompt preflight remains separate.",
+  "kernel_sha256": "5dbbdcae75ba8b22911fcb43ab1fcde45a1475cf92742a39a29ebe41116de287",
+  "mathlib_revision": "79e94a093aff4a60fb1b1f92d9681e407124c2ca",
+  "lake_wrapper_sha256": "82bde0c18a88d7fdb80234f4c8eea879cbd418f00b98f8ee9b1108720b2dfcff",
+  "records": [
+    {
+      "name": "symbolic_and_anonymous_native",
+      "expected": true,
+      "accepted": true,
+      "compile_rc": 0,
+      "source_sha256": "b13f6260921868c9aeafb3a1c8fa7d6fdf06e3c659a3926d5324d6726cce563d"
+    },
+    {
+      "name": "sorry",
+      "expected": false,
+      "accepted": false,
+      "compile_rc": 0,
+      "source_sha256": "38cf3300d091c505f20cad534dfd9289abb5c9034e4725554487ce8542580247"
+    },
+    {
+      "name": "declared_axiom",
+      "expected": false,
+      "accepted": false,
+      "compile_rc": 0,
+      "source_sha256": "a00cfe5c8cf051588106d4a4e51aacbc49421619c1b26587d64620fa58af6eec"
+    },
+    {
+      "name": "named_native",
+      "expected": false,
+      "accepted": false,
+      "compile_rc": 0,
+      "source_sha256": "eb6e5f79abe5374cb9f30cd6a5d7bc388ab64c7379d1720400e2fc21516cc28a"
+    }
+  ],
+  "observed_unix": 1792432292.3055232
+}
