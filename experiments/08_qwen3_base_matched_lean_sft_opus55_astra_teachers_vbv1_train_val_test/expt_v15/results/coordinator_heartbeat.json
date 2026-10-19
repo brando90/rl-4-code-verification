@@ -53,9 +53,37 @@
       },
       "summary": null,
       "ordinary_receipt_verified": false
+    },
+    "v17_failure_guided_public_explicit_replay": {
+      "terminal": {
+        "ended_unix": 1792431978.3622036,
+        "error": "RuntimeError('v17_adapt training exited 1; see /lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v17/execution/v17_adapt/training.log')",
+        "launcher_ended_unix": 1792431978.4159658,
+        "launcher_exit_code": 1,
+        "status": "FAILED"
+      },
+      "summary": null,
+      "ordinary_receipt_verified": false
+    },
+    "v18_failure_guided_public_explicit_replay_gated": {
+      "terminal": {
+        "ended_unix": 1792433571.078042,
+        "error": "FileExistsError(17, 'File exists')",
+        "status": "FAILED",
+        "test_split_opened": false
+      },
+      "summary": null,
+      "ordinary_receipt_verified": false
     }
   },
-  "pending_trials": [],
-  "decisions": 1,
-  "observed_unix": 1792430855.9584563
+  "pending_trials": [
+    {
+      "trial_id": "v19_failure_guided_public_explicit_replay_exclusive",
+      "pid": 1972736,
+      "alive": true,
+      "manifest": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/adaptive_1p7b_campaign/trials/v19_failure_guided_public_explicit_replay_exclusive/manifest.json"
+    }
+  ],
+  "decisions": 4,
+  "observed_unix": 1792435596.93608
 }

@@ -31,3 +31,16 @@ The follow-up controller lacked `TINY_RUN_ROOT` for evaluatorimport, then crashe
 ## Current execution boundary
 
 The later user instruction requires finishing the remaining proof cleanup before the final second training condition. [The new prospective amendment](AMENDMENT_finish_cleanup_gx10.md) records the $900 maximum, Terra teacher pin and single Astra code-port exception. Version18 deployment and the single version19 checkpoint relay await the dropped cluster connection's human reauthentication. GX10 is reachable; its installed CUDA environment passed small GPU controls, but the full1.7B hardware control and production training have not started. This is an access blocker, not a completed result.
+
+## Latest automatic snapshot
+
+10-19-2026 11:47 PDT.
+
+- current validation: 120/1,080 binary successes; 11.11%, complete manifest.
+- Current training: 5,470/5,470 updates; 13,168,888 assistant loss tokens.
+- Historical partial-cleanup SNAP training: 0 updates; dispatcher unknown. Final second-run ownership is version19.
+- Version13 cleanup snapshot: {'FALLBACK': 1481, 'DONE': 877, 'UNCHANGED': 227}; declared 2,585. Final admission counts are in its immutable completion receipt.
+- Version18 remaining cleanup: {'declared': 2585, 'states': {'PENDING': 1536, 'ACCEPTED_INHERITED': 818, 'UNCHANGED_CHECK_PENDING': 104, 'ACCEPTED_UNCHANGED': 123, 'REPAIR_RUNNING': 4}, 'batches': {'PENDING': 384, 'RUNNING': 1}, 'verified': 941, 'observed_unix': 1792435622.0578942, 'v18_conservative_charge_usd': 0, 'v18_base_estimate_usd': 0, 'cleanup_total_conservative_usd': 469.991219, 'cleanup_reserved_usd': 10, 'tranche3activated': False}.
+- Additional public sources: 729/729 checked; {'FORMAL_CHECK_FAILED': 1, 'FORMAL_PASS': 688, 'LIBRARY_IDENTIFIER': 1, 'SYNTAX_COMPATIBILITY': 39}.
+- Paid work: $240.41 base-rate usage estimate; $475.85 conservatively charged; $50.00 reserved for in-flight work. Estimates are not invoices.
+- Authorized maximum: $900.00; second $300 tranche active: True; third $300 tranche active: False. Goal receipt: False.

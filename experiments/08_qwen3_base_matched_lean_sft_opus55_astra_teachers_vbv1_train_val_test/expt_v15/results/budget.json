@@ -1,6 +1,6 @@
 {
   "total_initial": 300,
-  "total_authorized": 600,
+  "total_authorized": 900,
   "tranche2activated": true,
   "rates_per_million": {
     "input": 2.0,
@@ -9,10 +9,17 @@
   },
   "estimate_not_invoice": true,
   "reservations": {
-    "adaptation_76b34d1930f5db3c_0": {
+    "astra_gx10_codeport_v19": {
       "purpose": "adaptation",
-      "usd": 12.0,
-      "time": 1792430855.9763112
+      "usd": 40,
+      "model": "gpt-6-astra",
+      "time": 1792435525.33429
+    },
+    "v18/batch_0000/0": {
+      "purpose": "cleanup",
+      "usd": 10,
+      "model": "gpt-5.6-terra",
+      "time": 1792435570.9069386
     }
   },
   "charges": {
@@ -12811,6 +12818,48 @@
       },
       "unknown_usage": false,
       "time": 1792430820.5675433
+    },
+    "adaptation_76b34d1930f5db3c_0": {
+      "purpose": "adaptation",
+      "usd": 2.0014522,
+      "base_rate_estimate_usd": 0.9989846000000001,
+      "usage": {
+        "input_tokens": 1503562,
+        "cached_input_tokens": 1317973,
+        "output_tokens": 30351,
+        "reasoning_output_tokens": 10427,
+        "total_tokens": 1533913
+      },
+      "unknown_usage": false,
+      "time": 1792431161.0965633
+    },
+    "adaptation_cdfc10b75e085fda_0": {
+      "purpose": "adaptation",
+      "usd": 1.3953052,
+      "base_rate_estimate_usd": 0.7320175999999999,
+      "usage": {
+        "input_tokens": 1356382,
+        "cached_input_tokens": 1271308,
+        "output_tokens": 25634,
+        "reasoning_output_tokens": 8721,
+        "total_tokens": 1382016
+      },
+      "unknown_usage": false,
+      "time": 1792432250.1585672
+    },
+    "adaptation_d727d30ebad9a214_0": {
+      "purpose": "adaptation",
+      "usd": 1.2147482,
+      "base_rate_estimate_usd": 0.6332956,
+      "usage": {
+        "input_tokens": 1229603,
+        "cached_input_tokens": 1154948,
+        "output_tokens": 21083,
+        "reasoning_output_tokens": 6537,
+        "total_tokens": 1250686
+      },
+      "unknown_usage": false,
+      "time": 1792433894.1472323
     }
   },
   "events": [
@@ -25957,6 +26006,67 @@
       "purpose": "adaptation",
       "usd": 12.0,
       "time": 1792430855.9763126
+    },
+    {
+      "event": "parent_settled",
+      "identity": "adaptation_76b34d1930f5db3c_0",
+      "previous_usd": null,
+      "usd": 2.0014522,
+      "time": 1792431161.0965655
+    },
+    {
+      "event": "user_authorized_conditional_third_300",
+      "total_maximum_usd": 900,
+      "reason": "User explicitly authorized another$300 if needed to finish proof cleanup and second training run.",
+      "time": 1792431484.5080154
+    },
+    {
+      "event": "reserve",
+      "identity": "adaptation_cdfc10b75e085fda_0",
+      "purpose": "adaptation",
+      "usd": 12.0,
+      "time": 1792431987.1897483
+    },
+    {
+      "event": "parent_settled",
+      "identity": "adaptation_cdfc10b75e085fda_0",
+      "previous_usd": null,
+      "usd": 1.3953052,
+      "time": 1792432250.1585839
+    },
+    {
+      "event": "reserve",
+      "identity": "adaptation_d727d30ebad9a214_0",
+      "purpose": "adaptation",
+      "usd": 12.0,
+      "time": 1792433573.0126755
+    },
+    {
+      "event": "parent_settled",
+      "identity": "adaptation_d727d30ebad9a214_0",
+      "previous_usd": null,
+      "usd": 1.2147482,
+      "time": 1792433894.14724
+    },
+    {
+      "event": "reserve",
+      "identity": "astra_gx10_codeport_v19",
+      "purpose": "adaptation",
+      "usd": 40,
+      "model": "gpt-6-astra",
+      "time": 1792435525.334292
+    },
+    {
+      "event": "reserve",
+      "identity": "v18/batch_0000/0",
+      "purpose": "cleanup",
+      "usd": 10,
+      "model": "gpt-5.6-terra",
+      "time": 1792435570.9069405
     }
-  ]
+  ],
+  "purpose_caps_authorized": {
+    "cleanup": 780,
+    "adaptation": 120
+  }
 }

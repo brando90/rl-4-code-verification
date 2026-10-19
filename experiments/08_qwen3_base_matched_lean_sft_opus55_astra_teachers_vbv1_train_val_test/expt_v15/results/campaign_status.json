@@ -1,5 +1,5 @@
 {
-  "observed": "10-19-2026 10:27 PDT",
+  "observed": "10-19-2026 11:47 PDT",
   "current": {
     "step": 5470,
     "loss_tokens": 13168888,
@@ -27,6 +27,27 @@
     "base_rate_estimate_usd": 237.391247,
     "reserved_usd": 0,
     "tranche2activated": true
+  },
+  "full_cleanup": {
+    "declared": 2585,
+    "states": {
+      "PENDING": 1536,
+      "ACCEPTED_INHERITED": 818,
+      "UNCHANGED_CHECK_PENDING": 104,
+      "ACCEPTED_UNCHANGED": 123,
+      "REPAIR_RUNNING": 4
+    },
+    "batches": {
+      "PENDING": 384,
+      "RUNNING": 1
+    },
+    "verified": 941,
+    "observed_unix": 1792435622.0578942,
+    "v18_conservative_charge_usd": 0,
+    "v18_base_estimate_usd": 0,
+    "cleanup_total_conservative_usd": 469.991219,
+    "cleanup_reserved_usd": 10,
+    "tranche3activated": false
   },
   "public_source_checks": {
     "completed": 729,
@@ -59,9 +80,11 @@
     "training_admitted": 0,
     "workers": 8
   },
-  "budget_conservative_charge": 471.2349234,
-  "budget_base_rate_estimate": 238.0412782,
-  "budget_reserved": 12.0,
+  "budget_conservative_charge": 475.846429,
+  "budget_base_rate_estimate": 240.405576,
+  "budget_reserved": 50,
+  "budget_authorized_maximum": 900,
   "second_tranche_active": true,
+  "third_tranche_active": false,
   "goal": {}
 }
