@@ -1,5 +1,5 @@
 {
-  "observed": "10-19-2026 11:51 PDT",
+  "observed": "10-19-2026 11:55 PDT",
   "current": {
     "step": 5470,
     "loss_tokens": 13168888,
@@ -31,20 +31,23 @@
   "full_cleanup": {
     "declared": 2585,
     "states": {
-      "PENDING": 1536,
+      "PENDING": 1529,
       "ACCEPTED_INHERITED": 818,
       "ACCEPTED_UNCHANGED": 227,
+      "EXCLUDED_BOUNDED_REPAIR": 4,
+      "ACCEPTED_MECHANICAL_RFL": 3,
       "REPAIR_RUNNING": 4
     },
     "batches": {
-      "PENDING": 384,
-      "RUNNING": 1
+      "PENDING": 383,
+      "RUNNING": 1,
+      "DONE": 1
     },
-    "verified": 1045,
-    "observed_unix": 1792435869.8380156,
-    "v18_conservative_charge_usd": 1.2423358,
-    "v18_base_estimate_usd": 0.6248944000000001,
-    "cleanup_total_conservative_usd": 471.2335548,
+    "verified": 1048,
+    "observed_unix": 1792436116.9306033,
+    "v18_conservative_charge_usd": 2.5311198,
+    "v18_base_estimate_usd": 1.2695664,
+    "cleanup_total_conservative_usd": 472.5223388,
     "cleanup_reserved_usd": 10,
     "tranche3activated": true
   },
@@ -79,8 +82,8 @@
     "training_admitted": 0,
     "workers": 8
   },
-  "budget_conservative_charge": 479.0167338,
-  "budget_base_rate_estimate": 242.0394824,
+  "budget_conservative_charge": 480.3055178,
+  "budget_base_rate_estimate": 242.6841544,
   "budget_reserved": 10,
   "budget_authorized_maximum": 900,
   "second_tranche_active": true,

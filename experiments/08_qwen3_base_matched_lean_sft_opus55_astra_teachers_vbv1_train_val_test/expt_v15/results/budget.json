@@ -9,11 +9,11 @@
   },
   "estimate_not_invoice": true,
   "reservations": {
-    "v18/batch_0000/1": {
+    "v18/batch_0001/0": {
       "purpose": "cleanup",
       "usd": 10,
       "model": "gpt-5.6-terra",
-      "time": 1792435758.1518612
+      "time": 1792436103.8033564
     }
   },
   "charges": {
@@ -12884,6 +12884,21 @@
       },
       "unknown_usage": false,
       "time": 1792435758.1055534
+    },
+    "v18/batch_0000/1": {
+      "purpose": "cleanup",
+      "model": "gpt-5.6-terra",
+      "usd": 1.288784,
+      "base_rate_estimate_usd": 0.644672,
+      "usage": {
+        "input_tokens": 1563772,
+        "cached_input_tokens": 1476720,
+        "output_tokens": 14602,
+        "reasoning_output_tokens": 6862,
+        "total_tokens": 1578374
+      },
+      "unknown_usage": false,
+      "time": 1792435936.9207728
     }
   },
   "events": [
@@ -26116,6 +26131,22 @@
       "usd": 10,
       "model": "gpt-5.6-terra",
       "time": 1792435758.1518626
+    },
+    {
+      "event": "settle",
+      "identity": "v18/batch_0000/1",
+      "purpose": "cleanup",
+      "model": "gpt-5.6-terra",
+      "usd": 1.288784,
+      "time": 1792435936.9207754
+    },
+    {
+      "event": "reserve",
+      "identity": "v18/batch_0001/0",
+      "purpose": "cleanup",
+      "usd": 10,
+      "model": "gpt-5.6-terra",
+      "time": 1792436103.8033624
     }
   ],
   "purpose_caps_authorized": {

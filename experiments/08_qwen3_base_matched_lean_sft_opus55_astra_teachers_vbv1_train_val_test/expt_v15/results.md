@@ -34,13 +34,13 @@ The later user instruction requires finishing the remaining proof cleanup before
 
 ## Latest automatic snapshot
 
-10-19-2026 11:51 PDT.
+10-19-2026 11:55 PDT.
 
 - current validation: 120/1,080 binary successes; 11.11%, complete manifest.
 - Current training: 5,470/5,470 updates; 13,168,888 assistant loss tokens.
 - Historical partial-cleanup SNAP training: 0 updates; dispatcher unknown. Final second-run ownership is version19.
 - Version13 cleanup snapshot: {'FALLBACK': 1481, 'DONE': 877, 'UNCHANGED': 227}; declared 2,585. Final admission counts are in its immutable completion receipt.
-- Version18 remaining cleanup: {'declared': 2585, 'states': {'PENDING': 1536, 'ACCEPTED_INHERITED': 818, 'ACCEPTED_UNCHANGED': 227, 'REPAIR_RUNNING': 4}, 'batches': {'PENDING': 384, 'RUNNING': 1}, 'verified': 1045, 'observed_unix': 1792435869.8380156, 'v18_conservative_charge_usd': 1.2423358, 'v18_base_estimate_usd': 0.6248944000000001, 'cleanup_total_conservative_usd': 471.2335548, 'cleanup_reserved_usd': 10, 'tranche3activated': True}.
+- Version18 remaining cleanup: {'declared': 2585, 'states': {'PENDING': 1529, 'ACCEPTED_INHERITED': 818, 'ACCEPTED_UNCHANGED': 227, 'EXCLUDED_BOUNDED_REPAIR': 4, 'ACCEPTED_MECHANICAL_RFL': 3, 'REPAIR_RUNNING': 4}, 'batches': {'PENDING': 383, 'RUNNING': 1, 'DONE': 1}, 'verified': 1048, 'observed_unix': 1792436116.9306033, 'v18_conservative_charge_usd': 2.5311198, 'v18_base_estimate_usd': 1.2695664, 'cleanup_total_conservative_usd': 472.5223388, 'cleanup_reserved_usd': 10, 'tranche3activated': True}.
 - Additional public sources: 729/729 checked; {'FORMAL_CHECK_FAILED': 1, 'FORMAL_PASS': 688, 'LIBRARY_IDENTIFIER': 1, 'SYNTAX_COMPATIBILITY': 39}.
-- Paid work: $242.04 base-rate usage estimate; $479.02 conservatively charged; $10.00 reserved for in-flight work. Estimates are not invoices.
+- Paid work: $242.68 base-rate usage estimate; $480.31 conservatively charged; $10.00 reserved for in-flight work. Estimates are not invoices.
 - Authorized maximum: $900.00; second $300 tranche active: True; third $300 tranche active: True. Goal receipt: False.
