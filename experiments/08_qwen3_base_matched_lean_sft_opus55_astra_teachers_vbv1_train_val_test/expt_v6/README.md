@@ -7,3 +7,5 @@
 See the [protocol](PROTOCOL.md), [live results](results.md), [continuation checkpoint](CKPT_tiny_training.md) and [data-generation results](../expt_v5/results.md). This folder remains active while training or the warm-start decision depends on it. Training data and weights are copied and verified into `/lfs/skampere1/0/eth127/rl4cv_tiny_training`; the test split remains unopened.
 
 The user-authorized [4B fused CPU optimizer amendment](AMENDMENT_4b_fused_optimizer.md) preserves the completed trajectory and full float32 optimizer state at a checkpoint before switching the update kernel. Its controller and validation continuation run in remote tmux `rl4cv-tiny-4b-fused`.
+
+The [generation environment amendment](AMENDMENT_generation_environment.md) records zero-output startup failures and their identical recovery, including the owned dependency versions.

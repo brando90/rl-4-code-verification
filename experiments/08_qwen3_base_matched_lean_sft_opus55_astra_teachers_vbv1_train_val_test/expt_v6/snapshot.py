@@ -60,6 +60,12 @@ def main():
     result["four_wallclock_extension"] = load(RUN / "four_wallclock_extension.json")
     handoff = load(RUN / "fused_handoff/status.json")
     result["four_fused_handoff"] = handoff
+    result["primary_recovery"] = load(RUN / "primary_recovery/status.json")
+    for item in result["systems"].values():
+        stages = item["stages"]
+        if stages.get("generation_retry"):
+            item["superseded_generation"] = stages.get("generation")
+            stages["generation"] = stages["generation_retry"]
     if handoff:
         result["four_fused_restore"] = load(RUN / "fused_handoff/restore_verified.json")
         item = result["systems"]["4b_mixed"]
@@ -76,7 +82,10 @@ def main():
             # Preserve the raw supervisor's deliberate -15 receipt while the successor runs.
             failures = terminal.get("failures", [])
             planned = [r for r in failures if r.get("label") == "4b_mixed" and "training exited -15;" in r.get("error", "")]
-            if len(planned) == len(failures) == 1:
+            recovery = result.get("primary_recovery") or {}
+            retrying = [r for r in failures if r.get("label") == "1p7_control"
+                and "generation exited 1;" in r.get("error", "") and recovery.get("status") not in (None, "FAILED")]
+            if len(planned) == 1 and len(planned) + len(retrying) == len(failures):
                 result["original_supervisor_terminal"] = terminal
                 result["terminal"] = {"status": "RUNNING", "phase": handoff["status"], "planned_4b_handoff": True}
     print(json.dumps(result), flush=True)

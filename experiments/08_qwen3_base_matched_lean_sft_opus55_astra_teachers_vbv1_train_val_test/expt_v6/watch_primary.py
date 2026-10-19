@@ -16,6 +16,8 @@ def main():
         for label in ("1p7_control", "1p7_mixed"):
             for path in (RUN / "execution" / label).glob("*.json"):
                 if read(path).get("status") == "FAILED":
+                    if path.stem == "generation" and read(path.with_name("generation_retry.json")).get("status") in ("RUNNING", "DONE"):
+                        continue
                     failures.append(str(path))
         if failures:
             receipt.write_text(json.dumps({"status": "BLOCKED_PRIMARY_FAILURE", "failed_receipts": failures,

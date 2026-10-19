@@ -212,10 +212,20 @@ def main():
                 time.sleep(10)
             terminal = read(RUN / "terminal.json")
             jobs.write(HANDOFF / "original_supervisor_terminal.json", terminal)
+            while read(RUN / "primary_recovery/status.json").get("status") not in (None, "DONE", "FAILED"):
+                if time.time() > deadline + 16 * 3600:
+                    raise TimeoutError("primary infrastructure recovery did not finish")
+                time.sleep(10)
             failures = terminal.get("failures", [])
             planned = [failure for failure in failures if failure.get("label") == "4b_mixed"
                 and "training exited -15;" in failure.get("error", "")]
-            unexpected = [failure for failure in failures if failure not in planned]
+            recovered = [failure for failure in failures if failure.get("label") == "1p7_control"
+                and "generation exited 1;" in failure.get("error", "")
+                and read(RUN / "primary_recovery/status.json").get("status") == "DONE"
+                and all(read(RUN / "execution/1p7_control" / f"score_{k}.json").get("status") == "DONE" for k in range(8))]
+            jobs.write(HANDOFF / "reconciled_original_failures.json", {"planned_handoff": planned,
+                "identical_infrastructure_retries": recovered})
+            unexpected = [failure for failure in failures if failure not in planned and failure not in recovered]
             assert len(planned) == 1, "original planned handoff termination not accounted for"
             jobs.write(RUN / "terminal.json", {"status": "RUNNING", "phase": "4B scoring",
                 "planned_supervisor_handoff": str(STATE), "unexpected_primary_failures": unexpected})
