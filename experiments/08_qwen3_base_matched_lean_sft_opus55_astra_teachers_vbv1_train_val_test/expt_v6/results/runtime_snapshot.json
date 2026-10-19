@@ -1,5 +1,5 @@
 {
-  "observed_unix": 1792401130.9579728,
+  "observed_unix": 1792401253.655946,
   "root": "/lfs/skampere1/0/eth127/rl4cv_tiny_training",
   "systems": {
     "1p7_control": {
@@ -257,7 +257,7 @@
         "test_split_opened": false
       },
       "generation_verified": null,
-      "generated_cells": 0,
+      "generated_cells": 128,
       "superseded_generation": {
         "label": "1p7_control",
         "stage": "generation",
@@ -512,7 +512,7 @@
         "test_split_opened": false
       },
       "generation_verified": null,
-      "generated_cells": 0
+      "generated_cells": 128
     },
     "4b_mixed": {
       "stages": {
@@ -768,12 +768,33 @@
       "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df"
     },
     "user_authorization": "10-19-2026: ok can you deploy that one then",
-    "status": "RESUMING",
-    "observed_unix": 1792401113.7157376,
+    "status": "FUSED_TRAINING",
+    "observed_unix": 1792401245.9125628,
     "checkpoint": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/fused_handoff/training_state_step_100.pt",
     "original_trainer_paused": false,
     "original_completed_updates": 100,
-    "completed_updates_preserved": 100
+    "completed_updates_preserved": 100,
+    "resumed_trainer": {
+      "label": "4b_mixed",
+      "stage": "training_fused",
+      "command": [
+        "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+        "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6/resume_4b_fused.py",
+        "train",
+        "--checkpoint",
+        "/lfs/skampere1/0/eth127/rl4cv_tiny_training/fused_handoff/training_state_step_100.pt",
+        "--step",
+        "100"
+      ],
+      "started_unix": 1792401113.9197757,
+      "host": "skampere1.stanford.edu",
+      "cuda_visible_devices": "6",
+      "status": "RUNNING",
+      "pid": 976411,
+      "start_ticks": "63970421",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df"
+    },
+    "cuda_context_verified": true
   },
   "primary_recovery": {
     "status": "GENERATION",
