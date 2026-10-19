@@ -58,6 +58,27 @@ def main():
     result["summary"] = load(RUN / "analysis/summary.json")
     result["primary_summary"] = load(RUN / "analysis/summary_primary.json")
     result["four_wallclock_extension"] = load(RUN / "four_wallclock_extension.json")
+    handoff = load(RUN / "fused_handoff/status.json")
+    result["four_fused_handoff"] = handoff
+    if handoff:
+        result["four_fused_restore"] = load(RUN / "fused_handoff/restore_verified.json")
+        item = result["systems"]["4b_mixed"]
+        stages = item["stages"]
+        old = stages.get("training") or {}
+        if handoff.get("status") not in ("WAITING_FOR_CHECKPOINT", "VERIFYING_CHECKPOINT"):
+            item["superseded_training"] = old
+            stages["training"] = stages.get("training_fused") or {"status": "PLANNED_HANDOFF"}
+        terminal = result.get("terminal") or {}
+        if handoff.get("status") == "FAILED":
+            result["terminal"] = {"status": "FAILED", "fused_handoff_error": handoff.get("error"),
+                "original_supervisor_terminal": terminal}
+        elif terminal.get("status") == "FAILED":
+            # Preserve the raw supervisor's deliberate -15 receipt while the successor runs.
+            failures = terminal.get("failures", [])
+            planned = [r for r in failures if r.get("label") == "4b_mixed" and "training exited -15;" in r.get("error", "")]
+            if len(planned) == len(failures) == 1:
+                result["original_supervisor_terminal"] = terminal
+                result["terminal"] = {"status": "RUNNING", "phase": handoff["status"], "planned_4b_handoff": True}
     print(json.dumps(result), flush=True)
 
 

@@ -52,6 +52,12 @@ def once(publish_enabled=False):
         scored = sum(1 for name, value in stages.items() if name.startswith("score_") and value and value.get("status") == "DONE")
         lines.append(f"| {label} | {progress_text} | {progress.get('loss_tokens', 0):,} | {item.get('generated_cells', 0)}/1,080 | {scored}/8 |")
     admission = state.get("curriculum_admission") or state.get("curriculum_progress") or {}
+    handoff = state.get("four_fused_handoff")
+    if handoff:
+        restored = state.get("four_fused_restore") or {}
+        lines += ["", f"4B CPU fused optimizer: **{handoff['status']}**; checkpoint target {handoff.get('target_step', 'unknown')}; "
+            f"restore verification {restored.get('status', 'pending')}. "
+            "[Runtime amendment](AMENDMENT_4b_fused_optimizer.md). The original supervisor's deliberate termination receipt is retained."]
     lines += ["", "## Verified preparation", "",
         f"- Corrected tiny examples: {admission.get('compiled', admission.get('accepted', 0))}/500. Each includes an anonymous executable `example`; original version 5 remains pristine.",
         "- All 135 validation prompts match the prior frozen instruction/system/addendum/prompt hashes.",
@@ -79,7 +85,8 @@ def once(publish_enabled=False):
     signature = tuple((label, (item.get("progress") or {}).get("step", 0) // 100,
         bool(item.get("training_result")), bool(item.get("generation_verified")),
         sum(1 for key, value in (item.get("stages") or {}).items() if key.startswith("score_") and value and value.get("status") == "DONE"))
-        for label, item in state["systems"].items()) + (bool(state.get("primary_summary")), bool(state.get("summary")), status)
+        for label, item in state["systems"].items()) + (bool(state.get("primary_summary")), bool(state.get("summary")),
+            (handoff or {}).get("status"), status)
     if publish_enabled and signature != LAST_PUBLISHED:
         try:
             from publish_progress import publish
