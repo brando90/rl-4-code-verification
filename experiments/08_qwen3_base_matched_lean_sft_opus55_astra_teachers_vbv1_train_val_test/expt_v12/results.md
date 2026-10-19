@@ -4,7 +4,7 @@
 
 **TLDR:** Complete first-run training and evaluation:120/1,080binarysuccesses (11.11%), with task-bootstrap95%interval6.94–15.83%. The partial-cleanup dataset was prepared with818verified replacements and zero production updates; its SNAP dispatcher was then fenced. The final second condition waits for version18 cleanup and executes under version19.
 
-**Last updated:** 10-19-2026 10:30 PDT.
+**Last updated:** 10-19-2026 12:56 PDT.
 
 | Measurement | Result |
 |---|---:|
@@ -21,6 +21,8 @@
 | Tasks with two–six successes out of eight | 16/135 |
 
 The primarysuccessrate interval resamples135tasks, retaining their eightattempts,10,000draws,seed0; one trainingseed; p-value not computed. The25%validationtarget is unmet. Frozenprompt/scorer/kernelsettings and test-split isolation are preserved. Independent ordinary-code recomputation matched all1,080cells and the120successes.
+
+The same 1,080 validation cells have nonzero reinforcement-learning reward signal: admitted signal density ρ is 15.37 [9.37, 22.76] advantage mass per million generated tokens, and effective coverage H is 0.164 [0.107, 0.228]. Twenty-four of 135 tasks are mixed (1–7 successes out of 8), and 4 of 135 are perfect, which accounts for the published 28/135 with at least one success. Intervals resample whole validation tasks, 10,000 draws, seed 0; p-val=n/a. Sherlock job 48510183 reproduced the measurement. Details: [signal audit](rl_signal_audit/results.md). This is necessary reward variation, not a measured reinforcement-learning improvement.
 
 Compared descriptively on the samevalidationcohort, current minus previous replay is+1.94percentagepoints, pairedtask-bootstrap95%interval[−0.09,+4.17]; current minus previoustiny-mixed is+4.26points,[+2.13,+6.67]. Those are differentdata/token/continuationregimes; no single-component causalclaim follows. DetailedCPU-onlyfailureanalysis is separate and doesnotchange scores.
 

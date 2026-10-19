@@ -1,0 +1,61 @@
+{
+  "status": "COMPLETE",
+  "verdict": "NONZERO_VALIDATION_RL_SIGNAL",
+  "measurement": {
+    "n_groups": 135,
+    "n_responses": 1080,
+    "group_size": 8.0,
+    "mean_reward": 0.1111111111111111,
+    "q_mixed_empirical": 0.17777777777777778,
+    "admission_rate": 0.8981481481481481,
+    "mean_generated_tokens": 4759.683333333333,
+    "total_generated_tokens": 5140458,
+    "rho": 15.368280413924209,
+    "rho_raw": 15.451652640401194,
+    "advantage_survival": 0.9946043165467625,
+    "H": 0.16352067074654247,
+    "token_weighted_coverage": 0.1577291941472365,
+    "top_decile_mass_share": 0.7106690777576854
+  },
+  "ci95": {
+    "rho": [
+      9.369675058474263,
+      22.760008675035905
+    ],
+    "H": [
+      0.10694723654030122,
+      0.22755228289774723
+    ],
+    "mixed_share": [
+      0.11851851851851852,
+      0.24444444444444444
+    ]
+  },
+  "bootstrap": {
+    "unit": "validation task retaining all8responses",
+    "draws": 10000,
+    "seed": 0,
+    "p_value": null
+  },
+  "nonzero_advantages": 192,
+  "nonzero_admitted_advantages": 191,
+  "tasks_with_admitted_mass": 24,
+  "target_band_tasks": 16,
+  "input_sha256": "072fff2f7b80dff940e47783a486652f5f182df32776ce3fb06e0ac7c61b0cb0",
+  "ids_sha256": "666d6d6b31cb3f736d8ca0eee625ff5ad5ea31efa7e0ce3a10c350091848c84d",
+  "analysis_sha256": "769b48a74494f68683bae6d84637ea4bc6ee99acb384dfa5b24cf973a8a26206",
+  "experience_sha256": "8d10cc62f620cef32f585a9e26e9f8529e24e22c1c82c69ba8de78c86a7dd32d",
+  "host": "sh02-01n56.int",
+  "slurm_job_id": "48510183",
+  "observed_unix": 1792439352.5477781,
+  "provider_spend_usd": 0,
+  "gpu_count": 0,
+  "test_split_opened": false,
+  "interpretation": "Descriptive post-hoc audit of already-published validation scores; necessary reward variation, not observed RL improvement or permission to train on validation.",
+  "loss_contract": "Capped responses stay in reward baseline but carry zero loss weight; all generated tokens remain in denominator.",
+  "limitations": [
+    "One checkpoint and generation run; task bootstrap does not estimate training-seed variability.",
+    "Validation estimates transfer; direct training-environment rho/H and actual RL gains are not measured.",
+    "The inherited format gates and25percent milestone remain separate and unmet."
+  ]
+}
