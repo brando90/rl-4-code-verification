@@ -1,0 +1,39 @@
+{
+  "state": "STOPPED",
+  "batches": [
+    {
+      "state": "USER_STOPPED_PAID",
+      "previous": {
+        "state": "RUNNING",
+        "lane": 0,
+        "work": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/lean_corpus_v18/workers/lane_00/batch_0001",
+        "pid": 295051,
+        "driver_pid": 199549,
+        "attempts": 1,
+        "attempt": 0,
+        "budget_identity": "v18/batch_0001/0",
+        "started_unix": 1792436103.8301754,
+        "tasks": [
+          "existing_1584",
+          "existing_2144",
+          "existing_1626",
+          "existing_0815"
+        ]
+      },
+      "usage": {
+        "input_tokens": 722556,
+        "cached_input_tokens": 668271,
+        "output_tokens": 14844,
+        "reasoning_output_tokens": 5067,
+        "total_tokens": 737400
+      },
+      "accepted_checked_sources": [
+        "existing_0815"
+      ],
+      "driver_alive": false,
+      "child_alive": false,
+      "observed_unix": 1792436357.4282224
+    }
+  ],
+  "observed_unix": 1792436357.4418583
+}

@@ -120,11 +120,12 @@ def prepare():
     write(ROOT/'dispatch.json',dict(declared=2585,inherited=818,unchanged_recheck=227,remaining=1540,batches=len(groups),batch_size=4,model=MODEL,effort=EFFORT,lanes=32,compiler_slots=16,max_cli_attempts_per_batch=2,max_candidate_hashes_per_case=4,cli_seconds=900,compiler_seconds=120,shared_total_authorized=900,cleanup_authorized_cap=780,estimated_additional_conservative_usd=[154,308],projection_uncertain=True,prior_completion_sha256=base.sha((OLD/'completion.json').read_bytes()),original_pool_sha256=prior.SOURCE_SHA,inspector_sha256=base.sha(prior.FROZEN.read_bytes()),created_unix=time.time()))
     print(json.dumps(summarize()),flush=True)
 
-def claim(lane,first=False):
-    if (ROOT/'provider_hold.json').exists():return None
+def claim(lane,first=False,batch_name=None):
+    if (ROOT/'provider_hold.json').exists() or (ROOT/'user_stop_paid_generation.json').exists():return None
     with (ROOT/'queue.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
         for folder in sorted((ROOT/'batches').iterdir()):
+            if batch_name and folder.name!=batch_name:continue
             if first and folder.name!='batch_0000':continue
             status=read(folder/'status.json')
             if status['state']=='PENDING':
@@ -166,6 +167,21 @@ def check_batch(batch,work):
         try:results.append(check(tid,work/tid))
         except Exception as exc:results.append(dict(task_id=tid,passed=False,error=repr(exc)))
     return results
+
+def compact_diagnostic(result):
+    """Display useful errors without duplicating the immutable per-theorem receipt."""
+    shown={k:result[k] for k in ['task_id','passed','source_sha256','scope_gate','error'] if k in result}
+    report=result.get('kernel_report',{})
+    shown['kernel']={k:report[k] for k in ['kernel_check','source_sha256','probe_ok','compile_rc','inspect_rc','n_theorems','n_honest','n_sorry_ax','n_native_decide','n_declared_axiom','n_unknown','probe_errors','stderr_tail','evidence_dir'] if k in report}
+    if result.get('task_id') and result.get('source_sha256'):
+        shown['full_receipt']=str(ROOT/'cases'/result['task_id']/'checks'/result['source_sha256']/'result.json')
+    evidence=Path(report['evidence_dir']) if report.get('evidence_dir') else None
+    if evidence:
+        shown['compiler_stdout_path']=str(evidence/'compile_stdout.log')
+        if (evidence/'compile_stdout.log').exists():
+            text=(evidence/'compile_stdout.log').read_text(errors='replace')
+            shown['compiler_stdout']=text if len(text)<=12000 else text[:6000]+'\n[display truncated; full log path above]\n'+text[-6000:]
+    return shown
 
 def admit(tid,work,rationale):
     assert_inspector()
@@ -211,12 +227,12 @@ def mechanical_rfl(tid,work):
             status=read(folder/'status.json');write(folder/'status.json',dict(status,state='ACCEPTED_MECHANICAL_RFL',method='definitional_reflexivity',model=None,effort=None))
     except Exception as exc:write(folder/'mechanical_rfl.json',dict(passed=False,error=repr(exc),observed_unix=time.time()))
 
-def worker(lane,once=False):
+def worker(lane,once=False,batch_name=None):
     lane_root=ROOT/'workers'/f'lane_{lane:02d}';profile=ROOT/'runtime'/f'lane_{lane:02d}'
     env=dict(os.environ,CODEX_HOME=str(profile),CUDA_VISIBLE_DEVICES='',TOKENIZERS_PARALLELISM='false')
     env['TINY_OPENAI_API_KEY']=(RUN/'.private/lab-openai.key').read_text().strip()
     while True:
-        batch=claim(lane,first=once)
+        batch=claim(lane,first=once and not batch_name,batch_name=batch_name)
         if batch is None:return
         state=read(batch/'status.json');work=lane_root/batch.name;work.mkdir(exist_ok=True)
         oldwork=Path(state.get('work',str(work)));ids=read(batch/'input.json')['tasks']
@@ -229,6 +245,7 @@ def worker(lane,once=False):
             mechanical_rfl(tid,case)
         feedback=None
         for attempt in range(state.get('attempts',0),MAX_ATTEMPTS):
+            if (ROOT/'user_stop_paid_generation.json').exists():return
             tasks=[tid for tid in ids if not read(ROOT/'cases'/tid/'status.json')['state'].startswith('ACCEPTED')]
             if not tasks:break
             output=batch/f'output_{attempt}.json';brief=prompt(batch,work,tasks,feedback);(batch/f'prompt_{attempt}.md').write_text(brief)
@@ -310,8 +327,8 @@ if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('action',choices=['prepare','launch','worker','check','check-batch','audit','status']);p.add_argument('--lane',type=int);p.add_argument('--first',action='store_true');p.add_argument('--once',action='store_true');p.add_argument('--task');p.add_argument('--batch');p.add_argument('--work',type=Path);a=p.parse_args()
     if a.action=='prepare':prepare()
     elif a.action=='launch':launch(a.first)
-    elif a.action=='worker':worker(a.lane,a.once)
+    elif a.action=='worker':worker(a.lane,a.once or bool(a.batch),a.batch)
     elif a.action=='audit':audit()
     elif a.action=='check':print(json.dumps(check(a.task,a.work),ensure_ascii=False)[:16000])
-    elif a.action=='check-batch':print(json.dumps(check_batch(a.batch,a.work),ensure_ascii=False)[:48000])
+    elif a.action=='check-batch':print(json.dumps([compact_diagnostic(r) for r in check_batch(a.batch,a.work)],ensure_ascii=False))
     else:print(json.dumps(summarize()))
