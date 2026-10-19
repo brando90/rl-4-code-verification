@@ -113,3 +113,7 @@ My guess at what is needed: the 25% rung (~1M tokens) teaches the file format; n
 Version 1 is complete with PARTIAL selection: 8B step 658 and 14B step 334 are unmatched diagnostics; neither 1.7B nor 4B passes a rung. The final test table, intervals, audit, charges and preserved limitations are in [results.md](results.md); [all joined test factors](expt_v1/results/test_factor_cells.csv) are available without raw model text.
 
 **Live dependency retaining this canonical home:** the frozen D-013 split is consumed by `tests/test_splits.py` and `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/phase0_prepare.py`; that study also references these retained checkpoint/manifests. Moving this completed folder would break those active consumers, so it remains at this path. This does not reopen training or authorize a follow-on study.
+
+## Concise curriculum and additional 1.7B / 4B training (10-19-2026)
+
+[Version 5](expt_v5/results.md) contains 500 compiled tiny Python-to-Lean training examples. [Version 6](expt_v6/README.md) tests the user-requested parallel 1.7B replay control, 1.7B augmented condition and 4B augmented condition, with full validation and the test split unopened. Before training, version 6 adds the required anonymous executable example declaration to each tiny answer and repeats compilation, kernel, differential, formatting and overlap checks; the original version 5 remains pristine. See the [live training results](expt_v6/results.md).

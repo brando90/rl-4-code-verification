@@ -1,0 +1,8 @@
+import Mathlib
+namespace Tiny
+def solution (p q : Bool) : Bool × Bool := (p && q, p || q)
+theorem spec_and_true (p q : Bool) : (solution p q).1 = true ↔ p = true ∧ q = true := by
+  cases p <;> cases q <;> decide
+theorem test_both_true : solution true true = (true, true) := by decide
+theorem test_split : solution true false = (false, true) := by decide
+end Tiny

@@ -1,0 +1,10 @@
+import Mathlib
+namespace Tiny
+def solution (x y : Int) : Bool := (x * y) % 2 == 0
+theorem spec_commutative (x y : Int) : solution x y = solution y x := by simp [solution, mul_comm]
+theorem test_even_product : solution 2 7 = true := by decide
+theorem test_odd_product : solution (-3) 5 = false := by decide
+end Tiny
+#print axioms Tiny.spec_commutative
+#print axioms Tiny.test_even_product
+#print axioms Tiny.test_odd_product

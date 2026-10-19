@@ -1,0 +1,196 @@
+{
+  "observed_unix": 1792397334.1113784,
+  "root": "/lfs/skampere1/0/eth127/rl4cv_tiny_training",
+  "systems": {
+    "1p7_control": {
+      "stages": {},
+      "preparation": {
+        "status": "PASS",
+        "size": "1.7B",
+        "seed": 20261019,
+        "target_loss_tokens": 5752936,
+        "existing_sha256": "7fa0255741a2b6046ceda0dfda43664334ca603a0aeca9fc2424af43c849726b",
+        "tiny_source_sha256": "8c493b9f1e1acf43b21d244b36f44647059b9de5dc8d1cb2785b7c3ba58ac5ad",
+        "tiny_training_sha256": "2f50cd04757904b2ac703693c4520df813dd98e0f18881de92c515c7f87bb119",
+        "initial": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/onep7/initial",
+        "initial_manifest_sha256": "cbcf8bbbb07534129868475fa9303b34dcf1df5ad502dc673fe8f68169e92847",
+        "tokens_sha256": "38429d47346351e76949f916c8f2ea4af9de84be7a793b164109dab432551f8c",
+        "code_sha256": "a9c4a282cb278a6af445ed41eb407fbc7e19a2c1686b1597a446b8c450af9c1b",
+        "schedules": {
+          "control": {
+            "steps": 664,
+            "loss_tokens": 5759732,
+            "overshoot": 6796,
+            "examples": 1328,
+            "unique_tiny": 0,
+            "by_source": {
+              "v1_selected": 675,
+              "mbpp_lean_warmstart_v3": 311,
+              "cached_cap_excluded": 342
+            },
+            "tiny_loss_tokens": 0,
+            "schedule_sha256": "a186964ab82193eb18074886e5a1095254739a13cf854d08e722c865c4599ccb"
+          },
+          "mixed": {
+            "steps": 904,
+            "loss_tokens": 5753602,
+            "overshoot": 666,
+            "examples": 1808,
+            "unique_tiny": 500,
+            "by_source": {
+              "v1_selected": 663,
+              "mbpp_lean_warmstart_v3": 308,
+              "cached_cap_excluded": 337,
+              "tiny_curriculum_v6_executable_example": 500
+            },
+            "tiny_loss_tokens": 77712,
+            "schedule_sha256": "7a331c492a0f81531ec8496edd2839ee237541254e870c21089309e3d4504b42"
+          }
+        },
+        "test_split_opened": false
+      },
+      "progress": null,
+      "training_result": null,
+      "generation_verified": null
+    },
+    "1p7_mixed": {
+      "stages": {},
+      "preparation": {
+        "status": "PASS",
+        "size": "1.7B",
+        "seed": 20261019,
+        "target_loss_tokens": 5752936,
+        "existing_sha256": "7fa0255741a2b6046ceda0dfda43664334ca603a0aeca9fc2424af43c849726b",
+        "tiny_source_sha256": "8c493b9f1e1acf43b21d244b36f44647059b9de5dc8d1cb2785b7c3ba58ac5ad",
+        "tiny_training_sha256": "2f50cd04757904b2ac703693c4520df813dd98e0f18881de92c515c7f87bb119",
+        "initial": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/onep7/initial",
+        "initial_manifest_sha256": "cbcf8bbbb07534129868475fa9303b34dcf1df5ad502dc673fe8f68169e92847",
+        "tokens_sha256": "38429d47346351e76949f916c8f2ea4af9de84be7a793b164109dab432551f8c",
+        "code_sha256": "a9c4a282cb278a6af445ed41eb407fbc7e19a2c1686b1597a446b8c450af9c1b",
+        "schedules": {
+          "control": {
+            "steps": 664,
+            "loss_tokens": 5759732,
+            "overshoot": 6796,
+            "examples": 1328,
+            "unique_tiny": 0,
+            "by_source": {
+              "v1_selected": 675,
+              "mbpp_lean_warmstart_v3": 311,
+              "cached_cap_excluded": 342
+            },
+            "tiny_loss_tokens": 0,
+            "schedule_sha256": "a186964ab82193eb18074886e5a1095254739a13cf854d08e722c865c4599ccb"
+          },
+          "mixed": {
+            "steps": 904,
+            "loss_tokens": 5753602,
+            "overshoot": 666,
+            "examples": 1808,
+            "unique_tiny": 500,
+            "by_source": {
+              "v1_selected": 663,
+              "mbpp_lean_warmstart_v3": 308,
+              "cached_cap_excluded": 337,
+              "tiny_curriculum_v6_executable_example": 500
+            },
+            "tiny_loss_tokens": 77712,
+            "schedule_sha256": "7a331c492a0f81531ec8496edd2839ee237541254e870c21089309e3d4504b42"
+          }
+        },
+        "test_split_opened": false
+      },
+      "progress": null,
+      "training_result": null,
+      "generation_verified": null
+    },
+    "4b_mixed": {
+      "stages": {},
+      "preparation": {
+        "status": "PASS",
+        "size": "4B",
+        "seed": 20261019,
+        "target_loss_tokens": 5752936,
+        "existing_sha256": "7fa0255741a2b6046ceda0dfda43664334ca603a0aeca9fc2424af43c849726b",
+        "tiny_source_sha256": "8c493b9f1e1acf43b21d244b36f44647059b9de5dc8d1cb2785b7c3ba58ac5ad",
+        "tiny_training_sha256": "2f50cd04757904b2ac703693c4520df813dd98e0f18881de92c515c7f87bb119",
+        "initial": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/four/initial",
+        "initial_manifest_sha256": "9a529d2dce82983a4f204553ace7ad03c5cc57d214cfe13101b075abc9839446",
+        "tokens_sha256": "38429d47346351e76949f916c8f2ea4af9de84be7a793b164109dab432551f8c",
+        "code_sha256": "a9c4a282cb278a6af445ed41eb407fbc7e19a2c1686b1597a446b8c450af9c1b",
+        "schedules": {
+          "mixed": {
+            "steps": 904,
+            "loss_tokens": 5753602,
+            "overshoot": 666,
+            "examples": 1808,
+            "unique_tiny": 500,
+            "by_source": {
+              "v1_selected": 663,
+              "mbpp_lean_warmstart_v3": 308,
+              "cached_cap_excluded": 337,
+              "tiny_curriculum_v6_executable_example": 500
+            },
+            "tiny_loss_tokens": 77712,
+            "schedule_sha256": "7a331c492a0f81531ec8496edd2839ee237541254e870c21089309e3d4504b42"
+          }
+        },
+        "test_split_opened": false
+      },
+      "progress": null,
+      "training_result": null,
+      "generation_verified": null
+    }
+  },
+  "launch": null,
+  "terminal": null,
+  "preparation_exit": {
+    "exit_code": 0
+  },
+  "optimizer_preflight": {
+    "status": "PASS",
+    "updates": 3,
+    "cpu_master_weights_match_native_float32_adamw": true,
+    "bfloat16_shadow_matches": true,
+    "zero_grad_verified": true
+  },
+  "make_test_exit": {
+    "exit_code": 1
+  },
+  "validation_preflight": {
+    "status": "PASS",
+    "tasks": 135,
+    "failures": [],
+    "pack": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation_pack",
+    "adapter_sha256": "a129b20a820113526a7c4db32094b2450afab6e42b94099649f4a85d7cb2a24f",
+    "test_split_opened_for_evaluation": false
+  },
+  "scoring_preflight": {
+    "status": "PASS",
+    "frozen_bytes": {
+      "scripts/scsc/run_real_eval.py": "6e82b3d1cd6d3686aaec3d45f273cd902b03b962c0c2eca48f2c2b4f25f41fa9",
+      "scripts/scsc/kernel_axioms.py": "5dbbdcae75ba8b22911fcb43ab1fcde45a1475cf92742a39a29ebe41116de287",
+      "experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/scripts/score_scsc.py": "b3713c48e0fdb24adec93b77be8785d20e48897ee8d1fd8ce31fdf37101e81d6"
+    },
+    "lean_binary": "/lfs/skampere1/0/brando9/.elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+    "lean_binary_sha256": "cbf5fd536e142ef1beaccf33f788fd8a7f3f29fb214e75c11319a8d8677b4b2b",
+    "lake_adapter_sha256": "3eb55458be07ad9d4494b3c98ae79d99db6f55ab76d00ad24bc9ff0b7f25820f",
+    "compiler_threads": 1,
+    "operational_change": "same Lean 4.22.0 and cached Mathlib imports; no Lake package refresh"
+  },
+  "curriculum_admission": {
+    "status": "PASS",
+    "source_sha256": "8c493b9f1e1acf43b21d244b36f44647059b9de5dc8d1cb2785b7c3ba58ac5ad",
+    "training_sha256": "2f50cd04757904b2ac703693c4520df813dd98e0f18881de92c515c7f87bb119",
+    "examples": 500,
+    "anonymous_examples": 500,
+    "compiled": 500,
+    "differential_cases": 16000,
+    "protected_reference_hits": 0,
+    "max_assistant_tokens": 226,
+    "total_assistant_tokens": 77212,
+    "checker_sha256": "5caa5003bcfc3ea9a97ee5c2eaea7ad2ecec5eb44a13610198bacb4904d3c5c8",
+    "derivation_source_sha256": "8fe470454a8cec22d0c048d793c065c9c73e3bc2ec91eed5e2cfa273838710fd"
+  },
+  "summary": null
+}

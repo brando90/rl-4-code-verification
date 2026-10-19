@@ -1,0 +1,8 @@
+import Mathlib
+namespace Tiny
+def solution (x y : Int) : Int := -(x + y)
+theorem spec_commutative (x y : Int) : solution x y = solution y x := by
+  simp [solution, add_comm]
+theorem test_positive : solution 2 3 = -5 := by norm_num [solution]
+theorem test_negative : solution (-4) 1 = 3 := by norm_num [solution]
+end Tiny

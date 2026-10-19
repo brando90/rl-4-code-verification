@@ -1,0 +1,7 @@
+import Mathlib
+namespace Tiny
+def solution (n : Nat) : List (Int × Int) := (List.range n).map fun a => (a, a)
+theorem spec_length (n : Nat) : (solution n).length = n := by simp [solution]
+theorem test_empty : solution 0 = [] := by decide
+theorem test_pairs : solution 3 = [(0, 0), (1, 1), (2, 2)] := by decide
+end Tiny

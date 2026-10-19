@@ -1,0 +1,40 @@
+import Mathlib
+namespace Tiny
+def solution (x y z : Nat) : Nat := x * (y + z)
+theorem spec_distribute (x y z : Nat) : solution x y z = x * y + x * z := by
+  simp [solution, Nat.mul_add]
+theorem test_small : solution 2 3 4 = 14 := by norm_num [solution]
+theorem test_zero : solution 0 3 4 = 0 := by norm_num [solution]
+end Tiny
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (5) (5) (6))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (6) (0) (0))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (1) (5) (4))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (4) (5) (6))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (6) (2) (6))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (1) (1) (2))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (3) (4) (4))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (5) (3) (0))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (1) (2) (2))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (5) (2) (5))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (3) (4) (5))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (0) (5) (6))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (4) (5) (6))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (1) (1) (2))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (5) (6) (1))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (6) (0) (6))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (5) (2) (4))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (2) (2) (6))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (5) (1) (6))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (3) (5) (3))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (5) (6) (3))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (6) (1) (0))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (6) (3) (6))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (4) (5) (0))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (3) (4) (6))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (0) (2) (5))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (4) (5) (1))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (4) (5) (4))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (4) (2) (1))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (5) (4) (1))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (5) (4) (3))))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution (4) (0) (6))))
