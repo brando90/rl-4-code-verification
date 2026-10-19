@@ -9,30 +9,25 @@
   },
   "estimate_not_invoice": true,
   "reservations": {
-    "v13/existing_2498/0": {
-      "purpose": "cleanup",
-      "usd": 10.0,
-      "time": 1792418794.5030808
-    },
-    "v13/existing_1285/0": {
-      "purpose": "cleanup",
-      "usd": 10.0,
-      "time": 1792418878.0864828
-    },
     "v13/existing_0084/0": {
       "purpose": "cleanup",
       "usd": 10.0,
       "time": 1792418964.7697031
     },
-    "v13/existing_1469/0": {
+    "v13/existing_1369/0": {
       "purpose": "cleanup",
       "usd": 10.0,
-      "time": 1792418973.7073805
+      "time": 1792419089.9915507
     },
-    "v13/existing_0406/0": {
+    "v13/existing_1050/0": {
       "purpose": "cleanup",
       "usd": 10.0,
-      "time": 1792418997.7906542
+      "time": 1792419096.7885911
+    },
+    "v13/existing_1410/0": {
+      "purpose": "cleanup",
+      "usd": 10.0,
+      "time": 1792419114.1839652
     }
   },
   "charges": {
@@ -5971,6 +5966,62 @@
       },
       "unknown_usage": false,
       "time": 1792418997.7343383
+    },
+    "v13/existing_1469/0": {
+      "purpose": "cleanup",
+      "usd": 0.233033,
+      "base_rate_estimate_usd": 0.114441,
+      "usage": {
+        "input_tokens": 180534,
+        "cached_input_tokens": 157735,
+        "output_tokens": 3108,
+        "reasoning_output_tokens": 1088,
+        "total_tokens": 183642
+      },
+      "unknown_usage": false,
+      "time": 1792419025.86876
+    },
+    "v13/existing_0406/0": {
+      "purpose": "cleanup",
+      "usd": 0.47788240000000004,
+      "base_rate_estimate_usd": 0.23458020000000002,
+      "usage": {
+        "input_tokens": 426591,
+        "cached_input_tokens": 382721,
+        "output_tokens": 5858,
+        "reasoning_output_tokens": 2287,
+        "total_tokens": 432449
+      },
+      "unknown_usage": false,
+      "time": 1792419089.9437144
+    },
+    "v13/existing_1285/0": {
+      "purpose": "cleanup",
+      "usd": 0.9685434,
+      "base_rate_estimate_usd": 0.5080202,
+      "usage": {
+        "input_tokens": 840676,
+        "cached_input_tokens": 776231,
+        "output_tokens": 18657,
+        "reasoning_output_tokens": 8133,
+        "total_tokens": 859333
+      },
+      "unknown_usage": false,
+      "time": 1792419096.7363644
+    },
+    "v13/existing_2498/0": {
+      "purpose": "cleanup",
+      "usd": 1.2285308000000001,
+      "base_rate_estimate_usd": 0.6620494,
+      "usage": {
+        "input_tokens": 862991,
+        "cached_input_tokens": 784487,
+        "output_tokens": 29012,
+        "reasoning_output_tokens": 14309,
+        "total_tokens": 892003
+      },
+      "unknown_usage": false,
+      "time": 1792419114.1351457
     }
   },
   "events": [
@@ -12070,6 +12121,62 @@
       "purpose": "cleanup",
       "usd": 10.0,
       "time": 1792418997.7906554
+    },
+    {
+      "event": "settle",
+      "identity": "v13/existing_1469/0",
+      "purpose": "cleanup",
+      "usd": 0.233033,
+      "time": 1792419025.8687623
+    },
+    {
+      "event": "reserve_denied",
+      "identity": "v13/existing_1369/0",
+      "purpose": "cleanup",
+      "usd": 10.0,
+      "time": 1792419025.918504
+    },
+    {
+      "event": "settle",
+      "identity": "v13/existing_0406/0",
+      "purpose": "cleanup",
+      "usd": 0.47788240000000004,
+      "time": 1792419089.9437168
+    },
+    {
+      "event": "reserve",
+      "identity": "v13/existing_1369/0",
+      "purpose": "cleanup",
+      "usd": 10.0,
+      "time": 1792419089.9915516
+    },
+    {
+      "event": "settle",
+      "identity": "v13/existing_1285/0",
+      "purpose": "cleanup",
+      "usd": 0.9685434,
+      "time": 1792419096.736366
+    },
+    {
+      "event": "reserve",
+      "identity": "v13/existing_1050/0",
+      "purpose": "cleanup",
+      "usd": 10.0,
+      "time": 1792419096.7885919
+    },
+    {
+      "event": "settle",
+      "identity": "v13/existing_2498/0",
+      "purpose": "cleanup",
+      "usd": 1.2285308000000001,
+      "time": 1792419114.1351483
+    },
+    {
+      "event": "reserve",
+      "identity": "v13/existing_1410/0",
+      "purpose": "cleanup",
+      "usd": 10.0,
+      "time": 1792419114.1839662
     }
   ]
 }
