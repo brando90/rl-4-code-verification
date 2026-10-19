@@ -1,9 +1,59 @@
 {
-  "observed_unix": 1792397334.1113784,
+  "observed_unix": 1792397471.6430953,
   "root": "/lfs/skampere1/0/eth127/rl4cv_tiny_training",
   "systems": {
     "1p7_control": {
-      "stages": {},
+      "stages": {
+        "allocation": {
+          "gpu": "1",
+          "uuid": "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+          "total_mib": 81920,
+          "used_mib": 0,
+          "allocated_unix": 1792397393.7383711,
+          "pid": 2922150,
+          "owner": "eth127",
+          "foreign_processes_preserved": true
+        },
+        "training": {
+          "label": "1p7_control",
+          "stage": "training",
+          "command": [
+            "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6/experiment.py",
+            "train",
+            "--condition",
+            "control"
+          ],
+          "started_unix": 1792397443.5526702,
+          "host": "skampere1.stanford.edu",
+          "cuda_visible_devices": "1",
+          "status": "RUNNING",
+          "pid": 2927715,
+          "start_ticks": "63603385",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "alive": true
+        },
+        "smoke": {
+          "label": "1p7_control",
+          "stage": "smoke",
+          "command": [
+            "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6/experiment.py",
+            "smoke",
+            "--condition",
+            "control"
+          ],
+          "started_unix": 1792397393.739041,
+          "host": "skampere1.stanford.edu",
+          "cuda_visible_devices": "1",
+          "status": "DONE",
+          "pid": 2922175,
+          "start_ticks": "63598403",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "ended_unix": 1792397443.55158,
+          "exit_code": 0
+        }
+      },
       "preparation": {
         "status": "PASS",
         "size": "1.7B",
@@ -54,7 +104,57 @@
       "generation_verified": null
     },
     "1p7_mixed": {
-      "stages": {},
+      "stages": {
+        "allocation": {
+          "gpu": "2",
+          "uuid": "GPU-e98e645a-d860-3666-a80b-2cea81363c51",
+          "total_mib": 81920,
+          "used_mib": 0,
+          "allocated_unix": 1792397393.7424498,
+          "pid": 2922150,
+          "owner": "eth127",
+          "foreign_processes_preserved": true
+        },
+        "training": {
+          "label": "1p7_mixed",
+          "stage": "training",
+          "command": [
+            "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6/experiment.py",
+            "train",
+            "--condition",
+            "mixed"
+          ],
+          "started_unix": 1792397443.1482444,
+          "host": "skampere1.stanford.edu",
+          "cuda_visible_devices": "2",
+          "status": "RUNNING",
+          "pid": 2927618,
+          "start_ticks": "63603344",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "alive": true
+        },
+        "smoke": {
+          "label": "1p7_mixed",
+          "stage": "smoke",
+          "command": [
+            "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6/experiment.py",
+            "smoke",
+            "--condition",
+            "mixed"
+          ],
+          "started_unix": 1792397393.7429516,
+          "host": "skampere1.stanford.edu",
+          "cuda_visible_devices": "2",
+          "status": "DONE",
+          "pid": 2922176,
+          "start_ticks": "63598404",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "ended_unix": 1792397443.1474938,
+          "exit_code": 0
+        }
+      },
       "preparation": {
         "status": "PASS",
         "size": "1.7B",
@@ -105,7 +205,37 @@
       "generation_verified": null
     },
     "4b_mixed": {
-      "stages": {},
+      "stages": {
+        "allocation": {
+          "gpu": "6",
+          "uuid": "GPU-030a1de4-d323-e947-aaf2-804435744526",
+          "total_mib": 81920,
+          "used_mib": 0,
+          "allocated_unix": 1792397393.7161067,
+          "pid": 2922150,
+          "owner": "eth127",
+          "foreign_processes_preserved": true
+        },
+        "smoke": {
+          "label": "4b_mixed",
+          "stage": "smoke",
+          "command": [
+            "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6/experiment.py",
+            "smoke",
+            "--condition",
+            "mixed"
+          ],
+          "started_unix": 1792397393.7168365,
+          "host": "skampere1.stanford.edu",
+          "cuda_visible_devices": "6",
+          "status": "RUNNING",
+          "pid": 2922172,
+          "start_ticks": "63598401",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "alive": true
+        }
+      },
       "preparation": {
         "status": "PASS",
         "size": "4B",
@@ -142,7 +272,16 @@
       "generation_verified": null
     }
   },
-  "launch": null,
+  "launch": {
+    "started_unix": 1792397393.4135706,
+    "gpus": {
+      "1p7_control": "1",
+      "1p7_mixed": "2",
+      "4b_mixed": "6"
+    },
+    "source_sha256": "53178582c7d6cceb3a0ac2eaa6f35463365e6b8b600a8d8c0171882b131ecb9c",
+    "status": "RUNNING"
+  },
   "terminal": null,
   "preparation_exit": {
     "exit_code": 0
@@ -155,7 +294,7 @@
     "zero_grad_verified": true
   },
   "make_test_exit": {
-    "exit_code": 1
+    "exit_code": 0
   },
   "validation_preflight": {
     "status": "PASS",

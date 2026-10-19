@@ -2,7 +2,7 @@
 
 **Doc link:** https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6/results.md
 
-**Status:** PREPARING. **Last updated:** 10-19-2026 01:08:54 PDT.
+**Status:** RUNNING. **Last updated:** 10-19-2026 01:11:11 PDT.
 
 | Condition | Training progress | Assistant tokens consumed | Validation generated | Scoring jobs complete |
 |---|---:|---:|---:|---:|
@@ -24,4 +24,4 @@ Held-out validation improvement is not yet measured. Training loss is not a corr
 
 [Protocol](PROTOCOL.md) · [Checkpoint](CKPT_tiny_training.md) · [Runtime snapshot](results/runtime_snapshot.json)
 
-**TLDR-end:** [rl4cv: concise Lean training] PREPARING; the full declared evaluation has 3,240 cells.
+**TLDR-end:** [rl4cv: concise Lean training] RUNNING; the full declared evaluation has 3,240 cells.
