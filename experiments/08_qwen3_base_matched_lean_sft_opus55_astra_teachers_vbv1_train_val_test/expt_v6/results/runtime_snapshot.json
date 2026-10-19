@@ -1,5 +1,5 @@
 {
-  "observed_unix": 1792401253.655946,
+  "observed_unix": 1792401385.1735632,
   "root": "/lfs/skampere1/0/eth127/rl4cv_tiny_training",
   "systems": {
     "1p7_control": {
@@ -625,16 +625,17 @@
         "test_split_opened": false
       },
       "progress": {
-        "step": 100,
-        "loss_tokens": 624911,
+        "step": 103,
+        "loss_tokens": 647446,
         "tiny_batch": false,
-        "train_loss": 0.2121757930252688,
-        "grad_norm": 0.921875,
-        "learning_rate": 1.969691444499215e-05,
-        "elapsed_seconds": 3342.095858769957,
+        "train_loss": 0.21487527243616275,
+        "grad_norm": 1.265625,
+        "learning_rate": 1.966096687717385e-05,
+        "elapsed_seconds": 3428.1207510059467,
         "peak_gpu_gib": 42.13953113555908,
         "status": "RUNNING",
-        "condition": "mixed"
+        "condition": "mixed",
+        "optimizer_fused": true
       },
       "training_result": null,
       "generation_verified": null,
@@ -850,5 +851,13 @@
     "sampling_and_prompts_unchanged": true,
     "original_output_cells": 0
   },
-  "four_fused_restore": null
+  "four_fused_restore": {
+    "status": "PASS",
+    "step": 100,
+    "master_and_moment_restore": "exact",
+    "bf16_shadows_match_masters": true,
+    "cpu_cuda_rng_restored": true,
+    "pid": 976411,
+    "verified_unix": 1792401268.0372891
+  }
 }

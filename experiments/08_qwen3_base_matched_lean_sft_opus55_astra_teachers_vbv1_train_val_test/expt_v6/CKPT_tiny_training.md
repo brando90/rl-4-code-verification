@@ -6,20 +6,21 @@
 
 ## State
 
-- Updated: 10-19-2026 01:55:38 PDT. All three original trainers are alive; the user-authorized 4B fused continuation is waiting for checkpoint 100.
-- Owned checkout: `/Users/lethan3/Documents/veribench-projects/tmp/rl4cv-tiny-training-10-19-2026`; leave the original checkout's eight unrelated edits alone.
-- Remote root: `/lfs/skampere1/0/eth127/rl4cv_tiny_training` on skampere1, user eth127.
-- SSH: use ControlMaster `/Users/lethan3/Documents/veribench-projects/tmp/ssh-tiny-training/control`, held by local tmux `ssh-tiny-training`. The old `ssh-skampere1-eth127` transport has unusable stdout; do not use it.
-- Execution: remote tmux `rl4cv-tiny-training`; supervisor PID 2922150; GPUs 1/2/6 run 1.7B control/1.7B augmented/4B augmented. Other owners' jobs and registries are unchanged.
-- Trainers: 2927715 / 2927618 / 2941031, respectively. Verify PID start times against execution receipts before any process action.
-- Data: corrected 500 examples passed compilation, kernel, format, differential and contamination checks; original V5 remains pristine. Existing pool 2,585. Exact frozen identities are in PROTOCOL.md and results/protocol_lock.json.
-- Gate: 1,366 tests passed, 24 skipped and six subtests passed; no shared environment or test source modified. Exact 135 validation prompts and positive/negative scoring controls passed.
-- Remote `rl4cv-tiny-primary-results` independently publishes the 2,160-cell 1.7B comparison when all 16 scoring jobs finish. Full analysis remains 3,240 cells; test evaluation is unopened.
-- Remote `rl4cv-tiny-4b-extended-wait` enforces the prospective 12-hour 4B allowance. It can intentionally pause only the idle supervisor after primary scoring while the 4B trainer continues. See AMENDMENT_4b_wallclock.md.
-- Local `rl4cv-tiny-training-watch` mirrors progress every minute; `--publish` permits milestone commits of explicitly owned evidence and defers if another owner advances main. Never run concurrent Git writers.
-- User authorized the faster fused CPU AdamW kernel. Named remote `rl4cv-tiny-4b-fused` hands off at a complete checkpoint (first target 100), restores full float32 state and finishes the original manifest. See AMENDMENT_4b_fused_optimizer.md and results/fused_source_lock.json. Frozen experiment.py and run_jobs.py remain unchanged.
-- Next: complete training, generation and all validation scoring, inspect summaries and publish the measured comparison. Any 4B kernel change needs a checkpoint-preserving continuation, explicit runtime amendment and reconciled process/watch identities.
-- No provider calls or messages to others are used. All model computations use the three authorized A100s.
+- Updated: 10-19-2026 02:16:25 PDT. Fused CPU AdamW is deployed and verified on the existing 4B trajectory; update 102 has completed.
+- Owned checkout: `/Users/lethan3/Documents/veribench-projects/tmp/rl4cv-tiny-training-10-19-2026`; preserve original checkout's eight unrelated edits.
+- Remote root: `/lfs/skampere1/0/eth127/rl4cv_tiny_training`, eth127 on skampere1.
+- SSH ControlMaster: `/Users/lethan3/Documents/veribench-projects/tmp/ssh-tiny-training/control`, held by local tmux `ssh-tiny-training`. Do not use the old stdout-broken SSH session.
+- Effective 4B owner: remote tmux `rl4cv-tiny-4b-fused`, controller PID 849764/start ticks 63914009. Fused trainer PID 976411; exact identity in execution/4b_mixed/training_fused.json. GPU 6 remains the only 4B device.
+- Original checkpoint 100 and all 100 metrics rows retained exactly. Checkpoint inspection verified all 4,022,468,096 parameters and Adam steps; restore verified float32 masters/moments, bf16 shadows and CPU/CUDA random-number states. Source, batch order, token schedule and optimizer hyperparameters are preserved; only CPU kernel changed to fused=True.
+- Latest verification: results/fused_handoff/deployment_verified.json. Early timing samples are sparse and sequence lengths differ; no overall speedup or validation-improvement claim yet. CSV elapsed joins model loops and excludes handoff/startup; wall-clock receipts retain all time.
+- Both original 1.7B runs finished training: control 664 updates, augmented 904. Validation generation runs on GPUs 1 and 2. Full conditions remain 1,080 validation cells each, 3,240 total; test evaluation is unopened.
+- Remote tmux `rl4cv-tiny-training` keeps the original augmented 1.7B generation/scoring pipeline. Its deliberate 4B -15 termination and zero-output control import failure remain in original receipts.
+- Remote tmux `rl4cv-tiny-primary-recovery` runs the control's identical generation after owned dependency repair (SciPy 1.16.2, PyOpenSSL 26.4.0); both failed startup attempts retained. See AMENDMENT_generation_environment.md. Shared runtimes are unchanged.
+- Remote `rl4cv-tiny-primary-results` independently publishes the primary comparison after all 16 primary scoring jobs finish. The recovery's scoring waits for the original supervisor; 4B scoring then waits for primary recovery, keeping at most eight scoring jobs at once.
+- The fused controller owns final full analysis, explicitly reconciles only the planned/recovered original failures and retains unexpected failures. The original 12-hour total 4B training deadline is unchanged. The old process-specific wall-clock guard is retired.
+- Local `rl4cv-tiny-training-watch --watch --publish` mirrors progress every minute and commits milestones when main has not advanced. One Git writer at a time; stop only this local observer before manual commits.
+- Gate: repeated full Linux suite passed 1,366 tests, 24 skips, six subtests. Optimizer save/restore and real-process fencing/rejection controls passed. Exact prompts and scorer controls passed before training.
+- Next: finish the three unchanged validation manifests, inspect primary/full summaries and publish the measured comparison. No provider calls or messages to others are used.
 
 ## Event log
 
@@ -43,3 +44,5 @@
 - 10-19-2026 01:59:25 PDT: Refreshed only the waiting CPU handoff controller to include explicit CUDA-context-release and bounded startup checks; active controller PID 812018/start ticks 63894818. Initial waiter/source receipts retained remotely. No trainer restarted and no updates lost; target remains checkpoint 100.
 
 - 10-19-2026 02:05:42 PDT: Fused handoff controller refreshed while still waiting, PID 849764/start ticks 63914009, to reconcile the control's generation startup recovery. All original completed updates preserved. Original control generation and first retry both failed on incompatible OS dependency fallbacks before any output; original receipts retained. Owned SciPy 1.16.2/PyOpenSSL 26.4.0 restore full model import and subprocess inspection. One extra startup attempt declared prospectively in AMENDMENT_generation_environment.md; exact same sampling/model/data. Remote tmux rl4cv-tiny-primary-recovery now starts the control's engine. All CPU scoring pools remain serialized. CSV records preserve original CRLF bytes through a scoped Git whitespace attribute.
+
+- 10-19-2026 02:16:25 PDT: Deployed fused CPU optimizer successfully from verified checkpoint 100. Original completed metrics prefix is byte-identical, full-state/RNG restore passed and actual updates 101–102 completed with finite losses/nonzero gradients. Active trainer PID 976411 on GPU 6. Both 1.7B trained checkpoints are now in validation; owned dependency recovery preserved zero-output startup failures. Permanent verification receipts mirrored into results/fused_handoff.
