@@ -2,13 +2,13 @@
 
 **Doc link:** https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6/results.md
 
-**Status:** RUNNING. **Last updated:** 10-19-2026 04:27:51 PDT.
+**Status:** RUNNING. **Last updated:** 10-19-2026 04:29:54 PDT.
 
 | Condition | Training progress | Assistant tokens consumed | Validation generated | Scoring jobs complete |
 |---|---:|---:|---:|---:|
-| 1p7_control | 664/664 updates | 5,759,732 | 1080/1,080 | 2/8 |
+| 1p7_control | 664/664 updates | 5,759,732 | 1080/1,080 | 3/8 |
 | 1p7_mixed | 904/904 updates | 5,753,602 | 1080/1,080 | 8/8 |
-| 4b_mixed | 452/904 updates | 2,612,736 | 0/1,080 | 0/8 |
+| 4b_mixed | 458/904 updates | 2,656,727 | 0/1,080 | 0/8 |
 
 4B CPU fused optimizer: **FUSED_TRAINING**; checkpoint target 100; restore verification PASS. [Runtime amendment](AMENDMENT_4b_fused_optimizer.md). The original supervisor's deliberate termination receipt is retained.
 
