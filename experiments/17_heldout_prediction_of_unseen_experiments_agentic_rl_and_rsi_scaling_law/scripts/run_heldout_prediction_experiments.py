@@ -322,11 +322,117 @@ def run_suite_3_math_loeo() -> Dict[str, Any]:
     }
 
 
+def _ladder_rows():
+    """Pass-rate gains on experiment 08's validation ladder, with signal stats per rung and per base model."""
+    ladder_dir = REPO_ROOT / "experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/ladder"
+    scales = ["1p7B", "4B", "8B", "14B"]
+    fractions = ["f0p125", "f0p25", "f0p5", "f0p75", "f1p0"]
+    token_map = {"f0p125": 0.720775, "f0p25": 1.442549, "f0p5": 2.884708, "f0p75": 4.318781, "f1p0": 5.752936}
+    scale_num = {"1p7B": 1.7, "4B": 4.0, "8B": 8.0, "14B": 14.0}
+
+    def feats(frame: pd.DataFrame):
+        passed = frame["k_kernel_binary"].to_numpy() / 8.0
+        mixed = 1.0 - passed**8 - (1.0 - passed) ** 8
+        rho = max(float(np.mean(mixed)), 1e-5)
+        positive = passed[passed > 0]
+        if len(positive) == 0:
+            coverage = 0.01
+        else:
+            weights = positive / positive.sum()
+            coverage = float(-(weights * np.log(weights)).sum() / np.log(len(frame)))
+        return rho, max(coverage, 0.01), float(passed.mean())
+
+    base_rate, base_feat = {}, {}
+    for scale in scales:
+        name = f"base_{scale}_e05_validation_per_task.csv" if scale != "14B" else "base14b_validation_per_task.csv"
+        rho, coverage, rate = feats(pd.read_csv(ladder_dir / name))
+        base_rate[scale] = rate
+        base_feat[scale] = (rho, coverage)
+    rows = {}
+    for scale in scales:
+        for frac in fractions:
+            rho, coverage, rate = feats(pd.read_csv(ladder_dir / f"sft_{scale}_{frac}_validation_per_task.csv"))
+            rows[(scale, frac)] = {
+                "scale": scale_num[scale],
+                "budget": token_map[frac],
+                "utility": rate - base_rate[scale],
+                "rho": rho,
+                "H": coverage,
+                "base_rho": base_feat[scale][0],
+                "base_H": base_feat[scale][1],
+            }
+    return rows
+
+
+def run_corrected_holdout() -> Dict[str, Any]:
+    """Predict later rungs without using those rungs' own pass counts as features."""
+    rows = _ladder_rows()
+    scales = ["1p7B", "4B", "8B", "14B"]
+    # Unseen scale: features are the base model, measured before supervised fine-tuning.
+    pre_sft = []
+    for scale in scales:
+        for frac in ["f0p125", "f0p25", "f0p5", "f0p75", "f1p0"]:
+            row = rows[(scale, frac)]
+            pre_sft.append(Observation(row["scale"], frac, row["budget"], row["utility"], row["base_rho"], row["base_H"]))
+    train = [o for o in pre_sft if o.scale < 14]
+    test = [o for o in pre_sft if o.scale == 14]
+    unseen = {}
+    for label, features in (("rho_H", RHO_H), ("budget_scale", BUDGET_SCALE_ONLY)):
+        model = fit_utility_model(train, features)
+        pred = np.array([model.predict_obs(o) for o in test])
+        true = np.array([o.utility for o in test])
+        unseen[label] = {
+            "rmse_pp": 100 * float(np.sqrt(np.mean((pred - true) ** 2))),
+            "pearson_r": float(np.corrcoef(pred, true)[0, 1]),
+        }
+    # Horizon: fit on rungs at or below 50%, predict 100% using the 50% rung's features.
+    early = []
+    for scale in scales:
+        for frac in ["f0p125", "f0p25", "f0p5"]:
+            row = rows[(scale, frac)]
+            early.append(Observation(row["scale"], frac, row["budget"], row["utility"], row["rho"], row["H"]))
+    horizon = {}
+    for label, features in (("rho_H", RHO_H), ("budget_scale", BUDGET_SCALE_ONLY)):
+        model = fit_utility_model(early, features)
+        errors = []
+        points = []
+        for scale in scales:
+            half = rows[(scale, "f0p5")]
+            final = rows[(scale, "f1p0")]
+            pred = model.predict(half["scale"], final["budget"], half["rho"], half["H"])
+            errors.append(pred - final["utility"])
+            points.append({
+                "scale": half["scale"],
+                "true_100pct_pct": round(final["utility"] * 100, 2),
+                "predicted_pct": round(pred * 100, 2),
+                "observed_50pct_pct": round(half["utility"] * 100, 2),
+            })
+        err = np.array(errors)
+        horizon[label] = {
+            "rmse_pp": 100 * float(np.sqrt(np.mean(err ** 2))),
+            "points": points,
+        }
+    last = np.array([rows[(s, "f0p5")]["utility"] - rows[(s, "f1p0")]["utility"] for s in scales])
+    last_rmse = 100 * float(np.sqrt(np.mean(last ** 2)))
+    budget_rmse = horizon["budget_scale"]["rmse_pp"]
+    return {
+        "feature_rule": "50% rung features for the horizon test; base-model features for the 14B scale test. The final rung's pass counts are not features.",
+        "unseen_14b_presft_features": unseen,
+        "horizon_from_50pct_features": horizon,
+        "last_observed_50pct_rmse_pp": last_rmse,
+        "budget_scale_error_reduction_vs_last_observed_pct": round((1.0 - budget_rmse / last_rmse) * 100, 2),
+        "rho_H_beats_budget_scale_on_14b": unseen["rho_H"]["rmse_pp"] < unseen["budget_scale"]["rmse_pp"],
+        "budget_scale_beats_last_observed": budget_rmse < last_rmse,
+        "rho_H_beats_budget_scale_on_horizon": horizon["rho_H"]["rmse_pp"] < horizon["budget_scale"]["rmse_pp"],
+    }
+
+
 def main():
     print("Executing Experiment 17: Held-Out Prediction of Unseen Experiments...")
     s1 = run_suite_1_rsi_lean()
     s2 = run_suite_2_agentic_swebench()
     s3 = run_suite_3_math_loeo()
+    corrected = run_corrected_holdout()
 
     summary = {
         "experiment": "17_heldout_prediction_of_unseen_experiments_agentic_rl_and_rsi_scaling_law",
@@ -336,6 +442,9 @@ def main():
         "suite_1_rsi_lean_code_verification": s1,
         "suite_2_agentic_rl_swebench_verified": s2,
         "suite_3_math_rlvr_loeo": s3,
+        "corrected_no_target_leakage": corrected,
+        "suite_3_training_note": "Utilities at 1.7B, 4B, and 8B in suite 3 are the frozen model's own predictions, not measured outcomes.",
+        "suite_1_leakage_note": "The original suite 1 features are computed from the same validation pass counts as the utility being predicted.",
     }
 
     out_file = RESULTS_DIR / "heldout_prediction_summary.json"

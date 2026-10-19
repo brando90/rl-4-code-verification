@@ -2,12 +2,9 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/17_heldout_prediction_of_unseen_experiments_agentic_rl_and_rsi_scaling_law/results.md>
 
-**Status:** DONE (`10-18-2026`, zero model calls, strictly $0 API spend). All 5 unit tests pass (`tests/test_heldout_prediction_experiments.py`).
+**Status:** CORRECTED 10-18-2026. Zero model calls. $0. The success that holds is a budget-and-scale curve, not the ρ–H law.
 
-**TLDR:** Directly addressing Andrew (Zhanke) Zhou's steer on the RL-utility paper ("show the laws predict the outcome of unseen experiments... for agentic RL post-training and RSI"), this experiment tests the environment-utility scaling law ($\rho-H$ Eq. 7) and latent scaling models across three unseen prediction challenges:
-1. **RSI / Self-Improvement Extrapolation on Lean Code Verification (`Expt 08`):** Fitting the law strictly on small scales ($1.7\text{B}, 4\text{B}, 8\text{B}$) predicts the complete 5-rung trajectory of untouched $14\text{B}$ with **`1.273 pp` RMSE and Pearson $r = 0.9595$**; extrapolating to the final 100% training budget from early rungs ($\le 50\%$) achieves **`1.877 pp` RMSE**, cutting horizon error by **`45.88%`** over carrying the last observed rung forward (`3.468 pp`). Fitting on Replay ($R$) predicts the unseen Expansion ($E$) regime with **`2.992 pp` RMSE and Pearson $r = 0.9940$** (under `1.5 pp` error at 4B and 8B).
-2. **Agentic System Post-Training & Evaluation (`Expt 14`):** On 164 agentic systems on SWE-bench Verified, a probe of 50 tasks predicts full held-out benchmark pass@1 ($n_B = 374$) with **`0.9574` median Spearman rank correlation**, outranking empirical pass@1 in **`81.15%` of 2,000 splits** and cutting level MAE by **`+0.0210 [+0.0195, +0.0224]`** over raw pass@1 and **`+0.0052 [+0.0043, +0.0059] p = 0.0009995`** over reference linear regression.
-3. **Leave-One-Environment-Out (LOEO) Math RLVR:** Leaving out an entire environment cell during training yields an overall unseen-environment test RMSE of **`1.889 pp`** on 14B, reducing allocation regret to **`0.288 pp`** vs **`1.637 pp`** for random selection (a **`1.349 pp`** reduction).
+**TLDR:** On experiment 08's supervised fine-tuning ladder, a budget-and-scale curve fit only on the 12.5%, 25%, and 50% rungs predicts the 100% validation pass-rate gain at 1.7B, 4B, 8B, and 14B with root mean squared error 1.372 percentage points. Carrying the 50% measurement forward has error 3.468 percentage points, so the curve cuts that error by 60.43%. Adding usable signal density and coverage makes the error worse (1.790). The earlier "law succeeds" labels below used the final rung's own pass counts as features, and the budget-only curve already beat the law. Those labels are withdrawn.
 
 ---
 
@@ -25,7 +22,7 @@ The law is fitted on the 15 observations of smaller models ($1.7\text{B}, 4\text
 | **$5.75\text{M}$ ($100\%$)** | `+11.20%` | `+10.15%` | `+10.64%` | `-1.05 pp` |
 | **Overall Metric** | — | **RMSE: `1.273 pp`**, **$r = 0.9595$** | RMSE: `1.120 pp`, $r = 0.9564$ | MAE: `1.199 pp` |
 
-*Verdict:* **SUCCESS** (RMSE $\le 2.0$ pp, $r \ge 0.90$).
+*Verdict:* **WITHDRAWN.** The budget-and-scale baseline has the lower error (1.120 versus 1.273 percentage points). The features in this table are also computed from the same pass counts as the utility. The corrected comparison, using only the base model's signal stats, still has the budget curve ahead (1.120 versus 1.194).
 
 ---
 
@@ -57,7 +54,7 @@ In multi-round self-improvement, can we stop training early and accurately predi
 | **14.0B** | `+11.20%` | `+9.56%` | `+9.44%` | Law: **`-1.64 pp`** vs Last: `-1.76 pp` |
 | **Overall Metric** | — | **RMSE: `1.877 pp`** (MAE: `1.697 pp`) | **RMSE: `3.468 pp`** (MAE: `3.195 pp`) | **`45.88%` Error Reduction** |
 
-*Verdict:* **SUCCESS.** Law extrapolation cuts horizon prediction error by **`45.88%`** over the standard engineering heuristic of carrying the latest measured checkpoint forward.
+*Verdict:* **WITHDRAWN as a law result.** The 45.88% figure uses the final rung's own pass counts as features. With features taken from the 50% rung only, the budget-and-scale curve has error 1.372 percentage points and the ρ–H fit has 1.790, against 3.468 for carrying the 50% gain forward. The curve succeeds. The ρ–H terms do not improve it.
 
 ---
 
@@ -71,6 +68,8 @@ On 164 agentic systems on SWE-bench Verified (varying models, harnesses, tools, 
 ---
 
 ## 3. Suite 3: Leave-One-Environment-Out (LOEO) Math Scaling Law
+
+The utilities at 1.7B, 4B, and 8B in this suite are the frozen model's own predictions, not measured training outcomes. The 14B row is the published table. This suite does not show that the law predicts an unseen experiment.
 
 Trained on 3 environment cells and evaluated on the 4th unseen environment cell on the $14\text{B}$ scale:
 
@@ -98,4 +97,4 @@ To ensure scientific integrity and prevent reviewer overclaiming objections:
 
 ---
 
-**TLDR-end:** [rl4cv: Expt 17 held-out prediction of unseen experiments] Successfully executed Experiment 17 across 3 benchmarks, proving scaling laws predict unseen 14B trajectories with `1.273 pp` RMSE ($r = 0.9595$), predict unseen Expansion regimes with `2.992 pp` RMSE ($r = 0.9940$), cut RSI horizon extrapolation error by `45.88%`, and achieve `0.9574` rank correlation on 164 agentic systems on SWE-bench Verified.
+**TLDR-end:** [rl4cv: held-out final-rung forecast] A budget-and-scale curve fit on the first half of experiment 08's ladder predicts the final pass-rate gain with error 1.372 percentage points, against 3.468 for copying the halfway result. The ρ–H terms do not improve that prediction.

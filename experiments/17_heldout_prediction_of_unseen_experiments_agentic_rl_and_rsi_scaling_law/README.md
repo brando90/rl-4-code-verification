@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/17_heldout_prediction_of_unseen_experiments_agentic_rl_and_rsi_scaling_law/README.md>
 
-Created 10-18-2026. Strictly $0 API spend, zero model calls. All 5 unit tests pass (`pytest tests/test_heldout_prediction_experiments.py`).
+Created 10-18-2026. Strictly $0 API spend, zero model calls. Corrected the same day: the result that holds is a budget-and-scale curve, not the ρ–H law. See [results.md](results.md).
 
 ## Origin & Motivation
 

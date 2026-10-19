@@ -27,23 +27,16 @@ def test_heldout_summary_file_exists_and_valid():
     assert "suite_3_math_rlvr_loeo" in data
 
 
-def test_suite_1a_unseen_scale_14b_extrapolation():
+def test_budget_curve_predicts_final_rung_without_leaking_it():
     with open(RESULTS_FILE) as f:
         data = json.load(f)
-    s1a = data["suite_1_rsi_lean_code_verification"]["task_1a_unseen_scale_14b"]
-    # Verify that the law trained only on 1.7B, 4B, 8B accurately predicts 14B curves
-    assert s1a["law_rmse_pp"] < 2.0, f"RMSE {s1a['law_rmse_pp']} exceeds 2.0 pp"
-    assert s1a["law_pearson_r"] > 0.90, f"Pearson r {s1a['law_pearson_r']} below 0.90"
-    assert len(s1a["points"]) == 5
-
-
-def test_suite_1c_rsi_horizon_extrapolation():
-    with open(RESULTS_FILE) as f:
-        data = json.load(f)
-    s1c = data["suite_1_rsi_lean_code_verification"]["task_1c_rsi_horizon_extrapolation"]
-    # The law extrapolation from <=50% budget must substantially beat carrying the last observed rung forward
-    assert s1c["law_extrapolation_rmse_pp"] < s1c["last_observed_rmse_pp"]
-    assert s1c["relative_rmse_reduction_pct"] > 30.0, f"Error reduction {s1c['relative_rmse_reduction_pct']}% below 30%"
+    corrected = data["corrected_no_target_leakage"]
+    horizon = corrected["horizon_from_50pct_features"]
+    assert corrected["budget_scale_beats_last_observed"]
+    assert horizon["budget_scale"]["rmse_pp"] < corrected["last_observed_50pct_rmse_pp"]
+    assert corrected["budget_scale_error_reduction_vs_last_observed_pct"] > 30.0
+    assert not corrected["rho_H_beats_budget_scale_on_horizon"]
+    assert not corrected["rho_H_beats_budget_scale_on_14b"]
 
 
 def test_suite_2_agentic_swebench_prediction():
