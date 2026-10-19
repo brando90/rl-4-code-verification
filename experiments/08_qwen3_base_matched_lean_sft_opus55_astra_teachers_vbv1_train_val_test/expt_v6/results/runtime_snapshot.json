@@ -1,5 +1,5 @@
 {
-  "observed_unix": 1792400761.4861667,
+  "observed_unix": 1792400945.8149142,
   "root": "/lfs/skampere1/0/eth127/rl4cv_tiny_training",
   "systems": {
     "1p7_control": {
@@ -257,6 +257,7 @@
         "test_split_opened": false
       },
       "generation_verified": null,
+      "generated_cells": 0,
       "superseded_generation": {
         "label": "1p7_control",
         "stage": "generation",
@@ -510,7 +511,8 @@
         "status": "COMPLETE",
         "test_split_opened": false
       },
-      "generation_verified": null
+      "generation_verified": null,
+      "generated_cells": 0
     },
     "4b_mixed": {
       "stages": {
@@ -596,13 +598,13 @@
         "test_split_opened": false
       },
       "progress": {
-        "step": 94,
-        "loss_tokens": 585854,
+        "step": 100,
+        "loss_tokens": 624911,
         "tiny_batch": false,
-        "train_loss": 0.2516938906618044,
-        "grad_norm": 1.1640625,
-        "learning_rate": 1.9745201970886747e-05,
-        "elapsed_seconds": 3150.376535395044,
+        "train_loss": 0.2121757930252688,
+        "grad_norm": 0.921875,
+        "learning_rate": 1.969691444499215e-05,
+        "elapsed_seconds": 3342.095858769957,
         "peak_gpu_gib": 42.13953113555908,
         "status": "RUNNING",
         "condition": "mixed"
@@ -693,7 +695,7 @@
     "optimizer_or_data_changed": false,
     "created_unix": 1792398221.8068194,
     "coordinator_paused": false,
-    "checked_unix": 1792400742.6065574
+    "checked_unix": 1792400922.614609
   },
   "four_fused_handoff": {
     "original_trainer": {
