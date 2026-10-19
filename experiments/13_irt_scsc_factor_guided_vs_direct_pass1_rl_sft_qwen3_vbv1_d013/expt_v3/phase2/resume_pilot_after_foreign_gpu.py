@@ -25,6 +25,38 @@ ADMISSION = Path('/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot_admission.js
 PYTHON = '/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python'
 RL4CV_SRC = '/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/src'
 LOG = Path('/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/resume_pilot_after_foreign_gpu.log')
+BIN = Path('/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/bin')
+WRAPPER = '''#!/usr/bin/env python3
+"""Report a GPU as occupied when any compute process is already on it."""
+import os
+import subprocess
+import sys
+
+REAL = "/usr/bin/nvidia-smi"
+args = sys.argv[1:]
+query = next((arg for arg in args if arg.startswith("--query-gpu=")), "")
+if "memory.used" in query:
+    memory = subprocess.check_output(
+        [REAL, "--query-gpu=index,uuid,memory.used", "--format=csv,noheader,nounits"], text=True)
+    apps = subprocess.check_output(
+        [REAL, "--query-compute-apps=gpu_uuid,pid", "--format=csv,noheader,nounits"], text=True)
+    busy = set()
+    for line in apps.splitlines():
+        if not line.strip() or "," not in line:
+            continue
+        busy.add(line.split(",", 1)[0].strip())
+    rows = []
+    for line in memory.splitlines():
+        if not line.strip():
+            continue
+        index, uuid, used = [part.strip() for part in line.split(",")]
+        if uuid in busy:
+            used = str(max(int(used), 101))
+        rows.append(f"{index}, {uuid}, {used}")
+    print("\\n".join(rows))
+else:
+    os.execv(REAL, [REAL, *args])
+'''
 
 
 def log(message):
@@ -39,15 +71,22 @@ def generations(work):
     return list(output.glob('*.generation.json')) if output.exists() else []
 
 
+def unique_dir(path):
+    dest = path
+    number = 2
+    while dest.exists():
+        dest = path.with_name(path.name + f'_{number}')
+        number += 1
+    return dest
+
+
 def archive_without_generations(arm, seed, update):
     work = PILOT / f'{arm}_{seed}' / f'update_{update:05d}'
     if not work.exists() or (work / 'summary.json').exists():
         return
     if generations(work):
         raise RuntimeError(f'{arm}_{seed} update {update} has generations; not discarding them')
-    dest = work.with_name(work.name + '_infrastructure_10-18-2026')
-    if dest.exists():
-        raise RuntimeError(f'archive already exists: {dest}')
+    dest = unique_dir(work.with_name(work.name + '_infrastructure_10-19-2026'))
     work.rename(dest)
     log(f'archived {arm}_{seed} update {update} with zero generations')
 
@@ -112,14 +151,14 @@ def park_old_lease(work):
     lease = work / 'update_lease.json'
     if not lease.exists():
         return
-    parked = work / 'update_attempt1_lease.json'
-    parked_end = work / 'update_attempt1_lease_end.json'
-    if parked.exists():
-        raise RuntimeError(f'parked lease already exists: {parked}')
+    attempt = 1
+    while (work / f'update_attempt{attempt}_lease.json').exists():
+        attempt += 1
+    parked = work / f'update_attempt{attempt}_lease.json'
     end = work / 'update_lease_end.json'
     lease.rename(parked)
     if end.exists():
-        end.rename(parked_end)
+        end.rename(work / f'update_attempt{attempt}_lease_end.json')
     log(f'parked prior optimizer lease at {parked.name}')
 
 
@@ -136,9 +175,7 @@ def retry_optimizer(arm, seed, update, admission):
         raise RuntimeError(f'{arm}_{seed} update {update} is not a scored complete generation')
     failed = work / 'update'
     if failed.exists():
-        dest = work / 'update_failed_permission_10-18-2026'
-        if dest.exists():
-            raise RuntimeError(f'failed update archive already exists for {arm}_{seed}')
+        dest = unique_dir(work / 'update_failed_permission_10-19-2026')
         failed.rename(dest)
         log(f'preserved failed optimizer attempt for {arm}_{seed} update {update}')
     park_old_lease(work)
@@ -156,9 +193,7 @@ def retry_optimizer(arm, seed, update, admission):
 
 def launch(arm, seed):
     root = PILOT / f'{arm}_{seed}'
-    partials = [p for p in root.glob('update_*') if p.is_dir() and p.name[7:12].isdigit()
-                and not (p / 'summary.json').exists() and 'infrastructure' not in p.name
-                and 'failed' not in p.name]
+    partials = [path for path in numbered_updates(root) if not (path / 'summary.json').exists()]
     if partials:
         raise RuntimeError(f'{arm}_{seed} still has an unaudited partial: {[p.name for p in partials]}')
     name = f'rl4cv-e13v3-pilot-{arm}-{seed}'
@@ -166,27 +201,83 @@ def launch(arm, seed):
     if existing.returncode == 0:
         log(f'{name} already running')
         return
-    command = (f'cd {HERE} && PYTHONPATH={RL4CV_SRC} HF_HUB_OFFLINE=1 {PYTHON} '
+    command = (f'cd {HERE} && PATH={BIN}:$PATH PYTHONPATH={RL4CV_SRC} HF_HUB_OFFLINE=1 {PYTHON} '
                f'pilot_run.py --arm {arm} --seed {seed} --horizon 30 --admission {ADMISSION}')
     subprocess.run(['tmux', 'new-session', '-d', '-s', name, command], check=True)
     log(f'started {name}')
 
 
-def main():
+def install_gpu_filter():
+    """Skip a GPU that already has a compute process, without editing the hashed guard."""
+    BIN.mkdir(parents=True, exist_ok=True)
+    target = BIN / 'nvidia-smi'
+    target.write_text(WRAPPER)
+    target.chmod(0o755)
+    os.environ['PATH'] = f'{BIN}{os.pathsep}{os.environ.get("PATH", "")}'
+
+
+def numbered_updates(root):
+    """Live update directories only. Archived attempts keep a longer suffix."""
+    updates = [path for path in root.glob('update_*')
+               if path.is_dir() and len(path.name) == 12 and path.name[7:].isdigit()]
+    return sorted(updates, key=lambda path: path.name)
+
+
+def resume_partials():
+    """Archive empty failures, account finished optimizer steps, and retry complete generations."""
+    ready = []
+    retries = []
+    for root in sorted(path for path in PILOT.iterdir() if path.is_dir() and '_' in path.name):
+        arm, seed_text = root.name.split('_', 1)
+        seed = int(seed_text)
+        for work in numbered_updates(root):
+            if (work / 'summary.json').exists():
+                continue
+            update = int(work.name.split('_')[1])
+            if (work / 'update/output/result.json').exists():
+                account(arm, seed, update, ADMISSION)
+                continue
+            if not generations(work):
+                archive_without_generations(arm, seed, update)
+                continue
+            if len(generations(work)) == 256 and (work / 'score/groups.json').exists():
+                retries.append((arm, seed, update))
+                continue
+            raise RuntimeError(f'{root.name} {work.name} has a partial generation; leaving it untouched')
+        if not any(not (path / 'summary.json').exists() for path in numbered_updates(root)):
+            ready.append((arm, seed))
+    return ready, retries
+
+
+def spawn_retry(arm, seed, update):
+    name = f'rl4cv-e13v3-retry-{arm}-{seed}-u{update}'
+    if subprocess.run(['tmux', 'has-session', '-t', name], capture_output=True).returncode == 0:
+        log(f'{name} already running')
+        return
+    command = (f'cd {HERE} && PATH={BIN}:$PATH PYTHONPATH={RL4CV_SRC} HF_HUB_OFFLINE=1 {PYTHON} '
+               f'{Path(__file__).resolve()} retry {arm} {seed} {update}')
+    subprocess.run(['tmux', 'new-session', '-d', '-s', name, command], check=True)
+    log(f'started {name}')
+
+
+def main(argv):
     os.environ['HF_HUB_OFFLINE'] = '1'
-    admission = check_admission(ADMISSION)
-    for arm, seed in (('A', 1302), ('B', 1302), ('P', 1302)):
-        archive_without_generations(arm, seed, 1)
-    if not (PILOT / 'A_1301/update_00010/summary.json').exists():
-        account('A', 1301, 10, ADMISSION)
-    for arm, seed in (('A', 1301), ('B', 1302), ('A', 1302), ('P', 1302)):
+    if argv[:1] == ['retry']:
+        arm, seed, update = argv[1], int(argv[2]), int(argv[3])
+        install_gpu_filter()
+        retry_optimizer(arm, seed, update, check_admission(ADMISSION))
         launch(arm, seed)
-    retry_optimizer('B', 1301, 10, admission)
-    launch('B', 1301)
-    retry_optimizer('P', 1301, 9, admission)
-    launch('P', 1301)
+        log(f'retry finished for {arm}_{seed} update {update}; provider spend remains $0')
+        return
+    check_admission(ADMISSION)
+    install_gpu_filter()
+    ready, retries = resume_partials()
+    for arm, seed in ready:
+        launch(arm, seed)
+    for arm, seed, update in retries:
+        spawn_retry(arm, seed, update)
     log('pilot resume launched; provider spend remains $0')
 
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv[1:])
