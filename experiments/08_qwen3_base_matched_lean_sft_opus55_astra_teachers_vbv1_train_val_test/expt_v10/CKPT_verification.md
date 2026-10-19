@@ -4,15 +4,14 @@
 
 **TLDR:** Check all remaining retained Workbook proof candidates and preserve every failed cell.
 
-Created: 10-19-2026 05:17 PDT. Last updated: 10-19-2026 05:28 PDT.
+Created: 10-19-2026 05:17 PDT. Last updated: 10-19-2026 05:29 PDT.
 ## Goal
 - Current-toolchain kernel checks for 10,995 retained Workbook candidates; audit the 74 unresolved cases.
 ## What ran
 - Remote: `rl4cv-workbook-verify-v10` on skampere1,48slots; `rl4cv-gx10-verify-v10` onGX10,16slots. Native controls passed.
 - Local orchestration: `rl4cv-gx10-receipt-relay-v10` and `rl4cv-v10-progress-publish`; both jobs finish independently if relay stops.
 ## Results
-- Latest snapshot: cluster2794/10,995checked, 2478PASS; GX10204/1,600checked, 80PASS. GX10shard is part of the original cohort.
-- Earlier74-case recovery finished:6kernelPASS awaiting annotation/screens,68excluded.
+- RUNNING, 10-19-2026 05:29 PDT. Cluster: 3,202/10,995 checked, 2,845 PASS with48slots. GX10: 273/1,600 checked, 104 PASS with16slots; setup DONE. The74-case earlier recovery finished with6recoveries pending comment/format reassembly. No new model calls or training.
 ## Stuck / blocked
 - None for execution. Other source ingestion and final training-pool assembly remain pending; no new training.
 ## Next steps
@@ -29,3 +28,4 @@ Created: 10-19-2026 05:17 PDT. Last updated: 10-19-2026 05:28 PDT.
 - 10-19-2026 05:28 PDT -- Installed native Lean4.22.0/Mathlib79e94a0onGX10; import and three kernel controls passed,16CPU slots active in`rl4cv-gx10-verify-v10`. Combined64slot capacity; exact-source success relay and milestone publisher prepared.
 - 10-19-2026 05:28 PDT -- RUNNING, 10-19-2026 05:28 PDT. Cluster: 2,794/10,995 checked, 2,478 PASS with48slots. GX10: 204/1,600 checked, 80 PASS with16slots; setup DONE. The74-case earlier recovery finished with6recoveries pending comment/format reassembly. No new model calls or training.
 - 10-19-2026 05:29 PDT -- Published5a6a187and9a671e4, verified64CPU slots across hosts, imported55then25exact-source GX10successes, and started receipt relay plus milestone publisher. Temporary checkout retained for that live publisher.
+- 10-19-2026 05:29 PDT -- RUNNING, 10-19-2026 05:29 PDT. Cluster: 3,202/10,995 checked, 2,845 PASS with48slots. GX10: 273/1,600 checked, 104 PASS with16slots; setup DONE. The74-case earlier recovery finished with6recoveries pending comment/format reassembly. No new model calls or training.
