@@ -11,8 +11,10 @@ import time
 
 RUN=Path('/lfs/skampere1/0/eth127/rl4cv_tiny_training')
 PATH=RUN/'adaptive_1p7b_campaign/budget.json'
-RATES={'gpt-5.6-terra':dict(input=2.,cached_input=.2,output=12.),'gpt-6-astra':dict(input=10.,cached_input=1.,output=50.)}
-UPPER={'gpt-5.6-terra':dict(input=5.,cached_input=.4,output=18.),'gpt-6-astra':dict(input=25.,cached_input=2.,output=75.)}
+# Sol support authorized for the separate V22 review; verified official pricing
+# 2026-10-19: https://developers.openai.com/api/docs/pricing
+RATES={'gpt-5.6-terra':dict(input=2.,cached_input=.2,output=12.),'gpt-6-astra':dict(input=10.,cached_input=1.,output=50.),'gpt-6.1-sol':dict(input=2.,cached_input=.1,output=10.)}
+UPPER={'gpt-5.6-terra':dict(input=5.,cached_input=.4,output=18.),'gpt-6-astra':dict(input=25.,cached_input=2.,output=75.),'gpt-6.1-sol':dict(input=5.,cached_input=.2,output=15.)}
 
 def estimate(usage,model='gpt-5.6-terra',conservative=False):
     rate=(UPPER if conservative else RATES)[model];usage=usage or {}
