@@ -1,0 +1,40 @@
+{
+  "cross_host": {
+    "automatic_fallback_without_mac": false,
+    "fallback_caveat": "Dynamic SNAP-to-GX10 dispatch currently depends on Mac Brev route or separately established authenticated headless access; primary cluster remains available.",
+    "gx10_direct_snap_tcp22": false,
+    "human_permission_required_for_primary_cluster_runs": false,
+    "mac_brev_ssh_working": true,
+    "snap_brev_installed": false,
+    "snap_brev_public_tcp_port_reachable": true,
+    "snap_gx10_alias_resolution": false,
+    "ssh_private_keys_copied": false
+  },
+  "gx10": {
+    "cuda_driver": "580.142",
+    "disk_available_gib_observed": 813,
+    "docker_socket_access": false,
+    "driver_cuda": "13.0",
+    "full_1p7b_throughput_or_memory_measured": false,
+    "gpu_warning": "PyTorch lists architectures up to sm120/compute120; actual GB10 capability12.1 control passes",
+    "host": "gx10-84b8",
+    "logical_cpus": 20,
+    "memory_gib": 119,
+    "ssh_alias": "cactushacks-gx10",
+    "sudo_noninteractive": false,
+    "tensor_backward_optimizer_control": "PASS",
+    "tiny_qwen_sdpa_backward_optimizer_control": "PASS",
+    "user": "lethan3",
+    "venv_user_install": true
+  },
+  "observed_unix": 1792415405.897729,
+  "snap": {
+    "afs_lab_key_mode": "0600",
+    "afs_lab_key_readable": true,
+    "existing_ssh_master_connected": true,
+    "host": "skampere1.stanford.edu",
+    "kerberos_expires_utc": "2026-10-20 00:53:33 UTC",
+    "private_local_key_staging": "coordinator_owned; not performed by V14",
+    "user": "eth127"
+  }
+}

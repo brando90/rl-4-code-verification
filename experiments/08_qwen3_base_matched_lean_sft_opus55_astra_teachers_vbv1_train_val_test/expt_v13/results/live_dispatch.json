@@ -1,0 +1,25 @@
+{
+  "cases": 2585,
+  "model": "gpt-5.6-terra",
+  "effort": "high",
+  "lanes": 32,
+  "compiler_slots": 16,
+  "max_cli_attempts": 2,
+  "max_candidate_hashes": 4,
+  "compiler_timeout_seconds": 120,
+  "cli_timeout_seconds": 900,
+  "initial_cleanup_cap_usd": 240,
+  "authorized_cleanup_cap_usd": 480,
+  "per_attempt_reserved_usd": 10.0,
+  "per_attempt_observed_stop_usd": 1.2,
+  "rate_source": "local api_budget_guard/config.toml; configured estimate, not invoice",
+  "rates_per_million": {
+    "input": 2.0,
+    "cached_input": 0.2,
+    "output": 12.0
+  },
+  "credential": "explicitly authorized lab key through Codex CLI; private LFS file",
+  "source_sha256": "7fa0255741a2b6046ceda0dfda43664334ca603a0aeca9fc2424af43c849726b",
+  "inspector_sha256": "5dbbdcae75ba8b22911fcb43ab1fcde45a1475cf92742a39a29ebe41116de287",
+  "created_unix": 1792415419.3129294
+}

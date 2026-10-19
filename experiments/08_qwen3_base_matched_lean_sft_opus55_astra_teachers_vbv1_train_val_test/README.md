@@ -121,3 +121,10 @@ Version 1 is complete with PARTIAL selection: 8B step 658 and 14B step 334 are u
 ## Seen-versus-fresh 1.7B diagnostic (10-19-2026)
 
 [Version 7](expt_v7/README.md) runs the user-authorized 50 seen / 50 fresh tiny-function diagnostic on the completed augmented 1.7B checkpoint, with independent Python differential tests and kernel proof checks. This inference-only diagnostic is separate from version 6’s frozen benchmark validation. All 100 checks are complete: 29/50 seen and 9/50 fresh pass. See [diagnostic results](expt_v7/results.md).
+
+## Current 1.7B corpus and adaptive continuation campaign
+
+- [Version12](expt_v12/results.md): the10,940-example current-data continuation is training; the comparable cleaned-data branch has an automatic remote launcher.
+- [Version13](expt_v13/results.md): Terra/high proof cleanup of the original2,585 Python-to-Lean answers, preserving implementation/specification/test statements and requiring exact-source kernel checks.
+- [Version14](expt_v14/results.md): GX10 user environment and public Mathlib/DeepSeek candidates; source validation is separate from training admission.
+- [Version15](expt_v15/results.md): outcome-triggered adaptation toward25% complete validation binary success; initial$300 plus conditional additional$300 API authorization, Terra only, test split sealed.
