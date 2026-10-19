@@ -1,9 +1,38 @@
 {
-  "observed_unix": 1792406016.00668,
+  "observed_unix": 1792407938.7761467,
   "root": "/lfs/skampere1/0/eth127/rl4cv_tiny_training",
   "systems": {
     "1p7_control": {
       "stages": {
+        "score_1": {
+          "label": "1p7_control",
+          "stage": "score_1",
+          "command": [
+            "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/external/veribench_scorer/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/scripts/score_scsc.py",
+            "--job-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/jobs/1p7_control_s1",
+            "--pack",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation_pack",
+            "--name",
+            "1p7_control_s1",
+            "--gold-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/external/veribench_scorer/veribench_dataset/lean_src/veribench",
+            "--lake-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/grading",
+            "--skip-tc",
+            "--out-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/scores/1p7_control_s1"
+          ],
+          "started_unix": 1792407414.3183084,
+          "host": "skampere1.stanford.edu",
+          "cuda_visible_devices": "",
+          "status": "RUNNING",
+          "pid": 790641,
+          "start_ticks": "64600461",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "alive": true
+        },
         "allocation": {
           "gpu": "1",
           "uuid": "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
@@ -14,9 +43,67 @@
           "owner": "eth127",
           "foreign_processes_preserved": true
         },
+        "score_6": {
+          "label": "1p7_control",
+          "stage": "score_6",
+          "command": [
+            "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/external/veribench_scorer/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/scripts/score_scsc.py",
+            "--job-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/jobs/1p7_control_s6",
+            "--pack",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation_pack",
+            "--name",
+            "1p7_control_s6",
+            "--gold-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/external/veribench_scorer/veribench_dataset/lean_src/veribench",
+            "--lake-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/grading",
+            "--skip-tc",
+            "--out-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/scores/1p7_control_s6"
+          ],
+          "started_unix": 1792407414.324394,
+          "host": "skampere1.stanford.edu",
+          "cuda_visible_devices": "",
+          "status": "RUNNING",
+          "pid": 790651,
+          "start_ticks": "64600462",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "alive": true
+        },
         "released": {
           "gpu": "1",
           "released_unix": 1792403753.2043884
+        },
+        "score_3": {
+          "label": "1p7_control",
+          "stage": "score_3",
+          "command": [
+            "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/external/veribench_scorer/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/scripts/score_scsc.py",
+            "--job-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/jobs/1p7_control_s3",
+            "--pack",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation_pack",
+            "--name",
+            "1p7_control_s3",
+            "--gold-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/external/veribench_scorer/veribench_dataset/lean_src/veribench",
+            "--lake-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/grading",
+            "--skip-tc",
+            "--out-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/scores/1p7_control_s3"
+          ],
+          "started_unix": 1792407414.3206804,
+          "host": "skampere1.stanford.edu",
+          "cuda_visible_devices": "",
+          "status": "RUNNING",
+          "pid": 790644,
+          "start_ticks": "64600462",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "alive": true
         },
         "generation_retry": {
           "label": "1p7_control",
@@ -88,6 +175,64 @@
           "ended_unix": 1792400425.3452094,
           "exit_code": 0
         },
+        "score_0": {
+          "label": "1p7_control",
+          "stage": "score_0",
+          "command": [
+            "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/external/veribench_scorer/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/scripts/score_scsc.py",
+            "--job-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/jobs/1p7_control_s0",
+            "--pack",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation_pack",
+            "--name",
+            "1p7_control_s0",
+            "--gold-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/external/veribench_scorer/veribench_dataset/lean_src/veribench",
+            "--lake-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/grading",
+            "--skip-tc",
+            "--out-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/scores/1p7_control_s0"
+          ],
+          "started_unix": 1792407414.317978,
+          "host": "skampere1.stanford.edu",
+          "cuda_visible_devices": "",
+          "status": "RUNNING",
+          "pid": 790640,
+          "start_ticks": "64600461",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "alive": true
+        },
+        "score_2": {
+          "label": "1p7_control",
+          "stage": "score_2",
+          "command": [
+            "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/external/veribench_scorer/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/scripts/score_scsc.py",
+            "--job-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/jobs/1p7_control_s2",
+            "--pack",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation_pack",
+            "--name",
+            "1p7_control_s2",
+            "--gold-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/external/veribench_scorer/veribench_dataset/lean_src/veribench",
+            "--lake-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/grading",
+            "--skip-tc",
+            "--out-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/scores/1p7_control_s2"
+          ],
+          "started_unix": 1792407414.3199677,
+          "host": "skampere1.stanford.edu",
+          "cuda_visible_devices": "",
+          "status": "RUNNING",
+          "pid": 790645,
+          "start_ticks": "64600462",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "alive": true
+        },
         "smoke": {
           "label": "1p7_control",
           "stage": "smoke",
@@ -107,6 +252,117 @@
           "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
           "ended_unix": 1792397443.55158,
           "exit_code": 0
+        },
+        "score_5": {
+          "label": "1p7_control",
+          "stage": "score_5",
+          "command": [
+            "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/external/veribench_scorer/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/scripts/score_scsc.py",
+            "--job-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/jobs/1p7_control_s5",
+            "--pack",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation_pack",
+            "--name",
+            "1p7_control_s5",
+            "--gold-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/external/veribench_scorer/veribench_dataset/lean_src/veribench",
+            "--lake-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/grading",
+            "--skip-tc",
+            "--out-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/scores/1p7_control_s5"
+          ],
+          "started_unix": 1792407414.3239625,
+          "host": "skampere1.stanford.edu",
+          "cuda_visible_devices": "",
+          "status": "RUNNING",
+          "pid": 790650,
+          "start_ticks": "64600462",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "alive": true
+        },
+        "score_7": {
+          "label": "1p7_control",
+          "stage": "score_7",
+          "command": [
+            "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/external/veribench_scorer/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/scripts/score_scsc.py",
+            "--job-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/jobs/1p7_control_s7",
+            "--pack",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation_pack",
+            "--name",
+            "1p7_control_s7",
+            "--gold-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/external/veribench_scorer/veribench_dataset/lean_src/veribench",
+            "--lake-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/grading",
+            "--skip-tc",
+            "--out-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/scores/1p7_control_s7"
+          ],
+          "started_unix": 1792407414.3251975,
+          "host": "skampere1.stanford.edu",
+          "cuda_visible_devices": "",
+          "status": "RUNNING",
+          "pid": 790652,
+          "start_ticks": "64600462",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "alive": true
+        },
+        "materialize": {
+          "label": "1p7_control",
+          "stage": "materialize",
+          "command": [
+            "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+            "-m",
+            "rl4cv.veribench.jobs",
+            "--gen",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/raw.jsonl",
+            "--out-root",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/jobs",
+            "--name",
+            "1p7_control"
+          ],
+          "started_unix": 1792407413.3993137,
+          "host": "skampere1.stanford.edu",
+          "cuda_visible_devices": "",
+          "status": "DONE",
+          "pid": 790609,
+          "start_ticks": "64600369",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "ended_unix": 1792407414.31589,
+          "exit_code": 0
+        },
+        "score_4": {
+          "label": "1p7_control",
+          "stage": "score_4",
+          "command": [
+            "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/external/veribench_scorer/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/scripts/score_scsc.py",
+            "--job-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/jobs/1p7_control_s4",
+            "--pack",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation_pack",
+            "--name",
+            "1p7_control_s4",
+            "--gold-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/external/veribench_scorer/veribench_dataset/lean_src/veribench",
+            "--lake-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/grading",
+            "--skip-tc",
+            "--out-dir",
+            "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation/1p7_control/scores/1p7_control_s4"
+          ],
+          "started_unix": 1792407414.3218427,
+          "host": "skampere1.stanford.edu",
+          "cuda_visible_devices": "",
+          "status": "RUNNING",
+          "pid": 790647,
+          "start_ticks": "64600462",
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "alive": true
         },
         "generation": {
           "label": "1p7_control",
@@ -414,11 +670,12 @@
           "started_unix": 1792403868.7534914,
           "host": "skampere1.stanford.edu",
           "cuda_visible_devices": "",
-          "status": "RUNNING",
+          "status": "DONE",
           "pid": 2696167,
           "start_ticks": "64245905",
           "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
-          "alive": true
+          "ended_unix": 1792407411.779311,
+          "exit_code": 0
         },
         "training": {
           "label": "1p7_mixed",
@@ -573,11 +830,12 @@
           "started_unix": 1792403868.7572336,
           "host": "skampere1.stanford.edu",
           "cuda_visible_devices": "",
-          "status": "RUNNING",
+          "status": "DONE",
           "pid": 2696173,
           "start_ticks": "64245905",
           "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
-          "alive": true
+          "ended_unix": 1792407317.472235,
+          "exit_code": 0
         },
         "materialize": {
           "label": "1p7_mixed",
@@ -902,13 +1160,13 @@
         "test_split_opened": false
       },
       "progress": {
-        "step": 300,
-        "loss_tokens": 1788161,
-        "tiny_batch": true,
-        "train_loss": 0.08149016473697841,
-        "grad_norm": 2.296875,
-        "learning_rate": 1.61424290080639e-05,
-        "elapsed_seconds": 8037.76979303197,
+        "step": 391,
+        "loss_tokens": 2253869,
+        "tiny_batch": false,
+        "train_loss": 0.21287849250972718,
+        "grad_norm": 1.1875,
+        "learning_rate": 1.3922239096656751e-05,
+        "elapsed_seconds": 9996.58066423994,
         "peak_gpu_gib": 42.13953113555908,
         "status": "RUNNING",
         "condition": "mixed",
@@ -948,7 +1206,11 @@
     "source_sha256": "53178582c7d6cceb3a0ac2eaa6f35463365e6b8b600a8d8c0171882b131ecb9c",
     "status": "RUNNING"
   },
-  "terminal": null,
+  "terminal": {
+    "status": "RUNNING",
+    "phase": "FUSED_TRAINING",
+    "planned_4b_handoff": true
+  },
   "preparation_exit": {
     "exit_code": 0
   },
@@ -1075,7 +1337,7 @@
     "cuda_context_verified": true
   },
   "primary_recovery": {
-    "status": "WAITING_FOR_ORIGINAL_SCORING",
+    "status": "SCORING",
     "generated_cells": 1080
   },
   "four_fused_restore": {
@@ -1086,5 +1348,20 @@
     "cpu_cuda_rng_restored": true,
     "pid": 976411,
     "verified_unix": 1792401268.0372891
+  },
+  "original_supervisor_terminal": {
+    "status": "FAILED",
+    "failures": [
+      {
+        "label": "1p7_control",
+        "error": "1p7_control generation exited 1; see /lfs/skampere1/0/eth127/rl4cv_tiny_training/execution/1p7_control/generation.log"
+      },
+      {
+        "label": "4b_mixed",
+        "error": "4b_mixed training exited -15; see /lfs/skampere1/0/eth127/rl4cv_tiny_training/execution/4b_mixed/training.log"
+      }
+    ],
+    "ended_unix": 1792407411.7828999,
+    "analysis": "pending coordinator reconciliation"
   }
 }
