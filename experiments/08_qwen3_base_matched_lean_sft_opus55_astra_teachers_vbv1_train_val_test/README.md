@@ -117,3 +117,7 @@ Version 1 is complete with PARTIAL selection: 8B step 658 and 14B step 334 are u
 ## Concise curriculum and additional 1.7B / 4B training (10-19-2026)
 
 [Version 5](expt_v5/results.md) contains 500 compiled tiny Python-to-Lean training examples. [Version 6](expt_v6/README.md) tests the user-requested parallel 1.7B replay control, 1.7B augmented condition and 4B augmented condition, with full validation and the test split unopened. Before training, version 6 adds the required anonymous executable example declaration to each tiny answer and repeats compilation, kernel, differential, formatting and overlap checks; the original version 5 remains pristine. See the [live training results](expt_v6/results.md).
+
+## Seen-versus-fresh 1.7B diagnostic (10-19-2026)
+
+[Version 7](expt_v7/README.md) runs the user-authorized 50 seen / 50 fresh tiny-function diagnostic on the completed augmented 1.7B checkpoint, with independent Python differential tests and kernel proof checks. This inference-only diagnostic is separate from version 6’s frozen benchmark validation. All 100 checks are complete: 29/50 seen and 9/50 fresh pass. See [diagnostic results](expt_v7/results.md).

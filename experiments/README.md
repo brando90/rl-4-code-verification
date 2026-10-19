@@ -49,3 +49,7 @@ Commits, issue comments, earlier decision entries and experiment 01's own files 
 | 06 Solve VeriBench (had no folder) | 02D | `02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_d_train_forecast_selected_env_report_vbv1` |
 | 05 Cross-family composition and alignment | idea | `ideas/cross_family_env_mixtures_alignment` |
 | 07 Coverage gating | 03 | `03_rl_on_never_solved_lean_prompts_binary_vs_dense_reward_eval_vbv1` |
+
+### 1.7B warm-start transfer diagnostic (10-19-2026)
+
+[08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v7](08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v7/README.md) completed the authorized 50 seen / 50 fresh tiny-function diagnostic on the augmented 1.7B checkpoint: 29/50 seen and 9/50 fresh pass all checks. It checks format, Lean compilation, kernel proofs, and Python behavior, separately from the ongoing version-6 benchmark validation.
