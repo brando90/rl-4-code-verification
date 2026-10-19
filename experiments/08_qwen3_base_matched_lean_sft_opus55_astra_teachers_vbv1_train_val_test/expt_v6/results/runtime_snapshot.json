@@ -1,5 +1,5 @@
 {
-  "observed_unix": 1792410245.1740446,
+  "observed_unix": 1792410850.238289,
   "root": "/lfs/skampere1/0/eth127/rl4cv_tiny_training",
   "systems": {
     "1p7_control": {
@@ -67,11 +67,12 @@
           "started_unix": 1792407414.324394,
           "host": "skampere1.stanford.edu",
           "cuda_visible_devices": "",
-          "status": "RUNNING",
+          "status": "DONE",
           "pid": 790651,
           "start_ticks": "64600462",
           "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
-          "alive": true
+          "ended_unix": 1792410847.3826149,
+          "exit_code": 0
         },
         "released": {
           "gpu": "1",
@@ -1167,13 +1168,13 @@
         "test_split_opened": false
       },
       "progress": {
-        "step": 500,
-        "loss_tokens": 2901446,
+        "step": 523,
+        "loss_tokens": 3029559,
         "tiny_batch": false,
-        "train_loss": 0.21526017483024817,
-        "grad_norm": 1.2265625,
-        "learning_rate": 1.0382206089539968e-05,
-        "elapsed_seconds": 12309.97242690099,
+        "train_loss": 0.16688309426563397,
+        "grad_norm": 1.1171875,
+        "learning_rate": 9.659708541621288e-06,
+        "elapsed_seconds": 12905.917397479992,
         "peak_gpu_gib": 44.7767219543457,
         "status": "RUNNING",
         "condition": "mixed",
@@ -1344,8 +1345,12 @@
     "cuda_context_verified": true
   },
   "primary_recovery": {
-    "status": "SCORING",
-    "generated_cells": 1080
+    "status": "DONE",
+    "label": "1p7_control",
+    "generated_cells": 1080,
+    "scoring_jobs_complete": 8,
+    "identical_infrastructure_retry": true,
+    "ended_unix": 1792410847.384528
   },
   "four_fused_restore": {
     "status": "PASS",
