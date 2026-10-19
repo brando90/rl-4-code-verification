@@ -2,26 +2,25 @@
 
 **Doc link:** [live results](results.md)
 
-**TLDR:** First run complete at11.11%; final cleanup and GX10 second-run preparation are ready. Cluster reauthentication is required before new cleanup calls and checkpoint transfer can begin.
+**TLDR:** User stopped further generation and requested a fresh base-initialized1.7B run using every already accepted no-automation, sketched/commented example. SNAP access is restored; the training owner is preparing V20 on free GPU1.
 
 ## Current state
-- Updated 10-19-2026 11:09 PDT. One local writer owns source publication in `.worktrees/rl4cv-sol-repair-10-19-2026`; both result publishers are active and share a process lock.
-- Remote RUN `/lfs/skampere1/0/eth127/rl4cv_tiny_training`; GX10 `/home/lethan3/workspace/rl4cv-gx10/experiment-v19`.
-- V12 current COMPLETE: 5,470 updates, 120/1,080 validation successes; independent full recomputation PASS. Raw/scored outputs are immutable. Full 851-file compiler diagnosis is complete.
-- V13 DONE_PARTIAL: 818 replacements +227 unchanged +1,540 flagged fallbacks, all2,585 accounted. This historical phase remains immutable.
-- V12 partial-cleanup training prepared but received ZERO optimizer updates. Watcher2110195 fenced for GX10 migration; receipt in V12/results/gx10_migration_fence.json.
-- V18 source/protocol/watch/finalizer ready; local filesystem-only deployment watcher waits for the existing SSH control socket. No V18 paid calls launched at last verified observation.
-- V19 prospective final-cleanup training protocol and single streaming relay are ready. Real full1.7B longest-sequence GPU control has not run; earlier tiny-model GPU installation controls passed.
-- All sufficiently large inspected SNAP GPUs were occupied by foreign jobs. GX10 reachable with about115GiB memory available. User explicitly authorized GX10 and Astra code porting.
-- Global paid ceiling900, cleanup780/adaptation120 including prior charges and reservations; campaign_budget.py preserves all old ledger entries. Teacher model Terra/high; one Astra/high code-porting exception only.
-- V14 admission provides678 eligible examples via latest_admission.json; retain separate source/format/exclusion evidence.
-- SNAP authenticated master dropped around10:40PDT. One human login is pending in `tmux attach -t ssh-tiny-training`; press Enter then complete the CS password prompts. No automatic gateway login retries.
-- Remote V15 recovery watch and waiting V17 adaptive process last verified before disconnection; current liveness is unknown until login returns. Do not report a waiting receipt-only trial as new training.
+- Updated 10-19-2026: user superseded full-cleanup/V19 plan: STOP further generation; train fresh Qwen3-1.7B base on all existing accepted no-automation examples with header proof sketch and inline comments.
+- Owner checkout `.worktrees/rl4cv-sol-repair-10-19-2026`; root owns publication. No teacher API calls are authorized to continue under this stop.
+- SNAP master restored at `tmp/ssh-tiny-training/control`. Remote RUN `/lfs/skampere1/0/eth127/rl4cv_tiny_training`.
+- V12 first condition complete:120/1,080 validation successes. V13 historical818 Terra/high replacements;227 unchanged proofs audited. V18 now1,050 kernel-verified originals before separate comment admission; generation STOPPED, current usage settled, no retry.
+- Cleanup owner freezes accepted-only current snapshot immediately. Ineligible original fallbacks are excluded; full2,585 cleanup no longer blocks training.
+- Training owner prepares new V20 namespace, freezes existing eligible pools, original base model and fresh optimizer, and acquires GPU1 on skampere1. Not V6 mixed/SFT weights.
+- GPU1 disposable control PASS: one longest+shortest update, finite loss,38.36GiB peak allocated; released. This used old initialization and is not V20 production.
+- V19 selectors/cross-host production paths are being fenced by their owners. V15 adaptive coordinator already fenced; failed V17 update37/OOM, failed legacyV18 and unstarted legacyV19 evidence preserved.
+- GX10 Brev gateway unavailable before authentication. Evaluation transfer complete; initial model transfer partial and resumable. This does not block fresh SNAP training.
+- V14 public admission678 rows exists; all source pools still need exact user-requested V20 no-automation+comment eligibility and global screens/deduplication before launch.
+- Global ceiling900 remains historical spending limit; user now stopped generation. No new model calls for repair or annotations.
 ## Next commands
-- After the control socket returns, notify all three owners; their local deployment watchers launch V18 cleanup and the single V19 Astra/relay route. Avoid duplicate deployment.
-- Inspect V15 outer watch and V17 manifests/liveness; preserve healthy remote jobs and fence only this campaign's idle conflicting GPU dispatcher if necessary.
-- Run V19 full-model disposable control, assemble accepted-only V18 final dataset, freeze inputs, launch actual second training and finish all1,080 validation cells and scoring.
-- Publish compact task/cell tables, source, amendments and verification receipts. Deployment of the updated local V15 source waits for restored SSH and a safe owner restart.
+- Verify owners fenced all stale dispatchers and stopped paid generation; freeze accepted-only source datasets with hashes and retained source/kernel/comment receipts.
+- Train new V20 from original pretrained Qwen3-1.7B weights on GPU1 with fresh optimizer; verify actual first optimizer update and live GPU context.
+- Run full frozen135 validation tasks x8 attempts; score all1,080 cells, preserve every failure and report frozen scorer outcomes. Test222 remains sealed.
+- Maintain remote death/stall watchers and publish prospective protocol, dataset counts/exclusions and measured progress; never label preparation as training.
 ## Log
 -10-19-202606:14PDT -- Frozeninitialcampaigncontract; prior68repaircompletionpublished9f9f163; currenttrainingandcleanupremoteownerspreparing.
 - 10-19-2026 10:30 PDT -- Recovered orchestration, verified actual120/1080recompute, froze partialcleanup and releasedsecondpreparation; newpublicdataadmission ready.
@@ -29,3 +28,4 @@
 - 10-19-2026 11:05 PDT -- Full GX10 Linux verification PASS:1360tests+6subtests,30skips; native kernel and six pipeline controls PASS. Full second-run watchers armed; publication prepares exact owned metadata. Cluster login remains the external prerequisite.
 - 10-19-2026 11:07 PDT -- LANDED159b1e5b on origin/main: first-run1080cells, finalpartialcleanup/admission tables, verification and complete waiting-auth launchers. Owned version12–19 files mirrored into canonical checkout without changing foreign parent/source edits.
 - 10-19-2026 11:09 PDT -- Source/receipts pushed through e8fc1590; automatic publishers rl4cv-1p7b-campaign-publish-v15 and rl4cv-final-result-publish-v19 are active at120-second cadence with shared Git locking and zero missing-socket network fallback. Local relay timers are kept awake for12hours with named caffeinate session. Human password login still pending; zero final-condition optimizer updates.
+- 10-19-2026 -- User override: stopped paid generation, froze partial accepted cleanup, superseded matched V19 with fresh-base V20 training; instructed all owners to fence stale launchers and prioritize actual GPU1 training.
