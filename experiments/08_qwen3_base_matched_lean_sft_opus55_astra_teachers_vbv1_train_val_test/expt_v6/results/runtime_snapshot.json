@@ -1,5 +1,5 @@
 {
-  "observed_unix": 1792403892.4887164,
+  "observed_unix": 1792404919.4772904,
   "root": "/lfs/skampere1/0/eth127/rl4cv_tiny_training",
   "systems": {
     "1p7_control": {
@@ -490,11 +490,12 @@
           "started_unix": 1792403868.7522671,
           "host": "skampere1.stanford.edu",
           "cuda_visible_devices": "",
-          "status": "RUNNING",
+          "status": "DONE",
           "pid": 2696164,
           "start_ticks": "64245905",
           "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
-          "alive": true
+          "ended_unix": 1792404898.6887474,
+          "exit_code": 0
         },
         "smoke": {
           "label": "1p7_mixed",
@@ -896,13 +897,13 @@
         "test_split_opened": false
       },
       "progress": {
-        "step": 208,
-        "loss_tokens": 1243877,
-        "tiny_batch": false,
-        "train_loss": 0.2923897013128916,
-        "grad_norm": 1.40625,
-        "learning_rate": 1.826543259306491e-05,
-        "elapsed_seconds": 5949.4065926709445,
+        "step": 249,
+        "loss_tokens": 1491141,
+        "tiny_batch": true,
+        "train_loss": 0.19013631335786874,
+        "grad_norm": 3.140625,
+        "learning_rate": 1.737048796969786e-05,
+        "elapsed_seconds": 6972.787557026953,
         "peak_gpu_gib": 42.13953113555908,
         "status": "RUNNING",
         "condition": "mixed",
