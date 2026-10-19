@@ -4,8 +4,8 @@
 
 **TLDR:** The paired pilot is resuming after the six trajectory processes exited on 10-18-2026. Finished generations are kept. Seed 1302 had no generations and starts update 1 again when a GPU is free. API spend remains $0. No held-out pass@1 result yet.
 
-**Status:** PILOT_RESUMING
-**Last updated:** 10-18-2026 14:08 PDT
+**Status:** PILOT_RUNNING
+**Last updated:** 10-18-2026 19:26 PDT
 
 The exact retained 256-rollout train cohort has been assembled in v3. Its 255 measured scores reproduce 21 positive factored rewards, 14/31 active complete groups and 112/248 nonzero-advantage slots. The incomplete eight-response group remains masked. These are fixed-cohort diagnostics, not evidence of learning or held-out performance (p-val=n/a).
 
@@ -42,7 +42,7 @@ The paired runner and validation adapter are implemented and pass 75 focused tes
 [Google findings companion](https://docs.google.com/document/d/1xkEn8vW800jBucuJANuXD8ph-sMQMofwNZw_nJzjJls/edit?tab=t.sglsb683kh5u): the dated 19:14 PDT evidence update was read back exactly, with previous notes and existing permissions preserved. [Verified background controllers](results/background_controllers.json) record the queued pilot, progress writer and terminal publication watcher; the dispatcher is waiting on the live technical follow-through and has not admitted pilot generation. Source implementation is pushed at `9845810`; [the current publisher receipt](results/background_publisher_v2.json) supersedes the original publisher PID.
 
 <!-- LIVE START -->
-Live receipt status (10-18-2026 14:08 PDT): **PILOT_RESUMING**. At 13:10 PDT the six trajectories were INCOMPLETE. Seed 1301 has accounted updates through 9 for the strict and factored arms and through 8 for the placebo arm; the next strict optimizer step already finished and is being exported. API spend: **$0**.
+Live receipt status (10-18-2026 19:26 PDT): **PILOT_RUNNING**. Factored seed 1301 update 10 is accounted. Placebo seed 1301 update 9 is in its optimizer step. Strict seed 1301 update 11 is loading on GPU 5. Five empty permission-failed attempts were archived and those arms were restarted. API spend: **$0**.
 
 | Arm / seed | Completed updates | Latest observed train reward | Active / usable groups | Gradient norm |
 |---|---:|---:|---:|---:|
