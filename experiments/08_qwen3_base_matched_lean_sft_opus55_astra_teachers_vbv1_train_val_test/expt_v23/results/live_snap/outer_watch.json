@@ -1,0 +1,140 @@
+{
+  "active_children": [
+    {
+      "alive": true,
+      "boot_matches": true,
+      "command": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python /lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v23/entry.py --condition base ",
+      "identity_matches": true,
+      "pid": 763177,
+      "start_ticks": "68214407"
+    }
+  ],
+  "base_terminal": null,
+  "dispatcher": {
+    "alive": true,
+    "command": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python /lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v23/dispatch.py ",
+    "identity_matches": true,
+    "pid": 754560,
+    "start_ticks": "68204413"
+  },
+  "dispatcher_alive": true,
+  "first_optimizer_update": {
+    "attention": "sdpa",
+    "autocast_dtype": "bfloat16",
+    "completed_unix": 1792443573.217828,
+    "condition": "base",
+    "cuda_visible_devices": "4",
+    "elapsed_seconds": 0.8808408249169588,
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "grad_norm": 14.264199256896973,
+    "host": "skampere1.stanford.edu",
+    "initial": "/lfs/skampere1/0/brando9/rl4cv_e08/cache/huggingface/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+    "initial_manifest_sha256": "3874aba86795ee1d2c5d519599309db89ef287fb9812313dffed6f9e0a4b0358",
+    "learning_rate": 1.0000000000000002e-06,
+    "loss_tokens": 454,
+    "optimizer": "fresh AdamW CUDA float32",
+    "parameter_dtype": "float32",
+    "peak_gpu_gib": 27.983323097229004,
+    "pid": 763177,
+    "planned_loss_tokens": 3097879,
+    "planned_rows": 4193,
+    "planned_steps": 2097,
+    "pool_counts": "{\"workbook\": 2}",
+    "rows_consumed": 2,
+    "seed": 20261019,
+    "smoke": false,
+    "source_sha256": {
+      "PROTOCOL.md": "7dc7a5146e7705d51b948b3c52ce4c6b98bda789fc0cb15d4bf7bc11c9912dfd",
+      "assemble.py": "711d08e31bd6391fc0294c20750adbd39d6a3b821c5541086f9c3f730c2a3190",
+      "pipeline.py": "ce0ee35cbe547b171b9d57d34c9aba0d51e694f8c7cb40ac5b8e458644b40158",
+      "train.py": "3f3ee2244a6a72d430d539b7e0b600a5f5bf7086f183a29f50ed1a2279be337f"
+    },
+    "status": "PASS",
+    "step": 1,
+    "test_split_opened": false,
+    "torch": "2.7.1+cu128",
+    "train_loss": 1.6805059849428186,
+    "training_sha256": "215cd07d71504dd38818ab15db259fda99e6e8dcad56d09a8aed302e8fdde832",
+    "transformers": "4.55.4"
+  },
+  "observed_unix": 1792443590.2922215,
+  "observer_pid": 758166,
+  "pipeline": {
+    "alive": true,
+    "command": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python /lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v23/pipeline.py --condition base --gpu 4 ",
+    "identity_matches": true,
+    "pid": 760407,
+    "start_ticks": "68211956"
+  },
+  "pipeline_alive": true,
+  "policy": "Observe only; preserve healthy descendants; never reset optimizer after updates.",
+  "progress": {
+    "elapsed_seconds": 17.69684555393178,
+    "grad_norm": 6.238734722137451,
+    "learning_rate": 6.050713730265126e-06,
+    "loss_tokens": 26381,
+    "observed_unix": 1792443590.033413,
+    "peak_gpu_gib": 40.829068660736084,
+    "pool_counts": "{\"public_proof\": 6, \"python\": 6, \"repair\": 1, \"tiny\": 4, \"workbook\": 19}",
+    "rows_consumed": 36,
+    "status": "RUNNING",
+    "step": 18,
+    "train_loss": 1.0807775642393882
+  },
+  "progress_age_seconds": 0.25880861282348633,
+  "root": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v23",
+  "stages": [
+    {
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "command": [
+        "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+        "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v23/entry.py",
+        "--condition",
+        "base",
+        "--smoke"
+      ],
+      "cuda_visible_devices": "4",
+      "ended_unix": 1792443553.771367,
+      "exit_code": 0,
+      "host": "skampere1.stanford.edu",
+      "label": "v23_base",
+      "path": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v23/execution/v23_base/smoke.json",
+      "pid": 760442,
+      "stage": "smoke",
+      "start_ticks": "68212011",
+      "started_unix": 1792443529.8141444,
+      "status": "DONE"
+    },
+    {
+      "actual_process": {
+        "alive": true,
+        "boot_matches": true,
+        "command": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python /lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v23/entry.py --condition base ",
+        "identity_matches": true,
+        "pid": 763177,
+        "start_ticks": "68214407"
+      },
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "command": [
+        "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+        "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v23/entry.py",
+        "--condition",
+        "base"
+      ],
+      "cuda_visible_devices": "4",
+      "host": "skampere1.stanford.edu",
+      "label": "v23_base",
+      "path": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v23/execution/v23_base/training.json",
+      "pid": 763177,
+      "stage": "training",
+      "start_ticks": "68214407",
+      "started_unix": 1792443553.7734697,
+      "status": "RUNNING"
+    }
+  ],
+  "stale_training_warning": false,
+  "state": "PIPELINE_ACTIVE",
+  "summary": null,
+  "terminal": null,
+  "test_split_opened": false
+}
