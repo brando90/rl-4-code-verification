@@ -9,15 +9,15 @@
   },
   "estimate_not_invoice": true,
   "reservations": {
-    "v13/existing_0417/0": {
+    "v13/existing_1822/0": {
       "purpose": "cleanup",
       "usd": 10.0,
-      "time": 1792420435.846386
+      "time": 1792420550.8014739
     },
-    "v13/existing_0214/0": {
+    "v13/existing_1732/0": {
       "purpose": "cleanup",
       "usd": 10.0,
-      "time": 1792420453.191224
+      "time": 1792420572.5954967
     }
   },
   "charges": {
@@ -6628,6 +6628,62 @@
       },
       "unknown_usage": false,
       "time": 1792420453.1326926
+    },
+    "v13/existing_0214/0": {
+      "purpose": "cleanup",
+      "usd": 0.3021178,
+      "base_rate_estimate_usd": 0.1443924,
+      "usage": {
+        "input_tokens": 231009,
+        "cached_input_tokens": 198152,
+        "output_tokens": 3254,
+        "reasoning_output_tokens": 1062,
+        "total_tokens": 234263
+      },
+      "unknown_usage": false,
+      "time": 1792420504.6004221
+    },
+    "v13/existing_0417/0": {
+      "purpose": "cleanup",
+      "usd": 0.2680302,
+      "base_rate_estimate_usd": 0.1373706,
+      "usage": {
+        "input_tokens": 161634,
+        "cached_input_tokens": 137523,
+        "output_tokens": 5137,
+        "reasoning_output_tokens": 2784,
+        "total_tokens": 166771
+      },
+      "unknown_usage": false,
+      "time": 1792420509.1975427
+    },
+    "v13/existing_0104/0": {
+      "purpose": "cleanup",
+      "usd": 0.2302652,
+      "base_rate_estimate_usd": 0.1114856,
+      "usage": {
+        "input_tokens": 181588,
+        "cached_input_tokens": 157968,
+        "output_tokens": 2721,
+        "reasoning_output_tokens": 812,
+        "total_tokens": 184309
+      },
+      "unknown_usage": false,
+      "time": 1792420550.744945
+    },
+    "v13/existing_1311/0": {
+      "purpose": "cleanup",
+      "usd": 0.3223078,
+      "base_rate_estimate_usd": 0.15847239999999999,
+      "usage": {
+        "input_tokens": 290033,
+        "cached_input_tokens": 260772,
+        "output_tokens": 3983,
+        "reasoning_output_tokens": 1229,
+        "total_tokens": 294016
+      },
+      "unknown_usage": false,
+      "time": 1792420572.5476136
     }
   },
   "events": [
@@ -13399,6 +13455,62 @@
       "purpose": "cleanup",
       "usd": 10.0,
       "time": 1792420453.191225
+    },
+    {
+      "event": "settle",
+      "identity": "v13/existing_0214/0",
+      "purpose": "cleanup",
+      "usd": 0.3021178,
+      "time": 1792420504.6004248
+    },
+    {
+      "event": "reserve",
+      "identity": "v13/existing_0104/0",
+      "purpose": "cleanup",
+      "usd": 10.0,
+      "time": 1792420504.6511083
+    },
+    {
+      "event": "settle",
+      "identity": "v13/existing_0417/0",
+      "purpose": "cleanup",
+      "usd": 0.2680302,
+      "time": 1792420509.1975448
+    },
+    {
+      "event": "reserve",
+      "identity": "v13/existing_1311/0",
+      "purpose": "cleanup",
+      "usd": 10.0,
+      "time": 1792420509.2499728
+    },
+    {
+      "event": "settle",
+      "identity": "v13/existing_0104/0",
+      "purpose": "cleanup",
+      "usd": 0.2302652,
+      "time": 1792420550.7449474
+    },
+    {
+      "event": "reserve",
+      "identity": "v13/existing_1822/0",
+      "purpose": "cleanup",
+      "usd": 10.0,
+      "time": 1792420550.8014748
+    },
+    {
+      "event": "settle",
+      "identity": "v13/existing_1311/0",
+      "purpose": "cleanup",
+      "usd": 0.3223078,
+      "time": 1792420572.5476162
+    },
+    {
+      "event": "reserve",
+      "identity": "v13/existing_1732/0",
+      "purpose": "cleanup",
+      "usd": 10.0,
+      "time": 1792420572.5954983
     }
   ]
 }
