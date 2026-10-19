@@ -1,0 +1,52 @@
+{
+  "counts": {
+    "workbook": {
+      "rows": 12823,
+      "changed": 2661,
+      "no_qualifying_alternative": 9012,
+      "flagged_for_sol": 1457
+    },
+    "tiny": {
+      "rows": 500,
+      "changed": 0,
+      "no_qualifying_alternative": 500,
+      "flagged_for_sol": 0
+    }
+  },
+  "avoid_tactics": [
+    "exact?",
+    "apply?",
+    "simp?",
+    "simpa?",
+    "simp_all",
+    "simp",
+    "simpa",
+    "omega",
+    "aesop",
+    "aesop?",
+    "linarith",
+    "nlinarith",
+    "ring_nf",
+    "ring",
+    "norm_num",
+    "decide",
+    "native_decide",
+    "tauto",
+    "positivity",
+    "field_simp",
+    "fun_prop",
+    "omega?",
+    "exact_mod_cast",
+    "norm_cast",
+    "norm_num1",
+    "decide!"
+  ],
+  "policy": "prefer an existing automation-free proof for the identical statement; retain and flag if none exists",
+  "initial_model": "gpt-5.6-terra",
+  "initial_effort": "medium",
+  "review_model": "gpt-6.1-sol",
+  "review_effort": "high",
+  "proof_creation": false,
+  "source_sha256": "577430f83caf094f1d9b99c9a3d18d92130fa21e74939d1b528b39c1927a7b0c",
+  "selector_sha256": "b00357ea4f391210f3bf477ff9824fe924edb8ec203507cef00969d948a961af"
+}
