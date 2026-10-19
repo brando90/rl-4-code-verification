@@ -1,32 +1,34 @@
 {
-  "observed": "10-19-2026 06:29 PDT",
+  "observed": "10-19-2026 06:31 PDT",
   "current": {
-    "step": 807,
-    "loss_tokens": 1978901,
-    "train_loss": 0.5139670313149691,
-    "grad_norm": 5.956655502319336,
-    "learning_rate": 1.925125720999423e-05,
-    "elapsed_seconds": 1118.9394620179664,
+    "step": 905,
+    "loss_tokens": 2203750,
+    "train_loss": 0.23772443363375462,
+    "grad_norm": 2.35058331489563,
+    "learning_rate": 1.9030114663020333e-05,
+    "elapsed_seconds": 1245.1194426310249,
     "peak_gpu_gib": 53.922696590423584,
-    "rows_consumed": 1614,
-    "pool_counts": "{\"python\": 381, \"repair\": 9, \"tiny\": 74, \"workbook\": 1150}",
+    "rows_consumed": 1810,
+    "pool_counts": "{\"python\": 428, \"repair\": 10, \"tiny\": 83, \"workbook\": 1289}",
     "status": "RUNNING",
-    "observed_unix": 1792416539.091947
+    "observed_unix": 1792416665.271999
   },
   "cleaned": {},
   "cleanup": {
     "declared": 2585,
     "states": {
-      "PENDING": 2130,
-      "DONE": 213,
+      "PENDING": 2111,
+      "DONE": 231,
       "UNCHANGED": 227,
-      "RUNNING": 15
+      "RUNNING": 14,
+      "FALLBACK": 1,
+      "BUDGET_HOLD": 1
     },
-    "verified": 205,
-    "observed_unix": 1792416525.1787207,
-    "conservative_charge_usd": 82.6534168,
-    "base_rate_estimate_usd": 41.3038884,
-    "reserved_usd": 150.0,
+    "verified": 223,
+    "observed_unix": 1792416647.562195,
+    "conservative_charge_usd": 90.8297974,
+    "base_rate_estimate_usd": 45.3776002,
+    "reserved_usd": 140.0,
     "tranche2activated": false
   },
   "public_source_checks": {
@@ -60,8 +62,8 @@
     "training_admitted": 0,
     "workers": 8
   },
-  "budget_conservative_charge": 84.250899,
-  "budget_base_rate_estimate": 42.105749,
+  "budget_conservative_charge": 93.0153224,
+  "budget_base_rate_estimate": 46.4893452,
   "budget_reserved": 140.0,
   "second_tranche_active": false,
   "goal": {}
