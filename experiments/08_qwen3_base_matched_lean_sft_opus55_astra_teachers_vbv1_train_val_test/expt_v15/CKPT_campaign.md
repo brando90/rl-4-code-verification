@@ -5,7 +5,7 @@
 **TLDR:** First run complete at11.11%; final cleanup and GX10 second-run preparation are ready. Cluster reauthentication is required before new cleanup calls and checkpoint transfer can begin.
 
 ## Current state
-- Updated 10-19-2026 10:49 PDT. One local writer owns publication in `.worktrees/rl4cv-sol-repair-10-19-2026`; the automatic publisher is paused during source repair/publication.
+- Updated 10-19-2026 11:09 PDT. One local writer owns source publication in `.worktrees/rl4cv-sol-repair-10-19-2026`; both result publishers are active and share a process lock.
 - Remote RUN `/lfs/skampere1/0/eth127/rl4cv_tiny_training`; GX10 `/home/lethan3/workspace/rl4cv-gx10/experiment-v19`.
 - V12 current COMPLETE: 5,470 updates, 120/1,080 validation successes; independent full recomputation PASS. Raw/scored outputs are immutable. Full 851-file compiler diagnosis is complete.
 - V13 DONE_PARTIAL: 818 replacements +227 unchanged +1,540 flagged fallbacks, all2,585 accounted. This historical phase remains immutable.
@@ -28,3 +28,4 @@
 - 10-19-2026 10:49 PDT -- Recorded900authorization, final-cleanup/GX10 owners, fenced zero-update partial dispatcher, SSH outage and pending human login; preserve all historical outcomes.
 - 10-19-2026 11:05 PDT -- Full GX10 Linux verification PASS:1360tests+6subtests,30skips; native kernel and six pipeline controls PASS. Full second-run watchers armed; publication prepares exact owned metadata. Cluster login remains the external prerequisite.
 - 10-19-2026 11:07 PDT -- LANDED159b1e5b on origin/main: first-run1080cells, finalpartialcleanup/admission tables, verification and complete waiting-auth launchers. Owned version12–19 files mirrored into canonical checkout without changing foreign parent/source edits.
+- 10-19-2026 11:09 PDT -- Source/receipts pushed through e8fc1590; automatic publishers rl4cv-1p7b-campaign-publish-v15 and rl4cv-final-result-publish-v19 are active at120-second cadence with shared Git locking and zero missing-socket network fallback. Local relay timers are kept awake for12hours with named caffeinate session. Human password login still pending; zero final-condition optimizer updates.
