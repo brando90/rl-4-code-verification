@@ -2,13 +2,13 @@
 
 **Doc link:** https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6/results.md
 
-**Status:** RUNNING. **Last updated:** 10-19-2026 01:30:40 PDT.
+**Status:** RUNNING. **Last updated:** 10-19-2026 01:32:43 PDT.
 
 | Condition | Training progress | Assistant tokens consumed | Validation generated | Scoring jobs complete |
 |---|---:|---:|---:|---:|
-| 1p7_control | 280/664 updates | 2,387,158 | 0/1,080 | 0/8 |
-| 1p7_mixed | 360/904 updates | 2,110,608 | 0/1,080 | 0/8 |
-| 4b_mixed | 30/904 updates | 187,015 | 0/1,080 | 0/8 |
+| 1p7_control | 300/664 updates | 2,545,321 | 0/1,080 | 0/8 |
+| 1p7_mixed | 400/904 updates | 2,317,433 | 0/1,080 | 0/8 |
+| 4b_mixed | 33/904 updates | 204,142 | 0/1,080 | 0/8 |
 
 ## Verified preparation
 
