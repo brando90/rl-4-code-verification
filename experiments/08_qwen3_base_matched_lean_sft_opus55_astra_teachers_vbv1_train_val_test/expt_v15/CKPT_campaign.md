@@ -27,3 +27,4 @@
 - 10-19-2026 10:30 PDT -- Recovered orchestration, verified actual120/1080recompute, froze partialcleanup and releasedsecondpreparation; newpublicdataadmission ready.
 - 10-19-2026 10:49 PDT -- Recorded900authorization, final-cleanup/GX10 owners, fenced zero-update partial dispatcher, SSH outage and pending human login; preserve all historical outcomes.
 - 10-19-2026 11:05 PDT -- Full GX10 Linux verification PASS:1360tests+6subtests,30skips; native kernel and six pipeline controls PASS. Full second-run watchers armed; publication prepares exact owned metadata. Cluster login remains the external prerequisite.
+- 10-19-2026 11:07 PDT -- LANDED159b1e5b on origin/main: first-run1080cells, finalpartialcleanup/admission tables, verification and complete waiting-auth launchers. Owned version12–19 files mirrored into canonical checkout without changing foreign parent/source edits.

@@ -27,6 +27,7 @@ def file_map(host):
     names += ['conditions/final/run/' + x for x in ['identity.json', 'first_update.json',
               'progress.json', 'result.json', 'steps.csv', 'weights_manifest.json']]
     names += ['validation/' + label + '/generation_verified.json']
+    names += ['validation/' + label + '/publication_generation_progress.json']
     names += ['analysis/' + label + '_' + x for x in ['summary.json', 'cells.csv', 'tasks.csv']]
     if host == 'gx10':
         names += ['controls/' + x for x in ['native_preflight.json', 'full_model_control.json',
@@ -52,7 +53,7 @@ def fetch(host):
     else:
         command = ['ssh', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=15', 'cactushacks-gx10']
         root = '/home/lethan3/workspace/rl4cv-gx10/experiment-v19'
-    code = '''import pathlib,json,base64,hashlib
+    code = '''import pathlib,json,base64,hashlib,time
 root=pathlib.Path(%r);out={}
 for name in %r:
  p=root/name
@@ -60,8 +61,14 @@ for name in %r:
   raw=p.read_bytes()
   if len(raw)>10000000:raise RuntimeError('Unexpectedly large compact receipt: '+name)
   out[name]=dict(sha256=hashlib.sha256(raw).hexdigest(),data=base64.b64encode(raw).decode())
+rawpath=root/'validation'/%r/'raw.jsonl'
+if rawpath.is_file():
+ with rawpath.open('rb') as stream:count=sum(line.endswith(b'\\n') for line in stream)
+ name='validation/'+%r+'/publication_generation_progress.json'
+ raw=json.dumps(dict(completed_newline_rows=count,declared_cells=1080,observed_unix=time.time(),scope='Progress only; uniqueness, scoring and full-manifest verification are separate.')).encode()
+ out[name]=dict(sha256=hashlib.sha256(raw).hexdigest(),data=base64.b64encode(raw).decode())
 print(json.dumps(out))
-''' % (root, list(file_map(host)))
+''' % (root, list(file_map(host)), 'v19_final_cleaned_' + host, 'v19_final_cleaned_' + host)
     try:
         raw = subprocess.check_output(command + ['python3 -c ' + shlex.quote(code)],
                                       stderr=subprocess.PIPE, timeout=45)
@@ -99,12 +106,15 @@ def collect():
         label = 'v19_final_cleaned_' + host
         summary = objects.get('analysis/' + label + '_summary.json')
         progress = objects.get('conditions/final/run/progress.json', {})
+        generated = objects.get('validation/' + label + '/publication_generation_progress.json', {})
         terminal = objects.get('terminal.json', {})
         status['hosts'][host] = dict(fresh=error is None, error=error, receipts=len(payload),
             production_host=objects.get('production_host.json'), progress=progress,
-            terminal=terminal, summary=summary)
+            generation_progress=generated, terminal=terminal, summary=summary)
         milestones.append((host, error is None, len(payload), progress.get('step', 0) // 250,
                            terminal.get('status') or terminal.get('state'),
+                           objects.get('chain_progress.json', {}).get('state'),
+                           generated.get('completed_newline_rows', 0) // 100,
                            summary.get('successes') if summary else None))
     target = HERE / 'results' / 'publication_status.json'
     target.parent.mkdir(parents=True, exist_ok=True)

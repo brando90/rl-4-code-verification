@@ -7,10 +7,12 @@ import hashlib
 import csv
 import io
 import json
+import fcntl
 from pathlib import Path
 import re
 import shlex
 import subprocess
+import tempfile
 import time
 
 HERE=Path(__file__).resolve().parent
@@ -18,7 +20,8 @@ EXP=HERE.parent
 REPO=EXP.parent.parent
 CANON=Path('/Users/lethan3/Documents/veribench-projects/rl-4-code-verification')
 RUN='/lfs/skampere1/0/eth127/rl4cv_tiny_training'
-SSH=['ssh','-S','/Users/lethan3/Documents/veribench-projects/tmp/ssh-tiny-training/control','-o','BatchMode=yes','-o','ConnectTimeout=10','eth127@skampere1.stanford.edu']
+CONTROL=Path('/Users/lethan3/Documents/veribench-projects/tmp/ssh-tiny-training/control')
+SSH=['ssh','-S',str(CONTROL),'-o','BatchMode=yes','-o','ConnectTimeout=10','-o','ProxyCommand=/usr/bin/false','eth127@skampere1.stanford.edu']
 
 def mapping():
     out={}
@@ -40,6 +43,8 @@ def mapping():
     return out
 
 def collect():
+    if not CONTROL.is_socket():
+        raise RuntimeError('Authenticated cluster control socket absent; no network login attempted.')
     paths=mapping()
     code='''import pathlib,json,base64,hashlib
 root=pathlib.Path(%r)
@@ -108,6 +113,12 @@ def mirror(paths):
         target.write_bytes(source.read_bytes());assert hashlib.sha256(target.read_bytes()).digest()==hashlib.sha256(source.read_bytes()).digest()
 
 def publish(paths):
+    lockname='rl4cv-publication-'+hashlib.sha256(str(REPO.resolve()).encode()).hexdigest()[:16]+'.lock'
+    with (Path(tempfile.gettempdir())/lockname).open('a') as lock:
+        fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        return publish_locked(paths)
+
+def publish_locked(paths):
     relative=sorted({str(p.relative_to(REPO)) for p in paths})
     assert all('/results/' in p or p==str((HERE/'results.md').relative_to(REPO)) for p in relative)
     def git(*args,check=True):return subprocess.run(['git',*args],cwd=REPO,text=True,capture_output=True,check=check)
