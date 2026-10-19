@@ -24,11 +24,11 @@ Each regime, source mix, failure and result will be versioned. Prior V6 matched 
 
 ## Latest automatic snapshot
 
-10-19-2026 08:55 PDT.
+10-19-2026 09:09 PDT.
 
 - Current training: 5,470/5,470 updates; 13,168,888 assistant loss tokens.
 - Cleaned training: 0 updates; waits for verified cleanup when zero.
-- Cleanup: {'PENDING': 1572, 'DONE': 751, 'UNCHANGED': 227, 'RUNNING': 9, 'FALLBACK': 25, 'BUDGET_HOLD': 1}; declared 2,585.
+- Cleanup: {'PENDING': 1528, 'DONE': 795, 'UNCHANGED': 227, 'RUNNING': 6, 'FALLBACK': 29}; declared 2,585.
 - Additional public sources: 729/729 checked; {'FORMAL_CHECK_FAILED': 1, 'FORMAL_PASS': 688, 'LIBRARY_IDENTIFIER': 1, 'SYNTAX_COMPATIBILITY': 39}.
-- Paid work: $192.80 base-rate usage estimate; $382.11 conservatively charged; $90.00 reserved for in-flight work. Estimates are not invoices.
+- Paid work: $208.57 base-rate usage estimate; $413.20 conservatively charged; $60.00 reserved for in-flight work. Estimates are not invoices.
 - Second authorized $300 tranche activated: True. Goal receipt: False.
