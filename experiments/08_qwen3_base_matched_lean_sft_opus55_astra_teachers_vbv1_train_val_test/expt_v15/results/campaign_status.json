@@ -1,54 +1,56 @@
 {
-  "observed": "10-19-2026 06:18 PDT",
+  "observed": "10-19-2026 06:20 PDT",
   "current": {
-    "step": 360,
-    "loss_tokens": 899778,
-    "train_loss": 0.5604392537666905,
-    "grad_norm": 5.960883617401123,
-    "learning_rate": 1.9923210187212066e-05,
-    "elapsed_seconds": 491.1269733479712,
+    "step": 456,
+    "loss_tokens": 1125746,
+    "train_loss": 0.41929528773321534,
+    "grad_norm": 4.977365016937256,
+    "learning_rate": 1.983918137649292e-05,
+    "elapsed_seconds": 616.2685173050268,
     "peak_gpu_gib": 53.922696590423584,
-    "rows_consumed": 720,
-    "pool_counts": "{\"python\": 170, \"repair\": 4, \"tiny\": 33, \"workbook\": 513}",
+    "rows_consumed": 912,
+    "pool_counts": "{\"python\": 215, \"repair\": 5, \"tiny\": 42, \"workbook\": 650}",
     "status": "RUNNING",
-    "observed_unix": 1792415911.2794592
+    "observed_unix": 1792416036.421085
   },
   "cleaned": {},
   "cleanup": {
     "declared": 2585,
     "states": {
-      "PENDING": 2264,
-      "DONE": 73,
+      "PENDING": 2233,
+      "DONE": 105,
       "UNCHANGED": 227,
-      "RUNNING": 21
+      "RUNNING": 20
     },
-    "verified": 71,
-    "observed_unix": 1792415893.2591298,
-    "conservative_charge_usd": 27.8269562,
-    "base_rate_estimate_usd": 13.8691256,
-    "reserved_usd": 210.0,
+    "verified": 103,
+    "observed_unix": 1792416036.0159633,
+    "conservative_charge_usd": 38.9189776,
+    "base_rate_estimate_usd": 19.4007988,
+    "reserved_usd": 200.0,
     "tranche2activated": false
   },
   "public_source_checks": {
-    "completed": 389,
+    "completed": 526,
     "declared": 729,
-    "elapsed_seconds": 262.0226788520813,
+    "elapsed_seconds": 389.5421812534332,
     "host": "skampere1.stanford.edu",
     "interpretation": "Formal correctness only; source semantics, comments, template, protected screens and global dedup pending",
-    "observed_unix": 1792415897.6206996,
+    "observed_unix": 1792416025.1402018,
     "outcomes": {
-      "FORMAL_PASS": 374,
+      "FORMAL_CHECK_FAILED": 1,
+      "FORMAL_PASS": 502,
       "LIBRARY_IDENTIFIER": 1,
-      "SYNTAX_COMPATIBILITY": 14
+      "SYNTAX_COMPATIBILITY": 22
     },
-    "passed": 374,
+    "passed": 502,
     "pid": 2117441,
-    "remaining": 340,
+    "remaining": 203,
     "source_outcomes": {
       "deepseek_prover_v1": {
-        "FORMAL_PASS": 157,
+        "FORMAL_CHECK_FAILED": 1,
+        "FORMAL_PASS": 285,
         "LIBRARY_IDENTIFIER": 1,
-        "SYNTAX_COMPATIBILITY": 14
+        "SYNTAX_COMPATIBILITY": 22
       },
       "mathlib4": {
         "FORMAL_PASS": 217
@@ -58,8 +60,8 @@
     "training_admitted": 0,
     "workers": 8
   },
-  "budget_conservative_charge": 30.308055200000002,
-  "budget_base_rate_estimate": 15.1018276,
+  "budget_conservative_charge": 38.9189776,
+  "budget_base_rate_estimate": 19.4007988,
   "budget_reserved": 200.0,
   "second_tranche_active": false,
   "goal": {}
