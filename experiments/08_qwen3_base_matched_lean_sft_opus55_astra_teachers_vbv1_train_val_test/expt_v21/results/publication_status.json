@@ -1,15 +1,56 @@
 {
-  "observed_unix": 1792451687.827693,
+  "observed_unix": 1792451856.24082,
   "hosts": {
     "snap": {
-      "fresh": false,
-      "error": "TimeoutExpired: Command '['ssh', '-S', '/Users/lethan3/Documents/veribench-projects/tmp/ssh-tiny-training/control', '-o', 'BatchMode=yes', '-o', 'ProxyCommand=/usr/bin/false', 'eth127@skampere1.st",
-      "receipts": 0,
+      "fresh": true,
+      "error": null,
+      "receipts": 11,
       "production_host": null,
-      "progress": {},
+      "progress": {
+        "declared": 500,
+        "states": {
+          "ACCEPTED_MECHANICAL_RFL": 182,
+          "ACCEPTED_REPAIRED": 288,
+          "EXCLUDED_BOUNDED_REPAIR": 30
+        },
+        "batches": {
+          "DONE": 125
+        },
+        "verified": 470,
+        "observed_unix": 1792438358.220431,
+        "v21_conservative_charge_usd": 46.8286762,
+        "v21_base_estimate_usd": 23.9081086,
+        "cleanup_reserved_usd": 10
+      },
       "generation_progress": {},
       "terminal": {},
-      "summary": null
+      "summary": {
+        "state": "DONE_WITH_EXCLUSIONS",
+        "declared": 500,
+        "accounted": 500,
+        "accepted": 470,
+        "excluded": 30,
+        "kernel_verified": 470,
+        "assistant_loss_tokens": 112724,
+        "comment_only_annotated": 62,
+        "training_sha256": "f757a318cbcf5b8ddae32d26ad582df0bbbfc224f02179ac75bd22c5d2850f57",
+        "row_results_sha256": "b134bd87f8e66a74c3f2dbe3da85bb8b2e0db80747b9614359c52eec440db706",
+        "proof_receipts_manifest_sha256": "0ad85a7765341d0ff9157afdce7123b40527a64334e4dc545f2b97dd013ec2ae",
+        "protected_screen_sha256": "ad7a1d90549257cbdf5d612498f86a8d260fb3ad3a7660f1366a4c2d27fed5f7",
+        "freeze_sha256": "dc3915485b1b4315e9ca5f60a90d3b9155958d5ce78d802415412867129805d2",
+        "original_pool_sha256": "2f50cd04757904b2ac703693c4520df813dd98e0f18881de92c515c7f87bb119",
+        "protected_references": 764,
+        "protected_exact": 0,
+        "protected_near": 0,
+        "no_automated_fallbacks": true,
+        "original_system_user_and_nonproof_bytes_unchanged": true,
+        "assistant_token_cap_exclusive": 1000,
+        "total_token_cap": 16384,
+        "compiler_calls": 0,
+        "model_calls": 0,
+        "receipt_meaning": "Existing exact checked-source frozen-kernel evidence; any newly inserted comments have a separate source hash and exact insertion/token-identity binding. Annotated sources are not recompiled; English commentary semantics are not independently verified.",
+        "observed_unix": 1792438375.376891
+      }
     }
   }
 }
