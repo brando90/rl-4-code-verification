@@ -2,7 +2,7 @@
 
 **Doc link:** https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v10/results.md
 
-**TLDR:** RUNNING, 10-19-2026 05:52 PDT. Cluster: 10,233/10,995 checked, 9,192 PASS with48slots. GX10: 1,600/1,600 checked, 487 PASS with16slots; setup DONE. The74-case earlier recovery finished with6recoveries pending comment/format reassembly. No new model calls or training.
+**TLDR:** DONE, 10-19-2026 05:54 PDT. Cluster: 10,995/10,995 checked, 9,895 PASS with48slots. GX10: 1,600/1,600 checked, 487 PASS with16slots; setup DONE. The74-case earlier recovery finished with6recoveries pending comment/format reassembly. No new model calls or training.
 
 ## Execution
 
@@ -22,6 +22,6 @@ Finish the10,995-cell original-source check; retain every failure. TheGX10checks
 
 ## Latest automatic snapshot
 
-RUNNING, 10-19-2026 05:52 PDT. Cluster: 10,233/10,995 checked, 9,192 PASS with48slots. GX10: 1,600/1,600 checked, 487 PASS with16slots; setup DONE. The74-case earlier recovery finished with6recoveries pending comment/format reassembly. No new model calls or training.
+DONE, 10-19-2026 05:54 PDT. Cluster: 10,995/10,995 checked, 9,895 PASS with48slots. GX10: 1,600/1,600 checked, 487 PASS with16slots; setup DONE. The74-case earlier recovery finished with6recoveries pending comment/format reassembly. No new model calls or training.
 
 TheGX10shard is a subset of the10,995original cells. Successful exact-source ARM receipts can be reused by unstarted cluster cells; host totals must not be added as distinct statements. Raw evidence remains on its execution host.
