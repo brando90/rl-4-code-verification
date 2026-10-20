@@ -1,15 +1,66 @@
 {
-  "observed_unix": 1792496028.212672,
+  "observed_unix": 1792496151.55741,
   "hosts": {
     "snap": {
-      "fresh": false,
-      "error": "Authenticated control socket absent; no network login attempted.",
-      "receipts": 0,
+      "fresh": true,
+      "error": null,
+      "receipts": 28,
       "production_host": null,
-      "progress": {},
-      "generation_progress": {},
-      "terminal": {},
-      "summary": null
+      "progress": {
+        "step": 1784,
+        "loss_tokens": 2948296,
+        "train_loss": 0.4758597106644601,
+        "grad_norm": 5.645750522613525,
+        "learning_rate": 1.287858226728389e-12,
+        "elapsed_seconds": 1973.4466166220373,
+        "peak_gpu_gib": 43.79223918914795,
+        "rows_consumed": 3568,
+        "pool_counts": "{\"public_proof\": 678, \"python\": 684, \"repair\": 61, \"workbook\": 2145}",
+        "status": "RUNNING",
+        "observed_unix": 1792438701.4472673
+      },
+      "generation_progress": {
+        "completed_newline_rows": 1080,
+        "declared_cells": 1080,
+        "observed_unix": 1792496151.7404628,
+        "scope": "Progress only; uniqueness, scoring and full-manifest verification are separate."
+      },
+      "terminal": {
+        "status": "FAILED_AFTER_UPDATES_PRESERVED",
+        "exit_code": 1,
+        "ended_unix": 1792438790.5314786,
+        "no_silent_optimizer_reset": true
+      },
+      "summary": {
+        "declared_cells": 1080,
+        "scored_cells": 1080,
+        "successes": 20,
+        "success_rate": 0.018518518518518517,
+        "pass_at_8_tasks": 14,
+        "mixed_tasks_1_to_7": 14,
+        "target_tasks_2_to_6": 3,
+        "extracted": 950,
+        "compiles": 20,
+        "capped": 131,
+        "mean_generated_tokens": 4266.012962962963,
+        "mean_IC_tests": 0.018518518518518517,
+        "mean_IC_proofs": 0.018518518518518517,
+        "source_model_paths": [
+          "/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v20/base/run/hf"
+        ],
+        "success_rate_ci95": [
+          0.008333333333333333,
+          0.030555555555555555
+        ],
+        "status": "COMPLETE",
+        "test_split_opened": false,
+        "formal_specification_coverage": "not measured",
+        "target": 0.25,
+        "target_metric": "success_rate; same per-attempt binary criterion as V6",
+        "target_reached": false,
+        "bootstrap_unit": "task retaining all eight samples",
+        "p_value": null
+      }
     }
   }
 }
