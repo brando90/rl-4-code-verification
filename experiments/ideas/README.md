@@ -7,3 +7,4 @@
 | Idea | Execution status | Paper inclusion | Revisit when | Origin |
 |---|---|---|---|---|
 | [Cross-family composition and target alignment](cross_family_env_mixtures_alignment/README.md): can alignment and composition coordinates fix the paper's mixture failure and predict which mixture of Lean families most improves VeriBench? | DEFERRED — NOT RUN | UNDECIDED | After experiment 02B shows whether the frozen ρ–H equation transfers to Lean | Experiment 05 before 09-30-2026 (D-007) |
+| [GRPO group size from start-policy pass@1](grpo_group_size_vs_start_pass1/README.md): at fixed rollouts per update, does a larger G (16 vs 8) give more learning signal when start pass@1 is low (~10%)? | NOT RUN — first estimate only (no new calls) | UNDECIDED | Before freezing experiment 13 v4 (pre-declared G-selection stage, awaiting Brando), then across start policies with different pass@1 | Brando 10-20-2026 (Varun ICLR G=8 inheritance) |
