@@ -42,19 +42,19 @@ The paired runner and validation adapter are implemented and pass 75 focused tes
 [Google findings companion](https://docs.google.com/document/d/1xkEn8vW800jBucuJANuXD8ph-sMQMofwNZw_nJzjJls/edit?tab=t.sglsb683kh5u): the dated 19:14 PDT evidence update was read back exactly, with previous notes and existing permissions preserved. [Verified background controllers](results/background_controllers.json) record the queued pilot, progress writer and terminal publication watcher; the dispatcher is waiting on the live technical follow-through and has not admitted pilot generation. Source implementation is pushed at `9845810`; [the current publisher receipt](results/background_publisher_v2.json) supersedes the original publisher PID.
 
 <!-- LIVE START -->
-Live receipt status (10-19-2026 13:20 PDT): **PILOT_RUNNING**. All six arms exited overnight on `PermissionError` while reading another user's process environment. Empty attempts were archived. Complete generations were kept: three optimizer retries and three next updates are waiting for an idle GPU among devices 0, 5 and 7. Factored seed 1301 updates 1–10 mean reward 0.01035; updates 11–13 mean 0.00845. The pre-registered gate compares updates 21–30 with updates 1–10 and is not met. API spend: **$0**.
+Live receipt status (10-20-2026 07:00 PDT): **PILOT_RUNNING**. Factored seed 1301 completed 16 updates (latest reward 0.00739, 16/32 active groups, grad norm 0.1290). Placebo seed 1301 completed 15 updates (latest reward 0.01528, 25/32 active groups, grad norm 0.2966). Replication seed B / 1302 completed 5 updates (latest reward 0.01185, 17/32 active groups, grad norm 0.1829); P / 1302 completed 4 updates (latest reward 0.00993, 20/32 active groups). Strict binary Arm A confirms persistent gradient starvation across both seeds (1/32 active groups on A / 1301, 0/32 on A / 1302, grad norm 0.0). API spend: **$0**.
 
 | Arm / seed | Completed updates | Latest observed train reward | Active / usable groups | Gradient norm |
 |---|---:|---:|---:|---:|
-| B / 1301 | 13 | 0.006885 | 15/31 | 0.130474 |
+| B / 1301 | 16 | 0.007391 | 16/32 | 0.128982 |
 | A / 1301 | 11 | 0.003906 | 1/32 | 0.003559 |
-| P / 1301 | 11 | 0.009561 | 19/32 | 0.294979 |
-| B / 1302 | 2 | 0.012028 | 19/32 | 0.103022 |
-| A / 1302 | 1 | 0.000000 | 0/32 | 0 |
-| P / 1302 | 1 | 0.009427 | 23/32 | 0.288200 |
+| P / 1301 | 15 | 0.015284 | 25/32 | 0.296610 |
+| B / 1302 | 5 | 0.011849 | 17/32 | 0.182914 |
+| A / 1302 | 1 | 0.000000 | 0/32 | 0.000000 |
+| P / 1302 | 4 | 0.009931 | 20/32 | 0.263911 |
 
 [Every completed training step](results/pilot_trajectory.csv); [machine-readable gate and validation results](results/live_progress.json).
 Training rows are fixed-run diagnostics (p-val=n/a), not an efficacy claim. Validation receipts retain grouped-task bootstrap intervals and missingness bounds. Coverage requiring a judge remains unmeasured; a known zero local factor can determine a zero composite.
 <!-- LIVE END -->
 
-**TLDR-end:** [rl-4-code-verification: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3] The paired pilot is waiting on idle GPUs with 13 factored updates accounted; the +0.02 reward gate is not met and no provider calls were added.
+**TLDR-end:** [rl-4-code-verification: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3] The paired pilot reached 16 factored updates on B / 1301 and 5 on replication B / 1302 with steady nonzero gradients; strict binary RL shows total gradient starvation across both seeds ($0 API spend).
