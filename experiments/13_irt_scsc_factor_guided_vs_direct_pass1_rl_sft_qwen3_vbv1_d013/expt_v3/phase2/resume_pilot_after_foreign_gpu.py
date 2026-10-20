@@ -211,8 +211,12 @@ def install_gpu_filter():
     """Skip a GPU that already has a compute process, without editing the hashed guard."""
     BIN.mkdir(parents=True, exist_ok=True)
     target = BIN / 'nvidia-smi'
-    target.write_text(WRAPPER)
-    target.chmod(0o755)
+    # Live jobs execute this wrapper; never truncate it in place (master fix 10-20-2026).
+    if not (target.exists() and target.read_text() == WRAPPER):
+        tmp = BIN / f'.nvidia-smi.{os.getpid()}.tmp'
+        tmp.write_text(WRAPPER)
+        tmp.chmod(0o755)
+        os.replace(tmp, target)
     os.environ['PATH'] = f'{BIN}{os.pathsep}{os.environ.get("PATH", "")}'
 
 
