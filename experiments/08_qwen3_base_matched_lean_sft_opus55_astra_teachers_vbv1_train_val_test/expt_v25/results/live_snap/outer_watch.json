@@ -3,10 +3,10 @@
     {
       "alive": true,
       "boot_matches": true,
-      "command": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python /lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v25/entry.py --condition base ",
+      "command": "/usr/bin/python3 -m rl4cv.veribench.generate --pack /lfs/skampere1/0/eth127/rl4cv_tiny_training/validation_pack --task-ids /lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/split/vbv1_validation_task_ids.txt --model /lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v25/base/run/hf --label v25_base --samples 8 --thinking on --seed 91 --stop-token <|im_end|> --max-tokens 12288 --temperature 0.6 --top-p 0.95 --top-k 20 --batch 128 --tensor-parallel-size 1 --gpu-memory-utilization 0.85 --out /lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v25/validation/v25_base/raw.jsonl ",
       "identity_matches": true,
-      "pid": 3335074,
-      "start_ticks": "69280570"
+      "pid": 3853631,
+      "start_ticks": "69481263"
     }
   ],
   "base_terminal": null,
@@ -74,7 +74,7 @@
     "training_sha256": "6dad28a97f534c765275397727f6072ae535dfb8813bf1dfb40a9b76bad6ad97",
     "transformers": "4.55.4"
   },
-  "observed_unix": 1792455872.2641864,
+  "observed_unix": 1792456232.361798,
   "observer_pid": 3255282,
   "pipeline": {
     "alive": true,
@@ -86,21 +86,78 @@
   "pipeline_alive": true,
   "policy": "Observe only; preserve healthy descendants; never reset optimizer after updates.",
   "progress": {
-    "elapsed_seconds": 1631.6169040520908,
-    "grad_norm": 2.477165460586548,
-    "learning_rate": 1.2286716464997361e-06,
-    "loss_tokens": 2363014,
-    "observed_unix": 1792455871.779078,
+    "elapsed_seconds": 1915.8122575010639,
+    "grad_norm": 1.2167305946350098,
+    "learning_rate": 1.287858226728389e-12,
+    "loss_tokens": 2793297,
+    "observed_unix": 1792456155.974432,
     "peak_gpu_gib": 43.393654346466064,
-    "pool_counts": "{\"public_proof\": 572, \"python\": 577, \"repair\": 51, \"workbook\": 1808}",
-    "rows_consumed": 3008,
+    "pool_counts": "{\"public_proof\": 678, \"python\": 684, \"repair\": 61, \"workbook\": 2145}",
+    "rows_consumed": 3568,
     "status": "RUNNING",
-    "step": 1504,
-    "train_loss": 0.3808596487269926
+    "step": 1784,
+    "train_loss": 0.03091893664289576
   },
-  "progress_age_seconds": 0.4851083755493164,
+  "progress_age_seconds": 76.38736605644226,
   "root": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v25",
   "stages": [
+    {
+      "actual_process": {
+        "alive": true,
+        "boot_matches": true,
+        "command": "/usr/bin/python3 -m rl4cv.veribench.generate --pack /lfs/skampere1/0/eth127/rl4cv_tiny_training/validation_pack --task-ids /lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/split/vbv1_validation_task_ids.txt --model /lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v25/base/run/hf --label v25_base --samples 8 --thinking on --seed 91 --stop-token <|im_end|> --max-tokens 12288 --temperature 0.6 --top-p 0.95 --top-k 20 --batch 128 --tensor-parallel-size 1 --gpu-memory-utilization 0.85 --out /lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v25/validation/v25_base/raw.jsonl ",
+        "identity_matches": true,
+        "pid": 3853631,
+        "start_ticks": "69481263"
+      },
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "rl4cv.veribench.generate",
+        "--pack",
+        "/lfs/skampere1/0/eth127/rl4cv_tiny_training/validation_pack",
+        "--task-ids",
+        "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/split/vbv1_validation_task_ids.txt",
+        "--model",
+        "/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v25/base/run/hf",
+        "--label",
+        "v25_base",
+        "--samples",
+        "8",
+        "--thinking",
+        "on",
+        "--seed",
+        "91",
+        "--stop-token",
+        "<|im_end|>",
+        "--max-tokens",
+        "12288",
+        "--temperature",
+        "0.6",
+        "--top-p",
+        "0.95",
+        "--top-k",
+        "20",
+        "--batch",
+        "128",
+        "--tensor-parallel-size",
+        "1",
+        "--gpu-memory-utilization",
+        "0.85",
+        "--out",
+        "/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v25/validation/v25_base/raw.jsonl"
+      ],
+      "cuda_visible_devices": "3",
+      "host": "skampere1.stanford.edu",
+      "label": "v25_base",
+      "path": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v25/execution/v25_base/generation.json",
+      "pid": 3853631,
+      "stage": "generation",
+      "start_ticks": "69481263",
+      "started_unix": 1792456222.3401198,
+      "status": "RUNNING"
+    },
     {
       "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
       "command": [
@@ -123,14 +180,6 @@
       "status": "DONE"
     },
     {
-      "actual_process": {
-        "alive": true,
-        "boot_matches": true,
-        "command": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python /lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v25/entry.py --condition base ",
-        "identity_matches": true,
-        "pid": 3335074,
-        "start_ticks": "69280570"
-      },
       "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
       "command": [
         "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
@@ -139,6 +188,8 @@
         "base"
       ],
       "cuda_visible_devices": "3",
+      "ended_unix": 1792456222.338123,
+      "exit_code": 0,
       "host": "skampere1.stanford.edu",
       "label": "v25_base",
       "path": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v25/execution/v25_base/training.json",
@@ -146,7 +197,7 @@
       "stage": "training",
       "start_ticks": "69280570",
       "started_unix": 1792454215.4046776,
-      "status": "RUNNING"
+      "status": "DONE"
     }
   ],
   "stale_training_warning": false,
