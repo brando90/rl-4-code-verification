@@ -67,3 +67,42 @@ It also keeps each dead pane's last 200 lines in `$WR/phase2/autoresume_deaths/`
 - Crontab: 13 lines plus 1, with the others verified unchanged; backup `$WR/state_crontab_before_autoresume_*.txt`.
 
 **Removing it.** Delete the `# e13v3-autoresume` cron line and run `tmux set-hook -gu 'session-created[13]'`.
+
+## 15:30 PDT: v3 progress normal; v4 protocol frozen; v4 implementation owner dispatched
+
+**v3-A7 is progressing, not stuck.** At 15:22 PDT the completed updates were:
+
+| Trajectory | Completed updates |
+|---|---|
+| A_1301 | 11 |
+| A_1302 | 1 |
+| B_1301 | 17 |
+| B_1302 | 7 |
+| P_1301 | 16 |
+| P_1302 | 5 |
+
+- Each optimizer step takes **122–156 minutes** on one GPU, measured over the last three updates of A_1301, P_1301 and B_1301.
+- GPUs 0, 5 and 7 are optimizing A_1301 u12, B_1302 u8 and P_1301 u17. B_1301 u18 (generation) and P_1302 u6 (optimizer) wait for an idle GPU.
+- The watchdog skips all six, because all six are live.
+
+At this rate, B_1301's T5_30 verdict is about 2–3 days away.
+
+**v4 protocol frozen** at `d4778e25` ([PROTOCOL.md](../expt_v4/PROTOCOL.md)). One Codex `gpt-6-astra` ultra light QA round returned FIXES_NEEDED with 3 critical findings. All 8 findings are fixed ([record](../expt_v4/LIGHT_QA_10-20-2026.md)). The main changes:
+
+- the objective is the filtered policy that is actually sampled;
+- V4-T2 requires a nonzero gradient on a usable group;
+- the length contracts move to 12,288 tokens;
+- the group size is chosen by V4-G0;
+- the placebo's claim is narrowed to the start policy's reward density;
+- inference follows parent § 7.
+
+**v4 implementation owner.** It is Codex `gpt-6-astra` at high effort, on CPU only, running in tmux `codex-rl4cv-e13v4-impl` on skampere1 since 15:25 PDT. Its brief is [the dispatch prompt](../expt_v4/PROMPT_dispatch_e13_v4_implementation.md) (`c5c12306`).
+
+- Clone: `/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification`.
+- Log: `/lfs/skampere1/0/brando9/rl4cv_e13v4/impl_codex.log`.
+- Checkpoint: `expt_v4/CKPT_v4_implementation.md`.
+- It uses no GPU until the launch trigger: B_1301 `T5_30.json` FAIL, or all six `result_30.json`.
+
+**Expected v4 resource pressure.** At about 2.5 GPU-hours per optimizer step, before the longer 12,288-token outputs, the 6 × 30-update v4 pilot needs on the order of 450–550 GPU-hours. On GPUs 0, 5 and 7 alone that is about a week, so skampere2 and skampere3 idle GPUs (through the v4 device guard) matter.
+
+**Monitoring.** A session cron runs every 3 hours, at :23 plus an offset. It checks v3, the v4 owner and the launch trigger.
