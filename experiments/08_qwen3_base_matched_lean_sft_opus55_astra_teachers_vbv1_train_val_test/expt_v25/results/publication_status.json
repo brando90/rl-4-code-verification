@@ -1,80 +1,15 @@
 {
-  "observed_unix": 1792459831.2070029,
+  "observed_unix": 1792462293.9366899,
   "hosts": {
     "snap": {
-      "fresh": true,
-      "error": null,
-      "receipts": 36,
+      "fresh": false,
+      "error": "Authenticated control socket absent; no network login attempted.",
+      "receipts": 0,
       "production_host": null,
-      "progress": {
-        "step": 1784,
-        "loss_tokens": 2793297,
-        "train_loss": 0.03091893664289576,
-        "grad_norm": 1.2167305946350098,
-        "learning_rate": 1.287858226728389e-12,
-        "elapsed_seconds": 1915.8122575010639,
-        "peak_gpu_gib": 43.393654346466064,
-        "rows_consumed": 3568,
-        "pool_counts": "{\"public_proof\": 678, \"python\": 684, \"repair\": 61, \"workbook\": 2145}",
-        "status": "RUNNING",
-        "observed_unix": 1792456155.974432
-      },
-      "generation_progress": {
-        "completed_newline_rows": 1080,
-        "declared_cells": 1080,
-        "observed_unix": 1792459832.0584607,
-        "scope": "Progress only; uniqueness, scoring and full-manifest verification are separate."
-      },
-      "terminal": {
-        "status": "COMPLETE",
-        "condition": "base",
-        "label": "v25_base",
-        "ended_unix": 1792459774.4073126,
-        "operational_recovery": "USER_REQUESTED_32_TO_64_SCORING_ADOPTION",
-        "source_hashes": {
-          "driver": "f89d7587682bb3c0c542183c4abe6177048474fcce7eafe0970d07d694ee6899",
-          "amendment": "5f5288b3e194145c7fb633c1da01ff88d66abc393313356f2c8f09ded84b5070",
-          "owner": "61fb1723edd82140014ad69501bb1fe6216c493f67e5184e72d9dfb593441334"
-        },
-        "scored_cells": 1080,
-        "training_restarted": false,
-        "generation_restarted": false,
-        "test_split_opened": false,
-        "scorer_signals_sent": 0,
-        "completed_or_started_cells_retried": 0,
-        "authoritative_scoring_terminal": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v25/scoring_parallel_v1/terminal.json",
-        "summary": "/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v25/analysis/v25_base_summary.json"
-      },
-      "summary": {
-        "declared_cells": 1080,
-        "scored_cells": 1080,
-        "successes": 17,
-        "success_rate": 0.01574074074074074,
-        "pass_at_8_tasks": 13,
-        "mixed_tasks_1_to_7": 13,
-        "target_tasks_2_to_6": 3,
-        "extracted": 996,
-        "compiles": 17,
-        "capped": 84,
-        "mean_generated_tokens": 3877.488888888889,
-        "mean_IC_tests": 0.01574074074074074,
-        "mean_IC_proofs": 0.01574074074074074,
-        "source_model_paths": [
-          "/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v25/base/run/hf"
-        ],
-        "success_rate_ci95": [
-          0.007407407407407408,
-          0.025023148148147812
-        ],
-        "status": "COMPLETE",
-        "test_split_opened": false,
-        "formal_specification_coverage": "not measured",
-        "target": 0.25,
-        "target_metric": "success_rate; same per-attempt binary criterion as V6",
-        "target_reached": false,
-        "bootstrap_unit": "task retaining all eight samples",
-        "p_value": null
-      }
+      "progress": {},
+      "generation_progress": {},
+      "terminal": {},
+      "summary": null
     }
   }
 }
