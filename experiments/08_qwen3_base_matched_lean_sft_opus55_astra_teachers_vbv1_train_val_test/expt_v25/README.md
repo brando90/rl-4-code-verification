@@ -10,4 +10,4 @@ Does the explicit-proof cleanup help on this fixed cohort when both conditions r
 
 ## Runtime and outputs
 
-Remote root `/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v25`. Preserve the V20 baseline. New scoring uses the durable-logging32-worker entry; full1080-cell validation and sealed-test rules remain binding. Compact pairing/admission/training/scoring receipts belong in this folder; raw sources/weights/compiler logs stay remote.
+Remote root `/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v25`. Training and validation COMPLETE: 17/1080 (1.57%), paired Δ vs V20 −0.28 pp (CI overlaps zero); see [results](results.md). Preserve the V20 baseline receipts. Compact pairing/admission/training/scoring receipts belong in this folder; raw sources/weights/compiler logs stay remote.

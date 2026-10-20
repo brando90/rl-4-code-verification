@@ -1,0 +1,27 @@
+{
+  "status": "COMPLETE_DESCRIPTIVE_COMPARISON",
+  "declared_cells_each": 1080,
+  "v20_successes": 20,
+  "v23_successes": 17,
+  "absolute_success_rate_difference": -0.0027777777777777783,
+  "paired_task_bootstrap_difference_ci95": [
+    -0.011111111111111112,
+    0.004629629629629629
+  ],
+  "bootstrap_replicates": 10000,
+  "bootstrap_seed": 0,
+  "bootstrap_unit": "Same validation task resampled with all eight samples from both models",
+  "v20": {
+    "summary_sha256": "4444601f62503cb226ec9f726daf3445c70e40f1dfab057d2d7841356bdac44e",
+    "cells_sha256": "599b0b8cb91f0f1b480fbaeb24ee49de7266e05e84a2e859a1f4558b4e0ab42b"
+  },
+  "v23": {
+    "summary_sha256": "277a11bba0781d6cf5e2b7f65ee8fb5e8dc5ad943373b66b36e37def8498bfef",
+    "cells_sha256": "0f0dc8f67127b14781f619d9f4b7aadc431634f4905b05d114fa1f00bfed2db3"
+  },
+  "test_split_opened": false,
+  "interpretation": "One training seed per condition; descriptive comparison. V23 adds 500 repaired tiny and 125 explicit Workbook examples, and the one-pass token schedule changes with cohort size. This does not isolate either source or establish a causal estimate.",
+  "compiler_calls": 0,
+  "model_calls": 0,
+  "training_restarted": false
+}

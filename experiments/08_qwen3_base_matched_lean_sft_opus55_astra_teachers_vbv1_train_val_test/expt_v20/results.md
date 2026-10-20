@@ -24,6 +24,8 @@ Validation used the frozen V6 adapter settings: seed 91 (per-cell `91*100003+k`)
 
 Failure inventory (lexical, not causal): 929 extracted non-compiling uncapped cells; 130 empty extractions; `native_decide` present in 940/940 nonempty closed sources (also common on successful V12 files when used in anonymous tests). No `sorry`/`admit`/`axiom` markers in the inventory.
 
-**Implication for RL starts:** V20 is far below V12 on the same frozen validation panel, and the confidence intervals do not overlap. Prefer the V12 current-corpus 11.11% checkpoint (already shown to carry usable ρ/H signal) as the RL warm-start candidate. Do not claim RL improvement from V20. A better next SFT for RL should beat V12’s validation success and mixed-task count, not restart from this fresh-base score.
+**Follow-on fresh-base runs (same sealed panel):** V23 (repaired tiny + Workbook) 17/1080 (1.57%); V25 (matched automation restore) 17/1080 (1.57%). Both stay in the ~1.5–1.9% band; neither approaches V12.
+
+**Implication for RL starts:** The fresh-base line is far below V12 on the same frozen validation panel, and the V20–V12 confidence intervals do not overlap. Prefer the V12 current-corpus 11.11% checkpoint (already shown to carry usable ρ≈15.4 / H≈0.16 signal) as the RL warm-start candidate. Do not claim RL improvement from V20/V23/V25. A better next SFT for RL should beat V12’s validation success and mixed-task count, likely by continuing from the current-corpus initialization rather than another fresh-base restart.
 
 **TLDR-end:** [rl4cv: V20 validation] Fresh-base SFT scored 20/1080 (1.85%) on sealed VeriBench V1 validation versus V12’s 120/1080 (11.11%); V12 remains the better RL start.

@@ -6,7 +6,7 @@
 
 ## Status
 
-Preparing dataset freeze and a genuinely empty A100 allocation. No production update claimed yet. Exact row counts, source hashes, first update, training progress and all1080validation cells will be recorded in this folder; raw artifacts stay under RUN/corpus_training_v23 on skampere1.
+Training and validation COMPLETE: 17/1080 (1.57%) on the sealed VeriBench V1 validation panel (see [results](results.md)). Still below V12’s 120/1080 (11.11%). Raw artifacts stay under `/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v23`.
 
 ## Decision criterion
 
