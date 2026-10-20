@@ -4,7 +4,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/CKPT_v4_implementation.md>
 **Companion:** <https://docs.google.com/document/d/1KqUi39sz532dIGg8EYCy6w62Q0KzO2XWhpM2MMSWvHE/edit>
-**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-20-2026 15:56 PDT.
+**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-20-2026 15:57 PDT.
 
 ## State
 
@@ -28,7 +28,7 @@
 - GPU census 10-20-2026 15:40 PDT: all 24 devices occupied; skampere1 0/5/7 belong to v3 workers.
 - Experiment 120: canonical folder and process attribution unresolved; no unsupported attribution to another user's jobs.
 - No GPU allocation, model generation, optimizer step, provider call, cron install, tmux mutation or v2/v3 edits; $0.
-- Publication: final staged review, rebase and push follow this checkpoint; the master can verify the remote commit containing this file.
+- Publication: implementation [7aec74f7](https://github.com/brando90/rl-4-code-verification/commit/7aec74f7934a1e33b6eb778cd9e06e70efa9dde4) rebased on 7bbe1f79 and pushed to main; remote hash verified. Companion section updated and read back.
 
 ## Implemented contracts and decisive checks
 
@@ -104,3 +104,5 @@ I have the experiment 13 v4 CPU implementation passing 89 tests, with the histor
 - 10-20-2026 15:44 PDT: CPU implementation reaches 80 passing tests; complete prompt-length and A6 count receipts written. Read-only three-host inventory found all devices occupied; no v4 launch.
 
 - 10-20-2026 15:56 PDT: Final v4 suite 89/89 passes; configured root suite 1,388 passes/15 skips/0 failures. Bound 29 local artifacts plus four runtime sources, preserving the code-level launch blocker. Corrected once-only worker temperature scaling and verified synthetic probe targets do not mutate saved embedding indices. No launch or cron installation.
+
+- 10-20-2026 15:57 PDT: Inspected exact staged changes, credential-pattern scan and whitespace check; all 32 authored files are confined to v4 and begin with TLDR. Rebased on origin/main 7bbe1f79, pushed 7aec74f7, and verified the remote hash. Admission recheck unchanged; Google companion update verified by readback. This documentation-only receipt closes publication.
