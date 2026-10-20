@@ -1,26 +1,29 @@
-# Fresh-base 1.7B training finished; validation generation is resuming
+# Fresh-base 1.7B validation finished: 20/1080 (1.85%)
 
 **Doc link:** [protocol](PROTOCOL.md)
 
-**Status:** Training COMPLETE. Validation generation is RUNNING on physical GPU 5. **Last updated:** 10-19-2026 1:23 PDT.
+**Status:** Training COMPLETE. Validation COMPLETE (eth127 recovery3). Test split sealed. **Last updated:** 10-20-2026 10:20 PDT.
 
-The fresh Qwen3-1.7B-Base run in `expt_v20` finished its one declared training pass. It did not reuse a previous fine-tune or optimizer. The test split stayed sealed. Validation scores are not available yet.
+The fresh Qwen3-1.7B-Base run in `expt_v20` finished its one declared training pass and the full frozen 1,080-cell validation. It did not reuse a previous fine-tune or optimizer. Formal specification coverage was not measured. This setup changes both initialization and the admitted dataset relative to V12, so the gap does not identify which component caused the drop.
 
-| Measurement | Result |
-|---|---:|
-| Planned / completed optimizer updates | 1,784/1,784 |
-| Admitted rows | 3,568/3,568 |
-| Assistant loss tokens | 2,948,296 |
-| Final logged training loss | 0.476 |
-| Peak allocated GPU memory | 43.79 GiB |
-| Training time | 1,973 seconds |
-| Device | one A100-80GB, physical GPU 0 on skampere1 |
-| Validation cells scored | 0/1,080 |
+| Measurement | V20 fresh-base | V12 current-corpus (reference) |
+|---|---:|---:|
+| Binary successes | 20/1080 (1.85%) | 120/1080 (11.11%) |
+| 95% CI (task bootstrap) | [0.83%, 3.06%] | [6.94%, 15.83%] |
+| pass@8 tasks | 14/135 | 28/135 |
+| Mixed tasks (1–7/8) | 14 | 24 |
+| Target band (2–6/8) | 3 | 16 |
+| Extracted / compiles / capped | 950 / 20 / 131 | 971 / 120 / 110 |
+| Mean generated tokens | 4,266 | 4,760 |
+| Target 25% reached | no | no |
+| Test split opened | no | no |
 
-The final logged loss is the last training step, not a mean over the run. Admitted rows are 678 public proofs, 684 Python-to-Lean examples, 61 repairs and 2,145 workbook examples. Seed 20261019. Checkpoint: `/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v20/base/run/hf`.
+Training receipt (unchanged): 1,784/1,784 updates, 3,568 admitted rows, 2,948,296 assistant loss tokens, final logged loss 0.476, peak 43.79 GiB, physical GPU 0, seed 20261019. Checkpoint: `/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v20/base/run/hf`.
 
-Generation exited before writing any answers. The first failure was system SciPy against NumPy 2.3.5; SciPy 1.16.3 is installed in the generation environment. A second attempt on GPU 1 then failed because system PyOpenSSL did not match the environment’s cryptography. PyOpenSSL 26.4.0 now loads from that environment. The saved training weights were left in place. The waiter found physical GPU 5 empty and started generation at 1:22 PDT, process 3047869. The model loaded, 3.21 GiB of weights, and graph compilation was underway with 0 of 1,080 answers written.
+Validation used the frozen V6 adapter settings: seed 91 (per-cell `91*100003+k`), temperature 0.6, top-p 0.95, top-k 20, 12,288 new tokens, thinking on, `<|im_end|>` stop, backend vLLM. Verified 1,080 unique cells; raw sha256 `f81b3e5ea5e70c6c262a0c914d82c7e7aec4b83964c25eb9190ba16693130955`. Owner path: eth127 `v20_base_recovery3` under `corpus_training_v20/validation/v20_base/`. A parallel brando9 recovery waiter died on CUDA 12.4 FlashInfer JIT (`nvcc fatal: Unknown option --compress-mode`); that path wrote zero cells and is superseded by the eth127 receipt.
 
-The canonical run directory is owned by `eth127` and is not writable from `brando9`. Recovery writes the 1,080 validation answers under `/lfs/skampere1/0/brando9/rl4cv_v20_validation_recovery` and waits for an empty A100 among physical GPUs 1, 0 and 5. Sampling stays at the frozen settings: 8 answers, seed 91, temperature 0.6, top-p 0.95, top-k 20, 12,288 new tokens, thinking on, `<|im_end|>` stop. One GPU, about 68 GB at 0.85 memory utilization, 8-hour bound.
+Failure inventory (lexical, not causal): 929 extracted non-compiling uncapped cells; 130 empty extractions; `native_decide` present in 940/940 nonempty closed sources (also common on successful V12 files when used in anonymous tests). No `sorry`/`admit`/`axiom` markers in the inventory.
 
-**TLDR-end:** [rl4cv: fresh-base checkpoint] `08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v20` finished 1,784/1,784 supervised updates. Validation generation is running on GPU 5, with 0/1,080 answers written at launch.
+**Implication for RL starts:** V20 is far below V12 on the same frozen validation panel, and the confidence intervals do not overlap. Prefer the V12 current-corpus 11.11% checkpoint (already shown to carry usable ρ/H signal) as the RL warm-start candidate. Do not claim RL improvement from V20. A better next SFT for RL should beat V12’s validation success and mixed-task count, not restart from this fresh-base score.
+
+**TLDR-end:** [rl4cv: V20 validation] Fresh-base SFT scored 20/1080 (1.85%) on sealed VeriBench V1 validation versus V12’s 120/1080 (11.11%); V12 remains the better RL start.

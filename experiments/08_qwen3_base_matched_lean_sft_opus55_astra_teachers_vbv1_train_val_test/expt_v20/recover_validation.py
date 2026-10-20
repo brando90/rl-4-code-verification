@@ -54,10 +54,21 @@ def empty_gpu():
     return None, devices
 
 
+def env_path() -> str:
+    raw = os.environ.get("PATH", "/usr/bin:/bin")
+    return ":".join(part for part in raw.split(":") if part and "cuda-12.4" not in part)
+
+
 def env_for(gpu: str) -> dict:
+    # FlashInfer JIT needs CUDA 12.8 nvcc; inherited 12.4 rejects --compress-mode (expt_v2).
+    cuda = "/usr/local/cuda-12.8"
+    path = f"{cuda}/bin:{Path.home() / '.elan' / 'bin'}:{env_path()}"
     env = os.environ.copy()
     env.update(
         CUDA_VISIBLE_DEVICES=gpu,
+        CUDA_HOME=cuda,
+        CUDA_PATH=cuda,
+        PATH=path,
         PYTHONPATH=f"{REPO / 'src'}:{GEN_SITE}",
         VERIBENCH_ROOT=str(REPO / "external/veribench"),
         VLLM_WORKER_MULTIPROC_METHOD="spawn",
