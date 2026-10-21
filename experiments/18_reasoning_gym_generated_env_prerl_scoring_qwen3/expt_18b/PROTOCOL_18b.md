@@ -21,6 +21,10 @@ The peak learning rate was written as 3e-6 in the first freeze commit and is **1
 
 Counting distinct questions among the 1280 training prompts showed that `coin_flip` has only 8, 10 and 14 distinct questions at L0, L1 and L3 and `leg_counting` L0 has 111 (the generators' question spaces are tiny; their 18a probe sets are the same few questions, 8-97 distinct of 256). Training on them is memorising a handful of answers, not learning a skill, and their 18a pass rate, ρ and H were measured on those few questions. They are **excluded** by a new pool rule (≥ 640 distinct of 1280). This replaces the first selection and the first forecasts: nothing had trained or evaluated, no outcome existed, and the old files are kept in `superseded/` (git commit `f0cb64b9` holds the first freeze; `forecast_ledger.jsonl` lists both hashes in order). The new `forecasts_18b.json` is the frozen one. Side note for 18a: the same tiny question spaces make 18a's coin_flip cells (and leg_counting L0) rest on 8-97 distinct questions.
 
+## Erratum 1 (10-21-2026, before any job)
+
+The `law_alpha` row of the Forecasts table said the z-scores are taken over a 25-environment pool; the pool is the 20 environments of Amendment 2 (`selection_18b.json`, `n_pool` 20), which is what `make_forecasts.py` used. Text only; no number or hash changed.
+
 ## Environment selection (frozen, deterministic: `select_envs.py`, output `selection_18b.json`)
 
 Pool: Qwen3-1.7B cells that are complete, not format-dominated, answer-tag rate ≥ 0.5, ρ > 0 (the law takes log ρ), 0.02 ≤ pass rate ≤ 0.98, and at least 640 distinct questions among the 1280 training prompts of seed 0 (Amendment 2) → 20 environments. Take 16 by farthest-point sampling in the pool-standardised space (log ρ, H, alignment, pass rate), first point = the farthest from the pool centroid, at most 3 environments per family, ties broken by env id. Environment = `rg/<family>/L<level>` exactly as in 18a (UPPER_BOUND curriculum level). Selected list: see `selection_18b.json` (it spans pass 0.047-0.716, alignment -0.435 to +0.481, ρ 132 → 18224).
@@ -46,7 +50,7 @@ A forecast is one score per selected environment; higher = larger predicted held
 | name | definition |
 |---|---|
 | `rho_h` | `paper_frozen_14b_model().env_term(ρ, H)` of the repo's utility model (paper Eq. 7: b_ρ·z(log ρ) + b_H·z(H), the paper's own Appendix-D coefficients and standardisers) from the 1.7B cells. Note b_ρ is negative (−0.077) and b_H positive (+0.093) in that fit, so the law as frozen prefers low ρ and high H; it is used as is, not refitted |
-| `law_alpha` | z(`rho_h`) + z(alignment), both standardised over the 25-environment pool, equal weights (there is nothing to fit alignment's weight on) |
+| `law_alpha` | z(`rho_h`) + z(alignment), both standardised over the 20-environment pool, equal weights (there is nothing to fit alignment's weight on) |
 | `alpha` | the 18a alignment score of the 1.7B cell |
 | `difficulty` | −(RG level); level is the generator's own difficulty |
 | `smaller_model` | 0.6B p(1−p), p the 0.6B pass rate of the same environment (the signal a smaller model sees) |

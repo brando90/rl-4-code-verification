@@ -14,7 +14,7 @@ set -euo pipefail
 source $SCRATCH/e18b/code/experiments/18_reasoning_gym_generated_env_prerl_scoring_qwen3/expt_18b/slurm/env.sh
 LDENV=$(e18b_ldenv)
 nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader
-cd $B/code && e18b_py -m pytest -q -p no:cacheprovider tests/test_e18b.py -x -q && cd $B
+cd $B/code && e18b_py -m pytest -q -p no:cacheprovider tests/test_e18b.py -x && cd $B
 S=$RUNS/smoke; rm -rf $S; mkdir -p $S
 for ENV in rg/basic_arithmetic/L2 rg/family_relationships/L1; do
   N=$(e18b_run_name $ENV 0)

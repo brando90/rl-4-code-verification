@@ -1,5 +1,5 @@
 #!/bin/bash
-# TLDR: 18b training array: one H100 per (env, seed) = tasks.tsv line SLURM_ARRAY_TASK_ID+1, 32 tasks; 40 GRPO steps on Qwen3-1.7B, writes $RUNS/<run>/ckpt. A run with train_summary.json is skipped. Wall time is set from the smoke (SUBMIT.md step 5).
+# TLDR: 18b training array: one H100 per (env, seed) = tasks.tsv line SLURM_ARRAY_TASK_ID+1, 32 tasks; 40 GRPO steps on Qwen3-1.7B, writes $RUNS/<run>/ckpt. A run with train_summary.json is skipped. Wall time is set from the smoke (SUBMIT.md step 4).
 #SBATCH -J e18b_train
 #SBATCH -p gpu
 #SBATCH -G 1
