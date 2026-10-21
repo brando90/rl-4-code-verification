@@ -1,8 +1,8 @@
 # Experiment 20: IRT ability-matched prompt selection for GRPO on Lean, strict vs smooth reward (Qwen3-1.7B SFT, VBV1, D-013)
 
-**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/README.md>
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/README.md>
 
-**TLDR:** This is Azalia's test with IRT as the decomposition: does an item response theory (IRT) decision about which prompts GRPO trains on raise held-out validation strict pass@1 at an equal rollout cost? The comparisons are uniform sampling, a scalar pass-rate filter and DAPO-style dynamic sampling, crossed with strict versus smooth reward. Status: **RUNNING (10-21-2026).** Phase 0a calibration generation is running on Sherlock (array 48841018); the trainer smoke test is queued (job 48845232); [PROTOCOL.md](PROTOCOL.md) is a frozen draft (hypotheses, gates and statistics fixed before any Phase 0 outcome; lock after the pilot). Live numbers: [results.md](results.md).
+**TLDR:** This is Azalia's test with IRT as the decomposition: does an item response theory (IRT) decision about which prompts GRPO trains on raise held-out validation strict pass@1 at an equal rollout cost? The comparisons are uniform sampling, a scalar pass-rate filter and DAPO-style dynamic sampling, crossed with strict versus smooth reward. Status: **RUNNING (10-21-2026).** Phase 0a calibration generation is running on Sherlock (array 48841018); the original trainer smoke failed on a missing dependency and replacement 48857034 is running; [PROTOCOL.md](PROTOCOL.md) is a frozen draft (hypotheses, gates and statistics fixed before any Phase 0 outcome; lock after the pilot). Live numbers: [results.md](results.md).
 
 | Field | Value |
 |---|---|
@@ -13,13 +13,13 @@
 | Start policy | Qwen3-1.7B-Base Lean SFT, experiment 08 v4 seed 20260831 (validation strict pass@1 about 5%) |
 | Compute | Sherlock via the private runner (`sherlockctl`). Caps: Phase 0 10, pilot 15, main 130, evaluation 80; 200 GPU-h total, $0 API |
 | Gates | G0: the item model predicts held-out active groups with AUC ≥ 0.70. Pilot: A has < 50% active groups, and C has ≥ 1.5× A's. Smoke test: ≤ 1% of tokens with log-probability mismatch > 0.05 |
-| Owner | A Claude Code worker on SNAP `skampere1`, tmux `cc-rl4cv-e20-irt-prompt-selection`, dispatched by session `local_268be283` |
+| Owner | Codex gpt-6-astra ultra on SNAP `skampere1`, tmux `codex-rl4cv-e20-irt-prompt-selection`, deployment `deploy_50715cf54e614ecf914f0f7da4aae03c`; dispatcher `local_268be283` |
 
 ## Dispatch (model and effort, outside the prompt per agents-config Rule 36)
 
-- **Worker:** Claude Code `claude-fable-5-1` at `max` effort, profile `cc` (the `clauded` wrapper, personal `~/.claude` config) on `skampere1`, full access (bypass permissions on); deployment `deploy_ed87a5b1900b45d2af6e22c1707cc31e`.
+- **Worker:** Codex `gpt-6-astra` at `ultra` effort, personal `~/.codex` on `skampere1`, full access verified in process arguments; deployment `deploy_50715cf54e614ecf914f0f7da4aae03c`. Took over from Claude Fable 5.1 because its personal weekly allowance is reserved for other work; implementation-only change, no measured model or protocol change. [Current checkpoint](CKPT_codex-rl4cv-e20-irt-prompt-selection.md).
 - **Why this model:** the work is design-heavy: GRPO on Sherlock in Apptainer, the Lean grader inside the reward, an IRT fit and gates. It needs the strongest model, not a regular execution worker.
-- **Fallback:** Codex `gpt-6-astra` at `ultra` (personal `~/.codex` on `skampere1`, full access verified there on 10-12-2026).
+- **Predecessor:** Claude `claude-fable-5-1` at `max`, deployment `deploy_ed87a5b1900b45d2af6e22c1707cc31e`; its tmux session is fenced. Healthy Sherlock jobs are adopted.
 
 ## Goal, hypothesis and decision criterion
 
@@ -73,7 +73,7 @@ Unit tests: `tests/test_e20_samplers.py`, `tests/test_e20_loss.py`, `tests/test_
 | Phase 0a generation (539 × 8) | In Progress | Sherlock array 48841018 (4 chunks, L40S/H100) |
 | Phase 0a scoring + partial credit | TODO | arrays `phase0_score.sbatch`, `phase0_partial.sbatch`; scoring smoke passed (3/3 trials equal to expt_v16) |
 | Phase 0b IRT fit, gate G0, forecasts frozen | TODO | `irt_e20.py`, driver to follow |
-| Trainer smoke test | In Progress | Sherlock job 48845232 |
+| Trainer smoke test | In Progress | 48845232 failed before training (missing SciPy); replacement 48857034 running |
 | Pilot (A, C, S seed 1, 16 updates) | TODO | |
 | Main (6 arms × 2 seeds × 48 updates) | TODO | |
 | Validation evaluation, statistics, plots | TODO | |

@@ -1,11 +1,11 @@
 # CKPT e20: IRT ability-matched prompt selection for GRPO (Azalia's test, IRT version)
 
-**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/CKPT_e20.md>
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/CKPT_e20.md>
 
-**TLDR:** Resume record for experiment 20. Dispatcher: Claude Code session local_268be283 (Mac); worker: tmux `cc-rl4cv-e20-irt-prompt-selection` on skampere1 (Claude Code claude-fable-5-1, max, personal profile, full access).
+**TLDR:** Resume record for experiment 20. Dispatcher: Claude Code session local_268be283 (Mac); worker: tmux `codex-rl4cv-e20-irt-prompt-selection` on skampere1 (Codex gpt-6-astra, ultra, personal profile, full access).
 
 Created: 10-21-2026 11:18 PDT
-Last updated: 10-21-2026 12:40 PDT
+Last updated: 10-21-2026 13:55 PDT
 
 ## Goal
 - Does IRT-online prompt selection (C) raise validation strict pass@1 over uniform (A), a pass-rate filter (S) and DAPO (E) at matched rollouts, and how does it interact with a smooth reward (B, D)?
@@ -15,6 +15,7 @@ Last updated: 10-21-2026 12:40 PDT
 - 10-21-2026 11:18 PDT: folder claimed on main with runbook `expt_v1/cc.md` (Brando's 10-20 design, revised with Sang Truong's textbook and lectures and experiment 19's results); worker dispatch next.
 
 ## Results
+- Codex verified live state at 13:43 PDT: all four calibration chunks running; old smoke 48845232 failed after 56 s and newer smoke 48857034 running. Current resume record: [CKPT_codex-rl4cv-e20-irt-prompt-selection.md](CKPT_codex-rl4cv-e20-irt-prompt-selection.md). Historical handoff below is retained.
 - none yet. Phase 0a array 48841018 running on Sherlock (chunk 0 since 12:02 PDT; chunks 1-3 pending); scoring smoke 48841951 passed; trainer smoke 48845232 pending. Exact resume state and commands: [CKPT_cc-rl4cv-e20-irt-prompt-selection.md](CKPT_cc-rl4cv-e20-irt-prompt-selection.md).
 
 ## Stuck / blocked
@@ -30,3 +31,5 @@ Last updated: 10-21-2026 12:40 PDT
 - 10-21-2026 11:18 PDT -- folder claimed on main; runbook written; dispatching the worker.
 - 10-21-2026 11:38 PDT -- dispatch receipt logged (deploy_ed87a5b1900b45d2af6e22c1707cc31e, cc profile, watch-e20); worker checkpoint CKPT_cc-rl4cv-e20-irt-prompt-selection.md created; README dispatch line corrected.
 - 10-21-2026 12:40 PDT -- worker change: Claude Fable 5.1 (personal account) -> Codex gpt-6-astra ultra (personal ~/.codex), reason: Claude personal weekly allowance reserved; implementation-only role, no measured model or protocol change. Handoff state: branch e20-irt-prompt-selection pushed; Sherlock jobs 48841018 (Phase 0a, running/pending), 48845232 (trainer smoke, pending) left running; worker checkpoint holds the exact next commands.
+- 10-21-2026 13:44 PDT -- Codex start: deploy_50715cf54e614ecf914f0f7da4aae03c, gpt-6-astra ultra, personal ~/.codex; full access verified in process arguments, predecessor fenced. Implementation-only role; no measured model, judge, dataset or protocol change. Live-state discrepancy (newer smoke) recorded in the Codex checkpoint.
+- 10-21-2026 13:55 PDT -- Codex takeover verification passed (make test: 1,391 passed, 41 skipped, 6 subtests); calibration 1,792/4,312 rows, trainer smoke 48857034 scoring. Current command and receipts are in the Codex checkpoint.
