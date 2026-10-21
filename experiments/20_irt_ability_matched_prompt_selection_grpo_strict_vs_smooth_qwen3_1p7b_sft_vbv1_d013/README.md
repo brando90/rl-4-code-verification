@@ -17,7 +17,7 @@
 
 ## Dispatch (model and effort, outside the prompt per agents-config Rule 36)
 
-- **Worker:** Claude Code `claude-fable-5-1` at `max` effort, Brando's personal profile (`clauded-personal` on `skampere1`), full access.
+- **Worker:** Claude Code `claude-fable-5-1` at `max` effort, profile `cc` (the `clauded` wrapper, personal `~/.claude` config) on `skampere1`, full access (bypass permissions on); deployment `deploy_ed87a5b1900b45d2af6e22c1707cc31e`.
 - **Why this model:** the work is design-heavy: GRPO on Sherlock in Apptainer, the Lean grader inside the reward, an IRT fit and gates. It needs the strongest model, not a regular execution worker.
 - **Fallback:** Codex `gpt-6-astra` at `ultra` (personal `~/.codex` on `skampere1`, full access verified there on 10-12-2026).
 
