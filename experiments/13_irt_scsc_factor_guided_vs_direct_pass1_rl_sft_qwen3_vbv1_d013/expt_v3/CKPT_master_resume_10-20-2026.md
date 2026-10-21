@@ -316,3 +316,12 @@ The exact commands are in the checkpoint's "Exact master commands" block.
   | Pause one run | — | needs a runner change and re-admission (the admitted runner requires all five pauses) |
 
 - **Waiting on Brando:** pause all five, pause one, or no pause. The coordinator is asking him, and so is the master in its own chat.
+
+## 10-21-2026 11:22 PDT: Brando chose "pause one run only"; A_1302 designated; dispatch 4 running
+
+- **Decision.** Brando answered the coordinator at about 11:2x PDT, his own choice: "Pause one run only." He is away rating for about 5 hours.
+- **Record.** The [operational change to V4-A3](../expt_v4/OPERATIONAL_V4-A3_single_pause_10-21-2026.md) (`94c20d07`) states the pause rule before any pause. The rule puts arm A first (strict reward, almost no signal), then the replication seed 1302, then the fewest completed updates, and never B_1301. It selects **A_1302** (5 of 30).
+  - **Timestamp correction:** the record's status line says "recorded … 11:35 PDT". The commit time of `94c20d07`, about 11:19 PDT, is authoritative. The file is left unchanged because dispatch 4 binds its hash.
+- **Effect.** The other five v3 runs continue. v4's gates compete fairly for idle authorized devices, with no standing reservation, so B_1301's T5_30 stays around 10-24. The 3-GPU pilot waits for B_1301's T5_30 or for free GPUs. Any later stop of a running v3 run is confirmed with Brando first.
+- **Dispatch 4** runs in tmux `codex-rl4cv-e13v4-impl4` since 11:20 PDT, Codex `gpt-6-astra` at ultra effort ([prompt](../expt_v4/PROMPT_dispatch_e13_v4_dispatch4_single_pause.md); log `/lfs/skampere1/0/brando9/rl4cv_e13v4/impl4_codex.log`). It builds the designated single-pause mode and the gate release on one pause, then tests, dry-runs and re-admits. It does not pause anything and uses no GPU.
+- **After dispatch 4,** the master pauses A_1302 at a lease-wait boundary and starts the gates. The master messages the coordinator at each step.
