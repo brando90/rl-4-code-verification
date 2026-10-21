@@ -16,7 +16,7 @@ from rl4cv.veribench.jobs import read_scorer_per_task, scored_response  # noqa: 
 
 FIELDS = ("task_id", "sample_idx", "chunk", "status", "strict", "factored_reward", "IC_tests", "IC_proofs", "FSC", "compiles",
           "n_examples", "theorem_count", "proved_count", "declarations_ok", "implementation_and_examples_ok", "proved_fraction",
-          "partial_status", "partial_note", "generated_tokens", "prompt_tokens", "capped", "finish_reason", "extraction",
+          "partial_status", "partial_note", "adapter_strict", "strict_agrees", "generated_tokens", "prompt_tokens", "capped", "finish_reason", "extraction",
           "lean_sha256", "lean_bytes", "seed")
 
 
@@ -45,16 +45,18 @@ def main() -> int:
             out.update(status=f"scorer:{row.get('scoring_status') or 'none'}", strict="", IC_tests="", IC_proofs="", compiles="", n_examples="", theorem_count="", proved_count="")
         else:
             s = scored_response(row, gen_row)
-            out.update(status="measured", strict=int(reward_kernel_binary(s)), IC_tests=s.ic_tests, IC_proofs=round(s.ic_proofs, 6),
+            out.update(status="measured", strict=int(reward_kernel_binary(s)), IC_tests=s.ic_tests, IC_proofs=s.ic_proofs,
                        compiles=int(s.compiles), n_examples=s.n_examples, theorem_count=s.n_theorems_stated, proved_count=s.n_theorems_proved)
         pt = partial[(c, k)]
         x = pt.get(t) if pt else None
         if x is None:
             out.update(factored_reward="", partial_status="missing", partial_note="", declarations_ok="", implementation_and_examples_ok="", proved_fraction="")
         elif x["status"] == "measured":
-            out.update(factored_reward=round(float(x["factored_reward"]), 6), partial_status="measured", partial_note=x.get("note", ""),
-                       declarations_ok=round(float(x["declarations_ok"]), 6), implementation_and_examples_ok=int(bool(x["implementation_and_examples_ok"])),
-                       proved_fraction=round(float(x["proved_fraction"]), 6))
+            out.update(factored_reward=float(x["factored_reward"]), partial_status="measured", partial_note=x.get("note", ""),
+                       declarations_ok=float(x["declarations_ok"]), implementation_and_examples_ok=int(bool(x["implementation_and_examples_ok"])),
+                       proved_fraction=float(x["proved_fraction"]))
+            out["adapter_strict"] = int(x["strict"])
+            out["strict_agrees"] = int(int(x["strict"]) == out["strict"]) if out["status"] == "measured" else ""
             if out["status"] == "measured" and int(x["strict"]) != out["strict"]:
                 counts["adapter_strict_disagrees"] += 1
         elif "malformed source" in str(x.get("error", "")):
@@ -64,6 +66,8 @@ def main() -> int:
         counts[out["status"]] += 1
         counts["partial:" + out["partial_status"]] += 1
         rows.append(out)
+    if len(rows) != 4312 or len({(r["task_id"], r["sample_idx"]) for r in rows}) != 4312:
+        raise ValueError("Expected exactly 4312 distinct declared generation cells")
     rows.sort(key=lambda r: (r["task_id"], r["sample_idx"]))
     out_csv = E20 / "phase0/phase0_cells_e20.csv"
     with out_csv.open("w", newline="") as fh:

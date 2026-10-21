@@ -1,14 +1,23 @@
-# Experiment 20 results: stopped at the trainer log-probability gate
+# Experiment 20 results: CPU Phase 0 completion; trainer FAILED
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/results.md>
 
 **TLDR:** Experiment 20 stopped before testing IRT-guided prompt selection: the Qwen3-1.7B trainer smoke exceeded its log-probability mismatch limit (2.61982% of tokens versus 1% allowed), so the effect on held-out validation remains unmeasured.
 
-**Status:** STOPPED at the trainer gate; all adopted GPU jobs are terminal. Execution verdict FAILED; the IRT treatment effect remains unmeasured.
+**Status:** IN PROGRESS: post-stop CPU Phase 0 completion; trainer verdict remains FAILED. The downstream IRT treatment effect is unmeasured.
 
-**Last updated:** 10-21-2026 15:24 PDT
+**Last updated:** 10-21-2026 15:59:18 PDT
 
-## Findings
+## Post-stop completion of pre-registered Phase 0 (CPU only, dispatcher instruction 10-21-2026)
+
+**Status (10-21-2026 15:49:26 PDT): IN PROGRESS.** The dispatcher authorized scoring the existing 4,312 train generations, Phase 0b and gate G0, and a saved-receipt comparison with experiment 13 v4 T1. Trainer verdict stays **FAILED**. No new graphics processor (GPU) jobs, pilot, trainer changes or gate changes. Existing failed-gate closure below remains historical evidence.
+
+- CPU scoring: retry 2 submitted: materialization `48881654` → strict array `48881657` and partial-credit array `48881660`, each array 32 tasks (`-p normal -c 1 --mem 16G`). `score_sherlock.sh` is invoked unchanged through its interpreter hook, which adds D-109 durable capture. [Retry submission](expt_v1/results/receipts/cpu_retry_receipt.txt). Attempt 1 preparation (`48880517`) exited 1 before materialization (empty log, 9 s); dependent arrays were canceled without executing. Fixed shell-profile initialization under unset-variable checking; no scored cells or model runs were repeated.
+- IRT/G0: pending all per-cell strict and partial-credit scores; frozen protocol §3 applies.
+- Saved smoke: COMPLETE. Update 2 mismatch = 22,459 finite errors above 0.05 + 195 unsupported actions, out of 864,717 tokens (2.61982%). Analogous experiment 13 v4 T1 comparison **FAIL** due to nonzero unsupported actions. Exact median/p99 and task/token slices unavailable; all-token median bound ≤0.00841008 <0.01, p99 ≤0.10 undecidable. [Full saved-receipt comparison](RESULTS_saved_smoke_t1.md).
+- Publication: same unmerged [PR #20](https://github.com/brando90/rl-4-code-verification/pull/20); G0_FINISHED.txt will record the G0 verdict, AUC interval and results revision.
+
+## Trainer-stop findings (historical closure at 10-21-2026 15:24 PDT)
 
 1. **Trainer gate failed after both smoke updates:** the maximum per-update mismatch is **22,654/864,717 = 2.61982% [n/a, n/a], p-val=n/a** (22,459 tokens with |Δlog p| > 0.05 plus 195 outside recomputed support). Update 1 was 21,888/842,189 = 2.59894%; pooled descriptively, 44,542/1,706,906 = 2.60952%. Threshold: ≤1%, runbook §6.5 and experiment 09 precedent; the pre-existing implementation gates on the maximum. These are exact observed token counts from two updates of arm A, seed 0, with no independent-token inference or repeated-seed uncertainty. The final native receipt says `pass: false`; Slurm exit code is `3:0`. [Final native check](expt_v1/results/receipts/smoke_gate/smoke_logprob_check.json), [gate provenance](expt_v1/results/smoke_gate_observed.json), [plot](expt_v1/results/smoke_gate.png).
 2. **Limited training diagnostics:** 256 rollouts on 32 train prompts: update 1 strict 8/128, active 3/16; update 2 strict 9/128, active 3/16; 73/256 token-capped and 0/256 unresolved scoring outcomes. Generation/scoring/training took 247.80/1,134.56/36.03 s in update 1 and 239.81/115.80/35.68 s in update 2. The run completed at 10-21-2026 14:09:11 PDT. These are smoke diagnostics, not validation learning curves or causal evidence. [All 256 rollout records](expt_v1/results/smoke_rollouts.csv), [active-group plot](expt_v1/results/smoke_active_groups.png). In-support mean absolute log-probability differences were 0.004148 and 0.004204; signed bias was not recorded.
@@ -16,7 +25,7 @@
 4. **Implementation deviations are explicit:** the adopted smoke used a custom optimizer loop with TRL's colocated `VLLMGeneration` helper, rather than the runbook's `GRPOTrainer` or prescribed NeMo fallback. The predecessor recorded that choice in the draft protocol; it is not accepted as satisfying the runbook. Smoke also ran before calibration/G0, used seed 0, and had a 45-minute launcher. Its context capacity was raised from 16,384 to 20,480 after an infrastructure failure, preserving the 12,288-new-token sampler. [Captured runtime provenance](expt_v1/results/receipts/runtime_takeover/manifest.json). No backend redesign or gate weakening follows the failure.
 5. **Verification passed:** `make test` on the operational fixes: 1,415 passed, 17 skipped, 6 subtests passed; 3 warnings, 296.87 s. Shell syntax and diagnostic-retention retry fixtures passed. Verification used a temporary worktree at the depth required by the repository's legacy relative dependency lookup, with frozen external pins; no other experiment was edited. [Verification receipt](expt_v1/results/receipts/verification_terminal_publication.json).
 
-**Next step:** review [pull request #20](https://github.com/brando90/rl-4-code-verification/pull/20). This run is closed at its failed gate; any repaired trainer comparison belongs to a new prospective run.
+**Next step:** finish the authorized CPU Phase 0 analyses and publish to [pull request #20](https://github.com/brando90/rl-4-code-verification/pull/20). The trainer stop remains in force.
 
 ## Live phase table
 
@@ -24,19 +33,19 @@
 |---|---|---|
 | Setup and protocol draft | Recorded; never pilot-locked | 0 |
 | Phase 0a generation, 539 × 8 train cells | Adopted array 48841018_[0-3] terminal; 4,312/4,312 generated, 0 missing, all unscored | 7.2358 / 10, final |
-| Phase 0a strict/smooth scoring | NOT RUN after failed trainer gate | 0 |
-| Phase 0b IRT fit and G0 | NOT RUN | CPU only |
+| Phase 0a strict/smooth scoring | IN PROGRESS: CPU arrays 48881657/48881660 after preparation 48881654 (attempt 2) | 0 |
+| Phase 0b IRT fit and G0 | PENDING scoring; authorized post-stop completion | CPU only |
 | Trainer smoke | FAILED gate after 2/2 updates; 48857034 exit 3:0; earlier infrastructure failures 48845232/48855196 included | 0.5900, included in pilot cap 15 |
 | Pilot A/C/S | NOT RUN | 0 additional / 15 |
 | Main arms A/S/E/C/B/D | NOT RUN | 0 / 130 |
 | Validation evaluation | NOT RUN | 0 / 80 |
 | Total | Final allocation, including all failures | 7.8258 / 200 |
 
-Allocation source: [all seven allocation rows](expt_v1/results/gpu_accounting.csv), [terminal Slurm receipt](expt_v1/results/receipts/live_gate_state.json), and [final accounting](expt_v1/results/receipts/final_accounting.json). GPU-hours use allocated elapsed seconds × GPU count, including failures and scoring time while a GPU allocation was held. Phase 0 used 7.2358/10 GPU-h; trainer smoke used 0.5900/15; main and evaluation used 0/130 and 0/80. Total 7.8258/200 GPU-h, API spend **$0**. All adopted jobs ended naturally; no cancellation or new experimental phase was launched after the failed gate. Other owners' jobs were untouched.
+Allocation source: [all seven allocation rows](expt_v1/results/gpu_accounting.csv), [terminal Slurm receipt](expt_v1/results/receipts/live_gate_state.json), and [final accounting](expt_v1/results/receipts/final_accounting.json). GPU-hours use allocated elapsed seconds × GPU count, including failures and scoring time while a GPU allocation was held. Phase 0 used 7.2358/10 GPU-h; trainer smoke used 0.5900/15; main and evaluation used 0/130 and 0/80. Total 7.8258/200 GPU-h, API spend **$0**. All adopted GPU jobs ended naturally. The subsequent CPU Phase 0 completion is authorized by the dispatcher instruction above. Other owners' jobs were untouched.
 
 ## Missing outcomes and artifacts
 
-H1 (C−A), H3 (C−S and C−E), H2 (online IRT prediction/active-group comparison), H4 ((D−B)−(C−A)), validation pass@1/pass@8, ability tracking and the smooth-reward audit are **not measured**. Their estimates, confidence intervals and p-values are unavailable, not zero. Required validation learning curves and the H4 2×2 plot cannot be produced from the smoke data; the actual gate plot above is supplied instead. Calibration scores, fitted item parameters and numeric forecasts are also unavailable. No claims use the held-out test split.
+H1 (C−A), H3 (C−S and C−E), H2 (online IRT prediction/active-group comparison), H4 ((D−B)−(C−A)), validation pass@1/pass@8, ability tracking and the smooth-reward audit are **not measured**. Their estimates, confidence intervals and p-values are unavailable, not zero. Required validation learning curves and the H4 2×2 plot cannot be produced from the smoke data; the actual gate plot above is supplied instead. Calibration scores, fitted item parameters and numeric forecasts are pending the authorized CPU completion. No claims use the held-out test split.
 
 ## Provenance and continuation
 

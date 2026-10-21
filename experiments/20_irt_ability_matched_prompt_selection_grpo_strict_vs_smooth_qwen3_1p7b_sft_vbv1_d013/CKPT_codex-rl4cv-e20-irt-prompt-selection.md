@@ -5,25 +5,24 @@
 **TLDR:** Single-writer continuation of `20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013` under the unchanged runbook. Deployment `deploy_50715cf54e614ecf914f0f7da4aae03c`, Codex gpt-6-astra ultra, personal ~/.codex, skampere1.
 
 Created: 10-21-2026 13:44 PDT
-Last updated: 10-21-2026 15:32:38 PDT
+Last updated: 10-21-2026 15:59:18 PDT
 
 ## Goal
-- Completed the mandatory failed-gate closure of 20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013.
+- Complete post-stop pre-registered Phase 0 CPU scoring and item response theory (IRT) gate G0; trainer stays FAILED.
 ## What ran
-- Adopted four Phase 0a jobs and smoke 48857034; earlier failed smoke attempts 48845232/48855196 included. All seven allocations are terminal; no new experimental phase.
-- Codex gpt-6-astra/ultra, full access, sole repository writer; predecessor fenced; implementation-only worker change.
+- Dispatcher instruction 10-21-2026 reauthorizes only scoring saved 4,312 generations, Phase 0b/G0, and saved-smoke comparison to experiment 13 v4 T1.
+- Codex gpt-6-astra/ultra, deployment deploy_50715cf54e614ecf914f0f7da4aae03c, sole repository writer, full access. Independent helpers: saved-smoke audit and numerical analysis driver.
 ## Results
-- Smoke exit 3:0 after 2 updates; max mismatch 22,654/864,717 = 2.61982% >1%. All 256 rollout records retained; IRT treatment effect unmeasured.
-- Calibration 4,312/4,312 generated, 0 missing, 0 scored; full denominator retained. Phase 0 7.2358/10 GPU-h; smoke 0.5900/15; total 7.8258/200; API $0; test split closed.
-- Final-code make test PASS: 1,415 passed, 17 skipped, 6 subtests, 3 warnings; 370.61 s. Artifact and allocation reconciliation passed.
+- Existing calibration 4,312/4,312 generated, 539 tasks, 0 missing; CPU jobs queued. Saved-smoke T1 comparison FAIL (195 unsupported update2); exact quantiles unavailable, median bounded <0.01. Trainer FAILED: 22,654/864,717 mismatch tokens (2.61982% >1%).
+- Existing allocation 7.8258/200 GPU-h; no new GPU jobs, pilot, trainer or gate changes authorized. API $0; test split closed.
 ## Stuck / blocked
-- STOPPED at trainer log-probability mismatch gate. Custom optimizer backend deviates from required GRPOTrainer/NeMo; no redesign or gate weakening in this run.
+- Trainer admission remains FAILED; CPU Phase 0 completion is independently authorized and underway.
 ## Next steps
-- No experimental continuation. Required closure is complete: results/marker pushed, PR #20 ready/unmerged, Google log and final emails verified; owned verification worktree removed.
-- PR https://github.com/brando90/rl-4-code-verification/pull/20 is the sole review PR; do not merge. Exact final evidence: expt_v1/results/receipts/final_accounting.json and phase0_cells_unscored.csv.
-- The monitor has observed terminal jobs; do not restart jobs. A new scientific run requires its own prospective protocol.
+- [p 10/10] Monitor retry-2 CPU chain 48881654 → 48881657/48881660; attempt1 preparation failed before inputs, canceled dependent arrays. Next: sherlockctl exec with sacct on these IDs; >=60 s since last check.
+- [p 10/10] Complete Phase 0b/G0 with frozen priors/folds, alternatives and freeze_forecast; commit/push PR #20 branch, write G0_FINISHED.txt with verdict, AUC interval and results hash.
+- Keep >=60 seconds between Slurm checks; remain inside turn. Preserve E20_FINISHED.txt as trainer-stop history.
 ## Brando to-do
-- [p 8/10] Review PR #20 when convenient; no action is needed to close this failed-gate run.
+- none; comparison with experiment 13 v4 T1 is decision input, not a gate change.
 
 ## Log
 - 10-21-2026 13:44 PDT -- Codex takeover verified against live Git, processes and Sherlock; adopted calibration; newer smoke differs from handoff and is under investigation. Native helper `/root/locate_experiment_log` (gpt-5.6-terra/medium) is locating the requested Google experiment log; root remains sole repository writer.
@@ -59,3 +58,11 @@ Last updated: 10-21-2026 15:32:38 PDT
 - 10-21-2026 15:24 PDT -- Immutable final results commit 79d02c82ddd578ebeedc556569195c706b30378c; E20_FINISHED.txt records STOPPED at trainer log-probability mismatch gate and this results revision. Publishing marker before final experiment DONE notification.
 - 10-21-2026 15:27 PDT -- Results 79d02c82 and marker d2e3c802 pushed and remote hash verified. PR #20 ready for review, open/mergeable/unmerged; final description read back. Final DONE email delivered once (Gmail 1a16091ef0726ab4), all four explicit BCC envelope recipients accepted. Watcher is healthy and awaits the worker idle state after this turn; finish marker exists.
 - 10-21-2026 15:32:38 PDT -- Final receipt-publication make test PASS: 1,415 passed, 17 skipped, 6 subtests, 3 warnings, 370.61 s. Removed owned verification worktree without force after exact committed-copy verification; root dependencies preserved. All failed-gate closure deliverables complete; final notification/cleanup receipts ready for push.
+
+- 10-21-2026 15:49:26 PDT -- Dispatcher explicitly reopened CPU-only pre-registered Phase 0 completion on saved 4,312 generations; trainer remains FAILED. Updated current state, preserved prior stop history, began scoring-wrapper verification and independent saved-receipt/IRT work.
+
+- 10-21-2026 15:52:16 PDT -- CPU jobs submitted: materialize48880517, strict48880518, partial48880519 (normal,c1,16G); source hashes verified, shared score_sherlock.sh bridge fixture passed. START email accepted all four BCC recipients. Full deterministic suite running before launch-record push; dispatcher watchdog now targets G0_FINISHED.txt.
+
+- 10-21-2026 15:53:51 PDT -- Saved smoke comparison finished from receipts only: update2 =22459 finite>0.05+195 unsupported/864717; analogous T1 fails zero unsupported. Median upper bound0.00841008, exactmedian/p99 unretained, p99 criterion undecidable; results/report/parser saved. No gate or trainer change.
+
+- 10-21-2026 15:59:18 PDT -- Attempt1 materialization failed in shell-profile initialization (9s,exit1,no jobs materialized); dependent arrays canceled without executing. Retry2 submitted48881654→48881657/48881660 after environment fix. Full make test1415passed/17skipped/6subtests/300.55s; wrapper,4312cell-join,and diagnostic-hash fixtures PASS. Publishing live CPU launch and saved-smoke results; GDoc and STARTemailreadbacks verified.
