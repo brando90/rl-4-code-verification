@@ -66,4 +66,4 @@ Mean over the 8 families of the within-family Spearman of RG level against pass 
 
 ## Deviations from PROTOCOL.md
 
-None in the analyses (analyze.py was run as frozen, job 1861868). Additions outside the frozen plan, all labelled exploratory: the format-dominated sensitivity subset, the family-bootstrap above, the plots and table. `results/manifest.json` (item hashes, package versions) was not produced by analyze.py; the item manifest is at `expt_v1/results/items/manifest.json` on FarmShare and in `scratch/at597/x/items/` locally. `envs_18a.jsonl` has all 96 rows with every schema field of `envs_18a/v1` including `in_learnable_band` (46 true = 12+23+11).
+None in the analyses (analyze.py was run as frozen, job 1861868). Additions outside the frozen plan, all labelled exploratory: the format-dominated sensitivity subset, the family-bootstrap above, the plots and table. `results/manifest.json` (item hashes, package versions) was not produced by analyze.py; the item manifest is `expt_v1/results/items/manifest.json` on the branch. `envs_18a.jsonl` has all 96 rows with every schema field of `envs_18a/v1` including `in_learnable_band` (46 true = 12+23+11).
