@@ -95,3 +95,7 @@ No model selection happens here, so there is no multiplicity correction; every i
 Validation split only; the test split is never loaded. No paid API calls ($0 provider spend). GPU estimate: training ~0.9 GPU-h of compute per seed (0.875 of a full 1.06 GPU-h v4 run) plus ~5 min model loading per job, ~2.4 GPU-h for six; generation 1.6–3.2 GPU-h per checkpoint (100% checkpoints took 1.6; Base-like outputs 3.2), ~10–19 GPU-h for six; **total ~12–22 GPU-h** (central ~17) on public `gpu` nodes, at most 3 GPUs at once, within QOS and fair use (Brando dropped the 8 GPU-hour cap on 10-20-2026). Scoring 48 single-core jobs of ~1–2 h on `normal`. Canonical remote home: `$SCRATCH/rl4cv_sherlock/expt_v27`. Other people's runs (SNAP, Ethan Lee's and Varun's folders, `sherlock-agent-bridge` jobs) are never touched.
 
 **TLDR-end:** [rl4cv: SFT data-size ablation] `08_.../expt_v27_data_size_seeds` trains the v4 recipe on the ladder's 12.5/25/50% subsets at two seeds each, scores them like expt_v16, and tests each data doubling against seed noise and experiment 17's curve.
+
+## Addendum 10-20-2026 (package build, before any job)
+
+- Rounding only: the E17 table above takes differences of rounded values. Unrounded, the predictions are −1.485% / 0.660% / 2.797% / 4.504%, so the predicted 50→100 step is +1.71 pts (not +1.70) and 25→50 is +2.14 pts; `analyze_v27.py` uses the unrounded curve (checked against a refit of `rl4cv.utility_model` in `tests/test_v27.py`). No design change.
