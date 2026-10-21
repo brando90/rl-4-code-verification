@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/ub9/e18a-reasoning-gym-env-scoring/experiments/18_reasoning_gym_generated_env_prerl_scoring_qwen3/results.md>
 
-**TLDR:** All 96 environment cells and 18 target cells completed (256 items x 16 responses each, no incomplete cells, nothing rerun). The primary analysis gives **partial** difficulty transfer across sizes by the frozen rule: pairwise Spearman of pass rate is 0.70 (0.6B–1.7B, CI 0.39–0.89), 0.79 (0.6B–4B, CI 0.60–0.88) and 0.81 (1.7B–4B, CI 0.62–0.91), Kendall's W 0.84; it is not "transfers" because 0.6B–1.7B is below 0.7 and its CI lower bound is below 0.5. Within-family difficulty is monotone in 8/8 (0.6B), 6/8 (1.7B) and 7/8 (4B) families. The learnable band has 12, 23 and 11 environments. Main caveat: 20 of 96 environment cells are `format_dominated` (answer-tag rate below 50%), 11 of them for 0.6B, so part of the "difficulty" is formatting (see Caveats).
+**TLDR:** All 96 environment cells and 18 target cells completed (256 items x 16 responses each, no incomplete cells, nothing rerun). The primary analysis gives **partial** difficulty transfer across sizes by the frozen rule: pairwise Spearman of pass rate is 0.70 (0.6B–1.7B, CI 0.39–0.89), 0.79 (0.6B–4B, CI 0.60–0.88) and 0.81 (1.7B–4B, CI 0.62–0.91), Kendall's W 0.84; it is not "transfers" because the 0.6B–1.7B CI lower bound (0.39) is below 0.5. Within-family difficulty is monotone in 8/8 (0.6B), 6/8 (1.7B) and 7/8 (4B) families. The learnable band has 12, 23 and 11 environments. Main caveat: 20 of 96 environment cells are `format_dominated` (answer-tag rate below 50%), 11 of them for 0.6B, so part of the "difficulty" is formatting (see Caveats).
 
 ## Slurm jobs
 
@@ -29,7 +29,7 @@ Source: `expt_v1/results/summary_18a.json` (written by `expt_v1/analyze.py` on F
 
 Kendall's W = 0.841. "Transfers" needed every pair ≥ 0.7 with CI lower bound > 0.5; 0.6B–1.7B has its CI lower bound at 0.39, and no pair is below 0.4, so the rule gives "partial".
 
-**2. Within-family monotonicity (level vs pass rate).** 0.6B: 8/8 families monotone. 1.7B: 6/8 (not monotone: leg_counting, family_relationships). 4B: 7/8 (not monotone: family_relationships). The expectation was at least 6 of 8 per model: met for all three.
+**2. Within-family monotonicity (level vs pass rate).** 0.6B: 8/8 families monotone. 1.7B: 6/8 (not monotone: leg_counting, family_relationships). 4B: 7/8 (not monotone: family_relationships; word_sorting counts as monotone only because it is flat near 0). The expectation was at least 6 of 8 per model: met for all three.
 
 **3. Learnable band (0.1 ≤ pass ≤ 0.9 and ρ > 0).** 0.6B: 12 environments; 1.7B: 23; 4B: 11. Jaccard overlap: 0.6B–1.7B 0.52, 0.6B–4B 0.44, 1.7B–4B 0.42. Mean level of in-band environments: 1.08, 1.35, 1.27, so the expectation that it rises with size holds from 0.6B to 1.7B but not to 4B. The 4B band is smaller than the 1.7B band because 6 of its environments are above 0.9 and 15 are below 0.1 (the 1.7B model has 0 above 0.9 and 9 below 0.1); 0.6B has 0 above and 20 below. Per-model lists are in `summary_18a.json` under `analysis3_learnable_band`.
 
@@ -54,7 +54,7 @@ Mean pass rate over the 32 environments: 0.107 (0.6B), 0.256 (1.7B), 0.323 (4B).
 - The pass-rate~H correlation (0.74–0.97) and the format effect interact: low-tag cells have few correct answers and low H together.
 
 
-## Level vs pass rate (AT-598 addendum)
+## Level vs pass rate (addendum, outside the frozen plan)
 
 Mean over the 8 families of the within-family Spearman of RG level against pass rate (values from `analysis2_within_family`; negative = harder level, lower pass; bootstrap over families, 5000 resamples, seed 0, descriptive): 0.6B −0.87 (CI −0.97 to −0.72), 1.7B −0.74 (−0.97 to −0.34), 4B −0.66 (−0.93 to −0.34). Exceptions: 1.7B leg_counting (+0.60, L2 above L1), 4B word_sorting (+0.11, all near 0), and coin_flip is nearly flat for 4B (≥ 0.91 at every level) and 0.6B (~0.15), so RG level orders difficulty well in arithmetic, equations and sudoku but barely in coin_flip and letter_counting.
 
@@ -66,4 +66,4 @@ Mean over the 8 families of the within-family Spearman of RG level against pass 
 
 ## Deviations from PROTOCOL.md
 
-None in the analyses (analyze.py was run as frozen, job 1861868). Additions outside the frozen plan, all labelled exploratory: the format-dominated sensitivity subset, the family-bootstrap above, the plots and table. `results/manifest.json` (item hashes, package versions) was not produced by analyze.py; the item manifest is `expt_v1/results/items/manifest.json` on the branch. `envs_18a.jsonl` has all 96 rows with every schema field of `envs_18a/v1` including `in_learnable_band` (46 true = 12+23+11).
+None in the analyses (analyze.py was run as frozen, job 1861868). Additions outside the frozen plan, all labelled exploratory: the format-dominated sensitivity subset, the "Level vs pass rate" addendum (family-bootstrap), the plots and table. `results/manifest.json` (item hashes, package versions) was not produced by analyze.py; the item manifest is `expt_v1/results/items/manifest.json` on the branch. `envs_18a.jsonl` has all 96 rows with every schema field of `envs_18a/v1` including `in_learnable_band` (46 true = 12+23+11).
