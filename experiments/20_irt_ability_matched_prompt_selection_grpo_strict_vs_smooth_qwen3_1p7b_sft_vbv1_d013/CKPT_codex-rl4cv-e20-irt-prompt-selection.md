@@ -5,7 +5,7 @@
 **TLDR:** Single-writer continuation of `20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013` under the unchanged runbook. Deployment `deploy_50715cf54e614ecf914f0f7da4aae03c`, Codex gpt-6-astra ultra, personal ~/.codex, skampere1.
 
 Created: 10-21-2026 13:44 PDT
-Last updated: 10-21-2026 16:29:11 PDT
+Last updated: 10-21-2026 16:33:45 PDT
 
 ## Goal
 - Complete post-stop pre-registered Phase 0 CPU scoring and item response theory (IRT) gate G0; trainer stays FAILED.
@@ -13,7 +13,7 @@ Last updated: 10-21-2026 16:29:11 PDT
 - Dispatcher instruction 10-21-2026 reauthorizes only scoring saved 4,312 generations, Phase 0b/G0, and saved-smoke comparison to experiment 13 v4 T1.
 - Codex gpt-6-astra/ultra, deployment deploy_50715cf54e614ecf914f0f7da4aae03c, sole repository writer, full access. Independent helpers: saved-smoke audit and numerical analysis driver.
 ## Results
-- Existing calibration 4,312/4,312 generated, 539 tasks, 0 missing; CPU scoring: strict 0/32 jobs, partial 1/32 jobs; 1751/4312 partial cells logged. Saved-smoke T1 comparison FAIL (195 unsupported update2); exact quantiles unavailable, median bounded <0.01. Trainer FAILED: 22,654/864,717 mismatch tokens (2.61982% >1%).
+- Existing calibration 4,312/4,312 generated, 539 tasks, 0 missing; CPU scoring: strict 6/32 jobs, partial 1/32 jobs; 2016/4312 partial cells logged. Saved-smoke T1 comparison FAIL (195 unsupported update2); exact quantiles unavailable, median bounded <0.01. Trainer FAILED: 22,654/864,717 mismatch tokens (2.61982% >1%).
 - Existing allocation 7.8258/200 GPU-h; no new GPU jobs, pilot, trainer or gate changes authorized. API $0; test split closed.
 ## Stuck / blocked
 - Trainer admission remains FAILED; CPU Phase 0 completion is independently authorized and underway.
@@ -82,3 +82,5 @@ Last updated: 10-21-2026 16:29:11 PDT
 - 10-21-2026 16:28:37 PDT -- CPU monitor 20261021T232751Z: states {'RUNNING': 63, 'COMPLETED': 1, 'PENDING': 1}; strict jobs 0/32, partial jobs 1/32, partial cells logged 1751/4312. Strict/partial diagnostic calls 2435/3305. Collection ready=False; trainer FAILED unchanged.
 
 - 10-21-2026 16:29:11 PDT -- Fullmake PASS1415/17skipped/6subtests/3warnings in304.93s; synthetic summary and report fixtures PASS; staged exact bytes and secret/diff checks PASS. Publishing 1751/4312 partial-cell progress with report tooling; HTTP404 recovered on next scheduled observation, no job resubmission.
+
+- 10-21-2026 16:33:45 PDT -- CPU monitor 20261021T233247Z: states {'RUNNING': 57, 'COMPLETED': 7, 'PENDING': 1}; strict jobs 6/32, partial jobs 1/32, partial cells logged 2016/4312. Strict/partial diagnostic calls 2738/3772. Collection ready=False; trainer FAILED unchanged.
