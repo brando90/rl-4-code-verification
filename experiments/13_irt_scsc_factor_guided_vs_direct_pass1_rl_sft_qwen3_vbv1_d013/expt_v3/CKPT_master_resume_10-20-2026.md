@@ -342,3 +342,16 @@ The exact commands are in the checkpoint's "Exact master commands" block.
 - **Pause not run yet.** The master did not run the pause; a loop on the admitted rule would wait forever, and spoofing pane text was rejected as dishonest.
 - **[Dispatch 5](../expt_v4/PROMPT_dispatch_e13_v4_dispatch5_pause_boundary_signal.md)** (`2c7d7fc3`) runs in tmux `codex-rl4cv-e13v4-impl5` since 12:51 PDT, Codex `gpt-6-astra` at ultra effort, CPU only. It implements the process and disk-state boundary rule (SIGSTOP and recheck kept), tests it on the observed states, runs a live read-only probe, and re-admits.
 - **Then** the master pauses A_1302 and starts the gates. All six v3 runs keep running meanwhile.
+
+## 10-21-2026 14:20 PDT: dispatch 5 done (admission `ffbeb4e6…`); A_1302 pause sequence running
+
+- **Dispatch 5** (`9ec6640d`, `a17216c3`) replaced the pane-text boundary with process and disk evidence.
+  - **Tests:** v4 233 passed (52 new observed-state tests), watchdog 16, root suite 1,405 passed with 15 skipped.
+  - **Live read-only probes:** A_1302 was `WAIT_STAGE_RUNNING` while optimizing, and **P_1301 reached READY on a blank pane**, so the new rule can fire on silent runners.
+  - **Admission:** ADMITTED, SHA-256 `ffbeb4e6b2b64408d4a151a24bf0034400bef9c7d6d09d0da0a10f71efeb72b7`.
+- **Sequence started at 14:17 PDT** in tmux `e13v4-a1302-pauser`, script `/lfs/skampere1/0/brando9/rl4cv_e13v4/a1302_pause_then_gates.sh`, log `a1302_pause_then_gates.log`. It runs dispatch 5's master commands:
+  1. the probe, then `launch-check` (exit 0 at 14:18);
+  2. the admitted pause loop for **A_1302 only**, every 20 s, capped at 12 hours;
+  3. then `install_watchdog.py --install` once, then `launch_control.py` for the gates.
+- **First status:** A_1302 had just completed update 6, so the tool returned `WAIT_SUMMARY_PRESENT` (between updates, not yet waiting for a lease).
+- **Next:** a check at 14:33 PDT (one-shot cron) verifies the pause and the first gate. The other five v3 runs are untouched.
