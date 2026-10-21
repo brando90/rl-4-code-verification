@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/CKPT_v4_implementation.md>
 **Companion:** <https://docs.google.com/document/d/1KqUi39sz532dIGg8EYCy6w62Q0KzO2XWhpM2MMSWvHE/edit>
-**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-20-2026 22:52 PDT.
+**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-20-2026 22:54 PDT.
 
 **TLDR:** Dispatch 3 implements real leased adapters, amendments V4-A2/A3/A4 and the descriptive experiment 19 scorer. All CPU suites and the full real-adapter stub dry run pass. The new admission is statically **ADMITTED**; live gates remain unmeasured and no experiment has launched.
 
@@ -37,7 +37,9 @@ The dry run used the identical final code/tests/plans under [the preseal admissi
 
 1. V4-A3's veto window closes without a veto at **10-21-2026 12:00 PDT**, and the master records the five clean pauses using the tool. A veto requires restoring the frozen timing in a new prospective plan/admission; this A3 plan refuses early execution.
 2. A stage obtains a freshly verified **idle authorized device lease**, respecting v3 reservations and the experiment 120 occupancy check. No eligible device was idle in the final census.
-3. **Pilot only:** B_1301's frozen `T5_30.json` verdict exists, its lease is released, and all v4 technical prerequisite stages passed. A live gate failure stops; the CPU dry run is not gate evidence. Development dry runs were stopped by admission checks when owned source changed; their partial directories are retained and are not passing evidence. Deterministic test counts are checks, not scientific estimates; intervals/p-values are not applicable. Six root warnings are existing deprecation/fork warnings.
+3. **Pilot only:** B_1301's frozen `T5_30.json` verdict exists, its lease is released, and all v4 technical prerequisite stages passed. A live gate failure stops; the CPU dry run is not gate evidence.
+
+Development dry runs were stopped by admission checks when owned source changed; their partial directories are retained and are not passing evidence. Deterministic test counts are checks, not scientific estimates; intervals/p-values are not applicable. Six root warnings are existing deprecation/fork warnings.
 
 ### Exact master commands — prepared, not executed
 
@@ -75,7 +77,7 @@ The runtime guard observes devices at each lease and respects v3's per-device lo
 
 **Copy-ready message for the master:** I finished v4’s real leased adapters, A2–A4 and the experiment 19 forecast scorer, with 142 passing v4 tests, 16 passing watchdog tests, 1,405 passing root tests and a 360-update GPU-free stub run; admission `29276968a2e93abcea5dede2f763703ed207b2f4f0e6c94f542268f8b11c758c` passes static launch-check, leaving the master’s A3 timing/pauses, idle lease and B_1301 pilot conditions.
 
-Publication: explicit-path commit, rebase onto current `origin/main`, push to `main`, and Google companion synchronization are being finalized; no live launch follows publication.
+Publication: implementation commit **[`1e667077`](https://github.com/brando90/rl-4-code-verification/commit/1e667077c7b075c7158e255883eb5fa2ba77e157)** was committed with explicit pathspecs, rebased over the master’s `b193341c` checkpoint and pushed to `main`; the remote SHA matched on readback. The Google companion’s owned v4 section was updated and read back exactly, preserving all other content. This publication-note update changes only this checkpoint; the admission digest and bound artifacts stay unchanged. Read-only measured progress reports every live v4 stage `PENDING`. No live launch follows publication.
 
 ## Historical dispatches — superseded admissions and commands
 
