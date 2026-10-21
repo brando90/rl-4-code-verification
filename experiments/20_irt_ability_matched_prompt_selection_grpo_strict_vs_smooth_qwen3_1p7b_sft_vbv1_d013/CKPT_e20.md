@@ -19,7 +19,7 @@ Last updated: 10-21-2026 15:24 PDT
 ## Stuck / blocked
 - STOPPED at trainer log-probability mismatch gate. Custom optimizer backend deviates from required GRPOTrainer/NeMo; no redesign or gate weakening in this run.
 ## Next steps
-- [p 10/10] Finish publication of final records and E20_FINISHED.txt; Google log and Phase 0 DONE email are verified; final experiment DONE email and temporary verification-worktree cleanup remain.
+- [p 10/10] Push the finish marker, mark PR #20 ready for review, send final DONE email, and remove the owned verification worktree; Google log and Phase 0 DONE email verified.
 - PR https://github.com/brando90/rl-4-code-verification/pull/20 is the sole review PR; do not merge. Exact final evidence: expt_v1/results/receipts/final_accounting.json and phase0_cells_unscored.csv.
 - The monitor has observed terminal jobs; do not restart jobs. A new scientific run requires its own prospective protocol.
 ## Brando to-do
@@ -56,3 +56,4 @@ Last updated: 10-21-2026 15:24 PDT
 - 10-21-2026 15:20 PDT -- All adopted jobs terminal; final artifacts reconciled: 4,312/4,312 generated, 0 missing, all scores unmeasured. Final allocation Phase 0 7.2358/10 GPU-h, smoke 0.5900/15, total 7.8258/200, API $0. No new experimental phase.
 - 10-21-2026 15:22 PDT -- Final transfer SHA-256 verified; 4,312 cells/539 tasks/eight samples, no duplicates/missing, 25,821,971 tokens, 940 capped. Full task ID hash matches declared train IDs. Manifest preserves 2,027 remote raw/diagnostic files. Google final bullet readback verified; Phase 0 DONE email delivered (Gmail 1a1608dba9bbe9eb), explicit four-address BCC envelope accepted.
 - 10-21-2026 15:24 PDT -- Terminal-publication make test PASS: 1,415 passed, 17 skipped, 6 subtests, 3 warnings, 296.87 s; exact implementation hashes unchanged. Final staged CSV bytes match validated artifacts; secret-pattern/diff checks passed. Preparing final results commit and finish marker.
+- 10-21-2026 15:24 PDT -- Immutable final results commit 79d02c82ddd578ebeedc556569195c706b30378c; E20_FINISHED.txt records STOPPED at trainer log-probability mismatch gate and this results revision. Publishing marker before final experiment DONE notification.
