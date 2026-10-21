@@ -1,78 +1,71 @@
-# Experiment 13 v4: certificates and ordered CPU runner
+# Experiment 13 v4: real adapters and prospective admission
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/README.md>
 
-**TLDR:** V4-A1 certificates and the ordered stage controller are implemented and tested with synthetic engines. Measured launch remains **BLOCKED**: uncertified generator probabilities have no specified treatment in the frozen importance correction, and the measured scorer/trainer/checkpoint adapter is not integrated. This is not a launch-ready runner.
+**TLDR:** Dispatch 3 implements V4-A1–A4, the real leased stage adapters, and the experiment 19 forecast scorer. CPU verification passes; live gates remain unmeasured. The master must satisfy V4-A3 timing and pause conditions before gates, and wait for B_1301's verdict before the learning pilot. No GPU allocation, model generation or optimizer step has run.
 
-`experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4` compares strict-reward training (A), factored-reward training (B), and a start-density placebo (P). No v4 model generation, optimizer step or device allocation has run. See [the checkpoint](CKPT_v4_implementation.md) for verification counts, admission digest, dry-run evidence, commands and remaining work.
+`experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4` compares strict reward (A), factored reward (B), and a start-density placebo (P). [The checkpoint](CKPT_v4_implementation.md) records the admission digest, final dry-run outcome, test counts, remaining runtime conditions, GPU census and exact master commands.
 
-## Frozen documents and amendments
+## Frozen contracts
 
-- [Protocol](PROTOCOL.md), frozen at `d4778e25`; unchanged.
-- [Amendment V4-A1](AMENDMENT_V4-A1_generator_support_receipt_10-20-2026.md), adopted at `7877faac`; unchanged. It replaces the generator receipt and T1 support criterion, and specifies trainer tie inclusion.
-- [Amendment V4-A2](AMENDMENT_V4-A2_receipt_invariance_and_sampler_backend_10-20-2026.md), adopted concurrently and discovered during final rebase: requires a 10,000-position installed-sampler check, specified R0/R1/R2 engine comparison, explicit native-backend setting and worker evidence. **Not implemented or bound by this A1-scoped admission.**
-- [Amendment V4-A3](AMENDMENT_V4-A3_schedule_v4_start_and_v3_pause_10-20-2026.md), discovered in that same rebase: scheduling is subject to Brando's veto until 10-21-2026 12:00 PDT. **No pause or schedule change is performed here; reconcile the future launch plan before use.**
-- [Dispatch 2 blocker](BLOCKER_V4_A1_importance_correction.md): installed loss evidence, CPU reproducer and smallest proposed fix. This report is **not** an amendment.
+The [protocol](PROTOCOL.md) and all four amendments are unchanged and hash-bound:
 
-## V4-A1 implementation
+- [V4-A1](AMENDMENT_V4-A1_generator_support_receipt_10-20-2026.md): top-64 raw receipts, support certificates and trainer tie handling.
+- [V4-A2](AMENDMENT_V4-A2_receipt_invariance_and_sampler_backend_10-20-2026.md): installed-Sampler CPU invariance, R0/R1/R2 engine checks and native sampler evidence.
+- [V4-A3](AMENDMENT_V4-A3_schedule_v4_start_and_v3_pause_10-20-2026.md): veto window, five clean pauses, gates first, pilot after B_1301.
+- [V4-A4](AMENDMENT_V4-A4_importance_correction_at_uncertified_positions_10-20-2026.md): unit actor correction at uncertified positions, isolated loss-only imputation, 1% update guards and perturbation bound.
 
-The concrete launch-only generator constructor sets `max_logprobs=64`, and every request asks for 64 raw log-probabilities. Sampling stays temperature 0.6, top-k 20, top-p 0.95, at most 12,288 response tokens. The installed sampler's actual `forward` function is executed with CPU sampling dependencies in a test: switching receipt collection off/on preserves both the sampled token and random state. The real engine comparison remains a required T1 measurement.
+A4 resolves the contract gap in the preserved [Dispatch 2 blocker](BLOCKER_V4_A1_importance_correction.md). That report and the old admissions are historical; use `phase2/admission_dispatch3.json` for this implementation.
 
-`filtered_policy.certificate` requires `v64 < v20` for a truncated vocabulary. It includes all kth ties, reconstructs the ascending top-p tail, and refuses a boundary that splits equal values or falls within 1e-5 of 0.05. Both cumulative masses adjacent to the cut are checked. Complete tiny vocabularies use `min(20,V)`. The trainer retains the whole boundary tie group. Native generator filtering remains separately testable against installed source.
+## What is implemented
 
-T1 counts uncertified positions as disagreements, uses only certified positions for error quantiles, and reports the uncertified denominator. Importance truncation receives lower/upper bounds when generator probabilities are unknown; the unchanged ≤1% limit is only certified if the upper bound satisfies it. Full top-64 receipts are retained for T1, G0 and T2 refit; updates keep sampled raw probability, certificate flags, support size and certified generator log probability. Unknown support sizes/probabilities are `null`, never imputed.
+Generation uses vLLM 0.10.0, temperature 0.6, top-k 20, top-p 0.95, context 20,041 and response cap 12,288. Every generator environment forces `VLLM_USE_FLASHINFER_SAMPLER=0`; admission checks that `flashinfer` is absent. Each generation receipt records the selected `TopKTopPSampler.forward` from the actual worker. The installed `Sampler.forward` CPU check covers 10,000 positions, including ties, and produces zero token mismatches with receipt collection off/on. The eight-response R0/R1/R2 engine comparison remains a live T1 gate.
 
-The installed NeMo loss wrapper still uses the fixed old trainer support and scales current logits once. Its separate capped actor correction consumes generator probabilities. A1 does not specify values at uncertified positions. The tests prove that changing these values changes the loss even when the policy ratio is unchanged. Admission therefore refuses measured execution rather than silently masking tokens, imputing trainer values or changing the loss.
+The NeMo RL 0.4.0 loss uses fixed old trainer supports, temperature scaling once and the inherited leave-one-out, standard-deviation-scaled advantages. A4 changes only the capped actor correction at uncertified positions: its weight is one. Certified positions retain their correction. Unknown generator probabilities remain null in receipts and NaN in the stored training batch; only the parent loss's private payload receives the detached old probability. The complete update checks both generated-token and valid-actor-token uncertified fractions before constructing a policy. Fractions above 1% stop without an optimizer step. Each update reports both denominators, certified fraction, log-weight quantiles/cap rate, certified-only probability/entropy diagnostics and the loss-perturbation bound. Unit correction is an approximation: empirical bias remains unmeasured, and this bound concerns loss, not gradient change.
 
-## Runner and recovery
+`local_engine.py` composes generation, official strict scoring and B's reward, filtered training, native checkpoint save/restore, CPU export, generator refit, saved-batch T3 replay, the maximum-length probe and fixed-cohort B audits. Every component runs as a subprocess with its own recorded argument vector, environment, lease, PID/start time and exit evidence. Device stages acquire an idle authorized GPU through the v4 guard and respect v3 reservations; scoring/export have CPU leases. Raw compiler stdout/stderr survive timeouts. A real CPU smoke check scored one explicitly synthetic empty completion through this leased adapter and retained its compiler output. B runs padding/deletion/substitution and hidden-gold checks; missing audit coverage stops B. No paid judge is called.
 
-The `runner.py` stage entry points are:
+Pilot storage retains the latest native checkpoint and export per trajectory, metadata and hashes for completed updates, and all T2/T3 replay evidence. Superseded pilot tensor payloads are retired only after a newer durable continuation exists; each retired payload has a hash receipt. A 100 GiB pre-update free-space check stops before model construction if a checkpoint transition cannot be stored.
+
+After G0 selection, `forecast_score.py` verifies the frozen experiment 19 forecast (`abb0cb3115b86fd3107a565fdfacd53343f285b7d27b34fd30d4dcb682436286`), joins counts privately on SNAP and writes anonymous aggregate Spearman, mixed-task AUC, mean q̂_8 and chosen G. It includes whole-task bootstrap intervals, denominators and missingness bounds. Forecasts are descriptive and never gate inputs. No live forecast outcome has been computed.
+
+## Stage order and recovery
 
 ```text
 T1 -> G0_GENERATE -> G0_SCORE -> G0_SELECT -> T2 -> T3 -> T4 -> B_AUDITS
    -> PILOT30 -> T5_30 -> [PILOT60 -> T5_60, only on extension]
 ```
 
-Each stage requires its predecessor's PASS receipt and binds its completed evidence to the admission digest. T5 stage completion is distinguished from its scientific gate verdict: a completed FAIL at 30 schedules extension of every admitted trajectory; a second failure stops. T2 with no varying reward stops without an update, refit or resampling. The main study is never automatically launched by this controller.
+Stages bind predecessor receipts, immutable operation inputs and completed outputs to the admission. Statistics are reserved once. Recovery permits at most three infrastructure starts only when there is explicit evidence of zero generation, zero optimizer effects and no statistic. Ambiguous partial work stops. A completed T5 stage and its scientific verdict are separate fields. Main training never launches automatically.
 
-`stage_ledger.py` uses an exclusive controller lock and immutable operation inputs, outputs, hashes and statistic reservations. Completed operations can be accounted after a crash. Retry is permitted only with an explicit zero-response, no-optimizer, no-statistic infrastructure receipt, at most three starts in total. Missing files alone never prove that nothing was generated. Partial/unknown effects and interrupted statistics stop for diagnosis. Recovery never discards responses or repeats a completed optimizer operation. Optimizer replay after generation is deliberately not enabled without a measured restoration adapter and a proven pre-step failure.
+`--engine local-stub` runs this same subprocess composition with JSON stub primitives and `CUDA_VISIBLE_DEVICES=''`. The full dry run covers six trajectories through the 60-update extension, order refusal, pre-generation crash recovery, no-signal stop, A4 stop and refusal to pause a running stage. Synthetic results establish control flow only; they do not establish live gate success, GPU memory fit, scoring accuracy on new model output or learning.
 
-G0 selection freezes all 30,720 placebo draws (two seeds × 60 updates × 256 slots) before P's first response. A derived admission supplement binds the observed distribution and draw file to the original admission; the original is never rewritten. The stub sequence preserves 256 declared slots and runs all six trajectories for 60 symbolic updates using one-token synthetic outputs. These are interface/control-flow tests, **not** scientific gate evidence, actual audits or memory measurements.
-
-The `local` engine refuses execution. `generation_runtime.py` provides the guarded concrete generation primitive, but integration of real scoring with retained compiler diagnostics, trainer batching and checkpoint/export/replay, maximum-length worker dispatch and fixed-cohort B audits remains unfinished. The stub engines do not establish those capabilities.
-
-## Files
-
-| Files under `phase2/` | Purpose |
-|---|---|
-| `filtered_policy.py`, `generation_contract.py`, `generation_runtime.py` | Native/trainer supports, certificates, receipt reduction, guarded top-64 constructor |
-| `trainer_support.py`, `worker_hooks.py`, `nemo_objective.py` | Fixed old supports and installed loss integration |
-| `runner.py`, `stage_ledger.py`, `recovery.py` | Stage order, immutable receipts, bounded recovery and decisions |
-| `stub_engine.py`, `dry_run.py`, `local_engine.py` | CPU end-to-end controls and explicit measured-adapter boundary |
-| `device_guard.py`, `device_lease.py`, `gpu_inventory.py` | Idle-device checks, bounded lock/lease and read-only census |
-| `build_plans.py`, `launch_plan.json`, `watchdog_plan.json` | Concrete future argument vectors; mirrored in the work directory |
-| `launch_control.py`, `autoresume_watchdog.py`, `install_watchdog.py` | v4-only controller/watchdog commands; none installed or started |
-| `admission.py`, `admission_runner.json` | Protocol, amendment, code, tests, plans and runtime binding; launch refusal |
-| `group_selection.py`, `gates.py`, `placebo.py`, `pilot_metrics.py` | G0, technical gates, placebo and pilot decision reducers |
-| `context_values.json`, `A6_counts.json` | Previously verified context and anonymous historical counts |
-
-Both engines retain context 20,041 and response cap 12,288; validators reject the retired 15,945 and 8,192 settings. The unchanged anonymous A6 evidence retains all 512 slots. Shared runtime, v2/v3 files, sessions, hooks and cron are not modified.
+The master-only `pause_v3.py` does nothing on import and requires explicit execution after the veto window. It checks pane text, process identity/start time, leases and stage processes under the watchdog lock. A running stage is refused; the master retries later. The real pause list has not been created, no runner has been signalled, and no cron entry has been installed. The only v3 changes are its watchdog pause-list feature and tests.
 
 ## CPU verification
 
-Run from the checkout root:
-
 ```bash
-export CUDA_VISIBLE_DEVICES=''
-export HF_HUB_OFFLINE=1
-export PYTHONDONTWRITEBYTECODE=1
+cd /lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification
+export CUDA_VISIBLE_DEVICES='' HF_HUB_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=2
 export PYTHONPATH=/lfs/skampere1/0/brando9/rl4cv_e13v4/test_deps:$PWD/src
 V4_PY=/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python
 V4_ROOT=$PWD/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4
 "$V4_PY" -m pytest -q "$V4_ROOT/tests"
-"$V4_PY" "$V4_ROOT/phase2/admission.py" check --record "$V4_ROOT/phase2/admission_runner.json"
-# Expected refusal, with the precise unresolved contracts:
-"$V4_PY" "$V4_ROOT/phase2/admission.py" launch-check --record "$V4_ROOT/phase2/admission_runner.json"
+"$V4_PY" "$V4_ROOT/phase2/admission.py" launch-check --record "$V4_ROOT/phase2/admission_dispatch3.json"
+# Use a fresh output directory; immutable receipts are never overwritten.
+"$V4_PY" "$V4_ROOT/phase2/dry_run.py" --real-adapters --root /lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch3_reproduction --admission "$V4_ROOT/phase2/admission_dispatch3.json"
 ```
 
-The new admission supersedes `admission_cpu.json`; that earlier immutable record describes the pre-A1 implementation and no longer validates current source. Reproduction of the GPU-free command-line dry run, complete logs and test counts are in the checkpoint.
+Verification: **142 v4 passed; 16 v3-watchdog passed; 1,405 root passed, 15 skipped**. The shared virtual environment remains read-only. The root reproduction additionally prepends `/lfs/skampere1/0/brando9/rl4cv_e09/nemo_rl` to `PYTHONPATH`, sets the pinned venv's `bin` first on `PATH`, and runs `make test`.
+
+## Entry points and evidence
+
+| Artifact | Purpose |
+|---|---|
+| [Admission](phase2/admission_dispatch3.json) | Frozen contracts, source, tests, plans, installed/reused components and CPU receipts |
+| [Verification](phase2/verification_dispatch3.json) | Final counts and immutable log hashes |
+| [Sampler receipt](phase2/sampler_cpu_receipt.json) | Installed CPU off/on-64 invariance and backend |
+| [Full stub dry run](phase2/dry_run_dispatch3.json) | Real adapter composition, symbolic pilot extension and diagnosed stops |
+| [Subprocess preview](phase2/adapter_dry_contracts.json) | Prospective real-stage argv/environment, not executed |
+| [Launch plan](phase2/launch_plan.json), [watchdog plan](phase2/watchdog_plan.json) | A3-aware master commands and controller |
+| [Checkpoint](CKPT_v4_implementation.md) | Dry-run evidence, remaining runtime conditions, commands and handoff |

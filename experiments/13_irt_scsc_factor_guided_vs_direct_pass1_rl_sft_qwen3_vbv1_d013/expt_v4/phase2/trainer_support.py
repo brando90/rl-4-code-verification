@@ -3,7 +3,7 @@ import torch
 from filtered_policy import support, filtered_logprobs
 
 
-def freeze_batch(logits, data):
+def freeze_batch(logits, data, *, allow_outside=False):
     """Construct position-aligned old probabilities and supports before any training step."""
     if hasattr(logits,'to_local'):
         if logits.device_mesh.size()!=1:raise ValueError('one-rank logits required')
@@ -16,7 +16,10 @@ def freeze_batch(logits, data):
         # Inactive prompt/padding positions have finite dummy singleton distributions.
         keep[~active]=False
         keep.scatter_(-1,targets[...,None],keep.gather(-1,targets[...,None]) | ~active[...,None])
-        logp,discarded=filtered_logprobs(logits[:,:-1],keep,targets)
+        outside=~keep.gather(-1,targets[...,None]).squeeze(-1)
+        measured_targets=torch.where(outside,logits[:,:-1].argmax(-1),targets) if allow_outside else targets
+        logp,discarded=filtered_logprobs(logits[:,:-1],keep,measured_targets)
+        if allow_outside:logp=logp.masked_fill(outside,float('-inf'))
         widths=keep.sum(-1);width=int(widths.max())
         batch,length=data['input_ids'].shape
         ids=torch.zeros((batch,length,width),dtype=torch.long)
@@ -30,7 +33,7 @@ def freeze_batch(logits, data):
         return {'prev_logprobs':old,'v4_support_ids':ids,'v4_support_mask':valid,'v4_discarded_mass':mass}
 
 
-def collect_old_support(worker,data):
+def collect_old_support(worker,data,allow_outside=False):
     """Launch-only worker callable: hook the actual NeMo model during get_logprobs.
 
     The hook is removed in finally. No installed file is edited and the inherited
@@ -43,7 +46,7 @@ def collect_old_support(worker,data):
     captured=[]
     def capture(module,args,kwargs,output):
         values=output.logits if hasattr(output,'logits') else output['logits']
-        captured.append(freeze_batch(values,data))
+        captured.append(freeze_batch(values,data,allow_outside=allow_outside))
     handle=worker.model.register_forward_hook(capture,with_kwargs=True)
     try:
         worker.get_logprobs(data,micro_batch_size=1)

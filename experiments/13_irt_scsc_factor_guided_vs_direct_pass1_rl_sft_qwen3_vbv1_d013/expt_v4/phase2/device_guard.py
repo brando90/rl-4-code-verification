@@ -65,6 +65,15 @@ def read_reservations(paths):
 def check(config, *, run=subprocess.run, read_environment=None, host=None, now=None):
     try:lease=json.loads(Path(config['lease_path']).read_text())
     except (OSError,ValueError) as exc:raise Busy('lease unavailable') from exc
+    if Path(config['lease_path']).with_suffix('.end.json').exists():raise Busy('lease already released')
+    if lease.get('kind')=='cpu':
+        if (lease.get('owner')!='e13v4' or lease.get('status')!='ACTIVE' or
+            time.time()>=lease.get('expires_unix',0) or os.environ.get('CUDA_VISIBLE_DEVICES')!='' or
+            os.environ.get('E13V4_EXECUTION_ID')!=lease.get('id') or
+            config.get('synthetic',False)!=lease.get('synthetic',False)):
+            raise Busy('invalid CPU lease')
+        if not config.get('synthetic') and config.get('stage') not in ('score','audit_score','export'):raise Busy('CPU lease cannot authorize a model stage')
+        return lease
     host=socket.gethostname().split('.')[0] if host is None else host
     now=time.time() if now is None else now
     if (lease.get('owner')!='e13v4' or lease.get('host')!=host or lease.get('status')!='ACTIVE'

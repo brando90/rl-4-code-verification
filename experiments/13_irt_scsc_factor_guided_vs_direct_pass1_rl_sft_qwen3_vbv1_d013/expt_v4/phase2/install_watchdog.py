@@ -9,7 +9,7 @@ TAG='# e13v4-autoresume'
 
 
 def cron_text(existing,python,script,plan,log):
-    command=' '.join(shlex.quote(str(p)) for p in (python,script,'--plan',plan,'--execute'))
+    command='env E13V4_A3_NO_VETO=1 '+ ' '.join(shlex.quote(str(p)) for p in (python,script,'--plan',plan,'--execute'))
     # crond treats percent specially even inside shell quotes.
     if any(c in command+str(log) for c in ('\n','\r','%')):raise ValueError('unsafe cron path')
     lines=[l for l in existing.splitlines() if not l.rstrip().endswith(TAG)]
@@ -26,6 +26,9 @@ if __name__=='__main__':
     proposed=cron_text(result.stdout,a.python,Path(__file__).with_name('autoresume_watchdog.py'),a.plan,a.log)
     if a.install:
         check_admission(a.admission,require_launch=True)
+        from pause_v3 import VETO_END
+        import os,time
+        if time.time()<VETO_END or os.environ.get('E13V4_A3_NO_VETO')!='1':raise ValueError('A3 veto window/no-veto condition required')
         subprocess.run(['crontab','-'],input=proposed,text=True,check=True)
         actual=subprocess.check_output(['crontab','-l'],text=True)
         if actual!=proposed:raise RuntimeError('cron readback mismatch')

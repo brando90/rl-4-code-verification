@@ -1,35 +1,85 @@
-**TLDR:** Dispatch 2 implements V4-A1 certificates and an ordered CPU stub runner; measured launch is BLOCKED on unspecified importance correction and unfinished measured adapters.
-
 # Experiment 13 v4 implementation checkpoint
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/CKPT_v4_implementation.md>
 **Companion:** <https://docs.google.com/document/d/1KqUi39sz532dIGg8EYCy6w62Q0KzO2XWhpM2MMSWvHE/edit>
-**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-20-2026 19:19 PDT.
+**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-20-2026 22:52 PDT.
+
+**TLDR:** Dispatch 3 implements real leased adapters, amendments V4-A2/A3/A4 and the descriptive experiment 19 scorer. All CPU suites and the full real-adapter stub dry run pass. The new admission is statically **ADMITTED**; live gates remain unmeasured and no experiment has launched.
 
 ## State
 
-- Scope: `experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4`; Dispatch 2, CPU only.
-- Owner: Codex gpt-6-astra; requested high effort; skampere1; full filesystem access, approval policy never.
-- Status: **BLOCKED, not launch-ready**. Certificates and the full synthetic stage sequence pass; real backend is unfinished.
-- Frozen protocol d4778e25 and amendment V4-A1 7877faac are unchanged; their full hashes are in the new admission.
-- Done: top-64 constructor/request, strict top-k certificate, 1e-5 nucleus margin, trainer boundary tie inclusion, full/reduced receipts.
-- Done: ordered single-attempt stages, predecessor/admission hashes, placebo precomputation, all-six extension, bounded recovery.
-- Done: launch/watchdog plans at the requested work-directory paths, plus admission-bound repository mirrors.
-- Tests: v4 **117 passed, 0 skipped, 0 failed** in 31.35 s; root suite **1,405 passed, 15 skipped, 0 failed**, 6 warnings in 396.62 s.
-- Dry run: all 12 stage entries complete; six trajectories × 60 symbolic updates = 360; zero real optimizer steps.
-- Controls: order rejection; zero-response crash recovered on attempt 2; no-signal T2 stops without update/refit/resampling.
-- Admission: `phase2/admission_runner.json`; 44 local bindings and six external bindings (four runtime files, two plan mirrors).
-- Admission SHA-256: `58e1b31df8e87e0e797f4043a9e03a9a7e774cf6982b302914c59490ab10f433`.
-- CPU admission check passes; launch-check rejects the explicit scientific and implementation blockers below.
-- Scientific blocker: uncertified positions have no generator log probability, required by NeMo's separate capped actor correction.
-- Implementation gap: real scorer/trainer/checkpoint/replay/audit adapter and leased subprocess orchestration are not integrated.
-- Smallest prospective fix: record actual filtered sampled-token probability at every position, or explicitly amend the correction rule.
-- GPU census 10-20-2026 19:05 PDT: 20/24 devices occupied; skampere1 0/2/4/6 idle, only 0 eligible here; 5/7 remain v3-owned.
-- Experiment 120 attribution remains unresolved; no process was attributed without evidence.
-- No GPU allocation, model generation, optimizer step, provider call, cron installation, tmux session or v2/v3 edit; $0.
-- Next [p 8/10]: master resolves the actor-correction rule; then finish measured adapters and incorporate newly arrived A2/A3 before a new admission.
-- Master decision [p 8/10]: specify the missing actor-correction semantics prospectively; no launch go can substitute for that fix.
-- Publication: implementation `000ac82b8744c1ed379818fe0d283d4349d35e89` rebased on `686aa9ca`, pushed to main and verified remotely; companion updated/read back.
+- Goal: launch-ready prospective admission for experiment 13 v4, CPU only, $0.
+- Owner: Codex `gpt-6-astra`, requested high effort, skampere1; full access, one writer.
+- Code: A1–A4, real generation/scoring/training/checkpoint/export/refit/replay/audits, pause tooling and forecast aggregation implemented.
+- Verification: 142 v4 passed; 16 v3-watchdog passed; root 1,405 passed / 15 skipped / 6 warnings / 0 failed.
+- Implementation and CPU verification complete. Admission SHA-256: `29276968a2e93abcea5dede2f763703ed207b2f4f0e6c94f542268f8b11c758c`. Publication is recorded below.
+- Runtime-only conditions: veto window/no veto and five clean pauses; idle authorized lease; pilot requires B_1301 verdict/release and every technical gate PASS.
+- Master owns all live actions. Nothing before 10-21-2026 12:00 PDT; a veto leaves A3 inactive and requires the frozen schedule to be restored prospectively.
+- No GPU allocation, model generation, optimizer step, real pause list, live process signal, shared-venv change, paid call or cron install.
+
+## Dispatch 3 evidence and master continuation
+
+The [README](README.md) explains the integrated adapters and [verification receipt](phase2/verification_dispatch3.json) records final suite counts and log hashes. The stage subprocess environment explicitly includes the installed Lean toolchain directory, so the cron controller does not depend on an interactive shell PATH. CPU installed-loss tests prove unit correction at uncertified positions, unchanged certified correction, both >1% stop paths and the required diagnostics. The installed-vLLM [Sampler receipt](phase2/sampler_cpu_receipt.json) records **10,000 positions / 0 token mismatches**, including ties, unchanged per-request RNG states and absent FlashInfer. The actual worker backend and engine R0/R1/R2 still require live T1 measurements.
+
+Adapter integration also restored the inherited v3 standard-deviation scaling that was missing from the earlier CPU implementation; an installed-function parity test covers it. This is an implementation correction, with no protocol or amendment edit.
+
+The experiment 19 [verification receipt](phase2/forecast_verification.json) records `verify_forecast=True` and canonical SHA-256 `abb0cb3115b86fd3107a565fdfacd53343f285b7d27b34fd30d4dcb682436286`. No G0 outcome exists. Its future private join stays under the run directory; only `forecast_aggregates.json` may be published. Spearman uses q̂_8, AUC targets 1 ≤ s ≤ 31, and all three forecasts are reported. Complete-task counts, missingness bounds and 10,000 whole-task bootstrap intervals accompany aggregates; no forecast statistic controls a gate.
+
+A [real CPU scoring smoke check](phase2/cpu_scoring_smoke_dispatch3.json) passed through a leased stage subprocess: one explicitly synthetic empty completion, strict 0, factored reward 0, one retained compiler command, no model call. This verifies the local scorer interface only and is not a G0 outcome or gate statistic.
+
+The new [admission](phase2/admission_dispatch3.json) is **ADMITTED**, SHA-256 **`29276968a2e93abcea5dede2f763703ed207b2f4f0e6c94f542268f8b11c758c`**, with **68 local bindings and 305 runtime/evidence bindings**. It binds the protocol, four unchanged amendments, implementation, tests, plans, installed/reused sources, model/tokenizer inputs, forecast, deployed v3 watchdog/test, test logs, README, census and CPU receipts. `launch-check` passes its static checks. The checkpoint itself carries the admission digest and is outside the hash closure to avoid a self-reference.
+
+The [full dry-run receipt](phase2/dry_run_dispatch3.json) reports **12 stages, six trajectories × 60 symbolic updates = 360**, extension of all six after T5_30, then `MAIN_RESOURCE_CHECK` at T5_60 without launching main. It also records order rejection, zero-response crash recovery on attempt 2, `STOP_NO_SIGNAL`, **`STOP_V4_A4` at 3/256 = 1.171875% uncertified positions**, and `WAIT_STAGE_RUNNING` for all five fake pause targets with no signal or pause-list write. The [trace validation](phase2/dry_trace_validation_dispatch3.json) checks **1,694 full-sequence subprocesses plus one A4 stop subprocess**: explicit stub flags, empty CUDA device environment, native sampler setting, zero device seconds, successful exits and every CPU lease released. Real optimizer steps/model generations/GPU allocations/provider spend are all **0**.
+
+The dry run used the identical final code/tests/plans under [the preseal admission](phase2/admission_dispatch3_preseal.json), digest `022d11308eb950b58aeebce742e9d955b52b77ca2a79dc2c33d3081d41243105`. The final admission adds the resulting receipts and deployment evidence without changing that code. Full private trace: `/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch3_release`; summary SHA-256 `bbeaf547d34ec740f9e3a18555cb8a6ce3d8c4b7c6ba56f97005247adc041b67`. Reproduce with the README command on a fresh output directory.
+
+**Remaining runtime-only conditions (master-owned):**
+
+1. V4-A3's veto window closes without a veto at **10-21-2026 12:00 PDT**, and the master records the five clean pauses using the tool. A veto requires restoring the frozen timing in a new prospective plan/admission; this A3 plan refuses early execution.
+2. A stage obtains a freshly verified **idle authorized device lease**, respecting v3 reservations and the experiment 120 occupancy check. No eligible device was idle in the final census.
+3. **Pilot only:** B_1301's frozen `T5_30.json` verdict exists, its lease is released, and all v4 technical prerequisite stages passed. A live gate failure stops; the CPU dry run is not gate evidence. Development dry runs were stopped by admission checks when owned source changed; their partial directories are retained and are not passing evidence. Deterministic test counts are checks, not scientific estimates; intervals/p-values are not applicable. Six root warnings are existing deprecation/fork warnings.
+
+### Exact master commands — prepared, not executed
+
+Only the master runs this block after confirming no veto and the window ending **10-21-2026 12:00 PDT**. A waiting pause status means retry on a later call; it never authorizes interrupting a stage. Read-only process inspection confirmed that the actual tmux pane shell and runner share a process group; the tool recognizes precisely that owned pair, excludes shell command strings from runner identity, and refuses any additional group member. Five added CPU cases cover this deployment detail. The five recorded pauses release the gates; B_1301 continues to its frozen `T5_30.json`. Its `EXTEND_TO_60` spelling is the v3 failure verdict and does not authorize a v3 extension under A3.
+
+```bash
+cd /lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification
+V4_PY=/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python
+V4_ROOT=$PWD/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4
+V4_WORK=/lfs/skampere1/0/brando9/rl4cv_e13v4
+V4_ADMISSION=$V4_ROOT/phase2/admission_dispatch3.json
+export HF_HUB_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1 VLLM_USE_FLASHINFER_SAMPLER=0
+export PYTHONPATH=$PWD/src
+# Set only after the master has established absence of a veto.
+export E13V4_A3_NO_VETO=1
+"$V4_PY" "$V4_ROOT/phase2/admission.py" launch-check --record "$V4_ADMISSION"
+# Pause: writes only clean pauses; invoke again later for WAIT_* trajectories.
+"$V4_PY" "$V4_ROOT/phase2/pause_v3.py" --admission "$V4_ADMISSION" --veto-not-issued --execute
+# Watchdog: install from day one after A3 conditions; the controller uses the same stage lock.
+"$V4_PY" "$V4_ROOT/phase2/install_watchdog.py" --python "$V4_PY" --plan "$V4_WORK/watchdog_plan.json" --log "$V4_WORK/watchdog.log" --admission "$V4_ADMISSION" --install
+# Gates: begins only after all five clean pauses are recorded.
+"$V4_PY" "$V4_ROOT/phase2/runner.py" gates --work "$V4_WORK/run" --admission "$V4_ADMISSION" --engine local
+# Pilot: only after B_1301 T5_30, released lease, and all eight prerequisite stages PASS.
+"$V4_PY" "$V4_ROOT/phase2/runner.py" pilot --work "$V4_WORK/run" --admission "$V4_ADMISSION" --engine local
+# Read-only progress and recovery inspection:
+"$V4_PY" "$V4_ROOT/phase2/runner.py" progress --work "$V4_WORK/run" --admission "$V4_ADMISSION" --engine local
+"$V4_PY" "$V4_ROOT/phase2/recovery.py" --work "$V4_WORK/run"
+```
+
+The commands above list each requested action. Install the watchdog immediately after the clean pauses, before gates, so it is present from day one. Its controller executes the same ordered sequence, waits for pilot timing and never launches main. Do not run a second manual controller alongside its active tmux controller. The master can use the [launch plan](phase2/launch_plan.json) `gates_argv`/`pilot_argv` or the watchdog-controlled sequence. The cron line has not been installed.
+
+The tested v3 watchdog and its test were also deployed atomically into the active v3 checkout after verifying that both existing files exactly matched their original tracked bytes. The [deployment receipt](phase2/watchdog_deployment_dispatch3.json) binds old/new hashes. No other v3 file, existing cron entry or process was changed, and the real pause list is absent. Thus all six v3 trajectories retain the existing behavior until the master invokes the pause.
+
+The runtime guard observes devices at each lease and respects v3's per-device locks/reservations. Read-only [GPU census](phase2/gpu_inventory_dispatch3.json), **10-20-2026 22:48:49 PDT**: **21/24 devices occupied**. skampere1 idle devices are 3, 4 and 6, which are outside the v4-authorized subset; 0, 5 and 7 are occupied. skampere2 and skampere3 have no idle device. All three host probes succeeded; this census acquired no lease. Occupancy attribution is reported only when process evidence supports it; experiment 120 ownership is unresolved unless its process path identifies it. The master must refresh and resolve that check before launch as required by the protocol.
+
+**Copy-ready message for the master:** I finished v4’s real leased adapters, A2–A4 and the experiment 19 forecast scorer, with 142 passing v4 tests, 16 passing watchdog tests, 1,405 passing root tests and a 360-update GPU-free stub run; admission `29276968a2e93abcea5dede2f763703ed207b2f4f0e6c94f542268f8b11c758c` passes static launch-check, leaving the master’s A3 timing/pauses, idle lease and B_1301 pilot conditions.
+
+Publication: explicit-path commit, rebase onto current `origin/main`, push to `main`, and Google companion synchronization are being finalized; no live launch follows publication.
+
+## Historical dispatches — superseded admissions and commands
+
+The following preserved sections describe their original state. Dispatch 3 above supersedes their blocker claims, admission paths and launch instructions.
 
 ## Dispatch 2 evidence and exact continuation
 
@@ -170,3 +220,5 @@ I have the experiment 13 v4 CPU implementation passing 89 tests, with the histor
 - 10-20-2026 19:17 PDT: Final diff fixes watchdog spawn/fence race and binds T1 denominator to saved response lengths; 117 v4 tests pass. Regenerated admission `58e1b31df8e87e0e797f4043a9e03a9a7e774cf6982b302914c59490ab10f433` and all command-line dry-run receipts; root tested code is unchanged.
 
 - 10-20-2026 19:19 PDT: Rebased on origin/main 686aa9ca and pushed implementation 000ac82b; remote hash verified. Rebase added master A2/A3 (read, unchanged, not implemented by this A1 admission); recorded their pending requirements and veto window. Shared runtime/frozen A1/protocol still hash-verify; no launch.
+
+- 10-20-2026 22:13 PDT: Dispatch 3 implementation entered integration verification; installed 10,000-position sampler check PASS, preliminary v4 131/131 and watchdog 16/16 pass; root and subprocess dry run in progress. No launch.

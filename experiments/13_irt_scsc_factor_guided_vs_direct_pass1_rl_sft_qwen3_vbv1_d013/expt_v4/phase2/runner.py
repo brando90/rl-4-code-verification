@@ -38,6 +38,12 @@ class Runner:
         if stage not in STAGES:raise ValueError('unknown stage')
         # Recheck every stage, including resumed completed receipts.
         check_admission(self.admission,require_launch=not self.engine.synthetic)
+        if not self.engine.synthetic:
+            from admission import launch_timing
+            timing=launch_timing('/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot',
+                phase='pilot' if stage.startswith(('PILOT','T5')) else 'gates',
+                veto_not_issued=os.environ.get('E13V4_A3_NO_VETO')=='1')
+            if not timing['released']:raise ValueError('runtime schedule conditions unmet: '+str(timing))
         with fence(self.work):
             self.recover=recover
             prior=self.ledger.begin(stage,PREDECESSORS[stage])
@@ -52,12 +58,13 @@ class Runner:
         def measure():
             r=probability_agreement(evidence['positions'],expected_positions=sum(len(row['output_token_ids']) for row in evidence['rows']))
             r['receipt_on_off_identical']=evidence['receipt_on_off_identical']
-            if not r['receipt_on_off_identical']:r['status']='FAIL'
+            r['receipt_invariance']=evidence.get('receipt_invariance',{'status':'PASS' if evidence['receipt_on_off_identical'] else 'FAIL'})
+            if r['receipt_invariance']['status']!='PASS':r['status']='FAIL'
             return r
         return self.ledger.statistic('T1',measure)
 
     def task_order(self):
-        if self.engine.synthetic:return select_tasks([f'synthetic_{i:04d}' for i in range(539)])
+        if self.engine.synthetic and not hasattr(self.engine,'train_ids'):return select_tasks([f'synthetic_{i:04d}' for i in range(539)])
         return select_tasks(self.engine.train_ids())
 
     def stage_G0_GENERATE(self):
@@ -86,6 +93,12 @@ class Runner:
                 write_new(root/'placebo_admission.json',{'base_admission_sha256':digest(self.admission),
                     'distribution_sha256':ref['distribution_sha256'],'draws_sha256':stream['draws_sha256'],
                     'draws_file_sha256':digest(root/'placebo_draws.json'),'bound_before_first_P_response':True})
+            if not self.engine.synthetic:
+                from forecast_score import score
+                forecast=next(Path(__file__).resolve().parents[3].glob('19_*/expt_v1/forecasts/e19_g3_forecast_v4_g0.json'))
+                # Descriptive only: forecast failures are retained, never change a gate.
+                try:score(forecast,batch['rows'],batch['tasks'],selection['G'],root/'forecast')
+                except Exception as exc:write_new(root/'forecast_error.json',{'error':str(exc),'gate_input':False})
             return {'status':'PASS','selection':selection,'placebo_status':ref['status'],
                     'distribution_sha256':ref['distribution_sha256']}
         return self.ledger.statistic('G0_SELECT',measure)
@@ -99,6 +112,7 @@ class Runner:
         adv=advantages(groups,chosen['field'])
         update=self.op('T2','update','update',{'groups':groups,'advantages':adv,'reward_selection':chosen,
                        'generation_stage':str(self.work/'G0_GENERATE'),'G':g})
+        if update.get('status')=='STOP_V4_A4':return update
         refit=self.op('T2','refit','refit',{'responses':8,'full':True,'update':update})
         def measure():
             r=t2(advantages=[x for a in adv for x in a['advantages']],
@@ -142,14 +156,19 @@ class Runner:
                         payload['placebo_admission_sha256']=digest(self.work/'G0_SELECT/placebo_admission.json')
                     name=f'{arm}_{seed}/update_{update:05d}'
                     result=self.op(stage,name,'pilot_update',payload)
+                    if result.get('status')=='STOP_V4_A4':return {**result,'arm':arm,'seed':seed,'update':update}
                     summary={**result,'condition':'e13v4','admission_sha256':digest(self.admission)}
                     path=self.work/stage/name/'summary.json'
                     if path.exists():
                         if read(path)!=summary:raise ValueError('completed update changed')
                     else:write_new(path,summary)
                     rows.append(summary)
+                    if not self.engine.synthetic:
+                        from retention import retire_completed
+                        retire_completed(self.work,arm,seed,update)
                     if arm=='B':
                         before=self.result('B_AUDITS')['baseline'];after=result['audit']
+                        if any(after[k] is None for k in ('reward','theorem_count','coverage')):return {'status':'STOP_B_AUDIT_UNMEASURED','arm':arm,'seed':seed,'update':update}
                         if (after['reward']>before['reward'] and any(after[k]<.9*before[k] for k in ('theorem_count','coverage'))):
                             return {'status':'STOP_B_AUDIT','arm':'B','seed':seed,'update':update,'rows':rows}
         return {'status':'PASS','horizon':end,'arms':arms,'rows':rows}
@@ -180,9 +199,9 @@ class Runner:
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('stage',choices=[*STAGES,'sequence','progress'])
+    p.add_argument('stage',choices=[*STAGES,'sequence','gates','pilot','progress'])
     p.add_argument('--work',required=True,type=Path);p.add_argument('--admission',required=True,type=Path)
-    p.add_argument('--engine',choices=['stub','local'],default='local');p.add_argument('--recover',action='store_true')
+    p.add_argument('--engine',choices=['stub','local','local-stub'],default='local');p.add_argument('--recover',action='store_true')
     p.add_argument('--no-signal',action='store_true');p.add_argument('--crash',choices=['probe','generate','update'])
     a=p.parse_args()
     if a.stage=='progress':
@@ -192,13 +211,17 @@ def main():
     if a.engine=='stub':
         from stub_engine import StubEngine
         engine=StubEngine(no_signal=a.no_signal,crash=a.crash)
+    elif a.engine=='local-stub':
+        from local_engine import LocalEngine
+        engine=LocalEngine(a.work,a.admission,stub_engines=True)
     else:
         # No model constructor can be reached by bypassing a JSON status flag.
         check_admission(a.admission,require_launch=True)
         from local_engine import LocalEngine
         engine=LocalEngine(a.work,a.admission)
     run=Runner(a.work,a.admission,engine)
-    for stage in STAGES if a.stage=='sequence' else [a.stage]:
+    selected=STAGES if a.stage=='sequence' else STAGES[:8] if a.stage=='gates' else STAGES[8:] if a.stage=='pilot' else [a.stage]
+    for stage in selected:
         r=run.run(stage,recover=a.recover)
         print(json.dumps({'stage':stage,'status':r['status'],'admission_sha256':r['admission_sha256'],'synthetic':r['synthetic']}),flush=True)
         if r['status']!='PASS':break

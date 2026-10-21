@@ -5,12 +5,18 @@ import os
 from pathlib import Path
 
 
+_DIGEST_CACHE={}
+
 def digest(path):
+    path=Path(path);st=path.stat()
+    key=(str(path.resolve()),st.st_dev,st.st_ino,st.st_size,st.st_mtime_ns,st.st_ctime_ns)
+    if key in _DIGEST_CACHE:return _DIGEST_CACHE[key]
     h = hashlib.sha256()
     with Path(path).open('rb') as stream:
         for chunk in iter(lambda: stream.read(1024 * 1024), b''):
             h.update(chunk)
-    return h.hexdigest()
+    value=h.hexdigest();_DIGEST_CACHE[key]=value
+    return value
 
 
 def canonical(value):

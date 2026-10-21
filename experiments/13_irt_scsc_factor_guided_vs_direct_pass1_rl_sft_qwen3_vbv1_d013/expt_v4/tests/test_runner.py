@@ -104,7 +104,10 @@ def test_lease_mocked_idle_guard_and_environment_restore(tmp_path,monkeypatch):
 
 def test_local_engine_never_substitutes_stub(tmp_path):
     from local_engine import LocalEngine
-    with pytest.raises(RuntimeError,match='Measured runner unavailable'):LocalEngine(tmp_path,'admission')
+    engine=LocalEngine(tmp_path,'admission')
+    assert not engine.synthetic
+    assert len(engine.train_ids())==539
+    assert not list(tmp_path.iterdir())
 
 
 def test_controller_watchdog_does_not_restart_failed_gate(tmp_path,monkeypatch):

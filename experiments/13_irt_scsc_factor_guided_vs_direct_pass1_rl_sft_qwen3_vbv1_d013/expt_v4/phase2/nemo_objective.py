@@ -3,7 +3,9 @@ import torch
 from nemo_rl.algorithms.loss_functions import ClippedPGLossFn
 from worker_hooks import install_on_policy
 
-LOSS = {'reference_policy_kl_penalty': 0., 'ratio_clip_min': .2, 'ratio_clip_max': .28,
+from nemo_objective_contract import KL_COEFFICIENT
+
+LOSS = {'reference_policy_kl_penalty': KL_COEFFICIENT, 'ratio_clip_min': .2, 'ratio_clip_max': .28,
         'ratio_clip_c': None, 'use_on_policy_kl_approximation': False,
         'use_importance_sampling_correction': True, 'truncated_importance_sampling_ratio': 2.,
         'token_level_loss': True, 'sequence_level_importance_ratios': False}
@@ -42,9 +44,8 @@ class FilteredClippedPGLossFn(ClippedPGLossFn):
         matched = (ids == targets[..., None]) & valid
         if not matched.any(-1)[active].all():
             raise ValueError('sampled token outside old trainer support')
-        for key in ('prev_logprobs', 'generation_logprobs'):
-            if data[key].requires_grad or not torch.isfinite(data[key][:, 1:][active.cpu() if data[key].device.type == 'cpu' else active]).all():
-                raise ValueError('old and behaviour log-probabilities must be detached and finite')
+        from importance import effective_behavior, diagnostics
+        behavior=effective_behavior(data)
         # DTensorPolicyWorker scales logits BEFORE invoking its loss callable.
         # worker_hooks installs float32 division there; never divide a second time.
         gathered = logits[:, :-1].float().gather(-1, ids)
@@ -54,7 +55,20 @@ class FilteredClippedPGLossFn(ClippedPGLossFn):
         compact = torch.cat([filtered, torch.zeros_like(filtered[:, :1])], dim=1)
         remapped = dict(data)
         remapped['input_ids'] = torch.cat([torch.zeros_like(targets[:, :1]), matched.long().argmax(-1)], 1)
-        return super().__call__(compact, remapped, global_valid_seqs, global_valid_toks)
+        remapped['generation_logprobs']=behavior
+        loss,metrics=super().__call__(compact, remapped, global_valid_seqs, global_valid_toks)
+        # Parent diagnostics saw correction-only imputation: never expose them.
+        for key in ('token_mult_prob_error','gen_kl_error','policy_kl_error','js_divergence_error',
+                    'sampling_importance_ratio','approx_entropy'):
+            metrics.pop(key,None)
+        current=filtered.log_softmax(-1).gather(-1,matched.long().argmax(-1)[...,None]).squeeze(-1)
+        detail=diagnostics(data,current.detach(),global_valid_toks)
+        # NeMo reduces scalar metrics. Keep exact quantile inputs in a worker-owned
+        # collector, flushed after the single global batch.
+        import importance
+        if hasattr(importance,'COLLECTOR'):importance.COLLECTOR.append(detail)
+        metrics['v4_perturbation_bound']=detail['v4_perturbation_bound']
+        return loss,metrics
 
 
 def train_filtered(policy, data, *, lease_check):
@@ -62,5 +76,7 @@ def train_filtered(policy, data, *, lease_check):
     lease_check()
     if 'v4_support_ids' not in data or 'v4_support_mask' not in data:
         raise ValueError('old-weight support must be frozen before Policy.train')
+    from importance import guard
+    guard(data)
     install_on_policy(policy)
     return policy.train(data, FilteredClippedPGLossFn())

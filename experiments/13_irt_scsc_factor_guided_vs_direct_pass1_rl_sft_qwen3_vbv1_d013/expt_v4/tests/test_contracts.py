@@ -51,8 +51,11 @@ def admission_fixture(tmp_path):
     root=tmp_path/'v4';root.mkdir();(root/'phase2').mkdir();(root/'tests').mkdir()
     source=Path(__file__).resolve().parents[1]
     shutil.copyfile(source/'PROTOCOL.md',root/'PROTOCOL.md')
-    from admission import AMENDMENT
-    shutil.copyfile(source/AMENDMENT,root/AMENDMENT)
+    from admission import AMENDMENTS
+    for name in AMENDMENTS:shutil.copyfile(source/name,root/name)
+    for name in ('runtime_inputs','policy_v4','sampler_cpu_receipt','forecast_verification'):
+        shutil.copyfile(source/'phase2'/f'{name}.json',root/'phase2'/f'{name}.json')
+    for name in ('verification_dispatch3','adapter_dry_contracts'):write_new(root/'phase2'/f'{name}.json',{'synthetic_fixture':True})
     write_new(root/'phase2/launch_plan.json',{'fixture':'launch'})
     write_new(root/'phase2/watchdog_plan.json',{'fixture':'watchdog'})
     (root/'phase2/x.py').write_text('# TLDR: Fixture.\n');(root/'tests/test_x.py').write_text('# TLDR: Fixture.\n')
@@ -60,10 +63,10 @@ def admission_fixture(tmp_path):
     path=tmp_path/'admission.json';prepare(root,path);return root,path
 
 
-def test_admission_binds_files_and_refuses_frozen_objective(tmp_path):
+def test_admission_binds_all_amendments_and_launch_contract(tmp_path):
     root,path=admission_fixture(tmp_path)
-    assert check_admission(path,require_launch=False)['status']=='BLOCKED'
-    with pytest.raises(ValueError,match='launch BLOCKED'):check_admission(path)
+    assert check_admission(path,require_launch=False)['status']=='ADMITTED'
+    assert check_admission(path)['status']=='ADMITTED'
     (root/'tests/test_new.py').write_text('# TLDR: Unbound test.\n')
     with pytest.raises(ValueError,match='omits'):check_admission(path,require_launch=False)
 
@@ -82,7 +85,10 @@ def test_admission_detects_mutation_and_records_each_update_digest(tmp_path):
 def test_launch_timing_read_only(tmp_path):
     assert not launch_timing(tmp_path)['released']
     write_new(tmp_path/'B_1301/T5_30.json',{'status':'FAIL'})
-    assert launch_timing(tmp_path)['released']
+    from pause_v3 import VETO_END,ALLOWED
+    assert not launch_timing(tmp_path,phase='pilot',now=VETO_END+1,veto_not_issued=True)['released']
+    write_new(tmp_path.parent/'autoresume_paused.json',{'trajectories':list(ALLOWED)})
+    assert launch_timing(tmp_path,phase='pilot',now=VETO_END+1,veto_not_issued=True)['released']
 
 
 def test_actual_inherited_policy_migrates_without_editing_source():

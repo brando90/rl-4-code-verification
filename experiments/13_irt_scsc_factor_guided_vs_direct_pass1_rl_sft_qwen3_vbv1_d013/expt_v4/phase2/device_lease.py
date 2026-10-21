@@ -1,5 +1,6 @@
 """TLDR: Hold a v4 device lock for a bounded stage after the idle-device guard admits it."""
 from contextlib import contextmanager
+import json
 import fcntl
 import os
 from pathlib import Path
@@ -18,11 +19,21 @@ def allocation(work, admission_check, *, probe=census, host=None, duration_secon
     for index in sorted(devices):
         if not eligible(host,index):continue
         stream=(work/f'gpu_{host}_{index}.lock').open('a')
+        v3lock=None
         try:
             try:fcntl.flock(stream,fcntl.LOCK_EX|fcntl.LOCK_NB)
             except BlockingIOError:continue
+            reservations=[]
+            if host=='skampere1' and probe is census:
+                v3=Path('/lfs/skampere1/0/brando9/rl4cv_e13v3')
+                v3lock=(v3/f'gpu_{index}.lock').open('a')
+                try:fcntl.flock(v3lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+                except BlockingIOError:continue
+                for path in (v3/'phase2').glob('**/*_lease.json'):
+                    if not path.with_name(path.stem+'_end.json').exists():
+                        reservations.append(json.loads(path.read_text()))
             devices,apps=probe()
-            try:uuid=ensure_idle(host,index,devices,apps)
+            try:uuid=ensure_idle(host,index,devices,apps,reservations=reservations)
             except Busy:continue
             identity=f'e13v4-{os.getpid()}-{time.time_ns()}'
             path=work/(identity+'.lease.json');started=time.time()
@@ -41,5 +52,6 @@ def allocation(work, admission_check, *, probe=census, host=None, duration_secon
                     else:os.environ[k]=v
             return
         finally:
+            if v3lock is not None:fcntl.flock(v3lock,fcntl.LOCK_UN);v3lock.close()
             fcntl.flock(stream,fcntl.LOCK_UN);stream.close()
     raise Busy('no authorized idle GPU; no allocation made')

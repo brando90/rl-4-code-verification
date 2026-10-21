@@ -17,7 +17,9 @@ def read(path):
 
 
 def tree_bindings(root):
-    return {str(p.relative_to(root)): digest(p) for p in sorted(Path(root).rglob('*')) if p.is_file()}
+    from retention import tensor_payload
+    return {str(p.relative_to(root)):digest(p) for p in sorted(Path(root).rglob('*'))
+            if p.is_file() and not tensor_payload(p,root) and not p.name.endswith('.retired.json')}
 
 
 @contextmanager

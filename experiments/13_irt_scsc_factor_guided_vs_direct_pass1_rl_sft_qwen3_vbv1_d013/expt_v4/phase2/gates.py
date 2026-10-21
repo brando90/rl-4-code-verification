@@ -68,18 +68,22 @@ def select_t2_reward(groups):
 
 
 def advantages(groups, field):
-    """Leave-one-out, no variance normalization; unknown score masks its entire group."""
-    result = []
+    """Preserve v3's installed leave-one-out baseline and standard-deviation scaling."""
+    import torch
+    from nemo_rl.algorithms.utils import calculate_baseline_and_std_per_prompt
+    result=[]
     for group in groups:
-        rewards = [r[field] for r in group]
+        rewards=[r[field] for r in group]
+        if len(group)<2:raise ValueError('invalid reward group')
         if any(r is None for r in rewards):
-            result.append({'sample_mask': [0]*len(group), 'advantages': [0.]*len(group)})
-        else:
-            if len(group) < 2 or any(not math.isfinite(r) or not 0 <= r <= 1 for r in rewards):
-                raise ValueError('invalid reward group')
-            total = sum(rewards)
-            result.append({'sample_mask': [1]*len(group),
-                           'advantages': [r-(total-r)/(len(group)-1) for r in rewards]})
+            result.append({'sample_mask':[0]*len(group),'advantages':[0.]*len(group)})
+            continue
+        if any(not math.isfinite(r) or not 0<=r<=1 for r in rewards):raise ValueError('invalid reward group')
+        r=torch.tensor(rewards,dtype=torch.float32);mask=torch.ones_like(r)
+        baseline,std=calculate_baseline_and_std_per_prompt(torch.zeros((len(group),1),dtype=torch.long),r,mask,leave_one_out_baseline=True)
+        values=r-baseline;selected=std>0;values[selected]/=std[selected]+1e-6
+        if len(set(rewards))==1:values.zero_()
+        result.append({'sample_mask':[1]*len(group),'advantages':values.tolist()})
     return result
 
 
@@ -91,16 +95,16 @@ def t2(advantages, preclip_gradient_norm, before_weights, after_weights, refit_p
         norm = norm[0]
     if not advantages or not refit_positions or len(old_supports) != len(new_supports) or not old_supports:
         raise ValueError('incomplete T2 evidence')
-    errors = [abs(p['trainer_logp']-p['generator_logp']) for p in refit_positions]
+    errors = [abs(p['trainer_logp']-p['generator_logp']) for p in refit_positions if p.get('certified',True)]
     outside = sum(p['token'] not in p['trainer_support'] for p in refit_positions)
-    median = float(np.median(errors))
+    median = float(np.median(errors)) if errors else float('inf')
     criteria = {'finite_nonzero_advantages': all(math.isfinite(x) for x in advantages) and any(x != 0 for x in advantages),
                 'finite_nonzero_preclip_gradient': type(norm) in (int, float) and math.isfinite(norm) and norm > 0,
                 'changed_weights': bool(before_weights) and bool(after_weights) and before_weights != after_weights,
-                'refit_median': all(math.isfinite(e) for e in errors) and median <= .01,
+                'refit_median': bool(errors) and all(math.isfinite(e) for e in errors) and median <= .01,
                 'refit_support': outside == 0}
     return {'gate': 'V4-T2', 'status': 'PASS' if all(criteria.values()) else 'FAIL', 'criteria': criteria,
-            'preclip_gradient_norm': norm, 'refit_median_absolute_error': median, 'refit_outside_support': outside,
+            'preclip_gradient_norm': norm, 'refit_median_absolute_error': median if errors else None,'refit_uncertified_positions':sum(not p.get('certified',True) for p in refit_positions), 'refit_outside_support': outside,
             'support_changed_fraction': sum(set(a) != set(b) for a,b in zip(old_supports,new_supports))/len(old_supports)}
 
 

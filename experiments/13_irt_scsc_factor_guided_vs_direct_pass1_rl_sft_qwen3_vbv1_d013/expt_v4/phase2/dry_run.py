@@ -10,14 +10,14 @@ from stage_ledger import read
 from runner import STAGES
 
 
-def run(root,admission):
+def run(root,admission,*,real_adapters=False):
     if os.environ.get('CUDA_VISIBLE_DEVICES')!='':raise ValueError('CUDA_VISIBLE_DEVICES must be empty')
     root=Path(root);root.mkdir(parents=True,exist_ok=False)
     runner=Path(__file__).with_name('runner.py');commands=[]
     def call(stage,scenario,extra=(),expected=0):
         argv=[sys.executable,str(runner),stage,'--work',str(root/scenario),
-              '--admission',str(admission),'--engine','stub',*extra]
-        p=subprocess.run(argv,capture_output=True,text=True,timeout=300)
+              '--admission',str(admission),'--engine','local-stub' if real_adapters and scenario=='full' else 'stub',*extra]
+        p=subprocess.run(argv,capture_output=True,text=True,timeout=7200)
         name=f'{len(commands):02d}_{scenario}_{stage}'
         (root/(name+'.stdout')).write_text(p.stdout);(root/(name+'.stderr')).write_text(p.stderr)
         commands.append({'argv':argv,'returncode':p.returncode,'expected':expected,'log':name})
@@ -43,12 +43,29 @@ def run(root,admission):
              'T2_no_signal':read(root/'stop/T2/receipt.json')['status'],
              'crash_attempts':len(list((root/'crash/T1/probe').glob('attempt_*'))),
              'api_spend_usd':0,'is_gate_evidence':False}
+    if real_adapters:
+        from local_engine import LocalEngine
+        from pause_v3 import pause,VETO_END
+        engine=LocalEngine(root/'full',admission,stub_engines=True)
+        payload=read(root/'full/T2/update/intent.json')['payload']
+        for row in [r for g in payload['groups'] for r in g][:3]:
+            row['receipt'][0].update(certified=False,generator_logp=None)
+        a4root=root/'A4_stop';a4root.mkdir()
+        stopped=engine.measure('update',a4root,payload)
+        assert stopped['status']=='STOP_V4_A4' and not (a4root/'export').exists()
+        fake_v3=root/'pause_fixture';(fake_v3/'phase2').mkdir(parents=True)
+        def busy(key,work):return {'pane_text':'waiting for an idle GPU','processes':[{'kind':'runner'},{'kind':'stage'}],'leases':[]}
+        refused=pause(admission,work=fake_v3,veto_not_issued=True,now=VETO_END+1,probe=busy,
+                      kill=lambda *a:(_ for _ in ()).throw(AssertionError('no process may be signalled')))
+        assert set(refused.values())=={'WAIT_STAGE_RUNNING'} and not (fake_v3/'phase2/autoresume_paused.json').exists()
+        summary.update(real_adapter_composition=True,A4_stop=stopped,pause_refusal=refused,
+                       stage_subprocesses=len(list((root/'full').glob('**/launch.json'))))
     write_new(root/'summary.json',summary)
     return summary
 
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--root',type=Path,required=True)
-    p.add_argument('--admission',type=Path,required=True);a=p.parse_args()
-    result=run(a.root,a.admission)
+    p.add_argument('--admission',type=Path,required=True);p.add_argument('--real-adapters',action='store_true');a=p.parse_args()
+    result=run(a.root,a.admission,real_adapters=a.real_adapters)
     print(json.dumps({k:v for k,v in result.items() if k not in ('commands','stage_receipts')}))

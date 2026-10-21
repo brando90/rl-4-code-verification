@@ -11,7 +11,7 @@ from common import object_digest
 def launch(plan, *, run=subprocess.run):
     admission=check_admission(plan['admission'],require_launch=True)
     if admission.get('launch_plan_sha256')!=object_digest(plan):raise ValueError('unbound launch plan')
-    if not launch_timing(plan['v3_pilot_read_only'])['released']:raise ValueError('v3 release condition not met')
+    if not launch_timing(plan['v3_pilot_read_only'],veto_not_issued=__import__('os').environ.get('E13V4_A3_NO_VETO')=='1')['released']:raise ValueError('v3 release condition not met')
     session=plan['session']
     if not session.startswith('rl4cv-e13v4-'):raise ValueError('foreign session')
     probe=run(['tmux','has-session','-t',session],capture_output=True,text=True)
