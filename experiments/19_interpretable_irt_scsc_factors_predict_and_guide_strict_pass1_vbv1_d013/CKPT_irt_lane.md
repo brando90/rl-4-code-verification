@@ -5,7 +5,7 @@
 **TLDR:** Resume record for the rl4cv IRT lane (Claude Code session local_268be283, assigned by the general coordinator local_82b6c38d on 10-20-2026). Zero paid model calls, CPU only.
 
 Created: 10-20-2026 16:00 PDT
-Last updated: 10-21-2026 11:30 PDT
+Last updated: 10-21-2026 12:36 PDT
 
 ## Goal
 - Which SCSC factors and task features explain/predict held-out strict, harsh-SCSC and gold-check (VeriBench 111) success on VeriBench V1, and can an IRT forecast pick the prompts where experiment 13's start policy gives mixed strict groups?
@@ -42,3 +42,4 @@ Last updated: 10-21-2026 11:30 PDT
 - 10-20-2026 19:01 PDT -- locked run DONE (01:50:56Z, 7,124 s, exit 0); results.md published; G3 frozen 01:58:55Z (sha256 abb0cb31...).
 - 10-20-2026 19:05 PDT -- proposal to 13's owner sent, idea page synced, cleanup done; lane idle until 13 publishes V4-G0 counts.
 - 10-21-2026 11:30 PDT -- Brando asked to use Sang Truong's textbook and lecture picks for an excellent prompt and to test whether Azalia's idea works with IRT. Experiment 20 claimed (d4f08581, merged be2e8d03); runbook `expt_v1/cc.md` sha256 2dc453bc8f13.... Worker dispatched on skampere1 (deploy_cc deployment deploy_ed87a5b1900b45d2af6e22c1707cc31e; Claude Code claude-fable-5-1, max effort, profile cc = `clauded` personal config, bypass permissions on; the dispatcher accepted the folder-trust prompt). Useful progress verified 18:26:36Z (runbook read; routed rules and reusable code loading). Completion-marker note queued to the worker; watch armed 18:29:16Z.
+- 10-21-2026 12:36 PDT -- The watch reported BLOCKED at 19:17:17Z: the shared personal Claude account hit its session limit at 19:16:51Z, and other personal-account workers on skampere1 draw on it too. Claude Code auto-continued at the 19:21:21Z reset, so no relaunch or account switch was needed. The watcher now re-checks auto-continuing limit pauses every 10 min and reports only one that lasts over 6 h. It was re-armed at 19:36:04Z; the old verdict is archived as `e20_watch/STATE_20261021T191717Z_blocked_autoresumed.txt`.
