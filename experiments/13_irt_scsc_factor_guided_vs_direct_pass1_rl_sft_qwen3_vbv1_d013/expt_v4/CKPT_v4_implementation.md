@@ -4,7 +4,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/CKPT_v4_implementation.md>
 **Companion:** <https://docs.google.com/document/d/1KqUi39sz532dIGg8EYCy6w62Q0KzO2XWhpM2MMSWvHE/edit>
-**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-20-2026 19:17 PDT.
+**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-20-2026 19:19 PDT.
 
 ## State
 
@@ -27,11 +27,13 @@
 - GPU census 10-20-2026 19:05 PDT: 20/24 devices occupied; skampere1 0/2/4/6 idle, only 0 eligible here; 5/7 remain v3-owned.
 - Experiment 120 attribution remains unresolved; no process was attributed without evidence.
 - No GPU allocation, model generation, optimizer step, provider call, cron installation, tmux session or v2/v3 edit; $0.
-- Next [p 10/10]: publish this verified blocked admission and checkpoint after rebase; preserve all dry-run receipts.
+- Next [p 8/10]: master resolves the actor-correction rule; then finish measured adapters and incorporate newly arrived A2/A3 before a new admission.
 - Master decision [p 8/10]: specify the missing actor-correction semantics prospectively; no launch go can substitute for that fix.
-- Publication: deterministic checks pass; companion updated/read back; rebase/push to main in progress.
+- Publication: implementation `000ac82b8744c1ed379818fe0d283d4349d35e89` rebased on `686aa9ca`, pushed to main and verified remotely; companion updated/read back.
 
 ## Dispatch 2 evidence and exact continuation
+
+**Concurrent amendments discovered at final rebase:** master added [V4-A2](AMENDMENT_V4-A2_receipt_invariance_and_sampler_backend_10-20-2026.md) and [V4-A3](AMENDMENT_V4-A3_schedule_v4_start_and_v3_pause_10-20-2026.md) while this A1 dispatch was in progress. Neither changes the actor-correction blocker. A2's 10,000-position installed-sampler test, R0/R1/R2 engine criterion, explicit FlashInfer-disable setting, import-absence check and worker-side backend receipts are **not implemented or bound by this scoped admission**. A3 is subject to veto until 10-21-2026 12:00 PDT; this dispatch makes no v3 pause or schedule change. The prepared launch plan still uses the earlier release condition and must be reconciled with the effective A3 outcome before use. No launch-ready claim applies to these new requirements.
 
 [Verification receipt](phase2/verification_dispatch2.json) records **117 passed / 0 skipped / 0 failed** for v4 and **1,405 passed / 15 skipped / 0 failed** for the root suite. Logs are `/lfs/skampere1/0/brando9/rl4cv_e13v4/v4_dispatch2_tests_final.log` and `root_dispatch2_tests.log`. The v4 suite uses the read-only NeMo venv plus separate `test_deps`; root uses the historical experiment-09 source override as documented in the preserved reproduction section. Six root warnings are existing deprecation/fork warnings. Initial development test failures were corrected; these are the final rerun counts. Counts are deterministic checks, not scientific estimates (confidence intervals/p-values not applicable).
 
@@ -166,3 +168,5 @@ I have the experiment 13 v4 CPU implementation passing 89 tests, with the histor
 - 10-20-2026 19:13 PDT: Final v4 suite 115 passed/0 skipped/0 failed; root make test 1,405 passed/15 skipped/0 failed. CPU admission verifies; measured progress is all PENDING; launch-check deliberately rejects. Dry-run summary and log hashes committed with the blocked implementation.
 
 - 10-20-2026 19:17 PDT: Final diff fixes watchdog spawn/fence race and binds T1 denominator to saved response lengths; 117 v4 tests pass. Regenerated admission `58e1b31df8e87e0e797f4043a9e03a9a7e774cf6982b302914c59490ab10f433` and all command-line dry-run receipts; root tested code is unchanged.
+
+- 10-20-2026 19:19 PDT: Rebased on origin/main 686aa9ca and pushed implementation 000ac82b; remote hash verified. Rebase added master A2/A3 (read, unchanged, not implemented by this A1 admission); recorded their pending requirements and veto window. Shared runtime/frozen A1/protocol still hash-verify; no launch.

@@ -10,6 +10,8 @@
 
 - [Protocol](PROTOCOL.md), frozen at `d4778e25`; unchanged.
 - [Amendment V4-A1](AMENDMENT_V4-A1_generator_support_receipt_10-20-2026.md), adopted at `7877faac`; unchanged. It replaces the generator receipt and T1 support criterion, and specifies trainer tie inclusion.
+- [Amendment V4-A2](AMENDMENT_V4-A2_receipt_invariance_and_sampler_backend_10-20-2026.md), adopted concurrently and discovered during final rebase: requires a 10,000-position installed-sampler check, specified R0/R1/R2 engine comparison, explicit native-backend setting and worker evidence. **Not implemented or bound by this A1-scoped admission.**
+- [Amendment V4-A3](AMENDMENT_V4-A3_schedule_v4_start_and_v3_pause_10-20-2026.md), discovered in that same rebase: scheduling is subject to Brando's veto until 10-21-2026 12:00 PDT. **No pause or schedule change is performed here; reconcile the future launch plan before use.**
 - [Dispatch 2 blocker](BLOCKER_V4_A1_importance_correction.md): installed loss evidence, CPU reproducer and smallest proposed fix. This report is **not** an amendment.
 
 ## V4-A1 implementation
