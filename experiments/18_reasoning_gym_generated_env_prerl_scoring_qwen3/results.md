@@ -31,7 +31,7 @@ Kendall's W = 0.841. "Transfers" needed every pair ≥ 0.7 with CI lower bound >
 
 **2. Within-family monotonicity (level vs pass rate).** 0.6B: 8/8 families monotone. 1.7B: 6/8 (not monotone: leg_counting, family_relationships). 4B: 7/8 (not monotone: family_relationships). The expectation was at least 6 of 8 per model: met for all three.
 
-**3. Learnable band (0.1 ≤ pass ≤ 0.9 and ρ > 0).** 0.6B: 12 environments; 1.7B: 23; 4B: 11. Jaccard overlap: 0.6B–1.7B 0.52, 0.6B–4B 0.44, 1.7B–4B 0.42. Mean level of in-band environments: 1.08, 1.35, 1.27, so the expectation that it rises with size holds from 0.6B to 1.7B but not to 4B. The 4B band is smaller because more of its environments are above 0.9 or format-dominated. Per-model lists are in `summary_18a.json` under `analysis3_learnable_band`.
+**3. Learnable band (0.1 ≤ pass ≤ 0.9 and ρ > 0).** 0.6B: 12 environments; 1.7B: 23; 4B: 11. Jaccard overlap: 0.6B–1.7B 0.52, 0.6B–4B 0.44, 1.7B–4B 0.42. Mean level of in-band environments: 1.08, 1.35, 1.27, so the expectation that it rises with size holds from 0.6B to 1.7B but not to 4B. The 4B band is smaller than the 1.7B band because 6 of its environments are above 0.9 and 15 are below 0.1 (the 1.7B model has 0 above 0.9 and 9 below 0.1); 0.6B has 0 above and 20 below. Per-model lists are in `summary_18a.json` under `analysis3_learnable_band`.
 
 **4. Coordinates (Spearman over the 32 environments, descriptive).**
 
@@ -43,7 +43,7 @@ Kendall's W = 0.841. "Transfers" needed every pair ≥ 0.7 with CI lower bound >
 
 Pass rate, ρ and H are strongly tied (ρ_s 0.6–0.97), so ρ and H add little beyond difficulty in this probe; alignment is only moderately tied to pass rate and is the least redundant coordinate.
 
-**5. Target baselines (for 18b).** Pass rates, ρ and H of the five RG target components and GSM8K-256 per model are in `analysis5_targets`. GSM8K-256 pass: 0.6B 0.31, 1.7B 0.66; 4B in the file.
+**5. Target baselines (for 18b).** Pass rates, ρ and H of the five RG target components and GSM8K-256 per model are in `analysis5_targets`. GSM8K-256 pass: 0.6B 0.31, 1.7B 0.66, 4B 0.82.
 
 Mean pass rate over the 32 environments: 0.107 (0.6B), 0.256 (1.7B), 0.323 (4B). Mean capped fraction 0.013, 0.076, 0.051.
 
