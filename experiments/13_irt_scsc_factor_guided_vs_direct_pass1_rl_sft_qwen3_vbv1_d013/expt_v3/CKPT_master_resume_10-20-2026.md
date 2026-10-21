@@ -217,3 +217,46 @@ The 19:10 "hash mismatch" was a false alarm. The `rl4cv.forecast` convention has
 - a launch plan reconciled with V4-A3, a new admission, and a dry run.
 
 **GPU census (dispatch 2, 19:05 PDT):** 20 of 24 devices busy. skampere1 devices 0, 2, 4 and 6 were idle, but of the eligible devices only 0 was free, and 5 and 7 held v3 workers.
+
+## 10-21-2026 00:55 PDT: v4 dispatch 3 done; admission statically ADMITTED; waiting for the V4-A3 window
+
+**v3-A7.** Completed updates at 00:53 PDT:
+
+| Trajectory | Completed updates |
+|---|---|
+| A_1301 | 13 |
+| A_1302 | 3 |
+| B_1301 | 18 |
+| B_1302 | 9 |
+| P_1301 | 18 |
+| P_1302 | 6 |
+
+- No `T5_*.json` or `result_30.json` exists yet.
+- The watchdog was OK at 00:50, with zero deaths.
+- The pause list `autoresume_paused.json` does not exist yet.
+
+**Dispatch 3** (`1e667077`, `13a5fd7a`; [checkpoint](../expt_v4/CKPT_v4_implementation.md)) delivered:
+
+- the real leased adapters for generation, scoring, training, checkpointing, export, refit, replay and audits;
+- V4-A2, V4-A3 and V4-A4;
+- the experiment 19 scorer, with `verify_forecast` True and hash `abb0cb31…`.
+
+Verification:
+
+- **Tests:** v4 142 passed; v3 watchdog 16 passed; root suite 1,405 passed, 15 skipped, 0 failed.
+- **Sampler check:** the installed `Sampler` receipt shows 10,000 positions with 0 mismatches.
+- **Dry run:** a GPU-free run through the real adapters with stub engines covered 360 symbolic updates and the A4 stop at 1.17% uncertified. The pause tool returned WAIT while stages were running.
+
+**Admission:** `phase2/admission_dispatch3.json`, SHA-256 `29276968a2e93abcea5dede2f763703ed207b2f4f0e6c94f542268f8b11c758c`. It is statically ADMITTED.
+
+The remaining conditions are runtime-only and owned by the master:
+
+1. the window closes at 10-21 12:00 PDT with no veto, and the five clean pauses are recorded;
+2. an idle authorized device lease;
+3. for the pilot only, B_1301's `T5_30.json` and every gate PASS.
+
+The exact commands are in the checkpoint's "Exact master commands" block.
+
+**Implementation correction:** dispatch 3 restored the inherited v3 standard-deviation scaling of advantages, tested against the installed function. No protocol change.
+
+**Open:** experiment 120's identity is still unresolved for its required GPU-use check. The coordinator has been asked. At 22:48 PDT, 21 of 24 devices were busy, and skampere1 devices 0, 5 and 7 were occupied by v3.
