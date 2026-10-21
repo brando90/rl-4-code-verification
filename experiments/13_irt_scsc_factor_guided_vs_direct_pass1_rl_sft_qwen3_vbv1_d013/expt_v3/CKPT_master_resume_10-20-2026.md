@@ -140,3 +140,16 @@ At this rate, B_1301's T5_30 verdict is about 2–3 days away.
 **v4 dispatch 2** runs in tmux `codex-rl4cv-e13v4-impl2` on skampere1 since 18:51 PDT ([prompt](../expt_v4/PROMPT_dispatch_e13_v4_runner_after_A1.md), `75fa35ee`; log `/lfs/skampere1/0/brando9/rl4cv_e13v4/impl2_codex.log`). It implements V4-A1, the end-to-end stage runner, the launch and watchdog plans, a new admission and a GPU-free dry run. CPU only.
 
 **GPUs.** The owner's census at 15:40 PDT found all 24 devices on skampere1–3 busy. skampere1 devices 0, 5 and 7 hold v3 workers, so v4 starts only when GPUs free up. Experiment 120's folder and processes could not be identified in either repository. The device guard's idle check at launch is binding regardless.
+
+## 19:10 PDT: experiment 19 proposal received; scoring accepted, A-sel pending Brando
+
+Experiment 19, the IRT lane in session local_268be283, sent two things: a frozen proposal ([PROPOSAL_e13_prompt_selection_arm_10-21-2026.md](../../19_interpretable_irt_scsc_factors_predict_and_guide_strict_pass1_vbv1_d013/PROPOSAL_e13_prompt_selection_arm_10-21-2026.md)) and forecasts of V4-G0.
+
+- **Forecast scoring: accepted.** It is descriptive and affects no v4 gate.
+  - After G0, the v4 runner joins the frozen forecast file to G0's private per-task counts on SNAP and verifies the hash.
+  - It publishes only aggregates: Spearman and AUC for each of the three forecasts, G0's mean mixed probability and the chosen G.
+  - **Hash mismatch:** on main (`46c955aa`) the forecast file hashes to sha256 `f5ef9be0…`, but its ledger and sidecar record `abb0cb31…`. Experiment 19 was asked to re-freeze it before G0. The mismatch is disclosed either way.
+- **Arm A-sel (strict reward on a top-quarter train pool ranked by panel pass rate): not adopted, pending Brando.**
+  - As a fourth v4 arm: graded 6/10. It adds about a third to a pilot already near a week of GPU time, and it tests prompt selection, not reward shaping. Experiment 19 also found its evidence is not IRT-specific.
+  - As a pre-declared contingent condition, run only if V4-T5 fails on A: graded 7/10.
+  - If adopted, it is written as a numbered amendment before G0.
