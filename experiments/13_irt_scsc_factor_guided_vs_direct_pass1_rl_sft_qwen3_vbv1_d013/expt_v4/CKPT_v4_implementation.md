@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/CKPT_v4_implementation.md>
 **Companion:** <https://docs.google.com/document/d/1KqUi39sz532dIGg8EYCy6w62Q0KzO2XWhpM2MMSWvHE/edit>
-**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 11:32 PDT.
+**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 11:34 PDT.
 
 **TLDR:** Dispatch 4 implements the recorded single A_1302 pause and re-admission. All requested CPU suites and the GPU-free dry run pass; the new static admission is ADMITTED. The master owns the real pause, watchdog installation and gates.
 
@@ -10,7 +10,7 @@
 
 - Goal: single-pause launch-ready admission for experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4, CPU only, $0.
 - Owner: Codex `gpt-6-astra`, ultra effort, skampere1, session `codex-rl4cv-e13v4-impl4`; full access, one writer.
-- What ran: single-pause implementation, full CPU suites, synthetic dry run and admission sealing.
+- What ran: single-pause implementation, full CPU suites, synthetic dry run, admission sealing and main publication at 3b2df5c3.
 - Results: v4 168 passed; watchdog 16 passed; root 1,405 passed / 15 skipped / 6 warnings / 0 failed; 360 synthetic updates.
 - Admission SHA-256: a8a1b8f28497e51ba3d898dceb07902c9dc18f83bdac9164b49e462a9a79e390 (72 local / 304 runtime bindings).
 - Stuck / blocked: nothing; real pause and launches remain master-owned.
@@ -37,7 +37,7 @@ The smallest implementation correction outside pause selection is the previously
 
 **Copy-ready sentence for the master:** I implemented single-run pausing for experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4, with 168 v4, 16 watchdog and 1,405 root tests passing plus a GPU-free WAIT-to-PAUSED dry run; the new admission passes launch-check, and the master can pause A_1302 after noon/no veto, then start gates when an authorized device is idle.
 
-Publication preparation: final code/admission verified; Google companion updated and six paragraphs read back exactly. Rebase backup: `backup-e13v4-dispatch4`; old base `94c20d0722bb8481667d4a062e26fcb23e2d723a`; fetched main `e59ca75bfc7292ebdc4107bb7ec4ed5bed174193`. Rebase and push are the remaining worker actions. No temporary checkout was created; this pre-existing dispatch checkout is retained because the bound master plans and admission use its paths.
+Publication: implementation and admission **[`3b2df5c3`](https://github.com/brando90/rl-4-code-verification/commit/3b2df5c3da5a597af4d5081062734479e4d28456)** are pushed to `main`; remote readback matched exactly. The first push met a concurrent checkpoint update, so the worker rebased again over `9d555e67`. Range comparison against the owned pre-rebase backup (`84ec0457`, old base `94c20d07`) showed an identical patch, and the entire owned v4 subtree was byte-identical. The backup branch is removed after that verification. `launch-check` passes with the unchanged admission digest. The Google companion's six updated paragraphs were read back exactly. No temporary checkout was created; this pre-existing dispatch checkout is retained because the bound master plans and admission use its paths. This publication-note edit changes only the unbound checkpoint.
 
 The master runs the following commands from this checkout. They are prepared instructions, not actions taken by Dispatch 4. The real clock and no-veto flag remain authoritative even if this handoff arrives before noon.
 
@@ -295,3 +295,5 @@ I have the experiment 13 v4 CPU implementation passing 89 tests, with the histor
 - 10-21-2026 11:23 PDT: Dispatch 4 implementation started: operational A_1302 selection, shared timing, read-only probe and CPU fixture controls; deployed v3 watchdog already supports the subset and remains unchanged.
 
 - 10-21-2026 11:31 PDT: Dispatch 4 verification complete: 168 v4 / 16 watchdog / 1,405 root passed (15 skipped); single-pause dry run and 360 symbolic updates passed; sealed admission a8a1b8f28497e51ba3d898dceb07902c9dc18f83bdac9164b49e462a9a79e390. Publication pending; no live actions.
+
+- 10-21-2026 11:34 PDT: Published 3b2df5c3 to main and verified the remote hash after two clean rebases over concurrent checkpoint-only changes; owned patch unchanged, admission still valid, Google companion synchronized. No real pause, cron install or GPU work.
