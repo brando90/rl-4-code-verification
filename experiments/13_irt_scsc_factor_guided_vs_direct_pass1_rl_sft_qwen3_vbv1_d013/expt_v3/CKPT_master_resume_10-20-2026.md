@@ -301,3 +301,18 @@ The exact commands are in the checkpoint's "Exact master commands" block.
   - It stops after 12 hours.
   - Its success count was tested on four sample outputs.
 - **Checks:** a one-shot check runs at 12:20 PDT (cron job `b008d77a`).
+
+## 10-21-2026 11:20 PDT: HOLD — no v3 pause until Brando confirms
+
+- **Why.** The coordinator relayed Brando's 11:13 PDT message: "ps: don't pause things unless it's necessary...or I say it?". It was read as a possible veto of the V4-A3 pause.
+- **Done.** The master stopped tmux `e13v4-a3-pauser` at 11:14:48 PDT, before it acted. It had only been sleeping until 12:00:30: no pause list exists and no trajectory was signalled. The HOLD line is in `a3_pause_loop.log`. The 12:20 check (`b008d77a`) was deleted. All six v3 trajectories run unchanged.
+- **GPU census (11:15 PDT, `nvidia-smi`).** **0 of 24** skampere1–3 GPUs are idle; every device has compute processes. skampere1 devices 0, 5 and 7 hold v3. mercury1 and mercury2 GPUs 0–7 are excluded for experiment 120. So the v4 gates cannot start without a pause.
+- **B_1301's pace.** 20 of 30 updates are complete. Its last four updates took 7.3, 9.3, 8.0 and 5.0 hours, because it queues behind the other five trajectories.
+
+  | Option | B_1301's T5_30 | v4 |
+  |---|---|---|
+  | No pause | about 10-24 midday | starts after T5_30 |
+  | Pause all five | about 10-22 evening (about 3 GPU-hours per update) | gates run meanwhile on a freed GPU |
+  | Pause one run | — | needs a runner change and re-admission (the admitted runner requires all five pauses) |
+
+- **Waiting on Brando:** pause all five, pause one, or no pause. The coordinator is asking him, and so is the master in its own chat.
