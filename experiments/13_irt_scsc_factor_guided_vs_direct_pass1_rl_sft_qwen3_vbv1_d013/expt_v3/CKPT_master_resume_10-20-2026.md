@@ -325,3 +325,20 @@ The exact commands are in the checkpoint's "Exact master commands" block.
 - **Effect.** The other five v3 runs continue. v4's gates compete fairly for idle authorized devices, with no standing reservation, so B_1301's T5_30 stays around 10-24. The 3-GPU pilot waits for B_1301's T5_30 or for free GPUs. Any later stop of a running v3 run is confirmed with Brando first.
 - **Dispatch 4** runs in tmux `codex-rl4cv-e13v4-impl4` since 11:20 PDT, Codex `gpt-6-astra` at ultra effort ([prompt](../expt_v4/PROMPT_dispatch_e13_v4_dispatch4_single_pause.md); log `/lfs/skampere1/0/brando9/rl4cv_e13v4/impl4_codex.log`). It builds the designated single-pause mode and the gate release on one pause, then tests, dry-runs and re-admits. It does not pause anything and uses no GPU.
 - **After dispatch 4,** the master pauses A_1302 at a lease-wait boundary and starts the gates. The master messages the coordinator at each step.
+
+## 10-21-2026 12:55 PDT: dispatch 4 done (admission `a8a1b8f2…`); A_1302 pause blocked by a dead boundary signal; dispatch 5 running
+
+- **Dispatch 4** (`3b2df5c3`, `63a0d3d0`) delivered:
+  - the single designated-pause mode, read from an admission-bound `phase2/operational_pause.json`;
+  - a three-device availability check before the pilot (it holds candidate locks only while checking, so it is not a standing reservation).
+
+  **Tests:** v4 168 passed, v3 watchdog 16 passed, root suite 1,405 passed with 15 skipped and 0 failed. The dry run showed WAIT then PAUSED, with the gates released only afterwards. **Admission:** ADMITTED, SHA-256 `a8a1b8f28497e51ba3d898dceb07902c9dc18f83bdac9164b49e462a9a79e390`; `launch-check` passes. **Census at 11:24:** 24 of 24 devices busy.
+- **Master pre-flight at 12:47.** `launch-check` passes. The read-only probe returned `WAIT_STAGE_RUNNING` for A_1302, which was correct because it was optimizing. Its `pane_text` was blank lines only.
+- **Blocker found.** No `rl4cv-e13v3-pilot-*` pane has any output. `pilot_run.py` waits for GPUs silently, through `allocation()` and `time.sleep(30)`. The admitted rule needs "waiting for an idle GPU" in the pane, so it could never mark A_1302 READY. The dry runs used fake panes and missed this.
+- **Replacement signal, verified on live runs.**
+  - Waiting runners show: the python runner in `hrtimer_nanosleep`, 0 children, no lease without an `_end`, and an update directory in a pre-allocation state. B_1302 and P_1301 matched this, stable over 31 s.
+  - Scoring shows `futex_wait_queue` with Lean children (P_1302).
+  - Optimizing shows an active `update_lease.json` and one child (A_1302).
+- **Pause not run yet.** The master did not run the pause; a loop on the admitted rule would wait forever, and spoofing pane text was rejected as dishonest.
+- **[Dispatch 5](../expt_v4/PROMPT_dispatch_e13_v4_dispatch5_pause_boundary_signal.md)** (`2c7d7fc3`) runs in tmux `codex-rl4cv-e13v4-impl5` since 12:51 PDT, Codex `gpt-6-astra` at ultra effort, CPU only. It implements the process and disk-state boundary rule (SIGSTOP and recheck kept), tests it on the observed states, runs a live read-only probe, and re-admits.
+- **Then** the master pauses A_1302 and starts the gates. All six v3 runs keep running meanwhile.
