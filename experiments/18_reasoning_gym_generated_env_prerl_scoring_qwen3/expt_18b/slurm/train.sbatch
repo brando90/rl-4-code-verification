@@ -6,7 +6,7 @@
 #SBATCH -C GPU_MEM:80GB
 #SBATCH -c 8
 #SBATCH --mem=64G
-#SBATCH -t 01:30:00
+#SBATCH -t 02:00:00
 #SBATCH --array=0-31
 #SBATCH -o logs/%x_%A_%a.log
 #SBATCH --mail-type=END,FAIL
