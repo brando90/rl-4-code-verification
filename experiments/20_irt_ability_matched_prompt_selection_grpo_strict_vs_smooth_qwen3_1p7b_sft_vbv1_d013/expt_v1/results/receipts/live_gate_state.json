@@ -1,14 +1,35 @@
 {
-  "utc": "2026-10-21T22:13:15.053620+00:00",
-  "sacct": "48842409|48841018_0|e20_p0_gen|RUNNING|11440|billing=35,cpu=8,gres/gpu=1,mem=48G,node=1|2026-10-21T12:02:32|Unknown|0:0\n48854511|48841018_1|e20_p0_gen|COMPLETED|6766|billing=35,cpu=8,energy=9420555,gres/gpu=1,mem=48G,node=1|2026-10-21T13:17:38|2026-10-21T15:10:24|0:0\n48855734|48841018_2|e20_p0_gen|COMPLETED|3796|billing=35,cpu=8,energy=5109486,gres/gpu=1,mem=48G,node=1|2026-10-21T13:23:15|2026-10-21T14:26:31|0:0\n48841018|48841018_3|e20_p0_gen|COMPLETED|3774|billing=35,cpu=8,energy=6250008,gres/gpu=1,mem=48G,node=1|2026-10-21T13:23:15|2026-10-21T14:26:09|0:0\n48845232|48845232|e20_smoke_train|FAILED|56|billing=55,cpu=16,energy=46222,gres/gpu=1,mem=96G,node=1|2026-10-21T13:12:08|2026-10-21T13:13:04|1:0\n48855196|48855196|e20_smoke_train|FAILED|109|billing=55,cpu=16,energy=154128,gres/gpu=1,mem=96G,node=1|2026-10-21T13:29:37|2026-10-21T13:31:26|1:0\n48857034|48857034|e20_smoke_train|FAILED|1959|billing=55,cpu=16,energy=5885555,gres/gpu=1,mem=96G,node=1|2026-10-21T13:36:32|2026-10-21T14:09:11|3:0\n",
-  "squeue": "48841018_0|RUNNING|3:10:40|1:19:20|sh04-11n10\n",
+  "utc": "2026-10-21T22:18:18.853291+00:00",
+  "sacct": "48842409|48841018_0|e20_p0_gen|COMPLETED|11713|billing=35,cpu=8,energy=17908799,gres/gpu=1,mem=48G,node=1|2026-10-21T12:02:32|2026-10-21T15:17:45|0:0\n48854511|48841018_1|e20_p0_gen|COMPLETED|6766|billing=35,cpu=8,energy=9420555,gres/gpu=1,mem=48G,node=1|2026-10-21T13:17:38|2026-10-21T15:10:24|0:0\n48855734|48841018_2|e20_p0_gen|COMPLETED|3796|billing=35,cpu=8,energy=5109486,gres/gpu=1,mem=48G,node=1|2026-10-21T13:23:15|2026-10-21T14:26:31|0:0\n48841018|48841018_3|e20_p0_gen|COMPLETED|3774|billing=35,cpu=8,energy=6250008,gres/gpu=1,mem=48G,node=1|2026-10-21T13:23:15|2026-10-21T14:26:09|0:0\n48845232|48845232|e20_smoke_train|FAILED|56|billing=55,cpu=16,energy=46222,gres/gpu=1,mem=96G,node=1|2026-10-21T13:12:08|2026-10-21T13:13:04|1:0\n48855196|48855196|e20_smoke_train|FAILED|109|billing=55,cpu=16,energy=154128,gres/gpu=1,mem=96G,node=1|2026-10-21T13:29:37|2026-10-21T13:31:26|1:0\n48857034|48857034|e20_smoke_train|FAILED|1959|billing=55,cpu=16,energy=5885555,gres/gpu=1,mem=96G,node=1|2026-10-21T13:36:32|2026-10-21T14:09:11|3:0\n",
+  "squeue": "",
   "calibration_rows": {
-    "phase0/gen/chunk_0/raw.jsonl": 1280,
+    "phase0/gen/chunk_0/raw.jsonl": 1432,
     "phase0/gen/chunk_1/raw.jsonl": 1120,
     "phase0/gen/chunk_2/raw.jsonl": 904,
     "phase0/gen/chunk_3/raw.jsonl": 856
   },
   "calibration_timings": {
+    "phase0/gen/chunk_0/timing.json": {
+      "job": "48842409",
+      "wall_s": 11685,
+      "cells": 1432,
+      "declared_cells": 1432,
+      "tasks": 179,
+      "declared_tasks": 179,
+      "gen_tokens": 10843035,
+      "max_tokens": 12288,
+      "mean_tokens": 7571.951815642458,
+      "truncated": 460,
+      "finish": {
+        "stop": 972,
+        "length": 460
+      },
+      "extraction": {
+        "file_blocks": 974,
+        "no_lean_block": 458
+      },
+      "tok_per_s": 927.9448010269576
+    },
     "phase0/gen/chunk_1/timing.json": {
       "job": "48854511",
       "wall_s": 6741,

@@ -5,25 +5,25 @@
 **TLDR:** Single-writer continuation of `20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013` under the unchanged runbook. Deployment `deploy_50715cf54e614ecf914f0f7da4aae03c`, Codex gpt-6-astra ultra, personal ~/.codex, skampere1.
 
 Created: 10-21-2026 13:44 PDT
-Last updated: 10-21-2026 15:13 PDT
+Last updated: 10-21-2026 15:24 PDT
 
 ## Goal
-- Finish the failed-gate closure of 20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013; no new phases.
+- Close 20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013 at its mandatory failed trainer gate.
 ## What ran
-- Adopted Phase 0a 48841018_[0-3] and smoke 48857034; two earlier smoke failures 48845232/48855196. Sole repository writer Codex gpt-6-astra/ultra, full access; predecessor fenced.
-- Takeover commit eaa6ef96 pushed; operational corrections and observed gate evidence verified locally.
+- Adopted four Phase 0a jobs and smoke 48857034; earlier failed smoke attempts 48845232/48855196 included. All seven allocations are terminal; no new experimental phase.
+- Codex gpt-6-astra/ultra, full access, sole repository writer; predecessor fenced; implementation-only worker change.
 ## Results
-- Smoke completed 2/2 updates, exit 3:0 at 14:09:11 PDT; max mismatch 22,654/864,717 = 2.61982% >1%. 17/256 strict, 6/32 active groups, 0/256 unresolved.
-- Calibration 4,160/4,312 saved, unscored; allocated Phase 0 7.1600 GPU-h/10; final smoke 0.5900/15 including both earlier failures. API $0. IRT treatment effect not measured.
-- make test: 1,415 passed, 17 skipped, 6 subtests; 3 warnings. Google experiment log updated and read back.
+- Smoke exit 3:0 after 2 updates; max mismatch 22,654/864,717 = 2.61982% >1%. All 256 rollout records retained; IRT treatment effect unmeasured.
+- Calibration 4,312/4,312 generated, 0 missing, 0 scored; full denominator retained. Phase 0 7.2358/10 GPU-h; smoke 0.5900/15; total 7.8258/200; API $0; test split closed.
+- Final-code make test PASS: 1,415 passed, 17 skipped, 6 subtests, 3 warnings; 296.87 s. Artifact and allocation reconciliation passed.
 ## Stuck / blocked
-- STOPPED at trainer log-probability gate. Existing adopted jobs must finish naturally under the no-cancellation instruction. No new scoring, IRT fit, pilot/main/evaluation or retry.
+- STOPPED at trainer log-probability mismatch gate. Custom optimizer backend deviates from required GRPOTrainer/NeMo; no redesign or gate weakening in this run.
 ## Next steps
-- [p 10/10] Monitor `/tmp/e20_live_monitor.log` and `/tmp/e20_live_monitor/latest.json`; owned local monitor `/tmp/e20_monitor.py` polls every 300 s, exits when adopted jobs terminal. Do not duplicate monitor or Slurm polls.
-- [p 10/10] On terminal state fetch final raw-generation manifest and smoke receipts; record actual allocation, final docs/plots, PR into main (do not merge), Google final bullet, E20_FINISHED.txt with result commit, and RUN DONE mails.
-- Verification worktree `/lfs/skampere1/0/brando9/.worktrees/rl4cv-e20-checks` holds copied operational fixes; preserve/compare before cleanup. Remove after final verification.
+- [p 10/10] Finish publication of final records and E20_FINISHED.txt; Google log and Phase 0 DONE email are verified; final experiment DONE email and temporary verification-worktree cleanup remain.
+- PR https://github.com/brando90/rl-4-code-verification/pull/20 is the sole review PR; do not merge. Exact final evidence: expt_v1/results/receipts/final_accounting.json and phase0_cells_unscored.csv.
+- The monitor has observed terminal jobs; do not restart jobs. A new scientific run requires its own prospective protocol.
 ## Brando to-do
-- None for this closure. A future backend-repair experiment requires a new prospective run; do not weaken this failed gate.
+- [p 8/10] Review PR #20 when convenient; no action is needed to close this failed-gate run.
 
 ## Log
 - 10-21-2026 13:44 PDT -- Codex takeover verified against live Git, processes and Sherlock; adopted calibration; newer smoke differs from handoff and is under investigation. Native helper `/root/locate_experiment_log` (gpt-5.6-terra/medium) is locating the requested Google experiment log; root remains sole repository writer.
@@ -52,3 +52,7 @@ Last updated: 10-21-2026 15:13 PDT
 - 10-21-2026 15:04 PDT -- Calibration progress: 3,936/4,312 generations, 2/4 chunks complete, 2 adopted jobs active; Phase 0 allocated 6.8739/10 GPU-h as of 10-21-2026 15:03:19 PDT; smoke final 0.5900/15. No new phase launched.
 - 10-21-2026 15:08 PDT -- Calibration progress: 4,064/4,312 generations, 2/4 chunks complete, 2 adopted jobs active; Phase 0 allocated 7.0406/10 GPU-h as of 10-21-2026 15:08:17 PDT; smoke final 0.5900/15. No new phase launched.
 - 10-21-2026 15:13 PDT -- Calibration progress: 4,160/4,312 generations, 3/4 chunks complete, 1 adopted jobs active; Phase 0 allocated 7.1600/10 GPU-h as of 10-21-2026 15:13:15 PDT; smoke final 0.5900/15. No new phase launched.
+- 10-21-2026 15:18 PDT -- Calibration progress: 4,312/4,312 generations, 4/4 chunks complete, 0 adopted jobs active; Phase 0 allocated 7.2358/10 GPU-h as of 10-21-2026 15:18:18 PDT; smoke final 0.5900/15. No new phase launched.
+- 10-21-2026 15:20 PDT -- All adopted jobs terminal; final artifacts reconciled: 4,312/4,312 generated, 0 missing, all scores unmeasured. Final allocation Phase 0 7.2358/10 GPU-h, smoke 0.5900/15, total 7.8258/200, API $0. No new experimental phase.
+- 10-21-2026 15:22 PDT -- Final transfer SHA-256 verified; 4,312 cells/539 tasks/eight samples, no duplicates/missing, 25,821,971 tokens, 940 capped. Full task ID hash matches declared train IDs. Manifest preserves 2,027 remote raw/diagnostic files. Google final bullet readback verified; Phase 0 DONE email delivered (Gmail 1a1608dba9bbe9eb), explicit four-address BCC envelope accepted.
+- 10-21-2026 15:24 PDT -- Terminal-publication make test PASS: 1,415 passed, 17 skipped, 6 subtests, 3 warnings, 296.87 s; exact implementation hashes unchanged. Final staged CSV bytes match validated artifacts; secret-pattern/diff checks passed. Preparing final results commit and finish marker.
