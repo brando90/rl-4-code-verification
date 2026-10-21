@@ -275,3 +275,29 @@ The exact commands are in the checkpoint's "Exact master commands" block.
 
   At the current pace experiment 120 runs until about 10-28.
 - **Rule adopted:** v4 never uses mercury1 or mercury2 GPUs 0–7. v4's device guard admits only skampere1 devices 0, 5 and 7 and idle skampere2/3 devices, so experiment 120 does not conflict. The guard's idle check stays binding everywhere.
+
+## 10-21-2026 11:15 PDT: Brando back ("go do it"), so no V4-A3 veto; pause loop armed for 12:00:30
+
+- **Decision:** Brando wrote at about 11:00 PDT: "I'm back to work. What should we do next? Go do it and test it." The master read this as no veto of V4-A3.
+- **Pause tool timing:** the admitted pause tool refuses to act before 12:00 PDT. The master did not edit admitted code to start sooner.
+- **Pre-flight tests (CPU), on the deployed tree:**
+  - `launch-check`: ADMITTED, 0 blockers, admission `29276968…`; it takes 13 s.
+  - v4 suite: 142 passed in 48.8 s.
+  - v3 watchdog suite: 16 passed.
+- **Infrastructure fix.** Two finished v3 retry tmux sessions had dead panes (exit status 0) since 10-20, because remain-on-exit is on: `rl4cv-e13v3-retry-A-1301-u12` (retry finished 15:42) and `rl4cv-e13v3-retry-P-1302-u6` (finished 19:59). They made the pause tool's one-pane identity check fail for A_1301 and P_1302, which would have aborted every pause call. Their pane text was saved to `$WR/phase2/autoresume_deaths/*_finished_status0_saved_10-21-2026.txt`, and only those two dead sessions were closed. No live process was touched.
+- **Boundary probe (read-only, 11:08 PDT):**
+
+  | Trajectory | Completed updates | State |
+  |---|---|---|
+  | A_1301 | 14 | stage running |
+  | A_1302 | 5 | between stages, not yet waiting |
+  | B_1302 | 11 | stage running |
+  | P_1301 | 19 | stage running |
+  | P_1302 | 8 | between stages, not yet waiting |
+
+- **Pause loop.** tmux `e13v4-a3-pauser` runs `/lfs/skampere1/0/brando9/rl4cv_e13v4/a3_pause_loop.sh` (log `a3_pause_loop.log`).
+  - From 12:00:30 PDT it runs the admitted `pause_v3.py --veto-not-issued --execute` every 20 s, so each trajectory pauses only at its own lease-wait boundary.
+  - Once all five are PAUSED or ALREADY_PAUSED, it runs `install_watchdog.py --install` once. The v4 controller then runs T1, G0, T2, T3, T4 and the B audits on idle authorized GPUs.
+  - It stops after 12 hours.
+  - Its success count was tested on four sample outputs.
+- **Checks:** a one-shot check runs at 12:20 PDT (cron job `b008d77a`).
