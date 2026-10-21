@@ -384,3 +384,11 @@ The exact commands are in the checkpoint's "Exact master commands" block.
   - **Admission:** `admission_dispatch6.json`, SHA-256 `71d9be74c333f3c297dc04e5a8d31f6cd531860ae6205f2a409612ba25acc26c`. `launch-check` passes after the rebase.
   - **Wrapper:** dispatch 6 pointed the master's wrapper at the new admission. The diff is that one line.
 - **16:47:27: loop restarted** in tmux `e13v4-a1302-pauser`; `launch-check` exit 0 at 16:47:56. The first statuses were `WAIT_OBSERVATION`: a census process vanished during the scan, which is now a WAIT instead of a crash. The master checks the status mix at about 16:58.
+
+## 10-21-2026 17:00 PDT: census-wide vanish rule blocks READY; dispatch 7 running
+
+- **16:47–16:58: no READY.** With the dispatch 6 admission the loop returned `WAIT_OBSERVATION` 17 times and `WAIT_RACE` once in 18 calls. A_1302 sat at a clean boundary throughout: runner `S`/`hrtimer_nanosleep`, 0 children.
+- **Cause.** Any same-user process vanishing anywhere in the `/proc` census now blocks READY. Other lanes on skampere1 spawn short-lived brando9 processes constantly.
+- **16:59: loop stopped** between calls; A_1302 remains `S`.
+- **[Dispatch 7](../expt_v4/PROMPT_dispatch_e13_v4_dispatch7_relevant_observation_errors.md)** (`08048843`) runs in tmux `codex-rl4cv-e13v4-impl7`, Codex `gpt-6-astra` at ultra effort. It counts a vanished process only if it is relevant: the runner, its group or children, or a process referencing the pilot directory. All positive checks are kept. It then runs a 10-minute read-only probe and re-admits.
+- **State.** Nothing is paused; all six v3 runs are running.
