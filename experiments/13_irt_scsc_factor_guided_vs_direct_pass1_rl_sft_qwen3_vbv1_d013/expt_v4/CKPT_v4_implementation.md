@@ -2,22 +2,89 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/CKPT_v4_implementation.md>
 **Companion:** <https://docs.google.com/document/d/1KqUi39sz532dIGg8EYCy6w62Q0KzO2XWhpM2MMSWvHE/edit>
-**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-20-2026 22:54 PDT.
+**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 11:32 PDT.
 
-**TLDR:** Dispatch 3 implements real leased adapters, amendments V4-A2/A3/A4 and the descriptive experiment 19 scorer. All CPU suites and the full real-adapter stub dry run pass. The new admission is statically **ADMITTED**; live gates remain unmeasured and no experiment has launched.
+**TLDR:** Dispatch 4 implements the recorded single A_1302 pause and re-admission. All requested CPU suites and the GPU-free dry run pass; the new static admission is ADMITTED. The master owns the real pause, watchdog installation and gates.
 
 ## State
 
-- Goal: launch-ready prospective admission for experiment 13 v4, CPU only, $0.
-- Owner: Codex `gpt-6-astra`, requested high effort, skampere1; full access, one writer.
-- Code: A1–A4, real generation/scoring/training/checkpoint/export/refit/replay/audits, pause tooling and forecast aggregation implemented.
-- Verification: 142 v4 passed; 16 v3-watchdog passed; root 1,405 passed / 15 skipped / 6 warnings / 0 failed.
-- Implementation and CPU verification complete. Admission SHA-256: `29276968a2e93abcea5dede2f763703ed207b2f4f0e6c94f542268f8b11c758c`. Publication is recorded below.
-- Runtime-only conditions: veto window/no veto and five clean pauses; idle authorized lease; pilot requires B_1301 verdict/release and every technical gate PASS.
-- Master owns all live actions. Nothing before 10-21-2026 12:00 PDT; a veto leaves A3 inactive and requires the frozen schedule to be restored prospectively.
-- No GPU allocation, model generation, optimizer step, real pause list, live process signal, shared-venv change, paid call or cron install.
+- Goal: single-pause launch-ready admission for experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4, CPU only, $0.
+- Owner: Codex `gpt-6-astra`, ultra effort, skampere1, session `codex-rl4cv-e13v4-impl4`; full access, one writer.
+- What ran: single-pause implementation, full CPU suites, synthetic dry run and admission sealing.
+- Results: v4 168 passed; watchdog 16 passed; root 1,405 passed / 15 skipped / 6 warnings / 0 failed; 360 synthetic updates.
+- Admission SHA-256: a8a1b8f28497e51ba3d898dceb07902c9dc18f83bdac9164b49e462a9a79e390 (72 local / 304 runtime bindings).
+- Stuck / blocked: nothing; real pause and launches remain master-owned.
+- Next steps: [p 9/10, master-owned] after noon/no veto, probe A_1302, run the pause loop, install the watchdog once and start gates using the block below.
+- Brando to-do: none.
+- Runtime conditions: no veto after 10-21-2026 12:00 PDT, designated pause recorded, idle authorized stage lease; pilot also requires B_1301 verdict/release, all gates PASS and three idle authorized devices.
+- No real pause list, live process signal, cron installation, GPU allocation, generation, optimizer step or shared-venv edit.
 
-## Dispatch 3 evidence and master continuation
+## Dispatch 4 evidence and exact master commands
+
+The [operational decision](OPERATIONAL_V4-A3_single_pause_10-21-2026.md) and [machine-readable selection](phase2/operational_pause.json) designate only A_1302. The pause tool, runner, controller and watchdog installer read the admission-bound selection. No frozen protocol, amendment or operational decision was edited. v3's deployed watchdog already accepts a dictionary containing only A_1302 and remains unchanged.
+
+The smallest implementation correction outside pause selection is the previously missing three-device pilot availability check: it holds all candidate locks only while checking idle state and v3 leases, then releases them. The existing serial pilot's subprocesses still acquire individual stage leases. There is no standing reservation or change to the scientific schedule. Tests cover insufficient devices, a busy device, a held v3 lock, an unreleased v3 lease and lock release after the check.
+
+[Verification](phase2/verification_dispatch4.json): **168/168 v4 tests, 16/16 v3-watchdog tests and 1,405 root tests pass**, with **15 root skips, six existing warnings and zero failures**. Test logs and their hashes are bound. Counts are deterministic checks, not statistical estimates; confidence intervals and p-values do not apply.
+
+[The new admission](phase2/admission_dispatch4.json) is **ADMITTED**, SHA-256 **`a8a1b8f28497e51ba3d898dceb07902c9dc18f83bdac9164b49e462a9a79e390`**. It has **72 local bindings and 304 runtime/evidence bindings**, including both operational records, changed code/tests, prepared/deployed plans, unchanged deployed v3 watchdog/tests, current test logs and dry-run evidence. Static `launch-check` passes. Every measured stage remains `PENDING`.
+
+[Dry-run evidence](phase2/dry_run_dispatch4.json): **WAIT_STAGE_RUNNING → PAUSED**, gate release **false → false → true**, pilot release **false** without B_1301. Only A_1302 is probed; all three signals are simulated, with **zero real signals**. The full CPU stub chain completes **12 stages and 360 symbolic updates**, including extension, order refusal, crash recovery on attempt 2 and no-signal stop. These are synthetic controls, not live gate outcomes. Source/test bindings are identical between the [preseal admission](phase2/admission_dispatch4_preseal.json), SHA-256 `fdc4cf9dc47479ba7493ce07d18cb2ebe7a784394500c51c12db694b0918639b`, and the final admission; the final record adds the resulting evidence. Private traces: `/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4`.
+
+[Fresh GPU census](phase2/gpu_inventory_dispatch4.json), **10-21-2026 11:24:28 PDT**: **24/24 devices occupied**, **0/19 authorized devices idle** across skampere1 (only 0, 5, 7 authorized), skampere2 and skampere3. All three read-only probes succeeded. Mercury1/2 remain outside the guard's allowed hosts; the operational record identifies those devices as reserved for experiment 120. No device was acquired, and the census makes no reservation; refresh it at launch.
+
+**Remaining runtime conditions:** the unchanged noon deadline and no-veto flag, a recorded clean A_1302 pause, then a freshly acquired idle authorized stage lease. The pilot additionally waits for B_1301's T5_30 verdict and lease release, all gates passed, and three idle authorized devices under shared locks. No standing reservation is added. `launch_control.py` explicitly propagates the verified no-veto flag into the tmux session so an existing server cannot lose it.
+
+**Copy-ready sentence for the master:** I implemented single-run pausing for experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4, with 168 v4, 16 watchdog and 1,405 root tests passing plus a GPU-free WAIT-to-PAUSED dry run; the new admission passes launch-check, and the master can pause A_1302 after noon/no veto, then start gates when an authorized device is idle.
+
+Publication preparation: final code/admission verified; Google companion updated and six paragraphs read back exactly. Rebase backup: `backup-e13v4-dispatch4`; old base `94c20d0722bb8481667d4a062e26fcb23e2d723a`; fetched main `e59ca75bfc7292ebdc4107bb7ec4ed5bed174193`. Rebase and push are the remaining worker actions. No temporary checkout was created; this pre-existing dispatch checkout is retained because the bound master plans and admission use its paths.
+
+The master runs the following commands from this checkout. They are prepared instructions, not actions taken by Dispatch 4. The real clock and no-veto flag remain authoritative even if this handoff arrives before noon.
+
+```bash
+cd /lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification
+V4_PY=/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python
+V4_ROOT=$PWD/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4
+V4_WORK=/lfs/skampere1/0/brando9/rl4cv_e13v4
+V4_ADMISSION=$V4_ROOT/phase2/admission_dispatch4.json
+export HF_HUB_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1 VLLM_USE_FLASHINFER_SAMPLER=0
+export PYTHONPATH=$PWD/src
+
+# Read-only boundary probe; does not create a watchdog lock or pause list.
+"$V4_PY" "$V4_ROOT/phase2/pause_v3.py" --admission "$V4_ADMISSION" --trajectory A_1302 --probe
+
+# Set only when the master has established absence of a veto.
+export E13V4_A3_NO_VETO=1
+"$V4_PY" "$V4_ROOT/phase2/admission.py" launch-check --record "$V4_ADMISSION"
+
+# Run after 10-21-2026 12:00 PDT. WAIT includes watchdog-lock contention.
+# One installer call after the loop; a tool error stops this block.
+(
+  set -euo pipefail
+  while true; do
+    V4_PAUSE_REPORT=$("$V4_PY" "$V4_ROOT/phase2/pause_v3.py" --admission "$V4_ADMISSION" --trajectory A_1302 --veto-not-issued --execute)
+    printf '%s\n' "$V4_PAUSE_REPORT"
+    V4_PAUSE_STATUS=$(printf '%s\n' "$V4_PAUSE_REPORT" | "$V4_PY" -c 'import json,sys; r=json.load(sys.stdin); assert set(r)=={"A_1302"}; print(r["A_1302"])')
+    case "$V4_PAUSE_STATUS" in
+      PAUSED|ALREADY_PAUSED) break ;;
+      WAIT_*) sleep 20 ;;
+      *) exit 1 ;;
+    esac
+  done
+  "$V4_PY" "$V4_ROOT/phase2/install_watchdog.py" --python "$V4_PY" --plan "$V4_WORK/watchdog_plan.json" --log "$V4_WORK/watchdog.log" --admission "$V4_ADMISSION" --install
+)
+
+# Gate start: the same single tmux controller used by the watchdog.
+# It runs gates in order and cannot enter the pilot until its separate conditions hold.
+"$V4_PY" "$V4_ROOT/phase2/launch_control.py" --plan "$V4_WORK/launch_plan.json"
+
+# Read-only progress:
+"$V4_PY" "$V4_ROOT/phase2/runner.py" progress --work "$V4_WORK/run" --admission "$V4_ADMISSION" --engine local
+```
+
+The pause-loop subshell must exit successfully before gate start. On a repeated invocation, `ALREADY_PAUSED` is accepted; the installer replaces only its own tagged v4 cron entry and leaves v3's entry intact. While waiting for pilot resources, the controller may exit and be retried by the watchdog; an unsuccessful capacity check creates no training receipt or standing reservation.
+
+## Historical Dispatch 3 evidence (superseded by Dispatch 4)
 
 The [README](README.md) explains the integrated adapters and [verification receipt](phase2/verification_dispatch3.json) records final suite counts and log hashes. The stage subprocess environment explicitly includes the installed Lean toolchain directory, so the cron controller does not depend on an interactive shell PATH. CPU installed-loss tests prove unit correction at uncertified positions, unchanged certified correction, both >1% stop paths and the required diagnostics. The installed-vLLM [Sampler receipt](phase2/sampler_cpu_receipt.json) records **10,000 positions / 0 token mismatches**, including ties, unchanged per-request RNG states and absent FlashInfer. The actual worker backend and engine R0/R1/R2 still require live T1 measurements.
 
@@ -224,3 +291,7 @@ I have the experiment 13 v4 CPU implementation passing 89 tests, with the histor
 - 10-20-2026 19:19 PDT: Rebased on origin/main 686aa9ca and pushed implementation 000ac82b; remote hash verified. Rebase added master A2/A3 (read, unchanged, not implemented by this A1 admission); recorded their pending requirements and veto window. Shared runtime/frozen A1/protocol still hash-verify; no launch.
 
 - 10-20-2026 22:13 PDT: Dispatch 3 implementation entered integration verification; installed 10,000-position sampler check PASS, preliminary v4 131/131 and watchdog 16/16 pass; root and subprocess dry run in progress. No launch.
+
+- 10-21-2026 11:23 PDT: Dispatch 4 implementation started: operational A_1302 selection, shared timing, read-only probe and CPU fixture controls; deployed v3 watchdog already supports the subset and remains unchanged.
+
+- 10-21-2026 11:31 PDT: Dispatch 4 verification complete: 168 v4 / 16 watchdog / 1,405 root passed (15 skipped); single-pause dry run and 360 symbolic updates passed; sealed admission a8a1b8f28497e51ba3d898dceb07902c9dc18f83bdac9164b49e462a9a79e390. Publication pending; no live actions.

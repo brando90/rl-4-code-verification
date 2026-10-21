@@ -10,6 +10,41 @@ from stage_ledger import read
 from runner import STAGES
 
 
+def single_pause(root,admission):
+    """Exercise the real pause/timing functions with fake processes and a private pause list."""
+    from admission import launch_timing,check_admission
+    from operational_pause import admitted_config
+    from pause_v3 import pause,VETO_END
+    root=Path(root);(root/'phase2/pilot').mkdir(parents=True,exist_ok=False)
+    operational=admitted_config(check_admission(admission,require_launch=True))
+    timing=lambda:launch_timing(root/'phase2/pilot',now=VETO_END+1,
+                               veto_not_issued=True,operational=operational)
+    signals=[];probes=[];running=True
+    runner={'kind':'runner','pid':123456789,'pgid':123456789,'start_ticks':'123','start_unix':1}
+    def probe(key,work):
+        assert key=='A_1302' and Path(work)==root
+        probes.append(key)
+        return {'trajectory':key,'pane_text':'waiting for an idle GPU',
+                'processes':[runner,*([{'kind':'stage'}] if running else [])],'leases':[]}
+    def attempt():
+        return pause(admission,work=root,trajectory='A_1302',now=VETO_END+1,veto_not_issued=True,
+                     probe=probe,inspect=lambda pid:runner,
+                     kill=lambda pgid,sig:signals.append([pgid,int(sig)]))
+    before=timing();waiting=attempt();after_wait=timing()
+    assert waiting=={'A_1302':'WAIT_STAGE_RUNNING'} and not signals
+    assert not (root/'phase2/autoresume_paused.json').exists()
+    running=False
+    paused=attempt();after_pause=timing()
+    assert paused=={'A_1302':'PAUSED'}
+    assert not before['released'] and not after_wait['released'] and after_pause['released']
+    assert not launch_timing(root/'phase2/pilot',phase='pilot',now=VETO_END+1,
+                            veto_not_issued=True,operational=operational)['released']
+    return {'synthetic':True,'pause_tool_reports':[waiting,paused],
+            'gates_released':[before['released'],after_wait['released'],after_pause['released']],
+            'pilot_released':False,'probed_trajectories':probes,'simulated_signals':signals,
+            'real_signals':0,'fake_pause_file':str(root/'phase2/autoresume_paused.json')}
+
+
 def run(root,admission,*,real_adapters=False):
     if os.environ.get('CUDA_VISIBLE_DEVICES')!='':raise ValueError('CUDA_VISIBLE_DEVICES must be empty')
     root=Path(root);root.mkdir(parents=True,exist_ok=False)
@@ -43,6 +78,7 @@ def run(root,admission,*,real_adapters=False):
              'T2_no_signal':read(root/'stop/T2/receipt.json')['status'],
              'crash_attempts':len(list((root/'crash/T1/probe').glob('attempt_*'))),
              'api_spend_usd':0,'is_gate_evidence':False}
+    summary['single_pause']=single_pause(root/'single_pause_fixture',admission)
     if real_adapters:
         from local_engine import LocalEngine
         from pause_v3 import pause,VETO_END

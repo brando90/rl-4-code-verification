@@ -11,7 +11,7 @@ from common import object_digest
 def launch(plan, *, run=subprocess.run):
     admission=check_admission(plan['admission'],require_launch=True)
     if admission.get('launch_plan_sha256')!=object_digest(plan):raise ValueError('unbound launch plan')
-    if not launch_timing(plan['v3_pilot_read_only'],veto_not_issued=__import__('os').environ.get('E13V4_A3_NO_VETO')=='1')['released']:raise ValueError('v3 release condition not met')
+    if not launch_timing(plan['v3_pilot_read_only'],operational=Path(admission['root'])/'phase2/operational_pause.json',veto_not_issued=__import__('os').environ.get('E13V4_A3_NO_VETO')=='1')['released']:raise ValueError('v3 release condition not met')
     session=plan['session']
     if not session.startswith('rl4cv-e13v4-'):raise ValueError('foreign session')
     probe=run(['tmux','has-session','-t',session],capture_output=True,text=True)
@@ -20,7 +20,9 @@ def launch(plan, *, run=subprocess.run):
         raise RuntimeError('tmux state unresolved')
     command=plan['sequence_argv']
     if not isinstance(command,list) or any(not isinstance(x,str) for x in command):raise ValueError('argv required')
-    run(['tmux','new-session','-d','-s',session,'-c',plan['checkout'],shlex.join(command)],check=True)
+    # Existing tmux servers need not inherit the invoking client's environment.
+    # Propagate only after the no-veto condition above has been verified.
+    run(['tmux','new-session','-d','-e','E13V4_A3_NO_VETO=1','-s',session,'-c',plan['checkout'],shlex.join(command)],check=True)
     run(['tmux','has-session','-t',session],check=True)
     return {'status':'STARTED','session':session}
 

@@ -25,10 +25,14 @@ if __name__=='__main__':
     if result.returncode and 'no crontab' not in result.stderr:raise RuntimeError('crontab probe failed')
     proposed=cron_text(result.stdout,a.python,Path(__file__).with_name('autoresume_watchdog.py'),a.plan,a.log)
     if a.install:
-        check_admission(a.admission,require_launch=True)
+        record=check_admission(a.admission,require_launch=True)
         from pause_v3 import VETO_END
         import os,time
         if time.time()<VETO_END or os.environ.get('E13V4_A3_NO_VETO')!='1':raise ValueError('A3 veto window/no-veto condition required')
+        from admission import launch_timing
+        if not launch_timing('/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot',veto_not_issued=True,
+                operational=Path(record['root'])/'phase2/operational_pause.json')['released']:
+            raise ValueError('designated pause must be recorded before watchdog installation')
         subprocess.run(['crontab','-'],input=proposed,text=True,check=True)
         actual=subprocess.check_output(['crontab','-l'],text=True)
         if actual!=proposed:raise RuntimeError('cron readback mismatch')

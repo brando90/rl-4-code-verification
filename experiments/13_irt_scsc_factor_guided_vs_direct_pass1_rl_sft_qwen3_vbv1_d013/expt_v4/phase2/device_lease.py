@@ -10,6 +10,37 @@ from common import write_new
 from device_guard import census, ensure_idle, eligible, Busy, check
 
 
+def pilot_capacity(work,*,probe=census,host=None,v3_work=None):
+    """Require three idle devices under shared locks, releasing every probe lock on return."""
+    from contextlib import ExitStack
+    host=host or socket.gethostname().split('.')[0]
+    work=Path(work);work.mkdir(parents=True,exist_ok=True)
+    v3_work=Path(v3_work or '/lfs/skampere1/0/brando9/rl4cv_e13v3')
+    with ExitStack() as held:
+        devices,apps=probe();selected=[]
+        for index in sorted(devices):
+            if not eligible(host,index):continue
+            with ExitStack() as candidate:
+                try:
+                    paths=[work/f'gpu_{host}_{index}.lock']
+                    if host=='skampere1':paths.append(v3_work/f'gpu_{index}.lock')
+                    for path in paths:
+                        stream=candidate.enter_context(path.open('a'))
+                        fcntl.flock(stream,fcntl.LOCK_EX|fcntl.LOCK_NB)
+                    ensure_idle(host,index,devices,apps)
+                except (BlockingIOError,Busy):continue
+                held.enter_context(candidate.pop_all());selected.append(index)
+            if len(selected)==3:break
+        if len(selected)<3:raise Busy('pilot requires 3 idle authorized GPUs with all shared locks free')
+        devices,apps=probe();reservations=[]
+        if host=='skampere1':
+            for path in (v3_work/'phase2').glob('**/*_lease.json'):
+                if not path.with_name(path.stem+'_end.json').exists():
+                    reservations.append(json.loads(path.read_text()))
+        for index in selected:ensure_idle(host,index,devices,apps,reservations=reservations)
+        return {'required':3,'host':host,'idle_authorized_devices':selected,'standing_reservation':False}
+
+
 @contextmanager
 def allocation(work, admission_check, *, probe=census, host=None, duration_seconds=4*3600):
     admission_check()  # Always before census, lock, environment change, or lease.

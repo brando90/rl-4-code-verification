@@ -37,15 +37,19 @@ class Runner:
     def run(self, stage, *, recover=False):
         if stage not in STAGES:raise ValueError('unknown stage')
         # Recheck every stage, including resumed completed receipts.
-        check_admission(self.admission,require_launch=not self.engine.synthetic)
+        admission=check_admission(self.admission,require_launch=not self.engine.synthetic)
         if not self.engine.synthetic:
             from admission import launch_timing
             timing=launch_timing('/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot',
                 phase='pilot' if stage.startswith(('PILOT','T5')) else 'gates',
-                veto_not_issued=os.environ.get('E13V4_A3_NO_VETO')=='1')
+                veto_not_issued=os.environ.get('E13V4_A3_NO_VETO')=='1',
+                operational=Path(admission['root'])/'phase2/operational_pause.json')
             if not timing['released']:raise ValueError('runtime schedule conditions unmet: '+str(timing))
         with fence(self.work):
             self.recover=recover
+            if not self.engine.synthetic and stage.startswith('PILOT'):
+                from device_lease import pilot_capacity
+                pilot_capacity(self.work.parent/'leases')
             prior=self.ledger.begin(stage,PREDECESSORS[stage])
             if prior:return prior
             if stage=='PILOT60' and self.result('T5_30')['decision']['action'] not in ('EXTEND_ALL_SIX','EXTEND_ALL_ADMITTED'):

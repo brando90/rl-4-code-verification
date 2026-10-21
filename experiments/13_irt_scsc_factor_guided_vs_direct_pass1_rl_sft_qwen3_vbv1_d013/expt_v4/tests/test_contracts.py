@@ -52,10 +52,11 @@ def admission_fixture(tmp_path):
     source=Path(__file__).resolve().parents[1]
     shutil.copyfile(source/'PROTOCOL.md',root/'PROTOCOL.md')
     from admission import AMENDMENTS
-    for name in AMENDMENTS:shutil.copyfile(source/name,root/name)
-    for name in ('runtime_inputs','policy_v4','sampler_cpu_receipt','forecast_verification'):
+    from operational_pause import RECORD
+    for name in (*AMENDMENTS,RECORD):shutil.copyfile(source/name,root/name)
+    for name in ('runtime_inputs','policy_v4','sampler_cpu_receipt','forecast_verification','operational_pause'):
         shutil.copyfile(source/'phase2'/f'{name}.json',root/'phase2'/f'{name}.json')
-    for name in ('verification_dispatch3','adapter_dry_contracts'):write_new(root/'phase2'/f'{name}.json',{'synthetic_fixture':True})
+    for name in ('verification_dispatch4','adapter_dry_contracts'):write_new(root/'phase2'/f'{name}.json',{'synthetic_fixture':True})
     write_new(root/'phase2/launch_plan.json',{'fixture':'launch'})
     write_new(root/'phase2/watchdog_plan.json',{'fixture':'watchdog'})
     (root/'phase2/x.py').write_text('# TLDR: Fixture.\n');(root/'tests/test_x.py').write_text('# TLDR: Fixture.\n')
@@ -85,9 +86,9 @@ def test_admission_detects_mutation_and_records_each_update_digest(tmp_path):
 def test_launch_timing_read_only(tmp_path):
     assert not launch_timing(tmp_path)['released']
     write_new(tmp_path/'B_1301/T5_30.json',{'status':'FAIL'})
-    from pause_v3 import VETO_END,ALLOWED
+    from pause_v3 import VETO_END
     assert not launch_timing(tmp_path,phase='pilot',now=VETO_END+1,veto_not_issued=True)['released']
-    write_new(tmp_path.parent/'autoresume_paused.json',{'trajectories':list(ALLOWED)})
+    write_new(tmp_path.parent/'autoresume_paused.json',{'trajectories':{'A_1302':{'pid':123}}})
     assert launch_timing(tmp_path,phase='pilot',now=VETO_END+1,veto_not_issued=True)['released']
 
 

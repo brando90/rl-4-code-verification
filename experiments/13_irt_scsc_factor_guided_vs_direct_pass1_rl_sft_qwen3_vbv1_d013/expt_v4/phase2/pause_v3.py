@@ -7,10 +7,9 @@ from pathlib import Path
 import signal
 import subprocess
 import time
-from common import write_new
+from operational_pause import selection,admitted_config
 
 WORK=Path('/lfs/skampere1/0/brando9/rl4cv_e13v3')
-ALLOWED=('A_1301','A_1302','B_1302','P_1301','P_1302')
 from datetime import datetime
 VETO_END=datetime.fromisoformat('2026-10-21T12:00:00-07:00').timestamp()
 
@@ -95,47 +94,76 @@ def snapshot(key,work=WORK):
     return {'completed_updates':len(list((work/'phase2/pilot'/key).glob('update_*/summary.json'))),'planned_updates':30,'trajectory':key,'pane':pane,'session':session,'pane_text':text,'processes':rows,'leases':leases}
 
 
-def pause(admission,*,work=WORK,veto_not_issued=False,probe=snapshot,kill=os.killpg,now=None):
+def boundary_probe(admission,*,trajectory=None,work=WORK,probe=snapshot):
+    """Read-only inspection: no watchdog lock, pause list, signal or timing override."""
+    from admission import check_admission
+    record=check_admission(admission,require_launch=True)
+    report={}
+    for key in selection(admitted_config(record),trajectory):
+        snap=probe(key,work)
+        report[key]={'status':boundary(snap['pane_text'],snap['processes'],snap['leases']),
+                     'snapshot':snap}
+    return report
+
+
+def pause(admission,*,trajectory=None,work=WORK,veto_not_issued=False,probe=snapshot,kill=os.killpg,inspect=proc,now=None):
     from admission import check_admission
     now=time.time() if now is None else now
     if now<VETO_END or not veto_not_issued:raise ValueError('V4-A3 veto window/absence of veto not satisfied')
-    check_admission(admission,require_launch=True)
+    record=check_admission(admission,require_launch=True)
+    designated=selection(admitted_config(record),trajectory)
     work=Path(work);path=work/'phase2/autoresume_paused.json'
     # Same lock as watchdog prevents a relaunch between stop and durable pause state.
     with (work/'phase2/autoresume.lock').open('a') as lock:
-        fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        except BlockingIOError:return {key:'WAIT_WATCHDOG_LOCK' for key in designated}
         state=json.loads(path.read_text()) if path.exists() else {'amendment':'V4-A3','trajectories':{}}
+        if not isinstance(state.get('trajectories'),dict) or set(state['trajectories'])-set(designated):
+            raise ValueError('pause list contains non-designated trajectories')
         report={}
-        for key in ALLOWED:
+        for key in designated:
             if key in state['trajectories']:report[key]='ALREADY_PAUSED';continue
             snap=probe(key,work);status=boundary(snap['pane_text'],snap['processes'],snap['leases'])
             if status!='READY':report[key]=status;continue
             runner=next(p for p in snap['processes'] if p['kind']=='runner')
-            if proc(runner['pid'])['start_ticks']!=runner['start_ticks']:raise ValueError('PID reused')
+            if inspect(runner['pid'])['start_ticks']!=runner['start_ticks']:raise ValueError('PID reused')
             # Freeze the runner to close its lease-acquisition race, then recheck.
             kill(runner['pgid'],signal.SIGSTOP)
             try:
                 fresh=probe(key,work)
                 if boundary(fresh['pane_text'],fresh['processes'],fresh['leases'])!='READY':
                     report[key]='WAIT_RACE';continue
-                if proc(runner['pid'])['start_ticks']!=runner['start_ticks']:raise ValueError('PID reused')
-                receipt={**snap,'paused_unix':time.time(),'pid':runner['pid'],
+                fresh_runner=next(p for p in fresh['processes'] if p['kind']=='runner')
+                if any(fresh_runner[k]!=runner[k] for k in ('pid','pgid','start_ticks')):
+                    raise ValueError('runner identity changed during recheck')
+                if inspect(runner['pid'])['start_ticks']!=runner['start_ticks']:raise ValueError('PID reused')
+                receipt={**snap,'operational_record':record['operational_pause'],
+                         'paused_unix':time.time(),'pid':runner['pid'],
                          'start_ticks':runner['start_ticks'],'start_unix':runner['start_unix'],'pgid':runner['pgid']}
                 state['trajectories'][key]=receipt
                 tmp=path.with_name('.autoresume_paused.tmp')
                 with tmp.open('w') as f:
                     json.dump(state,f,sort_keys=True);f.flush();os.fsync(f.fileno())
                 os.replace(tmp,path)
+                directory=os.open(path.parent,os.O_RDONLY|os.O_DIRECTORY)
+                try:os.fsync(directory)
+                finally:os.close(directory)
                 kill(runner['pgid'],signal.SIGTERM)
                 report[key]='PAUSED'
             finally:
-                try:kill(runner['pgid'],signal.SIGCONT)
-                except ProcessLookupError:pass
+                try:
+                    if inspect(runner['pid'])['start_ticks']==runner['start_ticks']:
+                        kill(runner['pgid'],signal.SIGCONT)
+                except (FileNotFoundError,ProcessLookupError):pass
         return report
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--admission',required=True)
-    p.add_argument('--execute',action='store_true');p.add_argument('--veto-not-issued',action='store_true')
+    mode=p.add_mutually_exclusive_group()
+    mode.add_argument('--execute',action='store_true');mode.add_argument('--probe',action='store_true')
+    p.add_argument('--trajectory');p.add_argument('--veto-not-issued',action='store_true')
     a=p.parse_args()
-    if not a.execute:raise SystemExit('No action; master must invoke --execute after the veto window.')
-    print(json.dumps(pause(a.admission,veto_not_issued=a.veto_not_issued)))
+    if a.probe:print(json.dumps(boundary_probe(a.admission,trajectory=a.trajectory)))
+    elif a.execute:print(json.dumps(pause(a.admission,trajectory=a.trajectory,
+        veto_not_issued=a.veto_not_issued or os.environ.get('E13V4_A3_NO_VETO')=='1')))
+    else:raise SystemExit('No action; use --probe for read-only inspection or --execute after the veto window.')

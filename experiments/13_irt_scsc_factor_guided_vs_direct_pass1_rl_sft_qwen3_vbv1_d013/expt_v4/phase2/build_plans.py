@@ -10,12 +10,12 @@ BASE=Path('/lfs/skampere1/0/brando9/rl4cv_e13v4')
 
 def plans(root, *, base=BASE):
     root=Path(root).resolve();phase=root/'phase2';base=Path(base).resolve()
-    admission=str(phase/'admission_dispatch3.json');work=str(base/'run');session='rl4cv-e13v4-stages'
+    admission=str(phase/'admission_dispatch4.json');work=str(base/'run');session='rl4cv-e13v4-stages'
     common=['--work',work,'--admission',admission,'--engine','local']
     prefix=['env','HF_HUB_OFFLINE=1','PYTHONDONTWRITEBYTECODE=1','VLLM_USE_FLASHINFER_SAMPLER=0',
             'PYTHONPATH='+str(root.parents[2]/'src'),PYTHON,str(phase/'runner.py')]
     commands={stage:[*prefix,stage,*common] for stage in STAGES}
-    launch={'tldr':'A3: gates after veto window and clean pauses; pilot after B_1301 verdict and all gates.',
+    launch={'tldr':'A3: gates after veto window and designated A_1302 pause; pilot after B_1301 verdict and all gates.',
             'condition':'e13v4','status':'PREPARED','admission':admission,'work':work,'session':session,
             'checkout':str(root.parents[2]),'v3_pilot_read_only':'/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot',
             'stage_argv':commands,'sequence_argv':[*prefix,'sequence',*common,'--recover'],
@@ -26,6 +26,7 @@ def plans(root, *, base=BASE):
                             'guard':str(phase/'device_guard.py'),'locks':str(base/'leases'),
                             'hosts':{'skampere1':[0,5,7],'skampere2':'idle only','skampere3':'idle only'},
                             'duration_seconds':14400,'status':'connected to leased subprocesses'},
+            'operational_pause':str(phase/'operational_pause.json'),'pilot_required_idle_devices':3,
             'schedule_amendment':'V4-A3','veto_end':'2026-10-21T12:00:00-07:00','master_go_required':True,'api_spend_usd':0}
     watchdog={'tldr':'One v4 stage controller; no cron or tmux session is installed by preparation.',
               'kind':'stage-controller','admission':admission,'work':work,'session':session,
