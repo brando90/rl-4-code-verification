@@ -355,3 +355,23 @@ The exact commands are in the checkpoint's "Exact master commands" block.
   3. then `install_watchdog.py --install` once, then `launch_control.py` for the gates.
 - **First status:** A_1302 had just completed update 6, so the tool returned `WAIT_SUMMARY_PRESENT` (between updates, not yet waiting for a lease).
 - **Next:** a check at 14:33 PDT (one-shot cron) verifies the pause and the first gate. The other five v3 runs are untouched.
+
+## 10-21-2026 15:40 PDT: A_1302 pause blocked by tmux auto-continue; dispatch 6 running
+
+- **14:19: tool crash.** The first pause loop (dispatch 5 admission) crashed on `FileNotFoundError: /proc/42087/stat`, a process that exited mid-scan. All six runners were verified in state `S`. Wrapper v2 retries only that `/proc` race; the tool itself is unchanged.
+- **14:34–15:31: `WAIT_RACE` on every call.** The tool reached READY, sent SIGSTOP to the pane group and rechecked, and the recheck failed every time.
+- **Master replica of the tool's steps** (`a1302_race_diag.py`, run detached so an SSH drop could not leave A_1302 stopped). Three attempts at 15:31–15:32:
+  - the pre-stop boundary was READY;
+  - after `os.killpg(691994, SIGSTOP)`, both the pane shell and the runner were **still `S`**, with wait channels `do_wait` and `hrtimer_nanosleep`, so the status was `WAIT_NOT_STOPPED`;
+  - identity and disk state were equal;
+  - after SIGCONT the runner was `S`.
+
+  A control group outside tmux stops normally.
+- **Cause.** The tmux server sends SIGCONT to a pane's process group whenever the pane's direct child stops (`server_child_stopped`). The group-wide SIGSTOP design can therefore never hold for tmux panes. The dispatch 5 dry runs used fake processes.
+- **[Dispatch 6](../expt_v4/PROMPT_dispatch_e13_v4_dispatch6_freeze_runner_not_group.md)** (`b4f1558e`) runs in tmux `codex-rl4cv-e13v4-impl6` since 15:39 PDT, Codex `gpt-6-astra` at ultra effort. It will:
+  - freeze only the runner PID, requiring the runner `T` and the pane shell `S`/`do_wait`;
+  - fix the `/proc` race;
+  - add a fake-tmux test and a live stop test on a dummy tmux pane;
+  - re-admit.
+- **SSH note.** The usual route to skampere1 intermittently timed out during the banner exchange. The explicit gateway route worked, and the master now uses `-S none` with one connection about every 10 minutes. The ChatGPT desktop app (pid 45776) was opening verbose (`-v`) SSH connections through whale to all five SNAP hosts, the 10-15 flood pattern. It was left untouched and flagged to Brando.
+- **State.** The pause loop is stopped and nothing is paused. All six v3 runs keep running.
