@@ -1,14 +1,57 @@
 {
-  "utc": "2026-10-21T21:18:15.932500+00:00",
-  "sacct": "48842409|48841018_0|e20_p0_gen|RUNNING|8141|billing=35,cpu=8,gres/gpu=1,mem=48G,node=1|2026-10-21T12:02:32|Unknown|0:0\n48854511|48841018_1|e20_p0_gen|RUNNING|3635|billing=35,cpu=8,gres/gpu=1,mem=48G,node=1|2026-10-21T13:17:38|Unknown|0:0\n48855734|48841018_2|e20_p0_gen|RUNNING|3298|billing=35,cpu=8,gres/gpu=1,mem=48G,node=1|2026-10-21T13:23:15|Unknown|0:0\n48841018|48841018_3|e20_p0_gen|RUNNING|3298|billing=35,cpu=8,gres/gpu=1,mem=48G,node=1|2026-10-21T13:23:15|Unknown|0:0\n48845232|48845232|e20_smoke_train|FAILED|56|billing=55,cpu=16,energy=46222,gres/gpu=1,mem=96G,node=1|2026-10-21T13:12:08|2026-10-21T13:13:04|1:0\n48855196|48855196|e20_smoke_train|FAILED|109|billing=55,cpu=16,energy=154128,gres/gpu=1,mem=96G,node=1|2026-10-21T13:29:37|2026-10-21T13:31:26|1:0\n48857034|48857034|e20_smoke_train|FAILED|1959|billing=55,cpu=16,energy=5885555,gres/gpu=1,mem=96G,node=1|2026-10-21T13:36:32|2026-10-21T14:09:11|3:0\n",
-  "squeue": "48841018_0|RUNNING|2:15:41|2:14:19|sh04-11n10\n48841018_2|RUNNING|54:58|3:35:02|sh04-11n09\n48841018_3|RUNNING|54:58|3:35:02|sh04-11n10\n48841018_1|RUNNING|1:00:35|3:29:25|sh04-01n12\n",
+  "utc": "2026-10-21T21:38:13.883167+00:00",
+  "sacct": "48842409|48841018_0|e20_p0_gen|RUNNING|9340|billing=35,cpu=8,gres/gpu=1,mem=48G,node=1|2026-10-21T12:02:32|Unknown|0:0\n48854511|48841018_1|e20_p0_gen|RUNNING|4834|billing=35,cpu=8,gres/gpu=1,mem=48G,node=1|2026-10-21T13:17:38|Unknown|0:0\n48855734|48841018_2|e20_p0_gen|COMPLETED|3796|billing=35,cpu=8,energy=5109486,gres/gpu=1,mem=48G,node=1|2026-10-21T13:23:15|2026-10-21T14:26:31|0:0\n48841018|48841018_3|e20_p0_gen|COMPLETED|3774|billing=35,cpu=8,energy=6250008,gres/gpu=1,mem=48G,node=1|2026-10-21T13:23:15|2026-10-21T14:26:09|0:0\n48845232|48845232|e20_smoke_train|FAILED|56|billing=55,cpu=16,energy=46222,gres/gpu=1,mem=96G,node=1|2026-10-21T13:12:08|2026-10-21T13:13:04|1:0\n48855196|48855196|e20_smoke_train|FAILED|109|billing=55,cpu=16,energy=154128,gres/gpu=1,mem=96G,node=1|2026-10-21T13:29:37|2026-10-21T13:31:26|1:0\n48857034|48857034|e20_smoke_train|FAILED|1959|billing=55,cpu=16,energy=5885555,gres/gpu=1,mem=96G,node=1|2026-10-21T13:36:32|2026-10-21T14:09:11|3:0\n",
+  "squeue": "48841018_0|RUNNING|2:35:41|1:54:19|sh04-11n10\n48841018_1|RUNNING|1:20:35|3:09:25|sh04-01n12\n",
   "calibration_rows": {
-    "phase0/gen/chunk_0/raw.jsonl": 1024,
-    "phase0/gen/chunk_1/raw.jsonl": 384,
-    "phase0/gen/chunk_2/raw.jsonl": 640,
-    "phase0/gen/chunk_3/raw.jsonl": 768
+    "phase0/gen/chunk_0/raw.jsonl": 1152,
+    "phase0/gen/chunk_1/raw.jsonl": 512,
+    "phase0/gen/chunk_2/raw.jsonl": 904,
+    "phase0/gen/chunk_3/raw.jsonl": 856
   },
-  "calibration_timings": {},
+  "calibration_timings": {
+    "phase0/gen/chunk_2/timing.json": {
+      "job": "48855734",
+      "wall_s": 3769,
+      "cells": 904,
+      "declared_cells": 904,
+      "tasks": 113,
+      "declared_tasks": 113,
+      "gen_tokens": 4155258,
+      "max_tokens": 12288,
+      "mean_tokens": 4596.524336283186,
+      "truncated": 110,
+      "finish": {
+        "stop": 794,
+        "length": 110
+      },
+      "extraction": {
+        "file_blocks": 794,
+        "no_lean_block": 110
+      },
+      "tok_per_s": 1102.4828867073495
+    },
+    "phase0/gen/chunk_3/timing.json": {
+      "job": "48841018",
+      "wall_s": 3748,
+      "cells": 856,
+      "declared_cells": 856,
+      "tasks": 107,
+      "declared_tasks": 107,
+      "gen_tokens": 3984730,
+      "max_tokens": 12288,
+      "mean_tokens": 4655.058411214954,
+      "truncated": 135,
+      "finish": {
+        "stop": 721,
+        "length": 135
+      },
+      "extraction": {
+        "file_blocks": 722,
+        "no_lean_block": 134
+      },
+      "tok_per_s": 1063.1616862326575
+    }
+  },
   "smoke_updates": [
     {
       "update": 1,

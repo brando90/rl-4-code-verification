@@ -1,5 +1,5 @@
 #!/bin/bash
-# TLDR: Split the 539 sorted D-013 train task ids into 4 chunk files for the Phase 0a generation array (135/135/135/134).
+# TLDR: Split the 539 sorted D-013 train task ids into 4 line-preserving, byte-balanced chunk files for the Phase 0a generation array (the observed task counts are 179/140/113/107, not equal-sized chunks).
 set -euo pipefail
 E20=$SCRATCH/rl4cv_sherlock/e20; B=$SCRATCH/rl4cv_sherlock/v4_validation/rl4cv_gen
 MAN=$B/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/split/vbv1_split_manifest.csv
