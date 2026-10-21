@@ -2,13 +2,13 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/ub9/e18a-reasoning-gym-env-scoring/experiments/18_reasoning_gym_generated_env_prerl_scoring_qwen3/results.md>
 
-**TLDR:** No measurement yet. The protocol was frozen on 10-20-2026 before any job; every Slurm job id goes in the table below as it is submitted, and results follow `PROTOCOL.md`'s analysis plan exactly.
+**TLDR:** No measurement yet. Smoke 1861295 queued on FarmShare 10-20-2026 17:22 PT. The protocol was frozen on 10-20-2026 before any job; every Slurm job id goes in the table below as it is submitted, and results follow `PROTOCOL.md`'s analysis plan exactly.
 
 ## Slurm jobs
 
 | date (PT) | cluster | job id | what | state | notes |
 |---|---|---|---|---|---|
-| | | | smoke (Qwen3-4B, 10 sets x 8 items x 4) | | |
+| 10-20-2026 17:22 | FarmShare | 1861295 | smoke (Qwen3-4B, 10 sets x 8 items x 4) | PENDING (Priority) | after `prepare.sh`: PREPARE OK, 38 item sets, 57 tests passed; QOS gpu had 28/32 slots taken by Exp 22, so the full chain waits for room |
 | | | | gen array 0-8%4 | | |
 | | | | embed array 0-2 | | |
 | | | | score array 0-2 | | |
