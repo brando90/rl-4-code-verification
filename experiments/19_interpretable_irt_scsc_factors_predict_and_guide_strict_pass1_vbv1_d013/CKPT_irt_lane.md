@@ -5,7 +5,7 @@
 **TLDR:** Resume record for the rl4cv IRT lane (Claude Code session local_268be283, assigned by the general coordinator local_82b6c38d on 10-20-2026). Zero paid model calls, CPU only.
 
 Created: 10-20-2026 16:00 PDT
-Last updated: 10-20-2026 19:05 PDT
+Last updated: 10-21-2026 11:30 PDT
 
 ## Goal
 - Which SCSC factors and task features explain/predict held-out strict, harsh-SCSC and gold-check (VeriBench 111) success on VeriBench V1, and can an IRT forecast pick the prompts where experiment 13's start policy gives mixed strict groups?
@@ -26,6 +26,7 @@ Last updated: 10-20-2026 19:05 PDT
 - nothing.
 
 ## Next steps
+0. Supervise experiment 20, the online test of IRT guidance (its worker owns that folder). Verdict file: `/lfs/skampere1/0/brando9/e20_watch/STATE.txt` on skampere1 (history in `watch.log`), written by tmux `watch-e20` when worker tmux `cc-rl4cv-e20-irt-prompt-selection` is DONE, DEAD, BLOCKED or IDLE for 75 min. On anything but DONE, recover under agents-config Rules 58/69 from the worker's checkpoint and re-arm the watch.
 1. When experiment 13 publishes per-task V4-G0 strict counts (32 train tasks x 32 samples), score `expt_v1/forecasts/e19_g3_forecast_v4_g0.json`: for each of the three forecasts, Spearman vs the unbiased per-task G=8 mixed probability and AUC for 1 <= s <= 31; Brier for the judgement events.
 2. [p 7/10] G2: CPU re-score of experiment 08's stored sft_4B_f1p0 validation files with experiment 13's declaration probe.
 3. [p 6/10] After 11-06-2026: add VeriBench 107/109's 2026 systems; refit the two-skill model on a finer grid.
@@ -40,3 +41,4 @@ Last updated: 10-20-2026 19:05 PDT
 - 10-20-2026 17:20 PDT -- Amendment 01 (light QA, Fable 5.1 max, CORRECT 9/10) committed after run start, before any output read; SSH to skampere1 dropped at 00:08Z (watch exit 255); the run itself is in its own tmux session, status not yet re-checked.
 - 10-20-2026 19:01 PDT -- locked run DONE (01:50:56Z, 7,124 s, exit 0); results.md published; G3 frozen 01:58:55Z (sha256 abb0cb31...).
 - 10-20-2026 19:05 PDT -- proposal to 13's owner sent, idea page synced, cleanup done; lane idle until 13 publishes V4-G0 counts.
+- 10-21-2026 11:30 PDT -- Brando asked to use Sang Truong's textbook and lecture picks for an excellent prompt and to test whether Azalia's idea works with IRT. Experiment 20 claimed (d4f08581, merged be2e8d03); runbook `expt_v1/cc.md` sha256 2dc453bc8f13.... Worker dispatched on skampere1 (deploy_cc deployment deploy_ed87a5b1900b45d2af6e22c1707cc31e; Claude Code claude-fable-5-1, max effort, profile cc = `clauded` personal config, bypass permissions on; the dispatcher accepted the folder-trust prompt). Useful progress verified 18:26:36Z (runbook read; routed rules and reusable code loading). Completion-marker note queued to the worker; watch armed 18:29:16Z.
