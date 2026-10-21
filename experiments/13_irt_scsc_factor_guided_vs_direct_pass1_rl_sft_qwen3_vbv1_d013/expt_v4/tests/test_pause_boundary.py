@@ -55,8 +55,9 @@ def frozen_pair(first):
     stopped['observed_monotonic'] += 2.0
     runner = stopped['processes'][0]
     for process in [runner, *runner['process_group_members']]:
-        process['state'] = 'T'
-        process['wchan'] = 'do_signal_stop'
+        if process['pid'] == runner['pid']:
+            process['state'] = 'T'
+            process['wchan'] = 'do_signal_stop'
     return pair(stopped)
 
 

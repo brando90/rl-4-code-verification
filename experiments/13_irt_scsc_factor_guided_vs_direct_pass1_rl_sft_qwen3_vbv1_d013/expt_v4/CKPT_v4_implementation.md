@@ -2,27 +2,66 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/CKPT_v4_implementation.md>
 **Companion:** <https://docs.google.com/document/d/1KqUi39sz532dIGg8EYCy6w62Q0KzO2XWhpM2MMSWvHE/edit>
-**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 13:13 PDT.
+**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 15:52 PDT.
 
-**TLDR:** Dispatch 5's process/disk boundary works on silent v3 pilots: A_1302 is refused while optimizing, and P_1301 reaches READY on a blank pane. All requested CPU suites pass; the new admission passes launch-check. Implementation and admission are published to main at 9ec6640d; real pausing and gate execution remain master-owned.
+**TLDR:** Dispatch 6 fixes tmux auto-continue by freezing only the Python runner, returns WAIT for disappearing processes and resumes the runner on every tested exception path. All CPU suites pass, the dummy-pane stop check passes and the new admission passes launch-check; the A_1302 read-only probe safely waits on census churn. Real pause/gate execution remains master-owned.
 
 ## State
 
-- Goal: silent-runner pause-boundary admission for experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4, CPU only, $0.
-- Owner: Codex gpt-6-astra, ultra effort, skampere1; full access / approval never; this pre-existing dispatch checkout.
-- What ran: process/disk implementation, 52 observed-state tests, full suites, synthetic stop/recheck, admitted read-only probes admission seal and verified main publication at 9ec6640d.
-- Results: v4 233 passed; watchdog 16 passed; root 1,405 passed / 15 skipped / 6 warnings; final focused tests 91 passed; zero final failures.
-- Admission SHA-256: ffbeb4e6b2b64408d4a151a24bf0034400bef9c7d6d09d0da0a10f71efeb72b7 (73 local / 319 runtime bindings); launch-check PASS.
-- Live probes: A_1302 WAIT_STAGE_RUNNING; B_1302 WAIT_STAGE_RUNNING during a polling child; P_1301 READY; all panes blank.
-- Stuck / blocked: nothing; Dispatch 5 complete.
-- Next steps: [p 9/10, master-owned] use the bound Dispatch 5 commands below for the designated A_1302 pause when ready, then the unchanged watchdog/gate start; no execution by this worker.
+- Goal: runner-only freeze and re-admission for experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4; CPU only, $0.
+- Owner: Codex gpt-6-astra / ultra, skampere1, full access / approval never; existing dispatch checkout.
+- What ran: runner-only stop/race fix, 79 new regression cases, full suites, owned dummy tmux stop control, read-only A_1302 probe, final admission and launch-check.
+- Results: v4 312/312; watchdog 16/16; root 1,405 passed / 15 skipped / 6 warnings / 0 failures. Dummy tmux PASS and fully removed.
+- Admission SHA-256: 71d9be74c333f3c297dc04e5a8d31f6cd531860ae6205f2a409612ba25acc26c; 74 local / 331 runtime bindings; launch-check PASS.
+- Live A_1302: WAIT_OBSERVATION; runner 692011 S/hrtimer_nanosleep, zero children/leases; 3 then 6 other census reads vanished. Real pause list absent.
+- Stuck / blocked: nothing; implementation complete, publication receipt follows below.
+- Next steps: [p 9/10, master-owned] run the existing wrapper below under the new admission; it handles the pause, watchdog and unchanged gate start.
 - Brando to-do: none.
-- Limits honored: no v3 signals or real pause-list writes, cron install, GPU allocation, generation, optimizer step or shared-venv edit; $0.
-- Publication: 9ec6640d9ab8cf982f1b9af6c19e0d1f431c4395 on main, remote hash verified; rebase patch and all 18 owned files unchanged; backup removed.
-- Helper: admission_lookup, inherited gpt-6-astra/ultra; full access/never and useful reads verified; completed only tests/test_pause_boundary.py.
-- Companion: five Dispatch 5 paragraphs updated in the existing Google document and read back exactly.
+- Limits: no v3 signals or real pause-list writes, no cron install, GPU allocation, generation, optimizer step or shared-venv edit; $0.
+- Helper: dummy_tmux, gpt-5.6-terra / high; full access / never and useful first action verified; completed and owned dummy cleaned up.
+- Companion: five Dispatch 6 paragraphs updated in the existing Google document and read back exactly.
 
-## Dispatch 5 evidence and exact master commands
+## Dispatch 6 evidence and exact master commands
+
+The [tmux 3.4 source](https://github.com/tmux/tmux/blob/3.4/server.c#L436-L498) confirms that `server_child_stopped()` immediately resumes a stopped pane process group except for terminal input/output stops. The installed binary is tmux 3.4. The [owned dummy-pane evidence](phase2/dummy_tmux_dispatch6.json) uses the exact `sh -c '<venv Python sleep loop>; :'` form, with the trailing no-op retaining the shell: group SIGSTOP is auto-continued at 0.05 and 1.05 seconds; runner-only SIGSTOP holds T/do_signal_stop while the shell stays S/do_wait at both polls; SIGCONT restores runner S. Identities remain stable. The dummy session, socket and processes were removed. Reproduction harness: `/lfs/skampere1/0/brando9/rl4cv_e13v4/dummy_tmux_dispatch6.py` (hash bound by the admission).
+
+`pause_v3.py` now sends SIGSTOP and SIGCONT with `os.kill` to the Python runner PID; only SIGTERM targets its isolated group, after the atomic pause-list file and parent directory have been synchronized to disk. Both stopped observations require runner T/do_signal_stop, zero children and shell S/do_wait, with unchanged identities and disk state across all four observations. The shared watchdog lock and original admission/selection rules remain. A 10-second alarm aborts blocked stopped work. Final cleanup checks the runner independently of its shell; a process descriptor pinned after identity verification also permits resuming the original process if a final /proc read fails or the shell exits. A recycled PID never receives that descriptor signal. Temporary-file, serialization, synchronization, replacement, observation, identity, stop and termination failures all resume the runner in tests.
+
+A vanished process during census, runner refresh, group-member inspection or references now invalidates the observation. Identity races return WAIT_PROCESS_CHANGED and the stop deadline returns WAIT_STOP_TIMEOUT. Disappearing unrelated processes also conservatively produce WAIT_OBSERVATION; they are never silently removed from the evidence. A failed frozen recheck remains WAIT_RACE. Tests advance their synthetic clock one extra microsecond to avoid binary floating-point rounding below the unchanged one-second requirement.
+
+[Verification](phase2/verification_dispatch6.json): **312/312 v4 tests, 16/16 watchdog tests and 1,405 root tests passed**, with **15 root skips, six existing warnings and zero final failures**. This adds 79 regression tests, including 18 census/refresh/group disappearance cases, 14 component-read cases, six reference-read cases, 24 exception-injection cases, an interrupting deadline and five pinned-descriptor cleanup cases. The initial new-suite attempt had 16 fixture failures because its synthetic elapsed time rounded to 0.9999999999999998 seconds; the fixed 73-case suite passed, and six final cases pass in the full suite. Counts are deterministic checks, not statistical estimates; intervals and p-values do not apply. The health audit passed reachability; percentage storage flags corresponded to 319 GiB local and 1,147 GiB shared free, sufficient for this small CPU task; no unrelated cleanup was attempted.
+
+[The A_1302 read-only probe](phase2/live_probe_dispatch6_A_1302.json), **10-21-2026 15:49:22–15:49:24 PDT**, returned **WAIT_OBSERVATION**. Runner **692011**, start tick **76454333**, was **S/hrtimer_nanosleep with zero children** in both samples at update_00007, with no active leases; **3 then 6** other process reads vanished during the census. This is a safe retry result rather than a traceback. No real v3 signal or pause-list write occurred; the pause list was absent after probing. The exact output and command are bound in verification. The preseal admission was **54660ae8e7df53679bfbdc5e045157386a59795d4a10b3066ca87fb663eecb87**; its complete local source/test/plan bindings are byte-identical to the final admission.
+
+The new admission filename is **`phase2/admission_dispatch6.json`**, SHA-256 **`71d9be74c333f3c297dc04e5a8d31f6cd531860ae6205f2a409612ba25acc26c`**. Static `launch-check` passes with **74 local and 331 runtime/evidence bindings**. The prepared and deployed plans both name that file. [The handoff receipt](phase2/master_handoff_dispatch6.json) verifies that the master's existing `/lfs/skampere1/0/brando9/rl4cv_e13v4/a1302_pause_then_gates.sh` changed only its admission filename; its retry policy and gate start are unchanged. It was syntax-checked and not executed. Frozen protocol, amendments, operational records and all v3 files/sessions remain unchanged.
+
+**Copy-ready sentence for the master:** I fixed runner-only freezing and disappearing-process handling for experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4, with 312 v4, 16 watchdog and 1,405 root tests passing, the owned tmux stop control passing and the new admission passing launch-check; A_1302's read-only probe safely returned WAIT_OBSERVATION, and the master retains the real pause and gate start.
+
+Prepared master commands, **not executed by Dispatch 6**:
+
+```bash
+cd /lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification
+V4_PY=/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python
+V4_ROOT=$PWD/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4
+V4_WORK=/lfs/skampere1/0/brando9/rl4cv_e13v4
+V4_ADMISSION=$V4_ROOT/phase2/admission_dispatch6.json
+export HF_HUB_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1 VLLM_USE_FLASHINFER_SAMPLER=0
+export PYTHONPATH=$PWD/src
+"$V4_PY" "$V4_ROOT/phase2/admission.py" launch-check --record "$V4_ADMISSION"
+"$V4_PY" "$V4_ROOT/phase2/pause_v3.py" --admission "$V4_ADMISSION" --trajectory A_1302 --probe
+
+# Master only, after establishing no veto: existing pause loop, installer and gate start.
+bash /lfs/skampere1/0/brando9/rl4cv_e13v4/a1302_pause_then_gates.sh
+
+# The wrapper already runs this unchanged gate-start line after a successful pause:
+# "$V4_PY" "$V4_ROOT/phase2/launch_control.py" --plan "$V4_WORK/launch_plan.json"
+# Read-only progress:
+"$V4_PY" "$V4_ROOT/phase2/runner.py" progress --work "$V4_WORK/run" --admission "$V4_ADMISSION" --engine local
+```
+
+The wrapper retries WAIT statuses and only the previously documented /proc traceback pattern among nonzero tool errors. The new code turns those races into WAIT statuses. Do not launch a second controller alongside the wrapper's existing gate controller. Pilot conditions remain B_1301's verdict/released lease, all gates passed and three idle authorized devices.
+
+## Historical Dispatch 5 evidence and commands (superseded)
 
 The silent v3 pilot never emits the retired helper's wait message. Readiness now requires two observations at least one second apart with one stable Python pilot runner, zero children, no other readable trajectory references, an isolated two-member pane-shell/runner group, and hrtimer_nanosleep. The latest numbered update must have no summary and no active lease, with either plans/cells before generation or score/groups before optimization. Pane text is retained only as context. Every non-designated execution request is refused before probing or locking; read-only probes may inspect all six v3 trajectories.
 
@@ -335,3 +374,7 @@ I have the experiment 13 v4 CPU implementation passing 89 tests, with the histor
 - 10-21-2026 13:11 PDT: Corrected two literal newline escapes in the README table before publication and resealed only its runtime binding; final admission ffbeb4e6b2b64408d4a151a24bf0034400bef9c7d6d09d0da0a10f71efeb72b7. Source/test/plan bindings and all evidence unchanged; prior unpublished seal retained privately.
 
 - 10-21-2026 13:13 PDT: LANDED 9ec6640d9ab8cf982f1b9af6c19e0d1f431c4395 on main; remote SHA verified, range-diff identical and 18 owned files unchanged after rebase; final launch-check PASS, Google readback verified, backup removed; no v3 pause, cron or GPU action.
+
+10-21-2026 (interim checkpoint; exact time not retained) — Dispatch 6: runner-only freeze, conservative process-race waits and exception cleanup implemented; CPU verification/admission underway.
+
+10-21-2026 15:52 PDT — Dispatch 6: all CPU suites and dummy control passed; A_1302 read-only probe safely waited, final admission sealed and launch-check passed; wrapper/plans updated without execution.

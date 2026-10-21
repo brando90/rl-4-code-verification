@@ -29,9 +29,10 @@ def pause_fixture(key='A_1302'):
 
 
 def stop_fixture(snap):
-    """Model Linux's group-stop state, including the wait-channel change."""
+    """Model a stopped runner while the tmux pane shell continues waiting."""
     for process in [snap['processes'][0],*snap['processes'][0]['process_group_members']]:
-        process.update(state='T',wchan='do_signal_stop')
+        if process['pid'] == snap['processes'][0]['pid']:
+            process.update(state='T',wchan='do_signal_stop')
 
 
 def single_pause(root,admission):
@@ -50,7 +51,7 @@ def single_pause(root,admission):
         probes.append(key)
         snap['processes']=[runner,*([{'kind':'stage'}] if running else [])]
         return snap
-    def sleep(seconds):snap['observed_monotonic']+=seconds
+    def sleep(seconds):snap['observed_monotonic']+=seconds+1e-6
     def kill(pgid,sig):
         import signal
         signals.append([pgid,int(sig)])
@@ -59,7 +60,7 @@ def single_pause(root,admission):
         return pause(admission,work=root,trajectory='A_1302',now=VETO_END+1,veto_not_issued=True,
                      probe=probe,sleep=sleep,
                      inspect=lambda pid:next(p for p in runner['process_group_members'] if p['pid']==pid),
-                     kill=kill)
+                     kill=kill,kill_group=kill)
     before=timing();waiting=attempt();after_wait=timing()
     assert waiting=={'A_1302':'WAIT_STAGE_RUNNING'} and not signals
     assert not (root/'phase2/autoresume_paused.json').exists()

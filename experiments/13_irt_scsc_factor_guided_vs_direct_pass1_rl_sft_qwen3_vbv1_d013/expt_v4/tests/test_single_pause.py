@@ -18,12 +18,12 @@ def setup_pause(tmp_path):
     snap=pause_fixture();runner=snap['processes'][0]
     signals=[];seen=[]
     def probe(key,work):seen.append(key);return snap
-    def sleep(seconds):snap['observed_monotonic']+=seconds
+    def sleep(seconds):snap['observed_monotonic']+=seconds+1e-6
     def kill(pgid,sig):
         signals.append(sig)
         if sig==signal.SIGSTOP:stop_fixture(snap)
     kwargs=dict(work=work,veto_not_issued=True,now=VETO_END+1,probe=probe,sleep=sleep,
-                inspect=lambda pid:next(p for p in runner['process_group_members'] if p['pid']==pid),kill=kill)
+                inspect=lambda pid:next(p for p in runner['process_group_members'] if p['pid']==pid),kill=kill,kill_group=kill)
     return admission,work,runner,snap,signals,seen,kwargs
 
 
@@ -89,7 +89,7 @@ def test_pid_reuse_never_signals_replacement(tmp_path,after_stop):
     admission,work,runner,_,signals,_,kw=setup_pause(tmp_path)
     original_inspect=kw['inspect']
     kw['inspect']=lambda pid:{**original_inspect(pid),'start_ticks':'reused' if signals or not after_stop else original_inspect(pid)['start_ticks']}
-    with pytest.raises(ValueError,match='PID reused'):pause(admission,**kw)
+    assert pause(admission,**kw)=={'A_1302':'WAIT_PROCESS_CHANGED'}
     assert signals==([signal.SIGSTOP] if after_stop else [])
     assert not (work/'phase2/autoresume_paused.json').exists()
 
@@ -120,7 +120,7 @@ def test_whole_rule_rechecked_after_stop(tmp_path,change):
 def test_non_designated_probe_is_read_only(tmp_path,key):
     admission,work,_,_,signals,_,kw=setup_pause(tmp_path)
     snap=pause_fixture(key)
-    def sleep(seconds):snap['observed_monotonic']+=seconds
+    def sleep(seconds):snap['observed_monotonic']+=seconds+1e-6
     result=boundary_probe(admission,trajectory=key,work=work,probe=lambda *a:snap,sleep=sleep)
     assert result[key]['status']=='READY' and result[key]['read_only']
     assert not result[key]['designated_for_pause'] and not signals
