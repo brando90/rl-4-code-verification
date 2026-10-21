@@ -36,7 +36,7 @@ Thus the saved aggregates imply the finite-median portion of the T1 decision inp
 
 ## Overall comparison and other T1 requirements
 
-**The analogous smoke would FAIL T1's zero-unsupported requirement.** The 195 unsupported actions comprise 0.02255% of update 2 tokens and 0.86077% of its 22,654 mismatches; the other 22,459 mismatches are finite in-support errors above 0.05 (2.59727% of all update 2 tokens). The unsupported actions are positions, not 195 unique token identities or tasks.
+**The analogous smoke would FAIL T1's zero-unsupported requirement.** The 195 unsupported actions comprise 0.02255% of update 2 tokens and 0.86078% of its 22,654 mismatches; the other 22,459 mismatches are finite in-support errors above 0.05 (2.59727% of all update 2 tokens). The unsupported actions are positions, not 195 unique token identities or tasks.
 
 Treating unsupported errors as infinite gives all-token median upper bounds of 0.00829788 and 0.00841007 (finite error sum divided by half the token count minus unsupported count), still below 0.01. Exact median and p99 remain unavailable. T1 also requires identical generator/trainer supports at at least 99% of positions and importance-ratio truncation at cap 2 on at most 1% of tokens, and reports discarded-mass quantiles. Those measurements were not retained and cannot be reconstructed from the saved aggregates. Zero unsupported is already decisively violated; none of these comparisons changes E20's FAILED trainer verdict.
 

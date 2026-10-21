@@ -5,7 +5,7 @@
 **TLDR:** Single-writer continuation of `20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013` under the unchanged runbook. Deployment `deploy_50715cf54e614ecf914f0f7da4aae03c`, Codex gpt-6-astra ultra, personal ~/.codex, skampere1.
 
 Created: 10-21-2026 13:44 PDT
-Last updated: 10-21-2026 15:59:18 PDT
+Last updated: 10-21-2026 16:12:29 PDT
 
 ## Goal
 - Complete post-stop pre-registered Phase 0 CPU scoring and item response theory (IRT) gate G0; trainer stays FAILED.
@@ -18,8 +18,8 @@ Last updated: 10-21-2026 15:59:18 PDT
 ## Stuck / blocked
 - Trainer admission remains FAILED; CPU Phase 0 completion is independently authorized and underway.
 ## Next steps
-- [p 10/10] Monitor retry-2 CPU chain 48881654 → 48881657/48881660; attempt1 preparation failed before inputs, canceled dependent arrays. Next: sherlockctl exec with sacct on these IDs; >=60 s since last check.
-- [p 10/10] Complete Phase 0b/G0 with frozen priors/folds, alternatives and freeze_forecast; commit/push PR #20 branch, write G0_FINISHED.txt with verdict, AUC interval and results hash.
+- [p 10/10] Read /tmp/e20_cpu_monitor/latest.json (300-second monitor session78167, only strict48881657/partial48882641/collect48882642). Last source files verified; full make test PASS1415/17skipped/6subtests/307.99s. Do not add Slurm polls within60s of monitor.
+- [p 10/10] After collection download/hashverify phase0_cpu_tables.tgz, commit4312celltable; run venv/bin/python expt_v1/analyze_phase0_e20.py --repo . --scores expt_v1/results/phase0_cells_e20.csv --out expt_v1/results/phase0b --freeze-dir expt_v1/forecasts --workers4 (use full experiment paths). Finish PR20/G0_FINISHED with AUCinterval/results hash.
 - Keep >=60 seconds between Slurm checks; remain inside turn. Preserve E20_FINISHED.txt as trainer-stop history.
 ## Brando to-do
 - none; comparison with experiment 13 v4 T1 is decision input, not a gate change.
@@ -66,3 +66,11 @@ Last updated: 10-21-2026 15:59:18 PDT
 - 10-21-2026 15:53:51 PDT -- Saved smoke comparison finished from receipts only: update2 =22459 finite>0.05+195 unsupported/864717; analogous T1 fails zero unsupported. Median upper bound0.00841008, exactmedian/p99 unretained, p99 criterion undecidable; results/report/parser saved. No gate or trainer change.
 
 - 10-21-2026 15:59:18 PDT -- Attempt1 materialization failed in shell-profile initialization (9s,exit1,no jobs materialized); dependent arrays canceled without executing. Retry2 submitted48881654→48881657/48881660 after environment fix. Full make test1415passed/17skipped/6subtests/300.55s; wrapper,4312cell-join,and diagnostic-hash fixtures PASS. Publishing live CPU launch and saved-smoke results; GDoc and STARTemailreadbacks verified.
+
+- 10-21-2026 16:05:11 PDT -- Preparation complete4312cells/61s; all32strict tasks running. Identified/fixed partialD109 bypasses (local import and nice-prefixed parser); canceled onlyownedpartial48881660 (index0started) andcollector48882176, outputsretained. Helper verifiesfakecapture beforeisolatedretry. Driver analyze_phase0_e20.py integrated, synthetic numerical paths PASS; no realfitsyet. Lastpushc4727d44.
+
+- 10-21-2026 16:08:32 PDT -- Partial D109 fixes passed all compiler/kernel/parser/timeout/hash fixtures; isolated deployment complete. Replacementpartial48882641 andcollector48882642 submitted; previouspartialindex0 canceledafter98s, originaloutputsretained. Active monitor/tmp/e20_cpu_monitor.py session78167 checks300s; root staysinside turn. New fullmake session21533; realIRT waits for scoretable.
+
+- 10-21-2026 16:10:51 PDT -- LivepartialD109 parser/compiler/kernel examples verified with rawstdout/stderr and source hashes, fixedwrapper c03ec54f; firstmonitorobserved55runningtasks,78partialcells. PR20 title/bodyupdated forCPUcontinuation/trainerFAILED. Strictjobskeeporiginaldeployedcapturebytes.
+
+- 10-21-2026 16:12:29 PDT -- FullmakePASS1415passed,17skipped,6subtests,3warnings,307.99s afterD109fix/driverintegration. Publishing numericaldriver/syntheticproofs and realcaptureexamples; allCPUjobs continue under300smonitor, no newGPUjobs/modelcalls.

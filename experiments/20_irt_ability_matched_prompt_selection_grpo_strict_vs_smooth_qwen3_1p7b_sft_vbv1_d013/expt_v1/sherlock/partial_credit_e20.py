@@ -13,8 +13,9 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, os.environ.get("RL4CV_SRC", "/scratch/users/brando9/rl4cv_sherlock/grading/rl4cv/src"))
-from durable_capture import DurableCapture, atomic, clone, sha  # noqa: E402
+from durable_capture import DurableCapture, atomic, clone, instrument_scorer, sha  # noqa: E402
 import declaration_adapter as adapter  # noqa: E402
+from logged_scorer_e20 import FROZEN  # noqa: E402
 
 G = Path(os.environ.get("E20_GRADING", "/scratch/users/brando9/rl4cv_sherlock/grading"))
 
@@ -29,12 +30,14 @@ def instrumented_loader(capture):
             return cache[name]
         module = original(name, path)
         if name == "e13_pinned_scorer":
-            module.compile_lean_file = clone(module.compile_lean_file, subprocess=capture)
-            if hasattr(module, "kernel_axioms"):
-                ka = module.kernel_axioms
-                ka.run_probe = clone(ka.run_probe, subprocess=capture)
-                ka.check_file = clone(ka.check_file, run_probe=ka.run_probe)
+            if sha(path) != FROZEN["run_real_eval.py"]:
+                raise RuntimeError("partial-credit scorer bytes differ from pin 59059a2")
+            # The frozen compile function imports subprocess locally. Override its private builtin import,
+            # exactly as the strict logger does; a global-only override silently misses this compiler call.
+            instrument_scorer(module, capture)
         elif name == "e13_kernel_axioms":
+            if sha(path) != FROZEN["kernel_axioms.py"]:
+                raise RuntimeError("partial-credit kernel bytes differ from pin 59059a2")
             module.run_probe = clone(module.run_probe, subprocess=capture)
             module.check_file = clone(module.check_file, run_probe=module.run_probe)
         cache[name] = module

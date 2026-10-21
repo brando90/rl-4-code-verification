@@ -30,11 +30,15 @@ for stage in ['scores','partial']:
     else:
      x=json.loads(launcher.read_text());manifest.append(dict(path=str(launcher),sha256=sha(launcher),bytes=launcher.stat().st_size,kind='D109_launcher'))
      if x['state']!='COMPLETE':errors.append(f'{launcher}: {x["state"]}')
+# Preserve interrupted/invalid diagnostic attempts separately from the final measured outputs.
+for stage in ['scores','partial']:
+ for q in (P/stage/'attempts').rglob('*'):
+  if q.is_file():manifest.append(dict(path=str(q),sha256=sha(q),bytes=q.stat().st_size,kind='prior_attempt'))
 for name,rows in [('score_output_manifest.csv',manifest),('compiler_call_manifest.csv',calls)]:
  if not rows:errors.append(name+':empty');continue
  with (O/name).open('w',newline='') as f:
   w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
-summary=dict(created_unix=time.time(),cpu_only=True,outputs=len(manifest),compiler_calls=len(calls),call_states=dict(summ),errors=errors)
+summary=dict(created_unix=time.time(),cpu_only=True,collector_source_sha256=sha(Path(__file__)),builder_source_sha256=sha(E/"code/build_phase0_cells_e20.py"),outputs=len(manifest),compiler_calls=len(calls),call_states=dict(summ),errors=errors)
 (O/'diagnostic_audit.json').write_text(json.dumps(summary,indent=2)+'\n')
 # A compact retrieval bundle keeps original scorer rows and partial records plus checksummed raw-diagnostic pointers.
 archive=P/'phase0_cpu_tables.tgz'

@@ -59,7 +59,8 @@ class DurableCapture:
 
     def run(self, *args, **kwargs):
         command = args[0] if len(args) == 1 else kwargs.get('args')
-        if isinstance(command, (list, tuple)) and list(command[:3]) == ['lake', 'env', 'lean']:
+        if isinstance(command, (list, tuple)) and (list(command[:3]) == ['lake', 'env', 'lean']
+                or list(command[:6]) == ['nice', '-n', '10', 'lake', 'env', 'lean']):
             if args:
                 return self.run_logged(command, **kwargs)
             options = dict(kwargs)
