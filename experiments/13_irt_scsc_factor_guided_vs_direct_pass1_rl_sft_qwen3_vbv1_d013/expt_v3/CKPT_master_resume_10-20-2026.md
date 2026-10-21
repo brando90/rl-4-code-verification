@@ -153,3 +153,18 @@ Experiment 19, the IRT lane in session local_268be283, sent two things: a frozen
   - As a fourth v4 arm: graded 6/10. It adds about a third to a pilot already near a week of GPU time, and it tests prompt selection, not reward shaping. Experiment 19 also found its evidence is not IRT-specific.
   - As a pre-declared contingent condition, run only if V4-T5 fails on A: graded 7/10.
   - If adopted, it is written as a numbered amendment before G0.
+
+## 19:20 PDT: coordinator light QA (Fable 5.1 max): V4-A1 correct; V4-A2 and V4-A3 recorded
+
+- **Verdict:** CORRECT, graded 9/10. V4-A1 precedes dispatch 2. `PROTOCOL.md` is byte-identical to the `d4778e25` lock, and the reconstruction matches the native vLLM sampler.
+- **[V4-A2](../expt_v4/AMENDMENT_V4-A2_receipt_invariance_and_sampler_backend_10-20-2026.md)** (`41c2b8b6`):
+  - adds a pass criterion for receipt invariance: an exact unit check on the installed `Sampler`, plus an R0/R1 engine check on the T1 probe, with an R2 tolerance if the engine is not deterministic;
+  - pins `VLLM_USE_FLASHINFER_SAMPLER=0` and the native path, and logs the selected forward in each receipt.
+
+  `flashinfer` is absent from the pinned venv, and the A6 attempt-2 generation log shows the native fallback, so v4 samples exactly as A6 did.
+- **[V4-A3](../expt_v4/AMENDMENT_V4-A3_schedule_v4_start_and_v3_pause_10-20-2026.md)** (`41c2b8b6`), the coordinator's option (c), **subject to Brando's veto until 10-21-2026 12:00 PDT**:
+  - Once v4 is admitted, A_1301, A_1302, B_1302, P_1301 and P_1302 pause at clean lease-wait boundaries and are final, with their counts kept in the full denominator.
+  - B_1301 alone continues to its T5_30 verdict, and v3-A7 then ends, with no extension and no main study.
+  - v4's gates use freed GPUs. Its pilot starts after B_1301's verdict.
+- **Pace correction (coordinator):** an update costs **2.6–3.2 GPU-hours** once the roughly 35-minute generation lease is counted, not 2–2.6. B_1301 generated u18 from 15:42 to 16:17 and was scored by 16:21, so it was queued for an optimizer lease, not stalled. A_1302 u2's long optimizer step has since finished.
+- **Next:** dispatch 2 finishes, then dispatch 3 implements V4-A2, the V4-A3 pause tooling (a pause list read by the v3 watchdog, and lease-wait boundary detection) and the experiment 19 forecast scorer. Those are bound into the admission.
