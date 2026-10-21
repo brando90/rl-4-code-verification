@@ -53,3 +53,17 @@ Mean pass rate over the 32 environments: 0.107 (0.6B), 0.256 (1.7B), 0.323 (4B).
 - **Exploratory sensitivity (not in the frozen plan, not a verdict).** Dropping the 17 environments that have a format-dominated cell for any model leaves 15 environments; pairwise Spearman is then 0.18 (0.6B–1.7B), 0.74 (0.6B–4B) and 0.54 (1.7B–4B). Difficulty transfer from 0.6B to 1.7B therefore looks weaker on the clean subset, and 15 environments are too few for a CI to mean much. 18b should either fix the answer format (a format reward or a one-shot example) or report results by `format_dominated` status.
 - The pass-rate~H correlation (0.74–0.97) and the format effect interact: low-tag cells have few correct answers and low H together.
 
+
+## Level vs pass rate (AT-598 addendum)
+
+Mean over the 8 families of the within-family Spearman of RG level against pass rate (values from `analysis2_within_family`; negative = harder level, lower pass; bootstrap over families, 5000 resamples, seed 0, descriptive): 0.6B −0.87 (CI −0.97 to −0.72), 1.7B −0.74 (−0.97 to −0.34), 4B −0.66 (−0.93 to −0.34). Exceptions: 1.7B leg_counting (+0.60, L2 above L1), 4B word_sorting (+0.11, all near 0), and coin_flip is nearly flat for 4B (≥ 0.91 at every level) and 0.6B (~0.15), so RG level orders difficulty well in arithmetic, equations and sudoku but barely in coin_flip and letter_counting.
+
+## Plots and full table
+
+- `expt_v1/results/plots/pass_by_env.png` (pass rate per env x model with the 0.1–0.9 band), `size_transfer.png` (pairwise pass-rate scatter, format-dominated cells marked), `level_vs_pass.png`, `coordinates_vs_pass.png` (rho, H, alignment against pass rate). Script: `expt_v1/plots_18a.py`.
+- `expt_v1/results/table_18a.md`: the 96-row table (env x model: n items, n samples, pass, rho, H, alignment, tag rate, band, format-dominated).
+- Negative findings in the plots: 0.6B has no environment above 0.9 and 20 below 0.1; mini_sudoku and word_sorting sit near 0 for all sizes (format plus task difficulty); rho and H track pass rate (0.6–0.97), so they add little beyond difficulty.
+
+## Deviations from PROTOCOL.md
+
+None in the analyses (analyze.py was run as frozen, job 1861868). Additions outside the frozen plan, all labelled exploratory: the format-dominated sensitivity subset, the family-bootstrap above, the plots and table. `results/manifest.json` (item hashes, package versions) was not produced by analyze.py; the item manifest is at `expt_v1/results/items/manifest.json` on FarmShare and in `scratch/at597/x/items/` locally. `envs_18a.jsonl` has all 96 rows with every schema field of `envs_18a/v1` including `in_learnable_band` (46 true = 12+23+11).
