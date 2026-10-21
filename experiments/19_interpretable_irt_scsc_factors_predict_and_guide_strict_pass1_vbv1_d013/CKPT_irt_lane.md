@@ -5,7 +5,7 @@
 **TLDR:** Resume record for the rl4cv IRT lane (Claude Code session local_268be283, assigned by the general coordinator local_82b6c38d on 10-20-2026). Zero paid model calls, CPU only.
 
 Created: 10-20-2026 16:00 PDT
-Last updated: 10-20-2026 16:51 PDT
+Last updated: 10-20-2026 17:20 PDT
 
 ## Goal
 - Which SCSC factors and task features explain/predict held-out strict, harsh-SCSC and gold-check (VeriBench 111) success on VeriBench V1, and can an IRT forecast pick the prompts where experiment 13's start policy gives mixed strict groups?
@@ -35,3 +35,4 @@ Last updated: 10-20-2026 16:51 PDT
 - 10-20-2026 16:00 PDT -- created; inventory done, features computed, protocol drafting.
 - 10-20-2026 16:32 PDT -- revision 1 locked (pins + frozen forecast) as provisional 18.
 - 10-20-2026 16:51 PDT -- renumbered 19 (ub9/e18a claimed 18); revision-1 run stopped at start, no output; gold-check target added as revision 2.
+- 10-20-2026 17:20 PDT -- Amendment 01 (light QA, Fable 5.1 max, CORRECT 9/10) committed after run start, before any output read; SSH to skampere1 dropped at 00:08Z (watch exit 255); the run itself is in its own tmux session, status not yet re-checked.

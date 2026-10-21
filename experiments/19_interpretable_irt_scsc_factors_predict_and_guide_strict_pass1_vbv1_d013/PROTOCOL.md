@@ -4,6 +4,8 @@
 
 **Status:** LOCKED, revision 2, 10-20-2026 16:51 PDT, before any real-data fit. Revision 2's gold-target forecast `expt_v1/forecasts/e19_forecast_gold_target.json` was frozen at 16:50 PDT (SHA-256 64a8ffc949d57567c1f69b4ac5b54c64c2ea25ca7ef7aab3c122b2f3ebd3e3d6). Deterministic checks gate it: `make test`, finite-difference gradients and synthetic recovery. Later changes are numbered amendments made before the data they affect.
 
+**Amendment 01** (after the run started at 23:52:11Z and before any output was read): two primary endpoints (G1 and E1-strict IRT-beats-baselines; all else secondary), G1 reporting with its interval and the 135-task scope, corrected FSC point masses (59.5% / 2.5% on the primary panel), the committed compile-record check, and a token-cap sensitivity. See [AMENDMENT_01_10-20-2026.md](AMENDMENT_01_10-20-2026.md); it takes precedence where it differs.
+
 **Revision history:**
 
 - **Revision 1** was locked at 16:30 PDT (unpublished local commit cefd590a) under the provisional number 18, with frozen forecast `expt_v1/forecasts/e18_forecast.json` (SHA-256 ab3e31b275404be077d77597f9e004c6219da0d2fd3f517351a587945047a13c). Its run started on SNAP at 16:39 PDT and was stopped minutes later by its owner, before it wrote any output (its log holds only the two start lines). The reason was the renumbering below.

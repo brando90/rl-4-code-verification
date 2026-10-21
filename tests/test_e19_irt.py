@@ -180,6 +180,32 @@ def test_gold_check_target_follows_veribench_111_rules(mods):
     assert n == panel.strict.size
 
 
+def test_rc_rows_match_recorded_compiles_for_experiment_102(mods):
+    """Amendment 01, section 4: for the four experiment 102 systems, on open (non-withheld) train and validation tasks,
+    a reference-consistency row exists exactly when experiment 12's committed manifest records the file as compiling."""
+    import csv
+    import json
+    D = mods[1]
+    split = D.load_split()
+    gk = D._gold_key_to_task()
+    rows = {(r["system"], r["task_id"]) for r in csv.DictReader(D.RC_ROWS.open())}
+    x103_tasks = {t for (s, t) in rows if s in D.X103_SYSTEMS}
+    tasks = set(split.tasks)
+    agree = disagree = 0
+    for c in json.loads(D.E12_MANIFEST.read_text())["cells"]:
+        s = c["system"]
+        if s not in ("codex", "claude_code", "baseline", "leanstral") or c["source_status"] != "measured":
+            continue
+        t = gk[c["task_id"]] if "/" in c["task_id"] else c["task_id"]
+        if t not in tasks or t not in x103_tasks:
+            continue  # test split or withheld rating-set task
+        if bool(c["recorded_compiles"]) == ((s, t) in rows):
+            agree += 1
+        else:
+            disagree += 1
+    assert (agree, disagree) == (2203, 0)
+
+
 def test_split_guard_rejects_test_rows(mods, tmp_path):
     D = mods[1]
     split = D.load_split()
