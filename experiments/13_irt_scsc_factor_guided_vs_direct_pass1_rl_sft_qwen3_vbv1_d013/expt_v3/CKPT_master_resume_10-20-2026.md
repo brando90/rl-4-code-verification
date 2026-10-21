@@ -168,3 +168,11 @@ Experiment 19, the IRT lane in session local_268be283, sent two things: a frozen
   - v4's gates use freed GPUs. Its pilot starts after B_1301's verdict.
 - **Pace correction (coordinator):** an update costs **2.6–3.2 GPU-hours** once the roughly 35-minute generation lease is counted, not 2–2.6. B_1301 generated u18 from 15:42 to 16:17 and was scored by 16:21, so it was queued for an optimizer lease, not stalled. A_1302 u2's long optimizer step has since finished.
 - **Next:** dispatch 2 finishes, then dispatch 3 implements V4-A2, the V4-A3 pause tooling (a pause list read by the v3 watchdog, and lease-wait boundary detection) and the experiment 19 forecast scorer. Those are bound into the admission.
+
+## 19:35 PDT: correction, the experiment 19 forecast hash is consistent
+
+The 19:10 "hash mismatch" was a false alarm. The `rl4cv.forecast` convention hashes the canonical JSON text without its final newline.
+
+- The master verified that the committed file (one commit, `46c955aa`) ends with exactly one newline.
+- Its newline-stripped SHA-256 is `abb0cb3115b86fd3107a565fdfacd53343f285b7d27b34fd30d4dcb682436286`, which matches the sidecar and ledger. Hashing the file's raw bytes gives `f5ef9be0…` instead.
+- No re-freeze is needed. The v4 forecast scorer must check the file with `rl4cv.forecast.verify_forecast` (`src/rl4cv/forecast.py`), or with the stripped hash, and record `abb0cb31…`.
