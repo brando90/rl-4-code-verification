@@ -1,14 +1,35 @@
 {
-  "utc": "2026-10-21T21:38:13.883167+00:00",
-  "sacct": "48842409|48841018_0|e20_p0_gen|RUNNING|9340|billing=35,cpu=8,gres/gpu=1,mem=48G,node=1|2026-10-21T12:02:32|Unknown|0:0\n48854511|48841018_1|e20_p0_gen|RUNNING|4834|billing=35,cpu=8,gres/gpu=1,mem=48G,node=1|2026-10-21T13:17:38|Unknown|0:0\n48855734|48841018_2|e20_p0_gen|COMPLETED|3796|billing=35,cpu=8,energy=5109486,gres/gpu=1,mem=48G,node=1|2026-10-21T13:23:15|2026-10-21T14:26:31|0:0\n48841018|48841018_3|e20_p0_gen|COMPLETED|3774|billing=35,cpu=8,energy=6250008,gres/gpu=1,mem=48G,node=1|2026-10-21T13:23:15|2026-10-21T14:26:09|0:0\n48845232|48845232|e20_smoke_train|FAILED|56|billing=55,cpu=16,energy=46222,gres/gpu=1,mem=96G,node=1|2026-10-21T13:12:08|2026-10-21T13:13:04|1:0\n48855196|48855196|e20_smoke_train|FAILED|109|billing=55,cpu=16,energy=154128,gres/gpu=1,mem=96G,node=1|2026-10-21T13:29:37|2026-10-21T13:31:26|1:0\n48857034|48857034|e20_smoke_train|FAILED|1959|billing=55,cpu=16,energy=5885555,gres/gpu=1,mem=96G,node=1|2026-10-21T13:36:32|2026-10-21T14:09:11|3:0\n",
-  "squeue": "48841018_0|RUNNING|2:35:41|1:54:19|sh04-11n10\n48841018_1|RUNNING|1:20:35|3:09:25|sh04-01n12\n",
+  "utc": "2026-10-21T22:13:15.053620+00:00",
+  "sacct": "48842409|48841018_0|e20_p0_gen|RUNNING|11440|billing=35,cpu=8,gres/gpu=1,mem=48G,node=1|2026-10-21T12:02:32|Unknown|0:0\n48854511|48841018_1|e20_p0_gen|COMPLETED|6766|billing=35,cpu=8,energy=9420555,gres/gpu=1,mem=48G,node=1|2026-10-21T13:17:38|2026-10-21T15:10:24|0:0\n48855734|48841018_2|e20_p0_gen|COMPLETED|3796|billing=35,cpu=8,energy=5109486,gres/gpu=1,mem=48G,node=1|2026-10-21T13:23:15|2026-10-21T14:26:31|0:0\n48841018|48841018_3|e20_p0_gen|COMPLETED|3774|billing=35,cpu=8,energy=6250008,gres/gpu=1,mem=48G,node=1|2026-10-21T13:23:15|2026-10-21T14:26:09|0:0\n48845232|48845232|e20_smoke_train|FAILED|56|billing=55,cpu=16,energy=46222,gres/gpu=1,mem=96G,node=1|2026-10-21T13:12:08|2026-10-21T13:13:04|1:0\n48855196|48855196|e20_smoke_train|FAILED|109|billing=55,cpu=16,energy=154128,gres/gpu=1,mem=96G,node=1|2026-10-21T13:29:37|2026-10-21T13:31:26|1:0\n48857034|48857034|e20_smoke_train|FAILED|1959|billing=55,cpu=16,energy=5885555,gres/gpu=1,mem=96G,node=1|2026-10-21T13:36:32|2026-10-21T14:09:11|3:0\n",
+  "squeue": "48841018_0|RUNNING|3:10:40|1:19:20|sh04-11n10\n",
   "calibration_rows": {
-    "phase0/gen/chunk_0/raw.jsonl": 1152,
-    "phase0/gen/chunk_1/raw.jsonl": 512,
+    "phase0/gen/chunk_0/raw.jsonl": 1280,
+    "phase0/gen/chunk_1/raw.jsonl": 1120,
     "phase0/gen/chunk_2/raw.jsonl": 904,
     "phase0/gen/chunk_3/raw.jsonl": 856
   },
   "calibration_timings": {
+    "phase0/gen/chunk_1/timing.json": {
+      "job": "48854511",
+      "wall_s": 6741,
+      "cells": 1120,
+      "declared_cells": 1120,
+      "tasks": 140,
+      "declared_tasks": 140,
+      "gen_tokens": 6838948,
+      "max_tokens": 12288,
+      "mean_tokens": 6106.203571428571,
+      "truncated": 235,
+      "finish": {
+        "length": 235,
+        "stop": 885
+      },
+      "extraction": {
+        "no_lean_block": 234,
+        "file_blocks": 886
+      },
+      "tok_per_s": 1014.5301883993473
+    },
     "phase0/gen/chunk_2/timing.json": {
       "job": "48855734",
       "wall_s": 3769,
