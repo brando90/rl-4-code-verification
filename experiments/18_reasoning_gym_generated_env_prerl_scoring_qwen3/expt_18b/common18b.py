@@ -23,6 +23,7 @@ SMALLER_TAG = "qwen3_0p6b"
 N_SELECT = 16
 MAX_PER_FAMILY = 3
 MIN_PASS, MAX_PASS = 0.02, 0.98
+MIN_UNIQUE_TRAIN = 640  # of the steps*prompts_per_step = 1280 training prompts of seed 0, at least this many must be distinct questions
 
 # --- training (frozen before any job) ---
 SEEDS = (0, 1)
@@ -35,7 +36,7 @@ HP = {
     "temperature": 1.0,
     "top_p": 1.0,
     "top_k": 0,  # HF spelling of "no top-k"
-    "lr": 3e-6,
+    "lr": 1e-5,
     "warmup_steps": 3,
     "adam_betas": (0.9, 0.99),
     "adam_eps": 1e-8,
@@ -73,3 +74,7 @@ def train_spec(spec: "C.SetSpec", seed: int) -> "C.SetSpec":
 
 def hp_total_samples() -> int:
     return HP["steps"] * HP["prompts_per_step"] * HP["group_size"]
+
+
+def hp_total_prompts() -> int:
+    return HP["steps"] * HP["prompts_per_step"]
