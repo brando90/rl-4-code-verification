@@ -260,3 +260,18 @@ The exact commands are in the checkpoint's "Exact master commands" block.
 **Implementation correction:** dispatch 3 restored the inherited v3 standard-deviation scaling of advantages, tested against the installed function. No protocol change.
 
 **Open:** experiment 120's identity is still unresolved for its required GPU-use check. The coordinator has been asked. At 22:48 PDT, 21 of 24 devices were busy, and skampere1 devices 0, 5 and 7 were occupied by v3.
+
+## 10-21-2026 01:10 PDT: experiment 120 GPU check resolved; veto line confirmed
+
+- **Veto line confirmed.** The coordinator confirmed that Brando's 07:35 report carries "VETO WINDOW on the experiment 13 V4-A3 reallocation until 10-21-2026 12:00 PDT". The coordinator relays any veto. If none arrives by 12:00, there was no veto.
+- **Experiment 120 GPU check (protocol § 5), resolved.** Experiment 120 is `experiments/120_v1like_private_tasks_open_weight_agent_proxy_filter_sherlock/` in the private repository vb-priv-bmg; its owner session is local_52dcc83e. The coordinator observed it at about 00:55 PDT with `nvidia-smi` and `ps`:
+
+  | Host | Experiment 120 use |
+  |---|---|
+  | mercury1 | GPUs 0–7: two Qwen3.8-27B-FP8 vLLM servers, tensor parallel 4, since about 15:08 PDT 10-20 |
+  | mercury2 | GPUs 0–7: calibration/pilot vLLM servers, since about 20:58 PDT |
+  | Sherlock | 5 pending jobs |
+  | skampere1–3 | none |
+
+  At the current pace experiment 120 runs until about 10-28.
+- **Rule adopted:** v4 never uses mercury1 or mercury2 GPUs 0–7. v4's device guard admits only skampere1 devices 0, 5 and 7 and idle skampere2/3 devices, so experiment 120 does not conflict. The guard's idle check stays binding everywhere.
