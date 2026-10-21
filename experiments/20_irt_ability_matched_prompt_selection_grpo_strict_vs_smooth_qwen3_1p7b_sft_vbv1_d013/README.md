@@ -67,7 +67,9 @@ Unit tests: `tests/test_e20_samplers.py`, `tests/test_e20_loss.py`, `tests/test_
 
 ## Status
 
-Trainer gate failed before the IRT comparison. See the [live phase table](results.md#live-phase-table) for the adopted jobs' terminal accounting. Calibration scoring, G0, pilot, main training and validation evaluation are not run; all corresponding hypotheses remain unmeasured. The protocol remains its original frozen draft and is not pilot-locked.
+Trainer gate failed before the IRT comparison. See the [live phase table](results.md#live-phase-table) for terminal GPU accounting and the authorized CPU Phase 0 completion. Calibration scoring is running; Phase 0b/G0 awaits those scores. Pilot, main training and validation evaluation remain unmeasured. The protocol remains its original frozen draft and is not pilot-locked.
+
+**Live dependency:** this canonical path remains active for PR #20, the dispatcher's `G0_FINISHED.txt` watch, and repository tests importing the experiment's sampler and IRT modules. Preserve it while those consumers remain active.
 
 ## Sources used for the method (what was actually opened)
 

@@ -5,7 +5,7 @@
 **TLDR:** Single-writer continuation of `20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013` under the unchanged runbook. Deployment `deploy_50715cf54e614ecf914f0f7da4aae03c`, Codex gpt-6-astra ultra, personal ~/.codex, skampere1.
 
 Created: 10-21-2026 13:44 PDT
-Last updated: 10-21-2026 16:12:29 PDT
+Last updated: 10-21-2026 16:29:11 PDT
 
 ## Goal
 - Complete post-stop pre-registered Phase 0 CPU scoring and item response theory (IRT) gate G0; trainer stays FAILED.
@@ -13,12 +13,12 @@ Last updated: 10-21-2026 16:12:29 PDT
 - Dispatcher instruction 10-21-2026 reauthorizes only scoring saved 4,312 generations, Phase 0b/G0, and saved-smoke comparison to experiment 13 v4 T1.
 - Codex gpt-6-astra/ultra, deployment deploy_50715cf54e614ecf914f0f7da4aae03c, sole repository writer, full access. Independent helpers: saved-smoke audit and numerical analysis driver.
 ## Results
-- Existing calibration 4,312/4,312 generated, 539 tasks, 0 missing; CPU jobs queued. Saved-smoke T1 comparison FAIL (195 unsupported update2); exact quantiles unavailable, median bounded <0.01. Trainer FAILED: 22,654/864,717 mismatch tokens (2.61982% >1%).
+- Existing calibration 4,312/4,312 generated, 539 tasks, 0 missing; CPU scoring: strict 0/32 jobs, partial 1/32 jobs; 1751/4312 partial cells logged. Saved-smoke T1 comparison FAIL (195 unsupported update2); exact quantiles unavailable, median bounded <0.01. Trainer FAILED: 22,654/864,717 mismatch tokens (2.61982% >1%).
 - Existing allocation 7.8258/200 GPU-h; no new GPU jobs, pilot, trainer or gate changes authorized. API $0; test split closed.
 ## Stuck / blocked
 - Trainer admission remains FAILED; CPU Phase 0 completion is independently authorized and underway.
 ## Next steps
-- [p 10/10] Read /tmp/e20_cpu_monitor/latest.json (300-second monitor session78167, only strict48881657/partial48882641/collect48882642). Last source files verified; full make test PASS1415/17skipped/6subtests/307.99s. Do not add Slurm polls within60s of monitor.
+- [p 10/10] Read /tmp/e20_cpu_monitor/latest.json (300-second monitor session78167, only strict48881657/partial48882641/collect48882642). Pushed55118e16; source files verified; full make test PASS1415/17skipped/6subtests/304.93s. Do not add Slurm polls within60s of monitor.
 - [p 10/10] After collection download/hashverify phase0_cpu_tables.tgz, commit4312celltable; run venv/bin/python expt_v1/analyze_phase0_e20.py --repo . --scores expt_v1/results/phase0_cells_e20.csv --out expt_v1/results/phase0b --freeze-dir expt_v1/forecasts --workers4 (use full experiment paths). Finish PR20/G0_FINISHED with AUCinterval/results hash.
 - Keep >=60 seconds between Slurm checks; remain inside turn. Preserve E20_FINISHED.txt as trainer-stop history.
 ## Brando to-do
@@ -74,3 +74,11 @@ Last updated: 10-21-2026 16:12:29 PDT
 - 10-21-2026 16:10:51 PDT -- LivepartialD109 parser/compiler/kernel examples verified with rawstdout/stderr and source hashes, fixedwrapper c03ec54f; firstmonitorobserved55runningtasks,78partialcells. PR20 title/bodyupdated forCPUcontinuation/trainerFAILED. Strictjobskeeporiginaldeployedcapturebytes.
 
 - 10-21-2026 16:12:29 PDT -- FullmakePASS1415passed,17skipped,6subtests,3warnings,307.99s afterD109fix/driverintegration. Publishing numericaldriver/syntheticproofs and realcaptureexamples; allCPUjobs continue under300smonitor, no newGPUjobs/modelcalls.
+
+- 10-21-2026 16:16:27 PDT -- Published CPU diagnostic fixes and registered analysis driver in 55118e1665c892fc3b2da461e5426dc465793805; remote hash verified. Monitor 20261021T231308Z: {'RUNNING': 64, 'PENDING': 1}, strict compiler calls 1253, partial calls 955, partial cells 429/4312. Trainer remains FAILED.
+
+- 10-21-2026 16:24:19 PDT -- Prepared score-summary and result-report renderers; synthetic constant-group bootstrap, missing-cell rejection and read-only report fixtures PASS. Monitor16:23 transport returned HTTP404/exit75 without Slurm data; preserve last known64running/859partialcells and retry at scheduled5min cadence, no submissions. Fullmake session85599 running.
+
+- 10-21-2026 16:28:37 PDT -- CPU monitor 20261021T232751Z: states {'RUNNING': 63, 'COMPLETED': 1, 'PENDING': 1}; strict jobs 0/32, partial jobs 1/32, partial cells logged 1751/4312. Strict/partial diagnostic calls 2435/3305. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 16:29:11 PDT -- Fullmake PASS1415/17skipped/6subtests/3warnings in304.93s; synthetic summary and report fixtures PASS; staged exact bytes and secret/diff checks PASS. Publishing 1751/4312 partial-cell progress with report tooling; HTTP404 recovered on next scheduled observation, no job resubmission.
