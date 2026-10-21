@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/CKPT_v4_implementation.md>
 **Companion:** <https://docs.google.com/document/d/1KqUi39sz532dIGg8EYCy6w62Q0KzO2XWhpM2MMSWvHE/edit>
-**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 15:52 PDT.
+**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 15:54 PDT.
 
 **TLDR:** Dispatch 6 fixes tmux auto-continue by freezing only the Python runner, returns WAIT for disappearing processes and resumes the runner on every tested exception path. All CPU suites pass, the dummy-pane stop check passes and the new admission passes launch-check; the A_1302 read-only probe safely waits on census churn. Real pause/gate execution remains master-owned.
 
@@ -14,7 +14,7 @@
 - Results: v4 312/312; watchdog 16/16; root 1,405 passed / 15 skipped / 6 warnings / 0 failures. Dummy tmux PASS and fully removed.
 - Admission SHA-256: 71d9be74c333f3c297dc04e5a8d31f6cd531860ae6205f2a409612ba25acc26c; 74 local / 331 runtime bindings; launch-check PASS.
 - Live A_1302: WAIT_OBSERVATION; runner 692011 S/hrtimer_nanosleep, zero children/leases; 3 then 6 other census reads vanished. Real pause list absent.
-- Stuck / blocked: nothing; implementation complete, publication receipt follows below.
+- Stuck / blocked: nothing; Dispatch 6 complete and published at 999fc15e17083e962cbc4db2ccb68dc6b5c74247.
 - Next steps: [p 9/10, master-owned] run the existing wrapper below under the new admission; it handles the pause, watchdog and unchanged gate start.
 - Brando to-do: none.
 - Limits: no v3 signals or real pause-list writes, no cron install, GPU allocation, generation, optimizer step or shared-venv edit; $0.
@@ -60,6 +60,8 @@ bash /lfs/skampere1/0/brando9/rl4cv_e13v4/a1302_pause_then_gates.sh
 ```
 
 The wrapper retries WAIT statuses and only the previously documented /proc traceback pattern among nonzero tool errors. The new code turns those races into WAIT statuses. Do not launch a second controller alongside the wrapper's existing gate controller. Pilot conditions remain B_1301's verdict/released lease, all gates passed and three idle authorized devices.
+
+Publication: implementation/admission **[999fc15e](https://github.com/brando90/rl-4-code-verification/commit/999fc15e17083e962cbc4db2ccb68dc6b5c74247)** is on `main`; remote hash readback matched exactly. The rebase over `b69bd417` changed only concurrent master checkpoints, preserved the complete owned patch in range-diff and all 15 owned file hashes, and the post-rebase `launch-check` passed with admission `71d9be74c333f3c297dc04e5a8d31f6cd531860ae6205f2a409612ba25acc26c`. The Google companion's five updated paragraphs were read back exactly. No temporary checkout was created; this pre-existing dispatch checkout remains because the admitted master plans use its absolute paths. The owned dummy session/processes are gone. This publication receipt edits only the unbound checkpoint.
 
 ## Historical Dispatch 5 evidence and commands (superseded)
 
@@ -378,3 +380,5 @@ I have the experiment 13 v4 CPU implementation passing 89 tests, with the histor
 10-21-2026 (interim checkpoint; exact time not retained) — Dispatch 6: runner-only freeze, conservative process-race waits and exception cleanup implemented; CPU verification/admission underway.
 
 10-21-2026 15:52 PDT — Dispatch 6: all CPU suites and dummy control passed; A_1302 read-only probe safely waited, final admission sealed and launch-check passed; wrapper/plans updated without execution.
+
+10-21-2026 15:54 PDT — Dispatch 6 published at 999fc15e; remote hash matched, rebased patch/files unchanged, post-rebase launch-check PASS, Google readback verified; real pause/gate start handed to the master.
