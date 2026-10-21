@@ -375,3 +375,12 @@ The exact commands are in the checkpoint's "Exact master commands" block.
   - re-admit.
 - **SSH note.** The usual route to skampere1 intermittently timed out during the banner exchange. The explicit gateway route worked, and the master now uses `-S none` with one connection about every 10 minutes. The ChatGPT desktop app (pid 45776) was opening verbose (`-v`) SSH connections through whale to all five SNAP hosts, the 10-15 flood pattern. It was left untouched and flagged to Brando.
 - **State.** The pause loop is stopped and nothing is paused. All six v3 runs keep running.
+
+## 10-21-2026 16:50 PDT: dispatch 6 done (admission `71d9be74…`); A_1302 pause loop restarted
+
+- **Dispatch 6** (`999fc15e`, `d1780437`). The tool now freezes only the runner PID and handles the `/proc` vanishing-process races as WAIT.
+  - **Tests:** v4 312 passed (79 new), watchdog 16, root suite 1,405 passed with 15 skipped and 0 failed.
+  - **Dummy tmux pane:** a group stop was auto-continued by tmux, which confirms the diagnosis. A runner-only stop held for more than 1 s with the shell staying `S`, and SIGCONT restored the runner.
+  - **Admission:** `admission_dispatch6.json`, SHA-256 `71d9be74c333f3c297dc04e5a8d31f6cd531860ae6205f2a409612ba25acc26c`. `launch-check` passes after the rebase.
+  - **Wrapper:** dispatch 6 pointed the master's wrapper at the new admission. The diff is that one line.
+- **16:47:27: loop restarted** in tmux `e13v4-a1302-pauser`; `launch-check` exit 0 at 16:47:56. The first statuses were `WAIT_OBSERVATION`: a census process vanished during the scan, which is now a WAIT instead of a crash. The master checks the status mix at about 16:58.
