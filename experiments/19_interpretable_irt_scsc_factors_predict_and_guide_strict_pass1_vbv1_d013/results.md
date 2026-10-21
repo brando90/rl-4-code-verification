@@ -98,6 +98,16 @@ My priors badly underestimated G1. The primary AUC was forecast 0.72 [0.62, 0.81
 
 **Hash convention:** each `.sha256` sidecar is the SHA-256 of the canonical JSON text without its trailing newline (`rl4cv.forecast`). Verify with `rl4cv.forecast.verify_forecast`. A plain `sha256sum -c` fails because the files end with a newline.
 
+Both hashes for each frozen file, so either check works. Each file was committed once and never modified:
+
+| File | Recorded (canonical text, no final newline) | Plain sha256 of the file bytes |
+|---|---|---|
+| `e18_forecast.json` | ab3e31b275404be077d77597f9e004c6219da0d2fd3f517351a587945047a13c | cf9bed2aaea2d1c27394be8eebb9af8375db7ba14a88860f12bf194bf70312ee |
+| `e19_forecast_gold_target.json` | 64a8ffc949d57567c1f69b4ac5b54c64c2ea25ca7ef7aab3c122b2f3ebd3e3d6 | 2b4fd33b515d6b0d81302cc64374f03e1ffaa89e9469bcce0e87611f24ff5940 |
+| `e19_g3_forecast_v4_g0.json` | abb0cb3115b86fd3107a565fdfacd53343f285b7d27b34fd30d4dcb682436286 | f5ef9be081218170e0f5cc038b7a42a3a89bf811619291017f5a5066f33142f8 |
+
+One-line check of the recorded hash: `python3 -c "import hashlib,sys; b=open(sys.argv[1],'rb').read(); print(hashlib.sha256(b.rstrip(b'\n')).hexdigest())" <file>`.
+
 ## Limitations
 
 - **Small panel.** Only 11 systems, and system-level statistics have n = 11. VeriBench 107/109's 2026 frontier systems stay sealed until 11-06-2026.
