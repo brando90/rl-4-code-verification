@@ -106,3 +106,37 @@ At this rate, B_1301's T5_30 verdict is about 2–3 days away.
 **Expected v4 resource pressure.** At about 2.5 GPU-hours per optimizer step, before the longer 12,288-token outputs, the 6 × 30-update v4 pilot needs on the order of 450–550 GPU-hours. On GPUs 0, 5 and 7 alone that is about a week, so skampere2 and skampere3 idle GPUs (through the v4 device guard) matter.
 
 **Monitoring.** A session cron runs every 3 hours, at :23 plus an offset. It checks v3, the v4 owner and the launch trigger.
+
+## 18:55 PDT: v3 still healthy; v4 CPU code done; launch blocker fixed by Amendment V4-A1; dispatch 2 running
+
+**v3-A7.** Completed updates at 18:48 PDT:
+
+| Trajectory | Completed updates |
+|---|---|
+| A_1301 | 12 |
+| A_1302 | 1 |
+| B_1301 | 17 |
+| B_1302 | 8 |
+| P_1301 | 17 |
+| P_1302 | 5 |
+
+- No `T5_*.json` or `result_30.json` exists yet.
+- The watchdog's last tick was OK at 18:40, with all six skipped because they are live.
+
+**v4 dispatch 1** finished at 15:57 PDT, pushed as `7aec74f7` and `57482ca2` ([checkpoint](../expt_v4/CKPT_v4_implementation.md)).
+
+- **Tests:** the v4 suite passes 89/89; the root suite passes 1,388, skips 15 and fails 0.
+- **Reducer:** the A6 reducer reproduces the protocol's design counts exactly.
+- **Context:** 20,041 tokens.
+- **Blocker:** the owner correctly refused launch. A raw top-20 receipt cannot determine the generator's support when logits tie at the 20th place or at the top-p boundary, because vLLM 0.10.0 keeps every tied token and sorts unstably. The engine's `processed_logprobs` mode is taken before temperature and filtering, so it does not help.
+
+**Amendment V4-A1** (`7877faac`), adopted by the master before any v4 data, fixes this:
+
+- the generator records top-64 raw log-probabilities, with a strict completeness certificate (v_64 < v_20) and a top-p tie and margin certificate;
+- uncertified positions count against V4-T1's 99% support allowance, which makes the gate harder to pass;
+- the trainer keeps whole tie groups;
+- nothing else changes.
+
+**v4 dispatch 2** runs in tmux `codex-rl4cv-e13v4-impl2` on skampere1 since 18:51 PDT ([prompt](../expt_v4/PROMPT_dispatch_e13_v4_runner_after_A1.md), `75fa35ee`; log `/lfs/skampere1/0/brando9/rl4cv_e13v4/impl2_codex.log`). It implements V4-A1, the end-to-end stage runner, the launch and watchdog plans, a new admission and a GPU-free dry run. CPU only.
+
+**GPUs.** The owner's census at 15:40 PDT found all 24 devices on skampere1–3 busy. skampere1 devices 0, 5 and 7 hold v3 workers, so v4 starts only when GPUs free up. Experiment 120's folder and processes could not be identified in either repository. The device guard's idle check at launch is binding regardless.
