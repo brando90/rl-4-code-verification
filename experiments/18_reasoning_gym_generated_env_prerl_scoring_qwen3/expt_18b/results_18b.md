@@ -8,7 +8,7 @@
 
 | date (PT) | cluster | job id | what | state | notes |
 |---|---|---|---|---|---|
-| | Sherlock | | smoke | not submitted | |
+| 2026-10-21 07:50 | Sherlock | 48809665 | smoke (H100, `gpu`) | pending | package sha256 59970656...6e5e uploaded to $SCRATCH/e18b/code; prepare_login OK; Slurm est. start 21:45 (backfill may be earlier). Forecast/protocol freeze commit f0cb64b9 (06:37) predates this job. |
 | | Sherlock | | pre-eval | not submitted | |
 | | Sherlock | | train array 0-31 | not submitted | |
 | | Sherlock | | post-eval array 0-31 (aftercorr) | not submitted | |
