@@ -71,6 +71,8 @@ def atomic(path,value):
 
 def tick(plan,*,dry_run=True,run=subprocess.run,admission_check=None):
     """Commands are bound by admission; repair commands must consume saved state, never resample."""
+    if plan.get('kind')=='stage-controller':
+        return tick_controller(plan,dry_run=dry_run,run=run,admission_check=admission_check)
     from admission import check_admission
     check=admission_check or check_admission
     admission=check(Path(plan['admission']),require_launch=not dry_run)
@@ -111,6 +113,45 @@ def tick(plan,*,dry_run=True,run=subprocess.run,admission_check=None):
                 report[key]={'action':'diagnose','error':str(error)}
         if not dry_run:atomic(work/'autoresume_status.json',report)
         return {'status':'DRY_RUN' if dry_run else 'CHECKED','trajectories':report}
+
+
+def tick_controller(plan, *, dry_run=True, run=subprocess.run, admission_check=None):
+    from admission import check_admission
+    from common import object_digest
+    from recovery import inspect
+    from stage_ledger import Ledger
+    check_admission_fn=admission_check or check_admission
+    admission=check_admission_fn(plan['admission'],require_launch=not dry_run)
+    if admission.get('watchdog_plan_sha256')!=object_digest(plan):raise ValueError('unbound watchdog plan')
+    root=Path(plan['work']);root.mkdir(parents=True,exist_ok=True)
+    with (root/'watchdog.lock').open('a') as lock:
+        try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        except BlockingIOError:return {'status':'SKIPPED_OVERLAP'}
+        if live(root,plan['session'],run):return {'status':'LIVE'}
+        ledger=Ledger(root,plan['admission'],synthetic=False)
+        from runner import STAGES
+        for stage in STAGES:
+            receipt=ledger.completed(stage)
+            if receipt and receipt['status']!='PASS':return {'status':'STOPPED','stage':stage,'result':receipt['status']}
+            if receipt and stage in ('T5_30','T5_60'):
+                action=receipt['result']['decision']['action']
+                if action not in ('EXTEND_ALL_SIX','EXTEND_ALL_ADMITTED'):return {'status':'DONE','decision':action}
+        recovery=inspect(root)
+        if recovery['action'].startswith('STOP'):return {'status':'DIAGNOSE','recovery':recovery}
+        if dry_run:return {'status':'DRY_RUN','recovery':recovery,'argv':plan['resume_argv']}
+        with (root/'controller.lock').open('a') as controller:
+            try:fcntl.flock(controller,fcntl.LOCK_EX|fcntl.LOCK_NB)
+            except BlockingIOError:return {'status':'LIVE_LOCK'}
+            if live(root,plan['session'],run):return {'status':'LIVE'}
+            check_admission_fn(plan['admission'],require_launch=True)
+            # Keep the watchdog lock, but release the controller fence before
+            # spawning: the new runner must be able to acquire that fence.
+            fcntl.flock(controller,fcntl.LOCK_UN)
+            result=run(plan['resume_argv'],capture_output=True,text=True,timeout=45)
+            record={'status':'DISPATCHED' if result.returncode==0 else 'FAILED',
+                    'returncode':result.returncode,'output':result.stdout[-500:],'recovery':recovery}
+            atomic(root/'autoresume_status.json',record)
+            return record
 
 
 if __name__=='__main__':

@@ -6,26 +6,35 @@ from common import digest, object_digest, write_new
 from context_contract import validate_lengths
 
 PROTOCOL_SHA256='fb741636844294fb76667c4d6928ddbef1c7e28fde0fd1093ae834876764e063'
-OBJECTIVE_BLOCKER=('Frozen top-20 raw log-probabilities cannot reconstruct vLLM 0.10.0 native support '
-                   'when more than 20 tokens tie at the kth logit, or certify that no omitted tie exists.')
+AMENDMENT='AMENDMENT_V4-A1_generator_support_receipt_10-20-2026.md'
+AMENDMENT_SHA256='81f22afc01ea662ca6a1f8ca7d96a2b63b68b0f8293c35d6d3aa6fe2f3703543'
+OBJECTIVE_BLOCKER=('V4-A1 leaves generator log pi undefined at uncertified positions, but the frozen '
+                   'NeMo loss uses exp(trainer_old_logp - generator_logp), capped at 2, in every active token loss. '
+                   'No rule specifies these corrections; replacing, masking or imputing them changes the objective.')
+IMPLEMENTATION_BLOCKER=('The measured generation/scoring/update/checkpoint adapter is not integrated; '
+                        'the complete stage controller is verified with stub engines only.')
 
 
 def source_files(root):
     root=Path(root)
-    return sorted([root/'PROTOCOL.md',*list((root/'phase2').glob('*.py')),
+    return sorted([root/'PROTOCOL.md',root/AMENDMENT,root/'phase2/launch_plan.json',root/'phase2/watchdog_plan.json',*list((root/'phase2').glob('*.py')),
                    *list((root/'tests').glob('*.py')),root/'phase2/A6_counts.json',root/'phase2/context_values.json'])
 
 
 def prepare(root,output,*,runtime_bindings=()):
     root=Path(root).resolve()
     if digest(root/'PROTOCOL.md')!=PROTOCOL_SHA256:raise ValueError('frozen protocol changed')
-    result={'tldr':'CPU evidence is bound; launch is blocked by the frozen top-20 reconstruction contract.',
+    if digest(root/AMENDMENT)!=AMENDMENT_SHA256:raise ValueError('frozen amendment changed')
+    launch=json.loads((root/'phase2/launch_plan.json').read_text())
+    watchdog=json.loads((root/'phase2/watchdog_plan.json').read_text())
+    result={'tldr':'V4-A1 certificates and ordered stub runner are bound; measured launch remains blocked.',
             'condition':'e13v4','status':'BLOCKED','api_spend_usd':0,
-            'protocol_sha256':PROTOCOL_SHA256,'root':str(root),
+            'protocol_sha256':PROTOCOL_SHA256,'amendment_sha256':AMENDMENT_SHA256,'root':str(root),
+            'launch_plan_sha256':object_digest(launch),'watchdog_plan_sha256':object_digest(watchdog),
             'bindings':[{'path':str(p.relative_to(root)),'sha256':digest(p)} for p in source_files(root)],
             'runtime_bindings':[{'path':str(p),'sha256':digest(p)} for p in runtime_bindings],
             'context':json.loads((root/'phase2/context_values.json').read_text()),
-            'blockers':[OBJECTIVE_BLOCKER],
+            'blockers':[OBJECTIVE_BLOCKER,IMPLEMENTATION_BLOCKER],
             'launch_measurements':'V4-T1, G0, T2, T3, T4 and B audits have not run; no gate was retried.',
             'gpu_allocations':0,'generations':0,'optimizer_steps':0}
     write_new(output,result)
@@ -45,13 +54,18 @@ def check_admission(path,*,require_launch=True):
     for binding in record['runtime_bindings']:
         if digest(binding['path'])!=binding['sha256']:raise ValueError('bound read-only runtime source changed')
     if digest(root/'PROTOCOL.md')!=PROTOCOL_SHA256:raise ValueError('protocol changed')
+    if record.get('amendment_sha256')!=AMENDMENT_SHA256 or digest(root/AMENDMENT)!=AMENDMENT_SHA256:
+        raise ValueError('amendment changed')
+    for name in ('launch','watchdog'):
+        if record.get(name+'_plan_sha256')!=object_digest(json.loads((root/f'phase2/{name}_plan.json').read_text())):
+            raise ValueError('plan changed')
     context=json.loads((root/'phase2/context_values.json').read_text())
     if context!=record['context']:raise ValueError('context values changed')
     for engine in ('generator','trainer'):
         validate_lengths(context['response_cap'],context['engines'][engine]['context'],context,engine)
     if require_launch:
-        # This is a source-level capability failure, not a flag that can be overridden in JSON.
-        raise ValueError('V4 launch BLOCKED: '+OBJECTIVE_BLOCKER)
+        # Unresolved scientific semantics cannot be overridden by editing admission status.
+        raise ValueError('V4 launch BLOCKED: '+OBJECTIVE_BLOCKER+' '+IMPLEMENTATION_BLOCKER)
     return record
 
 
@@ -86,7 +100,9 @@ if __name__=='__main__':
         venv=Path('/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl')
         paths=[venv/'.venv/lib/python3.12/site-packages/vllm/v1/sample/ops/topk_topp_sampler.py',
                venv/'.venv/lib/python3.12/site-packages/vllm/v1/sample/sampler.py',
-               venv/'nemo_rl/algorithms/loss_functions.py',venv/'nemo_rl/models/policy/dtensor_policy_worker.py']
+               venv/'nemo_rl/algorithms/loss_functions.py',venv/'nemo_rl/models/policy/dtensor_policy_worker.py',
+               Path('/lfs/skampere1/0/brando9/rl4cv_e13v4/launch_plan.json'),
+               Path('/lfs/skampere1/0/brando9/rl4cv_e13v4/watchdog_plan.json')]
         r=prepare(a.root,a.record,runtime_bindings=paths)
     else:r=check_admission(a.record,require_launch=a.action=='launch-check')
     print(json.dumps({'status':r['status'],'bindings':len(r['bindings']),'admission_sha256':digest(a.record),'blockers':r['blockers']}))

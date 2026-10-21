@@ -51,6 +51,10 @@ def admission_fixture(tmp_path):
     root=tmp_path/'v4';root.mkdir();(root/'phase2').mkdir();(root/'tests').mkdir()
     source=Path(__file__).resolve().parents[1]
     shutil.copyfile(source/'PROTOCOL.md',root/'PROTOCOL.md')
+    from admission import AMENDMENT
+    shutil.copyfile(source/AMENDMENT,root/AMENDMENT)
+    write_new(root/'phase2/launch_plan.json',{'fixture':'launch'})
+    write_new(root/'phase2/watchdog_plan.json',{'fixture':'watchdog'})
     (root/'phase2/x.py').write_text('# TLDR: Fixture.\n');(root/'tests/test_x.py').write_text('# TLDR: Fixture.\n')
     write_new(root/'phase2/A6_counts.json',{'count':64});write_new(root/'phase2/context_values.json',contexts())
     path=tmp_path/'admission.json';prepare(root,path);return root,path

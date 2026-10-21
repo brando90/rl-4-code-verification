@@ -1,4 +1,4 @@
-"""TLDR: Match vLLM 0.10.0 native filtering and reject underdetermined top-20 reconstruction."""
+"""TLDR: Certify V4-A1 top-64 receipts and freeze tie-inclusive trainer supports."""
 import torch
 
 TEMPERATURE = .6
@@ -10,7 +10,7 @@ class ReconstructionBlocked(ValueError):
     """The generator receipt cannot determine its exact filtered distribution."""
 
 
-def support(logits, *, temperature=TEMPERATURE, k=TOP_K, p=TOP_P):
+def native_support(logits, *, temperature=TEMPERATURE, k=TOP_K, p=TOP_P):
     """Mirror installed apply_top_k_top_p, including strict k cutoff and <= tail removal.
 
     Sorting is deliberately not made stable: the pinned native sampler uses
@@ -49,47 +49,66 @@ def filtered_logprobs(logits, old_support, tokens):
     return logp, discarded.clamp(0, 1)
 
 
-def reconstruct(token_ids, raw_logprobs, sampled_token, *, vocab_size,
-                complete_topk=False):
-    """Reconstruct a certified complete top-k list; ordinary top-20 receipts lack that certificate.
+def support(logits, *, temperature=TEMPERATURE, k=TOP_K, p=TOP_P):
+    """Trainer support includes the entire equal-logit group crossing the nucleus boundary."""
+    native = native_support(logits, temperature=temperature, k=k, p=p)
+    with torch.no_grad():
+        scaled = logits.detach().float() / temperature
+        boundary = scaled.masked_fill(~native, float('inf')).amin(-1, keepdim=True)
+        return scaled >= boundary
 
-    Raw v1 log-probabilities precede temperature. The omitted common log normalizer
-    cancels after dividing by .6. A kth tie or a top-p tie whose ordering matters
-    cannot be resolved by sorting a truncated list; refuse it. complete_topk must
-    come from generator-side full-logit evidence, never the trainer or a guess.
+
+def certificate(token_ids, raw_logprobs, sampled_token, *, vocab_size):
+    """Certify an actual top-64 list, excluding any extra sampled-token entry.
+
+    Complete tiny vocabularies use k=min(20,V). Both cumulative sums adjacent
+    to the removal boundary must be farther than 1e-5 from .05: otherwise a
+    float32 rounding change can move that boundary. Ties away from it are safe.
     """
     ids = torch.as_tensor(token_ids, dtype=torch.long)
     raw = torch.as_tensor(raw_logprobs, dtype=torch.float32)
-    if ids.ndim != 1 or raw.shape != ids.shape or len(ids) < min(TOP_K, vocab_size):
-        raise ReconstructionBlocked('incomplete top-20 receipt')
-    if len(set(ids.tolist())) != len(ids) or not ((ids >= 0) & (ids < vocab_size)).all():
-        raise ReconstructionBlocked('duplicate or invalid token IDs')
-    if not torch.isfinite(raw).all():
-        raise ReconstructionBlocked('nonfinite raw log-probability')
-    if vocab_size > len(ids) and not complete_topk:
-        raise ReconstructionBlocked('top-20 cannot certify absence of omitted kth-logit ties')
-    order = raw.argsort(descending=True)
-    values = raw[order]
-    if len(values) > TOP_K and values[TOP_K] == values[TOP_K-1]:
-        raise ReconstructionBlocked('tie-expanded top-k exceeds frozen top-20 contract')
-    if vocab_size > len(ids) and len(torch.unique(values)) != len(values):
-        raise ReconstructionBlocked('truncated receipt loses full-vocabulary top-p tie ordering')
-    # For a complete tiny vocabulary preserve original vocabulary indexing/order.
-    if len(ids) == vocab_size:
-        full = torch.empty(vocab_size, dtype=torch.float32)
-        full[ids] = raw
-        keep = support(full, k=min(TOP_K, vocab_size))
-        tokens = keep.nonzero().flatten()
-        lp = (full / TEMPERATURE).masked_fill(~keep, -float('inf')).log_softmax(-1)
-        if not keep[sampled_token]:
-            raise ReconstructionBlocked('sampled token outside reconstructed support')
-        return tokens.tolist(), float(lp[sampled_token])
-    keep = support(values, k=TOP_K)
-    selected = ids[order][keep]
-    if sampled_token not in selected.tolist():
-        raise ReconstructionBlocked('sampled token outside reconstructed support')
-    lp = (values[keep] / TEMPERATURE).log_softmax(-1)
-    return selected.tolist(), float(lp[(selected == sampled_token).nonzero()[0, 0]])
+    if (type(vocab_size) is not int or vocab_size < 1 or not 0 <= sampled_token < vocab_size or ids.ndim != 1 or raw.shape != ids.shape
+            or len(ids) != min(64, vocab_size) or len(set(ids.tolist())) != len(ids)
+            or not ((ids >= 0) & (ids < vocab_size)).all() or not torch.isfinite(raw).all()):
+        raise ReconstructionBlocked('invalid or incomplete top-64 receipt')
+    order = raw.argsort(descending=True); raw = raw[order]; ids = ids[order]
+    k = min(TOP_K, vocab_size)
+    complete = vocab_size <= 64 or bool(raw[63] < raw[k-1])
+    result = {'top_k_certified': complete, 'nucleus_certified': False,
+              'certified': False, 'support_size': None, 'generator_support': None,
+              'generator_logp': None, 'reason': 'v64_not_strictly_below_v20'}
+    if not complete:
+        return result
+    chosen = raw >= raw[k-1]
+    values, order = raw[chosen].sort(descending=False)
+    selected = ids[chosen][order]
+    scaled = values / TEMPERATURE
+    tail = scaled.softmax(-1).cumsum(-1)
+    threshold = 1 - torch.tensor(TOP_P, dtype=torch.float32)
+    removed = tail <= threshold; removed[-1] = False
+    nremoved = int(removed.sum())
+    split_tie = (0 < nremoved < len(values) and bool(values[nremoved-1] == values[nremoved]))
+    adjacent = tail[max(0, nremoved-1):min(len(tail), nremoved+1)]
+    near = bool(((adjacent - .05).abs() <= 1e-5).any())
+    result['reason'] = 'split_boundary_tie' if split_tie else 'boundary_margin' if near else None
+    if split_tie or near:
+        return result
+    kept = selected[~removed]
+    if sampled_token not in kept.tolist():
+        raise ReconstructionBlocked('sampled token outside certified generator support')
+    lp = scaled[~removed].log_softmax(-1)
+    result.update(nucleus_certified=True, certified=True, support_size=len(kept),
+                  generator_support=kept.tolist(),
+                  generator_logp=float(lp[(kept == sampled_token).nonzero()[0, 0]]))
+    return result
+
+
+def reconstruct(token_ids, raw_logprobs, sampled_token, *, vocab_size, complete_topk=False):
+    """Only a V4-A1 certificate admits reconstruction; caller assertions are not evidence."""
+    result = certificate(token_ids, raw_logprobs, sampled_token, vocab_size=vocab_size)
+    if not result['certified']:
+        raise ReconstructionBlocked(result['reason'])
+    return result['generator_support'], result['generator_logp']
 
 
 def freeze_old(logits, tokens):

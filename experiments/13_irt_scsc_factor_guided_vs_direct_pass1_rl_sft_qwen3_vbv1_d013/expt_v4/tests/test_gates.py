@@ -6,7 +6,7 @@ from gates import probability_agreement, select_t2_reward, advantages, t2, repla
 
 def positions(n=800):
     return [{'response':i//100,'position':i%100,'token':1,'generator_support':[1,2],
-             'trainer_support':[1,2],'generator_logp':-.7,'trainer_logp':-.7,'discarded_mass':.5} for i in range(n)]
+             'certified':True,'top_k_certified':True,'nucleus_certified':True,'trainer_support':[1,2],'generator_logp':-.7,'trainer_logp':-.7,'discarded_mass':.5} for i in range(n)]
 
 
 def test_t1_complete_counts_quantiles():

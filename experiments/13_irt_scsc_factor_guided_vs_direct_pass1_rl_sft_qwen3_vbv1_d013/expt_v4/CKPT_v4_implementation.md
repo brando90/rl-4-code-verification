@@ -1,34 +1,88 @@
-**TLDR:** CPU implementation and tests are complete; launch admission is BLOCKED because the frozen top-20 generator receipt cannot recover exact tie-expanded support.
+**TLDR:** Dispatch 2 implements V4-A1 certificates and an ordered CPU stub runner; measured launch is BLOCKED on unspecified importance correction and unfinished measured adapters.
 
 # Experiment 13 v4 implementation checkpoint
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/CKPT_v4_implementation.md>
 **Companion:** <https://docs.google.com/document/d/1KqUi39sz532dIGg8EYCy6w62Q0KzO2XWhpM2MMSWvHE/edit>
-**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-20-2026 15:57 PDT.
+**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-20-2026 19:17 PDT.
 
 ## State
 
-- Scope: `experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4`, CPU implementation and tests only.
-- Owner: Codex gpt-6-astra, requested high effort; skampere1, full filesystem access, approval policy never.
-- Status: CPU components complete; launch admission BLOCKED on the frozen generator-information contract.
-- Protocol: d4778e25, SHA-256 `fb741636844294fb76667c4d6928ddbef1c7e28fde0fd1093ae834876764e063`; unchanged.
-- Runtime: Torch 2.7.1+cu128, vLLM 0.10.0, NeMo RL 0.4.0; shared venv read-only, bytecode writes disabled.
-- Done: native support and blocker reproducer; actual installed NeMo loss wrapper, old-weight hook, once-only float32 temperature hook.
-- Done: all-split context computation, migrated validators, G0, T1–T4, placebo, T5, T and all-six extension.
-- Done: anonymous A6 reducer, device guard, watchdog/cron installer and admission/update binding.
-- Context: generator/trainer 20,041; maxima train 7,753 / validation 4,399 / test 4,996; model limit 32,768.
-- A6: 48 successes / 496 measured / 512 declared; 16 missing; 8/54 mixed strict and 49/54 varying B; no discrepancy.
-- V4 tests: 89 passed, 0 skipped, 0 failed in 26.14 seconds, using the pinned venv Python and installed NeMo source.
-- Repository tests: 1,388 passed, 15 skipped, 0 failed, 6 warnings in 361.96 seconds with historical dependencies restored read-only.
-- Admission: 29 protocol/code/test/evidence bindings plus four installed source bindings; CPU check passes, launch-check refuses.
-- Admission SHA-256: `a7b50b9813914085a974d27b678dce9e12ddb5e4d97fdb7d3e18e834dde35099`.
-- Blocker: raw top-20 cannot certify or reconstruct omitted kth-logit ties; no substitute objective.
-- Amendment proposal: expose actual filtered support/probabilities or tie-expanded top-k with order/completeness evidence.
-- Launch: no valid launch command under the frozen contract; actual worker/model integration and all measured gates remain pending.
-- GPU census 10-20-2026 15:40 PDT: all 24 devices occupied; skampere1 0/5/7 belong to v3 workers.
-- Experiment 120: canonical folder and process attribution unresolved; no unsupported attribution to another user's jobs.
-- No GPU allocation, model generation, optimizer step, provider call, cron install, tmux mutation or v2/v3 edits; $0.
-- Publication: implementation [7aec74f7](https://github.com/brando90/rl-4-code-verification/commit/7aec74f7934a1e33b6eb778cd9e06e70efa9dde4) rebased on 7bbe1f79 and pushed to main; remote hash verified. Companion section updated and read back.
+- Scope: `experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4`; Dispatch 2, CPU only.
+- Owner: Codex gpt-6-astra; requested high effort; skampere1; full filesystem access, approval policy never.
+- Status: **BLOCKED, not launch-ready**. Certificates and the full synthetic stage sequence pass; real backend is unfinished.
+- Frozen protocol d4778e25 and amendment V4-A1 7877faac are unchanged; their full hashes are in the new admission.
+- Done: top-64 constructor/request, strict top-k certificate, 1e-5 nucleus margin, trainer boundary tie inclusion, full/reduced receipts.
+- Done: ordered single-attempt stages, predecessor/admission hashes, placebo precomputation, all-six extension, bounded recovery.
+- Done: launch/watchdog plans at the requested work-directory paths, plus admission-bound repository mirrors.
+- Tests: v4 **117 passed, 0 skipped, 0 failed** in 31.35 s; root suite **1,405 passed, 15 skipped, 0 failed**, 6 warnings in 396.62 s.
+- Dry run: all 12 stage entries complete; six trajectories × 60 symbolic updates = 360; zero real optimizer steps.
+- Controls: order rejection; zero-response crash recovered on attempt 2; no-signal T2 stops without update/refit/resampling.
+- Admission: `phase2/admission_runner.json`; 44 local bindings and six external bindings (four runtime files, two plan mirrors).
+- Admission SHA-256: `58e1b31df8e87e0e797f4043a9e03a9a7e774cf6982b302914c59490ab10f433`.
+- CPU admission check passes; launch-check rejects the explicit scientific and implementation blockers below.
+- Scientific blocker: uncertified positions have no generator log probability, required by NeMo's separate capped actor correction.
+- Implementation gap: real scorer/trainer/checkpoint/replay/audit adapter and leased subprocess orchestration are not integrated.
+- Smallest prospective fix: record actual filtered sampled-token probability at every position, or explicitly amend the correction rule.
+- GPU census 10-20-2026 19:05 PDT: 20/24 devices occupied; skampere1 0/2/4/6 idle, only 0 eligible here; 5/7 remain v3-owned.
+- Experiment 120 attribution remains unresolved; no process was attributed without evidence.
+- No GPU allocation, model generation, optimizer step, provider call, cron installation, tmux session or v2/v3 edit; $0.
+- Next [p 10/10]: publish this verified blocked admission and checkpoint after rebase; preserve all dry-run receipts.
+- Master decision [p 8/10]: specify the missing actor-correction semantics prospectively; no launch go can substitute for that fix.
+- Publication: deterministic checks pass; companion updated/read back; rebase/push to main in progress.
+
+## Dispatch 2 evidence and exact continuation
+
+[Verification receipt](phase2/verification_dispatch2.json) records **117 passed / 0 skipped / 0 failed** for v4 and **1,405 passed / 15 skipped / 0 failed** for the root suite. Logs are `/lfs/skampere1/0/brando9/rl4cv_e13v4/v4_dispatch2_tests_final.log` and `root_dispatch2_tests.log`. The v4 suite uses the read-only NeMo venv plus separate `test_deps`; root uses the historical experiment-09 source override as documented in the preserved reproduction section. Six root warnings are existing deprecation/fork warnings. Initial development test failures were corrected; these are the final rerun counts. Counts are deterministic checks, not scientific estimates (confidence intervals/p-values not applicable).
+
+**Copy-ready message for the master:** I implemented V4-A1 certificates and verified the ordered CPU runner with 117 passing v4 tests, a passing root suite, and all six synthetic trajectories through extension; measured launch is blocked by unspecified importance corrections at uncertified positions, and the real scorer/trainer/checkpoint adapter remains unfinished.
+
+[Blocker report](BLOCKER_V4_A1_importance_correction.md) separates the scientific contract gap from the unfinished measured backend. The top-20 support-information blocker from Dispatch 1 is superseded by A1; it is not reused as the present reason to stop. The installed NeMo CPU loss test proves that generator probability affects the loss even with an unchanged trainer ratio. Unknown values are never filled from trainer values or masked silently. The master must own any change to the frozen objective.
+
+[Dry-run receipt](phase2/dry_run_dispatch2.json) binds every command and each stage receipt to the new admission. Full logs/receipts remain under `/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2` (20 MiB). All results there are synthetic: no gate, actual audit, maximum-length memory measurement, model generation or optimizer step occurred. The one-token fixture preserves the declared 1,024 G0 slots and 256 pilot slots. It freezes 30,720 placebo draws before P, fails the 30-update feasibility gate, extends all six trajectories, and reaches a resource-check decision at 60 without launching main. Completed-stage status PASS means the stage finished; the nested T5 scientific verdict is separately FAIL/PASS.
+
+```text
+T1 PASS -> G0_GENERATE PASS -> G0_SCORE PASS -> G0_SELECT PASS
+T2 PASS -> T3 PASS -> T4 PASS -> B_AUDITS PASS
+PILOT30 PASS -> T5_30 EXTEND_ALL_SIX -> PILOT60 PASS -> T5_60 MAIN_RESOURCE_CHECK
+Out-of-order G0_GENERATE: rejected (exit 1)
+Injected pre-generation T1 crash: exit 1; explicit recovery: PASS on attempt 2
+No-signal sequence: T2 STOP_NO_SIGNAL; T3 rejected (exit 1); no T2 update/refit exists
+```
+
+To reproduce on a **new** output directory (receipts are deliberately exclusive):
+
+```bash
+cd /lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification
+export CUDA_VISIBLE_DEVICES='' HF_HUB_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1
+V4_PY=/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python
+V4_ROOT=$PWD/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4
+"$V4_PY" "$V4_ROOT/phase2/dry_run.py" --root /lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2_reproduction --admission "$V4_ROOT/phase2/admission_runner.json"
+"$V4_PY" "$V4_ROOT/phase2/admission.py" check --record "$V4_ROOT/phase2/admission_runner.json"
+```
+
+The following are the exact prepared **master commands**, not presently executable launch authorization. The installer with `--install` and every measured stage are rejected by the new admission. After a prospective fix and a completed measured adapter, regenerate/rebind the plans and admission; do not flip their status fields. Refresh the GPU census and verify v3's release condition at actual launch.
+
+```bash
+# Install watchdog: NOT RUN; blocked by admission now.
+"$V4_PY" "$V4_ROOT/phase2/install_watchdog.py" --python "$V4_PY" --plan /lfs/skampere1/0/brando9/rl4cv_e13v4/watchdog_plan.json --log /lfs/skampere1/0/brando9/rl4cv_e13v4/watchdog.log --admission "$V4_ROOT/phase2/admission_runner.json" --install
+# First measured stage: NOT RUN; blocked by admission now.
+"$V4_PY" "$V4_ROOT/phase2/runner.py" T1 --work /lfs/skampere1/0/brando9/rl4cv_e13v4/run --admission "$V4_ROOT/phase2/admission_runner.json" --engine local
+# Planned tmux controller, prefix rl4cv-e13v4-: NOT RUN; checks admission and v3 release.
+"$V4_PY" "$V4_ROOT/phase2/launch_control.py" --plan /lfs/skampere1/0/brando9/rl4cv_e13v4/launch_plan.json
+# Read-only progress for measured work (currently all pending):
+"$V4_PY" "$V4_ROOT/phase2/runner.py" progress --work /lfs/skampere1/0/brando9/rl4cv_e13v4/run --admission "$V4_ROOT/phase2/admission_runner.json" --engine local
+# Inspect recovery without executing it:
+"$V4_PY" "$V4_ROOT/phase2/recovery.py" --work /lfs/skampere1/0/brando9/rl4cv_e13v4/run
+```
+
+[Launch plan](phase2/launch_plan.json) includes concrete argument vectors for every stage and the leased-device interface. [Watchdog plan](phase2/watchdog_plan.json) points to the v4-only controller; no cron or session was created. Plans describe the blocked implementation honestly. `device_lease.allocation` and its idle/ownership guard are tested with mock devices, but the measured stage adapter is still required to invoke them.
+
+The fresh [GPU census](phase2/gpu_inventory_dispatch2.json) records skampere1 devices 5/7 as Brando-owned PIDs 1486934/1125764, with working directories and ancestry identifying v3. Skampere2/3 have no idle devices. It establishes no process-to-experiment-120 attribution. Availability is a dated observation, not a reservation.
+
+## Historical Dispatch 1 record (superseded)
+
+The sections below are preserved history, including the old top-20 blocker and old admission digest. Use the Dispatch 2 state and commands above for current status.
 
 ## Implemented contracts and decisive checks
 
@@ -106,3 +160,9 @@ I have the experiment 13 v4 CPU implementation passing 89 tests, with the histor
 - 10-20-2026 15:56 PDT: Final v4 suite 89/89 passes; configured root suite 1,388 passes/15 skips/0 failures. Bound 29 local artifacts plus four runtime sources, preserving the code-level launch blocker. Corrected once-only worker temperature scaling and verified synthetic probe targets do not mutate saved embedding indices. No launch or cron installation.
 
 - 10-20-2026 15:57 PDT: Inspected exact staged changes, credential-pattern scan and whitespace check; all 32 authored files are confined to v4 and begin with TLDR. Rebased on origin/main 7bbe1f79, pushed 7aec74f7, and verified the remote hash. Admission recheck unchanged; Google companion update verified by readback. This documentation-only receipt closes publication.
+
+- 10-20-2026 19:11 PDT: Dispatch 2 certificates and 115-test CPU suite pass; all 12 stub stages and 360 symbolic updates verified, including crash recovery and no-resampling stop. New admission explicitly blocks unresolved importance correction and unfinished measured adapter; root verification/publication pending.
+
+- 10-20-2026 19:13 PDT: Final v4 suite 115 passed/0 skipped/0 failed; root make test 1,405 passed/15 skipped/0 failed. CPU admission verifies; measured progress is all PENDING; launch-check deliberately rejects. Dry-run summary and log hashes committed with the blocked implementation.
+
+- 10-20-2026 19:17 PDT: Final diff fixes watchdog spawn/fence race and binds T1 denominator to saved response lengths; 117 v4 tests pass. Regenerated admission `58e1b31df8e87e0e797f4043a9e03a9a7e774cf6982b302914c59490ab10f433` and all command-line dry-run receipts; root tested code is unchanged.

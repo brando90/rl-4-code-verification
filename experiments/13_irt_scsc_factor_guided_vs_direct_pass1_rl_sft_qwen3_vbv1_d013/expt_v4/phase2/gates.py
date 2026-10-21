@@ -14,28 +14,42 @@ def probability_agreement(positions, *, expected_positions, expected_responses=8
         idx = sorted(p['position'] for p in positions if p['response'] == response)
         if idx != list(range(len(idx))):
             raise ValueError('missing response position')
-    error, discarded, outside, identical, truncated = [], [], 0, 0, 0
+    error, discarded, outside, identical, truncated, uncertified = [], [], 0, 0, 0, 0
     for p in positions:
-        gen, trainer = set(p['generator_support']), set(p['trainer_support'])
-        if not gen or not trainer or p['token'] not in gen:
-            raise ValueError('invalid generator support')
-        values = (p['generator_logp'], p['trainer_logp'], p['discarded_mass'])
-        if not all(math.isfinite(v) for v in values) or not 0 <= values[2] <= 1:
-            raise ValueError('nonfinite probability evidence')
-        error.append(abs(values[0]-values[1])); discarded.append(values[2])
+        trainer = set(p['trainer_support'])
+        if not trainer or not math.isfinite(p['trainer_logp']) or not math.isfinite(p['discarded_mass']) or not 0 <= p['discarded_mass'] <= 1:
+            raise ValueError('invalid trainer probability evidence')
         outside += p['token'] not in trainer
+        discarded.append(p['discarded_mass'])
+        if not p['certified']:
+            uncertified += 1
+            continue
+        if not p['top_k_certified'] or not p['nucleus_certified']:
+            raise ValueError('inconsistent certificate')
+        gen = set(p['generator_support'])
+        if not gen or p['token'] not in gen or not math.isfinite(p['generator_logp']):
+            raise ValueError('invalid certified generator support')
+        error.append(abs(p['generator_logp']-p['trainer_logp']))
         identical += gen == trainer
-        truncated += values[1]-values[0] > math.log(2)
+        truncated += p['trainer_logp']-p['generator_logp'] > math.log(2)
     n = len(positions)
     result = {'gate': 'V4-T1', 'positions': n, 'responses': expected_responses,
+              'certified_positions': n-uncertified, 'uncertified_positions': uncertified,
+              'certified_fraction': (n-uncertified)/n,
               'outside_support': outside, 'identical_support_fraction': identical/n,
-              'median_absolute_error': float(np.quantile(error, .5)),
-              'p99_absolute_error': float(np.quantile(error, .99)),
-              'importance_truncated_fraction': truncated/n,
+              'median_absolute_error': float(np.quantile(error, .5)) if error else None,
+              'p99_absolute_error': float(np.quantile(error, .99)) if error else None,
+              'importance_truncated_known': truncated,
+              'importance_truncated_fraction_lower': truncated/n,
+              'importance_truncated_fraction_upper': (truncated+uncertified)/n,
+              'importance_truncated_fraction': truncated/n if not uncertified else None,
               'median_discarded_mass': float(np.quantile(discarded, .5)),
               'p99_discarded_mass': float(np.quantile(discarded, .99))}
-    result['status'] = 'PASS' if (outside == 0 and identical/n >= .99 and
-        result['median_absolute_error'] <= .01 and result['p99_absolute_error'] <= .10 and truncated/n <= .01) else 'FAIL'
+    # Unknown importance corrections are bounded, never invented. Admission
+    # separately blocks measured execution until their training semantics exist.
+    result['status'] = 'PASS' if (outside == 0 and identical/n >= .99 and error and
+        result['median_absolute_error'] <= .01 and result['p99_absolute_error'] <= .10 and
+        (truncated+uncertified)/n <= .01) else 'FAIL'
     return result
 
 

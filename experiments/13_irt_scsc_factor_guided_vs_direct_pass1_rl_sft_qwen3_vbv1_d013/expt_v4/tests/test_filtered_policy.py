@@ -3,7 +3,7 @@ import ast
 from pathlib import Path
 import pytest
 import torch
-from filtered_policy import support, filtered_logprobs, reconstruct, ReconstructionBlocked
+from filtered_policy import native_support, support, filtered_logprobs, reconstruct, ReconstructionBlocked
 
 SAMPLER=Path('/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/lib/python3.12/site-packages/vllm/v1/sample/ops/topk_topp_sampler.py')
 
@@ -23,7 +23,7 @@ def installed_filter():
 def test_exact_installed_native_support(logits):
     original=logits.reshape(-1,logits.shape[-1]).float()
     expected=installed_filter()(original/.6,torch.full((original.shape[0],),20),torch.full((original.shape[0],),.95))
-    assert torch.equal(support(original),torch.isfinite(expected))
+    assert torch.equal(native_support(original),torch.isfinite(expected))
 
 
 def test_boundary_token_retained():
@@ -53,13 +53,13 @@ def test_omitted_ties_change_distribution_and_cannot_be_reconstructed():
     full=torch.zeros(40); keep=support(full)
     ids=torch.topk(full,20).indices;raw=full.log_softmax(-1)[ids]
     assert keep.sum()>20
-    with pytest.raises(ReconstructionBlocked,match='cannot certify'):
+    with pytest.raises(ReconstructionBlocked,match='incomplete top-64'):
         reconstruct(ids,raw,int(ids[0]),vocab_size=40)
 
 
 def test_certified_no_tie_reconstruction():
     full=torch.arange(40).float()/10
-    values,ids=torch.topk(full.log_softmax(-1),20)
+    values,ids=torch.topk(full.log_softmax(-1),40)
     tokens,lp=reconstruct(ids,values,39,vocab_size=40,complete_topk=True)
     expected,_=filtered_logprobs(full,support(full),torch.tensor(39))
     assert set(tokens)==set(support(full).nonzero().flatten().tolist())
@@ -132,18 +132,19 @@ def test_old_weight_hook_captures_actual_model_and_is_removed():
     assert not worker.model._forward_hooks and not frozen['prev_logprobs'].requires_grad
 
 
-def test_generation_contract_requests_raw_top20_without_call():
+def test_generation_contract_requests_raw_top64_without_call():
     from generation_contract import sampling_kwargs,extract_raw
     from types import SimpleNamespace
     kw=sampling_kwargs(1301,[151643,151645])
-    assert (kw['temperature'],kw['top_p'],kw['top_k'],kw['max_tokens'],kw['logprobs'])==(.6,.95,20,12288,20)
-    out=SimpleNamespace(token_ids=[0],logprobs=[{i:SimpleNamespace(logprob=-3.) for i in range(20)}])
-    rows=extract_raw(out);assert rows[0]['complete_topk_certified'] is False
+    assert (kw['temperature'],kw['top_p'],kw['top_k'],kw['max_tokens'],kw['logprobs'])==(.6,.95,20,12288,64)
+    out=SimpleNamespace(token_ids=[0],logprobs=[{i:SimpleNamespace(logprob=-3.) for i in range(64)}])
+    rows=extract_raw(out,vocab_size=100);assert rows[0]['top_k_certified'] is False
 
 
 def test_exact_top_p_tail_boundary_is_removed():
     logits=torch.zeros(4)
-    assert support(logits,k=4,p=.5).tolist()==[False,False,True,True]
+    assert native_support(logits,k=4,p=.5).tolist()==[False,False,True,True]
+    assert support(logits,k=4,p=.5).all()
 
 
 def test_temperature_hook_prevents_float16_rounding_and_double_scaling():
