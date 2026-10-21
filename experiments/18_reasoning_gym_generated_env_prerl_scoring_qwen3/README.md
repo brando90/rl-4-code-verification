@@ -28,6 +28,11 @@
 | `expt_v1/SUBMIT.md` | step-by-step submit instructions |
 | `expt_v1/cc.md` | the prompt for the agent that runs it |
 | `tests/test_e18a_reasoning_gym.py` | CPU tests: generators, verifiers, metric code, fake-model end-to-end and smoke chain |
+| `expt_v2_wide/PROTOCOL_v2.md` | 18a v2 (wide), frozen: every Reasoning Gym family that passed a CPU probe (75 families, 243 environments) on Qwen3-0.6B/1.7B; Q1 does the 8-family picture hold, Q2 0.6B→1.7B rank transfer |
+| `expt_v2_wide/families_v2.json`, `probe_v2.jsonl` | frozen family list and every probe row with its timings and the reason a level is out (`probe_families.py`) |
+| `expt_v2_wide/` (code, `slurm/`, `SUBMIT.md`, `cc.md`) | v1's pipeline driven by the family file; FarmShare gen 0-9%2 + embed 0-1 (12 QOS gpu slots), Sherlock fallback |
+| `results_v2.md` | live: v2 Slurm job ids, then the v2 results |
+| `tests/test_e18a_v2_wide.py` | v2 CPU tests: family file and probe rules, every environment's generator and verifier, analyses, fake end-to-end and smoke chain |
 
 ## Method (short)
 
