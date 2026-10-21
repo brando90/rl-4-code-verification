@@ -28,7 +28,7 @@ from rl4cv.veribench.jobs import materialize_jobs, read_scorer_per_task, scored_
 from rl4cv.veribench.pack import load_pack  # noqa: E402
 
 # Frozen v12 rollout sampler and the frozen recipe (PROTOCOL section 4).
-TEMPERATURE, TOP_P, TOP_K, MAX_NEW_TOKENS, MAX_MODEL_LEN = 0.6, 0.95, 20, 12288, 16384
+TEMPERATURE, TOP_P, TOP_K, MAX_NEW_TOKENS, MAX_MODEL_LEN = 0.6, 0.95, 20, 12288, 20480
 STOP_TOKEN = "<|im_end|>"
 LR, BETAS, WEIGHT_DECAY, GRAD_CLIP = 1e-6, (0.9, 0.999), 0.0, 1.0
 GROUPS_PER_UPDATE, UPDATES = 16, 48

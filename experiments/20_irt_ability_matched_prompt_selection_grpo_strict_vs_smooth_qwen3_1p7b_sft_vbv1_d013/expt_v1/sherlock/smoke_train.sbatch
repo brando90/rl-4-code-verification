@@ -13,6 +13,7 @@
 # updates of arm A (seed 1) with the log-probability mismatch check (gate: <= 1% of completion tokens with |delta| > 0.05
 # on the recomputed sampling support). Writes <run>/smoke_logprob_check.json and runtime_versions.json.
 set -uo pipefail
+export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:?Slurm must assign the smoke GPU}"
 E20=$SCRATCH/rl4cv_sherlock/e20; B=$SCRATCH/rl4cv_sherlock/v4_validation; G=$SCRATCH/rl4cv_sherlock/grading
 SIF=$SCRATCH/rl4cv_sherlock/containers/vllm-openai_v0.30.0.sif
 VENV=$E20/venv_trl; RUNS=$E20/smoke_train
@@ -24,8 +25,10 @@ CL=/usr/local/cuda/compat:/usr/local/nvidia/lib64:/usr/local/cuda/lib64:/.singul
 ENV="PYTHONPATH=$E20/code:$G/rl4cv/src,VERIBENCH_ROOT=$B/rl4cv_gen/external/veribench,RL4CV_SRC=$G/rl4cv/src,E20_ROOT=$E20,E20_GRADING=$G,HF_HUB_OFFLINE=1,TOKENIZERS_PARALLELISM=false,OMP_NUM_THREADS=8,VLLM_WORKER_MULTIPROC_METHOD=spawn,FLASHINFER_WORKSPACE_BASE=$B/cache/flashinfer,XDG_CACHE_HOME=$B/cache,VLLM_CACHE_ROOT=$B/cache/vllm,TRITON_CACHE_DIR=$B/cache/triton,HF_HOME=$B/cache/hf,LD_LIBRARY_PATH=$CL,PATH=$VENV/bin:$G/bin:/usr/local/bin:/usr/bin:/bin"
 # 1. venv overlay with TRL (system site packages = the image's torch/vllm/transformers); pinned.
 if [ ! -x $VENV/bin/python ]; then
-  apptainer exec -B /scratch $SIF python3 -m venv --system-site-packages $VENV
-  apptainer exec -B /scratch --env PATH=$VENV/bin:/usr/local/bin:/usr/bin:/bin $SIF python -m pip install --no-cache-dir "trl==1.16.0" 2>&1 | tail -3
+  apptainer exec -B /scratch $SIF python3 -m venv --system-site-packages $VENV || exit $?
+fi
+if ! apptainer exec -B /scratch --env PATH=$VENV/bin:/usr/local/bin:/usr/bin:/bin $SIF python -c 'from importlib.metadata import version; assert version("trl") == "1.16.0" and version("scipy") == "1.18.1"'; then
+  apptainer exec -B /scratch --env PATH=$VENV/bin:/usr/local/bin:/usr/bin:/bin $SIF python -m pip install --no-cache-dir "trl==1.16.0" "scipy==1.18.1" 2>&1 | tail -3 || exit $?
 fi
 apptainer exec --nv -B /scratch,/home/groups --env $ENV $SIF python - <<'PY' | tee $RUNS/runtime_versions.json
 import json, torch, transformers, vllm, trl, accelerate, sys

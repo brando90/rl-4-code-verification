@@ -5,6 +5,7 @@
 # Copied from $SCRATCH/rl4cv_sherlock/v4_validation/rl4cv_gen/gen.sh (10-19-2026) with the pack, model and output
 # parameterized; the sampler flags are byte-for-byte the same. usage: gen_e20.sh <task_ids_file> <out_dir>
 set -euo pipefail
+export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:?Slurm must assign the generation GPU}"
 IDS=$1; OUT=$2
 B=$SCRATCH/rl4cv_sherlock/v4_validation; G=$B/rl4cv_gen; E20=$SCRATCH/rl4cv_sherlock/e20
 SIF=$SCRATCH/rl4cv_sherlock/containers/vllm-openai_v0.30.0.sif

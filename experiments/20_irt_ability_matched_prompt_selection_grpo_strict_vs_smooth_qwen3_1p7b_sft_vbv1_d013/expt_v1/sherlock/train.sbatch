@@ -14,6 +14,7 @@
 # exists (the pilot's 16-update runs continue as the first third of their main runs). One L40S or H100, 16 CPUs for the
 # parallel Lean scorers.
 set -uo pipefail
+export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:?Slurm must assign the training GPU}"
 E20=$SCRATCH/rl4cv_sherlock/e20; B=$SCRATCH/rl4cv_sherlock/v4_validation; G=$SCRATCH/rl4cv_sherlock/grading
 SIF=$SCRATCH/rl4cv_sherlock/containers/vllm-openai_v0.30.0.sif; VENV=$E20/venv_trl
 MODEL=$SCRATCH/rl4cv_sherlock/expt_v4/runs/20260831/hf

@@ -1,0 +1,22 @@
+{
+  "verdict": "STOPPED at trainer log-probability mismatch gate",
+  "observed_updates": 1,
+  "requested_updates": 2,
+  "gate_share": 0.01,
+  "gate_abs_delta": 0.05,
+  "gate_source": "expt_v1/cc.md section 6.5; implementation train_e20.py main() takes maximum over updates",
+  "tokens": 842189,
+  "above_tolerance": 21721,
+  "outside_support": 167,
+  "failing_tokens": 21888,
+  "failure_share": 0.02598941567747857,
+  "pass": false,
+  "complete_two_update_smoke": false,
+  "slurm_job_id": "48857034",
+  "arm": "A",
+  "seed": 0,
+  "remote_root": "/scratch/users/brando9/rl4cv_sherlock/e20/train/runs/A_s0",
+  "captured_archive_sha256": "377229a21bf253e593716ac33d5683f772ba91300f806b69b184eca51d4b856a",
+  "inference": "Exact observed token census, not an independent-token inferential test; confidence interval and p-value n/a. No inference about IRT benefit.",
+  "backend_deviation": "Custom optimizer loop using TRL VLLMGeneration, not runbook-required GRPOTrainer or prescribed NeMo fallback."
+}

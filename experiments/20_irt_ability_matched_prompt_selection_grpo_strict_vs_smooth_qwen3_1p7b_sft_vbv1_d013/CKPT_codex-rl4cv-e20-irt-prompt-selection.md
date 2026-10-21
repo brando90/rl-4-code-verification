@@ -5,25 +5,25 @@
 **TLDR:** Single-writer continuation of `20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013` under the unchanged runbook. Deployment `deploy_50715cf54e614ecf914f0f7da4aae03c`, Codex gpt-6-astra ultra, personal ~/.codex, skampere1.
 
 Created: 10-21-2026 13:44 PDT
-Last updated: 10-21-2026 13:55 PDT
+Last updated: 10-21-2026 14:09 PDT
 
 ## Goal
-- Test whether IRT prompt selection improves held-out validation strict pass@1 at equal rollouts, within the runbook gates and 200 GPU-h/$0 API caps.
+- Finish the failed-gate closure of 20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013; no new phases.
 ## What ran
-- Adopted pushed branch `e20-irt-prompt-selection` at `e39d620abf44e4538f62f49f95027eb1da82ecf4`; clean tree; policy `217b6ee6775455ad3becb8e7971244d6ffce31ce` refreshed. Runbook and both predecessor checkpoints read in full.
-- Runtime verified: Codex process 3183137, gpt-6-astra/ultra, `--dangerously-bypass-approvals-and-sandbox`; named tmux and `watch-e20` present; predecessor tmux absent. Sherlock runner online; remote brando9 on sh03-01n70.
-- Live-state discrepancy: original smoke 48845232 FAILED (56 s); newer smoke 48857034 RUNNING (submission origin/logs being traced). All four Phase 0a tasks 48841018_[0-3] RUNNING. No duplicate launch.
+- Adopted Phase 0a 48841018_[0-3] and smoke 48857034; two earlier smoke failures 48845232/48855196. Sole repository writer Codex gpt-6-astra/ultra, full access; predecessor fenced.
+- Takeover commit eaa6ef96 pushed; operational corrections and observed gate evidence verified locally.
 ## Results
-- Calibration 1,792/4,312 generation rows at 13:54 PDT, scores pending. Smoke reached first-update CPU scoring; 0% H100 compute / 5,393 MiB during the observed scoring interval.
-- No scientific outcome yet. Slurm allocation at 13:43 PDT: Phase 0 = 2.8033 GPU-h / 10; smoke = 0.2117 GPU-h at 13:46 PDT / pilot cap 15 (running allocation, both prior failures included). Main/evaluation 0; API $0.
+- Smoke update 1: 21,888/842,189 = 2.59894% mismatch >1% gate; 8/128 strict, 3/16 active groups. Gate cannot recover because existing smoke code uses max across updates.
+- Calibration 2,432/4,312 saved, unscored; allocated Phase 0 4.4356 GPU-h/10, smoke 0.5736/15 as of live receipt. API $0. IRT treatment effect not measured.
+- make test: 1,415 passed, 17 skipped, 6 subtests; 3 warnings. Google experiment log updated and read back.
 ## Stuck / blocked
-- Nothing terminal; full verification PASS (1,391 passed, 41 skipped, 6 subtests); runtime source captured and hashed; submission session unresolved (before takeover). Local verification found a missing external scorer and a legacy test expecting ultimate-utils six parents above; verified in an isolated worktree at the compatible depth, without edits to other experiments.
+- STOPPED at trainer log-probability gate. Existing adopted jobs must finish naturally under the no-cancellation instruction. No new scoring, IRT fit, pilot/main/evaluation or retry.
 ## Next steps
-- [p 10/10] Publish the verified takeover receipt, then monitor owned jobs at least 60 s apart. Exact: `sherlockctl exec 'tail -100 $SCRATCH/rl4cv_sherlock/e20/phase0/logs/e20_smoke_train_48857034.log'`.
-- [p 9/10] On completed calibration: materialize, CPU score and partial-credit arrays, fetch committed per-cell table, then `/lfs/skampere1/0/brando9/venvs/rl4cv_e20/bin/python experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/analyze_phase0b_e20.py --workers 8 --two-skill` (CUDA_VISIBLE_DEVICES empty locally).
-- Verification worktree: `/lfs/skampere1/0/brando9/.worktrees/rl4cv-e20-checks`, owned by this worker; same source revision, external pins restored, matches legacy relative-mail-dependency path. Remove after final verification.
+- [p 10/10] Monitor `/tmp/e20_live_monitor.log` and `/tmp/e20_live_monitor/latest.json`; owned local monitor `/tmp/e20_monitor.py` polls every 300 s, exits when adopted jobs terminal. Do not duplicate monitor or Slurm polls.
+- [p 10/10] On terminal state fetch final raw-generation manifest and smoke receipts; record actual allocation, final docs/plots, PR into main (do not merge), Google final bullet, E20_FINISHED.txt with result commit, and RUN DONE mails.
+- Verification worktree `/lfs/skampere1/0/brando9/.worktrees/rl4cv-e20-checks` holds copied operational fixes; preserve/compare before cleanup. Remove after final verification.
 ## Brando to-do
-- None.
+- None for this closure. A future backend-repair experiment requires a new prospective run; do not weaken this failed gate.
 
 ## Log
 - 10-21-2026 13:44 PDT -- Codex takeover verified against live Git, processes and Sherlock; adopted calibration; newer smoke differs from handoff and is under investigation. Native helper `/root/locate_experiment_log` (gpt-5.6-terra/medium) is locating the requested Google experiment log; root remains sole repository writer.
@@ -31,3 +31,5 @@ Last updated: 10-21-2026 13:55 PDT
 - 10-21-2026 13:53 PDT -- Restored both frozen external dependencies (scorer 59059a2, prompt/judge code c11b99b) for deterministic tests; no other experiment edits. First full check stopped after exposing three environment/path failures (1,226 passed, 40 skipped); corrected-layout full check launched with CPU-only/thread-limited settings. Smoke START email accepted via uutils SMTP; inbox confirmed Phase 0a START already existed.
 - 10-21-2026 13:55 PDT -- Calibration reached 1,792/4,312 saved rows; no scored outcome yet. Corrected smoke accounting to include previously unrecorded job 48855196: 0.2117 GPU-h through 13:46 PDT.
 - 10-21-2026 13:55 PDT -- Full make test PASS in the verified compatible-layout worktree: 1,391 passed, 41 skipped, 6 subtests. Runtime source/launcher syntax checks and git diff --check passed. Takeover records ready to commit/push.
+- 10-21-2026 14:05 PDT -- Adopted smoke update 1 violates the frozen log-probability gate: (21,721 out-of-tolerance + 167 outside-support) / 842,189 tokens = 2.59894%, above 1%. The implementation takes the maximum over smoke updates, so the gate cannot recover on update 2. No pilot/main/evaluation admission. Calibration is 2,304/4,312 generated rows; existing jobs are being reconciled at the stop boundary.
+- 10-21-2026 14:09 PDT -- Gate evidence and 128 smoke rollout records preserved; full verification PASS (1,415 passed, 17 skipped, 6 subtests). Google experiment log readback verified. Adopted jobs drain naturally; local 300-second monitor active.

@@ -13,7 +13,20 @@
 E20=$SCRATCH/rl4cv_sherlock/e20
 c=$(( SLURM_ARRAY_TASK_ID / 8 )); k=$(( SLURM_ARRAY_TASK_ID % 8 )); n=e20_p0_c${c}_s${k}
 o=$E20/phase0/scores/$n
-if [ -f $o/scsc_${n}_${n}.json ]; then echo "$n done-before"; exit 0; fi
-rm -rf $o
-t0=$(date +%s); bash $E20/code/score_e20.sh $E20/phase0/jobs/$n $E20/phase0/train_pack $o; rc=$?
+expected=$o/scsc_${n}_${n}.json; receipt=$o/completion_receipt.txt
+if [ -f "$expected" ] && [ -f "$receipt" ]; then echo "$n done-before"; exit 0; fi
+if [ -e "$o" ]; then
+  attempt=$E20/phase0/scores/attempts/$n/$(date -u +%Y%m%dT%H%M%SZ)_${SLURM_JOB_ID:-manual}_${SLURM_ARRAY_TASK_ID:-na}
+  mkdir -p "$(dirname "$attempt")"
+  mv "$o" "$attempt"
+  echo "$n preserved-prior-attempt=$attempt"
+fi
+t0=$(date +%s); bash "$E20/code/score_e20.sh" "$E20/phase0/jobs/$n" "$E20/phase0/train_pack" "$o"; rc=$?
+if [ "$rc" -eq 0 ] && [ ! -f "$expected" ]; then
+  echo "$n scorer returned 0 without expected output $expected" >&2
+  rc=1
+fi
+if [ "$rc" -eq 0 ]; then
+  printf 'completed_at=%s\njob=%s\narray_task=%s\nexpected_output=%s\n' "$(date -u +%FT%TZ)" "${SLURM_JOB_ID:-manual}" "${SLURM_ARRAY_TASK_ID:-na}" "$expected" > "$receipt"
+fi
 echo "$n rc=$rc $(( $(date +%s)-t0 ))s host=$(hostname -s)"; exit $rc

@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/README.md>
 
-**TLDR:** This is Azalia's test with IRT as the decomposition: does an item response theory (IRT) decision about which prompts GRPO trains on raise held-out validation strict pass@1 at an equal rollout cost? The comparisons are uniform sampling, a scalar pass-rate filter and DAPO-style dynamic sampling, crossed with strict versus smooth reward. Status: **RUNNING (10-21-2026).** Phase 0a calibration generation is running on Sherlock (array 48841018); the original trainer smoke failed on a missing dependency and replacement 48857034 is running; [PROTOCOL.md](PROTOCOL.md) is a frozen draft (hypotheses, gates and statistics fixed before any Phase 0 outcome; lock after the pilot). Live numbers: [results.md](results.md).
+**TLDR:** This is Azalia's test with IRT as the decomposition: does an item response theory (IRT) decision about which prompts GRPO trains on raise held-out validation strict pass@1 at an equal rollout cost? The comparisons are uniform sampling, a scalar pass-rate filter and DAPO-style dynamic sampling, crossed with strict versus smooth reward. Status: **STOPPED at the trainer log-probability gate (10-21-2026).** Smoke update 1 failed with 21,888/842,189 = 2.59894% mismatched tokens (≤1% required); IRT benefit remains unmeasured. Adopted jobs are finishing naturally, with no further phase launched. [Live evidence and costs](results.md); [resumable checkpoint](CKPT_codex-rl4cv-e20-irt-prompt-selection.md).
 
 | Field | Value |
 |---|---|
@@ -67,16 +67,7 @@ Unit tests: `tests/test_e20_samplers.py`, `tests/test_e20_loss.py`, `tests/test_
 
 ## Status
 
-| Step | Status | Notes |
-|------|--------|-------|
-| Setup, branch, checkpoints, protocol draft | Done (10-21-2026) | branch `e20-irt-prompt-selection`; PROTOCOL.md frozen draft |
-| Phase 0a generation (539 × 8) | In Progress | Sherlock array 48841018 (4 chunks, L40S/H100) |
-| Phase 0a scoring + partial credit | TODO | arrays `phase0_score.sbatch`, `phase0_partial.sbatch`; scoring smoke passed (3/3 trials equal to expt_v16) |
-| Phase 0b IRT fit, gate G0, forecasts frozen | TODO | `irt_e20.py`, driver to follow |
-| Trainer smoke test | In Progress | 48845232 failed before training (missing SciPy); replacement 48857034 running |
-| Pilot (A, C, S seed 1, 16 updates) | TODO | |
-| Main (6 arms × 2 seeds × 48 updates) | TODO | |
-| Validation evaluation, statistics, plots | TODO | |
+Trainer gate failed before the IRT comparison. See the [live phase table](results.md#live-phase-table) for the adopted jobs' terminal accounting. Calibration scoring, G0, pilot, main training and validation evaluation are not run; all corresponding hypotheses remain unmeasured. The protocol remains its original frozen draft and is not pilot-locked.
 
 ## Sources used for the method (what was actually opened)
 
