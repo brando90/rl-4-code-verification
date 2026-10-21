@@ -5,21 +5,21 @@
 **TLDR:** Single-writer continuation of `20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013` under the unchanged runbook. Deployment `deploy_50715cf54e614ecf914f0f7da4aae03c`, Codex gpt-6-astra ultra, personal ~/.codex, skampere1.
 
 Created: 10-21-2026 13:44 PDT
-Last updated: 10-21-2026 15:24 PDT
+Last updated: 10-21-2026 15:32:38 PDT
 
 ## Goal
-- Close 20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013 at its mandatory failed trainer gate.
+- Completed the mandatory failed-gate closure of 20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013.
 ## What ran
 - Adopted four Phase 0a jobs and smoke 48857034; earlier failed smoke attempts 48845232/48855196 included. All seven allocations are terminal; no new experimental phase.
 - Codex gpt-6-astra/ultra, full access, sole repository writer; predecessor fenced; implementation-only worker change.
 ## Results
 - Smoke exit 3:0 after 2 updates; max mismatch 22,654/864,717 = 2.61982% >1%. All 256 rollout records retained; IRT treatment effect unmeasured.
 - Calibration 4,312/4,312 generated, 0 missing, 0 scored; full denominator retained. Phase 0 7.2358/10 GPU-h; smoke 0.5900/15; total 7.8258/200; API $0; test split closed.
-- Final-code make test PASS: 1,415 passed, 17 skipped, 6 subtests, 3 warnings; 296.87 s. Artifact and allocation reconciliation passed.
+- Final-code make test PASS: 1,415 passed, 17 skipped, 6 subtests, 3 warnings; 370.61 s. Artifact and allocation reconciliation passed.
 ## Stuck / blocked
 - STOPPED at trainer log-probability mismatch gate. Custom optimizer backend deviates from required GRPOTrainer/NeMo; no redesign or gate weakening in this run.
 ## Next steps
-- [p 10/10] Push the finish marker, mark PR #20 ready for review, send final DONE email, and remove the owned verification worktree; Google log and Phase 0 DONE email verified.
+- No experimental continuation. Required closure is complete: results/marker pushed, PR #20 ready/unmerged, Google log and final emails verified; owned verification worktree removed.
 - PR https://github.com/brando90/rl-4-code-verification/pull/20 is the sole review PR; do not merge. Exact final evidence: expt_v1/results/receipts/final_accounting.json and phase0_cells_unscored.csv.
 - The monitor has observed terminal jobs; do not restart jobs. A new scientific run requires its own prospective protocol.
 ## Brando to-do
@@ -57,3 +57,5 @@ Last updated: 10-21-2026 15:24 PDT
 - 10-21-2026 15:22 PDT -- Final transfer SHA-256 verified; 4,312 cells/539 tasks/eight samples, no duplicates/missing, 25,821,971 tokens, 940 capped. Full task ID hash matches declared train IDs. Manifest preserves 2,027 remote raw/diagnostic files. Google final bullet readback verified; Phase 0 DONE email delivered (Gmail 1a1608dba9bbe9eb), explicit four-address BCC envelope accepted.
 - 10-21-2026 15:24 PDT -- Terminal-publication make test PASS: 1,415 passed, 17 skipped, 6 subtests, 3 warnings, 296.87 s; exact implementation hashes unchanged. Final staged CSV bytes match validated artifacts; secret-pattern/diff checks passed. Preparing final results commit and finish marker.
 - 10-21-2026 15:24 PDT -- Immutable final results commit 79d02c82ddd578ebeedc556569195c706b30378c; E20_FINISHED.txt records STOPPED at trainer log-probability mismatch gate and this results revision. Publishing marker before final experiment DONE notification.
+- 10-21-2026 15:27 PDT -- Results 79d02c82 and marker d2e3c802 pushed and remote hash verified. PR #20 ready for review, open/mergeable/unmerged; final description read back. Final DONE email delivered once (Gmail 1a16091ef0726ab4), all four explicit BCC envelope recipients accepted. Watcher is healthy and awaits the worker idle state after this turn; finish marker exists.
+- 10-21-2026 15:32:38 PDT -- Final receipt-publication make test PASS: 1,415 passed, 17 skipped, 6 subtests, 3 warnings, 370.61 s. Removed owned verification worktree without force after exact committed-copy verification; root dependencies preserved. All failed-gate closure deliverables complete; final notification/cleanup receipts ready for push.
