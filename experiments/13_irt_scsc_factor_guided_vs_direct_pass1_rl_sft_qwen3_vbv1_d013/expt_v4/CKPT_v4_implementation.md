@@ -2,23 +2,23 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/CKPT_v4_implementation.md>
 **Companion:** <https://docs.google.com/document/d/1KqUi39sz532dIGg8EYCy6w62Q0KzO2XWhpM2MMSWvHE/edit>
-**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 13:11 PDT.
+**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 13:13 PDT.
 
-**TLDR:** Dispatch 5's process/disk boundary works on silent v3 pilots: A_1302 is refused while optimizing, and P_1301 reaches READY on a blank pane. All requested CPU suites pass; the new admission passes launch-check. Publication is in progress; real pausing and gate execution remain master-owned.
+**TLDR:** Dispatch 5's process/disk boundary works on silent v3 pilots: A_1302 is refused while optimizing, and P_1301 reaches READY on a blank pane. All requested CPU suites pass; the new admission passes launch-check. Implementation and admission are published to main at 9ec6640d; real pausing and gate execution remain master-owned.
 
 ## State
 
 - Goal: silent-runner pause-boundary admission for experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4, CPU only, $0.
 - Owner: Codex gpt-6-astra, ultra effort, skampere1; full access / approval never; this pre-existing dispatch checkout.
-- What ran: process/disk implementation, 52 observed-state tests, full suites, synthetic stop/recheck, admitted read-only probes and admission seal.
+- What ran: process/disk implementation, 52 observed-state tests, full suites, synthetic stop/recheck, admitted read-only probes admission seal and verified main publication at 9ec6640d.
 - Results: v4 233 passed; watchdog 16 passed; root 1,405 passed / 15 skipped / 6 warnings; final focused tests 91 passed; zero final failures.
 - Admission SHA-256: ffbeb4e6b2b64408d4a151a24bf0034400bef9c7d6d09d0da0a10f71efeb72b7 (73 local / 319 runtime bindings); launch-check PASS.
 - Live probes: A_1302 WAIT_STAGE_RUNNING; B_1302 WAIT_STAGE_RUNNING during a polling child; P_1301 READY; all panes blank.
-- Stuck / blocked: nothing; publication pending.
-- Next steps: [p 9/10] rebase onto fetched main, verify unchanged owned content/admission, push; master later uses the commands below.
+- Stuck / blocked: nothing; Dispatch 5 complete.
+- Next steps: [p 9/10, master-owned] use the bound Dispatch 5 commands below for the designated A_1302 pause when ready, then the unchanged watchdog/gate start; no execution by this worker.
 - Brando to-do: none.
 - Limits honored: no v3 signals or real pause-list writes, cron install, GPU allocation, generation, optimizer step or shared-venv edit; $0.
-- Rebase plan: backup dispatch5-pre-rebase-10-21-2026; old base 2c7d7fc33aa0636d1c0879e26039f86d0b7a2879; fetched main 2614a895e8b67aeaf1ce7121c2fcbd919c96e631 (master checkpoint only).
+- Publication: 9ec6640d9ab8cf982f1b9af6c19e0d1f431c4395 on main, remote hash verified; rebase patch and all 18 owned files unchanged; backup removed.
 - Helper: admission_lookup, inherited gpt-6-astra/ultra; full access/never and useful reads verified; completed only tests/test_pause_boundary.py.
 - Companion: five Dispatch 5 paragraphs updated in the existing Google document and read back exactly.
 
@@ -46,6 +46,8 @@ The real pause list was absent before and after probing. The synthetic pause fix
 
 **Copy-ready sentence for the master:** I fixed the silent-runner pause boundary in experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4, with 233 v4, 16 watchdog and 1,405 root tests passing, A_1302 correctly refused while optimizing, P_1301 reaching READY on a blank pane, and a new admission passing launch-check; no v3 run was paused and no GPU was used.
 
+
+Publication: [9ec6640d](https://github.com/brando90/rl-4-code-verification/commit/9ec6640d9ab8cf982f1b9af6c19e0d1f431c4395) is on main, confirmed by remote hash readback. Rebase from old base 2c7d7fc3 onto 2614a895 (a master-checkpoint-only change) preserved the owned patch exactly in range-diff and all 18 owned file hashes. The temporary backup branch, pointing to 78f87f93, was removed after verification. Post-rebase launch-check passes with final admission ffbeb4e6b2b64408d4a151a24bf0034400bef9c7d6d09d0da0a10f71efeb72b7. The Google companion's five updated paragraphs and corrected admission digest were read back exactly. No temporary checkout was created; this pre-existing dispatch checkout remains because the admitted plans use its absolute paths. This publication receipt changes only the unbound checkpoint.
 
 The master runs the following commands from this checkout. They are prepared instructions, not actions taken by Dispatch 5. The real clock and no-veto flag remain authoritative even if this handoff arrives before noon.
 
@@ -331,3 +333,5 @@ I have the experiment 13 v4 CPU implementation passing 89 tests, with the histor
 - 10-21-2026 13:08 PDT: Dispatch 5 verified: 233 v4 / 16 watchdog / 1,405 root passed (15 skipped), 91 final focused checks; admitted live A_1302 refusal and P_1301 READY; sealed 9b5089a141bb877b96f55f58ef91748badfd9fb980d139c13ef15339ccd92c23, launch-check PASS; rebase/publication next.
 
 - 10-21-2026 13:11 PDT: Corrected two literal newline escapes in the README table before publication and resealed only its runtime binding; final admission ffbeb4e6b2b64408d4a151a24bf0034400bef9c7d6d09d0da0a10f71efeb72b7. Source/test/plan bindings and all evidence unchanged; prior unpublished seal retained privately.
+
+- 10-21-2026 13:13 PDT: LANDED 9ec6640d9ab8cf982f1b9af6c19e0d1f431c4395 on main; remote SHA verified, range-diff identical and 18 owned files unchanged after rebase; final launch-check PASS, Google readback verified, backup removed; no v3 pause, cron or GPU action.
