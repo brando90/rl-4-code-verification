@@ -176,3 +176,44 @@ The 19:10 "hash mismatch" was a false alarm. The `rl4cv.forecast` convention has
 - The master verified that the committed file (one commit, `46c955aa`) ends with exactly one newline.
 - Its newline-stripped SHA-256 is `abb0cb3115b86fd3107a565fdfacd53343f285b7d27b34fd30d4dcb682436286`, which matches the sidecar and ledger. Hashing the file's raw bytes gives `f5ef9be0…` instead.
 - No re-freeze is needed. The v4 forecast scorer must check the file with `rl4cv.forecast.verify_forecast` (`src/rl4cv/forecast.py`), or with the stripped hash, and record `abb0cb31…`.
+
+## 22:00 PDT: v3 healthy; v4 dispatch 2 done; V4-A4 adopted; dispatch 3 running
+
+**v3-A7.** Completed updates at 21:53 PDT:
+
+| Trajectory | Completed updates |
+|---|---|
+| A_1301 | 12 |
+| A_1302 | 2 |
+| B_1301 | 17 |
+| B_1302 | 8 |
+| P_1301 | 18 |
+| P_1302 | 6 |
+
+- No `T5_*.json` or `result_30.json` exists yet.
+- The watchdog was OK at 21:50, with zero preserved deaths.
+- B_1301 is still queued behind the other trajectories for optimizer leases, which is what V4-A3's pause addresses.
+
+**v4 dispatch 2** (`000ac82b`, `8b46cf8f`):
+
+- **Done:** the V4-A1 certificates and an ordered CPU stage runner.
+- **Tests:** v4 117/0/0 (passed/skipped/failed); root suite 1,405 passed, 15 skipped, 0 failed.
+- **Dry run:** all 12 stages, 6 × 60 symbolic updates, plus the order, crash and no-signal controls.
+- **Blocked on two things.** First, at uncertified positions NeMo's truncated importance correction exp(old − gen), capped at 2, has no generator probability ([blocker](../expt_v4/BLOCKER_V4_A1_importance_correction.md)). Second, the real adapters are unfinished.
+
+**[V4-A4](../expt_v4/AMENDMENT_V4-A4_importance_correction_at_uncertified_positions_10-20-2026.md)** (`b3c25eef`) is adopted. A Codex ultra consult graded it ADOPT WITH CHANGES, 8/10, and all three fixes are incorporated ([record](../expt_v4/CONSULT_V4-A4_codex_10-20-2026.md), `750e7a65`).
+
+- At uncertified positions the correction weight is 1, through a detached imputation used only inside that term.
+- The KL term stays inactive (coefficient 0), and every diagnostic that uses the generator's log π̃ covers certified positions only.
+- The guard stops a trajectory before the optimizer step if more than 1% of tokens are uncertified, on generated positions and on actor-loss tokens across ranks and microbatches.
+- The bound B on the loss perturbation is reported every update. The gradient bias remains unmeasured and is disclosed.
+
+**Dispatch 3** runs in tmux `codex-rl4cv-e13v4-impl3` since 21:57 PDT ([prompt](../expt_v4/PROMPT_dispatch_e13_v4_dispatch3_adapters_A2_A3_A4.md); log `/lfs/skampere1/0/brando9/rl4cv_e13v4/impl3_codex.log`). CPU only, it builds:
+
+- V4-A4 and V4-A2;
+- the V4-A3 pause list in the v3 watchdog, plus a boundary-checked pause tool that it does not run;
+- the experiment 19 forecast scorer;
+- the real adapters with leased subprocesses;
+- a launch plan reconciled with V4-A3, a new admission, and a dry run.
+
+**GPU census (dispatch 2, 19:05 PDT):** 20 of 24 devices busy. skampere1 devices 0, 2, 4 and 6 were idle, but of the eligible devices only 0 was free, and 5 and 7 held v3 workers.
