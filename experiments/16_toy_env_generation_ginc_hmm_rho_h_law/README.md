@@ -53,6 +53,8 @@ The completed `16_toy_env_generation_ginc_hmm_rho_h_law/expt_v2` run used four-t
 
 Night 3 (10-16-2026, `run_mdp_v2.py`, six scales, three start-policy repeats, bootstrap intervals): **NO ADVANTAGE**. The law picks the noisy, already-solved b15 at every budget (regret 10.78 pts [9.53, 12.28] vs uniform random 4.42 and best fixed from s1–s5 1.47). The toy part is complete; see [results.md](results.md).
 
+Night 4 (10-20-2026, `expt_v4`, GINC tiny transformers, protocol in [expt_v4/PROTOCOL.md](expt_v4/PROTOCOL.md)): a target-alignment term alpha (gradient cosine with the target and k-step target NLL drop, from the start policy) added to Eq. 7. **POSITIVE by the frozen rule** (law+alpha regret 1.08 pts [0.55, 1.82] vs random 2.22 [2.03, 2.63]), but no better than the plain law (0.93) and worse than the best environment on n3 (0.12); alpha ranks n4 outcomes well (Spearman 0.63 vs the law's −0.10). See [results.md](results.md).
+
 - A known small Markov decision process (MDP): a chain or grid of a few states with Gaussian rewards, where the optimal policy and the value of each training distribution are computable exactly. Knobs: horizon, reward noise, start-state distribution. It checks the ρ–H pipeline in a case where the "right" environment is known analytically.
 
 ## What would change the plan
@@ -81,6 +83,11 @@ expt_v3/                      known-MDP sanity family (exact DP target value)
     ├── run_mdp.py            start policies, probes, GRPO + KL, exact-gradient oracle (one process per scale)
     ├── analyze_mdp.py        gate, separation, T1/T2, oracle agreement -> analysis_mdp.md/json
     └── results/mdp_v1        raw JSONL rows and analysis
+expt_v4/                      Night 4: alpha target-alignment term on the GINC tiny transformers (reuses expt_v2 code)
+    ├── PROTOCOL.md           frozen before RL
+    ├── night4.py             pilot | choose | alpha | rl | freeze | report (resumable, one cell per file)
+    ├── night4.sh             stage order on CPU
+    └── results/night4        meta, probes, alpha, pilot and main cells, receipts, analysis.json (start_*.pt not committed)
 ```
 
 ## Reproduce (CPU, about 25 minutes wall clock on 4 cores)

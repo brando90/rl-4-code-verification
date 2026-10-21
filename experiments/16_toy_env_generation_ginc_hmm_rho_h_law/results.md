@@ -2,7 +2,43 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/ub9/e16-toy-env-generation/experiments/16_toy_env_generation_ginc_hmm_rho_h_law/results.md>
 
-Design: [README.md](README.md). Night 1 measurements are preserved below in `expt_v1/results/`; the Night 2 continuation uses `expt_v2/results/pilot_v3/`; the known-MDP runs use `expt_v3/results/mdp_v1/` (Night 2b) and `expt_v3/results/mdp_v2/` (Night 3).
+Design: [README.md](README.md). Night 1 measurements are preserved below in `expt_v1/results/`; the Night 2 continuation uses `expt_v2/results/pilot_v3/`; the known-MDP runs use `expt_v3/results/mdp_v1/` (Night 2b) and `expt_v3/results/mdp_v2/` (Night 3); Night 4 uses `expt_v4/results/night4/`.
+
+## Night 4: target-alignment term alpha added to the ρ–H law, GINC tiny transformers (`expt_v4`) — POSITIVE by the frozen rule, but alpha adds nothing over the law and the small-model baseline is best
+
+**Status:** run complete, 10-20-2026 12:40–17:29 PDT, ultimate_brando9's 4-CPU machine, CPU only, $0. Protocol and code frozen and pushed (04da045) before any RL; pilot, RL-strength receipt, probes, alpha, n1–n3 cells and the n4 forecast pushed (661a84d) before any n4 trajectory existed. [expt_v4/PROTOCOL.md](expt_v4/PROTOCOL.md), [night4.py](expt_v4/night4.py), [night4.sh](expt_v4/night4.sh); full numbers in [expt_v4/results/night4/analysis.json](expt_v4/results/night4/analysis.json).
+
+**Takeaway.** law+alpha's n4 regret (1.08 pts [0.55, 1.82]) is entirely below uniform random's (2.22 [2.03, 2.63]), so the frozen decision rule says POSITIVE. Read with care: the plain law also beats random here (0.93 [0.44, 1.73]), law+alpha is not better than the law (paired difference [−0.23, +0.51]), and the simplest rule, "the best environment on n3", has the lowest regret (0.12 [0.00, 1.49]). alpha does fix the ranking: alone it ranks observed n4 utility at Spearman 0.63 where the law's predictions rank it at −0.10, but its top pick (m03) is not the best environment, and inside the law its coefficient (+1.1 pts per SD) changes the pick at two budgets only, to e02, which is no better.
+
+Same 16 candidates (e00–e11 and Night 2's mixtures m00–m03), scales (4,496 / 27,824 / 104,784 / 604,432 parameters, re-pretrained here with Night 2's frozen code; start target joint 0.266 / 0.307 / 0.324 / 0.357), probes, target set (4,000 prompts) and budgets (12.8k / 25.6k / 51.2k generated tokens) as Night 2. New: a pre-registered n3 pilot picked the RL strength, 3 seeds instead of 2, and alpha.
+
+| step | result |
+|---|---|
+| RL strength pilot (n3, F = between-env / within-env variance) | S1 (Night 2: lr 1e-4, KL 1.0) F 4.6, mean +0.30 pts; **S2 (lr 3e-4, KL 0.1) F 171.3, mean −1.61 pts: chosen**; S3 (1e-3, 0.1) F 62.8, mean −3.97 pts |
+| Main matrix | 192 trajectories, 576 cells, all present; positive cells n1 18, n2 46, n3 41, n4 17 of 144; mean final KL 0.12 / 0.18 / 0.22 / 0.27 |
+| n4 regime | forgetting: the mean environment loses 1.3 / 2.0 / 2.4 pts; only m01 and m02 gain (best +0.08 m01, +0.39 m01, +0.42 m02); e00 loses 10.8 pts at 51.2k |
+| alpha vs the law's features at n4 | corr with log ρ 0.16, with H 0.10 (alpha is new information) |
+
+| choice rule at n4 (mean over 3 budgets) | picks (12.8k, 25.6k, 51.2k) | regret (pts) | 95% interval | law+alpha minus rule, 95% interval |
+|---|---|---|---|---|
+| law+alpha | e02, e02, e08 | 1.08 | [0.55, 1.82] | – |
+| ρ–H law (Eq. 7) | e08, e08, e08 | 0.93 | [0.44, 1.73] | [−0.23, +0.51] |
+| alpha alone | m03, m03, m03 | 0.65 | [0.36, 1.16] | [−0.26, +1.01] |
+| best fixed on n3 | m02, m02, m02 | 0.12 | [0.00, 1.49] | [−0.28, +1.51] |
+| uniform random | all 16 | 2.22 | [2.03, 2.63] | **[−1.69, −0.67]** |
+
+Intervals: 2,000 bootstrap draws resampling the three seeds per scale and the 4,000 target prompts, every rule refit per draw. alpha alone also beats random (paired [−1.92, −1.21]).
+
+### What the numbers say
+
+- Under a strength that actually moves the policy (KL 0.27 at n4 vs ~0.004 in Night 2), environments separate cleanly (F 171 vs 4.6), and most of them hurt the target. Beating random then mostly means avoiding the few disastrous environments (e00, e10, e03, e07, e11), which the law, alpha and the n3 baseline all do.
+- alpha measures what it was built to measure: environments whose few-step gradient points toward the target transfer better (Spearman 0.63; gradient cosine alone 0.64, k-step NLL drop alone 0.61). Eq. 7's own forecast does not rank n4 at all (−0.10); adding alpha brings it to 0.45.
+- Picking the single best environment is a harder test than ranking, and there alpha does not help: the top-alpha environment m03 ends near zero, the best (m01/m02) gain under half a point, and the n3 winner m02 carries over to n4.
+- Caveats: one starting checkpoint per scale (intervals are conditional on pretraining), three seeds, and a forgetting regime where 127 of 144 n4 cells are not positive.
+
+### Execution notes
+
+- Night 2's checkpoints are on skampere1, so n1–n4 were re-pretrained here with the frozen expt_v2 code (n4 took 4,932 s). The first n3/n4 pretrains were stopped at 12:31/12:33 by an infrastructure stop and restarted from scratch (`*_pretrain.interrupted_1223.log`, not committed). The driver was stopped twice by a shell time limit (about 14:45 and 16:47); in-flight cells were rerun from scratch with the same seeds, no completed cell was redone or dropped. The n4 alpha probe ran early, as soon as n4 pretraining ended; it is not an outcome.
 
 ## Night 3: known-MDP with start-policy repeats and six scales (`expt_v3`, mdp_v2) — NO ADVANTAGE; the toy part is complete
 
