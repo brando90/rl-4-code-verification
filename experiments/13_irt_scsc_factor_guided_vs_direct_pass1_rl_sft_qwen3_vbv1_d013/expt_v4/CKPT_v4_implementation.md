@@ -2,55 +2,63 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/CKPT_v4_implementation.md>
 **Companion:** <https://docs.google.com/document/d/1KqUi39sz532dIGg8EYCy6w62Q0KzO2XWhpM2MMSWvHE/edit>
-**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 11:34 PDT.
+**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 13:11 PDT.
 
-**TLDR:** Dispatch 4 implements the recorded single A_1302 pause and re-admission. All requested CPU suites and the GPU-free dry run pass; the new static admission is ADMITTED. The master owns the real pause, watchdog installation and gates.
+**TLDR:** Dispatch 5's process/disk boundary works on silent v3 pilots: A_1302 is refused while optimizing, and P_1301 reaches READY on a blank pane. All requested CPU suites pass; the new admission passes launch-check. Publication is in progress; real pausing and gate execution remain master-owned.
 
 ## State
 
-- Goal: single-pause launch-ready admission for experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4, CPU only, $0.
-- Owner: Codex `gpt-6-astra`, ultra effort, skampere1, session `codex-rl4cv-e13v4-impl4`; full access, one writer.
-- What ran: single-pause implementation, full CPU suites, synthetic dry run, admission sealing and main publication at 3b2df5c3.
-- Results: v4 168 passed; watchdog 16 passed; root 1,405 passed / 15 skipped / 6 warnings / 0 failed; 360 synthetic updates.
-- Admission SHA-256: a8a1b8f28497e51ba3d898dceb07902c9dc18f83bdac9164b49e462a9a79e390 (72 local / 304 runtime bindings).
-- Stuck / blocked: nothing; real pause and launches remain master-owned.
-- Next steps: [p 9/10, master-owned] after noon/no veto, probe A_1302, run the pause loop, install the watchdog once and start gates using the block below.
+- Goal: silent-runner pause-boundary admission for experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4, CPU only, $0.
+- Owner: Codex gpt-6-astra, ultra effort, skampere1; full access / approval never; this pre-existing dispatch checkout.
+- What ran: process/disk implementation, 52 observed-state tests, full suites, synthetic stop/recheck, admitted read-only probes and admission seal.
+- Results: v4 233 passed; watchdog 16 passed; root 1,405 passed / 15 skipped / 6 warnings; final focused tests 91 passed; zero final failures.
+- Admission SHA-256: ffbeb4e6b2b64408d4a151a24bf0034400bef9c7d6d09d0da0a10f71efeb72b7 (73 local / 319 runtime bindings); launch-check PASS.
+- Live probes: A_1302 WAIT_STAGE_RUNNING; B_1302 WAIT_STAGE_RUNNING during a polling child; P_1301 READY; all panes blank.
+- Stuck / blocked: nothing; publication pending.
+- Next steps: [p 9/10] rebase onto fetched main, verify unchanged owned content/admission, push; master later uses the commands below.
 - Brando to-do: none.
-- Runtime conditions: no veto after 10-21-2026 12:00 PDT, designated pause recorded, idle authorized stage lease; pilot also requires B_1301 verdict/release, all gates PASS and three idle authorized devices.
-- No real pause list, live process signal, cron installation, GPU allocation, generation, optimizer step or shared-venv edit.
+- Limits honored: no v3 signals or real pause-list writes, cron install, GPU allocation, generation, optimizer step or shared-venv edit; $0.
+- Rebase plan: backup dispatch5-pre-rebase-10-21-2026; old base 2c7d7fc33aa0636d1c0879e26039f86d0b7a2879; fetched main 2614a895e8b67aeaf1ce7121c2fcbd919c96e631 (master checkpoint only).
+- Helper: admission_lookup, inherited gpt-6-astra/ultra; full access/never and useful reads verified; completed only tests/test_pause_boundary.py.
+- Companion: five Dispatch 5 paragraphs updated in the existing Google document and read back exactly.
 
-## Dispatch 4 evidence and exact master commands
+## Dispatch 5 evidence and exact master commands
 
-The [operational decision](OPERATIONAL_V4-A3_single_pause_10-21-2026.md) and [machine-readable selection](phase2/operational_pause.json) designate only A_1302. The pause tool, runner, controller and watchdog installer read the admission-bound selection. No frozen protocol, amendment or operational decision was edited. v3's deployed watchdog already accepts a dictionary containing only A_1302 and remains unchanged.
+The silent v3 pilot never emits the retired helper's wait message. Readiness now requires two observations at least one second apart with one stable Python pilot runner, zero children, no other readable trajectory references, an isolated two-member pane-shell/runner group, and hrtimer_nanosleep. The latest numbered update must have no summary and no active lease, with either plans/cells before generation or score/groups before optimization. Pane text is retained only as context. Every non-designated execution request is refused before probing or locking; read-only probes may inspect all six v3 trajectories.
 
-The smallest implementation correction outside pause selection is the previously missing three-device pilot availability check: it holds all candidate locks only while checking idle state and v3 leases, then releases them. The existing serial pilot's subprocesses still acquire individual stage leases. There is no standing reservation or change to the scientific schedule. Tests cover insufficient devices, a busy device, a held v3 lock, an unreleased v3 lease and lock release after the check.
+Linux changes a stopped sleeper's wait channel to do_signal_stop. The whole-rule recheck therefore retains and binds the two pre-stop sleeping observations, then requires two observations of the same stopped shell/runner identities, zero children/references, and the same valid disk/lease state. A failed recheck resumes the original group without a pause-list write or termination. This kernel behavior was observed using a temporary worker-owned CPU sleeper, which was then cleaned up; no v3 process was signalled.
 
-[Verification](phase2/verification_dispatch4.json): **168/168 v4 tests, 16/16 v3-watchdog tests and 1,405 root tests pass**, with **15 root skips, six existing warnings and zero failures**. Test logs and their hashes are bound. Counts are deterministic checks, not statistical estimates; confidence intervals and p-values do not apply.
+The process-group census includes all users. Trajectory references are checked in same-user argv and readable current-directory/open-file links. Six protected same-user system-daemon descriptor inspections were unavailable on this host and are recorded in the probe context; readable argv is still checked. Runner/child/group inspection failures refuse readiness. No fixed wait time or pane wording can override stage activity.
 
-[The new admission](phase2/admission_dispatch4.json) is **ADMITTED**, SHA-256 **`a8a1b8f28497e51ba3d898dceb07902c9dc18f83bdac9164b49e462a9a79e390`**. It has **72 local bindings and 304 runtime/evidence bindings**, including both operational records, changed code/tests, prepared/deployed plans, unchanged deployed v3 watchdog/tests, current test logs and dry-run evidence. Static `launch-check` passes. Every measured stage remains `PENDING`.
+[Verification](phase2/verification_dispatch5.json) and [synthetic stop/recheck evidence](phase2/dry_run_dispatch5.json) accompany the new [admission](phase2/admission_dispatch5.json). **233/233 v4 tests, 16/16 watchdog tests and 1,405 root tests passed**, with 15 root skips, six existing warnings and zero final failures. The 91 focused tests also pass on the final source; 65 v4 tests were added overall, including 52 observed-state cases. The first root attempt used the wrong NeMo source path and returned four e09_seeds KeyErrors; the documented experiment-09 source prefix resolved all four in a complete make test rerun, with no root code edits. These are deterministic counts, not statistical estimates (confidence intervals and p-values do not apply). Tests use observed-state fixtures, temporary disk files and simulated v3 signals. The frozen protocol, amendments, operational records and deployed v3 code are unchanged.
 
-[Dry-run evidence](phase2/dry_run_dispatch4.json): **WAIT_STAGE_RUNNING → PAUSED**, gate release **false → false → true**, pilot release **false** without B_1301. Only A_1302 is probed; all three signals are simulated, with **zero real signals**. The full CPU stub chain completes **12 stages and 360 symbolic updates**, including extension, order refusal, crash recovery on attempt 2 and no-signal stop. These are synthetic controls, not live gate outcomes. Source/test bindings are identical between the [preseal admission](phase2/admission_dispatch4_preseal.json), SHA-256 `fdc4cf9dc47479ba7493ce07d18cb2ebe7a784394500c51c12db694b0918639b`, and the final admission; the final record adds the resulting evidence. Private traces: `/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4`.
+The final admission SHA-256 is **ffbeb4e6b2b64408d4a151a24bf0034400bef9c7d6d09d0da0a10f71efeb72b7**, with **73 local and 319 runtime/evidence bindings**; static launch-check passes. Its local source/test/plan bindings exactly equal those of the [preseal admission](phase2/admission_dispatch5_preseal.json), SHA-256 20a4e7fd79b22e8b247700b989100a062c25a88c41431007d13c5fdddeff9e4b, used by the live probes. The final admission additionally binds their exact stdout files and command provenance. The checkpoint is outside the closure to avoid self-reference.
 
-[Fresh GPU census](phase2/gpu_inventory_dispatch4.json), **10-21-2026 11:24:28 PDT**: **24/24 devices occupied**, **0/19 authorized devices idle** across skampere1 (only 0, 5, 7 authorized), skampere2 and skampere3. All three read-only probes succeeded. Mercury1/2 remain outside the guard's allowed hosts; the operational record identifies those devices as reserved for experiment 120. No device was acquired, and the census makes no reservation; refresh it at launch.
+Live read-only outputs (10-21-2026, PDT), with blank panes throughout:
 
-**Remaining runtime conditions:** the unchanged noon deadline and no-veto flag, a recorded clean A_1302 pause, then a freshly acquired idle authorized stage lease. The pilot additionally waits for B_1301's T5_30 verdict and lease release, all gates passed, and three idle authorized devices under shared locks. No standing reservation is added. `launch_control.py` explicitly propagates the verified no-veto flag into the tmux session so an existing server cannot lose it.
+| Trajectory | Observation times | Result | Evidence |
+|---|---|---|---|
+| A_1302 | 13:02:59 and 13:03:01 | WAIT_STAGE_RUNNING | PID 692011, one child and active update lease, update_00006; [full output](phase2/live_probe_dispatch5_A_1302.json) |
+| B_1302 | 13:03:18 and 13:03:20 | WAIT_STAGE_RUNNING | PID 1291595 changed from zero children/nanosleep to one polling child/pipe_read; no active lease, update_00012; [full output](phase2/live_probe_dispatch5_B_1302.json) |
+| P_1301 | 13:04:21 and 13:04:23 | READY | PID 1246693, stable start tick 68953605, zero children, no active lease, plans/cells before generate allocation at update_00021; [full output](phase2/live_probe_dispatch5_P_1301.json) |
 
-**Copy-ready sentence for the master:** I implemented single-run pausing for experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4, with 168 v4, 16 watchdog and 1,405 root tests passing plus a GPU-free WAIT-to-PAUSED dry run; the new admission passes launch-check, and the master can pause A_1302 after noon/no veto, then start gates when an authorized device is idle.
+The real pause list was absent before and after probing. The synthetic pause fixture returned WAIT_STAGE_RUNNING then PAUSED, gate release false → false → true and pilot release false; its three signals are simulated. The 360-update full stub run remains historical Dispatch 4 evidence, not a newly measured result.
 
-Publication: implementation and admission **[`3b2df5c3`](https://github.com/brando90/rl-4-code-verification/commit/3b2df5c3da5a597af4d5081062734479e4d28456)** are pushed to `main`; remote readback matched exactly. The first push met a concurrent checkpoint update, so the worker rebased again over `9d555e67`. Range comparison against the owned pre-rebase backup (`84ec0457`, old base `94c20d07`) showed an identical patch, and the entire owned v4 subtree was byte-identical. The backup branch is removed after that verification. `launch-check` passes with the unchanged admission digest. The Google companion's six updated paragraphs were read back exactly. No temporary checkout was created; this pre-existing dispatch checkout is retained because the bound master plans and admission use its paths. This publication-note edit changes only the unbound checkpoint.
+**Copy-ready sentence for the master:** I fixed the silent-runner pause boundary in experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4, with 233 v4, 16 watchdog and 1,405 root tests passing, A_1302 correctly refused while optimizing, P_1301 reaching READY on a blank pane, and a new admission passing launch-check; no v3 run was paused and no GPU was used.
 
-The master runs the following commands from this checkout. They are prepared instructions, not actions taken by Dispatch 4. The real clock and no-veto flag remain authoritative even if this handoff arrives before noon.
+
+The master runs the following commands from this checkout. They are prepared instructions, not actions taken by Dispatch 5. The real clock and no-veto flag remain authoritative even if this handoff arrives before noon.
 
 ```bash
 cd /lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification
 V4_PY=/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python
 V4_ROOT=$PWD/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4
 V4_WORK=/lfs/skampere1/0/brando9/rl4cv_e13v4
-V4_ADMISSION=$V4_ROOT/phase2/admission_dispatch4.json
+V4_ADMISSION=$V4_ROOT/phase2/admission_dispatch5.json
 export HF_HUB_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1 VLLM_USE_FLASHINFER_SAMPLER=0
 export PYTHONPATH=$PWD/src
 
-# Read-only boundary probe; does not create a watchdog lock or pause list.
+# Read-only boundary probe: two process/disk observations; pane text is context only.
 "$V4_PY" "$V4_ROOT/phase2/pause_v3.py" --admission "$V4_ADMISSION" --trajectory A_1302 --probe
 
 # Set only when the master has established absence of a veto.
@@ -83,6 +91,26 @@ export E13V4_A3_NO_VETO=1
 ```
 
 The pause-loop subshell must exit successfully before gate start. On a repeated invocation, `ALREADY_PAUSED` is accepted; the installer replaces only its own tagged v4 cron entry and leaves v3's entry intact. While waiting for pilot resources, the controller may exit and be retried by the watchdog; an unsuccessful capacity check creates no training receipt or standing reservation.
+
+## Historical Dispatch 4 evidence (superseded by Dispatch 5)
+
+The [operational decision](OPERATIONAL_V4-A3_single_pause_10-21-2026.md) and [machine-readable selection](phase2/operational_pause.json) designate only A_1302. The pause tool, runner, controller and watchdog installer read the admission-bound selection. No frozen protocol, amendment or operational decision was edited. v3's deployed watchdog already accepts a dictionary containing only A_1302 and remains unchanged.
+
+The smallest implementation correction outside pause selection is the previously missing three-device pilot availability check: it holds all candidate locks only while checking idle state and v3 leases, then releases them. The existing serial pilot's subprocesses still acquire individual stage leases. There is no standing reservation or change to the scientific schedule. Tests cover insufficient devices, a busy device, a held v3 lock, an unreleased v3 lease and lock release after the check.
+
+[Verification](phase2/verification_dispatch4.json): **168/168 v4 tests, 16/16 v3-watchdog tests and 1,405 root tests pass**, with **15 root skips, six existing warnings and zero failures**. Test logs and their hashes are bound. Counts are deterministic checks, not statistical estimates; confidence intervals and p-values do not apply.
+
+[The new admission](phase2/admission_dispatch4.json) is **ADMITTED**, SHA-256 **`a8a1b8f28497e51ba3d898dceb07902c9dc18f83bdac9164b49e462a9a79e390`**. It has **72 local bindings and 304 runtime/evidence bindings**, including both operational records, changed code/tests, prepared/deployed plans, unchanged deployed v3 watchdog/tests, current test logs and dry-run evidence. Static `launch-check` passes. Every measured stage remains `PENDING`.
+
+[Dry-run evidence](phase2/dry_run_dispatch4.json): **WAIT_STAGE_RUNNING → PAUSED**, gate release **false → false → true**, pilot release **false** without B_1301. Only A_1302 is probed; all three signals are simulated, with **zero real signals**. The full CPU stub chain completes **12 stages and 360 symbolic updates**, including extension, order refusal, crash recovery on attempt 2 and no-signal stop. These are synthetic controls, not live gate outcomes. Source/test bindings are identical between the [preseal admission](phase2/admission_dispatch4_preseal.json), SHA-256 `fdc4cf9dc47479ba7493ce07d18cb2ebe7a784394500c51c12db694b0918639b`, and the final admission; the final record adds the resulting evidence. Private traces: `/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4`.
+
+[Fresh GPU census](phase2/gpu_inventory_dispatch4.json), **10-21-2026 11:24:28 PDT**: **24/24 devices occupied**, **0/19 authorized devices idle** across skampere1 (only 0, 5, 7 authorized), skampere2 and skampere3. All three read-only probes succeeded. Mercury1/2 remain outside the guard's allowed hosts; the operational record identifies those devices as reserved for experiment 120. No device was acquired, and the census makes no reservation; refresh it at launch.
+
+**Remaining runtime conditions:** the unchanged noon deadline and no-veto flag, a recorded clean A_1302 pause, then a freshly acquired idle authorized stage lease. The pilot additionally waits for B_1301's T5_30 verdict and lease release, all gates passed, and three idle authorized devices under shared locks. No standing reservation is added. `launch_control.py` explicitly propagates the verified no-veto flag into the tmux session so an existing server cannot lose it.
+
+**Copy-ready sentence for the master:** I implemented single-run pausing for experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4, with 168 v4, 16 watchdog and 1,405 root tests passing plus a GPU-free WAIT-to-PAUSED dry run; the new admission passes launch-check, and the master can pause A_1302 after noon/no veto, then start gates when an authorized device is idle.
+
+Publication: implementation and admission **[`3b2df5c3`](https://github.com/brando90/rl-4-code-verification/commit/3b2df5c3da5a597af4d5081062734479e4d28456)** are pushed to `main`; remote readback matched exactly. The first push met a concurrent checkpoint update, so the worker rebased again over `9d555e67`. Range comparison against the owned pre-rebase backup (`84ec0457`, old base `94c20d07`) showed an identical patch, and the entire owned v4 subtree was byte-identical. The backup branch is removed after that verification. `launch-check` passes with the unchanged admission digest. The Google companion's six updated paragraphs were read back exactly. No temporary checkout was created; this pre-existing dispatch checkout is retained because the bound master plans and admission use its paths. This publication-note edit changes only the unbound checkpoint.
 
 ## Historical Dispatch 3 evidence (superseded by Dispatch 4)
 
@@ -297,3 +325,9 @@ I have the experiment 13 v4 CPU implementation passing 89 tests, with the histor
 - 10-21-2026 11:31 PDT: Dispatch 4 verification complete: 168 v4 / 16 watchdog / 1,405 root passed (15 skipped); single-pause dry run and 360 symbolic updates passed; sealed admission a8a1b8f28497e51ba3d898dceb07902c9dc18f83bdac9164b49e462a9a79e390. Publication pending; no live actions.
 
 - 10-21-2026 11:34 PDT: Published 3b2df5c3 to main and verified the remote hash after two clean rebases over concurrent checkpoint-only changes; owned patch unchanged, admission still valid, Google companion synchronized. No real pause, cron install or GPU work.
+
+- 10-21-2026 12:57 PDT: Dispatch 5 implemented process/disk observations and stop-aware whole-rule rechecks; B_1302 read-only observation reaches READY, A_1302 remains active; tests and new admission in progress.
+
+- 10-21-2026 13:08 PDT: Dispatch 5 verified: 233 v4 / 16 watchdog / 1,405 root passed (15 skipped), 91 final focused checks; admitted live A_1302 refusal and P_1301 READY; sealed 9b5089a141bb877b96f55f58ef91748badfd9fb980d139c13ef15339ccd92c23, launch-check PASS; rebase/publication next.
+
+- 10-21-2026 13:11 PDT: Corrected two literal newline escapes in the README table before publication and resealed only its runtime binding; final admission ffbeb4e6b2b64408d4a151a24bf0034400bef9c7d6d09d0da0a10f71efeb72b7. Source/test/plan bindings and all evidence unchanged; prior unpublished seal retained privately.

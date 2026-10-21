@@ -1,0 +1,125 @@
+{"tldr": "Silent-runner boundary passes CPU suites and admitted live read-only probes; v3 execution unchanged.",
+  "api_spend_usd": 0,
+  "cron_installs": 0,
+  "focused_final": {
+    "passed": 91,
+    "skipped": 0,
+    "failed": 0
+  },
+  "gpu_allocations": 0,
+  "initial_root_environment": {
+    "failed": 4,
+    "passed": 1401,
+    "skipped": 15,
+    "cause": "KeyError e09_seeds in test_e09_native_rollout: missing documented experiment-09 NeMo source prefix",
+    "resolution": "prepend /lfs/skampere1/0/brando9/rl4cv_e09/nemo_rl to PYTHONPATH; full make test rerun passed",
+    "source_edits": 0
+  },
+  "live_probes": {
+    "A_1302": {
+      "status": "WAIT_STAGE_RUNNING",
+      "blank_pane": true,
+      "observed_unix": [
+        1792612979.3063068,
+        1792612981.3845587
+      ],
+      "interval_seconds": 2.078252220991999
+    },
+    "B_1302": {
+      "status": "WAIT_STAGE_RUNNING",
+      "blank_pane": true,
+      "observed_unix": [
+        1792612998.3448942,
+        1792613000.2661407
+      ],
+      "interval_seconds": 1.9212466849712655
+    },
+    "P_1301": {
+      "status": "READY",
+      "blank_pane": true,
+      "observed_unix": [
+        1792613061.2089472,
+        1792613063.001002
+      ],
+      "interval_seconds": 1.7920547120738775
+    }
+  },
+  "logs": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/v4_dispatch5_tests.log",
+      "sha256": "618428c61a3689f2916a25415f5255c535c8814cc6ffc16c9c4d666b5b083f7a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/watchdog_dispatch5_tests.log",
+      "sha256": "dba147114f275ae0f2e9c99e2ca6e034b73a99d3a3f72cbac85fef6cb2d486e1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/root_dispatch5_tests_configured.log",
+      "sha256": "0c839988464fee53f2271352550b070dd408ed4f897a183c8dcc1ed2e1cf738a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/pause_dispatch5_final_tests.log",
+      "sha256": "56ff196ac86bbcab5fe302223b226a62e37ec14d0b6f4a2d8c4e6bda38179ea1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/root_dispatch5_tests.log",
+      "sha256": "15bd48ea05578d3fbdae69534f29b7116740e0f4e78f8d017026082a1a3e66ff"
+    }
+  ],
+  "model_generations": 0,
+  "net_new_v4_tests": 65,
+  "new_observed_state_tests": 52,
+  "optimizer_steps": 0,
+  "owned_cpu_sleeper_control": {
+    "before_stop": {
+      "state": "S",
+      "wchan": "hrtimer_nanosleep"
+    },
+    "after_stop": {
+      "state": "T",
+      "wchan": "do_signal_stop"
+    },
+    "cleaned_up": true
+  },
+  "probe_admission": "admission_dispatch5_preseal.json",
+  "probe_admission_sha256": "20a4e7fd79b22e8b247700b989100a062c25a88c41431007d13c5fdddeff9e4b",
+  "real_v3_pause_list_created": false,
+  "reference_scope": "same-user argv and readable cwd/fd; all-user group census; six protected daemon descriptor inspections recorded as unavailable",
+  "root": {
+    "passed": 1405,
+    "skipped": 15,
+    "failed": 0,
+    "warnings": 6
+  },
+  "runner_and_watchdog_bindings": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2/pilot_run.py",
+      "sha256": "48a5415ceeec375a0dc84c31af535f7c79f2c6c77adc13925dc68b08b7a963e8"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2/pilot_run.py",
+      "sha256": "48a5415ceeec375a0dc84c31af535f7c79f2c6c77adc13925dc68b08b7a963e8"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2/autoresume_watchdog.py",
+      "sha256": "d7029a061b4297a51ae73408f6a3269c182600763b3da54d564f39da4632cad1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/tests/test_autoresume_watchdog.py",
+      "sha256": "f2342ddcb836c8f31966ad5a09f5e8e407962bf7542f8b70c48494e72460c0ac"
+    }
+  ],
+  "status": "PASS",
+  "uncertainty": "Deterministic control checks and timestamped process observations; no statistical inference.",
+  "v3_signals": 0,
+  "v3_watchdog": {
+    "passed": 16,
+    "skipped": 0,
+    "failed": 0
+  },
+  "v4": {
+    "passed": 233,
+    "skipped": 0,
+    "failed": 0
+  }
+}

@@ -92,13 +92,18 @@ def test_a2_installed_receipt_and_engine_fallback():
     b[2]=[3];b[3]=[3];assert engine_check(a,b,c)['status']=='FAIL'
 
 
-@pytest.mark.parametrize('processes,leases,pane,expected',[
-    ([{'kind':'runner'},{'kind':'stage'}],[],'waiting for an idle GPU','WAIT_STAGE_RUNNING'),
-    ([{'kind':'runner'}],['lease'],'waiting for an idle GPU','WAIT_LEASE_HELD'),
-    ([{'kind':'runner'}],[],'running','WAIT_BOUNDARY'),
-    ([{'kind':'runner'}],[],'waiting for an idle GPU','READY')])
-def test_pause_refuses_running_stage(processes,leases,pane,expected):
-    assert boundary(pane,processes,leases)==expected
+@pytest.mark.parametrize('change,expected',[
+    ('stage','WAIT_STAGE_RUNNING'),('lease','WAIT_LEASE_HELD'),
+    ('wchan','WAIT_WCHAN'),('blank','READY')])
+def test_pause_refuses_running_stage(change,expected):
+    from copy import deepcopy
+    from dry_run import pause_fixture
+    snap=pause_fixture()
+    if change=='stage':snap['processes'].append({'kind':'stage'})
+    elif change=='lease':snap['leases']=['lease']
+    elif change=='wchan':snap['processes'][0]['wchan']='futex_wait_queue'
+    second=deepcopy(snap);second['observed_monotonic']=1.0
+    assert boundary(snap,second)==expected
 
 
 def test_pause_refuses_before_window_without_probe(tmp_path):
@@ -233,7 +238,7 @@ def test_retirement_keeps_latest_and_verifiable_metadata(tmp_path):
 
 @pytest.mark.parametrize('arguments,expected',[
     (['/venv/bin/python','pilot_run.py','--arm','A','--seed','1301'],True),
-    (['/venv/bin/python','/repo/resume_pilot_after_foreign_gpu.py','retry','A','1301','3'],True),
+    (['/venv/bin/python','/repo/resume_pilot_after_foreign_gpu.py','retry','A','1301','3'],False),
     (['sh','-c','cd /repo && python pilot_run.py --arm A --seed 1301'],False),
     (['python','pilot_run.py','--arm','B','--seed','1301'],False),
 ])

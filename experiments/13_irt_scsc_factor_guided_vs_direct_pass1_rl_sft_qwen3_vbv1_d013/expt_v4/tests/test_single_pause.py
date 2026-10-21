@@ -8,18 +8,22 @@ from common import write_new
 from operational_pause import CONFIG,RECORD,selection
 from pause_v3 import pause,boundary_probe,VETO_END
 from admission import launch_timing,check_admission
+from dry_run import pause_fixture,stop_fixture
 from test_contracts import admission_fixture
 
 
 def setup_pause(tmp_path):
     _,admission=admission_fixture(tmp_path)
     work=tmp_path/'v3';(work/'phase2/pilot').mkdir(parents=True)
-    runner={'kind':'runner','pid':123456789,'pgid':123456789,'start_ticks':'123','start_unix':1}
-    snap={'trajectory':'A_1302','pane_text':'waiting for an idle GPU','processes':[runner],'leases':[]}
+    snap=pause_fixture();runner=snap['processes'][0]
     signals=[];seen=[]
     def probe(key,work):seen.append(key);return snap
-    kwargs=dict(work=work,veto_not_issued=True,now=VETO_END+1,probe=probe,
-                inspect=lambda pid:runner,kill=lambda pgid,sig:signals.append(sig))
+    def sleep(seconds):snap['observed_monotonic']+=seconds
+    def kill(pgid,sig):
+        signals.append(sig)
+        if sig==signal.SIGSTOP:stop_fixture(snap)
+    kwargs=dict(work=work,veto_not_issued=True,now=VETO_END+1,probe=probe,sleep=sleep,
+                inspect=lambda pid:next(p for p in runner['process_group_members'] if p['pid']==pid),kill=kill)
     return admission,work,runner,snap,signals,seen,kwargs
 
 
@@ -59,13 +63,13 @@ def test_pause_wait_then_atomic_single_pause_and_idempotence(tmp_path):
     state=json.loads((work/'phase2/autoresume_paused.json').read_text())
     assert set(state['trajectories'])=={'A_1302'} and not (work/'phase2/.autoresume_paused.tmp').exists()
     assert pause(admission,**kw)=={'A_1302':'ALREADY_PAUSED'}
-    assert seen==['A_1302']*3 and len(signals)==3
+    assert seen==['A_1302']*6 and len(signals)==3
 
 
 def test_boundary_probe_is_read_only_before_window(tmp_path):
     admission,work,_,_,signals,seen,kw=setup_pause(tmp_path)
-    assert boundary_probe(admission,work=work,probe=kw['probe'])['A_1302']['status']=='READY'
-    assert seen==['A_1302'] and not signals
+    assert boundary_probe(admission,work=work,probe=kw['probe'],sleep=kw['sleep'])['A_1302']['status']=='READY'
+    assert seen==['A_1302']*2 and not signals
     assert sorted(p.name for p in (work/'phase2').iterdir())==['pilot']
 
 
@@ -83,10 +87,44 @@ def test_stop_recheck_race_resumes_without_pause(tmp_path):
 @pytest.mark.parametrize('after_stop',[False,True])
 def test_pid_reuse_never_signals_replacement(tmp_path,after_stop):
     admission,work,runner,_,signals,_,kw=setup_pause(tmp_path)
-    kw['inspect']=lambda pid:{**runner,'start_ticks':'reused' if signals or not after_stop else '123'}
+    original_inspect=kw['inspect']
+    kw['inspect']=lambda pid:{**original_inspect(pid),'start_ticks':'reused' if signals or not after_stop else original_inspect(pid)['start_ticks']}
     with pytest.raises(ValueError,match='PID reused'):pause(admission,**kw)
     assert signals==([signal.SIGSTOP] if after_stop else [])
     assert not (work/'phase2/autoresume_paused.json').exists()
+
+
+
+@pytest.mark.parametrize('change', ['child','summary','wchan','runner','group','latest','plans','reference'])
+def test_whole_rule_rechecked_after_stop(tmp_path,change):
+    admission,work,runner,snap,signals,_,kw=setup_pause(tmp_path)
+    original_kill=kw['kill']
+    def kill(pgid,sig):
+        original_kill(pgid,sig)
+        if sig!=signal.SIGSTOP:return
+        if change=='child':runner['children']=[999]
+        elif change=='summary':snap['files']['summary.json']=True
+        elif change=='wchan':runner['wchan']='hrtimer_nanosleep'
+        elif change=='runner':snap['processes'].append(dict(runner))
+        elif change=='group':runner['process_group_members'].append(dict(runner,pid=999))
+        elif change=='latest':snap['latest_update']='fixture/update_00022'
+        elif change=='plans':snap['files']['plans.json']=False
+        elif change=='reference':snap['processes'].append({'kind':'stage'})
+    kw['kill']=kill
+    assert pause(admission,**kw)=={'A_1302':'WAIT_RACE'}
+    assert signals==[signal.SIGSTOP,signal.SIGCONT]
+    assert not (work/'phase2/autoresume_paused.json').exists()
+
+
+@pytest.mark.parametrize('key',['A_1301','B_1301','B_1302','P_1301','P_1302'])
+def test_non_designated_probe_is_read_only(tmp_path,key):
+    admission,work,_,_,signals,_,kw=setup_pause(tmp_path)
+    snap=pause_fixture(key)
+    def sleep(seconds):snap['observed_monotonic']+=seconds
+    result=boundary_probe(admission,trajectory=key,work=work,probe=lambda *a:snap,sleep=sleep)
+    assert result[key]['status']=='READY' and result[key]['read_only']
+    assert not result[key]['designated_for_pause'] and not signals
+    assert sorted(p.name for p in (work/'phase2').iterdir())==['pilot']
 
 
 def test_watchdog_lock_prevents_any_probe_or_signal(tmp_path):

@@ -1,10 +1,10 @@
-# Experiment 13 v4: single-pause operations and prospective admission
+# Experiment 13 v4: silent-runner boundary and prospective admission
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/README.md>
 
-**TLDR:** Dispatch 4 implements the bound operational decision to pause only A_1302. Gates require that one recorded clean pause and the unchanged veto condition; the pilot still requires B_1301's verdict/released lease, all gates passed and three idle authorized devices. Live actions remain master-owned; this dispatch uses only CPU tests and synthetic dry runs.
+**TLDR:** Dispatch 5 admits a process/disk boundary for silent v3 runners while preserving the decision to pause only A_1302. Gates require that one recorded clean pause and the unchanged veto condition; the pilot still requires B_1301's verdict/released lease, all gates passed and three idle authorized devices. Live actions remain master-owned; this dispatch uses only CPU tests and synthetic dry runs.
 
-`experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4` compares strict reward (A), factored reward (B), and a start-density placebo (P). [The checkpoint](CKPT_v4_implementation.md) records the admission digest, final dry-run outcome, test counts, remaining runtime conditions, GPU census and exact master commands.
+`experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4` compares strict reward (A), factored reward (B), and a start-density placebo (P). [The checkpoint](CKPT_v4_implementation.md) records the admission digest, final dry-run outcome, test counts, remaining runtime conditions, live read-only probes and exact master commands.
 
 ## Frozen contracts
 
@@ -15,9 +15,9 @@ The [protocol](PROTOCOL.md) and all four amendments are unchanged and hash-bound
 - [V4-A3](AMENDMENT_V4-A3_schedule_v4_start_and_v3_pause_10-20-2026.md): veto window, gates first, pilot after B_1301; pause scope is superseded by the operational decision below.
 - [V4-A4](AMENDMENT_V4-A4_importance_correction_at_uncertified_positions_10-20-2026.md): unit actor correction at uncertified positions, isolated loss-only imputation, 1% update guards and perturbation bound.
 
-[The unchanged operational decision](OPERATIONAL_V4-A3_single_pause_10-21-2026.md) is also hash-bound, with [operational_pause.json](phase2/operational_pause.json) selecting exactly A_1302. Every other trajectory, including B_1301, is refused by the pause tool. The veto deadline remains 10-21-2026 12:00 PDT; neither a synthetic fixture clock nor admission bypasses it.
+[The unchanged operational decision](OPERATIONAL_V4-A3_single_pause_10-21-2026.md) is also hash-bound, with [operational_pause.json](phase2/operational_pause.json) selecting exactly A_1302. Execution refuses every other trajectory, including B_1301; read-only probes may inspect all six declared trajectories. The veto deadline remains 10-21-2026 12:00 PDT; neither a synthetic fixture clock nor admission bypasses it.
 
-A4 resolves the contract gap in the preserved [Dispatch 2 blocker](BLOCKER_V4_A1_importance_correction.md). That report and the old admissions are historical; use `phase2/admission_dispatch4.json` for this implementation.
+A4 resolves the contract gap in the preserved [Dispatch 2 blocker](BLOCKER_V4_A1_importance_correction.md). That report and the old admissions are historical; use `phase2/admission_dispatch5.json` for this implementation.
 
 ## What is implemented
 
@@ -42,7 +42,7 @@ Stages bind predecessor receipts, immutable operation inputs and completed outpu
 
 `--engine local-stub` runs this same subprocess composition with JSON stub primitives and `CUDA_VISIBLE_DEVICES=''`. The preserved Dispatch 3 local-stub run covers six trajectories through the 60-update extension, order refusal, pre-generation crash recovery, no-signal stop and A4 stop. Dispatch 4 adds the single-pause WAIT-to-PAUSED path and gate-release checks, and reruns the ordered sequence with the in-process CPU stub. Synthetic results establish control flow only; they do not establish live gate success, GPU memory fit, scoring accuracy on new model output or learning.
 
-The master-only `pause_v3.py` offers `--probe --trajectory A_1302` for read-only boundary inspection and requires explicit execution after the veto window for a pause. It checks pane text, process identity/start time, leases and stage processes under the watchdog lock. A running stage is refused; the master retries later. The real pause list has not been created, no runner has been signalled, and no cron entry has been installed. The deployed v3 watchdog already supports a single-item pause dictionary; Dispatch 4 changes no v3 files or processes.
+The master-only `pause_v3.py` offers `--probe --trajectory A_1302` for read-only boundary inspection and requires explicit execution after the veto window for a pause. It requires the same single pilot_run.py runner and isolated pane-shell group on two observations at least one second apart: zero runner children or other readable trajectory references, hrtimer_nanosleep, no active latest-update lease, pre-generation inputs or scored groups awaiting optimization, and no summary. Pane text is receipt context only. Execution retains the shared watchdog lock and repeats the whole rule after stopping the group; Linux reports do_signal_stop while stopped, so the receipt binds the two pre-stop sleep observations to the same stopped identities and unchanged disk state. A running stage is refused; the master retries later. The real pause list has not been created, no runner has been signalled, and no cron entry has been installed. The deployed v3 watchdog already supports a single-item pause dictionary; Dispatch 5 changes no v3 files or processes. Read-only --probe can inspect any of the six declared v3 trajectories, including B_1301; execution still refuses every trajectory except A_1302.
 
 The pilot's three-device availability preflight acquires and releases the same per-device locks used by v3 before admitting a pilot stage. It holds no standing reservation: generation and optimizer subprocesses still acquire their own idle-device leases, compete with v3, and release on completion. This fills an existing missing resource check; it does not change the frozen scientific protocol or convert the serial pilot runner to a new parallel schedule.
 
@@ -55,21 +55,23 @@ export PYTHONPATH=/lfs/skampere1/0/brando9/rl4cv_e13v4/test_deps:$PWD/src
 V4_PY=/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python
 V4_ROOT=$PWD/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4
 "$V4_PY" -m pytest -q "$V4_ROOT/tests"
-"$V4_PY" "$V4_ROOT/phase2/admission.py" launch-check --record "$V4_ROOT/phase2/admission_dispatch4.json"
+"$V4_PY" "$V4_ROOT/phase2/admission.py" launch-check --record "$V4_ROOT/phase2/admission_dispatch5.json"
 # Use a fresh output directory; immutable receipts are never overwritten.
-"$V4_PY" "$V4_ROOT/phase2/dry_run.py" --root /lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4_reproduction --admission "$V4_ROOT/phase2/admission_dispatch4.json"
+"$V4_PY" "$V4_ROOT/phase2/dry_run.py" --root /lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch5_reproduction --admission "$V4_ROOT/phase2/admission_dispatch5.json"
 ```
 
-Verification: **168 v4 passed; 16 v3-watchdog passed; 1,405 root passed, 15 skipped, 0 failed**. The shared virtual environment remains read-only. The root reproduction additionally prepends `/lfs/skampere1/0/brando9/rl4cv_e09/nemo_rl` to `PYTHONPATH`, sets the pinned venv's `bin` first on `PATH`, and runs `make test`.
+Verification: **233 v4 passed; 16 v3-watchdog passed; 1,405 root passed, 15 skipped, 0 failed**. The shared virtual environment remains read-only. The root reproduction additionally prepends `/lfs/skampere1/0/brando9/rl4cv_e09/nemo_rl` to `PYTHONPATH`, sets the pinned venv's `bin` first on `PATH`, and runs `make test`.
 
 ## Entry points and evidence
 
 | Artifact | Purpose |
 |---|---|
-| [Admission](phase2/admission_dispatch4.json) | Frozen contracts, source, tests, plans, installed/reused components and CPU receipts |
-| [Verification](phase2/verification_dispatch4.json) | Final counts and immutable log hashes |
+| [Admission](phase2/admission_dispatch5.json) | Frozen contracts, source, tests, plans, installed/reused components and CPU receipts |
+| [Verification](phase2/verification_dispatch5.json) | Final counts and immutable log hashes |
 | [Sampler receipt](phase2/sampler_cpu_receipt.json) | Installed CPU off/on-64 invariance and backend |
-| [Full stub dry run](phase2/dry_run_dispatch4.json) | Single-pause WAIT/PAUSED path, gate release, symbolic pilot extension and diagnosed stops |
+| [Silent-boundary probes](phase2/live_probes_dispatch5.json) | A_1302 active-stage refusal; P_1301 READY on a blank pane; B_1302 polling-child refusal |
+| [Pause control](phase2/dry_run_dispatch5.json) | Synthetic stop/recheck, atomic temporary receipt and gate release |
+| [Historical full stub dry run](phase2/dry_run_dispatch4.json) | Single-pause WAIT/PAUSED path, gate release, symbolic pilot extension and diagnosed stops |
 | [Subprocess preview](phase2/adapter_dry_contracts.json) | Prospective real-stage argv/environment, not executed |
 | [Launch plan](phase2/launch_plan.json), [watchdog plan](phase2/watchdog_plan.json) | A3-aware master commands and controller |
 | [Checkpoint](CKPT_v4_implementation.md) | Dry-run evidence, remaining runtime conditions, commands and handoff |

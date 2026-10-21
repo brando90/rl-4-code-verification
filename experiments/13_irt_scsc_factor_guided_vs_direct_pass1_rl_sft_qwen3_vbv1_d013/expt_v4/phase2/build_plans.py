@@ -10,7 +10,7 @@ BASE=Path('/lfs/skampere1/0/brando9/rl4cv_e13v4')
 
 def plans(root, *, base=BASE):
     root=Path(root).resolve();phase=root/'phase2';base=Path(base).resolve()
-    admission=str(phase/'admission_dispatch4.json');work=str(base/'run');session='rl4cv-e13v4-stages'
+    admission=str(phase/'admission_dispatch5.json');work=str(base/'run');session='rl4cv-e13v4-stages'
     common=['--work',work,'--admission',admission,'--engine','local']
     prefix=['env','HF_HUB_OFFLINE=1','PYTHONDONTWRITEBYTECODE=1','VLLM_USE_FLASHINFER_SAMPLER=0',
             'PYTHONPATH='+str(root.parents[2]/'src'),PYTHON,str(phase/'runner.py')]

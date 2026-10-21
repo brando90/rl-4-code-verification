@@ -10,6 +10,30 @@ from stage_ledger import read
 from runner import STAGES
 
 
+
+def pause_fixture(key='A_1302'):
+    """Synthetic process/disk observation; never inspect or signal a real process."""
+    arm,seed=key.split('_')
+    shell={'pid':123456788,'pgid':123456788,'ppid':1,'start_ticks':'122',
+           'uid':1000,'arguments':['sh','-c','python pilot_run.py'],
+           'state':'S','wchan':'do_wait','children':[123456789],'start_unix':1}
+    runner={'kind':'runner','pid':123456789,'pgid':shell['pid'],'ppid':shell['pid'],
+            'start_ticks':'123','start_unix':1,'uid':1000,
+            'arguments':['python','pilot_run.py','--arm',arm,'--seed',seed],
+            'state':'S','wchan':'hrtimer_nanosleep','children':[]}
+    runner['process_group_members']=[shell,dict(runner)]
+    return {'trajectory':key,'pane_text':'\n'*30,'processes':[runner],'leases':[],
+            'lease_files':[],'latest_update':'fixture/update_00021',
+            'files':{'plans.json':True,'cells.json':True},'pane_pid':shell['pid'],
+            'pane':'%fixture','session':'fixture','observed_monotonic':0.0}
+
+
+def stop_fixture(snap):
+    """Model Linux's group-stop state, including the wait-channel change."""
+    for process in [snap['processes'][0],*snap['processes'][0]['process_group_members']]:
+        process.update(state='T',wchan='do_signal_stop')
+
+
 def single_pause(root,admission):
     """Exercise the real pause/timing functions with fake processes and a private pause list."""
     from admission import launch_timing,check_admission
@@ -20,16 +44,22 @@ def single_pause(root,admission):
     timing=lambda:launch_timing(root/'phase2/pilot',now=VETO_END+1,
                                veto_not_issued=True,operational=operational)
     signals=[];probes=[];running=True
-    runner={'kind':'runner','pid':123456789,'pgid':123456789,'start_ticks':'123','start_unix':1}
+    snap=pause_fixture();runner=snap['processes'][0]
     def probe(key,work):
         assert key=='A_1302' and Path(work)==root
         probes.append(key)
-        return {'trajectory':key,'pane_text':'waiting for an idle GPU',
-                'processes':[runner,*([{'kind':'stage'}] if running else [])],'leases':[]}
+        snap['processes']=[runner,*([{'kind':'stage'}] if running else [])]
+        return snap
+    def sleep(seconds):snap['observed_monotonic']+=seconds
+    def kill(pgid,sig):
+        import signal
+        signals.append([pgid,int(sig)])
+        if sig==signal.SIGSTOP:stop_fixture(snap)
     def attempt():
         return pause(admission,work=root,trajectory='A_1302',now=VETO_END+1,veto_not_issued=True,
-                     probe=probe,inspect=lambda pid:runner,
-                     kill=lambda pgid,sig:signals.append([pgid,int(sig)]))
+                     probe=probe,sleep=sleep,
+                     inspect=lambda pid:next(p for p in runner['process_group_members'] if p['pid']==pid),
+                     kill=kill)
     before=timing();waiting=attempt();after_wait=timing()
     assert waiting=={'A_1302':'WAIT_STAGE_RUNNING'} and not signals
     assert not (root/'phase2/autoresume_paused.json').exists()
@@ -91,7 +121,7 @@ def run(root,admission,*,real_adapters=False):
         assert stopped['status']=='STOP_V4_A4' and not (a4root/'export').exists()
         fake_v3=root/'pause_fixture';(fake_v3/'phase2').mkdir(parents=True)
         def busy(key,work):return {'pane_text':'waiting for an idle GPU','processes':[{'kind':'runner'},{'kind':'stage'}],'leases':[]}
-        refused=pause(admission,work=fake_v3,veto_not_issued=True,now=VETO_END+1,probe=busy,
+        refused=pause(admission,work=fake_v3,veto_not_issued=True,now=VETO_END+1,probe=busy,sleep=lambda _:None,
                       kill=lambda *a:(_ for _ in ()).throw(AssertionError('no process may be signalled')))
         assert set(refused.values())=={'WAIT_STAGE_RUNNING'} and not (fake_v3/'phase2/autoresume_paused.json').exists()
         summary.update(real_adapter_composition=True,A4_stop=stopped,pause_refusal=refused,
