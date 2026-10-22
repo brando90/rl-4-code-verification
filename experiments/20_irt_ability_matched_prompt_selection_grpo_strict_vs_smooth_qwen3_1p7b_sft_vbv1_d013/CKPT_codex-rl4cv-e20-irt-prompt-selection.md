@@ -5,7 +5,7 @@
 **TLDR:** Single-writer continuation of `20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013` under the unchanged runbook. Deployment `deploy_50715cf54e614ecf914f0f7da4aae03c`, Codex gpt-6-astra ultra, personal ~/.codex, skampere1.
 
 Created: 10-21-2026 13:44 PDT
-Last updated: 10-21-2026 19:56:48 PDT
+Last updated: 10-21-2026 20:16:49 PDT
 
 ## Goal
 - Complete post-stop pre-registered Phase 0 CPU scoring and item response theory (IRT) gate G0; trainer stays FAILED.
@@ -16,11 +16,11 @@ Last updated: 10-21-2026 19:56:48 PDT
 - Scoring complete and audited: 4312/4312 strict, 191 successes, 74/539 active tasks. Smooth4202/4312 known;110duplicate-identity cells missing. D-10911859calls/64receipts/zeroauditerrors. Saved-smokeT1FAIL; trainerFAILED (2.61982% >1%).
 - Existing allocation 7.8258/200 GPU-h; no new GPU jobs, pilot, trainer or gate changes authorized. API $0; test split closed.
 ## Stuck / blocked
-- Trainer admission remains FAILED. CPU scoring complete; primaryG0 PASS, remainingPhase0b running since19:39:27PDT. Strict G0 uses all4312strict outcomes independently of110missing smooth cells.
+- Trainer admission remains FAILED. CPU scoring complete; primaryG0 PASS, graded/full dimensional fits passed; five held-out dimensionality folds running. Strict G0 uses all4312strict outcomes independently of110missing smooth cells.
 ## Next steps
 - [p 10/10] Adopt running Phase0b session76019, wrapper3572093, child3573131. Receipt results/receipts/phase0b_run_receipt.json; progress results/phase0b/progress.json. Do not duplicate the fit process.
 - [p 10/10] Monitor results/phase0b/progress.json and receipt; finish reports, freeze verification, final CPU accounting, PR20 and G0_FINISHED with AUCinterval/results hash.
-- AllSlurmjobs terminal; monitor session70252 exited. Last pushed12c2cc010d62e627b48abb4f351addb9a1387b26. Fullmake1415PASS/17skip/6subtests;46sourcehashes unchanged. Preserve E20_FINISHED history.
+- AllSlurmjobs terminal; monitor session70252 exited. Last pushed46feaa89dd18ee850a4b28fb34fd85cc57f234ca. Fullmake1415PASS/17skip/6subtests;46sourcehashes unchanged. Preserve E20_FINISHED history.
 ## Brando to-do
 - none; 32G question withdrawn after frozen-scorer audit. Preserve16G and native completed failure scores; incomplete evidence remains unresolved.
 
@@ -194,3 +194,9 @@ Last updated: 10-21-2026 19:56:48 PDT
 - 10-21-2026 19:49:27 PDT -- Google single-bullet update verified against fresh revision: committed scores/audit,198.2291667CPU-h and runningCPUfits; G0/freeze explicitlypending. Readbackreceipt google_cpu_progress5_receipt.json. OwnedSlurmmonitor session70252 completedexit0 andPID2437333 gone; no furtherSlurmpolls needed. Primaryprior search200/250 observed19:47; deterministicfinalvalidator /tmp/e20_verify_final_phase0.py prepared butnotrun onincompleteoutputs.
 
 - 10-21-2026 19:56:48 PDT -- Primary G0 evaluated PASS: explanatory2PL AUC0.93126998 CI[0.90926562,0.95193359], p=0.0001 vs0.70; logloss0.30443146 vsBeta baseline0.48118507. ECE0.11215652; predictedactive0.24849181 vsobserved74/539=0.13729128. Primary25/25G0fits converged. E05sensitivity running; smooth/dimensionality/freeze and finalverification stillpending. TrainerFAILED unchanged.
+
+- 10-21-2026 20:06:29 PDT -- Primary G0 results/plots/input tables and independent10kbootstrap replay pushed46feaa89dd18ee850a4b28fb34fd85cc57f234ca; remotehashverified. StageddiffSHA9e167ec7b96d5aae1bde4327180e04f159e9c6c6b2ef0189c77a92f2dcf20252, zero secret-patternhits/differrors;46testedsourcehashes unchanged. Google progress6 exactreadback verified. Sensitivity214/250; finalvalidator committed butnotyetexecuted; smooth/dim/freeze pending.
+
+- 10-21-2026 20:10:14 PDT -- E05sensitivity G0 PASS, selectedexplanatory: AUC0.93315897 CI[0.91172292,0.95331506], p0.0001 vs0.70; logloss0.31187248 vs0.48118507; ECE0.12990460, predictedactive0.25647427 vs0.13729128. All25G0fits converged. Both500priorfits complete; sensitivityfinalfits finishing, smooth/dim/freeze next. Primaryunchanged.
+
+- 10-21-2026 20:16:49 PDT -- Gradedfit converged (61.15s; both gradients3.29936e-6), knownsmooth4202/4312. Full dimensionality tied/untied fits converged (finergrad4.01283e-6/1.36126e-6), permitting registered5fold comparison. Fold0tied complete/converged841pairedcells; fold0untied active. Sensitivityindependentmetrics56/56PASS, receipt sensitivity_metric_verification.json. Freeze awaitsallstages.
