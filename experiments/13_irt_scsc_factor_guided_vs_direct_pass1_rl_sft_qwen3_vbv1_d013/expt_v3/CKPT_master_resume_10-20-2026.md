@@ -488,3 +488,13 @@ No T1 statistic exists.
   | A_1302 | 6 | paused |
 
 - **Root cause still open.** `alexspan`'s short jobs on authorized GPU 7 make it look idle between jobs. The frozen v3 allocation (`memory.used ≤ 100 MB`) leases it, then aborts when the next foreign job lands. v4 now waits for a sustained idle window, but v3 cannot change without touching frozen code. Options are put to Brando.
+
+## 10-21-2026 20:50 PDT: Claude budget stop; lane runs unattended on SNAP
+
+- **Why.** The coordinator reported Brando's personal Claude weekly budget at 98% at 20:49. Claude check-ins stopped, except replies to Brando. The master deleted its session crons (`cadbf4c3`, `f6f23707`). Codex dispatches only if essential to unblock a gate.
+- **Unattended on skampere1, no Claude involved:**
+  - the v3 watchdog (`# e13v3-autoresume`, every 10 min);
+  - the v4 watchdog and the gate controller (tmux `rl4cv-e13v4-stages`, dispatch 8 admission `9209a408…`);
+  - **new:** `# e13v3-periodic-reset` (`37 */2 * * *`). It runs `rl4cv_e13v4/e13v3_periodic_reset.py`, which clears v3 restart counters at the limit for every trajectory except the paused A_1302, under the watchdog lock, logging to `rl4cv_e13v4/e13v3_periodic_reset.log`.
+- **Why the reset cron.** The foreign-GPU aborts on GPU 7 would otherwise strand runs, including the gate run B_1301, until the budget resets on 10-27. Its first run cleared P_1302 u10. Crontab backup: `rl4cv_e13v4/crontab_before_periodic_reset_10-21-2026.txt`. To remove it, delete the tagged line.
+- **Next Claude touch:** Brando's next message, or 10-27. Brando's open decisions are the GPU 7 options, A-sel, and the disk at 100%.
