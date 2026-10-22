@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/CKPT_v4_implementation.md>
 **Companion:** <https://docs.google.com/document/d/1KqUi39sz532dIGg8EYCy6w62Q0KzO2XWhpM2MMSWvHE/edit>
-**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 19:27 PDT.
+**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 19:31 PDT.
 
 **TLDR:** Dispatch 8 implements sustained-idle leasing, non-consuming pre-engine refusals and durable zero-effect recovery; all 471 v4, 16 watchdog and 1,405 root tests pass (15 root skips). The retained `attempt_01` consumes zero A4 attempts; new admission `9209a408ce9ca1d6ae42e5769dd61c9228d0155dd89eba80ebc74a5ee490d2a4` passes launch-check. Master activation is prepared; no GPU or gate ran and the active cron/plans and A_1302 pause remain unchanged.
 
@@ -17,8 +17,8 @@
 - Recovery: ACCOUNT_OR_CONTINUE with one verified lease refusal; both original intents accepted under the explicit transition; no completed stage is rebound.
 - Protection: active plans/wrapper/cron and A_1302 pause unchanged; prepared versioned dispatch8 plans require master activation.
 - Companion: five Dispatch 8 paragraphs synchronized to the existing Google Doc and read back exactly.
-- Stuck / blocked: nothing; publication in progress. T1 and all gate statistics remain unmeasured.
-- Next steps: [p 10/10] rebase and publish; [p 8/10, master-owned] execute the activation block below to resume the gate chain.
+- Stuck / blocked: nothing; LANDED f90aeaf580c7fab67af296c194da2e460a7032fe on main, remote hash verified. T1 and all gate statistics remain unmeasured.
+- Next steps: [p 8/10, master-owned] execute the activation block below to resume the gate chain; all dispatch implementation and publication work is complete.
 - Brando to-do: none. The existing experiment master owns activation.
 - Helpers: inherited gpt-6-astra / ultra, full access / never; useful reads and CPU checks verified; disjoint owned files, completed.
 - Limits: no GPU allocation/generation/optimizer, no gate, no v3 mutation, no cron edit, no shared-venv mutation, no frozen-document edits; $0.
@@ -81,6 +81,8 @@ PATH=/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin:$PATH   PYTHONPATH=/lf
 ```
 
 The existing checkpoint is outside admission's hash closure to avoid circular evidence. The immutable seal command and its input list are retained at `/lfs/skampere1/0/brando9/rl4cv_e13v4/dispatch8_evidence/seal_admission.py`. This pre-existing checkout remains because the admitted deployment paths depend on it; no temporary checkout was created.
+
+Publication: **[f90aeaf5](https://github.com/brando90/rl-4-code-verification/commit/f90aeaf580c7fab67af296c194da2e460a7032fe)** is on `main`, verified by remote hash readback. Rebase onto `origin/main` was current; range-diff and all 27 owned file hashes were unchanged. Post-rebase launch-check passes with final admission `9209a408ce9ca1d6ae42e5769dd61c9228d0155dd89eba80ebc74a5ee490d2a4`. Both master command blocks pass `bash -n`. Five Google companion paragraphs and the final digest were read back. No temporary checkout or persistent test worker remains; the existing deployment checkout is retained. Active cron/plans/wrapper and A_1302 pause hashes are unchanged. This publication receipt edits only the unbound checkpoint.
 
 ## Historical Dispatch 7 evidence and master handoff (superseded)
 
@@ -489,3 +491,5 @@ I have the experiment 13 v4 CPU implementation passing 89 tests, with the histor
 10-21-2026 19:24 PDT — Dispatch 8 verified: 471 v4 / 16 watchdog / 1,405 root pass (15 root skips), 39 final admission checks pass; original attempt retained as non-consuming refusal, admission 1a07cdc4c0295639965b561fd34664d71e9d51eb1379db1b16d4fb3d224bd162 sealed; active cron/plans/pause unchanged; publication next.
 
 10-21-2026 19:27 PDT — Corrected README current-verification links and resealed its binding only; final admission 9209a408ce9ca1d6ae42e5769dd61c9228d0155dd89eba80ebc74a5ee490d2a4; original unpublished seal preserved privately, code/test bindings unchanged.
+
+10-21-2026 19:31 PDT — Dispatch 8 LANDED f90aeaf580c7fab67af296c194da2e460a7032fe on main; remote hash, unchanged owned files/range-diff, final admission and protected cron/plans/pause verified; Google readback complete; master activation remains unexecuted.
