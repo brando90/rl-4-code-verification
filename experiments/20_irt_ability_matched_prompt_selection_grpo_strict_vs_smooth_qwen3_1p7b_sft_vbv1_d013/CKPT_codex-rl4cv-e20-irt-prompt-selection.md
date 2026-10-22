@@ -5,7 +5,7 @@
 **TLDR:** Single-writer continuation of `20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013` under the unchanged runbook. Deployment `deploy_50715cf54e614ecf914f0f7da4aae03c`, Codex gpt-6-astra ultra, personal ~/.codex, skampere1.
 
 Created: 10-21-2026 13:44 PDT
-Last updated: 10-21-2026 17:59:37 PDT
+Last updated: 10-21-2026 18:19:24 PDT
 
 ## Goal
 - Complete post-stop pre-registered Phase 0 CPU scoring and item response theory (IRT) gate G0; trainer stays FAILED.
@@ -13,12 +13,12 @@ Last updated: 10-21-2026 17:59:37 PDT
 - Dispatcher instruction 10-21-2026 reauthorizes only scoring saved 4,312 generations, Phase 0b/G0, and saved-smoke comparison to experiment 13 v4 T1.
 - Codex gpt-6-astra/ultra, deployment deploy_50715cf54e614ecf914f0f7da4aae03c, sole repository writer, full access. Independent helpers: saved-smoke audit and numerical analysis driver.
 ## Results
-- Existing calibration 4,312/4,312 generated, 539 tasks, 0 missing; CPU scoring: 32/32 strict completion files, 26/32 partial completion files; 4141/4312 partial cells logged. Intact completed negative compiler exits retain native failure scores. Saved-smoke T1 comparison FAIL (195 unsupported update2); exact quantiles unavailable, median bounded <0.01. Trainer FAILED: 22,654/864,717 mismatch tokens (2.61982% >1%).
+- Existing calibration 4,312/4,312 generated, 539 tasks, 0 missing; CPU scoring: 32/32 strict completion files, 30/32 partial completion files; 4257/4312 partial cells logged. Intact completed negative compiler exits retain native failure scores. Saved-smoke T1 comparison FAIL (195 unsupported update2); exact quantiles unavailable, median bounded <0.01. Trainer FAILED: 22,654/864,717 mismatch tokens (2.61982% >1%).
 - Existing allocation 7.8258/200 GPU-h; no new GPU jobs, pilot, trainer or gate changes authorized. API $0; test split closed.
 ## Stuck / blocked
 - Trainer admission remains FAILED. CPU scoring continues; collector48892191 waits for owned arrays. Missing smooth adapter outputs stay missing; strictG0 remains independent.
 ## Next steps
-- [p 10/10] Read /tmp/e20_cpu_monitor/latest.json (monitor v2 session70252; expandable /tmp/e20_cpu_monitor_job_ids.json). Pushed49222b3b2750014a9e309f57b39968538e1ae92d; source files verified; full make test PASS1415/17skipped/6subtests/321.63s. Do not add Slurm polls within60s of monitor.
+- [p 10/10] Read /tmp/e20_cpu_monitor/latest.json (monitor v2 session70252; expandable /tmp/e20_cpu_monitor_job_ids.json). Pushed3d338080a03ad6edbaa6af708db3b02c104d1b75; source files verified; full make test PASS1415/17skipped/6subtests/321.63s. Do not add Slurm polls within60s of monitor.
 - [p 10/10] After collection run /tmp/e20_download_cpu_tables.py then /tmp/e20_import_cpu_tables.py with venv Python; verify/commit4312celltable; launch /tmp/e20_run_phase0b.py (all registered fits,4workers,CPUonly). Finish PR20/G0_FINISHED with AUCinterval/results hash.
 - Keep >=60 seconds between Slurm checks; remain inside turn. Preserve E20_FINISHED.txt as trainer-stop history.
 ## Brando to-do
@@ -134,3 +134,13 @@ Last updated: 10-21-2026 17:59:37 PDT
 - 10-21-2026 17:57:00 PDT -- Shared Experiment Log single E20 bullet updated to17:54:21PDT state4104/4312partialcells,26/32partialcompletionfiles,sixrunning; freshrevision and exactreadback verified (google_cpu_progress2_receipt.json). TrainerFAILED/G0pending remain explicit.
 
 - 10-21-2026 17:59:37 PDT -- CPU monitor 20261022T005917Z: states {'COMPLETED': 56, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 6}; strict completion files 32/32, partial completion files 26/32, partial cells logged 4141/4312. Strict/partial diagnostic calls 3758/7727. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 18:04:54 PDT -- CPU monitor 20261022T010414Z: states {'COMPLETED': 58, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 4}; strict completion files 32/32, partial completion files 28/32, partial cells logged 4187/4312. Strict/partial diagnostic calls 3758/7839. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 18:06:55 PDT -- Progress and Google readback receipt pushed3d338080a03ad6edbaa6af708db3b02c104d1b75; remotehashverified. No source changes since make1415PASS. Fourpartialtasks remain as of18:04:14,4187/4312cells. Final CPU accounting command in /tmp/e20_cpu_accounting_notes.md; parser /tmp/e20_cpu_accounting.py rejects nonterminal-final claims and avoids step doublecounting.
+
+- 10-21-2026 18:09:33 PDT -- CPU monitor 20261022T010911Z: states {'COMPLETED': 59, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 3}; strict completion files 32/32, partial completion files 29/32, partial cells logged 4211/4312. Strict/partial diagnostic calls 3758/7891. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 18:15:07 PDT -- CPU monitor 20261022T011408Z: states {'COMPLETED': 60, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 2}; strict completion files 32/32, partial completion files 30/32, partial cells logged 4244/4312. Strict/partial diagnostic calls 3758/7954. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 18:19:24 PDT -- CPU monitor 20261022T011904Z: states {'COMPLETED': 60, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 2}; strict completion files 32/32, partial completion files 30/32, partial cells logged 4257/4312. Strict/partial diagnostic calls 3758/7993. Collection ready=False; trainer FAILED unchanged.
