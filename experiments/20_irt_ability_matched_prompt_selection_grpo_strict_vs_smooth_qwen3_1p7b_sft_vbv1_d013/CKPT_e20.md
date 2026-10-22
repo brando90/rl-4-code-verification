@@ -5,7 +5,7 @@
 **TLDR:** Resume record for experiment 20. Dispatcher: Claude Code session local_268be283 (Mac); worker: tmux `codex-rl4cv-e20-irt-prompt-selection` on skampere1 (Codex gpt-6-astra, ultra, personal profile, full access).
 
 Created: 10-21-2026 11:18 PDT
-Last updated: 10-21-2026 17:40:04 PDT
+Last updated: 10-21-2026 17:59:37 PDT
 
 ## Goal
 - Complete post-stop pre-registered Phase 0 CPU scoring and item response theory (IRT) gate G0; trainer stays FAILED.
@@ -13,13 +13,13 @@ Last updated: 10-21-2026 17:40:04 PDT
 - Dispatcher instruction 10-21-2026 reauthorizes only scoring saved 4,312 generations, Phase 0b/G0, and saved-smoke comparison to experiment 13 v4 T1.
 - Codex gpt-6-astra/ultra, deployment deploy_50715cf54e614ecf914f0f7da4aae03c, sole repository writer, full access. Independent helpers: saved-smoke audit and numerical analysis driver.
 ## Results
-- Existing calibration 4,312/4,312 generated, 539 tasks, 0 missing; CPU scoring: 32/32 strict completion files, 24/32 partial completion files; 4003/4312 partial cells logged. Intact completed negative compiler exits retain native failure scores. Saved-smoke T1 comparison FAIL (195 unsupported update2); exact quantiles unavailable, median bounded <0.01. Trainer FAILED: 22,654/864,717 mismatch tokens (2.61982% >1%).
+- Existing calibration 4,312/4,312 generated, 539 tasks, 0 missing; CPU scoring: 32/32 strict completion files, 26/32 partial completion files; 4141/4312 partial cells logged. Intact completed negative compiler exits retain native failure scores. Saved-smoke T1 comparison FAIL (195 unsupported update2); exact quantiles unavailable, median bounded <0.01. Trainer FAILED: 22,654/864,717 mismatch tokens (2.61982% >1%).
 - Existing allocation 7.8258/200 GPU-h; no new GPU jobs, pilot, trainer or gate changes authorized. API $0; test split closed.
 ## Stuck / blocked
 - Trainer admission remains FAILED. CPU scoring continues; collector48892191 waits for owned arrays. Missing smooth adapter outputs stay missing; strictG0 remains independent.
 ## Next steps
-- [p 10/10] Read /tmp/e20_cpu_monitor/latest.json (monitor v2 session70252; expandable /tmp/e20_cpu_monitor_job_ids.json). Pushed8cdce551fa40d823531215ff524ee72c6d711c0a; source files verified; full make test PASS1415/17skipped/6subtests/321.63s. Do not add Slurm polls within60s of monitor.
-- [p 10/10] After collection download/hashverify phase0_cpu_tables.tgz, commit4312celltable; run venv/bin/python expt_v1/analyze_phase0_e20.py --repo . --scores expt_v1/results/phase0_cells_e20.csv --out expt_v1/results/phase0b --freeze-dir expt_v1/forecasts --workers4 (use full experiment paths). Finish PR20/G0_FINISHED with AUCinterval/results hash.
+- [p 10/10] Read /tmp/e20_cpu_monitor/latest.json (monitor v2 session70252; expandable /tmp/e20_cpu_monitor_job_ids.json). Pushed49222b3b2750014a9e309f57b39968538e1ae92d; source files verified; full make test PASS1415/17skipped/6subtests/321.63s. Do not add Slurm polls within60s of monitor.
+- [p 10/10] After collection run /tmp/e20_download_cpu_tables.py then /tmp/e20_import_cpu_tables.py with venv Python; verify/commit4312celltable; launch /tmp/e20_run_phase0b.py (all registered fits,4workers,CPUonly). Finish PR20/G0_FINISHED with AUCinterval/results hash.
 - Keep >=60 seconds between Slurm checks; remain inside turn. Preserve E20_FINISHED.txt as trainer-stop history.
 ## Brando to-do
 - none; 32G question withdrawn after frozen-scorer audit. Preserve16G and native completed failure scores; incomplete evidence remains unresolved.
@@ -122,3 +122,15 @@ Last updated: 10-21-2026 17:40:04 PDT
 - 10-21-2026 17:35:09 PDT -- CPU monitor 20261022T003438Z: states {'COMPLETED': 53, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 9}; strict completion files 32/32, partial completion files 23/32, partial cells logged 3982/4312. Strict/partial diagnostic calls 3758/7384. Collection ready=False; trainer FAILED unchanged.
 
 - 10-21-2026 17:40:04 PDT -- CPU monitor 20261022T003934Z: states {'COMPLETED': 54, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 8}; strict completion files 32/32, partial completion files 24/32, partial cells logged 4003/4312. Strict/partial diagnostic calls 3758/7415. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 17:44:57 PDT -- CPU monitor 20261022T004429Z: states {'COMPLETED': 54, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 8}; strict completion files 32/32, partial completion files 24/32, partial cells logged 4015/4312. Strict/partial diagnostic calls 3758/7453. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 17:47:07 PDT -- Progress49222b3b2750014a9e309f57b39968538e1ae92d pushed and remoteverified; data/docs-only change, testedsourcehashes unchanged. Hourly config refresh17:41 unchanged217b6ee6. Prepared hash-verifying bundle import and durable full-analysis launcher; no fits launched yet. Local helper CPU accounting parser validated arrays/failures/nonterminal states; finalquery awaits terminal jobs.
+
+- 10-21-2026 17:49:45 PDT -- CPU monitor 20261022T004925Z: states {'COMPLETED': 54, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 8}; strict completion files 32/32, partial completion files 24/32, partial cells logged 4054/4312. Strict/partial diagnostic calls 3758/7535. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 17:55:04 PDT -- CPU monitor 20261022T005421Z: states {'COMPLETED': 56, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 6}; strict completion files 32/32, partial completion files 26/32, partial cells logged 4104/4312. Strict/partial diagnostic calls 3758/7631. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 17:57:00 PDT -- Shared Experiment Log single E20 bullet updated to17:54:21PDT state4104/4312partialcells,26/32partialcompletionfiles,sixrunning; freshrevision and exactreadback verified (google_cpu_progress2_receipt.json). TrainerFAILED/G0pending remain explicit.
+
+- 10-21-2026 17:59:37 PDT -- CPU monitor 20261022T005917Z: states {'COMPLETED': 56, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 6}; strict completion files 32/32, partial completion files 26/32, partial cells logged 4141/4312. Strict/partial diagnostic calls 3758/7727. Collection ready=False; trainer FAILED unchanged.
