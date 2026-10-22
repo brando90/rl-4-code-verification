@@ -2,18 +2,20 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/results.md>
 
-Experiment 20 is completing pre-registered CPU calibration after the trainer failed its consistency gate (2.61982% of tokens versus 1% allowed); the effect of item response theory (IRT) selection on held-out validation remains unmeasured.
+**TLDR:** Experiment 20 is completing pre-registered CPU calibration after the trainer failed its consistency gate (2.61982% of tokens versus 1% allowed); the effect of item response theory (IRT) selection on held-out validation remains unmeasured.
 
 **Status:** IN PROGRESS: post-stop CPU Phase 0 completion; trainer verdict remains FAILED. The downstream IRT treatment effect is unmeasured.
 
-**Last updated:** 10-21-2026 16:33:45 PDT
+**Last updated:** 10-21-2026 17:21:03 PDT
 
 ## Post-stop completion of pre-registered Phase 0 (CPU only, dispatcher instruction 10-21-2026)
 
-**Status (10-21-2026 16:16:27 PDT): IN PROGRESS.** The dispatcher authorized scoring the existing 4,312 train generations, Phase 0b and gate G0, and a saved-receipt comparison with experiment 13 v4 T1. Trainer verdict stays **FAILED**. No new graphics processor (GPU) jobs, pilot, trainer changes or gate changes. Existing failed-gate closure below remains historical evidence.
+**Status (10-21-2026 17:17:03 PDT): IN PROGRESS.** The dispatcher authorized scoring the existing 4,312 train generations, Phase 0b and gate G0, and a saved-receipt comparison with experiment 13 v4 T1. Trainer verdict stays **FAILED**. No new graphics processor (GPU) jobs, pilot, trainer changes or gate changes. Existing failed-gate closure below remains historical evidence.
 
-- CPU scoring: strict 6/32 jobs, partial 1/32 jobs complete; 2016/4,312 partial cells logged (monitor 20261021T233247Z; states {'RUNNING': 57, 'COMPLETED': 7, 'PENDING': 1}). Retry 2 submitted: materialization `48881654` → strict array `48881657` and partial-credit array `48881660`, each array 32 tasks (`-p normal -c 1 --mem 16G`). `score_sherlock.sh` is invoked unchanged through its interpreter hook, which adds D-109 durable capture. [Retry submission](expt_v1/results/receipts/cpu_retry_receipt.txt). Attempt 1 preparation (`48880517`) exited 1 before materialization (empty log, 9 s); dependent arrays were canceled without executing. Fixed shell-profile initialization under unset-variable checking; no scored cells or model runs were repeated.
-- IRT/G0: numerical driver is ready; synthetic gradient, grouped-fold, bootstrap, joint-likelihood, convergence-rejection and freeze checks passed. Real-data fitting awaits score tables; frozen protocol §3 applies. [Driver](expt_v1/analyze_phase0_e20.py).
+- CPU scoring: 32/32 strict completion files, 19/32 partial completion files; 3756/4,312 partial cells logged (monitor 20261022T001954Z; states {'COMPLETED': 49, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 13}). Collector audits parent completion, source identities and compiler streams; intact nonzero exits retain native failure scores. Retry 2 submitted: materialization `48881654` → strict array `48881657` and partial-credit array `48881660`, each array 32 tasks (`-p normal -c 1 --mem 16G`). `score_sherlock.sh` is invoked unchanged through its interpreter hook, which adds D-109 durable capture. [Retry submission](expt_v1/results/receipts/cpu_retry_receipt.txt). Attempt 1 preparation (`48880517`) exited 1 before materialization (empty log, 9 s); dependent arrays were canceled without executing. Fixed shell-profile initialization under unset-variable checking; no scored cells or model runs were repeated.
+- Resource-failure diagnostics: strict jobs `48881657_8` and `_2` recorded out-of-memory events and complete scorer tables. D-109 identifies one killed initial compiler call in each. Identical-cell retry attempts 2 (`48888345`, `48888814`) and 3 (`48890055`, `48890056`) also exhausted memory; final allowed attempt 4 (`48890627`, `48890632`) also exhausted memory and retained the exact source, scorer and `-p normal -c 1 --mem 16G` settings. All original outputs remain immutable. **Interpretation correction:** the frozen scorer explicitly maps every nonzero initial compile exit to failure (run_real_eval.py:215,704–706), and with `--skip-tc` emits `scoring_status=scored` (:811). Protocol §2 prescribes that scorer/resources; its infrastructure-retry clause does not recode completed negative-exit rows as missing. Therefore intact completed resource failures retain their native zero scores, just as native 600-second timeouts do; absent/incomplete evidence remains unresolved. The earlier proposal to mask completed memory failures was not adopted. The 32 GB question was withdrawn; no resources, scorer or gate changed. Collector `48882642` was canceled because its original success dependency cannot resolve; replacement collector `48892191` waits for all owned arrays/retries to terminate, then audits immutable tables, hashes and compiler evidence. [Collector fixture](expt_v1/results/receipts/collector_native_verification.json). [Affected-cell evidence](expt_v1/results/receipts/e20_oom_cells.stdout).
+
+- IRT/G0: strict scoring is independent of descriptive smooth missingness. Among the first 1,063 terminal partial records, 267 malformed-source outcomes have the registered zero credit, and 28 duplicate declaration identities remain unmeasured; they are never imputed as zero. The analysis records missing smooth cells and masks only their likelihood contributions. Numerical driver is ready; synthetic gradient, grouped-fold, bootstrap, joint-likelihood, convergence-rejection and freeze checks passed. Real-data fitting awaits score tables; frozen protocol §3 applies. [Driver](expt_v1/analyze_phase0_e20.py).
 - Saved smoke: COMPLETE. Update 2 mismatch = 22,459 finite errors above 0.05 + 195 unsupported actions, out of 864,717 tokens (2.61982%). Analogous experiment 13 v4 T1 comparison **FAIL** due to nonzero unsupported actions. Exact median/p99 and task/token slices unavailable; all-token median bound ≤0.00841008 <0.01, p99 ≤0.10 undecidable. [Full saved-receipt comparison](RESULTS_saved_smoke_t1.md).
 - D-109 recovery: materialization completed (61 s), all 32 strict tasks running. Found partial wrapper bypasses for a function-local subprocess import and the parser’s `nice -n 10 lake env lean` invocation. Held pending partial tasks, then canceled owned partial array `48881660` (only index 0 had started) and dependent collector `48882176`; preserved all outputs. Corrected wrapper passed compiler/kernel/parser/timeout fixtures and was deployed to isolated `code/cpu_partial_d109_v2`; replacement partial array `48882641` and collector `48882642` submitted. The interrupted index ran 98 seconds; original diagnostics are preserved. Strict jobs continue with unchanged deployed bytes. [Capture verification](expt_v1/results/receipts/partial_d109_fixture.json), [actual parser/compiler/kernel receipts](expt_v1/results/receipts/live_d109_examples.json). All sampled raw stream/source hashes verified against metadata; Lean4.22.0 identity retained.
 - Publication: same unmerged [PR #20](https://github.com/brando90/rl-4-code-verification/pull/20); G0_FINISHED.txt will record the G0 verdict, AUC interval and results revision.
@@ -33,8 +35,8 @@ Experiment 20 is completing pre-registered CPU calibration after the trainer fai
 | Phase | State | GPU-h used / cap |
 |---|---|---|
 | Setup and protocol draft | Recorded; never pilot-locked | 0 |
-| Phase 0a generation, 539 × 8 train cells | Adopted array 48841018_[0-3] terminal; 4,312/4,312 generated, 0 missing, all unscored | 7.2358 / 10, final |
-| Phase 0a strict/smooth scoring | IN PROGRESS: strict48881657 + corrected partial48882641; collector48882642; preparation48881654 complete | 0 |
+| Phase 0a generation, 539 × 8 train cells | Adopted array 48841018_[0-3] terminal; 4,312/4,312 generated, 0 missing; separate CPU scoring in progress | 7.2358 / 10, final |
+| Phase 0a strict/smooth scoring | IN PROGRESS: strict48881657 + corrected partial48882641; collector48892191 waiting for terminal jobs; preparation48881654 complete | 0 |
 | Phase 0b IRT fit and G0 | PENDING scoring; authorized post-stop completion | CPU only |
 | Trainer smoke | FAILED gate after 2/2 updates; 48857034 exit 3:0; earlier infrastructure failures 48845232/48855196 included | 0.5900, included in pilot cap 15 |
 | Pilot A/C/S | NOT RUN | 0 additional / 15 |
@@ -60,7 +62,7 @@ The fenced Claude worker handed off revision `e39d620a`; Codex gpt-6-astra ultra
 
 - Trainer mismatch: 22,654/864,717 = 2.61982%; allowed ≤1%.
 - Smoke records: 256 rollouts, 32 prompts, 2 updates.
-- Calibration cell table: 4,312 rows; 4,312 generated, 0 missing, 0 scored.
+- Calibration: 4,312 saved generations; scored-cell collection pending both CPU arrays.
 - Allocation ledger: 7 terminal jobs, 7.8258 GPU-hours.
 - Deterministic verification: 1,415 passed, 17 skipped, 6 subtests passed.
 - Review: pull request #20; not merged.

@@ -81,6 +81,27 @@ def stamp(out, phase, **extra):
     print(json.dumps(clean(receipt), sort_keys=True), flush=True)
 
 
+def smooth_task_summary(values, observed):
+    """Measured-cohort smooth summary and sharp nonconstancy bounds for one declared task."""
+    values, observed = np.asarray(values, float), np.asarray(observed, bool)
+    measured = values[observed]
+    n_measured, n_declared = int(observed.sum()), int(observed.size)
+    lower = bool(n_measured >= 2 and np.ptp(measured) > 0)
+    # If observed values are constant, any missing value could differ; otherwise nonconstancy is already known.
+    upper = bool(lower or n_measured < n_declared)
+    return dict(
+        smooth_measured=n_measured,
+        smooth_declared=n_declared,
+        smooth_missing=n_declared - n_measured,
+        smooth_mean=float(measured.mean()) if n_measured else None,
+        smooth_sd=float(measured.std(ddof=1)) if n_measured >= 2 else None,
+        smooth_nonconstant=int(lower) if n_measured == n_declared else None,
+        smooth_nonconstant_lower=int(lower),
+        smooth_nonconstant_upper=int(upper),
+        smooth_summary_scope='complete_case' if n_measured == n_declared else 'observed_cells_with_full_task_bounds',
+    )
+
+
 def load_inputs(repo, scores, generation_manifest, out):
     """Read train-only analytical arrays; source hashes and exact declared-cell checks fail closed."""
     initialize(repo)
@@ -115,7 +136,9 @@ def load_inputs(repo, scores, generation_manifest, out):
         raise ValueError('nonfinite feature matrix')
     lookup = {t: j for j, t in enumerate(tasks)}
     strict, reward = np.full((G, J), np.nan), np.full((G, J), np.nan)
-    statuses, missing, seen, rows = Counter(), [], set(), []
+    strict_mask, reward_mask = np.zeros((G, J), bool), np.zeros((G, J), bool)
+    strict_statuses, smooth_statuses, joint_statuses = Counter(), Counter(), Counter()
+    missing_strict, missing_smooth, seen, rows = [], [], set(), []
     with scores.open(newline='') as fh:
         reader = csv.DictReader(fh)
         required = {'task_id', 'sample_idx', 'status', 'strict', 'factored_reward', 'partial_status',
@@ -131,31 +154,68 @@ def load_inputs(repo, scores, generation_manifest, out):
                 raise ValueError(f'duplicate score cell: {key}')
             seen.add(key)
             rows.append(row)
-            statuses[row['status'] + '/' + row['partial_status']] += 1
-            if row['status'] != 'measured' or row['partial_status'] not in ('measured', 'parse_failure_zero_credit'):
-                missing.append({'task_id': t, 'sample_idx': sample, 'strict_status': row['status'],
-                                'partial_status': row['partial_status']})
-                continue
-            a, b = float(row['strict']), float(row['factored_reward'])
-            if not np.isfinite([a, b]).all() or a not in (0, 1) or not 0 <= b <= 1:
-                raise ValueError(f'invalid score range: {key}')
-            if row['partial_status'] == 'parse_failure_zero_credit' and b != 0:
-                raise ValueError('parse-failure reward must be zero')
+            strict_statuses[row['status']] += 1
+            smooth_statuses[row['partial_status']] += 1
+            joint_statuses[row['status'] + '/' + row['partial_status']] += 1
             if row['FSC'] not in ('', 'unmeasured'):
                 raise ValueError('unexpected measured FSC; this authorized run has no judge calls')
-            strict[sample, lookup[t]], reward[sample, lookup[t]] = a, b
+            j = lookup[t]
+            if row['status'] == 'measured':
+                a = float(row['strict'])
+                if not np.isfinite(a) or a not in (0, 1):
+                    raise ValueError(f'invalid strict score: {key}')
+                strict[sample, j], strict_mask[sample, j] = a, True
+            else:
+                missing_strict.append({'task_id': t, 'sample_idx': sample, 'reason': row['status']})
+            if row['partial_status'] in ('measured', 'parse_failure_zero_credit'):
+                b = float(row['factored_reward'])
+                if not np.isfinite(b) or not 0 <= b <= 1:
+                    raise ValueError(f'invalid smooth score: {key}')
+                if row['partial_status'] == 'parse_failure_zero_credit' and b != 0:
+                    raise ValueError('parse-failure reward must be zero')
+                reward[sample, j], reward_mask[sample, j] = b, True
+            else:
+                partial_note = row.get('partial_note', '').strip()
+                reason = row['partial_status'] + (f': {partial_note}' if partial_note else '')
+                missing_smooth.append({'task_id': t, 'sample_idx': sample, 'status': row['partial_status'],
+                                       'note': partial_note, 'reason': reason})
     expected = {(t, s) for t in tasks for s in range(G)}
     absent = expected - seen
     for t, s in sorted(absent):
-        missing.append({'task_id': t, 'sample_idx': s, 'strict_status': 'missing_row', 'partial_status': 'missing_row'})
-    audit = dict(declared_cells=J*G, received_rows=len(rows), measured_joint_cells=int(np.isfinite(reward).sum()),
-                 train_tasks=J, train_groups=int(np.unique(groups).size), score_statuses=dict(statuses),
+        missing_strict.append({'task_id': t, 'sample_idx': s, 'reason': 'missing_row'})
+        missing_smooth.append({'task_id': t, 'sample_idx': s, 'status': 'missing_row',
+                               'note': '', 'reason': 'missing_row'})
+        strict_statuses['missing_row'] += 1
+        smooth_statuses['missing_row'] += 1
+    missing_any = []
+    for t, s in sorted(expected):
+        i, j = s, lookup[t]
+        if not (strict_mask[i, j] and reward_mask[i, j]):
+            missing_any.append({'task_id': t, 'sample_idx': s,
+                                'strict_status': 'measured' if strict_mask[i, j] else next(
+                                    (x['reason'] for x in missing_strict if x['task_id'] == t and x['sample_idx'] == s), 'missing_row'),
+                                'partial_status': 'measured' if reward_mask[i, j] else next(
+                                    (x['status'] for x in missing_smooth if x['task_id'] == t and x['sample_idx'] == s), 'missing_row'),
+                                'partial_note': '' if reward_mask[i, j] else next(
+                                    (x['note'] for x in missing_smooth if x['task_id'] == t and x['sample_idx'] == s), '')})
+    audit = dict(declared_cells=J*G, received_rows=len(rows),
+                 strict_measured_cells=int(strict_mask.sum()), strict_missing_cells=len(missing_strict),
+                 smooth_declared_cells=J*G, smooth_measured_cells=int(reward_mask.sum()), smooth_missing_cells=len(missing_smooth),
+                 measured_joint_cells=int((strict_mask & reward_mask).sum()),
+                 train_tasks=J, train_groups=int(np.unique(groups).size),
+                 strict_status_counts=dict(strict_statuses), smooth_status_counts=dict(smooth_statuses),
+                 score_statuses=dict(joint_statuses),
+                 smooth_missing_status_counts=dict(Counter(x['status'] for x in missing_smooth)),
+                 smooth_missing_reason_counts=dict(Counter(x['reason'] for x in missing_smooth)),
                  panel_systems=panel.systems, panel_measured_cells=int(panel_n.sum()), panel_declared_cells=int(panel_n.size),
-                 panel_status_counts=dict(Counter(panel.status[:, :J].ravel())), missing_cells=missing,
+                 panel_status_counts=dict(Counter(panel.status[:, :J].ravel())),
+                 missing_strict_cells=missing_strict, missing_smooth_cells=missing_smooth, missing_cells=missing_any,
+                 smooth_missingness_likelihood=('unobserved smooth cells are ignored through an observation mask; smooth estimates are '
+                                                'conditional on observed cells and missing-at-random is not established'),
                  inputs=verified, feature_names=feature_names)
     write_json(out / 'input_audit.json', audit)
-    if absent or missing or len(rows) != 4312 or not np.isfinite(strict).all() or not np.isfinite(reward).all():
-        raise ValueError('Phase 0 scoring incomplete: see input_audit.json; no fitted result is released')
+    if absent or missing_strict or len(rows) != 4312 or not strict_mask.all() or not np.isfinite(strict[strict_mask]).all():
+        raise ValueError('Phase 0 strict scoring incomplete: see input_audit.json; no strict fitted result is released')
     # Link exactly to the previously saved generation cells, including explicit no-Lean cells.
     with Path(generation_manifest).open(newline='') as fh:
         generation_rows = list(csv.DictReader(fh))
@@ -212,11 +272,22 @@ def load_inputs(repo, scores, generation_manifest, out):
     if pins_out.exists() and json.loads(pins_out.read_text()) != frozen_inputs:
         raise ValueError('inputs/software changed in this output directory; preserve it and use a new directory')
     write_json(pins_out, frozen_inputs)
-    csv_write(out / 'phase0_tasks.csv', [dict(task_id=t, group_id=groups[j], k_strict=int(strict[:, j].sum()), n=G,
-              active=int(0 < strict[:, j].sum() < G), smooth_mean=reward[:, j].mean(),
-              smooth_sd=reward[:, j].std(ddof=1), smooth_nonconstant=int(np.ptp(reward[:, j]) > 0)) for j, t in enumerate(tasks)])
+    task_rows = []
+    for j, t in enumerate(tasks):
+        smooth = smooth_task_summary(reward[:, j], reward_mask[:, j])
+        measured_cat = np.array([M.factored_category(v) for v in reward[:, j][reward_mask[:, j]]], int)
+        category_lower = bool(measured_cat.size >= 2 and np.ptp(measured_cat) > 0)
+        smooth.update(smooth_category_nonconstant=(int(category_lower) if smooth['smooth_missing'] == 0 else None),
+                      smooth_category_nonconstant_lower=int(category_lower),
+                      smooth_category_nonconstant_upper=int(category_lower or smooth['smooth_missing'] > 0))
+        task_rows.append(dict(task_id=t, group_id=groups[j], k_strict=int(strict[:, j].sum()), n=G, n_strict=G,
+                              active=int(0 < strict[:, j].sum() < G), **smooth))
+    csv_write(out / 'phase0_tasks.csv', task_rows)
     return dict(tasks=tasks, groups=groups, X=X, feature_names=feature_names, panel_k=panel_k, panel_n=panel_n,
-                systems=panel.systems, strict=strict, reward=reward, k_sp=strict.sum(0), n_sp=np.full(J, G),
+                systems=panel.systems, strict=strict, strict_mask=strict_mask, reward=reward, reward_mask=reward_mask,
+                smooth_missing_status_counts=dict(Counter(x['status'] for x in missing_smooth)),
+                smooth_missing_reason_counts=dict(Counter(x['reason'] for x in missing_smooth)),
+                k_sp=np.where(strict_mask, strict, 0).sum(0), n_sp=strict_mask.sum(0).astype(float),
                 base_k=np.array(base_k), base_n=np.array(base_n), base_names=base_names, identity=identity)
 
 
@@ -477,20 +548,33 @@ def final_fits(data, K, N, priors, tag, repo, out, workers):
     return fits
 
 
-def joint_log_score(fit, ys, ms, cat, mc, target, pseudo):
+def paired_cell_count(ms, mc, pseudo, target):
+    """Number of requested cells with both strict and smooth outcomes observed."""
+    paired = (np.asarray(ms) > 0) & (np.asarray(mc) > 0)
+    return int(paired[np.ix_(np.asarray(pseudo, int), np.asarray(target, int))].sum())
+
+
+def joint_log_score(fit, ys, ms, cat, mc, target, pseudo, score_mask):
     """Log score of each held-out strict/category PAIR, integrating their conditional dependence."""
     grid = I.Grid(*fit['grid'])
     par = I.two_skill_params(fit['x'], fit['n_items'], 5, fit['tied'])
     oh = I.onehot_categories(cat, mc, 5)
     ls, lf = I.two_skill_node_logliks(par, ys, ms, oh, grid.nodes)
     _, joint, post_s, _, _ = I.two_skill_posterior(par, ls, lf, grid)
-    ac = expit(par['a'][target, None]*grid.nodes + par['d'][target, None])
-    pc, _ = I.grm_cat_probs(par['b'][target], par['cuts'][target], grid.nodes)
     # For an untied posterior first integrate strict nodes, leaving a per-item graded-node measure.
     total = 0.0
     for r in pseudo:
-        prob_s = np.where(ys[r, target, None] == 1, ac, 1-ac)
-        prob_c = np.take_along_axis(pc, np.broadcast_to(cat[r,target,None,None].astype(int), (len(target), grid.count, 1)), axis=2)[:,:,0]
+        paired_target = np.asarray(target)[np.asarray(score_mask[r, target], bool)]
+        if not len(paired_target):
+            continue
+        ac = expit(par['a'][paired_target, None]*grid.nodes + par['d'][paired_target, None])
+        pc, _ = I.grm_cat_probs(par['b'][paired_target], par['cuts'][paired_target], grid.nodes)
+        prob_s = np.where(ys[r, paired_target, None] == 1, ac, 1-ac)
+        prob_c = np.take_along_axis(
+            pc,
+            np.broadcast_to(cat[r, paired_target, None, None].astype(int), (len(paired_target), grid.count, 1)),
+            axis=2,
+        )[:, :, 0]
         weighted = prob_s * post_s[r] if joint is None else prob_s @ joint[r]
         prob = np.sum(weighted * prob_c, axis=1)
         total += float(np.log(np.clip(prob, 1e-300, 1)).sum())
@@ -498,29 +582,67 @@ def joint_log_score(fit, ys, ms, cat, mc, target, pseudo):
 
 
 def smooth_analysis(data, strict_fit, pr, repo, out):
-    cat = np.vectorize(M.factored_category, otypes=[int])(data['reward'])
-    ones, zeros = np.ones_like(cat, float), np.zeros_like(cat, float)
-    job = job_for(out, data['identity'], 'smooth_graded', kind='two_skill', ys=zeros, ms=zeros, cat=cat, mc=ones,
+    # Category zero is only a storage placeholder where mc=0; it contributes no likelihood.
+    reward_mask = np.asarray(data['reward_mask'], bool)
+    cat = np.zeros(data['reward'].shape, int)
+    cat[reward_mask] = np.array([M.factored_category(v) for v in data['reward'][reward_mask]], int)
+    mc, zeros = reward_mask.astype(float), np.zeros_like(cat, float)
+    job = job_for(out, data['identity'], 'smooth_graded', kind='two_skill', ys=zeros, ms=zeros, cat=cat, mc=mc,
                   tied=True, slope_sd=pr['slope_sd'], sigma_e=pr['sigma_e'])
     stamp(out, 'smooth_graded_fit')
     fit = fit_job(job)
+    measured_by_task = reward_mask.sum(0)
+    complete_task = measured_by_task == G
+    observed_category_lower = np.array([
+        reward_mask[:, j].sum() >= 2 and np.ptp(cat[:, j][reward_mask[:, j]]) > 0 for j in range(cat.shape[1])
+    ], bool)
+    observed_exact_lower = np.array([
+        reward_mask[:, j].sum() >= 2 and np.ptp(data['reward'][:, j][reward_mask[:, j]]) > 0 for j in range(cat.shape[1])
+    ], bool)
+    observed_category_upper = observed_category_lower | ~complete_task
+    observed_exact_upper = observed_exact_lower | ~complete_task
     report = dict(fit=fit_meta(fit), status='available' if fit['converged'] else 'unavailable: convergence gate failed',
                    pseudo_respondents=8, real_start_policies=1,
-                   identifiability='pseudo-respondents are sample indices of one policy; no across-system shared-skill claim')
+                   identifiability='pseudo-respondents are sample indices of one policy; no across-system shared-skill claim',
+                   smooth_declared_cells=int(reward_mask.size), smooth_measured_cells=int(reward_mask.sum()),
+                   smooth_missing_cells=int(reward_mask.size-reward_mask.sum()),
+                   smooth_missing_status_counts=data['smooth_missing_status_counts'],
+                   smooth_missing_reason_counts=data['smooth_missing_reason_counts'],
+                   tasks_with_any_smooth=int((measured_by_task > 0).sum()), smooth_complete_case_tasks=int(complete_task.sum()),
+                   observed_category_nonconstant_tasks_lower=int(observed_category_lower.sum()),
+                   observed_category_nonconstant_tasks_upper=int(observed_category_upper.sum()),
+                   observed_exact_nonconstant_tasks_lower=int(observed_exact_lower.sum()),
+                   observed_exact_nonconstant_tasks_upper=int(observed_exact_upper.sum()),
+                   smooth_missingness_likelihood=('unobserved smooth cells are ignored through the observation mask; estimates are '
+                                                  'conditional on observed smooth cells and missing-at-random is not established'),
+                   selection_limitation=('the declaration adapter can leave smooth reward unresolved for outcome-dependent source '
+                                         'structures; the observed smooth cohort may therefore be selected'))
     if fit['converged']:
         par = I.two_skill_params(fit['x'], fit['n_items'], 5, True)
-        pred = I.two_skill_predict(fit, zeros, zeros, cat, ones, np.arange(cat.shape[1]))
+        pred = I.two_skill_predict(fit, zeros, zeros, cat, mc, np.arange(cat.shape[1]))
         # Each of the eight sample-index respondents has its own ability posterior.
         active = 1 - np.prod(pred['cat_probs'], axis=0).sum(axis=1)
-        observed_category = np.ptp(cat, axis=0) > 0
-        observed_exact = np.ptp(data['reward'], axis=0) > 0
-        csv_write(Path(out) / 'smooth_items.csv', [dict(task_id=t, b=par['b'][j],
-                  **{f'cut_{c+1}': par['cuts'][j,c] for c in range(4)},
+        csv_write(Path(out) / 'smooth_items.csv', [dict(
+                  task_id=t, smooth_measured=int(measured_by_task[j]), smooth_declared=G,
+                  b=par['b'][j], **{f'cut_{c+1}': par['cuts'][j,c] for c in range(4)},
                   first_location=-par['cuts'][j,0]/par['b'][j], p_nonconstant_categories=active[j],
-                  observed_category_nonconstant=int(observed_category[j]), observed_exact_nonconstant=int(observed_exact[j]))
+                  observed_category_nonconstant=(int(observed_category_lower[j]) if complete_task[j] else None),
+                  observed_category_nonconstant_lower=int(observed_category_lower[j]),
+                  observed_category_nonconstant_upper=int(observed_category_upper[j]),
+                  observed_exact_nonconstant=(int(observed_exact_lower[j]) if complete_task[j] else None),
+                  observed_exact_nonconstant_lower=int(observed_exact_lower[j]),
+                  observed_exact_nonconstant_upper=int(observed_exact_upper[j]))
                   for j,t in enumerate(data['tasks'])])
-        report.update(predicted_category_nonconstant_share=active.mean(), observed_category_nonconstant_share=observed_category.mean(),
-                      observed_exact_nonconstant_share=observed_exact.mean(),
+        complete_den = int(complete_task.sum())
+        report.update(predicted_category_nonconstant_share=active.mean(),
+                      observed_category_nonconstant_share_lower=observed_category_lower.mean(),
+                      observed_category_nonconstant_share_upper=observed_category_upper.mean(),
+                      observed_exact_nonconstant_share_lower=observed_exact_lower.mean(),
+                      observed_exact_nonconstant_share_upper=observed_exact_upper.mean(),
+                      observed_category_nonconstant_complete_case_share=(
+                          observed_category_lower[complete_task].mean() if complete_den else None),
+                      observed_exact_nonconstant_complete_case_share=(
+                          observed_exact_lower[complete_task].mean() if complete_den else None),
                       forecast_scope='posterior replication in ordinal categories; a lower bound on exact smooth nonconstancy; within-bin differences unidentifiable',
                       forecast_status='in-sample posterior prediction, not a prospective claim about already-scored Phase 0')
         if strict_fit and strict_fit['converged']:
@@ -543,11 +665,18 @@ def smooth_analysis(data, strict_fit, pr, repo, out):
     write_json(Path(out) / 'smooth_analysis.json', report)
     # Strict panel observations plus eight start-policy sample rows. The aggregate start-policy row is NOT duplicated.
     ys = np.vstack([data['panel_k'], data['strict']])
-    ms = np.vstack([data['panel_n'], ones])
+    ms = np.vstack([data['panel_n'], data['strict_mask'].astype(float)])
     cc = np.vstack([np.zeros_like(data['panel_k'], int), cat])
-    mc = np.vstack([np.zeros_like(data['panel_n']), ones])
+    mc = np.vstack([np.zeros_like(data['panel_n']), reward_mask.astype(float)])
     pseudo = np.arange(len(data['systems']), ys.shape[0])
-    dim = dict(status='running', full_fits={}, fold_fits=[], limitation='one real start policy with both channels; sample indices are pseudo-respondents')
+    pair_mask = (ms > 0) & (mc > 0)
+    declared_pairs = int(len(pseudo) * len(data['tasks']))
+    observed_pairs = int(pair_mask[pseudo].sum())
+    dim = dict(status='running', full_fits={}, fold_fits=[],
+               paired_cells_declared=declared_pairs, paired_cells_observed=observed_pairs,
+               limitation='one real start policy with both channels; sample indices are pseudo-respondents',
+               selection_limitation=('held-out likelihood scores only cells where both strict and smooth were observed; it is '
+                                     'conditional on that selected cohort and missing-at-random is not established'))
     for tied in (True, False):
         key = f'dimensionality_full_{"tied" if tied else "untied"}'
         stamp(out, key)
@@ -573,19 +702,21 @@ def smooth_analysis(data, strict_fit, pr, repo, out):
                                   tied=tied, slope_sd=pr['slope_sd'], sigma_e=pr['sigma_e']))
             row = dict(fold=f, model=name, **fit_meta(fit2))
             if fit2['converged']:
-                row['joint_log_likelihood'] = joint_log_score(fit2, ys, ms2, cc, mc2, held, pseudo)
+                row['paired_cells_scored'] = paired_cell_count(ms, mc, pseudo, held)
+                row['joint_log_likelihood'] = joint_log_score(fit2, ys, ms2, cc, mc2, held, pseudo, pair_mask)
                 totals[name] += row['joint_log_likelihood']
             else:
                 all_ok = False
             dim['fold_fits'].append(row)
             write_json(Path(out) / 'dimensionality.json', dim)
-        cells += len(pseudo)*len(held)
+        cells += paired_cell_count(ms, mc, pseudo, held)
         if not all_ok:
             break  # the descriptive comparison is unavailable; do not spend on remaining failed-gate folds
     dim.update(status='available' if all_ok else 'unavailable: held-out convergence gate failed', paired_cells_scored=cells,
                 joint_log_likelihood=totals if all_ok else None,
                 untied_minus_tied=totals['untied']-totals['tied'] if all_ok else None,
-                likelihood_definition='sum of log posterior-predictive joint(strict outcome, ordinal category) per held-out pseudo-respondent/item cell')
+                likelihood_definition=('sum of log posterior-predictive joint(strict outcome, ordinal category) per held-out '
+                                       'pseudo-respondent/item cell with both outcomes observed'))
     write_json(Path(out) / 'dimensionality.json', dim)
     return report, dim
 

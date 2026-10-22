@@ -144,11 +144,12 @@ def build_report(args):
          f'Experiment: `{EXPERIMENT}`. The post-stop CPU dispatcher was authorized on **10-21-2026** to score saved generations, '
          'fit calibration models and freeze parameters. The link above is the intended branch publication location.', '',
          'Declared cohort: VeriBench V1 train **539 tasks / 400 task groups / 4,312 saved samples** (8 samples per task). '
-         f'Reported analysis cohort: **{integer(primary.get("tasks"))} tasks / {integer(primary.get("groups"))} groups**; '
-         f'scoring rows **{integer(audit.get("received_rows"))}/{integer(audit.get("declared_cells"))}**, '
-         f'joint strict/smooth measured cells **{integer(audit.get("measured_joint_cells"))}/{integer(audit.get("declared_cells"))}**. '
+         f'Strict scoring: **{integer(audit.get("strict_measured_cells"))}/{integer(audit.get("strict_declared_cells", audit.get("declared_cells")))}** measured; '
+         f'smooth reward: **{integer(audit.get("smooth_measured_cells"))}/{integer(audit.get("smooth_declared_cells", audit.get("declared_cells")))}** measured, '
+         f'**{integer(audit.get("smooth_missing_cells"))}** missing. '
+         f'Joint strict/smooth observed cells **{integer(audit.get("measured_joint_cells"))}/{integer(audit.get("declared_cells"))}**. '
          f'Panel measured cells **{integer(audit.get("panel_measured_cells"))}/{integer(audit.get("panel_declared_cells"))}**; '
-         'unmeasured panel entries remain missing, never zero.', '',
+         'unmeasured entries remain missing and are never silently recoded as zero.', '',
          '## Primary held-out calibration', '',
          f'Selected model: **{cell(LABELS.get(selected, selected))}**. '
          f'Area under the receiver-operating-characteristic curve (AUC): **{estimate(intervals.get("auc"), model.get("auc"), True)}**; '
@@ -243,13 +244,25 @@ def build_report(args):
           '## Smooth reward and dimensionality', '']
     smooth=E.read('smooth_analysis.json') or {}
     dim=E.read('dimensionality.json') or {}
+    smooth_measured = smooth.get("smooth_measured_cells", audit.get("smooth_measured_cells"))
+    smooth_declared = smooth.get("smooth_declared_cells", audit.get("smooth_declared_cells", audit.get("declared_cells")))
+    smooth_missing = smooth.get("smooth_missing_cells", audit.get("smooth_missing_cells"))
+    smooth_reasons = smooth.get("smooth_missing_reason_counts", audit.get("smooth_missing_reason_counts", {}))
+    cat_lo = smooth.get("observed_category_nonconstant_share_lower", smooth.get("observed_category_nonconstant_share"))
+    cat_hi = smooth.get("observed_category_nonconstant_share_upper", smooth.get("observed_category_nonconstant_share"))
+    exact_lo = smooth.get("observed_exact_nonconstant_share_lower", smooth.get("observed_exact_nonconstant_share"))
+    exact_hi = smooth.get("observed_exact_nonconstant_share_upper", smooth.get("observed_exact_nonconstant_share"))
+    likelihood = smooth.get("smooth_missingness_likelihood", audit.get("smooth_missingness_likelihood", "unavailable"))
     L += [f'Graded smooth-reward model: **{cell(smooth.get("status",final.get("smooth_status")))}**; '
+          f'measured/declared smooth cells **{integer(smooth_measured)}/{integer(smooth_declared)}**, missing **{integer(smooth_missing)}**. '
           f'fitting/check maximum gradients **{num(smooth.get("fit",{}).get("max_abs_grad"))} / {num(smooth.get("fit",{}).get("check_grid_max_abs_grad"))}** (gate ≤ 1e-4). '
-          f'Predicted nonconstant-category share **{num(smooth.get("predicted_category_nonconstant_share"))}**; '
-          f'observed category share **{num(smooth.get("observed_category_nonconstant_share"))}** and exact-reward share '
-          f'**{num(smooth.get("observed_exact_nonconstant_share"))}** (descriptive fitted-cohort values; intervals unavailable, p-val=n/a). '
+          f'Predicted nonconstant-category share **{num(smooth.get("predicted_category_nonconstant_share"))}** across all 539 items. '
+          f'Observed category-nonconstant share sharp bounds **[{num(cat_lo)}, {num(cat_hi)}]** and exact-reward-nonconstant share sharp bounds **[{num(exact_lo)}, {num(exact_hi)}]**; '
+          'these deterministic bounds include all missing smooth cells and are not confidence intervals. '
+          'Smooth summaries are conditional on observed smooth cells: missing-at-random is not established. '
           'The ordinal forecast is a lower bound on exact smooth-reward nonconstancy because within-bin differences are unidentifiable. '
-          'These are posterior replications, not prospective predictions of the already observed Phase 0 outcomes.', '',
+          'These are posterior replications, not prospective predictions of the already observed Phase 0 outcomes.',
+          f'Smooth missingness reasons: **{cell(smooth_reasons)}**. Likelihood handling: **{cell(likelihood)}**. Registered malformed-source zeroes are observed zero rewards; duplicate fully qualified declaration identities remain missing.', '',
           '| Strict difficulty versus graded threshold | Pearson [95% interval] | Spearman [95% interval] | Kendall [95% interval] |',
           '|---|---|---|---|']
     corr=smooth.get('difficulty_correlations',{})
@@ -262,9 +275,10 @@ def build_report(args):
           f'Tied versus untied skill comparison: **{cell(dim.get("status",final.get("dimensionality_status")))}**. '
           f'Joint held-out log likelihood: tied **{num((dim.get("joint_log_likelihood") or {}).get("tied"))}**, '
           f'untied **{num((dim.get("joint_log_likelihood") or {}).get("untied"))}**, difference **{num(dim.get("untied_minus_tied"))}**, '
-          f'**{integer(dim.get("paired_cells_scored"))}** paired cells (complete registered comparison: 4,312). '
+          f'**{integer(dim.get("paired_cells_scored"))}** observed paired cells / **{integer(dim.get("paired_cells_declared", audit.get("declared_cells")))}** declared. '
           'The log score integrates the strict outcome and ordinal category jointly, preserving within-cell dependence. '
-          'A failed full-fit or held-out numerical check makes the comparison unavailable; no shared-skill claim across systems is warranted from one real start policy and eight sample-index pseudo-respondents.', '',
+          f'Selection limitation: {cell(dim.get("selection_limitation", "paired comparison is conditional on observed smooth cells"))}. '
+          'This descriptive partial-reward analysis does not gate strict G0; a failed full-fit or held-out numerical check makes the dimensional comparison unavailable.', '',
           '| Dimensional model | Full-fit convergence | Fitting / finer-check gradient | Converged held-out fits / observed / required |',
           '|---|---|---|---|']
     for name in ('tied','untied'):
@@ -283,14 +297,14 @@ def build_report(args):
           'The frozen forecasts target future draws and retain both posterior-integrated and ability-mean probabilities. '
           'The payload does not invent numeric H1–H4 training-effect forecasts; those would require a separate pretraining registration if training were ever reauthorized. '
           'Input pins are read from `input_pins_e20.json` in the results directory; publish a byte-identical canonical `expt_v1/input_pins_e20.json` or explicitly link the actual location.', '']
-    missing=audit.get('missing_cells')
-    L += [f'Missing scored cells: **{len(missing) if isinstance(missing,list) else "unavailable"}** '
+    missing=audit.get('missing_smooth_cells', audit.get('missing_cells'))
+    L += [f'Missing strict cells: **{integer(audit.get("strict_missing_cells"))}**; missing smooth cells: **{len(missing) if isinstance(missing,list) else integer(audit.get("smooth_missing_cells"))}** '
           '(full list in `input_audit.json`; all panel statuses in `panel_train_cells.csv`). '
           f'Scorer-versus-adapter strict disagreements: **{cell(audit.get("scorer_adapter_strict_disagreements"))}**; '
-          'the pinned scorer remains authoritative. No validation/test outcomes or new generations are used in this analysis.']
+          'the pinned scorer remains authoritative. Strict G0 uses its full strict cohort independently of descriptive partial-reward missingness. No validation/test outcomes or new generations are used in this analysis.']
     if isinstance(missing,list) and missing:
         L += ['', 'First missing-cell receipts:']+[f'- `{cell(r.get("task_id"))}` sample {cell(r.get("sample_idx"))}: '
-               f'strict {cell(r.get("strict_status"))}; smooth {cell(r.get("partial_status"))}.' for r in missing[:5]]
+               f'strict {cell(r.get("strict_status", "measured"))}; smooth {cell(r.get("status", r.get("partial_status")))}: {cell(r.get("note", r.get("partial_note", "")))}.' for r in missing[:5]]
     if E.problems:
         L += ['', '**Missing or invalid evidence:**']+[f'- {cell(x)}' for x in E.problems]
     if selected and not numerical_ok(finals.get(selected)):

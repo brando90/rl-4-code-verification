@@ -5,7 +5,7 @@
 **TLDR:** Single-writer continuation of `20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013` under the unchanged runbook. Deployment `deploy_50715cf54e614ecf914f0f7da4aae03c`, Codex gpt-6-astra ultra, personal ~/.codex, skampere1.
 
 Created: 10-21-2026 13:44 PDT
-Last updated: 10-21-2026 16:33:45 PDT
+Last updated: 10-21-2026 17:22:01 PDT
 
 ## Goal
 - Complete post-stop pre-registered Phase 0 CPU scoring and item response theory (IRT) gate G0; trainer stays FAILED.
@@ -13,16 +13,16 @@ Last updated: 10-21-2026 16:33:45 PDT
 - Dispatcher instruction 10-21-2026 reauthorizes only scoring saved 4,312 generations, Phase 0b/G0, and saved-smoke comparison to experiment 13 v4 T1.
 - Codex gpt-6-astra/ultra, deployment deploy_50715cf54e614ecf914f0f7da4aae03c, sole repository writer, full access. Independent helpers: saved-smoke audit and numerical analysis driver.
 ## Results
-- Existing calibration 4,312/4,312 generated, 539 tasks, 0 missing; CPU scoring: strict 6/32 jobs, partial 1/32 jobs; 2016/4312 partial cells logged. Saved-smoke T1 comparison FAIL (195 unsupported update2); exact quantiles unavailable, median bounded <0.01. Trainer FAILED: 22,654/864,717 mismatch tokens (2.61982% >1%).
+- Existing calibration 4,312/4,312 generated, 539 tasks, 0 missing; CPU scoring: 32/32 strict completion files, 19/32 partial completion files; 3756/4312 partial cells logged. Intact completed negative compiler exits retain native failure scores. Saved-smoke T1 comparison FAIL (195 unsupported update2); exact quantiles unavailable, median bounded <0.01. Trainer FAILED: 22,654/864,717 mismatch tokens (2.61982% >1%).
 - Existing allocation 7.8258/200 GPU-h; no new GPU jobs, pilot, trainer or gate changes authorized. API $0; test split closed.
 ## Stuck / blocked
-- Trainer admission remains FAILED; CPU Phase 0 completion is independently authorized and underway.
+- Trainer admission remains FAILED. CPU scoring continues; collector48892191 waits for owned arrays. Missing smooth adapter outputs stay missing; strictG0 remains independent.
 ## Next steps
-- [p 10/10] Read /tmp/e20_cpu_monitor/latest.json (300-second monitor session78167, only strict48881657/partial48882641/collect48882642). Pushed55118e16; source files verified; full make test PASS1415/17skipped/6subtests/304.93s. Do not add Slurm polls within60s of monitor.
+- [p 10/10] Read /tmp/e20_cpu_monitor/latest.json (monitor v2 session70252; expandable /tmp/e20_cpu_monitor_job_ids.json). Pushed44a42644; source files verified; full make test PASS1415/17skipped/6subtests/321.63s. Do not add Slurm polls within60s of monitor.
 - [p 10/10] After collection download/hashverify phase0_cpu_tables.tgz, commit4312celltable; run venv/bin/python expt_v1/analyze_phase0_e20.py --repo . --scores expt_v1/results/phase0_cells_e20.csv --out expt_v1/results/phase0b --freeze-dir expt_v1/forecasts --workers4 (use full experiment paths). Finish PR20/G0_FINISHED with AUCinterval/results hash.
 - Keep >=60 seconds between Slurm checks; remain inside turn. Preserve E20_FINISHED.txt as trainer-stop history.
 ## Brando to-do
-- none; comparison with experiment 13 v4 T1 is decision input, not a gate change.
+- none; 32G question withdrawn after frozen-scorer audit. Preserve16G and native completed failure scores; incomplete evidence remains unresolved.
 
 ## Log
 - 10-21-2026 13:44 PDT -- Codex takeover verified against live Git, processes and Sherlock; adopted calibration; newer smoke differs from handoff and is under investigation. Native helper `/root/locate_experiment_log` (gpt-5.6-terra/medium) is locating the requested Google experiment log; root remains sole repository writer.
@@ -84,3 +84,31 @@ Last updated: 10-21-2026 16:33:45 PDT
 - 10-21-2026 16:29:11 PDT -- Fullmake PASS1415/17skipped/6subtests/3warnings in304.93s; synthetic summary and report fixtures PASS; staged exact bytes and secret/diff checks PASS. Publishing 1751/4312 partial-cell progress with report tooling; HTTP404 recovered on next scheduled observation, no job resubmission.
 
 - 10-21-2026 16:33:45 PDT -- CPU monitor 20261021T233247Z: states {'RUNNING': 57, 'COMPLETED': 7, 'PENDING': 1}; strict jobs 6/32, partial jobs 1/32, partial cells logged 2016/4312. Strict/partial diagnostic calls 2738/3772. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 16:38:53 PDT -- CPU monitor 20261021T233743Z: states {'RUNNING': 54, 'COMPLETED': 9, 'OUT_OF_MEMORY': 1, 'PENDING': 1}; strict jobs 9/32, partial jobs 1/32, partial cells logged 2213/4312. Strict/partial diagnostic calls 2961/4149. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 16:47:06 PDT -- OOM jobs48881657_8(c1s0) and_2(c0s2) each have one compilerexit-9 despite completedtables. Original outputs preserved; identicalcell retries48888345/48888814 submittednormalc1mem16, unchangedsource/scorer; native600stimeout remains scoredfailure underfrozen verifier. Canceleddependencyblockedcollector48882642, replacement awaits validatedoverlay. Monitorv2session70252 expands ownedjobmanifest. Configrefresh unchanged217b6ee6.
+
+- 10-21-2026 16:54:51 PDT -- CPU monitor 20261021T235015Z: states {'COMPLETED': 21, 'OUT_OF_MEMORY': 4, 'RUNNING': 41}; strict completion files 19/32, partial completion files 4/32, partial cells logged 2748/4312. Strict/partial diagnostic calls 3349/4997. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 16:54:51 PDT -- Identical-cell retry attempts2 48888345_0/48888814_0 also OUT_OF_MEMORY (69/84s). Attempt3 (second retry) submitted48890055/48890056 at unchanged normal c1 mem16G. Literal cap is three retries after original, so attempt4 remains if needed. Requested explicit resource-instruction amendment for only these two cells; absent answer16G stays binding. No fitted G0 or frozen parameters yet; trainer FAILED unchanged.
+
+- 10-21-2026 16:56:56 PDT -- CPU monitor 20261021T235511Z: states {'COMPLETED': 24, 'OUT_OF_MEMORY': 6, 'RUNNING': 38}; strict completion files 22/32, partial completion files 4/32, partial cells logged 2868/4312. Strict/partial diagnostic calls 3466/5252. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 17:01:09 PDT -- Corrected prior OOM interpretation after exact frozen-code audit: Phase0 run_real_eval.py:215 treats every nonzero compile exit as false,704-706 factor0,811 scored. Protocol:40 mandates frozen16G scorer; infraretry clause128 does not recode completed negative-exit rows as missing. Keep native resource-bounded failure scores with complete parent/table/source diagnostics; never mask them or add an acceptance gate. Final identical retries48890627/48890632 submitted (attempt4=thirdretry). Optional32G question withdrawn as unnecessary; no resource change. Helper phase0_fit_driver hit modelcapacity after useful semantic finding; no active computation or sole-writer handoff lost.
+
+- 10-21-2026 17:01:53 PDT -- CPU monitor 20261022T000008Z: states {'COMPLETED': 29, 'OUT_OF_MEMORY': 7, 'RUNNING': 34}; strict completion files 25/32, partial completion files 6/32, partial cells logged 2997/4312. Strict/partial diagnostic calls 3584/5529. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 17:05:50 PDT -- CPU monitor 20261022T000503Z: states {'COMPLETED': 33, 'OUT_OF_MEMORY': 8, 'RUNNING': 29}; strict completion files 27/32, partial completion files 8/32, partial cells logged 3169/4312. Strict/partial diagnostic calls 3655/5890. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 17:09:18 PDT -- Retry attempts4 also recordedOOM (all8ownedoriginal/retry OOM rows); source/scorer/resource settings preserved. Integratedcollector eb26eb67 passes native-negative/timeout acceptance plus corrupt/incomplete rejection fixtures; deployedonlycollector, originalbuilder13e52a82 unchanged. Collector48892191 afterany of owned arrays+retries, normalc1mem16. Partial audit1063cells:768measured,267malformedsource registeredzero,28duplicate-declaration identities remainmissing. Adaptinganalysisdriver to keep strictG0 independent from missingdescriptivesmooth, usinglikelihoodmasks/listeddenominators. Native helperphase0_missing_smooth gpt5.6sol/high fullaccess acknowledged exactstrict/partialcoupling bug asfirstusefuloutput afterastrahelpermodelcapacity; no measuredmodelchange.
+
+- 10-21-2026 17:13:11 PDT -- CPU monitor 20261022T001000Z: states {'COMPLETED': 37, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 25}; strict completion files 27/32, partial completion files 12/32, partial cells logged 3471/4312. Strict/partial diagnostic calls 3693/6313. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 17:16:28 PDT -- CPU monitor 20261022T001456Z: states {'COMPLETED': 46, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 16}; strict completion files 30/32, partial completion files 19/32, partial cells logged 3648/4312. Strict/partial diagnostic calls 3752/6631. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 17:17:03 PDT -- Integrated independent strict/smooth likelihood masks and explicit missingness/bounds in analysisdriver24c2a19e, summary919174b0, report5de94aa4. Portableverificationcc889f8d passes fullstrictpreservation, missingstrictrejection, maskedcategoryinvariance, observedpaircount, and exactcompletepaths for tied and correlateduntied models; no realfits yet. Collector fullmakePASS1415/17skipped/6subtests/288.83s. Final fullmake afteranalysisupdates running session19159 (/tmp/e20_missing_smooth_make_test.log). Originalbuilder and frozen scorer unchanged.
+
+- 10-21-2026 17:21:03 PDT -- CPU monitor 20261022T001954Z: states {'COMPLETED': 49, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 13}; strict completion files 32/32, partial completion files 19/32, partial cells logged 3756/4312. Strict/partial diagnostic calls 3758/6860. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 17:22:01 PDT -- Final integrated make test PASS1415,17skipped,6subtests,3warnings,321.63s; exact46sourcehashes matchtestedworktree. Portablemissing-smooth checks PASS for tied/correlateduntied and preservedcompletepath. Googleprogressbullet exactreadbackverified. Explicitstagedfilenames/diff/secret scan passed; publishing nativeCPUfailure diagnostics, retryreceipts and strict-independent missing-smooth reporting.
