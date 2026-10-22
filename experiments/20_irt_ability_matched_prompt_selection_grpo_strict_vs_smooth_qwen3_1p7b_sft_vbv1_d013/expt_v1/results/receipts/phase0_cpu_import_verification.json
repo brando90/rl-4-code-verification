@@ -1,0 +1,52 @@
+{
+  "verified_at": "10-21-2026 19:34:59 PDT",
+  "bundle": {
+    "archive": "/tmp/e20_phase0_cpu_tables.tgz",
+    "archive_sha256": "522331c409c58ea295e76e2159d9aca640e513b07dc27842d595dfb72e413fdd",
+    "archive_bytes": 3586544,
+    "extracted": "/tmp/e20_cpu_collected_final",
+    "files": 234
+  },
+  "audit": {
+    "created_unix": 1792636280.8926418,
+    "cpu_only": true,
+    "collector_source_sha256": "eb26eb67ae6786356908786ae1ff22d7d4e3b7ce22a09fb3e56c890d0069aef0",
+    "builder_source_sha256": "13e52a825733cb7177950860a7f98e70fd7f50748abdf02bd2600e8162343110",
+    "original_outputs": 224,
+    "compiler_calls": 11859,
+    "call_states": {
+      "scores:COMPLETE": 3688,
+      "scores:TIMEOUT": 70,
+      "partial:COMPLETE": 8001,
+      "partial:TIMEOUT": 100
+    },
+    "normal_completion_checks": 64,
+    "normal_completion_receipts_present": 64,
+    "strict_retry_overrides": 0,
+    "original_negative_calls": 12,
+    "original_negative_calls_recovered": 0,
+    "failed_attempt_pointer_rows": 124,
+    "errors": []
+  },
+  "score_sha256": "1bd9b44703848fd03e606f10ed8f36fe2ae1ad45e16dc947af3221317ecf0f6a",
+  "rows": 4312,
+  "tasks": 539,
+  "source_manifest_verified_files": 224,
+  "strict_status": {
+    "measured": 4312
+  },
+  "partial_status": {
+    "measured": 3203,
+    "parse_failure_zero_credit": 999,
+    "unresolved": 110
+  },
+  "compiler_sha256": "cbf5fd536e142ef1beaccf33f788fd8a7f3f29fb214e75c11319a8d8677b4b2b",
+  "compiler_states_by_stage": {
+    "scores:COMPLETE": 3688,
+    "scores:TIMEOUT": 70,
+    "partial:COMPLETE": 8001,
+    "partial:TIMEOUT": 100
+  },
+  "generation_fields_match": true,
+  "trainer_status": "FAILED; unchanged"
+}

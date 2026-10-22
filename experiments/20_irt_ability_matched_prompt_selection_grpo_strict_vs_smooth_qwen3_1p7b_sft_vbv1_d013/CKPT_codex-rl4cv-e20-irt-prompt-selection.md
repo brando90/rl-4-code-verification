@@ -5,7 +5,7 @@
 **TLDR:** Single-writer continuation of `20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013` under the unchanged runbook. Deployment `deploy_50715cf54e614ecf914f0f7da4aae03c`, Codex gpt-6-astra ultra, personal ~/.codex, skampere1.
 
 Created: 10-21-2026 13:44 PDT
-Last updated: 10-21-2026 19:25:43 PDT
+Last updated: 10-21-2026 19:36:32 PDT
 
 ## Goal
 - Complete post-stop pre-registered Phase 0 CPU scoring and item response theory (IRT) gate G0; trainer stays FAILED.
@@ -13,14 +13,14 @@ Last updated: 10-21-2026 19:25:43 PDT
 - Dispatcher instruction 10-21-2026 reauthorizes only scoring saved 4,312 generations, Phase 0b/G0, and saved-smoke comparison to experiment 13 v4 T1.
 - Codex gpt-6-astra/ultra, deployment deploy_50715cf54e614ecf914f0f7da4aae03c, sole repository writer, full access. Independent helpers: saved-smoke audit and numerical analysis driver.
 ## Results
-- Existing calibration 4,312/4,312 generated, 539 tasks, 0 missing; CPU scoring: 32/32 strict completion files, 32/32 partial completion files; 4312/4312 partial cells logged. Intact completed negative compiler exits retain native failure scores. Saved-smoke T1 comparison FAIL (195 unsupported update2); exact quantiles unavailable, median bounded <0.01. Trainer FAILED: 22,654/864,717 mismatch tokens (2.61982% >1%).
+- Scoring complete and audited: 4312/4312 strict, 191 successes, 74/539 active tasks. Smooth4202/4312 known;110duplicate-identity cells missing. D-10911859calls/64receipts/zeroauditerrors. Saved-smokeT1FAIL; trainerFAILED (2.61982% >1%).
 - Existing allocation 7.8258/200 GPU-h; no new GPU jobs, pilot, trainer or gate changes authorized. API $0; test split closed.
 ## Stuck / blocked
-- Trainer admission remains FAILED. CPU scoring completed; collector48892191 dependency cleared after all predecessors terminal. Missing smooth adapter outputs stay missing; strictG0 remains independent.
+- Trainer admission remains FAILED. CPU scoring and collection complete; no numerical fits yet. Strict G0 uses all4312strict outcomes independently of110missing smooth cells.
 ## Next steps
-- [p 10/10] Read /tmp/e20_cpu_monitor/latest.json (monitor v2 session70252; expandable /tmp/e20_cpu_monitor_job_ids.json). Pushed11b941ce2ddfc2358f2234fde3cc62b3719694dd; source files verified; full make test PASS1415/17skipped/6subtests/321.63s. Do not add Slurm polls within60s of monitor.
-- [p 10/10] After collection run /tmp/e20_download_cpu_tables.py then /tmp/e20_import_cpu_tables.py with venv Python; verify/commit4312celltable; launch /tmp/e20_run_phase0b.py (all registered fits,4workers,CPUonly). Finish PR20/G0_FINISHED with AUCinterval/results hash.
-- Keep >=60 seconds between Slurm checks; remain inside turn. Preserve E20_FINISHED.txt as trainer-stop history.
+- [p 10/10] Commit/push verified phase0_cells_e20.csv and compact D-109 evidence, then launch /tmp/e20_run_phase0b.py with venv Python (all registered fits,4workers,CPUonly).
+- [p 10/10] Monitor results/phase0b/progress.json and receipt; finish reports, freeze verification, final CPU accounting, PR20 and G0_FINISHED with AUCinterval/results hash.
+- AllSlurmjobs terminal; monitor session70252 exited. Last pushed8b6b7b0d56c9ff7d14577bb004e93a51963c6e61. Fullmake1415PASS/17skip/6subtests;46sourcehashes unchanged. Preserve E20_FINISHED history.
 ## Brando to-do
 - none; 32G question withdrawn after frozen-scorer audit. Preserve16G and native completed failure scores; incomplete evidence remains unresolved.
 
@@ -180,3 +180,9 @@ Last updated: 10-21-2026 19:25:43 PDT
 - 10-21-2026 19:25:18 PDT -- CPU monitor 20261022T022314Z: states {'COMPLETED': 62, 'PENDING': 1, 'OUT_OF_MEMORY': 8}; strict completion files 32/32, partial completion files 32/32, partial cells logged 4312/4312. Strict/partial diagnostic calls 3758/8101. Collection ready=False; trainer FAILED unchanged.
 
 - 10-21-2026 19:25:43 PDT -- Google single E20 bullet updated to completed4312cell scoring and64completionreceipts, collector/audit/fits/G0 pending; exact readback verified (google_cpu_progress4_receipt.json). All46testedsource hashes unchanged; last fullmake1415passed/17skipped/6subtests/321.63s. Publishing data/docs-only scoring progress and collector dependency recovery receipts.
+
+- 10-21-2026 19:28:45 PDT -- CPU monitor 20261022T022810Z: states {'COMPLETED': 62, 'OUT_OF_MEMORY': 8, 'RUNNING': 1}; strict completion files 32/32, partial completion files 32/32, partial cells logged 4312/4312. Strict/partial diagnostic calls 3758/8101. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 19:34:18 PDT -- CPU monitor 20261022T023307Z: states {'COMPLETED': 63, 'OUT_OF_MEMORY': 8}; strict completion files 32/32, partial completion files 32/32, partial cells logged 4312/4312. Strict/partial diagnostic calls 3758/8101. Collection ready=True; trainer FAILED unchanged.
+
+- 10-21-2026 19:36:32 PDT -- Collector48892191 completed0:0 in321s; downloaded archive522331c409c58ea295e76e2159d9aca640e513b07dc27842d595dfb72e413fdd (3586544bytes). Import verified4312unique cells/539tasks and all generation fields,224source manifest files,11859compiler calls,64completionreceipts,zero audit errors. Strict191/4312 successes;74/539 active tasks. Smooth4202known (3203measured+999registeredparsezeros),110duplicate-declaration identities missing. Original strict negative exits12=(-11:5,-6:5,-9:2), allnativefailures retained. Per-cell score SHA1bd9b44703848fd03e606f10ed8f36fe2ae1ad45e16dc947af3221317ecf0f6a. Commit table before realfits; trainerFAILED unchanged.

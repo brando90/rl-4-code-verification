@@ -1,0 +1,468 @@
+{
+  "state": "COMPLETE",
+  "observed_unix": 1792623740.7723203,
+  "entry_source_sha256": "bfc9522c6fd962c1ed71cdfe4f5e0e7083f34727a2247d3c043ae46f65637b92",
+  "capture_source_sha256": "7781e1335049e083fca61649c58933b1c6a5ae347f36b206fe46423ea4602791",
+  "scorer_path": "/scratch/users/brando9/rl4cv_sherlock/grading/veribench_scorer/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/scripts/score_scsc.py",
+  "frozen_sha256": {
+    "run_real_eval.py": "6e82b3d1cd6d3686aaec3d45f273cd902b03b962c0c2eca48f2c2b4f25f41fa9",
+    "kernel_axioms.py": "5dbbdcae75ba8b22911fcb43ab1fcde45a1475cf92742a39a29ebe41116de287",
+    "score_scsc.py": "b3713c48e0fdb24adec93b77be8785d20e48897ee8d1fd8ce31fdf37101e81d6"
+  },
+  "argv": [
+    "--job-dir",
+    "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2",
+    "--pack",
+    "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/train_pack",
+    "--name",
+    "e20_p0_c3_s2",
+    "--gold-dir",
+    "/scratch/users/brando9/rl4cv_sherlock/grading/veribench_scorer/veribench_dataset/lean_src/veribench",
+    "--lake-dir",
+    "/scratch/users/brando9/rl4cv_sherlock/grading/lean_src",
+    "--skip-tc",
+    "--out-dir",
+    "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/scores/e20_p0_c3_s2"
+  ],
+  "evaluated_sources": {
+    "security_set__security_6858__vulnerabilities__117_unsafexfijump": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__117_unsafexfijump/verifier/solution.lean",
+      "sha256": "f3fc2bf91e32a8686b53dbd7feca20ba91b26d31b1484a4daf7f555b4fa0179a"
+    },
+    "security_set__security_6858__vulnerabilities__118_unsafechrootuid": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__118_unsafechrootuid/verifier/solution.lean",
+      "sha256": "5cf3cb2f0f4ea4842801677417519a7c7433faf771add7eb7db8c86648f82b9b"
+    },
+    "security_set__security_6858__vulnerabilities__11_unsafetimingcomparison": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__11_unsafetimingcomparison/verifier/solution.lean",
+      "sha256": "ee1ff21a976dc08288d1a095d77180ddec4dad20e7c725784677f71731a94ab2"
+    },
+    "security_set__security_6858__vulnerabilities__120_unsafereflectederror": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__120_unsafereflectederror/verifier/solution.lean",
+      "sha256": "f8bc2a2a5641c9e9ab16646e878dc6f1c079df117efdca81ac33bbf60570f5fc"
+    },
+    "security_set__security_6858__vulnerabilities__126_unsafeoauthredirect": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__126_unsafeoauthredirect/verifier/solution.lean",
+      "sha256": "ceb71397b1e2b2ff54193d322302db84df257f1f028dbe41b9d362b1e100e1a4"
+    },
+    "security_set__security_6858__vulnerabilities__127_unsafefuncptroverflow": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__127_unsafefuncptroverflow/verifier/solution.lean",
+      "sha256": "f7baf6e42e37d1a59746b0f9f76847c21d06023b3c7dae6719c10105fe4e4548"
+    },
+    "security_set__security_6858__vulnerabilities__128_unsafesqltaint": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__128_unsafesqltaint/verifier/solution.lean",
+      "sha256": "99b1e5313afc9a513bb160fdddecab9b936836e90910eab38ab549cebf68d31a"
+    },
+    "security_set__security_6858__vulnerabilities__129_unsafetorhiddenservice": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__129_unsafetorhiddenservice/verifier/solution.lean",
+      "sha256": "dcc17fd7ac429692235dab5f1e8a7e7ea59d0a43443407a90bb0235b753b1039"
+    },
+    "security_set__security_6858__vulnerabilities__132_unsafeclickjacking": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__132_unsafeclickjacking/verifier/solution.lean",
+      "sha256": "6806833530954cc660145c1e23caa1333b7833b15434f2421b81850c4a683885"
+    },
+    "security_set__security_6858__vulnerabilities__133_unsafednsspoofing": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__133_unsafednsspoofing/verifier/solution.lean",
+      "sha256": "1d7254008a752150ad229c573ea09a578b197327b4e4f203070de66f768c82f3"
+    },
+    "security_set__security_6858__vulnerabilities__134_unsafewepkeystream": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__134_unsafewepkeystream/verifier/solution.lean",
+      "sha256": "17f7692e1eea965d4f6b4ddf2cad52d0f0f0a9dc403638d2debabee4c03de7ea"
+    },
+    "security_set__security_6858__vulnerabilities__135_unsaferaceconditiontoctou": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__135_unsaferaceconditiontoctou/verifier/solution.lean",
+      "sha256": "461a5bc607d7377f5df98d22fc0bd68d857debd58f33fb233b4ecd59c5e67e48"
+    },
+    "security_set__security_6858__vulnerabilities__136_unsafeprivilegeescalation": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__136_unsafeprivilegeescalation/verifier/solution.lean",
+      "sha256": "a7e37cc362f57fe0c6548c7b21cc8f42cab8c37fb6112a8db928aa76109643bd"
+    },
+    "security_set__security_6858__vulnerabilities__138_unsafexssfilter": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__138_unsafexssfilter/verifier/solution.lean",
+      "sha256": "d271af9f0179b68ce4b4f72e81e5d57502b58870865c68743ac04bee78a7a370"
+    },
+    "security_set__security_6858__vulnerabilities__139_unsafebufferbounds": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__139_unsafebufferbounds/verifier/solution.lean",
+      "sha256": "d5e1e4086c86dfc6aff765fe62c4316ec108944e5bf42c86a20b5786201b1576"
+    },
+    "security_set__security_6858__vulnerabilities__13_unsafebaggybounds": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__13_unsafebaggybounds/verifier/solution.lean",
+      "sha256": "ef8353a6204f486fa7c781b00b3fc1c097b9a2094523980d0809d03e66ba6953"
+    },
+    "security_set__security_6858__vulnerabilities__140_unsafehttpredirect": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__140_unsafehttpredirect/verifier/solution.lean",
+      "sha256": "c25b40f13a5b9c080497366b2ac63e1b38fbf3eb0f179ebe5541b0d83a0486fe"
+    },
+    "security_set__security_6858__vulnerabilities__142_unsafecertpinning": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__142_unsafecertpinning/verifier/solution.lean",
+      "sha256": "5e6e85ddbf58d5d10e188156933047805217bc54183fbee4381aaa64c99b14e6"
+    },
+    "security_set__security_6858__vulnerabilities__145_unsafeheapspraying": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__145_unsafeheapspraying/verifier/solution.lean",
+      "sha256": "5101ddfe911ae0c384fececf26a561c991a8820e1a8f0cb9e8ca38a0abec1738"
+    },
+    "security_set__security_6858__vulnerabilities__147_unsafestackcanarybypass": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__147_unsafestackcanarybypass/verifier/solution.lean",
+      "sha256": "75d4abc1c0c2a4bafa28004a24d920cda28d6ebe3fb9c3e6ae218fe9509d53f9"
+    },
+    "security_set__security_6858__vulnerabilities__148_unsafeformatstringleak": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__148_unsafeformatstringleak/verifier/solution.lean",
+      "sha256": "008c638454cae5ed5e614d071414c170d2eb0010e439cdb2cee60ce9970c31ac"
+    },
+    "security_set__security_6858__vulnerabilities__14_unsafeserviceauth": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__14_unsafeserviceauth/verifier/solution.lean",
+      "sha256": "ff616cf2629a2d8e1c1eb8af646dcdd11f1d3da45fc1a1f357b272aa3bd170c3"
+    },
+    "security_set__security_6858__vulnerabilities__151_unsafecsrftokenverify": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__151_unsafecsrftokenverify/verifier/solution.lean",
+      "sha256": "9e53cab1f0bb97c774eb642199cc57fbdf0dd8c48bb6275b5e31fed835c89a31"
+    },
+    "security_set__security_6858__vulnerabilities__154_unsafeipfragreassembly": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__154_unsafeipfragreassembly/verifier/solution.lean",
+      "sha256": "df5bbc510c7501550c5c66ba527751390675a37c3d0301d8f8d8d26e8dfa09f4"
+    },
+    "security_set__security_6858__vulnerabilities__155_unsafeu2forigin": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__155_unsafeu2forigin/verifier/solution.lean",
+      "sha256": "e6f1c57ea480ce641675eb568a7f344ecdefb02cc3d0c19f5da10b16abfc9fc3"
+    },
+    "security_set__security_6858__vulnerabilities__156_unsafepostauthority": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__156_unsafepostauthority/verifier/solution.lean",
+      "sha256": "6472eb69d5e9533ebfe02bbd2c3416ef17960bb2acd25d82fb290eec4945bef2"
+    },
+    "security_set__security_6858__vulnerabilities__158_unsafetlscompression": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__158_unsafetlscompression/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "security_set__security_6858__vulnerabilities__159_unsafeu2fchallenge": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__159_unsafeu2fchallenge/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "security_set__security_6858__vulnerabilities__162_unsafespectreevictbypass": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__162_unsafespectreevictbypass/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "security_set__security_6858__vulnerabilities__16_unsafeseccompfilter": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__16_unsafeseccompfilter/verifier/solution.lean",
+      "sha256": "262d4419d97c30e4778d8891e53f677ae10b6049d314a546e09766074f1b7906"
+    },
+    "security_set__security_6858__vulnerabilities__18_unsafewasmmembounds": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__18_unsafewasmmembounds/verifier/solution.lean",
+      "sha256": "6e60117c9804cb152afce88f5b7295f78fb8d494c279addd77d7ac54153533e7"
+    },
+    "security_set__security_6858__vulnerabilities__19_unsafeindirectcall": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__19_unsafeindirectcall/verifier/solution.lean",
+      "sha256": "4c438829961c27c4ccd9b58eb83977b1077c3833f457d6c97d3d3a2e5a4e0199"
+    },
+    "security_set__security_6858__vulnerabilities__1_unsafemultiply": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__1_unsafemultiply/verifier/solution.lean",
+      "sha256": "453cf421a7d97d8bc3737f771bca61b4a6eb8bf546e11dd44417cfbfe2f307f5"
+    },
+    "security_set__security_6858__vulnerabilities__20_unsafepasscodecheck": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__20_unsafepasscodecheck/verifier/solution.lean",
+      "sha256": "317044c928c300e89c4f7ec0969b9d9fe5cc0934190f7f1cf5439f0b7d0e355f"
+    },
+    "security_set__security_6858__vulnerabilities__22_unsafetaintedlen": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__22_unsafetaintedlen/verifier/solution.lean",
+      "sha256": "e317003c13c25203ed0956d78eb8a6523129580d2cc4610207a03afcd1d81179"
+    },
+    "security_set__security_6858__vulnerabilities__23_unsafedoubleread": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__23_unsafedoubleread/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "security_set__security_6858__vulnerabilities__25_unsaferangecheck": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__25_unsaferangecheck/verifier/solution.lean",
+      "sha256": "8c7799ac75188fea35070aa66816404e95d378f47e7f908de7b93ec7c66a36bb"
+    },
+    "security_set__security_6858__vulnerabilities__28_unsafesameorigin": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__28_unsafesameorigin/verifier/solution.lean",
+      "sha256": "c26436b160ebc77f8cec825835396b09837a1acfcb6aa9798cb58c1955647402"
+    },
+    "security_set__security_6858__vulnerabilities__29_unsafepermissioncheck": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__29_unsafepermissioncheck/verifier/solution.lean",
+      "sha256": "9a08fd8098de01ba532b988611fe4b4cbe13b2fdf7582211ac297ee58eaa9b42"
+    },
+    "security_set__security_6858__vulnerabilities__2_unsafememoryaccess": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__2_unsafememoryaccess/verifier/solution.lean",
+      "sha256": "7edd892391a1c62f917557c45e7936848df754bc93962735c8279281e3916f73"
+    },
+    "security_set__security_6858__vulnerabilities__30_unsafeuidisolation": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__30_unsafeuidisolation/verifier/solution.lean",
+      "sha256": "d236e5b0167c9c354eac4efb10be27e53fa66df16ff2223089dc13ec96b2ce2b"
+    },
+    "security_set__security_6858__vulnerabilities__31_unsafedivide": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__31_unsafedivide/verifier/solution.lean",
+      "sha256": "4f1f7af6367aab32a7b603ab532bcb32602dd1f17fec8d934ef04dae7a948b15"
+    },
+    "security_set__security_6858__vulnerabilities__34_unsafedirectroute": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__34_unsafedirectroute/verifier/solution.lean",
+      "sha256": "0c8b37f1dcd7732921b6885024ca78eeaa54d5aea10cbb7bfa87e9c81a7b4d9e"
+    },
+    "security_set__security_6858__vulnerabilities__35_unsaferelaypath": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__35_unsaferelaypath/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "security_set__security_6858__vulnerabilities__36_unsafebootchain": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__36_unsafebootchain/verifier/solution.lean",
+      "sha256": "d997ea494662284905dabe6f42905f48702ce070fbd4967b3d44a59327cf3cd0"
+    },
+    "security_set__security_6858__vulnerabilities__37_unsaferollback": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__37_unsaferollback/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "security_set__security_6858__vulnerabilities__38_unsafetofukey": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__38_unsafetofukey/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "security_set__security_6858__vulnerabilities__40_unsafecircuithops": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__40_unsafecircuithops/verifier/solution.lean",
+      "sha256": "0d5580577955130019e56214333cf50be6052a18d111bfe6a692d5f8f8e63b56"
+    },
+    "security_set__security_6858__vulnerabilities__41_unsafeonionlayer": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__41_unsafeonionlayer/verifier/solution.lean",
+      "sha256": "63b3b06f8586b1c523fbecf87ff90fb36dd545b111dfc4373cf2f5b9d3010e3c"
+    },
+    "security_set__security_6858__vulnerabilities__43_unsafetenexbyte": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__43_unsafetenexbyte/verifier/solution.lean",
+      "sha256": "38d67dc3c07b2db3c631153203aeef06b54bcc5881793c599d46c8ca1b25f513"
+    },
+    "security_set__security_6858__vulnerabilities__45_unsafearpresponse": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__45_unsafearpresponse/verifier/solution.lean",
+      "sha256": "eea673126a0b848c483ab8e4f85b27e65f9ba6eff9860e93366c57794cd22c86"
+    },
+    "security_set__security_6858__vulnerabilities__45_unsafemeltdownread": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__45_unsafemeltdownread/verifier/solution.lean",
+      "sha256": "30e3fbe4f6664f5b3e0da9df340b525fa32c2b21b5157a98cf68958f6224bb1b"
+    },
+    "security_set__security_6858__vulnerabilities__46_unsafecachettable": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__46_unsafecachettable/verifier/solution.lean",
+      "sha256": "0dcb27a191c51ec84661d91937302eb0537fe8653ef194f91fdda264173f7c3d"
+    },
+    "security_set__security_6858__vulnerabilities__47_unsafetlscertname": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__47_unsafetlscertname/verifier/solution.lean",
+      "sha256": "b1b5653c2f43ad56c3a4303ba02d0b36c85ecad12c585464dea29f30edd3d78b"
+    },
+    "security_set__security_6858__vulnerabilities__48_unsafecertexpiry": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__48_unsafecertexpiry/verifier/solution.lean",
+      "sha256": "cb88773c0473217c6c78291aa56d1933fb6a1759a9f2416ce70a19e6e80a3ef0"
+    },
+    "security_set__security_6858__vulnerabilities__49_unsafecertchain": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__49_unsafecertchain/verifier/solution.lean",
+      "sha256": "b0c0f5d8fd830b2ee6b8f4fce5bd14ac2539b74a95b8c2250dcd40da02af9dd5"
+    },
+    "security_set__security_6858__vulnerabilities__4_unsafecounter": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__4_unsafecounter/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "security_set__security_6858__vulnerabilities__51_unsafefatpointer": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__51_unsafefatpointer/verifier/solution.lean",
+      "sha256": "453eb8a5a65bd2443daddd6892d7c5a5636d7750a2529547d3a630040f3846d3"
+    },
+    "security_set__security_6858__vulnerabilities__57_unsafetaintedptr": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__57_unsafetaintedptr/verifier/solution.lean",
+      "sha256": "901a92197be65c7a38bac5e906ff36850da2d68378dfdc100b734ddd0050106e"
+    },
+    "security_set__security_6858__vulnerabilities__58_unsafecallback": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__58_unsafecallback/verifier/solution.lean",
+      "sha256": "2c485d9220438fef23841de41ecc3ff8e102cff3485115aa2a9c259f7bb1ad8e"
+    },
+    "security_set__security_6858__vulnerabilities__62_unsafexss": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__62_unsafexss/verifier/solution.lean",
+      "sha256": "425ac9abf01fca6c9b1349bdb259f7e8d8eb07926951f1aebe212d1c92ceb339"
+    },
+    "security_set__security_6858__vulnerabilities__63_unsafesynflood": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__63_unsafesynflood/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "security_set__security_6858__vulnerabilities__64_unsafesaltlessstore": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__64_unsafesaltlessstore/verifier/solution.lean",
+      "sha256": "4fb8dd28e2c22dba9d086141fb7d905d50e4e304d2cae3807d21b632ebdb23ba"
+    },
+    "security_set__security_6858__vulnerabilities__64_unsafestatickeyexchange": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__64_unsafestatickeyexchange/verifier/solution.lean",
+      "sha256": "06153894ac3ad150baa5d681721438d763d065fa74c7b7e8963ab2694aece061"
+    },
+    "security_set__security_6858__vulnerabilities__65_unsafenoncereuse": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__65_unsafenoncereuse/verifier/solution.lean",
+      "sha256": "2a4198e5c53ae8962b4d7e7f87a7cf5c91416532aa04c45a470c75acee5b14bd"
+    },
+    "security_set__security_6858__vulnerabilities__67_unsafeaslrbypass": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__67_unsafeaslrbypass/verifier/solution.lean",
+      "sha256": "d56044d37bee4b7449c8a64a392e59eebc793a381db23ef708a3342cdbcc6c20"
+    },
+    "security_set__security_6858__vulnerabilities__67_unsafesymbolicpath": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__67_unsafesymbolicpath/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "security_set__security_6858__vulnerabilities__69_unsafednsspoofing": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__69_unsafednsspoofing/verifier/solution.lean",
+      "sha256": "e78227810df115c61ce0390378b703bbebe11e1715ae4da8e212a04f93e3fa57"
+    },
+    "security_set__security_6858__vulnerabilities__6_unsafesqlquery": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__6_unsafesqlquery/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "security_set__security_6858__vulnerabilities__73_unsafewasmstack": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__73_unsafewasmstack/verifier/solution.lean",
+      "sha256": "57b82bd379be12d28412d7db91707495a54966b1c5a63699c42141fd22cbf259"
+    },
+    "security_set__security_6858__vulnerabilities__74_unsafepaddingoracle": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__74_unsafepaddingoracle/verifier/solution.lean",
+      "sha256": "63a6b955a66750345225e3c2dd64025f3e02f7de0695996de92e1024e6044d7e"
+    },
+    "security_set__security_6858__vulnerabilities__74_unsafewasmglobal": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__74_unsafewasmglobal/verifier/solution.lean",
+      "sha256": "7e6ae9fc2f1f7bfbeab997f0aad9e7164fa051cd139f000ad4396c7bbc3e6814"
+    },
+    "security_set__security_6858__vulnerabilities__75_unsafecerthostname": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__75_unsafecerthostname/verifier/solution.lean",
+      "sha256": "e711056a2aa21bfd7fad37e1d954faede10489f7742cdf10c3a1bad16ab23377"
+    },
+    "security_set__security_6858__vulnerabilities__76_unsafedeniableauth": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__76_unsafedeniableauth/verifier/solution.lean",
+      "sha256": "1c2be259d071cdf89262ce8074fdf61b31238696eb1739e21d6ee02c903ea99d"
+    },
+    "security_set__security_6858__vulnerabilities__77_unsafeversiondowngrade": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__77_unsafeversiondowngrade/verifier/solution.lean",
+      "sha256": "d57e9935859518eadca8e4b25daec40123f6c128bacd49667f03bbac18a33ac8"
+    },
+    "security_set__security_6858__vulnerabilities__79_unsafekeypersistence": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__79_unsafekeypersistence/verifier/solution.lean",
+      "sha256": "3473b4c532af77ed4c1aad1d6b5ec219f1eab130deac5d99be7a1a1d0c1cdc75"
+    },
+    "security_set__security_6858__vulnerabilities__7_unsafecommandexecution": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__7_unsafecommandexecution/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "security_set__security_6858__vulnerabilities__81_unsafesigperm": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__81_unsafesigperm/verifier/solution.lean",
+      "sha256": "e8176547221f94534474f96fbe1954ea3903434c1183b29b9e8646ac61d32657"
+    },
+    "security_set__security_6858__vulnerabilities__82_unsafecookieforge": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__82_unsafecookieforge/verifier/solution.lean",
+      "sha256": "24ae97d2fe434f10947cba8183a5e88e3ac9e0bcb646fa5a73b83418b8f040d0"
+    },
+    "security_set__security_6858__vulnerabilities__83_unsafetransferbalance": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__83_unsafetransferbalance/verifier/solution.lean",
+      "sha256": "f630de2d82bd534ea57a7897de59aa79fd91a70c1e6532985c580f304a1d5d79"
+    },
+    "security_set__security_6858__vulnerabilities__85_unsafecookiedomain": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__85_unsafecookiedomain/verifier/solution.lean",
+      "sha256": "56e55287deb4eb8fe043d62805cccc38122467946092487e863fee51d0b6e9f6"
+    },
+    "security_set__security_6858__vulnerabilities__86_unsafehttponly": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__86_unsafehttponly/verifier/solution.lean",
+      "sha256": "82203f66f9815feecf2e86b0f3f135b3989c60c9226663b85bdc9006c5de7959"
+    },
+    "security_set__security_6858__vulnerabilities__88_unsafebgproute": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__88_unsafebgproute/verifier/solution.lean",
+      "sha256": "c6f67aab6ce0322bc9826ae4e16ae1f4ccf54b6a1fb13e1959a24e732532ab4d"
+    },
+    "security_set__security_6858__vulnerabilities__88_unsafeopenredirect": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__88_unsafeopenredirect/verifier/solution.lean",
+      "sha256": "cee86d83211f97bb3ad90d9c870c9422d0d785d88512504e4d2b28ed589f2bd7"
+    },
+    "security_set__security_6858__vulnerabilities__89_unsafesynflood": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__89_unsafesynflood/verifier/solution.lean",
+      "sha256": "7a239bab926736804a463865da889875ad7652fba4d510bf854f41315fdfcae0"
+    },
+    "security_set__security_6858__vulnerabilities__8_crosssitescripting": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__8_crosssitescripting/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "security_set__security_6858__vulnerabilities__90_unsafeipspoofing": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__90_unsafeipspoofing/verifier/solution.lean",
+      "sha256": "1b8594ff1a0e52f47c0af36cdf7feab6f2ba3d882df5a409945a46c46c8c8213"
+    },
+    "security_set__security_6858__vulnerabilities__90_unsafetlsreplay": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__90_unsafetlsreplay/verifier/solution.lean",
+      "sha256": "fa4e3c1a705677c967a7ea86f2bd2eb9b99251eacc5af01a2899908e1f0fa15d"
+    },
+    "security_set__security_6858__vulnerabilities__92_unsafemaccoverage": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__92_unsafemaccoverage/verifier/solution.lean",
+      "sha256": "8c3db0735273bdec73abdf56ba5532739cb0885c87ca1873916fc7f6628f7a2f"
+    },
+    "security_set__security_6858__vulnerabilities__92_unsafewitnessgen": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__92_unsafewitnessgen/verifier/solution.lean",
+      "sha256": "b950997a646a24f1719a6c8809e002fbe979712084998fc5a40b09fa8c464511"
+    },
+    "security_set__security_6858__vulnerabilities__93_unsafecertpinning": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__93_unsafecertpinning/verifier/solution.lean",
+      "sha256": "02ced033391937e2d7eade613e8305f64275b88fef005377d801eea235be3cd9"
+    },
+    "security_set__security_6858__vulnerabilities__94_unsafecaverify": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__94_unsafecaverify/verifier/solution.lean",
+      "sha256": "59af53995684170c9edaca19fc620a5e5f6731e5c5ea9fefbab8a8bfeeb730ba"
+    },
+    "security_set__security_6858__vulnerabilities__94_unsafestatickeyexchange": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__94_unsafestatickeyexchange/verifier/solution.lean",
+      "sha256": "13f42bdf5501554e5ebd1ca449abe79e77b0417eae6574cddbc80ca794022bf2"
+    },
+    "security_set__security_6858__vulnerabilities__96_unsafekeyserver": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__96_unsafekeyserver/verifier/solution.lean",
+      "sha256": "7a89e24d50ebe392f4eee75e967f31f92436ad2b288194271050953030cd21a5"
+    },
+    "security_set__security_6858__vulnerabilities__96_unsafemetadataprotection": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__96_unsafemetadataprotection/verifier/solution.lean",
+      "sha256": "f974be706eb26526f186b87b15a1cc472881084ab1c80f2331faf3d2a3da0c45"
+    },
+    "security_set__security_6858__vulnerabilities__97_unsafedefaultpassword": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__97_unsafedefaultpassword/verifier/solution.lean",
+      "sha256": "7d08cd9bb38387c54f35aadb59e991780faa66afe6f65f12b74171cb8863db26"
+    },
+    "security_set__security_6858__vulnerabilities__98_unsafechangecipherspec": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__98_unsafechangecipherspec/verifier/solution.lean",
+      "sha256": "2c5debe91960410087b1bf018b8e7fb3f232c9a169ccd43d9e6ecae2f48cf4c9"
+    },
+    "security_set__security_6858__vulnerabilities__99_unsafecipherdowngrade": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__99_unsafecipherdowngrade/verifier/solution.lean",
+      "sha256": "21e760613361f46a50c397ee3e898d0678c9c3763bb19d02eba456ea9cb77277"
+    },
+    "security_set__security_6858__vulnerabilities__99_unsafehardcodedkey": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__99_unsafehardcodedkey/verifier/solution.lean",
+      "sha256": "f56882fd4f88da38f701ba95cfa28ba1df8240f530ce1e912634a61e2654b581"
+    },
+    "security_set__security_6858__vulnerabilities__99_unsafeotahash": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__99_unsafeotahash/verifier/solution.lean",
+      "sha256": "4f0f232ec58c2ba3e646bc795fdf6180e1fdc7692f2e9e925f0f167ad7d5d492"
+    },
+    "security_set__security_6858__vulnerabilities__9_pathtraversal": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_6858__vulnerabilities__9_pathtraversal/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "security_set__security_python__safe__0_no_shell_injection_safe": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_python__safe__0_no_shell_injection_safe/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "security_set__security_python__safe__1_no_command_injection_safe": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_python__safe__1_no_command_injection_safe/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "security_set__security_python__safe__2_no_executable_escalation_safe": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_python__safe__2_no_executable_escalation_safe/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "security_set__security_python__vulnerabilities__0_shell_injection": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_python__vulnerabilities__0_shell_injection/verifier/solution.lean",
+      "sha256": "cd6afe886616a6071178589a8c688c194f4ea50c19658943fca410f534b1811c"
+    },
+    "security_set__security_python__vulnerabilities__1_command_injection": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_python__vulnerabilities__1_command_injection/verifier/solution.lean",
+      "sha256": "e0a671de8e7b9cc1bb93a5a89a0c95bb046395aefcba692e96a1d4327919a239"
+    },
+    "security_set__security_python__vulnerabilities__2_executable_escalation": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s2/security_set__security_python__vulnerabilities__2_executable_escalation/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "compiler": {
+    "path": "/scratch/users/brando9/rl4cv_sherlock/grading/elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+    "sha256": "cbf5fd536e142ef1beaccf33f788fd8a7f3f29fb214e75c11319a8d8677b4b2b",
+    "version": "Lean (version 4.22.0, x86_64-unknown-linux-gnu, commit ba2cbbf09d4978f416e0ebd1fceeebc2c4138c05, Release)"
+  },
+  "compile_bytecode_unchanged": true,
+  "kernel_probe_bytecode_unchanged": true,
+  "kernel_check_bytecode_unchanged": true,
+  "amendment": "stdout/stderr transport changes from PIPE to persistent regular files; identical command arguments, timeout, exit code and frozen proof policy.",
+  "exit_code": 0,
+  "ended_unix": 1792626391.2502372
+}

@@ -1,0 +1,4452 @@
+{
+  "job_dir": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s5",
+  "adapter_sha256": "a77fbd34f0166249742cf72cdc027b0f9949c265becfec4a191224945ff75353",
+  "probe_sha256": "b9cc9f5bb25cdc72232cb756d443f34d98fc51c58207b7745a559a9ff8fceedc",
+  "n_trials": 179,
+  "n_measured": 112,
+  "records": [
+    {
+      "task_id": "aerospace_set_real__my_fprime_crc_match",
+      "sample_idx": 5,
+      "source_sha256": "b28d6b6003e93e0b7af048198e9139dc3b4d4751714f5d739ed6a00ea16f0fb5",
+      "source_bytes": 15159,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 38.602
+    },
+    {
+      "task_id": "aerospace_set_real__my_fprime_sequence_nonempty",
+      "sample_idx": 5,
+      "source_sha256": "c7181931656a3b9791d1f8fabe5f8908069caeed783ad6b84f46511b0e672a48",
+      "source_bytes": 9775,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.042019935431608736,
+      "compiles": false,
+      "n_examples": 32,
+      "theorem_count": 14,
+      "proved_count": 0,
+      "declarations_ok": 0.7419354838709677,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 23,
+        "denominator": 31
+      },
+      "t": {
+        "numerator": 47,
+        "denominator": 49
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 14
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 63,
+      "axioms": [],
+      "wall_seconds": 47.124
+    },
+    {
+      "task_id": "aerospace_set_synthetic__my_airspeed_squat_gate",
+      "sample_idx": 5,
+      "source_sha256": "dc17a8f4726373fb1e26f29d1e6be68b0c5d594444a4da22243fd4d39594430e",
+      "source_bytes": 17671,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04417541826906077,
+      "compiles": false,
+      "n_examples": 32,
+      "theorem_count": 14,
+      "proved_count": 0,
+      "declarations_ok": 0.8620689655172413,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 25,
+        "denominator": 29
+      },
+      "t": {
+        "numerator": 45,
+        "denominator": 47
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 14
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 61,
+      "axioms": [],
+      "wall_seconds": 33.436
+    },
+    {
+      "task_id": "aerospace_set_synthetic__my_clamp_actuator",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "aerospace_set_synthetic__my_descent_floor",
+      "sample_idx": 5,
+      "source_sha256": "24a089bfc3f2625a7596a5e095c10ca367f49bd38b099f95508e237ae1deb9da",
+      "source_bytes": 12892,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.832
+    },
+    {
+      "task_id": "aerospace_set_synthetic__my_edac_syndrome_detect",
+      "sample_idx": 5,
+      "source_sha256": "deea846a5f569998629adca421b30433c4976c0388efb6032982648cb20ecec5",
+      "source_bytes": 22086,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.804
+    },
+    {
+      "task_id": "aerospace_set_synthetic__my_fuel_reserve_gate",
+      "sample_idx": 5,
+      "source_sha256": "224ed45d7a0c36694c09d217b25eefb87f904eee6a5e13606b3fec81ae49cad5",
+      "source_bytes": 13806,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.2019418690164484,
+      "compiles": false,
+      "n_examples": 28,
+      "theorem_count": 14,
+      "proved_count": 0,
+      "declarations_ok": 0.8235294117647058,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 28,
+        "denominator": 34
+      },
+      "t": {
+        "numerator": 48,
+        "denominator": 48
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 14
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 62,
+      "axioms": [],
+      "wall_seconds": 31.957
+    },
+    {
+      "task_id": "aerospace_set_synthetic__my_nav_seq_rollover",
+      "sample_idx": 5,
+      "source_sha256": "3fd701374261ac8591549ae1db0a039939439b7935aeb100b19926d4a8f1cf51",
+      "source_bytes": 18740,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04422312394141053,
+      "compiles": false,
+      "n_examples": 28,
+      "theorem_count": 16,
+      "proved_count": 0,
+      "declarations_ok": 0.8648648648648649,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 32,
+        "denominator": 37
+      },
+      "t": {
+        "numerator": 48,
+        "denominator": 49
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 16
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 65,
+      "axioms": [],
+      "wall_seconds": 35.086
+    },
+    {
+      "task_id": "aerospace_set_synthetic__my_redundant_bus_select",
+      "sample_idx": 5,
+      "source_sha256": "50482daeb7bfb254a055e6bbe0780fb87d15c261d8ee02d4be58a74e79f75096",
+      "source_bytes": 15216,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04585660630993199,
+      "compiles": false,
+      "n_examples": 26,
+      "theorem_count": 13,
+      "proved_count": 0,
+      "declarations_ok": 0.9642857142857143,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 27,
+        "denominator": 28
+      },
+      "t": {
+        "numerator": 36,
+        "denominator": 41
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 13
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 54,
+      "axioms": [],
+      "wall_seconds": 29.782
+    },
+    {
+      "task_id": "aerospace_set_synthetic__my_safing_vote",
+      "sample_idx": 5,
+      "source_sha256": "cbcf8f8ffe81a57477476cd63a1f1b7e4167af68c150ee99272c29c6f9c02bb9",
+      "source_bytes": 12038,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04502950292894268,
+      "compiles": false,
+      "n_examples": 27,
+      "theorem_count": 8,
+      "proved_count": 0,
+      "declarations_ok": 0.9130434782608695,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 21,
+        "denominator": 23
+      },
+      "t": {
+        "numerator": 36,
+        "denominator": 42
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 8
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 50,
+      "axioms": [],
+      "wall_seconds": 29.978
+    },
+    {
+      "task_id": "aerospace_set_synthetic__my_thruster_duty_ok",
+      "sample_idx": 5,
+      "source_sha256": "b83d67aac25a8faa9a1b270e822f08a4c216f665a9e771b56ef488eec27b4a41",
+      "source_bytes": 20370,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04519384563720653,
+      "compiles": false,
+      "n_examples": 34,
+      "theorem_count": 18,
+      "proved_count": 0,
+      "declarations_ok": 0.9230769230769231,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 36,
+        "denominator": 39
+      },
+      "t": {
+        "numerator": 49,
+        "denominator": 55
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 18
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 73,
+      "axioms": [],
+      "wall_seconds": 34.114
+    },
+    {
+      "task_id": "aerospace_set_synthetic__my_tmr_voter",
+      "sample_idx": 5,
+      "source_sha256": "6d5aa730f142b2d79d956fc40e66cd855367d81d05aae29990bd160c51c2adc4",
+      "source_bytes": 13713,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.682
+    },
+    {
+      "task_id": "compilers_set_real__my_cpython_dis_deopt_op",
+      "sample_idx": 5,
+      "source_sha256": "c4559924dd72137356f06da931d62f7fb93048463459c9ebe11fce5fe20c6556",
+      "source_bytes": 21186,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.841
+    },
+    {
+      "task_id": "compilers_set_real__my_cpython_dis_jump_target",
+      "sample_idx": 5,
+      "source_sha256": "90369c33d3beb959335122dd1b9cd6f9255cf003a73bc3da56f27e2a7abd861c",
+      "source_bytes": 17675,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.901
+    },
+    {
+      "task_id": "compilers_set_real__my_cpython_load_small_int_const",
+      "sample_idx": 5,
+      "source_sha256": "d9b6c68ea4139ffef9efbcaed65eb9c4d74912ca41265cae5062c198e2be7193",
+      "source_bytes": 19150,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "duplicate fully qualified declaration identity",
+      "wall_seconds": 7.69
+    },
+    {
+      "task_id": "compilers_set_synthetic__my_bytecode_stack_push_n",
+      "sample_idx": 5,
+      "source_sha256": "6b3519cc93bb68a88c3d42d74fce48e25600e730ceeac79e1f0a48208a0bf375",
+      "source_bytes": 15925,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04434092717228111,
+      "compiles": false,
+      "n_examples": 35,
+      "theorem_count": 20,
+      "proved_count": 0,
+      "declarations_ok": 0.8717948717948718,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 34,
+        "denominator": 39
+      },
+      "t": {
+        "numerator": 52,
+        "denominator": 54
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 20
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 74,
+      "axioms": [],
+      "wall_seconds": 35.049
+    },
+    {
+      "task_id": "compilers_set_synthetic__my_call_graph_depth_ok",
+      "sample_idx": 5,
+      "source_sha256": "dcdfcce4edbeda642a4254af122467fcaf381804818a5f6b315e7f5f1eb6a513",
+      "source_bytes": 11253,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04335304822837957,
+      "compiles": false,
+      "n_examples": 20,
+      "theorem_count": 11,
+      "proved_count": 0,
+      "declarations_ok": 0.8148148148148148,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 22,
+        "denominator": 27
+      },
+      "t": {
+        "numerator": 34,
+        "denominator": 36
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 11
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 48,
+      "axioms": [],
+      "wall_seconds": 27.192
+    },
+    {
+      "task_id": "compilers_set_synthetic__my_constant_fold_add",
+      "sample_idx": 5,
+      "source_sha256": "8beb5ebf463c7526989bc9bb4eea04cd7378c6b0e81de76d867859e8e70bfc90",
+      "source_bytes": 15344,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.887
+    },
+    {
+      "task_id": "compilers_set_synthetic__my_dce_live_return",
+      "sample_idx": 5,
+      "source_sha256": "e36d487d36d626021046b943d27d9ec4bf73551eb3991a119fdd89beecfd34d1",
+      "source_bytes": 20165,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04414800565372536,
+      "compiles": false,
+      "n_examples": 45,
+      "theorem_count": 18,
+      "proved_count": 0,
+      "declarations_ok": 0.8604651162790697,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 37,
+        "denominator": 43
+      },
+      "t": {
+        "numerator": 69,
+        "denominator": 70
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 18
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 88,
+      "axioms": [],
+      "wall_seconds": 37.056
+    },
+    {
+      "task_id": "compilers_set_synthetic__my_lexer_span_cover",
+      "sample_idx": 5,
+      "source_sha256": "f258910686a06c6da404589b8c490fef226f0a9ef14bc1f27b693ff00a997ca6",
+      "source_bytes": 11172,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04439520008713004,
+      "compiles": false,
+      "n_examples": 29,
+      "theorem_count": 13,
+      "proved_count": 0,
+      "declarations_ok": 0.875,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 35,
+        "denominator": 40
+      },
+      "t": {
+        "numerator": 49,
+        "denominator": 56
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 13
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 69,
+      "axioms": [],
+      "wall_seconds": 25.717
+    },
+    {
+      "task_id": "compilers_set_synthetic__my_loop_unroll2_inc",
+      "sample_idx": 5,
+      "source_sha256": "f90e9f9118390a1ff34d887f3486d859dbbf4b8f43919939692830618999993f",
+      "source_bytes": 18648,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "duplicate fully qualified declaration identity",
+      "wall_seconds": 8.953
+    },
+    {
+      "task_id": "compilers_set_synthetic__my_pattern_exhaustive3",
+      "sample_idx": 5,
+      "source_sha256": "216fe45a554cb17d835f1d17f3626020ac01a3fa7f5c2700fdaafbbdf3052280",
+      "source_bytes": 13131,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.536
+    },
+    {
+      "task_id": "compilers_set_synthetic__my_peephole_strength_square",
+      "sample_idx": 5,
+      "source_sha256": "512e988f08bc14f7ce6f2d83220c072f4517163378b8f52745c96c50f3937916",
+      "source_bytes": 11954,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04598206960635202,
+      "compiles": false,
+      "n_examples": 43,
+      "theorem_count": 16,
+      "proved_count": 0,
+      "declarations_ok": 0.9722222222222222,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 35,
+        "denominator": 36
+      },
+      "t": {
+        "numerator": 57,
+        "denominator": 63
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 16
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 79,
+      "axioms": [],
+      "wall_seconds": 24.072
+    },
+    {
+      "task_id": "compilers_set_synthetic__my_strength_reduce_mul2",
+      "sample_idx": 5,
+      "source_sha256": "0c523729c1d828647e736e17a42f68a6e4e6f1e41195c25d53bae32f882a1dbf",
+      "source_bytes": 10106,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "duplicate fully qualified declaration identity",
+      "wall_seconds": 7.885
+    },
+    {
+      "task_id": "concurrent_set_real__my_cas_write",
+      "sample_idx": 5,
+      "source_sha256": "5dd7d162354f17608b966cd52382b5b45f2f53927c0a459f927c888ae9cad67f",
+      "source_bytes": 16014,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.0435783799695026,
+      "compiles": false,
+      "n_examples": 46,
+      "theorem_count": 12,
+      "proved_count": 0,
+      "declarations_ok": 0.8275862068965517,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 24,
+        "denominator": 29
+      },
+      "t": {
+        "numerator": 62,
+        "denominator": 63
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 12
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 75,
+      "axioms": [],
+      "wall_seconds": 35.282
+    },
+    {
+      "task_id": "concurrent_set_real__my_raft_term_tick",
+      "sample_idx": 5,
+      "source_sha256": "616561bfd2a22c3de88f14697105d47cba614ddcd100c22f25bc58447e52d0d0",
+      "source_bytes": 8522,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04149132666831218,
+      "compiles": false,
+      "n_examples": 25,
+      "theorem_count": 9,
+      "proved_count": 0,
+      "declarations_ok": 0.7142857142857143,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 15,
+        "denominator": 21
+      },
+      "t": {
+        "numerator": 34,
+        "denominator": 37
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 9
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 47,
+      "axioms": [],
+      "wall_seconds": 27.761
+    },
+    {
+      "task_id": "concurrent_set_real__my_raft_vote_gate",
+      "sample_idx": 5,
+      "source_sha256": "b9ec2e8b169d5714ea048f1e5421e030a76c534ce0ddbb5f5ae37d70dff53649",
+      "source_bytes": 16131,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04578856970213328,
+      "compiles": false,
+      "n_examples": 27,
+      "theorem_count": 9,
+      "proved_count": 0,
+      "declarations_ok": 0.96,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 24,
+        "denominator": 25
+      },
+      "t": {
+        "numerator": 36,
+        "denominator": 43
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 9
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 53,
+      "axioms": [],
+      "wall_seconds": 23.949
+    },
+    {
+      "task_id": "concurrent_set_synthetic__my_aba_tag_guard",
+      "sample_idx": 5,
+      "source_sha256": "a4f2668754462f35f1260c4ebab0d8052c2fad48ca476d2170442a7a9a0f3618",
+      "source_bytes": 14768,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.20563674454038525,
+      "compiles": false,
+      "n_examples": 26,
+      "theorem_count": 9,
+      "proved_count": 0,
+      "declarations_ok": 0.8695652173913043,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 20,
+        "denominator": 23
+      },
+      "t": {
+        "numerator": 40,
+        "denominator": 40
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 9
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 49,
+      "axioms": [],
+      "wall_seconds": 43.383
+    },
+    {
+      "task_id": "concurrent_set_synthetic__my_hazard_pointer_can_free",
+      "sample_idx": 5,
+      "source_sha256": "7984885aacf19f75c8d4f2388304dac25355f33be31210272552991d67506a66",
+      "source_bytes": 10458,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.042964518202032814,
+      "compiles": false,
+      "n_examples": 33,
+      "theorem_count": 12,
+      "proved_count": 0,
+      "declarations_ok": 0.7931034482758621,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 23,
+        "denominator": 29
+      },
+      "t": {
+        "numerator": 45,
+        "denominator": 50
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 12
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 62,
+      "axioms": [],
+      "wall_seconds": 23.085
+    },
+    {
+      "task_id": "concurrent_set_synthetic__my_lamport_recv",
+      "sample_idx": 5,
+      "source_sha256": "3cab719a59e95637bb73489be7e543704f9d673d36de1f373d0f392583f4ba4c",
+      "source_bytes": 12573,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.803
+    },
+    {
+      "task_id": "concurrent_set_synthetic__my_lww_register_pick_left",
+      "sample_idx": 5,
+      "source_sha256": "92cd9be31324b21bb9d66b26eff73004c65b26fa88442aabb9c3adcb21d28f2a",
+      "source_bytes": 12778,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.19740230337485715,
+      "compiles": false,
+      "n_examples": 36,
+      "theorem_count": 10,
+      "proved_count": 0,
+      "declarations_ok": 0.7692307692307693,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 20,
+        "denominator": 26
+      },
+      "t": {
+        "numerator": 52,
+        "denominator": 52
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 10
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 62,
+      "axioms": [],
+      "wall_seconds": 24.115
+    },
+    {
+      "task_id": "concurrent_set_synthetic__my_p_n_counter_delta",
+      "sample_idx": 5,
+      "source_sha256": "7395fd060a0c02bd0a935cb8663b3115cf8bcd030109bbcf4b3e69fcba1a9d1b",
+      "source_bytes": 12564,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.044000204059863754,
+      "compiles": false,
+      "n_examples": 25,
+      "theorem_count": 11,
+      "proved_count": 0,
+      "declarations_ok": 0.8518518518518519,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 23,
+        "denominator": 27
+      },
+      "t": {
+        "numerator": 39,
+        "denominator": 41
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 11
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 52,
+      "axioms": [],
+      "wall_seconds": 29.417
+    },
+    {
+      "task_id": "concurrent_set_synthetic__my_queue_second_dequeue",
+      "sample_idx": 5,
+      "source_sha256": "e17aaf0813dd65072f263af86f81beb4dbf721081418a0e9cb00d4e7ee841265",
+      "source_bytes": 9820,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.045586855325820436,
+      "compiles": false,
+      "n_examples": 27,
+      "theorem_count": 7,
+      "proved_count": 0,
+      "declarations_ok": 0.9473684210526315,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 18,
+        "denominator": 19
+      },
+      "t": {
+        "numerator": 34,
+        "denominator": 39
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 7
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 46,
+      "axioms": [],
+      "wall_seconds": 24.78
+    },
+    {
+      "task_id": "concurrent_set_synthetic__my_rcu_epoch_can_reclaim",
+      "sample_idx": 5,
+      "source_sha256": "b6cbc667ff878d6e1b4faaf1d6b91973e1f446d770b0ee22098b7df084db3dba",
+      "source_bytes": 17226,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.878
+    },
+    {
+      "task_id": "concurrent_set_synthetic__my_treiber_pop_after_push",
+      "sample_idx": 5,
+      "source_sha256": "fcf75872058c944fa6883e3aa01ca08d4e1c3f16394d8f63d6ff4e826e85fee3",
+      "source_bytes": 18773,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.045049915217744256,
+      "compiles": false,
+      "n_examples": 36,
+      "theorem_count": 16,
+      "proved_count": 0,
+      "declarations_ok": 0.9142857142857143,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 32,
+        "denominator": 35
+      },
+      "t": {
+        "numerator": 49,
+        "denominator": 55
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 16
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 71,
+      "axioms": [],
+      "wall_seconds": 33.965
+    },
+    {
+      "task_id": "concurrent_set_synthetic__my_vector_clock_merge_le_target",
+      "sample_idx": 5,
+      "source_sha256": "6e55e41334b1f6d4a1883a070c2c5f4becb337184a1132ff4b1166808bbf8f58",
+      "source_bytes": 17534,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04536061410635579,
+      "compiles": false,
+      "n_examples": 28,
+      "theorem_count": 13,
+      "proved_count": 0,
+      "declarations_ok": 0.9333333333333333,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 28,
+        "denominator": 30
+      },
+      "t": {
+        "numerator": 37,
+        "denominator": 45
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 13
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 58,
+      "axioms": [],
+      "wall_seconds": 28.88
+    },
+    {
+      "task_id": "critical_infra_set_real__my_envoy_panic_threshold",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "critical_infra_set_real__my_kafka_quorum_majority",
+      "sample_idx": 5,
+      "source_sha256": "18067190365e1bd20371143df3e851c30054b41700edfadcc72255943284bd97",
+      "source_bytes": 13236,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.0437951913988789,
+      "compiles": false,
+      "n_examples": 29,
+      "theorem_count": 11,
+      "proved_count": 0,
+      "declarations_ok": 0.84,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 21,
+        "denominator": 25
+      },
+      "t": {
+        "numerator": 41,
+        "denominator": 43
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 11
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 54,
+      "axioms": [],
+      "wall_seconds": 31.826
+    },
+    {
+      "task_id": "critical_infra_set_real__my_pingora_retry_slot",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "critical_infra_set_real__my_traefik_weighted_quota",
+      "sample_idx": 5,
+      "source_sha256": "5f767ba813a0d24d8f5fe8f1393ece58ff72896073d6cbaee1c1bc8dd928489e",
+      "source_bytes": 20177,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04472651980630303,
+      "compiles": false,
+      "n_examples": 48,
+      "theorem_count": 17,
+      "proved_count": 0,
+      "declarations_ok": 0.8947368421052632,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 34,
+        "denominator": 38
+      },
+      "t": {
+        "numerator": 62,
+        "denominator": 69
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 17
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 86,
+      "axioms": [],
+      "wall_seconds": 36.149
+    },
+    {
+      "task_id": "critical_infra_set_synthetic__my_circuit_breaker_rate",
+      "sample_idx": 5,
+      "source_sha256": "f50dd548f2ca916c2bf3847f44f0deac1e8a78f3c384c97ad833aaf0e1772086",
+      "source_bytes": 15563,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.044091113830836935,
+      "compiles": false,
+      "n_examples": 33,
+      "theorem_count": 10,
+      "proved_count": 0,
+      "declarations_ok": 0.8571428571428571,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 24,
+        "denominator": 28
+      },
+      "t": {
+        "numerator": 48,
+        "denominator": 51
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 10
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 61,
+      "axioms": [],
+      "wall_seconds": 30.248
+    },
+    {
+      "task_id": "critical_infra_set_synthetic__my_consensus_quorum_read",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "critical_infra_set_synthetic__my_http2_weighted_budget",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "critical_infra_set_synthetic__my_modular_round_robin_cursor",
+      "sample_idx": 5,
+      "source_sha256": "803dbe1363130f8e4b6eaf3ccafbc9aa8ab02f98b2f9e3aa127b5838b86bed7f",
+      "source_bytes": 32351,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "duplicate fully qualified declaration identity",
+      "wall_seconds": 7.908
+    },
+    {
+      "task_id": "critical_infra_set_synthetic__my_opc_ua_replay_window",
+      "sample_idx": 5,
+      "source_sha256": "8baa4ddb7433bcceead71d6fe09f991fc76986351319cc653ad6fbfd69bd4db7",
+      "source_bytes": 16417,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.20774238664123165,
+      "compiles": false,
+      "n_examples": 21,
+      "theorem_count": 13,
+      "proved_count": 0,
+      "declarations_ok": 0.896551724137931,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 26,
+        "denominator": 29
+      },
+      "t": {
+        "numerator": 37,
+        "denominator": 37
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 13
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 50,
+      "axioms": [],
+      "wall_seconds": 31.731
+    },
+    {
+      "task_id": "critical_infra_set_synthetic__my_outlier_ejection_limit",
+      "sample_idx": 5,
+      "source_sha256": "9893db6875e0c1d6ad51cc01df168c9d8b68eb0efca4101392d78da47c31224f",
+      "source_bytes": 23457,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.015
+    },
+    {
+      "task_id": "critical_infra_set_synthetic__my_scada_two_field_fresh",
+      "sample_idx": 5,
+      "source_sha256": "8897bebb99776f068f3db94e600588f99bd79fb7028f7a3da2f13f21ba0872d9",
+      "source_bytes": 21951,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.901
+    },
+    {
+      "task_id": "critical_infra_set_synthetic__my_token_bucket_decay",
+      "sample_idx": 5,
+      "source_sha256": "16861e606db41019a3c80b2cbf93ea7b1fb63c5793bc727e244d105344d328d2",
+      "source_bytes": 17231,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.608
+    },
+    {
+      "task_id": "crypto_set_real__my_base64url_padding_len",
+      "sample_idx": 5,
+      "source_sha256": "7e866189a8aab5024dd9e6ab7611194242bb7623944cf56645616ed0e1204f05",
+      "source_bytes": 18292,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.0442153148075838,
+      "compiles": false,
+      "n_examples": 35,
+      "theorem_count": 19,
+      "proved_count": 0,
+      "declarations_ok": 0.864406779661017,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 51,
+        "denominator": 59
+      },
+      "t": {
+        "numerator": 72,
+        "denominator": 75
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 19
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 94,
+      "axioms": [],
+      "wall_seconds": 37.476
+    },
+    {
+      "task_id": "crypto_set_real__my_constant_time_tag_eq4",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "crypto_set_real__my_erc20_allowance_after",
+      "sample_idx": 5,
+      "source_sha256": "76dcbd4ffafaa1cc7472c87f5d0d1a680e837d2687956f0f5a8f3188d2f5e9ae",
+      "source_bytes": 16044,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.555
+    },
+    {
+      "task_id": "crypto_set_real__my_erc20_burn_supply",
+      "sample_idx": 5,
+      "source_sha256": "600209daf54019d148c737b5986b33975cb66a29d7b90a1c297f4be2133b9d3c",
+      "source_bytes": 32385,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "duplicate fully qualified declaration identity",
+      "wall_seconds": 7.631
+    },
+    {
+      "task_id": "crypto_set_real__my_erc20_capped_mint_supply",
+      "sample_idx": 5,
+      "source_sha256": "cb85366eb9ec4a6721d9263ccad1c5637a7606f18705c828eb2656ca450849e4",
+      "source_bytes": 19736,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.847
+    },
+    {
+      "task_id": "crypto_set_real__my_erc20_infinite_allowance_after",
+      "sample_idx": 5,
+      "source_sha256": "8f38066882ff28e8dd621bd267e6bd81811341282aeef835e14748691fda0d78",
+      "source_bytes": 24343,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.0456154543642666,
+      "compiles": false,
+      "n_examples": 46,
+      "theorem_count": 23,
+      "proved_count": 0,
+      "declarations_ok": 0.9491525423728814,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 56,
+        "denominator": 59
+      },
+      "t": {
+        "numerator": 75,
+        "denominator": 82
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 23
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 105,
+      "axioms": [],
+      "wall_seconds": 39.614
+    },
+    {
+      "task_id": "crypto_set_real__my_fernet_token_header_valid",
+      "sample_idx": 5,
+      "source_sha256": "2697d3597b58613b92b541d786a7fd9b2fa93f23804c313071c7d7b6d02f4f6a",
+      "source_bytes": 16340,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.841
+    },
+    {
+      "task_id": "crypto_set_real__my_fernet_ttl_accept",
+      "sample_idx": 5,
+      "source_sha256": "53ff272cb199ee8469fa90c062e421244e524d929feacd895421d1d3dc8ce516",
+      "source_bytes": 19408,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04562902635386967,
+      "compiles": false,
+      "n_examples": 49,
+      "theorem_count": 18,
+      "proved_count": 0,
+      "declarations_ok": 0.95,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 38,
+        "denominator": 40
+      },
+      "t": {
+        "numerator": 63,
+        "denominator": 71
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 18
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 89,
+      "axioms": [],
+      "wall_seconds": 37.251
+    },
+    {
+      "task_id": "crypto_set_real__my_pkcs7_padding_bytes",
+      "sample_idx": 5,
+      "source_sha256": "81e53990aaf734077151fc5aa0e87e0901424479b45f47a7e81b65c5b8d07064",
+      "source_bytes": 21377,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.303
+    },
+    {
+      "task_id": "crypto_set_real__my_sha256_hexdigest_len",
+      "sample_idx": 5,
+      "source_sha256": "9e5db86644e46e6849e16f4d8e82803cd2952337adfb26559e9039f62b403938",
+      "source_bytes": 17651,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.741
+    },
+    {
+      "task_id": "crypto_set_synthetic__my_aes_key_length_valid",
+      "sample_idx": 5,
+      "source_sha256": "22ce7502cff5315ad1f2d5ff547793189ae8dd8f3f864492546d6c5ae3ffd13e",
+      "source_bytes": 19868,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.991
+    },
+    {
+      "task_id": "crypto_set_synthetic__my_schnorr_response_scalar",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "cs_set__bellman_ford",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "cs_set__bubble_sort",
+      "sample_idx": 5,
+      "source_sha256": "7bf445679178a74e3e1df953a287f150489d11f6a23b991254ccf11d69cd58ed",
+      "source_bytes": 21994,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.744
+    },
+    {
+      "task_id": "cs_set__dfs",
+      "sample_idx": 5,
+      "source_sha256": "d5f5336841b0a8df8426f992f90495135284c1dcc7a5a3bc8fc2a0570bbcb8fd",
+      "source_bytes": 30576,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.066
+    },
+    {
+      "task_id": "cs_set__dijkstra",
+      "sample_idx": 5,
+      "source_sha256": "73c5ebc4a6dd4d5e2137f9cdb98f24a1a3bb5480653594a8b01c23c5ab5fb5d3",
+      "source_bytes": 16810,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.95
+    },
+    {
+      "task_id": "cs_set__edit_distance",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "cs_set__heap_sort",
+      "sample_idx": 5,
+      "source_sha256": "9500d80dc944e9d5d6e68325f6797c408f36f3e3091a1455a76edce2e01fe620",
+      "source_bytes": 16643,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.934
+    },
+    {
+      "task_id": "cs_set__heapsort_algorithm",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "cs_set__heapsort_build_heap",
+      "sample_idx": 5,
+      "source_sha256": "eaf8821884cc77be5f0d2b34b86e225864b03a8ca84b2e9861ce598a67fab2ea",
+      "source_bytes": 32788,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.767
+    },
+    {
+      "task_id": "cs_set__heapsort_max_heapify",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "cs_set__heapsort_priority_queue",
+      "sample_idx": 5,
+      "source_sha256": "fb0aefbab427f97ee9f8467aba921609f340a2e9ecd72d7cd1f4dcef50266a8d",
+      "source_bytes": 35062,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.974
+    },
+    {
+      "task_id": "cs_set__heapsort_problems",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "cs_set__lcs",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "cs_set__quick_sort",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "cs_set__selection_sort",
+      "sample_idx": 5,
+      "source_sha256": "077eb0485a2ab1e7d3a33c44b6f5628b2b87114b051df1cc942bd595e2ec689c",
+      "source_bytes": 26632,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.916
+    },
+    {
+      "task_id": "cs_set__union_find",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "easy_set__10_myevensumparity",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "easy_set__13_myuppercase",
+      "sample_idx": 5,
+      "source_sha256": "dbd8fdc3131d626d753f9f0aeeabe2ae4f5fcadbf3b01c00255d029d3b6ccdd2",
+      "source_bytes": 18962,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04486752489992003,
+      "compiles": false,
+      "n_examples": 49,
+      "theorem_count": 26,
+      "proved_count": 0,
+      "declarations_ok": 0.9032258064516129,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 56,
+        "denominator": 62
+      },
+      "t": {
+        "numerator": 79,
+        "denominator": 85
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 26
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 111,
+      "axioms": [],
+      "wall_seconds": 32.126
+    },
+    {
+      "task_id": "easy_set__14_myremovespaces",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "easy_set__16_myfactorial",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "easy_set__19_mypower",
+      "sample_idx": 5,
+      "source_sha256": "bdd801c46c5031e3f01f48f8e668a3769e2af9564b13485b1cf1cbeab5796efc",
+      "source_bytes": 15470,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.8
+    },
+    {
+      "task_id": "easy_set__1_myadd",
+      "sample_idx": 5,
+      "source_sha256": "8bb039b0c21835a293b8616176733ff1763c95227c02bbe89dcddc1bf805e9a6",
+      "source_bytes": 11910,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.2154434690031884,
+      "compiles": false,
+      "n_examples": 27,
+      "theorem_count": 22,
+      "proved_count": 0,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 46,
+        "denominator": 46
+      },
+      "t": {
+        "numerator": 51,
+        "denominator": 51
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 22
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 73,
+      "axioms": [],
+      "wall_seconds": 1387.276
+    },
+    {
+      "task_id": "easy_set__20_mysumdigits",
+      "sample_idx": 5,
+      "source_sha256": "cecfa970028ff224d385d14bdf799b5ceea6204965b4b48615dcb5f82f22d635",
+      "source_bytes": 9792,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 12.314
+    },
+    {
+      "task_id": "easy_set__21_is_palindrome",
+      "sample_idx": 5,
+      "source_sha256": "7acc34391816226ce4455164a95d997ad967557ff688842cc085e35f06df46f1",
+      "source_bytes": 12943,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04425381314205911,
+      "compiles": false,
+      "n_examples": 23,
+      "theorem_count": 14,
+      "proved_count": 0,
+      "declarations_ok": 0.8666666666666667,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 26,
+        "denominator": 30
+      },
+      "t": {
+        "numerator": 34,
+        "denominator": 39
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 14
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 53,
+      "axioms": [],
+      "wall_seconds": 31.402
+    },
+    {
+      "task_id": "easy_set__23_is_prime",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "easy_set__26_longest_common_subsequence",
+      "sample_idx": 5,
+      "source_sha256": "5afe366533d1ae63d5de5a0937e90a06b037f6d0c10a232a52da54f29b1a1d1f",
+      "source_bytes": 26934,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.109
+    },
+    {
+      "task_id": "easy_set__28_length_of_longest_substring",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "easy_set__29_longest_common_prefix",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "easy_set__2_mymax",
+      "sample_idx": 5,
+      "source_sha256": "743c777913cebbfa5582bd95a39b18d293370d3c7b4e420dff45033abe5c3c39",
+      "source_bytes": 19268,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.049
+    },
+    {
+      "task_id": "easy_set__31_count_even_digits",
+      "sample_idx": 5,
+      "source_sha256": "6c80485467d7f5f3ea2610d54a40dfa8189309c490aa95a497f94a3aa716acc1",
+      "source_bytes": 17356,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04525500111862675,
+      "compiles": false,
+      "n_examples": 35,
+      "theorem_count": 18,
+      "proved_count": 0,
+      "declarations_ok": 0.926829268292683,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 38,
+        "denominator": 41
+      },
+      "t": {
+        "numerator": 54,
+        "denominator": 58
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 18
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 76,
+      "axioms": [],
+      "wall_seconds": 39.988
+    },
+    {
+      "task_id": "easy_set__32_divisible_by_seven_and_eight_count",
+      "sample_idx": 5,
+      "source_sha256": "fc16cdf57cde2c653a970d326629ef8f7b248696c074f50838e2f16d7c99efab",
+      "source_bytes": 9388,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.045049915217744256,
+      "compiles": false,
+      "n_examples": 20,
+      "theorem_count": 10,
+      "proved_count": 0,
+      "declarations_ok": 0.9142857142857143,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 32,
+        "denominator": 35
+      },
+      "t": {
+        "numerator": 40,
+        "denominator": 45
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 10
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 55,
+      "axioms": [],
+      "wall_seconds": 25.484
+    },
+    {
+      "task_id": "easy_set__33_myminimum",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "easy_set__38_reverse_words",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "easy_set__40_all_even",
+      "sample_idx": 5,
+      "source_sha256": "6158378eb2dd24dc2f95a2e6b7555f59d38601fe1a6b584376cfca82bf76f993",
+      "source_bytes": 13201,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.641
+    },
+    {
+      "task_id": "easy_set__41_duplicate_chars",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "easy_set__42_product_of_list",
+      "sample_idx": 5,
+      "source_sha256": "972b53e0fb5a65aded7d46b70bdeb06a485f21cfeaedae95ba20d26155021f90",
+      "source_bytes": 12333,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.045539906934907816,
+      "compiles": false,
+      "n_examples": 23,
+      "theorem_count": 10,
+      "proved_count": 0,
+      "declarations_ok": 0.9444444444444444,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 34,
+        "denominator": 36
+      },
+      "t": {
+        "numerator": 43,
+        "denominator": 49
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 10
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 59,
+      "axioms": [],
+      "wall_seconds": 27.173
+    },
+    {
+      "task_id": "easy_set__43_replace_spaces",
+      "sample_idx": 5,
+      "source_sha256": "383e5a6fcce0a3559293fc18730428ab0d906af13aecbfcda6f1ba9d9c2342dd",
+      "source_bytes": 13386,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.043
+    },
+    {
+      "task_id": "easy_set__6_mymaxlist",
+      "sample_idx": 5,
+      "source_sha256": "8b172cf26a5f32b6e39c70b3b7f75cc01a4e402b82cb658e62f80eb7831e292a",
+      "source_bytes": 22884,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.689
+    },
+    {
+      "task_id": "easy_set__7_myevanlist",
+      "sample_idx": 5,
+      "source_sha256": "77ee63c7c897dbb8a0e195da118f1f959fce268143f4706be59404eee442426f",
+      "source_bytes": 14548,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.331
+    },
+    {
+      "task_id": "easy_set__8_myreverse",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "easy_set__9_myoddsumparity",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "finance_set_real__my_drawdown_bps",
+      "sample_idx": 5,
+      "source_sha256": "9e8c1068a8190a08d7c6452249c6f22448dbebd3082d0b981efc260aecfca7e0",
+      "source_bytes": 8237,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.763
+    },
+    {
+      "task_id": "finance_set_real__my_high_water_mark",
+      "sample_idx": 5,
+      "source_sha256": "d71a97278a2998855c531dce53821185e0fad9f54b831a77e277cf6761d23f1e",
+      "source_bytes": 16240,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.045125884864545385,
+      "compiles": false,
+      "n_examples": 33,
+      "theorem_count": 16,
+      "proved_count": 0,
+      "declarations_ok": 0.918918918918919,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 34,
+        "denominator": 37
+      },
+      "t": {
+        "numerator": 52,
+        "denominator": 54
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 16
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 71,
+      "axioms": [],
+      "wall_seconds": 33.751
+    },
+    {
+      "task_id": "finance_set_real__my_talib_plus_dm",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "finance_set_real__my_talib_typ_price",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "finance_set_real__my_talib_weighted_close",
+      "sample_idx": 5,
+      "source_sha256": "6d757831778e962cc8e28371d6bcf6602bd3fbc1c5f3142a3605e5cb35f7d3b0",
+      "source_bytes": 29491,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.043
+    },
+    {
+      "task_id": "finance_set_synthetic__my_auction_fill_qty",
+      "sample_idx": 5,
+      "source_sha256": "df9ebaad42dc2fee3c79d12ab3cf9ee5f669708c1d4907af22aa8d96cd958964",
+      "source_bytes": 21578,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04516921683361664,
+      "compiles": false,
+      "n_examples": 38,
+      "theorem_count": 24,
+      "proved_count": 0,
+      "declarations_ok": 0.9215686274509803,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 47,
+        "denominator": 51
+      },
+      "t": {
+        "numerator": 64,
+        "denominator": 65
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 24
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 89,
+      "axioms": [],
+      "wall_seconds": 39.875
+    },
+    {
+      "task_id": "finance_set_synthetic__my_exposure_utilization_ok",
+      "sample_idx": 5,
+      "source_sha256": "50110929fe642479248fcf02f7eb6f316a28a1c5ba77e9a52eb3522117360c19",
+      "source_bytes": 19657,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.045586855325820436,
+      "compiles": false,
+      "n_examples": 39,
+      "theorem_count": 16,
+      "proved_count": 0,
+      "declarations_ok": 0.9473684210526315,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 36,
+        "denominator": 38
+      },
+      "t": {
+        "numerator": 57,
+        "denominator": 61
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 16
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 77,
+      "axioms": [],
+      "wall_seconds": 33.746
+    },
+    {
+      "task_id": "finance_set_synthetic__my_kelly_cap_bps",
+      "sample_idx": 5,
+      "source_sha256": "02ecb5a28375d45bdadcf147ec5b2c2a1e89af06ad2e3e77c56ede3789a95b06",
+      "source_bytes": 17480,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.21113343839560017,
+      "compiles": false,
+      "n_examples": 32,
+      "theorem_count": 17,
+      "proved_count": 0,
+      "declarations_ok": 0.9411764705882353,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 48,
+        "denominator": 51
+      },
+      "t": {
+        "numerator": 66,
+        "denominator": 66
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 17
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 83,
+      "axioms": [],
+      "wall_seconds": 33.342
+    },
+    {
+      "task_id": "finance_set_synthetic__my_lot_size_compliant",
+      "sample_idx": 5,
+      "source_sha256": "fce8034db2ed9d2c784aa3706ca8aead34a76996ac673ce42795ed9e56cf9be9",
+      "source_bytes": 16136,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.894
+    },
+    {
+      "task_id": "finance_set_synthetic__my_position_within_limit",
+      "sample_idx": 5,
+      "source_sha256": "a85c5563e475256daa78678496c3ea032050aca50db1e1064df229e5cb3ea13c",
+      "source_bytes": 18774,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.885
+    },
+    {
+      "task_id": "finance_set_synthetic__my_stop_loss_triggered",
+      "sample_idx": 5,
+      "source_sha256": "44bb343a532f079917e87e2c4fc3d9960f99435dcf149ec90fc9392b017057c9",
+      "source_bytes": 11689,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.043088693800637685,
+      "compiles": false,
+      "n_examples": 28,
+      "theorem_count": 11,
+      "proved_count": 0,
+      "declarations_ok": 0.8,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 20,
+        "denominator": 25
+      },
+      "t": {
+        "numerator": 40,
+        "denominator": 42
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 11
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 53,
+      "axioms": [],
+      "wall_seconds": 29.513
+    },
+    {
+      "task_id": "finance_set_synthetic__my_transfer_debit",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "gov_cert_set_real__my_sigstore_oid_extension_match",
+      "sample_idx": 5,
+      "source_sha256": "58a8bd3ccc87e42e2cabd5dd20f61f839e548448d0df235d3cfec1fc81c971f8",
+      "source_bytes": 29447,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "duplicate fully qualified declaration identity",
+      "wall_seconds": 7.869
+    },
+    {
+      "task_id": "gov_cert_set_real__my_sigstore_time_range_valid",
+      "sample_idx": 5,
+      "source_sha256": "13e880c5c9a509c1cccfb781c66a10e310ae9e6cc80956d433974bc2d1cd91b7",
+      "source_bytes": 22340,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.925
+    },
+    {
+      "task_id": "gov_cert_set_synthetic__my_abac_deny_default",
+      "sample_idx": 5,
+      "source_sha256": "33b5b8c3347d551fc8bcc16a940e01857c4e42495fa0c3addeab3a9eb2ebe245",
+      "source_bytes": 14861,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04612758345481531,
+      "compiles": false,
+      "n_examples": 34,
+      "theorem_count": 18,
+      "proved_count": 0,
+      "declarations_ok": 0.9814814814814815,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 53,
+        "denominator": 54
+      },
+      "t": {
+        "numerator": 60,
+        "denominator": 70
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 18
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 88,
+      "axioms": [],
+      "wall_seconds": 24.572
+    },
+    {
+      "task_id": "gov_cert_set_synthetic__my_audit_hash_chain_extend",
+      "sample_idx": 5,
+      "source_sha256": "aabe8df2342381ed84f615eaa18c0770c7abb59da42d8491a95f652fade1d67d",
+      "source_bytes": 15912,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.2019418690164484,
+      "compiles": false,
+      "n_examples": 36,
+      "theorem_count": 14,
+      "proved_count": 0,
+      "declarations_ok": 0.8235294117647058,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 28,
+        "denominator": 34
+      },
+      "t": {
+        "numerator": 56,
+        "denominator": 56
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 14
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 70,
+      "axioms": [],
+      "wall_seconds": 36.63
+    },
+    {
+      "task_id": "gov_cert_set_synthetic__my_audit_log_append",
+      "sample_idx": 5,
+      "source_sha256": "58c96631085b6c4dddd6a9c4dc24ff6e435b4f866a91ff935036096ea1a3456e",
+      "source_bytes": 13172,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.738
+    },
+    {
+      "task_id": "gov_cert_set_synthetic__my_coverage_mcdc_threshold",
+      "sample_idx": 5,
+      "source_sha256": "988c857d8e76a1cf1b237b9234ac21e8b3ba2673f6c398d0f2a524a4faf75748",
+      "source_bytes": 14503,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.045894317351853335,
+      "compiles": false,
+      "n_examples": 26,
+      "theorem_count": 14,
+      "proved_count": 0,
+      "declarations_ok": 0.9666666666666667,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 29,
+        "denominator": 30
+      },
+      "t": {
+        "numerator": 40,
+        "denominator": 42
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 14
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 56,
+      "axioms": [],
+      "wall_seconds": 33.873
+    },
+    {
+      "task_id": "gov_cert_set_synthetic__my_election_tally_add",
+      "sample_idx": 5,
+      "source_sha256": "150b145ecd31ed0bc7320a465d03292746acfde10c15b774565bfcc12f91df34",
+      "source_bytes": 11327,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.641
+    },
+    {
+      "task_id": "gov_cert_set_synthetic__my_gps_drift_budget",
+      "sample_idx": 5,
+      "source_sha256": "76ca50cda89dabfee9d31e4720b531cbcf4b81da3ab04ebd1d39e35e81f5ed97",
+      "source_bytes": 14817,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.0435783799695026,
+      "compiles": false,
+      "n_examples": 29,
+      "theorem_count": 13,
+      "proved_count": 0,
+      "declarations_ok": 0.8275862068965517,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 24,
+        "denominator": 29
+      },
+      "t": {
+        "numerator": 44,
+        "denominator": 45
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 13
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 58,
+      "axioms": [],
+      "wall_seconds": 32.578
+    },
+    {
+      "task_id": "gov_cert_set_synthetic__my_provenance_digest_check",
+      "sample_idx": 5,
+      "source_sha256": "f77fc23887c9e68a6a22bd24350923e485e9907bd070e1acf8cb5e7820efd315",
+      "source_bytes": 20875,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.795
+    },
+    {
+      "task_id": "gov_cert_set_synthetic__my_retention_purge_safe",
+      "sample_idx": 5,
+      "source_sha256": "675986839e23b6e6b09c223b46d474759cdbec4582e8d0a164bedb14cf10e5d4",
+      "source_bytes": 24559,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04485449337873979,
+      "compiles": false,
+      "n_examples": 32,
+      "theorem_count": 19,
+      "proved_count": 0,
+      "declarations_ok": 0.9024390243902439,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 37,
+        "denominator": 41
+      },
+      "t": {
+        "numerator": 51,
+        "denominator": 54
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 19
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 73,
+      "axioms": [],
+      "wall_seconds": 38.429
+    },
+    {
+      "task_id": "gov_cert_set_synthetic__my_rng_health_score",
+      "sample_idx": 5,
+      "source_sha256": "29bfa468ccb7225150937940ee727487c1d1631ea866065efd90cc93e12eb606",
+      "source_bytes": 18145,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.551
+    },
+    {
+      "task_id": "gov_cert_set_synthetic__my_slsa_multi_field_check",
+      "sample_idx": 5,
+      "source_sha256": "216773f90fc2a446ad95d07e9245ccc750ab9676d3a7e0fb89aa7bdac3adf3af",
+      "source_bytes": 16730,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04235823584254894,
+      "compiles": false,
+      "n_examples": 25,
+      "theorem_count": 10,
+      "proved_count": 0,
+      "declarations_ok": 0.76,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 19,
+        "denominator": 25
+      },
+      "t": {
+        "numerator": 36,
+        "denominator": 40
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 10
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 50,
+      "axioms": [],
+      "wall_seconds": 23.593
+    },
+    {
+      "task_id": "hardware_set_real__my_spike_funct3_field",
+      "sample_idx": 5,
+      "source_sha256": "e0119309e30f11f437cdc41ee3587d38583e418bebc36fbb89ba4dd80f87b3ce",
+      "source_bytes": 14339,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "duplicate fully qualified declaration identity",
+      "wall_seconds": 7.933
+    },
+    {
+      "task_id": "hardware_set_real__my_spike_opcode_field",
+      "sample_idx": 5,
+      "source_sha256": "174fe6aa6acff7e4df5fb075896688660fb6a85c7c55aed9a3339c043eb355d5",
+      "source_bytes": 11896,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04524029360991512,
+      "compiles": false,
+      "n_examples": 31,
+      "theorem_count": 12,
+      "proved_count": 0,
+      "declarations_ok": 0.9259259259259259,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 25,
+        "denominator": 27
+      },
+      "t": {
+        "numerator": 42,
+        "denominator": 46
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 12
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 58,
+      "axioms": [],
+      "wall_seconds": 25.094
+    },
+    {
+      "task_id": "hardware_set_real__my_spike_rd_field",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "hardware_set_synthetic__my_axi_valid_ready_fire",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "hardware_set_synthetic__my_branch_counter_taken",
+      "sample_idx": 5,
+      "source_sha256": "3972188e36a6d33a3b1340396a4303d28cc36f9c8d7401f1b50a10a906327cdd",
+      "source_bytes": 14240,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.817
+    },
+    {
+      "task_id": "hardware_set_synthetic__my_branch_counter_update_taken",
+      "sample_idx": 5,
+      "source_sha256": "0413b1816f8c91cb0840bccf7dc1eae4819208ee9da3866de049f26d8fc0c925",
+      "source_bytes": 13109,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04585660630993199,
+      "compiles": false,
+      "n_examples": 33,
+      "theorem_count": 11,
+      "proved_count": 0,
+      "declarations_ok": 0.9642857142857143,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 27,
+        "denominator": 28
+      },
+      "t": {
+        "numerator": 43,
+        "denominator": 50
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 11
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 61,
+      "axioms": [],
+      "wall_seconds": 30.403
+    },
+    {
+      "task_id": "hardware_set_synthetic__my_clock_enable_hold",
+      "sample_idx": 5,
+      "source_sha256": "99ce1f0ea3ebd97670c506bed872dc97808f4f9cb8028b0ddf227893a2db76fa",
+      "source_bytes": 14811,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.043679023236814954,
+      "compiles": false,
+      "n_examples": 32,
+      "theorem_count": 12,
+      "proved_count": 0,
+      "declarations_ok": 0.8333333333333334,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 25,
+        "denominator": 30
+      },
+      "t": {
+        "numerator": 45,
+        "denominator": 50
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 12
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 62,
+      "axioms": [],
+      "wall_seconds": 24.041
+    },
+    {
+      "task_id": "hardware_set_synthetic__my_fetch_aligned4",
+      "sample_idx": 5,
+      "source_sha256": "3225c078b4780e54a19a06c30e5943ac92408255405cb1bee74da085afa68835",
+      "source_bytes": 15385,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.677
+    },
+    {
+      "task_id": "hardware_set_synthetic__my_fifo_half_full",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "hardware_set_synthetic__my_fifo_push_level",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "hardware_set_synthetic__my_one_hot8",
+      "sample_idx": 5,
+      "source_sha256": "941a6df0f00c4bc92b3280523a9b8a0a4bea23c86188852119133fb2033658b6",
+      "source_bytes": 15667,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.009
+    },
+    {
+      "task_id": "hardware_set_synthetic__my_pc_select",
+      "sample_idx": 5,
+      "source_sha256": "27dbc43d01e0da71b9ea3b4a14ea48f68e2421b01144321e0070a5fa213436c3",
+      "source_bytes": 25853,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.735
+    },
+    {
+      "task_id": "hardware_set_synthetic__my_round_robin_grant2",
+      "sample_idx": 5,
+      "source_sha256": "622bb531cfff30398687c02653a70246fc20bab2a5c86613e7691b18912f8f7b",
+      "source_bytes": 19672,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04601573145556781,
+      "compiles": false,
+      "n_examples": 42,
+      "theorem_count": 16,
+      "proved_count": 0,
+      "declarations_ok": 0.9743589743589743,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 38,
+        "denominator": 39
+      },
+      "t": {
+        "numerator": 57,
+        "denominator": 65
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 16
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 81,
+      "axioms": [],
+      "wall_seconds": 39.463
+    },
+    {
+      "task_id": "humaneval_set__humaneval_0_hascloseelements",
+      "sample_idx": 5,
+      "source_sha256": "82483e5bb0a4e159cdc1f03815e2f92d7103f83107c0dccd23a7f7e1a6d0ec12",
+      "source_bytes": 30204,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.754
+    },
+    {
+      "task_id": "humaneval_set__humaneval_13__gcd",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "humaneval_set__humaneval_15_string_sequence",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "humaneval_set__humaneval_16_count_distinct_characters",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "humaneval_set__humaneval_17_parse_music",
+      "sample_idx": 5,
+      "source_sha256": "a201423be558c1384dcae5afd38764df788f892e1805516a9ee6dc29624de33f",
+      "source_bytes": 19717,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.742
+    },
+    {
+      "task_id": "humaneval_set__humaneval_18_how_many_times",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "humaneval_set__humaneval_19_sort_numbers",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "humaneval_set__humaneval_1_separate_paren_groups",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "humaneval_set__humaneval_20_find_closest_elements",
+      "sample_idx": 5,
+      "source_sha256": "6486592e96bb84db2886038345061ed3a4eb28a830ccabcc26003cc1d18c3aad",
+      "source_bytes": 25480,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.754
+    },
+    {
+      "task_id": "humaneval_set__humaneval_22_filter_integers",
+      "sample_idx": 5,
+      "source_sha256": "4e56992b9ddaa2c541a042ce64e17ece90272d2a74fba0b6a9c3c83213cb137f",
+      "source_bytes": 16596,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.352
+    },
+    {
+      "task_id": "humaneval_set__humaneval_24_largest_divisor",
+      "sample_idx": 5,
+      "source_sha256": "47985e0179a7fda2984659b55edc9114b1eab732dc413fb01dcc17e84531d0ed",
+      "source_bytes": 11422,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04545858549949204,
+      "compiles": false,
+      "n_examples": 28,
+      "theorem_count": 11,
+      "proved_count": 0,
+      "declarations_ok": 0.9393939393939394,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 31,
+        "denominator": 33
+      },
+      "t": {
+        "numerator": 38,
+        "denominator": 50
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 11
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 61,
+      "axioms": [],
+      "wall_seconds": 30.81
+    },
+    {
+      "task_id": "humaneval_set__humaneval_25_factorize",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "humaneval_set__humaneval_26_remove_duplicates",
+      "sample_idx": 5,
+      "source_sha256": "5535a273a1f2a8fa35413482ed3d86c531b14788a637f18a9db7b1104aab7a5f",
+      "source_bytes": 14184,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04570168416186976,
+      "compiles": false,
+      "n_examples": 25,
+      "theorem_count": 13,
+      "proved_count": 0,
+      "declarations_ok": 0.9545454545454546,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 42,
+        "denominator": 44
+      },
+      "t": {
+        "numerator": 50,
+        "denominator": 56
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 13
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 69,
+      "axioms": [],
+      "wall_seconds": 24.577
+    },
+    {
+      "task_id": "humaneval_set__humaneval_27_flip_case",
+      "sample_idx": 5,
+      "source_sha256": "d7797fc9fa2edaa9ab864e8eec9da1933033b5084cc10ff0a2b0fa5ea385bbc8",
+      "source_bytes": 11681,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04493665832959751,
+      "compiles": false,
+      "n_examples": 25,
+      "theorem_count": 12,
+      "proved_count": 0,
+      "declarations_ok": 0.9074074074074074,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 49,
+        "denominator": 54
+      },
+      "t": {
+        "numerator": 63,
+        "denominator": 67
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 12
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 79,
+      "axioms": [],
+      "wall_seconds": 25.219
+    },
+    {
+      "task_id": "humaneval_set__humaneval_29_filter_by_prefix",
+      "sample_idx": 5,
+      "source_sha256": "d39ed51469326311800cffcadf8160fd5c3b1efbab42c53aa7e33c76b5fe5924",
+      "source_bytes": 40270,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.498
+    },
+    {
+      "task_id": "humaneval_set__humaneval_2_truncate_number",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "humaneval_set__humaneval_31_is_prime",
+      "sample_idx": 5,
+      "source_sha256": "fc976b201b09468d2d7a7ae56c8b713e332fb3a6ef1a26d349cb32a8003fd419",
+      "source_bytes": 12912,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04481404746557165,
+      "compiles": false,
+      "n_examples": 42,
+      "theorem_count": 6,
+      "proved_count": 0,
+      "declarations_ok": 0.9,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 18,
+        "denominator": 20
+      },
+      "t": {
+        "numerator": 47,
+        "denominator": 56
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 6
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 62,
+      "axioms": [],
+      "wall_seconds": 26.342
+    },
+    {
+      "task_id": "humaneval_set__humaneval_32_findzero",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "humaneval_set__humaneval_33_sort_third",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "humaneval_set__humaneval_34_unique",
+      "sample_idx": 5,
+      "source_sha256": "99db616714ccfa048d3fb3296c331dca96fac044a45db5a085a38f7b63b028ea",
+      "source_bytes": 8278,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04489294559935288,
+      "compiles": false,
+      "n_examples": 18,
+      "theorem_count": 8,
+      "proved_count": 0,
+      "declarations_ok": 0.9047619047619048,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 19,
+        "denominator": 21
+      },
+      "t": {
+        "numerator": 22,
+        "denominator": 31
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 8
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 39,
+      "axioms": [],
+      "wall_seconds": 24.398
+    },
+    {
+      "task_id": "humaneval_set__humaneval_35_max_element",
+      "sample_idx": 5,
+      "source_sha256": "e4409ac309e07be64bc89e19fd8372606b90aea5583eb5bb8c775cbe01630786",
+      "source_bytes": 15428,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.852
+    },
+    {
+      "task_id": "humaneval_set__humaneval_36_fizz_buzz",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "humaneval_set__humaneval_37_sort_even",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "humaneval_set__humaneval_3_below_zero",
+      "sample_idx": 5,
+      "source_sha256": "2b66d6d88f9854b5c2f1fb561a4abaa127c7b237da03db83d6044d347be4b483",
+      "source_bytes": 8558,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.591
+    },
+    {
+      "task_id": "humaneval_set__humaneval_43_pairs_sum_to_zero",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "humaneval_set__humaneval_46_fib4",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "humaneval_set__humaneval_4_mean_absolute_deviation",
+      "sample_idx": 5,
+      "source_sha256": "1cfb7e8781853edca4bc95a83a5f3572a2a93bd6297fc72632d1cd96b11ad8bb",
+      "source_bytes": 18338,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04583562890247137,
+      "compiles": false,
+      "n_examples": 21,
+      "theorem_count": 18,
+      "proved_count": 0,
+      "declarations_ok": 0.9629629629629629,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 52,
+        "denominator": 54
+      },
+      "t": {
+        "numerator": 53,
+        "denominator": 57
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 18
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 75,
+      "axioms": [],
+      "wall_seconds": 30.641
+    },
+    {
+      "task_id": "humaneval_set__humaneval_51_remove_vowels",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "humaneval_set__humaneval_5_intersperse",
+      "sample_idx": 5,
+      "source_sha256": "c7d78d57e3cf7621e04f5c6bfbb46ea3c3cbd3d0049a1d8b53a717d3c9b81475",
+      "source_bytes": 13987,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.044091113830836935,
+      "compiles": false,
+      "n_examples": 20,
+      "theorem_count": 12,
+      "proved_count": 0,
+      "declarations_ok": 0.8571428571428571,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 24,
+        "denominator": 28
+      },
+      "t": {
+        "numerator": 30,
+        "denominator": 36
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 12
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 48,
+      "axioms": [],
+      "wall_seconds": 32.148
+    },
+    {
+      "task_id": "humaneval_set__humaneval_6_parse_nested_parens",
+      "sample_idx": 5,
+      "source_sha256": "a05d54175b41ecfca8e611b9da8f8c3a9a3eb857b35654325f64eac8afbba913",
+      "source_bytes": 13176,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.19
+    },
+    {
+      "task_id": "humaneval_set__humaneval_82_prime_length",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "humaneval_set__humaneval_8_sum_product",
+      "sample_idx": 5,
+      "source_sha256": "e3f309b03983495d21308fca5e261fea8c4e2149d7d1867c165708e51c75e42d",
+      "source_bytes": 12190,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "duplicate fully qualified declaration identity",
+      "wall_seconds": 7.725
+    },
+    {
+      "task_id": "humaneval_set__humaneval_9_rolling_max",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "humaneval_set__humanevalxl_9__isprime",
+      "sample_idx": 5,
+      "source_sha256": "36f95cf7b76ac60645c392658db0bb2fc5737406d10ff38a8cb761134ee2847b",
+      "source_bytes": 18123,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.823
+    },
+    {
+      "task_id": "hypervisor_set_real__my_seccomp_compare_real",
+      "sample_idx": 5,
+      "source_sha256": "60a1b4182c654ffb61e7c2c3c52662cf4a6e1226f188225b11ad4bbf98940f30",
+      "source_bytes": 25276,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.795
+    },
+    {
+      "task_id": "hypervisor_set_real__my_virtio_vsock_tx_validate_real",
+      "sample_idx": 5,
+      "source_sha256": "58a316d9dedb391b109c5163531339363dce00cb4e324a92e9c34d61f102ed12",
+      "source_bytes": 19974,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.045956294898257366,
+      "compiles": false,
+      "n_examples": 30,
+      "theorem_count": 11,
+      "proved_count": 0,
+      "declarations_ok": 0.9705882352941176,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 33,
+        "denominator": 34
+      },
+      "t": {
+        "numerator": 47,
+        "denominator": 53
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 11
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 64,
+      "axioms": [],
+      "wall_seconds": 32.552
+    },
+    {
+      "task_id": "hypervisor_set_real__my_vm_memory_permission_allow_real",
+      "sample_idx": 5,
+      "source_sha256": "753803a13836ba56017107773a376949a1e0f091ae18c0fb2641b9a9a5978f84",
+      "source_bytes": 15203,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.777
+    },
+    {
+      "task_id": "hypervisor_set_synthetic__my_cap_badge_intersect",
+      "sample_idx": 5,
+      "source_sha256": "4126dc7724d43d1a57b95cf925a45785b33e9434cb08ee47c85f8febfc85be40",
+      "source_bytes": 9272,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04573320257473052,
+      "compiles": false,
+      "n_examples": 32,
+      "theorem_count": 8,
+      "proved_count": 0,
+      "declarations_ok": 0.9565217391304348,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 22,
+        "denominator": 23
+      },
+      "t": {
+        "numerator": 38,
+        "denominator": 47
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 8
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 55,
+      "axioms": [],
+      "wall_seconds": 22.963
+    },
+    {
+      "task_id": "hypervisor_set_synthetic__my_cap_depth_limit",
+      "sample_idx": 5,
+      "source_sha256": "c898e3ca1f99bc3f95660945b47c47e4a3c0ea1ce1c04d04586faa5513e6dbcd",
+      "source_bytes": 10258,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.646
+    },
+    {
+      "task_id": "hypervisor_set_synthetic__my_enclave_seal_check",
+      "sample_idx": 5,
+      "source_sha256": "6346037acdca2eb5e328fec019770f1ec270fb85e08dd25d19359ba6517d6059",
+      "source_bytes": 14324,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.20465282161876266,
+      "compiles": false,
+      "n_examples": 35,
+      "theorem_count": 12,
+      "proved_count": 0,
+      "declarations_ok": 0.8571428571428571,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 24,
+        "denominator": 28
+      },
+      "t": {
+        "numerator": 51,
+        "denominator": 51
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 12
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 63,
+      "axioms": [],
+      "wall_seconds": 30.238
+    },
+    {
+      "task_id": "hypervisor_set_synthetic__my_hypercall_validate",
+      "sample_idx": 5,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "hypervisor_set_synthetic__my_interrupt_route",
+      "sample_idx": 5,
+      "source_sha256": "c2439799cbbbf98d330e3d0d69cb85c2c0a56a0a930c4d7b3fdf5a64229412eb",
+      "source_bytes": 14743,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04345386963386697,
+      "compiles": false,
+      "n_examples": 36,
+      "theorem_count": 11,
+      "proved_count": 0,
+      "declarations_ok": 0.8205128205128205,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 32,
+        "denominator": 39
+      },
+      "t": {
+        "numerator": 61,
+        "denominator": 64
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 11
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 75,
+      "axioms": [],
+      "wall_seconds": 24.284
+    }
+  ]
+}
