@@ -2,7 +2,7 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/CKPT_v4_implementation.md>
 **Companion:** <https://docs.google.com/document/d/1KqUi39sz532dIGg8EYCy6w62Q0KzO2XWhpM2MMSWvHE/edit>
-**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 17:19 PDT.
+**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 17:21 PDT.
 
 **TLDR:** Dispatch 7 counts unrelated incomplete process reads without blocking readiness and keeps all positive boundary checks. The 31 A_1302 read-only probes returned 30 READY and one correct WAIT_STAGE_RUNNING over 616.61 seconds; all 30 calls with two waiting observations reached READY; 382 v4 / 16 watchdog / 1,405 root tests pass, the owned dummy test passes, and the new admission passes launch-check. No real pause or GPU use occurred.
 
@@ -15,8 +15,8 @@
 - Live result: {'READY': 30, 'WAIT_STAGE_RUNNING': 1}; 30/30 waiting calls READY, 62 observations, zero relevant errors; ignored_vanished 5–27 per observation, sum 613 (not unique processes).
 - Admission: phase2/admission_dispatch7.json; SHA-256 4d4b9918e97194bcb6616de4af62a40e894a63976d72743982524f25ae9b81fb; 75 local / 345 runtime bindings; launch-check PASS.
 - Wrapper: only V4_ADMISSION changed from admission_dispatch6.json to admission_dispatch7.json; bash -n PASS, not executed. Prepared/deployed plans agree.
-- Stuck / blocked: nothing; rebase and publication pending.
-- Next steps: [p 9/10, owned] inspect exact staged diff, rebase, push main, recheck admission; [p 8/10, master-owned] real pause/gate start remains outside this dispatch.
+- Stuck / blocked: nothing; Dispatch 7 complete, implementation published at 2946eaea2c75bd7dae5dd3aeb7b1be4460dd68f2.
+- Next steps: [p 8/10, master-owned] use the updated existing wrapper for the real pause/gate start under its live conditions; no worker execution is authorized by this handoff.
 - Brando to-do: none.
 - Limits: no v3 signals, real pause-list writes, cron install, GPU use, shared-venv edits or frozen protocol/amendment/operational-record edits; $0.
 - Helper: dummy_tmux, inherited gpt-6-astra / ultra; full access / never and useful action verified; completed and cleaned up.
@@ -49,6 +49,8 @@ export CUDA_VISIBLE_DEVICES='' HF_HUB_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1 PYTHON
 ```
 
 The master's existing wrapper is `/lfs/skampere1/0/brando9/rl4cv_e13v4/a1302_pause_then_gates.sh`. It was edited and syntax-checked only. Its real pause/watchdog/gate actions remain master-owned. This existing checkout stays in place because the admitted wrapper and plans depend on its absolute paths.
+
+Publication: implementation **[2946eaea](https://github.com/brando90/rl-4-code-verification/commit/2946eaea2c75bd7dae5dd3aeb7b1be4460dd68f2)** is on `main`; remote hash readback matched. Rebase onto `origin/main` was current, range-diff was identical, all 14 owned file hashes were unchanged, and post-rebase `launch-check` passed with admission `4d4b9918e97194bcb6616de4af62a40e894a63976d72743982524f25ae9b81fb`. The five Google companion paragraphs were read back exactly. All owned dummy resources are gone; no temporary checkout was created. This publication receipt changes only the unbound checkpoint.
 
 ## Historical Dispatch 6 evidence and exact master commands (superseded)
 
@@ -419,3 +421,5 @@ I have the experiment 13 v4 CPU implementation passing 89 tests, with the histor
 10-21-2026 17:18 PDT — Dispatch 7 full verification complete: 382 v4 / 16 watchdog / 1,405 root pass; 30 READY / 1 correct WAIT_STAGE_RUNNING in 31 ten-minute read-only probes, final admission 4d4b9918e97194bcb6616de4af62a40e894a63976d72743982524f25ae9b81fb passes launch-check, wrapper admission-line diff recorded; rebase/publication pending.
 
 10-21-2026 17:19 PDT — Final CLI launch-check PASS with 4d4b9918e97194bcb6616de4af62a40e894a63976d72743982524f25ae9b81fb; five Google companion paragraphs synchronized and verified by readback.
+
+10-21-2026 17:21 PDT — Dispatch 7 LANDED 2946eaea on main; remote SHA matched, all owned hashes and post-rebase admission verified, companion readback complete, dummy resources removed; real pause remains master-owned.
