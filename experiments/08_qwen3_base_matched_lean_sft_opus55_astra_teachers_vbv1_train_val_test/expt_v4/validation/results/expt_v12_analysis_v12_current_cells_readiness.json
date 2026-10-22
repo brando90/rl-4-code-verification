@@ -1,0 +1,44 @@
+{
+  "status": "COMPLETE",
+  "known_cells": 1080,
+  "declared_cells": 1080,
+  "missing_cells": [],
+  "test_split_opened": false,
+  "readiness": "FAIL",
+  "gates": {
+    "extraction": false,
+    "truncation": false,
+    "mixed": true
+  },
+  "extracted": 971,
+  "capped": 110,
+  "mixed_tasks": 24,
+  "tasks": 135,
+  "mixed_share": 0.17777777777777778,
+  "mixed_share_wilson95": [
+    0.1224763078617024,
+    0.2509097056607026
+  ],
+  "success_count": 120,
+  "success_rate": 0.1111111111111111,
+  "success_count_histogram": {
+    "0": 107,
+    "1": 6,
+    "2": 2,
+    "3": 5,
+    "4": 0,
+    "5": 5,
+    "6": 4,
+    "7": 2,
+    "8": 4
+  },
+  "pass_at_8_tasks": 28,
+  "all_pass_tasks": 4,
+  "target_band_tasks_2_to_6": 16,
+  "binary_accuracy_25_percent_reached": false,
+  "meeting_criteria_source": "D-017: 2..6 successes per8attempts; binary accuracy milestone is distinct from unmeasured SCSC",
+  "threshold_source": "Experiment 08 PROTOCOL.md section 9: >=972 extracted, <=108 capped, >=7 mixed tasks; all1080 known",
+  "p_value": null,
+  "uncertainty": "Wilson95 over135 validation tasks; two training seeds are reported separately",
+  "limitation": "Readiness proxy, not evidence that an RL training run improves performance; not a cross-size selection"
+}
