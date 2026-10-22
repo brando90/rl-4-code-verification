@@ -1,1 +1,51 @@
-{"status":"PASS","document_id":"1KKKabJJArClVmXcaxfTF5jxk8nF1oHmCH08d44jbqUg","url":"https://docs.google.com/document/d/1KKKabJJArClVmXcaxfTF5jxk8nF1oHmCH08d44jbqUg","tab_id":"t.0","old_revision_id":"AHj4eMQHgLCnWXJZVYM55n5BsZgJFYr44cusBTF6W34vEzyt-SdquX4MlLgwOtcpOCVcJRkjRALXK78rNaaysYZlDAsal7UOJfOFZd7oCAA","new_revision_id":"AHj4eMRQs8Ho-vHsZ2UKyOZaSbH18se39iSeZlGnh9yz5stuZzbmE5r2ap6egxACiN_NV61mEHPWnnMSBOIi8qDS0Eb5khm7qb9MEFLeFr4","paragraph_range":{"start_index":60268,"end_index":62418},"readback_exact":true,"final":{"analysis":"PASS","trainer":"FAILED unchanged","g0_auc":0.93126998,"g0_auc_ci":[0.90926562,0.95193359],"bootstrap":{"draws":10000,"groups":400,"tasks":539,"conditional_on":"fitted saved predictions"},"strict_cells":4312,"smooth_known":4202,"smooth_missing":110,"freeze":{"items":539,"sha256":"68afacd818b98c48de31ef67d541a7d2bcea840d669e1b7abf27415e8ec04e42"},"cpu_sherlock_allocated_hours":198.2291667,"cpu_local_actual_hours":2.2394472,"gpu_historical_hours":7.825833,"api_dollars":0},"recovery_receipt":"expt_v1/results/phase0b/phase0b_completion_recovery_receipt.json"}
+{
+  "document_id": "1KKKabJJArClVmXcaxfTF5jxk8nF1oHmCH08d44jbqUg",
+  "final": {
+    "analysis": "PASS",
+    "api_dollars": 0,
+    "bootstrap": {
+      "conditional_on": "fitted saved predictions",
+      "draws": 10000,
+      "groups": 400,
+      "tasks": 539
+    },
+    "cpu_local_actual_hours": 2.2394472,
+    "cpu_sherlock_allocated_hours": 198.2291667,
+    "freeze": {
+      "items": 539,
+      "sha256": "68afacd818b98c48de31ef67d541a7d2bcea840d669e1b7abf27415e8ec04e42"
+    },
+    "g0_auc": 0.93126998,
+    "g0_auc_ci": [
+      0.90926562,
+      0.95193359
+    ],
+    "gpu_historical_hours": 7.825833,
+    "smooth_known": 4202,
+    "smooth_missing": 110,
+    "strict_cells": 4312,
+    "trainer": "FAILED unchanged"
+  },
+  "new_revision_id": "AHj4eMRQs8Ho-vHsZ2UKyOZaSbH18se39iSeZlGnh9yz5stuZzbmE5r2ap6egxACiN_NV61mEHPWnnMSBOIi8qDS0Eb5khm7qb9MEFLeFr4",
+  "observed_readback_at_local": "10-21-2026 20:38:35 PDT",
+  "old_revision_id": "AHj4eMQHgLCnWXJZVYM55n5BsZgJFYr44cusBTF6W34vEzyt-SdquX4MlLgwOtcpOCVcJRkjRALXK78rNaaysYZlDAsal7UOJfOFZd7oCAA",
+  "paragraph_range": {
+    "end_index": 62418,
+    "start_index": 60268
+  },
+  "readback_exact": true,
+  "readback_text_exact": "10-21-2026 · E20: IRT ability-matched prompt selection for GRPO, strict vs smooth reward (Qwen3-1.7B SFT) · Paper: rl4cv — FAILED (trainer gate; IRT causal benefit unmeasured). Folder: experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/. Final CPU Phase 0b analysis/validation PASS; metadata-only recovery retained the original terminal TypeError receipt without changing numerical outputs, sources, pins, or freeze. Primary G0 PASS (explanatory 2PL): AUC 0.93126998 [0.90926562, 0.95193359], p=0.0001 versus 0.70, from 10,000 paired task-group bootstrap draws over 400 groups/539 tasks conditional on fitted saved predictions; active log loss 0.30443146 versus 0.48118507 baseline, ECE 0.11215652, predicted active 0.24849181 versus 74/539 = 0.13729128. Features-only/panel-rate AUC: 0.92425167/0.86319384. Strict 4,312; smooth known 4,202, missing 110. Graded/dimensionality available; native freeze verified for 539 items, SHA-256 68afacd8…. Trainer remains FAILED; T1 analogue FAIL; no pilot/main/evaluation or causal claim. Costs: Sherlock CPU 198.2291667 allocated CPU-h plus 2.2394472 local actual CPU-h separately; historical GPU 7.825833 h; API $0. Results: https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/results.md ; calibration: https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/RESULTS_phase0_calibration.md ; T1: https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/RESULTS_saved_smoke_t1.md ; checkpoint: https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/CKPT_codex-rl4cv-e20-irt-prompt-selection.md ; PR #20: https://github.com/brando90/rl-4-code-verification/pull/20",
+  "recovery_receipt": "expt_v1/results/phase0b/phase0b_completion_recovery_receipt.json",
+  "revision_proof": {
+    "document_id": "1KKKabJJArClVmXcaxfTF5jxk8nF1oHmCH08d44jbqUg",
+    "is_list_item": true,
+    "paragraph_end_index": 62418,
+    "paragraph_start_index": 60268,
+    "readback_revision_id": "AHj4eMRQs8Ho-vHsZ2UKyOZaSbH18se39iSeZlGnh9yz5stuZzbmE5r2ap6egxACiN_NV61mEHPWnnMSBOIi8qDS0Eb5khm7qb9MEFLeFr4",
+    "tab_id": "t.0"
+  },
+  "status": "PASS",
+  "tab_id": "t.0",
+  "url": "https://docs.google.com/document/d/1KKKabJJArClVmXcaxfTF5jxk8nF1oHmCH08d44jbqUg",
+  "written_text_exact": "10-21-2026 · E20: IRT ability-matched prompt selection for GRPO, strict vs smooth reward (Qwen3-1.7B SFT) · Paper: rl4cv — FAILED (trainer gate; IRT causal benefit unmeasured). Folder: experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/. Final CPU Phase 0b analysis/validation PASS; metadata-only recovery retained the original terminal TypeError receipt without changing numerical outputs, sources, pins, or freeze. Primary G0 PASS (explanatory 2PL): AUC 0.93126998 [0.90926562, 0.95193359], p=0.0001 versus 0.70, from 10,000 paired task-group bootstrap draws over 400 groups/539 tasks conditional on fitted saved predictions; active log loss 0.30443146 versus 0.48118507 baseline, ECE 0.11215652, predicted active 0.24849181 versus 74/539 = 0.13729128. Features-only/panel-rate AUC: 0.92425167/0.86319384. Strict 4,312; smooth known 4,202, missing 110. Graded/dimensionality available; native freeze verified for 539 items, SHA-256 68afacd8…. Trainer remains FAILED; T1 analogue FAIL; no pilot/main/evaluation or causal claim. Costs: Sherlock CPU 198.2291667 allocated CPU-h plus 2.2394472 local actual CPU-h separately; historical GPU 7.825833 h; API $0. Results: https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/results.md ; calibration: https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/RESULTS_phase0_calibration.md ; T1: https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/RESULTS_saved_smoke_t1.md ; checkpoint: https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/CKPT_codex-rl4cv-e20-irt-prompt-selection.md ; PR #20: https://github.com/brando90/rl-4-code-verification/pull/20"
+}

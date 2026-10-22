@@ -5,7 +5,7 @@
 **TLDR:** Single-writer continuation of `20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013` under the unchanged runbook. Deployment `deploy_50715cf54e614ecf914f0f7da4aae03c`, Codex gpt-6-astra ultra, personal ~/.codex, skampere1.
 
 Created: 10-21-2026 13:44 PDT
-Last updated: 10-21-2026 20:37:45 PDT
+Last updated: 10-21-2026 20:39:06 PDT
 
 ## Goal
 - COMPLETE: post-stop pre-registered CPU Phase 0 for item response theory (IRT) prompt selection; trainer remains FAILED.
@@ -21,7 +21,7 @@ Last updated: 10-21-2026 20:37:45 PDT
 - No CPU blocker. Original run exit 1 occurred only in terminal progress logging after all outputs/freeze; separate metadata recovery complete, original receipt/source/outputs unchanged.
 - No new GPU jobs, pilot, trainer/gate changes or model calls. Test split closed. Resources: Sherlock 198.2292 allocated CPU-h; local 2.2394 actual CPU-h; historical 7.8258 GPU-h; API $0.
 ## Next steps
-- [p 10/10] Publish final results, Google log and PR20; write G0_FINISHED with immutable results commit; send matching CPU DONE once, then push receipts.
+- [p 10/10] Results pushed 7c326fb7ea5ef3ea45eeb0596e1bd52fbb9e4d77; Google final log and PR20 readback verified. Publish G0_FINISHED, then send matching CPU DONE once and push notification receipts.
 - Do not rerun fits. Recovery evidence: expt_v1/results/phase0b/phase0b_completion_recovery_receipt.json. All jobs terminal; owned temporary test checkout removed safely.
 ## Brando to-do
 - none required to finish CPU scope; future trainer work needs a separate instruction.
@@ -208,3 +208,5 @@ Last updated: 10-21-2026 20:37:45 PDT
 - 10-21-2026 20:30:48 PDT -- All571fits complete andconverged; dimensionality10/10foldfits,4202pairedcells,tiedLL-5760.845167 vsuntied-5762.570966 (delta-1.725799). Nativefreeze20:27:21PDT canonicalhash68afacd818b98c48de31ef67d541a7d2bcea840d669e1b7abf27415e8ec04e42,539items. Driverthenexit1: duplicate trainer_status keyword in final stamp, after analysis_e20.json saved. Originalsource/pins/failedreceipt preserved; metadata-only recovery helper beingprepared. Finalindependentartifactvalidator PASS zero failures; rendererreportszero missing/invalidfiles. Localwall2873.979s, user7888.42+system173.59CPU-s.
 
 - 10-21-2026 20:37:45 PDT -- Metadata-only terminal recovery completed and verified idempotent; exact original failure archived, failed native run receipt and all scientific hashes unchanged. Final artifact validator PASS; all 571 fits and 539 native-frozen items available. Final ledger/README/index written. Owned verification checkout removed without force after 21 source/symlink preservation checks; 82 generated cache files removed. Publishing final CPU results, then marker/Google/PR/email receipts.
+
+- 10-21-2026 20:39:06 PDT -- Final numerical results/report/freeze/recovery published 7c326fb7ea5ef3ea45eeb0596e1bd52fbb9e4d77, remote hash verified. Exact staged diff SHA 0f2a08a8137eef6cedca031a35eb60aca5be03c62fc50eb826c13ab783ea226c; 33 files, zero secret hits/diff errors. PR20 final title/body read back, OPEN/unmerged. Google final bullet exact readback verified. G0_FINISHED written as one line PASS, full AUC interval and immutable results hash; publishing marker before DONE notification.
