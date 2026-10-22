@@ -5,7 +5,7 @@
 **TLDR:** Single-writer continuation of `20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013` under the unchanged runbook. Deployment `deploy_50715cf54e614ecf914f0f7da4aae03c`, Codex gpt-6-astra ultra, personal ~/.codex, skampere1.
 
 Created: 10-21-2026 13:44 PDT
-Last updated: 10-21-2026 19:49:27 PDT
+Last updated: 10-21-2026 19:56:48 PDT
 
 ## Goal
 - Complete post-stop pre-registered Phase 0 CPU scoring and item response theory (IRT) gate G0; trainer stays FAILED.
@@ -16,11 +16,11 @@ Last updated: 10-21-2026 19:49:27 PDT
 - Scoring complete and audited: 4312/4312 strict, 191 successes, 74/539 active tasks. Smooth4202/4312 known;110duplicate-identity cells missing. D-10911859calls/64receipts/zeroauditerrors. Saved-smokeT1FAIL; trainerFAILED (2.61982% >1%).
 - Existing allocation 7.8258/200 GPU-h; no new GPU jobs, pilot, trainer or gate changes authorized. API $0; test split closed.
 ## Stuck / blocked
-- Trainer admission remains FAILED. CPU scoring and collection complete; Phase0b fits running since19:39:27PDT. Strict G0 uses all4312strict outcomes independently of110missing smooth cells.
+- Trainer admission remains FAILED. CPU scoring complete; primaryG0 PASS, remainingPhase0b running since19:39:27PDT. Strict G0 uses all4312strict outcomes independently of110missing smooth cells.
 ## Next steps
 - [p 10/10] Adopt running Phase0b session76019, wrapper3572093, child3573131. Receipt results/receipts/phase0b_run_receipt.json; progress results/phase0b/progress.json. Do not duplicate the fit process.
 - [p 10/10] Monitor results/phase0b/progress.json and receipt; finish reports, freeze verification, final CPU accounting, PR20 and G0_FINISHED with AUCinterval/results hash.
-- AllSlurmjobs terminal; monitor session70252 exited. Last pushedd4614fd7e49414c83b739f0b46eb23a9c7eb6f66. Fullmake1415PASS/17skip/6subtests;46sourcehashes unchanged. Preserve E20_FINISHED history.
+- AllSlurmjobs terminal; monitor session70252 exited. Last pushed12c2cc010d62e627b48abb4f351addb9a1387b26. Fullmake1415PASS/17skip/6subtests;46sourcehashes unchanged. Preserve E20_FINISHED history.
 ## Brando to-do
 - none; 32G question withdrawn after frozen-scorer audit. Preserve16G and native completed failure scores; incomplete evidence remains unresolved.
 
@@ -192,3 +192,5 @@ Last updated: 10-21-2026 19:49:27 PDT
 - 10-21-2026 19:44:55 PDT -- Descriptive summary independently reconciled and copied: strict191/4312=.044295 CI[.033537,.055478]; smooth4202/4312 observedmean.079069 CI[.066681,.091684],110missing fullmanifestbounds[.077052,.102562]. 10kbootstrap/400groups, p=n/a;445fullyobservedsmoothtasks,94bounded. SummarySHAf8b688a2d9e3080dea524324f41f996b7b43e98b03f8f043f3bb957c4fef9625. Canonical expt_v1/input_pins_e20.json copiedbyte-identically SHA777d9096. Hourly configrefresh19:40:31 unchanged217b6ee6. RealprimaryCV running; no G0yet.
 
 - 10-21-2026 19:49:27 PDT -- Google single-bullet update verified against fresh revision: committed scores/audit,198.2291667CPU-h and runningCPUfits; G0/freeze explicitlypending. Readbackreceipt google_cpu_progress5_receipt.json. OwnedSlurmmonitor session70252 completedexit0 andPID2437333 gone; no furtherSlurmpolls needed. Primaryprior search200/250 observed19:47; deterministicfinalvalidator /tmp/e20_verify_final_phase0.py prepared butnotrun onincompleteoutputs.
+
+- 10-21-2026 19:56:48 PDT -- Primary G0 evaluated PASS: explanatory2PL AUC0.93126998 CI[0.90926562,0.95193359], p=0.0001 vs0.70; logloss0.30443146 vsBeta baseline0.48118507. ECE0.11215652; predictedactive0.24849181 vsobserved74/539=0.13729128. Primary25/25G0fits converged. E05sensitivity running; smooth/dimensionality/freeze and finalverification stillpending. TrainerFAILED unchanged.
