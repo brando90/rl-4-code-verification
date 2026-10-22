@@ -2,26 +2,55 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/CKPT_v4_implementation.md>
 **Companion:** <https://docs.google.com/document/d/1KqUi39sz532dIGg8EYCy6w62Q0KzO2XWhpM2MMSWvHE/edit>
-**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 15:54 PDT.
+**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 17:19 PDT.
 
-**TLDR:** Dispatch 6 fixes tmux auto-continue by freezing only the Python runner, returns WAIT for disappearing processes and resumes the runner on every tested exception path. All CPU suites pass, the dummy-pane stop check passes and the new admission passes launch-check; the A_1302 read-only probe safely waits on census churn. Real pause/gate execution remains master-owned.
+**TLDR:** Dispatch 7 counts unrelated incomplete process reads without blocking readiness and keeps all positive boundary checks. The 31 A_1302 read-only probes returned 30 READY and one correct WAIT_STAGE_RUNNING over 616.61 seconds; all 30 calls with two waiting observations reached READY; 382 v4 / 16 watchdog / 1,405 root tests pass, the owned dummy test passes, and the new admission passes launch-check. No real pause or GPU use occurred.
 
 ## State
 
-- Goal: runner-only freeze and re-admission for experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4; CPU only, $0.
-- Owner: Codex gpt-6-astra / ultra, skampere1, full access / approval never; existing dispatch checkout.
-- What ran: runner-only stop/race fix, 79 new regression cases, full suites, owned dummy tmux stop control, read-only A_1302 probe, final admission and launch-check.
-- Results: v4 312/312; watchdog 16/16; root 1,405 passed / 15 skipped / 6 warnings / 0 failures. Dummy tmux PASS and fully removed.
-- Admission SHA-256: 71d9be74c333f3c297dc04e5a8d31f6cd531860ae6205f2a409612ba25acc26c; 74 local / 331 runtime bindings; launch-check PASS.
-- Live A_1302: WAIT_OBSERVATION; runner 692011 S/hrtimer_nanosleep, zero children/leases; 3 then 6 other census reads vanished. Real pause list absent.
-- Stuck / blocked: nothing; Dispatch 6 complete and published at 999fc15e17083e962cbc4db2ccb68dc6b5c74247.
-- Next steps: [p 9/10, master-owned] run the existing wrapper below under the new admission; it handles the pause, watchdog and unchanged gate start.
+- Goal: relevant-process census and re-admission for experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4; CPU only, $0.
+- Owner: Codex gpt-6-astra / ultra, skampere1; effective danger-full-access / approval never; existing admitted dispatch checkout.
+- What ran: 70 new relevance tests; all required CPU suites; owned tmux stop control; 31 read-only --probe calls, 20-second cadence, 600-second start span.
+- Results: v4 382/382; watchdog 16/16; root 1,405 passed / 15 skipped / 6 warnings / 0 failures; dummy PASS, all owned resources removed.
+- Live result: {'READY': 30, 'WAIT_STAGE_RUNNING': 1}; 30/30 waiting calls READY, 62 observations, zero relevant errors; ignored_vanished 5–27 per observation, sum 613 (not unique processes).
+- Admission: phase2/admission_dispatch7.json; SHA-256 4d4b9918e97194bcb6616de4af62a40e894a63976d72743982524f25ae9b81fb; 75 local / 345 runtime bindings; launch-check PASS.
+- Wrapper: only V4_ADMISSION changed from admission_dispatch6.json to admission_dispatch7.json; bash -n PASS, not executed. Prepared/deployed plans agree.
+- Stuck / blocked: nothing; rebase and publication pending.
+- Next steps: [p 9/10, owned] inspect exact staged diff, rebase, push main, recheck admission; [p 8/10, master-owned] real pause/gate start remains outside this dispatch.
 - Brando to-do: none.
-- Limits: no v3 signals or real pause-list writes, no cron install, GPU allocation, generation, optimizer step or shared-venv edit; $0.
-- Helper: dummy_tmux, gpt-5.6-terra / high; full access / never and useful first action verified; completed and owned dummy cleaned up.
-- Companion: five Dispatch 6 paragraphs updated in the existing Google document and read back exactly.
+- Limits: no v3 signals, real pause-list writes, cron install, GPU use, shared-venv edits or frozen protocol/amendment/operational-record edits; $0.
+- Helper: dummy_tmux, inherited gpt-6-astra / ultra; full access / never and useful action verified; completed and cleaned up.
+- Companion: five current Dispatch 7 paragraphs synchronized to the existing Google Doc and read back exactly.
 
-## Dispatch 6 evidence and exact master commands
+## Dispatch 7 evidence and master handoff
+
+The [verification receipt](phase2/verification_dispatch7.json) records **382 v4 / 16 watchdog / 1,405 root tests passed**, with 15 root skips, six existing warnings and zero final failures. The 70 added relevance cases cover unrelated failures; vanished/unreadable runners, group members, runner/thread children and argv/cwd/descriptor references; children that disappear before refresh or before any census identity can be read; and the same cases in stopped observations. Two initial fixture assertions expected WAIT_OBSERVATION for live pilot references with denied descriptors; their pre-existing WAIT_STAGE_RUNNING precedence was retained and the assertions corrected. The previous 131 freeze/boundary controls also pass.
+
+`pause_v3.py` retains process parent/group identity, argv and positive references incrementally, then classifies failures after learning the runner's own thread and child identities. A relevant incomplete process read blocks; an unrelated one contributes only to the integer `ignored_vanished`, including protected descriptor inspections. The runner's own `/proc/PID/task/*/children` reads are preserved from both census and refresh, so a vanished child cannot be erased by a later empty list. Positive runner identity, wait channel, live references, group isolation, disk/lease/summary, two observations, runner-only SIGSTOP, stopped runner/sleeping shell, lock, atomic durable pause list and subsequent SIGTERM checks remain.
+
+[The live probe](phase2/live_probe_dispatch7_A_1302.json) ran **10-21-2026 17:06:36–17:16:36 PDT** (call starts), **616.61 seconds** through final completion: **{'READY': 30, 'WAIT_STAGE_RUNNING': 1}**, **30/30 waiting calls READY**, **62 observations**. Runner 692011, start tick 76454333, stayed stable throughout. Of 62 observations, 61 show S/hrtimer_nanosleep and zero children; call 19's first observation shows S/pipe_read with child 2806519, correctly yielding WAIT_STAGE_RUNNING despite its second observation returning to child-free sleep. All 30 calls with two waiting observations return READY. All observations have no active leases and no summary at update_00007; the shell remains S/do_wait. Unrelated unreadable/vanished counts range **5–27**, with **613 counted across observations** and zero relevant errors. These are temporally correlated descriptive observations, not a general readiness-rate estimate; confidence intervals and p-values do not apply. The real pause list was absent before and after. Exact CLI output is preserved at `/lfs/skampere1/0/brando9/rl4cv_e13v4/live_probe_dispatch7_A_1302.jsonl` with SHA-256 `8eeb7068d17cac97d9d8da4022d3aa354c31ba6dc9d97135e737566d5f24670c`; all per-call/observation reporting fields are committed. The raw elapsed_start_seconds field was captured after each subprocess; ISO started and observed_unix fields are the authoritative timestamps.
+
+[The owned tmux control](phase2/dummy_tmux_dispatch7.json) held the runner T/do_signal_stop and its shell S/do_wait at 0.0501 and 1.0506 seconds, then resumed the runner to S/hrtimer_nanosleep. The test session, socket and both processes are gone. No v3 process received a signal.
+
+The final admission is **`phase2/admission_dispatch7.json`**, SHA-256 **`4d4b9918e97194bcb6616de4af62a40e894a63976d72743982524f25ae9b81fb`**, and `launch-check` passes. Its 75 local source/test/plan bindings exactly match [the preseal used throughout probing](phase2/admission_dispatch7_preseal.json); the final record adds the completed evidence and rebinds the updated README and master wrapper. The [handoff receipt](phase2/master_handoff_dispatch7.json) and [exact wrapper diff](phase2/wrapper_dispatch7.diff) record the admission-line-only change. Prepared/deployed launch and watchdog plans also name the same admission; no controller, watchdog installer or real pause command was executed.
+
+**Copy-ready sentence for the master:** I fixed the relevant-process census for experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4: the ten-minute read-only probe produced 30 READY calls and one correct active-child wait, all 30 clean waiting calls reached READY, all required tests and launch-check pass, and the master wrapper points to the new admission without executing a real pause.
+
+Read-only verification commands:
+
+```bash
+cd /lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification
+V4_PY=/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python
+V4_ROOT=$PWD/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4
+V4_ADMISSION=$V4_ROOT/phase2/admission_dispatch7.json
+export CUDA_VISIBLE_DEVICES='' HF_HUB_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=$PWD/src
+"$V4_PY" "$V4_ROOT/phase2/admission.py" launch-check --record "$V4_ADMISSION"
+"$V4_PY" "$V4_ROOT/phase2/pause_v3.py" --admission "$V4_ADMISSION" --trajectory A_1302 --probe
+```
+
+The master's existing wrapper is `/lfs/skampere1/0/brando9/rl4cv_e13v4/a1302_pause_then_gates.sh`. It was edited and syntax-checked only. Its real pause/watchdog/gate actions remain master-owned. This existing checkout stays in place because the admitted wrapper and plans depend on its absolute paths.
+
+## Historical Dispatch 6 evidence and exact master commands (superseded)
 
 The [tmux 3.4 source](https://github.com/tmux/tmux/blob/3.4/server.c#L436-L498) confirms that `server_child_stopped()` immediately resumes a stopped pane process group except for terminal input/output stops. The installed binary is tmux 3.4. The [owned dummy-pane evidence](phase2/dummy_tmux_dispatch6.json) uses the exact `sh -c '<venv Python sleep loop>; :'` form, with the trailing no-op retaining the shell: group SIGSTOP is auto-continued at 0.05 and 1.05 seconds; runner-only SIGSTOP holds T/do_signal_stop while the shell stays S/do_wait at both polls; SIGCONT restores runner S. Identities remain stable. The dummy session, socket and processes were removed. Reproduction harness: `/lfs/skampere1/0/brando9/rl4cv_e13v4/dummy_tmux_dispatch6.py` (hash bound by the admission).
 
@@ -382,3 +411,11 @@ I have the experiment 13 v4 CPU implementation passing 89 tests, with the histor
 10-21-2026 15:52 PDT — Dispatch 6: all CPU suites and dummy control passed; A_1302 read-only probe safely waited, final admission sealed and launch-check passed; wrapper/plans updated without execution.
 
 10-21-2026 15:54 PDT — Dispatch 6 published at 999fc15e; remote hash matched, rebased patch/files unchanged, post-rebase launch-check PASS, Google readback verified; real pause/gate start handed to the master.
+
+10-21-2026 17:05 PDT — Dispatch 7 relevance census implemented; 70 new controls and owned dummy stop pass; full CPU suites and read-only probe preparation underway.
+
+10-21-2026 17:11 PDT — All requested suites pass (382 / 16 / 1,405, 15 root skips); preseal launch-check passes and the read-only 31-call ten-minute probe is running with READY observed.
+
+10-21-2026 17:18 PDT — Dispatch 7 full verification complete: 382 v4 / 16 watchdog / 1,405 root pass; 30 READY / 1 correct WAIT_STAGE_RUNNING in 31 ten-minute read-only probes, final admission 4d4b9918e97194bcb6616de4af62a40e894a63976d72743982524f25ae9b81fb passes launch-check, wrapper admission-line diff recorded; rebase/publication pending.
+
+10-21-2026 17:19 PDT — Final CLI launch-check PASS with 4d4b9918e97194bcb6616de4af62a40e894a63976d72743982524f25ae9b81fb; five Google companion paragraphs synchronized and verified by readback.

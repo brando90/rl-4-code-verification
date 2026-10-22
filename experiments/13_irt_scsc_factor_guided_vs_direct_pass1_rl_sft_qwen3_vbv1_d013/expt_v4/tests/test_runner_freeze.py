@@ -59,7 +59,7 @@ def test_frozen_shell_and_runner_requirements(tmp_path, change):
 @pytest.mark.parametrize('site', ['census_shell', 'census_runner', 'census_stage',
                                   'fresh_runner', 'group_shell', 'group_runner'])
 @pytest.mark.parametrize('error', [FileNotFoundError, ProcessLookupError, module.ProcessChanged])
-def test_every_snapshot_proc_call_vanishing_returns_wait(tmp_path, monkeypatch, site, error):
+def test_snapshot_proc_failure_blocks_only_relevant_processes(tmp_path, monkeypatch, site, error):
     snap = observation(tmp_path, key='A_1302', pid=50002)
     runner = snap['processes'][0]
     shell = runner['process_group_members'][0]
@@ -81,15 +81,20 @@ def test_every_snapshot_proc_call_vanishing_returns_wait(tmp_path, monkeypatch, 
     # Preserve deterministic census order regardless of filesystem directory order.
     monkeypatch.setattr(Path, 'iterdir', lambda path: iter([fake / str(p) for p in rows])
                         if path == Path('/proc') else original_iterdir(path))
-    def inspect(pid):
+    def inspect(pid, evidence=None):
         nonlocal counter
         current = counter; counter += 1
         if current == target: raise error('process vanished')
         return deepcopy(rows[int(pid)])
     monkeypatch.setattr(module, 'proc', inspect)
     actual = module.snapshot('A_1302', tmp_path)
-    assert actual['observation_errors']
-    assert module.observation_status(actual) == 'WAIT_OBSERVATION'
+    if site == 'census_stage':
+        assert not actual['observation_errors']
+        assert actual['ignored_vanished'] == 1
+        assert module.observation_status(actual) == 'READY'
+    else:
+        assert actual['observation_errors']
+        assert module.observation_status(actual) == 'WAIT_OBSERVATION'
 
 
 @pytest.mark.parametrize('site', ['stat_before', 'cmdline', 'task', 'children', 'wchan', 'stat_after', 'uid'])

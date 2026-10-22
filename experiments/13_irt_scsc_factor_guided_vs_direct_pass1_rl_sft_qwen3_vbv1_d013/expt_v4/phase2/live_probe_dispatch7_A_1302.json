@@ -1,0 +1,2274 @@
+{
+  "tldr": "Ten-minute read-only A_1302 census under Dispatch 7; timestamped descriptive counts.",
+  "command": [
+    "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/pause_v3.py",
+    "--admission",
+    "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_dispatch7_preseal.json",
+    "--trajectory",
+    "A_1302",
+    "--probe"
+  ],
+  "admission_sha256": "2faaa6e1c82e0fdb026b630245cdd66f7eb1e47b736371e88028d9d3ce2cf066",
+  "duration_seconds": 616.6114282460185,
+  "interval_seconds": 20,
+  "calls": 31,
+  "status_counts": {
+    "READY": 30,
+    "WAIT_STAGE_RUNNING": 1
+  },
+  "raw_output": "/lfs/skampere1/0/brando9/rl4cv_e13v4/live_probe_dispatch7_A_1302.jsonl",
+  "raw_sha256": "8eeb7068d17cac97d9d8da4022d3aa354c31ba6dc9d97135e737566d5f24670c",
+  "first_started": "2026-10-21T17:06:36.883938-07:00",
+  "last_started": "2026-10-21T17:16:36.883770-07:00",
+  "real_pause_list_absent_before_and_after": true,
+  "read_only": true,
+  "rows": [
+    {
+      "index": 0,
+      "started": "2026-10-21T17:06:36.883938-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627610.5674968,
+          "observed_monotonic": 866200.866840484,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 7,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627612.2024286,
+          "observed_monotonic": 866202.501772623,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 7,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "started": "2026-10-21T17:06:56.883775-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627630.6704147,
+          "observed_monotonic": 866220.96975856,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 9,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627632.2998803,
+          "observed_monotonic": 866222.599224075,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 6,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "started": "2026-10-21T17:07:16.883781-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627650.7777095,
+          "observed_monotonic": 866241.077053669,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 11,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627652.4040692,
+          "observed_monotonic": 866242.70341344,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 8,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "started": "2026-10-21T17:07:36.883800-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627671.0583735,
+          "observed_monotonic": 866261.357717542,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 8,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627672.6839373,
+          "observed_monotonic": 866262.98328148,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 8,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "started": "2026-10-21T17:07:56.883765-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627691.3087997,
+          "observed_monotonic": 866281.608143861,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 7,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627692.9224305,
+          "observed_monotonic": 866283.221774167,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 7,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "started": "2026-10-21T17:08:16.883774-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627711.1668298,
+          "observed_monotonic": 866301.46617397,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 12,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627714.1979237,
+          "observed_monotonic": 866304.497268835,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 11,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "started": "2026-10-21T17:08:36.884318-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627731.218899,
+          "observed_monotonic": 866321.518243179,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 8,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627733.1333282,
+          "observed_monotonic": 866323.432672473,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 5,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "started": "2026-10-21T17:08:56.883760-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627751.9242623,
+          "observed_monotonic": 866342.2236064,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 8,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627753.6849716,
+          "observed_monotonic": 866343.98431529,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 5,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "started": "2026-10-21T17:09:16.883763-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627771.1104338,
+          "observed_monotonic": 866361.409777676,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 7,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627773.0280328,
+          "observed_monotonic": 866363.327376787,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 5,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "started": "2026-10-21T17:09:36.883764-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627791.2540648,
+          "observed_monotonic": 866381.553408878,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 9,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627792.8805022,
+          "observed_monotonic": 866383.179846524,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 7,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "started": "2026-10-21T17:09:56.883775-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627810.4995763,
+          "observed_monotonic": 866400.798920723,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 11,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627812.452874,
+          "observed_monotonic": 866402.752218212,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 9,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "started": "2026-10-21T17:10:16.883781-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627830.5555632,
+          "observed_monotonic": 866420.854907612,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 11,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627832.1753037,
+          "observed_monotonic": 866422.474647988,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 6,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "started": "2026-10-21T17:10:36.883774-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627850.468373,
+          "observed_monotonic": 866440.767716928,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 9,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627852.0940495,
+          "observed_monotonic": 866442.393393317,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 8,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "started": "2026-10-21T17:10:56.883772-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627870.4240987,
+          "observed_monotonic": 866460.723442527,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 11,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627872.1188662,
+          "observed_monotonic": 866462.41821027,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 27,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "started": "2026-10-21T17:11:16.883755-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627890.6035361,
+          "observed_monotonic": 866480.902880095,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 7,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627892.2225137,
+          "observed_monotonic": 866482.521857912,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 7,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "started": "2026-10-21T17:11:36.883766-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627911.0935895,
+          "observed_monotonic": 866501.392933802,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 9,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627912.7147522,
+          "observed_monotonic": 866503.014096299,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 15,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "started": "2026-10-21T17:11:56.883776-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627930.6646147,
+          "observed_monotonic": 866520.963959398,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 6,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627932.285834,
+          "observed_monotonic": 866522.585178864,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 6,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "started": "2026-10-21T17:12:16.883766-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627950.6025865,
+          "observed_monotonic": 866540.9019315,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 9,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627952.2396312,
+          "observed_monotonic": 866542.538975355,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 8,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "started": "2026-10-21T17:12:36.883774-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792627970.4167738,
+          "observed_monotonic": 866560.716118115,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 12,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627972.0382001,
+          "observed_monotonic": 866562.337543918,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 6,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "started": "2026-10-21T17:12:56.883766-07:00",
+      "status": "WAIT_STAGE_RUNNING",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": false,
+      "observations": [
+        {
+          "observed_unix": 1792627990.4845634,
+          "observed_monotonic": 866580.783907425,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "pipe_read",
+            "children": [
+              2806519
+            ]
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": false,
+          "ignored_vanished": 25,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792627992.1004186,
+          "observed_monotonic": 866582.399762805,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 6,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "started": "2026-10-21T17:13:16.883787-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792628010.7240665,
+          "observed_monotonic": 866601.023410981,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 9,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792628012.3450487,
+          "observed_monotonic": 866602.644393018,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 7,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "started": "2026-10-21T17:13:36.883757-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792628030.581957,
+          "observed_monotonic": 866620.881301572,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 6,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792628032.208126,
+          "observed_monotonic": 866622.507469837,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 6,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "started": "2026-10-21T17:13:56.883763-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792628050.4497144,
+          "observed_monotonic": 866640.7490585,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 6,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792628052.096565,
+          "observed_monotonic": 866642.395909112,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 6,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "started": "2026-10-21T17:14:16.883768-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792628071.6641767,
+          "observed_monotonic": 866661.963520575,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 18,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792628073.9484537,
+          "observed_monotonic": 866664.247798548,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 23,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "started": "2026-10-21T17:14:36.883769-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792628091.5480812,
+          "observed_monotonic": 866681.847425247,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 18,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792628093.2598891,
+          "observed_monotonic": 866683.55923314,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 9,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "started": "2026-10-21T17:14:56.883773-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792628111.477539,
+          "observed_monotonic": 866701.776883093,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 5,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792628113.190162,
+          "observed_monotonic": 866703.489505789,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 13,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "started": "2026-10-21T17:15:16.883772-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792628131.3105292,
+          "observed_monotonic": 866721.609873198,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 14,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792628133.2830553,
+          "observed_monotonic": 866723.582399344,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 12,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 27,
+      "started": "2026-10-21T17:15:36.883763-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792628151.4598682,
+          "observed_monotonic": 866741.759212072,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 7,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792628153.522822,
+          "observed_monotonic": 866743.822166156,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 16,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 28,
+      "started": "2026-10-21T17:15:56.883777-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792628171.7149355,
+          "observed_monotonic": 866762.014279597,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 12,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792628173.49038,
+          "observed_monotonic": 866763.78972397,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 13,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 29,
+      "started": "2026-10-21T17:16:16.883771-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792628191.817268,
+          "observed_monotonic": 866782.11661253,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 15,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792628193.5169775,
+          "observed_monotonic": 866783.816321416,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 13,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 30,
+      "started": "2026-10-21T17:16:36.883770-07:00",
+      "status": "READY",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "both_observations_waiting": true,
+      "observations": [
+        {
+          "observed_unix": 1792628211.448607,
+          "observed_monotonic": 866801.747951335,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 9,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        },
+        {
+          "observed_unix": 1792628213.4850938,
+          "observed_monotonic": 866803.784437833,
+          "runner": {
+            "pid": 692011,
+            "start_ticks": "76454333",
+            "state": "S",
+            "wchan": "hrtimer_nanosleep",
+            "children": []
+          },
+          "shell_states": [
+            {
+              "pid": 691994,
+              "state": "S",
+              "wchan": "do_wait"
+            }
+          ],
+          "waiting": true,
+          "ignored_vanished": 13,
+          "relevant_errors": [],
+          "leases": [],
+          "latest_update": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00007",
+          "files": {
+            "plans.json": true,
+            "cells.json": true,
+            "generate_lease.json": true,
+            "score/groups.json": true,
+            "update_lease.json": false,
+            "summary.json": false
+          }
+        }
+      ]
+    }
+  ],
+  "observations": 62,
+  "waiting_calls": 30,
+  "ready_waiting_calls": 30,
+  "waiting_without_ready": 0,
+  "ignored_vanished": {
+    "minimum": 5,
+    "maximum": 27,
+    "sum_across_observations": 613
+  },
+  "relevant_error_count": 0,
+  "uncertainty": "Exhaustive timestamped counts from this 10-minute sample only; temporally correlated observations, no general readiness-rate estimate or confidence interval; p-val=n/a.",
+  "raw_field_note": "The raw elapsed_start_seconds field was captured after subprocess completion; use started and observed_unix for start/observation times."
+}

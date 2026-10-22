@@ -58,13 +58,18 @@ def proc_identity(pid):
                 start_ticks=after[19], uid=uid, arguments=arguments)
 
 
-def proc(pid):
+def proc(pid, evidence=None):
     """Read identity twice so a recycled PID cannot form a mixed observation."""
     path = Path('/proc') / str(pid)
+    evidence = {} if evidence is None else evidence
     before = (path / 'stat').read_text().rsplit(')', 1)[1].split()
+    evidence.update(pid=int(pid), ppid=int(before[1]), pgid=int(before[2]))
     arguments = [x.decode() for x in (path / 'cmdline').read_bytes().split(b'\0') if x]
-    children = sorted({int(child) for task in (path / 'task').iterdir()
-                       for child in (task / 'children').read_text().split()})
+    evidence.update(arguments=arguments, command=' '.join(arguments), children=[], thread_ids=[])
+    for task in (path / 'task').iterdir():
+        evidence['thread_ids'].append(int(task.name))
+        evidence['children'].extend(int(child) for child in (task / 'children').read_text().split())
+    children = sorted(set(evidence['children']))
     wchan = (path / 'wchan').read_text().strip()
     after = (path / 'stat').read_text().rsplit(')', 1)[1].split()
     if before[19] != after[19]:
@@ -74,7 +79,8 @@ def proc(pid):
     return {'arguments': arguments, 'start_unix': boot + int(after[19]) / os.sysconf('SC_CLK_TCK'),
             'pid': int(pid), 'pgid': int(after[2]), 'ppid': int(after[1]),
             'start_ticks': after[19], 'state': after[0], 'wchan': wchan,
-            'children': children, 'uid': path.stat().st_uid, 'command': ' '.join(arguments)}
+            'children': children, 'thread_ids': evidence['thread_ids'],
+            'uid': path.stat().st_uid, 'command': ' '.join(arguments)}
 
 
 def is_runner(arguments, arm, seed):
@@ -117,13 +123,20 @@ def disk_state(pilot):
             'leases': [str(p) for p in leases if not p.with_name(p.stem + '_end.json').is_file()]}
 
 
-def references(p, pilot):
-    """Inspect argv, cwd and open descriptors without reading trajectory contents."""
+def argv_references(p, pilot):
+    """Retain an argv match even if a later process-field read fails."""
     paths = {str(pilot), str(pilot.resolve())}
     refs = []
     for base in paths:
         if re.search(re.escape(base) + r'(?=$|[/\s\'"])', p['command']):
             refs.append('argv')
+    return refs
+
+
+def references(p, pilot):
+    """Retain positive references incrementally if a later link read fails."""
+    paths = {str(pilot), str(pilot.resolve())}
+    refs = p['references'] = argv_references(p, pilot)
     root = Path('/proc') / str(p['pid'])
     try:
         descriptors = list((root / 'fd').iterdir())
@@ -164,21 +177,29 @@ def snapshot(key, work=WORK):
     pane_pid = int(pane_pid)
     text = subprocess.check_output(['tmux', 'capture-pane', '-p', '-S', '-30', '-t', pane], text=True)
     pilot = work / 'phase2/pilot' / key
-    all_rows, errors, groups = [], [], {}
+    all_rows, errors, groups, census, failures = [], [], {}, [], []
     for path in Path('/proc').iterdir():
         if not path.name.isdigit():
             continue
+        row = {'pid': int(path.name), 'command': ''}
+        census.append(row)
         try:
             stat = (path / 'stat').read_text().rsplit(')', 1)[1].split()
+            row.update(ppid=int(stat[1]), pgid=int(stat[2]))
             groups.setdefault(int(stat[2]), []).append(int(path.name))
             if path.stat().st_uid != os.getuid():
                 continue
-            row = proc(path.name)
+            row.update(proc(path.name, evidence=row))
             row['references'] = references(row, pilot)
             all_rows.append(row)
-        except (FileNotFoundError, ProcessLookupError, PermissionError, ValueError) as exc:
-            errors.append({'pid': int(path.name), 'error': type(exc).__name__})
+        except (OSError, ValueError) as exc:
+            failures.append((row, type(exc).__name__))
     runners = [p for p in all_rows if is_runner(p['arguments'], arm, seed)]
+    candidates = [p for p in census if is_runner(p.get('arguments', []), arm, seed)]
+    runner_ids = {p['pid'] for p in candidates}
+    thread_ids = runner_ids | {tid for p in candidates for tid in p.get('thread_ids', [])}
+    children = {pid for p in candidates for pid in p.get('children', [])}
+    group_ids = {pane_pid, *(p['pgid'] for p in candidates)}
     allowed = {pane_pid, *(p['pid'] for p in runners)}
     rows = [{**p, 'kind': 'stage'} for p in all_rows if p['pid'] not in allowed and p['references']]
     for runner in runners:
@@ -187,19 +208,40 @@ def snapshot(key, work=WORK):
             fresh = proc(runner['pid'])
             if any(fresh[k] != runner[k] for k in IDENTITY):
                 raise ProcessChanged('runner identity changed during observation')
-            fresh['children'] = sorted(set(fresh['children']) | {p['pid'] for p in all_rows if p['ppid'] == runner['pid']})
+            thread_ids.update(fresh.get('thread_ids', []))
+            children.update(fresh['children'])
+            # Preserve the runner's own per-thread children from BOTH reads:
+            # a child may vanish before the refresh or before its census turn.
+            fresh['children'] = sorted(set(fresh['children']) | set(runner['children']) |
+                                       {p['pid'] for p in census if p.get('ppid') in thread_ids})
             fresh['kind'] = 'runner'
             fresh['process_group_members'] = [proc(pid) for pid in groups.get(fresh['pgid'], [])]
             rows.append(fresh)
-        except (FileNotFoundError, ProcessLookupError, PermissionError, ValueError) as exc:
+        except (OSError, ValueError) as exc:
             errors.append({'pid': runner['pid'], 'error': type(exc).__name__})
+    def relevant(p):
+        return (p['pid'] in runner_ids | children | {pane_pid} or
+                p.get('pgid') in group_ids or p.get('ppid') in thread_ids or
+                bool(p.get('references') or argv_references(p, pilot)))
+    ignored_vanished = 0
+    for row, error in failures:
+        if relevant(row):
+            errors.append({'pid': row['pid'], 'error': error})
+        else:
+            ignored_vanished += 1
+    for row in all_rows:
+        if row.get('reference_inspection_unavailable'):
+            if relevant(row):
+                errors.append({'pid': row['pid'], 'error': 'PermissionError'})
+            else:
+                ignored_vanished += 1
     return {'completed_updates': len(list(pilot.glob('update_*/summary.json'))), 'planned_updates': 30,
             'trajectory': key, 'pane': pane, 'pane_pid': pane_pid, 'session': session, 'pane_text': text,
-            'processes': rows, 'observation_errors': errors,
+            'processes': rows, 'observation_errors': errors, 'ignored_vanished': ignored_vanished,
             'reference_scope': 'same-user argv plus readable cwd/fd; process-group census includes all users',
             'reference_inspection_unavailable': [
                 {'pid': p['pid'], 'links': p['reference_inspection_unavailable']}
-                for p in all_rows if p.get('reference_inspection_unavailable')],
+                for p in all_rows if relevant(p) and p.get('reference_inspection_unavailable')],
             **disk_state(pilot),
             'observed_unix': time.time(), 'observed_monotonic': time.monotonic()}
 
