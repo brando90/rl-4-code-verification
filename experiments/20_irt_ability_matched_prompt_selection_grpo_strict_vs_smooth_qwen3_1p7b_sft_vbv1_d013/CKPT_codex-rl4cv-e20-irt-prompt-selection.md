@@ -5,24 +5,26 @@
 **TLDR:** Single-writer continuation of `20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013` under the unchanged runbook. Deployment `deploy_50715cf54e614ecf914f0f7da4aae03c`, Codex gpt-6-astra ultra, personal ~/.codex, skampere1.
 
 Created: 10-21-2026 13:44 PDT
-Last updated: 10-21-2026 20:16:49 PDT
+Last updated: 10-21-2026 20:37:45 PDT
 
 ## Goal
-- Complete post-stop pre-registered Phase 0 CPU scoring and item response theory (IRT) gate G0; trainer stays FAILED.
+- COMPLETE: post-stop pre-registered CPU Phase 0 for item response theory (IRT) prompt selection; trainer remains FAILED.
 ## What ran
-- Dispatcher instruction 10-21-2026 reauthorizes only scoring saved 4,312 generations, Phase 0b/G0, and saved-smoke comparison to experiment 13 v4 T1.
-- Codex gpt-6-astra/ultra, deployment deploy_50715cf54e614ecf914f0f7da4aae03c, sole repository writer, full access. Independent helpers: saved-smoke audit and numerical analysis driver.
+- Scored 4,312 saved generations; all 571 numerical fits completed; native forecast froze 539 items. Dispatcher scope: 10-21-2026, CPU only.
+- Sole writer Codex gpt-6-astra/ultra, deploy_50715cf54e614ecf914f0f7da4aae03c, full access; all owned Slurm jobs terminal.
 ## Results
-- Scoring complete and audited: 4312/4312 strict, 191 successes, 74/539 active tasks. Smooth4202/4312 known;110duplicate-identity cells missing. D-10911859calls/64receipts/zeroauditerrors. Saved-smokeT1FAIL; trainerFAILED (2.61982% >1%).
-- Existing allocation 7.8258/200 GPU-h; no new GPU jobs, pilot, trainer or gate changes authorized. API $0; test split closed.
+- G0 PASS: area under receiver operating characteristic curve 0.931270 [0.909266,0.951934], p=0.0001; 10,000 group bootstraps, 539 tasks/400 groups, conditional fitted predictions.
+- Log loss 0.304431 versus 0.481185 baseline; expected calibration error 0.112157. Strict 4,312 known; smooth 4,202 known/110 missing. See RESULTS_phase0_calibration.md.
+- Frozen forecast canonical SHA 68afacd818b98c48de31ef67d541a7d2bcea840d669e1b7abf27415e8ec04e42; final validator PASS. Full make test: 1,415 passed/17 skipped/6 subtests; 46 tested source hashes unchanged.
+- Saved-smoke T1 analogue FAIL: update 2 has 22,459 finite mismatches +195 unsupported actions. Trainer FAILED unchanged. No training-effect inference.
 ## Stuck / blocked
-- Trainer admission remains FAILED. CPU scoring complete; primaryG0 PASS, graded/full dimensional fits passed; five held-out dimensionality folds running. Strict G0 uses all4312strict outcomes independently of110missing smooth cells.
+- No CPU blocker. Original run exit 1 occurred only in terminal progress logging after all outputs/freeze; separate metadata recovery complete, original receipt/source/outputs unchanged.
+- No new GPU jobs, pilot, trainer/gate changes or model calls. Test split closed. Resources: Sherlock 198.2292 allocated CPU-h; local 2.2394 actual CPU-h; historical 7.8258 GPU-h; API $0.
 ## Next steps
-- [p 10/10] Adopt running Phase0b session76019, wrapper3572093, child3573131. Receipt results/receipts/phase0b_run_receipt.json; progress results/phase0b/progress.json. Do not duplicate the fit process.
-- [p 10/10] Monitor results/phase0b/progress.json and receipt; finish reports, freeze verification, final CPU accounting, PR20 and G0_FINISHED with AUCinterval/results hash.
-- AllSlurmjobs terminal; monitor session70252 exited. Last pushed46feaa89dd18ee850a4b28fb34fd85cc57f234ca. Fullmake1415PASS/17skip/6subtests;46sourcehashes unchanged. Preserve E20_FINISHED history.
+- [p 10/10] Publish final results, Google log and PR20; write G0_FINISHED with immutable results commit; send matching CPU DONE once, then push receipts.
+- Do not rerun fits. Recovery evidence: expt_v1/results/phase0b/phase0b_completion_recovery_receipt.json. All jobs terminal; owned temporary test checkout removed safely.
 ## Brando to-do
-- none; 32G question withdrawn after frozen-scorer audit. Preserve16G and native completed failure scores; incomplete evidence remains unresolved.
+- none required to finish CPU scope; future trainer work needs a separate instruction.
 
 ## Log
 - 10-21-2026 13:44 PDT -- Codex takeover verified against live Git, processes and Sherlock; adopted calibration; newer smoke differs from handoff and is under investigation. Native helper `/root/locate_experiment_log` (gpt-5.6-terra/medium) is locating the requested Google experiment log; root remains sole repository writer.
@@ -200,3 +202,9 @@ Last updated: 10-21-2026 20:16:49 PDT
 - 10-21-2026 20:10:14 PDT -- E05sensitivity G0 PASS, selectedexplanatory: AUC0.93315897 CI[0.91172292,0.95331506], p0.0001 vs0.70; logloss0.31187248 vs0.48118507; ECE0.12990460, predictedactive0.25647427 vs0.13729128. All25G0fits converged. Both500priorfits complete; sensitivityfinalfits finishing, smooth/dim/freeze next. Primaryunchanged.
 
 - 10-21-2026 20:16:49 PDT -- Gradedfit converged (61.15s; both gradients3.29936e-6), knownsmooth4202/4312. Full dimensionality tied/untied fits converged (finergrad4.01283e-6/1.36126e-6), permitting registered5fold comparison. Fold0tied complete/converged841pairedcells; fold0untied active. Sensitivityindependentmetrics56/56PASS, receipt sensitivity_metric_verification.json. Freeze awaitsallstages.
+
+- 10-21-2026 20:20:53 PDT -- Preserved564completed immutablefitcaches (80,271,097bytes), sensitivitytables/metrics andgradedsmooth artifacts in bcd14271c678869b625c1fc6a39d143c95794c9d; pushedremotehashverified. ExactstageddiffSHA c8fba920002bdc599853493cb30df724e5d85460b85cc68f230011451d0f1f71, 583files, zero secret/diff errors;46testedsourcehashes unchanged. Fold2tied active; no finishmarker until remainingfolds/freeze/finalverification.
+
+- 10-21-2026 20:30:48 PDT -- All571fits complete andconverged; dimensionality10/10foldfits,4202pairedcells,tiedLL-5760.845167 vsuntied-5762.570966 (delta-1.725799). Nativefreeze20:27:21PDT canonicalhash68afacd818b98c48de31ef67d541a7d2bcea840d669e1b7abf27415e8ec04e42,539items. Driverthenexit1: duplicate trainer_status keyword in final stamp, after analysis_e20.json saved. Originalsource/pins/failedreceipt preserved; metadata-only recovery helper beingprepared. Finalindependentartifactvalidator PASS zero failures; rendererreportszero missing/invalidfiles. Localwall2873.979s, user7888.42+system173.59CPU-s.
+
+- 10-21-2026 20:37:45 PDT -- Metadata-only terminal recovery completed and verified idempotent; exact original failure archived, failed native run receipt and all scientific hashes unchanged. Final artifact validator PASS; all 571 fits and 539 native-frozen items available. Final ledger/README/index written. Owned verification checkout removed without force after 21 source/symlink preservation checks; 82 generated cache files removed. Publishing final CPU results, then marker/Google/PR/email receipts.
