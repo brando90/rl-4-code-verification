@@ -5,7 +5,7 @@
 **TLDR:** Single-writer continuation of `20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013` under the unchanged runbook. Deployment `deploy_50715cf54e614ecf914f0f7da4aae03c`, Codex gpt-6-astra ultra, personal ~/.codex, skampere1.
 
 Created: 10-21-2026 13:44 PDT
-Last updated: 10-21-2026 18:45:49 PDT
+Last updated: 10-21-2026 19:25:43 PDT
 
 ## Goal
 - Complete post-stop pre-registered Phase 0 CPU scoring and item response theory (IRT) gate G0; trainer stays FAILED.
@@ -13,12 +13,12 @@ Last updated: 10-21-2026 18:45:49 PDT
 - Dispatcher instruction 10-21-2026 reauthorizes only scoring saved 4,312 generations, Phase 0b/G0, and saved-smoke comparison to experiment 13 v4 T1.
 - Codex gpt-6-astra/ultra, deployment deploy_50715cf54e614ecf914f0f7da4aae03c, sole repository writer, full access. Independent helpers: saved-smoke audit and numerical analysis driver.
 ## Results
-- Existing calibration 4,312/4,312 generated, 539 tasks, 0 missing; CPU scoring: 32/32 strict completion files, 31/32 partial completion files; 4296/4312 partial cells logged. Intact completed negative compiler exits retain native failure scores. Saved-smoke T1 comparison FAIL (195 unsupported update2); exact quantiles unavailable, median bounded <0.01. Trainer FAILED: 22,654/864,717 mismatch tokens (2.61982% >1%).
+- Existing calibration 4,312/4,312 generated, 539 tasks, 0 missing; CPU scoring: 32/32 strict completion files, 32/32 partial completion files; 4312/4312 partial cells logged. Intact completed negative compiler exits retain native failure scores. Saved-smoke T1 comparison FAIL (195 unsupported update2); exact quantiles unavailable, median bounded <0.01. Trainer FAILED: 22,654/864,717 mismatch tokens (2.61982% >1%).
 - Existing allocation 7.8258/200 GPU-h; no new GPU jobs, pilot, trainer or gate changes authorized. API $0; test split closed.
 ## Stuck / blocked
-- Trainer admission remains FAILED. CPU scoring continues; collector48892191 waits for owned arrays. Missing smooth adapter outputs stay missing; strictG0 remains independent.
+- Trainer admission remains FAILED. CPU scoring completed; collector48892191 dependency cleared after all predecessors terminal. Missing smooth adapter outputs stay missing; strictG0 remains independent.
 ## Next steps
-- [p 10/10] Read /tmp/e20_cpu_monitor/latest.json (monitor v2 session70252; expandable /tmp/e20_cpu_monitor_job_ids.json). Pushed05ebdc67d5114267c0b719fe23080bd43e387f22; source files verified; full make test PASS1415/17skipped/6subtests/321.63s. Do not add Slurm polls within60s of monitor.
+- [p 10/10] Read /tmp/e20_cpu_monitor/latest.json (monitor v2 session70252; expandable /tmp/e20_cpu_monitor_job_ids.json). Pushed11b941ce2ddfc2358f2234fde3cc62b3719694dd; source files verified; full make test PASS1415/17skipped/6subtests/321.63s. Do not add Slurm polls within60s of monitor.
 - [p 10/10] After collection run /tmp/e20_download_cpu_tables.py then /tmp/e20_import_cpu_tables.py with venv Python; verify/commit4312celltable; launch /tmp/e20_run_phase0b.py (all registered fits,4workers,CPUonly). Finish PR20/G0_FINISHED with AUCinterval/results hash.
 - Keep >=60 seconds between Slurm checks; remain inside turn. Preserve E20_FINISHED.txt as trainer-stop history.
 ## Brando to-do
@@ -158,3 +158,25 @@ Last updated: 10-21-2026 18:45:49 PDT
 - 10-21-2026 18:40:43 PDT -- CPU monitor 20261022T013848Z: states {'COMPLETED': 61, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 1}; strict completion files 32/32, partial completion files 31/32, partial cells logged 4287/4312. Strict/partial diagnostic calls 3758/8056. Collection ready=False; trainer FAILED unchanged.
 
 - 10-21-2026 18:45:49 PDT -- CPU monitor 20261022T014344Z: states {'COMPLETED': 61, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 1}; strict completion files 32/32, partial completion files 31/32, partial cells logged 4296/4312. Strict/partial diagnostic calls 3758/8075. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 18:50:38 PDT -- CPU monitor 20261022T014840Z: states {'COMPLETED': 61, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 1}; strict completion files 32/32, partial completion files 31/32, partial cells logged 4296/4312. Strict/partial diagnostic calls 3758/8075. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 18:54:59 PDT -- CPU monitor 20261022T015336Z: states {'COMPLETED': 61, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 1}; strict completion files 32/32, partial completion files 31/32, partial cells logged 4296/4312. Strict/partial diagnostic calls 3758/8076. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 19:00:35 PDT -- CPU monitor 20261022T015832Z: states {'COMPLETED': 61, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 1}; strict completion files 32/32, partial completion files 31/32, partial cells logged 4296/4312. Strict/partial diagnostic calls 3758/8076. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 19:01:12 PDT -- Read-only last-partial diagnostic receipt confirms ordinary progression: task security_6858 vulnerabilities94_unsafecaverify initial compile finished exit1 after about589s; kernel call RUNNING age442s within unchanged900s limit. No Slurm query, resubmission, resource or scoring change. Last pushed11b941ce2ddfc2358f2234fde3cc62b3719694dd.
+
+- 10-21-2026 19:04:29 PDT -- CPU monitor 20261022T020328Z: states {'COMPLETED': 61, 'PENDING': 1, 'OUT_OF_MEMORY': 8, 'RUNNING': 1}; strict completion files 32/32, partial completion files 31/32, partial cells logged 4297/4312. Strict/partial diagnostic calls 3758/8079. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 19:09:46 PDT -- CPU monitor 20261022T020825Z: states {'COMPLETED': 62, 'PENDING': 1, 'OUT_OF_MEMORY': 8}; strict completion files 32/32, partial completion files 32/32, partial cells logged 4312/4312. Strict/partial diagnostic calls 3758/8101. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 19:14:28 PDT -- CPU monitor 20261022T021322Z: states {'COMPLETED': 62, 'PENDING': 1, 'OUT_OF_MEMORY': 8}; strict completion files 32/32, partial completion files 32/32, partial cells logged 4312/4312. Strict/partial diagnostic calls 3758/8101. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 19:18:18 PDT -- All4312partialcells and32/32partial tasks completed normally; last48882641_24 ended19:07:17PDT after10684s. Collector48892191 remainedPENDING with dependency afterany:48903715_*(unfulfilled) despite all70 scoring/retry tasks terminal in19:13 observation. Verified64completionreceipts and cleared onlyexistingcollector dependency via scontrol update (return0), no job resubmission or scorer/resource change. Contingency partial recovery unused. Receipts e20_collector_pending_reason and e20_collector_dependency_release.
+
+- 10-21-2026 19:21:25 PDT -- Collector dependency removal verified: scontrol19:20:58PDT shows Dependency=(null), Reason=None, EligibleTime19:16:33 and plannedStartTime19:20:59. Commandexit1 was only tail of not-yet-created collectorlog; scheduler reads succeeded. Waiting for actual collector audit/terminal status.
+
+- 10-21-2026 19:25:18 PDT -- CPU monitor 20261022T022314Z: states {'COMPLETED': 62, 'PENDING': 1, 'OUT_OF_MEMORY': 8}; strict completion files 32/32, partial completion files 32/32, partial cells logged 4312/4312. Strict/partial diagnostic calls 3758/8101. Collection ready=False; trainer FAILED unchanged.
+
+- 10-21-2026 19:25:43 PDT -- Google single E20 bullet updated to completed4312cell scoring and64completionreceipts, collector/audit/fits/G0 pending; exact readback verified (google_cpu_progress4_receipt.json). All46testedsource hashes unchanged; last fullmake1415passed/17skipped/6subtests/321.63s. Publishing data/docs-only scoring progress and collector dependency recovery receipts.
