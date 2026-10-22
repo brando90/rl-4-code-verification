@@ -72,6 +72,8 @@ def test_trajectory_state_reads_only_live_numbered_updates(tmp_path):
     (root / 'update_00017/score').mkdir(); (root / 'update_00017/score/groups.json').write_text('[]')
     (root / 'update_00017/update/output').mkdir(parents=True)
     (root / 'update_00017/update/output/result.json').write_text('{}')
+    after = root / 'update_00017/update/output/after'
+    after.mkdir(); (after / 'receipt.json').write_text('{}')
     state = w.trajectory_state('B', 1301, pilot=tmp_path / 'phase2/pilot')
     assert state['partials'] == [partial(17, 256, True, True)]
     assert state['next_update'] == 18 and state['completed_updates'] == 1 and not state['complete']

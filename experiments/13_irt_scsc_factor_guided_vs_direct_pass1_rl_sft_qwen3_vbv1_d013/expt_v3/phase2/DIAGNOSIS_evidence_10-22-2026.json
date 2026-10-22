@@ -1,0 +1,661 @@
+{
+  "measured_at": "10-22-2026 12:18:31 PDT",
+  "v3": {
+    "B_1301": {
+      "update": 23,
+      "score_declared": 256,
+      "score_measured": 0,
+      "score_errors": {
+        "[Errno 2] No such file or directory: 'lake'": 256
+      },
+      "optimizer_result": {
+        "condition": "v2-S2",
+        "counts": {
+          "all_measured_advantages_zero": false,
+          "all_missing_batch": "unmeasured update; no fabricated reward or optimizer call",
+          "all_zero_measured_batch": "advance installed optimizer/scheduler, recording zero policy-gradient signal",
+          "declared_groups": 32,
+          "declared_slots": 256,
+          "generated_tokens": 1453014,
+          "measured_rewards": 0,
+          "nonzero_advantage_slots": 0,
+          "optimized_tokens": 0,
+          "partial_batch_normalization": "actual unmasked assistant tokens across complete admitted groups",
+          "prompt_tokens": 904208,
+          "unmeasured_groups": 32,
+          "usable_groups": 0
+        },
+        "optimizer_updates": 0,
+        "reason": "no complete measured reward group; no optimizer call",
+        "status": "UNMEASURED"
+      },
+      "receipt_exists": false,
+      "stage_execution": {
+        "api_spend_usd": 0,
+        "device_hours": 0.0801566802130805,
+        "exit_code": 0,
+        "wall_seconds": 288.56404757499695
+      }
+    },
+    "A_1301": {
+      "update": 18,
+      "score_declared": 256,
+      "score_measured": 0,
+      "score_errors": {
+        "[Errno 2] No such file or directory: 'lake'": 256
+      },
+      "optimizer_result": {
+        "condition": "v2-S2",
+        "counts": {
+          "all_measured_advantages_zero": false,
+          "all_missing_batch": "unmeasured update; no fabricated reward or optimizer call",
+          "all_zero_measured_batch": "advance installed optimizer/scheduler, recording zero policy-gradient signal",
+          "declared_groups": 32,
+          "declared_slots": 256,
+          "generated_tokens": 1418091,
+          "measured_rewards": 0,
+          "nonzero_advantage_slots": 0,
+          "optimized_tokens": 0,
+          "partial_batch_normalization": "actual unmasked assistant tokens across complete admitted groups",
+          "prompt_tokens": 942288,
+          "unmeasured_groups": 32,
+          "usable_groups": 0
+        },
+        "optimizer_updates": 0,
+        "reason": "no complete measured reward group; no optimizer call",
+        "status": "UNMEASURED"
+      },
+      "receipt_exists": false,
+      "stage_execution": {
+        "api_spend_usd": 0,
+        "device_hours": 0.06694649464554257,
+        "exit_code": 0,
+        "wall_seconds": 241.0073802471161
+      }
+    },
+    "B_1302": {
+      "update": 13,
+      "score_declared": 256,
+      "score_measured": 0,
+      "score_errors": {
+        "[Errno 2] No such file or directory: 'lake'": 256
+      },
+      "optimizer_result": {
+        "condition": "v2-S2",
+        "counts": {
+          "all_measured_advantages_zero": false,
+          "all_missing_batch": "unmeasured update; no fabricated reward or optimizer call",
+          "all_zero_measured_batch": "advance installed optimizer/scheduler, recording zero policy-gradient signal",
+          "declared_groups": 32,
+          "declared_slots": 256,
+          "generated_tokens": 1616057,
+          "measured_rewards": 0,
+          "nonzero_advantage_slots": 0,
+          "optimized_tokens": 0,
+          "partial_batch_normalization": "actual unmasked assistant tokens across complete admitted groups",
+          "prompt_tokens": 906632,
+          "unmeasured_groups": 32,
+          "usable_groups": 0
+        },
+        "optimizer_updates": 0,
+        "reason": "no complete measured reward group; no optimizer call",
+        "status": "UNMEASURED"
+      },
+      "receipt_exists": false,
+      "stage_execution": {
+        "api_spend_usd": 0,
+        "device_hours": 0.08272555887699128,
+        "exit_code": 0,
+        "wall_seconds": 297.81201100349426
+      }
+    }
+  },
+  "v4": {
+    "attempt_01": {
+      "started": {
+        "admission_sha256": "4d4b9918e97194bcb6616de4af62a40e894a63976d72743982524f25ae9b81fb",
+        "condition": "e13v4",
+        "pid": 1435416,
+        "started_unix": 1792633722.9630373,
+        "synthetic": false
+      },
+      "failure_recorded_at": "10-21-2026 19:15:13 PDT",
+      "classification": "PRE_ENGINE_LEASE_REFUSAL",
+      "consumed_a4_attempt": false,
+      "verified_binding_count": 5,
+      "binding_mismatches": [],
+      "trials": []
+    },
+    "attempt_02": {
+      "started": {
+        "admission_sha256": "9209a408ce9ca1d6ae42e5769dd61c9228d0155dd89eba80ebc74a5ee490d2a4",
+        "condition": "e13v4",
+        "pid": 1762505,
+        "started_unix": 1792639160.6364262,
+        "synthetic": false
+      },
+      "failure_recorded_at": "10-21-2026 21:04:34 PDT",
+      "classification": "ZERO_EFFECT_FAILURE",
+      "consumed_a4_attempt": true,
+      "verified_binding_count": 25,
+      "binding_mismatches": [],
+      "trials": [
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/run/T1/probe/attempt_02/R0/lease_trials/trial_0001/worker_failed.json",
+          "terminal": {
+            "effects": {},
+            "effects_schema": 1,
+            "error": "compute process occupies device",
+            "error_type": "Busy",
+            "kind": "lease_refused",
+            "runtime_sha256": "997ca1c8c043b836ed19b3c9edbb4ad0d5c1e8f9421e52bb9ff16a6102508a60"
+          }
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/run/T1/probe/attempt_02/R0/lease_trials/trial_0002/worker_failed.json",
+          "terminal": {
+            "effects": {},
+            "effects_schema": 1,
+            "error": "compute process occupies device",
+            "error_type": "Busy",
+            "kind": "lease_refused",
+            "runtime_sha256": "7d593c4aa417b256c664d0a1dfc5d1f62d5d867e4e615604827525080b4aa3c2"
+          }
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/run/T1/probe/attempt_02/R0/lease_trials/trial_0003/worker_failed.json",
+          "terminal": {
+            "effects": {
+              "engine_started": "4f27de10901bb8476222843fe7e845a8cebdc0e209676bd4ca20e135900519de"
+            },
+            "effects_schema": 1,
+            "error": "Object of type <class 'function'> is not serializableSet VLLM_ALLOW_INSECURE_SERIALIZATION=1 to allow fallback to pickle-based serialization.",
+            "error_type": "TypeError",
+            "kind": "stage_failure",
+            "runtime_sha256": "53a0bdaef2a301188a390efcf6656c1db1781d8b64285b7b35c98ada78ff3a17"
+          }
+        }
+      ]
+    },
+    "attempt_03": {
+      "started": {
+        "admission_sha256": "9209a408ce9ca1d6ae42e5769dd61c9228d0155dd89eba80ebc74a5ee490d2a4",
+        "condition": "e13v4",
+        "pid": 3717315,
+        "started_unix": 1792642240.6547432,
+        "synthetic": false
+      },
+      "failure_recorded_at": "10-21-2026 21:23:34 PDT",
+      "classification": "ZERO_EFFECT_FAILURE",
+      "consumed_a4_attempt": true,
+      "verified_binding_count": 11,
+      "binding_mismatches": [],
+      "trials": [
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/run/T1/probe/attempt_03/R0/lease_trials/trial_0001/worker_failed.json",
+          "terminal": {
+            "effects": {
+              "engine_started": "f58c7f84ffc403b246ccc7f988636e12dcaa9ab9445d0a1f7fba681b6822ceae"
+            },
+            "effects_schema": 1,
+            "error": "Object of type <class 'function'> is not serializableSet VLLM_ALLOW_INSECURE_SERIALIZATION=1 to allow fallback to pickle-based serialization.",
+            "error_type": "TypeError",
+            "kind": "stage_failure",
+            "runtime_sha256": "373f221d2c095b3f4cd72852d63c1264a5d6a12cd2c788f8b465991f7dab30e4"
+          }
+        }
+      ]
+    },
+    "attempt_04": {
+      "started": {
+        "admission_sha256": "9209a408ce9ca1d6ae42e5769dd61c9228d0155dd89eba80ebc74a5ee490d2a4",
+        "condition": "e13v4",
+        "pid": 3866000,
+        "started_unix": 1792643442.3649268,
+        "synthetic": false
+      },
+      "failure_recorded_at": "10-21-2026 23:41:58 PDT",
+      "classification": "ZERO_EFFECT_FAILURE",
+      "consumed_a4_attempt": true,
+      "verified_binding_count": 67,
+      "binding_mismatches": [],
+      "trials": [
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/run/T1/probe/attempt_04/R0/lease_trials/trial_0001/worker_failed.json",
+          "terminal": {
+            "effects": {},
+            "effects_schema": 1,
+            "error": "compute process occupies device",
+            "error_type": "Busy",
+            "kind": "lease_refused",
+            "runtime_sha256": "cd1c44a47e8ebad10ac6af538fc17d9c33453ff3cfbd9e596bd6b718bf2715dc"
+          }
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/run/T1/probe/attempt_04/R0/lease_trials/trial_0002/worker_failed.json",
+          "terminal": {
+            "effects": {},
+            "effects_schema": 1,
+            "error": "compute process occupies device",
+            "error_type": "Busy",
+            "kind": "lease_refused",
+            "runtime_sha256": "2ceed2cccb629a4e9c7ae1b1634f67a0c741d44221cf4f54693e08bf49dfe5ac"
+          }
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/run/T1/probe/attempt_04/R0/lease_trials/trial_0003/worker_failed.json",
+          "terminal": {
+            "effects": {},
+            "effects_schema": 1,
+            "error": "compute ownership unreadable",
+            "error_type": "Busy",
+            "kind": "lease_refused",
+            "runtime_sha256": "ecaa25249af25bbcbc140af46e37f3b37e46867a0b25c558e81f773640dc053a"
+          }
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/run/T1/probe/attempt_04/R0/lease_trials/trial_0004/worker_failed.json",
+          "terminal": {
+            "effects": {},
+            "effects_schema": 1,
+            "error": "compute process occupies device",
+            "error_type": "Busy",
+            "kind": "lease_refused",
+            "runtime_sha256": "f502479d074bf11fd950338ae9caf23e5af4004beeeeb9ae570e85431b303c6d"
+          }
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/run/T1/probe/attempt_04/R0/lease_trials/trial_0005/worker_failed.json",
+          "terminal": {
+            "effects": {},
+            "effects_schema": 1,
+            "error": "compute process occupies device",
+            "error_type": "Busy",
+            "kind": "lease_refused",
+            "runtime_sha256": "b3ae0fa5660449a07cc8430cdabb7228a7792f254e21e97af734173347476eb5"
+          }
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/run/T1/probe/attempt_04/R0/lease_trials/trial_0006/worker_failed.json",
+          "terminal": {
+            "effects": {},
+            "effects_schema": 1,
+            "error": "compute process occupies device",
+            "error_type": "Busy",
+            "kind": "lease_refused",
+            "runtime_sha256": "45484b40a69e4060fa182b7b3e4388cd932a35dfa2c85bebc94a39f60cf4201b"
+          }
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/run/T1/probe/attempt_04/R0/lease_trials/trial_0007/worker_failed.json",
+          "terminal": {
+            "effects": {},
+            "effects_schema": 1,
+            "error": "compute process occupies device",
+            "error_type": "Busy",
+            "kind": "lease_refused",
+            "runtime_sha256": "0ed6fd1d393b9f429e86965b9ba6a16109caf5a3dadc35a5af647f36852f6c31"
+          }
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/run/T1/probe/attempt_04/R0/lease_trials/trial_0008/worker_failed.json",
+          "terminal": {
+            "effects": {},
+            "effects_schema": 1,
+            "error": "compute process occupies device",
+            "error_type": "Busy",
+            "kind": "lease_refused",
+            "runtime_sha256": "3ee7154a52df44a8457bec0f9f9c6abbe5d6c654b38e062e8d0dfcd1565d9eb7"
+          }
+        },
+        {
+          "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/run/T1/probe/attempt_04/R0/lease_trials/trial_0009/worker_failed.json",
+          "terminal": {
+            "effects": {
+              "engine_started": "4f16e309bf451216a7ffa0798655ebe481d736267c0b8c43f6c5686a3d5f3a70"
+            },
+            "effects_schema": 1,
+            "error": "Object of type <class 'function'> is not serializableSet VLLM_ALLOW_INSECURE_SERIALIZATION=1 to allow fallback to pickle-based serialization.",
+            "error_type": "TypeError",
+            "kind": "stage_failure",
+            "runtime_sha256": "477944d8658af386080a9a6d099d2c0d412e64c829c43dd6677063ecb730f981"
+          }
+        }
+      ]
+    }
+  },
+  "log_evidence": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/autoresume_deaths/rl4cv-e13v3-pilot-A-1301_10-22-2026_091002.log",
+      "sha256": "9b3341b6eeb3a63a0b08336dd77d37d4ab89cf5241c497283386275e33a13bae",
+      "excerpts": [
+        {
+          "line": 13,
+          "text": "RuntimeError: fewer than 200 GiB remain for the next complete checkpoint transit"
+        },
+        {
+          "line": 25,
+          "text": "Pane is dead (status 1, Thu Oct 22 09:00:04 2026)"
+        }
+      ]
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/autoresume_deaths/rl4cv-e13v3-pilot-A-1301_10-22-2026_112002.log",
+      "sha256": "26a99f2775d90cbafad84a2c6c9ceee76ff1fe7d306c47d747da877fae37337f",
+      "excerpts": [
+        {
+          "line": 13,
+          "text": "RuntimeError: all rewards missing; opportunity retained, no fabricated optimizer"
+        },
+        {
+          "line": 25,
+          "text": "Pane is dead (status 1, Thu Oct 22 11:13:50 2026)"
+        }
+      ]
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/autoresume_deaths/rl4cv-e13v3-retry-A-1301-u18_10-22-2026_113004.log",
+      "sha256": "4cecfb14de97d579494da09bccb1e0242ca38c2bfa3d6e7ac4956de00f40d0be",
+      "excerpts": [
+        {
+          "line": 1,
+          "text": "10-22-2026 11:20:03 PDT waiting for an idle GPU to optimize A_1301 update 18"
+        },
+        {
+          "line": 32,
+          "text": "FileNotFoundError: [Errno 2] No such file or directory: '/lfs/skampere1/0/brando"
+        },
+        {
+          "line": 35,
+          "text": "Pane is dead (status 1, Thu Oct 22 11:24:37 2026)"
+        }
+      ]
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/autoresume_deaths/rl4cv-e13v3-pilot-B-1301_10-22-2026_031003.log",
+      "sha256": "5416b1e5f9d4691277cf2c3a86beb387ed93b9f44a32074ab4d2985bbe23d0f7",
+      "excerpts": [
+        {
+          "line": 19,
+          "text": "RuntimeError: generate exited 1; retained log: /lfs/skampere1/0/brando9/rl4cv_e1"
+        },
+        {
+          "line": 25,
+          "text": "Pane is dead (status 1, Thu Oct 22 03:08:40 2026)"
+        }
+      ]
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/autoresume_deaths/rl4cv-e13v3-pilot-B-1301_10-22-2026_040002.log",
+      "sha256": "38bceeb9cc38918f806db0b00af61a5b76b0846bfbd0e7b881f541749ef271e2",
+      "excerpts": [
+        {
+          "line": 13,
+          "text": "RuntimeError: all rewards missing; opportunity retained, no fabricated optimizer"
+        },
+        {
+          "line": 25,
+          "text": "Pane is dead (status 1, Thu Oct 22 03:58:33 2026)"
+        }
+      ]
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/autoresume_deaths/rl4cv-e13v3-retry-B-1301-u23_10-22-2026_045002.log",
+      "sha256": "c3c03f057a07c634cb96ed5073a9594be84e212d6cdb2ce7772ed37618d51fce",
+      "excerpts": [
+        {
+          "line": 1,
+          "text": "10-22-2026 04:40:03 PDT waiting for an idle GPU to optimize B_1301 update 23"
+        },
+        {
+          "line": 32,
+          "text": "FileNotFoundError: [Errno 2] No such file or directory: '/lfs/skampere1/0/brando"
+        },
+        {
+          "line": 35,
+          "text": "Pane is dead (status 1, Thu Oct 22 04:45:26 2026)"
+        }
+      ]
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/autoresume_deaths/rl4cv-e13v3-pilot-B-1302_10-22-2026_044002.log",
+      "sha256": "bc4869f64132c8a7cbd02dd4c524eaed0ee714f25ff32169ef5d58615d62d4e7",
+      "excerpts": [
+        {
+          "line": 13,
+          "text": "RuntimeError: all rewards missing; opportunity retained, no fabricated optimizer"
+        },
+        {
+          "line": 25,
+          "text": "Pane is dead (status 1, Thu Oct 22 04:33:14 2026)"
+        }
+      ]
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/autoresume_deaths/rl4cv-e13v3-retry-B-1302-u13_10-22-2026_045007.log",
+      "sha256": "6e4b8ec566f35643b8385eae8c994093043eb81525ee48c5c1c582f2fc4b1051",
+      "excerpts": [
+        {
+          "line": 1,
+          "text": "10-22-2026 04:40:03 PDT waiting for an idle GPU to optimize B_1302 update 13"
+        },
+        {
+          "line": 22,
+          "text": "RuntimeError: update exited 1; retained log: /lfs/skampere1/0/brando9/rl4cv_e13v"
+        },
+        {
+          "line": 25,
+          "text": "Pane is dead (status 1, Thu Oct 22 04:42:27 2026)"
+        }
+      ]
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/autoresume_deaths/rl4cv-e13v3-retry-B-1302-u13_10-22-2026_065007.log",
+      "sha256": "eab31558ccda7cc4b2ef5dc7343e31fb68e55d7d866483d57c9d78a9699400ef",
+      "excerpts": [
+        {
+          "line": 4,
+          "text": "10-22-2026 06:40:08 PDT waiting for an idle GPU to optimize B_1302 update 13"
+        },
+        {
+          "line": 35,
+          "text": "FileNotFoundError: [Errno 2] No such file or directory: '/lfs/skampere1/0/brando"
+        },
+        {
+          "line": 38,
+          "text": "Pane is dead (status 1, Thu Oct 22 06:45:41 2026)"
+        }
+      ]
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/autoresume_deaths/rl4cv-e13v3-pilot-P-1301_10-22-2026_105007.log",
+      "sha256": "f6e404cc6404b235e8077e0db75983f9135018c567bdd2d853800772068a1c66",
+      "excerpts": [
+        {
+          "line": 19,
+          "text": "RuntimeError: generate exited 1; retained log: /lfs/skampere1/0/brando9/rl4cv_e1"
+        },
+        {
+          "line": 25,
+          "text": "Pane is dead (status 1, Thu Oct 22 10:43:35 2026)"
+        }
+      ]
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/autoresume_deaths/rl4cv-e13v3-pilot-P-1301_10-22-2026_110007.log",
+      "sha256": "44fc3448f81114b8062b5aab80de0d3da62569cd611a6fa3a4db5ff91b574880",
+      "excerpts": [
+        {
+          "line": 19,
+          "text": "RuntimeError: generate exited 1; retained log: /lfs/skampere1/0/brando9/rl4cv_e1"
+        },
+        {
+          "line": 25,
+          "text": "Pane is dead (status 1, Thu Oct 22 10:51:09 2026)"
+        }
+      ]
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/autoresume_deaths/rl4cv-e13v3-pilot-P-1301_10-22-2026_111003.log",
+      "sha256": "8867cdca96edb1aec5f14fa4a188cd511fdb913b70694cdebb96fdce9de55cde",
+      "excerpts": [
+        {
+          "line": 19,
+          "text": "RuntimeError: generate exited 1; retained log: /lfs/skampere1/0/brando9/rl4cv_e1"
+        },
+        {
+          "line": 25,
+          "text": "Pane is dead (status 1, Thu Oct 22 11:04:06 2026)"
+        }
+      ]
+    }
+  ],
+  "protected_after_states": {
+    "measured_at": "10-22-2026 12:17:52 PDT",
+    "verification": "receipt parse, bound file presence and exact byte sizes; tensor digests not rehashed",
+    "states": [
+      {
+        "trajectory": "A_1301",
+        "update": "update_00017",
+        "after": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1301/update_00017/update/output/after",
+        "bindings": 13,
+        "missing_or_size_mismatched": [],
+        "receipt_sha256": "54e688a29fc1c0f6b70f217c800868af776f0d9c68bd4c3fc8f9c1a75adb902f"
+      },
+      {
+        "trajectory": "A_1302",
+        "update": "update_00006",
+        "after": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/A_1302/update_00006/update/output/after",
+        "bindings": 13,
+        "missing_or_size_mismatched": [],
+        "receipt_sha256": "0c0fb251f72fa18b09ac1022fcafa8bd800255678069253ef6607a76c49d6ed2"
+      },
+      {
+        "trajectory": "B_1301",
+        "update": "update_00022",
+        "after": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/B_1301/update_00022/update/output/after",
+        "bindings": 13,
+        "missing_or_size_mismatched": [],
+        "receipt_sha256": "4d0d5cb5f67ca366ef75a26152da1a53389b100674fa7954c66f9c8eb3c6e5ed"
+      },
+      {
+        "trajectory": "B_1302",
+        "update": "update_00012",
+        "after": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/B_1302/update_00012/update/output/after",
+        "bindings": 13,
+        "missing_or_size_mismatched": [],
+        "receipt_sha256": "37f09b9a0eca2a65146139443024a9787825223e8116b97140cfae8a79962886"
+      },
+      {
+        "trajectory": "P_1301",
+        "update": "update_00022",
+        "after": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/P_1301/update_00022/update/output/after",
+        "bindings": 13,
+        "missing_or_size_mismatched": [],
+        "receipt_sha256": "245ccced0070fe8d748e04955b224271af316976202d9645d5c6b4afe8e07478"
+      },
+      {
+        "trajectory": "P_1302",
+        "update": "update_00013",
+        "after": "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/pilot/P_1302/update_00013/update/output/after",
+        "bindings": 13,
+        "missing_or_size_mismatched": [],
+        "receipt_sha256": "75dee79dbdb7e751c5d4693d62400ab0aa22702f9dc84fb17fe855f7a73af8ff"
+      }
+    ]
+  },
+  "disk_policy_sizes": [
+    {
+      "bytes": 177249947648,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/checkpoints/step_82/policy"
+    },
+    {
+      "bytes": 177249947648,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/checkpoints/step_164/policy"
+    },
+    {
+      "bytes": 177249947648,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/checkpoints/step_334/policy"
+    },
+    {
+      "bytes": 177249947648,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/14B/checkpoints/step_497/policy"
+    },
+    {
+      "bytes": 98312151040,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/checkpoints/step_82/policy"
+    },
+    {
+      "bytes": 98312065024,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/checkpoints/step_164/policy"
+    },
+    {
+      "bytes": 98312081408,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/checkpoints/step_334/policy"
+    },
+    {
+      "bytes": 98312151040,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/checkpoints/step_497/policy"
+    },
+    {
+      "bytes": 49845899264,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/checkpoints/step_82/policy"
+    },
+    {
+      "bytes": 49845895168,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/checkpoints/step_164/policy"
+    },
+    {
+      "bytes": 49845891072,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/checkpoints/step_334/policy"
+    },
+    {
+      "bytes": 49845911552,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/checkpoints/step_497/policy"
+    },
+    {
+      "bytes": 21909929984,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/1.7B/checkpoints/step_82/policy"
+    },
+    {
+      "bytes": 21909929984,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/1.7B/checkpoints/step_164/policy"
+    },
+    {
+      "bytes": 21909929984,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/1.7B/checkpoints/step_334/policy"
+    },
+    {
+      "bytes": 21909929984,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/1.7B/checkpoints/step_497/policy"
+    },
+    {
+      "bytes": 126451748864,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/layout_probe_10-09-2026/checkpoints/tmp_step_2/policy"
+    }
+  ],
+  "recommended_disk_candidates_bytes": {
+    "14B": 531749842944,
+    "8B": 294936367104,
+    "4B": 149537705984,
+    "1.7B": 65729789952,
+    "layout_probe": 126451748864
+  },
+  "verification": {
+    "timestamp": "10-22-2026 12:24:52 PDT",
+    "v3_tests": {
+      "passed": 97,
+      "skipped": 0,
+      "failures": 0,
+      "log_sha256": "c9df7301a33e20a964f2bcff4525edbf5386371fd0d8601f0f4ab87642890523"
+    },
+    "root_tests": {
+      "passed": 1405,
+      "skipped": 15,
+      "warnings": 6,
+      "failures": 0,
+      "seconds": 382.95,
+      "log_sha256": "a94eebcdcfe4698850fa706338a32f3daee592d66ff5af47c1d98c8e4121f004"
+    }
+  }
+}

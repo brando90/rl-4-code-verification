@@ -123,7 +123,9 @@ def trajectory_state(arm, seed, pilot=None):
             continue
         partials.append({'update': int(work.name.split('_')[1]), 'generations': generation_count(work),
                          'scored': (work / 'score/groups.json').exists(),
-                         'optimizer_result': (work / 'update/output/result.json').exists()})
+                         # A result can be UNMEASURED, or precede a failed checkpoint write.
+                         'optimizer_result': ((work / 'update/output/result.json').is_file()
+                                              and (work / 'update/output/after/receipt.json').is_file())})
     complete = any((root / f'result_{h}.json').exists() for h in (30, 60))
     last = max((int(w.name[7:]) for w in updates), default=0)
     return {'partials': partials, 'complete': complete, 'next_update': last + 1,
