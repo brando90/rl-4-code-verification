@@ -5,7 +5,7 @@
 **TLDR:** Resume record for experiment 20. Dispatcher: Claude Code session local_268be283 (Mac); worker: tmux `codex-rl4cv-e20-irt-prompt-selection` on skampere1 (Codex gpt-6-astra, ultra, personal profile, full access).
 
 Created: 10-21-2026 11:18 PDT
-Last updated: 10-21-2026 20:39:06 PDT
+Last updated: 10-21-2026 20:41:06 PDT
 
 ## Goal
 - COMPLETE: post-stop pre-registered CPU Phase 0 for item response theory (IRT) prompt selection; trainer remains FAILED.
@@ -21,8 +21,9 @@ Last updated: 10-21-2026 20:39:06 PDT
 - No CPU blocker. Original run exit 1 occurred only in terminal progress logging after all outputs/freeze; separate metadata recovery complete, original receipt/source/outputs unchanged.
 - No new GPU jobs, pilot, trainer/gate changes or model calls. Test split closed. Resources: Sherlock 198.2292 allocated CPU-h; local 2.2394 actual CPU-h; historical 7.8258 GPU-h; API $0.
 ## Next steps
-- [p 10/10] Results pushed 7c326fb7ea5ef3ea45eeb0596e1bd52fbb9e4d77; Google final log and PR20 readback verified. Publish G0_FINISHED, then send matching CPU DONE once and push notification receipts.
-- Do not rerun fits. Recovery evidence: expt_v1/results/phase0b/phase0b_completion_recovery_receipt.json. All jobs terminal; owned temporary test checkout removed safely.
+- Authorized CPU scope COMPLETE. Results commit 7c326fb7ea5ef3ea45eeb0596e1bd52fbb9e4d77; one-line G0_FINISHED pushed in 128193c45b423e2f3f123b655508b2ce7cc33c53; PR20 OPEN/unmerged.
+- DONE delivered exactly once (Gmail 1a161b166186fb5c); Google final log readback verified. No job or fit remains to resume. Consult results.md and cpu_completion_integrity.json; preserve original failed-run receipt and frozen hashes.
+- [p 8/10] Review CPU calibration as decision input. Future trainer work requires a separate instruction; do not rerun fits or change the frozen gates.
 ## Brando to-do
 - none required to finish CPU scope; future trainer work needs a separate instruction.
 
@@ -210,3 +211,5 @@ Last updated: 10-21-2026 20:39:06 PDT
 - 10-21-2026 20:37:45 PDT -- Metadata-only terminal recovery completed and verified idempotent; exact original failure archived, failed native run receipt and all scientific hashes unchanged. Final artifact validator PASS; all 571 fits and 539 native-frozen items available. Final ledger/README/index written. Owned verification checkout removed without force after 21 source/symlink preservation checks; 82 generated cache files removed. Publishing final CPU results, then marker/Google/PR/email receipts.
 
 - 10-21-2026 20:39:06 PDT -- Final numerical results/report/freeze/recovery published 7c326fb7ea5ef3ea45eeb0596e1bd52fbb9e4d77, remote hash verified. Exact staged diff SHA 0f2a08a8137eef6cedca031a35eb60aca5be03c62fc50eb826c13ab783ea226c; 33 files, zero secret hits/diff errors. PR20 final title/body read back, OPEN/unmerged. Google final bullet exact readback verified. G0_FINISHED written as one line PASS, full AUC interval and immutable results hash; publishing marker before DONE notification.
+
+- 10-21-2026 20:41:06 PDT -- CPU completion marker pushed in 128193c45b423e2f3f123b655508b2ce7cc33c53 and remote bytes verified. Matching DONE accepted all four explicit BCC recipients at20:39:39PDT; Gmail exact-match count1/message1a161b166186fb5c confirms delivery. Final integrity PASS:583 artifact hashes/571 fits/46 tested sources, trainer and protocol unchanged since stop79d02c82; PR20 OPEN/unmerged, no temporary checkout remains. Hourly agents-config refresh unchanged217b6ee6. Final notification/integrity receipts and checkpoint published; authorized CPU scope complete, no further experiment run.
