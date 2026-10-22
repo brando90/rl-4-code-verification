@@ -6,11 +6,11 @@ from pathlib import Path
 from common import write_new,digest
 
 
-def run(config,stub=False):
+def _run(config,stub=False):
     from admission import check_admission
     from device_guard import check
     check_admission(config['admission'],require_launch=not stub)
-    check(config)
+    check(config, pre_engine=True)
     if os.environ.get('VLLM_USE_FLASHINFER_SAMPLER')!='0':raise ValueError('native sampler environment required')
     if stub:
         from stub_components import run as simulated
@@ -55,6 +55,27 @@ def run(config,stub=False):
         r=result[0];r.pop('optimizer_steps');r.pop('wall_seconds');r['maximum_train_prompt']=7753
         return r
     raise ValueError('unknown component')
+
+def run(config, stub=False):
+    from device_guard import Busy
+    from effect_receipts import no_effect_files, EFFECTS
+    root = Path(config['effect_root'])
+    identity = {'runtime_sha256': digest(root/'runtime.json'), 'effects_schema': 1}
+    write_new(root/'worker_started.json', identity)
+    try:
+        return _run(config, stub)
+    except BaseException as exc:
+        refused = isinstance(exc, Busy) and no_effect_files(root, pre_engine=True) and no_effect_files(
+            Path(config['stage_root']), pre_engine=True)
+        record = {**identity, 'kind': 'lease_refused' if refused else 'stage_failure',
+                  'error_type': type(exc).__name__, 'error': str(exc),
+                  'effects': {name: digest(root/(name+'.json')) for name in EFFECTS
+                              if (root/(name+'.json')).exists()}}
+        write_new(root/'worker_failed.json', record)
+        if refused:
+            write_new(root/'lease_refused.json', record)
+        raise
+
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--config',type=Path,required=True);p.add_argument('--stub-engines',action='store_true')

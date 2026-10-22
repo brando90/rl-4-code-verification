@@ -2,27 +2,87 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/CKPT_v4_implementation.md>
 **Companion:** <https://docs.google.com/document/d/1KqUi39sz532dIGg8EYCy6w62Q0KzO2XWhpM2MMSWvHE/edit>
-**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 17:21 PDT.
+**Created:** 10-20-2026 15:27 PDT. **Last updated:** 10-21-2026 19:27 PDT.
 
-**TLDR:** Dispatch 7 counts unrelated incomplete process reads without blocking readiness and keeps all positive boundary checks. The 31 A_1302 read-only probes returned 30 READY and one correct WAIT_STAGE_RUNNING over 616.61 seconds; all 30 calls with two waiting observations reached READY; 382 v4 / 16 watchdog / 1,405 root tests pass, the owned dummy test passes, and the new admission passes launch-check. No real pause or GPU use occurred.
+**TLDR:** Dispatch 8 implements sustained-idle leasing, non-consuming pre-engine refusals and durable zero-effect recovery; all 471 v4, 16 watchdog and 1,405 root tests pass (15 root skips). The retained `attempt_01` consumes zero A4 attempts; new admission `9209a408ce9ca1d6ae42e5769dd61c9228d0155dd89eba80ebc74a5ee490d2a4` passes launch-check. Master activation is prepared; no GPU or gate ran and the active cron/plans and A_1302 pause remain unchanged.
 
 ## State
 
-- Goal: relevant-process census and re-admission for experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4; CPU only, $0.
-- Owner: Codex gpt-6-astra / ultra, skampere1; effective danger-full-access / approval never; existing admitted dispatch checkout.
-- What ran: 70 new relevance tests; all required CPU suites; owned tmux stop control; 31 read-only --probe calls, 20-second cadence, 600-second start span.
-- Results: v4 382/382; watchdog 16/16; root 1,405 passed / 15 skipped / 6 warnings / 0 failures; dummy PASS, all owned resources removed.
-- Live result: {'READY': 30, 'WAIT_STAGE_RUNNING': 1}; 30/30 waiting calls READY, 62 observations, zero relevant errors; ignored_vanished 5–27 per observation, sum 613 (not unique processes).
-- Admission: phase2/admission_dispatch7.json; SHA-256 4d4b9918e97194bcb6616de4af62a40e894a63976d72743982524f25ae9b81fb; 75 local / 345 runtime bindings; launch-check PASS.
-- Wrapper: only V4_ADMISSION changed from admission_dispatch6.json to admission_dispatch7.json; bash -n PASS, not executed. Prepared/deployed plans agree.
-- Stuck / blocked: nothing; Dispatch 7 complete, implementation published at 2946eaea2c75bd7dae5dd3aeb7b1be4460dd68f2.
-- Next steps: [p 8/10, master-owned] use the updated existing wrapper for the real pause/gate start under its live conditions; no worker execution is authorized by this handoff.
-- Brando to-do: none.
-- Limits: no v3 signals, real pause-list writes, cron install, GPU use, shared-venv edits or frozen protocol/amendment/operational-record edits; $0.
-- Helper: dummy_tmux, inherited gpt-6-astra / ultra; full access / never and useful action verified; completed and cleaned up.
-- Companion: five current Dispatch 7 paragraphs synchronized to the existing Google Doc and read back exactly.
+- Goal: robust leasing and honest failure recovery for experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4; CPU only, $0.
+- Owner: Codex gpt-6-astra / ultra, skampere1; effective danger-full-access / approval never; existing admitted checkout.
+- What ran: 89 new CPU tests, required complete suites, exact original-source/traceback classification, admission and readmission checks.
+- Results: 471/471 v4; 16/16 watchdog; 1,405 root passed, 15 skipped, six existing warnings, zero final failures; 39 final admission/transition checks pass.
+- Attempt: `run/T1/probe/attempt_01` retained with all five original files; pre-engine refusal, zero consumed A4 attempts, no statistic; next directory will be `attempt_02`.
+- Admission: `phase2/admission_dispatch8.json`, SHA-256 `9209a408ce9ca1d6ae42e5769dd61c9228d0155dd89eba80ebc74a5ee490d2a4`; 80 local / 308 runtime bindings; launch-check PASS.
+- Recovery: ACCOUNT_OR_CONTINUE with one verified lease refusal; both original intents accepted under the explicit transition; no completed stage is rebound.
+- Protection: active plans/wrapper/cron and A_1302 pause unchanged; prepared versioned dispatch8 plans require master activation.
+- Companion: five Dispatch 8 paragraphs synchronized to the existing Google Doc and read back exactly.
+- Stuck / blocked: nothing; publication in progress. T1 and all gate statistics remain unmeasured.
+- Next steps: [p 10/10] rebase and publish; [p 8/10, master-owned] execute the activation block below to resume the gate chain.
+- Brando to-do: none. The existing experiment master owns activation.
+- Helpers: inherited gpt-6-astra / ultra, full access / never; useful reads and CPU checks verified; disjoint owned files, completed.
+- Limits: no GPU allocation/generation/optimizer, no gate, no v3 mutation, no cron edit, no shared-venv mutation, no frozen-document edits; $0.
 
-## Dispatch 7 evidence and master handoff
+## Dispatch 8 evidence and exact master commands
+
+[Verification](phase2/verification_dispatch8.json): **471 v4 tests, 16 watchdog tests and 1,405 root tests passed**, with 15 root skips and six existing warnings. This adds 89 tests (19 leasing, 42 effect-receipt/recovery, 28 transition/subprocess controls). The final 39 admission/transition checks also pass after candidate plan preparation and the admission command-line update. Counts are deterministic verification, not statistical estimates; confidence intervals and p-values do not apply. The first complete v4 run exposed a newly added receipt-mutation regression (433 passed, one failed); the worker now verifies the complete leaf refusal receipt and the terminal effect-marker inventory, and the final full suite passes.
+
+The guard takes two complete compute/mapping/reservation observations at least **60 seconds apart**, while retaining the shared v4/v3 locks. Any compute process from any user, occupied lock, malformed/unreadable reservation, changed device identity or unfinished active v3 lease refuses admission. Expiry alone does not release an unfinished v3 lease. A fresh check immediately before engine loading verifies the allocator identity and held lock descriptors; it rejects compute without reading a foreign process environment. Two observations cannot prevent a foreign process arriving afterwards; runtime guards still stop on that race.
+
+Workers synchronize markers before model/engine loading, generation or optimizer construction. Their terminal receipts bind the runtime and exact marker inventory. The ledger writes the exact three-field `infrastructure_failure.json` only after a failed, terminated worker proves zero responses, no optimizer start and no statistic reservation across the operation. A missing terminal proof, started generation without flushed responses, earlier component generation, optimizer intent or statistic remains a stop. These decisions use durable files; absence of generation files alone never authorizes retry.
+
+A pre-engine refusal writes a leaf `lease_refused.json`; the parent releases its lease and both locks before delaying **30 seconds** and trying a fresh lease. Each component call allows at most **120 trials** and records each refusal/retry. The ledger also checks the cumulative operation refusal cap before creating another directory; it reports `STOP_LEASE_CAP` at exhaustion. Allocation waiting is separately bounded at seven days with logged 30-second retries. A refusal that follows an earlier component's generation never makes the whole operation empty. Empty real attempts retain the three-attempt infrastructure limit.
+
+[The existing-attempt classification](phase2/attempt_01_classification_dispatch8.json) records **PRE_ENGINE_LEASE_REFUSAL**, **zero consumed A4 attempts**, exit code 1 and the unchanged **13.4375581741333 device-seconds**. Its exact admitted traceback ends at the first `stage_worker.run(): check(config)` call, before runtime imports, component dispatch, tokenizer/model load or engine construction. All five original attempt files, the original admission, six original source snapshots and the released lease are hash-bound. There were zero generation files, no R0 output directory, no statistic reservation and no completed-stage receipt. The worker is gone. The old ledger prematurely wrote `started.json` before leasing; that filename and `attempt_01` are preserved as history. Under this dispatch's explicit pre-engine rule it does **not** consume an A4 attempt; inherited A4's engine-construction failures remain consumed real failures, and no frozen wording is edited.
+
+[The new admission](phase2/admission_dispatch8.json), **SHA-256 `9209a408ce9ca1d6ae42e5769dd61c9228d0155dd89eba80ebc74a5ee490d2a4`**, binds 80 local and 308 runtime/evidence files. [The explicit transition](phase2/readmission_dispatch8.json) permits only the admission field to change for the exact original `T1/intent.json` and `T1/probe/intent.json`; payloads, predecessors, mode and original bytes remain fixed. T1 has no completed stage to migrate. The next directory is `attempt_02`, while the first actual engine attempt still has all three infrastructure slots available. A future T1 receipt uses the new admission and binds the retained old-intent history. [Read-only handoff verification](phase2/master_handoff_dispatch8.json) checks both intent transitions and the existing designated pause without running T1.
+
+The A_1302 pause stays valid and byte-identical: `/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/autoresume_paused.json`, SHA-256 **`3612076677a23a847b32e386f9bd93713f59d12232a11cb1cb9ed70d1d680ba2`**. It is the master's existing `dead-runner-not-restarted` record. Do not rerun the old pause wrapper: its admission remains dispatch7 and this dispatch does not need another v3 pause.
+
+The running cron job opens its plan anew on every tick; it has no persistent Python state to reload. Its existing unversioned plan and cron line were deliberately left untouched. With the changed bound source, dispatch7 now fails admission rather than launching. Prepared candidates are `/lfs/skampere1/0/brando9/rl4cv_e13v4/launch_plan_dispatch8.json` and `watchdog_plan_dispatch8.json`; the latter invokes the former. The master's installer command below replaces only the tagged v4 cron line. A controller already running retains its old command-line admission and cannot hot-reload; the master must let it exit or stop its own old controller before launching anew. No `rl4cv-e13v4-stages` session was present at handoff inspection. No process was signalled in this dispatch.
+
+**Copy-ready sentence for the master:** I fixed sustained-idle leasing and zero-effect recovery in experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4, with 471 v4, 16 watchdog and 1,405 root tests passing, the retained first T1 directory classified as a non-consuming pre-engine refusal, and a new verified admission ready for master activation without any GPU or gate execution.
+
+Run the following block **as the experiment master**, after syncing this publication and retaining the established no-veto condition. These are prepared resume commands, **not executed by this dispatch**. If a controller has since started, inspect its admission first and allow it to exit or stop it as its owner; a second `launch_control` call returns `ALREADY_RUNNING` and does not replace it.
+
+```bash
+set -euo pipefail
+cd /lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification
+V4_PY=/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python
+V4_ROOT=$PWD/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4
+V4_WORK=/lfs/skampere1/0/brando9/rl4cv_e13v4
+V4_ADMISSION=$V4_ROOT/phase2/admission_dispatch8.json
+export HF_HUB_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1 VLLM_USE_FLASHINFER_SAMPLER=0
+export PYTHONPATH=$PWD/src E13V4_A3_NO_VETO=1
+
+sha256sum --check <<'SHA'
+9209a408ce9ca1d6ae42e5769dd61c9228d0155dd89eba80ebc74a5ee490d2a4  experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_dispatch8.json
+3612076677a23a847b32e386f9bd93713f59d12232a11cb1cb9ed70d1d680ba2  /lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/autoresume_paused.json
+SHA
+"$V4_PY" "$V4_ROOT/phase2/admission.py" launch-check --record "$V4_ADMISSION"
+"$V4_PY" "$V4_ROOT/phase2/recovery.py" --work "$V4_WORK/run"
+# Expected: ACCOUNT_OR_CONTINUE; attempt_01 listed under lease_refusals.
+
+# Activate the candidate watchdog; this is the master's cron edit.
+"$V4_PY" "$V4_ROOT/phase2/install_watchdog.py"   --python "$V4_PY" --plan "$V4_WORK/watchdog_plan_dispatch8.json"   --log "$V4_WORK/watchdog.log" --admission "$V4_ADMISSION" --install
+# Start a fresh controller using dispatch8 and --recover; the stage sequence leases later.
+"$V4_PY" "$V4_ROOT/phase2/launch_control.py" --plan "$V4_WORK/launch_plan_dispatch8.json"
+"$V4_PY" "$V4_ROOT/phase2/runner.py" progress   --work "$V4_WORK/run" --admission "$V4_ADMISSION" --engine local
+```
+
+CPU reproduction (no gate command):
+
+```bash
+export CUDA_VISIBLE_DEVICES='' HF_HUB_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1
+export PYTHONPATH=/lfs/skampere1/0/brando9/rl4cv_e13v4/test_deps:$PWD/src
+"$V4_PY" -m pytest -q "$V4_ROOT/tests"
+"$V4_PY" -m pytest -q "$V4_ROOT/../expt_v3/tests/test_autoresume_watchdog.py"
+PATH=/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin:$PATH   PYTHONPATH=/lfs/skampere1/0/brando9/rl4cv_e09/nemo_rl:$PYTHONPATH make test
+```
+
+The existing checkpoint is outside admission's hash closure to avoid circular evidence. The immutable seal command and its input list are retained at `/lfs/skampere1/0/brando9/rl4cv_e13v4/dispatch8_evidence/seal_admission.py`. This pre-existing checkout remains because the admitted deployment paths depend on it; no temporary checkout was created.
+
+## Historical Dispatch 7 evidence and master handoff (superseded)
 
 The [verification receipt](phase2/verification_dispatch7.json) records **382 v4 / 16 watchdog / 1,405 root tests passed**, with 15 root skips, six existing warnings and zero final failures. The 70 added relevance cases cover unrelated failures; vanished/unreadable runners, group members, runner/thread children and argv/cwd/descriptor references; children that disappear before refresh or before any census identity can be read; and the same cases in stopped observations. Two initial fixture assertions expected WAIT_OBSERVATION for live pilot references with denied descriptors; their pre-existing WAIT_STAGE_RUNNING precedence was retained and the assertions corrected. The previous 131 freeze/boundary controls also pass.
 
@@ -423,3 +483,9 @@ I have the experiment 13 v4 CPU implementation passing 89 tests, with the histor
 10-21-2026 17:19 PDT — Final CLI launch-check PASS with 4d4b9918e97194bcb6616de4af62a40e894a63976d72743982524f25ae9b81fb; five Google companion paragraphs synchronized and verified by readback.
 
 10-21-2026 17:21 PDT — Dispatch 7 LANDED 2946eaea on main; remote SHA matched, all owned hashes and post-rebase admission verified, companion readback complete, dummy resources removed; real pause remains master-owned.
+
+10-21-2026 19:15 PDT — Dispatch 8: sustained-idle and durable-effect implementation entered CPU verification; original attempt_01 classified pre-engine refusal without deleting or rewriting original files; active plans/cron/pause preserved.
+
+10-21-2026 19:24 PDT — Dispatch 8 verified: 471 v4 / 16 watchdog / 1,405 root pass (15 root skips), 39 final admission checks pass; original attempt retained as non-consuming refusal, admission 1a07cdc4c0295639965b561fd34664d71e9d51eb1379db1b16d4fb3d224bd162 sealed; active cron/plans/pause unchanged; publication next.
+
+10-21-2026 19:27 PDT — Corrected README current-verification links and resealed its binding only; final admission 9209a408ce9ca1d6ae42e5769dd61c9228d0155dd89eba80ebc74a5ee490d2a4; original unpublished seal preserved privately, code/test bindings unchanged.

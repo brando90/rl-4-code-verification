@@ -5,6 +5,7 @@ from pathlib import Path
 from admission import check_admission
 from common import digest, write_new
 from device_guard import check
+from effect_receipts import mark
 from generation_contract import engine_kwargs, sampling_kwargs, extract_raw
 
 
@@ -25,6 +26,8 @@ def generate(config, cells, *, root, full, receipt=True):
     os.environ['VLLM_USE_FLASHINFER_SAMPLER']='0'
     from vllm import LLM, SamplingParams
     from transformers import AutoTokenizer
+    check(config, pre_engine=True)
+    mark(config, 'engine_started')
     root=Path(root);root.mkdir(parents=True,exist_ok=False)
     write_new(root/'intent.json',{'admission_sha256':digest(config['admission']),'cells':cells,'full_receipts':full})
     tokenizer=AutoTokenizer.from_pretrained(config['tokenizer'],local_files_only=True)
@@ -37,6 +40,7 @@ def generate(config, cells, *, root, full, receipt=True):
     for offset in range(0,len(cells),32):
         check(config);chunk=cells[offset:offset+32]
         params=[SamplingParams(**{**sampling_kwargs(c['seed'],[151643,151645]),'logprobs':64 if receipt else None}) for c in chunk]
+        mark(config, 'generation_started')
         requests=engine.generate([{'prompt_token_ids':c['prompt_token_ids']} for c in chunk],params,use_tqdm=False)
         if len(requests)!=len(chunk):raise ValueError('generation count changed; no resampling')
         for index,(cell,request) in enumerate(zip(chunk,requests),start=offset):

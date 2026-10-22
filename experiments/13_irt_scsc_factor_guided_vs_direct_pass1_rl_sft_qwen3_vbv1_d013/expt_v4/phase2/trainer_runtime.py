@@ -8,6 +8,7 @@ import time
 import legacy
 from legacy import HERE,V2
 from device_guard import check
+from effect_receipts import mark
 from common import digest,object_digest,write_new
 from training_checkpoint import save,restore,owned_call
 from worker_state import parameter_digest,optimizer_digest,initialize_rng
@@ -30,6 +31,9 @@ def policy_session(config,*,checkpoint=None,init_optimizer=True):
     if (policy_config['precision']!='float16' or policy_config['generation']['vllm_cfg']['precision']!='float16'
             or policy_config['model_name']!=config['initial_model']):
         raise ValueError('S2 trainer model or numerical configuration changed')
+    check(config, pre_engine=True)
+    mark(config, 'engine_started')
+    if init_optimizer:mark(config, 'optimizer_started')
     tokenizer=AutoTokenizer.from_pretrained(config['tokenizer'],local_files_only=True)
     ACTOR_ENVIRONMENT_REGISTRY['nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker']=sys.executable
     original_pythonpath=os.environ.get('PYTHONPATH')

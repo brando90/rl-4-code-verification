@@ -24,7 +24,7 @@ def source_files(root):
     return sorted(paths)
 
 
-def prepare(root,output,*,runtime_bindings=()):
+def prepare(root,output,*,runtime_bindings=(),readmission=None):
     root=Path(root).resolve()
     if digest(root/'PROTOCOL.md')!=PROTOCOL_SHA256:raise ValueError('frozen protocol changed')
     if digest(root/AMENDMENT)!=AMENDMENT_SHA256:raise ValueError('frozen amendment changed')
@@ -43,8 +43,9 @@ def prepare(root,output,*,runtime_bindings=()):
             'runtime_bindings':[{'path':str(p),'sha256':digest(p)} for p in runtime_bindings],
             'context':json.loads((root/'phase2/context_values.json').read_text()),
             'blockers':[],'runtime_conditions':RUNTIME_CONDITIONS,'amendments':AMENDMENTS,
-            'launch_measurements':'V4-T1, G0, T2, T3, T4 and B audits have not run; no gate was retried.',
+            'launch_measurements':'No completed gate. Dispatch-7 T1 attempt_01 refused before engine loading; retained and classified separately.',
             'gpu_allocations':0,'generations':0,'optimizer_steps':0}
+    if readmission is not None:result['readmission']=readmission
     write_new(output,result)
     check_admission(output,require_launch=False)
     return result
@@ -151,16 +152,21 @@ def runtime_files(root):
     files.extend(Path(r['suite']['path']) for r in json.loads(SUITES.read_text())['rows'])
     for key in ('initial_model','tokenizer'):
         files.extend(p for p in Path(cfg[key]).iterdir() if p.is_file())
-    files.extend(Path('/lfs/skampere1/0/brando9/rl4cv_e13v4')/(name+'.json') for name in ('launch_plan','watchdog_plan'))
+    # Bind immutable candidate plans, leaving the active cron plans untouched.
+    for name in ('launch_plan','watchdog_plan'):
+        files.append(Path('/lfs/skampere1/0/brando9/rl4cv_e13v4')/(name+'_dispatch8.json'))
     return sorted(set(files))
 
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=['prepare','check','launch-check'])
     p.add_argument('--root',type=Path,default=Path(__file__).resolve().parents[1]);p.add_argument('--record',required=True,type=Path)
+    p.add_argument('--readmission',type=Path)
+    p.add_argument('--evidence',type=Path,action='append',default=[])
     a=p.parse_args()
     if a.action=='prepare':
-        paths=runtime_files(a.root)
-        r=prepare(a.root,a.record,runtime_bindings=paths)
+        paths=runtime_files(a.root)+a.evidence
+        if a.readmission:paths.append(a.readmission)
+        r=prepare(a.root,a.record,runtime_bindings=paths,readmission=json.loads(a.readmission.read_text()) if a.readmission else None)
     else:r=check_admission(a.record,require_launch=a.action=='launch-check')
     print(json.dumps({'status':r['status'],'bindings':len(r['bindings']),'admission_sha256':digest(a.record),'blockers':r['blockers'],'runtime_conditions':r.get('runtime_conditions',[])}))

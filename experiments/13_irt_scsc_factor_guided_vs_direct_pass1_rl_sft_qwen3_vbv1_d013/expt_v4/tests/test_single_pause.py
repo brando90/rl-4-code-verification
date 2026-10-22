@@ -212,7 +212,8 @@ def test_controller_propagates_verified_veto_flag_to_tmux(tmp_path,monkeypatch):
 def test_pilot_requires_three_idle_unlocked_devices_and_leaves_no_reservation(tmp_path):
     from device_lease import pilot_capacity
     from device_guard import Busy
-    leases=tmp_path/'leases';v3=tmp_path/'v3';v3.mkdir()
+    leases=tmp_path/'leases';v3=tmp_path/'v3';(v3/'phase2').mkdir(parents=True)
+    for index in (0,5,7):(v3/f'gpu_{index}.lock').touch()
     devices={i:f'GPU-{i}' for i in (0,5,7)}
     probe=lambda:(devices,[])
     kw=dict(probe=probe,host='skampere1',v3_work=v3)

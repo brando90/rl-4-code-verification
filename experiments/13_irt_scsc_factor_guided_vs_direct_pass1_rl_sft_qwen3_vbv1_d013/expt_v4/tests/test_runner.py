@@ -96,7 +96,11 @@ def test_lease_mocked_idle_guard_and_environment_restore(tmp_path,monkeypatch):
     import os
     from device_lease import allocation
     def probe():return {0:'GPU-test'},[]
-    with allocation(tmp_path,lambda:None,probe=probe,host='skampere1') as p:
+    v3=tmp_path/'v3';(v3/'phase2').mkdir(parents=True);(v3/'gpu_0.lock').touch()
+    ticks=[0.0]
+    def sleep(seconds):ticks[0]+=seconds
+    with allocation(tmp_path,lambda:None,probe=probe,host='skampere1',v3_work=v3,
+                    clock=lambda:ticks[0],sleep=sleep) as p:
         assert os.environ['CUDA_VISIBLE_DEVICES']=='0'
         assert json.loads(p.read_text())['owner']=='e13v4'
     assert os.environ['CUDA_VISIBLE_DEVICES']=='' and p.with_suffix('.end.json').exists()

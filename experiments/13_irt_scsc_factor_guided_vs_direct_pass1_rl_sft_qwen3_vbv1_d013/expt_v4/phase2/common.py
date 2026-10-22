@@ -40,3 +40,8 @@ def write_new(path, value):
             stream.write(canonical(value) + b'\n')
         stream.flush()
         os.fsync(stream.fileno())
+    descriptor = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
+    try:
+        os.fsync(descriptor)
+    finally:
+        os.close(descriptor)

@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import time
 from common import digest, object_digest, write_new
+from effect_receipts import record_failure, verified_failure, retryable_empty
 
 
 class RecoveryRequired(RuntimeError):
@@ -35,6 +36,10 @@ class Ledger:
         self.root=Path(root); self.admission=str(Path(admission).resolve())
         self.identity={'condition':'e13v4','admission_sha256':digest(admission),'synthetic':synthetic}
 
+    def readmitted(self, path, intent):
+        from readmission import accepts
+        return accepts(self.admission, self.root, path, intent)
+
     def completed(self, stage):
         path=self.root/stage/'receipt.json'
         if not path.exists(): return None
@@ -58,7 +63,7 @@ class Ledger:
         root=self.root/stage;root.mkdir(parents=True,exist_ok=True)
         intent={**self.identity,'stage':stage,'predecessors':bindings}
         if (root/'intent.json').exists():
-            if read(root/'intent.json')!=intent: raise ValueError('stage identity changed')
+            if read(root/'intent.json')!=intent and not self.readmitted(root/'intent.json',intent): raise ValueError('stage identity changed')
         else: write_new(root/'intent.json',intent)
         return None
 
@@ -67,7 +72,7 @@ class Ledger:
         root=self.root/stage/name;root.mkdir(parents=True,exist_ok=True)
         intent={**self.identity,'payload':payload,'payload_sha256':object_digest(payload)}
         if (root/'intent.json').exists():
-            if read(root/'intent.json')!=intent: raise ValueError('operation inputs changed')
+            if read(root/'intent.json')!=intent and not self.readmitted(root/'intent.json',intent): raise ValueError('operation inputs changed')
         else: write_new(root/'intent.json',intent)
         attempts=sorted(root.glob('attempt_*'))
         if attempts:
@@ -77,16 +82,22 @@ class Ledger:
                 for name,sha in record['bindings'].items():
                     if digest(last/name)!=sha:raise ValueError('operation evidence changed')
                 return read(last/'output.json')
-            # Never infer zero generation from the absence of response files:
-            # the engine may have died between generating and flushing them.
-            if not recover:raise RecoveryRequired('partial operation requires explicit recovery')
-            failure=last/'infrastructure_failure.json'
-            if not failure.exists() or read(failure)!={'generated_responses':0,'optimizer_started':False,'statistics_started':False}:
-                raise RecoveryRequired('unknown or partial effects; retain without resampling')
-            if len(attempts)>=3:raise RecoveryRequired('A4 infrastructure cap of 3 exhausted')
+            refused=verified_failure(last,refused=True)
+            if not refused:
+                if not recover:raise RecoveryRequired('partial operation requires explicit recovery')
+                if not retryable_empty(last):
+                    raise RecoveryRequired('unknown or partial effects; retain without resampling')
+            consumed=sum(not verified_failure(p,refused=True) for p in attempts)
+            if consumed>=3:raise RecoveryRequired('A4 infrastructure cap of 3 exhausted')
+            from recovery import refusal_count
+            if refusal_count(root)>=120:raise RecoveryRequired('lease refusal cap of 120 exhausted')
         attempt=root/f'attempt_{len(attempts)+1:02d}';attempt.mkdir()
         write_new(attempt/'started.json',{**self.identity,'pid':os.getpid(),'started_unix':time.time()})
-        output=action(attempt,payload)
+        try:
+            output=action(attempt,payload)
+        except BaseException:
+            record_failure(attempt)
+            raise
         write_new(attempt/'output.json',output)
         write_new(attempt/'complete.json',{'bindings':tree_bindings(attempt)})
         return output
@@ -100,6 +111,6 @@ class Ledger:
 
     def finish(self, stage, result):
         root=self.root/stage;intent=read(root/'intent.json')
-        record={**intent,'status':result['status'],'result':result,'artifacts':tree_bindings(root)}
+        record={**intent,**self.identity,'status':result['status'],'result':result,'artifacts':tree_bindings(root)}
         write_new(root/'receipt.json',record)
         return record
