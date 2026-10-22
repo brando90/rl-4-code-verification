@@ -91,6 +91,12 @@ def archive_without_generations(arm, seed, update):
     log(f'archived {arm}_{seed} update {update} with zero generations')
 
 
+def optimizer_complete(work):
+    """A result alone is not a resumable optimizer state (UNMEASURED has no after/)."""
+    return ((work / 'update/output/result.json').is_file()
+            and (work / 'update/output/after/receipt.json').is_file())
+
+
 def account(arm, seed, update, admission_path):
     """Write the normal summary for an update whose optimizer result is already on disk."""
     root = PILOT / f'{arm}_{seed}'
@@ -98,8 +104,9 @@ def account(arm, seed, update, admission_path):
     if (work / 'summary.json').exists():
         return
     result_path = work / 'update/output/result.json'
-    if not result_path.exists():
-        raise RuntimeError(f'{arm}_{seed} update {update} has no optimizer result')
+    if not optimizer_complete(work):
+        raise RuntimeError(f'{arm}_{seed} update {update} has no complete optimizer checkpoint; '
+                           'result.json alone cannot be accounted')
     if len(generations(work)) != 256:
         raise RuntimeError(f'{arm}_{seed} update {update} does not have 256 generations')
     os.environ['CUDA_VISIBLE_DEVICES'] = ''
@@ -168,18 +175,22 @@ def retry_optimizer(arm, seed, update, admission):
     work = root / f'update_{update:05d}'
     if (work / 'summary.json').exists():
         return
-    if (work / 'update/output/result.json').exists():
+    if optimizer_complete(work):
         account(arm, seed, update, ADMISSION)
         return
     if not (work / 'score/groups.json').exists() or len(generations(work)) != 256:
         raise RuntimeError(f'{arm}_{seed} update {update} is not a scored complete generation')
+    previous = json.loads((root / f'update_{update-1:05d}/summary.json').read_text())
+    if not (Path(previous['checkpoint']) / 'receipt.json').is_file():
+        raise RuntimeError('previous completed update has no checkpoint receipt; diagnosis required')
     failed = work / 'update'
     if failed.exists():
         dest = unique_dir(work / 'update_failed_permission_10-19-2026')
         failed.rename(dest)
         log(f'preserved failed optimizer attempt for {arm}_{seed} update {update}')
+    if (work / 'export').exists():
+        (work / 'export').rename(unique_dir(work / 'export_failed_optimizer'))
     park_old_lease(work)
-    previous = json.loads((root / f'update_{update-1:05d}/summary.json').read_text())
     provenance = {'condition': 'v3-A7', 'phase': 'pilot', 'arm': arm, 'run_seed': seed,
                   'update': update, 'admission_sha256': digest(ADMISSION)}
     kwargs = dict(run_seed=seed, provenance=provenance, cells_path=str(work / 'cells.json'),
@@ -238,7 +249,7 @@ def resume_partials():
             if (work / 'summary.json').exists():
                 continue
             update = int(work.name.split('_')[1])
-            if (work / 'update/output/result.json').exists():
+            if optimizer_complete(work):
                 account(arm, seed, update, ADMISSION)
                 continue
             if not generations(work):
