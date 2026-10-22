@@ -5,7 +5,7 @@
 **TLDR:** Resume record for experiment 20. Dispatcher: Claude Code session local_268be283 (Mac); worker: tmux `codex-rl4cv-e20-irt-prompt-selection` on skampere1 (Codex gpt-6-astra, ultra, personal profile, full access).
 
 Created: 10-21-2026 11:18 PDT
-Last updated: 10-21-2026 19:36:32 PDT
+Last updated: 10-21-2026 19:49:27 PDT
 
 ## Goal
 - Complete post-stop pre-registered Phase 0 CPU scoring and item response theory (IRT) gate G0; trainer stays FAILED.
@@ -16,11 +16,11 @@ Last updated: 10-21-2026 19:36:32 PDT
 - Scoring complete and audited: 4312/4312 strict, 191 successes, 74/539 active tasks. Smooth4202/4312 known;110duplicate-identity cells missing. D-10911859calls/64receipts/zeroauditerrors. Saved-smokeT1FAIL; trainerFAILED (2.61982% >1%).
 - Existing allocation 7.8258/200 GPU-h; no new GPU jobs, pilot, trainer or gate changes authorized. API $0; test split closed.
 ## Stuck / blocked
-- Trainer admission remains FAILED. CPU scoring and collection complete; no numerical fits yet. Strict G0 uses all4312strict outcomes independently of110missing smooth cells.
+- Trainer admission remains FAILED. CPU scoring and collection complete; Phase0b fits running since19:39:27PDT. Strict G0 uses all4312strict outcomes independently of110missing smooth cells.
 ## Next steps
-- [p 10/10] Commit/push verified phase0_cells_e20.csv and compact D-109 evidence, then launch /tmp/e20_run_phase0b.py with venv Python (all registered fits,4workers,CPUonly).
+- [p 10/10] Adopt running Phase0b session76019, wrapper3572093, child3573131. Receipt results/receipts/phase0b_run_receipt.json; progress results/phase0b/progress.json. Do not duplicate the fit process.
 - [p 10/10] Monitor results/phase0b/progress.json and receipt; finish reports, freeze verification, final CPU accounting, PR20 and G0_FINISHED with AUCinterval/results hash.
-- AllSlurmjobs terminal; monitor session70252 exited. Last pushed8b6b7b0d56c9ff7d14577bb004e93a51963c6e61. Fullmake1415PASS/17skip/6subtests;46sourcehashes unchanged. Preserve E20_FINISHED history.
+- AllSlurmjobs terminal; monitor session70252 exited. Last pushedd4614fd7e49414c83b739f0b46eb23a9c7eb6f66. Fullmake1415PASS/17skip/6subtests;46sourcehashes unchanged. Preserve E20_FINISHED history.
 ## Brando to-do
 - none; 32G question withdrawn after frozen-scorer audit. Preserve16G and native completed failure scores; incomplete evidence remains unresolved.
 
@@ -186,3 +186,9 @@ Last updated: 10-21-2026 19:36:32 PDT
 - 10-21-2026 19:34:18 PDT -- CPU monitor 20261022T023307Z: states {'COMPLETED': 63, 'OUT_OF_MEMORY': 8}; strict completion files 32/32, partial completion files 32/32, partial cells logged 4312/4312. Strict/partial diagnostic calls 3758/8101. Collection ready=True; trainer FAILED unchanged.
 
 - 10-21-2026 19:36:32 PDT -- Collector48892191 completed0:0 in321s; downloaded archive522331c409c58ea295e76e2159d9aca640e513b07dc27842d595dfb72e413fdd (3586544bytes). Import verified4312unique cells/539tasks and all generation fields,224source manifest files,11859compiler calls,64completionreceipts,zero audit errors. Strict191/4312 successes;74/539 active tasks. Smooth4202known (3203measured+999registeredparsezeros),110duplicate-declaration identities missing. Original strict negative exits12=(-11:5,-6:5,-9:2), allnativefailures retained. Per-cell score SHA1bd9b44703848fd03e606f10ed8f36fe2ae1ad45e16dc947af3221317ecf0f6a. Commit table before realfits; trainerFAILED unchanged.
+
+- 10-21-2026 19:39:48 PDT -- Per-cell table and fullcompactevidence pushed d4614fd7e49414c83b739f0b46eb23a9c7eb6f66; remotehashverified beforefits. Phase0b all registered stages launched19:39:27PDT onskampere1 CPUonly4workers, session76019 wrapperPID3572093 childtimePID3573131, /tmp/e20_run_phase0b.py; scoreSHA1bd9b447 anddriver24c2a19e recordedinphase0b_run_receipt.json. FinalSherlockallocation198.2291666667CPU-h/713625CPU-s across78chargedrows,all16ownedroots terminal. CSVCRLFbytes preserved with scopedresults.gitattributes; plain gitdiff--check passed. Source46hashes unchangedfrom1415passingtests.
+
+- 10-21-2026 19:44:55 PDT -- Descriptive summary independently reconciled and copied: strict191/4312=.044295 CI[.033537,.055478]; smooth4202/4312 observedmean.079069 CI[.066681,.091684],110missing fullmanifestbounds[.077052,.102562]. 10kbootstrap/400groups, p=n/a;445fullyobservedsmoothtasks,94bounded. SummarySHAf8b688a2d9e3080dea524324f41f996b7b43e98b03f8f043f3bb957c4fef9625. Canonical expt_v1/input_pins_e20.json copiedbyte-identically SHA777d9096. Hourly configrefresh19:40:31 unchanged217b6ee6. RealprimaryCV running; no G0yet.
+
+- 10-21-2026 19:49:27 PDT -- Google single-bullet update verified against fresh revision: committed scores/audit,198.2291667CPU-h and runningCPUfits; G0/freeze explicitlypending. Readbackreceipt google_cpu_progress5_receipt.json. OwnedSlurmmonitor session70252 completedexit0 andPID2437333 gone; no furtherSlurmpolls needed. Primaryprior search200/250 observed19:47; deterministicfinalvalidator /tmp/e20_verify_final_phase0.py prepared butnotrun onincompleteoutputs.
