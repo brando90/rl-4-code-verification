@@ -461,3 +461,30 @@ The death logs are in `$WR/phase2/autoresume_deaths/*10-21-2026_18*`. A_1301 and
 - re-admission and resume commands.
 
 No T1 statistic exists.
+
+## 10-21-2026 20:20 PDT: dispatch 8 done (admission `9209a408…`); v4 gate chain resumed; v3 counters cleared again
+
+- **Dispatch 8** (`f90aeaf5`, `fb2c3e3c`).
+  - **Leasing:** a device must be idle on two observations at least 60 s apart, with a recheck before the engine starts.
+  - **Refusals:** a pre-engine refusal releases the lease and does not consume an A4 attempt.
+  - **Records:** real zero-effect failures write `infrastructure_failure.json`.
+  - **`attempt_01`:** retained as a pre-engine lease refusal, consuming **zero** A4 attempts; the next directory is `attempt_02`.
+  - **Tests:** v4 471 passed, watchdog 16, root suite 1,405 passed with 15 skipped.
+  - **Admission:** `admission_dispatch8.json`, SHA-256 `9209a408ce9ca1d6ae42e5769dd61c9228d0155dd89eba80ebc74a5ee490d2a4`.
+- **Master ran dispatch 8's activation block at 20:19.**
+  - SHA checks passed for the admission and the A_1302 pause record (`36120766…`). `launch-check` reports ADMITTED.
+  - `recovery.py` returned `ACCOUNT_OR_CONTINUE`, listing `attempt_01` as a lease refusal.
+  - The dispatch 8 watchdog plan was installed (1 v4 cron line), and `launch_control` STARTED tmux `rl4cv-e13v4-stages`.
+  - Progress: all stages `PENDING`. T1 waits for a sustained-idle authorized GPU.
+- **v3 at 20:17.** B_1302 u13, P_1301 u22 and P_1302 u10 had again reached 3 restarts on foreign-GPU aborts. The master cleared those counters under the lock (backup `rl4cv_e13v4/autoresume_state_backup_10-21-2026_2020.json`). A_1302 stays at its limit and paused.
+
+  | Run | Completed updates | State |
+  |---|---|---|
+  | A_1301 | 16 | live |
+  | B_1301 | 21 | live, retrying u22 |
+  | B_1302 | 12 | relaunching |
+  | P_1301 | 21 | relaunching |
+  | P_1302 | 9 | relaunching |
+  | A_1302 | 6 | paused |
+
+- **Root cause still open.** `alexspan`'s short jobs on authorized GPU 7 make it look idle between jobs. The frozen v3 allocation (`memory.used ≤ 100 MB`) leases it, then aborts when the next foreign job lands. v4 now waits for a sustained idle window, but v3 cannot change without touching frozen code. Options are put to Brando.
