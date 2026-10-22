@@ -431,3 +431,33 @@ The death logs are in `$WR/phase2/autoresume_deaths/*10-21-2026_18*`. A_1301 and
    - Progress: all stages `PENDING`, with T1 waiting for an idle authorized GPU.
 
 **Risk: disk.** `/lfs/skampere1/0` is at 100%, with 277 GB free of 56 TB. `pilot_run.py` refuses a new update below 200 GiB free. This lane holds `rl4cv_e08` (3.3 TB, including the bound start policy), `rl4cv_e13v3` (903 GB) and `rl4cv_e13v2` (170 GB). Nothing is deleted without Brando.
+
+## 10-21-2026 19:10 PDT: v3 recovering; v4 T1 attempt 1 refused a flapping foreign GPU; dispatch 8 running
+
+**v3 at 19:00.** The watchdog shows:
+
+| Run | Watchdog action | Completed updates |
+|---|---|---|
+| A_1301 | skip (live) | 15 |
+| A_1302 | skip (paused, V4-A3) | 6 |
+| B_1301 | skip (live, retry of u22) | 21 |
+| B_1302 | archive_then_launch | 12 |
+| P_1301 | archive_then_launch (zero-generation partial) | 21 |
+| P_1302 | retry | 9 |
+
+**v4 T1 `attempt_01`, 18:48 PDT.** It failed after 13.4 s on `device_guard.Busy('compute ownership unreadable')`. A foreign process was on the leased GPU, and the guard correctly refused it.
+
+- It produced 0 generations and reserved no statistic.
+- The real stage path writes no `infrastructure_failure.json`, so `recovery.py` returns `STOP_PARTIAL` and the v4 watchdog is in DIAGNOSE.
+- `alexspan` runs short jobs on authorized GPU 7, so it looks idle in the gaps. This is the same foreign-GPU pattern that killed four v3 runs today.
+- The master did **not** hand-mark the attempt retryable. Under these conditions attempt 2 of 3 would likely be burned the same way.
+
+**[Dispatch 8](../expt_v4/PROMPT_dispatch_e13_v4_dispatch8_foreign_gpu_lease.md)** (`d02fe3cb`) runs in tmux `codex-rl4cv-e13v4-impl8` since 19:05 PDT, Codex `gpt-6-astra` at ultra effort. It adds:
+
+- sustained-idle leasing (two observations at least 60 s apart, plus a recheck before the engine starts);
+- pre-engine refusals that release the lease and are not counted as A4 attempts;
+- honest zero-effect `infrastructure_failure.json` records;
+- a classification of `attempt_01`;
+- re-admission and resume commands.
+
+No T1 statistic exists.
