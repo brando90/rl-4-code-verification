@@ -401,3 +401,33 @@ The exact commands are in the checkpoint's "Exact master commands" block.
   - **Admission:** `admission_dispatch7.json`, SHA-256 `4d4b9918e97194bcb6616de4af62a40e894a63976d72743982524f25ae9b81fb`. `launch-check` passes. The wrapper's admission line was updated (one-line diff).
 - **18:07:26: loop started** in tmux `e13v4-a1302-pauser`; `launch-check` exit 0. A_1302 now holds a GPU for a stage (`WAIT_STAGE_RUNNING`), so the pause lands at its next lease wait.
 - **Next:** a check at 18:45 PDT. Nothing is paused yet; all six v3 runs are running.
+
+## 10-21-2026 18:50 PDT: four v3 runs died on the foreign-GPU abort; A_1302 recorded paused; v4 gates released and controller started
+
+**What happened, 18:10–18:40.** The admitted v3 device guard aborts a stage (`PermissionError` reading `/proc/<foreign pid>/environ`, pid 1181258) when another user's process lands on a leased GPU. This killed four runs; the v3 watchdog's three restarts for each failed the same way:
+
+| Run | Failed update |
+|---|---|
+| A_1302 | 7 |
+| B_1301 | 22 |
+| B_1302 | 13 |
+| P_1302 | 10 |
+
+The death logs are in `$WR/phase2/autoresume_deaths/*10-21-2026_18*`. A_1301 and P_1301 were unaffected. At 18:45 GPU 7 was held by `alexspan`, leaving v3 GPUs 0 and 5.
+
+**The pause loop was not the cause.** At 18:10 it saw A_1302's runner disappear (`WAIT_RUNNER_IDENTITY`, then a crash at line 175 of `snapshot`) and stopped. It never reached READY or sent a signal.
+
+**Master actions (infrastructure only)** were made under the v3 watchdog lock, with atomic writes and a backup at `rl4cv_e13v4/autoresume_state_backup_10-21-2026_1850.json`.
+
+1. **A_1302 recorded as the designated V4-A3 pause**, using the method `dead-runner-not-restarted`.
+   - Its runner was already dead (checked: no live runner or retry). Per Brando's single-pause decision it is not restarted.
+   - The receipt in `autoresume_paused.json` records the cause, the death logs, 6 of 30 updates complete, and update 7 as partial and unmeasured. No signal was sent.
+   - The admitted pause tool was not applicable because there was no live runner to freeze. This is a disclosed deviation from the tool path, not from the decision.
+2. **Restart counters cleared** for B_1301 u22, B_1302 u13 and P_1302 u10, so the v3 watchdog retries their infrastructure-failed steps. A_1302 stays at its limit.
+3. **v4 started.**
+   - `launch_timing` reports gates released (designated pause recorded; veto window closed with no veto).
+   - The v4 watchdog cron was installed (`install_watchdog` exit 0).
+   - `launch_control.py` started the controller in tmux `rl4cv-e13v4-stages` at 18:48:29.
+   - Progress: all stages `PENDING`, with T1 waiting for an idle authorized GPU.
+
+**Risk: disk.** `/lfs/skampere1/0` is at 100%, with 277 GB free of 56 TB. `pilot_run.py` refuses a new update below 200 GiB free. This lane holds `rl4cv_e08` (3.3 TB, including the bound start policy), `rl4cv_e13v3` (903 GB) and `rl4cv_e13v2` (170 GB). Nothing is deleted without Brando.
