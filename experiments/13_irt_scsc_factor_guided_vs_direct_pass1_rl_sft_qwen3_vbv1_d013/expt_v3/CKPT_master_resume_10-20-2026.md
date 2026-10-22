@@ -392,3 +392,12 @@ The exact commands are in the checkpoint's "Exact master commands" block.
 - **16:59: loop stopped** between calls; A_1302 remains `S`.
 - **[Dispatch 7](../expt_v4/PROMPT_dispatch_e13_v4_dispatch7_relevant_observation_errors.md)** (`08048843`) runs in tmux `codex-rl4cv-e13v4-impl7`, Codex `gpt-6-astra` at ultra effort. It counts a vanished process only if it is relevant: the runner, its group or children, or a process referencing the pilot directory. All positive checks are kept. It then runs a 10-minute read-only probe and re-admits.
 - **State.** Nothing is paused; all six v3 runs are running.
+
+## 10-21-2026 18:10 PDT: dispatch 7 done (admission `4d4b9918…`); A_1302 pause loop running on it
+
+- **Dispatch 7** (`2946eaea`, `5fa671e3`). Only relevant vanished processes now block: the runner, its group or children, or a pilot-directory reference. Unrelated ones are counted as `ignored_vanished`.
+  - **Read-only probe of A_1302 (616.6 s):** 30 READY and 1 correct active-child wait. **All 30 of 30 clean waiting calls reached READY.**
+  - **Tests:** v4 382 passed, watchdog 16, root suite 1,405 passed with 15 skipped. The dummy tmux pane test passes.
+  - **Admission:** `admission_dispatch7.json`, SHA-256 `4d4b9918e97194bcb6616de4af62a40e894a63976d72743982524f25ae9b81fb`. `launch-check` passes. The wrapper's admission line was updated (one-line diff).
+- **18:07:26: loop started** in tmux `e13v4-a1302-pauser`; `launch-check` exit 0. A_1302 now holds a GPU for a stage (`WAIT_STAGE_RUNNING`), so the pause lands at its next lease wait.
+- **Next:** a check at 18:45 PDT. Nothing is paused yet; all six v3 runs are running.
