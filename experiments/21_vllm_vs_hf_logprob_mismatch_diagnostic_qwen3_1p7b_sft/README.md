@@ -23,7 +23,7 @@ Experiment 20 (smoke: 2.62% mismatched tokens vs a <=1% gate, STOPPED) and Exper
 | fp32, processed | bf16 | 786,413 | 8.14% | 352 | 0.189 | 0% / 21.7% / 56.5% | 21.4% / 18.1% / 2.7% |
 | **fp32, processed** | **fp32** | 786,413 | **0.01%** | 22 | 0.008 | 0% / 0.05% / 0.02% | 0.02% / 0.02% / 0.01% |
 | bf16, raw logprobs | bf16 (scored at T=0.6, mismatched reference, ignore) | 781,096 | 26.96% | 419 | 0.843 | n/a | n/a |
-| bf16, raw logprobs | bf16, full softmax at T=1 | 781,096 | 5.89% (full-softmax definition) | 0 | 0.151 | 0% / 23.0% / 81.8% | 48.3% / 41.4% / 5.3% (truncated def.) |
+| bf16, raw logprobs | bf16, full softmax at T=1 | 781,096 | 5.89% (full-softmax definition) | 0 | 0.151 | n/a (breakdowns in results json use the truncated reference, not comparable here) | n/a |
 
 The bf16-raw / T=0.6 row compares vLLM's temperature-1 raw logprobs against a T=0.6 reference, so its 27% is by construction and is not a finding; the T=1 row is the like-for-like one.
 
