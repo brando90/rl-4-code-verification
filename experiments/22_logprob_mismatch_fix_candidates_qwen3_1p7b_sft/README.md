@@ -38,7 +38,7 @@ IS correction does not change the mismatch share; it reweights. Measured on the 
 ## Findings
 1. The only candidates that bring the mismatch under 1% are those where both sides run the same 16/32-bit float format with more mantissa than bf16: fp16/fp16 0.109%, fp16 vLLM scored in fp32 0.045%, fp32 vLLM scored in fp16 0.083%, fp32/fp32 0.012%.
 2. Any bf16 side fails: 6.1-8.1%, whatever the other side. fp32 lm_head, fp16 or fp32 scoring of bf16 rollouts do not fix it.
-3. fp16/fp16 costs no extra memory over bf16 (fp32/fp32 does). It is the cheapest candidate that passes. fp32 vLLM is slower (about 2x longer generation here).
+3. fp16/fp16 costs no extra memory over bf16 (fp32/fp32 does). It is the cheapest candidate that passes. fp32 vLLM needs more memory and was not timed here.
 4. IS/TIS correction would clip almost nothing (0.06% beyond cap 2) and would not reduce the gate statistic; it is a reweighting, not a fix for this gate.
 5. Nothing here changes any frozen gate; these are numbers to design against.
 
