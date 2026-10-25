@@ -1,0 +1,91 @@
+{
+ "model": "/lfs/skampere1/0/brando9/rl4cv_e22_mismatch_fix/ckpt/step_658",
+ "gen": "out/gen_fp32proc.jsonl",
+ "scorer_dtype": "float32",
+ "lm_head_fp32": false,
+ "rollouts": 256,
+ "overall_truncated_support": {
+  "tokens": 786324,
+  "unsupported": 22,
+  "gt0.05_in_support": 70,
+  "share_mismatch(gt0.05+unsupported)": 0.000117000117000117,
+  "median_abs": 0.0,
+  "p99_abs": 0.007965143322944637,
+  "mean_abs": 0.0004495785628705522,
+  "max_abs": 0.10633516311645508
+ },
+ "overall_full_softmax": {
+  "tokens": 786324,
+  "unsupported": 22,
+  "gt0.05_in_support": 32727,
+  "share_mismatch(gt0.05+unsupported)": 0.04164822643083513,
+  "median_abs": 8.344646857949556e-07,
+  "p99_abs": 0.07445762634277342,
+  "mean_abs": 0.008622208350875309,
+  "max_abs": 0.5343304872512817
+ },
+ "by_position": {
+  "0-256": {
+   "tokens": 65536,
+   "unsupported": 7,
+   "gt0.05_in_support": 10,
+   "share_mismatch(gt0.05+unsupported)": 0.0002593994140625,
+   "median_abs": 6.336718797683716e-05,
+   "p99_abs": 0.011030769348144533,
+   "mean_abs": 0.0011136695397758105,
+   "max_abs": 0.05267000198364258
+  },
+  "256-1024": {
+   "tokens": 196608,
+   "unsupported": 9,
+   "gt0.05_in_support": 26,
+   "share_mismatch(gt0.05+unsupported)": 0.00017801920572916666,
+   "median_abs": 0.0,
+   "p99_abs": 0.01101786136627194,
+   "mean_abs": 0.0009823756733435883,
+   "max_abs": 0.10633516311645508
+  },
+  "1024-1000000000": {
+   "tokens": 524180,
+   "unsupported": 6,
+   "gt0.05_in_support": 34,
+   "share_mismatch(gt0.05+unsupported)": 7.6309664619024e-05,
+   "median_abs": 0.0,
+   "p99_abs": 0.004639678597450264,
+   "mean_abs": 0.00016672478388206157,
+   "max_abs": 0.09757375717163086
+  }
+ },
+ "by_entropy": {
+  "0-0.1": {
+   "tokens": 598691,
+   "unsupported": 0,
+   "gt0.05_in_support": 0,
+   "share_mismatch(gt0.05+unsupported)": 0.0,
+   "median_abs": 0.0,
+   "p99_abs": 0.0,
+   "mean_abs": 0.0,
+   "max_abs": 0.0
+  },
+  "0.1-1.0": {
+   "tokens": 122477,
+   "unsupported": 9,
+   "gt0.05_in_support": 63,
+   "share_mismatch(gt0.05+unsupported)": 0.0005878654767833961,
+   "median_abs": 0.00035656802356243134,
+   "p99_abs": 0.012602698802948013,
+   "mean_abs": 0.0012573837278974812,
+   "max_abs": 0.09757375717163086
+  },
+  "1.0-99": {
+   "tokens": 65156,
+   "unsupported": 13,
+   "gt0.05_in_support": 7,
+   "share_mismatch(gt0.05+unsupported)": 0.00030695561421818405,
+   "median_abs": 0.002013087272644043,
+   "p99_abs": 0.01638807773590088,
+   "mean_abs": 0.00306272742664741,
+   "max_abs": 0.10633516311645508
+  }
+ }
+}
