@@ -22,7 +22,7 @@ Exp 22 showed fp16 on both sides cuts the rollout-vs-scoring mismatch to 0.11% a
 | bf16 / bf16 (Exp 20 config, baseline) | 1 | 878,541 | 191 | 21,085 | 2.4217% | 0.00405 | 1.130 | fail |
 | bf16 / bf16 (baseline) | 2 | 861,170 | 180 | 20,638 | 2.4174% | 0.00402 | 1.588 | fail |
 
-Gate value (max over updates): fp16 0.0648% (pass, 15x under the gate); bf16 baseline 2.4217% (fail; Exp 20's recorded 2.6198% on Sherlock). Full-softmax diagnostic share (not the gate): fp16 1.03%, 1.06%; bf16 2.82%, 2.83%. Note the full-softmax variant for fp16 is just above 1%, because it counts tokens outside the sampling support that were never sampled-from; the Exp 20 gate uses the truncated support.
+Gate value (max over updates): fp16 0.0648% (pass, 15x under the gate); bf16 baseline 2.4217% (fail; Exp 20's recorded 2.6198% on Sherlock). Full-softmax diagnostic share (not the gate): fp16 1.03%, 1.06%; bf16 2.82%, 2.83%. The full-softmax variant for fp16 is just above 1%; I did not investigate why. The Exp 20 gate uses the truncated-support variant, which is the first number.
 
 ## Finiteness of fp16 training
 
