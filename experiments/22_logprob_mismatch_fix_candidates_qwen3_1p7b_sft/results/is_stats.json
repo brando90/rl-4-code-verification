@@ -1,0 +1,8 @@
+{
+ "note": "importance-ratio stats, ratio = exp(HF logprob - vLLM logprob) on in-support tokens; unsupported tokens counted as outside any band. Produced by code/is_analysis.py on the saved .npz (not committed, 15 MB gen files stay on skampere1).",
+ "bf16_gen__bf16_score": {"outside_[0.5,2]": 0.00062, "outside_[0.8,1.25]": 0.01316, "mean_abs_logratio": 0.01041, "mean_ratio": 0.99989, "mean_ratio_TIS_cap2": 0.99989, "gt0.05_share_ent_gt_0.1_only": 0.25802, "share_tokens_ent_gt_0.1": 0.23773},
+ "fp16_gen__fp16_score": {"outside_[0.5,2]": 0.00006, "outside_[0.8,1.25]": 0.00006, "mean_abs_logratio": 0.00136, "mean_ratio": 0.99999, "mean_ratio_TIS_cap2": 0.99999, "gt0.05_share_ent_gt_0.1_only": 0.00457},
+ "fp16_gen__fp32_score": {"outside_[0.5,2]": 0.00006, "outside_[0.8,1.25]": 0.00006, "mean_abs_logratio": 0.00138, "gt0.05_share_ent_gt_0.1_only": 0.0019},
+ "fp32_gen__fp32_score": {"outside_[0.5,2]": 0.00003, "outside_[0.8,1.25]": 0.00003, "mean_abs_logratio": 0.00045, "gt0.05_share_ent_gt_0.1_only": 0.00049},
+ "bf16_gen__fp32_score": {"outside_[0.5,2]": 0.0006, "outside_[0.8,1.25]": 0.00496, "mean_abs_logratio": 0.01083, "gt0.05_share_ent_gt_0.1_only": 0.32363}
+}
