@@ -1,0 +1,91 @@
+{
+ "model": "/lfs/mercury1/0/brando9/rl4cv_e21_logprob_mismatch/ckpt/step_658",
+ "gen": "out/gen_bf16proc.jsonl",
+ "scorer_dtype": "bfloat16",
+ "lm_head_fp32": false,
+ "rollouts": 256,
+ "overall_truncated_support": {
+  "tokens": 775985,
+  "unsupported": 463,
+  "gt0.05_in_support": 49380,
+  "share_mismatch(gt0.05+unsupported)": 0.06423191169932409,
+  "median_abs": 0.0,
+  "p99_abs": 0.25510250210762153,
+  "mean_abs": 0.010957814252757995,
+  "max_abs": 0.7933156490325928
+ },
+ "overall_full_softmax": {
+  "tokens": 775985,
+  "unsupported": 463,
+  "gt0.05_in_support": 65596,
+  "share_mismatch(gt0.05+unsupported)": 0.08512922285868928,
+  "median_abs": 1.4305104514278355e-06,
+  "p99_abs": 0.2711811405420305,
+  "mean_abs": 0.01637597481202516,
+  "max_abs": 0.8249273300170898
+ },
+ "by_position": {
+  "0-256": {
+   "tokens": 65536,
+   "unsupported": 106,
+   "gt0.05_in_support": 10472,
+   "share_mismatch(gt0.05+unsupported)": 0.161407470703125,
+   "median_abs": 0.0,
+   "p99_abs": 0.33774662017822266,
+   "mean_abs": 0.027791532883544422,
+   "max_abs": 0.7686846256256104
+  },
+  "256-1024": {
+   "tokens": 195716,
+   "unsupported": 248,
+   "gt0.05_in_support": 26720,
+   "share_mismatch(gt0.05+unsupported)": 0.13779149379713462,
+   "median_abs": 0.0,
+   "p99_abs": 0.3191770279407501,
+   "mean_abs": 0.023509594007227172,
+   "max_abs": 0.7686846256256104
+  },
+  "1024-1000000000": {
+   "tokens": 514733,
+   "unsupported": 109,
+   "gt0.05_in_support": 12188,
+   "share_mismatch(gt0.05+unsupported)": 0.023890055621069564,
+   "median_abs": 0.0,
+   "p99_abs": 0.1454746425151825,
+   "mean_abs": 0.004050049564249613,
+   "max_abs": 0.7933156490325928
+  }
+ },
+ "by_entropy": {
+  "0-0.1": {
+   "tokens": 585241,
+   "unsupported": 0,
+   "gt0.05_in_support": 1,
+   "share_mismatch(gt0.05+unsupported)": 1.708697784331583e-06,
+   "median_abs": 0.0,
+   "p99_abs": 0.0,
+   "mean_abs": 9.004918462357216e-08,
+   "max_abs": 0.052700474858284
+  },
+  "0.1-1.0": {
+   "tokens": 123564,
+   "unsupported": 240,
+   "gt0.05_in_support": 21236,
+   "share_mismatch(gt0.05+unsupported)": 0.17380466802628597,
+   "median_abs": 5.21540641784668e-08,
+   "p99_abs": 0.3610079288482666,
+   "mean_abs": 0.029634926396217797,
+   "max_abs": 0.7933156490325928
+  },
+  "1.0-99": {
+   "tokens": 67180,
+   "unsupported": 223,
+   "gt0.05_in_support": 28143,
+   "share_mismatch(gt0.05+unsupported)": 0.42223876153617146,
+   "median_abs": 0.03164947032928467,
+   "p99_abs": 0.36464337348938,
+   "mean_abs": 0.07233411983161377,
+   "max_abs": 0.7527952194213867
+  }
+ }
+}
