@@ -1,0 +1,11 @@
+--- code/train_e20.py	2026-10-25 15:39:18.159984178 -0700
++++ code/train_e24.py	2026-10-25 16:12:39.703913147 -0700
+@@ -338,6 +338,8 @@
+             fin = torch.isfinite(sp)
+             stats["mismatch_truncated_support"] = mismatch_summary(lt[fin], sp[fin], ins[fin])
+             stats["mismatch_full_softmax"] = mismatch_summary(lf[fin], sp[fin], torch.ones_like(ins[fin]))
++            self._e24_n = getattr(self, "_e24_n", 0) + 1
++            torch.save({"lt": lt[fin].half() if False else lt[fin], "lf": lf[fin], "sp": sp[fin], "ins": ins[fin]}, str(self.run / f"e24_tokens_u{self._e24_n:03d}.pt"))
+         return stats
+ 
+     # ------------------------------------------------------------------------------------------------- checkpoints
