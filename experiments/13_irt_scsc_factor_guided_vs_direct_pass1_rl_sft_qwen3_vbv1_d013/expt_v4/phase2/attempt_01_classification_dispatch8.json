@@ -1,0 +1,56 @@
+{"tldr": "The retained dispatch-7 T1 attempt_01 is a pre-engine lease refusal, consuming zero A4 attempts.",
+  "attempt": "/lfs/skampere1/0/brando9/rl4cv_e13v4/run/T1/probe/attempt_01",
+  "classification": "PRE_ENGINE_LEASE_REFUSAL",
+  "completed_stage": false,
+  "consumed_a4_attempts": 0,
+  "device_seconds": 13.4375581741333,
+  "evidence_path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/run/T1/probe/attempt_01/zero_effect_evidence.json",
+  "evidence_sha256": "95a006aeb32bf1d7e4897f6ff905b1004d8ae6fb86b36a44a276b551741a8a60",
+  "generated_response_files": 0,
+  "lease_refused_sha256": "87dc61c3b5c5480e863b40fd8c524d7fd50a352fcda0a8cee2e0be3a0abd9fdf",
+  "original_admission_sha256": "4d4b9918e97194bcb6616de4af62a40e894a63976d72743982524f25ae9b81fb",
+  "original_file_count": 5,
+  "preserved": {
+    "started.json": "05e4523be9ef898fcb7ecaa8942b32e23dc0872f4cad7bf417d5ee79269b391d",
+    "R0/execution.json": "9e607b79300cb83731030cf8bfae7901c5a83c39b1f6aee637de729fe79689c1",
+    "R0/launch.json": "9790505110df0a7d7d220fd1fd9cc36be633ee9f7d203a15663a26426dae9b58",
+    "R0/run.log": "416da801f34124159bd2f1fd91590d619e4f658a094aa7e86fc2300929ec4a8d",
+    "R0/runtime.json": "e1303dcb295eb89929ed328a04082bef933d1fea5153790fab444807abb2c4db"
+  },
+  "proof": {
+    "original_admission": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_dispatch7.json",
+    "source_bindings": {
+      "stage_worker.py": {
+        "snapshot": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dispatch8_evidence/original_stage_worker.py.txt",
+        "sha256": "4d492b388672031bb2db9b705d78c2bcb2d1221405d8e31af25330c50f65df58"
+      },
+      "stage_process.py": {
+        "snapshot": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dispatch8_evidence/original_stage_process.py.txt",
+        "sha256": "ef0b23627964da1df464deed193e8e609c9ea097fa9a0037c6af3bd0a340f1fa"
+      },
+      "stage_ledger.py": {
+        "snapshot": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dispatch8_evidence/original_stage_ledger.py.txt",
+        "sha256": "fa7d34d2588b785f52ea63f3c4d77bd99c0c6ec17036017cbb01c276027bbfae"
+      },
+      "device_guard.py": {
+        "snapshot": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dispatch8_evidence/original_device_guard.py.txt",
+        "sha256": "6120c9548b7b18fde7dd94091f16d79d70e9ac6e7f08dfc32972d4e679c3fef5"
+      },
+      "generation_runtime.py": {
+        "snapshot": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dispatch8_evidence/original_generation_runtime.py.txt",
+        "sha256": "22b7e52e65be98ec15902fa53c26cab8a95e128ed685297874a7ff73f03b4e97"
+      },
+      "local_engine.py": {
+        "snapshot": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dispatch8_evidence/original_local_engine.py.txt",
+        "sha256": "99ebb610389881717c0dd9850cac46d46b3f439dbe55bc1ee038c77e4a058c1b"
+      }
+    },
+    "lease_end": "/lfs/skampere1/0/brando9/rl4cv_e13v4/leases/e13v4-1435416-1792633907168353208.lease.end.json",
+    "lease_end_sha256": "f4c327dea8c7977f746372982b09f776267ee7a5cc8671dad88d971d11d256d8",
+    "call_boundary": "stage_worker.py run line 13 check(config), before runtime version checks and any component import or model load",
+    "original_worker_pid": 1824726,
+    "original_worker_gone": true,
+    "interpretation": "Dispatch 8 explicitly excludes pre-engine lease refusal; old ledger prematurely created started.json. No frozen scientific rule edited."
+  },
+  "statistics_reserved": false
+}

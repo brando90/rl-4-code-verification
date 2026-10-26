@@ -1,0 +1,242 @@
+{
+  "cleanup": {
+    "attempted": true,
+    "owned_processes_gone": true,
+    "session_gone": true
+  },
+  "direct_pane_child_is_sh_c": true,
+  "direct_pane_child_is_shell": true,
+  "events": [
+    {
+      "label": "baseline",
+      "monotonic_ns": 861481608203602,
+      "processes": {
+        "runner": {
+          "cmdline": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python -c import time\nwhile True:\n    time.sleep(10)",
+          "pgrp": 81767,
+          "pid": 81769,
+          "ppid": 81767,
+          "session": 81767,
+          "start_ticks": 86148134,
+          "state": "S",
+          "wchan": "hrtimer_nanosleep"
+        },
+        "shell": {
+          "cmdline": "/bin/sh -c /lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python -c 'import time\nwhile True:\n    time.sleep(10)'; :",
+          "pgrp": 81767,
+          "pid": 81767,
+          "ppid": 81765,
+          "session": 81767,
+          "start_ticks": 86148134,
+          "state": "S",
+          "wchan": "do_wait"
+        }
+      },
+      "utc": "2026-10-21T22:48:11.308864Z"
+    },
+    {
+      "elapsed_since_signal_seconds": 0.05008658,
+      "label": "group_sigstop_plus_0.05s",
+      "monotonic_ns": 861481658501553,
+      "processes": {
+        "runner": {
+          "cmdline": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python -c import time\nwhile True:\n    time.sleep(10)",
+          "pgrp": 81767,
+          "pid": 81769,
+          "ppid": 81767,
+          "session": 81767,
+          "start_ticks": 86148134,
+          "state": "S",
+          "wchan": "hrtimer_nanosleep"
+        },
+        "shell": {
+          "cmdline": "/bin/sh -c /lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python -c 'import time\nwhile True:\n    time.sleep(10)'; :",
+          "pgrp": 81767,
+          "pid": 81767,
+          "ppid": 81765,
+          "session": 81767,
+          "start_ticks": 86148134,
+          "state": "S",
+          "wchan": "do_wait"
+        }
+      },
+      "utc": "2026-10-21T22:48:11.359159Z"
+    },
+    {
+      "elapsed_since_signal_seconds": 1.050409213,
+      "label": "group_sigstop_plus_1.05s",
+      "monotonic_ns": 861482658824186,
+      "processes": {
+        "runner": {
+          "cmdline": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python -c import time\nwhile True:\n    time.sleep(10)",
+          "pgrp": 81767,
+          "pid": 81769,
+          "ppid": 81767,
+          "session": 81767,
+          "start_ticks": 86148134,
+          "state": "S",
+          "wchan": "hrtimer_nanosleep"
+        },
+        "shell": {
+          "cmdline": "/bin/sh -c /lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python -c 'import time\nwhile True:\n    time.sleep(10)'; :",
+          "pgrp": 81767,
+          "pid": 81767,
+          "ppid": 81765,
+          "session": 81767,
+          "start_ticks": 86148134,
+          "state": "S",
+          "wchan": "do_wait"
+        }
+      },
+      "utc": "2026-10-21T22:48:12.359484Z"
+    },
+    {
+      "elapsed_since_signal_seconds": 0.05008168,
+      "label": "runner_sigstop_plus_0.05s",
+      "monotonic_ns": 861482709360789,
+      "processes": {
+        "runner": {
+          "cmdline": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python -c import time\nwhile True:\n    time.sleep(10)",
+          "pgrp": 81767,
+          "pid": 81769,
+          "ppid": 81767,
+          "session": 81767,
+          "start_ticks": 86148134,
+          "state": "T",
+          "wchan": "do_signal_stop"
+        },
+        "shell": {
+          "cmdline": "/bin/sh -c /lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python -c 'import time\nwhile True:\n    time.sleep(10)'; :",
+          "pgrp": 81767,
+          "pid": 81767,
+          "ppid": 81765,
+          "session": 81767,
+          "start_ticks": 86148134,
+          "state": "S",
+          "wchan": "do_wait"
+        }
+      },
+      "utc": "2026-10-21T22:48:12.410020Z"
+    },
+    {
+      "elapsed_since_signal_seconds": 1.050497743,
+      "label": "runner_sigstop_plus_1.05s",
+      "monotonic_ns": 861483709776852,
+      "processes": {
+        "runner": {
+          "cmdline": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python -c import time\nwhile True:\n    time.sleep(10)",
+          "pgrp": 81767,
+          "pid": 81769,
+          "ppid": 81767,
+          "session": 81767,
+          "start_ticks": 86148134,
+          "state": "T",
+          "wchan": "do_signal_stop"
+        },
+        "shell": {
+          "cmdline": "/bin/sh -c /lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python -c 'import time\nwhile True:\n    time.sleep(10)'; :",
+          "pgrp": 81767,
+          "pid": 81767,
+          "ppid": 81765,
+          "session": 81767,
+          "start_ticks": 86148134,
+          "state": "S",
+          "wchan": "do_wait"
+        }
+      },
+      "utc": "2026-10-21T22:48:13.410438Z"
+    },
+    {
+      "elapsed_since_signal_seconds": 0.05008575,
+      "label": "runner_sigcont_plus_0.05s",
+      "monotonic_ns": 861483760364846,
+      "processes": {
+        "runner": {
+          "cmdline": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python -c import time\nwhile True:\n    time.sleep(10)",
+          "pgrp": 81767,
+          "pid": 81769,
+          "ppid": 81767,
+          "session": 81767,
+          "start_ticks": 86148134,
+          "state": "S",
+          "wchan": "hrtimer_nanosleep"
+        },
+        "shell": {
+          "cmdline": "/bin/sh -c /lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python -c 'import time\nwhile True:\n    time.sleep(10)'; :",
+          "pgrp": 81767,
+          "pid": 81767,
+          "ppid": 81765,
+          "session": 81767,
+          "start_ticks": 86148134,
+          "state": "S",
+          "wchan": "do_wait"
+        }
+      },
+      "utc": "2026-10-21T22:48:13.461025Z"
+    },
+    {
+      "elapsed_since_signal_seconds": 1.050569383,
+      "label": "runner_sigcont_plus_1.05s",
+      "monotonic_ns": 861484760848479,
+      "processes": {
+        "runner": {
+          "cmdline": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python -c import time\nwhile True:\n    time.sleep(10)",
+          "pgrp": 81767,
+          "pid": 81769,
+          "ppid": 81767,
+          "session": 81767,
+          "start_ticks": 86148134,
+          "state": "S",
+          "wchan": "hrtimer_nanosleep"
+        },
+        "shell": {
+          "cmdline": "/bin/sh -c /lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python -c 'import time\nwhile True:\n    time.sleep(10)'; :",
+          "pgrp": 81767,
+          "pid": 81767,
+          "ppid": 81765,
+          "session": 81767,
+          "start_ticks": 86148134,
+          "state": "S",
+          "wchan": "do_wait"
+        }
+      },
+      "utc": "2026-10-21T22:48:14.461509Z"
+    }
+  ],
+  "finished_utc": "2026-10-21T22:48:14.626751Z",
+  "group_sigstop_sent_monotonic_ns": 861481608414973,
+  "harness_sha256": "916a7bdd4f654a6ef3631d65ceae1861dbd85bb7114b39bffc777fe783a80fd3",
+  "host": "skampere1.stanford.edu",
+  "installed_tmux": "tmux 3.4",
+  "official_source": {
+    "finding": "server_child_signal waits with WNOHANG|WUNTRACED, sends stopped children to server_child_stopped, which ignores SIGTTIN/SIGTTOU; for a matching pane PID it calls killpg(pid, SIGCONT), falling back to kill(pid, SIGCONT).",
+    "release": "tmux 3.4",
+    "release_url": "https://github.com/tmux/tmux/releases/tag/3.4",
+    "source_lines": "436-498",
+    "source_url": "https://raw.githubusercontent.com/tmux/tmux/3.4/server.c"
+  },
+  "pane_command": "/bin/sh -c /lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python -c 'import time\nwhile True:\n    time.sleep(10)'; :",
+  "pane_pid": 81767,
+  "poll_plan": {
+    "expectations": {
+      "group_sigstop": "tmux resumes its pane process group; shell and runner are S at both polls",
+      "runner_sigcont": "runner returns to S",
+      "runner_sigstop": "runner is T/do_signal_stop while shell is S/do_wait"
+    },
+    "long_delay_seconds": 1.05,
+    "short_delay_seconds": 0.05
+  },
+  "purpose": "Isolated CPU-only tmux SIGSTOP/SIGCONT behavior test.",
+  "python": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+  "runner_sigcont_sent_monotonic_ns": 861483710279096,
+  "runner_sigstop_sent_monotonic_ns": 861482659279109,
+  "runtime_authorization": {
+    "approval_policy": "never (developer runtime declaration)",
+    "sandbox": "danger-full-access (developer runtime declaration)"
+  },
+  "schema": 1,
+  "started_utc": "2026-10-21T22:48:11.029795Z",
+  "tmux_session": "d6dummy-81759-861481329043386",
+  "tmux_socket": "d6dummy81759861481329043386",
+  "verdict": "PASS"
+}

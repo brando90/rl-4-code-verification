@@ -1,0 +1,2260 @@
+{
+  "FSC": "unmeasured: zero judge calls",
+  "SCSC": "unmeasured: FSC unavailable",
+  "active_tasks": 74,
+  "bootstrap": {
+    "draws": 10000,
+    "finite_weight_denominators": true,
+    "groups": 400,
+    "limits": "metric-specific observed rows; no refitting or new generation; smooth missingness is not assumed at random",
+    "seed": 20261021,
+    "unit": "D-013 train task group"
+  },
+  "declared_cells": 4312,
+  "fully_solved_tasks": 0,
+  "generated_tokens": 25821971,
+  "hashes": {
+    "experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/phase0_cells_e20.csv": "1bd9b44703848fd03e606f10ed8f36fe2ae1ad45e16dc947af3221317ecf0f6a",
+    "experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/phase0b/phase0_tasks.csv": "fc0bcc2e59cc7e8dcea232b98fd61e85610f97bea6aa58aaa3058de9b0a7f896"
+  },
+  "measured_joint_cells": 4202,
+  "measured_strict_and_reward": 4202,
+  "metrics": {
+    "IC_proofs": {
+      "declared_n": 4312,
+      "hi": 0.055477560421710426,
+      "lo": 0.03353658536585366,
+      "mean": 0.044294990723562154,
+      "measured_n": 4312,
+      "missing_n": 0,
+      "p_value": null,
+      "requested_bootstrap_draws": 10000,
+      "sample_index_means": [
+        0.03339517625231911,
+        0.04638218923933209,
+        0.05194805194805195,
+        0.04638218923933209,
+        0.04823747680890538,
+        0.04267161410018553,
+        0.04452690166975881,
+        0.04081632653061224
+      ],
+      "sample_index_n": [
+        539,
+        539,
+        539,
+        539,
+        539,
+        539,
+        539,
+        539
+      ],
+      "sd_across_eight_sample_index_means": 0.005560338277870992,
+      "valid_bootstrap_draws": 10000
+    },
+    "IC_tests": {
+      "declared_n": 4312,
+      "hi": 0.055477560421710426,
+      "lo": 0.03353658536585366,
+      "mean": 0.044294990723562154,
+      "measured_n": 4312,
+      "missing_n": 0,
+      "p_value": null,
+      "requested_bootstrap_draws": 10000,
+      "sample_index_means": [
+        0.03339517625231911,
+        0.04638218923933209,
+        0.05194805194805195,
+        0.04638218923933209,
+        0.04823747680890538,
+        0.04267161410018553,
+        0.04452690166975881,
+        0.04081632653061224
+      ],
+      "sample_index_n": [
+        539,
+        539,
+        539,
+        539,
+        539,
+        539,
+        539,
+        539
+      ],
+      "sd_across_eight_sample_index_means": 0.005560338277870992,
+      "valid_bootstrap_draws": 10000
+    },
+    "capped": {
+      "declared_n": 4312,
+      "hi": 0.2460356323306651,
+      "lo": 0.19168135925256177,
+      "mean": 0.21799628942486085,
+      "measured_n": 4312,
+      "missing_n": 0,
+      "p_value": null,
+      "requested_bootstrap_draws": 10000,
+      "sample_index_means": [
+        0.22820037105751392,
+        0.22820037105751392,
+        0.20408163265306123,
+        0.23191094619666047,
+        0.20964749536178107,
+        0.20408163265306123,
+        0.22634508348794063,
+        0.21150278293135436
+      ],
+      "sample_index_n": [
+        539,
+        539,
+        539,
+        539,
+        539,
+        539,
+        539,
+        539
+      ],
+      "sd_across_eight_sample_index_means": 0.011775700976158527,
+      "valid_bootstrap_draws": 10000
+    },
+    "compiles": {
+      "declared_n": 4312,
+      "hi": 0.055477560421710426,
+      "lo": 0.03353658536585366,
+      "mean": 0.044294990723562154,
+      "measured_n": 4312,
+      "missing_n": 0,
+      "p_value": null,
+      "requested_bootstrap_draws": 10000,
+      "sample_index_means": [
+        0.03339517625231911,
+        0.04638218923933209,
+        0.05194805194805195,
+        0.04638218923933209,
+        0.04823747680890538,
+        0.04267161410018553,
+        0.04452690166975881,
+        0.04081632653061224
+      ],
+      "sample_index_n": [
+        539,
+        539,
+        539,
+        539,
+        539,
+        539,
+        539,
+        539
+      ],
+      "sd_across_eight_sample_index_means": 0.005560338277870992,
+      "valid_bootstrap_draws": 10000
+    },
+    "factored_reward": {
+      "declared_n": 4312,
+      "full_manifest_mean_lower": 0.07705216335029907,
+      "full_manifest_mean_upper": 0.10256236743193173,
+      "hi": 0.09168437948093108,
+      "lo": 0.06668141470288244,
+      "mean": 0.07906923568931214,
+      "measured_n": 4202,
+      "missing_n": 110,
+      "p_value": null,
+      "requested_bootstrap_draws": 10000,
+      "sample_index_means": [
+        0.07111969888316096,
+        0.08189161998817274,
+        0.08314185281276558,
+        0.0799663221492721,
+        0.08294036560828275,
+        0.07894672366701593,
+        0.0787081908120676,
+        0.0759184220074557
+      ],
+      "sample_index_n": [
+        525,
+        523,
+        521,
+        528,
+        522,
+        527,
+        528,
+        528
+      ],
+      "sd_across_eight_sample_index_means": 0.004028644099309282,
+      "valid_bootstrap_draws": 10000
+    },
+    "strict": {
+      "declared_n": 4312,
+      "hi": 0.055477560421710426,
+      "lo": 0.03353658536585366,
+      "mean": 0.044294990723562154,
+      "measured_n": 4312,
+      "missing_n": 0,
+      "p_value": null,
+      "requested_bootstrap_draws": 10000,
+      "sample_index_means": [
+        0.03339517625231911,
+        0.04638218923933209,
+        0.05194805194805195,
+        0.04638218923933209,
+        0.04823747680890538,
+        0.04267161410018553,
+        0.04452690166975881,
+        0.04081632653061224
+      ],
+      "sample_index_n": [
+        539,
+        539,
+        539,
+        539,
+        539,
+        539,
+        539,
+        539
+      ],
+      "sd_across_eight_sample_index_means": 0.005560338277870992,
+      "valid_bootstrap_draws": 10000
+    }
+  },
+  "missing_cells": [
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_real__my_fprime_crc_match"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_real__my_fprime_sequence_nonempty"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_synthetic__my_clamp_actuator"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_synthetic__my_clamp_actuator"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_synthetic__my_edac_syndrome_detect"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_synthetic__my_nav_seq_rollover"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_synthetic__my_safing_vote"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_synthetic__my_thruster_duty_ok"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_synthetic__my_tmr_voter"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "compilers_set_real__my_cpython_load_small_int_const"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "compilers_set_real__my_cpython_load_small_int_const"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "compilers_set_synthetic__my_bytecode_stack_push_n"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "compilers_set_synthetic__my_call_graph_depth_ok"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "compilers_set_synthetic__my_constant_fold_add"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "compilers_set_synthetic__my_loop_unroll2_inc"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "compilers_set_synthetic__my_strength_reduce_mul2"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "concurrent_set_real__my_raft_term_tick"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "concurrent_set_synthetic__my_hazard_pointer_can_free"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "critical_infra_set_real__my_pingora_retry_slot"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "critical_infra_set_synthetic__my_modular_round_robin_cursor"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "critical_infra_set_synthetic__my_token_bucket_decay"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "critical_infra_set_synthetic__my_token_bucket_decay"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "crypto_set_real__my_erc20_burn_supply"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "crypto_set_real__my_erc20_burn_supply"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "crypto_set_real__my_erc20_infinite_allowance_after"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "crypto_set_synthetic__my_aes_key_length_valid"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "cs_set__edit_distance"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__13_myuppercase"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__14_myremovespaces"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__1_myadd"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__1_myadd"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__31_count_even_digits"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__38_reverse_words"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__38_reverse_words"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__40_all_even"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__40_all_even"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__42_product_of_list"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__9_myoddsumparity"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "finance_set_real__my_drawdown_bps"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "finance_set_real__my_talib_weighted_close"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "gov_cert_set_real__my_sigstore_oid_extension_match"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "gov_cert_set_real__my_sigstore_oid_extension_match"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "gov_cert_set_real__my_sigstore_oid_extension_match"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "gov_cert_set_synthetic__my_audit_hash_chain_extend"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "gov_cert_set_synthetic__my_audit_hash_chain_extend"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "gov_cert_set_synthetic__my_audit_log_append"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "gov_cert_set_synthetic__my_election_tally_add"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hardware_set_real__my_spike_funct3_field"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hardware_set_synthetic__my_axi_valid_ready_fire"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hardware_set_synthetic__my_clock_enable_hold"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hardware_set_synthetic__my_fetch_aligned4"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hardware_set_synthetic__my_fifo_half_full"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hardware_set_synthetic__my_pc_select"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hardware_set_synthetic__my_pc_select"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "humaneval_set__humaneval_31_is_prime"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "humaneval_set__humaneval_37_sort_even"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "humaneval_set__humaneval_5_intersperse"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "humaneval_set__humaneval_8_sum_product"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hypervisor_set_real__my_seccomp_compare_real"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hypervisor_set_synthetic__my_cap_badge_intersect"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hypervisor_set_synthetic__my_hypercall_validate"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hypervisor_set_synthetic__my_iommu_window_translate"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "medical_oss_set_real__my_basal_rate_clamp"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "medical_oss_set_real__my_cgm_reading_usable"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "medical_oss_set_real__my_temp_mismatch_cancel"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "medical_oss_set_synthetic__my_insulin_action_duration_valid"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "medical_oss_set_synthetic__my_iob_decay_approx"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "medical_oss_set_synthetic__my_pump_cancel_keeps_other_pending"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "memory_bugs_set_real__my_cpython_bytearray_can_resize"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "memory_bugs_set_synthetic__my_free_live_handle"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "memory_bugs_set_synthetic__my_memcpy_bounds"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "memory_bugs_set_synthetic__my_tagged_union_access"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "os_embedded_set_synthetic__my_power_transition_ok"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "os_embedded_set_synthetic__my_power_transition_ok"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "regulated_set_synthetic__my_transfusion_match_ok"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "regulated_set_synthetic__my_transfusion_match_ok"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "rfc_set_real__my_http_token_char"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "rfc_set_real__my_uuid_v4_layout_valid"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "rfc_set_real__my_uuid_v4_layout_valid"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "rfc_set_synthetic__my_http_status_class"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__101_unsafeforkedtransparencylog_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__101_unsafeguardreuse_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__103_unsafeweakcipher_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__105_unsafednsamplification_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__105_unsafeexecstack_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__107_unsafesoftfailrevocation_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__139_unsafebufferbounds_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__14_unsafeserviceauth_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__20_unsafepasscodecheck_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__2_unsafememoryaccess_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__4_unsafecounter_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__64_unsafesaltlessstore_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__83_unsafetransferbalance_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__90_unsafeipspoofing_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__99_unsafehardcodedkey_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__99_unsafehardcodedkey_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__99_unsafeotahash_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__102_unsafebarekeybaselookup"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__105_unsafednsamplification"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__105_unsafeexecstack"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__126_unsafeoauthredirect"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__139_unsafebufferbounds"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__140_unsafehttpredirect"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__155_unsafeu2forigin"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__30_unsafeuidisolation"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__34_unsafedirectroute"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__45_unsafemeltdownread"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__69_unsafednsspoofing"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__98_unsafechangecipherspec"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__98_unsafechangecipherspec"
+    }
+  ],
+  "missing_smooth_cells": [
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_real__my_fprime_crc_match"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_real__my_fprime_sequence_nonempty"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_synthetic__my_clamp_actuator"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_synthetic__my_clamp_actuator"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_synthetic__my_edac_syndrome_detect"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_synthetic__my_nav_seq_rollover"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_synthetic__my_safing_vote"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_synthetic__my_thruster_duty_ok"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "aerospace_set_synthetic__my_tmr_voter"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "compilers_set_real__my_cpython_load_small_int_const"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "compilers_set_real__my_cpython_load_small_int_const"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "compilers_set_synthetic__my_bytecode_stack_push_n"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "compilers_set_synthetic__my_call_graph_depth_ok"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "compilers_set_synthetic__my_constant_fold_add"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "compilers_set_synthetic__my_loop_unroll2_inc"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "compilers_set_synthetic__my_strength_reduce_mul2"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "concurrent_set_real__my_raft_term_tick"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "concurrent_set_synthetic__my_hazard_pointer_can_free"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "critical_infra_set_real__my_pingora_retry_slot"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "critical_infra_set_synthetic__my_modular_round_robin_cursor"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "critical_infra_set_synthetic__my_token_bucket_decay"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "critical_infra_set_synthetic__my_token_bucket_decay"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "crypto_set_real__my_erc20_burn_supply"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "crypto_set_real__my_erc20_burn_supply"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "crypto_set_real__my_erc20_infinite_allowance_after"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "crypto_set_synthetic__my_aes_key_length_valid"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "cs_set__edit_distance"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__13_myuppercase"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__14_myremovespaces"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__1_myadd"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__1_myadd"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__31_count_even_digits"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__38_reverse_words"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__38_reverse_words"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__40_all_even"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__40_all_even"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__42_product_of_list"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "easy_set__9_myoddsumparity"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "finance_set_real__my_drawdown_bps"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "finance_set_real__my_talib_weighted_close"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "gov_cert_set_real__my_sigstore_oid_extension_match"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "gov_cert_set_real__my_sigstore_oid_extension_match"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "gov_cert_set_real__my_sigstore_oid_extension_match"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "gov_cert_set_synthetic__my_audit_hash_chain_extend"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "gov_cert_set_synthetic__my_audit_hash_chain_extend"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "gov_cert_set_synthetic__my_audit_log_append"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "gov_cert_set_synthetic__my_election_tally_add"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hardware_set_real__my_spike_funct3_field"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hardware_set_synthetic__my_axi_valid_ready_fire"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hardware_set_synthetic__my_clock_enable_hold"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hardware_set_synthetic__my_fetch_aligned4"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hardware_set_synthetic__my_fifo_half_full"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hardware_set_synthetic__my_pc_select"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hardware_set_synthetic__my_pc_select"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "humaneval_set__humaneval_31_is_prime"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "humaneval_set__humaneval_37_sort_even"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "humaneval_set__humaneval_5_intersperse"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "humaneval_set__humaneval_8_sum_product"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hypervisor_set_real__my_seccomp_compare_real"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hypervisor_set_synthetic__my_cap_badge_intersect"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hypervisor_set_synthetic__my_hypercall_validate"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "hypervisor_set_synthetic__my_iommu_window_translate"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "medical_oss_set_real__my_basal_rate_clamp"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "medical_oss_set_real__my_cgm_reading_usable"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "medical_oss_set_real__my_temp_mismatch_cancel"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "medical_oss_set_synthetic__my_insulin_action_duration_valid"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "medical_oss_set_synthetic__my_iob_decay_approx"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "medical_oss_set_synthetic__my_pump_cancel_keeps_other_pending"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "memory_bugs_set_real__my_cpython_bytearray_can_resize"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "memory_bugs_set_synthetic__my_free_live_handle"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "memory_bugs_set_synthetic__my_memcpy_bounds"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "memory_bugs_set_synthetic__my_tagged_union_access"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "os_embedded_set_synthetic__my_power_transition_ok"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "os_embedded_set_synthetic__my_power_transition_ok"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "regulated_set_synthetic__my_transfusion_match_ok"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "regulated_set_synthetic__my_transfusion_match_ok"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "rfc_set_real__my_http_token_char"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "rfc_set_real__my_uuid_v4_layout_valid"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "rfc_set_real__my_uuid_v4_layout_valid"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "rfc_set_synthetic__my_http_status_class"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__101_unsafeforkedtransparencylog_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__101_unsafeguardreuse_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__103_unsafeweakcipher_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__105_unsafednsamplification_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__105_unsafeexecstack_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__107_unsafesoftfailrevocation_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__139_unsafebufferbounds_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__14_unsafeserviceauth_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__20_unsafepasscodecheck_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__2_unsafememoryaccess_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__4_unsafecounter_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__64_unsafesaltlessstore_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__83_unsafetransferbalance_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__90_unsafeipspoofing_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__99_unsafehardcodedkey_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__99_unsafehardcodedkey_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__safe__99_unsafeotahash_safe"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__102_unsafebarekeybaselookup"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__105_unsafednsamplification"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__105_unsafeexecstack"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__126_unsafeoauthredirect"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__139_unsafebufferbounds"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 3,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__140_unsafehttpredirect"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 5,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__155_unsafeu2forigin"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 0,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__30_unsafeuidisolation"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 2,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__34_unsafedirectroute"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 4,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__45_unsafemeltdownread"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 6,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__69_unsafednsspoofing"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 1,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__98_unsafechangecipherspec"
+    },
+    {
+      "note": "duplicate fully qualified declaration identity",
+      "partial_status": "unresolved",
+      "reason": "unresolved: duplicate fully qualified declaration identity",
+      "sample_idx": 7,
+      "status": "unresolved",
+      "strict_status": "measured",
+      "task_id": "security_set__security_6858__vulnerabilities__98_unsafechangecipherspec"
+    }
+  ],
+  "missing_strict_cells": [],
+  "no_lean": 936,
+  "partial_status_counts": {
+    "measured": 3203,
+    "parse_failure_zero_credit": 999,
+    "unresolved": 110
+  },
+  "received_rows": 4312,
+  "repeatability": "One final deterministic score per generation; sample-index variation is generation variation, not repeated-score uncertainty",
+  "score_statuses": {
+    "measured/measured": 3203,
+    "measured/parse_failure_zero_credit": 999,
+    "measured/unresolved": 110
+  },
+  "scorer_adapter_compared": 3203,
+  "scorer_adapter_confusion": {
+    "scorer_0_adapter_0": 3012,
+    "scorer_1_adapter_1": 191
+  },
+  "scorer_adapter_disagreements": 0,
+  "smooth_declared_cells": 4312,
+  "smooth_measured_cells": 4202,
+  "smooth_missing_cells": 110,
+  "smooth_missing_reason_counts": {
+    "unresolved: duplicate fully qualified declaration identity": 110
+  },
+  "smooth_missing_status_counts": {
+    "unresolved": 110
+  },
+  "smooth_missingness_likelihood": "ignored via observation mask; conditional on observed smooth cells; missing-at-random not established",
+  "smooth_registered_zero_reason_counts": {
+    "malformed_source_registered_zero": 999
+  },
+  "smooth_status_counts": {
+    "measured": 3203,
+    "parse_failure_zero_credit": 999,
+    "unresolved": 110
+  },
+  "status_counts": {
+    "measured": 4312
+  },
+  "strict_declared_cells": 4312,
+  "strict_measured_cells": 4312,
+  "strict_missing_cells": 0,
+  "strict_status_counts": {
+    "measured": 4312
+  },
+  "strict_success_count_histogram": {
+    "0": 465,
+    "1": 26,
+    "2": 13,
+    "3": 13,
+    "4": 10,
+    "5": 12
+  },
+  "successes": 191,
+  "train_groups": 400,
+  "train_tasks": 539
+}

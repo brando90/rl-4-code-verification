@@ -1,0 +1,143 @@
+{
+  "analysis_timestamp_utc": "2026-10-21T22:53:26.227749+00:00",
+  "scope": "CPU-only analysis of committed saved E20 smoke receipts; no new model measurements.",
+  "experiment_folder": "experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/",
+  "gate": {
+    "E20_share_abs_delta_gt_0_05_max_allowed": 0.01,
+    "observed_max": 0.026198166567790386,
+    "pass": false
+  },
+  "t1_decision_input": {
+    "protocol_path": "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/PROTOCOL.md",
+    "requirements": {
+      "median_abs_generator_trainer_logprob_error_max": 0.01,
+      "p99_abs_generator_trainer_logprob_error_max": 0.1,
+      "unsupported_sampled_tokens_required": 0
+    },
+    "interpretation": "E13 V4-T1 is a separate frozen 8-response probe; this comparison is decision input only and does not relabel this E20 smoke as T1."
+  },
+  "per_update": [
+    {
+      "update": 1,
+      "sampled_tokens": 842189,
+      "in_support_tokens": 842022,
+      "unsupported_actions": 167,
+      "unsupported_share_all_tokens": 0.00019829278226146386,
+      "finite_abs_delta_gt_0_05": 21721,
+      "finite_abs_delta_gt_0_05_share_all_tokens": 0.02579112289521711,
+      "failed_gate_numerator": 21888,
+      "failed_gate_share": 0.02598941567747857,
+      "finite_mean_abs_delta": 0.004148114938288927,
+      "finite_max_abs_delta": 1.329028844833374,
+      "median_abs_delta_exact": "unavailable: only aggregate mean/max/counts were retained",
+      "median_abs_delta_finite_bounds": [
+        0.0,
+        0.008296229876577854
+      ],
+      "p99_abs_delta_exact": "unavailable: no token-level deltas or quantile retained",
+      "p99_abs_delta_finite_bounds_exclusive": [
+        0.05,
+        1.329028844833374
+      ],
+      "full_softmax_abs_delta_gt_0_05": 24827,
+      "full_softmax_share_gt_0_05": 0.029479131168894394,
+      "full_softmax_mean_abs_delta": 0.0059044440276920795,
+      "full_softmax_max_abs_delta": 1.3224387168884277,
+      "rollouts": 128,
+      "unique_tasks": 16,
+      "generated_tokens_from_rollouts": 842189,
+      "truncated_rollouts": 35,
+      "finish_reason_counts": {
+        "length": 35,
+        "stop": 93
+      },
+      "all_token_median_upper_bound": 0.008297875611757176,
+      "unsupported_share_of_mismatch": 0.007629751461988304
+    },
+    {
+      "update": 2,
+      "sampled_tokens": 864717,
+      "in_support_tokens": 864522,
+      "unsupported_actions": 195,
+      "unsupported_share_all_tokens": 0.00022550730470200078,
+      "finite_abs_delta_gt_0_05": 22459,
+      "finite_abs_delta_gt_0_05_share_all_tokens": 0.025972659263088387,
+      "failed_gate_numerator": 22654,
+      "failed_gate_share": 0.026198166567790386,
+      "finite_mean_abs_delta": 0.004204088822007179,
+      "finite_max_abs_delta": 1.3342747688293457,
+      "median_abs_delta_exact": "unavailable: only aggregate mean/max/counts were retained",
+      "median_abs_delta_finite_bounds": [
+        0.0,
+        0.008408177644014359
+      ],
+      "p99_abs_delta_exact": "unavailable: no token-level deltas or quantile retained",
+      "p99_abs_delta_finite_bounds_exclusive": [
+        0.05,
+        1.3342747688293457
+      ],
+      "full_softmax_abs_delta_gt_0_05": 26217,
+      "full_softmax_share_gt_0_05": 0.030318589781396687,
+      "full_softmax_mean_abs_delta": 0.006068143527954817,
+      "full_softmax_max_abs_delta": 1.3342640399932861,
+      "rollouts": 128,
+      "unique_tasks": 16,
+      "generated_tokens_from_rollouts": 864717,
+      "truncated_rollouts": 38,
+      "finish_reason_counts": {
+        "length": 38,
+        "stop": 90
+      },
+      "all_token_median_upper_bound": 0.008410074605049457,
+      "unsupported_share_of_mismatch": 0.008607751390482917
+    }
+  ],
+  "pooled": {
+    "sampled_tokens": 1706906,
+    "in_support_tokens": 1706544,
+    "unsupported_actions": 362,
+    "unsupported_share_all_tokens": 0.00021207963414505545,
+    "finite_abs_delta_gt_0_05": 44180,
+    "failed_gate_numerator": 44542,
+    "failed_gate_share": 0.026095168685328893,
+    "finite_weighted_mean_abs_delta": 0.004176470875141344,
+    "finite_max_abs_delta": 1.3342747688293457,
+    "finite_median_bounds": [
+      0.0,
+      0.008352941750282688
+    ],
+    "finite_p99_bounds_exclusive": [
+      0.05,
+      1.3342747688293457
+    ]
+  },
+  "recoverability": {
+    "exact_median": "unavailable",
+    "exact_p99": "unavailable",
+    "unsupported_by_update": "recoverable",
+    "unsupported_by_component": "recoverable only as truncated-support component; full softmax has a universal support by construction and records zero outside-support tokens",
+    "mismatch_by_task": "unavailable",
+    "mismatch_by_rollout": "unavailable",
+    "mismatch_by_token_position": "unavailable",
+    "mismatch_by_token_id": "unavailable",
+    "recoverable_context_not_mismatch": "rollout counts, task IDs, generated-token counts, truncation, and finish reason by update are saved, but no per-rollout/token delta or support flags exist to join them to mismatch outcomes."
+  },
+  "t1_implications": {
+    "median_threshold": "Exact median unavailable; finite-median upper bound is below 0.01 for each update and pooled data, so the saved aggregates imply the finite median criterion is satisfied.",
+    "p99_threshold": "Unavailable: saved aggregates bound finite p99 above 0.05 and no greater than the per-update finite maximum; these bounds do not decide the 0.10 threshold.",
+    "zero_unsupported": "Not satisfied on the analogous E20 data: 167 and 195 sampled token actions were outside the recomputed truncated support in updates 1 and 2.",
+    "all_token_median_threshold": "Upper bounds including unsupported actions as infinite are below 0.01 in both updates; exact quantiles remain unavailable.",
+    "support_identity_at_least_99_percent": "unavailable: full generator and trainer support sets were not retained",
+    "importance_truncation_cap_2_at_most_1_percent": "unavailable: signed log-probability ratios/count at cap 2 were not retained",
+    "discarded_mass_median_and_p99": "unavailable: discarded mass was not retained"
+  },
+  "input_sha256": {
+    "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/PROTOCOL.md": "fb741636844294fb76667c4d6928ddbef1c7e28fde0fd1093ae834876764e063",
+    "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/receipts/smoke_gate/smoke_logprob_check.json": "2f87327c4ac9050db37ce7b258330a9fd0a639385ca081117564f2f3634c37b1",
+    "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/receipts/smoke_gate/log.jsonl": "1dff4de0c25059517c9528fab9a76d4d92c9e060e9631103f9717a383f4aa23e",
+    "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/smoke_rollouts.csv": "4ce7f33c4d4a847ab9c31447928539ede21bba35aa93a0a69ae6cf79d40f5ff3",
+    "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/smoke_generation_receipts.csv": "ebe272a6c729d03edea21bbe406170a43cf88fc6fdbc46c0a2c7927161558174"
+  },
+  "t1_comparison_verdict": "FAIL on analogous saved E20 smoke: zero-unsupported criterion violated. This is not the frozen eight-response E13 T1 probe and does not change either gate.",
+  "statistical_scope": "Exact descriptive counts from two updates, one run; p-val=n/a; no independent-token inference."
+}

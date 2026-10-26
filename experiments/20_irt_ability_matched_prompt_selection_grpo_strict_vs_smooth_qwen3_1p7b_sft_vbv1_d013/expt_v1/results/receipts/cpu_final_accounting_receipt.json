@@ -1,0 +1,31 @@
+{
+  "accounting": "/tmp/e20_cpu_final_accounting.json",
+  "allocated_cpu_hours": 198.22916666666666,
+  "allocated_cpu_seconds": 713625,
+  "cancellation_format_handled": "CANCELLED by 412530 treated as terminal",
+  "charged_rows": 78,
+  "elapsed_hours": 66.07638888888889,
+  "final_accounting_ready": true,
+  "input_rows": 79,
+  "inventory_absent": [],
+  "parser": "/tmp/e20_cpu_accounting.py",
+  "query_after_not_before": "10-21-2026 19:35:07 PDT",
+  "raw_psv": "/tmp/e20_cpu_final_sacct.psv",
+  "sha256": {
+    "/tmp/e20_cpu_accounting.py": "98ab1e7a6361b713d2bed64aca0302963323253d1821b958daac36c175f7ad56",
+    "/tmp/e20_cpu_final_accounting.json": "eb5022fcb31b4d0c3dd044d6afcb6b693073ba3291ce11d8b56a3e213b0a4e79",
+    "/tmp/e20_cpu_final_sacct.psv": "5fc57ceffebe3ad7fb885b1cc0d4ac7f243caa0d7efaaab49bce4e6b8cf6cde1",
+    "/tmp/e20_cpu_final_sacct_transport.stderr": "a33d3655e1a612fa206e87825a918704fe4a6b909236cda4d29b4056c3d5ad2b"
+  },
+  "state_counts": {
+    "CANCELLED": 2,
+    "CANCELLED by 412530": 3,
+    "COMPLETED": 64,
+    "FAILED": 1,
+    "OUT_OF_MEMORY": 8
+  },
+  "status": "PASS",
+  "transport": "sherlockctl request fd6d18bafdeb42c9b62ead53abe387e5 remote_exit_code=0",
+  "transport_stderr": "/tmp/e20_cpu_final_sacct_transport.stderr",
+  "unknown_job_roots": []
+}

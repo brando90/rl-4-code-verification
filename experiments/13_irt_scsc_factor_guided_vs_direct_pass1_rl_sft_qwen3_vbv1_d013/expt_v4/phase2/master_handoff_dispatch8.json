@@ -1,0 +1,32 @@
+{
+  "activation": "Master must install the versioned watchdog plan and launch the new controller; active plans and cron unchanged.",
+  "admission_sha256": "9209a408ce9ca1d6ae42e5769dd61c9228d0155dd89eba80ebc74a5ee490d2a4",
+  "completed_stages": 0,
+  "gates_timing": {
+    "B_1301_lease_released": false,
+    "B_1301_verdict": false,
+    "designated_pause_recorded": true,
+    "designated_trajectories": [
+      "A_1302"
+    ],
+    "phase": "gates",
+    "released": true,
+    "veto_window_closed_without_veto": true
+  },
+  "generated_response_files": 0,
+  "intent_transition": {
+    "T1/intent.json": true,
+    "T1/probe/intent.json": true
+  },
+  "recovery": {
+    "action": "ACCOUNT_OR_CONTINUE",
+    "completed_operations": 0,
+    "empty_attempts": [],
+    "lease_refusals": [
+      "/lfs/skampere1/0/brando9/rl4cv_e13v4/run/T1/probe/attempt_01"
+    ],
+    "resample": false
+  },
+  "statistics_reserved": 0,
+  "tldr": "Read-only re-admission verification accepts both preserved intents and the existing designated pause."
+}

@@ -32,6 +32,7 @@ STATUS = WORK / 'phase2/autoresume_status.json'
 LOG = WORK / 'phase2/autoresume.log'
 DEATHS = WORK / 'phase2/autoresume_deaths'
 LOCK = WORK / 'phase2/autoresume.lock'
+PAUSED = WORK / 'phase2/autoresume_paused.json'
 ARMS = ('A', 'B', 'P')
 SEEDS = (1301, 1302)
 GENERATIONS = 256
@@ -40,6 +41,20 @@ MAX_RESTARTS_PER_UPDATE = 3
 
 class ProbeError(RuntimeError):
     """A liveness probe failed; the tick must not act on uncertain state."""
+
+
+def paused_trajectories():
+    """Absent means unchanged behavior; malformed pause state fails closed."""
+    if not PAUSED.exists():return set()
+    try:
+        data=json.loads(PAUSED.read_text())
+        names=data['trajectories']
+        allowed={'A_1301','A_1302','B_1302','P_1301','P_1302'}
+        if not isinstance(names,(list,dict)) or not set(names)<=allowed:
+            raise ValueError('invalid V4-A3 pause list')
+        return set(names)
+    except (OSError,ValueError,KeyError,TypeError) as exc:
+        raise ProbeError('pause list unreadable or invalid') from exc
 
 
 def pilot_session(arm, seed):
@@ -263,12 +278,16 @@ def tick(dry_run=False, run=subprocess.run, R=None):
         if not dry_run:
             ensure_gpu_filter(R)
             R.check_admission(R.ADMISSION)
+        paused = paused_trajectories()
         state = json.loads(STATE.read_text()) if STATE.exists() else {}
         report = {}
         for arm in ARMS:
             for seed in SEEDS:
                 key = f'{arm}_{seed}'
                 try:
+                    if key in paused:
+                        report[key] = {'action':'skip','update':None,'detail':'paused (V4-A3)'}
+                        continue
                     live, dead = is_live(arm, seed, run=run)
                     if dead and not dry_run:
                         for name in dead:

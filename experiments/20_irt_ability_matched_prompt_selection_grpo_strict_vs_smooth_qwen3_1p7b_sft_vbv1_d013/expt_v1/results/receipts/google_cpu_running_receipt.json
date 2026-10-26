@@ -1,0 +1,21 @@
+{
+  "timestamp_utc": "2026-10-21T23:16:10.047460+00:00",
+  "document_id": "1KKKabJJArClVmXcaxfTF5jxk8nF1oHmCH08d44jbqUg",
+  "document_url": "https://docs.google.com/document/d/1KKKabJJArClVmXcaxfTF5jxk8nF1oHmCH08d44jbqUg",
+  "required_revision_id": "AHj4eMQ8aXb3Gq_qS2sroTsmg-yQKy3el2L7Gsg38Ug4-bwnDynVN-IPrA2hgpGt5ZbG4jlDX2ZMjWCmxo0_K4MGyX3f_akeD5IOhoEd4dY",
+  "result_revision_id": "AHj4eMQjM6yctEdczHp-w0LNBWjc5ZlM4u6vYZIqmcRXTjsMNAN_JDCMHTvIJEEhy4JLpNqiDbNFNqinZOuALa7g2H54LZhyvMbhM9tgXhs",
+  "target_start_index": 59685,
+  "target_end_index": 61581,
+  "text": "10-21-2026 · E20: IRT ability-matched prompt selection for GRPO, strict vs smooth reward (Qwen3-1.7B SFT) · Paper: rl4cv — FAILED (trainer gate; IRT effect unmeasured). Folder: experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/. Question: does IRT-selected prompting improve held-out validation strict pass@1 at matched rollouts? Trainer smoke completed 2 updates / 256 rollouts and failed: update 2 saved receipt has 22,459 finite |Δ log-probability| > 0.05 plus 195 unsupported sampled actions in 864,717 tokens = 2.61982%, versus ≤1%; the E13 V4-T1 analogous zero-unsupported condition fails and exact quantiles are unavailable. No GPU, pilot, main, evaluation, new trainer, or gate changes. Post-stop completion of pre-registered Phase 0 is IN PROGRESS, CPU only under dispatcher instruction 10-21-2026: 4,312 saved generations. Current c1/mem16G arrays: strict 48881657_[0-31] and corrected partial 48882641_[0-31] RUNNING; collector 48882642 PENDING dependency. Monitor at 10-21-2026 16:13 PDT: 64 RUNNING, 1 PENDING; strict 1,253 compiler calls, partial 955 compiler calls and 429 completed partial cells. Scores and G0 pending. Prior allocation remains 28,173 seconds = 7.8258333333 GPU-h / 200 cap (phase 0: 7.2358333333 / 10; smoke including failures: 0.5900 / 15); main 0 / 130 GPU-h, evaluation 0 / 80 GPU-h, API $0. Results: https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/results.md ; checkpoint: https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/CKPT_codex-rl4cv-e20-irt-prompt-selection.md ; PR #20 for review: https://github.com/brando90/rl-4-code-verification/pull/20",
+  "readback_exact_match": true,
+  "readback_is_list_item": true,
+  "monitor_source": "/tmp/e20_cpu_monitor/latest.json",
+  "monitor_timestamp": "20261021T231308Z",
+  "monitor_states": {
+    "RUNNING": 64,
+    "PENDING": 1
+  },
+  "strict_compiler_calls": 1253,
+  "partial_compiler_calls": 955,
+  "partial_completed_cells_from_logs": 429
+}

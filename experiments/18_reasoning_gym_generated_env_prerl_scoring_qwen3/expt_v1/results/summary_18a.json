@@ -1,0 +1,607 @@
+{
+  "schema": "summary_18a/v1",
+  "models": [
+    "qwen3_0p6b",
+    "qwen3_1p7b",
+    "qwen3_4b"
+  ],
+  "incomplete_cells": [],
+  "analysis1_difficulty_transfer": {
+    "pairwise": {
+      "qwen3_0p6b~qwen3_1p7b": {
+        "n_envs": 32,
+        "spearman": 0.7042590407866471,
+        "ci95": [
+          0.3862486079053652,
+          0.8939433611808706
+        ]
+      },
+      "qwen3_0p6b~qwen3_4b": {
+        "n_envs": 32,
+        "spearman": 0.78914951398909,
+        "ci95": [
+          0.595408195935765,
+          0.8838470775939256
+        ]
+      },
+      "qwen3_1p7b~qwen3_4b": {
+        "n_envs": 32,
+        "spearman": 0.8081429836938541,
+        "ci95": [
+          0.6213416785418219,
+          0.9059537984807662
+        ]
+      }
+    },
+    "kendalls_w": 0.8408479960899315,
+    "n_envs_all_models": 32,
+    "verdict": "partial"
+  },
+  "analysis2_within_family": {
+    "qwen3_0p6b": {
+      "families": {
+        "basic_arithmetic": {
+          "pass_by_level": {
+            "L0": 0.71142578125,
+            "L1": 0.230712890625,
+            "L2": 0.069091796875,
+            "L3": 0.029296875
+          },
+          "spearman_level_pass": -1.0,
+          "monotone": true
+        },
+        "leg_counting": {
+          "pass_by_level": {
+            "L0": 0.185546875,
+            "L1": 0.086181640625,
+            "L2": 0.053955078125,
+            "L3": 0.0166015625
+          },
+          "spearman_level_pass": -1.0,
+          "monotone": true
+        },
+        "simple_equations": {
+          "pass_by_level": {
+            "L0": 0.05859375,
+            "L1": 0.0009765625,
+            "L2": 0.0,
+            "L3": 0.0
+          },
+          "spearman_level_pass": -0.9486832980505139,
+          "monotone": true
+        },
+        "coin_flip": {
+          "pass_by_level": {
+            "L0": 0.154052734375,
+            "L1": 0.17333984375,
+            "L2": 0.136962890625,
+            "L3": 0.115478515625
+          },
+          "spearman_level_pass": -0.7999999999999999,
+          "monotone": true
+        },
+        "letter_counting": {
+          "pass_by_level": {
+            "L0": 0.32666015625,
+            "L1": 0.31005859375,
+            "L2": 0.223876953125,
+            "L3": 0.216064453125
+          },
+          "spearman_level_pass": -1.0,
+          "monotone": true
+        },
+        "word_sorting": {
+          "pass_by_level": {
+            "L0": 0.001220703125,
+            "L1": 0.0,
+            "L2": 0.0,
+            "L3": 0.0
+          },
+          "spearman_level_pass": -0.7745966692414834,
+          "monotone": true
+        },
+        "family_relationships": {
+          "pass_by_level": {
+            "L0": 0.1201171875,
+            "L1": 0.054443359375,
+            "L2": 0.06005859375,
+            "L3": 0.055908203125
+          },
+          "spearman_level_pass": -0.39999999999999997,
+          "monotone": true
+        },
+        "mini_sudoku": {
+          "pass_by_level": {
+            "L0": 0.0234375,
+            "L1": 0.00634765625,
+            "L2": 0.001953125,
+            "L3": 0.0009765625
+          },
+          "spearman_level_pass": -1.0,
+          "monotone": true
+        }
+      },
+      "n_monotone": 8,
+      "n_families": 8
+    },
+    "qwen3_1p7b": {
+      "families": {
+        "basic_arithmetic": {
+          "pass_by_level": {
+            "L0": 0.5380859375,
+            "L1": 0.505615234375,
+            "L2": 0.26318359375,
+            "L3": 0.151123046875
+          },
+          "spearman_level_pass": -1.0,
+          "monotone": true
+        },
+        "leg_counting": {
+          "pass_by_level": {
+            "L0": 0.271240234375,
+            "L1": 0.14013671875,
+            "L2": 0.431396484375,
+            "L3": 0.316650390625
+          },
+          "spearman_level_pass": 0.6000000000000001,
+          "monotone": false
+        },
+        "simple_equations": {
+          "pass_by_level": {
+            "L0": 0.705322265625,
+            "L1": 0.03173828125,
+            "L2": 0.0,
+            "L3": 0.0
+          },
+          "spearman_level_pass": -0.9486832980505139,
+          "monotone": true
+        },
+        "coin_flip": {
+          "pass_by_level": {
+            "L0": 0.668701171875,
+            "L1": 0.48193359375,
+            "L2": 0.43017578125,
+            "L3": 0.301513671875
+          },
+          "spearman_level_pass": -1.0,
+          "monotone": true
+        },
+        "letter_counting": {
+          "pass_by_level": {
+            "L0": 0.2578125,
+            "L1": 0.255859375,
+            "L2": 0.19287109375,
+            "L3": 0.155029296875
+          },
+          "spearman_level_pass": -1.0,
+          "monotone": true
+        },
+        "word_sorting": {
+          "pass_by_level": {
+            "L0": 0.025146484375,
+            "L1": 0.0,
+            "L2": 0.0,
+            "L3": 0.0
+          },
+          "spearman_level_pass": -0.7745966692414834,
+          "monotone": true
+        },
+        "family_relationships": {
+          "pass_by_level": {
+            "L0": 0.71630859375,
+            "L1": 0.322998046875,
+            "L2": 0.397705078125,
+            "L3": 0.3125
+          },
+          "spearman_level_pass": -0.7999999999999999,
+          "monotone": false
+        },
+        "mini_sudoku": {
+          "pass_by_level": {
+            "L0": 0.15283203125,
+            "L1": 0.11767578125,
+            "L2": 0.047119140625,
+            "L3": 0.011962890625
+          },
+          "spearman_level_pass": -1.0,
+          "monotone": true
+        }
+      },
+      "n_monotone": 6,
+      "n_families": 8
+    },
+    "qwen3_4b": {
+      "families": {
+        "basic_arithmetic": {
+          "pass_by_level": {
+            "L0": 0.919677734375,
+            "L1": 0.38720703125,
+            "L2": 0.036376953125,
+            "L3": 0.0205078125
+          },
+          "spearman_level_pass": -1.0,
+          "monotone": true
+        },
+        "leg_counting": {
+          "pass_by_level": {
+            "L0": 0.362548828125,
+            "L1": 0.057861328125,
+            "L2": 0.029541015625,
+            "L3": 0.00439453125
+          },
+          "spearman_level_pass": -1.0,
+          "monotone": true
+        },
+        "simple_equations": {
+          "pass_by_level": {
+            "L0": 0.9052734375,
+            "L1": 0.284423828125,
+            "L2": 0.0009765625,
+            "L3": 0.0
+          },
+          "spearman_level_pass": -1.0,
+          "monotone": true
+        },
+        "coin_flip": {
+          "pass_by_level": {
+            "L0": 0.960205078125,
+            "L1": 0.91455078125,
+            "L2": 0.925537109375,
+            "L3": 0.941650390625
+          },
+          "spearman_level_pass": -0.19999999999999998,
+          "monotone": true
+        },
+        "letter_counting": {
+          "pass_by_level": {
+            "L0": 0.417236328125,
+            "L1": 0.4130859375,
+            "L2": 0.358154296875,
+            "L3": 0.32470703125
+          },
+          "spearman_level_pass": -1.0,
+          "monotone": true
+        },
+        "word_sorting": {
+          "pass_by_level": {
+            "L0": 0.0546875,
+            "L1": 0.0,
+            "L2": 0.0,
+            "L3": 0.0
+          },
+          "spearman_level_pass": -0.7745966692414834,
+          "monotone": true
+        },
+        "family_relationships": {
+          "pass_by_level": {
+            "L0": 0.81396484375,
+            "L1": 0.33251953125,
+            "L2": 0.4677734375,
+            "L3": 0.4111328125
+          },
+          "spearman_level_pass": -0.39999999999999997,
+          "monotone": false
+        },
+        "mini_sudoku": {
+          "pass_by_level": {
+            "L0": 0.0,
+            "L1": 0.000244140625,
+            "L2": 0.00048828125,
+            "L3": 0.0
+          },
+          "spearman_level_pass": 0.10540925533894598,
+          "monotone": true
+        }
+      },
+      "n_monotone": 7,
+      "n_families": 8
+    }
+  },
+  "analysis3_learnable_band": {
+    "definition": "0.1 <= pass_rate <= 0.9 and rho > 0",
+    "envs": {
+      "qwen3_0p6b": [
+        "rg/basic_arithmetic/L0",
+        "rg/basic_arithmetic/L1",
+        "rg/coin_flip/L0",
+        "rg/coin_flip/L1",
+        "rg/coin_flip/L2",
+        "rg/coin_flip/L3",
+        "rg/family_relationships/L0",
+        "rg/leg_counting/L0",
+        "rg/letter_counting/L0",
+        "rg/letter_counting/L1",
+        "rg/letter_counting/L2",
+        "rg/letter_counting/L3"
+      ],
+      "qwen3_1p7b": [
+        "rg/basic_arithmetic/L0",
+        "rg/basic_arithmetic/L1",
+        "rg/basic_arithmetic/L2",
+        "rg/basic_arithmetic/L3",
+        "rg/coin_flip/L0",
+        "rg/coin_flip/L1",
+        "rg/coin_flip/L2",
+        "rg/coin_flip/L3",
+        "rg/family_relationships/L0",
+        "rg/family_relationships/L1",
+        "rg/family_relationships/L2",
+        "rg/family_relationships/L3",
+        "rg/leg_counting/L0",
+        "rg/leg_counting/L1",
+        "rg/leg_counting/L2",
+        "rg/leg_counting/L3",
+        "rg/letter_counting/L0",
+        "rg/letter_counting/L1",
+        "rg/letter_counting/L2",
+        "rg/letter_counting/L3",
+        "rg/mini_sudoku/L0",
+        "rg/mini_sudoku/L1",
+        "rg/simple_equations/L0"
+      ],
+      "qwen3_4b": [
+        "rg/basic_arithmetic/L1",
+        "rg/family_relationships/L0",
+        "rg/family_relationships/L1",
+        "rg/family_relationships/L2",
+        "rg/family_relationships/L3",
+        "rg/leg_counting/L0",
+        "rg/letter_counting/L0",
+        "rg/letter_counting/L1",
+        "rg/letter_counting/L2",
+        "rg/letter_counting/L3",
+        "rg/simple_equations/L1"
+      ]
+    },
+    "count": {
+      "qwen3_0p6b": 12,
+      "qwen3_1p7b": 23,
+      "qwen3_4b": 11
+    },
+    "jaccard": {
+      "qwen3_0p6b~qwen3_1p7b": 0.5217391304347826,
+      "qwen3_0p6b~qwen3_4b": 0.4375,
+      "qwen3_1p7b~qwen3_4b": 0.4166666666666667
+    },
+    "mean_level_in_band": {
+      "qwen3_0p6b": 1.0833333333333333,
+      "qwen3_1p7b": 1.3478260869565217,
+      "qwen3_4b": 1.2727272727272727
+    }
+  },
+  "analysis4_coordinates": {
+    "qwen3_0p6b": {
+      "n_envs": 32,
+      "spearman": {
+        "pass_rate~rho": 0.8346978234192836,
+        "pass_rate~H": 0.9650413983440663,
+        "pass_rate~alignment": 0.38747661783930376,
+        "rho~H": 0.7563241684101113,
+        "rho~alignment": 0.6408383921363348,
+        "H~alignment": 0.37315283765377494
+      }
+    },
+    "qwen3_1p7b": {
+      "n_envs": 32,
+      "spearman": {
+        "pass_rate~rho": 0.7858719646799116,
+        "pass_rate~H": 0.8546725533480499,
+        "pass_rate~alignment": 0.6492849726630602,
+        "rho~H": 0.6438557763061074,
+        "rho~alignment": 0.7958147826701648,
+        "H~alignment": 0.45831880423274834
+      }
+    },
+    "qwen3_4b": {
+      "n_envs": 32,
+      "spearman": {
+        "pass_rate~rho": 0.5956465596753365,
+        "pass_rate~H": 0.7354731599335914,
+        "pass_rate~alignment": 0.43302605354439183,
+        "rho~H": 0.8502121379819222,
+        "rho~alignment": 0.5768164458466059,
+        "H~alignment": 0.48671760668025693
+      }
+    }
+  },
+  "analysis5_targets": {
+    "rg/gsm_symbolic|qwen3_0p6b": {
+      "pass_rate": 0.064697265625,
+      "pass_rate_ci95": [
+        0.05029296875,
+        0.08056640625
+      ],
+      "rho": 3298.1559167977625,
+      "H": 0.3002924457135988,
+      "answer_tag_rate": 0.932373046875,
+      "complete": true
+    },
+    "rg/calendar_arithmetic|qwen3_0p6b": {
+      "pass_rate": 0.130615234375,
+      "pass_rate_ci95": [
+        0.103271484375,
+        0.1601623535156249
+      ],
+      "rho": 1550.0906713269135,
+      "H": 0.3790067444265519,
+      "answer_tag_rate": 0.910400390625,
+      "complete": true
+    },
+    "rg/time_intervals|qwen3_0p6b": {
+      "pass_rate": 0.115966796875,
+      "pass_rate_ci95": [
+        0.091796875,
+        0.142578125
+      ],
+      "rho": 821.5680185166016,
+      "H": 0.3061572804804938,
+      "answer_tag_rate": 0.794677734375,
+      "complete": true
+    },
+    "rg/syllogism|qwen3_0p6b": {
+      "pass_rate": 0.704345703125,
+      "pass_rate_ci95": [
+        0.650390625,
+        0.7570861816406249
+      ],
+      "rho": 2783.74133682982,
+      "H": 0.29790296052631576,
+      "answer_tag_rate": 0.99267578125,
+      "complete": true
+    },
+    "rg/base_conversion|qwen3_0p6b": {
+      "pass_rate": 0.02294921875,
+      "pass_rate_ci95": [
+        0.015380859375,
+        0.033203125
+      ],
+      "rho": 1024.6557796990076,
+      "H": 0.18349225041786962,
+      "answer_tag_rate": 0.981201171875,
+      "complete": true
+    },
+    "gsm8k/test256|qwen3_0p6b": {
+      "pass_rate": 0.314697265625,
+      "pass_rate_ci95": [
+        0.28173828125,
+        0.348388671875
+      ],
+      "rho": 1901.1276127612762,
+      "H": 0.7095447165995958,
+      "answer_tag_rate": 0.669189453125,
+      "complete": true
+    },
+    "rg/gsm_symbolic|qwen3_1p7b": {
+      "pass_rate": 0.197998046875,
+      "pass_rate_ci95": [
+        0.162841796875,
+        0.234130859375
+      ],
+      "rho": 3074.2513393874615,
+      "H": 0.3832787206317818,
+      "answer_tag_rate": 0.75244140625,
+      "complete": true
+    },
+    "rg/calendar_arithmetic|qwen3_1p7b": {
+      "pass_rate": 0.270263671875,
+      "pass_rate_ci95": [
+        0.229248046875,
+        0.31103515625
+      ],
+      "rho": 1174.7258630792096,
+      "H": 0.4680718337123672,
+      "answer_tag_rate": 0.990234375,
+      "complete": true
+    },
+    "rg/time_intervals|qwen3_1p7b": {
+      "pass_rate": 0.2421875,
+      "pass_rate_ci95": [
+        0.193115234375,
+        0.292236328125
+      ],
+      "rho": 511.3235639840138,
+      "H": 0.1255276309065178,
+      "answer_tag_rate": 0.989501953125,
+      "complete": true
+    },
+    "rg/syllogism|qwen3_1p7b": {
+      "pass_rate": 0.385986328125,
+      "pass_rate_ci95": [
+        0.339599609375,
+        0.43310546875
+      ],
+      "rho": 5185.554096678287,
+      "H": 0.6547176426566506,
+      "answer_tag_rate": 0.99853515625,
+      "complete": true
+    },
+    "rg/base_conversion|qwen3_1p7b": {
+      "pass_rate": 0.24267578125,
+      "pass_rate_ci95": [
+        0.208251953125,
+        0.2785705566406249
+      ],
+      "rho": 1783.5569509925663,
+      "H": 0.5125294201010125,
+      "answer_tag_rate": 0.985595703125,
+      "complete": true
+    },
+    "gsm8k/test256|qwen3_1p7b": {
+      "pass_rate": 0.6630859375,
+      "pass_rate_ci95": [
+        0.617919921875,
+        0.708251953125
+      ],
+      "rho": 1046.4911669106932,
+      "H": 0.4472984377822604,
+      "answer_tag_rate": 0.9462890625,
+      "complete": true
+    },
+    "rg/gsm_symbolic|qwen3_4b": {
+      "pass_rate": 0.908447265625,
+      "pass_rate_ci95": [
+        0.88037109375,
+        0.934814453125
+      ],
+      "rho": 441.6088580437165,
+      "H": 0.19033255043270744,
+      "answer_tag_rate": 0.998291015625,
+      "complete": true
+    },
+    "rg/calendar_arithmetic|qwen3_4b": {
+      "pass_rate": 0.52490234375,
+      "pass_rate_ci95": [
+        0.47998046875,
+        0.568359375
+      ],
+      "rho": 1507.050510023827,
+      "H": 0.5980714372532866,
+      "answer_tag_rate": 0.999267578125,
+      "complete": true
+    },
+    "rg/time_intervals|qwen3_4b": {
+      "pass_rate": 0.397216796875,
+      "pass_rate_ci95": [
+        0.348388671875,
+        0.447998046875
+      ],
+      "rho": 674.6396209628383,
+      "H": 0.41635339144748024,
+      "answer_tag_rate": 0.995849609375,
+      "complete": true
+    },
+    "rg/syllogism|qwen3_4b": {
+      "pass_rate": 0.29638671875,
+      "pass_rate_ci95": [
+        0.25,
+        0.3447265625
+      ],
+      "rho": 26317.762104330643,
+      "H": 0.3071556111017388,
+      "answer_tag_rate": 0.479248046875,
+      "complete": true
+    },
+    "rg/base_conversion|qwen3_4b": {
+      "pass_rate": 0.42919921875,
+      "pass_rate_ci95": [
+        0.391357421875,
+        0.46826171875
+      ],
+      "rho": 2132.3530233863403,
+      "H": 0.7024076944980543,
+      "answer_tag_rate": 1.0,
+      "complete": true
+    },
+    "gsm8k/test256|qwen3_4b": {
+      "pass_rate": 0.820556640625,
+      "pass_rate_ci95": [
+        0.783203125,
+        0.855712890625
+      ],
+      "rho": 846.4414958435809,
+      "H": 0.3260784105196405,
+      "answer_tag_rate": 0.999267578125,
+      "complete": true
+    }
+  }
+}

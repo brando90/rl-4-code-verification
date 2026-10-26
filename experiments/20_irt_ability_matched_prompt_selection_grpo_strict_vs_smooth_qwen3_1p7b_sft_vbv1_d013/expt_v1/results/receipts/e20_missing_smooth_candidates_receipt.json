@@ -1,0 +1,45 @@
+{
+  "candidate_behavior": [
+    "strict metrics require all 4312 binary strict cells and use metric-specific finite group-bootstrap denominators",
+    "smooth metrics retain observed registered malformed-source zeroes, preserve duplicate declaration failures as missing, report measured/declared/missing counts and [0,1] full-manifest mean bounds",
+    "JSON uses allow_nan=False; report states conditional smooth missing-data limitation, bounded observed nonconstancy, and strict G0 independence"
+  ],
+  "complete_path_fixture": {
+    "candidate_sha256": "919174b0f1390f7913aed4f6dec653ff6135ae1357ae7f5c96eae733f054971c",
+    "complete_cells": 4312,
+    "preserved_metric_numerics": true,
+    "status": "PASS"
+  },
+  "fixture": {
+    "declared_cells": 4312,
+    "duplicate_missing": 28,
+    "fixture_root": "/tmp/user/22003/e20_missing_smooth_fixture_zocnszj7",
+    "full_manifest_bounds_contain_observed_mean": true,
+    "malformed_registered_zero": 267,
+    "missing_strict_rejected": true,
+    "partial_finished_cells": 1063,
+    "report_conditional_caveat": true,
+    "smooth_measured": 1035,
+    "smooth_missing": 3277,
+    "source_hashes": {
+      "/tmp/e20_render_phase0_report_candidate.py": "e3b6228ad9dcd1eca08c1e117a84c66030f96eca2c5b372e314efcd0f848a278",
+      "/tmp/e20_summarize_phase0_cells_candidate.py": "919174b0f1390f7913aed4f6dec653ff6135ae1357ae7f5c96eae733f054971c"
+    },
+    "status": "PASS",
+    "strict_unchanged_when_partial_missing": true
+  },
+  "schema_addition": "smooth_missing_status_counts plus exact available partial_status: partial_note missing reasons; per-cell status/note retained",
+  "scope": "/tmp candidates only; no repository files modified",
+  "sha256": {
+    "/tmp/e20_phase0_completepath_candidate_fixture.py": "4b935cf77807cfd58b147cb6a541886b7f0244c56828807ed797c61eaa1b96ad",
+    "/tmp/e20_phase0_completepath_fixture_output.json": "e5eddc81057ca282ebc1b2edfad641a93521dc46c8279bec8f35cc9b11d1dd7b",
+    "/tmp/e20_phase0_missing_smooth_fixture.py": "23490463c465db05689997b2d1b2d86ff400a3b54382df164212fc0eaff21b20",
+    "/tmp/e20_phase0_missing_smooth_fixture_output.json": "2fab6ecb14e260352b7e1e18845436e9b35dcb9bba98e6528d402ff63dd6bd8d",
+    "/tmp/e20_render_phase0_report_candidate.diff": "815cb8db27f874107d759b2e2b87ffc053ffd511d21c785fbfe5472c680b99c9",
+    "/tmp/e20_render_phase0_report_candidate.py": "e3b6228ad9dcd1eca08c1e117a84c66030f96eca2c5b372e314efcd0f848a278",
+    "/tmp/e20_summarize_phase0_cells_candidate.diff": "110dd3410c7bb997473cd551bd9cd2b3fb4bd1068877def8b9c5509f5bf7ccb7",
+    "/tmp/e20_summarize_phase0_cells_candidate.py": "919174b0f1390f7913aed4f6dec653ff6135ae1357ae7f5c96eae733f054971c"
+  },
+  "status": "PASS",
+  "utc": "2026-10-22T00:13:05.697546+00:00"
+}

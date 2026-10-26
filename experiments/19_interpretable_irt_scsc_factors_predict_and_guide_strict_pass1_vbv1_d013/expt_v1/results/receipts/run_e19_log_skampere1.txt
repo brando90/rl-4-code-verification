@@ -1,0 +1,34 @@
+start 2026-10-20T23:52:11Z host skampere1.stanford.edu lock 30db1fc39447b31a9109d5dd97c65c0a93692176
+python 3.12.14 numpy 2.2.6 scipy 1.16.3
+{
+ "verdicts": {
+  "E1_strict_irt_beats_baselines": false,
+  "E1_strict_fsc_skill_adds": false,
+  "E1_strict_smooth_vs_rate": "no detectable difference",
+  "E2_strict_features_predict_unseen_tasks": true,
+  "E1_harsh_irt_beats_baselines": false,
+  "E1_harsh_fsc_skill_adds": false,
+  "E1_harsh_smooth_vs_rate": "smooth worse",
+  "E2_harsh_features_predict_unseen_tasks": true,
+  "E1_gold_irt_beats_baselines": false,
+  "E1_gold_smooth_vs_rate": "smooth worse",
+  "E2_gold_features_predict_unseen_tasks": true,
+  "E3_two_skills": true,
+  "G1": "PASS, NOT IRT-SPECIFIC"
+ },
+ "gates": {
+  "all_primary_fits_converged": false,
+  "failures": [
+   "E1 baseline m3",
+   "E1 claude-opus-5-max m3",
+   "E1 claude_code m3",
+   "E1 codex m3",
+   "E1 gemini-3.1-pro-high m3",
+   "E1 gpt-5.6-luna-high m3",
+   "E1 gpt-6-luna-high m3",
+   "E1 leanstral m3"
+  ]
+ },
+ "wall_seconds": 7124.064700126648
+}
+end 2026-10-21T01:50:56Z RUN_EXIT=0

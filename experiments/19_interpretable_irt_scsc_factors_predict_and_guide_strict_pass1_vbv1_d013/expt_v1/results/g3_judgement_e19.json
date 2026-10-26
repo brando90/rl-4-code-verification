@@ -1,0 +1,15 @@
+{
+ "made_at": "10-20-2026 19:05 PDT, after the locked G1 run and before any experiment 13 v4 generation (13's master checkpoint 18:55: v4 CPU code only)",
+ "calibration_note": "On validation the primary 2PL ranks prompts well (AUC 0.862) but overstates the mixed-group level: mean predicted q8 0.482 vs observed 0.237 (ratio 0.49); top quarter predicted 0.888 vs observed 0.706 (ratio 0.80); predicted p spread 0.107 vs observed k/8 spread 0.204. Raw model-implied V4-G0 values are therefore expected to be about twice too high.",
+ "probabilities": [
+  {"id": "g0_spearman_primary_positive", "event": "Spearman(primary q8, unbiased per-task G=8 mixed probability) > 0 over the 32 V4-G0 tasks", "p": 0.80},
+  {"id": "g0_auc_primary_ge_070", "event": "AUC(primary q8, 1[1 <= s <= 31]) >= 0.70 over the 32 V4-G0 tasks", "p": 0.60},
+  {"id": "g0_features_only_beats_primary", "event": "features-only q8 AUC > primary q8 AUC on the 32 V4-G0 tasks", "p": 0.55},
+  {"id": "g0_selects_G16", "event": "V4-G0's frozen rule selects G = 16", "p": 0.30},
+  {"id": "prompt_arm_beats_A", "event": "if experiment 13 runs an added arm with strict reward and prompts from the top quarter of a frozen forecast, its validation strict mean beats arm A's at matched tokens", "p": 0.60}
+ ],
+ "numeric": [
+  {"id": "g0_mean_unbiased_q8", "quantity": "mean over the 32 V4-G0 tasks of the unbiased per-task G=8 mixed probability", "point": 0.20, "interval80": [0.10, 0.32]}
+ ],
+ "rationale": "Validation shows a 3x mixed-group yield for a top-quarter pool (0.706 vs 0.237; 22.6 vs 7.6 mixed groups per 256-rollout update at G=8), but train tasks carry SFT exposure (476/539 have teacher examples), which can shift which prompts are mixed; G0 has only 32 tasks; and more gradient-carrying groups per token is a precondition for, not proof of, a strict pass@1 gain."
+}

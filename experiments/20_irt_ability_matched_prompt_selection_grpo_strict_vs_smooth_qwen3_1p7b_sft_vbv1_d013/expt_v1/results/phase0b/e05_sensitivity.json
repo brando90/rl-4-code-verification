@@ -1,0 +1,59 @@
+{
+  "alternative": "primary plus three E05 Base models",
+  "comparisons": {
+    "explanatory": {
+      "max_abs_delta_a": 0.07169767740412969,
+      "max_abs_delta_d": 2.303929715394074,
+      "mean_abs_delta_a": 0.016542468695825104,
+      "mean_abs_delta_d": 2.2470491710547664,
+      "mean_abs_delta_p_active": 0.015296808932869822,
+      "theta_delta": 2.3161721434475013
+    },
+    "explanatory_1pl": {
+      "max_abs_delta_a": 0.0,
+      "max_abs_delta_d": 1.4398400635054271,
+      "mean_abs_delta_a": 0.0,
+      "mean_abs_delta_d": 1.3777136343740841,
+      "mean_abs_delta_p_active": 0.0032811258128732372,
+      "theta_delta": 1.395962269531806
+    },
+    "random_intercept": {
+      "max_abs_delta_a": 0.46377315945786346,
+      "max_abs_delta_d": 7.737291287455247,
+      "mean_abs_delta_a": 0.1639598723521503,
+      "mean_abs_delta_d": 6.419607607460499,
+      "mean_abs_delta_p_active": 0.0780316593756328,
+      "theta_delta": 6.713302842191229
+    },
+    "random_intercept_1pl": {
+      "max_abs_delta_a": 0.0,
+      "max_abs_delta_d": 1.426893683222057,
+      "mean_abs_delta_a": 0.0,
+      "mean_abs_delta_d": 1.3441070161476287,
+      "mean_abs_delta_p_active": 0.0016659581816062087,
+      "theta_delta": 1.3470062940402494
+    }
+  },
+  "primary": "11 E12 systems plus start policy",
+  "primary_g0": {
+    "auc": 0.9312699796570765,
+    "auc_threshold": 0.7,
+    "baseline_log_loss": 0.4811850677871736,
+    "log_loss": 0.3044314614670819,
+    "passed": true,
+    "selected_model": "explanatory",
+    "status": "evaluated",
+    "threshold_source": "E20 PROTOCOL section 3; E13 F2"
+  },
+  "selection_rule": "No outcome-driven replacement: substantive fit-change threshold was not preregistered; report both.",
+  "with_e05_g0": {
+    "auc": 0.9331589654170299,
+    "auc_threshold": 0.7,
+    "baseline_log_loss": 0.4811850677871736,
+    "log_loss": 0.311872477109588,
+    "passed": true,
+    "selected_model": "explanatory",
+    "status": "evaluated",
+    "threshold_source": "E20 PROTOCOL section 3; E13 F2"
+  }
+}

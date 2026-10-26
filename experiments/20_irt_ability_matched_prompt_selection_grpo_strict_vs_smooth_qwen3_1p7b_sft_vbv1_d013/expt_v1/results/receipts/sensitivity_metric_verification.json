@@ -1,0 +1,525 @@
+{
+  "active_tasks": 74,
+  "actual_metrics": {
+    "primary_g0_recomputed": {
+      "baseline": {
+        "auc": 0.42256611450159837,
+        "ece": 0.16797852345526004,
+        "log_loss": 0.4811850677871736,
+        "observed_active_share": 0.137291280148423,
+        "predicted_active_share": 0.30526980360368305
+      },
+      "explanatory": {
+        "auc": 0.9331589654170299,
+        "ece": 0.12990460316550537,
+        "log_loss": 0.311872477109588,
+        "observed_active_share": 0.137291280148423,
+        "predicted_active_share": 0.25647427335676104
+      },
+      "explanatory_1pl": {
+        "auc": 0.9335367625690206,
+        "ece": 0.13343637843868317,
+        "log_loss": 0.31736587316857673,
+        "observed_active_share": 0.137291280148423,
+        "predicted_active_share": 0.2637884127781861
+      },
+      "features_only": {
+        "auc": 0.9250363266492299,
+        "ece": 0.13254241611010076,
+        "log_loss": 0.3223649182099884,
+        "observed_active_share": 0.137291280148423,
+        "predicted_active_share": 0.26182579533113565
+      },
+      "panel_strict_rate": {
+        "auc": 0.8631938390002906,
+        "scope": "ranking_only"
+      },
+      "random_intercept": {
+        "auc": 0.8713746004068584,
+        "ece": 0.1181768431882167,
+        "log_loss": 0.35492408584316293,
+        "observed_active_share": 0.137291280148423,
+        "predicted_active_share": 0.25485775524361537
+      },
+      "random_intercept_1pl": {
+        "auc": 0.8707061900610288,
+        "ece": 0.12485372321298845,
+        "log_loss": 0.3580571201511836,
+        "observed_active_share": 0.137291280148423,
+        "predicted_active_share": 0.2615590406775746
+      }
+    }
+  },
+  "check_counts": {
+    "pass": 56
+  },
+  "checks": {
+    "active_task_count": {
+      "actual": 74,
+      "expected": 74,
+      "result": "pass"
+    },
+    "g0_literal_point_gate": {
+      "actual": {
+        "auc": 0.9331589654170299,
+        "auc_threshold": 0.7,
+        "baseline_log_loss": 0.4811850677871736,
+        "log_loss": 0.311872477109588,
+        "passed": true,
+        "selected_model": "explanatory",
+        "status": "evaluated",
+        "threshold_source": "E20 PROTOCOL section 3; E13 F2"
+      },
+      "expected": {
+        "passed": true,
+        "rule": "auc >= 0.70 and log_loss < baseline_log_loss"
+      },
+      "result": "pass"
+    },
+    "g0_literal_threshold": {
+      "actual": 0.7,
+      "expected": 0.7,
+      "result": "pass"
+    },
+    "g0_selected_identity": {
+      "actual": "explanatory",
+      "expected": "explanatory",
+      "result": "pass"
+    },
+    "group_count": {
+      "actual": 400,
+      "expected": 400,
+      "result": "pass"
+    },
+    "metric.baseline.auc": {
+      "actual": 0.42256611450159837,
+      "expected": 0.42256611450159837,
+      "result": "pass"
+    },
+    "metric.baseline.ece": {
+      "actual": 0.16797852345526004,
+      "expected": 0.16797852345526004,
+      "result": "pass"
+    },
+    "metric.baseline.finite_probabilities": {
+      "actual": {
+        "finite": 539,
+        "max": 0.3230825221299368,
+        "min": 0.2703959949009913,
+        "n": 539
+      },
+      "expected": {
+        "finite": 539,
+        "range": [
+          0,
+          1
+        ]
+      },
+      "result": "pass"
+    },
+    "metric.baseline.log_loss": {
+      "actual": 0.4811850677871736,
+      "expected": 0.4811850677871736,
+      "result": "pass"
+    },
+    "metric.baseline.observed_active_share": {
+      "actual": 0.137291280148423,
+      "expected": 0.137291280148423,
+      "result": "pass"
+    },
+    "metric.baseline.predicted_active_share": {
+      "actual": 0.30526980360368305,
+      "expected": 0.30526980360368305,
+      "result": "pass"
+    },
+    "metric.explanatory.auc": {
+      "actual": 0.9331589654170299,
+      "expected": 0.9331589654170299,
+      "result": "pass"
+    },
+    "metric.explanatory.ece": {
+      "actual": 0.12990460316550537,
+      "expected": 0.12990460316550537,
+      "result": "pass"
+    },
+    "metric.explanatory.finite_probabilities": {
+      "actual": {
+        "finite": 539,
+        "max": 0.7454555622668646,
+        "min": 0.0025412458592636075,
+        "n": 539
+      },
+      "expected": {
+        "finite": 539,
+        "range": [
+          0,
+          1
+        ]
+      },
+      "result": "pass"
+    },
+    "metric.explanatory.log_loss": {
+      "actual": 0.311872477109588,
+      "expected": 0.311872477109588,
+      "result": "pass"
+    },
+    "metric.explanatory.observed_active_share": {
+      "actual": 0.137291280148423,
+      "expected": 0.137291280148423,
+      "result": "pass"
+    },
+    "metric.explanatory.predicted_active_share": {
+      "actual": 0.25647427335676104,
+      "expected": 0.25647427335676104,
+      "result": "pass"
+    },
+    "metric.explanatory_1pl.auc": {
+      "actual": 0.9335367625690206,
+      "expected": 0.9335367625690206,
+      "result": "pass"
+    },
+    "metric.explanatory_1pl.ece": {
+      "actual": 0.13343637843868317,
+      "expected": 0.13343637843868317,
+      "result": "pass"
+    },
+    "metric.explanatory_1pl.finite_probabilities": {
+      "actual": {
+        "finite": 539,
+        "max": 0.7489646958067784,
+        "min": 0.002669710183912822,
+        "n": 539
+      },
+      "expected": {
+        "finite": 539,
+        "range": [
+          0,
+          1
+        ]
+      },
+      "result": "pass"
+    },
+    "metric.explanatory_1pl.log_loss": {
+      "actual": 0.31736587316857673,
+      "expected": 0.31736587316857673,
+      "result": "pass"
+    },
+    "metric.explanatory_1pl.observed_active_share": {
+      "actual": 0.137291280148423,
+      "expected": 0.137291280148423,
+      "result": "pass"
+    },
+    "metric.explanatory_1pl.predicted_active_share": {
+      "actual": 0.2637884127781861,
+      "expected": 0.2637884127781861,
+      "result": "pass"
+    },
+    "metric.features_only.auc": {
+      "actual": 0.9250363266492299,
+      "expected": 0.9250363266492299,
+      "result": "pass"
+    },
+    "metric.features_only.ece": {
+      "actual": 0.13254241611010076,
+      "expected": 0.13254241611010076,
+      "result": "pass"
+    },
+    "metric.features_only.finite_probabilities": {
+      "actual": {
+        "finite": 539,
+        "max": 0.6414645893325344,
+        "min": 0.0015957009307167728,
+        "n": 539
+      },
+      "expected": {
+        "finite": 539,
+        "range": [
+          0,
+          1
+        ]
+      },
+      "result": "pass"
+    },
+    "metric.features_only.log_loss": {
+      "actual": 0.3223649182099884,
+      "expected": 0.3223649182099884,
+      "result": "pass"
+    },
+    "metric.features_only.observed_active_share": {
+      "actual": 0.137291280148423,
+      "expected": 0.137291280148423,
+      "result": "pass"
+    },
+    "metric.features_only.predicted_active_share": {
+      "actual": 0.26182579533113565,
+      "expected": 0.26182579533113565,
+      "result": "pass"
+    },
+    "metric.panel_strict_rate.ranking_only": {
+      "actual": {
+        "probability_metrics": [],
+        "recomputed_auc": 0.8631938390002906,
+        "reported": {
+          "auc": 0.8631938390002906,
+          "status": "available: ranking only"
+        }
+      },
+      "expected": {
+        "probability_metrics": [],
+        "status": "available: ranking only"
+      },
+      "result": "pass"
+    },
+    "metric.random_intercept.auc": {
+      "actual": 0.8713746004068584,
+      "expected": 0.8713746004068584,
+      "result": "pass"
+    },
+    "metric.random_intercept.ece": {
+      "actual": 0.1181768431882167,
+      "expected": 0.1181768431882167,
+      "result": "pass"
+    },
+    "metric.random_intercept.finite_probabilities": {
+      "actual": {
+        "finite": 539,
+        "max": 0.8355057989299433,
+        "min": 0.05969562436363314,
+        "n": 539
+      },
+      "expected": {
+        "finite": 539,
+        "range": [
+          0,
+          1
+        ]
+      },
+      "result": "pass"
+    },
+    "metric.random_intercept.log_loss": {
+      "actual": 0.35492408584316293,
+      "expected": 0.35492408584316293,
+      "result": "pass"
+    },
+    "metric.random_intercept.observed_active_share": {
+      "actual": 0.137291280148423,
+      "expected": 0.137291280148423,
+      "result": "pass"
+    },
+    "metric.random_intercept.predicted_active_share": {
+      "actual": 0.25485775524361537,
+      "expected": 0.25485775524361537,
+      "result": "pass"
+    },
+    "metric.random_intercept_1pl.auc": {
+      "actual": 0.8707061900610288,
+      "expected": 0.8707061900610288,
+      "result": "pass"
+    },
+    "metric.random_intercept_1pl.ece": {
+      "actual": 0.12485372321298845,
+      "expected": 0.12485372321298845,
+      "result": "pass"
+    },
+    "metric.random_intercept_1pl.finite_probabilities": {
+      "actual": {
+        "finite": 539,
+        "max": 0.8420830567059693,
+        "min": 0.05421733415876473,
+        "n": 539
+      },
+      "expected": {
+        "finite": 539,
+        "range": [
+          0,
+          1
+        ]
+      },
+      "result": "pass"
+    },
+    "metric.random_intercept_1pl.log_loss": {
+      "actual": 0.3580571201511836,
+      "expected": 0.3580571201511836,
+      "result": "pass"
+    },
+    "metric.random_intercept_1pl.observed_active_share": {
+      "actual": 0.137291280148423,
+      "expected": 0.137291280148423,
+      "result": "pass"
+    },
+    "metric.random_intercept_1pl.predicted_active_share": {
+      "actual": 0.2615590406775746,
+      "expected": 0.2615590406775746,
+      "result": "pass"
+    },
+    "one_fold_per_group": {
+      "actual": {
+        "violating_groups": 0
+      },
+      "expected": {
+        "violating_groups": 0
+      },
+      "result": "pass"
+    },
+    "prediction_labels_from_strict_cells": {
+      "actual": {
+        "mismatches": 0
+      },
+      "expected": {
+        "mismatches": 0
+      },
+      "result": "pass"
+    },
+    "prediction_task_identity": {
+      "actual": {
+        "rows": 539,
+        "same_set": true,
+        "unique": 539
+      },
+      "expected": {
+        "rows": 539,
+        "same_set": true,
+        "unique": 539
+      },
+      "result": "pass"
+    },
+    "primary_and_sensitivity_g0_pass": {
+      "actual": [
+        true,
+        true
+      ],
+      "expected": [
+        true,
+        true
+      ],
+      "result": "pass"
+    },
+    "primary_and_sensitivity_select_explanatory": {
+      "actual": [
+        "explanatory",
+        "explanatory",
+        "explanatory"
+      ],
+      "expected": [
+        "explanatory",
+        "explanatory",
+        "explanatory"
+      ],
+      "result": "pass"
+    },
+    "primary_sensitivity_task_group_fold_label_identity": {
+      "actual": {
+        "mismatches": 0,
+        "primary_unique": 539,
+        "sensitivity_unique": 539
+      },
+      "expected": {
+        "mismatches": 0,
+        "primary_unique": 539,
+        "sensitivity_unique": 539
+      },
+      "result": "pass"
+    },
+    "primary_sensitivity_task_order": {
+      "actual": 539,
+      "expected": 539,
+      "result": "pass"
+    },
+    "registered_group_fold_assignment": {
+      "actual": {
+        "mismatches": 0,
+        "seed": 20261021
+      },
+      "expected": {
+        "mismatches": 0,
+        "seed": 20261021
+      },
+      "result": "pass"
+    },
+    "selected_lowest_loss_eligible_2pl": {
+      "actual": "explanatory",
+      "expected": "explanatory",
+      "result": "pass"
+    },
+    "sensitivity_selected_auc_expected": {
+      "actual": 0.9331589654170299,
+      "expected": 0.9331589654170299,
+      "result": "pass"
+    },
+    "sensitivity_selected_log_loss_expected": {
+      "actual": 0.311872477109588,
+      "expected": 0.311872477109588,
+      "result": "pass"
+    },
+    "strict_manifest_shape": {
+      "actual": {
+        "cells": 4312,
+        "tasks": 539
+      },
+      "expected": {
+        "cells": 4312,
+        "samples_per_task": 8,
+        "tasks": 539
+      },
+      "result": "pass"
+    },
+    "strict_success_count": {
+      "actual": 191,
+      "expected": 191,
+      "result": "pass"
+    },
+    "with_e05_g0_shape": {
+      "actual": [
+        539,
+        400
+      ],
+      "expected": [
+        539,
+        400
+      ],
+      "result": "pass"
+    }
+  },
+  "conditioning_limit": "Point metrics condition on completed saved held-out predictions; no model refit, bootstrap, or selection uncertainty is added.",
+  "experiment": "20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013",
+  "failed_checks": [],
+  "fits_gpu_or_model_calls": 0,
+  "groups": 400,
+  "input_hashes": {
+    "primary_g0": {
+      "bytes": 29492,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/phase0b/primary_g0.json",
+      "sha256": "627723aec34752dcc1205b1472cd8b5bd2df3748d4b192560bf44310138e99ce"
+    },
+    "primary_predictions": {
+      "bytes": 185996,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/phase0b/primary_g0_predictions.csv",
+      "sha256": "80abc090efdc4b3e8660702a8f382b796b89d9bfef330f3d1bdd1d3dc60dc3fe"
+    },
+    "scores": {
+      "bytes": 1135896,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/phase0_cells_e20.csv",
+      "sha256": "1bd9b44703848fd03e606f10ed8f36fe2ae1ad45e16dc947af3221317ecf0f6a"
+    },
+    "validator": {
+      "bytes": 30590,
+      "path": "/tmp/e20_verify_final_phase0.py",
+      "sha256": "2a317bae6a7b97aa2d1b1f9c7ee792c1c2cbb5be581a8e6d99e8d3226288b3c5"
+    },
+    "with_e05_g0": {
+      "bytes": 29503,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/phase0b/with_e05_g0.json",
+      "sha256": "0eebaded276b614fc3497ab0eb2bc0d79373732b9894d9ac81d1cfe045bb1d1a"
+    },
+    "with_e05_predictions": {
+      "bytes": 185610,
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/phase0b/with_e05_g0_predictions.csv",
+      "sha256": "d8d27b16de8ac82d070b72fecfa60478ef8dc99306c39a09789dccb981fbd71e"
+    }
+  },
+  "read_only": true,
+  "scope": "with-E05 G0 saved-prediction point metrics and primary identity; no fit or bootstrap replay",
+  "selected_model": "explanatory",
+  "status": "PASS",
+  "tasks": 539
+}

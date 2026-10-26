@@ -1,0 +1,756 @@
+{
+  "state": "COMPLETE",
+  "observed_unix": 1792623740.1476731,
+  "entry_source_sha256": "bfc9522c6fd962c1ed71cdfe4f5e0e7083f34727a2247d3c043ae46f65637b92",
+  "capture_source_sha256": "7781e1335049e083fca61649c58933b1c6a5ae347f36b206fe46423ea4602791",
+  "scorer_path": "/scratch/users/brando9/rl4cv_sherlock/grading/veribench_scorer/experiments/71_E2_valkyrie_harbor_vals_ai_eval_code/scripts/score_scsc.py",
+  "frozen_sha256": {
+    "run_real_eval.py": "6e82b3d1cd6d3686aaec3d45f273cd902b03b962c0c2eca48f2c2b4f25f41fa9",
+    "kernel_axioms.py": "5dbbdcae75ba8b22911fcb43ab1fcde45a1475cf92742a39a29ebe41116de287",
+    "score_scsc.py": "b3713c48e0fdb24adec93b77be8785d20e48897ee8d1fd8ce31fdf37101e81d6"
+  },
+  "argv": [
+    "--job-dir",
+    "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6",
+    "--pack",
+    "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/train_pack",
+    "--name",
+    "e20_p0_c0_s6",
+    "--gold-dir",
+    "/scratch/users/brando9/rl4cv_sherlock/grading/veribench_scorer/veribench_dataset/lean_src/veribench",
+    "--lake-dir",
+    "/scratch/users/brando9/rl4cv_sherlock/grading/lean_src",
+    "--skip-tc",
+    "--out-dir",
+    "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/scores/e20_p0_c0_s6"
+  ],
+  "evaluated_sources": {
+    "aerospace_set_real__my_fprime_crc_match": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/aerospace_set_real__my_fprime_crc_match/verifier/solution.lean",
+      "sha256": "20c2eaa4dad61577fee8958ebcfbe10312fced8489dad9c1f95e64c49b4afa7a"
+    },
+    "aerospace_set_real__my_fprime_sequence_nonempty": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/aerospace_set_real__my_fprime_sequence_nonempty/verifier/solution.lean",
+      "sha256": "6f534a8a658c96e82ba233d30f3b17788dfd7e78860bde2a0918a86a264d3e15"
+    },
+    "aerospace_set_synthetic__my_airspeed_squat_gate": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/aerospace_set_synthetic__my_airspeed_squat_gate/verifier/solution.lean",
+      "sha256": "00f17b7c7454d49a263f6da07b848aadb42e8d02712526756e3fb4cff102bdd6"
+    },
+    "aerospace_set_synthetic__my_clamp_actuator": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/aerospace_set_synthetic__my_clamp_actuator/verifier/solution.lean",
+      "sha256": "b0dff499e0ad3736bc4729990c780bc8cb0aec7df3f85033e4780c1606bd48fa"
+    },
+    "aerospace_set_synthetic__my_descent_floor": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/aerospace_set_synthetic__my_descent_floor/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "aerospace_set_synthetic__my_edac_syndrome_detect": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/aerospace_set_synthetic__my_edac_syndrome_detect/verifier/solution.lean",
+      "sha256": "390e70ce85f4c7944465b78d6059c7bfe2e49eb2eaad126dd5480933eef932e5"
+    },
+    "aerospace_set_synthetic__my_fuel_reserve_gate": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/aerospace_set_synthetic__my_fuel_reserve_gate/verifier/solution.lean",
+      "sha256": "8d4e912c33cdddae3a19fa479a560b013ff2d40ac54c9cdf9254427cb05179db"
+    },
+    "aerospace_set_synthetic__my_nav_seq_rollover": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/aerospace_set_synthetic__my_nav_seq_rollover/verifier/solution.lean",
+      "sha256": "f14389ddb80269dd94d4a14e80d75090e1e3dc7f22d64cd4e6e941e72da587e5"
+    },
+    "aerospace_set_synthetic__my_redundant_bus_select": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/aerospace_set_synthetic__my_redundant_bus_select/verifier/solution.lean",
+      "sha256": "6daa1a7d98b13018dce3555bf09911e1f5dc1cc706cc420febca4c168518c24a"
+    },
+    "aerospace_set_synthetic__my_safing_vote": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/aerospace_set_synthetic__my_safing_vote/verifier/solution.lean",
+      "sha256": "c5f7ee420142818afcfaea62f1f87dac63c67d203682cb2ac1b61ecbbc5396a6"
+    },
+    "aerospace_set_synthetic__my_thruster_duty_ok": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/aerospace_set_synthetic__my_thruster_duty_ok/verifier/solution.lean",
+      "sha256": "44bcf403a0f5f6bd3d7ee64281b13d97f2a87352217264cc8476cf1acdc79dbe"
+    },
+    "aerospace_set_synthetic__my_tmr_voter": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/aerospace_set_synthetic__my_tmr_voter/verifier/solution.lean",
+      "sha256": "15c248c340eb3e5df7f74b42ca2e0a5a747a419dde912d0c6d429ec123bd42f0"
+    },
+    "compilers_set_real__my_cpython_dis_deopt_op": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/compilers_set_real__my_cpython_dis_deopt_op/verifier/solution.lean",
+      "sha256": "203db49de440b2a032cf78d8736dbeda9d58f680e42fad36d602d05b319cce01"
+    },
+    "compilers_set_real__my_cpython_dis_jump_target": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/compilers_set_real__my_cpython_dis_jump_target/verifier/solution.lean",
+      "sha256": "d6049a218833403f61d9ac6ae3af524d7bdcda83d58a6edc656539b0a2709869"
+    },
+    "compilers_set_real__my_cpython_load_small_int_const": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/compilers_set_real__my_cpython_load_small_int_const/verifier/solution.lean",
+      "sha256": "08fa38ce712fa92658024addacbfc8b71a9a1f7050849e8567881885cb7ef526"
+    },
+    "compilers_set_synthetic__my_bytecode_stack_push_n": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/compilers_set_synthetic__my_bytecode_stack_push_n/verifier/solution.lean",
+      "sha256": "7f752dc3cc8ced026a5a8754351f73b9a1d2258285c26d379f0c0c700b996c98"
+    },
+    "compilers_set_synthetic__my_call_graph_depth_ok": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/compilers_set_synthetic__my_call_graph_depth_ok/verifier/solution.lean",
+      "sha256": "a204ddb9024bc615a438cb842d277d2b658a8d0e52ccd364e545b527c95c5eae"
+    },
+    "compilers_set_synthetic__my_constant_fold_add": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/compilers_set_synthetic__my_constant_fold_add/verifier/solution.lean",
+      "sha256": "40995b5e7313fa41fc888d851a17c1969d14122ced2d5f4cbc29c0c377a92c88"
+    },
+    "compilers_set_synthetic__my_dce_live_return": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/compilers_set_synthetic__my_dce_live_return/verifier/solution.lean",
+      "sha256": "3781083e5e9b1094c1562f6ccfb7e9739c415abb7db54872ba597dc001a4e4c4"
+    },
+    "compilers_set_synthetic__my_lexer_span_cover": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/compilers_set_synthetic__my_lexer_span_cover/verifier/solution.lean",
+      "sha256": "2ebbd6d1532d467b269823311b7d5af105da0a1edd4b43b87ed9c017ea395879"
+    },
+    "compilers_set_synthetic__my_loop_unroll2_inc": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/compilers_set_synthetic__my_loop_unroll2_inc/verifier/solution.lean",
+      "sha256": "ed93063131f7c8b47037117e686eb9e70e4ac61401a98de70c37bee391d4db49"
+    },
+    "compilers_set_synthetic__my_pattern_exhaustive3": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/compilers_set_synthetic__my_pattern_exhaustive3/verifier/solution.lean",
+      "sha256": "ddaab4f2647ced1ebc12137b1d0c95cbafbc7a07f1c1ef3cb5dc84bf0c510ae2"
+    },
+    "compilers_set_synthetic__my_peephole_strength_square": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/compilers_set_synthetic__my_peephole_strength_square/verifier/solution.lean",
+      "sha256": "f8600ace047169aae0566eca63bca6b4cee1b3df9b151c8b3f48f768baae4553"
+    },
+    "compilers_set_synthetic__my_strength_reduce_mul2": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/compilers_set_synthetic__my_strength_reduce_mul2/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "concurrent_set_real__my_cas_write": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/concurrent_set_real__my_cas_write/verifier/solution.lean",
+      "sha256": "be8f0d198ba7820baae3ddf8b4469b22eecf99f09bf367c547495f8ea7b3538a"
+    },
+    "concurrent_set_real__my_raft_term_tick": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/concurrent_set_real__my_raft_term_tick/verifier/solution.lean",
+      "sha256": "b2fe340a6c52b54103eb75d553b7bdd089ba917f5f7d24ba7a05d69fd1015359"
+    },
+    "concurrent_set_real__my_raft_vote_gate": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/concurrent_set_real__my_raft_vote_gate/verifier/solution.lean",
+      "sha256": "db28203945c62a8bde6f6b7b35367cceec2269412c4400266188c72429c9f9e4"
+    },
+    "concurrent_set_synthetic__my_aba_tag_guard": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/concurrent_set_synthetic__my_aba_tag_guard/verifier/solution.lean",
+      "sha256": "763451c6265c4fdf093ca4c7d5d37d932583e4cf3d783d42a781771cd916715c"
+    },
+    "concurrent_set_synthetic__my_hazard_pointer_can_free": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/concurrent_set_synthetic__my_hazard_pointer_can_free/verifier/solution.lean",
+      "sha256": "dcbcab34618ae5a41bc3e22e80f07e36f0832bcec5416e0b5db29332f083e587"
+    },
+    "concurrent_set_synthetic__my_lamport_recv": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/concurrent_set_synthetic__my_lamport_recv/verifier/solution.lean",
+      "sha256": "2978038dd77da63b04a96cbe341b3610bead4007ae4918c0ecb79fb786ff616a"
+    },
+    "concurrent_set_synthetic__my_lww_register_pick_left": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/concurrent_set_synthetic__my_lww_register_pick_left/verifier/solution.lean",
+      "sha256": "57be56d1637f6240a1f6fc25e45255962fe77cc8dba14d573020bdf68a8070c3"
+    },
+    "concurrent_set_synthetic__my_p_n_counter_delta": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/concurrent_set_synthetic__my_p_n_counter_delta/verifier/solution.lean",
+      "sha256": "3fd5ddabceed31618df65a235cc37e01082b9366437ce87235e991220fc3f5cd"
+    },
+    "concurrent_set_synthetic__my_queue_second_dequeue": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/concurrent_set_synthetic__my_queue_second_dequeue/verifier/solution.lean",
+      "sha256": "5ab6d1a3f6bec3ed275c96a40408a60b3f4fcc0267d833f6e13aab3da01da74f"
+    },
+    "concurrent_set_synthetic__my_rcu_epoch_can_reclaim": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/concurrent_set_synthetic__my_rcu_epoch_can_reclaim/verifier/solution.lean",
+      "sha256": "b0c651abbff89d1625c25ccabb1550f666783ef1e2fe8100bf9e02578bcaf1fd"
+    },
+    "concurrent_set_synthetic__my_treiber_pop_after_push": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/concurrent_set_synthetic__my_treiber_pop_after_push/verifier/solution.lean",
+      "sha256": "32b2d8ad6b2f4e7e0d05a23cf93851bbf729dab4448f27b1eaef57c0f7b18375"
+    },
+    "concurrent_set_synthetic__my_vector_clock_merge_le_target": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/concurrent_set_synthetic__my_vector_clock_merge_le_target/verifier/solution.lean",
+      "sha256": "d52d4336b38348f5ee5ddeafe78f3c68aeec9351c63727168c57d93a46431c06"
+    },
+    "critical_infra_set_real__my_envoy_panic_threshold": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/critical_infra_set_real__my_envoy_panic_threshold/verifier/solution.lean",
+      "sha256": "062435892c996759f0a1acb92ae19a65bd0d55bb3087df697beba7b9e3490eed"
+    },
+    "critical_infra_set_real__my_kafka_quorum_majority": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/critical_infra_set_real__my_kafka_quorum_majority/verifier/solution.lean",
+      "sha256": "5ddfb3900bbd731f3f64a87a66f1f68488ac1ac1e6f5f318f8f3fe01d4a3161b"
+    },
+    "critical_infra_set_real__my_pingora_retry_slot": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/critical_infra_set_real__my_pingora_retry_slot/verifier/solution.lean",
+      "sha256": "f0c34b772add896807bf46b9e84208deb350171d26f91eccb288690b3f9d1199"
+    },
+    "critical_infra_set_real__my_traefik_weighted_quota": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/critical_infra_set_real__my_traefik_weighted_quota/verifier/solution.lean",
+      "sha256": "633d2e32cd503c568b253fffd7ff6064ecf2376ca617d4e32518b2074f7f5910"
+    },
+    "critical_infra_set_synthetic__my_circuit_breaker_rate": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/critical_infra_set_synthetic__my_circuit_breaker_rate/verifier/solution.lean",
+      "sha256": "11c25b7917815e6e8a36347d47da2e75f35d94a46d6e920c2fa9e7efb2df9a22"
+    },
+    "critical_infra_set_synthetic__my_consensus_quorum_read": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/critical_infra_set_synthetic__my_consensus_quorum_read/verifier/solution.lean",
+      "sha256": "98bcf050beae80d8bccd0a61d0d6c64790da51b1424622e6a9d375ace6d6f4b2"
+    },
+    "critical_infra_set_synthetic__my_http2_weighted_budget": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/critical_infra_set_synthetic__my_http2_weighted_budget/verifier/solution.lean",
+      "sha256": "09c3255ba78383e03641162157367fd30643cd29a31f2e44522764031790c592"
+    },
+    "critical_infra_set_synthetic__my_modular_round_robin_cursor": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/critical_infra_set_synthetic__my_modular_round_robin_cursor/verifier/solution.lean",
+      "sha256": "d5abeb0cf3abf18ad2f04a73f5642615d5530a392f8ee7cf30c512e68cf77b15"
+    },
+    "critical_infra_set_synthetic__my_opc_ua_replay_window": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/critical_infra_set_synthetic__my_opc_ua_replay_window/verifier/solution.lean",
+      "sha256": "18e224121c7c606f26a6ce6ab644de10adf0730b1ad4f5e6a708650f13f02536"
+    },
+    "critical_infra_set_synthetic__my_outlier_ejection_limit": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/critical_infra_set_synthetic__my_outlier_ejection_limit/verifier/solution.lean",
+      "sha256": "1737a6faa9ef70de43ae328830640b87a43cdf8956bd15342d76c166708dc6a1"
+    },
+    "critical_infra_set_synthetic__my_scada_two_field_fresh": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/critical_infra_set_synthetic__my_scada_two_field_fresh/verifier/solution.lean",
+      "sha256": "14caf22b02bef607eaffb0d60ed5a5cadcfc3cdfa916624725c26170b6e8b8f4"
+    },
+    "critical_infra_set_synthetic__my_token_bucket_decay": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/critical_infra_set_synthetic__my_token_bucket_decay/verifier/solution.lean",
+      "sha256": "2224cff8a13e4a668221a28b281589ef24f51e6824875e2b64f04f43a418bef3"
+    },
+    "crypto_set_real__my_base64url_padding_len": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/crypto_set_real__my_base64url_padding_len/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "crypto_set_real__my_constant_time_tag_eq4": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/crypto_set_real__my_constant_time_tag_eq4/verifier/solution.lean",
+      "sha256": "1199b9118b70ed715a25397a0ed7d2120ed80d5833558bf4a9131026e91fa914"
+    },
+    "crypto_set_real__my_erc20_allowance_after": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/crypto_set_real__my_erc20_allowance_after/verifier/solution.lean",
+      "sha256": "97cff5143767d62614ffcee92332666d160947a62f3f6c2891b108e2a05d7971"
+    },
+    "crypto_set_real__my_erc20_burn_supply": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/crypto_set_real__my_erc20_burn_supply/verifier/solution.lean",
+      "sha256": "6e5c2e331e8327b0b7225db30604832f9e51f845b90351b3b6481caca3126bd7"
+    },
+    "crypto_set_real__my_erc20_capped_mint_supply": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/crypto_set_real__my_erc20_capped_mint_supply/verifier/solution.lean",
+      "sha256": "3cfb6715a9c535e844830a286b5ff2e9c6219c76f617bf4802098cd204ae568d"
+    },
+    "crypto_set_real__my_erc20_infinite_allowance_after": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/crypto_set_real__my_erc20_infinite_allowance_after/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "crypto_set_real__my_fernet_token_header_valid": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/crypto_set_real__my_fernet_token_header_valid/verifier/solution.lean",
+      "sha256": "8f8221fd99b6f7a7d118862c053d7fc84bb75b93614e93ddfb63b65658f662a6"
+    },
+    "crypto_set_real__my_fernet_ttl_accept": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/crypto_set_real__my_fernet_ttl_accept/verifier/solution.lean",
+      "sha256": "ac09b7cb4f12ae04af4b95e308fd5e848ee600b3c2ccfcdc9085e8a437aa1e0b"
+    },
+    "crypto_set_real__my_pkcs7_padding_bytes": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/crypto_set_real__my_pkcs7_padding_bytes/verifier/solution.lean",
+      "sha256": "ca4709ad01355258bbfd1a0dc162d8f9b621cc7314233d122dfee77d0eb392a7"
+    },
+    "crypto_set_real__my_sha256_hexdigest_len": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/crypto_set_real__my_sha256_hexdigest_len/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "crypto_set_synthetic__my_aes_key_length_valid": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/crypto_set_synthetic__my_aes_key_length_valid/verifier/solution.lean",
+      "sha256": "2c7ddcec10681bd5d5ac600be08d815ef4cd8acf2133959f48a38a344f312c6f"
+    },
+    "crypto_set_synthetic__my_schnorr_response_scalar": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/crypto_set_synthetic__my_schnorr_response_scalar/verifier/solution.lean",
+      "sha256": "d42d7f2e5d517cab4b6208d6ad4a65e42d15c118b02b51070664c6e92773dce6"
+    },
+    "cs_set__bellman_ford": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/cs_set__bellman_ford/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cs_set__bubble_sort": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/cs_set__bubble_sort/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cs_set__dfs": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/cs_set__dfs/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cs_set__dijkstra": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/cs_set__dijkstra/verifier/solution.lean",
+      "sha256": "b61d86cb6b6a72d163d0f82762e6c46ef7f0358fd00ab13ea30a4023586bc1eb"
+    },
+    "cs_set__edit_distance": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/cs_set__edit_distance/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cs_set__heap_sort": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/cs_set__heap_sort/verifier/solution.lean",
+      "sha256": "1153bf5a76820a5ef317880984fa52ba0fc82b91729d2612c51692b8c1b0f4c0"
+    },
+    "cs_set__heapsort_algorithm": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/cs_set__heapsort_algorithm/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cs_set__heapsort_build_heap": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/cs_set__heapsort_build_heap/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cs_set__heapsort_max_heapify": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/cs_set__heapsort_max_heapify/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cs_set__heapsort_priority_queue": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/cs_set__heapsort_priority_queue/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cs_set__heapsort_problems": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/cs_set__heapsort_problems/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cs_set__lcs": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/cs_set__lcs/verifier/solution.lean",
+      "sha256": "3eaab8d1b90e62829a038e60fb39bad078db5c7e77d597f977595608a97e22c5"
+    },
+    "cs_set__quick_sort": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/cs_set__quick_sort/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cs_set__selection_sort": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/cs_set__selection_sort/verifier/solution.lean",
+      "sha256": "e75c1e4e9f3c6a6012657536072ea7cca778c9023e2df4bc0eb03b05b5418168"
+    },
+    "cs_set__union_find": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/cs_set__union_find/verifier/solution.lean",
+      "sha256": "432081915fcd61e6893e85e634571976194e1b014fa053cc03c3802cb54d3c90"
+    },
+    "easy_set__10_myevensumparity": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__10_myevensumparity/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "easy_set__13_myuppercase": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__13_myuppercase/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "easy_set__14_myremovespaces": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__14_myremovespaces/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "easy_set__16_myfactorial": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__16_myfactorial/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "easy_set__19_mypower": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__19_mypower/verifier/solution.lean",
+      "sha256": "b48541a1384ae0a844d81c05851a2b466ebf713b0b645479283e1213a2e1e28b"
+    },
+    "easy_set__1_myadd": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__1_myadd/verifier/solution.lean",
+      "sha256": "1f18cb6e04a3669fd8f93dc63f4960b4845e486391a01d1bf82aa6deae0e12ed"
+    },
+    "easy_set__20_mysumdigits": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__20_mysumdigits/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "easy_set__21_is_palindrome": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__21_is_palindrome/verifier/solution.lean",
+      "sha256": "5b0350c58207a9915b97ef5755282d6287e23c7ffff42bfcc3bfcdcc0641fbb4"
+    },
+    "easy_set__23_is_prime": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__23_is_prime/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "easy_set__26_longest_common_subsequence": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__26_longest_common_subsequence/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "easy_set__28_length_of_longest_substring": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__28_length_of_longest_substring/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "easy_set__29_longest_common_prefix": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__29_longest_common_prefix/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "easy_set__2_mymax": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__2_mymax/verifier/solution.lean",
+      "sha256": "1b262a7a721cc7a257609869f841c76852ec87896eb8229817430ee97efb4330"
+    },
+    "easy_set__31_count_even_digits": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__31_count_even_digits/verifier/solution.lean",
+      "sha256": "27686b1413cf6f9caaf58a504396f62af884ffba1e635dd0315b32c77ff18d81"
+    },
+    "easy_set__32_divisible_by_seven_and_eight_count": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__32_divisible_by_seven_and_eight_count/verifier/solution.lean",
+      "sha256": "b7b63d5a2d5e3a456d7521f9606ecc40d0d691e7e51b509c4c660cb864442f12"
+    },
+    "easy_set__33_myminimum": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__33_myminimum/verifier/solution.lean",
+      "sha256": "a5c11c9e6f0085c37b0cbecad0730d721458cdb61c68dceed9cee86d54e98d7a"
+    },
+    "easy_set__38_reverse_words": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__38_reverse_words/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "easy_set__40_all_even": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__40_all_even/verifier/solution.lean",
+      "sha256": "6b341722f2753aa0ca093e217f84dba4dff1377ce38ee09b059ad26a9ab6af9c"
+    },
+    "easy_set__41_duplicate_chars": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__41_duplicate_chars/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "easy_set__42_product_of_list": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__42_product_of_list/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "easy_set__43_replace_spaces": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__43_replace_spaces/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "easy_set__6_mymaxlist": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__6_mymaxlist/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "easy_set__7_myevanlist": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__7_myevanlist/verifier/solution.lean",
+      "sha256": "32ee22d7aa5d3a70055972a65bb166a7b141a4f025721462fabd2d3a75f55279"
+    },
+    "easy_set__8_myreverse": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__8_myreverse/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "easy_set__9_myoddsumparity": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/easy_set__9_myoddsumparity/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "finance_set_real__my_drawdown_bps": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/finance_set_real__my_drawdown_bps/verifier/solution.lean",
+      "sha256": "e22fcd7448c86ffb28e47dbf60bc65b13589947560d5318aa20cac874c1c40ef"
+    },
+    "finance_set_real__my_high_water_mark": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/finance_set_real__my_high_water_mark/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "finance_set_real__my_talib_plus_dm": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/finance_set_real__my_talib_plus_dm/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "finance_set_real__my_talib_typ_price": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/finance_set_real__my_talib_typ_price/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "finance_set_real__my_talib_weighted_close": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/finance_set_real__my_talib_weighted_close/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "finance_set_synthetic__my_auction_fill_qty": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/finance_set_synthetic__my_auction_fill_qty/verifier/solution.lean",
+      "sha256": "466e7d495dfa1b4ed45d464df1290137b10dd22ff923a5677aa78f929eec1c54"
+    },
+    "finance_set_synthetic__my_exposure_utilization_ok": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/finance_set_synthetic__my_exposure_utilization_ok/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "finance_set_synthetic__my_kelly_cap_bps": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/finance_set_synthetic__my_kelly_cap_bps/verifier/solution.lean",
+      "sha256": "fa69e623b95bb21a05ef3b66aa489a3d95cebdbbe77607c77aee9c178321cd87"
+    },
+    "finance_set_synthetic__my_lot_size_compliant": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/finance_set_synthetic__my_lot_size_compliant/verifier/solution.lean",
+      "sha256": "711cf05a65a5d21c506a345e1ef8660bdb17056ecdd4133723399f4e4938722c"
+    },
+    "finance_set_synthetic__my_position_within_limit": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/finance_set_synthetic__my_position_within_limit/verifier/solution.lean",
+      "sha256": "d7a6170a12c49fc8602d2f78278b7002bc8658f31f4f81aa83feb07c19c615e9"
+    },
+    "finance_set_synthetic__my_stop_loss_triggered": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/finance_set_synthetic__my_stop_loss_triggered/verifier/solution.lean",
+      "sha256": "e97b242cdd19892cd253ff202a62c294f89b69f2a984761c86e394fcfe66926b"
+    },
+    "finance_set_synthetic__my_transfer_debit": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/finance_set_synthetic__my_transfer_debit/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "gov_cert_set_real__my_sigstore_oid_extension_match": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/gov_cert_set_real__my_sigstore_oid_extension_match/verifier/solution.lean",
+      "sha256": "cb70c3cfd79b91f26b984e235b6e96c95c24044e1bc4974fae29a403a02da7c8"
+    },
+    "gov_cert_set_real__my_sigstore_time_range_valid": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/gov_cert_set_real__my_sigstore_time_range_valid/verifier/solution.lean",
+      "sha256": "457fffccb48a9eafd70546161e4616931eac9655852d914ddeaf409f9d1f01d9"
+    },
+    "gov_cert_set_synthetic__my_abac_deny_default": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/gov_cert_set_synthetic__my_abac_deny_default/verifier/solution.lean",
+      "sha256": "e1c47f26251d372ea0832aee207fa1ed17c6caa85fc5d3431116d2fe042cb40d"
+    },
+    "gov_cert_set_synthetic__my_audit_hash_chain_extend": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/gov_cert_set_synthetic__my_audit_hash_chain_extend/verifier/solution.lean",
+      "sha256": "b1a6753ec41ffe01fb349f00ef751cbe180e7b10fc70b8b0c305d5d0c46028d2"
+    },
+    "gov_cert_set_synthetic__my_audit_log_append": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/gov_cert_set_synthetic__my_audit_log_append/verifier/solution.lean",
+      "sha256": "3b777168804d6d6d6dc5b4525db4cfb81c21aed94d79a73b69af6b0d5a9e0839"
+    },
+    "gov_cert_set_synthetic__my_coverage_mcdc_threshold": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/gov_cert_set_synthetic__my_coverage_mcdc_threshold/verifier/solution.lean",
+      "sha256": "0d08d3a5c090a5254a7d97e680c8feaf251c4788e5145c2b313523e0d2b5ce23"
+    },
+    "gov_cert_set_synthetic__my_election_tally_add": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/gov_cert_set_synthetic__my_election_tally_add/verifier/solution.lean",
+      "sha256": "749f74825ba8676e18d943f27260d99ae8829fb3267beb883d730261be666731"
+    },
+    "gov_cert_set_synthetic__my_gps_drift_budget": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/gov_cert_set_synthetic__my_gps_drift_budget/verifier/solution.lean",
+      "sha256": "c2e72166d82036dc2c7b81efb5c7ee32e2efacb9d70f0021afd1befc773eaefd"
+    },
+    "gov_cert_set_synthetic__my_provenance_digest_check": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/gov_cert_set_synthetic__my_provenance_digest_check/verifier/solution.lean",
+      "sha256": "44c5996959ed96a2b26adaf914bd74b38cfd739c0ece6d60360e758772917054"
+    },
+    "gov_cert_set_synthetic__my_retention_purge_safe": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/gov_cert_set_synthetic__my_retention_purge_safe/verifier/solution.lean",
+      "sha256": "6a307877e7c3c8fb2d097a7f722b146ae67286ca6c3dbae0e2562b2ee222d66f"
+    },
+    "gov_cert_set_synthetic__my_rng_health_score": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/gov_cert_set_synthetic__my_rng_health_score/verifier/solution.lean",
+      "sha256": "0046d1f1dc1bf44660d30d83233a285da88397cf1d971591ec9461ce4b7304ec"
+    },
+    "gov_cert_set_synthetic__my_slsa_multi_field_check": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/gov_cert_set_synthetic__my_slsa_multi_field_check/verifier/solution.lean",
+      "sha256": "58ae706acfb1f2885df14360bbf57679b6cd5092486c6456986f3ea316787730"
+    },
+    "hardware_set_real__my_spike_funct3_field": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hardware_set_real__my_spike_funct3_field/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "hardware_set_real__my_spike_opcode_field": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hardware_set_real__my_spike_opcode_field/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "hardware_set_real__my_spike_rd_field": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hardware_set_real__my_spike_rd_field/verifier/solution.lean",
+      "sha256": "c75a859f1863ff59657703ed0d11755c9853fc02d916622cc965cbe30bebca15"
+    },
+    "hardware_set_synthetic__my_axi_valid_ready_fire": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hardware_set_synthetic__my_axi_valid_ready_fire/verifier/solution.lean",
+      "sha256": "ac6e604906b10250d322d35352a4db02d4dab14454a3f0b2cb75a00e455b3c2e"
+    },
+    "hardware_set_synthetic__my_branch_counter_taken": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hardware_set_synthetic__my_branch_counter_taken/verifier/solution.lean",
+      "sha256": "087b8540678200382162bff483cd62cdcd7a0278f6319ae383266e21b3e4f5df"
+    },
+    "hardware_set_synthetic__my_branch_counter_update_taken": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hardware_set_synthetic__my_branch_counter_update_taken/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "hardware_set_synthetic__my_clock_enable_hold": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hardware_set_synthetic__my_clock_enable_hold/verifier/solution.lean",
+      "sha256": "f424a5d653189d4c2e4b63d86cb946ce971e6942ca136ca3106262bc0fb6a70e"
+    },
+    "hardware_set_synthetic__my_fetch_aligned4": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hardware_set_synthetic__my_fetch_aligned4/verifier/solution.lean",
+      "sha256": "898ebafc941ed2f6facec04f094b8d5623950b991acfc192b73405c45ab19082"
+    },
+    "hardware_set_synthetic__my_fifo_half_full": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hardware_set_synthetic__my_fifo_half_full/verifier/solution.lean",
+      "sha256": "20da01eaa504ebde1527c9b0b247348a9ef404f4a97463c428d45660a7ab72fb"
+    },
+    "hardware_set_synthetic__my_fifo_push_level": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hardware_set_synthetic__my_fifo_push_level/verifier/solution.lean",
+      "sha256": "ef1087f4b8c6c2ca1f3fd500eaae6a969d59e027431fc49063a5ae58437468f8"
+    },
+    "hardware_set_synthetic__my_one_hot8": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hardware_set_synthetic__my_one_hot8/verifier/solution.lean",
+      "sha256": "a0fbaafa93b252d9c0ed31a23abbaae535d8606921c2011f63e59b3ea42e5d49"
+    },
+    "hardware_set_synthetic__my_pc_select": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hardware_set_synthetic__my_pc_select/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "hardware_set_synthetic__my_round_robin_grant2": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hardware_set_synthetic__my_round_robin_grant2/verifier/solution.lean",
+      "sha256": "ac150d34f39082a0b742029618d25dd351832e273ad7d146c91266dcf978a11c"
+    },
+    "humaneval_set__humaneval_0_hascloseelements": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_0_hascloseelements/verifier/solution.lean",
+      "sha256": "54f2b540c999eb5df07d547bf08a0c1c5203f2bb945a8aaea4b8428b4f3b4b35"
+    },
+    "humaneval_set__humaneval_13__gcd": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_13__gcd/verifier/solution.lean",
+      "sha256": "23fd2e55371576514b98d3fac2aff57cc52e1de4b9eed08fb5055d5c1cf88213"
+    },
+    "humaneval_set__humaneval_15_string_sequence": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_15_string_sequence/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "humaneval_set__humaneval_16_count_distinct_characters": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_16_count_distinct_characters/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "humaneval_set__humaneval_17_parse_music": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_17_parse_music/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "humaneval_set__humaneval_18_how_many_times": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_18_how_many_times/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "humaneval_set__humaneval_19_sort_numbers": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_19_sort_numbers/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "humaneval_set__humaneval_1_separate_paren_groups": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_1_separate_paren_groups/verifier/solution.lean",
+      "sha256": "c642b3573beecc204fcb4ca3b96a34d6aed0e23290e93d94bcb8968d17d23874"
+    },
+    "humaneval_set__humaneval_20_find_closest_elements": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_20_find_closest_elements/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "humaneval_set__humaneval_22_filter_integers": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_22_filter_integers/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "humaneval_set__humaneval_24_largest_divisor": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_24_largest_divisor/verifier/solution.lean",
+      "sha256": "11fd3abe241a07cd9ad97911a6c2a5ed635fd9808f77435176b907f6b136d031"
+    },
+    "humaneval_set__humaneval_25_factorize": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_25_factorize/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "humaneval_set__humaneval_26_remove_duplicates": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_26_remove_duplicates/verifier/solution.lean",
+      "sha256": "6ab720b8910301b2512bbc556840e740a0a26b8616a0d290540eb684f2bd9958"
+    },
+    "humaneval_set__humaneval_27_flip_case": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_27_flip_case/verifier/solution.lean",
+      "sha256": "c0b3937e573cf1cc7f837f50161297522a75e85f346241b9c392d0a801429776"
+    },
+    "humaneval_set__humaneval_29_filter_by_prefix": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_29_filter_by_prefix/verifier/solution.lean",
+      "sha256": "1104806b94ceda16b2877d3667be183773e7368a6127915298f6df96537ed82a"
+    },
+    "humaneval_set__humaneval_2_truncate_number": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_2_truncate_number/verifier/solution.lean",
+      "sha256": "59cd114c4af6509e73ea06b699f9e01dc45998a7308aad29714169558a199654"
+    },
+    "humaneval_set__humaneval_31_is_prime": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_31_is_prime/verifier/solution.lean",
+      "sha256": "e6daaca52e877cfe007867c20eba79deaf9117e694db70043971b020f86c5867"
+    },
+    "humaneval_set__humaneval_32_findzero": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_32_findzero/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "humaneval_set__humaneval_33_sort_third": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_33_sort_third/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "humaneval_set__humaneval_34_unique": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_34_unique/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "humaneval_set__humaneval_35_max_element": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_35_max_element/verifier/solution.lean",
+      "sha256": "7604c2c1f560e5f73160f5badc3295f75c8fd2c1a1d2df97c29082f56d71c87e"
+    },
+    "humaneval_set__humaneval_36_fizz_buzz": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_36_fizz_buzz/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "humaneval_set__humaneval_37_sort_even": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_37_sort_even/verifier/solution.lean",
+      "sha256": "a8c9ea9095973317a675b8775a1416d3bc0fb87f531d29dd1ddf650c6312f4c5"
+    },
+    "humaneval_set__humaneval_3_below_zero": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_3_below_zero/verifier/solution.lean",
+      "sha256": "05dcdea3c253d58c7cd6b0401acfb694bccd189684889cbfe7022b8ca1396b36"
+    },
+    "humaneval_set__humaneval_43_pairs_sum_to_zero": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_43_pairs_sum_to_zero/verifier/solution.lean",
+      "sha256": "68c6914646c33101053c0871fa50ef49ac79bacd318e5466fe7ba7fc0b850fd8"
+    },
+    "humaneval_set__humaneval_46_fib4": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_46_fib4/verifier/solution.lean",
+      "sha256": "a9b6a10c109abc5503696627815684953d682ae2cdf92b49d04ed83c67e9b01f"
+    },
+    "humaneval_set__humaneval_4_mean_absolute_deviation": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_4_mean_absolute_deviation/verifier/solution.lean",
+      "sha256": "9ac1b5c277a9c9aac116e55f98d27c37c4addffaa094f420754ac0efab4cae8a"
+    },
+    "humaneval_set__humaneval_51_remove_vowels": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_51_remove_vowels/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "humaneval_set__humaneval_5_intersperse": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_5_intersperse/verifier/solution.lean",
+      "sha256": "375897d4ab8ed1b11695c4d80463313b281a7c5d2333da5f03fcce49ab073d67"
+    },
+    "humaneval_set__humaneval_6_parse_nested_parens": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_6_parse_nested_parens/verifier/solution.lean",
+      "sha256": "19e8b0d714ef067167e54da74be5c1af748cdb74cf06c3d604fad3d21afb0457"
+    },
+    "humaneval_set__humaneval_82_prime_length": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_82_prime_length/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "humaneval_set__humaneval_8_sum_product": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_8_sum_product/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "humaneval_set__humaneval_9_rolling_max": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humaneval_9_rolling_max/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "humaneval_set__humanevalxl_9__isprime": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/humaneval_set__humanevalxl_9__isprime/verifier/solution.lean",
+      "sha256": "3b3766aa1e72a71871291b9c618c84700a471f88cf9c13fb293e9720cd7d74a6"
+    },
+    "hypervisor_set_real__my_seccomp_compare_real": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hypervisor_set_real__my_seccomp_compare_real/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "hypervisor_set_real__my_virtio_vsock_tx_validate_real": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hypervisor_set_real__my_virtio_vsock_tx_validate_real/verifier/solution.lean",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "hypervisor_set_real__my_vm_memory_permission_allow_real": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hypervisor_set_real__my_vm_memory_permission_allow_real/verifier/solution.lean",
+      "sha256": "9b25659ee72323ba3dfcd46dc88a66f13046e8f001cadef3df7043d9227dd865"
+    },
+    "hypervisor_set_synthetic__my_cap_badge_intersect": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hypervisor_set_synthetic__my_cap_badge_intersect/verifier/solution.lean",
+      "sha256": "c259e9933529c959607301ec2cfdacf4ec46b8d90dc822218512d6e45a7a9399"
+    },
+    "hypervisor_set_synthetic__my_cap_depth_limit": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hypervisor_set_synthetic__my_cap_depth_limit/verifier/solution.lean",
+      "sha256": "19417dcea0c539b4c7c0af6417b9ffbddd5f458c1dd91ad403fc11a6b195d1b5"
+    },
+    "hypervisor_set_synthetic__my_enclave_seal_check": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hypervisor_set_synthetic__my_enclave_seal_check/verifier/solution.lean",
+      "sha256": "683beb8c7c3ae42d79e9242fb22ed12d72ca660364ea11995b22babdcbca901b"
+    },
+    "hypervisor_set_synthetic__my_hypercall_validate": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hypervisor_set_synthetic__my_hypercall_validate/verifier/solution.lean",
+      "sha256": "1cd10a1026fe70a02157f3e93f2e1d41f65216d9be9fd159d74713a9890fb81b"
+    },
+    "hypervisor_set_synthetic__my_interrupt_route": {
+      "path": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c0_s6/hypervisor_set_synthetic__my_interrupt_route/verifier/solution.lean",
+      "sha256": "a0bb445e65a4848fa45ac1047fa7332168ee9635aa7ef90ea289e6f9b8548be0"
+    }
+  },
+  "compiler": {
+    "path": "/scratch/users/brando9/rl4cv_sherlock/grading/elan/toolchains/leanprover--lean4---v4.22.0/bin/lean",
+    "sha256": "cbf5fd536e142ef1beaccf33f788fd8a7f3f29fb214e75c11319a8d8677b4b2b",
+    "version": "Lean (version 4.22.0, x86_64-unknown-linux-gnu, commit ba2cbbf09d4978f416e0ebd1fceeebc2c4138c05, Release)"
+  },
+  "compile_bytecode_unchanged": true,
+  "kernel_probe_bytecode_unchanged": true,
+  "kernel_check_bytecode_unchanged": true,
+  "amendment": "stdout/stderr transport changes from PIPE to persistent regular files; identical command arguments, timeout, exit code and frozen proof policy.",
+  "exit_code": 0,
+  "ended_unix": 1792625293.7759273
+}

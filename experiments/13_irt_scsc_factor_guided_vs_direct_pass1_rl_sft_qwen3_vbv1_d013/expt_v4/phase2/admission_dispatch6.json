@@ -1,0 +1,1740 @@
+{"tldr": "Single A_1302 pause and V4-A1 through A4 are statically admitted; live gates remain unmeasured.",
+  "amendment_sha256": "81f22afc01ea662ca6a1f8ca7d96a2b63b68b0f8293c35d6d3aa6fe2f3703543",
+  "amendments": {
+    "AMENDMENT_V4-A4_importance_correction_at_uncertified_positions_10-20-2026.md": "24f45c46e21a3f53a725f0d0ac3c076d6a94f008f3c2b097b54f1390adc9c294",
+    "AMENDMENT_V4-A1_generator_support_receipt_10-20-2026.md": "81f22afc01ea662ca6a1f8ca7d96a2b63b68b0f8293c35d6d3aa6fe2f3703543",
+    "AMENDMENT_V4-A2_receipt_invariance_and_sampler_backend_10-20-2026.md": "147b609db08b6237010e47d43aa9b4162240f20b77b5585b23a50463a8607226",
+    "AMENDMENT_V4-A3_schedule_v4_start_and_v3_pause_10-20-2026.md": "6f98520b7704d5bdb10f38312cf1566df0087c1c21133623c7cfcef4e67f2d70"
+  },
+  "api_spend_usd": 0,
+  "bindings": [
+    {
+      "path": "AMENDMENT_V4-A1_generator_support_receipt_10-20-2026.md",
+      "sha256": "81f22afc01ea662ca6a1f8ca7d96a2b63b68b0f8293c35d6d3aa6fe2f3703543"
+    },
+    {
+      "path": "AMENDMENT_V4-A2_receipt_invariance_and_sampler_backend_10-20-2026.md",
+      "sha256": "147b609db08b6237010e47d43aa9b4162240f20b77b5585b23a50463a8607226"
+    },
+    {
+      "path": "AMENDMENT_V4-A3_schedule_v4_start_and_v3_pause_10-20-2026.md",
+      "sha256": "6f98520b7704d5bdb10f38312cf1566df0087c1c21133623c7cfcef4e67f2d70"
+    },
+    {
+      "path": "AMENDMENT_V4-A4_importance_correction_at_uncertified_positions_10-20-2026.md",
+      "sha256": "24f45c46e21a3f53a725f0d0ac3c076d6a94f008f3c2b097b54f1390adc9c294"
+    },
+    {
+      "path": "OPERATIONAL_V4-A3_single_pause_10-21-2026.md",
+      "sha256": "babb2bb7c2ba385b74335a733bb535df592d4b73e8ba3e6fb0a57f59b0283680"
+    },
+    {
+      "path": "PROTOCOL.md",
+      "sha256": "fb741636844294fb76667c4d6928ddbef1c7e28fde0fd1093ae834876764e063"
+    },
+    {
+      "path": "phase2/A6_counts.json",
+      "sha256": "f9af89b2ff0637e497103796102f038ce84408c67e1daf1bd12aa66ac29fc4c3"
+    },
+    {
+      "path": "phase2/a6_counts.py",
+      "sha256": "b5cfe40615378f9eef296b40ff7d49e12ad8d2564cb67024045de890c07ae726"
+    },
+    {
+      "path": "phase2/adapter_dry_contracts.json",
+      "sha256": "1d841ecd11cfa5092e9566ad781652006ba5d3d2daf457a2a69f4958bf287281"
+    },
+    {
+      "path": "phase2/admission.py",
+      "sha256": "77cb4fc5f2accdc69c9054b00b2bcb6b41c904c9e740849a188e8a8f556067b1"
+    },
+    {
+      "path": "phase2/audit_runtime.py",
+      "sha256": "9840d5ab27e4d457a1ebc63f97085c15dda70b5f44611bef71c6efe89abcb79f"
+    },
+    {
+      "path": "phase2/autoresume_watchdog.py",
+      "sha256": "c6ba17aed2573c9fa48e3de944ba10675c1a7c962c9a61f858b251cccb417383"
+    },
+    {
+      "path": "phase2/build_plans.py",
+      "sha256": "f792468f905f4211cf776f35edd1a567c1b3e240bb46a9e3efb5375e24637ac1"
+    },
+    {
+      "path": "phase2/common.py",
+      "sha256": "d27ca06370fec6c7f830e6898088461825892c9cb9066cdd2835b744c4208839"
+    },
+    {
+      "path": "phase2/context_contract.py",
+      "sha256": "cea18405ce6a286c5443c5ecc4cb3f8289e26cf803c61b6de778aa6b97bb2d76"
+    },
+    {
+      "path": "phase2/context_values.json",
+      "sha256": "71d7644145d9f99976dd19da89180f0fb990eec13733b9e4177d244537973c23"
+    },
+    {
+      "path": "phase2/device_guard.py",
+      "sha256": "6120c9548b7b18fde7dd94091f16d79d70e9ac6e7f08dfc32972d4e679c3fef5"
+    },
+    {
+      "path": "phase2/device_lease.py",
+      "sha256": "02f4af38d79f96e4a2fec23c77fc029cc79986005b069b2df6ffd23a0f2a7120"
+    },
+    {
+      "path": "phase2/dry_run.py",
+      "sha256": "4e49aecb1ae698233047a59bd5dcd6259307e9573776cb69153820e54a22486d"
+    },
+    {
+      "path": "phase2/filtered_policy.py",
+      "sha256": "f0cd34d1ce01646d335656e4af82e43707e22aca4dada2bc0295975598d2de89"
+    },
+    {
+      "path": "phase2/forecast_score.py",
+      "sha256": "d3bd6052b5c81c278b8499567bfe0dcd3c03c9fbbf66e14f66d03eaf40d51318"
+    },
+    {
+      "path": "phase2/forecast_verification.json",
+      "sha256": "ced54135c62fd192883692ec9f900f367f822077833c3154f225c3eb32879f5c"
+    },
+    {
+      "path": "phase2/gate_receipts.py",
+      "sha256": "17c6563549004489b0977055e8c0f568d59c5289ffef3e9114b10ab079a3cb2d"
+    },
+    {
+      "path": "phase2/gates.py",
+      "sha256": "942abbbccf5d15380df2455c62d0ac5c0c850ebde6f57b0087afb7d4d8a1e050"
+    },
+    {
+      "path": "phase2/generation_contract.py",
+      "sha256": "4d969e88aa170ec4c6077567a44f8d331fa8059a68cfc5ca7d3cae42449ac164"
+    },
+    {
+      "path": "phase2/generation_runtime.py",
+      "sha256": "22b7e52e65be98ec15902fa53c26cab8a95e128ed685297874a7ff73f03b4e97"
+    },
+    {
+      "path": "phase2/gpu_inventory.py",
+      "sha256": "cea6a568f21e82270d0b1133b2b68553ac3fa0a5d98f5e0fc3517351b6de4d6b"
+    },
+    {
+      "path": "phase2/group_selection.py",
+      "sha256": "9290ae3a51e1f7ef1604518a89935d8163ddfa055464291f49525b981fe139bb"
+    },
+    {
+      "path": "phase2/importance.py",
+      "sha256": "7cc188c5b4b68de56b5a7e643b83886c472f6797680b1cd3d6ed0a3f686cad0d"
+    },
+    {
+      "path": "phase2/install_watchdog.py",
+      "sha256": "014ad3aa3176f906eb4d2f02563cf84267ec96a3a53cf8dd88c5b9143086bd92"
+    },
+    {
+      "path": "phase2/launch_control.py",
+      "sha256": "4eb133dfe41e468a66caa7b603bd2c17b9446c0eefca9beec9273eb8666a4a1e"
+    },
+    {
+      "path": "phase2/launch_plan.json",
+      "sha256": "c7820931a3fc6e2ca8e64f7cc53ad878b9d991c64bbe6c5b27d3d34c5299b11a"
+    },
+    {
+      "path": "phase2/legacy.py",
+      "sha256": "dde2e88bbacd3cf36014aa45f3255d2aa293ee092f201d4e4a4bbc9080de7d6a"
+    },
+    {
+      "path": "phase2/local_engine.py",
+      "sha256": "99ebb610389881717c0dd9850cac46d46b3f439dbe55bc1ee038c77e4a058c1b"
+    },
+    {
+      "path": "phase2/maximum_length_probe.py",
+      "sha256": "a55f88b2623ca3a09f30bee9adc8c670ff639264498ada52c39cf5ddd579d546"
+    },
+    {
+      "path": "phase2/nemo_objective.py",
+      "sha256": "cf6ae23c63c19861268cc1ff12219c2330837a49314471599e0c8ec603f14029"
+    },
+    {
+      "path": "phase2/nemo_objective_contract.py",
+      "sha256": "548e7a26b9d4c09ec641a85ca170884d23432680c23990bed3a262767b22240d"
+    },
+    {
+      "path": "phase2/operational_pause.json",
+      "sha256": "cab16d229cff6ede15e97b7374dd8994457c0b56ec977b875440f0040372fdd9"
+    },
+    {
+      "path": "phase2/operational_pause.py",
+      "sha256": "9fd32e7ceeb1ab0ee9c91a4da9f48801d9d3f3534992842139ad7ca847a5bcc8"
+    },
+    {
+      "path": "phase2/pause_v3.py",
+      "sha256": "55979549c71be283e2e21a2a3d827e50fde6f86a89743259552dcac723e464bc"
+    },
+    {
+      "path": "phase2/pilot_configuration.py",
+      "sha256": "4c182e67aaae3abad997e096c40fc1aa8f720ed2db95abb3bdb0eb64211ddb2d"
+    },
+    {
+      "path": "phase2/pilot_metrics.py",
+      "sha256": "1723344eb4d4414323d766130163cfc54ca634b12f2b90d6f3c19a5fad465915"
+    },
+    {
+      "path": "phase2/placebo.py",
+      "sha256": "ee732fe37b088f841346649cc74d6d720c1426b2a1e6dbc590666bc7f073bad3"
+    },
+    {
+      "path": "phase2/policy_v4.json",
+      "sha256": "0f1ce7f9889a5dc0e0fdfe03351f8551d0bcc3a0de7600bec18e54fc86dfeffd"
+    },
+    {
+      "path": "phase2/recovery.py",
+      "sha256": "69c88a1957c21b70e6c53896365f49cb1745b3f2a656ed57a4836ae1c6dbc011"
+    },
+    {
+      "path": "phase2/retention.py",
+      "sha256": "87817ae9b46bbed2b5f31a900d3e1124acfeba9aee5b166d29c67a85aa4120b7"
+    },
+    {
+      "path": "phase2/runner.py",
+      "sha256": "793acbc6cf262441e348de16b934d32c926d4b6d548ce1b1d2677fa4846f7403"
+    },
+    {
+      "path": "phase2/runtime_inputs.json",
+      "sha256": "468654010d902275eb8aea39068790b0ad6bb18b6bc123e2b770ca0ca08631c8"
+    },
+    {
+      "path": "phase2/runtime_inputs.py",
+      "sha256": "89af1c76e42c7726a6f2be46d740f3502b1e089779cbe45d8898b33c3ef17aaa"
+    },
+    {
+      "path": "phase2/sampler_checks.py",
+      "sha256": "482cac532c28e0c2baf8eaf871b3c086a58ddbf84f4ca65aa3c22d895ce28f8a"
+    },
+    {
+      "path": "phase2/sampler_cpu_receipt.json",
+      "sha256": "b0f6ef8c8dc48b40cd6086e9a9973d9ce2c9358c7d19d77712edeaa5c4d16ffe"
+    },
+    {
+      "path": "phase2/scoring_runtime.py",
+      "sha256": "6b4ea841ff2f24d8d8caec0b1bc3bb3502bd2e062cca7501a05de58da830c9fb"
+    },
+    {
+      "path": "phase2/stage_ledger.py",
+      "sha256": "fa7d34d2588b785f52ea63f3c4d77bd99c0c6ec17036017cbb01c276027bbfae"
+    },
+    {
+      "path": "phase2/stage_process.py",
+      "sha256": "ef0b23627964da1df464deed193e8e609c9ea097fa9a0037c6af3bd0a340f1fa"
+    },
+    {
+      "path": "phase2/stage_worker.py",
+      "sha256": "4d492b388672031bb2db9b705d78c2bcb2d1221405d8e31af25330c50f65df58"
+    },
+    {
+      "path": "phase2/stub_components.py",
+      "sha256": "ff4bfc6370ee87dea75621636f59298e79d98c2ba1f2d03d5a11784afc2427d1"
+    },
+    {
+      "path": "phase2/stub_engine.py",
+      "sha256": "cb8c05cbbebda934e0c9813e13490335ca97721c23a85059808b7475557b6297"
+    },
+    {
+      "path": "phase2/trainer_runtime.py",
+      "sha256": "3941e8f11fe8a4bef51cc8c347255f264ad4800d8c0700faa665e05964b9c291"
+    },
+    {
+      "path": "phase2/trainer_support.py",
+      "sha256": "63366d1ba3faf5217a2910046ed54d55dc06743f63ceb5987df235afabdab535"
+    },
+    {
+      "path": "phase2/verification_dispatch4.json",
+      "sha256": "903d433c85aabc9578d1bbfa42e1db6fab7256594ca94f0f8f5df974da4e53f7"
+    },
+    {
+      "path": "phase2/watchdog_plan.json",
+      "sha256": "a86cdbae3243e13ae57bb8f5645217819cfb6e7a7ed34d0318c787a8e03b412d"
+    },
+    {
+      "path": "phase2/worker_hooks.py",
+      "sha256": "a2ae26ee54437b610e06e3fe8c7a1f6d5c643c263a8ac19248756328ce07c4d4"
+    },
+    {
+      "path": "tests/conftest.py",
+      "sha256": "47fa89d85e3f51d5b3ae1b91bd21c5d92ff8773ea25b1389a4e0e328ccde00c9"
+    },
+    {
+      "path": "tests/test_amendment_a1.py",
+      "sha256": "238476c6a1079b508b676a2883122047c91320d4e3f0253251516af560db0814"
+    },
+    {
+      "path": "tests/test_contracts.py",
+      "sha256": "795b395d5069204730b32eef828eb61641262297d1e8f9a6e777b39bd43b293b"
+    },
+    {
+      "path": "tests/test_dispatch3.py",
+      "sha256": "cf08e8ed27d4496baa10be39ca948c5ca8e3f23ba258214356561295022a336c"
+    },
+    {
+      "path": "tests/test_filtered_policy.py",
+      "sha256": "dd17f4fc120bac7edf245159ae2c6473beb0439aaebf08860d93fd51504de386"
+    },
+    {
+      "path": "tests/test_gates.py",
+      "sha256": "25e977ee43b9295c01c44de17e983d3f2897df872b56b713717da13cc90abd92"
+    },
+    {
+      "path": "tests/test_operations.py",
+      "sha256": "35da8d9834fd9ab95c74ea92e0acdb95df9cedfe297a40728404a51486b4da87"
+    },
+    {
+      "path": "tests/test_pause_boundary.py",
+      "sha256": "6ae0e9fdad5d4565a2388194366c5ad6f6e9de5b8a36ba096d8032bace3e40b4"
+    },
+    {
+      "path": "tests/test_runner.py",
+      "sha256": "22ea4a84c4d692153ddcc81a944b1c0310db394b811333ad816a35aff0e8f10c"
+    },
+    {
+      "path": "tests/test_runner_freeze.py",
+      "sha256": "f6c76502c591cc1d336d2a51fc9de0ab8348705c51094095e4705ebd55920607"
+    },
+    {
+      "path": "tests/test_single_pause.py",
+      "sha256": "e1e14dc5e7ef51eb3296f9a1d115660549aa95b78fdb7661b4ef346579bcc429"
+    },
+    {
+      "path": "tests/test_statistics.py",
+      "sha256": "9daa42afd7145d490fb78b454bf598cbf8052383b0650e36a16ca79f5a369087"
+    }
+  ],
+  "blockers": [],
+  "condition": "e13v4",
+  "context": {
+    "tldr": "All-split prompt lengths computed on CPU without outcomes or model calls.",
+    "engines": {
+      "generator": {
+        "context": 20041,
+        "counts": {
+          "test": 222,
+          "train": 539,
+          "validation": 135
+        },
+        "maximum_prompt_tokens": {
+          "test": 4996,
+          "train": 7753,
+          "validation": 4399
+        },
+        "prompt_inventory_sha256": "66962e507521353885b75f276ad53ab82cb325a2ed8f3cd5d66de786d396f76f"
+      },
+      "trainer": {
+        "context": 20041,
+        "counts": {
+          "test": 222,
+          "train": 539,
+          "validation": 135
+        },
+        "maximum_prompt_tokens": {
+          "test": 4996,
+          "train": 7753,
+          "validation": 4399
+        },
+        "prompt_inventory_sha256": "66962e507521353885b75f276ad53ab82cb325a2ed8f3cd5d66de786d396f76f"
+      }
+    },
+    "heldout_content_exposed": false,
+    "maximum_position_embeddings": 32768,
+    "model_calls": 0,
+    "model_config_sha256": "4b7f3c0604d34ff7aca21eddba15268246c531ea3e98e9384b0fd04cf02af8ba",
+    "response_cap": 12288,
+    "sources": [
+      {
+        "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase2/technical_preparation/inputs_v1/train_prompts.json",
+        "sha256": "82524162ee09e0b1b2494a6f1c0bb85daa0243a43d76d1bf0fe777539c7221fe"
+      },
+      {
+        "count": 135,
+        "instruction_hashes_sha256": "8b6c5651ca03cdb8c4e236e74d598d1f8f024f809eba217ba4f00e222da6e2f7",
+        "pack_root": "/lfs/skampere1/0/brando9/rl4cv_e08/pack_views/validation",
+        "split": "validation"
+      },
+      {
+        "count": 222,
+        "instruction_hashes_sha256": "f15118c908a6df055c4c42812a2531f68e39da2c8bb56dcb8bc1014c23f4cdaf",
+        "pack_root": "/lfs/skampere1/0/brando9/rl4cv_e08/pack_views/test",
+        "split": "test"
+      }
+    ],
+    "tokenizer_files": [
+      {
+        "name": "added_tokens.json",
+        "sha256": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680"
+      },
+      {
+        "name": "chat_template.jinja",
+        "sha256": "87a2728cb8dc9fe424d624542f6060ec05a1d285ebbec578bb078900e33396b5"
+      },
+      {
+        "name": "config.json",
+        "sha256": "4b7f3c0604d34ff7aca21eddba15268246c531ea3e98e9384b0fd04cf02af8ba"
+      },
+      {
+        "name": "special_tokens_map.json",
+        "sha256": "6676f091c8bc4d1b50146427cfde92073402866b87b6e39223227931b70083e9"
+      },
+      {
+        "name": "tokenizer.json",
+        "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+      },
+      {
+        "name": "tokenizer_config.json",
+        "sha256": "67e5a0a11cd35f9c00ee52e0af4cdc0baa75fea0cb5fce7d1beb251b4621d15c"
+      }
+    ]
+  },
+  "generations": 0,
+  "gpu_allocations": 0,
+  "launch_measurements": "V4-T1, G0, T2, T3, T4 and B audits have not run; no gate was retried.",
+  "launch_plan_sha256": "40820dcef0f86f812dd1f505b4b00ba77d76ab3cfe4d0b33d52c34d43cacf57b",
+  "operational_pause": {
+    "mode": "single",
+    "trajectories": [
+      "A_1302"
+    ],
+    "record": "OPERATIONAL_V4-A3_single_pause_10-21-2026.md"
+  },
+  "optimizer_steps": 0,
+  "protocol_sha256": "fb741636844294fb76667c4d6928ddbef1c7e28fde0fd1093ae834876764e063",
+  "root": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4",
+  "runtime_bindings": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_658/SHA256SUMS",
+      "sha256": "c0588065bf8019c11bbe1404431d2cc57cbd5bc656890d1b1b105b9239108120"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_658/added_tokens.json",
+      "sha256": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_658/chat_template.jinja",
+      "sha256": "87a2728cb8dc9fe424d624542f6060ec05a1d285ebbec578bb078900e33396b5"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_658/config.json",
+      "sha256": "4b7f3c0604d34ff7aca21eddba15268246c531ea3e98e9384b0fd04cf02af8ba"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_658/generation_config.json",
+      "sha256": "8c970692323e3ea0e9b8b0a4dca79388d31226e41f83c9fd6014804280ebf6e8"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_658/merges.txt",
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_658/pytorch_model.bin",
+      "sha256": "6bf887538bee6adc6d4256427f1300bafb810d830cc977892d88f13da916e49d"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_658/special_tokens_map.json",
+      "sha256": "6676f091c8bc4d1b50146427cfde92073402866b87b6e39223227931b70083e9"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_658/tokenizer.json",
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_658/tokenizer_config.json",
+      "sha256": "67e5a0a11cd35f9c00ee52e0af4cdc0baa75fea0cb5fce7d1beb251b4621d15c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/4B/hf/step_658/vocab.json",
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/lib/python3.12/site-packages/vllm/v1/sample/ops/topk_topp_sampler.py",
+      "sha256": "445cf48ead6ef4f8ac78be0df75a30fa5145c2f1076af2456a98b35ba38fea2d"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/lib/python3.12/site-packages/vllm/v1/sample/sampler.py",
+      "sha256": "db2dd76516188d5ccde26eb2856f363ddbd5910d84b821eebc5a1b119e3ceeae"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/nemo_rl/algorithms/loss_functions.py",
+      "sha256": "818e47270e67de697f624a85e535f7df75b41457080d64985d3353dadb866871"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/nemo_rl/models/policy/dtensor_policy_worker.py",
+      "sha256": "0335e0e55102a9de5e13b8423770101266d1ac163cf41acf90d1b262472985d6"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/external/veribench_scorer/scripts/scsc/kernel_axioms.py",
+      "sha256": "5dbbdcae75ba8b22911fcb43ab1fcde45a1475cf92742a39a29ebe41116de287"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/external/veribench_scorer/scripts/scsc/lean_public_context.py",
+      "sha256": "4020c1cef271f3b17c4e51d2699677db17a71d51e334e2d278753963609ba29d"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/external/veribench_scorer/scripts/scsc/pbt_diagnostic.py",
+      "sha256": "da01d2ba0e4f900a537487a36ddd47890b4fae49024b0de0d46dde8e241cdd36"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/external/veribench_scorer/scripts/scsc/run_real_eval.py",
+      "sha256": "6e82b3d1cd6d3686aaec3d45f273cd902b03b962c0c2eca48f2c2b4f25f41fa9"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/train_ids.txt",
+      "sha256": "03c4167cb086f37a86369e79115ff17035ac85bf6e3533e91a1a6c5c0e4b81c6"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase2/technical/T2/attempt_3/update/runtime.json",
+      "sha256": "468d7336093f2b7e7ce0d2153e53fca7d5ba2c01618a4f52fb97945e2c8acd5f"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase2/technical_preparation/inputs_v1/probability_probe.json",
+      "sha256": "5c31a43506c95be7b21529effb7a87d057cbbcd1f7810e0a7443c7f9c4d818e7"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase2/technical_preparation/inputs_v1/train_prompts.json",
+      "sha256": "82524162ee09e0b1b2494a6f1c0bb85daa0243a43d76d1bf0fe777539c7221fe"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/000.json",
+      "sha256": "8cc7a96b9eedebe01602cda4443082a300e013f1910e120c4f002c1bd25ed55b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/001.json",
+      "sha256": "f583aea5b1ca41d994f63a50aef639107f7492ab6f83d2857b2430fb0ea90dc1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/002.json",
+      "sha256": "1bd8eec73a2dcc6705f19e9b42882ec89169e6a3af3d39d1727981e43c871be9"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/003.json",
+      "sha256": "8d126101dafa4147d5c25a05323d1bc2667d52d99787a1fc45b3a1262e34676f"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/004.json",
+      "sha256": "eee9e662e75c1b992d48acdb68be54be54ed38cbff85ef9d7feccb96c0d02aac"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/005.json",
+      "sha256": "2ff3cb933bbca853d5269bf133bfc33c20fd42ea02a3e5688b342a30081cd13a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/006.json",
+      "sha256": "9ae09166e600df781229ea06d0555a21b90511c36107879a276112af02f3ecc0"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/007.json",
+      "sha256": "f9e72529025fa0187b38ebb7b827e2592da6bc13f038adb6005e6780ad383fff"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/008.json",
+      "sha256": "57d3a22e651371380f205d1c3412de71326e76652587c4a0bdaafa5c7cf0d1e4"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/009.json",
+      "sha256": "2dd1787b424407f141d00c82092baeb38a99516bc0b145dcb05fbd6ec1801bc0"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/010.json",
+      "sha256": "cd62bb3102af562d04f316d174990a1833fe034f5a3236879e008e0e6cf7c4cd"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/011.json",
+      "sha256": "6e5cc060de681dd47c6b9c02498c90d6c5c89838dd95c51db2084b7a3210bd02"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/012.json",
+      "sha256": "6cd1e1c78cf03aa8cec1cc530df706683a57253fd9d9f5c18e683fad0dcab1f6"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/013.json",
+      "sha256": "fb14162c9359f0bbeab603d9194d36e5ed31a572614b8bd0e0711f8b8021817b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/014.json",
+      "sha256": "3f7adc59d484dfe72000aad7c151fb01d6542ca3b6e27b748fee86c44ce6a710"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/015.json",
+      "sha256": "d1f4952fc1d61f7e51f0633241bad8c0ae718c6ce37700c4c2259dd52f010fdb"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/016.json",
+      "sha256": "3688efc9e61df6b8735bd69338d36c8fc012d0ee04e1bd9b75b0540734c90846"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/017.json",
+      "sha256": "5d6e6ce80c8dff81e6c3a56d39159eb1470429aec405ed17e08f13af5415d6ba"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/018.json",
+      "sha256": "4cae55e2d665bf9fff3554b5a2216f11b00a3b08958984d4b6198b60134be7df"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/019.json",
+      "sha256": "4e991f9a3e8b3d7b00027ee9d3d9967013213ebb340df929c0c794a9c7b93166"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/020.json",
+      "sha256": "4c9f13933ec6682678d4a832e60cfd9266fd43a65781bf13f12647c33c207b11"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/021.json",
+      "sha256": "902fa4886c01c355ccfa51cf87a626e99085bb3bfc4ba1797ed24c068328c035"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/022.json",
+      "sha256": "aaf8edc9e7761b619b53403102c80c5606f4971d68ed0fafddf63c19b15a06aa"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/023.json",
+      "sha256": "d07d0efbb14fd81e94a98f9e3675524a6cddb4a11c8f83ee12955ac942231d15"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/024.json",
+      "sha256": "ea4e71c3ce9733bc3bc5839709601d6e9146174ff2c9db6b202fbc3fa6042a10"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/025.json",
+      "sha256": "43b8619e28e0bb7730b18f428e8ae1ce2065c96e439e05767a407068389369c8"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/026.json",
+      "sha256": "37b8adfd7d20ed7d9a025967dd1eaf0d3971ab94bf2129c63efd58aa1e5633b8"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/027.json",
+      "sha256": "44681c56674baf68c1ff6e09ffb58b25b70af3eb4fc0026b57b6db24473f9316"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/028.json",
+      "sha256": "5752851e1bf837141fb42c8892403f43d9f9fe4fa6e96f72c59e8db9effadcc0"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/029.json",
+      "sha256": "61faa6b82ccd375836c41a01c0f79f5be66e7f2d43eb0484df6d26993bd97595"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/030.json",
+      "sha256": "9a4cb09914609f6399edf49104b6c5b4cc7b1de082800f0759c5bd6c7854daa7"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/031.json",
+      "sha256": "37c8ccb3d7d5cd480ae14d4a005386d328f6807913b4e75b9a9a43040d740958"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/train_audit_S2/suites/prepared.json",
+      "sha256": "5721edefdea5e0a077831cd4cd015e275fd6688a30cf6078834384a89722c9b9"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2/autoresume_watchdog.py",
+      "sha256": "d7029a061b4297a51ae73408f6a3269c182600763b3da54d564f39da4632cad1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2/pilot_run.py",
+      "sha256": "48a5415ceeec375a0dc84c31af535f7c79f2c6c77adc13925dc68b08b7a963e8"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/tests/test_autoresume_watchdog.py",
+      "sha256": "f2342ddcb836c8f31966ad5a09f5e8e407962bf7542f8b70c48494e72460c0ac"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/a1302_pause_then_gates.sh",
+      "sha256": "5c2df829cbae677fc2856741fde24902c948db4c2d9f8cdfb7f562ba37206b70"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/B_AUDITS/receipt.json",
+      "sha256": "bcc3470b169ee20c5fd167361c55ae159b30328affae977bd02834ae5b57f90b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/G0_GENERATE/receipt.json",
+      "sha256": "babecd19d3c63e9d852aa0c79932cfb0675f868c412545d9460dbfd82b42c727"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/G0_SCORE/receipt.json",
+      "sha256": "c1615c75c53e282d2c795dd31e9d9fd71305048147b3b291ef8e2576f3b9a6e9"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/G0_SELECT/receipt.json",
+      "sha256": "bef7f6d6aa5a50e61d2a798fd477ace7913a29ebdcdfbee49c11e7dc12f5134a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/PILOT30/receipt.json",
+      "sha256": "041ca607196143beb13f83efb41ec7cbe65ba0907f89ef71fcf6688b2a2748dc"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/PILOT60/receipt.json",
+      "sha256": "11a25ea1123f3c64370515916638e93eb5fc8ef7251653af2d974f4925a684b4"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/T1/receipt.json",
+      "sha256": "eea129cec6947538286e820d1b041f687ac7143a5783b73de722a97e47782223"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/T2/receipt.json",
+      "sha256": "5721ea9b9fe044739666a05177eea0b5627f31e7faa2b76aa2b8747cf576636b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/T3/receipt.json",
+      "sha256": "ec70909bd26823fb71c53ac13c89c81c03c77406bae7ca58d47878e37f546cdf"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/T4/receipt.json",
+      "sha256": "aece334ce04ed2ba65373c5f2fa330c747164cfaa3f33b12bb86ab814b5f8461"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/T5_30/receipt.json",
+      "sha256": "28a9e9d9a95003de7f98b6c818429348a51d2652f06105a23a2ce9af757704b0"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/T5_60/receipt.json",
+      "sha256": "f81159ac6b302f5da6dbe88f8a159b35c32bd90647b705d0e0406e320dc52ae0"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/summary.json",
+      "sha256": "1d16c2385d9e25abb33fee8d9efc69d7c5b37bfd9a0fab426195bd5729086a23"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4.log",
+      "sha256": "f788d9187cbf11c0c2f7edc34edcdc8ba522b151e5cf4423c621f257c0dcd11b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dummy_tmux_dispatch6.py",
+      "sha256": "916a7bdd4f654a6ef3631d65ceae1861dbd85bb7114b39bffc777fe783a80fd3"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/freeze_dispatch6_tests_final.log",
+      "sha256": "0b60e0a39afbfb04fdbe8cec1251886a25d8067831f7388e08ac5fd870f5e1cf"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/launch_plan.json",
+      "sha256": "c7820931a3fc6e2ca8e64f7cc53ad878b9d991c64bbe6c5b27d3d34c5299b11a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/master_dispatch4_commands.sh",
+      "sha256": "f0dd72ad0f1aa44fb47ebe19ef986385c87a83187532fa093cffdd18e08e60bf"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/master_dispatch5_commands.sh",
+      "sha256": "48582942ef88fa6d34f230f97d8b4c9bdbc1c0342fbfc68c719023ce3f161d17"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/pause_dispatch5_final_tests.log",
+      "sha256": "56ff196ac86bbcab5fe302223b226a62e37ec14d0b6f4a2d8c4e6bda38179ea1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/readmit_dispatch6.py",
+      "sha256": "b7bb1b7882533d191b915368af0e330aa90d585b72fc3fadbdd724d31ab71a61"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/analyze_ladder.py",
+      "sha256": "54996b9357cd35bbb9f6dfc93376b17aff7005f1fe61977d6969efbbdb5eb8db"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/analyze_teachers.py",
+      "sha256": "b2d4e353e24cfe3f0cb88430d4908cb8dd3587eb1989a2c0f893ebe74c934050"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/analyze_test.py",
+      "sha256": "8714130c422a88a329fd1ed06628c6050c0afc2ae77bcd9e51622d7397c1dbaf"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/assemble_sft_e08.py",
+      "sha256": "eb9b34d579953fe89be451ae9bd643aa9f0ebbd6095dda30354cfac762207ae1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/build_train_pack.py",
+      "sha256": "9eb1ee54b639907cff678f59791aa75a66c1ea7d568a9624119646bb75647460"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py",
+      "sha256": "ab9a8a2bc318d88e87232df1661e7e75b898b6a86c7257ba6cc595485e6842d9"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/deploy_service_e08.py",
+      "sha256": "a8e6db2ce659d0115f54165cb91d92ccdb916986aa7f3b4088dee94c4e02077b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/e08_whole_layer_checkpoint.py",
+      "sha256": "09b56a3f73142c49a6a612bffda04d59557c44828b8a95b85fd1ca86c1b1cb37"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/extract_train_logs_e08.py",
+      "sha256": "bfa1bb397b0ca674003d62f6df9146b23d01174b48d687968f4898a6d12f97c9"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/gpu_lease_e08.py",
+      "sha256": "c9a229a2f517fdd94141bc11ea0943b98a037d019f8c74effe5ae0609e5bcff7"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/identity_e08.py",
+      "sha256": "0873b583e3dded30cf56b698fde34c0f5bb6a878146060a1c425e2d90e7566a8"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/judge_rl4cv_e08.py",
+      "sha256": "ea64c09f47b68a62154e07c8d8d9748e42a42190254183e16961d6ec514cc4a6"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/make_ladder_manifest_e08.py",
+      "sha256": "437493fc3e3bfec778abdbb798232113fd875e04696ab9f6a6ee7973d13fde63"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/make_sft_configs_e08.py",
+      "sha256": "64e198644421dc32f2be461df50d4d8773a9ef19be32085e32834ac7df558729"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/pipeline_e08.py",
+      "sha256": "aad9a3be6b16d683e25b11cce3095350a0a6e42625eaf953c79cca8a68e70d4f"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/prepare_sft_nemo_e08.py",
+      "sha256": "aab774d8f486f86521c825062b24dd4a8c5c3c7b963547955d1595cb1d2d76fe"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/probe_sft_layout_e08.py",
+      "sha256": "3deaab97f9c59539d5f0ec54b35bd72de15c834684be5f4c2ebcd719d69b8073"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/probe_sft_layout_sitecustomize.py",
+      "sha256": "6621f88d581c7f9a3cb725e9cd9cdcc9eb4218b605f14b0ff0ed0dc255b7bda6"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/probe_sft_mercury_e08.py",
+      "sha256": "cbe9ea6088658113dcb434388dcf7daf55c9e3402a7eb116be3c961a8df1af13"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/probe_sft_mercury_sitecustomize.py",
+      "sha256": "d21634db002280999ba541fb9c05e4c0442cbdef8beb2bc25653050aafa8d93a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/run_teachers_e08.py",
+      "sha256": "8a7843e82df717a17a717dc275ef4087037616c22b6f6177368e374686334feb"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/score_teacher_files.py",
+      "sha256": "e77aa53f26a78b64dcb978c874b0336c5f75c7a15656740fde67e29ed5f00000"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/screen_generated_lean_e08.py",
+      "sha256": "16b3111cf93fa3927bd15267ea4a4c818ee520f6a2c16808dcc9e970b62d2384"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/sft_layout_e08.py",
+      "sha256": "6c05f09689fcb378f67c7b6bc050d2825c7f0be80b386557aa384f5064ef91c1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/summarize_test_receipts_e08.py",
+      "sha256": "6b8107677e5c9d5ec9a419eec21d647905528a12afebddca2005cf29700c0f20"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/template_check.py",
+      "sha256": "733e7cff7c3a6ae32e8679f86bfe6393efd7c7d82ccffdb00fae9156f34c8869"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/test_admission_e08.py",
+      "sha256": "227ccfcb35d501a6ef8f96b74b1d69467820bc63aad46837abc8ed8448e577dc"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v2/scripts/adapter_v2.py",
+      "sha256": "da6fbe366b26e8518894ba5dd0d236de9e3f258f53e30c5181be08ebcfc7f430"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v2/scripts/analyze_v2.py",
+      "sha256": "3eda600c2a6453b89b3e819321a4cabc32fbfac20d3385b8af02530aca264d11"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v2/scripts/audit_v2.py",
+      "sha256": "8fe5c6afea272013ff8636d9462b753e128f80a8e05d8abf8ba87088d4588e1c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v2/scripts/controls_v2.py",
+      "sha256": "5b0fd1d6a2d244ce38fd39c7dd1dfcccb135519f901c8ef66bb0c4de91d8a219"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v2/scripts/evaluate_v2.py",
+      "sha256": "096c9bbc00930fab0ae05e3921f7373ca34038e3270e96125427cc09c431a001"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v2/scripts/freeze_forecast_v2.py",
+      "sha256": "f3ae779790b038019a077d476082357c0efbc6b8ac72b862b5caaec5bda6aebb"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v2/scripts/freeze_forecast_v2_amendment_A1.py",
+      "sha256": "92f0247087cf817c31dff98d9fec6f79123d07319cdad054dc5420185eaa7e94"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v2/scripts/mapping_census_v2.py",
+      "sha256": "2bbb660a13c5d4aa2b3e0b151bdaf587b7881f9df621f2ba810eb3422352195a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v2/scripts/report_v2.py",
+      "sha256": "4e2d77c3da891c9150e994b9bf6f032290bb21e4d965d702f15ea4494e982ac7"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v2/scripts/runtime_v2.py",
+      "sha256": "27c08103824fb6e19af406812ac47e2dffaff28a6481ff63e3a0d0edfede0763"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v2/scripts/static_controls_v2.py",
+      "sha256": "02adfdf9069e51b114a850aac5923c2ed7f6bd3d6ac73ef7e3c7344275db3d97"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/12_scsc_vs_hidden_gold_tests_vbv1_across_systems/expt_v2/scripts/support_v2.py",
+      "sha256": "3bd7b63814ed510993c5aff81685dbcba5d1d48eb5a6e8383dadc24117c597fc"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/R0_attempt_2/DeclarationProbe_v2.lean",
+      "sha256": "eae1eb58b0cd91977631e7e07b65a8c1c962f9759f4c30e4730330e1edc16076"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/R0_attempt_2/declaration_adapter_v2.py",
+      "sha256": "7ae02b4b9d04a061930f4dab3c27b4dcdd89f1338d8002ae6a411648c093b34a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/R0_attempt_2/r0_fixtures_v2.py",
+      "sha256": "6e818fb9988725ff16508a9cecff054c316581ce28db78eab664823399e1568b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/R0_attempt_2/run_r0_v2.py",
+      "sha256": "8899afe8dd3ac1c942909a98c6a1e31566cda0e7ef368d3555289ce658b96b01"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/historical_oracle_v2.py",
+      "sha256": "82e8d0fbbfd588e1d19bd1709ea43a9d90789569374a794dc961edadfea36a66"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/a4_admission.py",
+      "sha256": "b2900912f3f3ee7ad4abb28f5b223fbddc54997de3b2eb1f9abfe84dfe4dc316"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/a5_admission.py",
+      "sha256": "0ed553f11f3b8108487186fae8ff285a912f6746a7ae036ae7d99a24f912bd52"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/anchor_dispatch.py",
+      "sha256": "9c660b98ee2bae8fa874bf501710464866539d538471037d9065b15b88179288"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/anchor_lease.py",
+      "sha256": "2f8f0032454ae9299d64c4826edf4ce4230a3f183cbb1427a46d08b18d6f3ca2"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/anchor_panel.py",
+      "sha256": "da2b094fe1bb79ddfd8be4a79ca51531aba9e20a28cbbc1e37803a33e9042db3"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/anchor_runtime.py",
+      "sha256": "5cc0a1ab3c40eafca71412081018528a1f408784604d10a95598b21ba0c824cf"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/anchor_storage.py",
+      "sha256": "732146c9fc064639fb3cabfa72e077d04a82fa968391b200dd017f83921f5380"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/anchor_supervisor.py",
+      "sha256": "49a49237e6a972ba733ed6e406d18f8f0a57d83f249c3cc077931422a1a26371"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/anchor_watch.py",
+      "sha256": "bfac0e98c888f45a65e0e922d3485420f0e66af76f5f2214dcd8885572809989"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/calibration.py",
+      "sha256": "83a3e0fb684963658816adb7957835b5c86f43caa7ed0a8cea8672ecbbadf903"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/calibration_controls.py",
+      "sha256": "c63e9d945670a62433ed3847e4f003381a0146fecedf5e89d4840a46163cb6bd"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/calibration_fit.py",
+      "sha256": "3cf230b42b5510882282ef4136873b24322a27a39be9e765f1ca5a83a09fbae7"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/calibration_inputs.py",
+      "sha256": "603c505e6e49a29bd2f041a5f0d4e1bd83ff55da0091b21383077f5c49b9fea2"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/device_binding.py",
+      "sha256": "bbfe8d04b9d2ebd185fdc68b7a279906811a6cecda83312d32cb937973820913"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/device_watch.py",
+      "sha256": "0be81c7fbff277b82bb0ca814406e7af3c69b039957bd2509ab0aafa17cd5821"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/dispatch.py",
+      "sha256": "443e546a47c4bb15e9f22dde162880af25035da780f4a74fcec399b82d300417"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/fit_controls.py",
+      "sha256": "df2eaa002f142595d76a9214d3c478781ca36db5d552e6e0e3118540e29f73ba"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/forecast_a3.py",
+      "sha256": "a73c9ccf39dd43e6cadc00f49e43e2a444e146a4da7fe0c824426013f6c6bdf7"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/g1_a6.py",
+      "sha256": "03722443d8953b7145c807b8a4c95ba7f543efbce9cde3b2c0867d5dba82a212"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/g1_bounds.py",
+      "sha256": "e14da08e9a3c79f5ad9396f29d53519e9b97bb343f4041320d8d7feaf5b815de"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/g1_driver.py",
+      "sha256": "417fc92797c4725e35eec80495b90cddfc6d480aa9cc427aef662eaa15344c5e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/g1_inputs.py",
+      "sha256": "6d29b6048a6f9aa0a95de439f60ecd96cb28f9e5a7237bf1e67fbaf926416311"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/h2.py",
+      "sha256": "88fd481a75da43068eee5856fb8135ac4d05c721ea5f67f3c29ddcb65dd424ea"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/lease.py",
+      "sha256": "d61705d160b92be5f6122bbcf80d962be93f9eb9f9b5cbec6d4a77e9d308e249"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/lp1.py",
+      "sha256": "658761253f20c5f7cd0f7f0da9a5e92772cdd54be44ca97e6422f762a4fe2e8c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/nested_a3.py",
+      "sha256": "f9098522aab574e186687c1c91db27e5ff79c5bc59fe844560209d86ddb36bc0"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/panel.py",
+      "sha256": "a4410991329816ec4e7800162ab917b394fb1b8125a1ec599b77b82b5b3a19f2"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/prepare.py",
+      "sha256": "459b263cbf0fa78daa97f41c68a69e1cd011221c28290ecc59e26c273031dc15"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/prepare_features.py",
+      "sha256": "51af8dc738b0c9d0aedd2a2fcf01824060bd337d06c7663ab72c51a9af2396bc"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/probability.py",
+      "sha256": "e8ea13d0c9b73186f388df4a25f87c915538d3931663a77c5033926933ca61e4"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/runtime.py",
+      "sha256": "bb7b194903efd8de01a6a23e730977576c3df030e5dfae8398a35ccc9af217be"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/score_anchor.py",
+      "sha256": "e966d74788285ef584c1e8bb98171f804dd0965dfd31b9fe4a6fec20d3879f9b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/score_anchor_ledger.py",
+      "sha256": "73f8ce7c794879f11a148e2acae468c0d9f249f856d6c4f409d5955c6ff398bf"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_a_budget_driver.py",
+      "sha256": "af3dc4f61f6436ec76d53a2cf7789564e611de4ec8e5009a1b55d81c3eeb532a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_attempt.py",
+      "sha256": "58076ffee6cce515aff3032db97537ddf215003b99d538bb3d73c120c7b587f1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_contract.py",
+      "sha256": "1b438273e1f64b835187e7159e8b82d461c08646ef5c0cf8ded2b209e0805e2d"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_driver.py",
+      "sha256": "c1f904524d46acbc0e5528f9ff78982edff09c24672d1798000c3e0272e6c99c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_evaluation_authority.py",
+      "sha256": "6fe18b813fa0c2b6fd87ee1781820bdb52f58400fe6e1aaaed030eb63ed404c9"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_evaluation_driver.py",
+      "sha256": "f4f26a13079e5e1760bd8275b33065eed6c47b460bf0a721ea3b46950993d930"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_evaluation_processing.py",
+      "sha256": "5a4656bb070a430be37bdcbfb8e48b885c1e32a46dab76da5ab95f89764e9050"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_evaluation_snapshot.py",
+      "sha256": "5c5ea6ca3d7c6e127dd94b0f6befeb86bcbb3f14c3e09ca3e6b2f3f4100a50b2"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_evaluation_supervisor.py",
+      "sha256": "40a846229a5bcdde0377625f295a8fd9ca7911252922337f06b624b195201e77"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_generation.py",
+      "sha256": "be572a9d7f271a3087b7db220de799af57717d7adb01408609218979821c0d84"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_gradient_reporting.py",
+      "sha256": "8ea02b55d22e207d36e26b698ed3e916f0d1845a554e66112abd37be0d36f175"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_learning_driver.py",
+      "sha256": "a3eb3ee07627e18595e51aa682f4f44dfdaaca0820c8958279e0a5604d00ba95"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_learning_ledger.py",
+      "sha256": "e6bb1eebb05b02c3656c2b576628f23095a14e0a99a4f8d721c683ef9b433c72"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_learning_report.py",
+      "sha256": "0ff8442522ec86cef533e5170193e631f82fdede85edb65ef13893b73a778b23"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_learning_resources.py",
+      "sha256": "d66c7120ca74137b2c805acd2e500c5f49bf0b6d74db6adb0f0962c4999f2efc"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_learning_supervisor.py",
+      "sha256": "a8e0577e11cbb97cf9fdc3c62a5de53e69cda8449af5ca965d00aa18c83450ca"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_lease.py",
+      "sha256": "9b7d76494c3a468268373cce0582b8f9c5a822bad691a8df1934ac632415c3c7"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_monitor_coverage.py",
+      "sha256": "b3e0deb9cad567f36e07f69a5fb98c0fc833d7c96f0e03a613bfb7cd503ab605"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_monitor_decision.py",
+      "sha256": "6233889c3542ebc201c632c9664a185664a63d168404483812df2194d8bdc225"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_monitor_driver.py",
+      "sha256": "2cd68ea834ba38e91213597d78469e4e50da2cdf178bcce67e6cc19f2ef833cb"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_monitor_hosted.py",
+      "sha256": "f7de7949ebbcc43cdf679db9e6c7dcc179116d2864a87a3a5236a68eb681b81b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_monitor_measurements.py",
+      "sha256": "18ab76ba89b80e9ccc7fcb086c23028893d434454fb58ade3ad7ee7f0cd429e6"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_monitor_points.py",
+      "sha256": "2f4c955bb3bb66433c1d5e5afbee19d72ecf77fbbd8e869327a49a14715920ce"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_monitor_preparation.py",
+      "sha256": "942bbbdfe34efe8abe90ff23522aa0dde20de0df4033cd2e62c659089f80e609"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_monitor_processing.py",
+      "sha256": "bbf75713572567bb092a12f0ef93637deb807c0125d910ac5795c743d7c5113a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_monitor_publication.py",
+      "sha256": "03edecb5e757543ea0fd382bae1f589c8c4a8fdfcda3476a50d8c5b6d431bceb"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_monitor_runtime.py",
+      "sha256": "64b9f5f83c6bb53cdabda419ac29f32bedb649c025078adec5347fd507eb1be2"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_monitor_snapshot.py",
+      "sha256": "d0c861c24992432ab0af74491d1e2e826e787923f04ee4329e96102bf045460c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_monitor_supervisor.py",
+      "sha256": "21058ae995145c08d9b2f0289d2d63670e6a4425d9e0faec6b65b846bcc2e394"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_phase2_admission.py",
+      "sha256": "cd82ed4ed393f928e6b0fe25f529d4e67e2f03296bb3a53e506f07ec4dc4a84e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_processing.py",
+      "sha256": "718012c5361d0bd3ff9836f95948172fed5e94fec4704f418913d1e53f9e26e6"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_runtime.py",
+      "sha256": "30814f80009b14f902d0c471ab7c74fe1ef7b6d590fa5efb03518081359fc66e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_score.py",
+      "sha256": "7aba5dc5d4588a6fbc068bc2e50178a970d76aa4a07d5dea34407046fb7a98b9"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_t5_driver.py",
+      "sha256": "0715de416faebd13925b2e057a7c2775b95cd638059f8bac6a8f192fe60b2641"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_t5_measurement.py",
+      "sha256": "18095de7c05b512f4419a3417dc342ea7ee6ab871aa7fa9a0b7ba6454051e9a8"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/a6_technical_driver.py",
+      "sha256": "ec023928e8dfaa56b1ad59e92c2a6d8d3a03b5641eb8680b8ccbe6164fc3f48c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/arm_rewards.py",
+      "sha256": "7f78a0690ef649b8e657d2ef48bcf86321fc8e4eddf59d16305314074be32faf"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/audit_analysis.py",
+      "sha256": "7e429ac0f70e4ca02363eace30a27f8155979baab66ff0f26f70c89ac7f3cf23"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/audit_coverage.py",
+      "sha256": "4d13b42b11f0f2771e54f02caf6aa52746712d309b82147eefa703fc7d0fb239"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/audit_cpu.py",
+      "sha256": "fd9d0e8232ff3fcf571b2b974d78c958b19808445cd91437b48258a4a6a908b4"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/audit_hosted.py",
+      "sha256": "06144aa2fee8155336c261ca111dab9ddb12f616ac2ca054090aec095f53a3e1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/audit_inputs.py",
+      "sha256": "ef540eab23ec1699568d1714a27c403b6e751252e36364481f846e64a0a90e8a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/audit_monitor.py",
+      "sha256": "4d98f7fff1f44860a8110bb85b7346d559cbcfd9e179bcf04254a8fa9254338b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/audit_mutations.py",
+      "sha256": "39f3291813919886938df2594d002f4618d2867f4ae2346df10c147e407034c1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/audit_report.py",
+      "sha256": "29b700b4cbe9d05b158ed1c275e8b91eca95a6bf32f8bae563348f05ee4b3a3f"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/checkpoint_retention.py",
+      "sha256": "53dd32df83fca4384dcef90da314362244c773376a83cd73fa110b3959f59e74"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/checkpoint_state_preflight.py",
+      "sha256": "348fce5e376bf03daf4054ca7daba9c06325a1270a2d4d6eda441afd8c5af4c6"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/cost_profiles.py",
+      "sha256": "387dc4444d51f4744d71711b64ef3e3a5b5c8494c2a93352fe214e6624a9df14"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/cost_recipe.py",
+      "sha256": "392c90786a587574125fae8fa49cb2664a6fad160501411d411aaf439286e766"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/costs.py",
+      "sha256": "92a12bbb63c9bb0b85d61ab67569abe4b9fa88854abd53fe23d865cb728ef1ed"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/coverage_controls.py",
+      "sha256": "e02c51b6c7d25a25a12b343b4d5bddf698fc9d8e7b53bbd12625bc5d2d4e6c23"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/coverage_pack.py",
+      "sha256": "3fced79d946ffb36c12b73a8129aad8c286967be51402a385343bfdb9ed5e4bc"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/evaluation_authority.py",
+      "sha256": "982370d542d87d5dd05ba640141df946d487139e7dd412809aba411303ae052c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/evaluation_contract.py",
+      "sha256": "5d800b5811f6c8c75ce588756135b98c7b541653824d846bfaf5c86ae119d9a3"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/evaluation_driver.py",
+      "sha256": "16a1a7263774edcecf64ded2b5fc1255cdef60830ce91e6c2530d3fa2110b458"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/evaluation_generation.py",
+      "sha256": "dbb9a4034a0522e63923f9218ed7cf0c8697ea338357c0e545f26141d8934936"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/evaluation_ledger.py",
+      "sha256": "d8b2d74f9bcbd9ff5eadac7c461f2e041f8a89421cd478d3eb6ff3ca4c89bb8c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/evaluation_processing.py",
+      "sha256": "40c6e86dab2d36bf50aa57ad8f52e19df4b350ed8b67d6c417e3b40d5bbabd7e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/evaluation_runtime.py",
+      "sha256": "8d36565036eacce6e9c8955efea99f321c12ca27ce674095f9fb7dd139178e0d"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/evaluation_selection.py",
+      "sha256": "f90013e21277ad10ba0ea81e226493a8c510fb9bc714d9a724f8cf54887d1f01"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/evaluation_snapshot.py",
+      "sha256": "f6988a3b2f0effbf04e08971e1c3fe1d6a56ecbf68faebf1cab3610ba09d1e6d"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/evaluation_stage.py",
+      "sha256": "8aefd9f6fe7d0a2fd948ee5b03595cb5f661016e8f73fc529997e456ab142ee2"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/evaluation_supervisor.py",
+      "sha256": "1656bf482cb2eecf68f1542a607bed414d4f41fa5063c5db0b5448d9bbe8dfca"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/generation_core.py",
+      "sha256": "c2b380265ce6dc7f429b4c5cc36f9728f5c121eb6e188e547e766b058617f699"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/hidden_controls.py",
+      "sha256": "c16abc90e69570d555e07bdf9222b6539647a7e51dc1269ab55582f4a08cbb29"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/hidden_controls_result.json",
+      "sha256": "7c91655d4f54522802fce2cce1fccf7b7f85efcbcd16f192ccb1d8c82a86732f"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/hidden_runtime.py",
+      "sha256": "2a65e15b4ef47a9cec71c35a7490e650926b244fc8232ab7efb8431615ea9ca7"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/hosted_coverage.py",
+      "sha256": "259f7511744064f3029e7b331b07529bcc7553882b5ae427d92de0f3fc370fc9"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/learning_driver.py",
+      "sha256": "ad2cb0ab4612de1d2103acae1c12a7e49b2b3b1108f9581d5051600ceeb669e0"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/learning_generation.py",
+      "sha256": "a6b6de58e59b3f2ee2893371b60ef81694477b8d1bb0ef44b41576893d87aaab"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/learning_ledger.py",
+      "sha256": "90af52fa378c1cb0896c1dd8f42bcfcd06bddba774b8e4b25c56f2f788cd0125"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/learning_report.py",
+      "sha256": "0110b57ee444dfa5e6315fcc56deb8f6d08fe313b7be5327e71569d972bc2e9c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/learning_resources.py",
+      "sha256": "c3a2cf6020905613ff60520d2e2371061f2eb49248adc834a976a009c9523a9e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/learning_runtime.py",
+      "sha256": "7a78d8bdc064d99ed089e6210b419ccd1088114c3e5e895bda05f386100df80a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/learning_steps.py",
+      "sha256": "35d6dde2ecae20c796e85f8aacd060c2d1c2ef78ebb9169883106bcf11063444"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/learning_supervisor.py",
+      "sha256": "14a42b577352799e272946858028e7f3d762fea0a90b0705ed5b85e1e2a53145"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/monitor_coverage.py",
+      "sha256": "ef88ecd61b292d91d75f30d3e57c973af1baeec281c5cfbf2c6c627ce603b5ff"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/monitor_cpu.py",
+      "sha256": "64c0708263fa3e2e76154f176ef8fb757d413c0cd65beee8bacb8fc3e8bbfc53"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/monitor_decision.py",
+      "sha256": "33d66b41f122a50fc1ec34e2780eaec838666606dfdb09cf93587fb9b5e1bc24"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/monitor_driver.py",
+      "sha256": "fe9e99e2afdef3e2997cc8ee1d9ad420ca40b8733abfb25b14da301e0eee8d12"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/monitor_hosted.py",
+      "sha256": "4eff9cfb297aa33fc63bc03a6370cc05149767cb6051acdeb02eec91852f592f"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/monitor_measurements.py",
+      "sha256": "546c9b17200e62684cc1266729fc802e659a0f39a94f332f1c64c7def13795b9"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/monitor_preparation.py",
+      "sha256": "f76688f5e0aac4b76838029c9d6bb4968732d5f41dd151bb5804aaae00e95301"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/monitor_processing.py",
+      "sha256": "e8eb8de8a962406abc7c20aa41c511d84cc1cd0699157712a8fa8d6030c70dce"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/monitor_publication.py",
+      "sha256": "ecb02fdbbd2c82e3b76345e1ee0d14aa843c91dd0e062e0fd9df2e49bde52c1f"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/monitor_runtime.py",
+      "sha256": "3906fbfda063d7cca0fcd350cf8b64957c410a586b9f9f335d378eb733da5254"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/monitor_snapshot.py",
+      "sha256": "86c8efddf87717bd406c250080a0197cc8e0aeade7c47fc280cc92d03c02c671"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/monitor_supervisor.py",
+      "sha256": "c3e1d681096aecedf14b8d720f807bf371fe63eb71a6d2b953387138dbd49024"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/online_ability.py",
+      "sha256": "5ad548fdc2038dd44d73d39b05b54d9aea3e4ac6ed1e83abc177687a884022e0"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/pilot_configuration.py",
+      "sha256": "ecc02eacc772d61cc033e8d790b2aa6358f32d8d77e327dbd07675590bd4f349"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/preflight_handoff.py",
+      "sha256": "9f411c8b2192cd4398d9e7036f5afbc2b703ee8e680abc61fbd5ad2b500cd345"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/preflight_wait.py",
+      "sha256": "7bd3442f19f5db497617c22ce0af83c914829f4b64a7ca339950b94d96c13086"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/ray_paths.py",
+      "sha256": "7a1829e2cdbf4e640d11a1cca0f9f02a087b1cd74bb108938b20d212617f3d2b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/reservation_observations.py",
+      "sha256": "490f1f8dcfa724e72f5e87d3c4b8170374adb38d29ca99ba2146ea5973f22b83"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/resource_lease.py",
+      "sha256": "2421ee4a791cae299f18fb355c26d35502b9db31fb7d1338cbde3adae08e1a2d"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/rollout_groups.py",
+      "sha256": "bf428f15e61eddd2bd23baa6b3a21b93519f3ffe5f5b69da59aa0b8e23817e9c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/schedule.py",
+      "sha256": "01ed3ad100dee1961f3c62f67975dd6a29c80525419ed7e5a2ff8defd9e7e35a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/score_evaluation.py",
+      "sha256": "5d6d9dda7c9279aefcbd7a20fe8deaa53e430443728ca669a96e2d13b243adee"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/score_training.py",
+      "sha256": "cc0060a95489ba7ea1ab1cff0828b5cc5ac4bf5107a10331f6c0f17b71c8949a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/selected_analysis_driver.py",
+      "sha256": "f30c4db68eba01173e99c681f7264f68b86edfbb71ac4410cd00387810a88d6e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/selected_coverage.py",
+      "sha256": "cca9fdaf02e4d96e249b1d88d60e0e5bc5be3f4f37f00c3849faf46afb767ec7"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/selected_coverage_analysis.py",
+      "sha256": "3606c3591769ee0455087627fabb9770c040d4282b5fc868588caeb96c0aa485"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/selected_coverage_analysis_driver.py",
+      "sha256": "a86962df448950dd614d738185e38a6eff135de8e0690da7374bbdc6122a5145"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/selected_coverage_inputs.py",
+      "sha256": "75f9ee551efc465476f33a69f7dc9f862096af8a483b776a0974f78de52e239c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/selected_coverage_join.py",
+      "sha256": "1b681256e44700eb2746dda3ef9029ba092eb921e351817fef9fdf3ffb999a4e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/selected_hidden.py",
+      "sha256": "3986a1e7f9f0d02d1022560b288f6d0e684259455d700627b6ac0cccc6c28e4f"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/selected_hosted.py",
+      "sha256": "1e3009d9e08e51e24581cfee629fda310b646e5e753af79a36c777dc44804d60"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/selected_publication.py",
+      "sha256": "09bfa4c8fc6d9d9858d1d1af463355cdf1cfdb38aa807510864ab5d42df0a97a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/selected_test_analysis.py",
+      "sha256": "3fcf58427314ead8a4ddacc2dc184897b39b8af0048d84d1d45035db6f71693f"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/t5_driver.py",
+      "sha256": "d7e46ed48f9d20e337e651c61c33ffb7e757d1c3c8c8e0b35fd9df9e84a09347"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/technical_driver.py",
+      "sha256": "5992721c0884bc4de8fd7c095a8025a71eb3590acd665931ce51e0027d723f0b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/technical_ledger.py",
+      "sha256": "2d432e37d119be2b5fa6d0e9592252dc0462432127184507ed1b30ebde9b5700"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/technical_measurements.py",
+      "sha256": "e536344f09c2c1984de5710689100dc8073c8487ec6dbad5597bfe107b4870cd"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/technical_resources.py",
+      "sha256": "d0308ba7d605256df1a132ccd20f245106ec8622c7a7dfb2a87b9d2e5486e853"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/technical_runtime.py",
+      "sha256": "7236d6d66211a65ce6d62907b403a7f22cde9913d16de8f7b185547bbdf50200"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/technical_stage.py",
+      "sha256": "756f77cdce076cd37493c4b98808d3855de2588b3ba095aa9801de884daa39bf"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/technical_supervisor.py",
+      "sha256": "5f431997133d9290f349de6affd7003b5687ff1fd341ff96073f473b44bbb8e9"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/trainer_core.py",
+      "sha256": "0ecaf2e2ac655e072f8ef7db63816de47c14bf10035cf86fed61b2ba1997d6e3"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/training_checkpoint.py",
+      "sha256": "ad1abd871355325b41d848dfeaf1ff9f9e651c371976ac6916911ab63deeff6d"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/training_data.py",
+      "sha256": "d4125ac8d5b7ad3a32a45bde13e91c397b02222b4779308c42f724462d3a6528"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/worker_shutdown.py",
+      "sha256": "f81464e3a0f59eda960f0eab2517ef24f88829d2b01e3d2685625dcaf695726c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/worker_state.py",
+      "sha256": "a62fec3a543ebc3f91b8e3304bba9b5df0c24ffd24cdcd837b78e8d6dede41e1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2/autoresume_watchdog.py",
+      "sha256": "d7029a061b4297a51ae73408f6a3269c182600763b3da54d564f39da4632cad1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2/pilot_run.py",
+      "sha256": "48a5415ceeec375a0dc84c31af535f7c79f2c6c77adc13925dc68b08b7a963e8"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/tests/test_autoresume_watchdog.py",
+      "sha256": "f2342ddcb836c8f31966ad5a09f5e8e407962bf7542f8b70c48494e72460c0ac"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/README.md",
+      "sha256": "6cb956537c1454734d1ee82ab311933c99abd5e8b900d2f4683b974fcf48eca2"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_dispatch4_preseal.json",
+      "sha256": "fdc4cf9dc47479ba7493ce07d18cb2ebe7a784394500c51c12db694b0918639b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_dispatch5_preseal.json",
+      "sha256": "20a4e7fd79b22e8b247700b989100a062c25a88c41431007d13c5fdddeff9e4b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_dispatch6_preseal.json",
+      "sha256": "54660ae8e7df53679bfbdc5e045157386a59795d4a10b3066ca87fb663eecb87"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/dry_run_dispatch4.json",
+      "sha256": "1d16c2385d9e25abb33fee8d9efc69d7c5b37bfd9a0fab426195bd5729086a23"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/dry_run_dispatch5.json",
+      "sha256": "b3ec0b0fa717030ac0d3be3f88437edc7471fccdd88b37ca43d59d0ed816ca1a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/dummy_tmux_dispatch6.json",
+      "sha256": "56b5a5da9e834111587d4258e135a3a969485a39777ae9eca561389aaca988fd"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/gpu_inventory_dispatch4.json",
+      "sha256": "79f0ff1c2e4713836465c72f743ee22fb2b648516c220a4b72b2a72404e589b2"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/live_probe_dispatch5_A_1302.json",
+      "sha256": "1cbe3d22aff8ebf78cf2a26bc181096c4617f9ea25d00414386be115eb06682c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/live_probe_dispatch5_B_1302.json",
+      "sha256": "ba65059c7365f3f6e3a8e01f35586300e15a1cf39f83add07294c00d9fc7d833"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/live_probe_dispatch5_P_1301.json",
+      "sha256": "e4c1ba8bf78f4ae8fcc9a523a3c8d99ee048bc4b1b5a7e3501ad1f4a567e2af6"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/live_probe_dispatch6_A_1302.json",
+      "sha256": "13482b5cdaad4c80d42002a489308093f588f2872637f247402a8acdefe24736"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/live_probes_dispatch5.json",
+      "sha256": "a255bac0df70763a3bdf3ed16d94af69ec8a55d71f0141f37b46c7cd269c3070"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/master_handoff_dispatch6.json",
+      "sha256": "9d1451f1574d64c2e2b8ed85eed8536a9b60fb7369e14a0d98b294aba118aa9d"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/verification_dispatch5.json",
+      "sha256": "63d7e7236be0d40a33beada9f1f5be4a87a5093eed965e8b7afadcd8bfbd5140"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/verification_dispatch6.json",
+      "sha256": "1fc98211b69d43169d7f5c757a00732d9eec1e936b4993192a0b623072793e6b"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/19_interpretable_irt_scsc_factors_predict_and_guide_strict_pass1_vbv1_d013/expt_v1/forecasts/e19_g3_forecast_v4_g0.json",
+      "sha256": "f5ef9be081218170e0f5cc038b7a42a3a89bf811619291017f5a5066f33142f8"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/19_interpretable_irt_scsc_factors_predict_and_guide_strict_pass1_vbv1_d013/expt_v1/forecasts/e19_g3_forecast_v4_g0.sha256",
+      "sha256": "0a12f04d4beacd3371b5a9072b9cb1648d715968957ee91bb65ebc50c4e29dad"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/__init__.py",
+      "sha256": "dfcf7f0fd009c62b0e7be6e98c6a3353ac5a1f1643efacc2711f9b845292cb2c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/cells.py",
+      "sha256": "c1883fd3083cabfefaddca69c17845d63681b377de38c49ac086ef1ddac607b2"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/e13.py",
+      "sha256": "f3269851214875b6d1fdda94a6b354be9fb3b0d7d8f296ce5500e20bb960602c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/experience.py",
+      "sha256": "8d10cc62f620cef32f585a9e26e9f8529e24e22c1c82c69ba8de78c86a7dd32d"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/forecast.py",
+      "sha256": "779c775c2f8a238c5b78da22a7a70b58e5e0d47f1779cbe788f02b871e247f83"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/probe.py",
+      "sha256": "d020ff659b1c4355e12fb0758df067013c0d8fc7f07c662fd1329a13af0665dd"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/rewards.py",
+      "sha256": "fdc5256566f74c459875dfeca91b3956004d35a90fed17d8975e6275c7c6e9e0"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/screens.py",
+      "sha256": "a92d4af7968a6c1fe717b2fbad44acbe145c8f258ec3d3dba56bf7b1ea182510"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/scs4c.py",
+      "sha256": "1dfc35baf5cfa269a7a7a03c705a5d007ad5254d5160d5e48a5e3d27a3e10777"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/splits.py",
+      "sha256": "fab9a01d16091c38433dc9db5a9f87d4d3bb7cb28f0c4985026b2d3b96e99332"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/utility_model.py",
+      "sha256": "c6f05269e458a32929dc377ac832eae4d467f1821a455fef582625f55043d3c1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/valkyrie_transport.py",
+      "sha256": "ebbd316cbf7fdb0563bbebdd6770e53bd45f350e2c735cb331124851ac2abadc"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/veribench/__init__.py",
+      "sha256": "c6b7eed848e9087dee6db490b76e42587f7c0c7315349445b1e14f2d62929282"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/veribench/collect.py",
+      "sha256": "5ac3573d5a95a3bc2787bf203f05c49998bbf5270f5a96ddfb953d0a98713364"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/veribench/exp103.py",
+      "sha256": "013aec913b3bb73f217b02cd297d1fdc1e742fa97b81498c2f22954a18d6620e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/veribench/generate.py",
+      "sha256": "e9d7663b24206c66c5d2294aececee994ba8fa076e6b4ca8b4e499ddc0a96ad8"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/veribench/jobs.py",
+      "sha256": "fb62b7951c4c735d3fe197a097c2e6b4f5e7eb18e33505175572309756528ed8"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/veribench/pack.py",
+      "sha256": "1068046cae12fb60eb17c8d92c35db032d1af69250ee561180bf5192e158c9eb"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/src/rl4cv/veribench/summarize.py",
+      "sha256": "0831b96d7c789dd55ce364f8bebc2b51ced99a4fdf7a4ced1d29987d5d4e26a6"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/root_dispatch4_tests.log",
+      "sha256": "f64bb238fa282343c53ef9175d894f892ee7c4903415ec35912bab96fa9c4196"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/root_dispatch5_tests.log",
+      "sha256": "15bd48ea05578d3fbdae69534f29b7116740e0f4e78f8d017026082a1a3e66ff"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/root_dispatch5_tests_configured.log",
+      "sha256": "0c839988464fee53f2271352550b070dd408ed4f897a183c8dcc1ed2e1cf738a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/root_dispatch6_tests.log",
+      "sha256": "2b3d372b23ee813a6096b61e70b01d06d80945e8c9cd332e41f7d5313cad4f3e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/v4_dispatch4_tests_final.log",
+      "sha256": "fa3e266c5a381459c36ee5dccf49f7d67670569ec4dc8368df959d99af4c00a1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/v4_dispatch5_tests.log",
+      "sha256": "618428c61a3689f2916a25415f5255c535c8814cc6ffc16c9c4d666b5b083f7a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/v4_dispatch6_tests.log",
+      "sha256": "afcd588f31cf6ea27cee29d2594c956cf423404e83c40482ebbe393ab999371e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/watchdog_dispatch4_tests.log",
+      "sha256": "dba147114f275ae0f2e9c99e2ca6e034b73a99d3a3f72cbac85fef6cb2d486e1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/watchdog_dispatch5_tests.log",
+      "sha256": "dba147114f275ae0f2e9c99e2ca6e034b73a99d3a3f72cbac85fef6cb2d486e1"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/watchdog_dispatch6_tests.log",
+      "sha256": "a78ca61dfdb9f3a442450088feb624888428e7d9d06cc4c61290fe708f66033c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/watchdog_plan.json",
+      "sha256": "a86cdbae3243e13ae57bb8f5645217819cfb6e7a7ed34d0318c787a8e03b412d"
+    }
+  ],
+  "runtime_conditions": [
+    "V4-A3 veto window closed without veto (10-21-2026 12:00 PDT)",
+    "designated A_1302 pause recorded under the bound single-pause operational decision",
+    "idle authorized device lease, acquired and checked per subprocess; no standing reservation",
+    "pilot only: B_1301 T5_30 verdict exists and its lease is released; all v4 gates PASS; 3 idle authorized GPUs available through shared locks"
+  ],
+  "status": "ADMITTED",
+  "watchdog_plan_sha256": "b5c3b2a34450c4a12a470dc1b59d93759c516a63bb7383fcaa16905551ada53f"
+}
