@@ -1,0 +1,91 @@
+{
+ "model": "ckpt/step_658",
+ "gen": "out/gen_bf16proc.jsonl",
+ "scorer_dtype": "float32",
+ "lm_head_fp32": false,
+ "rollouts": 256,
+ "overall_truncated_support": {
+  "tokens": 775985,
+  "unsupported": 423,
+  "gt0.05_in_support": 61493,
+  "share_mismatch(gt0.05+unsupported)": 0.07979020213019582,
+  "median_abs": 0.0,
+  "p99_abs": 0.17911934971809412,
+  "mean_abs": 0.011285926743430756,
+  "max_abs": 0.6980663537979126
+ },
+ "overall_full_softmax": {
+  "tokens": 775985,
+  "unsupported": 423,
+  "gt0.05_in_support": 76712,
+  "share_mismatch(gt0.05+unsupported)": 0.09940269463971597,
+  "median_abs": 1.4305104514278355e-06,
+  "p99_abs": 0.20180561780929582,
+  "mean_abs": 0.015358318407537128,
+  "max_abs": 0.7280027866363525
+ },
+ "by_position": {
+  "0-256": {
+   "tokens": 65536,
+   "unsupported": 100,
+   "gt0.05_in_support": 13626,
+   "share_mismatch(gt0.05+unsupported)": 0.209442138671875,
+   "median_abs": 0.0032607875764369965,
+   "p99_abs": 0.23818253278732301,
+   "mean_abs": 0.02974175979989939,
+   "max_abs": 0.685960054397583
+  },
+  "256-1024": {
+   "tokens": 195716,
+   "unsupported": 212,
+   "gt0.05_in_support": 33628,
+   "share_mismatch(gt0.05+unsupported)": 0.17290359500500727,
+   "median_abs": 0.0,
+   "p99_abs": 0.22055861473083496,
+   "mean_abs": 0.024304049259827078,
+   "max_abs": 0.6874592304229736
+  },
+  "1024-1000000000": {
+   "tokens": 514733,
+   "unsupported": 111,
+   "gt0.05_in_support": 14239,
+   "share_mismatch(gt0.05+unsupported)": 0.027878531199670507,
+   "median_abs": 0.0,
+   "p99_abs": 0.11397604912519385,
+   "mean_abs": 0.003993640528833193,
+   "max_abs": 0.6980663537979126
+  }
+ },
+ "by_entropy": {
+  "0-0.1": {
+   "tokens": 585657,
+   "unsupported": 0,
+   "gt0.05_in_support": 0,
+   "share_mismatch(gt0.05+unsupported)": 0.0,
+   "median_abs": 0.0,
+   "p99_abs": 0.0,
+   "mean_abs": 0.0,
+   "max_abs": 0.0
+  },
+  "0.1-1.0": {
+   "tokens": 123440,
+   "unsupported": 245,
+   "gt0.05_in_support": 25196,
+   "share_mismatch(gt0.05+unsupported)": 0.206100129617628,
+   "median_abs": 0.01344926655292511,
+   "p99_abs": 0.2528560471534728,
+   "mean_abs": 0.03251703074145999,
+   "max_abs": 0.6980663537979126
+  },
+  "1.0-99": {
+   "tokens": 66888,
+   "unsupported": 178,
+   "gt0.05_in_support": 36297,
+   "share_mismatch(gt0.05+unsupported)": 0.5453145556751585,
+   "median_abs": 0.055713772773742676,
+   "p99_abs": 0.2652391266822815,
+   "mean_abs": 0.0711587515334205,
+   "max_abs": 0.685960054397583
+  }
+ }
+}
