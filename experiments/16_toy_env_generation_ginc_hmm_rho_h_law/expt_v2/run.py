@@ -1,5 +1,5 @@
 """Resumable CPU Night 2 stages; gate probes before GRPO and freeze predictions before n4."""
-import argparse
+import argparse, os
 from copy import deepcopy
 import hashlib
 import json
@@ -69,15 +69,16 @@ def main():
     args=ap.parse_args()
     out=args.out; out.mkdir(parents=True,exist_ok=True)
     torch.set_num_threads(1); torch.set_num_interop_threads(1)
-    torch.manual_seed(1234)
+    PRE=int(os.environ.get('E16_PRETRAIN_SEED','0'))  # 0 = Night 2/4 start checkpoints; Night 5 sets 1
+    torch.manual_seed(1234+PRE)
     started=time.time()
     stage,scale=args.stage,args.scale
     if stage=='pretrain':
         if (out/f'{scale}_meta.json').exists():
             print(f'{scale} pretrain already complete',flush=True); return
         model=TinyLM(*SCALES[scale])
-        docs=pretraining_docs(200000,32,7,SETTINGS,64)
-        loss=pretrain(model,docs,PRETRAIN_STEPS[scale])
+        docs=pretraining_docs(200000,32,7+PRE,SETTINGS,64)
+        loss=pretrain(model,docs,PRETRAIN_STEPS[scale],gen_seed=PRE)
         path=out/f'start_{scale}.pt'; torch.save(model.state_dict(),path)
         baseline=evaluate(model,make_prompts(TARGET,TARGET_N,99))
         write(out/f'{scale}_meta.json',{'scale':scale,'n_params':model.n_params(),'steps':PRETRAIN_STEPS[scale],

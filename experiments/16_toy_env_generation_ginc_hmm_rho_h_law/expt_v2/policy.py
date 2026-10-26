@@ -30,8 +30,8 @@ def with_bos(x):
     return torch.cat([torch.full((len(x),1), BOS, dtype=torch.long), x], 1)
 
 
-def pretrain(model, docs, steps, batch=64, lr=3e-3):
-    gen = torch.Generator().manual_seed(0)
+def pretrain(model, docs, steps, batch=64, lr=3e-3, gen_seed=0):
+    gen = torch.Generator().manual_seed(gen_seed)
     opt = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=.01)
     data = with_bos(docs)
     losses=[]
