@@ -1,0 +1,83 @@
+{
+  "timestamp_utc": "2026-10-22T00:06:21.029471+00:00",
+  "candidate": "/tmp/e20_collect_retry_candidate.py",
+  "candidate_sha256": "04bd0084c446e753e9c5dfedd6b3e774fa6e53bf67b6c94e71ae13a299842480",
+  "scope": "Candidate only; no repository writes, remote calls, scorer launch, retry submission, gate/trainer change, or result recoding.",
+  "semantics": "An intact native frozen scorer negative exit or TIMEOUT with parent completion and verified source/table evidence is recorded as a measured resource-bounded failure, not silently masked or recoded as missing. Only incomplete, RAISED, corrupt, or hash-invalid evidence is an audit error. A successful retry overlay remains optional and fully verified when supplied.",
+  "source_citations": [
+    {
+      "path": "external/veribench_scorer/scripts/scsc/run_real_eval.py",
+      "lines": "215",
+      "claim": "compile success is exactly returncode == 0"
+    },
+    {
+      "path": "external/veribench_scorer/scripts/scsc/run_real_eval.py",
+      "lines": "704-706",
+      "claim": "failed compilation assigns both mechanical factors 0"
+    },
+    {
+      "path": "external/veribench_scorer/scripts/scsc/run_real_eval.py",
+      "lines": "811",
+      "claim": "rows with available TC retain scoring_status scored"
+    },
+    {
+      "path": "experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/PROTOCOL.md",
+      "lines": "38-40",
+      "claim": "identical-cell retries and frozen 59059a2 --skip-tc scorer with durable diagnostics"
+    }
+  ],
+  "bundle_policy": "Bundles compact tables, launchers, terminal/completion receipts, strict manifest, provenance and issues CSVs. Keeps all archived attempts and direct phase0/retries/strict, phase0/retry_jobs, and strict_retry*_submit.json evidence as path/hash/bytes pointers only; no raw retry source or compiler stream payload is archived.",
+  "produces": [
+    "phase0/collected_cpu/compiler_call_manifest.csv (includes strict_retry)",
+    "phase0/collected_cpu/failed_attempt_manifest.csv",
+    "phase0/collected_cpu/original_negative_compiler_calls.csv",
+    "phase0/collected_cpu/strict_retry_provenance.csv",
+    "phase0/phase0_cpu_tables.tgz"
+  ],
+  "fixture": "/tmp/e20_collect_retry_fixture.py",
+  "fixture_sha256": "9cb01dae7358b45c3792dd8cc557991076d369dd7c410b388433d3629898401b",
+  "fixture_output": "/tmp/e20_collect_retry_fixture_output.json",
+  "fixture_output_sha256": "00639ff45cf0fde3350cd5ff4cc87da19e6380242174ea73c469d37f864981bf",
+  "fixture_result": {
+    "good_rc": 0,
+    "unoverridden_native_negative_rc": 0,
+    "retry_stream_hash_failure_rc": 1,
+    "partial_negative_rc": 0,
+    "raised_call_rc": 1,
+    "normal_completion_checks": 64,
+    "recovered_negative_calls": 1,
+    "retry_provenance_rows": 1,
+    "strict_retry_call_rows": 2,
+    "failed_attempt_pointer_rows": 19,
+    "unoverridden_negative_classification": "recorded_native_resource_failure_no_override",
+    "retry_hash_errors": [
+      "/tmp/e20_collect_retry_fixture/bad_hash/phase0/retries/strict/retry_named_0/compiler_diagnostics/call_0/stdout.log: hash mismatch",
+      "/tmp/e20_collect_retry_fixture/bad_hash/phase0/retries/strict/retry_named_0/compiler_diagnostics/call_0/stdout.log: hash mismatch"
+    ],
+    "partial_negative_errors": [],
+    "raised_call_errors": [
+      "scores/e20_p0_c0_s0: nonterminal or raised compiler call /tmp/e20_collect_retry_fixture/raised/phase0/scores/e20_p0_c0_s0/compiler_diagnostics/call_9/execution.json state=RAISED exit=1"
+    ]
+  },
+  "checks": [
+    "py_compile candidate fixture",
+    "valid recovered -9 original succeeds",
+    "unoverridden intact negative succeeds and is classified recorded_native_resource_failure_no_override",
+    "partial intact negative succeeds",
+    "tampered retry stdout hash fails",
+    "RAISED original call fails",
+    "64 normal completion receipts checked",
+    "original launchers require exact frozen pins and --skip-tc",
+    "actual retry roots, retry_jobs and submission JSON appear as pointer-only rows",
+    "actual retry calls appear in compiler_call_manifest",
+    "tar contains strict retry provenance, infrastructure issues and failed-attempt manifest but no raw retry streams/sources"
+  ],
+  "integrated_path": "experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/sherlock/collect_phase0_cpu_e20.py",
+  "integrated_sha256": "eb26eb67ae6786356908786ae1ff22d7d4e3b7ce22a09fb3e56c890d0069aef0",
+  "integrated_verification_timestamp": "10-21-2026 17:08:58 PDT",
+  "integrated_fixture": "/tmp/e20_collect_final_fixture.py",
+  "root_adjustments": [
+    "Name original negative source task/hash without override",
+    "Count actual successful recoveries separately from native negative outcomes"
+  ]
+}

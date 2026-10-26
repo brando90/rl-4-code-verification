@@ -1,0 +1,28 @@
+{
+  "subject": "[RUN DONE] rl4cv expt20: STOPPED at trainer log-probability mismatch gate",
+  "body": "Experiment 20 is STOPPED at the mandatory trainer log-probability mismatch gate. The failed-gate closure is published, with a ready-for-review pull request; it has not been merged.\n\nThe two-update trainer smoke failed at a maximum 22,654/864,717 tokens = 2.61982% mismatch [n/a, n/a], p-val=n/a, versus the runbook limit of at most 1% (absolute log-probability tolerance 0.05). These are exact observed token counts, not independent-token inference. Item response theory (IRT) prompt selection's effect on held-out validation remains unmeasured. The adopted custom optimizer loop also deviates from the required GRPOTrainer/NeMo backend; that limitation is recorded explicitly. No gate was weakened or downstream phase launched.\n\nAll adopted GPU jobs ended naturally. Preserved: all 4,312 unique calibration cells (539 tasks x 8), zero missing generations, all calibration score fields blank; all 256 smoke rollouts; native gate receipts; diagnostic plots; and paths/hashes for 2,027 remote raw/diagnostic files. Calibration produced 25,821,971 tokens, with 940/4,312 token-capped generations. The test split stayed closed; unavailable validation learning curves and treatment comparisons are documented.\n\nFinal cost: Phase 0 7.2358/10 GPU-hours; trainer smoke including infrastructure failures 0.5900/15; main 0/130; evaluation 0/80; total 7.8258/200 GPU-hours; API spend $0. Verification passed: make test, 1,415 passed, 17 skipped, 6 subtests passed, 3 warnings; shell/retry fixtures, artifact hashes, full cell denominator and allocation reconciliation passed.\n\nResults commit: 79d02c82ddd578ebeedc556569195c706b30378c\nFinish marker published in: d2e3c802654b9feb2ac011d67682cca6818cfff5\nResults: https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/results.md\nCheckpoint: https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/CKPT_codex-rl4cv-e20-irt-prompt-selection.md\nReview pull request: https://github.com/brando90/rl-4-code-verification/pull/20\nExperiment log (updated and verified): https://docs.google.com/document/d/1KKKabJJArClVmXcaxfTF5jxk8nF1oHmCH08d44jbqUg/edit\n\nCopy-ready collaborator message: I stopped the IRT prompt-selection experiment at the trainer consistency gate: 2.62% of tokens failed the check, above the 1% limit. We have not yet tested whether IRT selection improves held-out strict pass@1.\n\nBrando (drafted with Codex)\n-----\nBrando Miranda\nPh.D. Student\nComputer Science, Stanford University\nEDGE Scholar, Stanford University\nbrando9@stanford.edu\nwebsite: https://brando90.github.io/brandomiranda/\n",
+  "transport": "uutils.emailing.send_email_smtp; task-local envelope expansion for legacy comma-joined BCC handling",
+  "status": "SMTP accepted all explicit envelope recipients",
+  "started_at": "10-21-2026 15:25:38 PDT",
+  "envelope": [
+    {
+      "to": "brando.science@gmail.com",
+      "bcc": [
+        "brando.science@gmail.com",
+        "brando9@stanford.edu",
+        "brandojazz@gmail.com",
+        "brando@vals.ai"
+      ],
+      "smtp_recipients": [
+        "brando.science@gmail.com",
+        "brando.science@gmail.com",
+        "brando9@stanford.edu",
+        "brandojazz@gmail.com",
+        "brando@vals.ai"
+      ],
+      "message_id": "<179262153864.2463589.14728388958086698385@rl4cv.e20.local>",
+      "refused": {}
+    }
+  ],
+  "sent_at": "10-21-2026 15:25:39 PDT"
+}

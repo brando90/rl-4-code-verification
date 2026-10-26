@@ -1,0 +1,28 @@
+{
+  "subject": "[RUN DONE] rl4cv expt20 post-stop Phase 0 CPU completion: success (G0 PASS; trainer FAILED)",
+  "body": "I completed the post-stop CPU Phase 0 for experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013: all 4,312 saved generations scored; Phase 0b fitting took 47m54s locally. Sherlock used 198.2292 allocated CPU-hours, separately 2.2394 local actual CPU-hours; no new GPU work or API spend.\nG0 PASS: area under the receiver operating characteristic curve 0.9313 [0.9093,0.9519], p=0.0001 versus 0.70 (10,000 paired group bootstraps; 539 tasks/400 groups, conditional fitted predictions); log loss 0.3044 versus 0.4812, expected calibration error 0.1122. All 539 item parameters are frozen; 110/4,312 smooth scores remain missing.\nThe trainer stays FAILED. Saved smoke has 22,459 finite mismatches plus 195 unsupported actions in update 2; the T1 analogue fails zero unsupported actions. Terminal logging failed after every fit/freeze completed; metadata-only recovery preserved the original failure and all scientific outputs. Verification passed: 1,415 tests, 17 skipped; final artifact audit PASS.\nResults and marker pushed: https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/results.md ; PR https://github.com/brando90/rl-4-code-verification/pull/20 remains unmerged. G0_FINISHED records results commit 7c326fb7ea5ef3ea45eeb0596e1bd52fbb9e4d77. Future trainer work requires a separate instruction.\n\nBrando (drafted with Codex)\n-----\nBrando Miranda\nPh.D. Student\nComputer Science, Stanford University\nEDGE Scholar, Stanford University\nbrando9@stanford.edu\nwebsite: https://brando90.github.io/brandomiranda/\n",
+  "transport": "uutils.emailing.send_email_smtp; task-local envelope expansion for legacy comma-joined BCC handling",
+  "status": "SMTP accepted all explicit envelope recipients",
+  "started_at": "10-21-2026 20:39:37 PDT",
+  "envelope": [
+    {
+      "to": "brando.science@gmail.com",
+      "bcc": [
+        "brando.science@gmail.com",
+        "brando9@stanford.edu",
+        "brandojazz@gmail.com",
+        "brando@vals.ai"
+      ],
+      "smtp_recipients": [
+        "brando.science@gmail.com",
+        "brando.science@gmail.com",
+        "brando9@stanford.edu",
+        "brandojazz@gmail.com",
+        "brando@vals.ai"
+      ],
+      "message_id": "<179264037798.3008646.8510903070577186017@rl4cv.e20.local>",
+      "refused": {}
+    }
+  ],
+  "sent_at": "10-21-2026 20:39:39 PDT"
+}

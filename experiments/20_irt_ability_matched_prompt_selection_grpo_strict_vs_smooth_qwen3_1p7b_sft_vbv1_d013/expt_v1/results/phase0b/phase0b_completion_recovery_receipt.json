@@ -1,0 +1,78 @@
+{
+  "analysis_status": "complete: Phase 0b analysis",
+  "dimensionality_status": "available",
+  "failure_removed": true,
+  "fits_gpu_or_model_calls": 0,
+  "input_identity": "d22de0526db18776cc2fafbd528e224d390a548061bcaecc9bca27d3bc92b0fe",
+  "native_forecast_verified": true,
+  "original_failure": {
+    "active_path": "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/phase0b/failure.json",
+    "archive_path": "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/receipts/phase0b_terminal_failure_original.json",
+    "bytes": 175,
+    "exact": {
+      "error": "dict() got multiple values for keyword argument 'trainer_status'",
+      "error_type": "TypeError",
+      "status": "BLOCKED",
+      "trainer_status": "FAILED; unchanged"
+    },
+    "sha256": "e6dbca5810cc85dab378458b495c00fbd8431abade3e3f54e36fc4ccee15facd"
+  },
+  "original_run": {
+    "elapsed_wall_seconds": 2873.979094066075,
+    "ended": "10-21-2026 20:27:21 PDT",
+    "path": "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/receipts/phase0b_run_receipt.json",
+    "receipt_sha256": "65b2f36e82b84f52adf9ab907a9f287317f62ef407a4f33cad022c509b26a60f",
+    "returncode": 1,
+    "started": "10-21-2026 19:39:27 PDT",
+    "status": "FAILED"
+  },
+  "original_run_receipt_unchanged": true,
+  "primary_G0": {
+    "auc": 0.9312699796570765,
+    "auc_threshold": 0.7,
+    "baseline_log_loss": 0.4811850677871736,
+    "log_loss": 0.3044314614670819,
+    "passed": true,
+    "selected_model": "explanatory",
+    "status": "evaluated",
+    "threshold_source": "E20 PROTOCOL section 3; E13 F2"
+  },
+  "progress": {
+    "path": "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/phase0b/progress.json",
+    "sha256": "ceb54c4c8863734d61e6ad3f5277226dba8d18f686ae45d89e26172ef3aba7c9"
+  },
+  "protected_hashes_after": {
+    "analysis": "21585fa765048b1fff9d9a90e22ab2cf1b9afd4475b0333902716d965cd7976e",
+    "dimensionality": "2584a93f227dbb82c7b160c38e1780541fbe7c1e55932688ab7a4f09ec37f831",
+    "forecast": "0d9d4d1582459a45f9017918edb41fda7df0fdaf2c90a21f80e49b7b13c53bf0",
+    "forecast_sidecar": "345e14e367714086b8a77ec02d8f57d8fccd8f2bbf279345b5483a5377d54180",
+    "freeze_receipt": "7c92113361bfbcacdd9cbd9d7cd17e8883a470b3d507154ca938199ba4a96a43",
+    "input_pins": "777d9096c08b56ba9636d477dc942ba63368e1f6509e8931e35d256614f4c3c5",
+    "primary_g0": "627723aec34752dcc1205b1472cd8b5bd2df3748d4b192560bf44310138e99ce",
+    "smooth_analysis": "ad1ade9c6b80fe468e29c37fd9c10b36c70ccaf36058febea430483481c2647a"
+  },
+  "protected_hashes_before": {
+    "analysis": "21585fa765048b1fff9d9a90e22ab2cf1b9afd4475b0333902716d965cd7976e",
+    "dimensionality": "2584a93f227dbb82c7b160c38e1780541fbe7c1e55932688ab7a4f09ec37f831",
+    "forecast": "0d9d4d1582459a45f9017918edb41fda7df0fdaf2c90a21f80e49b7b13c53bf0",
+    "forecast_sidecar": "345e14e367714086b8a77ec02d8f57d8fccd8f2bbf279345b5483a5377d54180",
+    "freeze_receipt": "7c92113361bfbcacdd9cbd9d7cd17e8883a470b3d507154ca938199ba4a96a43",
+    "input_pins": "777d9096c08b56ba9636d477dc942ba63368e1f6509e8931e35d256614f4c3c5",
+    "primary_g0": "627723aec34752dcc1205b1472cd8b5bd2df3748d4b192560bf44310138e99ce",
+    "smooth_analysis": "ad1ade9c6b80fe468e29c37fd9c10b36c70ccaf36058febea430483481c2647a"
+  },
+  "recovery_completed_local": "10-21-2026 20:36:36 PDT",
+  "recovery_completed_utc": "2026-10-22T03:36:36.215982+00:00",
+  "recovery_started_local": "10-21-2026 20:36:36 PDT",
+  "recovery_started_utc": "2026-10-22T03:36:36.215982+00:00",
+  "recovery_version": 1,
+  "scope": "terminal metadata only after all Phase 0b computations and native freeze completed",
+  "smooth_status": "available",
+  "source": {
+    "path": "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/analyze_phase0_e20.py",
+    "sha256": "24c2a19ee63d1c25a6610834cdd7976f8b0b267e66bdc5c1f5bf6ed8c83b59cd",
+    "unchanged": true
+  },
+  "state": "complete",
+  "trainer_status": "FAILED; unchanged"
+}

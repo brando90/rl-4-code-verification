@@ -1,0 +1,23 @@
+{
+  "candidate": "/tmp/analyze_phase0_e20_missing_candidate.py",
+  "candidate_sha256": "24c2a19ee63d1c25a6610834cdd7976f8b0b267e66bdc5c1f5bf6ed8c83b59cd",
+  "created": "10-21-2026 17:12 PDT",
+  "frozen": true,
+  "repo_files_modified": false,
+  "test": "/tmp/test_analyze_phase0_e20_missing_candidate.py",
+  "test_command": "/lfs/skampere1/0/brando9/venvs/rl4cv_e20/bin/python /tmp/test_analyze_phase0_e20_missing_candidate.py",
+  "test_output": {
+    "all_complete_joint_score_exactly_unchanged": true,
+    "fixture_smooth_measured_declared": [4311, 4312],
+    "masked_category_likelihood_invariant": true,
+    "missing_strict_rejected": true,
+    "paired_cells_scored": 5,
+    "strict_counts_unchanged_with_missing_smooth": true
+  },
+  "test_sha256": "5385f7b056e600f3043ae6c3d62bb6a870c4ab5adc294acddb0bbbd2fcd11cb6",
+  "verification": [
+    "Python byte compilation passed",
+    "git diff --no-index --check passed",
+    "frozen repository analyze_phase0_e20.py and irt_e20.py remained unmodified"
+  ]
+}
