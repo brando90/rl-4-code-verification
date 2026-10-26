@@ -1,0 +1,29 @@
+{
+  "checked_utc": "2026-10-16T15:52:16.807386+00:00",
+  "command": "source expt_v2/env_e13v2.sh; CUDA_VISIBLE_DEVICES= env -u CODEX_HOME E13_REQUIRE_LEAN_INTEGRATION=1 make test",
+  "condition": "v2-S2",
+  "direct_exit_checked": true,
+  "earlier_unconfigured_test": {
+    "exit_code": 2,
+    "failed": 19,
+    "passed": 1363,
+    "reason": "missing prescribed integration environment and checkout-relative dependency paths; retained private log, repaired setup only",
+    "skipped": 3
+  },
+  "exit_code": 0,
+  "failures": 0,
+  "log_sha256": "899bdc17ba803f461e648e101c63a21ba6f78134a6c99918157cf0e4437d3db8",
+  "passed": 1382,
+  "revision": "147642994a8c9a80b0ad215b2770ba0d84193cf9",
+  "scope": "Full merged repository; runtime and scientific sources unchanged. Documentation and aggregate receipt publication only.",
+  "skipped": 3,
+  "status": "PASS",
+  "subtests_passed": 6,
+  "test_seconds": 517.38,
+  "test_setup": {
+    "CODEX_HOME": "omitted only from test subprocess; active owner profile unchanged",
+    "legacy_mailer_alias": "temporary compatibility symlink removed after suite",
+    "prescribed_environment": "env_e13v2.sh",
+    "scorer": "read-only link to exact deps.lock.json commit 59059a20d40adf3289869e58302169ad78102877"
+  }
+}

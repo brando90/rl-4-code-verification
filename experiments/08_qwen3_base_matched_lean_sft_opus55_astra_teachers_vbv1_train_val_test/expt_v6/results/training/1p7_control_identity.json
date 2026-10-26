@@ -1,0 +1,32 @@
+{
+  "size": "1.7B",
+  "condition": "control",
+  "host": "skampere1.stanford.edu",
+  "pid": 2927715,
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "cuda_visible_devices": "1",
+  "torch": "2.7.1+cu128",
+  "transformers": "4.55.4",
+  "seed": 20261019,
+  "initial_manifest_sha256": "cbcf8bbbb07534129868475fa9303b34dcf1df5ad502dc673fe8f68169e92847",
+  "code_sha256": "a9c4a282cb278a6af445ed41eb407fbc7e19a2c1686b1597a446b8c450af9c1b",
+  "planned": {
+    "steps": 664,
+    "loss_tokens": 5759732,
+    "overshoot": 6796,
+    "examples": 1328,
+    "unique_tiny": 0,
+    "by_source": {
+      "v1_selected": 675,
+      "mbpp_lean_warmstart_v3": 311,
+      "cached_cap_excluded": 342
+    },
+    "tiny_loss_tokens": 0,
+    "schedule_sha256": "a186964ab82193eb18074886e5a1095254739a13cf854d08e722c865c4599ccb"
+  },
+  "smoke": false,
+  "parameter_dtype": "float32",
+  "optimizer_location": "cuda",
+  "autocast_dtype": "bfloat16",
+  "attention": "sdpa"
+}

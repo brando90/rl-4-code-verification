@@ -1,0 +1,75 @@
+{"tldr": "Dispatch 8 CPU verification passes all required suites; no gate, allocation or statistic ran.",
+  "api_spend_usd": 0,
+  "classification_sha256": "e3cb5a1eaecb8c1a37193219ca70d4a46a873e0a72b7b1d4af25f1f2fd5028fa",
+  "count_interpretation": "Deterministic test counts, not statistical estimates; confidence intervals and p-values do not apply.",
+  "gpu_allocations": 0,
+  "initial_v4_run": {
+    "passed": 433,
+    "failed": 1,
+    "reason": "New leaf-receipt mutation regression exposed missing verification, fixed before final run.",
+    "log_sha256": "a82bf1490279b3d134339bd9f84e628867f44d1c3efc2bb735ef6848834e5bdf"
+  },
+  "limits": "CPU only; shared venv read-only; no v3 mutation; no cron/active plan/wrapper change; no gate executed.",
+  "new_generations": 0,
+  "new_statistics": 0,
+  "new_tests": 89,
+  "optimizer_steps": 0,
+  "protected_unchanged": {
+    "cron_sha256": "4763ebc3f17acc1b4913a6f54aa34dc0c72dd532d5159c7e396151a8dbea7e78",
+    "paths": {
+      "/lfs/skampere1/0/brando9/rl4cv_e13v3/phase2/autoresume_paused.json": "3612076677a23a847b32e386f9bd93713f59d12232a11cb1cb9ed70d1d680ba2",
+      "/lfs/skampere1/0/brando9/rl4cv_e13v4/a1302_pause_then_gates.sh": "099676d84f576c56226201bbeb5430b9ec0a26db06dd37bf62f8fa37e023cc83",
+      "/lfs/skampere1/0/brando9/rl4cv_e13v4/launch_plan.json": "559840964573e72733191c552c3a9cfbce6c00049347362ff37a0dffae38875d",
+      "/lfs/skampere1/0/brando9/rl4cv_e13v4/watchdog_plan.json": "c2fe486190d23eb1211f5924e066bccc1c2d7c9a7387001d5c2bb85283b9fb44"
+    }
+  },
+  "recovery": {
+    "action": "ACCOUNT_OR_CONTINUE",
+    "empty_attempts": [],
+    "completed_operations": 0,
+    "lease_refusals": [
+      "/lfs/skampere1/0/brando9/rl4cv_e13v4/run/T1/probe/attempt_01"
+    ],
+    "resample": false
+  },
+  "root_warnings": 6,
+  "suites": {
+    "v4": {
+      "passed": 471,
+      "skipped": 0,
+      "failed": 0,
+      "seconds": 163.58,
+      "log": "/lfs/skampere1/0/brando9/rl4cv_e13v4/v4_tests_dispatch8_final.log",
+      "sha256": "9ea64d41226b495a9ac993cdf6cab0c1580c4706981870def46f6c5e4a76d1f7",
+      "command": "CUDA_VISIBLE_DEVICES='' HF_HUB_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/lfs/skampere1/0/brando9/rl4cv_e13v4/test_deps:$PWD/src /lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python -m pytest -q /lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/tests"
+    },
+    "watchdog": {
+      "passed": 16,
+      "skipped": 0,
+      "failed": 0,
+      "seconds": 0.14,
+      "log": "/lfs/skampere1/0/brando9/rl4cv_e13v4/watchdog_tests_dispatch8.log",
+      "sha256": "5c43ccb17d01d15e44fb57e7ee67d619e9ad4bc8ffd57457c1427152d78eb341",
+      "command": "Same CPU environment and interpreter; -m pytest -q /lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/tests/test_autoresume_watchdog.py"
+    },
+    "root": {
+      "passed": 1405,
+      "skipped": 15,
+      "failed": 0,
+      "seconds": 361.66,
+      "log": "/lfs/skampere1/0/brando9/rl4cv_e13v4/root_tests_dispatch8.log",
+      "sha256": "ff4972a32d7387653c064132f3790aa4a936dff35a32d336e85f4eb08b509ee6",
+      "command": "CUDA_VISIBLE_DEVICES='' HF_HUB_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1 PATH=/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin:$PATH PYTHONPATH=/lfs/skampere1/0/brando9/rl4cv_e09/nemo_rl:/lfs/skampere1/0/brando9/rl4cv_e13v4/test_deps:$PWD/src make test"
+    },
+    "admission_focused": {
+      "passed": 39,
+      "skipped": 0,
+      "failed": 0,
+      "seconds": 17.54,
+      "log": "/lfs/skampere1/0/brando9/rl4cv_e13v4/admission_tests_dispatch8.log",
+      "sha256": "3247dc2136cc367da68c71dbcdf8b06baf01e13f8362eb34cf72c553a8e5e92c",
+      "command": "Same v4 CPU environment; -m pytest -q tests/test_contracts.py tests/test_readmission_dispatch8.py (paths relative to expt_v4)"
+    }
+  },
+  "verified_at": "10-21-2026 19:21 PDT"
+}

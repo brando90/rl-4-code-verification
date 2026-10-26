@@ -1,0 +1,64 @@
+{
+  "status": "PHASE_A_TRAINING_VERIFIED",
+  "checked_unix": 1792130947.2442768,
+  "runs": {
+    "v3_E_1p7b": {
+      "summary": "results/train_logs/v3_E_1p7b_summary.json",
+      "summary_sha256": "ac227893ff314af4348ee732c49e1b79a7bc7d04595e89a3c1b98d834ecde05d",
+      "steps": 667,
+      "loss_tokens": 5757776,
+      "processed_real_tokens": 10383459,
+      "export_manifest_sha256": {
+        "f0p5": "8c9edecb8b1b6a8ce6ffe1c9b5b67e97fa53565bebfe34cf764fbbe9e8501538",
+        "f1p0": "2d28216b8a8bcdb86dba4e73089d39057dd02071dd159789f2f6a2627e77661b"
+      },
+      "native_exit_code": 2,
+      "reconciliation": "recovery-01: 667 token steps and both SHA256SUMS pass; exit2 retained"
+    },
+    "v3_E_4b": {
+      "summary": "results/train_logs/v3_E_4b_summary.json",
+      "summary_sha256": "39f35eea8f98579ed1c01e75a18a9cd14c45ad9880725a4a3f636126bb95ff91",
+      "steps": 667,
+      "loss_tokens": 5757776,
+      "processed_real_tokens": 10383459,
+      "export_manifest_sha256": {
+        "f0p5": "4e2be5f3569ddaec44476b4b3ad623faf93cfe9a0d0beca1bf04a2f7e519ae9e",
+        "f1p0": "7dd672de9de65a2779135699929a394f28d625ae1cbf5085b383988a301e1a2c"
+      },
+      "native_exit_code": 0,
+      "reconciliation": null
+    },
+    "v3_R_1p7b": {
+      "summary": "results/train_logs/v3_R_1p7b_summary.json",
+      "summary_sha256": "52e26a76d9b256629abd4a48d7195fa8d12aafcc38c365366b640c3b46010ebb",
+      "steps": 658,
+      "loss_tokens": 5752936,
+      "processed_real_tokens": 10370638,
+      "export_manifest_sha256": {
+        "f0p5": "bb7776cb01573b2c52b64121fccdde02a870429d13ae54144dcf42772c753f81",
+        "f1p0": "857d87cca9fa74a83c69d285261c1f6696ec02c888c30db8fbea8e9773745c6f"
+      },
+      "native_exit_code": 2,
+      "reconciliation": "recovery-01: all 658 token counts and both complete export checksums pass; native post-export NFS stale-handle exit2 retained"
+    },
+    "v3_R_4b": {
+      "summary": "results/train_logs/v3_R_4b_summary.json",
+      "summary_sha256": "dfbadd8197e7dc5280c185a1c111491ee4532b342d87573962f21984ab7bf71a",
+      "steps": 658,
+      "loss_tokens": 5752936,
+      "processed_real_tokens": 10370638,
+      "export_manifest_sha256": {
+        "f0p5": "83df6763f997ac2b0ee563cad54741b449526f38b46dd3e5f104cf380fb6f672",
+        "f1p0": "44ef1dbcbc51c899359a586a6bde437a6ce0a2615473b3e74414d9e95d1204a0"
+      },
+      "native_exit_code": 0,
+      "reconciliation": null
+    }
+  },
+  "total_additional_loss_tokens": 23021424,
+  "total_processed_real_tokens": 41508194,
+  "validation_and_namespace_pending": true,
+  "scientific_caps_unchanged": true,
+  "paid_model_calls": 0,
+  "test_split_opened": false
+}

@@ -1,0 +1,184 @@
+{
+  "status": "PASS",
+  "checked_unix": 1792153076.2265935,
+  "expansion_full": {
+    "cells_csv": "results/ladder/v3_E_8b_f1p0_validation_cells.csv",
+    "diagnostics": {
+      "all_pass_share": 0.0148,
+      "ic_tests_rate": 0.15556,
+      "mean_generated_tokens": 4561.1,
+      "mean_pass_rate": 0.15556,
+      "mean_proof_fraction": 0.15556,
+      "n_tasks_with_diversity": 134,
+      "pass_at_8_share": 0.3037,
+      "within_task_diversity_mean_pairwise_jaccard": 0.1375
+    },
+    "failure_taxonomy": {
+      "compile_error": 843,
+      "kernel_success": 168,
+      "no_lean_extracted": 69
+    },
+    "gates": {
+      "a_extraction": {
+        "n": 1011,
+        "of": 1080,
+        "pass": true,
+        "share": 0.9361,
+        "threshold": 0.9
+      },
+      "b_capped": {
+        "n": 70,
+        "of": 1080,
+        "pass": true,
+        "share": 0.0648,
+        "threshold": 0.1
+      },
+      "c_mixed": {
+        "n": 39,
+        "of": 135,
+        "pass": true,
+        "share": 0.2889,
+        "threshold": 0.05,
+        "wilson95": [
+          0.2191,
+          0.3703
+        ]
+      },
+      "complete": true,
+      "n_declared": 1080,
+      "n_known": 1080,
+      "pass": true
+    },
+    "notes": {
+      "duplicates_rejected": 0,
+      "extras_rejected": 0,
+      "missing": [],
+      "n_missing": 0,
+      "n_unparseable_theorem_types": 0,
+      "n_vacuous_cells": 2,
+      "scored_file": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/scored/scored_v3_E_8b_f1p0_g8.jsonl"
+    },
+    "per_task_csv": "results/ladder/v3_E_8b_f1p0_validation_per_task.csv",
+    "scored_sha256": "136b434199cb323b9bfc6b4ad34e20e0ba970fc34656074c489cbf726e14d230",
+    "split": "validation",
+    "status": "COMPLETE",
+    "system": {
+      "condition": "E",
+      "fraction": "f1p0",
+      "hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ckpt/v3_E_8b/hf/step_667",
+      "label": "v3_E_8b_f1p0",
+      "loss_tokens": 5757776,
+      "size": "8B",
+      "source": "e08",
+      "start_hf_path": "/lfs/skampere1/0/brando9/rl4cv_e08/ckpt/8B/hf/step_658",
+      "start_weights_sha256_manifest": "3085508bfd29932193b556c2f769eabe83b26e2d96dd59ef7412cfbcbf8f397d",
+      "step": 667
+    },
+    "task_bootstrap": {
+      "mixed_share": {
+        "ci95": [
+          0.21481481481481482,
+          0.37037037037037035
+        ],
+        "draws": 10000,
+        "mean": 0.28888888888888886,
+        "p_value": null,
+        "seed": 0,
+        "unit": "task with eight attempts together"
+      },
+      "pass_at_8": {
+        "ci95": [
+          0.22962962962962963,
+          0.3851851851851852
+        ],
+        "draws": 10000,
+        "mean": 0.3037037037037037,
+        "p_value": null,
+        "seed": 0,
+        "unit": "task with eight attempts together"
+      },
+      "pass_rate": {
+        "ci95": [
+          0.10925925925925926,
+          0.20555555555555555
+        ],
+        "draws": 10000,
+        "mean": 0.15555555555555556,
+        "p_value": null,
+        "seed": 0,
+        "unit": "task with eight attempts together"
+      }
+    }
+  },
+  "namespace": {
+    "declared_cells": 1080,
+    "changed_cells": 0,
+    "unknown_cells": 0,
+    "original_successes": 168.0,
+    "diagnostic_successes_known": 168.0,
+    "paired_task_bootstrap_delta": {
+      "mean": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "draws": 10000,
+      "seed": 0,
+      "p_value": null,
+      "unit": "task with eight attempts together"
+    }
+  },
+  "replay_full_generation": {
+    "cells": 1080,
+    "sha256": "0859198c7beef772f0f0b433b6c0b9d07086794df4d59d1a3095cba6ce0dcb46",
+    "sampling_and_prompts_match": true,
+    "label": "v3_R_8b_f1p0",
+    "host": "skampere3",
+    "gpus": "2,4,5,7",
+    "tensor_parallel_size": 4,
+    "source": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/ladder/validation/raw/gen_v3_R_8b_f1p0_g8.jsonl",
+    "canonical": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/raw/gen_v3_R_8b_f1p0_g8.jsonl",
+    "export_sha256": "485664092d245f1b5f6c07858c6d82c1a9b80ca8f8d9d3fdd49b97c8fd9ff94f",
+    "identity": {
+      "pid": 3338917,
+      "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+      "start_ticks": "265889874"
+    },
+    "test_split_opened": false,
+    "copied_unix": 1792152968.756774
+  },
+  "replay_remote_generation_exit": {
+    "identity": {
+      "pid": 3338917,
+      "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+      "start_ticks": "265889874"
+    },
+    "started_unix": 1792152417.3927698,
+    "command": [
+      "bash",
+      "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/code/expt_v3/.run_validation_v3_R_8b_f1p0_1792152417228440148.sh",
+      "validation",
+      "v3_R_8b_f1p0",
+      "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/ckpt/v3_R_8b/hf/step_658",
+      "local",
+      "2,4,5,7",
+      "4",
+      "generation"
+    ],
+    "child": {
+      "pid": 3338918,
+      "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+      "start_ticks": "265889885"
+    },
+    "exit_code": 0,
+    "ended_unix": 1792152909.65446
+  },
+  "generated_cells_total": 12960,
+  "known_cells": 10800,
+  "declared_cells": 17280,
+  "training_runs_verified": 6,
+  "training_updates_verified": 3975,
+  "paid_model_calls": 0,
+  "test_split_opened": false,
+  "full_suite_passed": 1321
+}

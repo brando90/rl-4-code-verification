@@ -1,0 +1,298 @@
+Native error log rendering; CR progress lines normalized and trailing whitespace removed.
+Original bytes retained at /dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_E_14b_1792158063511085961/native_segment_to_step_335_failure.log
+Original SHA256: 73c140646dcd37096aa29a6a22170d103e63f9bb4bf21fbd715971eab35f3091
+
+2026-10-16 06:42:49,343	INFO worker.py:1554 -- Using address 172.24.75.194:57749 set in the environment variable RAY_ADDRESS
+2026-10-16 06:42:49,344	INFO worker.py:1694 -- Connecting to existing Ray cluster at address: 172.24.75.194:57749...
+2026-10-16 06:42:49,357	INFO worker.py:1888 -- Connected to Ray cluster.
+INFO:nemo_rl.distributed.virtual_cluster:Connected to existing Ray cluster: {'node:172.24.75.251': 1.0, 'object_store_memory': 6442450944.0, 'accelerator_type:B200': 1.0, 'memory': 7955396329472.0, 'GPU': 8.0, 'CPU': 14.0, 'node:172.24.75.194': 1.0, 'node:__internal_head__': 1.0, 'accelerator_type:A100': 1.0, 'node:172.24.75.237': 1.0, 'accelerator_type:H200': 1.0}
+Loaded configuration from: /lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/configs/e08_v3_E_14B.yaml
+Overrides: ['sft.max_num_steps=335']
+Applied CLI overrides
+Final config:
+{'checkpointing': {'checkpoint_dir': '/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/ckpt/v3_E_14b/checkpoints',
+                   'checkpoint_must_save_by': None,
+                   'enabled': True,
+                   'higher_is_better': False,
+                   'keep_top_k': None,
+                   'metric_name': None,
+                   'save_optimizer': True,
+                   'save_period': 1000000},
+ 'cluster': {'gpus_per_node': 8, 'num_nodes': 1},
+ 'data': {'add_bos': True,
+          'add_eos': True,
+          'add_generation_prompt': True,
+          'chat_key': 'messages',
+          'dataset_name': 'openai_format',
+          'max_input_seq_length': 16384,
+          'num_workers': 1,
+          'prompt_file': None,
+          'seed': None,
+          'shuffle': False,
+          'split': None,
+          'system_key': None,
+          'system_prompt': None,
+          'tool_key': None,
+          'train_data_path': '/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/s_v3_E_nemo.jsonl',
+          'use_preserving_dataset': False,
+          'val_data_path': '/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/s_v3_E_val_dummy.jsonl'},
+ 'logger': {'gpu_monitoring': {'collection_interval': 10, 'flush_interval': 10},
+            'log_dir': '/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/ckpt/v3_E_14b/logs',
+            'mlflow': {'experiment_name': 'rl4cv-e08-sft',
+                       'run_name': 'rl4cv-e08-v3-E-14b-production'},
+            'mlflow_enabled': False,
+            'monitor_gpus': True,
+            'swanlab_enabled': False,
+            'tensorboard': {'log_dir': '/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/ckpt/v3_E_14b/tb'},
+            'tensorboard_enabled': True,
+            'wandb': {'name': 'rl4cv-e08-v3-E-14b-production',
+                      'project': 'rl4cv-e08-sft'},
+            'wandb_enabled': False},
+ 'policy': {'dtensor_cfg': {'activation_checkpointing': True,
+                            'context_parallel_size': 1,
+                            'cpu_offload': False,
+                            'custom_parallel_plan': None,
+                            'enabled': True,
+                            'env_vars': {},
+                            'sequence_parallel': False,
+                            'tensor_parallel_size': 8},
+            'dynamic_batching': {'enabled': False,
+                                 'sequence_length_round': 64,
+                                 'train_mb_tokens': 16384},
+            'make_sequence_length_divisible_by': 8,
+            'max_grad_norm': 1.0,
+            'max_total_sequence_length': 16384,
+            'megatron_cfg': {'activation_checkpointing': False,
+                             'apply_rope_fusion': True,
+                             'context_parallel_size': 1,
+                             'defer_fp32_logits': False,
+                             'distributed_data_parallel_config': {'data_parallel_sharding_strategy': 'optim_grads_params',
+                                                                  'grad_reduce_in_fp32': False,
+                                                                  'overlap_grad_reduce': True,
+                                                                  'overlap_param_gather': True,
+                                                                  'use_custom_fsdp': False},
+                             'empty_unused_memory_level': 1,
+                             'enabled': False,
+                             'env_vars': {},
+                             'expert_model_parallel_size': 1,
+                             'expert_tensor_parallel_size': 1,
+                             'freeze_moe_router': False,
+                             'moe_permute_fusion': False,
+                             'moe_router_bias_update_rate': 0.001,
+                             'moe_router_dtype': None,
+                             'moe_router_load_balancing_type': 'aux_loss',
+                             'num_layers_in_first_pipeline_stage': None,
+                             'num_layers_in_last_pipeline_stage': None,
+                             'optimizer': {'adam_beta1': 0.9,
+                                           'adam_beta2': 0.98,
+                                           'adam_eps': 1e-05,
+                                           'bf16': False,
+                                           'clip_grad': 1.0,
+                                           'fp16': False,
+                                           'lr': 2e-05,
+                                           'min_lr': 0.0,
+                                           'optimizer': 'adam',
+                                           'optimizer_cpu_offload': False,
+                                           'optimizer_offload_fraction': 0.0,
+                                           'params_dtype': 'float32',
+                                           'sgd_momentum': 0.9,
+                                           'use_distributed_optimizer': True,
+                                           'use_precision_aware_optimizer': True,
+                                           'weight_decay': 0.1},
+                             'pipeline_dtype': 'bfloat16',
+                             'pipeline_model_parallel_size': 1,
+                             'scheduler': {'end_weight_decay': 0.1,
+                                           'lr_decay_iters': 1024,
+                                           'lr_decay_style': 'cosine',
+                                           'lr_warmup_init': 6.451612903225807e-07,
+                                           'lr_warmup_iters': 31,
+                                           'start_weight_decay': 0.1,
+                                           'weight_decay_incr_style': 'constant'},
+                             'sequence_parallel': False,
+                             'tensor_model_parallel_size': 1},
+            'model_name': '/dfs/scratch0/brando9/rl4cv_e08_v3_remote/ckpt/14B/hf/step_658',
+            'optimizer': {'kwargs': {'betas': [0.9, 0.98],
+                                     'eps': 1e-05,
+                                     'foreach': False,
+                                     'fused': False,
+                                     'lr': 2e-05,
+                                     'weight_decay': 0.1},
+                          'name': 'torch.optim.AdamW'},
+            'precision': 'bfloat16',
+            'scheduler': [{'kwargs': {'end_factor': 1.0,
+                                      'start_factor': 0.047619047619047616,
+                                      'total_iters': 21},
+                           'name': 'torch.optim.lr_scheduler.LinearLR'},
+                          {'kwargs': {'T_max': 646, 'eta_min': 0.0},
+                           'name': 'torch.optim.lr_scheduler.CosineAnnealingLR'},
+                          {'milestones': [21]}],
+            'sequence_packing': {'algorithm': 'modified_first_fit_decreasing',
+                                 'enabled': False,
+                                 'sequence_length_round': 64,
+                                 'train_mb_tokens': 16384},
+            'tokenizer': {'chat_template': 'default',
+                          'chat_template_kwargs': None,
+                          'name': '/dfs/scratch0/brando9/rl4cv_e08_v3_remote/ckpt/14B/hf/step_658'},
+            'train_global_batch_size': 2,
+            'train_micro_batch_size': 1},
+ 'sft': {'max_num_epochs': 1,
+         'max_num_steps': 335,
+         'seed': 20260830,
+         'val_at_start': False,
+         'val_batches': 0,
+         'val_global_batch_size': 2,
+         'val_micro_batch_size': 1,
+         'val_period': 0}}
+📊 Using log directory: /dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/ckpt/v3_E_14b/logs/exp_001
+📊 Using checkpoint directory: /dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/ckpt/v3_E_14b/checkpoints
+Using tokenizer's default chat template
+
+▶ Setting up data...
+
+Generating train split: 0 examples [00:00, ? examples/s]
+Generating train split: 2040 examples [00:00, 15166.66 examples/s]
+Generating train split: 2586 examples [00:00, 6486.25 examples/s]
+
+Generating train split: 0 examples [00:00, ? examples/s]
+Generating train split: 2 examples [00:00, 1029.78 examples/s]
+
+Map:   0%|          | 0/2586 [00:00<?, ? examples/s]
+Map:  38%|███▊      | 979/2586 [00:00<00:00, 9705.92 examples/s]
+Map:  77%|███████▋  | 2000/2586 [00:00<00:00, 4426.60 examples/s]
+Map: 100%|██████████| 2586/2586 [00:00<00:00, 4633.03 examples/s]
+
+Map:   0%|          | 0/2 [00:00<?, ? examples/s]
+Map: 100%|██████████| 2/2 [00:00<00:00, 490.50 examples/s]
+Loaded dataset using standard approach (train: 2586, val: 2)
+  ✓ Training and validation datasets loaded with 2586 and 2 samples, respectively.
+Initialized TensorboardLogger at /dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/ckpt/v3_E_14b/logs/exp_001/tensorboard
+GPU monitoring started with collection interval=10s, flush interval=10s
+
+▶ Setting up compute cluster...
+  ✓ Ray cluster initialized with 1 nodes
+
+▶ Setting up model...
+Waiting for 8 workers to finish initializing...
+use_sliding_window=False in config - overriding sliding_window parameter to None: {'sliding_window': None}
+Traceback (most recent call last):
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/examples/run_sft.py", line 220, in <module>
+    main()
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/examples/run_sft.py", line 203, in main
+    ) = setup(config, tokenizer, dataset, val_dataset)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/nemo_rl/algorithms/sft.py", line 206, in setup
+    policy.print_node_ip_and_gpu_id()
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/nemo_rl/models/policy/lm_policy.py", line 784, in print_node_ip_and_gpu_id
+    results = ray.get(
+              ^^^^^^^^
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/lib/python3.12/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/lib/python3.12/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/lib/python3.12/site-packages/ray/_private/worker.py", line 2822, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/lib/python3.12/site-packages/ray/_private/worker.py", line 932, in get_objects
+    raise value
+ray.exceptions.ActorDiedError: The actor died because of an error raised in its creation task, [36mray::lm_policy-0-6:DTensorPolicyWorker.__init__()[39m (pid=2962462, ip=172.24.75.194, actor_id=a5fa4db001af743b8a583ccb02000000, repr=DTensorPolicyWorker[rank=6])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/nemo_rl/models/policy/dtensor_policy_worker.py", line 356, in __init__
+    set_model_state_dict(
+  File "/tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/distributed/checkpoint/state_dict.py", line 1277, in set_model_state_dict
+    return _load_model_state_dict(model, model_state_dict, info)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/distributed/checkpoint/state_dict.py", line 590, in _load_model_state_dict
+    _broadcast_state_dict(
+  File "/tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/distributed/_state_dict_utils.py", line 614, in _broadcast_state_dict
+    dist.broadcast_object_list(broadcast_list, src=0, group=pg)
+  File "/tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 3483, in broadcast_object_list
+    broadcast(object_sizes_tensor, src=global_src, group=group)
+  File "/tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 2714, in broadcast
+    work = group.broadcast([tensor], opts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.distributed.DistBackendError: [6] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: wait timeout after 600000ms, keys: /default_pg/0//cuda//0
+Exception raised from doWait at /pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:589 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x98 (0x7d88007715e8 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0x5b2100e (0x7d869d72100e in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+frame #2: <unknown function> + 0x13638f5 (0x7d8698f638f5 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+frame #3: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x33 (0x7d869d7a5fa3 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+frame #4: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0xab (0x7d869d7a708b in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7d869d75594f in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7d869d75594f in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7d869d75594f in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+frame #8: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x16d (0x7d864eceaf5d in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+frame #9: c10d::ProcessGroupNCCL::initNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, c10::Device&, c10d::OpType, int, bool) + 0x16bf (0x7d864ecfb04f in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+frame #10: c10d::ProcessGroupNCCL::broadcast(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::BroadcastOptions const&) + 0x13a8 (0x7d864ed04348 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+frame #11: <unknown function> + 0x5b44b32 (0x7d869d744b32 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+frame #12: <unknown function> + 0x5b54c11 (0x7d869d754c11 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+frame #13: <unknown function> + 0x52125b0 (0x7d869ce125b0 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+frame #14: <unknown function> + 0x5b5efb5 (0x7d869d75efb5 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+frame #15: <unknown function> + 0x5b6fad0 (0x7d869d76fad0 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+frame #16: <unknown function> + 0xc949d0 (0x7d87492949d0 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libtorch_python.so)
+frame #17: <unknown function> + 0x37f2dd (0x7d874897f2dd in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/torch/lib/libtorch_python.so)
+frame #18: ray::lm_policy-0-6:DTensorPolicyWorker.__init__() [0x581fcf]
+frame #19: _PyObject_MakeTpCall + 0x75 (0x548f35 in ray::lm_policy-0-6:DTensorPolicyWorker.__init__)
+frame #20: _PyEval_EvalFrameDefault + 0xadf (0x5d733f in ray::lm_policy-0-6:DTensorPolicyWorker.__init__)
+frame #21: PyVectorcall_Call + 0xba (0x445cae in ray::lm_policy-0-6:DTensorPolicyWorker.__init__)
+frame #22: <unknown function> + 0x76c6ef (0x7d881496c6ef in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #23: <unknown function> + 0x79605e (0x7d881499605e in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #24: <unknown function> + 0x76c6ef (0x7d881496c6ef in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #25: <unknown function> + 0x8876c6 (0x7d8814a876c6 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #26: std::_Function_handler<ray::Status (ray::rpc::Address const&, ray::rpc::TaskType, std::string, ray::core::RayFunction const&, std::unordered_map<std::string, double, std::hash<std::string>, std::equal_to<std::string>, std::allocator<std::pair<std::string const, double> > > const&, std::vector<std::shared_ptr<ray::RayObject>, std::allocator<std::shared_ptr<ray::RayObject> > > const&, std::vector<ray::rpc::ObjectReference, std::allocator<ray::rpc::ObjectReference> > const&, std::string const&, std::string const&, std::vector<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> >, std::allocator<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> > > >*, std::vector<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> >, std::allocator<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> > > >*, std::vector<std::pair<ray::ObjectID, bool>, std::allocator<std::pair<ray::ObjectID, bool> > >*, std::shared_ptr<ray::LocalMemoryBuffer>&, bool*, std::string*, std::vector<ray::ConcurrencyGroup, std::allocator<ray::ConcurrencyGroup> > const&, std::string, bool, bool, bool, long), ray::Status (*)(ray::rpc::Address const&, ray::rpc::TaskType, std::string, ray::core::RayFunction const&, std::unordered_map<std::string, double, std::hash<std::string>, std::equal_to<std::string>, std::allocator<std::pair<std::string const, double> > > const&, std::vector<std::shared_ptr<ray::RayObject>, std::allocator<std::shared_ptr<ray::RayObject> > > const&, std::vector<ray::rpc::ObjectReference, std::allocator<ray::rpc::ObjectReference> > const&, std::string, std::string, std::vector<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> >, std::allocator<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> > > >*, std::vector<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> >, std::allocator<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> > > >*, std::vector<std::pair<ray::ObjectID, bool>, std::allocator<std::pair<ray::ObjectID, bool> > >*, std::shared_ptr<ray::LocalMemoryBuffer>&, bool*, std::string*, std::vector<ray::ConcurrencyGroup, std::allocator<ray::ConcurrencyGroup> > const&, std::string, bool, bool, bool, long)>::_M_invoke(std::_Any_data const&, ray::rpc::Address const&, ray::rpc::TaskType&&, std::string&&, ray::core::RayFunction const&, std::unordered_map<std::string, double, std::hash<std::string>, std::equal_to<std::string>, std::allocator<std::pair<std::string const, double> > > const&, std::vector<std::shared_ptr<ray::RayObject>, std::allocator<std::shared_ptr<ray::RayObject> > > const&, std::vector<ray::rpc::ObjectReference, std::allocator<ray::rpc::ObjectReference> > const&, std::string const&, std::string const&, std::vector<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> >, std::allocator<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> > > >*&&, std::vector<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> >, std::allocator<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> > > >*&&, std::vector<std::pair<ray::ObjectID, bool>, std::allocator<std::pair<ray::ObjectID, bool> > >*&&, std::shared_ptr<ray::LocalMemoryBuffer>&, bool*&&, std::string*&&, std::vector<ray::ConcurrencyGroup, std::allocator<ray::ConcurrencyGroup> > const&, std::string&&, bool&&, bool&&, bool&&, long&&) + 0x169 (0x7d8814977369 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #27: ray::core::CoreWorker::ExecuteTask(ray::TaskSpecification const&, std::optional<std::unordered_map<std::string, std::vector<std::pair<long, double>, std::allocator<std::pair<long, double> > >, std::hash<std::string>, std::equal_to<std::string>, std::allocator<std::pair<std::string const, std::vector<std::pair<long, double>, std::allocator<std::pair<long, double> > > > > > >, std::vector<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> >, std::allocator<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> > > >*, std::vector<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> >, std::allocator<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> > > >*, std::vector<std::pair<ray::ObjectID, bool>, std::allocator<std::pair<ray::ObjectID, bool> > >*, google::protobuf::RepeatedPtrField<ray::rpc::ObjectReferenceCount>*, bool*, std::string*) + 0xdf5 (0x7d8814ba0545 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #28: std::_Function_handler<ray::Status (ray::TaskSpecification const&, std::optional<std::unordered_map<std::string, std::vector<std::pair<long, double>, std::allocator<std::pair<long, double> > >, std::hash<std::string>, std::equal_to<std::string>, std::allocator<std::pair<std::string const, std::vector<std::pair<long, double>, std::allocator<std::pair<long, double> > > > > > >, std::vector<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> >, std::allocator<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> > > >*, std::vector<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> >, std::allocator<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> > > >*, std::vector<std::pair<ray::ObjectID, bool>, std::allocator<std::pair<ray::ObjectID, bool> > >*, google::protobuf::RepeatedPtrField<ray::rpc::ObjectReferenceCount>*, bool*, std::string*), std::_Bind<ray::Status (ray::core::CoreWorker::*(ray::core::CoreWorker*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>, std::_Placeholder<4>, std::_Placeholder<5>, std::_Placeholder<6>, std::_Placeholder<7>, std::_Placeholder<8>))(ray::TaskSpecification const&, std::optional<std::unordered_map<std::string, std::vector<std::pair<long, double>, std::allocator<std::pair<long, double> > >, std::hash<std::string>, std::equal_to<std::string>, std::allocator<std::pair<std::string const, std::vector<std::pair<long, double>, std::allocator<std::pair<long, double> > > > > > >, std::vector<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> >, std::allocator<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> > > >*, std::vector<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> >, std::allocator<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> > > >*, std::vector<std::pair<ray::ObjectID, bool>, std::allocator<std::pair<ray::ObjectID, bool> > >*, google::protobuf::RepeatedPtrField<ray::rpc::ObjectReferenceCount>*, bool*, std::string*)> >::_M_invoke(std::_Any_data const&, ray::TaskSpecification const&, std::optional<std::unordered_map<std::string, std::vector<std::pair<long, double>, std::allocator<std::pair<long, double> > >, std::hash<std::string>, std::equal_to<std::string>, std::allocator<std::pair<std::string const, std::vector<std::pair<long, double>, std::allocator<std::pair<long, double> > > > > > >&&, std::vector<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> >, std::allocator<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> > > >*&&, std::vector<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> >, std::allocator<std::pair<ray::ObjectID, std::shared_ptr<ray::RayObject> > > >*&&, std::vector<std::pair<ray::ObjectID, bool>, std::allocator<std::pair<ray::ObjectID, bool> > >*&&, google::protobuf::RepeatedPtrField<ray::rpc::ObjectReferenceCount>*&&, bool*&&, std::string*&&) + 0x75 (0x7d8814b2ab45 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #29: <unknown function> + 0xa113ce (0x7d8814c113ce in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #30: <unknown function> + 0xa67912 (0x7d8814c67912 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #31: <unknown function> + 0xa574fd (0x7d8814c574fd in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #32: <unknown function> + 0xdbcf28 (0x7d8814fbcf28 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #33: <unknown function> + 0xd67eee (0x7d8814f67eee in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #34: <unknown function> + 0xd68366 (0x7d8814f68366 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #35: <unknown function> + 0x1415bbb (0x7d8815615bbb in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #36: <unknown function> + 0x1417539 (0x7d8815617539 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #37: <unknown function> + 0x1417c42 (0x7d8815617c42 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #38: ray::core::CoreWorker::RunTaskExecutionLoop() + 0x117 (0x7d8814b0fb07 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #39: ray::core::CoreWorkerProcessImpl::RunWorkerTaskExecutionLoop() + 0x41 (0x7d8814ba9b81 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #40: ray::core::CoreWorkerProcess::RunTaskExecutionLoop() + 0x1d (0x7d8814ba9d9d in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #41: <unknown function> + 0x770d11 (0x7d8814970d11 in /tmp/e08v3_mn_22003/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/lib/python3.12/site-packages/ray/_raylet.so)
+frame #42: PyObject_Vectorcall + 0x35 (0x549935 in ray::lm_policy-0-6:DTensorPolicyWorker.__init__)
+frame #43: _PyEval_EvalFrameDefault + 0xadf (0x5d733f in ray::lm_policy-0-6:DTensorPolicyWorker.__init__)
+frame #44: PyEval_EvalCode + 0x15b (0x5d582b in ray::lm_policy-0-6:DTensorPolicyWorker.__init__)
+frame #45: ray::lm_policy-0-6:DTensorPolicyWorker.__init__() [0x6088d2]
+frame #46: ray::lm_policy-0-6:DTensorPolicyWorker.__init__() [0x6b4923]
+frame #47: _PyRun_SimpleFileObject + 0x1aa (0x6b468a in ray::lm_policy-0-6:DTensorPolicyWorker.__init__)
+frame #48: _PyRun_AnyFileObject + 0x4f (0x6b44bf in ray::lm_policy-0-6:DTensorPolicyWorker.__init__)
+frame #49: Py_RunMain + 0x3b5 (0x6bc525 in ray::lm_policy-0-6:DTensorPolicyWorker.__init__)
+frame #50: Py_BytesMain + 0x2d (0x6bc00d in ray::lm_policy-0-6:DTensorPolicyWorker.__init__)
+frame #51: <unknown function> + 0x2a1ca (0x7d881642a1ca in /lib/x86_64-linux-gnu/libc.so.6)
+frame #52: __libc_start_main + 0x8b (0x7d881642a28b in /lib/x86_64-linux-gnu/libc.so.6)
+frame #53: _start + 0x25 (0x657445 in ray::lm_policy-0-6:DTensorPolicyWorker.__init__)
+. This may indicate a possible application crash on rank 0 or a network set up issue.
+Exception ignored in: <function Policy.__del__ at 0x710c98067a60>
+Traceback (most recent call last):
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/nemo_rl/models/policy/lm_policy.py", line 770, in __del__
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/nemo_rl/distributed/worker_groups.py", line 959, in shutdown
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/nemo_rl/distributed/worker_groups.py", line 770, in run_all_workers_single_data
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/lib/python3.12/site-packages/ray/actor.py", line 216, in remote
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/lib/python3.12/site-packages/ray/_private/auto_init_hook.py", line 20, in auto_init_wrapper
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/lib/python3.12/site-packages/ray/_private/auto_init_hook.py", line 14, in auto_init_ray
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/lib/python3.12/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/lib/python3.12/site-packages/ray/_private/worker.py", line 1554, in init
+  File "/usr/lib/python3.12/logging/__init__.py", line 1539, in info
+  File "/usr/lib/python3.12/logging/__init__.py", line 1684, in _log
+  File "/usr/lib/python3.12/logging/__init__.py", line 1700, in handle
+  File "/usr/lib/python3.12/logging/__init__.py", line 1762, in callHandlers
+  File "/usr/lib/python3.12/logging/__init__.py", line 1028, in handle
+  File "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/lib/python3.12/site-packages/ray/_private/log.py", line 54, in emit
+ImportError: sys.meta_path is None, Python is likely shutting down

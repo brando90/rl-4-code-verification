@@ -1,0 +1,194 @@
+{
+  "status": "PASS",
+  "root": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_nccl_recovery02_1792155141",
+  "script_sha256": "45611c43dd43269ca77507b9ebd16bb7b6705fd55cff330e4454778cd21fa861",
+  "started_unix": 1792155142.0775998,
+  "gpu_count": 2,
+  "training_updates": 0,
+  "model_calls": 0,
+  "scientific_settings_changed": false,
+  "criterion": "Two distinct hosts/UUIDs, exactly one GPU each; NCCL init and exact all-reduce/all-gather/broadcast/barrier results within 30s operation timeout; native exit0 and both exact worker identities absent after completion.",
+  "limit_seconds": 120,
+  "transport": "explicit_host_ethernet_socket",
+  "preflight_lock_wait_receipt": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_nccl_recovery02_1792155097/result.json",
+  "prior_attempt": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_nccl_recovery02_1792154946/result.json",
+  "selected": {
+    "skampere1": {
+      "index": 1,
+      "uuid": "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30"
+    },
+    "skampere3": {
+      "index": 2,
+      "uuid": "GPU-d781dd11-80f3-8979-073a-4248052fe3f6"
+    }
+  },
+  "address": "172.24.75.194:47361",
+  "exit_codes": {
+    "skampere1": 0,
+    "skampere3": 0
+  },
+  "ranks": [
+    {
+      "status": "PASS",
+      "rank": 0,
+      "host": "skampere1",
+      "identity": {
+        "pid": 634064,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "39374298"
+      },
+      "started_unix": 1792155152.760836,
+      "gpu_uuid": "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+      "torch": "2.7.1+cu128",
+      "cuda": "12.8",
+      "nccl": [
+        2,
+        26,
+        2
+      ],
+      "device": "NVIDIA A100-SXM4-80GB",
+      "device_uuid": "d0c5c290-bea0-6d04-1751-91ec2527da30",
+      "python": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python",
+      "collectives": [
+        "all_reduce_1MiB",
+        "all_gather",
+        "broadcast",
+        "barrier"
+      ],
+      "collective_seconds": 20.61441029899288,
+      "ended_unix": 1792155176.6883078
+    },
+    {
+      "status": "PASS",
+      "rank": 1,
+      "host": "skampere3",
+      "identity": {
+        "pid": 1233283,
+        "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+        "start_ticks": "266163386"
+      },
+      "started_unix": 1792155152.5183487,
+      "gpu_uuid": "GPU-d781dd11-80f3-8979-073a-4248052fe3f6",
+      "torch": "2.7.1+cu128",
+      "cuda": "12.8",
+      "nccl": [
+        2,
+        26,
+        2
+      ],
+      "device": "NVIDIA B200",
+      "device_uuid": "d781dd11-80f3-8979-073a-4248052fe3f6",
+      "python": "/lfs/skampere3/0/brando9/rl4cv_e08_v3_env/nemo_rl/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python",
+      "collectives": [
+        "all_reduce_1MiB",
+        "all_gather",
+        "broadcast",
+        "barrier"
+      ],
+      "collective_seconds": 20.50967006571591,
+      "ended_unix": 1792155176.6944823
+    }
+  ],
+  "remaining": [],
+  "ended_unix": 1792155180.4351518,
+  "previous_native_default_attempt": {
+    "status": "FAIL",
+    "root": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_nccl_recovery02_1792154946",
+    "script_sha256": "374cb2373c45d13335056690cc195b5a99917a3b6153675eaf984c4164ec173d",
+    "started_unix": 1792154946.9097936,
+    "gpu_count": 2,
+    "training_updates": 0,
+    "model_calls": 0,
+    "scientific_settings_changed": false,
+    "criterion": "Two distinct hosts/UUIDs, exactly one GPU each; NCCL init and exact all-reduce/all-gather/broadcast/barrier results within 30s operation timeout; native exit0 and both exact worker identities absent after completion.",
+    "limit_seconds": 120,
+    "selected": {
+      "skampere1": {
+        "index": 1,
+        "uuid": "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30"
+      },
+      "skampere3": {
+        "index": 2,
+        "uuid": "GPU-d781dd11-80f3-8979-073a-4248052fe3f6"
+      }
+    },
+    "address": "172.24.75.194:44781",
+    "exit_codes": {
+      "skampere1": 124,
+      "skampere3": 1
+    },
+    "ranks": [
+      {
+        "status": "STARTING",
+        "rank": 0,
+        "host": "skampere1",
+        "identity": {
+          "pid": 174875,
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "start_ticks": "39354450"
+        },
+        "started_unix": 1792154954.2898235,
+        "gpu_uuid": "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+        "torch": "2.7.1+cu128",
+        "cuda": "12.8",
+        "nccl": [
+          2,
+          26,
+          2
+        ],
+        "device": "NVIDIA A100-SXM4-80GB",
+        "device_uuid": "d0c5c290-bea0-6d04-1751-91ec2527da30",
+        "python": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python"
+      },
+      {
+        "status": "FAIL",
+        "rank": 1,
+        "host": "skampere3",
+        "identity": {
+          "pid": 910843,
+          "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+          "start_ticks": "266143503"
+        },
+        "started_unix": 1792154953.6905062,
+        "gpu_uuid": "GPU-d781dd11-80f3-8979-073a-4248052fe3f6",
+        "torch": "2.7.1+cu128",
+        "cuda": "12.8",
+        "nccl": [
+          2,
+          26,
+          2
+        ],
+        "device": "NVIDIA B200",
+        "device_uuid": "d781dd11-80f3-8979-073a-4248052fe3f6",
+        "python": "/lfs/skampere3/0/brando9/rl4cv_e08_v3_env/nemo_rl/venvs/nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker/bin/python",
+        "error": "DistBackendError: NCCL error in: /pytorch/torch/csrc/distributed/c10d/ProcessGroupNCCL.cpp:3356, internal error - please report this issue to the NCCL developers, NCCL version 2.26.2\nncclInternalError: Internal check failed.\nLast error:\nsocketFinalizeAccept: wrong type 3 != 4",
+        "ended_unix": 1792154978.649294
+      }
+    ],
+    "remaining": [],
+    "ended_unix": 1792155076.8359153
+  },
+  "preflight_lock_wait": {
+    "status": "FAIL",
+    "root": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_nccl_recovery02_1792155097",
+    "script_sha256": "c5169c5621531bfad574e871bb18eeebb40c9e5499830347868baa2cb475345a",
+    "started_unix": 1792155097.675567,
+    "gpu_count": 2,
+    "training_updates": 0,
+    "model_calls": 0,
+    "scientific_settings_changed": false,
+    "criterion": "Two distinct hosts/UUIDs, exactly one GPU each; NCCL init and exact all-reduce/all-gather/broadcast/barrier results within 30s operation timeout; native exit0 and both exact worker identities absent after completion.",
+    "limit_seconds": 120,
+    "transport": "explicit_host_ethernet_socket",
+    "prior_attempt": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_nccl_recovery02_1792154946/result.json",
+    "error": "BlockingIOError: [Errno 11] Resource temporarily unavailable",
+    "ended_unix": 1792155097.7829685
+  },
+  "source_artifact": "transport_probe_recovery02.py.txt",
+  "limitations": [
+    "Two hosts and two GPUs only; no eight-rank placement or 14B update tested.",
+    "Approximately20.6-second collective total includes initial NCCL connection; not a throughput measurement.",
+    "Third host GPU communication remains untested because it has no eligible GPU.",
+    "Aggregate eight-device admission and participant reservations remain unimplemented; only six devices eligible at latest inventory."
+  ]
+}

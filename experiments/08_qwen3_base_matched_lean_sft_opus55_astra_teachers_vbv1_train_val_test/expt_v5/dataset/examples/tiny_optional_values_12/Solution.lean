@@ -1,0 +1,7 @@
+import Mathlib
+namespace Tiny
+def solution (opt : Option Int) : Bool := match opt with | none => true | some x => decide (x >= 0)
+theorem spec_nonnegative (x : Int) (h : x >= 0) : solution (some x) = true := by simp [solution, h]
+theorem test_none : solution none = true := by decide
+theorem test_negative : solution (some (-2)) = false := by decide
+end Tiny

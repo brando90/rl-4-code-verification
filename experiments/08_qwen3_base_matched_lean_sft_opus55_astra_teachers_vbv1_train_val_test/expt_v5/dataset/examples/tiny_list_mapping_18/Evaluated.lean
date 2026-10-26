@@ -1,0 +1,10 @@
+import Mathlib
+namespace Tiny
+def solution (x : Int) (xs : List Int) : List (Int × Int) := xs.map (fun a => (a, x))
+theorem spec_cons (x a : Int) (xs : List Int) : solution x (a :: xs) = (a, x) :: solution x xs := by rfl
+theorem test_empty : solution 2 [] = [] := by decide
+theorem test_values : solution (-1) [-2, 3] = [(-2, -1), (3, -1)] := by decide
+end Tiny
+#print axioms Tiny.spec_cons
+#print axioms Tiny.test_empty
+#print axioms Tiny.test_values

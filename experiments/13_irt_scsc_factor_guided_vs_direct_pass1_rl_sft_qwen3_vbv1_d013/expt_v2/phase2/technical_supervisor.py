@@ -17,7 +17,7 @@ from lp1 import cleanup
 from g1_driver import verify_publication
 from training_checkpoint import digest,write_new
 
-STAGES=('preflight','generate','probabilities','update','replay','export')
+STAGES=('preflight','generate','probabilities','update','replay','export','evaluation_preflight','evaluation_generate')
 
 
 def authorize(plan_path):
@@ -32,14 +32,15 @@ def authorize(plan_path):
         if sources.get(str(path))!=digest(path):raise ValueError('unbound or changed stage supervisor')
     execution=Path(plan['execution']);record=json.loads(execution.read_text())
     stage=plan['stage']
-    wanted_status='PREFLIGHT_RESERVED' if stage=='preflight' else 'ADMITTED'
+    health=stage in ('preflight','evaluation_preflight')
+    wanted_status='PREFLIGHT_RESERVED' if health else 'ADMITTED'
     if record.get('LP_sha256')!=digest(plan['lock']) or record.get('status')!=wanted_status:
         raise ValueError('technical execution is not admitted under this pilot lock')
     config_path=Path(plan['config']);config=json.loads(config_path.read_text())
     if stage not in STAGES or config['stage']!=stage or config.get('condition')!='v2-S2':raise ValueError('unregistered technical stage')
     entry=record['stages'][plan['stage_key']]
     if entry['stage']!=stage or entry['config_sha256']!=digest(config_path):raise ValueError('stage differs from admitted execution')
-    valid_attempt=(record['attempt']==0) if stage=='preflight' else (1<=record['attempt']<=3)
+    valid_attempt=(record['attempt']==0) if health else (1<=record['attempt']<=3)
     if record['gate'] not in ('T1','T2','T3','T4') or not valid_attempt:
         raise ValueError('technical attempt is outside the A4 gate scope')
     if record.get('admission_statistics_computed'):raise ValueError('a measured gate cannot launch another stage')
@@ -47,7 +48,8 @@ def authorize(plan_path):
         raise ValueError('resource envelope changed')
     # The parent admission driver freezes stage dependencies before dispatch.
     # Its receipt is durably reserved before any child process can execute.
-    if stage!='preflight':
+    if stage.startswith('evaluation_') and record['gate']!='T4':raise ValueError('evaluation cost stages belong only to T4')
+    if not health:
         preflight=Path(entry['preflight'])
         p=json.loads(preflight.read_text())
         if digest(preflight)!=entry['preflight_sha256'] or p.get('status')!='PASS' or p.get('admission_statistics_computed') is not False:

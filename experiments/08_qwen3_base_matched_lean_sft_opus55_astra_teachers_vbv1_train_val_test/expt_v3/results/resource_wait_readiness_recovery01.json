@@ -1,0 +1,152 @@
+{
+  "status": "READY_NOT_YET_ARMED",
+  "observed_unix": 1792141368.901492,
+  "owner": {
+    "pid": 2580398,
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "start_ticks": "36376767"
+  },
+  "attempt": "recovery-01",
+  "original_deadline_unix": 1792383686.05276,
+  "expected_remote_admissions": [
+    "remote_E_8b.json",
+    "remote_E_14b.json"
+  ],
+  "native_capacity": {
+    "observed_unix": 1792141282.4148364,
+    "local": {
+      "eligible": false,
+      "host": "skampere1",
+      "requested_devices": 4,
+      "available": [
+        0,
+        1,
+        2
+      ],
+      "candidates": [
+        1,
+        2
+      ],
+      "requires_atomic_admission": true
+    },
+    "slurm": {
+      "eligible": false,
+      "association_present": false,
+      "idle_eight_gpu_nodes": [],
+      "inventory": [
+        {
+          "node": "ampere1",
+          "state": "MIXED+PLANNED",
+          "gres": "gpu:a100:8"
+        },
+        {
+          "node": "ampere2",
+          "state": "MIXED",
+          "gres": "gpu:a100:8"
+        },
+        {
+          "node": "ampere3",
+          "state": "MIXED+PLANNED",
+          "gres": "gpu:a100:8"
+        },
+        {
+          "node": "ampere4",
+          "state": "MIXED",
+          "gres": "gpu:a100:8"
+        },
+        {
+          "node": "ampere5",
+          "state": "MIXED",
+          "gres": "gpu:a100:8"
+        },
+        {
+          "node": "ampere6",
+          "state": "MIXED+PLANNED",
+          "gres": "gpu:a100:8"
+        },
+        {
+          "node": "ampere8",
+          "state": "MIXED+PLANNED",
+          "gres": "gpu:a100:8"
+        },
+        {
+          "node": "ampere9",
+          "state": "MIXED+PLANNED",
+          "gres": "gpu:a100:8"
+        },
+        {
+          "node": "blackwell1",
+          "state": "MIXED+PLANNED",
+          "gres": "gpu:b200:8"
+        }
+      ],
+      "requires_allocation_and_preparation": true
+    },
+    "phase_b_identity": {
+      "pid": 2265309,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "37543366"
+    },
+    "pending_controllers": {
+      "train_E_8b": {
+        "pid": 798430,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37963394"
+      },
+      "train_E_14b": {
+        "pid": 798432,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37963395"
+      }
+    },
+    "expected_remote_admissions": [
+      "remote_E_8b.json",
+      "remote_E_14b.json"
+    ],
+    "admissions_absent": true
+  },
+  "native_snapshot_check": {
+    "directory": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/resource_wait_native_nvyebdfq",
+    "unchanged_state": {
+      "status": "DEFER",
+      "reason": "No eligible four-device8B or eight-device14B training route; all Phase A independent work checked. Synthetic pre-release validation only.",
+      "expected_remote_admissions": [
+        "remote_E_8b.json",
+        "remote_E_14b.json"
+      ]
+    },
+    "heartbeat_only_change": {
+      "status": "DEFER",
+      "reason": "No eligible four-device8B or eight-device14B training route; all Phase A independent work checked. Synthetic pre-release validation only.",
+      "expected_remote_admissions": [
+        "remote_E_8b.json",
+        "remote_E_14b.json"
+      ]
+    },
+    "scheduler_failure": {
+      "status": "WAKE",
+      "reason": "execution_issue",
+      "issues": [
+        "phase_b:scheduler_dead"
+      ]
+    }
+  },
+  "actual_harmless_wake_evidence": [
+    "results/resource_wait_selftest.json",
+    "results/capacity_event_selftest.json"
+  ],
+  "scientific_budget_unchanged": true,
+  "remaining_primary_cells": 8640,
+  "cron_cadence_seconds": 300,
+  "alternate_probe_cadence_seconds": 900,
+  "controller_admission_poll_seconds": 300,
+  "stop_condition": "original deadline/finite retry cap or checked17,280-cell completion plus published actual DONE notification",
+  "full_tests": {
+    "passed": 1287,
+    "skipped": 17,
+    "subtests_passed": 6,
+    "seconds": 287.62
+  },
+  "weekly_usage_percent": 52,
+  "publication_required_before_arm": true
+}

@@ -2,6 +2,12 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/results.md>
 
+<!-- E08_V3_FINAL_RESULTS -->
+## Matched replay versus expansion continuation: expt_v3
+
+**Last updated:** 10-16-2026 15:00 UTC. **INCOMPLETE: 12,960/17,280 primary validation cells.** [Live results and task-bootstrap intervals](expt_v3/results.md), [execution ledger](expt_v3/results/runtime_progress.md). Healthy native schedulers continue the frozen manifest. Final validation, publication and DONE notification remain required. Zero paid experimental calls; test split unopened.
+<!-- /E08_V3_FINAL_RESULTS -->
+
 > **Version 2 — PARTIAL / route blocked (10-13-2026):** The matched step-658 extension stopped at its route-controls gate: Valkyrie authenticates, but managed AWS is unavailable for the existing organization. No new generation batch persisted (0/5,328 cells); all missing identities and unresolved forecasts are published in [expt_v2/results.md](expt_v2/results.md). Reused results reproduce exactly, and version 1 below remains unchanged.
 
 **TLDR:** Matched supervised fine-tuning is complete at all four sizes (658 updates and 5,752,936 real loss tokens each), with all 20 trained validation rungs and 25,920/25,920 validation cells complete. The frozen verdict is **PARTIAL**: 8B step 658 and 14B step 334 passed at different fractions; 1.7B and 4B passed no rung. All **10,656/10,656 test cells have complete factors**, using all **4,302/4,302 validated-judge ratings** over 717 files, including all 60 fixed audit files per system. Final results reproduce exactly; services are stopped and the completed study is closed without a follow-on run.

@@ -1,0 +1,329 @@
+# Recovery and execution events for the matched continuation
+
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/results/runtime_progress.md>
+
+**Last updated:** 10-15-2026 21:45 PDT. **Status:** RUNNING.
+
+- Recovery-01 verified native `gpt-6-astra` / `ultra`, `never` / `danger-full-access`, six current dispatch hashes and all 667 expansion 1.7B training counts. The Vals subscription reported 37% weekly usage at acceptance. [Ownership receipt](owner_recovery01_v3.json).
+- Expansion 1.7B completed 5,757,776 loss tokens and 10,383,459 processed real tokens; both step-335 and step-667 export checksum checks passed. Native wrapper exit 2 is preserved and scheduler bookkeeping reconciled without retraining. [Reconciliation](train_logs/v3_E_1p7b_export_reconciliation.json).
+- Replacing the original scheduler closed its tmux process group and interrupted both live generations. Both raw output files had zero durable rows; native progress logs reported 300/1024 and 54/1024 completed prompts within their first batches. Exact same-cell infrastructure retries retain the frozen models, seed, 12,288-token cap and 1,080-cell rung denominator. No alternative samples were selected. [Interruption receipt](generation_interruption_recovery-01.json).
+- New jobs have separate sessions, boot/start identities and durable native exit receipts. A real harmless session-hangup test confirms child completion survives scheduler loss; 15 focused recovery/forecast/remote-admission tests pass. Existing failure evidence stays in the host logs.
+- Phase A is running in `rl4cv-e08-v3-phase-a-recovery-01`; expansion 4B has passed step 60/335. Replay 1.7B and the identical generation retries await devices under both lease registries, retaining GPU 0 and an idle device.
+- Phase B scheduler and remote TP8 admission implementation are prepared. Remote staging remains incomplete; no copied environment has been executed. skampere2 had 0/8 free devices and skampere3 had 4/8 at the last inventory; Slurm still lists no association. Eight-device training is not replaced by a smaller layout.
+- Full tests initially reported 1,212 passed / 17 skipped / 4 failed because the Vals profile's inherited `CODEX_HOME` conflicts with v1 monitor fixtures. The clean-environment `make test` passed: 1,216 passed / 17 skipped / zero failures in 366.32 seconds. All 15 focused tests including subsequently added forecast and remote-admission checks also pass; no production profile was changed.
+- Host cron remains every five minutes and at reboot. Original finite route/deadline inventory is retained, with the actual Vals runtime and allowance updated. No repeated START mail; DONE waits for checked publication of all 17,280 cells and actual delivery.
+
+**TLDR-end:** [rl4cv: 08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3] Recovery has reconciled completed training and resumed Phase A; validation coverage is still 0/17,280. Zero paid experiment calls; test split unopened.
+
+- 10-15-2026 21:49 PDT: Compressed 11 GB environment archive built; preparing local extraction on candidate remote nodes while keeping large checkpoints on shared storage. Live 4B shell retains its original inode and bytes while future launches gain the environment-path override.
+
+- 10-15-2026 22:04 PDT: Expansion 4B half checkpoint verified: 335/335 exact token counts, 2,878,589 loss tokens, all export checksums pass. [Training receipt](train_logs/v3_E_4b_half_verification.json), [step table](train_logs/v3_E_4b_half_steps.csv). Remote environments on skampere2/skampere3 pass archive, exact NeMo pin, Python/PyTorch imports and baseline 14B checks; published evidence is [remote preparation](remote_preparation_v3.json). The latest full suite passes 1,224 tests / 17 skipped in 360.11 seconds.
+
+### 10-15-2026 22:30 PDT — verified remote workload and validation staging
+
+Expansion 4B completed all 667 scheduled updates: all native counts match (5,757,776 loss tokens); the final export is finishing. Replay 1.7B on skampere3 GPU 2 reached 399 checked updates with exact token counts, including the half-budget boundary at 334. No training was replayed on recovery.
+
+Both remote hosts import the exact copied generator environment: CPython 3.12.14, vLLM 0.30.0, Torch 2.13.0, Transformers 5.18.0 and FlashInfer 0.6.18.post1. Only the 135 validation instructions and frozen prompt/extraction dependencies were staged; test remains unopened. Two pending 1.7B expansion rungs are routed remotely with one GPU per rung, the unchanged 1,024/56 prompt batches and distinct compile caches. All outputs must pass exact-cell, prompt-hash, sampling and transport checks before canonical CPU scoring.
+
+Scheduler replacement preserved the exact detached expansion 4B and remote replay wrapper identities. Host watch reports OBSERVING, owner alive, no issues; finite execution routes were updated. Completion checks now require the immutable forecast hash, all eight paired comparisons, complete namespace recompiles, matching taxonomy totals, and retained exact raw/scored evidence. Twenty-one focused checks pass; the full suite is running.
+
+- 10-15-2026 22:34 PDT: expansion 4B full export and both checksum manifests verified; native wrapper exited 0 and scheduler verification PASS. Full suite: 1,233 passed / 17 skipped in 337.43 seconds. Local full-budget 4B generation started; replay 4B admitted on skampere3 GPUs 4,5 with the frozen two-device layout. Remote 1.7B generation is still staging exact weights. Phase B waiting coordinator refreshed with no children; 8B training and all Phase B inference use remote admission, 14B training remains exactly eight devices.
+
+- 10-15-2026 22:39 PDT: remote 1.7B replay completed all 658 scheduled updates with exactly 5,752,936 loss tokens; remote 4B replay first 195 updates match. [Native count receipt](replay_progress_recovery01.json). Both expansion 1.7B remote generators have launched and reached CUDA graph warmup on GPUs 2 and 7; 4B replay retains GPUs 4,5. All pending validation rungs are routed remotely while the healthy local 4B full-budget generator remains adopted. Namespace scorer imports pass. No new scored cells yet. Native coordination account usage is 41%, zero credits; host watch reports no issues.
+
+### 10-15-2026 22:47 PDT — replay complete; network wrapper outcome reconciled
+
+Replay 1.7B now passes the canonical full token receipt (658 steps, 5,752,936 loss tokens, 10,370,638 processed tokens) and both physical export checksum checks. The native remote wrapper reported `Stale file handle` only after logging both completed exports; its exit 2 and original process identities remain in [the reconciliation receipt](replay_1p7b_post_export_reconciliation.json). No training was replayed. The scheduler adopted all seven surviving detached jobs and now records training and verification DONE.
+
+Future remote launches snapshot shell wrappers to unique, never-replaced files in the same directory, retaining the fixed config paths. All currently open shell files are preserved. The immutable forecast guard now distinguishes the canonical JSON freeze hash from the file hash that includes the trailing newline; it checks the frozen ledger and both expected hashes. The actual frozen-file positive check and 13 focused remote/forecast checks pass. Full-suite confirmation is running. [Useful workload receipt](recovery01_useful_workload.json) records the exact writer and generation identities.
+
+- 10-15-2026 22:50 PDT: both expansion 1.7B remote rungs completed all 1,080 generations (2,160 total); canonical transfer checks and CPU scoring follow. Full tests: 1,234 passed / 17 skipped in 345.05s; 17 focused checks pass after wrapper snapshot and finalization refinements. Primary taxonomy category names now match the locked baseline taxonomy exactly. The namespace diagnostic also retains a deterministic hash-selected sample of up to 24 original compilation failures per system, using the baseline first-error kinds and the same 600s Lean timeout; original bytes/hashes and all receipts are retained, with no changes to primary scores.
+
+- 10-15-2026 22:52 PDT: both expansion 1.7B rungs passed exact 1,080-cell/prompt/sampling/transport checks and are installed canonically; both CPU scorers are running. Frozen 8B start weights/configs also passed remote staging, completing readiness for all four training sizes.
+
+- 10-15-2026 23:00 PDT: CPU scoring increased from four to all eight declared sample workers per rung, retaining the two-rung scheduler limit and four namespace workers. Documented GNU xargs SIGUSR1 signals preserved all eight existing children and admitted eight additional children; exact boot/start identities and before/after child lists are in [the receipt](scoring_parallelism_recovery01.json). Measured CPU idle remained 65%; sampling, timeout, models and scientific budgets are unchanged. Future local wrappers use the same eight-worker limit; remote live shell sources remain untouched. Publication ee444bd is confirmed at origin/main; host cron and reboot entries remain installed.
+
+- 10-15-2026 23:05 PDT: replay 4B completed all 658 token-exact updates (5,752,936 loss tokens); remote export wrapper exited 0 after both exports. Final canonical copy/verification remains active. Replay 1.7B full validation passed exact 1,080-cell transfer, bringing complete generated coverage to 3,240; no completed scored rung yet. Full deterministic suite passes 1,235 tests / 17 skipped in 322.46s. Native Vals coordination usage 43%, credits 0; original deadline and finite route limits unchanged.
+
+- 10-15-2026 23:09 PDT: all four Phase A training runs and their eight exports are verified: 23,021,424 additional loss tokens, 41,508,194 processed real tokens across the frozen two conditions/two sizes. [Combined training receipt](phase_a_training_verification.json) retains native exit codes and prior reconciliations. Replay 4B has 658/658 counts, both canonical checksum-verified exports, and native exit 0. Expansion 4B half validation passed its exact handoff; complete generated coverage is 4,320 cells. Primary scoring and namespace diagnostics remain pending; Phase B still waits for complete Phase A.
+
+- 10-15-2026 23:15 PDT: replay 1.7B half validation passed the exact handoff, completing all four 1.7B generation rungs and raising generated coverage to 5,400 cells. One 135-task scorer sample is complete; no whole scored rung yet. Future namespace diagnostic pools now use eight workers, with their transformed/original-error phases sequential. Combined primary/namespace concurrency remains at most sixteen Lean processes across two jobs; timeout 600s, receipt hashes, cell membership and bootstrap settings are unchanged. No active diagnostic was restarted.
+
+- 10-15-2026 23:21 PDT: diagnostic concurrency update passes the full suite (1,235 passed, 17 skipped, 375.67s). Fresh direct GPU inventory shows all eight skampere2 devices occupied and only skampere3 GPU5 with zero allocated memory; no eligible whole node currently exists. Admission still checks actual compute processes and live reservations before launch. The existing finite route inventory/deadline remains unchanged; no external blocker is declared while independent work continues.
+
+- 10-15-2026 23:26 PDT: replay 4B full generation passed all 1,080-cell handoff checks, bringing complete generated coverage to 6,480. Two sample scorers have completed 135 tasks each; whole-rung analysis remains pending. Another user started sharing remote GPU4 at 23:17 while our replay 4B half generator was already running; native generation continues without error and all settings/children are preserved. Private host receipt gpu4_contention_recovery01.json retains the observation.
+
+- 10-15-2026 23:35 PDT: replay 4B half completed and passed exact handoff despite observed GPU contention; no restart or setting change. Seven complete raw rungs = 7,560 cells. The external-resource wait guard passed 14 focused tests and a real harmless tmux admission-event self-test with preserved work and one-shot recovery. It remains unarmed while current independent work runs. Full deterministic checks are running; actual host watch reports OBSERVING with no issues.
+
+- 10-15-2026 23:42 PDT: all eight Phase A generations completed with native exit 0. Combined validation checks pass every one of 8,640 cells against exact keys, model paths, prompt hashes, frozen sampling and the 12,288-token cap; prior interrupted attempts remain retained. [Generation receipt](phase_a_generation_verification.json). Five scorer samples are complete; complete-rung analysis still pending. Full suite: 1,243 passed, 17 skipped, 6 subtests, 352.96s; latest focused recovery checks: 16 passed plus 6 subtests. Native Vals weekly usage 45%, credits 0. Resource-wait guard remains unarmed; host watch active.
+
+## 10-15-2026 23:53 PDT — expired primary Lean children
+
+The frozen scorer times out its `lake` parent after 600 seconds but leaves some Lean children running with parent PID 1. An external guard verifies own UID, exact pinned executable, process boot/start identity, age at least 620 seconds, declared primary validation cell and exact source/raw hash; it rechecks every fence after opening a pidfd and before each signal. Initial two scans retired 25 such children with SIGTERM, no SIGKILL. None of five observed live Lean children was signaled. Score/raw files and native timeout outcomes are untouched. [Receipt](lean_orphan_cleanup_recovery01.json).
+
+A per-minute host cron, protected by a nonblocking lock, handles at most 16 eligible orphans per scan and stops at the original deadline or after both phases are DONE. This corrects the earlier concurrency description: 16 active compilation slots did not include leaked children. Fourteen focused safety tests pass; full suite passed 1,259 tests / 17 skipped / 6 subtests in 294.97 seconds.
+
+## 10-16-2026 00:00 PDT — four concurrent CPU rungs and diagnostic coverage
+
+Observed 128 logical CPUs, 71–83% idle and 1,886GiB available memory supported raising the combined scoring/namespace limit from two to four rungs, still eight workers each and 600 seconds per compile. Protocol §9 explicitly permits concurrency changes. Both original expansion scorers retain their exact boot/start identities; both replay scorer rungs have begun native scoring. [Adoption and first-work receipt](cpu4_adoption_recovery01.json). The external orphan guard remains capped at 16 retired processes per scan.
+
+A completion-validator bug would reject an otherwise fully executed namespace diagnostic when a changed file reaches the native 600-second timeout. The diagnostic already preserves that result as unknown. Final checks now require exactly one hash-matching receipt for every changed cell and allow an unknown only with a native timeout receipt; no point estimate or paired delta is reported for an affected rung. Primary validation still requires all 17,280 exact known cells. No native timeout is retried or converted to zero. Eighteen focused checks pass; full suite passed1,268 tests/17 skipped/6 subtests in299.40 seconds.
+
+## 10-16-2026 00:03 PDT — first complete validation rung
+
+Expansion 1.7B at half budget has all 1,080 validation cells known. It fails extraction (936/1,080 versus required972) and cap (144/1,080 versus maximum108) gates; mixed tasks pass (18/135 versus required7). Kernel success is 53/1,080, mean0.0491 [0.0250,0.0769], 10,000 percentile task-bootstrap draws over135 tasks with eight attempts together, seed0, p-val=n/a; training-seed variability is unmeasured. Taxonomy:144 no Lean file,883 compile errors,53 kernel successes. [Full table](../results.md), [summary](validation_summary_v3.json).
+
+Initial deterministic analysis failed because this owned checkout lacked its frozen scorer import path. The existing clean canonical scorer clone matches pinned commit59059a20d40adf3289869e58302169ad78102877; a local excluded dependency link restored imports without editing benchmark bytes. Analysis completed on the existing scored output. The scheduler now retries deterministic analysis after a prior analysis error, retaining all four active scorer process identities. [Recovery receipt](analysis_dependency_recovery01.json).
+
+## 10-16-2026 00:16 PDT — second complete validation rung and alternate capacity events
+
+Expansion 1.7B at full budget has all 1,080 validation cells known: 959 extracted (required 972), 121 capped (maximum 108), and 19/135 mixed tasks (required 7). Kernel success is 55/1,080 = 0.0509 [0.0278, 0.0769], 10,000 task-bootstrap draws over 135 tasks with eight attempts together, seed 0, p-val=n/a; training-seed variation remains unmeasured. Taxonomy: 121 no Lean file, 904 compile errors, 55 kernel successes. Both 1.7B expansion rungs fail formatting/cap gates; the remaining 14 systems remain required, including the separate three-size sensitivity.
+
+The explicit released-owner resource wait now has a 15-minute alternate capacity producer. It observes local four-device eligibility for 8B training or 8B/14B inference under both lease registries and the idle-device reserve, or the Slurm infolab association plus an allowed idle eight-GPU A100/B200 node. It allocates nothing and rechecks the same attempt, owner and original deadline under the recovery lock before emitting a stable changed-route event. Native preflight: only local GPUs 1/2 available after reserving 0; no Slurm association or idle eligible node. [Readiness](capacity_probe_readiness.json), [actual harmless event-driven recovery](capacity_event_selftest.json). Full suite: 1,286 passed / 17 skipped / 6 subtests in 385.51 seconds; 35 focused checks plus six subtests pass after the explicit 14B inference case. Native Vals weekly usage is 48%, credits 0. The producer is installed but remains unarmed while independent work runs.
+
+## 10-16-2026 00:48 PDT — six concurrent scoring rungs
+
+Protocol §9 permits concurrency changes. With 128 logical CPUs, 68–79% observed idle and 1.8 TiB available memory, the combined scoring/namespace limit increased from four to six, eight workers each (48 active compilation slots). Both schedulers were reconciled by boot/start identity and replaced through exact pidfds; all four healthy scorer children retain their identities. Both pending expansion 4B rungs began scoring at 00:47:24; 13 native Lean compilation children were verified. Measured CPU idle after the change was 49.5%, including concurrent deterministic tests. Frozen cells, scorer bytes and 600-second timeout are unchanged; orphan cleanup remains bounded at 16 per scan. [Adoption and first-work receipt](cpu6_adoption_recovery01.json).
+
+The independent Phase B readiness check found no missing staged dependency: exact NeMo/generation environments, start exports and frozen configurations are ready on both remote hosts. Current GPU availability remains below the required four-device 8B / eight-device 14B training layouts. Phase B still waits for Phase A scoring and namespace coverage.
+
+The full suite passed 1,287 tests, 17 skipped and six subtests in 331.82 seconds. The host watch reports no issues; native Vals weekly allowance used is 49%, credits 0.
+
+## 10-16-2026 00:54 PDT — first passing rung
+
+Replay 4B at half budget has all 1,080 raw, scored and table cells checked against the exact manifest and hashes. All gates pass: 1,006/1,080 extracted (minimum 972), 74 capped (maximum 108), and 31/135 mixed tasks (minimum 7), mixed-share Wilson 95% interval [0.1668, 0.3075]. Kernel success is 90/1,080 = 0.0833 [0.0537, 0.1167], 10,000 task-bootstrap draws over 135 tasks with eight attempts together, seed 0, p-val=n/a; training-seed variability is unmeasured. Taxonomy: 74 no Lean file, 916 compile errors, 90 kernel successes. [Tables and frozen gates](../results.md), [full summary](validation_summary_v3.json).
+
+The native scorer exited 0 and its namespace diagnostic started. Checked coverage is now 3,240/17,280. No matched expansion4B rung is complete yet, so its paired condition comparison is pending. Primary and sensitivity decisions remain incomplete.
+
+## 10-16-2026 01:03 PDT — first matched condition comparison
+
+Replay 1.7B at full budget has all 1,080 exact raw/scored/table cells verified. Extraction 946/1,080 is below the required 972; capped count 134 exceeds 108. Mixed tasks pass at 27/135 (minimum 7), Wilson 95% interval [0.1412, 0.2754]. Kernel success is 65/1,080 = 0.0602 [0.0380, 0.0861]. Taxonomy: 134 no Lean file, 881 compile errors, 65 kernel successes; the non-vacuity screen flags five cells.
+
+For the matched full-budget 1.7B pair, expansion minus replay is −0.0093 [−0.0259, 0.0074]; the interval spans zero. Intervals use 10,000 paired task-bootstrap draws over 135 tasks with eight attempts together, seed 0, p-val=n/a; training-seed variability remains unmeasured. Both conditions fail full-budget 1.7B format/cap gates. Coverage is 4,320/17,280; half-budget and three-size decisions remain incomplete. [Full statistics](validation_summary_v3.json), [live table](../results.md). Native scorer exit 0 and namespace launch are retained.
+
+## 10-16-2026 01:07 PDT — replay 4B full and four completed diagnostics
+
+Replay 4B full has all 1,080 exact raw/scored/table cells verified. It misses extraction by two cells (970 versus minimum 972) and exceeds the cap limit by two (110 versus maximum 108); mixed tasks pass at 40/135 (minimum 7), Wilson 95% interval [0.2258, 0.3781]. Kernel success is 132/1,080 = 0.1222 [0.0833, 0.1639], 10,000 task-bootstrap draws over 135 tasks with eight attempts together, seed 0, p-val=n/a; training-seed variability remains unmeasured. Taxonomy: 110 no Lean file, 838 compile errors, 132 kernel successes. Coverage is 5,400/17,280.
+
+Namespace diagnostics are checked for expansion 1.7B half, replay 1.7B full, and both replay 4B rungs: 4,320 exact diagnostic rows, native receipts/hashes, and all 24 original first-error samples per rung. Escaping changes one expansion 1.7B half cell and zero cells in the other three; every diagnostic delta is 0 [0,0] with the same 10,000 paired task-bootstrap procedure, p-val=n/a. No diagnostic score is unknown. The separate original first-error sample for replay 4B half retains one native compile timeout among its 24 sampled failures; it does not change primary scores. [Diagnostic receipts and rows](namespace_diagnostic), [live result table](../results.md).
+
+## 10-16-2026 01:12 PDT — all 1.7B rungs complete
+
+Replay 1.7B half has all 1,080 exact raw/scored/table cells checked. It fails extraction (955 versus minimum 972) and cap (125 versus maximum 108), while mixed tasks pass (20/135 versus minimum 7), Wilson 95% interval [0.0980, 0.2178]. Kernel success is 40/1,080 = 0.0370 [0.0204, 0.0565]. Taxonomy: 125 no Lean file, 915 compile errors, 40 kernel successes; one cell is flagged by the non-vacuity screen.
+
+Matched half-budget expansion minus replay is +0.0120 [−0.0037, 0.0296]. Both 1.7B condition-difference intervals span zero. Intervals use 10,000 paired task-bootstrap draws over 135 tasks, eight attempts together, seed 0, p-val=n/a; training-seed variability is unmeasured. All four 1.7B rungs fail the format/cap gates, excluding a four-size common checkpoint under the frozen rule. This does not complete the study: every remaining cell, paired comparison, forecast assessment and the separate three-size sensitivity is still required. Checked coverage is 6,480/17,280. [Full statistics](validation_summary_v3.json), [live table](../results.md).
+
+## 10-16-2026 01:15 PDT — fifth checked namespace diagnostic
+
+Expansion 1.7B full has 1,080 exact diagnostic cells, zero changed or unknown cells, and delta 0 [0,0] under 10,000 paired task-bootstrap draws, seed 0, p-val=n/a. All 24 original-error sample receipts and source hashes pass; two native timeouts remain in that sample. Five diagnostics are now checked, and primary coverage remains 6,480/17,280. [Diagnostic receipt](namespace_diagnostic/v3_E_1p7b_f1p0.json).
+
+## 10-16-2026 01:22 PDT — sixth checked namespace diagnostic
+
+Replay 1.7B half passes exact coverage and hash checks for all 1,080 diagnostic cells. Zero identifiers changed, zero scores are unknown, and the paired delta is 0 [0,0], 10,000 task-bootstrap draws, seed 0, p-val=n/a. Its 24 original-error sample receipts retain one native timeout. Six diagnostics are checked; only both expansion 4B primary scorers and their following namespace checks remain in Phase A. [Diagnostic receipt](namespace_diagnostic/v3_R_1p7b_f0p5.json).
+
+Recovery configuration now records the exact current six-rung scheduler identities, observed 50% Vals weekly usage and zero credits. The existing finite deadline, retry limits and scientific caps are unchanged. Shared rules refreshed at 01:15 PDT with no changes.
+
+## 10-16-2026 01:37 PDT — passing expansion 4B full checkpoint
+
+Expansion 4B full has all 1,080 exact raw/scored/table cells checked. All gates pass: 981 extracted (minimum 972), 98 capped (maximum 108), and 36/135 mixed tasks (minimum 7), mixed-share Wilson 95% interval [0.1993, 0.3470]. Kernel success is 153/1,080 = 0.1417 [0.0972, 0.1907]. Taxonomy: 99 no Lean file, 828 compile errors, 153 kernel successes.
+
+Matched expansion minus replay is +0.0194 [−0.0019, 0.0426]; the interval spans zero. Intervals use 10,000 paired task-bootstrap draws over 135 tasks with eight attempts together, seed 0, p-val=n/a; training-seed variability is unmeasured. Its namespace diagnostic has zero changed/unknown cells and delta 0 [0,0]; exact 1,080-cell hashes and 24 original-error receipts pass. The brief observer dead-process alert was a normal native exit 0 before the scheduler next polled, now DONE. Seven primary rungs and seven diagnostics are checked; coverage 7,560/17,280. [Live table](../results.md), [diagnostic receipt](namespace_diagnostic/v3_E_4b_f1p0.json).
+
+## 10-16-2026 01:57 PDT — all Phase A primary scoring complete
+
+All eight Phase A rungs now have exact checked raw, scored and table cells: 8,640/17,280 in the full experiment. Expansion 4B half fails extraction (953 versus minimum 972) and cap (127 versus maximum 108), while mixed tasks pass (35/135 versus minimum 7), Wilson 95% interval [0.1927, 0.3391]. Kernel success is 125/1,080 = 0.1157 [0.0769, 0.1583]. Taxonomy: 127 no Lean file, 828 compile errors, 125 kernel successes.
+
+Matched half-budget expansion minus replay is +0.0324 [0.0111, 0.0546], whose interval excludes zero. These intervals use 10,000 paired task-bootstrap draws over 135 tasks with eight attempts together, seed 0, p-val=n/a; single-training-seed variability remains unmeasured. Replay 4B half passes the format gates while expansion 4B half does not; the metric difference cannot override those frozen gates. All four Phase A condition comparisons are recorded, seven namespace diagnostics are checked, and the final diagnostic is running. [Full statistics](validation_summary_v3.json), [live table](../results.md).
+
+## 10-16-2026 02:00 PDT — Phase A complete; Phase B controllers started
+
+The final expansion 4B half diagnostic changes two identifiers without changing either score: 1,080 exact diagnostic rows, zero unknown cells, delta 0 [0,0] using 10,000 paired task-bootstrap draws, seed 0, p-val=n/a. Its 24 original-error receipts and hashes pass. Phase A is now DONE with four verified training runs, eight exports, 8,640 exact primary cells, four matched comparisons, eight diagnostics and 192 original-error sample receipts. Across all eight diagnostics, three cells changed and all score deltas are zero. [Combined verification](phase_a_validation_verification.json).
+
+Phase B automatically started expansion 8B and 14B remote controllers. Both emit native WAITING_DEVICES on skampere2/skampere3; no large-model training has been admitted. Their exact boot/start identities are retained. The full experiment remains incomplete with 8,640/17,280 primary cells known; all large-model continuations, comparisons, forecast assessment and actual final notification remain required.
+
+## 10-16-2026 02:05 PDT — event-driven resource continuation prepared
+
+All available Phase A scientific work is checked. Phase B controllers continue five-minute admission checks for exact four-device 8B and eight-device 14B training. No admission record exists; local four-device eligibility is false, the Slurm infolab association is absent, and all allowed eight-GPU Slurm nodes are occupied. The current-state wait validation defers unchanged/heartbeat-only state and wakes on scheduler failure. Earlier real harmless admission and alternate-capacity wake tests remain verified. [Readiness and native inventory](resource_wait_readiness_recovery01.json).
+
+After final publication, the owner will write the exact identity-bound external wait and release as its final mutation. The host watch checks every five minutes and after reboot; the alternate capacity probe checks every fifteen minutes. Actual remote admission, eligible alternate capacity, execution changes or failure wake bounded recovery. The original deadline is 10-18-2026 21:21 PDT; max six recoveries and existing account caps are unchanged. Native Vals weekly usage is 52%, credits 0. The 8,640 pending large-model cells and final DONE notification remain required.
+
+Final publication validation passed 1,287 tests, 17 skipped and six subtests in 287.62 seconds. All available independent work is complete; the full experiment remains INCOMPLETE and no DONE notification has been sent.
+
+## 10-16-2026 02:55 PDT — recovery-02 verified training continuation
+
+The current owner verified all six recovery-dispatch hashes, native Astra/ultra with full access/no approvals, and every one of the2,650 completed Phase A training counts (23,021,424 loss tokens). The first 8B expansion admission exited 1 before any update because Ray auto-discovery connected to an unrelated cluster. Native logs and exact boot/start/exit identities are retained in [the incident receipt](ray_isolation_recovery02.json). Setting `RAY_ADDRESS=local` isolates each admitted continuation without changing NeMo, inputs or layouts; the identical retry has now produced 96 checked steps/803,444 loss tokens with zero mismatches. The healthy 14B controller was adopted unchanged. [First useful training evidence](recovery02_first_training.json).
+
+All 17,280 cells now have explicit known/missing/failed coverage rows. The finalizer recomputes gates, intervals and paired differences from committed cells and checks every training-table token against the frozen schedules. Existing Phase A measurements are unchanged. Before any Phase B validation outcome, the forecast report was expanded to distinguish its existing earliest-selected-winner interpretation from earliest common checkpoint within each condition; both remain visible, and frozen forecast bytes are unchanged. Forty-five focused checks plus six subtests pass; the full suite passed 1,294 tests, 17 skips and six subtests in 286.86 seconds. [Checked evidence](recovery02_validation.json). Paid model/judge calls remain zero; test split unopened.
+
+## 10-16-2026 03:18 PDT — expansion 8B half checkpoint and native resume
+
+All 335 native updates match the frozen schedule exactly: 2,878,589 loss tokens and 5,199,666 processed tokens. Native training metadata agrees. The half export manifest is complete; its controller performs the local copy and full checksum check before exposing it for generation. The same training job resumed its optimizer state at 336 and every observed count through 418 matches. [Evidence](recovery02_E8_half.json). The 14B controller remains alive waiting for eight devices.
+
+The final-code suite passed 1,294 tests, 17 skips and 6 subtests in 299.84 seconds. [Finite recovery inventory](recovery02_route_inventory.json) retains six total attempts, each existing candidate cap and the original deadline; Vals attempt 2/2 is active, native weekly allowance 56% used with zero credits. Personal Codex is exhausted; other profiles remain excluded or unverified as documented. Completed Phase A native checkpoint archival is in progress, with originals retained until exact copies verify. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 03:27 PDT — complete expansion 8B native training
+
+All 667 native update counts match the frozen schedule: 5,757,776 loss tokens and 10,383,459 processed tokens, with no mismatches. The final native checkpoint metadata independently agrees. The half export has passed the controller's complete checksum verification and atomic local installation; its generation controller is queued. The full export is still pending, so training verification and replay admission remain with the healthy scheduler. [Checked evidence](recovery02_E8_full_training.json). Validation coverage remains 8,640/17,280; no new scientific model calls or test access.
+
+## 10-16-2026 03:50 PDT — verified E8 exports, first Phase B generation and storage recovery
+
+Expansion 8B training and both exports are fully verified; its half checkpoint has 1,080 exact generated cells and CPU scoring is active. Full-checkpoint generation and matched replay controllers are running; 14B awaits eight eligible devices. Both exported models passed the controller's full checksum check after transfer. An independent read-only check reproduced the half rung's exact 135 × 8 identities, every prompt/sampling field, raw hash and both native exit-0 receipts. [Checked handoff](recovery02_E8_completion.json), [generation receipt](remote_generation_v3_E_8b_f0p5.json). Generated coverage is 9,720/17,280; primary scored coverage remains 8,640/17,280 until the active scorer finishes.
+
+The [lossless Phase A archive](phase_a_native_archive_recovery02.json) retains all 60 native files for replay 1.7B/4B under the same local `sft_v3/ckpt/<label>/checkpoints` paths. Every source/destination hash matched before shared originals were removed, freeing about 133.49 GiB allocated storage (143,511,424,012 apparent bytes copied). All Hugging Face exports and logs remain in place. Completed E8 native archival is now guarded by exact terminal training identities and both verified exports; its named host session is `rl4cv-e08-v3-archive-e8-recovery02`, with process and exit receipts in the runtime root.
+
+[Eight-device cross-host capacity audit](multinode_capacity_recovery02.json): pinned NeMo supports global TP8 placement across nodes, but the isolated cluster, common worker interpreter, bindings and cross-host communication remain unverified. Current direct capacity would total only six eligible devices even after E08 releases its four, so no new route was admitted or scientific setting changed. Original deadline and finite account limits remain unchanged.
+
+## 10-16-2026 04:07 PDT — complete expansion 8B generation and useful replay training
+
+Both expansion 8B checkpoints have complete, verified generation (2,160 cells); both primary scorers are active. Replay 8B is training on four devices, with its first 240 native updates matching the frozen token schedule. The 14B controller still awaits eight eligible devices. Independent verification of the full rung checks all 135 × 8 cell keys, prompts, sampling, step-667 export and both exact process exit-0 receipts. Generated coverage is 10,800/17,280; known primary coverage remains 8,640/17,280 until scoring completes. [Combined evidence](recovery02_E8_generation_R8_start.json), [full generation receipt](remote_generation_v3_E_8b_f1p0.json).
+
+Replay training uses its own isolated Ray cluster and an immutable wrapper whose hash matches the checked expansion wrapper. All 240 consecutive native updates match 2,043,764 loss tokens and 3,725,969 processed tokens. Frozen batches, optimizer policy, parallelism and scientific caps are unchanged.
+
+## 10-16-2026 04:12 PDT — cross-host CPU readiness verified
+
+An isolated, zero-GPU Ray cluster dispatched a CPU task to each of skampere1/2/3 using the same interpreter path. All three report Ray 2.46.0, PyTorch 2.7.1+cu128 and the identical pinned NeMo worker source hash; no CUDA context or model was loaded. All three keeper transports exited 0 and exact owned children were absent at cleanup. The first probe passed its worker checks but left native Ray agent children, and its watchdog exited during a process-exit race; its failed receipt is retained and all exact children were subsequently verified absent. The corrected probe passes complete cleanup. This verifies only CPU control-plane/interpreter readiness, not GPU communication or native continuation. Current capacity remains two eligible idle devices, at most six after replay 8B releases its four; eight-device training remains unadmitted. [Native evidence and retained failure](multinode_cpu_recovery02.json).
+
+## 10-16-2026 04:14 PDT — replay 8B native half checkpoint
+
+Replay 8B reached its half checkpoint: all 334 updates match 2,880,477 loss tokens and 5,223,469 processed tokens; native training metadata agrees. Export is in progress. [Checked receipt](recovery02_R8_half.json). The healthy existing controller retains ownership; no token or model cap changed.
+
+Validation at 10-16-2026 04:16 PDT: all 1,294 repository tests pass, 17 skipped and 6 subtests pass in 616.03s. Actual three-host CPU checks also pass; independent native process checks find every recorded probe identity absent. Native Vals weekly usage is 62% with zero credits; original six-total/two-Vals limits and deadline are unchanged.
+
+## 10-16-2026 04:50 PDT — replay full native training and expansion half scoring checked
+
+Replay 8B completed all 658 native updates, matching 5,752,936 loss tokens and 10,370,638 processed tokens; native optimizer resume at step 335 is verified. Half export is installed; full export and half generation are active. Expansion 8B half scoring and namespace diagnostics are complete; 9,720/17,280 primary cells are known. Expansion full scoring continues; 14B awaits eight eligible devices. [Native training and score receipt](recovery02_R8_native_E8_half_score.json). Expansion half success is115/1,080, or0.1065 [0.0676,0.1500] (95% task-block bootstrap over135 tasks with8 attempts together;10,000 draws,seed0;p-val=n/a). Its960 extracted and119 capped cells fail the frozen972-minimum/108-maximum gates;29/135 mixed tasks pass the7-minimum gate. All1,080 cells are known. Namespace diagnostic changes zero cells, yielding a paired score delta0 [0,0]; all24 sampled original compile-error receipts are retained. The paired 8B replay comparison remains unavailable until replay scoring completes.
+
+All658 replay updates independently match the frozen schedule. Native logs explicitly load the step334 optimizer before update335; final metadata agrees with5,752,936 loss tokens. This event does not claim final export/controller completion.
+
+## 10-16-2026 04:55 PDT — tested finite native continuation installed unarmed
+
+The ordinary-code publication and closeout route is installed at five-minute/reboot cadence and its actual first invocation returned UNARMED. Recovery-02 remains the sole writer. The [installation receipt](native_continuation_install_recovery02.json) verifies preserved foreign cron entries and the original deadline; the [test receipt](native_continuation_tests_recovery02.json) pins every exercised source/input. Full suite:1,316passed,17skipped,6subtests,319.22s. Focused continuation/recovery/finalization checks:53passed plus6subtests. Tests include real local Git publication and conflicting-history merge preservation, an inherited lock surviving parent death, incomplete collector output, finite publication retries, and successful/ambiguous fake-SMTP delivery. No actual completion mail was sent.
+
+A fresh capacity inspection found live foreign compute processes behind both low-utilization skampere2 devices. They remain occupied under the existing no-compute-PID admission rule; no process was stopped. Available eligible capacity is2 now and at most6 after replay releases4. Original scientific layouts and limits remain fixed. Native coordinator allowance:65%weekly used,zero credits; the existing finite account inventory and maximum attempts are unchanged.
+
+## 10-16-2026 05:08 PDT — replay 8B exports and first generated rung verified
+
+Replay 8B training, all658 updates and both exports are fully verified. Half generation has1,080 exact validated cells and its scorer is active; full generation is running. Total generated coverage11,880/17,280; primary known coverage9,720/17,280. Expansion full scoring continues;14B waits for eight eligible devices. [Full handoff receipt](recovery02_R8_exports_generation.json), [half generation receipt](remote_generation_v3_R_8b_f0p5.json). Every generated task/sample key, prompt hash, sampling setting and model path matches the frozen manifest. All658 native training steps match5,752,936 loss tokens and10,370,638 processed tokens. Both exported checkpoints passed the controller's full transferred-file checksum check, with matching shared/local checksum manifests retained publicly. Native training and half-generation processes exited0 under their recorded boot/start identities. The matching replay scorer still determines its primary outcomes.
+
+The existing SMTP connection passed authentication and NOOP250 without sending a message; completion mail remains pending all17,280 cells. All59 tested source/input fingerprints are unchanged from the published1,316-test suite; this event reruns the relevant native artifact/metric validators. The finite native continuation remains unarmed and recovery-02 is the active owner.
+
+
+10-16-2026 12:08 UTC: deterministic native continuation verified 9,720/17,280 primary cells. Completed native jobs: 41. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 05:17 PDT — expansion 8B full passes gates; all 8B generation complete
+
+Expansion 8B full passes all frozen gates:1,011 extracted,70 capped,39/135 mixed;168/1,080 successes (0.1556 [0.1093,0.2056],95% task-block bootstrap,10,000 draws seed0,p-val=n/a). Namespace delta0 [0,0]. Both replay8B generated rungs are verified and scoring is active. Known primary cells10,800/17,280;generated cells12,960/17,280. Fourteen-billion-parameter training still awaits eight eligible devices. [Checked score/generation receipt](recovery02_E8_full_R8_generation.json). All135 tasks retain eight attempts together in the bootstrap. Training-seed variation remains unmeasured. The namespace diagnostic changes zero cells, retains every original-error sample and does not modify the primary scores. The paired replay comparison remains incomplete until its scorers finish.
+
+The actual successful-child transition exposed a short gap between native exit0 and scheduler DONE. Recovery now labels only exact matching exit0 receipts aged at most180seconds as awaiting the scheduler; nonzero exits, mismatched identities and overdue transitions remain failures. The native publisher waits at that boundary without consuming a publication retry. Focused tests:58passed plus6subtests. Full suite:1,321passed,17skipped,6subtests in308.91s. Updated tested-source fingerprints remain unarmed; recovery-02 is still the active owner.
+
+
+10-16-2026 12:17 UTC: deterministic native continuation verified 10,800/17,280 primary cells. Completed native jobs: 44. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 05:33 PDT — verified archive and native capacity-event continuation
+
+Expansion 8B native archive verified:40 files and196,623,888,829 bytes retained locally with full hashes before removing shared originals. Replay 8B archive is running with exact process identity and verified first copy output. Both replay scorers remain active;14B still waits for eight eligible devices. [Completed expansion archive](E8_native_archive_recovery02.json), [replay archive launch/identity](R8_native_archive_started_recovery02.json). All exports and logs remain in place. Shared free capacity after the expansion archive was about1,555GiB; the original1,100GiB admission floor remains unchanged. [240 checked diagnostic error samples](error_samples_recovery02.json) reproduce deterministic selection,counts and every retained original-file hash without new compilations.
+
+[Fresh capacity inventory](capacity_after_8b_generation_recovery02.json): local candidates1,2 do not form a four-device route; Slurm has no account association or idle eligible eight-GPU node. [Cross-host design/readiness](multinode_topology_readiness_recovery02.json) retains the successful CPU proof and exact frozen eight-device layout, while GPU binding/communication remains unverified. The capacity cron now recognizes an explicitly armed native handoff with the same owner/attempt/deadline/caps and completed independent work. Only a verified eligible route change wakes the existing finite recovery inventory; polling churn does not. No scientific allocation or new model call was made.
+
+Clean full suite:1,323passed,17skipped,6subtests,321.47s;79 focused checks pass. The preceding full run had collected a misplaced test assertion before it was fixed; that failed log is retained and superseded by the clean run. The latest actual native invocation returns UNARMED. [Authentication-only mail preflight](notification_auth_preflight_recovery02.json) passed with zero messages sent.
+
+
+10-16-2026 12:33 UTC: deterministic native continuation verified 10,800/17,280 primary cells. Completed native jobs: 44. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 05:51 PDT — bounded native continuation
+
+Native continuation now enforces the original deadline across analysis, validation, file hashing and publication-lock waits using a supervised private process group. Exact owned-group cleanup preserves existing scheduler/training processes. Git blob reads and final export checksum commands use bounded execution and inherit ownership locks. Already-verified completion permits only bounded, idempotent cron cleanup after expiry. Five new checks exercise stalled analysis and finalization, blocked publication-lock acquisition, orphan-command cleanup with an unrelated live child preserved, and verified completion cleanup after expiry. Full suite:1,328passed,17skipped,6subtests,338.02s. Focused checks:84passed plus6subtests. [Exact source hashes and tests](native_continuation_tests_recovery02.json). Native execution returns UNARMED; no production handoff, scientific restart or notification occurred.
+
+
+10-16-2026 12:51 UTC: deterministic native continuation verified 10,800/17,280 primary cells. Completed native jobs: 44. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 05:56 PDT — bounded cross-host GPU transport evidence
+
+Two-host GPU transport passed on one A100 and one B200 with exact UUID binding, NCCL2.26.2/PyTorch2.7.1+CUDA12.8, and verified all-reduce/all-gather/broadcast/barrier results. Explicit host Ethernet interfaces and socket transport were required in this probe; default routing failed with a retained socket error and timed-out peer. Both attempts have zero remaining exact worker identities. No model,data or training updates were used; eight-device training remains unverified and capacity remains six. [Full receipts and retained failures](multinode_nccl_recovery02.json), [exact executed probe source](transport_probe_recovery02.py.txt), [admission design and limits](multinode_topology_readiness_recovery02.json). Default workers exited124/1 with no survivors; an intermediate nonblocking-lock attempt allocated no GPU; the Ethernet-pinned attempt exited0/0. Successful collectives took about20.6seconds including initial connection, so this is not a throughput measurement. Original budgets, model states and scientific configuration were untouched.
+
+
+10-16-2026 12:56 UTC: deterministic native continuation verified 10,800/17,280 primary cells. Completed native jobs: 44. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 06:15 PDT — replay 8B checked validation
+
+Replay8B half: gatesPASS;1,019 extracted,63 capped,35/135 mixed;116/1,080 successes (0.1074 [0.0713,0.1481]). Matched expansion-minus-replay half delta -0.0009 [-0.0269,0.0250]. Replay8B full: gatesPASS;1,002 extracted,78 capped,38/135 mixed;164/1,080 successes (0.1519 [0.1065,0.2009]). Matched expansion-minus-replay full delta 0.0037 [-0.0194,0.0259]. All intervals are95% task-block bootstrap,10,000 draws seed0,p-val=n/a; training-seed variation is unmeasured. Known primary cells12,960/17,280. Fourteen-billion-parameter work remains required. [Native score/paired diagnostic receipt](recovery02_R8_validation.json). Namespace diagnostics completed for2/2 replay rungs; primary scores are preserved. All missing14B cells remain explicit.
+
+
+10-16-2026 13:15 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 06:40 PDT — eight-device transport and admission implementation
+
+Eight-device placement and NCCL collectives passed across skampere1 GPUs1/2, skampere2 GPUs3/5, and skampere3 GPUs2/4/5/7. Exact UUIDs and process identities verified; all owned probe processes exited and existing H200 contexts survived. Frozen TP8, model/data/optimizer/sampling/token caps remain unchanged; zero model calls or training updates in probes.
+
+The first attempt failed before model load because Ray mapped an assigned GPU ordinal through a too-short startup CUDA_VISIBLE_DEVICES list. Its native failure and exact cleanup are retained. A host-local interpreter adapter restores the complete leased mask before native Ray imports, then Ray selects the assigned device. No NeMo code or scientific YAML was changed. Two H200s meet cooperative sharing admission: at most4096MiB used, at least102400MiB free, at most10% GPU utilization. Six other devices require exclusive availability. Small collectives do not validate full-model memory or throughput; the empirical73.18GiB/rank estimate is not an upper bound.
+
+Full suite1,342passed/17skipped/6subtests,334.50s;14focused checks. Deterministic original-error audit now verifies288receipts across12rungs,9,026recorded error lines and4native timeouts; parsed error headers are retained, not full compiler transcripts. [Error audit](error_samples_recovery02.json). The first make invocation found no python on the inherited PATH. The next run passed1,338tests but four existing coordinator fixtures correctly rejected inherited CODEX_HOME. Both errors are retained; the final run uses the project PATH and removes CODEX_HOME only from the test child environment. [Proof and cleanup](multinode_eight_gpu_recovery02.json), [tested source hashes](native_continuation_tests_recovery02.json). Persistent participants enforce the original deadline, startup deadline and heartbeat; per-host guardian reservations and local pipeline leases protect all selected devices. The unchanged waiting controller can adopt the canonical training receipt.
+
+
+10-16-2026 13:40 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 06:51 PDT — native14B admission and finite replay handoff
+
+Frozen14B expansion admitted on the verified2+2+4 route. The canonical native driver and all participant identities are recorded; the original controller has synchronized live logs. 0 native updates checked against the frozen schedule, totaling0loss tokens. Replay sequencer implementation waits for exact exit0, clean participant release, DONE expansion verification and the scheduler-created live replay controller, then performs fresh locked capacity checks and one durable dispatch.
+
+Replay8B native checkpoints were fully copied and source/destination SHA256-verified:40files,196,623,888,795bytes. Exact dead identities, canonical sizes and export manifests were independently checked before publication; shared native storage is released while exports/logs remain. The sequencer preserves any existing replay admission, waits without changing GPU allocations, retains its dispatch claim before spawning, and stops on native/proof/cleanup failure, changed source/deadline or missing exact receipts. It does not automatically replay a scientific attempt. Existing generators/controllers remain protected by the same locks and reservations. Original deadline and attempt/scientific limits are unchanged.
+
+Full suite1,358passed/17skipped/6subtests,324.34s;30focused checks. [Admission and token progress](E14_native_admission_recovery02.json), [tested sources](native_continuation_tests_recovery02.json). The sequencing process is configured for this exact E14 identity; its first live waiting state must be verified after launch. Native final publication/notification remains UNARMED while recovery-02 owns the task.
+
+
+10-16-2026 13:51 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 07:08 PDT — retained cold-read initialization failure and cache preparation
+
+The first14B native initialization failed before any optimizer update: rank0 was still reading the frozen59,073,377,555-byte weight file at approximately80MB/s when peer ranks reached PyTorch TCPStore fixed600,000ms timeout. The error, original controller/driver/route receipts and logs are retained. All36checked identities are absent, all participant/local leases released; no checkpoint/export/training scalar exists. The replay sequencer stopped without a dispatch.
+
+Recovery now SHA256-verifies and reads the unchanged baseline into all3hosts caches before GPU admission, bounded by30minutes and the original absolute deadline. Expected model hash140d9e8d22c741587ddb40c9ffa6140850879a45263a8a6bbd0fcfafbbdb48c3; no model/token/timeout/config changes. The read allocates noGPU. Capacity and exact eight-device proof are repeated afterward. Original native failure is preserved; this repairs initialization with zero duplicated training updates.
+
+Full suite1,362passed/17skipped/6subtests,291.07s;34focused checks. [Failure and identity checks](E14_initialization_failure_recovery02.json), [native error log rendering; original hash retained](E14_initialization_native_error_recovery02.log.txt), [cache-read status](model_cache_read_recovery02.json). No scientific training restart has occurred yet.
+
+
+10-16-2026 14:08 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 07:20 PDT — repaired expansion and complete error-audit gate
+
+The zero-update E14 failure is retained with exact native exits and cleanup evidence. Baseline cache reads passed on all three hosts. The repaired expansion passed the eight-device communication check and is active under a new exact identity, with 0 token-verified optimizer updates (0 loss tokens). The restarted scheduler preserved every completed job and launched only the failed expansion controller as attempt 2.
+
+Final validation now reproduces the deterministic original-error sample, compares the retained native JSON receipts and generated Lean source, verifies first-error text and classification, and publishes the complete audit with its checksum in the completion receipt. The new checks reproduced all 288 existing receipts, 9,026 recorded error lines and four native timeouts without recompilation. Six corruption/retention tests cover altered selection, receipts, messages, categories and source; the final audit will include the four pending 14B groups.
+
+Full suite: 1,368 passed, 17 skipped, six subtests; 312.27 seconds. Validation remains 12,960/17,280 known primary cells. [Admission and token progress](E14_repaired_admission_recovery02.json).
+
+
+10-16-2026 14:20 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 07:30 PDT — expansion 14B native milestone
+
+Expansion 14B model initialization is complete on all eight devices. Native optimizer updates verified: 0/667, with 0 loss tokens; every observed step matches the frozen schedule. The native process and scheduler are live; no scientific cap changed. The replay sequencer remains bound to exact expansion and scheduler identities.
+
+[Checked native evidence](E14_repaired_admission_recovery02.json). Validation remains 12,960/17,280 known primary cells.
+
+
+10-16-2026 14:30 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 07:47 PDT — expansion 14B native milestone
+
+Expansion 14B model initialization is complete on all eight devices. Native optimizer updates verified: 1/667, with 12,881 loss tokens; every observed step matches the frozen schedule. The native process and scheduler are live; no scientific cap changed. The replay sequencer remains bound to exact expansion and scheduler identities. The first measured update took 927.443 seconds; this is not yet a steady-state throughput estimate. The selected skampere1 Ethernet link is 1 Gb/s, while skampere2 and skampere3 have 10 Gb/s links. Healthy native children remain preserved.
+
+[Checked native evidence](E14_repaired_admission_recovery02.json). Validation remains 12,960/17,280 known primary cells.
+
+
+10-16-2026 14:47 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+## 10-16-2026 08:00 PDT — measured transport capacity blocker
+
+Expansion14B has two verified optimizer updates, 21,133 loss tokens, matching the frozen schedule. Step times are927.443s and757.090s; normalized by frozen padded input lengths they are0.0436814s/token and0.0436112s/token. Using only the second rate gives an illustrative70.63h to the half checkpoint and282.94h for remainingE/R14 training, excluding exports and validation, versus about61.4h remaining under the original deadline. This is a two-step operational projection, not a confidence interval or a change to the frozen scientific forecast. Exact owned socket deltas show about111MiB/s through the1Gb/s skampere1 link. No configured faster local path or additional device meeting the installed sharing guard exists; Slurm association remains absent. The live native loop has no supported early-checkpoint trigger. Healthy training is preserved; no iterations are replayed and no scientific/recovery cap is extended. Independent implementation/validation machinery is complete and tested; remaining4320primary cells stay unknown. Native continuation is prepared for a final identity-fenced release after this publication, retaining automatic strict completion checks and actual DONE delivery only on complete success.
+
+[Native transport observation](E14_transport_observation_recovery02.json) and [frozen-length operational projection](E14_two_step_operational_projection_recovery02.json).
+
+
+10-16-2026 15:00 UTC: deterministic native continuation verified 12,960/17,280 primary cells. Completed native jobs: 48. Zero paid experimental calls; test split unopened.
+
+Native handoff preparation is checked against67current source/input hashes and the1,368-pass suite. The current owner still holds mutations until the final host release record is written after this publication. [Concrete preparation](native_handoff_preparation_recovery02.json).
+
+## 10-17-2026 13:07 PDT — expansion 14B still on the half-budget segment
+
+The original repaired process is alive and has completed 139 of 335 optimizer steps toward the half checkpoint. Mean completed-step time is 759.5 seconds; the last 10 steps average 769.8 seconds. Step 140 was in progress at the log read. No checkpoint exists before step 335, so this job was left running. Replay 14B is not dispatched. Known validation cells remain 12,960/17,280.

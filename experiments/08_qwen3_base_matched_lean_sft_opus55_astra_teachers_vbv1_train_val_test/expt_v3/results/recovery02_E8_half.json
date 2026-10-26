@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "checked_unix": 1792145893.161959,
+  "condition": "E",
+  "size": "8B",
+  "half_steps": 335,
+  "half_loss_tokens": 2878589,
+  "half_processed_tokens": 5199666,
+  "per_step_token_mismatches": 0,
+  "training_info": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/ckpt/v3_E_8b/checkpoints/step_335/training_info.json",
+  "training_info_sha256": "a1f22ea429f6c891936a8e9e9b20fe890025ea67ffbc1e8803472d43455c71f2",
+  "frozen_schedule_sha256": "506204e7f8e5e2527d2a8be3cb02e89d293e8b54bbcf6a77bc97d9105bfeb738",
+  "export_manifest": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/ckpt/v3_E_8b/hf/step_335/SHA256SUMS",
+  "export_manifest_sha256": "ce611af6ec6261ad14d8a67e6f5839c660b7e18efdbb850345190afc533d18ca",
+  "export_files_verification": "Controller transfer and SHA256 verification pending local atomic installation",
+  "native_resume": {
+    "first_new_step": 336,
+    "verified_through": 418,
+    "all_steps_contiguous": true,
+    "total_loss_tokens": 3588047
+  },
+  "remote": {
+    "status": "RUNNING",
+    "host": "skampere3",
+    "identity": {
+      "pid": 2898873,
+      "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+      "start_ticks": "265067171"
+    },
+    "gpus": "2,4,5,7",
+    "tensor_parallel_size": 4,
+    "started_unix": 1792144190.3449187,
+    "receipt": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/remote_E_8b.exit.json",
+    "wrapper_snapshot": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/code/expt_v3/.train_continuation_E_8b_1792144190295966539.sh",
+    "wrapper_sha256": "faf1ac04edfb863fc528c585a92e4b03c6228693ed6c5b8c346bb06d187904b1"
+  },
+  "local_controller": {
+    "pid": 3066164,
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "start_ticks": "38277678"
+  },
+  "paid_model_calls": 0,
+  "test_split_opened": false
+}

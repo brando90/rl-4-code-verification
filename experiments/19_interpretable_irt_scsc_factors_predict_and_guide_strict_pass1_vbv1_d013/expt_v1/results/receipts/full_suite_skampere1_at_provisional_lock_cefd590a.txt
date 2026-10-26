@@ -1,0 +1,154 @@
+.........sssssss...........................................ssssssssss..s [  5%]
+ss...................................................................... [ 10%]
+........................................................................ [ 15%]
+F................................................................. [ 20%]
+........................................................................ [ 25%]
+...............................................s........................ [ 30%]
+........................................................................ [ 35%]
+................s.....s.......................s......................... [ 40%]
+........................................................................ [ 45%]
+...........F............................................................ [ 51%]
+.................................................................sssssss [ 56%]
+...........................................s............................ [ 61%]
+........................................................................ [ 66%]
+........s............................................................... [ 71%]
+.........s......................s....................................... [ 76%]
+..................F..................................................... [ 81%]
+................s.......................s............................... [ 87%]
+........................................................................ [ 92%]
+........................................................................ [ 97%]
+.........s.....................ss.....                                   [100%]
+=================================== FAILURES ===================================
+______________________ test_locked_dependency_paths_exist ______________________
+
+    def test_locked_dependency_paths_exist():
+>       assert all((HERE / p).is_file() for p in native.REQUIRED_HASHES)
+E       assert False
+E        +  where False = all(<generator object test_locked_dependency_paths_exist.<locals>.<genexpr> at 0x7531fd5c5cb0>)
+
+tests/test_e08_v3_native_continuation.py:316: AssertionError
+______ test_real_frozen_prompt_builder_keeps_thinking_template_and_hashes ______
+
+    def test_real_frozen_prompt_builder_keeps_thinking_template_and_hashes():
+        from rl4cv.veribench.exp103 import build_prompt,veribench_root
+>       root=veribench_root(os.environ.get('VERIBENCH_ROOT'))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_e13_evaluation_contract.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+explicit = None
+
+    def veribench_root(explicit: str | os.PathLike | None = None) -> Path:
+        """Resolve the pinned VeriBench checkout: argument, then $VERIBENCH_ROOT, then external/veribench."""
+        for cand in (explicit, os.environ.get("VERIBENCH_ROOT"), Path(__file__).resolve().parents[3] / "external" / "veribench"):
+            if cand and (Path(cand) / SINGLE_CALL_REL).is_file():
+                return Path(cand)
+>       raise FileNotFoundError(
+            "VeriBench checkout not found; run scripts/setup_external.sh or set VERIBENCH_ROOT "
+            f"to a checkout containing {SINGLE_CALL_REL}"
+        )
+E       FileNotFoundError: VeriBench checkout not found; run scripts/setup_external.sh or set VERIBENCH_ROOT to a checkout containing experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/scripts/valkyrie_single_call_agent/single_call.py
+
+src/rl4cv/veribench/exp103.py:30: FileNotFoundError
+___ test_hosted_pack_uses_same_fixed_samples_and_never_needs_hidden_outcomes ___
+
+tmp_path = PosixPath('/tmp/user/22003/pytest-of-brando9/pytest-148/test_hosted_pack_uses_same_fix0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7531fc5da1e0>
+
+    def test_hosted_pack_uses_same_fixed_samples_and_never_needs_hidden_outcomes(tmp_path,monkeypatch):
+        import selected_coverage
+        plan,pack=fixture(tmp_path,monkeypatch);cpu=m.prepare_hidden(plan)
+        for folder in pack.iterdir():
+            (folder/'instruction.md').write_text('Authored\n```python\ndef authoredIdentity(n):\n    return n\n```\n')
+        bundle=tmp_path/'bundle';bundle.mkdir()
+        for name in ('judge_call.py','setup.sh','contract.yaml'):(bundle/name).write_text('authored '+name)
+        route=put(tmp_path/'route.json',{'verdict':'PASS'})
+        migration=put(tmp_path/'migration.json',{})
+        # Actual renderer, with every reference file confined to authored fixtures.
+        cache={};real_helper=selected_coverage.helper
+        def helper(config):
+            if not cache:
+                h=real_helper(config);h.PRIVATE=tmp_path/'judge';h.PACK=pack;h.relative=lambda p:str(p.resolve())
+                monkeypatch.syspath_prepend(str(h.judge_pack.E/'scripts/valkyrie_judge_agent'))
+                monkeypatch.setattr(h.judge_pack,'E',tmp_path)
+                monkeypatch.setattr(h.judge_run,'worst_cost',lambda model,length,tokens:.25)
+                cache['h']=h
+            return cache['h']
+        # Read only the already-installed scientific selector definitions.
+>       template=real_helper({'work':str(tmp_path/'unused'),'benchmark_prefix':'authored','private_namespace':'rl4cv_e13v2_authored_draft'})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_e13_selected_publication.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/selected_coverage.py:20: in helper
+    m=controls_helper(config)
+      ^^^^^^^^^^^^^^^^^^^^^^^
+experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/coverage_controls.py:30: in helper
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap_external>:999: in exec_module
+    ???
+<frozen importlib._bootstrap>:488: in _call_with_frames_removed
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    #!/usr/bin/env python3
+    """TLDR: FSC judging for experiment 08's test evaluation (PROTOCOL § 10, D-102), adapted from experiment 01's `judge_rl4cv_e01.py`: experiment 103's frozen judge modules (`judge_pack`, experiment 100's `prompts`/`build_inputs`/`judge_run`) are imported from this clone's pinned checkout, never edited, and every path resolves inside this clone. Suites: `rl4cv-e08v2-controls` (oracle / vacuous / shuffled / halfdel / blank on TRAIN files, the D-108 route controls) and `rl4cv-e08v2:<system>` (every IC_tests = 1 test cell plus the fixed 60-file audit, keyed by system, task_id and sample_idx; three byte-identical repeats per cell and per ensemble member, i.e. six declared ratings per file). `fsc` combines member medians (mean of the two medians / 5) per cell. All model calls go through `valk run start --agent vb103_judge`."""
+    from __future__ import annotations
+    
+    import argparse
+    import base64
+    import csv
+    import fcntl
+    import hashlib
+    import json
+    import os
+    import re
+    import statistics
+    import subprocess
+    import sys
+    import urllib.parse
+    import urllib.request
+    from datetime import datetime, timezone
+    from pathlib import Path
+    
+    REPO = Path(__file__).resolve().parents[4]
+    sys.path.insert(0, str(REPO / "src"))
+    from rl4cv.valkyrie_transport import Transport
+    
+    EXP = Path(__file__).resolve().parents[1]
+    WORK = Path(os.environ.get("E08_WORK", "/lfs/skampere1/0/brando9/rl4cv_e08/v2"))
+    EXT = REPO / "external" / "veribench"
+    E103 = EXT / "experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge"
+    X100 = EXT / "experiments/100_karpathy_recipe_tc_judge_search_human_train_val_test"
+    PRIVATE = E103 / "private" / "judge" / "rl4cv_e08v2"          # inside THIS clone's git-ignored pinned checkout (the frozen pack builder resolves paths under E103)
+    RESULTS = EXP / "results" / "judge"
+    PACK = Path("/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/packs/vbv1_896")
+    E05_OUT = Path("/lfs/skampere1/0/brando9/rl4cv_e05/out")
+    AGENT = "vb103_judge"
+    CONFIGS = ("H2_sol_high", "H2_opus55_max")
+    RUBRIC = "H2_human_mirror_conventions_demos"
+    REPEATS = (1, 2, 3)
+    STATE = RESULTS / "state.json"
+    CORE_SPLITS = ("easy_set", "cs_set", "humaneval_set", "realcode_set", "security_set")
+    CONTROL_KINDS = ["oracle", "vacuous", "shuffled", "halfdel", "blank"]
+    CONTROL_EXPECTATIONS = {"control_oracle": ("score_raw >= 4", 0.90), "control_vacuous": ("score_raw <= 1", 0.90), "control_blank": ("score_raw == 0", 0.90),
+                            "control_shuffled": ("score_raw <= 1", 0.90), "control_halfdel": ("1 <= score_raw <= 4", 0.80)}
+    PROVIDER_ENV = ("VALKYRIE_API_KEY", "TRACKER_SERVICE_URL", "ANTHROPIC_API_KEY", "OPENAI_API_KEY", "GEMINI_API_KEY", "GOOGLE_API_KEY", "MODEL_GATEWAY_API_KEY",
+                    "CLAUDE_CODE_OAUTH_TOKEN", "ANTHROPIC_AUTH_TOKEN", "PYTHONPATH", "PYTHONHOME")
+    UUID_RE = re.compile(r"[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}")
+    BENCH_PREFIX = "veribench-rl4cv-e08v2"
+    
+    sys.path[:0] = [str(X100 / "scripts"), str(E103 / "scripts")]
+>   import common                          # noqa: E402  frozen, imported not edited
+    ^^^^^^^^^^^^^
+E   ModuleNotFoundError: No module named 'common'
+
+experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v2/scripts/judge_rl4cv_e08v2.py:49: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_e08_v3_native_continuation.py::test_locked_dependency_paths_exist
+FAILED tests/test_e13_evaluation_contract.py::test_real_frozen_prompt_builder_keeps_thinking_template_and_hashes
+FAILED tests/test_e13_selected_publication.py::test_hosted_pack_uses_same_fixed_samples_and_never_needs_hidden_outcomes
+3 failed, 1357 passed, 43 skipped, 6 subtests passed in 344.56s (0:05:44)
+EXIT=1

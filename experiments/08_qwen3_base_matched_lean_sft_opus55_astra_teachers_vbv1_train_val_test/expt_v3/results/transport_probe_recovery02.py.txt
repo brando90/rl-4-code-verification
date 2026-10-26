@@ -1,0 +1,112 @@
+"""Bounded two-host transport check; no model weights, data or scientific updates."""
+import argparse,fcntl,hashlib,json,os,shlex,socket,subprocess,sys,time
+from pathlib import Path
+from datetime import timedelta
+
+ROOT=Path('/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3')
+SHARED=Path('/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3')
+HERE=Path('/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3')
+WORKER='nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker'
+
+def write(path,value):
+ tmp=path.with_suffix(f'.{os.getpid()}.tmp');tmp.write_text(json.dumps(value,indent=2)+'\n');tmp.replace(path)
+
+def identity(pid):
+ fields=Path(f'/proc/{pid}/stat').read_text().rsplit(')',1)[1].split()
+ return {'pid':pid,'boot_id':Path('/proc/sys/kernel/random/boot_id').read_text().strip(),'start_ticks':fields[19]}
+
+def worker(args):
+ host=socket.gethostname().split('.')[0];path=args.root/f'rank{args.rank}.json'
+ record={'status':'STARTING','rank':args.rank,'host':host,'identity':identity(os.getpid()),'started_unix':time.time(),'gpu_uuid':args.uuid}
+ write(path,record)
+ initialized=False
+ try:
+  import torch
+  import torch.distributed as dist
+  assert os.environ['CUDA_VISIBLE_DEVICES']==args.uuid and torch.cuda.device_count()==1
+  torch.cuda.set_device(0)
+  prop=torch.cuda.get_device_properties(0)
+  record.update(torch=torch.__version__,cuda=torch.version.cuda,nccl=list(torch.cuda.nccl.version()),device=prop.name,device_uuid=str(prop.uuid),python=sys.executable)
+  assert str(prop.uuid).removeprefix('GPU-')==args.uuid.removeprefix('GPU-')
+  write(path,record)
+  dist.init_process_group('nccl',init_method=f'tcp://{args.address}',rank=args.rank,world_size=2,timeout=timedelta(seconds=30));initialized=True
+  value=torch.full((262144,),float(args.rank+1),device='cuda');start=time.monotonic()
+  dist.all_reduce(value);torch.cuda.synchronize();assert torch.all(value==3).item()
+  gathered=[torch.empty(1,device='cuda') for _ in range(2)]
+  dist.all_gather(gathered,torch.tensor([float(args.rank)],device='cuda'));assert [x.item() for x in gathered]==[0.,1.]
+  broadcast=torch.tensor([42. if args.rank==0 else -1.],device='cuda');dist.broadcast(broadcast,0);assert broadcast.item()==42.
+  torch.cuda.synchronize();dist.barrier();record.update(status='PASS',collectives=['all_reduce_1MiB','all_gather','broadcast','barrier'],collective_seconds=time.monotonic()-start)
+ except BaseException as error:
+  record.update(status='FAIL',error=f'{type(error).__name__}: {error}')
+ finally:
+  if initialized:
+   try:dist.destroy_process_group()
+   except BaseException as error:record.update(status='FAIL',cleanup_error=str(error))
+  record['ended_unix']=time.time();write(path,record)
+ return 0 if record['status']=='PASS' else 1
+
+def remote(host,command,**kwargs):
+ return subprocess.run(['ssh','-o','BatchMode=yes','-o','ConnectTimeout=10',host,shlex.join(command)],capture_output=True,text=True,timeout=45,check=True,**kwargs).stdout
+
+def main():
+ parser=argparse.ArgumentParser();parser.add_argument('--rank',type=int);parser.add_argument('--root',type=Path);parser.add_argument('--uuid');parser.add_argument('--address');parser.add_argument('--socket-interface',action='store_true');args=parser.parse_args()
+ if args.rank is not None:return worker(args)
+ root=SHARED/f'multinode_nccl_recovery02_{int(time.time())}';root.mkdir();snapshot=root/Path(__file__).name;snapshot.write_bytes(Path(__file__).read_bytes())
+ record={'status':'PREFLIGHT','root':str(root),'script_sha256':hashlib.sha256(snapshot.read_bytes()).hexdigest(),'started_unix':time.time(),'gpu_count':2,'training_updates':0,'model_calls':0,'scientific_settings_changed':False,'criterion':'Two distinct hosts/UUIDs, exactly one GPU each; NCCL init and exact all-reduce/all-gather/broadcast/barrier results within 30s operation timeout; native exit0 and both exact worker identities absent after completion.','limit_seconds':120}
+ record['transport']='explicit_host_ethernet_socket' if args.socket_interface else 'native_default'
+ prior=ROOT/'multinode_nccl_recovery02.json'
+ if args.socket_interface:
+  old=json.loads(prior.read_text())
+  if old.get('error','').startswith('BlockingIOError:') and old.get('prior_attempt'):
+   record['preflight_lock_wait_receipt']=str(Path(old['root'])/'result.json');old=json.loads(Path(old['prior_attempt']).read_text())
+  assert old['status']=='FAIL' and old.get('remaining')==[] and old.get('transport','native_default')=='native_default'
+  record['prior_attempt']=str(Path(old['root'])/'result.json')
+ write(root/'result.json',record);print(root,flush=True)
+ hosts=('skampere1','skampere3');gpus=(1,2);procs={};streams=[]
+ try:
+  with Path('/lfs/skampere1/0/brando9/rl4cv_e13v2/leases/registry.lock').open('a') as registry,(SHARED/'remote_admission.lock').open('a') as admission:
+   lock_deadline=time.monotonic()+30
+   for lock in (registry,admission):
+    while True:
+     try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);break
+     except BlockingIOError:
+      if time.monotonic()>=lock_deadline:raise
+      time.sleep(.1)
+   assert not (SHARED/'remote_E_14b.json').exists() and not (SHARED/'remote_R_14b.json').exists(), 'Reconcile 14B admission before probing'
+   leases=json.loads(Path('/lfs/skampere1/0/brando9/rl4cv_e13v2/leases/registry.json').read_text())['leases']
+   assert not any(v['status']!='RELEASED' and v['host'].split('.')[0] in hosts and str(gpus[hosts.index(v['host'].split('.')[0])]) in str(v.get('gpus',v.get('gpu_ids',[]))) for v in leases)
+   selected={}
+   for host,index in zip(hosts,gpus):
+    devices=remote(host,['nvidia-smi','--query-gpu=index,uuid,memory.total','--format=csv,noheader,nounits'])
+    device=next([x.strip() for x in line.split(',')] for line in devices.splitlines() if line.split(',')[0].strip()==str(index));assert int(device[2])>=79000
+    busy=remote(host,['nvidia-smi','--query-compute-apps=gpu_uuid','--format=csv,noheader'])
+    assert device[1] not in busy.split(),f'{host} GPU{index} is busy'
+    selected[host]={'index':index,'uuid':device[1]}
+   with socket.socket() as sock:sock.bind(('',0));port=sock.getsockname()[1]
+   address=f'{socket.gethostbyname(socket.gethostname())}:{port}';record.update(status='RUNNING',selected=selected,address=address);write(root/'result.json',record)
+   for rank,host in enumerate(hosts):
+    base=Path('/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl') if host=='skampere1' else Path('/lfs/skampere3/0/brando9/rl4cv_e08_v3_env/nemo_rl')
+    py=base/'venvs'/WORKER/'bin/python';uuid=selected[host]['uuid']
+    transport=[]
+    if args.socket_interface:
+     interface={'skampere1':'enp44s0f0','skampere3':'enp81s0f0np0'}[host]
+     transport=['NCCL_IB_DISABLE=1','NCCL_SOCKET_FAMILY=AF_INET',f'NCCL_SOCKET_IFNAME=={interface}']
+    command=['timeout','--signal=TERM','--kill-after=10s','120s','env',f'CUDA_VISIBLE_DEVICES={uuid}','NCCL_DEBUG=WARN',*transport,str(py),str(snapshot),'--rank',str(rank),'--root',str(root),'--uuid',uuid,'--address',address]
+    log=(root/f'{host}.log').open('w');streams.append(log)
+    procs[host]=subprocess.Popen(['ssh','-o','BatchMode=yes','-o','ConnectTimeout=10',host,shlex.join(command)],stdin=subprocess.DEVNULL,stdout=log,stderr=subprocess.STDOUT,pass_fds=(registry.fileno(),admission.fileno()))
+   stop=time.monotonic()+145
+   codes={host:p.wait(timeout=max(1,stop-time.monotonic())) for host,p in procs.items()}
+   ranks=[json.loads((root/f'rank{i}.json').read_text()) for i in range(2)];remaining=[]
+   for rank in ranks:
+    code='import json,pathlib; r='+repr(rank['identity'])+'; p=pathlib.Path("/proc")/str(r["pid"])/"stat"; print(json.dumps(p.exists() and pathlib.Path("/proc/sys/kernel/random/boot_id").read_text().strip()==r["boot_id"] and p.read_text().rsplit(")",1)[1].split()[19]==r["start_ticks"] and p.read_text().rsplit(")",1)[1].split()[0]!="Z"))'
+    if json.loads(remote(rank['host'],['/usr/bin/python3','-c',code])):remaining.append(rank['identity'])
+   record.update(status='PASS' if all(c==0 for c in codes.values()) and all(v['status']=='PASS' for v in ranks) and not remaining else 'FAIL',exit_codes=codes,ranks=ranks,remaining=remaining)
+ except BaseException as error:
+  record.update(status='FAIL',error=f'{type(error).__name__}: {error}')
+ finally:
+  for stream in streams:stream.close()
+  record['ended_unix']=time.time();write(root/'result.json',record);write(ROOT/'multinode_nccl_recovery02.json',record)
+ print(json.dumps(record),flush=True)
+ return 0 if record['status']=='PASS' else 1
+
+if __name__=='__main__':raise SystemExit(main())

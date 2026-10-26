@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "examples": 2585,
+  "sizes": [
+    "1.7B",
+    "4B",
+    "8B",
+    "14B"
+  ],
+  "formatter": "NeMo RL c751f811 get_formatted_message_log",
+  "corpus_sha256": "7fa0255741a2b6046ceda0dfda43664334ca603a0aeca9fc2424af43c849726b",
+  "checks": [
+    "four-size token identity",
+    "prompt prefix",
+    "loss span",
+    "manifest loss count plus EOS",
+    "length cap"
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "status": "PASS",
+  "checked_unix": 1792147802.0392296,
+  "training": {
+    "status": "PASS",
+    "steps": 667,
+    "loss_tokens": 5757776,
+    "schedule_sha256": "506204e7f8e5e2527d2a8be3cb02e89d293e8b54bbcf6a77bc97d9105bfeb738",
+    "token_counts_match": true,
+    "scalar_tags": [
+      "ray/node.0.gpu.0.mem_gb",
+      "ray/node.0.gpu.0.util",
+      "ray/node.0.gpu.1.mem_gb",
+      "ray/node.0.gpu.1.util",
+      "ray/node.0.gpu.2.mem_gb",
+      "ray/node.0.gpu.2.util",
+      "ray/node.0.gpu.3.mem_gb",
+      "ray/node.0.gpu.3.util",
+      "ray/node.0.gpu.4.mem_gb",
+      "ray/node.0.gpu.4.util",
+      "ray/node.0.gpu.5.mem_gb",
+      "ray/node.0.gpu.5.util",
+      "ray/node.0.gpu.6.mem_gb",
+      "ray/node.0.gpu.6.util",
+      "ray/node.0.gpu.7.mem_gb",
+      "ray/node.0.gpu.7.util",
+      "ray/node.0.mem_gb",
+      "ray/node.0.mem_total_gb",
+      "ray/ray/ray_step",
+      "timing/train/checkpointing",
+      "timing/train/data_processing",
+      "timing/train/policy_training",
+      "timing/train/total_step_time",
+      "timing/train/valid_tokens_per_sec_per_gpu",
+      "train/global_valid_seqs",
+      "train/global_valid_toks",
+      "train/grad_norm",
+      "train/loss",
+      "train/lr",
+      "train/num_unmasked_tokens",
+      "train/num_valid_samples",
+      "train/train_fp_utilization"
+    ],
+    "training_step_wall_seconds": 1223.5169101953506,
+    "processed_real_tokens": 10383459
+  },
+  "training_csv_sha256": "cbc14f7816d3e03e22eea8f6a210c84d2ef71241ddd23f621ea09549cc41617c",
+  "exports": {
+    "335": {
+      "manifest": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ckpt/v3_E_8b/hf/step_335/SHA256SUMS",
+      "sha256": "ce611af6ec6261ad14d8a67e6f5839c660b7e18efdbb850345190afc533d18ca",
+      "controller_full_checksum_check": "PASS"
+    },
+    "667": {
+      "manifest": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ckpt/v3_E_8b/hf/step_667/SHA256SUMS",
+      "sha256": "cd2f6a45086607b501228df913500bbd0f4fed64b9cf3f613c8079e1fd004eda",
+      "controller_full_checksum_check": "PASS"
+    }
+  },
+  "remote_training_exit": {
+    "identity": {
+      "pid": 2898873,
+      "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+      "start_ticks": "265067171"
+    },
+    "started_unix": 1792144190.3686442,
+    "command": [
+      "bash",
+      "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/code/expt_v3/.train_continuation_E_8b_1792144190295966539.sh",
+      "E",
+      "8b",
+      "2,4,5,7"
+    ],
+    "child": {
+      "pid": 2898875,
+      "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+      "start_ticks": "265067180"
+    },
+    "exit_code": 0,
+    "ended_unix": 1792146932.1858277
+  },
+  "local_training_exit": {
+    "identity": {
+      "pid": 3066164,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "38277678"
+    },
+    "started_unix": 1792144186.51928,
+    "command": [
+      "/lfs/skampere1/0/brando9/rl4cv_e08/rl-4-code-verification/.venv/bin/python",
+      "/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/remote_training.py",
+      "E",
+      "--size",
+      "8b"
+    ],
+    "child": {
+      "pid": 3066227,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "38277681"
+    },
+    "exit_code": 0,
+    "ended_unix": 1792147658.6088092
+  },
+  "half_generation": {
+    "cells": 1080,
+    "sha256": "26adf4adf53a0081334bae72224bf4ec4811983505f8b011b8eb494b21da6fef",
+    "sampling_and_prompts_match": true,
+    "label": "v3_E_8b_f0p5",
+    "host": "skampere3",
+    "gpus": "2,4,5,7",
+    "tensor_parallel_size": 4,
+    "source": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/ladder/validation/raw/gen_v3_E_8b_f0p5_g8.jsonl",
+    "canonical": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/raw/gen_v3_E_8b_f0p5_g8.jsonl",
+    "export_sha256": "ce611af6ec6261ad14d8a67e6f5839c660b7e18efdbb850345190afc533d18ca",
+    "identity": {
+      "pid": 3580783,
+      "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+      "start_ticks": "265345611"
+    },
+    "test_split_opened": false,
+    "copied_unix": 1792147526.4321995
+  },
+  "verified_generated_cells_total": 9720,
+  "primary_known_cells": 8640,
+  "declared_cells": 17280,
+  "phase_a_archive_bytes": 143511424012,
+  "phase_b_active_identities": {
+    "train_E_14b": {
+      "pid": 798432,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "37963395"
+    },
+    "score_v3_E_8b_f0p5": {
+      "pid": 3811491,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "38611866"
+    },
+    "gen_v3_E_8b_f1p0": {
+      "pid": 4081390,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "38625906"
+    },
+    "train_R_8b": {
+      "pid": 4114156,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "38627907"
+    }
+  },
+  "paid_model_calls": 0,
+  "test_split_opened": false
+}

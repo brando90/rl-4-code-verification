@@ -1,0 +1,20 @@
+{
+  "label": "4b_mixed",
+  "stage": "training_fused",
+  "command": [
+    "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+    "/lfs/skampere1/0/eth127/rl4cv_tiny_training/repo/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6/resume_4b_fused.py",
+    "train",
+    "--checkpoint",
+    "/lfs/skampere1/0/eth127/rl4cv_tiny_training/fused_handoff/training_state_step_100.pt",
+    "--step",
+    "100"
+  ],
+  "started_unix": 1792401113.9197757,
+  "host": "skampere1.stanford.edu",
+  "cuda_visible_devices": "6",
+  "status": "RUNNING",
+  "pid": 976411,
+  "start_ticks": "63970421",
+  "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df"
+}

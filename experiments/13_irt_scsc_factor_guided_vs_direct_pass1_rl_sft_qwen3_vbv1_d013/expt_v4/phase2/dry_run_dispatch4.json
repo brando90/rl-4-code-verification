@@ -1,0 +1,225 @@
+{"tldr": "Synthetic CPU stage sequence, extension, order rejection, crash recovery, and no-signal stop verified.",
+  "CUDA_VISIBLE_DEVICES": "",
+  "T2_no_signal": "STOP_NO_SIGNAL",
+  "T5_30": "EXTEND_ALL_SIX",
+  "T5_60": "MAIN_RESOURCE_CHECK",
+  "admission_sha256": "fdc4cf9dc47479ba7493ce07d18cb2ebe7a784394500c51c12db694b0918639b",
+  "api_spend_usd": 0,
+  "commands": [
+    {
+      "argv": [
+        "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/runner.py",
+        "G0_GENERATE",
+        "--work",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/order",
+        "--admission",
+        "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_dispatch4_preseal.json",
+        "--engine",
+        "stub"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "log": "00_order_G0_GENERATE"
+    },
+    {
+      "argv": [
+        "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/runner.py",
+        "sequence",
+        "--work",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full",
+        "--admission",
+        "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_dispatch4_preseal.json",
+        "--engine",
+        "stub"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "log": "01_full_sequence"
+    },
+    {
+      "argv": [
+        "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/runner.py",
+        "T1",
+        "--work",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/crash",
+        "--admission",
+        "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_dispatch4_preseal.json",
+        "--engine",
+        "stub",
+        "--crash",
+        "probe"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "log": "02_crash_T1"
+    },
+    {
+      "argv": [
+        "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/runner.py",
+        "T1",
+        "--work",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/crash",
+        "--admission",
+        "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_dispatch4_preseal.json",
+        "--engine",
+        "stub",
+        "--recover"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "log": "03_crash_T1"
+    },
+    {
+      "argv": [
+        "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/runner.py",
+        "sequence",
+        "--work",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/stop",
+        "--admission",
+        "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_dispatch4_preseal.json",
+        "--engine",
+        "stub",
+        "--no-signal"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "log": "04_stop_sequence"
+    },
+    {
+      "argv": [
+        "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/runner.py",
+        "T3",
+        "--work",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/stop",
+        "--admission",
+        "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_dispatch4_preseal.json",
+        "--engine",
+        "stub"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "log": "05_stop_T3"
+    }
+  ],
+  "crash_attempts": 2,
+  "gpu_allocations": 0,
+  "is_gate_evidence": false,
+  "model_generations": 0,
+  "real_optimizer_steps": 0,
+  "single_pause": {
+    "synthetic": true,
+    "pause_tool_reports": [
+      {
+        "A_1302": "WAIT_STAGE_RUNNING"
+      },
+      {
+        "A_1302": "PAUSED"
+      }
+    ],
+    "gates_released": [
+      false,
+      false,
+      true
+    ],
+    "pilot_released": false,
+    "probed_trajectories": [
+      "A_1302",
+      "A_1302",
+      "A_1302"
+    ],
+    "simulated_signals": [
+      [
+        123456789,
+        19
+      ],
+      [
+        123456789,
+        15
+      ],
+      [
+        123456789,
+        18
+      ]
+    ],
+    "real_signals": 0,
+    "fake_pause_file": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/single_pause_fixture/phase2/autoresume_paused.json"
+  },
+  "stage_receipts": {
+    "T1": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/T1/receipt.json",
+      "sha256": "eea129cec6947538286e820d1b041f687ac7143a5783b73de722a97e47782223",
+      "status": "PASS"
+    },
+    "G0_GENERATE": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/G0_GENERATE/receipt.json",
+      "sha256": "babecd19d3c63e9d852aa0c79932cfb0675f868c412545d9460dbfd82b42c727",
+      "status": "PASS"
+    },
+    "G0_SCORE": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/G0_SCORE/receipt.json",
+      "sha256": "c1615c75c53e282d2c795dd31e9d9fd71305048147b3b291ef8e2576f3b9a6e9",
+      "status": "PASS"
+    },
+    "G0_SELECT": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/G0_SELECT/receipt.json",
+      "sha256": "bef7f6d6aa5a50e61d2a798fd477ace7913a29ebdcdfbee49c11e7dc12f5134a",
+      "status": "PASS"
+    },
+    "T2": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/T2/receipt.json",
+      "sha256": "5721ea9b9fe044739666a05177eea0b5627f31e7faa2b76aa2b8747cf576636b",
+      "status": "PASS"
+    },
+    "T3": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/T3/receipt.json",
+      "sha256": "ec70909bd26823fb71c53ac13c89c81c03c77406bae7ca58d47878e37f546cdf",
+      "status": "PASS"
+    },
+    "T4": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/T4/receipt.json",
+      "sha256": "aece334ce04ed2ba65373c5f2fa330c747164cfaa3f33b12bb86ab814b5f8461",
+      "status": "PASS"
+    },
+    "B_AUDITS": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/B_AUDITS/receipt.json",
+      "sha256": "bcc3470b169ee20c5fd167361c55ae159b30328affae977bd02834ae5b57f90b",
+      "status": "PASS"
+    },
+    "PILOT30": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/PILOT30/receipt.json",
+      "sha256": "041ca607196143beb13f83efb41ec7cbe65ba0907f89ef71fcf6688b2a2748dc",
+      "status": "PASS"
+    },
+    "T5_30": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/T5_30/receipt.json",
+      "sha256": "28a9e9d9a95003de7f98b6c818429348a51d2652f06105a23a2ce9af757704b0",
+      "status": "PASS"
+    },
+    "PILOT60": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/PILOT60/receipt.json",
+      "sha256": "11a25ea1123f3c64370515916638e93eb5fc8ef7251653af2d974f4925a684b4",
+      "status": "PASS"
+    },
+    "T5_60": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch4/full/T5_60/receipt.json",
+      "sha256": "f81159ac6b302f5da6dbe88f8a159b35c32bd90647b705d0e0406e320dc52ae0",
+      "status": "PASS"
+    }
+  },
+  "synthetic": true,
+  "synthetic_completed_updates": 360,
+  "trajectories": [
+    "A/1301",
+    "A/1302",
+    "B/1301",
+    "B/1302",
+    "P/1301",
+    "P/1302"
+  ]
+}

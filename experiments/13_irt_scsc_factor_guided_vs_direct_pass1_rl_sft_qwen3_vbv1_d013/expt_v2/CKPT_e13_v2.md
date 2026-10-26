@@ -2,15 +2,15 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/CKPT_e13_v2.md>
 
-**TLDR:** The master's resumable record for experiment 13 version 2.
+**TLDR:** The master's resumable record for experiment 13 version 2. **Version 2 is TERMINAL**: Phase 2 stopped at T2 on 10-16-2026 (`625a2e6`), a gate stop under PLAN § 4.
 
-- **Plan:** revision 2, after the single light review (FAIL, with all 13 findings fixed).
-- **Admission:** G0 was admitted under A3 on 10-14-2026 ([admission record](R2_A3_ADMISSION_10-14-2026.md)).
-- **G0:** PASS (`120c558`). LP-1 failed under S1 bf16 (p99 0.1248) and passed under v2-S2 float16 ([A5](AMENDMENT_A5_numerics_condition_S2_after_LP1_fail_10-14-2026.md); p99 0.0176, `2b2f8b5`). Phase 1 anchors are in preparation.
-- **Previous owner:** `codex-rl4cv-e13v2-owner` is idle and low on context; it is not reused.
+- **Why T2 failed.** Its single technical update used the strict reward. Under the frozen rollout sampler, all 255 measured rewards were 0, so every advantage was zero, the gradient was zero, and all 399 parameter tensors stayed unchanged. T2 requires a changed weight hash.
+- **What was not measured.** The reward comparison (B against A, and the placebo) was never run, so nothing here shows that the factored reward is ineffective.
+- **Master's own miss.** A6 applied T5 to arm B's own reward but left T2 on the strict reward.
+- **Next.** This is Brando's decision; see "Final state 10-16-2026" below.
 
 Created: 10-13-2026 11:07 PDT
-Last updated: 10-14-2026 23:18 PDT
+Last updated: 10-16-2026 13:04 PDT
 
 ## Task and owner
 
@@ -226,7 +226,163 @@ Last updated: 10-14-2026 23:18 PDT
 - **Owner working** (5 h 56 min) on the Phase 2 train mutation-audit inputs, which tie each mutation to its source and scoring receipt and keep missing inputs among all 128 declared slots. Cost accounting and the audit cohort are published at `07d4c11`, with 764 tests passing.
 - **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
 
+## Check-in 10-15-2026 00:14 PDT: anchors 3,456, 2,528 and 1,696 of 4,312 durable
+
+- **Anchors.** The owner's durable counts are base 3,456, half 2,528 and full1 1,696 of 4,312; finished-segment receipts show 3,328, 2,304 and 1,536. All three are RUNNING on owned GPUs 0–2, with 0 exhausted cells. Cumulative device-hours are 14.79 across 36 leases. Base should finish around 02:00 PDT, and half and full1 around 05:00–08:00 PDT.
+- **Owner working** (6 h 56 min). It is publishing the train-audit and learning launchers. Its required suite ran 803 passed, 3 skipped, 0 failed in 414 s.
+- **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 01:14 PDT: anchors 4,096+, 3,040 and 2,080 of 4,312
+
+- **Anchors.** Finished-segment receipts show base 4,096 (one final segment left), half 2,816 (3,040 durable) and full1 2,048 (2,080 durable) of 4,312. All are RUNNING on owned GPUs 0–2, with 0 exhausted cells. Cumulative device-hours are 18.22 across 43 leases.
+- **Owner working** (7 h 56 min). It is preparing evaluation scoring with the same historical strict oracle as the anchors: completed scores are recovered from receipts, an infrastructure retry reuses the identical frozen output, and missing outcomes stay explicit instead of counting as zeros. Recent commits are the evaluation-generation analysis and the learning launchers.
+- **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 02:14 PDT: base anchors COMPLETE 4,312/4,312; half 3,584; full1 2,560
+
+- **Anchors.** Base is **COMPLETE** at 4,312/4,312, with 0 exhausted cells across 17 segments. half 3,584/4,312 and full1 2,560/4,312 are RUNNING on owned GPUs 0–1. Batch 2 (`full2`) correctly waits for the frozen calibration, item parameters and F2 (PLAN § 5 step 3). Cumulative device-hours are 21.04 across 48 leases.
+- **Owner working** (8 h 56 min) on the Phase 2 monitor runtime and hidden-test helpers. They reject changed snapshot identities, reuse saved strict-score evidence and keep incomplete hidden-test coverage unknown. The judge-pack adapter's 16 focused tests pass.
+- **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 03:14 PDT: base COMPLETE; half 3,840 and full1 3,072 of 4,312
+
+- **Anchors.** Base is COMPLETE at 4,312/4,312, and its Lean scoring is closed (`1876843`): 4,311 measured, 1 unresolved deterministic parser error kept in the denominator, **0 strict successes** (full-denominator strict-mean bounds [0, 0.000232]), 0 retries. half 3,840/4,312 and full1 3,072/4,312 are RUNNING on owned GPUs 0–1, with 0 exhausted cells. Cumulative device-hours are 22.57 across 51 leases.
+- **Owner working** (9 h 56 min) on the Phase 2 monitor processing (score the fixed generated monitor once and freeze independent hidden inputs) and the pilot token-budget code, which uses every fixed A-pilot slot without imputing missing lengths. 20 focused tests pass.
+- **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 04:14 PDT: base and half anchors COMPLETE; full1 3,584 of 4,312
+
+- **Anchors.** Base (scored: 0 strict successes out of 4,311 measured) and **half are COMPLETE** at 4,312/4,312 each, with 0 exhausted cells. full1 is at 3,584/4,312 (3 segments left), RUNNING on owned GPU 0. Batch 2 waits for the frozen calibration and F2. Cumulative device-hours are 24.55 across 54 leases.
+- **Owner working** (10 h 56 min). Learning-report and evaluation-snapshot code: it preserves failed-run counts and the exact model at each retained token checkpoint, and evaluation admission requires a published checkpoint selection and a test-analysis method frozen before training. The required suite is running.
+- **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 05:14 PDT: full1 anchors 4,096 of 4,312 (final segment running)
+
+- **Anchors.** Base and half are COMPLETE at 4,312/4,312 each. full1 is at 4,096/4,312, with its final segment 17 (216 responses) RUNNING on owned GPU 0 under a lease with 7,102 s left, and 0 exhausted cells. Cumulative device-hours are 25.59 across 56 leases.
+- **Owner working** (11 h 56 min). The final-analysis driver is published (`2029faa`). It is preparing the prospective pilot-lock helper, which binds the runtime, probes, final scientific gates and resource limits, with the cost recipe still pending.
+- **Half scoring closed** (`9a3dd32`): 4,303/4,312 measured, 9 unavailable (8 deterministic timeouts, 1 frontend failure), **0 strict successes** (bounds [0, 0.00209]). Base scoring also had 0/4,311. **Watch item:** under the frozen Phase 2 sampler (temperature 1, top-p 1, float16), neither Base nor the 50% rung solves any train task. If the full1 rung (the Phase 2 start) is also near zero, three risks follow, all governed by the frozen rules with no change made: arm A gets almost no strict signal; H2 (mixed-group AUC) may be one-class; T5 (A's learning gate) may fail. For comparison, the historical validation ladder used for G0 had 14–21 later-positive tasks among the zero-earlier-success subset. full1 scoring is the decisive number.
+- **Healthy.** The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 06:14 PDT: all three anchor panels generated (3 × 4,312); full1 scoring running
+
+- **Generation complete.** Base, half and full1 each have 4,312/4,312 responses (12,936 in total), with 0 missing and 0 retries; full1 generation took 9.71 device-hours (`0e46249`). Every lease is released, and cumulative device-hours are 26.07 across 56 leases. Scoring so far: base 0/4,311 strict successes, half 0/4,303. The full1 scoring lock is frozen (`3ddd8b3`) and the unchanged scorer is RUNNING, at 1,660/4,312 saved receipts at 06:11. Scoring cost so far: base 14.4 and half 16.7 processor-hours, 0 device-hours.
+- **Next, per PLAN § 5.** Publish the full1 scoring, then run the single calibration with frozen items and F2, then independent batch 2 (still unarmed), then G1/H2. The full1 strict-success count decides the watch item recorded at 05:14.
+- **Healthy.** The owner is working (12 h 56 min, 994 tests passing). The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 07:14 PDT: full1 0 strict successes; calibration fails for C; Amendment A6 adopted
+
+- **Anchors scored.** full1 (the Phase 2 start) has **0/4,302** strict successes, with 10 missing (`3631acd`). Across all three panels: 0/12,916 strict successes, well-formed outputs (Q1) 9.6%, 7.6% and 12.9%, and **compile among well-formed outputs (Q2) 0/1,294**. The single calibration (`cc0dc01`, then `65bbc29`) fails admission for arm C. The d and p models have 3 and 45 empty items; the t and Q1 bias intervals exclude zero; the conditional strict forecast is unavailable; the C variance check is INCONCLUSIVE. C is disabled, which is final, and F2 (0.75) and the placebo distribution are frozen.
+- **Diagnosis.** The frozen rollout sampler (temperature 1, top-p 1, top-k off, 8,192 tokens) differs from the historical evaluation sampler (temperature 0.6, top-p 0.95, top-k 20, 12,288 tokens; `phase2/evaluation_contract.py`), which gave nonzero strict success on validation. Under the frozen plan, batch 2 (for H2) measures nothing, and T5 (A must learn) would stop Phase 2 on reward sparsity before B − A.
+- **Master decision at 07:19 PDT:** [Amendment A6](AMENDMENT_A6_zero_strict_signal_rollout_sampler_10-15-2026.md), prospective, before any Phase 2 learning, validation or test data:
+  1. Skip batch 2; H2 and F2 are reported UNAVAILABLE.
+  2. Run a once-only, train-only pipeline diagnostic first: 64 tasks × 8 samples from full1, frozen S2 runtime with the historical sampler. It is sound if strict > 0 and the compile rate is at least 1/10 of the historical rate; otherwise stop and diagnose.
+  3. Apply T5 to B's own reward: a moving-average rise of at least 0.02 from updates 1–10 to 21–30, with one extension to 60. A's curve is descriptive.
+
+  Claims are scoped to the zero-signal regime. Before A6, the owner was told to hold batch 2 (07:25 queued, 07:27 immediate).
+
+## Check-in 10-15-2026 08:14 PDT: A6 applied; diagnostic attempt 1 failed on infrastructure; A6 clarified at 08:15
+
+- **A6 applied by the owner.** `7a447c8` waives batch 2 (H2 and F2 UNAVAILABLE) and freezes the historical G1 and the diagnostic cohort. `f5af95c` freezes the diagnostic execution: historical full-schedule 4B validation compile and strict rates are both 100/1,080 = 9.26%, the sound threshold is strict > 0 and compile ≥ 5/512, the cohort is 64 train tasks (task-ID hash `f6a7c303…`), and the allocation is ≤ 2.0 device-hours.
+- **Attempt 1 failed on infrastructure.** Its lease (`…c8536902…`, 0.0038 device-hours) ended on "frozen weights absent" (a `pytorch_model.bin` checkpoint) before any generation. The owner prepared a fix and passed a device-free preflight, but recorded `rerun_admitted: false`, reading A6's "once-only" literally.
+- **Master clarification at 08:15 PDT,** appended to A6. A4 applies to the diagnostic: an infrastructure attempt that generates nothing may be rerun after a fix, a regression test, a preflight and a successor lock, with at most 3 attempts. A scored attempt is final. The owner was steered accordingly. Healthy: no active leases; the crontab has 18 lines, the 7 non-e13 lines identical to the backup.
+
+## Check-in 10-15-2026 09:20 PDT: G1 INCONCLUSIVE (C stays disabled); A6 diagnostic attempt 2 at 256 of 512
+
+- **G1 published** (`d9df333`, [RESULTS_G1_S2.md](RESULTS_G1_S2.md)): **INCONCLUSIVE**. In both holdout schemes no IRT candidate passed inner admission, so the selected forecast and its paired contrasts are unavailable; C stays disabled. Descriptively, on 3,240 full-schedule cells (58 excluded), M1 (calibrated earlier-rung factored reward) beats M0 (smoothed earlier-rung strict rate): log loss [0.173, 0.222] against [0.230, 0.259], and AUC [0.866, 0.929] against [0.832, 0.874]. These are point ranges over missing-label completions, with p-val n/a.
+- **A6 diagnostic attempt 2.** The format repair and attempt-2 lock (`d9df333`, 08:31) were pushed before the run, and the engine preflight passed (`64406dd`). It is RUNNING on owned GPU 0 at 256/512 responses saved, with no scoring yet. The owner has also prepared the A6 Phase 2 admission and B's own-reward feasibility gate (`bbe36cd`).
+- **Healthy.** The owner is working (16 h). The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 10:14 PDT: A6 diagnostic generation complete; scoring 490 of 512
+
+- **A6 diagnostic attempt 2.** Generation is complete for 512 responses, and the lease was released at 1.4025 device-hours, within the 2.0 allocation; cumulative experiment device-hours are 27.48. The unchanged official scorer has closed 490/512 cell receipts, and the analysis (SOUND or UNSOUND) is pending. The learning-pilot lock stays unadmitted until a SOUND verdict is published.
+- **Owner working** (16 h 56 min), monitoring scoring and running the publication checks in parallel. The master armed a background wait (task `by41jbt7b`) for the analysis result.
+- **Healthy.** No active leases. The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## 10-15-2026 10:37 PDT: A6 pipeline diagnostic SOUND
+
+- **Verdict SOUND** (`$WR/phase1/A6/analysis/result.json`). This is `sft_4B_f1p0` on 64 train tasks × 8 samples, with the frozen S2 float16 runtime and the historical evaluation sampler (temperature 0.6, top-p 0.95, top-k 20). Compile and strict successes are both **48/496 measured (9.7%)**. 16 are missing (15 deterministic resource limits, 1 unresolved); extraction found 395 Lean file blocks and 101 responses with no Lean block. The threshold was strict > 0 and compile ≥ 0.926% (≥ 5/512), against a historical full-schedule validation rate of 100/1,080 = 9.26%.
+- **Meaning.** The pipeline (prompts, template, float16 numerics, official scorer) reproduces the historical success rate under the historical sampler. The 0/12,916 strict successes under the frozen rollout sampler (temperature 1, top-p 1) are a sampler effect, not a defect. Per A6, Phase 2 proceeds (LP, T1–T4, audits, pilot) with T5 applied to arm B's own reward and A's curve descriptive.
+
+## Check-in 10-15-2026 11:15 PDT: SSH gateway refusing; published state only
+
+- **SNAP unreachable from the Mac.** `ssh skampere1` (ProxyJump `brando9@whale.stanford.edu`, configured route verified) failed 3/3 with "Connection closed by UNKNOWN port 65535". A direct gateway test returned `kex_exchange_identification: read: Connection reset by peer` from 171.64.75.72:22. TCP is reachable, but the gateway resets during key exchange, which points to throttling or a temporary block rather than authentication. Following `machine/snap.md` connection recovery, there were no repeated hammering attempts and no Cisco/Duo request. A bounded background retry runs every 5 minutes for up to 30 minutes.
+- **Published state (GitHub).** There have been no new experiment-13 commits since `e2d45e4` (10:45). The owner's last status (10:37): "A6 final SOUND; continue to the learning-pilot lock and unchanged technical gates under A6". The owner runs on skampere1 independently of the Mac, under its watchdog.
+- **No action possible this hour.** Verify owner liveness, leases and the crontab once the gateway answers.
+- **Retry result (11:40 PDT).** The gateway was still refusing after 6 tries at 5-minute intervals: TCP 22 open, reset at key exchange. The direct route (`ProxyJump=none`) times out off-campus. The only remaining route is the Stanford VPN, which needs Brando's sign-in and Duo; it is optional because the owner runs autonomously. No owner commits since `031cd17` (10:41). The hourly check-in retries the gateway at 12:07.
+
+## Check-in 10-15-2026 12:10 PDT: gateway still refusing; owner silent on GitHub since 10:41
+
+- **SNAP unreachable.** `ssh skampere1` gives "Connection closed by UNKNOWN port 65535", and whale (171.64.75.72:22) resets at key exchange: the same failure since 11:15. The direct route needs the Stanford VPN, which needs Brando's sign-in and Duo. Brando was asked once to connect it, following the `machine/snap.md` rule to ask only when the remaining route requires a human step.
+- **Published state unchanged.** There have been no experiment-13 owner commits since `031cd17` (10:41), and results.md still reads "A6 final SOUND; continue to the learning-pilot lock" (10:37). That is about 1.5 h without a push against the owner's usual 10–20 minutes, so it may be building a large step, idle at its prompt, or blocked on GitHub from SNAP. It cannot be verified without SSH.
+- **Next.** Once SSH works: check the pane and process tree; if idle with work remaining, send the A6 continuation (learning-pilot lock, LP, T1–T4) with the pre-approval line. Then verify leases and the crontab.
+
+## Check-in 10-15-2026 13:10 PDT: SNAP still unreachable; no owner commits since 10:41
+
+- **Routes.** whale (171.64.75.72:22) still resets at key exchange, and the direct route still times out because the VPN is not connected. This is the same failure since 11:15. Brando was asked once at 12:10, in chat and by phone push; no new push.
+- **Published state unchanged** since `031cd17` (10:41): the last owner status is "A6 final SOUND; continue to the learning-pilot lock". That is about 2.5 h without an owner push, which cannot be explained without SSH.
+- **Next.** Retry at the next hourly check-in. Once reachable, inspect the pane and resume the owner if idle (A6 continuation with the pre-approval line).
+
+## Check-in 10-15-2026 14:10 PDT: SNAP still unreachable (3 h); no owner commits since 10:41
+
+- **Routes.** whale still resets at key exchange (since 11:15), and the direct route times out with no VPN. If whale has blocked this Mac's IP after repeated connections, further probing could extend the block, so from now on each check-in makes **one** probe per route. The VPN request to Brando (12:10) is still open.
+- **Published state unchanged** since owner commit `031cd17` (10:41), about 3.5 h. The owner's watchdog emails Brando on a stop; nothing is visible from the Mac.
+- **Next.** Same as 13:10: once reachable, inspect the pane and resume the owner if idle.
+
+## Check-in 10-15-2026 15:14 PDT: gateway back; owner had stalled on OpenAI model capacity; resumed
+
+- **Gateway restored.** SSH through whale works again at 15:14, after refusing from 11:15. The Cisco/Duo request to Brando is withdrawn (no longer needed).
+- **Owner stall, cause found.** Around 10:45 the Codex session hit "Falling back from WebSockets to HTTPS transport. unexpected status 503 Service Unavailable" and **"Selected model is at capacity"** (`gpt-6-astra`). Its turn ended while it was assembling the learning-pilot freeze (`PREPARED_FOR_LP_FREEZE`, 18 components, unpublished). The stale 07:25 hold was then submitted twice into the same error, and the owner sat idle about 4.5 h. No leases were held, the crontab is unchanged (18 lines, 7 non-e13 identical), and there were no exits. The watchdog checks process liveness, not model availability, so it did not flag this.
+- **Resumed at 15:16 PDT** with an A6 continuation and the pre-approval line: finish the learning-pilot freeze for A, B and P, then LP and T1–T4, the audits, and the pilot with T5 on B. The model responded and the owner is working. If capacity fails again, fall back under Rule 48 to `clauded` with `claude-fable-5-1` high in a new tmux session, keeping one writer.
+
+## Check-in 10-15-2026 16:14 PDT: learning-pilot technical gates frozen; T1 attempt 2 under A4
+
+- **Progress since the resume.** `970d274` (15:31) froze the v2-S2 learning-pilot technical gates after the SOUND A6 diagnostic. `dacef27` (15:48) recorded T1 attempt 1 as an infrastructure failure. `d5961c9` and `b37c6af` (16:02–16:03) pushed the Ray socket-path repair and bound the unchanged S2 science **before** attempt 2, which is A4-compliant. Status: "T1 infrastructure repair; no gate verdict or experiment stop."
+- **T1 attempt 2 is in progress, with no verdict yet.** The suite ran 1,124 passed, 3 skipped, 0 failed. There are no active leases at 16:14 (the last technical lease was released after 0.0885 device-hours), and cumulative device-hours are 27.78 across 63 leases.
+- **Healthy.** The owner is working (59 min, model available). The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Check-in 10-15-2026 17:14 PDT: T1 PASS; T2 generation complete, scoring 254 of 256
+
+- **T1 PASS** (`0439f49`, 16:19; [RESULTS_T1_S2.md](RESULTS_T1_S2.md)). Measured on attempt 2, after attempt 1 (INCOMPLETE-INFRA, Ray socket path) was repaired under A4: unsupported 0/44,844, median 3.27e-5, p99 0.0176 ≤ 0.10, truncation 0. T1 used 0.356 of 2.0 device-hours, with 0 optimizer updates.
+- **T2** (one real update, weight hash and refit check). A pre-admission device collision was charged 0.015 device-hours, produced no statistic, and recovered through a published wait (`fd7edca`). Attempt 1 was admitted on idle device 2 at 16:44 (`53b53fe`). Train generation of 256 responses is complete (`a4d9b5d`), and official scoring was at 254/256 at 17:14. No T2 verdict yet. Cumulative device-hours: 28.39 across 67 leases.
+- **Healthy.** The owner is working (2 h, model available). The crontab has 18 lines, the 7 non-e13 lines identical to the backup. No exits. No action was needed.
+
+## Final state 10-16-2026 (13:04 PDT): Phase 2 stopped at T2
+
+**Results, by stage.** Statistics are p-val n/a unless an interval is shown.
+
+| Stage | Result | Key numbers |
+|---|---|---|
+| G0 (A3 worst-case completions) | PASS (`120c558`) | 4B dense-only 89–97/135 (threshold 21); AUC 0.671–0.905 (threshold 0.65), exact over 221,184 configurations. 1.7B PASS, 8B INCONCLUSIVE |
+| LP-1, S1 (bfloat16) | FAIL, final | p99 log-probability error 0.1248 > 0.10 |
+| LP-1, S2 (float16, A5) | PASS | p99 0.0176, median 3.3e-5, unsupported 0/44,844, truncation 0 |
+| Anchors (rollout sampler: temperature 1, top-p 1) | 0 strict successes | base 0/4,311, half 0/4,303, full1 0/4,302. Well-formed outputs (Q1): 9.6%, 7.6%, 12.9%. Compile among them (Q2): 0/1,294 |
+| Arm C calibration | Not admitted | d and p empty items; t and Q1 bias excludes zero; no strict forecast. C disabled |
+| G1 (historical ladder) | INCONCLUSIVE | No admitted IRT candidate. Descriptively, M1 (calibrated earlier-rung factored reward) beats M0 (strict-rate baseline): log loss 0.173–0.222 against 0.230–0.259, AUC 0.866–0.929 against 0.832–0.874, over 3,240 cells |
+| H2 and F2 | UNAVAILABLE | Predictor null; batch 2 skipped under A6 |
+| A6 pipeline diagnostic | SOUND | 48/496 strict and compile (9.7%) at the historical sampler (temperature 0.6, top-p 0.95, top-k 20), against a historical 9.26% (100/1,080) |
+| T1 | PASS | Same as the S2 LP-1 numbers: p99 0.0176 ≤ 0.10, unsupported 0, truncation 0 |
+| **T2** | **FAIL, final (attempt 3)** | One optimizer step on an all-zero-advantage batch: 0/255 strict rewards, 31/32 usable groups, 0 nonzero-gradient updates. All 399 tensors (4,411,424,256 elements) unchanged: before and after SHA-256 `7fed4022…16ae`. Refit median 3.27e-5 PASS. Attempts 1–2 were INCOMPLETE-INFRA under A4. T2 used 4.37/10.0 device-hours |
+
+**Closeout facts.**
+
+- **Not run:** T3, T4, the audits, T5, the pilots, the main runs, validation selection and the test evaluation.
+- **Device use:** 32.20 device-hours across 78 leases, all RELEASED.
+- **Owner:** `codex-rl4cv-e13v2-owner-g0` closed out and exited; its tmux session is gone.
+  - It stalled about 4.5 h on 10-15 when OpenAI reported its model at capacity, then was resumed at 15:16.
+  - The old idle owner session `codex-rl4cv-e13v2-owner` (launcher PID 886575) is untouched; Brando may close it.
+- **Cron.** The master retired experiment 13's 11 cron lines on 10-16, removing only lines under `$WR/`. The crontab went from 24 to 13 lines, the rest unchanged; the backup is `$WR/state/crontab_before_e13v2_retire_10-16-2026.txt`. Hourly master check-ins (cron `3c401c57`) are stopped, because Brando is out of Claude credits for the week.
+
+**What it means.** Under the frozen rollout sampler, the SFT start policy never solves a training task (0/12,916 anchors, 0/255 in T2). A strict-reward update is therefore a no-op, and version 2's T2, written for a reward with signal, cannot pass. The pipeline itself is sound (A6 diagnostic).
+
+**Brando's decision.** Choose one:
+
+1. **Accept the stop.** Report version 2 as terminal at T2 in the zero-signal regime.
+2. **Version 3, prospective (recommended).** Choose the rollout sampler so that arm A has nonzero strict signal; for example, use the historical sampler, with probability agreement re-measured for truncated sampling. Operationalize T2 and T5 on an arm with nonzero advantage. Keep G0, the A3 exclusions and the frozen judge route.
+3. **A7.** Re-run T2 and T5 on arm B's reward as a separately versioned S2-B condition. It would be disclosed as written after T2's measured failure, making it the fourth post-observation amendment; the master advises option 2 instead.
+
 ## Exact next commands (master)
+
+**Version 2 is terminal. No master action until Brando chooses from "Final state 10-16-2026".** For version 3, write `expt_v3/PLAN.md` prospectively from the observations above, run one light QA only if Brando asks, then dispatch a SNAP owner using the procedure below.
 
 0. **Resume:** dispatch a fresh owner in a new tmux session `codex-rl4cv-e13v2-owner-g0`, seeded with `expt_v2/cc_resume_g0.md` and using the same client, flags and fallbacks as item 2. Never type into the old owner session.
 

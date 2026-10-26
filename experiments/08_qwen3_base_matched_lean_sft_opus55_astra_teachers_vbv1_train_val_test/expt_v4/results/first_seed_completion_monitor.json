@@ -1,0 +1,54 @@
+{
+  "checked_at_utc": "2026-10-18T23:37:00Z",
+  "scheduler_observed_at_utc": "2026-10-18T23:35:52Z",
+  "prepare_job": {
+    "id": 48377554,
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:08:56"
+  },
+  "training_seed_20260830": {
+    "id": 48378536,
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "01:04:20",
+    "finished_utc": "2026-10-18T23:30:35Z",
+    "observed_step": 658,
+    "declared_steps": 658,
+    "examples": 1315,
+    "loss_tokens": 5752936,
+    "peak_gpu_gib": 57.6555233001709,
+    "export_files": 12
+  },
+  "training_seed_20260831": {
+    "id": 48378539,
+    "state": "RUNNING",
+    "node": "sh04-01n01",
+    "observed_step": 25,
+    "declared_steps": 658,
+    "examples": 50,
+    "loss_tokens": 224456,
+    "train_loss": 0.4638696868433042,
+    "grad_norm": 1.8378640413284302,
+    "elapsed_seconds": 136.17806761106476,
+    "peak_gpu_gib": 48.820422649383545,
+    "progress_age_seconds": 1.1
+  },
+  "collector": {
+    "id": 48378541,
+    "state": "PENDING",
+    "reason": "Dependency"
+  },
+  "terminal_receipt_exists": false,
+  "archive_manifest_exists": false,
+  "receipt_paths": "root-level terminal_receipt.json and archive_manifest.json",
+  "inspected_log_error_markers": {
+    "48377554.out": 0,
+    "48378536.out": 0,
+    "48378539.out": 0
+  },
+  "error_marker_pattern": "Traceback|CUDA out of memory|OutOfMemoryError|CANCELLED|TIMEOUT|NODE_FAIL",
+  "action": "Collected and hash-verified first completed trajectory; published meaningful completion event; monitor remains active; no retry or new GPU trajectory submitted",
+  "source": "Authenticated Sherlock OnDemand shell; values transcribed from observed outputs",
+  "done_email_sent": false
+}

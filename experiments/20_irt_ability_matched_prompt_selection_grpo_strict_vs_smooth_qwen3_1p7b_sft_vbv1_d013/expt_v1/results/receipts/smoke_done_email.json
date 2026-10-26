@@ -1,0 +1,18 @@
+{
+  "sent_at": "10-21-2026 14:15 PDT",
+  "subject": "[RUN DONE] rl4cv expt20 trainer smoke: FAILED gate",
+  "to": "brando.science@gmail.com",
+  "bcc": [
+    "brando.science@gmail.com",
+    "brando9@stanford.edu",
+    "brandojazz@gmail.com",
+    "brando@vals.ai"
+  ],
+  "transport": "uutils.emailing.send_email_smtp",
+  "status": "SMTP returned without error",
+  "body": "Experiment 20 trainer smoke completed both updates and failed the fixed log-probability consistency gate. Maximum mismatch: 22,654/864,717 = 2.6198%, versus at most 1% allowed (absolute log-probability tolerance 0.05). Update 1 was 2.5989%. This does not establish a null effect for IRT (item response theory) prompt selection; the held-out comparison was not reached.\n\nSherlock job 48857034 ended 10-21-2026 14:09:11 PDT, exit 3:0, 1,959 allocated GPU-seconds. Including the two earlier infrastructure failures, trainer smoke used 0.5900 GPU-hours of the 15-hour pilot cap; API spend $0. All 256 rollout records are retained. The adopted custom optimizer loop differs from the runbook-required GRPOTrainer and is documented.\n\nNo pilot, main training, calibration scoring or validation evaluation will launch. The adopted calibration array is still finishing naturally under the no-cancellation instruction; final experiment accounting will follow.\n\nResults: https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/results.md\nReview PR (draft pending final accounting): https://github.com/brando90/rl-4-code-verification/pull/20\n\nBrando (drafted with Codex)\n-----\nBrando Miranda\nPh.D. Student\nComputer Science, Stanford University\nEDGE Scholar, Stanford University\nbrando9@stanford.edu\nwebsite: https://brando90.github.io/brandomiranda/\n",
+  "gmail_readback_id": "1a16051be5758f1a",
+  "gmail_time": "10-21-2026 14:15:32 PDT",
+  "rfc_message_id": "<6ad92b74.fa539071.89b89.621b@mx.google.com>",
+  "readback": "Subject and To verified; BCC header not exposed in Gmail copy; all four recipients passed to SMTP helper."
+}

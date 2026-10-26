@@ -1,0 +1,95 @@
+{
+  "status": "PASS",
+  "seed": 20261019,
+  "rows": 3568,
+  "by_pool": {
+    "workbook": 2145,
+    "repair": 61,
+    "python": 684,
+    "public_proof": 678
+  },
+  "by_source": {
+    "lean_workbook_explicit_preference_v9": 2145,
+    "lean_workbook_sol_explicit_repair_v11": 61,
+    "v1_selected": 349,
+    "mbpp_lean_warmstart_v3": 168,
+    "cached_cap_excluded": 167,
+    "mathlib4_visible_step_comments_v14": 209,
+    "deepseek_prover_v1_visible_step_comments_v14": 469
+  },
+  "loss_tokens": 2793297,
+  "steps": 1784,
+  "longest_sequence": 8723,
+  "initial": "/lfs/skampere1/0/brando9/rl4cv_e08/cache/huggingface/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+  "initial_model": "Qwen/Qwen3-1.7B-Base",
+  "initial_revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+  "initial_manifest_sha256": "3874aba86795ee1d2c5d519599309db89ef287fb9812313dffed6f9e0a4b0358",
+  "training_sha256": "6dad28a97f534c765275397727f6072ae535dfb8813bf1dfb40a9b76bad6ad97",
+  "tokens_sha256": "7d261c02a89e1d8f0cefb94386ff028df11e91f12bfe0ba2ea2dfbeffe7019b7",
+  "schedule_sha256": "f30076078a9ef59007e3d703ccc0a7dc004ade2643a608a1690f97e2a817ed66",
+  "source_sha256": {
+    "assemble.py": "711d08e31bd6391fc0294c20750adbd39d6a3b821c5541086f9c3f730c2a3190",
+    "train.py": "3f3ee2244a6a72d430d539b7e0b600a5f5bf7086f183a29f50ed1a2279be337f",
+    "pipeline.py": "ce0ee35cbe547b171b9d57d34c9aba0d51e694f8c7cb40ac5b8e458644b40158",
+    "PROTOCOL.md": "7dc7a5146e7705d51b948b3c52ce4c6b98bda789fc0cb15d4bf7bc11c9912dfd"
+  },
+  "v25_source_sha256": {
+    "assemble.py": "f639b9729d0a236b2c32a9dd8e973d4b3c24a39b9bdfab728712c2393c1293d4",
+    "pipeline.py": "b43bb481b42d83eca603ff0ae62b93feec98ab725a550d3f6e31ada54c836eb4",
+    "dispatch.py": "63b22766cd618e9f2b897daba508541c8e8e53a9bb527e0b438670fbd0fff363",
+    "outer_watch.py": "0da223b73825f93522a6bb2c9ea58e25827dc578b744c6a004039efdfe246866",
+    "summarize.py": "e49340f4ca4a29d9f195ba6d4484bff1ebde7c65c1d1fdbb637318d9b3679a61",
+    "train.py": "2e363ecab2e821b529fab977dc8a3310f5896c1041f0b0a3cb105c6d3972df58",
+    "entry.py": "ff77ad34bbe1f971d16e78933199fa3bc1fcac910418384cba1213de05063e67",
+    "PROTOCOL.md": "bf696cc3f0f5086b1f0e45ef91ca6f75dd3d5a1a945d379028c6852c96053987"
+  },
+  "matched_reference": {
+    "training_sha256": "0882a88925e862b44fd79b7592d8d525829aec1f2ac1bd12afa1fd43fc6a5de7",
+    "tokens_sha256": "72f93fb285b07edd57519c140987bc3cb8b8e25bc59f12798b49c47b8f5d4686",
+    "schedule_sha256": "d569f50f233019a43bc4f4772f4636aeb7de3c742633e4bc209c18f2915b41b9",
+    "steps_sha256": "cb1281c5814705426e35f106aaef991003408bed70a47a6a9780f7858f595895"
+  },
+  "ids_prompts_row_order_and_batch_indices_identical": true,
+  "learning_rate_clock": "Exact recorded V20 learning_rate per optimizer update; new token counts retained separately",
+  "restored_rows": 2094,
+  "restored_by_pool": {
+    "workbook": 1411,
+    "python": 683
+  },
+  "unchanged_rows": 1474,
+  "pairing_gaps": {
+    "No eligible paired counterpart; exact V20 row retained": 1410,
+    "Counterpart full-source verification failed; exact V20 row retained": 64
+  },
+  "restored_tactic_rows": {
+    "simp": 1368,
+    "exact?": 1,
+    "norm_num": 215,
+    "nlinarith": 123,
+    "ring": 227,
+    "linarith": 148,
+    "ring_nf": 90,
+    "field_simp": 58,
+    "exact_mod_cast": 7,
+    "simpa": 204,
+    "norm_cast": 10,
+    "positivity": 24,
+    "decide": 166,
+    "apply_rules": 9,
+    "simp_all": 38,
+    "tauto": 18,
+    "aesop": 11,
+    "omega": 266,
+    "simp_rw": 1
+  },
+  "protected_references": 764,
+  "protected_exact_retained": 0,
+  "protected_near_retained": 0,
+  "fresh_optimizer": true,
+  "sft_weights_reused": false,
+  "test_split_evaluated": false,
+  "no_teacher_generation": true,
+  "verification_completion_sha256": "6ebf9bd0c8f538b4d5f27448053e04b56d2f82f8315f87a3544e7ffb0fc994c6",
+  "future_logged_entry_sha256": "1aadc06f48abcec31daa0d736a9036f37d453876e0a1bef400086a42940e0751",
+  "prepared_unix": 1792454185.556419
+}

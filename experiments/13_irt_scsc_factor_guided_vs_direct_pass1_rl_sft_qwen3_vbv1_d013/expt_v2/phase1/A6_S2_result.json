@@ -1,0 +1,145 @@
+{
+  "LP_admitted": true,
+  "admission_statistics_computed": true,
+  "attempt1_responses": 0,
+  "attempt1_status": "INCOMPLETE-INFRA",
+  "attempt_number": 2,
+  "bindings": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A6/analysis/result.json",
+      "sha256": "92eaca8eedee647ad7c90d7adad8269aaf17f250635bcd1b047bb4b2ff5447df"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A6/analysis/analysis_attempt.json",
+      "sha256": "5ae0f8f22382a7694967d88cafe7c6647039ddbac7e0adf9226c65e9b96a1997"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A6/scoring/result.json",
+      "sha256": "52414b3e9d505155d1379c0ee2d86caf513270bfc921ab7c8ebace31725de6cc"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A6/scoring_launch/launch.json",
+      "sha256": "1cf53076acacef38bcee29e3785e486a27da6a9cc1bb269e798e67fe9b1ccd6a"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A6/scoring_launch/exit.json",
+      "sha256": "76c0beb80972923f155fe8275444eddb2fc0b51c0e18ee8747021040bad37b89"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase1/A6/scoring_launch/processor_time.txt",
+      "sha256": "eee0b33132301813b4ab289cce65373b96bc1dda51fd04f660b54b2030f98ff0"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/locks/A6_DIAGNOSTIC_SCORE.json",
+      "sha256": "9f2fa90b876a1d7a2e28ced5f3b3f86560d4b10798fbf47556f64c94d6ef7934"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/A6_attempt2_generation.json",
+      "sha256": "247ef9f3c332dc3d0c751f6e541852538b1ba9907cd21606f58285c27aff09fd"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase1/A6_historical_reference.json",
+      "sha256": "837fbae822f053489ad7341779a52bfb20f508e867628e46fcad27b22102e887"
+    }
+  ],
+  "bootstrap": {
+    "draws": 10000,
+    "scope": "descriptive conditional fixed policy/cohort; no training-run uncertainty; a degenerate zero bootstrap is not a population upper bound",
+    "seed": 1302603,
+    "unit": "whole selected train task groups, retaining all eight samples"
+  },
+  "capped_responses": 101,
+  "cleanup_unresolved": 0,
+  "comparison_statistic_eligible": false,
+  "condition": "v2-S2",
+  "criterion": "strict successes > 0 and compile rate >= historical compile rate / 10",
+  "cumulative_allowance_device_hours": 2.0,
+  "cumulative_device_hours": 1.4063069600529141,
+  "declared": 512,
+  "ended_unix": 1792085826.3433404,
+  "extraction_counts": {
+    "file_blocks": 395,
+    "no_lean_block": 101,
+    "unavailable": 16
+  },
+  "final": true,
+  "future_generation_replay_admitted": false,
+  "gate": "A6_PIPELINE_DIAGNOSTIC",
+  "generated": 512,
+  "generated_tokens": 2958502,
+  "generation_device_hours": 1.4024953617652258,
+  "groups": 61,
+  "historical_compile_minimum": 0.009259259259259259,
+  "identical_retries": 0,
+  "intervals": {
+    "compile": {
+      "lower_endpoint_interval_95": [
+        0.04423076923076923,
+        0.15234375
+      ],
+      "outer_envelope_95": [
+        0.04423076923076923,
+        0.19047619047619047
+      ],
+      "upper_endpoint_interval_95": [
+        0.068359375,
+        0.19047619047619047
+      ]
+    },
+    "strict": {
+      "lower_endpoint_interval_95": [
+        0.04423076923076923,
+        0.15234375
+      ],
+      "outer_envelope_95": [
+        0.04423076923076923,
+        0.19047619047619047
+      ],
+      "upper_endpoint_interval_95": [
+        0.068359375,
+        0.19047619047619047
+      ]
+    }
+  },
+  "lock_sha256": "9f2fa90b876a1d7a2e28ced5f3b3f86560d4b10798fbf47556f64c94d6ef7934",
+  "metrics": {
+    "compile": {
+      "full_denominator_bounds": [
+        0.09375,
+        0.125
+      ],
+      "measured": 496,
+      "missing": 16,
+      "successes": 48
+    },
+    "strict": {
+      "full_denominator_bounds": [
+        0.09375,
+        0.125
+      ],
+      "measured": 496,
+      "missing": 16,
+      "successes": 48
+    }
+  },
+  "missing_generations": 0,
+  "missing_statuses": {
+    "deterministic_resource_limit": 15,
+    "unresolved_measurement": 1
+  },
+  "p_value": null,
+  "processor_cost": {
+    "accounted_cpu_hours": 4.020813888888889,
+    "scope": "single scoring/analysis controller and waited child processes; generation processor counters unavailable",
+    "system_seconds": 3081.26,
+    "user_seconds": 11393.67,
+    "wall_seconds": 1753.33
+  },
+  "purpose": "A6_pipeline_diagnostic",
+  "retries": 0,
+  "samples_per_task": 8,
+  "scoring_sha256": "52414b3e9d505155d1379c0ee2d86caf513270bfc921ab7c8ebace31725de6cc",
+  "status": "SOUND",
+  "task_count": 64,
+  "test": "A6 operational criterion, not a hypothesis test"
+}

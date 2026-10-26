@@ -1,7 +1,7 @@
 """Execute one complete-group installed NeMo update, retaining the exact replay inputs and state."""
 from __future__ import annotations
 
-from contextlib import contextmanager
+from contextlib import contextmanager, ExitStack
 import json
 import math
 import os
@@ -16,6 +16,7 @@ from runtime import check_lease
 from training_data import build
 from training_checkpoint import write_new,digest,save,restore,owned_call
 from worker_state import parameter_digest,optimizer_digest,initialize_rng
+from ray_paths import short_directory,check_socket
 
 
 def plain(value):
@@ -48,10 +49,12 @@ def policy_session(config,*,checkpoint=None,init_optimizer=True):
     ACTOR_ENVIRONMENT_REGISTRY['nemo_rl.models.policy.dtensor_policy_worker.DTensorPolicyWorker']=sys.executable
     original_pythonpath=os.environ.get('PYTHONPATH')
     os.environ['PYTHONPATH']=os.pathsep.join([str(HERE),str(PHASE1),original_pythonpath or '']).rstrip(os.pathsep)
-    cluster=None;policy=None
+    cluster=None;policy=None;paths=ExitStack()
     try:
+        ray_temp=paths.enter_context(short_directory(config['ray_temp']))
+        check_socket(ray_temp)
         ray.init(address='local',num_gpus=1,num_cpus=4,include_dashboard=False,
-                 _temp_dir=config['ray_temp'],log_to_driver=True)
+                 _temp_dir=str(ray_temp),log_to_driver=True)
         cluster=RayVirtualCluster([1],num_gpus_per_node=1,name='e13v2-S2-training')
         policy=Policy(cluster,policy_config,tokenizer,name_prefix='e13v2-S2-training',
                       init_optimizer=init_optimizer,init_reference_model=False)
@@ -62,11 +65,15 @@ def policy_session(config,*,checkpoint=None,init_optimizer=True):
             owned_call(policy,initialize_rng,config['run_seed'])
         yield policy,tokenizer
     finally:
-        if policy is not None:policy.shutdown()
-        if cluster is not None:cluster.shutdown()
-        ray.shutdown()
-        if original_pythonpath is None:os.environ.pop('PYTHONPATH',None)
-        else:os.environ['PYTHONPATH']=original_pythonpath
+        try:
+            if policy is not None:policy.shutdown()
+            if cluster is not None:cluster.shutdown()
+        finally:
+            try:ray.shutdown()
+            finally:
+                paths.close()
+                if original_pythonpath is None:os.environ.pop('PYTHONPATH',None)
+                else:os.environ['PYTHONPATH']=original_pythonpath
 
 
 def recompute(policy,data,*,lease_check):

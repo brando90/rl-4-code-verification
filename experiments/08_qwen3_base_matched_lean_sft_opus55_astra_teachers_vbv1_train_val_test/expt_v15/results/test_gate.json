@@ -1,0 +1,38 @@
+{
+  "command": "make test",
+  "host": "skampere1",
+  "passed": 1362,
+  "skipped": 24,
+  "subtests_passed": 6,
+  "log_sha256": "06c7c5451fa1829c97c1154e9eb8d98dacf9d49734ab8e8d54e42afaf8b0c12b",
+  "new_integrity_preference_routing_controls_passed": 19,
+  "model_calls_in_controls": 0,
+  "lean_compilation_in_controls": false,
+  "observed_unix": 1792411360.0429137,
+  "focused_controls_hosts": [
+    "local macOS",
+    "skampere1 Linux"
+  ],
+  "focused_controls_observed_unix": 1792411801.904727,
+  "reuse_reason": "src/ and tests/ remain unchanged; new experiment-only scripts additionally pass real tokenizer/source/admission controls, longest-sequence GPU optimizer smoke, first production update, Lean parser/kernel controls and supervisor denominator/liveness controls.",
+  "new_runtime_controls": {
+    "cluster": "PASS",
+    "gx10": "PASS",
+    "gx10_mathlib_import": "PASS",
+    "legacy_sum_compatibility": "PASS"
+  },
+  "repair_controls": {
+    "valid_proof": "PASS",
+    "unsolved_goal_negative": "PASS",
+    "exact_search_policy_negative": "PASS",
+    "actual_repaired_FILE_template_tokens_screen": "PASS"
+  },
+  "new_model": "gpt-6.1-sol high",
+  "campaign_new_controls": {
+    "full_data_admission": "PASS",
+    "actual_GPU_smoke": "PASS",
+    "actual_first_optimizer_update": "PASS",
+    "supervisor_denominator_and_liveness": "PASS",
+    "direct_provider_API_calls_authored": false
+  }
+}

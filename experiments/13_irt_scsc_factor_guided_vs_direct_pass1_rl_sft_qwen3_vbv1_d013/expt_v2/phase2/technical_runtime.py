@@ -15,7 +15,7 @@ from training_checkpoint import digest,write_new
 from runtime import check_lease,numerical_dtype
 from generation_core import validate_cells
 
-STAGES=('preflight','generate','probabilities','update','replay','export')
+STAGES=('preflight','generate','probabilities','update','replay','export','evaluation_preflight','evaluation_generate')
 
 
 def bound(config,path):
@@ -26,16 +26,30 @@ def bound(config,path):
     return path
 
 
+def provenance_preflight(config):
+    """Check required update metadata without constructing a model or reading a probe."""
+    value = config.get('provenance')
+    if (not isinstance(value, dict) or value.get('condition') != 'v2-S2'
+            or type(value.get('run_seed')) is not int
+            or value['run_seed'] != config.get('run_seed')):
+        raise ValueError('missing or inconsistent runtime provenance')
+    return {'condition': 'v2-S2', 'status': 'PASS', 'scope': 'non-probe infrastructure only',
+            'provenance': value, 'model_calls': 0, 'optimizer_updates': 0,
+            'admission_statistics_computed': False}
+
+
 def verify(config,stage):
     if stage not in STAGES or config.get('condition')!='v2-S2':raise ValueError('unregistered S2 stage')
     if config.get('stage')!=stage:raise ValueError('stage differs from the bound execution request')
+    if stage in ('preflight', 'evaluation_preflight', 'update'):
+        provenance_preflight(config)
     paths=[str(Path(b['path']).resolve()) for b in config['bindings']]
     if not paths or len(paths)!=len(set(paths)):raise ValueError('duplicate or empty runtime binding list')
     for b in config['bindings']:bound(config,b['path'])
     # Every authored runtime dependency must be explicit, including the unchanged
     # admitted device binding, probability and common-tokenizer engine paths.
     for name in ('technical_runtime.py','generation_core.py','trainer_core.py','training_checkpoint.py',
-                 'training_data.py','worker_state.py'):
+                 'training_data.py','worker_state.py','ray_paths.py'):
         bound(config,HERE/name)
     for name in ('runtime.py','device_binding.py','anchor_runtime.py','panel.py','probability.py'):
         bound(config,PHASE1/name)
@@ -57,6 +71,14 @@ def verify(config,stage):
         manifest=json.loads(bound(config,config['manifest']).read_text())
         if manifest['max_model_len']!=15945 or manifest['terminal_token_ids']!=config['terminal_token_ids']:
             raise ValueError('health preflight context or terminal mask changed')
+    if stage in ('evaluation_preflight','evaluation_generate'):
+        from evaluation_generation import validate_manifest
+        for name in ('evaluation_generation.py','evaluation_contract.py'):bound(config,HERE/name)
+        manifest=json.loads(bound(config,config['manifest']).read_text())
+        if manifest.get('purpose')!='T4_train_cost' or config['allowlist']!=config['train_ids']:
+            raise ValueError('technical evaluation must remain a frozen train-only cost probe')
+        if config['max_model_len']!=32768:raise ValueError('evaluation context changed')
+        validate_manifest(manifest,Path(config['train_ids']).read_text().splitlines())
     if stage=='update':bound(config,config['groups_path'])
     if stage=='replay':bound(config,Path(config['source_update'])/'result.json')
     if config.get('checkpoint'):
@@ -130,7 +152,24 @@ def probabilities(config,cells):
 
 def run(config,stage):
     verify(config,stage)
+    if stage in ('preflight','evaluation_preflight'):
+        write_new(Path(config['attempt_root'])/'provenance_preflight.json', provenance_preflight(config))
+        from ray_paths import preflight as socket_preflight
+        write_new(Path(config['attempt_root'])/'ray_socket_preflight.json',
+                  socket_preflight(config['ray_temp']))
+    if stage=='evaluation_preflight':
+        import runtime,evaluation_generation
+        runtime.build_engine=lambda c,m:evaluation_generation.build_engine(c)
+        runtime.preflight(config);return
+    if stage=='evaluation_generate':
+        from evaluation_generation import generate
+        manifest=json.loads(Path(config['manifest']).read_text())
+        return generate(config,manifest,list(range(8)),root=config['stage_root'])
     if stage=='preflight':
+        bound(config,HERE/'checkpoint_state_preflight.py')
+        bound(config,HERE/'worker_shutdown.py')
+        from checkpoint_state_preflight import run as checkpoint_preflight
+        checkpoint_preflight(config)
         import runtime,anchor_runtime
         runtime.build_engine=anchor_runtime.build_engine
         # Frozen non-probe engine construction checks the physical device, then

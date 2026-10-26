@@ -1,0 +1,74 @@
+{
+  "observed": "10-19-2026 10:53:03 PDT",
+  "scope": "Owned experiment artifacts; no benchmark/scorer/source/test changes",
+  "first_run_table_recompute": {
+    "status": "PASS",
+    "cells": 1080,
+    "tasks": 135,
+    "samples_per_task": 8,
+    "successes": 120
+  },
+  "model_budget_controls": {
+    "status": "PASS",
+    "maximum": 900,
+    "cleanup_cap": 780,
+    "adaptation_cap": 120,
+    "preserves_prior_charges": true,
+    "distinct_terra_astra_rates": true,
+    "idempotent_settlement": true
+  },
+  "csv_publisher_roundtrip": {
+    "status": "PASS",
+    "embedded_newline_preserved": true
+  },
+  "parse_checks": {
+    "status": "PASS",
+    "scope": "Python AST, JSON, consistent CSV columns for versions12\u201315"
+  },
+  "mac_full_suite": {
+    "status": "FAILED_PLATFORM_ENVIRONMENT",
+    "passed": 1268,
+    "failed": 61,
+    "skipped": 57,
+    "examples": [
+      "Linux /proc process identity unavailable on macOS",
+      "os.pidfd_open unavailable on macOS"
+    ],
+    "log_location": "/Users/lethan3/Documents/veribench-projects/tmp/rl4cv-campaign-verify-10-19-2026/make-test.log"
+  },
+  "linux_full_suite": {
+    "status": "PASS",
+    "passed": 1360,
+    "skipped": 30,
+    "subtests_passed": 6,
+    "seconds": 87.97,
+    "snapshot_tree": "d9ea0b0f927a25343ffd188d0bfdedf4e64b3fd7",
+    "source_files_audited": 9587,
+    "source_mismatches": 0,
+    "gpu_use": false,
+    "hosted_model_calls": 0
+  },
+  "v18_focused_delta": {
+    "inspector_hash_pin": true,
+    "inspector_mutation_control": "PASS",
+    "malformed_partial_proof_maps": "preserved original seed instead of crash",
+    "portable_receipts": "exact byte copy with manifest hashes",
+    "python_ast": "PASS",
+    "no_model_calls": true
+  },
+  "linux_full_suite_first_attempt": {
+    "status": "FAILED_ENVIRONMENT_SETUP",
+    "passed": 1328,
+    "skipped": 55,
+    "failed": 7,
+    "subtests_passed": 6,
+    "seconds": 93,
+    "source_mismatches": 0,
+    "tracked_files_audited": 9587,
+    "missing_environment": [
+      "ripgrep",
+      "git-ignored pinned external modules"
+    ],
+    "followup": "Dependency restoration in isolated GX10 verification environment, then failing cases and full gate"
+  }
+}

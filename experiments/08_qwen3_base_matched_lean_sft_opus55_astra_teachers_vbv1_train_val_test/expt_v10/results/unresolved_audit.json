@@ -1,0 +1,684 @@
+{
+  "total": 74,
+  "overlapping_categories": {
+    "library_identifier": 5,
+    "syntax_compatibility": 57,
+    "resource_limit": 10,
+    "unsolved_goals": 7,
+    "other": 1
+  },
+  "rows": [
+    {
+      "task_id": "workbook_000676",
+      "failure_types": [
+        "library_identifier"
+      ],
+      "checks": 2,
+      "rationale": "The formal statement faithfully expresses the intended inequality and is nonvacuous. For a > 0, the right side minus the left side equals (3*a+1)*(a-1)^2/(4*(a+1)^2), which is nonnegative. However, the bounded checker rejected both supplied indices 0 and 1: each reports unknown identifier 'div_le_iff' at line 6 and unsolved goals. Thus the original script is invalid in the pinned environment, and no supplied replacement has a PASS. This is a proof-script failure, not grounds to reject the statement.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_001377",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful and matches the informal example: the positive divisors of 12 sum to 28. The bounded checker failed both explicit alternative 26 and original 0 at line 4 with \"unexpected token 'in'; expected ','\", before checking their proofs. All supplied alternatives share this unchanged statement syntax. No proof received PASS, so none can be selected. This is a pinned-toolchain syntax compatibility blocker, not evidence of mathematical invalidity or vacuity; the flag against candidate 2 remains unverified.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_005835",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 3,
+      "rationale": "The intended statement correctly expresses 1 + 2 + 3 = 6 and is neither mismatched nor vacuous. The bounded checker failed for explicit alternative 23, original 0, and flagged candidate 1 with the same statement-level parser error at line 5: \"unexpected token 'in'; expected ','\". Thus none received PASS, and these failures do not establish that any proof body leaves an unsolved goal. All supplied alternatives share this unchanged statement syntax, so no proof can be selected without resolving the compatibility blocker.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_007149",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended finite geometric-sum identity is meaningful and matches the displayed informal sum. Reviewed all supplied alternatives and checked explicit candidate 7 and original 0 with the bounded verifier. Both fail before their proof bodies: line 4 reports \"unexpected token 'in'; expected ','\" in the unchanged summation notation. Thus neither proof received PASS, and the original incompleteness allegation cannot be assessed under the pinned environment. Changing proof bodies cannot repair this shared statement-parsing blocker; source artifacts were left unchanged.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_007536",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful and matches the informal sum: its 13 terms are 25,23,...,1, totaling 169. Reviewed all supplied alternatives and checked explicit candidate 5 and original 0. Both fail before proof elaboration at Solution.lean line 5: \"unexpected token 'in'; expected ','\". This shared statement-syntax compatibility failure prevents verification of either proof. Original 0 also appears unfinished, but the checker did not reach its proof body. No supplied proof received PASS; the immutable statement cannot be repaired here.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_008859",
+      "failure_types": [
+        "resource_limit"
+      ],
+      "checks": 4,
+      "rationale": "The statement faithfully expresses the nonvacuous counting problem; inclusion-exclusion gives 998 - 499 - 333 + 166 = 332. Reviewed all five supplied scripts. The bounded checker failed indices 3, 2, 0 and 1 with 'maximum recursion depth has been reached'; none received PASS. These resource-limit failures do not establish mathematical invalidity or justify the annotator's claim that unfolding and congruence cannot compute the answer. Index 4 only rewrites using a division identity and supplies no explicit counting argument; it remained unchecked after exhausting the four-index budget. No supplied proof can be selected as verified.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_014149",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended finite-sum identity is meaningful and matches the informal hockey-stick calculation. However, the immutable theorem header lacks ':' between lean_workbook_14149 and ∑. The bounded checker failed both explicit alternative 8 and original 0 at line 4 with \"unexpected token '∑'; expected ':'\", before checking either proof body. All supplied alternatives share this malformed header, so changing proofs cannot resolve the parser error. No proof received PASS; the original annotation's criticism of its mathematical steps remains unestablished.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_015904",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 3,
+      "rationale": "The intended equality is meaningful and matches the arithmetic question: ten even-minus-odd pairs each contribute 1. Reviewed all supplied scripts; index 2's bare calc is incomplete. The bounded checker tested explicit alternatives 5 and 6 and original 0; all failed at statement line 4 with \"unexpected token 'in'; expected ','\", before their proofs could be assessed. This shared notation compatibility blocker does not establish mathematical invalidity or vacuity. No supplied proof received PASS, so none can be selected without changing the immutable source.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_017834",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 3,
+      "rationale": "The intended equality is meaningful and matches the seven terms 20,17,14,11,8,5,2, which sum to 77. The bounded checker failed for explicit alternative 9, original 0, and automated alternative 1 with the identical statement-level error at line 4: \"unexpected token 'in'; expected ','\". The pinned environment rejects the supplied finite-sum notation before checking any proof body, so these failures do not establish the annotator's claim that the original proof is incomplete. No supplied proof received PASS; immutable sources prevent repairing the compatibility issue here.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_018377",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 3,
+      "rationale": "The intended statement correctly matches the problem: the positive divisors of 32 are 1, 2, 4, 8, 16, and 32, summing to 63; it is neither mismatched nor vacuous. Reviewed all supplied alternatives and checked explicit candidates 4 and 9 plus original 0. All three failed in the unchanged theorem statement at line 4 with \"unexpected token 'in'; expected ','\" under the pinned checker. This shared parsing blocker prevents evaluating the proof bodies, so it does not establish the annotator's claim that original 0 is incomplete. No supplied proof received PASS; selecting one would require an unauthorized source change.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_019069",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful and numerically correct: 4 + 9 + 169 + 289 + 529 = 1000. All supplied alternatives retain the same theorem header. The bounded checker rejected explicit alternative 15 and original 0 at line 4 with \"unexpected token 'in'; expected ','\", before checking either proof body. Thus the original incompleteness flag is not established, and no proof received PASS. This is a syntax-compatibility blocker, not evidence of a false or vacuous statement; immutable source constraints prevent repairing it.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_019348",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful and matches the requested sum: the squares from 1 through 95 sum to 290320, and subtracting the squares from 1 through 9 gives 290035. The unused parameter n introduces no vacuity. The bounded checker failed both explicit alternative 5 and original 0 at statement line 4 with \"unexpected token 'in'; expected ','\", before either proof could be assessed. All supplied alternatives share this unchanged statement syntax. No proof received PASS; resolving the compatibility blocker requires changing immutable source, so neither proof validity nor the original incompleteness flag is established.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_021728",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended finite-sum identity is meaningful and follows pointwise from distributivity; the unused outer parameter does not make it vacuous. Reviewed all 14 supplied scripts. The bounded checker failed on both explicit candidate 3 and original 0 at statement line 4: \"unexpected token 'in'; expected ','\". This shared notation compatibility error prevents checking either proof body, so it neither confirms the flag against candidate 3 nor establishes mathematical invalidity. No proof received PASS, and changing the immutable statement or sources is outside scope.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_023961",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful and matches the informal sum: the extra k = 0 term contributes zero. Candidate 1 has an incomplete calc block. Bounded checks of explicit alternative 7 and original 0 both failed at statement line 5 with \"unexpected token 'in'; expected ','\", before proof verification. All supplied alternatives share this unchanged statement syntax, so no proof can be selected with a checker PASS. This is a pinned-environment syntax compatibility blocker, not evidence of mathematical falsehood or vacuity; immutable sources were not modified.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_025674",
+      "failure_types": [
+        "library_identifier"
+      ],
+      "checks": 1,
+      "rationale": "The formal statement faithfully expresses the intended Cauchy-Schwarz inequality and is nonvacuous. The bounded checker failed index 0 under pinned Lean 4.22: line 6 references the unknown identifier 'div_le_div_iff', and goals remain unsolved. This confirms a script failure, though not the annotator's hypothesized rewrite mismatch. All supplied proof entries are identical, so no distinct replacement is available to verify. The statement itself should not be rejected.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_025692",
+      "failure_types": [
+        "resource_limit"
+      ],
+      "checks": 3,
+      "rationale": "The formal statement faithfully expresses the intended identity and is nonvacuous. Writing a = n^2 + 3*n gives the product a*(a+2), and (a+1)^2 = a*(a+2)+1, so natural-number subtraction is mathematically appropriate. All supplied proofs use discouraged automation; none is an explicit alternative. The bounded checker tested indices 0, 1, and 2, and each failed with '(kernel) deep recursion detected'. No supplied proof received PASS. This resource-limit failure does not establish mathematical invalidity or justify rejecting the statement.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_027185",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended finite-sum identity is meaningful and mathematically correct, with no apparent mismatch or vacuity. Reviewed all supplied alternatives and checked explicit candidate 7 and original 0. Both fail before proof elaboration at Solution.lean line 5: \"unexpected token 'in'; expected ','\" under the pinned verifier. This shared statement-syntax incompatibility prevents verification of any unchanged supplied proof; it does not establish that the original tactic is mathematically inadequate. No proof received PASS, and immutable sources cannot be repaired here.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_027754",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful and matches the informal sum of squares from 1 through 13, which equals 819; it is neither mismatched nor vacuous. Reviewed all supplied alternatives and checked explicit index 7 and original index 0. Both fail before proof verification because the pinned checker rejects the unchanged statement at line 5: unexpected token 'in'; expected ','. Thus neither the original nor a replacement has a PASS. The flag about index 3 cannot be resolved by selecting an unverified proof, and this syntax compatibility failure is not evidence of mathematical invalidity.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_034658",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 1,
+      "rationale": "The formal statement expresses the intended, meaningful remainder calculation; there is no statement-level reason to reject it. Index 0 is the only supplied proof. The bounded checker failed under pinned Lean 4.22 with \"unexpected token 'in'; expected ','\" at Solution.lean line 5, so compilation stopped before the proof could be assessed. Thus the original is unverified, rather than confirmed incomplete as flagged. No supplied alternative is available, and immutable source cannot be repaired.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_038031",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful and matches the informal sum: Finset.range 101 adds only the zero term to the squares from 1 through 100. Reviewed all supplied alternatives; tested explicit alternative 11 and original 0. Both failed before proof checking because the unchanged theorem statement produces \"unexpected token 'in'; expected ','\" at line 4 under the pinned checker. This shared syntax incompatibility prevents verification of any supplied proof without modifying immutable source. No proof received PASS, and the original incompleteness flag therefore remains unconfirmed.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_038594",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement meaningfully counts the positive divisors of 576, and 576 = 2^6 * 3^2 gives 21 divisors. Reviewed all supplied alternatives and checked explicit candidate 6 and original 0. Both failed before proof elaboration: the unchanged statement at line 5 produces \"unexpected token 'in'; expected ','\" under the pinned checker. Thus neither proof received PASS, and the original incompleteness flag cannot be established from these diagnostics. The shared statement syntax blocks verification of every supplied proof; immutable sources cannot be repaired here.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_041436",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful, nonvacuous, and matches the informal binomial-sum identity. The bounded checker failed both explicit alternative 3 and original 0 at theorem line 4: \"unexpected token 'in'; expected ','\". Thus the immutable statement's legacy summation syntax blocks verification under pinned Lean 4.22 before either proof is checked. Alternatives 1 and 4 are incomplete calc scripts; alternative 2 also shares the statement-level parser blocker. No supplied proof obtained PASS, so none can be selected. This is a compatibility failure, not evidence that the mathematical identity is false.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_043302",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 1,
+      "rationale": "The statement faithfully expresses the intended finite gcd sum, whose value is 6725, and is not vacuous. The bounded checker failed on the sole supplied proof, index 0, with a parser error at line 4: unexpected token 'in'; expected ','. Thus the checker never reached its tactic, and no proof received PASS. Independently, the supplied single rewrite does not establish the sum. No other supplied alternative exists.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_046105",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful and matches the binomial-sum identity, although it does not itself require a committee-counting explanation. The bounded checker failed both explicit alternative 6 and original 0 at line 4 with \"unexpected token 'in'; expected ','\", before either proof body could be checked. All supplied alternatives share this unchanged statement syntax, so another proof cannot resolve this compatibility blocker. No proof received PASS; the original flag about congr therefore remains unconfirmed.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_046106",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful and matches the sum of all binomial coefficients. The bounded checker failed both explicit candidate 2 and original 0 at line 4 with \"unexpected token 'in'; expected ','\", before either proof could be checked. Alternatives 1 and 3 share this unchanged statement syntax, so neither can remedy this parsing blocker. No proof received PASS, and the flag about an extra rewrite remains untested rather than established. Resolving the pinned-toolchain syntax compatibility requires coordinator action on the immutable artifacts.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_047692",
+      "failure_types": [
+        "library_identifier"
+      ],
+      "checks": 2,
+      "rationale": "The formal statement faithfully expresses the informal inequality and is nonvacuous and true: x + 3 > 0, and 2*x^2 - 3*x - 9 = (x - 3)*(2*x + 3) ≥ 0 when x ≥ 3. The bounded checker failed both original index 0 and alternative index 1 with unknown identifier 'div_le_div_iff' and unsolved goals, not timeouts. All supplied alternatives contain that same unavailable identifier, and none avoids discouraged automation. No supplied proof received PASS, so no proof can be selected; this is a script compatibility problem, not grounds to reject the statement.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_049142",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful and matches the informal sum: the binomial coefficients total 2^5 = 32. However, the bounded checker failed both explicit alternative 1 and original 0 at statement line 4 with \"unexpected token 'in'; expected ','\", before either proof could be assessed. This shared notation incompatibility does not establish the annotator's claim that the original proof is incomplete. No supplied proof received PASS, and the immutable statement cannot be repaired here.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_049666",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 3,
+      "rationale": "The intended binomial-sum equality is meaningful and nonvacuous: the numerator equals 2^10, so dividing both sides by 2 gives the claimed result. However, bounded checks of explicit alternative 8, original 0, and flagged candidate 1 all fail at statement line 4 with \"unexpected token 'in'; expected ','\" under pinned Lean 4.22. This shared summation-syntax incompatibility prevents verification before the proof bodies are checked. No supplied proof received PASS, so neither a replacement nor the original can be selected, and the flag's claim about candidate 1 remains unverified.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_051403",
+      "failure_types": [
+        "resource_limit"
+      ],
+      "checks": 3,
+      "rationale": "The bounded checker failed all supplied indices (0, 1, and 2) with 'maximum recursion depth has been reached'; none received PASS. This is a verification resource failure, not evidence of mathematical falsity. The formal statement meaningfully counts natural numbers from 0 through 749, including 0, and its cardinality is 536. The annotator's objection is insufficient: rw can unfold definitions, and rfl can establish computational equalities, but these particular scripts could not be verified under the pinned limits.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_053412",
+      "failure_types": [
+        "resource_limit",
+        "unsolved_goals"
+      ],
+      "checks": 4,
+      "rationale": "The statement is meaningful and matches the supplied calculation: inclusion-exclusion gives 250 + 166 - 83 = 333, and subtracting the 41 multiples of 24 gives 292. The bounded checker rejected original index 0 and explicit alternative 4 with unsolved goals. Alternatives 1 and 2 both reached maximum recursion depth at rfl; these resource failures do not establish mathematical invalidity. Alternative 3 was reviewed but not checked: it likewise only rewrites the interval endpoint. The four-index verification budget is exhausted without a PASS, so no supplied proof can be selected.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_055435",
+      "failure_types": [
+        "resource_limit"
+      ],
+      "checks": 4,
+      "rationale": "The statement meaningfully counts multiples of 6 between 100 and 999: floor(999/6) - floor(99/6) = 166 - 16 = 150. Reviewed all five supplied scripts. The bounded checker failed on original index 0 and alternatives 3, 2, and 1, each reporting 'maximum recursion depth has been reached' at its final rfl. These resource-limit failures do not establish mathematical invalidity, but no tested proof received PASS. The four-index budget is exhausted; index 4 remains unverified, so no supplied proof can be selected.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_057792",
+      "failure_types": [
+        "resource_limit",
+        "unsolved_goals"
+      ],
+      "checks": 3,
+      "rationale": "The formal statement is meaningful and true for natural numbers in Finset.range 750: inclusion-exclusion gives 375 + 250 + 108 - 125 - 54 - 36 + 18 = 536, including zero and excluding 750. The bounded checker confirms that original index 0 leaves unsolved goals. Both supplied alternatives, indices 1 and 2, fail with maximum recursion depth errors. These resource-limit failures do not establish mathematical invalidity, but no supplied proof received PASS, so none can be selected.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_057999",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful and matches the example: the positive divisors of 12 sum to 28. Reviewed all supplied alternatives and checked explicit alternative 18 and original 0. Both fail before proof elaboration at line 4 with \"unexpected token 'in'; expected ','\", so the unchanged summation syntax blocks verification under the pinned checker. No proof received PASS, and these diagnostics do not establish the annotator's claim that congr leaves substantive goals unresolved. Source artifacts were not modified.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_059362",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended binomial-sum identity is meaningful, nonvacuous, and matches the informal statement. The flagged candidate 1 supplies an incomplete calc block. However, bounded checks of explicit alternative 7 and original 0 both fail before proof elaboration: Solution.lean line 5 reports \"unexpected token 'in'; expected ','\" in the unchanged summation syntax. No proof received PASS, so none can be selected. This shared syntax incompatibility does not establish mathematical invalidity; resolution requires coordinator intervention without modifying the immutable artifacts.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_063796",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful and numerically correct: the sum is 158360. Natural-number subtraction matches the informal expression throughout this interval; the unused parameter f does not make it vacuous. Reviewed all supplied alternatives and tested explicit index 9 (`exact rfl`) and original index 0. Both fail before proof elaboration at line 4 with \"unexpected token 'in'; expected ','\" in the shared summation notation. No proof received PASS, and this parsing failure does not substantiate the annotator's claim that `trivial` cannot prove the equality. The immutable source requires coordinator-side compatibility resolution before a proof can be selected.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_064436",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The numerical flag is incorrect: the sum is (99·100·101·102 − 2·3·4·5)/4 = 25497420. The intended statement matches the problem and is nonvacuous; the unused parameter n is harmless. However, the bounded checker failed both explicit alternative index 1 and original index 0 at statement line 4 with \"unexpected token 'in'; expected ','\", before checking either proof. Every supplied alternative shares this unchanged statement, so none can resolve the parsing blocker. No proof received PASS, and the sources were left unchanged.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_065005",
+      "failure_types": [
+        "unsolved_goals"
+      ],
+      "checks": 4,
+      "rationale": "The formal statement faithfully expresses the meaningful, true congruence: 2^5 = 32 is congruent to 1 modulo 31, so its eighth power is also congruent to 1. The bounded checker rejected indices 3, 22, 21 and original 0 with unsolved goals. Candidate 3 only rewrites the base; original 0 normalizes the left side inside conv but leaves 1099511627776 ≡ 1 [ZMOD 31] unproved. All four permitted checks are exhausted without a PASS, so no supplied proof can be selected. This is a proof-verification failure, not grounds to reject the statement.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_066240",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful and correct: 1² + 2² + 3² + 4² = 30. The bounded checker failed both explicit alternative 1 (unfold Finset.Icc; rfl) and original 0 at statement line 4 with \"unexpected token 'in'; expected ','\", before either proof could be checked. All supplied alternatives retain this incompatible statement syntax. No proof received PASS; this compatibility blocker neither establishes the annotator's proof-level criticism nor indicates a mismatched or vacuous statement. Resolving it requires a coordinator-authorized syntax repair, which is outside the unchanged-source task.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_068143",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 3,
+      "rationale": "The intended statement is meaningful and matches the informal sum: adding zero to 1 through 999 leaves the total 499500 unchanged. The bounded checker failed all supplied indices (1, 0, and 2) at statement line 4 with \"unexpected token 'in'; expected ','\". This shared syntax incompatibility prevents verification of every proof body, so the original incompleteness flag cannot be confirmed by compilation and no replacement has a PASS. Resolving this requires coordinator-side syntax compatibility repair, not rejection of the mathematical statement.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_068450",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 3,
+      "rationale": "The intended finite sum is meaningful: its seven terms are 1, 21, 70, 84, 45, 11, and 1, totaling 233. The unused x and consistent bounds do not make it vacuous. Reviewing all supplied alternatives reveals no way to avoid the shared statement-level parsing failure. The bounded checker rejected original index 0 and explicit alternatives 9 and 10 at line 7: \"unexpected token 'in'; expected ','\". This occurs before their proof bodies, so it does not establish that their proof reasoning is invalid. No supplied proof received PASS, and immutable source artifacts cannot be repaired here.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_068625",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 1,
+      "rationale": "The statement faithfully expresses the intended alternating sum and is meaningful: each consecutive pair sums to -1, giving -1002 over 1002 pairs. The only supplied proof, index 0, failed the bounded checker with a parser error at line 4: unexpected token 'in'; expected ','. Consequently the checker never reached the proof body, so it does not establish the annotator's incompleteness diagnosis. No supplied proof has a PASS, and modifying the immutable statement or inventing a replacement is outside scope.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_071940",
+      "failure_types": [
+        "other"
+      ],
+      "checks": 1,
+      "rationale": "The statement is sound and nonvacuous: equality of polynomial evaluations at every real number implies polynomial equality, hence equality of coefficients. The bounded checker failed index 0 at line 6: after rewriting the goal as p - q = 0, `apply funext` cannot apply to equality of polynomials. The sole listed alternative duplicates the original script, so no distinct supplied replacement is available. No supplied proof received PASS; the statement itself should not be rejected.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_078338",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended finite-sum equality is meaningful and matches the informal problem; the unused outer parameter does not make it vacuous. The bounded checker failed both explicit alternative 5 and original 0 at statement line 4: \"unexpected token 'in'; expected ','\". This shared syntax incompatibility prevents checking either proof body under pinned Lean 4.22. No supplied proof has a PASS, so neither proof validity nor the annotator's claim of an incomplete original proof is established. Resolving this requires coordinator-side source compatibility handling, not a different proof of the unchanged source.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_081222",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 3,
+      "rationale": "The bounded checker failed for explicit alternative 19, original 0, and public candidate 13 at statement line 5: \"unexpected token 'in'; expected ','\". The shared legacy summation syntax prevents verification before any proof body is checked, so these failures do not establish that the scripts are mathematically invalid. No supplied proof received PASS. The equality is nonvacuous and matches the informal calculation of 16398; the concluding 398 is inconsistent with that calculation. Source artifacts were left unchanged.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_081280",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful and matches the requested calculation: the cube sum is 53360 and the linear sum is 230, giving 53130. The unused parameter n does not make it vacuous. Reviewed all supplied alternatives and tested explicit index 12 first, then original index 0. Both fail before proof elaboration at line 4: \"unexpected token 'in'; expected ','\" in the shared summation notation. Thus neither receives a verifier PASS, and the original incompleteness flag cannot be resolved under the pinned environment. This is a source-compatibility blocker, not evidence of mathematical invalidity; changing the immutable statement is outside scope.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_082530",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The mathematical claim is true and nonvacuous: summing squares over 0,...,98 gives 318549, with remainder 3 modulo 9. Omitting 99 does not change the intended remainder because 99^2 is divisible by 9, so the annotator's arithmetic objection is incorrect. However, bounded checks of explicit candidate 1 and original 0 both failed at statement line 5: \"unexpected token 'in'; expected ','\". This shared notation incompatibility prevents verification before either proof body is checked; changing only the supplied proof cannot repair it. No proof received PASS, so none can be selected.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_084248",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 3,
+      "rationale": "The intended statement is meaningful and matches the informal question: summing 1 over the 1155 integers from 1 through 1155 gives 1155. Reviewed all supplied proofs and checked explicit alternative 7, original 0, and flagged candidate 4. All three fail at statement line 4 with \"unexpected token 'in'; expected ','\", before their proof bodies can be checked. This shared notation compatibility failure neither establishes the annotation's criticism of candidate 4 nor demonstrates mathematical invalidity. No supplied proof received PASS, and immutable-source constraints prevent repairing the notation.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_084591",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The bounded checker rejected both explicit candidate 6 and original 0 at statement line 4: \"unexpected token 'in'; expected ','\". All supplied alternatives share this unchanged statement, so the syntax incompatibility blocks verification before either proof is checked. No supplied proof obtained PASS. This does not establish the annotator's division/coercion objection or mathematical invalidity; reconciliation requires coordinator repair of the incompatible notation.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_085984",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement correctly expresses that the first 20 positive cubes sum to 44100; it is neither mismatched nor vacuous. The bounded checker rejected both explicit alternative 8 and original 0 at statement line 5: \"unexpected token 'in'; expected ','\". This shared syntax incompatibility prevents proof verification in the pinned environment. No supplied proof received PASS. The annotator's incomplete-calc diagnosis describes alternatives 16 and 27, not original 0.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_086621",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended identity is correct: the sum of squares through 95 minus the sum through 9 is 290320 - 285 = 290035. The unused parameter n does not make it vacuous or mismatched. Reviewed all supplied alternatives; checked explicit index 6 and original index 0. Both fail before proof elaboration at line 4 with \"unexpected token 'in'; expected ','\" in the shared summation notation under pinned Lean 4.22. Thus neither received PASS, and this compatibility failure prevents assessing the original flag or verifying a replacement without changing immutable source.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_087152",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "Checked both supplied indices, explicit alternative 1 first and original 0 second. Both fail parsing at line 4 with \"unexpected token 'in'; expected ','\", before either proof is checked. Neither received PASS, so neither can be selected; the original flag about its proof body remains unverified. The intended statement is meaningful: the range replaces n=2019 with n=0, whose gcd contributions are both 2019. This is a source-compatibility blocker, not evidence of a false or vacuous mathematical statement. Immutable sources were not modified.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_089041",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 3,
+      "rationale": "The intended equality is meaningful and matches this particular mean: fifteen zero contributions and one contribution 16/16 give 1. Original index 0 contains an incomplete calc expression. The bounded checker tested explicit alternative 9 first, then original 0 and automated alternative 11; all failed at statement line 4 with \"unexpected token 'in'; expected ','\" before proof checking. All supplied alternatives retain that same incompatible summation syntax, so none can resolve this unchanged-source parsing blocker. No proof received PASS; this is not evidence of mathematical falsehood or vacuity.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_090043",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful and numerically correct: the first 100 triangular numbers sum to 100·101·102/6 = 171700. Natural-number division causes no mismatch because n(n+1) is always even. However, the bounded checker failed both explicit candidate 3 (exact rfl) and original 0 at statement line 5: \"unexpected token 'in'; expected ','\". All supplied alternatives share this unchanged statement, so none can bypass this parser failure. Neither checked proof received PASS; the original rewrite's sufficiency therefore remains unverified. This is a source-compatibility blocker, not evidence of a false or vacuous mathematical statement.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_091709",
+      "failure_types": [
+        "resource_limit",
+        "unsolved_goals"
+      ],
+      "checks": 4,
+      "rationale": "The statement faithfully formalizes the problem and is nonvacuous: the four powered factors have residues 3, 4, 2, and 1 modulo 5, whose product has remainder 4. Reviewed all supplied alternatives. The bounded checker confirmed that flagged index 1 leaves unsolved goals. Explicit index 6, original index 0, and automated fallback index 23 all failed with maximum recursion depth errors; these resource failures do not establish mathematical invalidity. All four permitted checks were used, and none returned PASS, so no supplied proof can be selected.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_094241",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement correctly counts the positive divisors of 72: 72 = 2^3 * 3^2 gives (3+1)(2+1) = 12 divisors. Reviewed all supplied alternatives and checked explicit index 17 and original index 0. Both fail at Solution.lean line 5 with \"unexpected token 'in'; expected ','\", before their proof scripts are checked. All supplied candidates share this statement syntax. No proof received PASS, and the parser failure does not establish the annotator's claim that the original tactic is incomplete. Resolving compatibility requires a coordinator-owned source change; this is not a mismatched or vacuous statement.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_098904",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended identity is meaningful and true: 2 + 4 + 6 = 12. The bounded checker rejected both explicit alternative 4 (unfold Finset.Icc; rfl) and original 0 (congr 1) at statement line 4: \"unexpected token 'in'; expected ','\". This shared parsing failure occurs before either proof can be checked, so it does not substantiate the original congruence-tactic flag. All supplied alternatives retain the same statement syntax; none can resolve this blocker without changing immutable source. No proof received PASS.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_098912",
+      "failure_types": [
+        "library_identifier"
+      ],
+      "checks": 1,
+      "rationale": "The statement is sound and nonvacuous: the radicand equals 468*t^2, and t > 0 gives the asserted positive square root. It formalizes the distance identity underlying the informal rate calculation. The bounded checker failed index 0: line 7 references the unknown constant Real.sqrt_eq_iff_sq_eq, and field_simp reports no progress. Thus the supplied script is invalid in the pinned environment, not merely insufficiently explained. The supplied proof list contains only this script, so no verified replacement is available.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_100492",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 3,
+      "rationale": "The bounded checker tested all supplied indices (0, 1, 2); each failed at Solution.lean line 4 with \"unexpected token 'in'; expected ','\" before its proof could be checked. Thus neither the original nor either alternative received PASS. The intended counting claim is meaningful and correct: inclusion-exclusion gives 1002 + 668 + 400 - 334 - 200 - 133 + 66 = 1469. The observed failure is source compatibility with the pinned parser, not evidence of vacuity or a mathematical mismatch. It also does not establish the annotator's claim that the original final congr is inadequate. With immutable sources and no verified candidate, verification remains unresolved.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_101058",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended formal statement meaningfully matches the sum of the first 100 odd numbers and is not vacuous. The bounded checker failed both explicit alternative 17 and original 0 at line 5 with \"unexpected token 'in'; expected ','\", before either proof could be checked. All supplied alternatives share this unchanged statement, so changing the proof cannot resolve this parsing blocker. No proof received PASS; the annotator's claim about the final congr remains unconfirmed.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_106770",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful, nonvacuous, and matches the informal sum: 2009·2010/2 = 2019045. Both supplied indices 0 and 1 failed the bounded checker at statement line 5 with \"unexpected token 'in'; expected ','\" under pinned Lean 4.22. This shared syntax incompatibility prevents verification of either proof and does not establish the annotator's claim that the original proof body is incomplete. No supplied proof received PASS; immutable sources cannot be repaired here.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_106867",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement correctly models twelve birthday gifts and totals 12*10 + 3*66 = 318; it is neither mismatched nor vacuous. The bounded checker rejected explicit alternative 10 and original 0 at the unchanged theorem statement: line 4 reports \"unexpected token 'in'; expected ','\". Neither proof body was verified. All supplied alternatives share this statement, so changing the proof cannot resolve this parser incompatibility. The flag against index 5's congr step remains unestablished; no supplied proof can be selected without a checker PASS.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_107092",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended finite-sum statement matches the informal identity and is nonvacuous. The bounded checker tested both supplied indices 1 and 0; both failed at line 4 with \"unexpected token 'in'; expected ','\" in the unchanged summation notation, before either proof body could be checked. Neither candidate received PASS. This syntax-compatibility failure does not establish that the identity or either proof's mathematical reasoning is invalid, and source repairs are outside the permitted selection task.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_107711",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful, nonvacuous, and matches the informal sum of squares from 13 down to 1. Reviewed all supplied alternatives and tested explicit candidate 10 followed by original 0. Both failed the bounded checker at statement line 5: \"unexpected token 'in'; expected ','\". The unchanged summation syntax prevents proof checking in the pinned environment, so these results do not establish the annotator's claim that the original proof leaves goals open. No supplied proof received PASS; resolving compatibility requires a coordinator-owned source change.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_108613",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "Checked both supplied indices, 1 and 0. Neither passed: the pinned checker rejects the unchanged theorem statement at line 4 with \"unexpected token 'in'; expected ','\", before either proof can be assessed. The intended statement is meaningful and true: each block of four consecutive odd factors has product 1 modulo 8, and the remaining two factors contribute 3. This is a syntax-compatibility blocker, not evidence of a mismatched or vacuous statement. The original's alleged unfinished-proof issue remains unverified, and no supplied proof can be selected without a checker PASS.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_108821",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "Reviewed all eight supplied scripts. The bounded checker failed both explicit alternative 5 and original 0 at statement line 4: \"unexpected token 'in'; expected ','\". The unchanged legacy summation syntax is rejected before either proof can be checked. Original 0 also contains an incomplete calc block, but no replacement has a checker PASS. This compatibility failure does not establish mathematical falsity or vacuity; resolving it requires a coordinator-approved statement syntax repair.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_109010",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The intended statement is meaningful and correct: the sum is 385 + 165 + 20 = 570; the unused parameter n is harmless. The flagged candidate 2 has an unfinished calc block. The bounded checker rejected both explicit alternative 21 and original 0 at statement line 4 with \"unexpected token 'in'; expected ','\", before checking their proof bodies. All supplied alternatives share this unchanged statement syntax, so another proof cannot resolve the parser incompatibility. No proof received PASS; this is a verification blocker, not mathematical invalidity or vacuity.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_109082",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 3,
+      "rationale": "The intended statement correctly counts the positive divisors of 576: 576 = 2^6 * 3^2 gives (6+1)(2+1) = 21, so it is meaningful and nonvacuous. Reviewed all supplied alternatives and checked explicit alternative 24, original 0, and flagged candidate 2. All three fail at statement line 5 with \"unexpected token 'in'; expected ','\", before their proof bodies can be checked. This shared notation incompatibility prevents verification of the unchanged source; it does not establish mathematical invalidity or confirm the flag against candidate 2. No supplied proof received PASS.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_111221",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 2,
+      "rationale": "The finite-sum statement is meaningful and arithmetically correct: the ten squares sum to 2485, and adding ten gives 2495. Original index 0 contains an incomplete calc expression. The bounded checker failed both explicit alternative 1 (unfold Finset.Icc; rfl) and original 0 at statement line 4: \"unexpected token 'in'; expected ','\". All supplied alternatives share this incompatible statement syntax, so changing the proof cannot resolve the parser failure. No supplied proof obtained PASS; this is a compatibility blocker, not evidence of a false or vacuous statement.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_112609",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 1,
+      "rationale": "The intended statement is meaningful and matches the informal modular-sum claim: the integer sum has remainder 11 modulo 17. The only supplied proof, index 0, failed the bounded checker because line 5 uses unsupported summation syntax: \"unexpected token 'in'; expected ','\". Compilation fails before the proof tactics are checked, so this does not establish the annotator's claim that rfl cannot close the goal. No supplied proof received PASS, and modifying the immutable source is not permitted.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_112754",
+      "failure_types": [
+        "library_identifier"
+      ],
+      "checks": 1,
+      "rationale": "The formal statement faithfully expresses the intended inequality and has satisfiable positivity hypotheses. The bounded checker failed index 0 under pinned Lean 4.22: line 6 references the unknown identifier `div_le_div_iff`, and goals remain unsolved. Thus the flag identifies an invalid script in this environment, not a bad statement or merely unexplained automation. The sole supplied proof is the original; no distinct replacement is available to verify.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_113757",
+      "failure_types": [
+        "syntax_compatibility"
+      ],
+      "checks": 3,
+      "rationale": "The intended statement is meaningful and matches the singleton sum: the interval contains only 1155, so its sum is 1155. The unused parameter x does not make it vacuous. Reviewed all supplied alternatives; checked explicit candidate 7, original 0, and lemma-based fallback 3. All fail at line 4 with \"unexpected token 'in'; expected ','\" in the unchanged theorem statement under the pinned environment. No proof received PASS. This shared syntax failure prevents verification of the original or alternatives and does not establish the flagged calc-specific diagnosis. Resolving compatibility requires a coordinator-owned source change.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_123186",
+      "failure_types": [
+        "resource_limit",
+        "unsolved_goals"
+      ],
+      "checks": 4,
+      "rationale": "The formal statement matches the stated inclusion-exclusion count and is meaningful. The original proof (index 0) was checked and fails with unsolved goals after its rewrite. Explicit alternatives 6 and 7, plus alternative 5, were also checked but fail compilation with maximum recursion depth. No supplied proof received a PASS within the four-index checker budget.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_128621",
+      "failure_types": [
+        "resource_limit",
+        "unsolved_goals"
+      ],
+      "checks": 4,
+      "rationale": "The formal statement faithfully expresses the intended coprime-count claim and is mathematically meaningful. The original proof (index 2) and explicit candidate 4 both hit the bounded checker's maximum recursion depth; candidate 0 does likewise, and candidate 5 leaves unsolved goals. No supplied proof received a PASS, so no proof can be selected within the four-index verification budget.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    },
+    {
+      "task_id": "workbook_137000",
+      "failure_types": [
+        "resource_limit",
+        "unsolved_goals"
+      ],
+      "checks": 4,
+      "rationale": "The formal statement is meaningful and matches the intended units-digit claim, but original proof 0 fails with an unsolved goal after expanding via Nat.mod_add_div. Bounded checks of supplied explicit candidates 17 and 8, and candidate 1, each fail with Lean maximum-recursion-depth errors; no checked candidate received PASS. The four-candidate budget is exhausted, so no proof can honestly be selected.",
+      "status": "EXCLUDED_PENDING_RECOVERY"
+    }
+  ]
+}

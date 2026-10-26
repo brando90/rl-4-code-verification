@@ -1,0 +1,44 @@
+{
+  "condition": "v2-S2",
+  "status": "PASS",
+  "exit_code": 0,
+  "reproduced_original_defect": true,
+  "original_error": "installed Ray OSError: AF_UNIX path length cannot exceed 107 bytes",
+  "original_socket_path_bytes": 148,
+  "fixed_worst_case_path_bytes": 101,
+  "socket_limit_bytes": 107,
+  "focused_tests": 9,
+  "focused_elapsed_seconds": 16.28,
+  "focused_command": "E13_REQUIRE_LEAN_INTEGRATION=1 python -m pytest -q tests/test_e13_ray_paths.py tests/test_e13_technical_runtime.py tests/test_e13_training_checkpoint.py",
+  "focused_log_sha256": "8ae42405af01aa70a68b02069f0cc3fa4f2c32961dd9c6d5db67ac0062434747",
+  "real_kernel_socket_bound": true,
+  "installed_ray_zero_device_cluster_started": true,
+  "cpu_health_task_completed": true,
+  "actual_model_calls": 0,
+  "device_claims": 0,
+  "scientific_function_preservation": {
+    "trainer_core.py": {
+      "changed_functions": [
+        "policy_session"
+      ],
+      "byte_identical_function_bodies": [
+        "plain",
+        "recompute",
+        "replay_saved",
+        "update"
+      ]
+    },
+    "technical_runtime.py": {
+      "changed_functions": [
+        "run",
+        "verify"
+      ],
+      "byte_identical_function_bodies": [
+        "bound",
+        "generation_rows",
+        "main",
+        "probabilities"
+      ]
+    }
+  }
+}

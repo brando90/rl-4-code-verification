@@ -1,0 +1,51 @@
+{
+  "status": "DEPLOYED",
+  "observed_unix": 1792401351.275751,
+  "resumed_after_step": 100,
+  "completed_step": 102,
+  "prefix_matches_retained_copy": true,
+  "restore": {
+    "status": "PASS",
+    "step": 100,
+    "master_and_moment_restore": "exact",
+    "bf16_shadows_match_masters": true,
+    "cpu_cuda_rng_restored": true,
+    "pid": 976411,
+    "verified_unix": 1792401268.0372891
+  },
+  "baseline_last_30_updates": {
+    "tiny": {
+      "n": 10,
+      "median_seconds": 27.145804914995097,
+      "min_seconds": 24.269523754017428,
+      "max_seconds": 28.77399814396631
+    },
+    "existing": {
+      "n": 20,
+      "median_seconds": 34.67848501849221,
+      "min_seconds": 30.584143174928613,
+      "max_seconds": 42.2502473880304
+    }
+  },
+  "fused_updates": [
+    {
+      "step": 101,
+      "tiny": false,
+      "seconds": 35.23899176099803
+    },
+    {
+      "step": 102,
+      "tiny": true,
+      "seconds": 19.629999469034374
+    }
+  ],
+  "fused_after_first_update": {
+    "tiny": {
+      "n": 1,
+      "median_seconds": 19.629999469034374,
+      "min_seconds": 19.629999469034374,
+      "max_seconds": 19.629999469034374
+    }
+  },
+  "timing_limits": "Unpaired sequence lengths, few resumed updates. CSV time joins training loops and excludes checkpoint-handoff/startup downtime; original wall-clock stage receipts retain that downtime. No extrapolated end-to-end speedup."
+}

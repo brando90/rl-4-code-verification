@@ -1,0 +1,271 @@
+{
+  "schema": 1,
+  "recorded_unix": 1792162415.6109517,
+  "observed_by": "read-only route_inventory agent; sole owner serialized returned measurements",
+  "socket_ownership": "Exact boot/start fenced PID; socket inode matched through /proc/PID/fd",
+  "samples": [
+    {
+      "host": "skampere1",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "t1": 1792162089.8546035,
+      "t2": 1792162100.131231,
+      "workers": [
+        [
+          6,
+          3835737,
+          39858134
+        ],
+        [
+          7,
+          3834694,
+          39857784
+        ]
+      ],
+      "matched_sockets": 62,
+      "new_sockets": 0,
+      "bulk_deltas": [
+        {
+          "rank": 7,
+          "peer": "172.24.75.251",
+          "sent": 1197765764,
+          "acked": 1197768660,
+          "retrans": 2896,
+          "sent_mib_per_second": 111.15304526567571
+        },
+        {
+          "rank": 6,
+          "peer": "172.24.75.237",
+          "received": 1198146968,
+          "received_mib_per_second": 111.18842111856864
+        }
+      ]
+    },
+    {
+      "host": "skampere2",
+      "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+      "t1": 1792162089.2215836,
+      "t2": 1792162099.5361016,
+      "workers": [
+        [
+          4,
+          1175782,
+          1233633344
+        ],
+        [
+          5,
+          1176395,
+          1233633519
+        ]
+      ],
+      "matched_sockets": 60,
+      "new_sockets": 0,
+      "bulk_deltas": [
+        {
+          "rank": 5,
+          "peer": "172.24.75.194",
+          "sent": 1203545508,
+          "acked": 1202740420,
+          "retrans": 169416,
+          "sent_mib_per_second": 111.27911574772484
+        },
+        {
+          "rank": 4,
+          "peer": "172.24.75.251",
+          "received": 1209299596,
+          "received_mib_per_second": 111.81113536835277
+        }
+      ]
+    },
+    {
+      "host": "skampere3",
+      "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+      "t1": 1792162087.8837519,
+      "t2": 1792162098.0543938,
+      "workers": [
+        [
+          0,
+          3929733,
+          266646912
+        ],
+        [
+          1,
+          3929906,
+          266646938
+        ],
+        [
+          2,
+          3929096,
+          266646856
+        ],
+        [
+          3,
+          3929098,
+          266646866
+        ]
+      ],
+      "matched_sockets": 130,
+      "new_sockets": 0,
+      "bulk_deltas": [
+        {
+          "rank": 0,
+          "peer": "172.24.75.194",
+          "received": 1179057452,
+          "received_mib_per_second": 110.557113375343
+        },
+        {
+          "rank": 1,
+          "peer": "172.24.75.237",
+          "sent": 1185293264,
+          "acked": 1185293264,
+          "retrans": 0,
+          "sent_mib_per_second": 111.14182905064948
+        }
+      ]
+    }
+  ],
+  "raw_counter_limitation": "Sampler emitted matched deltas, not individual inode/port or first/second cumulative counters; those fields were not retained.",
+  "link_inspection": {
+    "checked_unix": 1792162295.192,
+    "interface": "enp44s0f0",
+    "driver": "ixgbe",
+    "kernel": "6.8.0-146-generic",
+    "speed_mbps": 1000,
+    "full_duplex": true,
+    "autonegotiation": true,
+    "supported_bitmap": [
+      12520,
+      98304,
+      0,
+      0
+    ],
+    "advertising_bitmap": [
+      12520,
+      0,
+      0,
+      0
+    ],
+    "partner_advertising_bitmap": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "advertised_full_duplex_mbps": [
+      100,
+      1000,
+      10000
+    ],
+    "partner_modes_unavailable": true,
+    "second_physical_port": "DOWN; no link or address",
+    "peer_routes": "Both selected peers use enp44s0f0",
+    "interpretation": "Local configuration already advertises10Gb; no demonstrated safe software setting repair or configured faster path. Switch versus cable/downshift remains unresolved."
+  },
+  "gpu_snapshot": {
+    "selected_used_mib": {
+      "skampere1": [
+        51751,
+        51751
+      ],
+      "skampere2": [
+        53747,
+        53761
+      ],
+      "skampere3_range": [
+        52512,
+        52552
+      ]
+    },
+    "selected_utilization_percent": 100,
+    "limitation": "Utilization alone does not distinguish computation from collective waiting.",
+    "skampere2_nonselected_free_mib": {
+      "0": 53904,
+      "1": 26532,
+      "2": 49574,
+      "4": 53622,
+      "6": 77581,
+      "7": 86640
+    },
+    "skampere3_nonselected_free_mib": 18070,
+    "min_free_mib_for_existing_shared_admission": 102400,
+    "additional_admissible_devices": 0
+  },
+  "checkpoint_audit": {
+    "nemo_commit": "c751f811217db7df0d4c94abdeaada6626cfc150",
+    "next_native_save_step": 335,
+    "save_period": 1000000,
+    "checkpoint_must_save_by": null,
+    "supported_live_early_checkpoint_trigger": false,
+    "driver_state_required": [
+      "completed step counters",
+      "live StatefulDataLoader",
+      "all policy ranks and optimizer/scheduler",
+      "native temporary-checkpoint finalization"
+    ],
+    "limitation": "External worker save calls do not capture driver-owned loader/counters or synchronize its next training collective. No explicit global Python/NumPy/CPU/CUDA RNG serialization was found in the pinned native checkpoint code.",
+    "source_locations": [
+      "nemo_rl/algorithms/sft.py:502",
+      "nemo_rl/utils/timer.py:264",
+      "nemo_rl/models/policy/lm_policy.py:718",
+      "nemo_rl/models/policy/dtensor_policy_worker.py:1886",
+      "nemo_rl/utils/native_checkpoint.py:97"
+    ]
+  },
+  "decision": "Preserve healthy native training and frozen science. Consider a faster physical route only at a supported native checkpoint boundary after exact capacity/identity admission.",
+  "inference_limits": "Brief socket samples support a1Gb/s ring bottleneck during those intervals; they do not establish the fraction of total step time caused by networking or guarantee a tenfold speedup.",
+  "slurm_latest": {
+    "checked_unix": 1792161491.8776515,
+    "route": {
+      "eligible": false,
+      "association_present": false,
+      "idle_eight_gpu_nodes": [],
+      "inventory": [
+        {
+          "node": "ampere1",
+          "state": "MIXED+PLANNED",
+          "gres": "gpu:a100:8"
+        },
+        {
+          "node": "ampere2",
+          "state": "MIXED+PLANNED",
+          "gres": "gpu:a100:8"
+        },
+        {
+          "node": "ampere3",
+          "state": "MIXED",
+          "gres": "gpu:a100:8"
+        },
+        {
+          "node": "ampere4",
+          "state": "MIXED",
+          "gres": "gpu:a100:8"
+        },
+        {
+          "node": "ampere5",
+          "state": "MIXED+PLANNED",
+          "gres": "gpu:a100:8"
+        },
+        {
+          "node": "ampere6",
+          "state": "MIXED+PLANNED",
+          "gres": "gpu:a100:8"
+        },
+        {
+          "node": "ampere8",
+          "state": "MIXED+PLANNED",
+          "gres": "gpu:a100:8"
+        },
+        {
+          "node": "ampere9",
+          "state": "MIXED+PLANNED",
+          "gres": "gpu:a100:8"
+        },
+        {
+          "node": "blackwell1",
+          "state": "MIXED+PLANNED",
+          "gres": "gpu:b200:8"
+        }
+      ],
+      "requires_allocation_and_preparation": true
+    }
+  }
+}

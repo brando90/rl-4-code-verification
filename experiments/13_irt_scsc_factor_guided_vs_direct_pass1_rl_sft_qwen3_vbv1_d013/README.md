@@ -12,7 +12,7 @@ The plan has three phases:
 - **Phase 1:** fit and validate a conjunctive item response theory (IRT) model that predicts held-out pass@1 and pass@k.
 - **Phase 2:** run four RL arms from the Qwen3-4B SFT checkpoint: strict reward, SCSC-style factored reward, IRT-guided reward and prompt sampling, and a placebo dense reward.
 
-Status (10-14-2026): **Version 2 STOPPED at final measured LP-1 FAIL under A4.** Attempt 2 measured all 8/8 responses and 40,035 tokens. Its 99th-percentile absolute generation/trainer log-probability error is **0.124769325 > 0.10**; median error 0.000302777, unsupported 0 and truncation 0 pass. A4 makes this measured verdict final: no attempt 3 or downstream run is admitted. Cleanup passed; both leases are released after cumulative 0.115364424/0.6 device-hours. G0 remains PASS. [LP-1 report](expt_v2/RESULTS_LP1.md) · [A4](expt_v2/AMENDMENT_A4_technical_gate_infrastructure_attempts_10-14-2026.md). The G1 driver/method lock is retained but no actual fit or reinforcement-learning update ran.
+Status (10-16-2026 08:40 PDT): **v2-S2 STOPPED_AT_T2_FAIL.** One optimizer step completed with unchanged weights and zero nonzero-advantage slots; 256/256 train responses, 255 measured scores and one missing. Refit passes, but PLAN section 4 stops Phase 2. All 14 T2 leases released, 4.370285669/10.0 cumulative device-hours. [Final T2 report](expt_v2/RESULTS_T2_S2.md). Reward-arm comparisons and new held-out outcomes remain unmeasured.
 
 - **Created:** 10-09-2026 by Claude Code (`claude-opus-5-5`) for Brando.
 - **Owner:** fresh version 2 skampere1 owner `codex-rl4cv-e13v2-owner-g0`; the Mac master retains the parent experiment.

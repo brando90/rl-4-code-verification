@@ -1,0 +1,222 @@
+{
+  "allocated_cpu_hours": 198.22916666666666,
+  "allocated_cpu_seconds": 713625,
+  "caveat": "Allocation accounting, not CPUTimeRAW. Parent array summaries and step rows are excluded to avoid double counting; all terminal failures are included when supplied.",
+  "charged_top_level_or_array_task_rows": 78,
+  "elapsed_hours": 66.07638888888889,
+  "elapsed_seconds": 237875,
+  "final_accounting_ready": true,
+  "ignored_step_rows": 0,
+  "input_rows": 79,
+  "inventory_absent_from_sacct": [],
+  "inventory_roles": {
+    "48880517": "failed_preparation",
+    "48880518": "nonexecuted_strict_dependency",
+    "48880519": "nonexecuted_partial_dependency",
+    "48881654": "successful_materialize",
+    "48881657": "strict_array",
+    "48881660": "cancelled_partial",
+    "48882176": "collector_1",
+    "48882641": "partial_array",
+    "48882642": "collector_2",
+    "48888345": "strict_retry_1",
+    "48888814": "strict_retry_2",
+    "48890055": "strict_retry_3a",
+    "48890056": "strict_retry_3b",
+    "48890627": "strict_retry_4a",
+    "48890632": "strict_retry_4b",
+    "48892191": "collector_3"
+  },
+  "job_root_task_counts": {
+    "48880517": 1,
+    "48880518": 1,
+    "48880519": 1,
+    "48881654": 1,
+    "48881657": 32,
+    "48881660": 1,
+    "48882176": 1,
+    "48882641": 32,
+    "48882642": 1,
+    "48888345": 1,
+    "48888814": 1,
+    "48890055": 1,
+    "48890056": 1,
+    "48890627": 1,
+    "48890632": 1,
+    "48892191": 1
+  },
+  "max_rss_mib_max": null,
+  "nonterminal_records": [],
+  "per_job_root": {
+    "48880517": {
+      "allocated_cpu_seconds": 27,
+      "elapsed_seconds": 9,
+      "max_rss_mib_max": null,
+      "role": "failed_preparation",
+      "states": {
+        "FAILED": 1
+      },
+      "task_rows": 1
+    },
+    "48880518": {
+      "allocated_cpu_seconds": 0,
+      "elapsed_seconds": 0,
+      "max_rss_mib_max": null,
+      "role": "nonexecuted_strict_dependency",
+      "states": {
+        "CANCELLED": 1
+      },
+      "task_rows": 1
+    },
+    "48880519": {
+      "allocated_cpu_seconds": 0,
+      "elapsed_seconds": 0,
+      "max_rss_mib_max": null,
+      "role": "nonexecuted_partial_dependency",
+      "states": {
+        "CANCELLED": 1
+      },
+      "task_rows": 1
+    },
+    "48881654": {
+      "allocated_cpu_seconds": 183,
+      "elapsed_seconds": 61,
+      "max_rss_mib_max": null,
+      "role": "successful_materialize",
+      "states": {
+        "COMPLETED": 1
+      },
+      "task_rows": 1
+    },
+    "48881657": {
+      "allocated_cpu_seconds": 267003,
+      "elapsed_seconds": 89001,
+      "max_rss_mib_max": null,
+      "role": "strict_array",
+      "states": {
+        "COMPLETED": 30,
+        "OUT_OF_MEMORY": 2
+      },
+      "task_rows": 32
+    },
+    "48881660": {
+      "allocated_cpu_seconds": 294,
+      "elapsed_seconds": 98,
+      "max_rss_mib_max": null,
+      "role": "cancelled_partial",
+      "states": {
+        "CANCELLED by 412530": 1
+      },
+      "task_rows": 1
+    },
+    "48882176": {
+      "allocated_cpu_seconds": 0,
+      "elapsed_seconds": 0,
+      "max_rss_mib_max": null,
+      "role": "collector_1",
+      "states": {
+        "CANCELLED by 412530": 1
+      },
+      "task_rows": 1
+    },
+    "48882641": {
+      "allocated_cpu_seconds": 443970,
+      "elapsed_seconds": 147990,
+      "max_rss_mib_max": null,
+      "role": "partial_array",
+      "states": {
+        "COMPLETED": 32
+      },
+      "task_rows": 32
+    },
+    "48882642": {
+      "allocated_cpu_seconds": 0,
+      "elapsed_seconds": 0,
+      "max_rss_mib_max": null,
+      "role": "collector_2",
+      "states": {
+        "CANCELLED by 412530": 1
+      },
+      "task_rows": 1
+    },
+    "48888345": {
+      "allocated_cpu_seconds": 207,
+      "elapsed_seconds": 69,
+      "max_rss_mib_max": null,
+      "role": "strict_retry_1",
+      "states": {
+        "OUT_OF_MEMORY": 1
+      },
+      "task_rows": 1
+    },
+    "48888814": {
+      "allocated_cpu_seconds": 252,
+      "elapsed_seconds": 84,
+      "max_rss_mib_max": null,
+      "role": "strict_retry_2",
+      "states": {
+        "OUT_OF_MEMORY": 1
+      },
+      "task_rows": 1
+    },
+    "48890055": {
+      "allocated_cpu_seconds": 195,
+      "elapsed_seconds": 65,
+      "max_rss_mib_max": null,
+      "role": "strict_retry_3a",
+      "states": {
+        "OUT_OF_MEMORY": 1
+      },
+      "task_rows": 1
+    },
+    "48890056": {
+      "allocated_cpu_seconds": 84,
+      "elapsed_seconds": 28,
+      "max_rss_mib_max": null,
+      "role": "strict_retry_3b",
+      "states": {
+        "OUT_OF_MEMORY": 1
+      },
+      "task_rows": 1
+    },
+    "48890627": {
+      "allocated_cpu_seconds": 342,
+      "elapsed_seconds": 114,
+      "max_rss_mib_max": null,
+      "role": "strict_retry_4a",
+      "states": {
+        "OUT_OF_MEMORY": 1
+      },
+      "task_rows": 1
+    },
+    "48890632": {
+      "allocated_cpu_seconds": 105,
+      "elapsed_seconds": 35,
+      "max_rss_mib_max": null,
+      "role": "strict_retry_4b",
+      "states": {
+        "OUT_OF_MEMORY": 1
+      },
+      "task_rows": 1
+    },
+    "48892191": {
+      "allocated_cpu_seconds": 963,
+      "elapsed_seconds": 321,
+      "max_rss_mib_max": null,
+      "role": "collector_3",
+      "states": {
+        "COMPLETED": 1
+      },
+      "task_rows": 1
+    }
+  },
+  "schema": "e20_cpu_accounting/v1",
+  "state_counts": {
+    "CANCELLED": 2,
+    "CANCELLED by 412530": 3,
+    "COMPLETED": 64,
+    "FAILED": 1,
+    "OUT_OF_MEMORY": 8
+  },
+  "unknown_job_roots": []
+}

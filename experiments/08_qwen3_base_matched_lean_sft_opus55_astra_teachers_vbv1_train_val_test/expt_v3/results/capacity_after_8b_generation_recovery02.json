@@ -1,0 +1,81 @@
+{
+  "status": "OBSERVED",
+  "observed_unix": 1792153331.5453458,
+  "trigger": "all_8b_generation_complete",
+  "local_four_device_route": {
+    "eligible": false,
+    "host": "skampere1",
+    "requested_devices": 4,
+    "available": [
+      0,
+      1,
+      2
+    ],
+    "candidates": [
+      1,
+      2
+    ],
+    "requires_atomic_admission": true
+  },
+  "slurm": {
+    "eligible": false,
+    "association_present": false,
+    "idle_eight_gpu_nodes": [],
+    "inventory": [
+      {
+        "node": "ampere1",
+        "state": "MIXED+PLANNED",
+        "gres": "gpu:a100:8"
+      },
+      {
+        "node": "ampere2",
+        "state": "MIXED+PLANNED",
+        "gres": "gpu:a100:8"
+      },
+      {
+        "node": "ampere3",
+        "state": "MIXED",
+        "gres": "gpu:a100:8"
+      },
+      {
+        "node": "ampere4",
+        "state": "MIXED",
+        "gres": "gpu:a100:8"
+      },
+      {
+        "node": "ampere5",
+        "state": "MIXED+PLANNED",
+        "gres": "gpu:a100:8"
+      },
+      {
+        "node": "ampere6",
+        "state": "MIXED+PLANNED",
+        "gres": "gpu:a100:8"
+      },
+      {
+        "node": "ampere8",
+        "state": "MIXED+PLANNED",
+        "gres": "gpu:a100:8"
+      },
+      {
+        "node": "ampere9",
+        "state": "MIXED+PLANNED",
+        "gres": "gpu:a100:8"
+      },
+      {
+        "node": "blackwell1",
+        "state": "MIXED+PLANNED",
+        "gres": "gpu:b200:8"
+      }
+    ],
+    "requires_allocation_and_preparation": true
+  },
+  "remote_prepared_hosts": [
+    "skampere2",
+    "skampere3"
+  ],
+  "native_continuation_armed": false,
+  "capacity_probe_direct_owner_invocation": true,
+  "scientific_limits_unchanged": true,
+  "model_calls": 0
+}

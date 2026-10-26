@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "controls": [
+    {
+      "name": "missing",
+      "status": "PASS"
+    },
+    {
+      "name": "failure",
+      "status": "PASS"
+    },
+    {
+      "name": "death",
+      "status": "PASS"
+    },
+    {
+      "name": "complete",
+      "status": "PASS"
+    },
+    {
+      "name": "phase_snap",
+      "status": "PASS"
+    },
+    {
+      "name": "phase_gx",
+      "status": "PASS"
+    }
+  ],
+  "parsed_sources": [
+    "assemble_final_data.py",
+    "prepare_final_transfer.py",
+    "chain_gx10.py",
+    "watch_chain.py",
+    "train_snap.py",
+    "select_and_run.py",
+    "summarize_snap.py",
+    "arm_final_selector.py",
+    "inference_controls.py",
+    "coordinate_gpu_phase.py",
+    "watch_selector.py",
+    "pipeline_cpu_controls.py"
+  ],
+  "source_sha256": {
+    "assemble_final_data.py": "c0df4538de6971cd65079a25102958745883d3e746f0dff43c778441a7239cf5",
+    "prepare_final_transfer.py": "86311fbc9e2f5daae8155e3b9c6d90252edfa07061e2b5ecdb526fd92d6e0ccc",
+    "chain_gx10.py": "4e9c1099d2b05953c706dcf684fec3b977c256a6e6af76c35eb0690fb6d72005",
+    "watch_chain.py": "d77b6ea077b91687f176d604650dc3be43af1033b2606e085565376bba2da41f",
+    "train_snap.py": "67f2d5af8ecee036b11ef1d3398d5ef9883b19ee69bc9725e48e5c590393ef01",
+    "select_and_run.py": "f685cb76439525a969e4642a8ebdba89928cd1b402a16206f348c00132070206",
+    "summarize_snap.py": "4c61d61aa657171ab59ccef8679630bd97b92d0722d80336184978a27686bc72",
+    "arm_final_selector.py": "699072eaafe5558afc573731d2cdda7c0c7ebc5b4635f5d5cce520b657aa0e54",
+    "inference_controls.py": "9bd6289295189d53b51412776476592888009b18f4bc12414b76c984ef207493",
+    "coordinate_gpu_phase.py": "8f746254dc6fc65676b39fbbc0785c2b51481fad0d7e7a2f9124d436a2ec4b12",
+    "watch_selector.py": "dd9565818c06bde5d82b3b75b240b1d06a934e47fb46b3bcb4a9b550936061d9",
+    "pipeline_cpu_controls.py": "531b92e2e1dc727a217d71ec3d839e97df254f66e7abde269701014d095b8211"
+  },
+  "hosted_model_calls": 0,
+  "gpu_operations": 0,
+  "ssh_operations": 0,
+  "full_model_control_passed": false,
+  "observed_unix": 1792432986.831236
+}

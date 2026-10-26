@@ -1,0 +1,40 @@
+import Mathlib
+namespace Tiny
+def solution (xs ys : List Int) : Bool := decide (Disjoint xs.toFinset ys.toFinset)
+theorem spec_true_iff (xs ys : List Int) : solution xs ys = true ↔ ∀ x, x ∈ xs → x ∉ ys := by
+  simp [solution, Finset.disjoint_left]
+theorem test_disjoint : solution [1, 1] [2, 3] = true := by decide
+theorem test_overlap : solution [1, 2] [2, 3] = false := by decide
+end Tiny
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [] [])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(-4), (3)] [(0), (-4), (3)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(0), (2)] [(-3), (-2), (-3), (-1)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(0)] [(4)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(-4), (-2), (-3), (0)] [(0), (-4), (2), (3)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(-3), (-4), (4), (-3), (-3)] [])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(4), (0)] [(-3), (3), (-2), (-3)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(-1)] [(4), (-3), (1), (-4)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(2), (3), (4)] [(3), (3), (1), (-1), (-3)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(3), (3), (-4), (4)] [])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(4), (-2), (1), (1), (4)] [(0), (2)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [] [(2)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(-2), (-2), (2)] [(2), (4), (1), (2), (0), (3)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(-2), (-2)] [(3)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(-3), (2), (3), (1), (4), (-1)] [(-3), (0), (0), (-3), (1), (-2)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [] [(-2), (2), (0), (1)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [] [(4), (2), (-3), (-2), (-1), (1)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(3)] [(-3), (-2)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(-3)] [(1), (4), (3), (3), (3), (-1)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(2)] [(-1), (3), (-3), (-2), (-2), (-1)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(-1), (2), (-4), (3), (-3), (1)] [(-3), (-1), (-2), (-3), (4)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(3), (0)] [])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(-2)] [(-4), (1), (-4), (0), (-2), (1)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(-4), (0), (-3), (2)] [(3), (1), (1)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(-1), (-4), (-4)] [(2), (4), (-4), (-1)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(1), (-4), (3), (-4)] [(-4), (3), (3)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(1)] [(-3), (-4), (3)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(-3), (-4), (4)] [(-3), (-1), (-2)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(2)] [])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(4), (-3)] [(-2), (-2), (1), (3), (0)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(-4), (4), (4)] [(3)])))
+#eval IO.println (Lean.Json.compress (Lean.toJson (Tiny.solution [(4), (-4), (0)] [])))

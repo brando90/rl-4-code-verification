@@ -75,6 +75,8 @@ def reserve(plan, *, gate, attempt, stage_key, seconds):
     bound = {str(Path(r['path']).resolve()): r['sha256'] for r in lock['bindings']}
     for path in (Path(__file__).resolve(), HERE/'resource_lease.py', HERE.parent/'phase1/device_watch.py'):
         if bound.get(str(path)) != digest(path): raise ValueError('unbound resource polling implementation')
+    from reservation_observations import reconcile
+    allocation = reconcile(allocation, lock)
     for key in ('lease_root', 'resource_poll_root'):
         if Path(plan[key]).resolve() != Path(lock['configuration'][key]).resolve():
             raise ValueError('resource registry or observation ledger moved')

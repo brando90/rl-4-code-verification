@@ -1,0 +1,62 @@
+{
+  "status": "IDENTICAL_INFRASTRUCTURE_RETRY_READY",
+  "checked_unix": 1792144159.6547697,
+  "previous_scheduler": {
+    "pid": 2265309,
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "start_ticks": "37543366"
+  },
+  "preserved_E14": {
+    "pid": 798432,
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "start_ticks": "37963395"
+  },
+  "old_E8_controller": {
+    "pid": 798430,
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "start_ticks": "37963394"
+  },
+  "old_remote": {
+    "status": "RUNNING",
+    "host": "skampere3",
+    "identity": {
+      "pid": 2427582,
+      "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+      "start_ticks": "265030012"
+    },
+    "gpus": "2,4,5,7",
+    "tensor_parallel_size": 4,
+    "started_unix": 1792143818.7459865,
+    "receipt": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/remote_E_8b.exit.json",
+    "wrapper_snapshot": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/code/expt_v3/.train_continuation_E_8b_1792143818679978471.sh",
+    "wrapper_sha256": "7018135120c68a2d7642c401456220c665dec2d9f927379f7ba6c2eda6958254"
+  },
+  "native_exit": {
+    "identity": {
+      "pid": 2427582,
+      "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+      "start_ticks": "265030012"
+    },
+    "started_unix": 1792143818.770852,
+    "command": [
+      "bash",
+      "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/code/expt_v3/.train_continuation_E_8b_1792143818679978471.sh",
+      "E",
+      "8b",
+      "2,4,5,7"
+    ],
+    "child": {
+      "pid": 2427663,
+      "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+      "start_ticks": "265030020"
+    },
+    "exit_code": 1,
+    "ended_unix": 1792143885.6281056
+  },
+  "logged_training_steps": 0,
+  "incident_path": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/incidents/recovery02_E8_ray_discovery",
+  "fixed_wrapper_sha256": "faf1ac04edfb863fc528c585a92e4b03c6228693ed6c5b8c346bb06d187904b1",
+  "scientific_caps_unchanged": true,
+  "paid_model_calls": 0,
+  "test_split_opened": false
+}

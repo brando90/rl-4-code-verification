@@ -1,0 +1,13 @@
+# Prospective 4B supervision allowance
+
+**Doc link:** https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6/AMENDMENT_4b_wallclock.md
+
+**TLDR:** Measured 4B updates take approximately 30–44 seconds with the prescribed float32 CPU optimizer. Extend only its training wall-clock allowance from eight to twelve hours before the original limit is reached. Keep the healthy training process, all model/data/optimizer settings and the exact 904-update token schedule unchanged.
+
+This amendment is made during early training, before any new validation outcome exists. The first five 4B updates took 197.50 seconds; the short-only update took 29.54 seconds and a later existing-data update took 42.08 seconds. These measurements imply roughly 9–11 hours for the declared schedule and show the original eight-hour orchestration estimate is too short. The two primary 1.7B runs retain their original limits and continue without interruption.
+
+The original supervisor already has an eight-hour `Popen.wait` in progress. `extend_4b_wait.py` verifies exact owned process identities and runs a separate twelve-hour watchdog. After both 1.7B generations and all sixteen primary scoring jobs are complete, it pauses only the idle original supervisor while the independently session-owned 4B trainer continues writing to regular log/progress files. When that child exits, it resumes the original supervisor, which reaps the completed child and proceeds with 4B validation and the final analysis. This operating-system wait behavior is checked with a bounded deterministic subprocess control before the guard is admitted. If 4B finishes before the primary scoring does, no pause is needed.
+
+At twelve hours the guard stops only the exact owned 4B training process group and resumes the supervisor; failures and missing validation stay explicit. It never signals a foreign process, changes optimizer updates, discards completed work, restarts training, resets consumed tokens, or enlarges the output-generation budget. The guard receipt records every pause/resume, the exact PIDs/start ticks/boot identity, and the terminal boundary. Source code and the control receipt accompany this amendment.
+
+Before pausing the waiting supervisor, the guard also invokes `analyze_primary.py`, which reuses the frozen analysis functions to publish the complete 2,160-cell 1.7B comparison while explicitly leaving the 1,080-cell 4B condition pending. This prevents the added 4B runtime from delaying the primary result. The observer and local report gain only these new receipt fields; no trainer, sampler, scorer, metric, comparison threshold or bootstrap setting changes.

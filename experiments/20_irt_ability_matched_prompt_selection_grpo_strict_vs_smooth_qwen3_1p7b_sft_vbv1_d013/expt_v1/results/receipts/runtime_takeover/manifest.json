@@ -1,0 +1,33 @@
+{
+  "captured_at": "10-21-2026 13:49 PDT",
+  "remote_bundle_sha256": "5abed09e2fabc675a2e0c63a4b8cd28f94ef00cc2a1e9332dd268d24a186e56f",
+  "remote_root": "/scratch/users/brando9/rl4cv_sherlock/e20",
+  "code_last_modified": "10-21-2026 13:33 PDT",
+  "submitter_session": "unresolved; submitted before Codex takeover",
+  "job": "48857034",
+  "arm": "A",
+  "seed": 0,
+  "updates": 2,
+  "output": "train/runs/A_s0",
+  "prior_attempts": [
+    {
+      "job": "48845232",
+      "elapsed_s": 56,
+      "error": "ModuleNotFoundError: scipy"
+    },
+    {
+      "job": "48855196",
+      "elapsed_s": 109,
+      "error": "4110-token prompt plus 12288 completion exceeds 16384 context"
+    }
+  ],
+  "adopted_change": "MAX_MODEL_LEN 16384 -> 20480; temperature/top-p/top-k/max-new-tokens unchanged",
+  "file_sha256": {
+    "smoke_train_48857034.sbatch": "392bf4f5c385d8c99855e107e2364c568f248de12f8296c997f450afab8cfd91",
+    "train_e20_48857034.py": "35c8e98042891160532db615a9b46147aed8cbb8d0e309f81393a8ce92c2664c",
+    "runtime_versions_48845232.json": "396674207f1ef2d81a034d886c23e12f689f6ab48043410873f5041386d5b8d9",
+    "train_e20_48857034.patch": "7d2f3e826caea20e591a85a61d47f2d160d8e37867c38d6d2ed9c43e0a0a373c"
+  },
+  "source_base_commit": "e39d620abf44e4538f62f49f95027eb1da82ecf4",
+  "source_reconstruction": "apply train_e20_48857034.patch to expt_v1/train_e20.py at source_base_commit; full runtime source SHA-256 retained in file_sha256"
+}

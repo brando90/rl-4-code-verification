@@ -1,0 +1,8 @@
+import Mathlib
+namespace Tiny
+def solution (x : Int) : Int := x * x
+theorem spec_nonnegative (x : Int) : 0 <= solution x := by
+  exact mul_self_nonneg x
+theorem test_positive : solution 4 = 16 := by norm_num [solution]
+theorem test_negative : solution (-3) = 9 := by norm_num [solution]
+end Tiny

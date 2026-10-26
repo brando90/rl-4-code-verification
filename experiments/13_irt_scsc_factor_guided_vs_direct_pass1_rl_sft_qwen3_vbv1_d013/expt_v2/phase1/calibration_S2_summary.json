@@ -1,0 +1,1205 @@
+{
+  "F2": 0.75,
+  "F2_evaluation": "not yet observed; independent full2 absent",
+  "calibration_lock_sha256": "0aa5b224892e19437a2118265b18fe8fc5b013ccaea6f614c3542ad94149fcc9",
+  "condition": "v2-S2",
+  "declared_cells": 12936,
+  "marginals": {
+    "d": {
+      "admitted": false,
+      "constant_items": 31,
+      "denominator": 97557,
+      "empty_items": 3,
+      "empty_policies": 0,
+      "errors": [
+        {
+          "error": "empty or disconnected component panel",
+          "error_type": "IdentificationError",
+          "prior_scale": 1.0
+        },
+        {
+          "error": "empty or disconnected component panel",
+          "error_type": "IdentificationError",
+          "prior_scale": 0.5
+        },
+        {
+          "error": "empty or disconnected component panel",
+          "error_type": "IdentificationError",
+          "prior_scale": 2.0
+        }
+      ],
+      "prior_fits": {},
+      "recovery": {
+        "pattern_sha256": "daced98ce7eb9db1bc3780b0a2d262ec7a51031523c87aa4d8ef3f87729f707d",
+        "reason": "empty or disconnected denominator pattern",
+        "seed": 1302041,
+        "shape": [
+          3,
+          539,
+          8
+        ],
+        "status": "FAIL",
+        "total_denominator": 97557,
+        "zero_cells": 10689
+      },
+      "zero_denominator_outputs": 10689
+    },
+    "p": {
+      "admitted": false,
+      "constant_items": 199,
+      "denominator": 15868,
+      "empty_items": 45,
+      "empty_policies": 0,
+      "errors": [
+        {
+          "error": "empty or disconnected component panel",
+          "error_type": "IdentificationError",
+          "prior_scale": 1.0
+        },
+        {
+          "error": "empty or disconnected component panel",
+          "error_type": "IdentificationError",
+          "prior_scale": 0.5
+        },
+        {
+          "error": "empty or disconnected component panel",
+          "error_type": "IdentificationError",
+          "prior_scale": 2.0
+        }
+      ],
+      "prior_fits": {},
+      "recovery": {
+        "pattern_sha256": "55ae1e985fac10ad26f4818908430a9b0f4276fa1bfc49c904de0e5859a678a5",
+        "reason": "empty or disconnected denominator pattern",
+        "seed": 1302041,
+        "shape": [
+          3,
+          539,
+          8
+        ],
+        "status": "FAIL",
+        "total_denominator": 15868,
+        "zero_cells": 11415
+      },
+      "zero_denominator_outputs": 11415
+    },
+    "t": {
+      "admitted": false,
+      "calibration": {
+        "bins": [
+          {
+            "bin": 0,
+            "groups": 400,
+            "mean_bias": 0.018730664856033325,
+            "observed_mean": 0.002056148675365757,
+            "predicted_mean": 0.020786813531399082,
+            "responses": 12645
+          },
+          {
+            "bin": 1,
+            "groups": 16,
+            "mean_bias": 0.10587713363419833,
+            "observed_mean": 0.007380073800738007,
+            "predicted_mean": 0.11325720743493634,
+            "responses": 271
+          }
+        ],
+        "intervals": {
+          "confidence": 0.95,
+          "draws": 10000,
+          "groups": 400,
+          "p_value": null,
+          "p_value_reason": "descriptive in-sample calibration, no hypothesis test",
+          "policies": [
+            {
+              "metrics": {
+                "mean_absolute_error": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.0037266743010466855,
+                    0.008102070604811568
+                  ]
+                },
+                "mean_bias": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    -0.004314909339587559,
+                    -0.0007506560795747116
+                  ]
+                },
+                "observed_count_weighted_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.0022893772893772895,
+                    0.006333605061306387
+                  ]
+                },
+                "observed_fraction_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.0022893772893772895,
+                    0.006333605061306387
+                  ]
+                },
+                "predicted_count_weighted_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.001507807196702543,
+                    0.0020347303597466047
+                  ]
+                },
+                "predicted_fraction_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.001507807196702543,
+                    0.0020347303597466047
+                  ]
+                }
+              },
+              "policy_index": 0
+            },
+            {
+              "metrics": {
+                "mean_absolute_error": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.032806702633374846,
+                    0.03668786992896633
+                  ]
+                },
+                "mean_bias": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.03085003002419021,
+                    0.03359527047344967
+                  ]
+                },
+                "observed_count_weighted_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.00045934508933021196,
+                    0.002562937606041054
+                  ]
+                },
+                "observed_fraction_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.00045934508933021196,
+                    0.002562937606041054
+                  ]
+                },
+                "predicted_count_weighted_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.03220382314855578,
+                    0.03502593072241302
+                  ]
+                },
+                "predicted_fraction_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.03220382314855578,
+                    0.03502593072241302
+                  ]
+                }
+              },
+              "policy_index": 1
+            },
+            {
+              "metrics": {
+                "mean_absolute_error": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.03201896139410228,
+                    0.0355309871561917
+                  ]
+                },
+                "mean_bias": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.030652296707624548,
+                    0.03340102537544175
+                  ]
+                },
+                "observed_count_weighted_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.00022846568188941469,
+                    0.001889466225791214
+                  ]
+                },
+                "observed_fraction_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.00022846568188941469,
+                    0.001889466225791214
+                  ]
+                },
+                "predicted_count_weighted_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.03159781141005483,
+                    0.03441080989182785
+                  ]
+                },
+                "predicted_fraction_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.03159781141005483,
+                    0.03441080989182785
+                  ]
+                }
+              },
+              "policy_index": 2
+            },
+            {
+              "metrics": {
+                "mean_absolute_error": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.022975839365798778,
+                    0.026584538783754608
+                  ]
+                },
+                "mean_bias": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.0203852099451464,
+                    0.020752587564142132
+                  ]
+                },
+                "observed_count_weighted_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.0013408975750022775,
+                    0.003088385784288318
+                  ]
+                },
+                "observed_fraction_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.0013408975750022775,
+                    0.003088385784288318
+                  ]
+                },
+                "predicted_count_weighted_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.021757666139464726,
+                    0.023801399321467544
+                  ]
+                },
+                "predicted_fraction_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.021757666139464726,
+                    0.023801399321467544
+                  ]
+                }
+              },
+              "policy_index": "pooled"
+            }
+          ],
+          "seed": 1302031,
+          "unit": "complete train task group, paired across policies and responses; fixed fitted predictions"
+        },
+        "per_policy": [
+          {
+            "count_denominator": 4311,
+            "mean_absolute_error": 0.005773957365959759,
+            "mean_bias": -0.002421181116076281,
+            "observed_count_weighted_mean": 0.0041753653444676405,
+            "observed_fraction_mean": 0.0041753653444676405,
+            "observed_outputs": 4311,
+            "policy_index": 0,
+            "predicted_count_weighted_mean": 0.0017541842283913596,
+            "predicted_fraction_mean": 0.0017541842283913594
+          },
+          {
+            "count_denominator": 4303,
+            "mean_absolute_error": 0.034655534408098626,
+            "mean_bias": 0.032145865674272286,
+            "observed_count_weighted_mean": 0.0013943760167325122,
+            "observed_fraction_mean": 0.0013943760167325122,
+            "observed_outputs": 4303,
+            "policy_index": 1,
+            "predicted_count_weighted_mean": 0.0335402416910048,
+            "predicted_fraction_mean": 0.0335402416910048
+          },
+          {
+            "count_denominator": 4302,
+            "mean_absolute_error": 0.03366374152275597,
+            "mean_bias": 0.03199814321581133,
+            "observed_count_weighted_mean": 0.0009298000929800093,
+            "observed_fraction_mean": 0.0009298000929800093,
+            "observed_outputs": 4302,
+            "policy_index": 2,
+            "predicted_count_weighted_mean": 0.03292794330879134,
+            "predicted_fraction_mean": 0.032927943308791334
+          }
+        ],
+        "pooled": {
+          "mean_absolute_error": 0.024685329110684193,
+          "mean_bias": 0.020559148367870015,
+          "observed_fraction_mean": 0.0021678538247135335,
+          "predicted_fraction_mean": 0.022727002192583546
+        }
+      },
+      "constant_items": 514,
+      "denominator": 12916,
+      "empty_items": 0,
+      "empty_policies": 0,
+      "errors": [],
+      "prior_fits": {
+        "0.5": {
+          "admitted": true,
+          "probability_disagreement": 4.1892910076835044e-05,
+          "starts": [
+            {
+              "converged": true,
+              "finite": true,
+              "gradient_max": 0.000877304814262625,
+              "iterations": 24,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "objective": 2872.1002695443294,
+              "seed": 1302011
+            },
+            {
+              "converged": true,
+              "finite": true,
+              "gradient_max": 0.0008930103120027365,
+              "iterations": 25,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "objective": 2872.1002695717434,
+              "seed": 1302012
+            },
+            {
+              "converged": true,
+              "finite": true,
+              "gradient_max": 0.0022636458402295672,
+              "iterations": 24,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "objective": 2872.1002707393377,
+              "seed": 1302013
+            },
+            {
+              "converged": true,
+              "finite": true,
+              "gradient_max": 0.0016713933488204935,
+              "iterations": 23,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "objective": 2872.1002696513133,
+              "seed": 1302014
+            },
+            {
+              "converged": true,
+              "finite": true,
+              "gradient_max": 0.0007335866557138804,
+              "iterations": 21,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "objective": 2872.100269639162,
+              "seed": 1302015
+            }
+          ]
+        },
+        "1.0": {
+          "admitted": true,
+          "calibration_bias_interval_contains_zero": false,
+          "probability_disagreement": 2.206324132636439e-05,
+          "starts": [
+            {
+              "converged": true,
+              "finite": true,
+              "gradient_max": 0.0004877222206947104,
+              "iterations": 26,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "objective": 1179.7751540958543,
+              "seed": 1302011
+            },
+            {
+              "converged": true,
+              "finite": true,
+              "gradient_max": 0.00046624562829794547,
+              "iterations": 29,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "objective": 1179.7751540834206,
+              "seed": 1302012
+            },
+            {
+              "converged": true,
+              "finite": true,
+              "gradient_max": 0.0005589748558806895,
+              "iterations": 27,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "objective": 1179.775154110715,
+              "seed": 1302013
+            },
+            {
+              "converged": true,
+              "finite": true,
+              "gradient_max": 0.0001326891650308415,
+              "iterations": 30,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "objective": 1179.7751540784839,
+              "seed": 1302014
+            },
+            {
+              "converged": true,
+              "finite": true,
+              "gradient_max": 0.00026254320371621453,
+              "iterations": 29,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "objective": 1179.7751540767752,
+              "seed": 1302015
+            }
+          ]
+        },
+        "2.0": {
+          "admitted": true,
+          "probability_disagreement": 4.013711248607166e-05,
+          "starts": [
+            {
+              "converged": true,
+              "finite": true,
+              "gradient_max": 0.000154093296456669,
+              "iterations": 44,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "objective": 483.19139786035703,
+              "seed": 1302011
+            },
+            {
+              "converged": true,
+              "finite": true,
+              "gradient_max": 0.0005075942973362702,
+              "iterations": 50,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "objective": 483.19139786647924,
+              "seed": 1302012
+            },
+            {
+              "converged": true,
+              "finite": true,
+              "gradient_max": 0.0003931055822978813,
+              "iterations": 43,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "objective": 483.19139796602377,
+              "seed": 1302013
+            },
+            {
+              "converged": true,
+              "finite": true,
+              "gradient_max": 0.00018988179091583015,
+              "iterations": 48,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "objective": 483.19139788104656,
+              "seed": 1302014
+            },
+            {
+              "converged": true,
+              "finite": true,
+              "gradient_max": 0.00016548151112413348,
+              "iterations": 44,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "objective": 483.19139785614357,
+              "seed": 1302015
+            }
+          ]
+        }
+      },
+      "recovery": {
+        "ability_correlation": 0.9999962118293151,
+        "active_items": 539,
+        "active_policies": 3,
+        "interpretation": "conditional on the observed missingness/risk-count pattern; one fixed synthetic recovery replicate",
+        "probability_disagreement": 0.00025970113039597287,
+        "probability_mean_absolute_error": 0.07521484742985748,
+        "seed": 1302041,
+        "starts": [
+          {
+            "converged": true,
+            "finite": true,
+            "gradient_max": 0.0034448494186886196,
+            "iterations": 42,
+            "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+            "objective": 6484.92969319587,
+            "seed": 1302011
+          },
+          {
+            "converged": true,
+            "finite": true,
+            "gradient_max": 0.014676135094620462,
+            "iterations": 41,
+            "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+            "objective": 6484.929693844885,
+            "seed": 1302012
+          },
+          {
+            "converged": true,
+            "finite": true,
+            "gradient_max": 0.006479313097725672,
+            "iterations": 38,
+            "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+            "objective": 6484.9296913604685,
+            "seed": 1302013
+          },
+          {
+            "converged": true,
+            "finite": true,
+            "gradient_max": 0.004930251146378868,
+            "iterations": 37,
+            "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+            "objective": 6484.929691862074,
+            "seed": 1302014
+          },
+          {
+            "converged": true,
+            "finite": true,
+            "gradient_max": 0.0016136033292844807,
+            "iterations": 47,
+            "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+            "objective": 6484.929690706866,
+            "seed": 1302015
+          }
+        ],
+        "status": "PASS",
+        "threshold_source": "prospective implementation controls frozen in L1v2; not outcome-derived",
+        "trials": 12916
+      },
+      "zero_denominator_outputs": 20
+    }
+  },
+  "measured_cells": 12916,
+  "missing_cells": 20,
+  "numerical_controls": {
+    "fixed_initializations": [
+      1302011,
+      1302012,
+      1302013,
+      1302014,
+      1302015
+    ],
+    "gradient_max_absolute_errors": {
+      "0.5": 1.1097721852593168e-08,
+      "1.0": 1.1097721852593168e-08,
+      "2.0": 1.1097721852593168e-08
+    },
+    "gradient_tolerance": 1e-05,
+    "invariance_error": 2.220446049250313e-16,
+    "invariance_tolerance": 1e-12,
+    "likelihood_invariance_error": 0.0,
+    "likelihood_invariance_tolerance": 1e-09,
+    "seed": 1302152,
+    "status": "PASS"
+  },
+  "policies": [
+    "base",
+    "half",
+    "full1"
+  ],
+  "raw_result_sha256": "affcf764f1da5f6f1374d0bd0d65d05d2f0f97c996f4d72faace5f67ee81b4d4",
+  "retries": 0,
+  "samples_per_task": 8,
+  "stage": "CALIBRATION_ADMISSION",
+  "status": "NOT_ADMITTED_FOR_C",
+  "strict": {
+    "M2": {
+      "active_items": 539,
+      "constant_items": 539,
+      "empty_items": 0,
+      "empty_policies": 0,
+      "prior_fits": {
+        "0.5": {
+          "error": "constant risk-set outcome",
+          "error_type": "IdentificationError",
+          "status": "FAIL"
+        },
+        "1.0": {
+          "error": "constant risk-set outcome",
+          "error_type": "IdentificationError",
+          "status": "FAIL"
+        },
+        "2.0": {
+          "error": "constant risk-set outcome",
+          "error_type": "IdentificationError",
+          "status": "FAIL"
+        }
+      },
+      "status": "FAIL"
+    },
+    "Q1": {
+      "active_items": 539,
+      "calibration": {
+        "bins": [
+          {
+            "bin": 0,
+            "groups": 385,
+            "mean_bias": -0.020307751425849594,
+            "observed_mean": 0.054138632451885466,
+            "predicted_mean": 0.03383088102603587,
+            "responses": 6391
+          },
+          {
+            "bin": 1,
+            "groups": 270,
+            "mean_bias": 0.053120296539437534,
+            "observed_mean": 0.09101251422070535,
+            "predicted_mean": 0.1441328107601429,
+            "responses": 3516
+          },
+          {
+            "bin": 2,
+            "groups": 187,
+            "mean_bias": 0.09324672763078586,
+            "observed_mean": 0.15890027958993477,
+            "predicted_mean": 0.25214700722072064,
+            "responses": 2146
+          },
+          {
+            "bin": 3,
+            "groups": 74,
+            "mean_bias": 0.03272532431316964,
+            "observed_mean": 0.31366906474820144,
+            "predicted_mean": 0.3463943890613711,
+            "responses": 695
+          },
+          {
+            "bin": 4,
+            "groups": 15,
+            "mean_bias": 0.0692505457598266,
+            "observed_mean": 0.375,
+            "predicted_mean": 0.44425054575982664,
+            "responses": 144
+          },
+          {
+            "bin": 5,
+            "groups": 3,
+            "mean_bias": -0.10002797918369565,
+            "observed_mean": 0.625,
+            "predicted_mean": 0.5249720208163043,
+            "responses": 24
+          }
+        ],
+        "intervals": {
+          "confidence": 0.95,
+          "draws": 10000,
+          "groups": 400,
+          "p_value": null,
+          "p_value_reason": "descriptive in-sample calibration, no hypothesis test",
+          "policies": [
+            {
+              "metrics": {
+                "mean_absolute_error": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.19413137750133472,
+                    0.21541045140085274
+                  ]
+                },
+                "mean_bias": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.04187145056138039,
+                    0.05893959989491236
+                  ]
+                },
+                "observed_count_weighted_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.08708620342448777,
+                    0.10484430824099454
+                  ]
+                },
+                "observed_fraction_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.08708620342448777,
+                    0.10484430824099454
+                  ]
+                },
+                "predicted_count_weighted_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.1382352719188114,
+                    0.1542046291053035
+                  ]
+                },
+                "predicted_fraction_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.1382352719188114,
+                    0.1542046291053035
+                  ]
+                }
+              },
+              "policy_index": 0
+            },
+            {
+              "metrics": {
+                "mean_absolute_error": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.08662661287562888,
+                    0.10498382650480058
+                  ]
+                },
+                "mean_bias": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    -0.05381674338383887,
+                    -0.04139855285091337
+                  ]
+                },
+                "observed_count_weighted_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.06802713218559057,
+                    0.08444682730700674
+                  ]
+                },
+                "observed_fraction_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.06802713218559057,
+                    0.08444682730700674
+                  ]
+                },
+                "predicted_count_weighted_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.026141007964670133,
+                    0.03118696054178133
+                  ]
+                },
+                "predicted_fraction_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.026141007964670133,
+                    0.03118696054178133
+                  ]
+                }
+              },
+              "policy_index": 1
+            },
+            {
+              "metrics": {
+                "mean_absolute_error": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.23258846004467487,
+                    0.2583860958474072
+                  ]
+                },
+                "mean_bias": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.055621052674215805,
+                    0.0718882843167812
+                  ]
+                },
+                "observed_count_weighted_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.1153140655374917,
+                    0.14223470348172906
+                  ]
+                },
+                "observed_fraction_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.1153140655374917,
+                    0.14223470348172906
+                  ]
+                },
+                "predicted_count_weighted_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.18296928910046142,
+                    0.20193395646041354
+                  ]
+                },
+                "predicted_fraction_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.18296928910046142,
+                    0.20193395646041354
+                  ]
+                }
+              },
+              "policy_index": 2
+            },
+            {
+              "metrics": {
+                "mean_absolute_error": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.1727241485534764,
+                    0.19117487166012267
+                  ]
+                },
+                "mean_bias": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.021675633175131444,
+                    0.02282815185270173
+                  ]
+                },
+                "observed_count_weighted_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.09358705180319374,
+                    0.10686849693555361
+                  ]
+                },
+                "observed_fraction_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.09358705180319374,
+                    0.10686849693555361
+                  ]
+                },
+                "predicted_count_weighted_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.11588292602262946,
+                    0.12898835446820686
+                  ]
+                },
+                "predicted_fraction_mean": {
+                  "defined_draws": 10000,
+                  "interval": [
+                    0.11588292602262946,
+                    0.12898835446820686
+                  ]
+                }
+              },
+              "policy_index": "pooled"
+            }
+          ],
+          "seed": 1302031,
+          "unit": "complete train task group, paired across policies and responses; fixed fitted predictions"
+        },
+        "per_policy": [
+          {
+            "count_denominator": 4311,
+            "mean_absolute_error": 0.20465663029147,
+            "mean_bias": 0.0504154943302667,
+            "observed_count_weighted_mean": 0.09580143818139643,
+            "observed_fraction_mean": 0.09580143818139643,
+            "observed_outputs": 4311,
+            "policy_index": 0,
+            "predicted_count_weighted_mean": 0.14621693251166312,
+            "predicted_fraction_mean": 0.14621693251166312
+          },
+          {
+            "count_denominator": 4303,
+            "mean_absolute_error": 0.09574132553906942,
+            "mean_bias": -0.047573912776119436,
+            "observed_count_weighted_mean": 0.07622588891471067,
+            "observed_fraction_mean": 0.07622588891471067,
+            "observed_outputs": 4303,
+            "policy_index": 1,
+            "predicted_count_weighted_mean": 0.02865197613859124,
+            "predicted_fraction_mean": 0.028651976138591235
+          },
+          {
+            "count_denominator": 4302,
+            "mean_absolute_error": 0.2454178526675971,
+            "mean_bias": 0.063871794251568,
+            "observed_count_weighted_mean": 0.1285448628544863,
+            "observed_fraction_mean": 0.1285448628544863,
+            "observed_outputs": 4302,
+            "policy_index": 2,
+            "predicted_count_weighted_mean": 0.19241665710605427,
+            "predicted_fraction_mean": 0.19241665710605427
+          }
+        ],
+        "pooled": {
+          "mean_absolute_error": 0.18194775930296883,
+          "mean_bias": 0.022252021388385203,
+          "observed_fraction_mean": 0.1001858160421183,
+          "predicted_fraction_mean": 0.1224378374305035
+        }
+      },
+      "constant_items": 78,
+      "empty_items": 0,
+      "empty_policies": 0,
+      "prior_fits": {
+        "0.5": {
+          "status": "PASS"
+        },
+        "1.0": {
+          "calibration_bias_interval_contains_zero": false,
+          "status": "PASS"
+        },
+        "2.0": {
+          "status": "PASS"
+        }
+      },
+      "status": "FAIL"
+    },
+    "Q2": {
+      "active_items": 461,
+      "constant_items": 461,
+      "empty_items": 78,
+      "empty_policies": 0,
+      "prior_fits": {
+        "0.5": {
+          "error": "constant risk-set outcome",
+          "error_type": "IdentificationError",
+          "status": "FAIL"
+        },
+        "1.0": {
+          "error": "constant risk-set outcome",
+          "error_type": "IdentificationError",
+          "status": "FAIL"
+        },
+        "2.0": {
+          "error": "constant risk-set outcome",
+          "error_type": "IdentificationError",
+          "status": "FAIL"
+        }
+      },
+      "status": "FAIL"
+    },
+    "Q3": {
+      "active_items": 0,
+      "constant_items": 0,
+      "empty_items": 539,
+      "empty_policies": 3,
+      "prior_fits": {
+        "0.5": {
+          "error": "empty risk-set policy/item or insufficient connected panel",
+          "error_type": "IdentificationError",
+          "status": "FAIL"
+        },
+        "1.0": {
+          "error": "empty risk-set policy/item or insufficient connected panel",
+          "error_type": "IdentificationError",
+          "status": "FAIL"
+        },
+        "2.0": {
+          "error": "empty risk-set policy/item or insufficient connected panel",
+          "error_type": "IdentificationError",
+          "status": "FAIL"
+        }
+      },
+      "status": "FAIL"
+    }
+  },
+  "strict_pattern_recovery": {
+    "M2": {
+      "ability_correlation": 0.9999962118293151,
+      "active_items": 539,
+      "active_policies": 3,
+      "interpretation": "conditional on the observed missingness/risk-count pattern; one fixed synthetic recovery replicate",
+      "pattern_sha256": "c581c2e0a4b6727a9ea548913fb7098a82d5bec8137f478977b1c6d58b5d2d26",
+      "probability_disagreement": 0.00025970113039597287,
+      "probability_mean_absolute_error": 0.07521484742985748,
+      "seed": 1302041,
+      "shape": [
+        3,
+        539
+      ],
+      "starts": [
+        {
+          "converged": true,
+          "finite": true,
+          "gradient_max": 0.0034448494186886196,
+          "iterations": 42,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "objective": 6484.92969319587,
+          "seed": 1302011
+        },
+        {
+          "converged": true,
+          "finite": true,
+          "gradient_max": 0.014676135094620462,
+          "iterations": 41,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "objective": 6484.929693844885,
+          "seed": 1302012
+        },
+        {
+          "converged": true,
+          "finite": true,
+          "gradient_max": 0.006479313097725672,
+          "iterations": 38,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "objective": 6484.9296913604685,
+          "seed": 1302013
+        },
+        {
+          "converged": true,
+          "finite": true,
+          "gradient_max": 0.004930251146378868,
+          "iterations": 37,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "objective": 6484.929691862074,
+          "seed": 1302014
+        },
+        {
+          "converged": true,
+          "finite": true,
+          "gradient_max": 0.0016136033292844807,
+          "iterations": 47,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "objective": 6484.929690706866,
+          "seed": 1302015
+        }
+      ],
+      "status": "PASS",
+      "threshold_source": "prospective implementation controls frozen in L1v2; not outcome-derived",
+      "trials": 12916,
+      "zero_cells": 0
+    },
+    "Q1": {
+      "ability_correlation": 0.9999962118293151,
+      "active_items": 539,
+      "active_policies": 3,
+      "interpretation": "conditional on the observed missingness/risk-count pattern; one fixed synthetic recovery replicate",
+      "pattern_sha256": "c581c2e0a4b6727a9ea548913fb7098a82d5bec8137f478977b1c6d58b5d2d26",
+      "probability_disagreement": 0.00025970113039597287,
+      "probability_mean_absolute_error": 0.07521484742985748,
+      "seed": 1302041,
+      "shape": [
+        3,
+        539
+      ],
+      "starts": [
+        {
+          "converged": true,
+          "finite": true,
+          "gradient_max": 0.0034448494186886196,
+          "iterations": 42,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "objective": 6484.92969319587,
+          "seed": 1302011
+        },
+        {
+          "converged": true,
+          "finite": true,
+          "gradient_max": 0.014676135094620462,
+          "iterations": 41,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "objective": 6484.929693844885,
+          "seed": 1302012
+        },
+        {
+          "converged": true,
+          "finite": true,
+          "gradient_max": 0.006479313097725672,
+          "iterations": 38,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "objective": 6484.9296913604685,
+          "seed": 1302013
+        },
+        {
+          "converged": true,
+          "finite": true,
+          "gradient_max": 0.004930251146378868,
+          "iterations": 37,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "objective": 6484.929691862074,
+          "seed": 1302014
+        },
+        {
+          "converged": true,
+          "finite": true,
+          "gradient_max": 0.0016136033292844807,
+          "iterations": 47,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "objective": 6484.929690706866,
+          "seed": 1302015
+        }
+      ],
+      "status": "PASS",
+      "threshold_source": "prospective implementation controls frozen in L1v2; not outcome-derived",
+      "trials": 12916,
+      "zero_cells": 0
+    },
+    "Q2": {
+      "ability_correlation": 0.9973962137777642,
+      "active_items": 461,
+      "active_policies": 3,
+      "interpretation": "conditional on the observed missingness/risk-count pattern; one fixed synthetic recovery replicate",
+      "pattern_sha256": "5fa29133bf2c25f9294bca6b063e00852063803e111250e4e298a413ef9453ed",
+      "probability_disagreement": 2.5042852449530528e-05,
+      "probability_mean_absolute_error": 0.15520523431814515,
+      "seed": 1302041,
+      "shape": [
+        3,
+        539
+      ],
+      "starts": [
+        {
+          "converged": true,
+          "finite": true,
+          "gradient_max": 0.0008835392813413794,
+          "iterations": 33,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "objective": 550.0532643447166,
+          "seed": 1302011
+        },
+        {
+          "converged": true,
+          "finite": true,
+          "gradient_max": 0.001562697039295446,
+          "iterations": 33,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "objective": 550.0532643880315,
+          "seed": 1302012
+        },
+        {
+          "converged": true,
+          "finite": true,
+          "gradient_max": 0.00044918014399970136,
+          "iterations": 32,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "objective": 550.0532643173926,
+          "seed": 1302013
+        },
+        {
+          "converged": true,
+          "finite": true,
+          "gradient_max": 3.7221983890073385e-05,
+          "iterations": 32,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "objective": 550.053264304116,
+          "seed": 1302014
+        },
+        {
+          "converged": true,
+          "finite": true,
+          "gradient_max": 8.17250143164536e-05,
+          "iterations": 32,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "objective": 550.0532643036502,
+          "seed": 1302015
+        }
+      ],
+      "status": "FAIL",
+      "threshold_source": "prospective implementation controls frozen in L1v2; not outcome-derived",
+      "trials": 1294,
+      "zero_cells": 787
+    },
+    "Q3": {
+      "pattern_sha256": "d2d0f24a4adf58a863685fbc902ab101c40b94350a9ab1333775d2c129e115b5",
+      "reason": "insufficient connected risk information",
+      "shape": [
+        3,
+        539
+      ],
+      "status": "FAIL",
+      "trials": 0,
+      "zero_cells": 1617
+    }
+  },
+  "strict_pattern_status": "FAIL",
+  "task_groups": 400,
+  "train_tasks": 539,
+  "variance": {
+    "reason": "marginal model unavailable",
+    "status": "INCONCLUSIVE",
+    "weights": null
+  }
+}

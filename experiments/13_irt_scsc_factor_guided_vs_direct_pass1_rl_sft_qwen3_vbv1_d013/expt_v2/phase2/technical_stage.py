@@ -19,7 +19,8 @@ from training_checkpoint import digest, write_new
 STAGES = {'T1': {'generate': 'generate', 'probabilities': 'probabilities'},
           'T2': {'generate_update': 'generate', 'update': 'update', 'export': 'export',
                  'generate_refit': 'generate', 'probabilities_refit': 'probabilities'},
-          'T3': {'replay': 'replay'}}
+          'T3': {'replay': 'replay'},
+          'T4': {'evaluation_generate': 'evaluation_generate'}}
 
 
 def prepare(*, LP, repository, gate, stage_key, config_path, maximum_seconds,
@@ -27,9 +28,10 @@ def prepare(*, LP, repository, gate, stage_key, config_path, maximum_seconds,
     """Write immutable execution/config bindings; this function makes no device call."""
     lock, science_sha = pilot_lock(LP, repository)
     config_path = Path(config_path).resolve(); config = json.loads(config_path.read_text())
-    stage = config['stage']; health = stage == 'preflight'
+    stage = config['stage']; health = stage in ('preflight','evaluation_preflight')
     if gate not in STAGES or (not health and STAGES[gate].get(stage_key) != stage):
         raise ValueError('unregistered technical gate stage')
+    if health and (stage=='evaluation_preflight')!=(gate=='T4'):raise ValueError('T4 requires the evaluation-context engine preflight')
     if health and stage_key != 'preflight': raise ValueError('health stage key changed')
     if config.get('condition') != 'v2-S2': raise ValueError('technical stage is not S2')
     lease = json.loads(Path(config['lease_path']).read_text())

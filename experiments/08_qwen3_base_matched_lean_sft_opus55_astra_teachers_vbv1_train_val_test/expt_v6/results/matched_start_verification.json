@@ -1,0 +1,53 @@
+{
+  "status": "PASS_INPUT_IDENTITY",
+  "identical_checkpoint_manifests": true,
+  "first_forward_loss_identical": true,
+  "first_two_loss_token_and_lr_schedules_match": true,
+  "bitwise_gradient_equality": false,
+  "exact_gradient_equality_check_failed": true,
+  "observed_control_first_two": [
+    {
+      "step": "1",
+      "loss_tokens": "11087",
+      "tiny_batch": "False",
+      "train_loss": "0.18535558639064498",
+      "grad_norm": "1.1597702503204346",
+      "learning_rate": "1.0000000000000002e-06",
+      "elapsed_seconds": "5.414365749922581",
+      "peak_gpu_gib": "35.047287940979004"
+    },
+    {
+      "step": "2",
+      "loss_tokens": "18638",
+      "tiny_batch": "False",
+      "train_loss": "0.17910377247698842",
+      "grad_norm": "1.419350504875183",
+      "learning_rate": "2.220553586319519e-06",
+      "elapsed_seconds": "8.859299392905086",
+      "peak_gpu_gib": "38.008756160736084"
+    }
+  ],
+  "observed_mixed_first_two": [
+    {
+      "step": "1",
+      "loss_tokens": "11087",
+      "tiny_batch": "False",
+      "train_loss": "0.18535558639064498",
+      "grad_norm": "1.1596591472625732",
+      "learning_rate": "1.0000000000000002e-06",
+      "elapsed_seconds": "5.430155246984214",
+      "peak_gpu_gib": "35.047287940979004"
+    },
+    {
+      "step": "2",
+      "loss_tokens": "18638",
+      "tiny_batch": "False",
+      "train_loss": "0.17904843185543462",
+      "grad_norm": "1.3713030815124512",
+      "learning_rate": "2.220553586319519e-06",
+      "elapsed_seconds": "8.89031831396278",
+      "peak_gpu_gib": "38.008756160736084"
+    }
+  ],
+  "limit": "same initialization and seed do not establish bitwise identical training; this is one training seed, not a training-variance study"
+}

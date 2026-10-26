@@ -1,0 +1,160 @@
+{
+  "status": "PASS",
+  "observed_unix": 1792136843.0319285,
+  "reason": "128 logical CPUs, observed 68\u201379 percent idle and 1.8 TiB available; protocol section 9 permits concurrency",
+  "max_combined_rungs": 6,
+  "workers_per_rung": 8,
+  "maximum_active_compilation_slots": 48,
+  "frozen_timeout_seconds": 600,
+  "phases": {
+    "a": {
+      "old_scheduler": {
+        "pid": 411567,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37274439"
+      },
+      "adopted_children": {
+        "score_v3_R_1p7b_f0p5": {
+          "pid": 282913,
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "start_ticks": "37251714"
+        },
+        "score_v3_R_1p7b_f1p0": {
+          "pid": 282928,
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "start_ticks": "37251714"
+        },
+        "score_v3_R_4b_f0p5": {
+          "pid": 359664,
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "start_ticks": "37259715"
+        },
+        "score_v3_R_4b_f1p0": {
+          "pid": 503216,
+          "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+          "start_ticks": "37308679"
+        }
+      },
+      "new_scheduler": {
+        "pid": 2265174,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37543344"
+      },
+      "session": "rl4cv-e08-v3-phase-a-cpu6",
+      "log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/phase_a_scheduler_cpu6.log"
+    },
+    "b": {
+      "old_scheduler": {
+        "pid": 284442,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37251741"
+      },
+      "adopted_children": {},
+      "new_scheduler": {
+        "pid": 2265309,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37543366"
+      },
+      "session": "rl4cv-e08-v3-phase-b-cpu6",
+      "log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/phase_b_scheduler_cpu6.log"
+    }
+  },
+  "first_useful_workload": {
+    "observed_unix": 1792136899.555108,
+    "running_primary_rungs": {
+      "score_v3_R_1p7b_f0p5": {
+        "pid": 282913,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37251714"
+      },
+      "score_v3_R_1p7b_f1p0": {
+        "pid": 282928,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37251714"
+      },
+      "score_v3_R_4b_f0p5": {
+        "pid": 359664,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37259715"
+      },
+      "score_v3_R_4b_f1p0": {
+        "pid": 503216,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37308679"
+      },
+      "score_v3_E_4b_f0p5": {
+        "pid": 2265190,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37543350"
+      },
+      "score_v3_E_4b_f1p0": {
+        "pid": 2265191,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "37543350"
+      }
+    },
+    "native_log_started": "10-16-2026 00:47:24 PDT",
+    "new_expansion_4b_lean_children": [
+      {
+        "pid": 2407668,
+        "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_4b_f1p0_g8_s5/concurrent_set_real__my_cas_success/verifier/solution.lean"
+      },
+      {
+        "pid": 2412272,
+        "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_4b_f0p5_g8_s0/concurrent_set_real__my_cas_success/verifier/solution.lean"
+      },
+      {
+        "pid": 2414073,
+        "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_4b_f0p5_g8_s7/concurrent_set_real__my_cas_success/verifier/solution.lean"
+      },
+      {
+        "pid": 2414124,
+        "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_4b_f0p5_g8_s6/concurrent_set_synthetic__my_or_set_visible/verifier/solution.lean"
+      },
+      {
+        "pid": 2415864,
+        "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_4b_f0p5_g8_s2/concurrent_set_synthetic__my_or_set_visible/verifier/solution.lean"
+      },
+      {
+        "pid": 2416381,
+        "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_4b_f1p0_g8_s6/concurrent_set_synthetic__my_or_set_visible/verifier/solution.lean"
+      },
+      {
+        "pid": 2417477,
+        "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_4b_f1p0_g8_s1/concurrent_set_synthetic__my_or_set_visible/verifier/solution.lean"
+      },
+      {
+        "pid": 2417502,
+        "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_4b_f1p0_g8_s3/concurrent_set_real__my_cas_success/verifier/solution.lean"
+      },
+      {
+        "pid": 2417582,
+        "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_4b_f1p0_g8_s7/concurrent_set_real__my_cas_success/verifier/solution.lean"
+      },
+      {
+        "pid": 2422264,
+        "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_4b_f1p0_g8_s0/concurrent_set_real__my_cas_success/verifier/solution.lean"
+      },
+      {
+        "pid": 2423919,
+        "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_4b_f0p5_g8_s5/concurrent_set_synthetic__my_or_set_visible/verifier/solution.lean"
+      },
+      {
+        "pid": 2425761,
+        "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_4b_f0p5_g8_s3/concurrent_set_synthetic__my_or_set_visible/verifier/solution.lean"
+      },
+      {
+        "pid": 2427065,
+        "source": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/ladder/validation/jobs/v3_E_4b_f0p5_g8_s4/concurrent_set_real__my_cas_success/verifier/solution.lean"
+      }
+    ],
+    "unchanged_adopted_children": 4
+  },
+  "observed_cpu_idle_percent_after_increase": 49.5,
+  "full_tests": {
+    "passed": 1287,
+    "skipped": 17,
+    "subtests_passed": 6,
+    "seconds": 331.82
+  }
+}

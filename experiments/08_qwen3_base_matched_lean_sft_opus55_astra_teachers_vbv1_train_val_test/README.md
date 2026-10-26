@@ -6,7 +6,7 @@
 
 **Owner:** Rakshit Kaushik (@rakshit-kaushik), tracking issue [#7](https://github.com/brando90/rl-4-code-verification/issues/7). **Set up by:** Claude Code master session for Brando, 10-07-2026. **Status:** Version 1 DONE / frozen verdict PARTIAL (10-11-2026); see [results.md](results.md). **Version 2 PARTIAL / route blocked (10-13-2026):** matched step-658 test evaluation stopped under the runbook controls gate; Vals managed AWS access is unavailable, 0/5,328 new cells persisted, and all unknowns are listed. Reused results remain complete; see [expt_v2/PROTOCOL_v2.md](expt_v2/PROTOCOL_v2.md) and [expt_v2/results.md](expt_v2/results.md).
 
-**Next training comparison (10-13-2026):** [expt_v3](expt_v3/README.md) prepares matched original-data replay versus cached-data expansion for Lethan (1.7B/8B) and Rakshit (4B/14B). Its existing-data audit and 685-row candidate manifest are complete; no new training has launched. See the [meeting plan](../meetings/oct_13_2026/PLAN.md).
+**Matched continuation (10-16-2026):** [expt_v3](expt_v3/README.md) is locked and running under one execution owner. Both replay and expansion at 1.7B/4B are complete (8,640/17,280 validation cells, eight namespace diagnostics); expansion 8B training and both exports are verified, validation and replay are underway, and 14B waits for eight eligible devices. [Live results](expt_v3/results.md).
 
 ## Origin
 
@@ -113,3 +113,20 @@ My guess at what is needed: the 25% rung (~1M tokens) teaches the file format; n
 Version 1 is complete with PARTIAL selection: 8B step 658 and 14B step 334 are unmatched diagnostics; neither 1.7B nor 4B passes a rung. The final test table, intervals, audit, charges and preserved limitations are in [results.md](results.md); [all joined test factors](expt_v1/results/test_factor_cells.csv) are available without raw model text.
 
 **Live dependency retaining this canonical home:** the frozen D-013 split is consumed by `tests/test_splits.py` and `13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v1/phase0_prepare.py`; that study also references these retained checkpoint/manifests. Moving this completed folder would break those active consumers, so it remains at this path. This does not reopen training or authorize a follow-on study.
+
+## Concise curriculum and additional 1.7B / 4B training (10-19-2026)
+
+[Version 5](expt_v5/results.md) contains 500 compiled tiny Python-to-Lean training examples. [Version 6](expt_v6/README.md) tests the user-requested parallel 1.7B replay control, 1.7B augmented condition and 4B augmented condition, with full validation and the test split unopened. Before training, version 6 adds the required anonymous executable example declaration to each tiny answer and repeats compilation, kernel, differential, formatting and overlap checks; the original version 5 remains pristine. See the [live training results](expt_v6/results.md).
+
+## Seen-versus-fresh 1.7B diagnostic (10-19-2026)
+
+[Version 7](expt_v7/README.md) runs the user-authorized 50 seen / 50 fresh tiny-function diagnostic on the completed augmented 1.7B checkpoint, with independent Python differential tests and kernel proof checks. This inference-only diagnostic is separate from version 6’s frozen benchmark validation. All 100 checks are complete: 29/50 seen and 9/50 fresh pass. See [diagnostic results](expt_v7/results.md).
+
+## Current 1.7B corpus and adaptive continuation campaign
+
+- [Version12](expt_v12/results.md): the10,940-example first continuation completed all1,080validation cells with120successes (11.11%); the prepared partial-cleanup branch received zero optimizer updates and its dispatcher was fenced.
+- [Version13](expt_v13/results.md): immutable partial cleanup:818verified replacements,227unchanged originals and1,540flagged fallbacks; original implementation/specification/test statements preserved.
+- [Version14](expt_v14/results.md): GX10 user environment and678admitted Mathlib/DeepSeek examples from729formal candidates; source validation and training admission have separate receipts.
+- [Version15](expt_v15/results.md): outcome-triggered adaptation toward25%complete validation binary success; maximum$900additional API authorization. Terra/high teachers; one user-authorized Astra/high code-porting worker only. The test split stays sealed.
+- [Version18](expt_v18/README.md): complete remaining original-pool cleanup, with explicit accepted/excluded rows and no automated-proof fallback in the retained original cohort. Deployment awaits cluster reauthentication.
+- [Version19](expt_v19/README.md): final second1.7B condition through full validation; prefer a truly free suitable A100, with the user-authorized GX10 prepared as fallback. The earlier partial dataset is a discarded hardware control only.

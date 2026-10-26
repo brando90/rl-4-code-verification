@@ -1,0 +1,54 @@
+{
+  "condition": "v2-S2",
+  "gate": "T2",
+  "attempt": 1,
+  "status": "ADMITTED_GENERATION_RUNNING",
+  "snapshot": "10-15-2026 16:44 PDT",
+  "controller_identity": {
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "pgid": 101909,
+    "pid": 554111,
+    "start_ticks": 34626626
+  },
+  "poller_identity": {
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "pgid": 101909,
+    "pid": 106888,
+    "start_ticks": 34606089
+  },
+  "plan_sha256": "1365bfa06e25dd11fa354faf67982b688bae451e6b01d497fe4d5d0dfb337da3",
+  "LP_sha256": "8f93f65e199456136517822b31f1c8059b4b11940c495e4a2e0e6cd5cf2668c4",
+  "preflight_wait_lock": {
+    "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/locks/T2_PREFLIGHT_WAIT_A6_S2.json",
+    "revision": "fd7edca5e22d9ce203f32d57169fe3b91491b8c8",
+    "sha256": "3514f10fbf64f2c047e52bfc5547725c29590cd537f07c8e75076fc08d091d73"
+  },
+  "admission": {
+    "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase2/technical_ledger/T2/attempt_1/attempt.json",
+    "sha256": "b39081b2ea6efa6637b7e54f14ca448cd092bbc359ae7425d63d2908278f0dc1"
+  },
+  "preflight": {
+    "admission_statistics_computed": false,
+    "device_uuid": "e98e645a-d860-3666-a80b-2cea81363c51",
+    "generated_tokens": 1,
+    "prompt": "Reply with one word: ready.",
+    "scope": "non-probe infrastructure only",
+    "status": "PASS",
+    "visible_index": "2"
+  },
+  "preflight_receipt": {
+    "path": "/lfs/skampere1/0/brando9/rl4cv_e13v2/phase2/technical/T2/attempt_1/preflight_wait/poll_0000/preflight/health/preflight.json",
+    "sha256": "3b7d6af29ad34d58efc108ef6242ae6d0bd88e964aadd23f5ab0fc572482283c"
+  },
+  "generation_lease": {
+    "id": "e13v2-8f18b3cb919045cc92d2d0d335d51e93",
+    "host": "skampere1",
+    "index": 2,
+    "uuid": "GPU-e98e645a-d860-3666-a80b-2cea81363c51"
+  },
+  "automatic_gate_retry": false,
+  "admission_statistics_computed": false,
+  "earlier_reservation_device_hours": 0.01505496150917477,
+  "per_attempt_device_hour_cap": 8.0,
+  "cumulative_device_hour_cap": 10.0
+}

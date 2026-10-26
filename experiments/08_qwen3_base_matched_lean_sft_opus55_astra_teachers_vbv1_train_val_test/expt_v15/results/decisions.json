@@ -1,0 +1,82 @@
+{
+  "2af44ea4d6979dcb7c2c703f37e4aa79e8cc42af1a0fb76b24cb641de36735ac": [
+    {
+      "state": "RECOVERED_COMPLETED_CALL",
+      "identity": "adaptation_2af44ea4d6979dcb_0",
+      "returncode": 0,
+      "execution_verified": false,
+      "usage": {
+        "input_tokens": 1132186,
+        "cached_input_tokens": 1050376,
+        "output_tokens": 23028,
+        "reasoning_output_tokens": 8528,
+        "total_tokens": 1155214
+      },
+      "reason": "Recovered dead coordinator after parent reservation was prematurely settled; preserved output and actual CLI usage.",
+      "observed_unix": 1792430855.5901303
+    }
+  ],
+  "76b34d1930f5db3c2baafbfbc0100e28e4dbebbf82d2763855e0dacb417d25b6": [
+    {
+      "state": "COORDINATOR_FINISHED",
+      "identity": "adaptation_76b34d1930f5db3c_0",
+      "returncode": 0,
+      "stop_reason": "Observed conservative charge stop",
+      "usage": {
+        "input_tokens": 1503562,
+        "cached_input_tokens": 1317973,
+        "output_tokens": 30351,
+        "reasoning_output_tokens": 10427,
+        "total_tokens": 1533913
+      },
+      "final_exists": false,
+      "finished_unix": 1792431161.1179302,
+      "execution_verified": true,
+      "new_or_updated_live_trial_manifests": [
+        "/lfs/skampere1/0/eth127/rl4cv_tiny_training/adaptive_1p7b_campaign/trials/v17_failure_guided_public_explicit_replay/manifest.json"
+      ]
+    }
+  ],
+  "cdfc10b75e085fdae0606634d597e5e72d8584e61d326fedd41814f2c3344eb5": [
+    {
+      "state": "COORDINATOR_FINISHED",
+      "identity": "adaptation_cdfc10b75e085fda_0",
+      "returncode": 0,
+      "stop_reason": null,
+      "usage": {
+        "input_tokens": 1356382,
+        "cached_input_tokens": 1271308,
+        "output_tokens": 25634,
+        "reasoning_output_tokens": 8721,
+        "total_tokens": 1382016
+      },
+      "final_exists": true,
+      "finished_unix": 1792432250.186166,
+      "execution_verified": true,
+      "new_or_updated_live_trial_manifests": [
+        "/lfs/skampere1/0/eth127/rl4cv_tiny_training/adaptive_1p7b_campaign/trials/v18_failure_guided_public_explicit_replay_gated/manifest.json"
+      ]
+    }
+  ],
+  "d727d30ebad9a214043098a25c5b1a591c90f186f12511b847d55aab81f19383": [
+    {
+      "state": "COORDINATOR_FINISHED",
+      "identity": "adaptation_d727d30ebad9a214_0",
+      "returncode": 0,
+      "stop_reason": null,
+      "usage": {
+        "input_tokens": 1229603,
+        "cached_input_tokens": 1154948,
+        "output_tokens": 21083,
+        "reasoning_output_tokens": 6537,
+        "total_tokens": 1250686
+      },
+      "final_exists": true,
+      "finished_unix": 1792433894.1751409,
+      "execution_verified": true,
+      "new_or_updated_live_trial_manifests": [
+        "/lfs/skampere1/0/eth127/rl4cv_tiny_training/adaptive_1p7b_campaign/trials/v19_failure_guided_public_explicit_replay_exclusive/manifest.json"
+      ]
+    }
+  ]
+}

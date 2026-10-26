@@ -1,0 +1,214 @@
+{
+  "checked_unix": 1792159692.5762413,
+  "root": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/model_warm_14b_1792159159072847144",
+  "plan": {
+    "deadline_unix": 1792160959.1247675,
+    "original_deadline_unix": 1792383686.05276,
+    "expected_sha256": "140d9e8d22c741587ddb40c9ffa6140850879a45263a8a6bbd0fcfafbbdb48c3",
+    "source_sha256": "e0cec7c8f68bdcb0e7afafbceb8f9e0fa06cc6ed8fa03115d4eb23fc5d35da39",
+    "identity": {
+      "pid": 3706620,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "39774932"
+    },
+    "model": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/ckpt/14B/hf/step_658/pytorch_model.bin",
+    "gpu_allocations": 0
+  },
+  "hosts": {
+    "skampere1": {
+      "status": "PASS",
+      "host": "skampere1",
+      "identity": {
+        "pid": 3707310,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "39775090"
+      },
+      "started_unix": 1792159160.65948,
+      "deadline_unix": 1792160959.1247675,
+      "gpu_allocations": 0,
+      "bytes": 59073377555,
+      "sha256": "140d9e8d22c741587ddb40c9ffa6140850879a45263a8a6bbd0fcfafbbdb48c3",
+      "mtime_ns": 1791710026410136697,
+      "ended_unix": 1792159207.8353744
+    },
+    "skampere2": {
+      "status": "PASS",
+      "host": "skampere2",
+      "identity": {
+        "pid": 1013126,
+        "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+        "start_ticks": "1233550780"
+      },
+      "started_unix": 1792159161.5471182,
+      "deadline_unix": 1792160959.1247675,
+      "gpu_allocations": 0,
+      "bytes": 59073377555,
+      "sha256": "140d9e8d22c741587ddb40c9ffa6140850879a45263a8a6bbd0fcfafbbdb48c3",
+      "mtime_ns": 1791710026410136697,
+      "ended_unix": 1792159451.7103827
+    },
+    "skampere3": {
+      "status": "PASS",
+      "host": "skampere3",
+      "identity": {
+        "pid": 3907319,
+        "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+        "start_ticks": "266564150"
+      },
+      "started_unix": 1792159160.2794614,
+      "deadline_unix": 1792160959.1247675,
+      "gpu_allocations": 0,
+      "bytes": 59073377555,
+      "sha256": "140d9e8d22c741587ddb40c9ffa6140850879a45263a8a6bbd0fcfafbbdb48c3",
+      "mtime_ns": 1791710026410136697,
+      "ended_unix": 1792159301.125952
+    }
+  },
+  "result": {
+    "status": "PASS",
+    "root": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/model_warm_14b_1792159159072847144",
+    "plan": {
+      "deadline_unix": 1792160959.1247675,
+      "original_deadline_unix": 1792383686.05276,
+      "expected_sha256": "140d9e8d22c741587ddb40c9ffa6140850879a45263a8a6bbd0fcfafbbdb48c3",
+      "source_sha256": "e0cec7c8f68bdcb0e7afafbceb8f9e0fa06cc6ed8fa03115d4eb23fc5d35da39",
+      "identity": {
+        "pid": 3706620,
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "start_ticks": "39774932"
+      },
+      "model": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/ckpt/14B/hf/step_658/pytorch_model.bin",
+      "gpu_allocations": 0
+    },
+    "hosts": {
+      "skampere1": {
+        "read": {
+          "status": "PASS",
+          "host": "skampere1",
+          "identity": {
+            "pid": 3707310,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "39775090"
+          },
+          "started_unix": 1792159160.65948,
+          "deadline_unix": 1792160959.1247675,
+          "gpu_allocations": 0,
+          "bytes": 59073377555,
+          "sha256": "140d9e8d22c741587ddb40c9ffa6140850879a45263a8a6bbd0fcfafbbdb48c3",
+          "mtime_ns": 1791710026410136697,
+          "ended_unix": 1792159207.8353744
+        },
+        "exit_receipt": {
+          "identity": {
+            "pid": 3707303,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "39775079"
+          },
+          "started_unix": 1792159160.5429847,
+          "command": [
+            "/usr/bin/timeout",
+            "--kill-after=15s",
+            "1799",
+            "/usr/bin/python3",
+            "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/model_warm_14b_1792159159072847144/warm_multinode_model.py",
+            "--worker",
+            "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/model_warm_14b_1792159159072847144"
+          ],
+          "child": {
+            "pid": 3707309,
+            "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+            "start_ticks": "39775090"
+          },
+          "exit_code": 0,
+          "ended_unix": 1792159207.9675236
+        }
+      },
+      "skampere2": {
+        "read": {
+          "status": "PASS",
+          "host": "skampere2",
+          "identity": {
+            "pid": 1013126,
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+            "start_ticks": "1233550780"
+          },
+          "started_unix": 1792159161.5471182,
+          "deadline_unix": 1792160959.1247675,
+          "gpu_allocations": 0,
+          "bytes": 59073377555,
+          "sha256": "140d9e8d22c741587ddb40c9ffa6140850879a45263a8a6bbd0fcfafbbdb48c3",
+          "mtime_ns": 1791710026410136697,
+          "ended_unix": 1792159451.7103827
+        },
+        "exit_receipt": {
+          "identity": {
+            "pid": 1013123,
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+            "start_ticks": "1233550761"
+          },
+          "started_unix": 1792159161.3792238,
+          "command": [
+            "/usr/bin/timeout",
+            "--kill-after=15s",
+            "1799",
+            "/usr/bin/python3",
+            "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/model_warm_14b_1792159159072847144/warm_multinode_model.py",
+            "--worker",
+            "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/model_warm_14b_1792159159072847144"
+          ],
+          "child": {
+            "pid": 1013125,
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+            "start_ticks": "1233550779"
+          },
+          "exit_code": 0,
+          "ended_unix": 1792159451.7887063
+        }
+      },
+      "skampere3": {
+        "read": {
+          "status": "PASS",
+          "host": "skampere3",
+          "identity": {
+            "pid": 3907319,
+            "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+            "start_ticks": "266564150"
+          },
+          "started_unix": 1792159160.2794614,
+          "deadline_unix": 1792160959.1247675,
+          "gpu_allocations": 0,
+          "bytes": 59073377555,
+          "sha256": "140d9e8d22c741587ddb40c9ffa6140850879a45263a8a6bbd0fcfafbbdb48c3",
+          "mtime_ns": 1791710026410136697,
+          "ended_unix": 1792159301.125952
+        },
+        "exit_receipt": {
+          "identity": {
+            "pid": 3907317,
+            "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+            "start_ticks": "266564144"
+          },
+          "started_unix": 1792159160.095473,
+          "command": [
+            "/usr/bin/timeout",
+            "--kill-after=15s",
+            "1799",
+            "/usr/bin/python3",
+            "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/model_warm_14b_1792159159072847144/warm_multinode_model.py",
+            "--worker",
+            "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/model_warm_14b_1792159159072847144"
+          ],
+          "child": {
+            "pid": 3907318,
+            "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+            "start_ticks": "266564150"
+          },
+          "exit_code": 0,
+          "ended_unix": 1792159301.5706644
+        }
+      }
+    },
+    "ended_unix": 1792159451.927032
+  },
+  "gpu_allocations": 0
+}

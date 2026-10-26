@@ -1,0 +1,40 @@
+{
+  "status": "FAILED",
+  "started": "10-21-2026 19:39:27 PDT",
+  "host": "skampere1.stanford.edu",
+  "wrapper_pid": 3572093,
+  "command": [
+    "/usr/bin/time",
+    "-v",
+    "-o",
+    "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/phase0b_runtime.txt",
+    "/lfs/skampere1/0/brando9/venvs/rl4cv_e20/bin/python",
+    "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/analyze_phase0_e20.py",
+    "--repo",
+    "/lfs/skampere1/0/brando9/rl4cv_e20",
+    "--scores",
+    "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/phase0_cells_e20.csv",
+    "--out",
+    "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results/phase0b",
+    "--freeze-dir",
+    "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/forecasts",
+    "--workers",
+    "4",
+    "--phase",
+    "all"
+  ],
+  "environment_overrides": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "git_head": "d4614fd7e49414c83b739f0b46eb23a9c7eb6f66",
+  "driver_sha256": "24c2a19ee63d1c25a6610834cdd7976f8b0b267e66bdc5c1f5bf6ed8c83b59cd",
+  "scores_sha256": "1bd9b44703848fd03e606f10ed8f36fe2ae1ad45e16dc947af3221317ecf0f6a",
+  "trainer_status": "FAILED; unchanged",
+  "child_pid": 3573131,
+  "returncode": 1,
+  "ended": "10-21-2026 20:27:21 PDT",
+  "elapsed_wall_seconds": 2873.979094066075
+}

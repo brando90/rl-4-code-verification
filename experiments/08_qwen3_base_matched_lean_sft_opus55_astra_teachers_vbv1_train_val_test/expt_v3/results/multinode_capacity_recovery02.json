@@ -1,0 +1,47 @@
+{
+  "status": "UNVERIFIED_INFRASTRUCTURE",
+  "checked_unix": 1792147386.0338721,
+  "protocol_allows_physical_layout_changes": true,
+  "frozen_invariants": {
+    "world_size": 8,
+    "tensor_parallel_size": 8,
+    "context_parallel_size": 1,
+    "data_parallel_size": 1,
+    "cpu_offload": false
+  },
+  "pinned_nemo_commit": "c751f811217db7df0d4c94abdeaada6626cfc150",
+  "source_support": [
+    "sft.py builds logical placement from cluster settings",
+    "LMPolicy checks global world size and DTensor global-rank mesh",
+    "Ray PACK placement may span physical nodes"
+  ],
+  "candidate_topologies": [
+    "4+4 with cluster.num_nodes=2/gpus_per_node=4",
+    "2+2+4 with logical eight-bundle PACK group on isolated exactly-eight-GPU Ray cluster"
+  ],
+  "current_eligible_gpus": {
+    "skampere1": [
+      1,
+      2
+    ],
+    "skampere2": [],
+    "skampere3": []
+  },
+  "owned_8b_devices_not_available_while_working": [
+    2,
+    4,
+    5,
+    7
+  ],
+  "maximum_after_current_8b_release": 6,
+  "current_capacity_sufficient": false,
+  "unresolved": [
+    "isolated multi-host Ray admission and exact lifecycle fencing",
+    "common absolute native worker interpreter path",
+    "actual cross-host NCCL connectivity and GPU rank bindings",
+    "checkpoint/resume on that transport"
+  ],
+  "mercury_excluded": "16 GiB per device is below approximately27.508 GiB native state per rank, before activations; cpu_offload=false remains frozen",
+  "probe_calls": 0,
+  "scientific_settings_changed": false
+}

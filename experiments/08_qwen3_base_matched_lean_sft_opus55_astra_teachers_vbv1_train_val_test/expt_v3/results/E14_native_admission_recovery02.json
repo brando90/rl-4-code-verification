@@ -1,0 +1,542 @@
+{
+  "status": "FAILED_INITIALIZATION_ZERO_UPDATES_CLEANED",
+  "admission": {
+    "status": "RUNNING",
+    "host": "skampere1",
+    "identity": {
+      "pid": 2886242,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "39675147"
+    },
+    "gpus": "1,2",
+    "tensor_parallel_size": 8,
+    "route": "multinode_2_2_4",
+    "allocation": {
+      "skampere1": {
+        "gpus": [
+          1,
+          2
+        ],
+        "uuids": [
+          "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+          "GPU-e98e645a-d860-3666-a80b-2cea81363c51"
+        ],
+        "interface": "enp44s0f0",
+        "inventory": [
+          {
+            "index": 1,
+            "uuid": "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+            "total_mib": 81920,
+            "used_mib": 0,
+            "free_mib": 81153,
+            "utilization": 0
+          },
+          {
+            "index": 2,
+            "uuid": "GPU-e98e645a-d860-3666-a80b-2cea81363c51",
+            "total_mib": 81920,
+            "used_mib": 0,
+            "free_mib": 81153,
+            "utilization": 0
+          }
+        ],
+        "existing_contexts": [],
+        "cooperative_sharing": false
+      },
+      "skampere2": {
+        "gpus": [
+          3,
+          5
+        ],
+        "uuids": [
+          "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+          "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257"
+        ],
+        "interface": "ens3f0np0",
+        "inventory": [
+          {
+            "index": 3,
+            "uuid": "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+            "total_mib": 143771,
+            "used_mib": 1551,
+            "free_mib": 141606,
+            "utilization": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257",
+            "total_mib": 143771,
+            "used_mib": 1551,
+            "free_mib": 141606,
+            "utilization": 0
+          }
+        ],
+        "existing_contexts": [
+          {
+            "uuid": "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+            "pid": 1439216,
+            "memory_mib": 1542,
+            "uid": 23621,
+            "start_ticks": "852085859",
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d"
+          },
+          {
+            "uuid": "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257",
+            "pid": 1441067,
+            "memory_mib": 1542,
+            "uid": 23621,
+            "start_ticks": "852086653",
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d"
+          }
+        ],
+        "cooperative_sharing": true
+      },
+      "skampere3": {
+        "gpus": [
+          2,
+          4,
+          5,
+          7
+        ],
+        "uuids": [
+          "GPU-d781dd11-80f3-8979-073a-4248052fe3f6",
+          "GPU-9b167139-7ecf-47bd-e09d-27a60c24783f",
+          "GPU-e7551271-928d-689f-5095-a60da72fc720",
+          "GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5"
+        ],
+        "interface": "enp81s0f0np0",
+        "inventory": [
+          {
+            "index": 2,
+            "uuid": "GPU-d781dd11-80f3-8979-073a-4248052fe3f6",
+            "total_mib": 183359,
+            "used_mib": 0,
+            "free_mib": 182632,
+            "utilization": 0
+          },
+          {
+            "index": 4,
+            "uuid": "GPU-9b167139-7ecf-47bd-e09d-27a60c24783f",
+            "total_mib": 183359,
+            "used_mib": 0,
+            "free_mib": 182632,
+            "utilization": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-e7551271-928d-689f-5095-a60da72fc720",
+            "total_mib": 183359,
+            "used_mib": 0,
+            "free_mib": 182632,
+            "utilization": 0
+          },
+          {
+            "index": 7,
+            "uuid": "GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5",
+            "total_mib": 183359,
+            "used_mib": 0,
+            "free_mib": 182632,
+            "utilization": 0
+          }
+        ],
+        "existing_contexts": [],
+        "cooperative_sharing": false
+      }
+    },
+    "started_unix": 1792158161.1719897,
+    "receipt": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/remote_E_14b.exit.json",
+    "wrapper_snapshot": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_E_14b_1792158063511085961/train_multinode.sh",
+    "wrapper_sha256": "17b89925ea537820f55cb5539b9aee21e173a5f3aeb52b39595cdad480890099",
+    "root": "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_E_14b_1792158063511085961",
+    "gpu_proof_sha256": "bde80b738547dbe06b94b78972c997af0894cce243e79d66b212265050cf4df5"
+  },
+  "coordinator": {
+    "session": "rl4cv-e08-v3-multinode-e14-recovery02",
+    "command": [
+      "env",
+      "CUDA_VISIBLE_DEVICES=",
+      "/usr/bin/python3",
+      "/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/job_process.py",
+      "--receipt",
+      "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/multinode_E_14b_recovery02.exit.json",
+      "--",
+      "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+      "/lfs/skampere1/0/brando9/rl4cv_e08/wt_v3/rl-4-code-verification/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/multinode_training.py",
+      "E"
+    ],
+    "receipt": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/multinode_E_14b_recovery02.exit.json",
+    "log": "/lfs/skampere1/0/brando9/rl4cv_e08/sft_v3/multinode_E_14b_recovery02.log",
+    "started_unix": 1792158063.1840959,
+    "condition": "E",
+    "owner_attempt": "recovery-02",
+    "source_commit": "2dddbe642dbb08ce47249b049f0877e8c7cc6c71",
+    "source_sha256": {
+      "multinode_training.py": "cb6e646c8564c46a6cd45ab66dde0c03a684f6090c63aeedc309a3ab6c249bb1",
+      "multinode_runtime.py": "afac3dcba8171deb416ebbcd691a9085ea29ab7b68e77689d675706dc463900a"
+    },
+    "deadline_unix": 1792383686.05276,
+    "preserved_controller": {
+      "pid": 798455,
+      "start_ticks": "37963398",
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df"
+    },
+    "identity": {
+      "pid": 2686433,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "39665347"
+    },
+    "child": {
+      "pid": 2686529,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "39665351"
+    },
+    "checked_unix": 1792158122.0885127
+  },
+  "native_driver": {
+    "identity": {
+      "pid": 2886242,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "39675147"
+    },
+    "started_unix": 1792158161.207885,
+    "command": [
+      "bash",
+      "/dfs/scratch0/brando9/rl4cv_e08_v3_remote/sft_v3/multinode_E_14b_1792158063511085961/train_multinode.sh",
+      "E",
+      "14b",
+      "0,1,2,3,4,5,6,7"
+    ],
+    "child": {
+      "pid": 2886845,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "39675169"
+    }
+  },
+  "plan": {
+    "condition": "E",
+    "deadline_unix": 1792383686.05276,
+    "probe_only": false,
+    "identity": {
+      "pid": 2686529,
+      "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+      "start_ticks": "39665351"
+    },
+    "created_unix": 1792158063.5705051,
+    "startup_deadline_unix": 1792158363.5705063,
+    "planning_peak_memory_gib_per_rank": 73.18,
+    "memory_estimate_is_upper_bound": false,
+    "foreign_process_changes_authorized": false,
+    "scientific_configuration_changed": false,
+    "allocation": {
+      "skampere1": {
+        "gpus": [
+          1,
+          2
+        ],
+        "uuids": [
+          "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+          "GPU-e98e645a-d860-3666-a80b-2cea81363c51"
+        ],
+        "interface": "enp44s0f0",
+        "inventory": [
+          {
+            "index": 1,
+            "uuid": "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+            "total_mib": 81920,
+            "used_mib": 0,
+            "free_mib": 81153,
+            "utilization": 0
+          },
+          {
+            "index": 2,
+            "uuid": "GPU-e98e645a-d860-3666-a80b-2cea81363c51",
+            "total_mib": 81920,
+            "used_mib": 0,
+            "free_mib": 81153,
+            "utilization": 0
+          }
+        ],
+        "existing_contexts": [],
+        "cooperative_sharing": false
+      },
+      "skampere2": {
+        "gpus": [
+          3,
+          5
+        ],
+        "uuids": [
+          "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+          "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257"
+        ],
+        "interface": "ens3f0np0",
+        "inventory": [
+          {
+            "index": 3,
+            "uuid": "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+            "total_mib": 143771,
+            "used_mib": 1551,
+            "free_mib": 141606,
+            "utilization": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257",
+            "total_mib": 143771,
+            "used_mib": 1551,
+            "free_mib": 141606,
+            "utilization": 0
+          }
+        ],
+        "existing_contexts": [
+          {
+            "uuid": "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+            "pid": 1439216,
+            "memory_mib": 1542,
+            "uid": 23621,
+            "start_ticks": "852085859",
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d"
+          },
+          {
+            "uuid": "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257",
+            "pid": 1441067,
+            "memory_mib": 1542,
+            "uid": 23621,
+            "start_ticks": "852086653",
+            "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d"
+          }
+        ],
+        "cooperative_sharing": true
+      },
+      "skampere3": {
+        "gpus": [
+          2,
+          4,
+          5,
+          7
+        ],
+        "uuids": [
+          "GPU-d781dd11-80f3-8979-073a-4248052fe3f6",
+          "GPU-9b167139-7ecf-47bd-e09d-27a60c24783f",
+          "GPU-e7551271-928d-689f-5095-a60da72fc720",
+          "GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5"
+        ],
+        "interface": "enp81s0f0np0",
+        "inventory": [
+          {
+            "index": 2,
+            "uuid": "GPU-d781dd11-80f3-8979-073a-4248052fe3f6",
+            "total_mib": 183359,
+            "used_mib": 0,
+            "free_mib": 182632,
+            "utilization": 0
+          },
+          {
+            "index": 4,
+            "uuid": "GPU-9b167139-7ecf-47bd-e09d-27a60c24783f",
+            "total_mib": 183359,
+            "used_mib": 0,
+            "free_mib": 182632,
+            "utilization": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-e7551271-928d-689f-5095-a60da72fc720",
+            "total_mib": 183359,
+            "used_mib": 0,
+            "free_mib": 182632,
+            "utilization": 0
+          },
+          {
+            "index": 7,
+            "uuid": "GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5",
+            "total_mib": 183359,
+            "used_mib": 0,
+            "free_mib": 182632,
+            "utilization": 0
+          }
+        ],
+        "existing_contexts": [],
+        "cooperative_sharing": false
+      }
+    },
+    "source_sha256": {
+      "multinode_training.py": "cb6e646c8564c46a6cd45ab66dde0c03a684f6090c63aeedc309a3ab6c249bb1",
+      "multinode_runtime.py": "afac3dcba8171deb416ebbcd691a9085ea29ab7b68e77689d675706dc463900a",
+      "probe_multinode_cpu.py": "6bd4de7b917456a749166743ea97282b128dcdcf236f77b696e0a8249b505db8",
+      "train_continuation.sh": "faf1ac04edfb863fc528c585a92e4b03c6228693ed6c5b8c346bb06d187904b1",
+      "configs/e08_v3_E_14B.yaml": "aae3684f23ea98060f3cabda3dc5248611d023b3e916f30afc97676733973392"
+    }
+  },
+  "gpu_proof": {
+    "status": "PASS",
+    "workers": [
+      {
+        "host": "skampere1",
+        "uuid": "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+        "pid": 2854399,
+        "start_ticks": "39671334",
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "torch": "2.7.1+cu128",
+        "nccl": [
+          2,
+          26,
+          2
+        ],
+        "interface": "=enp44s0f0"
+      },
+      {
+        "host": "skampere1",
+        "uuid": "GPU-e98e645a-d860-3666-a80b-2cea81363c51",
+        "pid": 2854404,
+        "start_ticks": "39671335",
+        "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+        "torch": "2.7.1+cu128",
+        "nccl": [
+          2,
+          26,
+          2
+        ],
+        "interface": "=enp44s0f0"
+      },
+      {
+        "host": "skampere2",
+        "uuid": "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+        "pid": 342600,
+        "start_ticks": "1233446939",
+        "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+        "torch": "2.7.1+cu128",
+        "nccl": [
+          2,
+          26,
+          2
+        ],
+        "interface": "=ens3f0np0"
+      },
+      {
+        "host": "skampere2",
+        "uuid": "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257",
+        "pid": 342611,
+        "start_ticks": "1233446940",
+        "boot_id": "42a161c2-647d-4a4f-a605-dd8a7e4e1b9d",
+        "torch": "2.7.1+cu128",
+        "nccl": [
+          2,
+          26,
+          2
+        ],
+        "interface": "=ens3f0np0"
+      },
+      {
+        "host": "skampere3",
+        "uuid": "GPU-d781dd11-80f3-8979-073a-4248052fe3f6",
+        "pid": 3757760,
+        "start_ticks": "266460446",
+        "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+        "torch": "2.7.1+cu128",
+        "nccl": [
+          2,
+          26,
+          2
+        ],
+        "interface": "=enp81s0f0np0"
+      },
+      {
+        "host": "skampere3",
+        "uuid": "GPU-9b167139-7ecf-47bd-e09d-27a60c24783f",
+        "pid": 3757615,
+        "start_ticks": "266460445",
+        "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+        "torch": "2.7.1+cu128",
+        "nccl": [
+          2,
+          26,
+          2
+        ],
+        "interface": "=enp81s0f0np0"
+      },
+      {
+        "host": "skampere3",
+        "uuid": "GPU-e7551271-928d-689f-5095-a60da72fc720",
+        "pid": 3757836,
+        "start_ticks": "266460448",
+        "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+        "torch": "2.7.1+cu128",
+        "nccl": [
+          2,
+          26,
+          2
+        ],
+        "interface": "=enp81s0f0np0"
+      },
+      {
+        "host": "skampere3",
+        "uuid": "GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5",
+        "pid": 3757835,
+        "start_ticks": "266460448",
+        "boot_id": "562c249b-58a5-4d2a-b17d-3377147592a0",
+        "torch": "2.7.1+cu128",
+        "nccl": [
+          2,
+          26,
+          2
+        ],
+        "interface": "=enp81s0f0np0"
+      }
+    ],
+    "collectives": [
+      {
+        "rank": 0,
+        "status": "PASS"
+      },
+      {
+        "rank": 1,
+        "status": "PASS"
+      },
+      {
+        "rank": 2,
+        "status": "PASS"
+      },
+      {
+        "rank": 3,
+        "status": "PASS"
+      },
+      {
+        "rank": 4,
+        "status": "PASS"
+      },
+      {
+        "rank": 5,
+        "status": "PASS"
+      },
+      {
+        "rank": 6,
+        "status": "PASS"
+      },
+      {
+        "rank": 7,
+        "status": "PASS"
+      }
+    ],
+    "world_size": 8,
+    "tensor_parallel_size": 8,
+    "training_updates": 0
+  },
+  "progress": {
+    "checked_unix": 1792158685.8363314,
+    "checked_steps": 0,
+    "loss_tokens": 0,
+    "token_counts_match": true,
+    "first_native_update_verified": false,
+    "schedule_sha256": "506204e7f8e5e2527d2a8be3cb02e89d293e8b54bbcf6a77bc97d9105bfeb738"
+  },
+  "scientific_configuration_changed": false,
+  "model_calls": 0,
+  "test_split_opened": false,
+  "controller_preserved": {
+    "pid": 798432,
+    "boot_id": "839e7dd6-64e1-4a80-9498-31d30b3cc2df",
+    "start_ticks": "37963395"
+  },
+  "failure_receipt": "E14_initialization_failure_recovery02.json",
+  "latest_checked_unix": 1792159712.615906
+}

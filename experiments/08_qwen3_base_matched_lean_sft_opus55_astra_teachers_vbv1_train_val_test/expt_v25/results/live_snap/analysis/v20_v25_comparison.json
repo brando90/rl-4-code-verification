@@ -1,0 +1,35 @@
+{
+  "status": "COMPLETE_MATCHED_COMPARISON",
+  "declared_cells_each": 1080,
+  "v20_successes": 20,
+  "v25_successes": 17,
+  "absolute_success_rate_difference": -0.0027777777777777783,
+  "paired_task_bootstrap_difference_ci95": [
+    -0.013888888888888888,
+    0.008333333333333333
+  ],
+  "bootstrap_replicates": 10000,
+  "bootstrap_seed": 0,
+  "bootstrap_unit": "Same task with all eight samples from each condition",
+  "exact_actual_learning_rates_verified": true,
+  "matched_rows": 3568,
+  "matched_updates": 1784,
+  "reference_assistant_loss_tokens": 2948296,
+  "treatment_assistant_loss_tokens": 2793297,
+  "restored_rows": 2094,
+  "unchanged_rows": 1474,
+  "v20": {
+    "summary_sha256": "4444601f62503cb226ec9f726daf3445c70e40f1dfab057d2d7841356bdac44e",
+    "cells_sha256": "599b0b8cb91f0f1b480fbaeb24ee49de7266e05e84a2e859a1f4558b4e0ab42b",
+    "actual_steps_sha256": "cb1281c5814705426e35f106aaef991003408bed70a47a6a9780f7858f595895"
+  },
+  "v25": {
+    "summary_sha256": "b40badfb8d5b228067564ac713204ddca8e47454d576a3678fcd77a15151e5a5",
+    "cells_sha256": "ced5461cd65e5a346ab22025a94a11f1139c21058d307d5fccc6b91b9c7be884",
+    "actual_steps_sha256": "bb4a3ec757d87c655c40921d0970ab38726d75ce6a537d40e6f4f06e244e49a0"
+  },
+  "test_split_opened": false,
+  "compiler_calls": 0,
+  "model_calls": 0,
+  "interpretation": "One seed per condition. The cohort, prompts, row/batch order, original base and actual learning rates are matched. Restored named proof versions, their truthful proof-specific comments and assistant-token lengths differ. Frozen scorer acceptance/time limits are unchanged; V25 additionally retains compiler streams through the documented regular-file transport. This is a descriptive paired comparison, not a multi-seed or isolated comment-effect estimate."
+}
