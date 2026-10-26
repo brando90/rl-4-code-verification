@@ -27,20 +27,26 @@ share = (in-support tokens with |delta| > 0.05 + sampled tokens outside the reco
 Gate value (max over updates) 0.0783%, 12.8x under 1%. After update 2 the share sits flat at 0.074-0.078%; no upward trend over 8 updates (weights moved at most 8e-6 per element by the end, see below). Exp 23's run used an update-2 value of 0.0570%; here 0.0593% (this run counts 23 outside-support tokens vs 13; generations are not bitwise identical after update 1).
 
 ## Full-softmax diagnostic (not the gate) and what it is
-Full-softmax share = tokens with |logp_trainer_full_softmax - logp_vLLM_sampler| > 0.05, all tokens counted.
+Full-softmax share = tokens with |logp_trainer_full_softmax - logp_vLLM_sampler| > 0.05, all tokens counted. vLLM reports the sampled token's logprob after top-k=20 / top-p=0.95 truncation and renormalization, so this comparison differs from the gate's by log(kept mass) = lf - lt (always <= 0). Code: `code/analyze_e24.py` (first table), `code/analyze_e24_overlap.py` (second table); raw rows in `results/full_softmax_decomposition.jsonl` and `results/full_softmax_overlap.jsonl`.
 
-| update | full-softmax share | of which not in the gate share | tokens where log(kept mass after top-k/top-p) < -0.05 |
-|---|---|---|---|
-| 1 | 1.034% | 95.8% | 0.804% |
-| 2 | 1.130% | 96.8% | 0.895% |
-| 3 | 1.135% | 95.6% | 0.847% |
-| 4 | 1.375% | 96.6% | 1.120% |
-| 5 | 1.195% | 96.3% | 0.912% |
-| 6 | 1.118% | 95.7% | 0.846% |
-| 7 | 1.169% | 96.0% | 0.876% |
-| 8 | 1.202% | 96.3% | 0.918% |
+| update | full-softmax share | not gate-flagged (share of full) | tokens with log kept mass < -0.05, all tokens | full-softmax tokens with log kept mass < -0.05 (share of full) | that part alone, % of all tokens | remainder, % of all tokens |
+|---|---|---|---|---|---|---|
+| 1 | 1.034% | 95.8% | 0.804% | 62.0% | 0.641% | 0.393% |
+| 2 | 1.130% | 96.8% | 0.895% | 64.2% | 0.726% | 0.405% |
+| 3 | 1.135% | 95.6% | 0.847% | 60.6% | 0.688% | 0.448% |
+| 4 | 1.375% | 96.6% | 1.120% | 66.2% | 0.910% | 0.465% |
+| 5 | 1.195% | 96.3% | 0.912% | 61.6% | 0.737% | 0.459% |
+| 6 | 1.118% | 95.7% | 0.846% | 60.7% | 0.678% | 0.440% |
+| 7 | 1.169% | 96.0% | 0.876% | 59.8% | 0.700% | 0.470% |
+| 8 | 1.202% | 96.3% | 0.918% | 62.4% | 0.750% | 0.452% |
 
-Reading (from `code/analyze_e24.py`, `results/full_softmax_decomposition.jsonl`): vLLM reports the logprob of the sampled token after top-k=20 / top-p=0.95 truncation and renormalization. The full-softmax variant compares the trainer's untruncated logprob with that renormalized one, so it differs by log(kept mass) whenever the truncation removes more than about 5% of the probability. That is 0.80-1.12% of tokens per update (last column), and 95.6-96.8% of the full-softmax mismatches are tokens that are not mismatched in the gate's truncated-support comparison. So the number above 1% is almost entirely the renormalization after truncation, not fp16 numeric mismatch; the numeric mismatch is the gate share (0.06-0.08%). The full-softmax share is above 1% in all 8 updates (1.03-1.38%); it moves with how many flat-distribution tokens the rollouts contain (update 4 has the most and the shortest rollouts), not with a trend over updates. This is an interpretation from one seed and one analysis, not a separate test; the gate (truncated support, as Exp 20 defines it) is unchanged and is the number to use.
+Reading, stated at the strength the data supports:
+- The full-softmax share (1.03-1.38%) is mostly a renormalization effect, not fp16 mismatch: 95.6-96.8% of its tokens are not gate-flagged, and 60-66% of its tokens (0.64-0.91% of all tokens) have a kept-mass offset above 0.05 on their own.
+- The other 34-40% (0.39-0.47% of all tokens) have a kept-mass offset below 0.05 and are not explained by that offset alone. Their median log kept mass is -0.040 (72-75% are below -0.03), so most sit just under the tolerance and a small additional numeric difference (typical mean abs delta 0.0006) tips them over 0.05; 8-10% of them are gate-flagged on their own. I did not separate the numeric and offset contributions further, so some of the 1.03-1.38% is fp16/numeric noise that the tolerance picks up on top of the offset, bounded below by the gate share (0.06-0.08%) and above by this remainder.
+- Neither part exceeds 1% by itself in any update (offset-alone part 0.64-0.91%, remainder 0.39-0.47%); only their sum does. So the above-1% value comes from the combination of the renormalization offset (top-p 0.95 removes up to about 5% of mass by design, right at the 0.05 tolerance) and small noise, and it is not evidence that the gate (truncated support, Exp 20's definition, 0.06-0.08%) is failing.
+- Roughly 20% of the 0.80-1.12% of tokens with kept-mass offset above 0.05 are not full-softmax-flagged (near the threshold, noise of the opposite sign).
+- It is above 1% in all 8 updates, moves with how many flat-distribution tokens a rollout set has (update 4 highest, shortest rollouts), and shows no trend over updates. One seed, one analysis.
+- `mean_abs_lf_minus_lt` was dropped from the decomposition file: it is infinite in every update because lt is -inf for the ~20 sampled tokens per update outside the recomputed support, not a bug.
 
 ## Finiteness and drift (fp16 training)
 
@@ -67,4 +73,4 @@ Eight updates, one seed, one start checkpoint, A100 (Exp 20 used L40S/H100 in Ap
 (a) run Exp 20's pilot with trainer and vLLM both fp16, loss scale 16384, gate as written (passes 10/10 updates so far across Exp 23 and 24); (b) rerun this 8-update smoke with the real Lean reward once Sherlock is reachable; (c) fp32 vLLM as fallback if fp16 overflows in a longer run (Exp 22: fp32 rollouts + fp16 scoring 0.083%).
 
 ## Files
-`code/` (train_e24.py, train_e24_vs_e20.diff, analyze_e24.py, lane8.sh), `results/` (per-update log, rollouts, manifest, gate check json, full-softmax decomposition). Per-token tensors (e24_tokens_u001-008.pt, ~75 MB) and the 23 GB run dir are in /lfs/skampere1/0/brando9/rl4cv_e23_fp16_smoke/run/fp16_8u.
+`code/` (train_e24.py, train_e24_vs_e20.diff, analyze_e24.py, analyze_e24_overlap.py, lane8.sh), `results/` (per-update log, rollouts, manifest, gate check json, full-softmax decomposition and overlap). Per-token tensors (e24_tokens_u001-008.pt, ~75 MB) and the 23 GB run dir are in /lfs/skampere1/0/brando9/rl4cv_e23_fp16_smoke/run/fp16_8u.
