@@ -1,0 +1,28 @@
+{
+  "subject": "[RUN DONE] rl4cv expt20 phase0a calibration generation: COMPLETED",
+  "body": "Experiment 20 calibration generation completed naturally: all 4,312 unique cells from 539 train tasks x 8 samples are present, with no missing or duplicate cells. The collector recorded 25,821,971 generated tokens and 940/4,312 token-capped generations. All calibration score fields remain unmeasured because the trainer smoke failed its mandatory consistency gate; no calibration scoring or downstream experiment was launched.\n\nThe last calibration job ended 10-21-2026 15:17:45 PDT. All four generation jobs completed with exit 0:0. Phase 0 used 26,049 allocated GPU-seconds = 7.2358 GPU-hours of its 10-hour cap. Trainer smoke, including two earlier infrastructure failures, used 0.5900/15 GPU-hours; total experiment allocation is 7.8258/200 GPU-hours, main 0/130, evaluation 0/80, API spend $0. The test split stayed closed.\n\nOverall verdict: STOPPED at the trainer log-probability mismatch gate (maximum 22,654/864,717 = 2.61982%, versus at most 1% allowed). The effect of item response theory (IRT) prompt selection on held-out validation remains unmeasured. Final tables, accounting and completion records are being published in the existing review pull request.\n\nExperiment: 20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013\nResults: https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/results.md\nCheckpoint: https://github.com/brando90/rl-4-code-verification/blob/e20-irt-prompt-selection/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/CKPT_codex-rl4cv-e20-irt-prompt-selection.md\nReview pull request: https://github.com/brando90/rl-4-code-verification/pull/20\n\nBrando (drafted with Codex)\n-----\nBrando Miranda\nPh.D. Student\nComputer Science, Stanford University\nEDGE Scholar, Stanford University\nbrando9@stanford.edu\nwebsite: https://brando90.github.io/brandomiranda/\n",
+  "transport": "uutils.emailing.send_email_smtp; task-local envelope expansion for legacy comma-joined BCC handling",
+  "status": "SMTP accepted all explicit envelope recipients",
+  "started_at": "10-21-2026 15:21:02 PDT",
+  "envelope": [
+    {
+      "to": "brando.science@gmail.com",
+      "bcc": [
+        "brando.science@gmail.com",
+        "brando9@stanford.edu",
+        "brandojazz@gmail.com",
+        "brando@vals.ai"
+      ],
+      "smtp_recipients": [
+        "brando.science@gmail.com",
+        "brando.science@gmail.com",
+        "brando9@stanford.edu",
+        "brandojazz@gmail.com",
+        "brando@vals.ai"
+      ],
+      "message_id": "<179262126261.2381065.17054990001978317869@rl4cv.e20.local>",
+      "refused": {}
+    }
+  ],
+  "sent_at": "10-21-2026 15:21:03 PDT"
+}

@@ -1,0 +1,126 @@
+{
+  "status": "PASS",
+  "fixture_only": true,
+  "no_real_compiler_model_or_gpu_calls": true,
+  "source_sha256": "91c1da8bcac044c3a23fbae0a48f21077d701c527140356eebbc46cfbce1b5d8",
+  "pinned_sources": {
+    "run_real_eval.py": "6e82b3d1cd6d3686aaec3d45f273cd902b03b962c0c2eca48f2c2b4f25f41fa9",
+    "kernel_axioms.py": "5dbbdcae75ba8b22911fcb43ab1fcde45a1475cf92742a39a29ebe41116de287"
+  },
+  "tested_code_sha256": {
+    "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/sherlock/partial_credit_e20.py": "ce63390dc5927a6280be84ed6307ab13359248a43791acfdfb367232755a41e0",
+    "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/sherlock/durable_capture.py": "c03ec54f0e9a68c8e03e3dccda4403e9192119cc5db953026b01f4be689f7793",
+    "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/sherlock/declaration_adapter.py": "a77fbd34f0166249742cf72cdc027b0f9949c265becfec4a191224945ff75353"
+  },
+  "compile_checks": [
+    {
+      "scenario": "success",
+      "captured_calls": 1,
+      "argv_timeout_result_equal": true,
+      "result": {
+        "success": true,
+        "sorry_warnings": 0,
+        "errors": 0,
+        "log": "synthetic stdout\n\n[stderr]\nsynthetic stderr\n"
+      }
+    },
+    {
+      "scenario": "failure",
+      "captured_calls": 1,
+      "argv_timeout_result_equal": true,
+      "result": {
+        "success": false,
+        "sorry_warnings": 0,
+        "errors": 1,
+        "log": "Fixture.lean:1:1: error: synthetic failure\n\n[stderr]\nsynthetic stderr"
+      }
+    },
+    {
+      "scenario": "timeout",
+      "captured_calls": 1,
+      "argv_timeout_result_equal": true,
+      "result": {
+        "success": false,
+        "sorry_warnings": 0,
+        "errors": 1,
+        "log": "timeout"
+      }
+    },
+    {
+      "scenario": "missing",
+      "captured_calls": 1,
+      "argv_timeout_result_equal": true,
+      "result": {
+        "success": false,
+        "sorry_warnings": 0,
+        "errors": 1,
+        "log": "lake not found"
+      }
+    }
+  ],
+  "global_only_import_gap_reproduced": true,
+  "kernel_probe": {
+    "captured_calls": 2,
+    "argv_timeout_result_equal": true,
+    "timeout_seconds": 71,
+    "result": {
+      "rc": 0,
+      "stdout": "synthetic kernel compile stdout\nFIXTURE_MARKER:BEGIN\nFIXTURE_MARKER:ROW {\"name\": \"fixture\", \"kind\": \"theorem\", \"axioms\": [], \"line\": 1, \"column\": 8, \"range_line\": 1, \"range_column\": 0}\nFIXTURE_MARKER:END 1\n",
+      "stderr": "\n",
+      "compile_rc": 0,
+      "inspect_rc": 0,
+      "source_sha256": "91c1da8bcac044c3a23fbae0a48f21077d701c527140356eebbc46cfbce1b5d8",
+      "compiled_module_sha256": "b55c31431f0e02f39dda542fd6c11d7dc754ec5f3dca1757fdca3e0ce88f39ef",
+      "evidence_dir": null,
+      "compiled_module": "Fixture"
+    }
+  },
+  "kernel_check_routes": [
+    {
+      "route": "adapter_direct_kernel",
+      "captured_calls": 2,
+      "probe_ok": true,
+      "synthetic_n_honest": 1,
+      "source_sha256": "91c1da8bcac044c3a23fbae0a48f21077d701c527140356eebbc46cfbce1b5d8"
+    },
+    {
+      "route": "scorer_private_kernel",
+      "captured_calls": 2,
+      "probe_ok": true,
+      "synthetic_n_honest": 1,
+      "source_sha256": "91c1da8bcac044c3a23fbae0a48f21077d701c527140356eebbc46cfbce1b5d8"
+    }
+  ],
+  "kernel_timeout": {
+    "captured_calls": 1,
+    "rc": 124,
+    "partial_stdout_preserved": true,
+    "partial_stderr_preserved": true
+  },
+  "parser_probe": {
+    "nice_prefix_intercepted": true,
+    "unchanged_command": {
+      "command": [
+        "nice",
+        "-n",
+        "10",
+        "lake",
+        "env",
+        "lean",
+        "--run",
+        "/lfs/skampere1/0/brando9/rl4cv_e20/experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/sherlock/DeclarationProbe.lean",
+        "/tmp/user/22003/e20_partial_d109_fixture_h24uwd98/lake/Fixture.lean"
+      ],
+      "timeout": 900,
+      "capture_output": true,
+      "check": false
+    },
+    "timeout_propagation": true,
+    "timeout_partial_streams_preserved": true
+  },
+  "pin_mismatch_rejected": [
+    "e13_pinned_scorer",
+    "e13_kernel_axioms"
+  ],
+  "temporary_fixture_root": "/tmp/user/22003/e20_partial_d109_fixture_h24uwd98"
+}

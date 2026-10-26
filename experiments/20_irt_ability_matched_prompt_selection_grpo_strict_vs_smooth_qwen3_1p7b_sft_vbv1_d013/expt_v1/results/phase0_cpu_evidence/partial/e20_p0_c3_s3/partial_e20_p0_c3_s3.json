@@ -1,0 +1,3147 @@
+{
+  "job_dir": "/scratch/users/brando9/rl4cv_sherlock/e20/phase0/jobs/e20_p0_c3_s3",
+  "adapter_sha256": "a77fbd34f0166249742cf72cdc027b0f9949c265becfec4a191224945ff75353",
+  "probe_sha256": "b9cc9f5bb25cdc72232cb756d443f34d98fc51c58207b7745a559a9ff8fceedc",
+  "n_trials": 107,
+  "n_measured": 87,
+  "records": [
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__117_unsafexfijump",
+      "sample_idx": 3,
+      "source_sha256": "57522cfd2326bea515d4eac25c77ff5bb07d58ea4dc3ebad801e9d9d75863475",
+      "source_bytes": 13575,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.05
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__118_unsafechrootuid",
+      "sample_idx": 3,
+      "source_sha256": "e6fb0a3e6e177f66e12003d64ccdfe404dcfc03f1de8cf881e813746bb1502ce",
+      "source_bytes": 12227,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04573320257473052,
+      "compiles": false,
+      "n_examples": 25,
+      "theorem_count": 8,
+      "proved_count": 0,
+      "declarations_ok": 0.9565217391304348,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 22,
+        "denominator": 23
+      },
+      "t": {
+        "numerator": 38,
+        "denominator": 40
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 8
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 48,
+      "axioms": [],
+      "wall_seconds": 22.22
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__11_unsafetimingcomparison",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__120_unsafereflectederror",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__126_unsafeoauthredirect",
+      "sample_idx": 3,
+      "source_sha256": "66082cb629ca246e4416ed842ad96cd738c25a1d1a470aa43a185daaf9489e03",
+      "source_bytes": 22997,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.502
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__127_unsafefuncptroverflow",
+      "sample_idx": 3,
+      "source_sha256": "5819884f9e9534e3e0e23f79ee541c6006e806bfce3185d1a3ad45da6dfebd51",
+      "source_bytes": 9033,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.689
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__128_unsafesqltaint",
+      "sample_idx": 3,
+      "source_sha256": "19eba539dae1ab35389f7675f925929647f0abddfb88afdbffc8a94a33751865",
+      "source_bytes": 15480,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.045088987149920684,
+      "compiles": false,
+      "n_examples": 24,
+      "theorem_count": 11,
+      "proved_count": 0,
+      "declarations_ok": 0.9166666666666666,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 22,
+        "denominator": 24
+      },
+      "t": {
+        "numerator": 35,
+        "denominator": 37
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 11
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 48,
+      "axioms": [],
+      "wall_seconds": 28.109
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__129_unsafetorhiddenservice",
+      "sample_idx": 3,
+      "source_sha256": "187257b9fc2a6523059ce4369f214a0e7f53eaa93b73227c984cbc9782147517",
+      "source_bytes": 8819,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.436
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__132_unsafeclickjacking",
+      "sample_idx": 3,
+      "source_sha256": "3d96406a0b8ae6fdf8504624c0a559b9bfe303beb8145a5f0bd00fa31392cea8",
+      "source_bytes": 6397,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 1.0,
+      "factored_reward": 1.0,
+      "compiles": true,
+      "n_examples": 15,
+      "theorem_count": 7,
+      "proved_count": 7,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 1.0,
+      "d": {
+        "numerator": 18,
+        "denominator": 18
+      },
+      "t": {
+        "numerator": 26,
+        "denominator": 26
+      },
+      "p": {
+        "numerator": 7,
+        "denominator": 7
+      },
+      "kernel_probe_ok": true,
+      "n_declarations": 33,
+      "axioms": [],
+      "wall_seconds": 26.241
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__133_unsafednsspoofing",
+      "sample_idx": 3,
+      "source_sha256": "a55c4d4cfe758ef484dcb2a94891b20a05f8e26d39586d086bae3f160b544c98",
+      "source_bytes": 7302,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.2154434690031884,
+      "compiles": false,
+      "n_examples": 16,
+      "theorem_count": 6,
+      "proved_count": 0,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 16,
+        "denominator": 16
+      },
+      "t": {
+        "numerator": 26,
+        "denominator": 26
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 6
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 32,
+      "axioms": [],
+      "wall_seconds": 1507.883
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__134_unsafewepkeystream",
+      "sample_idx": 3,
+      "source_sha256": "db55b6643e227e9b0199479023667a56a15879101d4d5ae05429af35402b8205",
+      "source_bytes": 6103,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 1.0,
+      "factored_reward": 1.0,
+      "compiles": true,
+      "n_examples": 12,
+      "theorem_count": 6,
+      "proved_count": 6,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 1.0,
+      "d": {
+        "numerator": 18,
+        "denominator": 18
+      },
+      "t": {
+        "numerator": 24,
+        "denominator": 24
+      },
+      "p": {
+        "numerator": 6,
+        "denominator": 6
+      },
+      "kernel_probe_ok": true,
+      "n_declarations": 30,
+      "axioms": [],
+      "wall_seconds": 33.294
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__135_unsaferaceconditiontoctou",
+      "sample_idx": 3,
+      "source_sha256": "194ae8701de7b0efde4886d6c47f0d66861122ff8e933c6e9624b89fd3de55d6",
+      "source_bytes": 11996,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04462886333881131,
+      "compiles": false,
+      "n_examples": 20,
+      "theorem_count": 10,
+      "proved_count": 0,
+      "declarations_ok": 0.8888888888888888,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 32,
+        "denominator": 36
+      },
+      "t": {
+        "numerator": 42,
+        "denominator": 46
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 10
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 56,
+      "axioms": [],
+      "wall_seconds": 28.586
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__136_unsafeprivilegeescalation",
+      "sample_idx": 3,
+      "source_sha256": "276200de72f8497b99e06e14e4939babcc6c83e1dbf0553ee8afbfa3799471d9",
+      "source_bytes": 8334,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.046415888336127795,
+      "compiles": false,
+      "n_examples": 17,
+      "theorem_count": 8,
+      "proved_count": 0,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 27,
+        "denominator": 27
+      },
+      "t": {
+        "numerator": 26,
+        "denominator": 36
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 8
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 44,
+      "axioms": [],
+      "wall_seconds": 21.409
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__138_unsafexssfilter",
+      "sample_idx": 3,
+      "source_sha256": "dd4e6ef023aa751df9b103bd8915e0e9cdf0b243b01fdc908dc9b09cbd5635bb",
+      "source_bytes": 6880,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.046415888336127795,
+      "compiles": false,
+      "n_examples": 15,
+      "theorem_count": 7,
+      "proved_count": 0,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 19,
+        "denominator": 19
+      },
+      "t": {
+        "numerator": 25,
+        "denominator": 27
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 7
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 34,
+      "axioms": [],
+      "wall_seconds": 20.38
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__139_unsafebufferbounds",
+      "sample_idx": 3,
+      "source_sha256": "a12e9cefcf25ca3d2e0ffda80c38a1dda9020f89a10d31393863d62f737c620a",
+      "source_bytes": 12377,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "duplicate fully qualified declaration identity",
+      "wall_seconds": 7.586
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__13_unsafebaggybounds",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__140_unsafehttpredirect",
+      "sample_idx": 3,
+      "source_sha256": "ec53bdfdd2abee6c7ea94226c99a14657a406dee4f1e9d2356ac21aa1d60ceb4",
+      "source_bytes": 19530,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "duplicate fully qualified declaration identity",
+      "wall_seconds": 7.802
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__142_unsafecertpinning",
+      "sample_idx": 3,
+      "source_sha256": "8ae4c9de5db85fc3ede98971ee6ed7b7b5f9e70e8297d3764683f8a4c39609e6",
+      "source_bytes": 8172,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.514
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__145_unsafeheapspraying",
+      "sample_idx": 3,
+      "source_sha256": "59a0b1a514878b060be09f849815d1d54db1765a0bc990fbcbbb144bb630d120",
+      "source_bytes": 8842,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.2154434690031884,
+      "compiles": false,
+      "n_examples": 21,
+      "theorem_count": 7,
+      "proved_count": 0,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 19,
+        "denominator": 19
+      },
+      "t": {
+        "numerator": 33,
+        "denominator": 33
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 7
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 40,
+      "axioms": [],
+      "wall_seconds": 1507.865
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__147_unsafestackcanarybypass",
+      "sample_idx": 3,
+      "source_sha256": "3d83126de44cd0677406a567e58a607111b2aea4f6fd9d5e16191360680dd832",
+      "source_bytes": 9760,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04481404746557165,
+      "compiles": false,
+      "n_examples": 17,
+      "theorem_count": 7,
+      "proved_count": 0,
+      "declarations_ok": 0.9,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 18,
+        "denominator": 20
+      },
+      "t": {
+        "numerator": 29,
+        "denominator": 30
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 7
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 37,
+      "axioms": [],
+      "wall_seconds": 401.009
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__148_unsafeformatstringleak",
+      "sample_idx": 3,
+      "source_sha256": "0095466a94791253dcd202673b0367017e922f54d9ac47e20d4d6f0fe9f12813",
+      "source_bytes": 11858,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.2097712492576774,
+      "compiles": false,
+      "n_examples": 18,
+      "theorem_count": 10,
+      "proved_count": 0,
+      "declarations_ok": 0.9230769230769231,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 24,
+        "denominator": 26
+      },
+      "t": {
+        "numerator": 34,
+        "denominator": 34
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 10
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 44,
+      "axioms": [],
+      "wall_seconds": 20.444
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__14_unsafeserviceauth",
+      "sample_idx": 3,
+      "source_sha256": "43b8901041a8d7ef608430931d3c8711755d622ae1a6ebe17d03858e3b5f5c6c",
+      "source_bytes": 14346,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04536061410635579,
+      "compiles": false,
+      "n_examples": 19,
+      "theorem_count": 11,
+      "proved_count": 0,
+      "declarations_ok": 0.9333333333333333,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 28,
+        "denominator": 30
+      },
+      "t": {
+        "numerator": 31,
+        "denominator": 38
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 11
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 49,
+      "axioms": [],
+      "wall_seconds": 27.419
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__151_unsafecsrftokenverify",
+      "sample_idx": 3,
+      "source_sha256": "5301013caaf4764bc75ee8ffadc176f5c2ef32c0b9e1586a22f46427bff20da1",
+      "source_bytes": 9494,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04570168416186976,
+      "compiles": false,
+      "n_examples": 16,
+      "theorem_count": 8,
+      "proved_count": 0,
+      "declarations_ok": 0.9545454545454546,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 21,
+        "denominator": 22
+      },
+      "t": {
+        "numerator": 21,
+        "denominator": 30
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 8
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 38,
+      "axioms": [],
+      "wall_seconds": 20.258
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__154_unsafeipfragreassembly",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__155_unsafeu2forigin",
+      "sample_idx": 3,
+      "source_sha256": "8bc51bb0ab17766ebca380e708c6a9ce4171b0ac648b0998452199fb66a53ee3",
+      "source_bytes": 13878,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04322635829440713,
+      "compiles": false,
+      "n_examples": 23,
+      "theorem_count": 9,
+      "proved_count": 0,
+      "declarations_ok": 0.8076923076923077,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 21,
+        "denominator": 26
+      },
+      "t": {
+        "numerator": 39,
+        "denominator": 40
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 9
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 49,
+      "axioms": [],
+      "wall_seconds": 22.033
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__156_unsafepostauthority",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__158_unsafetlscompression",
+      "sample_idx": 3,
+      "source_sha256": "ab7c40d913a0c57c4fb766646b8b0151cfad0361501a4f632c321bbc3aec8224",
+      "source_bytes": 20569,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.417
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__159_unsafeu2fchallenge",
+      "sample_idx": 3,
+      "source_sha256": "0770d2b52765fe47e049f485912a5a26930f5dfb4d7c097c502e475eb305e65d",
+      "source_bytes": 10338,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04149132666831218,
+      "compiles": false,
+      "n_examples": 18,
+      "theorem_count": 8,
+      "proved_count": 0,
+      "declarations_ok": 0.7142857142857143,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 20,
+        "denominator": 28
+      },
+      "t": {
+        "numerator": 31,
+        "denominator": 38
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 8
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 46,
+      "axioms": [],
+      "wall_seconds": 22.312
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__162_unsafespectreevictbypass",
+      "sample_idx": 3,
+      "source_sha256": "c3ce8016aef024dc05b6fe1f6607cd4d75b57468403d9acf848261418751fe7c",
+      "source_bytes": 15044,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.20690193381365027,
+      "compiles": false,
+      "n_examples": 35,
+      "theorem_count": 10,
+      "proved_count": 0,
+      "declarations_ok": 0.8857142857142857,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 31,
+        "denominator": 35
+      },
+      "t": {
+        "numerator": 60,
+        "denominator": 60
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 10
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 70,
+      "axioms": [],
+      "wall_seconds": 32.01
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__16_unsafeseccompfilter",
+      "sample_idx": 3,
+      "source_sha256": "d9ac202a045d7c5809c7d2bc58a2dde2c9a1c4e102e8139d553ac11c4ca39de1",
+      "source_bytes": 9283,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04583562890247137,
+      "compiles": false,
+      "n_examples": 23,
+      "theorem_count": 7,
+      "proved_count": 0,
+      "declarations_ok": 0.9629629629629629,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 26,
+        "denominator": 27
+      },
+      "t": {
+        "numerator": 41,
+        "denominator": 43
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 7
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 50,
+      "axioms": [],
+      "wall_seconds": 23.717
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__18_unsafewasmmembounds",
+      "sample_idx": 3,
+      "source_sha256": "89da368205249d5a59bc18305143d7f14fc0d8e2a893710ffca8228898adf48e",
+      "source_bytes": 13410,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04325900661368767,
+      "compiles": false,
+      "n_examples": 26,
+      "theorem_count": 8,
+      "proved_count": 0,
+      "declarations_ok": 0.8095238095238095,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 17,
+        "denominator": 21
+      },
+      "t": {
+        "numerator": 34,
+        "denominator": 39
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 8
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 47,
+      "axioms": [],
+      "wall_seconds": 21.195
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__19_unsafeindirectcall",
+      "sample_idx": 3,
+      "source_sha256": "1db87d26c1fda844f480bbf760e0a93f510daba9e6a1d7e2153270d5d8961b9f",
+      "source_bytes": 19753,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.045125884864545385,
+      "compiles": false,
+      "n_examples": 21,
+      "theorem_count": 18,
+      "proved_count": 0,
+      "declarations_ok": 0.918918918918919,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 34,
+        "denominator": 37
+      },
+      "t": {
+        "numerator": 33,
+        "denominator": 40
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 18
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 58,
+      "axioms": [],
+      "wall_seconds": 30.223
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__1_unsafemultiply",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__20_unsafepasscodecheck",
+      "sample_idx": 3,
+      "source_sha256": "e51fb9f710a2327f558fe2454ee5b91b136aa47d5ba00fe21cbca6de8d0f8637",
+      "source_bytes": 14143,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04556402765283677,
+      "compiles": false,
+      "n_examples": 24,
+      "theorem_count": 10,
+      "proved_count": 0,
+      "declarations_ok": 0.9459459459459459,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 35,
+        "denominator": 37
+      },
+      "t": {
+        "numerator": 48,
+        "denominator": 51
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 10
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 61,
+      "axioms": [],
+      "wall_seconds": 23.404
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__22_unsafetaintedlen",
+      "sample_idx": 3,
+      "source_sha256": "a00d57d0b30d8409a9cdcc6824d3fcd73e2db60b3a2374d1dff3e66392b7f859",
+      "source_bytes": 9952,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04578856970213328,
+      "compiles": false,
+      "n_examples": 27,
+      "theorem_count": 10,
+      "proved_count": 0,
+      "declarations_ok": 0.96,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 24,
+        "denominator": 25
+      },
+      "t": {
+        "numerator": 40,
+        "denominator": 42
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 10
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 52,
+      "axioms": [],
+      "wall_seconds": 22.901
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__23_unsafedoubleread",
+      "sample_idx": 3,
+      "source_sha256": "5a47ed45c84e007e9b76fd1ff45dfc47f90e6e44e96003dbb919352f598146c6",
+      "source_bytes": 17533,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04532334160468574,
+      "compiles": false,
+      "n_examples": 24,
+      "theorem_count": 13,
+      "proved_count": 0,
+      "declarations_ok": 0.9310344827586207,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 27,
+        "denominator": 29
+      },
+      "t": {
+        "numerator": 35,
+        "denominator": 40
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 13
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 53,
+      "axioms": [],
+      "wall_seconds": 31.5
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__25_unsaferangecheck",
+      "sample_idx": 3,
+      "source_sha256": "327fd4a331cc95d7ddb560cf4fc61667a4aa356282e0d73fa2b4c7b126d108a5",
+      "source_bytes": 11928,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.408
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__28_unsafesameorigin",
+      "sample_idx": 3,
+      "source_sha256": "3f1a1a4fe3e3369813eb69cad1829aac15ed570601599d0d89a9e7888aa23cf7",
+      "source_bytes": 6760,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 1.0,
+      "factored_reward": 1.0,
+      "compiles": true,
+      "n_examples": 16,
+      "theorem_count": 5,
+      "proved_count": 5,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 1.0,
+      "d": {
+        "numerator": 14,
+        "denominator": 14
+      },
+      "t": {
+        "numerator": 25,
+        "denominator": 25
+      },
+      "p": {
+        "numerator": 5,
+        "denominator": 5
+      },
+      "kernel_probe_ok": true,
+      "n_declarations": 30,
+      "axioms": [],
+      "wall_seconds": 28.368
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__29_unsafepermissioncheck",
+      "sample_idx": 3,
+      "source_sha256": "16a91634be250707d06acc0011da92b579ede715f3e2b09cf19bb147efd986eb",
+      "source_bytes": 10559,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04562902635386967,
+      "compiles": false,
+      "n_examples": 23,
+      "theorem_count": 7,
+      "proved_count": 0,
+      "declarations_ok": 0.95,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 19,
+        "denominator": 20
+      },
+      "t": {
+        "numerator": 34,
+        "denominator": 36
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 7
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 43,
+      "axioms": [],
+      "wall_seconds": 20.237
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__2_unsafememoryaccess",
+      "sample_idx": 3,
+      "source_sha256": "23a9348cf8da5da24be86442f7df26e58d421bde81043ecfd6f22f30bf7bd7b2",
+      "source_bytes": 13026,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.046415888336127795,
+      "compiles": false,
+      "n_examples": 34,
+      "theorem_count": 12,
+      "proved_count": 0,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 38,
+        "denominator": 38
+      },
+      "t": {
+        "numerator": 47,
+        "denominator": 59
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 12
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 72,
+      "axioms": [],
+      "wall_seconds": 23.16
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__30_unsafeuidisolation",
+      "sample_idx": 3,
+      "source_sha256": "c81da535c88b888b46a452c0ef25e659edaebb31758719e3d8f3728c5fc2b1de",
+      "source_bytes": 13093,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04475674043698857,
+      "compiles": false,
+      "n_examples": 26,
+      "theorem_count": 13,
+      "proved_count": 0,
+      "declarations_ok": 0.896551724137931,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 26,
+        "denominator": 29
+      },
+      "t": {
+        "numerator": 40,
+        "denominator": 42
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 13
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 55,
+      "axioms": [],
+      "wall_seconds": 29.565
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__31_unsafedivide",
+      "sample_idx": 3,
+      "source_sha256": "8b54318c8c8b609be9b0bc7b4ddddee76d7d18c55b94baef0cace4d9ab0cc22d",
+      "source_bytes": 9723,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04081655101917349,
+      "compiles": false,
+      "n_examples": 28,
+      "theorem_count": 10,
+      "proved_count": 0,
+      "declarations_ok": 0.68,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 17,
+        "denominator": 25
+      },
+      "t": {
+        "numerator": 40,
+        "denominator": 43
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 10
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 53,
+      "axioms": [],
+      "wall_seconds": 21.674
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__34_unsafedirectroute",
+      "sample_idx": 3,
+      "source_sha256": "0dcd2096fa8431e52e5c222667e1d869e82639f850adabc15c6ff6af9fb88218",
+      "source_bytes": 12389,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.2154434690031884,
+      "compiles": false,
+      "n_examples": 22,
+      "theorem_count": 14,
+      "proved_count": 0,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 29,
+        "denominator": 29
+      },
+      "t": {
+        "numerator": 37,
+        "denominator": 37
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 14
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 51,
+      "axioms": [],
+      "wall_seconds": 1507.841
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__35_unsaferelaypath",
+      "sample_idx": 3,
+      "source_sha256": "77e851c52eec32480976e373d2a34da671d2a289b8e46fbf695fb3ef3c8404ee",
+      "source_bytes": 12388,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04462886333881131,
+      "compiles": false,
+      "n_examples": 25,
+      "theorem_count": 12,
+      "proved_count": 0,
+      "declarations_ok": 0.8888888888888888,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 24,
+        "denominator": 27
+      },
+      "t": {
+        "numerator": 33,
+        "denominator": 40
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 12
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 52,
+      "axioms": [],
+      "wall_seconds": 30.848
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__36_unsafebootchain",
+      "sample_idx": 3,
+      "source_sha256": "c6cf35923b5859ced0e2c143288c4acf62d997eb16cfedf05754de9b2dc3233f",
+      "source_bytes": 9457,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04341268110716202,
+      "compiles": false,
+      "n_examples": 20,
+      "theorem_count": 8,
+      "proved_count": 0,
+      "declarations_ok": 0.8181818181818182,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 18,
+        "denominator": 22
+      },
+      "t": {
+        "numerator": 28,
+        "denominator": 34
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 8
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 42,
+      "axioms": [],
+      "wall_seconds": 21.752
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__37_unsaferollback",
+      "sample_idx": 3,
+      "source_sha256": "d7ef1ea8b08dd79f18bcdb8cbcde6858e1537ba36c4ad6d85ea3bc889d29dc2e",
+      "source_bytes": 9111,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.045667114039629426,
+      "compiles": false,
+      "n_examples": 20,
+      "theorem_count": 8,
+      "proved_count": 0,
+      "declarations_ok": 0.9523809523809523,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 20,
+        "denominator": 21
+      },
+      "t": {
+        "numerator": 31,
+        "denominator": 33
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 8
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 41,
+      "axioms": [],
+      "wall_seconds": 21.488
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__38_unsafetofukey",
+      "sample_idx": 3,
+      "source_sha256": "d04fc84b70c1a006e5f490fa99e287a1dd2c3a8d456be352c76a1ebbe87e6afc",
+      "source_bytes": 8156,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.682
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__40_unsafecircuithops",
+      "sample_idx": 3,
+      "source_sha256": "03ac7391439e148f54bc3c03b5755067373483da248c5fc4bdc96af9035e1ad0",
+      "source_bytes": 6061,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 1.0,
+      "factored_reward": 1.0,
+      "compiles": true,
+      "n_examples": 14,
+      "theorem_count": 6,
+      "proved_count": 6,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 1.0,
+      "d": {
+        "numerator": 17,
+        "denominator": 17
+      },
+      "t": {
+        "numerator": 25,
+        "denominator": 25
+      },
+      "p": {
+        "numerator": 6,
+        "denominator": 6
+      },
+      "kernel_probe_ok": true,
+      "n_declarations": 31,
+      "axioms": [],
+      "wall_seconds": 27.188
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__41_unsafeonionlayer",
+      "sample_idx": 3,
+      "source_sha256": "2e9991b02629b6a255b12e0ebb8567230c33deb41dfab67da9ff8262ca0af680",
+      "source_bytes": 7833,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 1.0,
+      "factored_reward": 1.0,
+      "compiles": true,
+      "n_examples": 14,
+      "theorem_count": 6,
+      "proved_count": 6,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 1.0,
+      "d": {
+        "numerator": 17,
+        "denominator": 17
+      },
+      "t": {
+        "numerator": 25,
+        "denominator": 25
+      },
+      "p": {
+        "numerator": 6,
+        "denominator": 6
+      },
+      "kernel_probe_ok": true,
+      "n_declarations": 31,
+      "axioms": [],
+      "wall_seconds": 31.589
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__43_unsafetenexbyte",
+      "sample_idx": 3,
+      "source_sha256": "4b3ef8bb9ad3d30f17a32343a86c43cd6a5872d246f3f959c5baaf6e22154855",
+      "source_bytes": 17071,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04594222377217931,
+      "compiles": false,
+      "n_examples": 29,
+      "theorem_count": 15,
+      "proved_count": 0,
+      "declarations_ok": 0.9696969696969697,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 32,
+        "denominator": 33
+      },
+      "t": {
+        "numerator": 41,
+        "denominator": 47
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 15
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 62,
+      "axioms": [],
+      "wall_seconds": 32.3
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__45_unsafearpresponse",
+      "sample_idx": 3,
+      "source_sha256": "e5a1085c5ca8ce9d929c65fd9c4d7850f32e68819f7b4d1872437d56dc5163b8",
+      "source_bytes": 8483,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 1.0,
+      "factored_reward": 1.0,
+      "compiles": true,
+      "n_examples": 18,
+      "theorem_count": 9,
+      "proved_count": 9,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 1.0,
+      "d": {
+        "numerator": 21,
+        "denominator": 21
+      },
+      "t": {
+        "numerator": 30,
+        "denominator": 30
+      },
+      "p": {
+        "numerator": 9,
+        "denominator": 9
+      },
+      "kernel_probe_ok": true,
+      "n_declarations": 39,
+      "axioms": [],
+      "wall_seconds": 27.957
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__45_unsafemeltdownread",
+      "sample_idx": 3,
+      "source_sha256": "bb3a32eebe70e12ff2dfe385718852db373215266c41dad82b5e4984ec1e7ff3",
+      "source_bytes": 8571,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.816
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__46_unsafecachettable",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__47_unsafetlscertname",
+      "sample_idx": 3,
+      "source_sha256": "62983304c0a88d19bf882968056af33a725817896145c16d1a6bf5f536e74b63",
+      "source_bytes": 8724,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.045539906934907816,
+      "compiles": false,
+      "n_examples": 23,
+      "theorem_count": 7,
+      "proved_count": 0,
+      "declarations_ok": 0.9444444444444444,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 17,
+        "denominator": 18
+      },
+      "t": {
+        "numerator": 32,
+        "denominator": 34
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 7
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 41,
+      "axioms": [],
+      "wall_seconds": 24.699
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__48_unsafecertexpiry",
+      "sample_idx": 3,
+      "source_sha256": "1031dbabe95c1b1b8a8f816a4787e5503336cb63a934f24788b7bbd54f19fd5b",
+      "source_bytes": 10320,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.21240864970139994,
+      "compiles": false,
+      "n_examples": 23,
+      "theorem_count": 9,
+      "proved_count": 0,
+      "declarations_ok": 0.9583333333333334,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 23,
+        "denominator": 24
+      },
+      "t": {
+        "numerator": 38,
+        "denominator": 38
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 9
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 47,
+      "axioms": [],
+      "wall_seconds": 21.723
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__49_unsafecertchain",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__4_unsafecounter",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__51_unsafefatpointer",
+      "sample_idx": 3,
+      "source_sha256": "d15defcebd795388002aec7eb72a738344b738797a4217c473e5a856b3c1b241",
+      "source_bytes": 15793,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.643
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__57_unsafetaintedptr",
+      "sample_idx": 3,
+      "source_sha256": "e915a865beff37be05359942c69dc3f750d7a70612a68628074dbfada326af83",
+      "source_bytes": 18670,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.807
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__58_unsafecallback",
+      "sample_idx": 3,
+      "source_sha256": "35f01073d4ace2b8867cc8364c9e59afb66b76c8eeef0484dc255729b811e5e0",
+      "source_bytes": 12444,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04551438007589618,
+      "compiles": false,
+      "n_examples": 26,
+      "theorem_count": 8,
+      "proved_count": 0,
+      "declarations_ok": 0.9428571428571428,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 33,
+        "denominator": 35
+      },
+      "t": {
+        "numerator": 46,
+        "denominator": 53
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 8
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 61,
+      "axioms": [],
+      "wall_seconds": 22.46
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__62_unsafexss",
+      "sample_idx": 3,
+      "source_sha256": "4c90455f8cbc9c63849082849412f49e746742a80309867a3212e7e1da386551",
+      "source_bytes": 14152,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.045911327849093624,
+      "compiles": false,
+      "n_examples": 24,
+      "theorem_count": 12,
+      "proved_count": 0,
+      "declarations_ok": 0.967741935483871,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 30,
+        "denominator": 31
+      },
+      "t": {
+        "numerator": 34,
+        "denominator": 43
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 12
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 55,
+      "axioms": [],
+      "wall_seconds": 24.339
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__63_unsafesynflood",
+      "sample_idx": 3,
+      "source_sha256": "f1565e64a486e8898b9d7188a3a9178731ffa2a6633b438668ef058f929207c1",
+      "source_bytes": 27811,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.697
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__64_unsafesaltlessstore",
+      "sample_idx": 3,
+      "source_sha256": "9add8c3c900df6371192887284e6ebf01ead651eedc4ea2ef0b8a05fb301a15c",
+      "source_bytes": 7348,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.042593377575759636,
+      "compiles": false,
+      "n_examples": 14,
+      "theorem_count": 8,
+      "proved_count": 0,
+      "declarations_ok": 0.7727272727272727,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 17,
+        "denominator": 22
+      },
+      "t": {
+        "numerator": 24,
+        "denominator": 28
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 8
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 36,
+      "axioms": [],
+      "wall_seconds": 20.614
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__64_unsafestatickeyexchange",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__65_unsafenoncereuse",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__67_unsafeaslrbypass",
+      "sample_idx": 3,
+      "source_sha256": "79d5c9dd71dc5c920df736a185376d4e323f8ebc2f65a88b82acbb807573944d",
+      "source_bytes": 10378,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.2154434690031884,
+      "compiles": false,
+      "n_examples": 18,
+      "theorem_count": 9,
+      "proved_count": 0,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 23,
+        "denominator": 23
+      },
+      "t": {
+        "numerator": 32,
+        "denominator": 32
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 9
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 41,
+      "axioms": [],
+      "wall_seconds": 1508.176
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__67_unsafesymbolicpath",
+      "sample_idx": 3,
+      "source_sha256": "7c1a53e8ddd7ae2c5ba30719645c09298ed9d19ba6813587a782fd731bcba82a",
+      "source_bytes": 10510,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.669
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__69_unsafednsspoofing",
+      "sample_idx": 3,
+      "source_sha256": "7782d545980f293b4fc5c4c047780a1416677aad221e233fd9157bdadc95837c",
+      "source_bytes": 12886,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.043860266073193,
+      "compiles": false,
+      "n_examples": 25,
+      "theorem_count": 9,
+      "proved_count": 0,
+      "declarations_ok": 0.84375,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 27,
+        "denominator": 32
+      },
+      "t": {
+        "numerator": 41,
+        "denominator": 48
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 9
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 57,
+      "axioms": [],
+      "wall_seconds": 23.438
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__6_unsafesqlquery",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__73_unsafewasmstack",
+      "sample_idx": 3,
+      "source_sha256": "044028a1910436fb413b2224825778c24914caedb0c9a9e515489f021d7c63e5",
+      "source_bytes": 7989,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 1.0,
+      "factored_reward": 1.0,
+      "compiles": true,
+      "n_examples": 19,
+      "theorem_count": 7,
+      "proved_count": 7,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 1.0,
+      "d": {
+        "numerator": 20,
+        "denominator": 20
+      },
+      "t": {
+        "numerator": 32,
+        "denominator": 32
+      },
+      "p": {
+        "numerator": 7,
+        "denominator": 7
+      },
+      "kernel_probe_ok": true,
+      "n_declarations": 39,
+      "axioms": [],
+      "wall_seconds": 26.619
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__74_unsafepaddingoracle",
+      "sample_idx": 3,
+      "source_sha256": "e0afffffea91bf72a00db3550ca30e97bb231ac150bb0fcb4a0c15522c7710b3",
+      "source_bytes": 14468,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04551438007589618,
+      "compiles": false,
+      "n_examples": 33,
+      "theorem_count": 15,
+      "proved_count": 0,
+      "declarations_ok": 0.9428571428571428,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 33,
+        "denominator": 35
+      },
+      "t": {
+        "numerator": 49,
+        "denominator": 53
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 15
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 68,
+      "axioms": [],
+      "wall_seconds": 20.733
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__74_unsafewasmglobal",
+      "sample_idx": 3,
+      "source_sha256": "a30a1d53456eed43f999cc53c6ee6d39e003f450adaba91324f1446b67390292",
+      "source_bytes": 11193,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 1.0,
+      "factored_reward": 1.0,
+      "compiles": true,
+      "n_examples": 22,
+      "theorem_count": 10,
+      "proved_count": 10,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 1.0,
+      "d": {
+        "numerator": 25,
+        "denominator": 25
+      },
+      "t": {
+        "numerator": 37,
+        "denominator": 37
+      },
+      "p": {
+        "numerator": 10,
+        "denominator": 10
+      },
+      "kernel_probe_ok": true,
+      "n_declarations": 47,
+      "axioms": [],
+      "wall_seconds": 26.496
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__75_unsafecerthostname",
+      "sample_idx": 3,
+      "source_sha256": "b9dc8199853362d94f50e38f96ff13e333f6a2b1886ee9ad5827a36eb6f7fd31",
+      "source_bytes": 15834,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04486752489992003,
+      "compiles": false,
+      "n_examples": 26,
+      "theorem_count": 8,
+      "proved_count": 0,
+      "declarations_ok": 0.9032258064516129,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 28,
+        "denominator": 31
+      },
+      "t": {
+        "numerator": 45,
+        "denominator": 49
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 8
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 57,
+      "axioms": [],
+      "wall_seconds": 21.268
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__76_unsafedeniableauth",
+      "sample_idx": 3,
+      "source_sha256": "0cb8b0e99b1b3a6bb23445630efc3968469de2ade2b48e21c9736572e7bd6749",
+      "source_bytes": 14451,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04451920967008094,
+      "compiles": false,
+      "n_examples": 35,
+      "theorem_count": 14,
+      "proved_count": 0,
+      "declarations_ok": 0.8823529411764706,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 30,
+        "denominator": 34
+      },
+      "t": {
+        "numerator": 50,
+        "denominator": 55
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 14
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 69,
+      "axioms": [],
+      "wall_seconds": 25.54
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__77_unsafeversiondowngrade",
+      "sample_idx": 3,
+      "source_sha256": "27ab5ee539838f27152645d61209697654c4312fdc1bb84ceed043336f9133e1",
+      "source_bytes": 9238,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 1.0,
+      "factored_reward": 1.0,
+      "compiles": true,
+      "n_examples": 20,
+      "theorem_count": 8,
+      "proved_count": 8,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 1.0,
+      "d": {
+        "numerator": 21,
+        "denominator": 21
+      },
+      "t": {
+        "numerator": 33,
+        "denominator": 33
+      },
+      "p": {
+        "numerator": 8,
+        "denominator": 8
+      },
+      "kernel_probe_ok": true,
+      "n_declarations": 41,
+      "axioms": [],
+      "wall_seconds": 26.616
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__79_unsafekeypersistence",
+      "sample_idx": 3,
+      "source_sha256": "0e17a8c17fcf94d30d8b22459705a05115656d6f605e664f210854a19390eb4f",
+      "source_bytes": 9778,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.19854009393860164,
+      "compiles": false,
+      "n_examples": 26,
+      "theorem_count": 9,
+      "proved_count": 0,
+      "declarations_ok": 0.782608695652174,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 18,
+        "denominator": 23
+      },
+      "t": {
+        "numerator": 40,
+        "denominator": 40
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 9
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 49,
+      "axioms": [],
+      "wall_seconds": 20.452
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__7_unsafecommandexecution",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__81_unsafesigperm",
+      "sample_idx": 3,
+      "source_sha256": "58808b72df56db3493ad854ed128e52fd0b0fe8d9a3f57b5997fb4c2daf5fc82",
+      "source_bytes": 7016,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.21113343839560017,
+      "compiles": false,
+      "n_examples": 12,
+      "theorem_count": 6,
+      "proved_count": 0,
+      "declarations_ok": 0.9411764705882353,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 16,
+        "denominator": 17
+      },
+      "t": {
+        "numerator": 23,
+        "denominator": 23
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 6
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 29,
+      "axioms": [],
+      "wall_seconds": 222.79
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__82_unsafecookieforge",
+      "sample_idx": 3,
+      "source_sha256": "ccd5d75099f5364b49e83ba6c111cda051de4b522711bdaeea18ae894ef54e8c",
+      "source_bytes": 6893,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 1.0,
+      "factored_reward": 1.0,
+      "compiles": true,
+      "n_examples": 17,
+      "theorem_count": 6,
+      "proved_count": 6,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 1.0,
+      "d": {
+        "numerator": 16,
+        "denominator": 16
+      },
+      "t": {
+        "numerator": 27,
+        "denominator": 27
+      },
+      "p": {
+        "numerator": 6,
+        "denominator": 6
+      },
+      "kernel_probe_ok": true,
+      "n_declarations": 33,
+      "axioms": [],
+      "wall_seconds": 30.753
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__83_unsafetransferbalance",
+      "sample_idx": 3,
+      "source_sha256": "fecdd765e74cc2f951ff86905eb254be575ca25d73a98be7fd306a3d5f395ab6",
+      "source_bytes": 7797,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 1.0,
+      "factored_reward": 1.0,
+      "compiles": true,
+      "n_examples": 18,
+      "theorem_count": 8,
+      "proved_count": 8,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 1.0,
+      "d": {
+        "numerator": 20,
+        "denominator": 20
+      },
+      "t": {
+        "numerator": 30,
+        "denominator": 30
+      },
+      "p": {
+        "numerator": 8,
+        "denominator": 8
+      },
+      "kernel_probe_ok": true,
+      "n_declarations": 38,
+      "axioms": [],
+      "wall_seconds": 29.734
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__85_unsafecookiedomain",
+      "sample_idx": 3,
+      "source_sha256": "35bf3afa53c51af4478e04e0f44c4dcf84876d249e7575e26cdf94df2f44e375",
+      "source_bytes": 9275,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 1.0,
+      "factored_reward": 1.0,
+      "compiles": true,
+      "n_examples": 17,
+      "theorem_count": 7,
+      "proved_count": 7,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 1.0,
+      "d": {
+        "numerator": 25,
+        "denominator": 25
+      },
+      "t": {
+        "numerator": 35,
+        "denominator": 35
+      },
+      "p": {
+        "numerator": 7,
+        "denominator": 7
+      },
+      "kernel_probe_ok": true,
+      "n_declarations": 42,
+      "axioms": [],
+      "wall_seconds": 64.208
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__86_unsafehttponly",
+      "sample_idx": 3,
+      "source_sha256": "6ee7ba22a7f05a968f2dfb347813f6e111c755ded763bb19e5836c810912de70",
+      "source_bytes": 9284,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 1.0,
+      "factored_reward": 1.0,
+      "compiles": true,
+      "n_examples": 18,
+      "theorem_count": 9,
+      "proved_count": 9,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 1.0,
+      "d": {
+        "numerator": 21,
+        "denominator": 21
+      },
+      "t": {
+        "numerator": 30,
+        "denominator": 30
+      },
+      "p": {
+        "numerator": 9,
+        "denominator": 9
+      },
+      "kernel_probe_ok": true,
+      "n_declarations": 39,
+      "axioms": [],
+      "wall_seconds": 28.083
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__88_unsafebgproute",
+      "sample_idx": 3,
+      "source_sha256": "427a0c05c6d7fa596a29f90e95624f25f1b391b953d0e31105d15dd989b5e521",
+      "source_bytes": 9837,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.044303093598303055,
+      "compiles": false,
+      "n_examples": 17,
+      "theorem_count": 9,
+      "proved_count": 0,
+      "declarations_ok": 0.8695652173913043,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 20,
+        "denominator": 23
+      },
+      "t": {
+        "numerator": 27,
+        "denominator": 31
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 9
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 40,
+      "axioms": [],
+      "wall_seconds": 22.982
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__88_unsafeopenredirect",
+      "sample_idx": 3,
+      "source_sha256": "ce59ec723c261dc780131ccbb7c8848fcd9e00bd2a4b5daae01feee1f4179061",
+      "source_bytes": 14996,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04532334160468574,
+      "compiles": false,
+      "n_examples": 27,
+      "theorem_count": 11,
+      "proved_count": 0,
+      "declarations_ok": 0.9310344827586207,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 27,
+        "denominator": 29
+      },
+      "t": {
+        "numerator": 39,
+        "denominator": 45
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 11
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 56,
+      "axioms": [],
+      "wall_seconds": 22.525
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__89_unsafesynflood",
+      "sample_idx": 3,
+      "source_sha256": "6250fc557dea41b38dd34db73c4164895be823ff98b03e50ee04c5285f8c876c",
+      "source_bytes": 9067,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04570168416186976,
+      "compiles": false,
+      "n_examples": 18,
+      "theorem_count": 8,
+      "proved_count": 0,
+      "declarations_ok": 0.9545454545454546,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 21,
+        "denominator": 22
+      },
+      "t": {
+        "numerator": 28,
+        "denominator": 32
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 8
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 40,
+      "axioms": [],
+      "wall_seconds": 23.358
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__8_crosssitescripting",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__90_unsafeipspoofing",
+      "sample_idx": 3,
+      "source_sha256": "10edeb7d172522084d087081dc8c3fca908eae958ac96fa0ecd32bb29f37ef9e",
+      "source_bytes": 12366,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04439520008713004,
+      "compiles": false,
+      "n_examples": 22,
+      "theorem_count": 10,
+      "proved_count": 0,
+      "declarations_ok": 0.875,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 21,
+        "denominator": 24
+      },
+      "t": {
+        "numerator": 33,
+        "denominator": 36
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 10
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 46,
+      "axioms": [],
+      "wall_seconds": 25.123
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__90_unsafetlsreplay",
+      "sample_idx": 3,
+      "source_sha256": "35ed5d969661bc6a581c1f1c3b37cc61838f88cd0f642164195ddd5f33a1cc62",
+      "source_bytes": 7013,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 1.0,
+      "factored_reward": 1.0,
+      "compiles": true,
+      "n_examples": 15,
+      "theorem_count": 7,
+      "proved_count": 7,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 1.0,
+      "d": {
+        "numerator": 19,
+        "denominator": 19
+      },
+      "t": {
+        "numerator": 27,
+        "denominator": 27
+      },
+      "p": {
+        "numerator": 7,
+        "denominator": 7
+      },
+      "kernel_probe_ok": true,
+      "n_declarations": 34,
+      "axioms": [],
+      "wall_seconds": 28.246
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__92_unsafemaccoverage",
+      "sample_idx": 3,
+      "source_sha256": "58f8c5f8fd2f97911169b77919bcb602514914fc7e1f56db09fd74ac1d96d3d1",
+      "source_bytes": 5346,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.044091113830836935,
+      "compiles": false,
+      "n_examples": 9,
+      "theorem_count": 5,
+      "proved_count": 0,
+      "declarations_ok": 0.8571428571428571,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 12,
+        "denominator": 14
+      },
+      "t": {
+        "numerator": 15,
+        "denominator": 18
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 5
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 23,
+      "axioms": [],
+      "wall_seconds": 21.239
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__92_unsafewitnessgen",
+      "sample_idx": 3,
+      "source_sha256": "30cf611838c9265f239e3227f2b6c30c833b9aa09e02717b8249c088f59e8374",
+      "source_bytes": 7105,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.898
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__93_unsafecertpinning",
+      "sample_idx": 3,
+      "source_sha256": "d10d4d4e56033544bdc9de4efa2c053f7a0368db3f19bcdbad0d47f6fbf5c845",
+      "source_bytes": 12596,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.040852897032162196,
+      "compiles": false,
+      "n_examples": 28,
+      "theorem_count": 8,
+      "proved_count": 0,
+      "declarations_ok": 0.6818181818181818,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 15,
+        "denominator": 22
+      },
+      "t": {
+        "numerator": 39,
+        "denominator": 42
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 8
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 50,
+      "axioms": [],
+      "wall_seconds": 25.139
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__94_unsafecaverify",
+      "sample_idx": 3,
+      "source_sha256": "c2b538e35ebdb850971766ac94c9fce0605b2849490665bc20856d508e070131",
+      "source_bytes": 9225,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.825
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__94_unsafestatickeyexchange",
+      "sample_idx": 3,
+      "source_sha256": "8a4939f8a38a1085ca903702e870194f957fd05b6e7b7388c5d7157d21a6223e",
+      "source_bytes": 9075,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.0437951913988789,
+      "compiles": false,
+      "n_examples": 18,
+      "theorem_count": 10,
+      "proved_count": 0,
+      "declarations_ok": 0.84,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 21,
+        "denominator": 25
+      },
+      "t": {
+        "numerator": 29,
+        "denominator": 33
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 10
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 43,
+      "axioms": [],
+      "wall_seconds": 21.611
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__96_unsafekeyserver",
+      "sample_idx": 3,
+      "source_sha256": "cbd1e3834a4229ec047ad60ce36803d9cdce08e550cf3fcabfbbe04f045946ff",
+      "source_bytes": 7173,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04536061410635579,
+      "compiles": false,
+      "n_examples": 18,
+      "theorem_count": 6,
+      "proved_count": 0,
+      "declarations_ok": 0.9333333333333333,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 14,
+        "denominator": 15
+      },
+      "t": {
+        "numerator": 25,
+        "denominator": 27
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 6
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 33,
+      "axioms": [],
+      "wall_seconds": 20.939
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__96_unsafemetadataprotection",
+      "sample_idx": 3,
+      "source_sha256": "b62e2a6cc3b8da8756aa6a82711818b46e2d2843c8aebb1222989f61c04a7010",
+      "source_bytes": 11764,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.87
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__97_unsafedefaultpassword",
+      "sample_idx": 3,
+      "source_sha256": "16eb4095e3a9adeed334cfe31b966039fa05d9e9739776e5dc14539372e63b1e",
+      "source_bytes": 12095,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04235823584254894,
+      "compiles": false,
+      "n_examples": 22,
+      "theorem_count": 10,
+      "proved_count": 0,
+      "declarations_ok": 0.76,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 19,
+        "denominator": 25
+      },
+      "t": {
+        "numerator": 35,
+        "denominator": 37
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 10
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 47,
+      "axioms": [],
+      "wall_seconds": 22.158
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__98_unsafechangecipherspec",
+      "sample_idx": 3,
+      "source_sha256": "f1bcc29e25c6c4e6bb7f19d46f9d41f40483e33b0a99fe86a2ff4bc23a74a9fd",
+      "source_bytes": 22533,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.04604454532124103,
+      "compiles": false,
+      "n_examples": 30,
+      "theorem_count": 19,
+      "proved_count": 0,
+      "declarations_ok": 0.9761904761904762,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 41,
+        "denominator": 42
+      },
+      "t": {
+        "numerator": 48,
+        "denominator": 53
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 19
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 72,
+      "axioms": [],
+      "wall_seconds": 25.565
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__99_unsafecipherdowngrade",
+      "sample_idx": 3,
+      "source_sha256": "d8aeb7f37fc3d1ab939acfa4fe226105cff4919fcde4bf8a043ce323d71b9f8f",
+      "source_bytes": 19570,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 0.0,
+      "factored_reward": 0.0434840250006818,
+      "compiles": false,
+      "n_examples": 40,
+      "theorem_count": 21,
+      "proved_count": 0,
+      "declarations_ok": 0.8222222222222222,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 37,
+        "denominator": 45
+      },
+      "t": {
+        "numerator": 63,
+        "denominator": 64
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 21
+      },
+      "kernel_probe_ok": false,
+      "n_declarations": 85,
+      "axioms": [],
+      "wall_seconds": 31.354
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__99_unsafehardcodedkey",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__99_unsafeotahash",
+      "sample_idx": 3,
+      "source_sha256": "621922133bfc44a19a238b951c35083fdab6bc8a389be40bd24e91718bc8ff3e",
+      "source_bytes": 8611,
+      "truncated": false,
+      "status": "measured",
+      "extracted": true,
+      "strict": 1.0,
+      "factored_reward": 1.0,
+      "compiles": true,
+      "n_examples": 17,
+      "theorem_count": 8,
+      "proved_count": 8,
+      "declarations_ok": 1.0,
+      "implementation_and_examples_ok": true,
+      "proved_fraction": 1.0,
+      "d": {
+        "numerator": 20,
+        "denominator": 20
+      },
+      "t": {
+        "numerator": 29,
+        "denominator": 29
+      },
+      "p": {
+        "numerator": 8,
+        "denominator": 8
+      },
+      "kernel_probe_ok": true,
+      "n_declarations": 37,
+      "axioms": [],
+      "wall_seconds": 35.016
+    },
+    {
+      "task_id": "security_set__security_6858__vulnerabilities__9_pathtraversal",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_python__safe__0_no_shell_injection_safe",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_python__safe__1_no_command_injection_safe",
+      "sample_idx": 3,
+      "source_sha256": "a3f59025e9ad887e66d3a8c45a97f128d20c2264949b38da3941d12e8f6abdf8",
+      "source_bytes": 30328,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 8.3
+    },
+    {
+      "task_id": "security_set__security_python__safe__2_no_executable_escalation_safe",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_python__vulnerabilities__0_shell_injection",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_python__vulnerabilities__1_command_injection",
+      "sample_idx": 3,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "truncated": true,
+      "status": "measured",
+      "extracted": false,
+      "strict": 0.0,
+      "factored_reward": 0.0,
+      "compiles": false,
+      "n_examples": 0,
+      "theorem_count": 0,
+      "proved_count": 0,
+      "declarations_ok": 0.0,
+      "implementation_and_examples_ok": false,
+      "proved_fraction": 0.0,
+      "d": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "t": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "p": {
+        "numerator": 0,
+        "denominator": 0
+      },
+      "note": "empty source: no Lean call",
+      "wall_seconds": 0.0
+    },
+    {
+      "task_id": "security_set__security_python__vulnerabilities__2_executable_escalation",
+      "sample_idx": 3,
+      "source_sha256": "e83c5aee3e3397fffe08a4456031b27fcf87dcfb29070a0eaee0842c512bf221",
+      "source_bytes": 25455,
+      "truncated": false,
+      "status": "unresolved_measurement",
+      "error_type": "AdapterError",
+      "error": "Lean parser recovered from malformed source; declaration evidence is unknown",
+      "wall_seconds": 7.641
+    }
+  ]
+}
