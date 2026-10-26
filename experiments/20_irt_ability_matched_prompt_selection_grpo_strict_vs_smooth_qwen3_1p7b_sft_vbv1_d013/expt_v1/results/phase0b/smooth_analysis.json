@@ -1,0 +1,118 @@
+{
+  "correlation_bootstrap": {
+    "draws": 1000,
+    "groups": 400,
+    "limitations": "conditional on fitted item parameters; no model refitting; p-values not computed",
+    "seed": 20261021,
+    "unit": "D-013 train item group"
+  },
+  "difficulty_correlations": {
+    "first_cut_logit_parameter": {
+      "kendall": {
+        "hi": -0.5014452413754854,
+        "lo": -0.5901085435244097,
+        "null": null,
+        "p_two_sided": null,
+        "point": -0.5474013968654934,
+        "requested_draws": 1000,
+        "valid_draws": 1000
+      },
+      "pearson": {
+        "hi": -0.6934992792916171,
+        "lo": -0.7721383619686084,
+        "null": null,
+        "p_two_sided": null,
+        "point": -0.7347440127125701,
+        "requested_draws": 1000,
+        "valid_draws": 1000
+      },
+      "spearman": {
+        "hi": -0.6825824980223556,
+        "lo": -0.7808428110966638,
+        "null": null,
+        "p_two_sided": null,
+        "point": -0.7357663993076008,
+        "requested_draws": 1000,
+        "valid_draws": 1000
+      }
+    },
+    "first_threshold_ability_scale": {
+      "kendall": {
+        "hi": 0.5920339077543879,
+        "lo": 0.5061851509396489,
+        "null": null,
+        "p_two_sided": null,
+        "point": 0.5492749339504065,
+        "requested_draws": 1000,
+        "valid_draws": 1000
+      },
+      "pearson": {
+        "hi": 0.7724047175331006,
+        "lo": 0.6935370121870591,
+        "null": null,
+        "p_two_sided": null,
+        "point": 0.7350214351455262,
+        "requested_draws": 1000,
+        "valid_draws": 1000
+      },
+      "spearman": {
+        "hi": 0.7809311442687498,
+        "lo": 0.6864613804560938,
+        "null": null,
+        "p_two_sided": null,
+        "point": 0.7367027449645613,
+        "requested_draws": 1000,
+        "valid_draws": 1000
+      }
+    }
+  },
+  "fit": {
+    "check_grid_max_abs_grad": 3.2993595236174844e-06,
+    "converged": true,
+    "elapsed_seconds": 61.14901936298702,
+    "grid": [
+      -12.0,
+      12.0,
+      1201
+    ],
+    "max_abs_grad": 3.2993595236174844e-06,
+    "n_cats": 5,
+    "n_items": 539,
+    "nit": 263,
+    "objective": 382.3005202225746,
+    "rho": null,
+    "sigma_e": 0.5,
+    "slope_sd": 0.1,
+    "tied": true
+  },
+  "forecast_scope": "posterior replication in ordinal categories; a lower bound on exact smooth nonconstancy; within-bin differences unidentifiable",
+  "forecast_status": "in-sample posterior prediction, not a prospective claim about already-scored Phase 0",
+  "identifiability": "pseudo-respondents are sample indices of one policy; no across-system shared-skill claim",
+  "observed_category_nonconstant_complete_case_share": 0.7617977528089888,
+  "observed_category_nonconstant_share_lower": 0.7792207792207793,
+  "observed_category_nonconstant_share_upper": 0.8033395176252319,
+  "observed_category_nonconstant_tasks_lower": 420,
+  "observed_category_nonconstant_tasks_upper": 433,
+  "observed_exact_nonconstant_complete_case_share": 0.8179775280898877,
+  "observed_exact_nonconstant_share_lower": 0.8367346938775511,
+  "observed_exact_nonconstant_share_upper": 0.849721706864564,
+  "observed_exact_nonconstant_tasks_lower": 451,
+  "observed_exact_nonconstant_tasks_upper": 458,
+  "predicted_category_nonconstant_share": 0.9542238032518744,
+  "pseudo_respondents": 8,
+  "real_start_policies": 1,
+  "selection_limitation": "the declaration adapter can leave smooth reward unresolved for outcome-dependent source structures; the observed smooth cohort may therefore be selected",
+  "smooth_complete_case_tasks": 445,
+  "smooth_declared_cells": 4312,
+  "smooth_measured_cells": 4202,
+  "smooth_missing_cells": 110,
+  "smooth_missing_reason_counts": {
+    "unresolved: duplicate fully qualified declaration identity": 110
+  },
+  "smooth_missing_status_counts": {
+    "unresolved": 110
+  },
+  "smooth_missingness_likelihood": "unobserved smooth cells are ignored through the observation mask; estimates are conditional on observed smooth cells and missing-at-random is not established",
+  "status": "available",
+  "tasks_with_any_smooth": 539
+}

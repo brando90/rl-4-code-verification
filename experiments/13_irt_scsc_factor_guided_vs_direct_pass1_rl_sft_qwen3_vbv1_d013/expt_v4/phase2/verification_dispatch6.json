@@ -1,0 +1,146 @@
+{
+  "tldr": "Runner-only stop, conservative process-race waits and cleanup pass CPU controls; master owns live pause.",
+  "created": "10-21-2026 15:52:08 PDT",
+  "status": "PASS",
+  "v4": {
+    "passed": 312,
+    "skipped": 0,
+    "warnings": 0,
+    "failed": 0
+  },
+  "v3_watchdog": {
+    "passed": 16,
+    "skipped": 0,
+    "warnings": 0,
+    "failed": 0
+  },
+  "root": {
+    "passed": 1405,
+    "skipped": 15,
+    "warnings": 6,
+    "failed": 0
+  },
+  "new_v4_tests": 79,
+  "focused_new_suite": {
+    "passed": 73,
+    "failed": 0,
+    "additional_final_cases_in_v4_suite": 6
+  },
+  "initial_new_test_attempt": {
+    "passed": 57,
+    "failed": 16,
+    "cause": "synthetic clock addition produced 0.9999999999999998 seconds, preventing the intended post-boundary fault injection",
+    "fix": "advance synthetic clocks by an extra microsecond; production one-second threshold unchanged"
+  },
+  "exception_injection": {
+    "sites": 12,
+    "exception_types": [
+      "RuntimeError",
+      "KeyboardInterrupt"
+    ],
+    "cases": 24,
+    "all_resumed": true
+  },
+  "proc_races": {
+    "snapshot_proc_sites": 6,
+    "snapshot_exceptions": 3,
+    "low_level_read_sites": 7,
+    "low_level_exceptions": 2,
+    "reference_sites": 3,
+    "reference_exceptions": 2,
+    "status": "WAIT rather than traceback"
+  },
+  "stop_bound_seconds": 10,
+  "timeout_control_seconds": 0.03,
+  "dummy_tmux": {
+    "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/dummy_tmux_dispatch6.json",
+    "sha256": "56b5a5da9e834111587d4258e135a3a969485a39777ae9eca561389aaca988fd",
+    "version": "tmux 3.4",
+    "direct_pane_child_is_sh_c": true,
+    "verdict": "PASS",
+    "cleanup": {
+      "attempted": true,
+      "owned_processes_gone": true,
+      "session_gone": true
+    }
+  },
+  "live_probe": {
+    "trajectory": "A_1302",
+    "status": "WAIT_OBSERVATION",
+    "read_only": true,
+    "observed_unix": [
+      1792622962.8396409,
+      1792622964.529091
+    ],
+    "observation_error_counts": [
+      3,
+      6
+    ],
+    "runner_states": [
+      {
+        "pid": 692011,
+        "start_ticks": "76454333",
+        "state": "S",
+        "wchan": "hrtimer_nanosleep",
+        "children": []
+      },
+      {
+        "pid": 692011,
+        "start_ticks": "76454333",
+        "state": "S",
+        "wchan": "hrtimer_nanosleep",
+        "children": []
+      }
+    ],
+    "argv": [
+      "pause_v3.py",
+      "--admission",
+      "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_dispatch6_preseal.json",
+      "--trajectory",
+      "A_1302",
+      "--probe"
+    ],
+    "probe_admission_sha256": "54660ae8e7df53679bfbdc5e045157386a59795d4a10b3066ca87fb663eecb87",
+    "output_sha256": "13482b5cdaad4c80d42002a489308093f588f2872637f247402a8acdefe24736",
+    "stderr_bytes": 0
+  },
+  "logs": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/v4_dispatch6_tests.log",
+      "sha256": "afcd588f31cf6ea27cee29d2594c956cf423404e83c40482ebbe393ab999371e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/watchdog_dispatch6_tests.log",
+      "sha256": "a78ca61dfdb9f3a442450088feb624888428e7d9d06cc4c61290fe708f66033c"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/root_dispatch6_tests.log",
+      "sha256": "2b3d372b23ee813a6096b61e70b01d06d80945e8c9cd332e41f7d5313cad4f3e"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/freeze_dispatch6_tests_final.log",
+      "sha256": "0b60e0a39afbfb04fdbe8cec1251886a25d8067831f7388e08ac5fd870f5e1cf"
+    }
+  ],
+  "master_wrapper": {
+    "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/a1302_pause_then_gates.sh",
+    "sha256": "5c2df829cbae677fc2856741fde24902c948db4c2d9f8cdfb7f562ba37206b70",
+    "executed": false,
+    "only_edit": "admission_dispatch5.json -> admission_dispatch6.json"
+  },
+  "limits": {
+    "api_spend_usd": 0,
+    "gpu_allocations": 0,
+    "model_generations": 0,
+    "optimizer_steps": 0,
+    "v3_signals": 0,
+    "cron_installs": 0,
+    "shared_venv_edits": 0,
+    "real_v3_pause_list_exists": false
+  },
+  "health": {
+    "reachability": "PASS",
+    "storage_threshold_flags": "LFS 319 GiB and DFS 1147 GiB free; percentage thresholds flagged. No cleanup undertaken; sufficient for this small CPU code/evidence task."
+  },
+  "uncertainty": "Deterministic controls and timestamped observations, not scientific estimates; no statistical intervals or p-values apply."
+}

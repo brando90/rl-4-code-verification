@@ -1,0 +1,53 @@
+{
+ "amendment": "AMENDMENT_01 section 5 (descriptive; does not change the G1 verdict)",
+ "auc": {
+  "panel_mean_smooth": {
+   "ci95": [
+    0.7596422704074188,
+    0.9133354978354978
+   ],
+   "estimate": 0.8392361111111111
+  },
+  "panel_strict_rate": {
+   "ci95": [
+    0.7531971336470688,
+    0.9044905615395522
+   ],
+   "estimate": 0.8310763888888889
+  },
+  "q8_irt_2pl": {
+   "ci95": [
+    0.768279155320486,
+    0.9154357345136955
+   ],
+   "estimate": 0.8446180555555556
+  }
+ },
+ "boot": 10000,
+ "contrasts": {
+  "q8_irt_2pl_minus_panel_mean_smooth": {
+   "ci95": [
+    -0.01578235390766198,
+    0.027146315323917283
+   ],
+   "estimate": 0.005381944444444509,
+   "p_two_sided": 0.625
+  },
+  "q8_irt_2pl_minus_panel_strict_rate": {
+   "ci95": [
+    -0.0026162239089183954,
+    0.03133947538175792
+   ],
+   "estimate": 0.013541666666666674,
+   "p_two_sided": 0.1046
+  }
+ },
+ "excluded_rule": "start-policy k_capped >= 4 of 8",
+ "mixed": 32,
+ "n_excluded": 13,
+ "n_groups": 88,
+ "n_tasks": 122,
+ "not_mixed": 90,
+ "primary_share_draws_le_0_70": 0.0005,
+ "seed": 20261021
+}

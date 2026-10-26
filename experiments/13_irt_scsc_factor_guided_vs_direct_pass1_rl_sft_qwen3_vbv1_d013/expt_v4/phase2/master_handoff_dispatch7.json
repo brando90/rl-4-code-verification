@@ -1,0 +1,27 @@
+{
+  "tldr": "Master wrapper changes only its admission line; syntax checked and never executed by Dispatch 7.",
+  "wrapper": "/lfs/skampere1/0/brando9/rl4cv_e13v4/a1302_pause_then_gates.sh",
+  "wrapper_sha256": "099676d84f576c56226201bbeb5430b9ec0a26db06dd37bf62f8fa37e023cc83",
+  "previous_wrapper_sha256": "5c2df829cbae677fc2856741fde24902c948db4c2d9f8cdfb7f562ba37206b70",
+  "only_wrapper_change": "V4_ADMISSION=$V4_ROOT/phase2/admission_dispatch6.json -> V4_ADMISSION=$V4_ROOT/phase2/admission_dispatch7.json",
+  "diff": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/wrapper_dispatch7.diff",
+  "diff_sha256": "72e8ad3eaeb7b92209b49d415428f604cf1e1045eb872818c39254c94d174f50",
+  "syntax_check": "PASS",
+  "executed": false,
+  "plans": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/launch_plan.json",
+      "deployed_path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/launch_plan.json",
+      "sha256": "559840964573e72733191c552c3a9cfbce6c00049347362ff37a0dffae38875d",
+      "matches_prepared": true,
+      "only_change": "admission_dispatch6.json -> admission_dispatch7.json"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/watchdog_plan.json",
+      "deployed_path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/watchdog_plan.json",
+      "sha256": "c2fe486190d23eb1211f5924e066bccc1c2d7c9a7387001d5c2bb85283b9fb44",
+      "matches_prepared": true,
+      "only_change": "admission_dispatch6.json -> admission_dispatch7.json"
+    }
+  ]
+}

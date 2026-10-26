@@ -1,0 +1,23 @@
+{
+  "scope": "in-sample posterior category-nonconstancy prediction; deterministic bounds, not confidence intervals",
+  "tasks": 539,
+  "known_binary_labels": 526,
+  "unresolved_binary_labels": 13,
+  "predicted_mean": 0.9542238032518744,
+  "observed_mean_bounds": [
+    0.7792207792207793,
+    0.8033395176252319
+  ],
+  "prediction_minus_observation_bias_bounds": [
+    0.15088428562664255,
+    0.17500302403109522
+  ],
+  "mean_absolute_error_bounds": [
+    0.19553365324965277,
+    0.21481612600494068
+  ],
+  "p_value": null,
+  "input": "smooth_items.csv",
+  "input_sha256": "8db6d731ea4510308dd713ebf1622a17c9f1ae1b4708c001782fc4ea0bc9c700",
+  "method": "For each item, enumerate binary observed label between saved lower and upper bounds; average minima/maxima of absolute error. Mean-bias bounds are prediction minus upper/lower mean label."
+}

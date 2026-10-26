@@ -1,0 +1,62 @@
+{
+  "status": "READY_FOR_ROOT_INTEGRATION",
+  "scope": "CPU-only saved-score Phase0b; no measured scores analyzed and no repository edits",
+  "files": {
+    "/tmp/e20_phase0_fit_candidate.py": "9b82de73074414072ca911566d2fabe4a95c446096fc955b1d440c5c3b2af617",
+    "/tmp/irt_e20_corrections.patch": "6ab2bff9eadb99f3818e000cd2afd4f5d1e11f0291f8a4d7f49aa12fb9246009",
+    "/tmp/test_e20_phase0_candidate.py": "fe89877824cf6fdfeea2dcf3c3d2f6dfa2862ea80ee5ba5b24ab28ec6e820516",
+    "/tmp/test_e20_pipeline_candidate.py": "4ddd8f778ce071747ce9bd5cb0b0bfe2115dc48575577a8c5174419c00d80511",
+    "/tmp/test_e20_smooth_candidate.py": "bc23d22fff3474bc8364f4753bc73d52f04253d231067be7f135e5cf08c157d1"
+  },
+  "verification": {
+    "e20_numerical_test.log": {
+      "status": "PASS",
+      "synthetic_only": true,
+      "input_cells": 4312,
+      "gradient_error": 1.8393783140930568e-07,
+      "base_grad": 1.5082753578495495e-08,
+      "check_grad": 1.5082753511419522e-08,
+      "joint_tied_error": 0.0,
+      "joint_untied_error": 0.0,
+      "artifact_root": "/tmp/user/22003/e20_driver_synthetic_typ6aw09"
+    },
+    "e20_pipeline_test.log": {
+      "status": "PASS",
+      "synthetic_only": true,
+      "fits": 279,
+      "bootstrap_draws": 10000,
+      "selected": "explanatory",
+      "out": "/tmp/user/22003/e20_pipeline_synthetic_d5io0hxz"
+    },
+    "e20_smooth_test.log": {
+      "status": "PASS",
+      "synthetic_only": true,
+      "smooth_status": "available",
+      "dimensionality_status": "available",
+      "failed_priors_select_none": true,
+      "failed_gate_unavailable": true,
+      "out": "/tmp/user/22003/e20_smooth_synthetic_4qbs2to8"
+    }
+  },
+  "execution": {
+    "default_workers": 4,
+    "blas_threads_per_worker": 1,
+    "main_cv_fits": 250,
+    "e05_sensitivity_cv_fits": 250,
+    "g0_fits_per_dataset": 25,
+    "final_count_fits_per_dataset": 4,
+    "g0_bootstrap_draws_per_dataset": 10000,
+    "correlation_bootstrap_draws": 1000,
+    "training_status": "FAILED unchanged"
+  },
+  "integration_notes": [
+    "Copy driver into E20/expt_v1 before beginning a real output directory: script path/hash are pinned.",
+    "Use --scores <phase0_cells_e20.csv> --out <results/phase0b> --freeze-dir <expt_v1/forecasts> --workers 4; --phase strict is a resumable early stage, --phase all completes graded/dimensionality.",
+    "Primary remains 11-system panel plus start policy; both E05 sensitivity results and exact parameter/forecast differences are reported; no favorable-G0 substitution.",
+    "Numerical G0 is unavailable if either prespecified 2PL family cannot be compared under the convergence gate; a descriptive features-only or1PL failure does not gate primary.",
+    "Two-skill heldout log score uses the strict/category joint predictive probability, not sum of separately integrated marginal log probabilities.",
+    "Ordinal nonconstant-category forecast is a lower bound for exact reward variation; ability-scale first threshold is -cut/b, with literal cut correlations also reported.",
+    "H1-H4 treatment-effect numeric forecasts are not invented; frozen payload documents they would need a separate pretraining registration if training were reauthorized.",
+    "Existing helper correction patch is optional for this driver because its own checked/cached CV and G0 replace those helpers."
+  ]
+}

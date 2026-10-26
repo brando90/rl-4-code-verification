@@ -1,0 +1,82 @@
+# Experiment 13 v4: sustained-idle leasing and zero-effect recovery
+
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/README.md>
+
+**TLDR:** Dispatch 8 leases devices only after two complete idle observations at least 60 seconds apart and rechecks immediately before engine loading. Pre-engine refusals release and retry without consuming an infrastructure attempt; real empty failures require durable positive proof, and unknown effects stop. The retained first T1 directory is a proven pre-engine refusal; no T1 statistic exists. The master activates the new versioned plans; this CPU dispatch leaves cron, deployed active plans, v3 and its A_1302 pause record unchanged.
+
+`experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4` compares strict reward (A), factored reward (B), and a start-density placebo (P). [The checkpoint](CKPT_v4_implementation.md) records the admission digest, final dry-run outcome, test counts, remaining runtime conditions, live read-only probes and exact master commands.
+
+## Frozen contracts
+
+The [protocol](PROTOCOL.md) and all four amendments are unchanged and hash-bound:
+
+- [V4-A1](AMENDMENT_V4-A1_generator_support_receipt_10-20-2026.md): top-64 raw receipts, support certificates and trainer tie handling.
+- [V4-A2](AMENDMENT_V4-A2_receipt_invariance_and_sampler_backend_10-20-2026.md): installed-Sampler CPU invariance, R0/R1/R2 engine checks and native sampler evidence.
+- [V4-A3](AMENDMENT_V4-A3_schedule_v4_start_and_v3_pause_10-20-2026.md): veto window, gates first, pilot after B_1301; pause scope is superseded by the operational decision below.
+- [V4-A4](AMENDMENT_V4-A4_importance_correction_at_uncertified_positions_10-20-2026.md): unit actor correction at uncertified positions, isolated loss-only imputation, 1% update guards and perturbation bound.
+
+[The unchanged operational decision](OPERATIONAL_V4-A3_single_pause_10-21-2026.md) is also hash-bound, with [operational_pause.json](phase2/operational_pause.json) selecting exactly A_1302. Execution refuses every other trajectory, including B_1301; read-only probes may inspect all six declared trajectories. The veto deadline remains 10-21-2026 12:00 PDT; neither a synthetic fixture clock nor admission bypasses it.
+
+A4 resolves the contract gap in the preserved [Dispatch 2 blocker](BLOCKER_V4_A1_importance_correction.md). That report and the old admissions are historical; use `phase2/admission_dispatch8.json` for this implementation.
+
+## What is implemented
+
+Generation uses vLLM 0.10.0, temperature 0.6, top-k 20, top-p 0.95, context 20,041 and response cap 12,288. Every generator environment forces `VLLM_USE_FLASHINFER_SAMPLER=0`; admission checks that `flashinfer` is absent. Each generation receipt records the selected `TopKTopPSampler.forward` from the actual worker. The installed `Sampler.forward` CPU check covers 10,000 positions, including ties, and produces zero token mismatches with receipt collection off/on. The eight-response R0/R1/R2 engine comparison remains a live T1 gate.
+
+The NeMo RL 0.4.0 loss uses fixed old trainer supports, temperature scaling once and the inherited leave-one-out, standard-deviation-scaled advantages. A4 changes only the capped actor correction at uncertified positions: its weight is one. Certified positions retain their correction. Unknown generator probabilities remain null in receipts and NaN in the stored training batch; only the parent loss's private payload receives the detached old probability. The complete update checks both generated-token and valid-actor-token uncertified fractions before constructing a policy. Fractions above 1% stop without an optimizer step. Each update reports both denominators, certified fraction, log-weight quantiles/cap rate, certified-only probability/entropy diagnostics and the loss-perturbation bound. Unit correction is an approximation: empirical bias remains unmeasured, and this bound concerns loss, not gradient change.
+
+`local_engine.py` composes generation, official strict scoring and B's reward, filtered training, native checkpoint save/restore, CPU export, generator refit, saved-batch T3 replay, the maximum-length probe and fixed-cohort B audits. Every component runs as a subprocess with its own recorded argument vector, environment, lease, PID/start time and exit evidence. Device stages acquire an idle authorized GPU through the v4 guard and respect v3 reservations; scoring/export have CPU leases. Raw compiler stdout/stderr survive timeouts. A real CPU smoke check scored one explicitly synthetic empty completion through this leased adapter and retained its compiler output. B runs padding/deletion/substitution and hidden-gold checks; missing audit coverage stops B. No paid judge is called.
+
+Pilot storage retains the latest native checkpoint and export per trajectory, metadata and hashes for completed updates, and all T2/T3 replay evidence. Superseded pilot tensor payloads are retired only after a newer durable continuation exists; each retired payload has a hash receipt. A 100 GiB pre-update free-space check stops before model construction if a checkpoint transition cannot be stored.
+
+After G0 selection, `forecast_score.py` verifies the frozen experiment 19 forecast (`abb0cb3115b86fd3107a565fdfacd53343f285b7d27b34fd30d4dcb682436286`), joins counts privately on SNAP and writes anonymous aggregate Spearman, mixed-task AUC, mean q̂_8 and chosen G. It includes whole-task bootstrap intervals, denominators and missingness bounds. Forecasts are descriptive and never gate inputs. No live forecast outcome has been computed.
+
+## Stage order and recovery
+
+```text
+T1 -> G0_GENERATE -> G0_SCORE -> G0_SELECT -> T2 -> T3 -> T4 -> B_AUDITS
+   -> PILOT30 -> T5_30 -> [PILOT60 -> T5_60, only on extension]
+```
+
+Stages bind predecessor receipts, immutable operation inputs and completed outputs to the admission. Statistics are reserved once. Each component retains invocation records under `lease_trials/trial_NNNN`, including terminal worker evidence and markers synchronized before engine loading, generation or optimizer construction. A marker for a started generation blocks retry even if zero response files survived. Only a terminated worker with consistent durable files, no generated responses, no optimizer start and no statistic can produce the exact three-field `infrastructure_failure.json`; ambiguous partial work stays `STOP_PARTIAL`. Empty consumed attempts remain capped at three.
+
+Pre-engine `Busy` refusals write `lease_refused.json`; the parent releases the lease and locks before a 30-second delay and a fresh sustained-idle lease. Retries are bounded at 120 per component invocation, with a durable operation-wide refusal cap checked before another attempt directory is created. The allocation wait itself remains bounded at seven days, with a logged 30-second retry interval. Directory numbering preserves history and differs from consumed-attempt counting: the retained `attempt_01` consumes zero, and the next directory is `attempt_02`. A component refusal after earlier generation never makes the whole operation empty. A completed T5 stage and its scientific verdict are separate fields. Main training never launches automatically.
+
+[The original-attempt classification](phase2/attempt_01_classification_dispatch8.json) binds the exact first-check traceback, original admission/source snapshots, all five original attempt files and released lease. [The transition](phase2/readmission_dispatch8.json) permits only an admission substitution for the two original T1 intents, retaining their payloads and bytes. There is no completed stage to migrate; a future completed T1 receipt uses the new admission while including the retained old intents as bound history.
+
+`--engine local-stub` runs this same subprocess composition with JSON stub primitives and `CUDA_VISIBLE_DEVICES=''`. The preserved Dispatch 3 local-stub run covers six trajectories through the 60-update extension, order refusal, pre-generation crash recovery, no-signal stop and A4 stop. Dispatch 4 adds the single-pause WAIT-to-PAUSED path and gate-release checks, and reruns the ordered sequence with the in-process CPU stub. Synthetic results establish control flow only; they do not establish live gate success, GPU memory fit, scoring accuracy on new model output or learning.
+
+The master-only `pause_v3.py` offers `--probe --trajectory A_1302` for read-only boundary inspection and requires explicit execution after the veto window for a pause. It requires the same single pilot_run.py runner and isolated pane-shell group on two observations at least one second apart: zero runner children or other readable trajectory references, hrtimer_nanosleep, no active latest-update lease, pre-generation inputs or scored groups awaiting optimization, and no summary. Pane text is receipt context only. Execution retains the shared watchdog lock and repeats the whole rule after stopping only the Python runner PID. Both frozen observations require runner T/do_signal_stop with zero children and shell S/do_wait, unchanged identities and disk state. A 10-second real-time alarm interrupts the stopped transaction. Cleanup checks only the runner and sends SIGCONT to its PID; a process descriptor pinned after identity verification provides cleanup even if /proc becomes unavailable or the shell exits. Only after the pause-list file and directory are durable does SIGTERM target the group. Incomplete census reads block only when the process is the runner, a runner-group member, a child of the runner or any of its threads, or has an observed pilot-directory reference in argv, cwd or a descriptor. Other incomplete reads appear only in the ignored_vanished count. Runner-owned per-thread children are read at each observation and retained across the census and refresh even if a child vanishes. Relevant permission failures still return WAIT, and the stopped recheck uses the same census rule. A running stage is refused; the master retries later. The master subsequently recorded A_1302 as dead-runner-not-restarted and installed a v4 watchdog. Dispatch 8 leaves that pause record and all v3 files/processes unchanged; prepared dispatch8 plans are separate from the active dispatch7 plans and cron. Read-only --probe can inspect any of the six declared v3 trajectories, including B_1301; execution still refuses every trajectory except A_1302.
+
+The pilot's three-device availability preflight acquires and releases the same per-device locks used by v3 before admitting a pilot stage. It holds no standing reservation: generation and optimizer subprocesses still acquire their own idle-device leases, compete with v3, and release on completion. This fills an existing missing resource check; it does not change the frozen scientific protocol or convert the serial pilot runner to a new parallel schedule.
+
+## CPU verification
+
+```bash
+cd /lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification
+export CUDA_VISIBLE_DEVICES='' HF_HUB_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=2
+export PYTHONPATH=/lfs/skampere1/0/brando9/rl4cv_e13v4/test_deps:$PWD/src
+V4_PY=/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python
+V4_ROOT=$PWD/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4
+"$V4_PY" -m pytest -q "$V4_ROOT/tests"
+"$V4_PY" "$V4_ROOT/phase2/admission.py" launch-check --record "$V4_ROOT/phase2/admission_dispatch8.json"
+# Use a fresh output directory; immutable receipts are never overwritten.
+"$V4_PY" "$V4_ROOT/phase2/dry_run.py" --root /lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch8_reproduction --admission "$V4_ROOT/phase2/admission_dispatch8.json"
+```
+
+Current suite counts and exact log hashes are in [the Dispatch 8 verification record](phase2/verification_dispatch8.json); the earlier dummy-pane and live-probe evidence remains historical Dispatch 7 evidence. The shared virtual environment remains read-only. The root reproduction additionally prepends `/lfs/skampere1/0/brando9/rl4cv_e09/nemo_rl` to `PYTHONPATH`, sets the pinned venv's `bin` first on `PATH`, and runs `make test`.
+
+## Entry points and evidence
+
+| Artifact | Purpose |
+|---|---|
+| [Admission](phase2/admission_dispatch8.json) | Frozen contracts, source, tests, plans, installed/reused components and CPU receipts |
+| [Verification](phase2/verification_dispatch8.json) | Final counts and immutable log hashes |
+| [Sampler receipt](phase2/sampler_cpu_receipt.json) | Installed CPU off/on-64 invariance and backend |
+| [Historical read-only A_1302 probe](phase2/live_probe_dispatch7_A_1302.json) | 31 calls / 62 live process/disk observations over ten minutes, no signals |
+| [Historical owned tmux stop control](phase2/dummy_tmux_dispatch7.json) | Group auto-continue, persistent runner-only stop, resume and cleanup |
+| [Historical Dispatch 5 pause control](phase2/dry_run_dispatch5.json) | Synthetic stop/recheck, atomic temporary receipt and gate release |
+| [Historical full stub dry run](phase2/dry_run_dispatch4.json) | Single-pause WAIT/PAUSED path, gate release, symbolic pilot extension and diagnosed stops |
+| [Subprocess preview](phase2/adapter_dry_contracts.json) | Prospective real-stage argv/environment, not executed |
+| [Launch plan](phase2/launch_plan.json), [watchdog plan](phase2/watchdog_plan.json) | A3-aware master commands and controller |
+| [Checkpoint](CKPT_v4_implementation.md) | Dry-run evidence, remaining runtime conditions, commands and handoff |

@@ -1,0 +1,45 @@
+{
+  "bash_n": "passed",
+  "fixture": "e20_d109_retry_retention",
+  "partial": {
+    "attempt_path": "/tmp/e20_d109_retention_fixture_20261021/work_v2/rl4cv_sherlock/e20/phase0/partial/attempts/e20_p0_c0_s0/20261021T214916Z_fixture-partial-1_0",
+    "checks": {
+      "attempt_count_unchanged": true,
+      "expected_output_present": true,
+      "first_rc_zero": true,
+      "prior_evidence_retained": true,
+      "receipt_present": true,
+      "receipt_uses_real_newlines": true,
+      "second_rc_zero": true,
+      "second_skips": true
+    },
+    "expected_path": "/tmp/e20_d109_retention_fixture_20261021/work_v2/rl4cv_sherlock/e20/phase0/partial/e20_p0_c0_s0/partial_e20_p0_c0_s0.json",
+    "first_stdout": "e20_p0_c0_s0 preserved-prior-attempt=/tmp/e20_d109_retention_fixture_20261021/work_v2/rl4cv_sherlock/e20/phase0/partial/attempts/e20_p0_c0_s0/20261021T214916Z_fixture-partial-1_0\ne20_p0_c0_s0 rc=0 1s host=skampere1",
+    "receipt_path": "/tmp/e20_d109_retention_fixture_20261021/work_v2/rl4cv_sherlock/e20/phase0/partial/e20_p0_c0_s0/completion_receipt.txt",
+    "receipt_text": "completed_at=2026-10-21T21:49:17Z\njob=fixture-partial-1\narray_task=0\nexpected_output=/tmp/e20_d109_retention_fixture_20261021/work_v2/rl4cv_sherlock/e20/phase0/partial/e20_p0_c0_s0/partial_e20_p0_c0_s0.json\n",
+    "second_stdout": "e20_p0_c0_s0 done-before"
+  },
+  "score": {
+    "attempt_path": "/tmp/e20_d109_retention_fixture_20261021/work_v2/rl4cv_sherlock/e20/phase0/scores/attempts/e20_p0_c0_s0/20261021T214915Z_fixture-score-1_0",
+    "checks": {
+      "attempt_count_unchanged": true,
+      "expected_output_present": true,
+      "first_rc_zero": true,
+      "prior_evidence_retained": true,
+      "receipt_present": true,
+      "receipt_uses_real_newlines": true,
+      "second_rc_zero": true,
+      "second_skips": true
+    },
+    "expected_path": "/tmp/e20_d109_retention_fixture_20261021/work_v2/rl4cv_sherlock/e20/phase0/scores/e20_p0_c0_s0/scsc_e20_p0_c0_s0_e20_p0_c0_s0.json",
+    "first_stdout": "e20_p0_c0_s0 preserved-prior-attempt=/tmp/e20_d109_retention_fixture_20261021/work_v2/rl4cv_sherlock/e20/phase0/scores/attempts/e20_p0_c0_s0/20261021T214915Z_fixture-score-1_0\ne20_p0_c0_s0 rc=0 0s host=skampere1",
+    "receipt_path": "/tmp/e20_d109_retention_fixture_20261021/work_v2/rl4cv_sherlock/e20/phase0/scores/e20_p0_c0_s0/completion_receipt.txt",
+    "receipt_text": "completed_at=2026-10-21T21:49:15Z\njob=fixture-score-1\narray_task=0\nexpected_output=/tmp/e20_d109_retention_fixture_20261021/work_v2/rl4cv_sherlock/e20/phase0/scores/e20_p0_c0_s0/scsc_e20_p0_c0_s0_e20_p0_c0_s0.json\n",
+    "second_stdout": "e20_p0_c0_s0 done-before"
+  },
+  "scripts": {
+    "/tmp/e20_d109_retention_fixture_20261021/scripts/phase0_partial.sbatch": "2db14fae45b72e2f20a31f3c00a2d923ee11f537797077f7557d0ea17b67202a",
+    "/tmp/e20_d109_retention_fixture_20261021/scripts/phase0_score.sbatch": "72ac9edb0e7327aa6356c9526746a2653e2ac0382b1e9829215b15904bb34ec9"
+  },
+  "source_commit": "b0ef925e8c99645616e024568a26e476c674b774"
+}

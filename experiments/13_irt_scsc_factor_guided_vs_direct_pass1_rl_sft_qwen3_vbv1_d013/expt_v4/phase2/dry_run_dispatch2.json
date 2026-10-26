@@ -1,0 +1,187 @@
+{"tldr": "Synthetic CPU stage sequence, extension, order rejection, crash recovery, and no-signal stop verified.",
+  "CUDA_VISIBLE_DEVICES": "",
+  "T2_no_signal": "STOP_NO_SIGNAL",
+  "T5_30": "EXTEND_ALL_SIX",
+  "T5_60": "MAIN_RESOURCE_CHECK",
+  "admission_sha256": "58e1b31df8e87e0e797f4043a9e03a9a7e774cf6982b302914c59490ab10f433",
+  "api_spend_usd": 0,
+  "commands": [
+    {
+      "argv": [
+        "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/runner.py",
+        "G0_GENERATE",
+        "--work",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/order",
+        "--admission",
+        "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_runner.json",
+        "--engine",
+        "stub"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "log": "00_order_G0_GENERATE"
+    },
+    {
+      "argv": [
+        "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/runner.py",
+        "sequence",
+        "--work",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/full",
+        "--admission",
+        "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_runner.json",
+        "--engine",
+        "stub"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "log": "01_full_sequence"
+    },
+    {
+      "argv": [
+        "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/runner.py",
+        "T1",
+        "--work",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/crash",
+        "--admission",
+        "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_runner.json",
+        "--engine",
+        "stub",
+        "--crash",
+        "probe"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "log": "02_crash_T1"
+    },
+    {
+      "argv": [
+        "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/runner.py",
+        "T1",
+        "--work",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/crash",
+        "--admission",
+        "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_runner.json",
+        "--engine",
+        "stub",
+        "--recover"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "log": "03_crash_T1"
+    },
+    {
+      "argv": [
+        "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/runner.py",
+        "sequence",
+        "--work",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/stop",
+        "--admission",
+        "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_runner.json",
+        "--engine",
+        "stub",
+        "--no-signal"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "log": "04_stop_sequence"
+    },
+    {
+      "argv": [
+        "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/runner.py",
+        "T3",
+        "--work",
+        "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/stop",
+        "--admission",
+        "experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_runner.json",
+        "--engine",
+        "stub"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "log": "05_stop_T3"
+    }
+  ],
+  "crash_attempts": 2,
+  "gpu_allocations": 0,
+  "is_gate_evidence": false,
+  "model_generations": 0,
+  "real_optimizer_steps": 0,
+  "stage_receipts": {
+    "T1": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/full/T1/receipt.json",
+      "sha256": "4a914523dd7c326953f0ea49790509c1763dba13f5faa9c51b25c08d3ad97e8d",
+      "status": "PASS"
+    },
+    "G0_GENERATE": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/full/G0_GENERATE/receipt.json",
+      "sha256": "37bf35ca67de14c1d26b6a0ab9dcb466c2a9ee4612a4d2ea0e6a2f6cc53c8589",
+      "status": "PASS"
+    },
+    "G0_SCORE": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/full/G0_SCORE/receipt.json",
+      "sha256": "28400789691bbb729e6fe467cfb8f7c345c7af15592152d3d5e56513b1677ac8",
+      "status": "PASS"
+    },
+    "G0_SELECT": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/full/G0_SELECT/receipt.json",
+      "sha256": "27b05774a55b5a8837212d90880cf2d3c2fcab36b37f932a0067ea89f32ececa",
+      "status": "PASS"
+    },
+    "T2": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/full/T2/receipt.json",
+      "sha256": "ad075dac58d6c695bc9c8fc6df45f43628a7a19bb9a0ce8cba7c9b1dfada6dee",
+      "status": "PASS"
+    },
+    "T3": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/full/T3/receipt.json",
+      "sha256": "e37487494f6a2939c5639f9235178d62478eb76be0cc862b32a1a3ff39ecc33a",
+      "status": "PASS"
+    },
+    "T4": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/full/T4/receipt.json",
+      "sha256": "40e9794b67cb368b07a44fddc69bff28da622a47d777b1ff147d251013a9073d",
+      "status": "PASS"
+    },
+    "B_AUDITS": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/full/B_AUDITS/receipt.json",
+      "sha256": "dda606b6bf11e1bbc75f2221f609f99b46efbd1e8769d2a035a95a9d0b05f850",
+      "status": "PASS"
+    },
+    "PILOT30": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/full/PILOT30/receipt.json",
+      "sha256": "53bc4a71be028a3a807e1d228d55381a1439283e737803a61015d6dc2dfcfdbc",
+      "status": "PASS"
+    },
+    "T5_30": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/full/T5_30/receipt.json",
+      "sha256": "7dd6b0165897a97f9cc357472b88acf3d14fafd8d99de7b88ec850841caacae1",
+      "status": "PASS"
+    },
+    "PILOT60": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/full/PILOT60/receipt.json",
+      "sha256": "f36f5920ce44fad250861b111b53454b23e8212a7f70da6837e42c815f7c1c02",
+      "status": "PASS"
+    },
+    "T5_60": {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/dry_run_dispatch2/full/T5_60/receipt.json",
+      "sha256": "14da73a46acb88d2484abae0da8a86c35da8a2ea7086cb4ccb8473ad24f0464b",
+      "status": "PASS"
+    }
+  },
+  "synthetic": true,
+  "synthetic_completed_updates": 360,
+  "trajectories": [
+    "A/1301",
+    "A/1302",
+    "B/1301",
+    "B/1302",
+    "P/1301",
+    "P/1302"
+  ]
+}

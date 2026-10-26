@@ -1,0 +1,457 @@
+{"tldr": "Read-only GPU census; no device was allocated or signalled.",
+  "hosts": [
+    {
+      "host": "skampere1",
+      "processes": [
+        {
+          "device": 0,
+          "uuid": "GPU-4a898d48-860a-9abc-bda7-59057400018e",
+          "pid": 1095670,
+          "process": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+          "owner": "brando9",
+          "owned_ancestry": [
+            {
+              "pid": 1095670,
+              "cwd": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2",
+              "scripts": [
+                "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2/backend.py"
+              ]
+            },
+            {
+              "pid": 1090622,
+              "cwd": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2",
+              "scripts": [
+                "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2/backend.py"
+              ]
+            },
+            {
+              "pid": 1291595,
+              "cwd": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2",
+              "scripts": [
+                "pilot_run.py"
+              ]
+            },
+            {
+              "pid": 1291594,
+              "cwd": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2",
+              "scripts": []
+            },
+            {
+              "pid": 6220,
+              "cwd": "/var/spool/cron",
+              "scripts": []
+            }
+          ]
+        },
+        {
+          "device": 1,
+          "uuid": "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+          "pid": 1529250,
+          "process": ".venv-plmicd/bin/python",
+          "owner": "truongvo"
+        },
+        {
+          "device": 1,
+          "uuid": "GPU-d0c5c290-bea0-6d04-1751-91ec2527da30",
+          "pid": 3322172,
+          "process": "VLLM::Worker_TP0",
+          "owner": "srivatsavad"
+        },
+        {
+          "device": 2,
+          "uuid": "GPU-e98e645a-d860-3666-a80b-2cea81363c51",
+          "pid": 974428,
+          "process": "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+          "owner": "eth127"
+        },
+        {
+          "device": 2,
+          "uuid": "GPU-e98e645a-d860-3666-a80b-2cea81363c51",
+          "pid": 982892,
+          "process": "VLLM::EngineCore",
+          "owner": "eth127"
+        },
+        {
+          "device": 3,
+          "uuid": "GPU-e84fe984-b611-073b-53b2-de8eb53ac36c",
+          "pid": 1306949,
+          "process": "ray::WorkerDict.actor_rollout_generate_sequences",
+          "owner": "eshaanb"
+        },
+        {
+          "device": 3,
+          "uuid": "GPU-e84fe984-b611-073b-53b2-de8eb53ac36c",
+          "pid": 1315136,
+          "process": "sglang::scheduler",
+          "owner": "eshaanb"
+        },
+        {
+          "device": 4,
+          "uuid": "GPU-97f40e03-59dd-83e1-8de4-52f2fdb5839e",
+          "pid": 1355838,
+          "process": ".venv-plmicd/bin/python",
+          "owner": "truongvo"
+        },
+        {
+          "device": 4,
+          "uuid": "GPU-97f40e03-59dd-83e1-8de4-52f2fdb5839e",
+          "pid": 3322174,
+          "process": "VLLM::Worker_TP1",
+          "owner": "srivatsavad"
+        },
+        {
+          "device": 5,
+          "uuid": "GPU-579425f1-a901-99fc-f0c8-f1100a713892",
+          "pid": 1130864,
+          "process": "ray::DTensorPolicyWorker.__ray_call__",
+          "owner": "brando9",
+          "owned_ancestry": [
+            {
+              "pid": 1130864,
+              "cwd": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2",
+              "scripts": []
+            },
+            {
+              "pid": 1129304,
+              "cwd": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2",
+              "scripts": []
+            },
+            {
+              "pid": 1124472,
+              "cwd": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2",
+              "scripts": [
+                "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2/backend.py"
+              ]
+            },
+            {
+              "pid": 1888528,
+              "cwd": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2",
+              "scripts": [
+                "pilot_run.py"
+              ]
+            },
+            {
+              "pid": 1888524,
+              "cwd": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2",
+              "scripts": []
+            },
+            {
+              "pid": 6220,
+              "cwd": "/var/spool/cron",
+              "scripts": []
+            }
+          ]
+        },
+        {
+          "device": 6,
+          "uuid": "GPU-030a1de4-d323-e947-aaf2-804435744526",
+          "pid": 1465600,
+          "process": ".venv-plmicd/bin/python",
+          "owner": "truongvo"
+        },
+        {
+          "device": 7,
+          "uuid": "GPU-71a581cf-2704-6ea4-2c9e-423a07a674da",
+          "pid": 1565454,
+          "process": "ray::DTensorPolicyWorker.train",
+          "owner": "brando9",
+          "owned_ancestry": [
+            {
+              "pid": 1565454,
+              "cwd": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2",
+              "scripts": []
+            },
+            {
+              "pid": 1562263,
+              "cwd": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2",
+              "scripts": []
+            },
+            {
+              "pid": 1544301,
+              "cwd": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2",
+              "scripts": [
+                "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2/backend.py"
+              ]
+            },
+            {
+              "pid": 1246693,
+              "cwd": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2",
+              "scripts": [
+                "pilot_run.py"
+              ]
+            },
+            {
+              "pid": 1246691,
+              "cwd": "/lfs/skampere1/0/brando9/rl4cv_e13v3/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3/phase2",
+              "scripts": []
+            },
+            {
+              "pid": 6220,
+              "cwd": "/var/spool/cron",
+              "scripts": []
+            }
+          ]
+        }
+      ],
+      "idle_devices": []
+    },
+    {
+      "host": "skampere2",
+      "processes": [
+        {
+          "device": 0,
+          "uuid": "GPU-8f1f5d5f-90e1-52c9-e4f5-5f597fd007cd",
+          "pid": 1437246,
+          "process": "/lfs/skampere2/0/vmadan/miniconda3/bin/python",
+          "owner": "vmadan"
+        },
+        {
+          "device": 0,
+          "uuid": "GPU-8f1f5d5f-90e1-52c9-e4f5-5f597fd007cd",
+          "pid": 3382571,
+          "process": "VLLM::EngineCore",
+          "owner": "alexspan"
+        },
+        {
+          "device": 1,
+          "uuid": "GPU-67e360c9-5174-e4c6-e701-fc9f64ebf5ed",
+          "pid": 1358011,
+          "process": "VLLM::EngineCore",
+          "owner": "alexspan"
+        },
+        {
+          "device": 2,
+          "uuid": "GPU-eeb03279-21ec-4141-fc25-4ca2003a4eee",
+          "pid": 3090541,
+          "process": "VLLM::EngineCore",
+          "owner": "alexspan"
+        },
+        {
+          "device": 2,
+          "uuid": "GPU-eeb03279-21ec-4141-fc25-4ca2003a4eee",
+          "pid": 2908350,
+          "process": "/lfs/skampere2/0/alexspan/envs/unified_v1/bin/python",
+          "owner": "alexspan"
+        },
+        {
+          "device": 3,
+          "uuid": "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+          "pid": 1439216,
+          "process": "/lfs/skampere2/0/vmadan/miniconda3/bin/python",
+          "owner": "vmadan"
+        },
+        {
+          "device": 3,
+          "uuid": "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+          "pid": 1956475,
+          "process": "/lfs/skampere2/0/alexspan/envs/unified_v1/bin/python",
+          "owner": "alexspan"
+        },
+        {
+          "device": 3,
+          "uuid": "GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1",
+          "pid": 957094,
+          "process": "/lfs/skampere2/0/alexspan/envs/unified_v1/bin/python",
+          "owner": "alexspan"
+        },
+        {
+          "device": 4,
+          "uuid": "GPU-d040097c-ad5e-bd3b-6e43-8ec396c65c89",
+          "pid": 2508056,
+          "process": "VLLM::EngineCore",
+          "owner": "alexspan"
+        },
+        {
+          "device": 4,
+          "uuid": "GPU-d040097c-ad5e-bd3b-6e43-8ec396c65c89",
+          "pid": 1012535,
+          "process": "VLLM::EngineCore",
+          "owner": "srivatsavad"
+        },
+        {
+          "device": 5,
+          "uuid": "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257",
+          "pid": 1441067,
+          "process": "/lfs/skampere2/0/vmadan/miniconda3/bin/python",
+          "owner": "vmadan"
+        },
+        {
+          "device": 5,
+          "uuid": "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257",
+          "pid": 2404324,
+          "process": "/lfs/skampere2/0/alexspan/envs/unified_v1/bin/python",
+          "owner": "alexspan"
+        },
+        {
+          "device": 5,
+          "uuid": "GPU-7cc58f63-1fda-ed17-3af3-a0c659675257",
+          "pid": 3214653,
+          "process": "/lfs/skampere2/0/alexspan/envs/unified_v1/bin/python",
+          "owner": "alexspan"
+        },
+        {
+          "device": 6,
+          "uuid": "GPU-f51c6f9f-41de-ab1c-f252-1cdd03bb7be9",
+          "pid": 1443259,
+          "process": "/lfs/skampere2/0/vmadan/miniconda3/bin/python",
+          "owner": "vmadan"
+        },
+        {
+          "device": 6,
+          "uuid": "GPU-f51c6f9f-41de-ab1c-f252-1cdd03bb7be9",
+          "pid": 2471298,
+          "process": "VLLM::EngineCore",
+          "owner": "alexspan"
+        },
+        {
+          "device": 6,
+          "uuid": "GPU-f51c6f9f-41de-ab1c-f252-1cdd03bb7be9",
+          "pid": 2508340,
+          "process": "VLLM::EngineCore",
+          "owner": "alexspan"
+        },
+        {
+          "device": 6,
+          "uuid": "GPU-f51c6f9f-41de-ab1c-f252-1cdd03bb7be9",
+          "pid": 1887595,
+          "process": "/lfs/skampere2/0/alexspan/envs/unified_v1/bin/python",
+          "owner": "alexspan"
+        },
+        {
+          "device": 7,
+          "uuid": "GPU-fad2ed61-7b71-aaf4-66cd-73329e45e28f",
+          "pid": 1445193,
+          "process": "/lfs/skampere2/0/vmadan/miniconda3/bin/python",
+          "owner": "vmadan"
+        },
+        {
+          "device": 7,
+          "uuid": "GPU-fad2ed61-7b71-aaf4-66cd-73329e45e28f",
+          "pid": 3000963,
+          "process": "/lfs/skampere2/0/alexspan/envs/unified_v1/bin/python",
+          "owner": "alexspan"
+        },
+        {
+          "device": 7,
+          "uuid": "GPU-fad2ed61-7b71-aaf4-66cd-73329e45e28f",
+          "pid": 3001392,
+          "process": "/lfs/skampere2/0/alexspan/envs/unified_v1/bin/python",
+          "owner": "alexspan"
+        },
+        {
+          "device": 7,
+          "uuid": "GPU-fad2ed61-7b71-aaf4-66cd-73329e45e28f",
+          "pid": 3012490,
+          "process": "/lfs/skampere2/0/alexspan/envs/unified_v1/bin/python",
+          "owner": "alexspan"
+        }
+      ],
+      "idle_devices": []
+    },
+    {
+      "host": "skampere3",
+      "processes": [
+        {
+          "device": 0,
+          "uuid": "GPU-d2b20a67-f975-dadf-d7fc-2e2d7d57a79d",
+          "pid": 2889438,
+          "process": "/lfs/skampere3/0/vmadan/rl_env/bin/python",
+          "owner": "vmadan"
+        },
+        {
+          "device": 0,
+          "uuid": "GPU-d2b20a67-f975-dadf-d7fc-2e2d7d57a79d",
+          "pid": 2892529,
+          "process": "VLLM::EngineCore",
+          "owner": "vmadan"
+        },
+        {
+          "device": 1,
+          "uuid": "GPU-603974b5-3f52-99dd-44a8-321490694235",
+          "pid": 3859574,
+          "process": "/lfs/skampere3/0/alexspan/miniconda3/bin/python",
+          "owner": "alexspan"
+        },
+        {
+          "device": 1,
+          "uuid": "GPU-603974b5-3f52-99dd-44a8-321490694235",
+          "pid": 4125397,
+          "process": "/lfs/skampere3/0/alexspan/miniconda3/bin/python",
+          "owner": "alexspan"
+        },
+        {
+          "device": 2,
+          "uuid": "GPU-d781dd11-80f3-8979-073a-4248052fe3f6",
+          "pid": 4166667,
+          "process": "/lfs/skampere3/0/ruhana/miniconda3/envs/hal/bin/python3.11",
+          "owner": "ruhana"
+        },
+        {
+          "device": 3,
+          "uuid": "GPU-367818bd-ffe9-1a17-7640-8f232ea2622e",
+          "pid": 3872560,
+          "process": "/lfs/skampere3/0/vmadan/rl_env/bin/python",
+          "owner": "vmadan"
+        },
+        {
+          "device": 3,
+          "uuid": "GPU-367818bd-ffe9-1a17-7640-8f232ea2622e",
+          "pid": 3875557,
+          "process": "VLLM::EngineCore",
+          "owner": "vmadan"
+        },
+        {
+          "device": 4,
+          "uuid": "GPU-9b167139-7ecf-47bd-e09d-27a60c24783f",
+          "pid": 4166668,
+          "process": "/lfs/skampere3/0/ruhana/miniconda3/envs/hal/bin/python3.11",
+          "owner": "ruhana"
+        },
+        {
+          "device": 5,
+          "uuid": "GPU-e7551271-928d-689f-5095-a60da72fc720",
+          "pid": 2890380,
+          "process": "/lfs/skampere3/0/vmadan/rl_env/bin/python",
+          "owner": "vmadan"
+        },
+        {
+          "device": 5,
+          "uuid": "GPU-e7551271-928d-689f-5095-a60da72fc720",
+          "pid": 2893248,
+          "process": "VLLM::EngineCore",
+          "owner": "vmadan"
+        },
+        {
+          "device": 6,
+          "uuid": "GPU-49ced701-4696-492c-dd56-ace9e3e4b67e",
+          "pid": 3732887,
+          "process": "/lfs/skampere3/0/alexspan/miniconda3/bin/python",
+          "owner": "alexspan"
+        },
+        {
+          "device": 6,
+          "uuid": "GPU-49ced701-4696-492c-dd56-ace9e3e4b67e",
+          "pid": 4141014,
+          "process": "/lfs/skampere3/0/alexspan/miniconda3/bin/python",
+          "owner": "alexspan"
+        },
+        {
+          "device": 7,
+          "uuid": "GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5",
+          "pid": 2889659,
+          "process": "/lfs/skampere3/0/vmadan/rl_env/bin/python",
+          "owner": "vmadan"
+        },
+        {
+          "device": 7,
+          "uuid": "GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5",
+          "pid": 2892521,
+          "process": "VLLM::EngineCore",
+          "owner": "vmadan"
+        }
+      ],
+      "idle_devices": []
+    }
+  ],
+  "observed_at": "2026-10-21T11:24:28.951460-07:00"
+}

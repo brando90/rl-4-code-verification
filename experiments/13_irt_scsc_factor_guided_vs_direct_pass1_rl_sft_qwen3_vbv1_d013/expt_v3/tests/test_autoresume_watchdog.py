@@ -214,3 +214,25 @@ def test_tick_restart_limit_holds_across_ticks(tmp_path):
         w.tick(run=FakeRun([ok('')]), R=owner)
     launches = [c for c in owner.calls if c == ('launch', 'B', 1301)]
     assert len(launches) == w.MAX_RESTARTS_PER_UPDATE
+
+
+def test_pause_list_skips_only_listed_trajectories(tmp_path):
+    w=load(tmp_path);owner=FakeOwner(tmp_path)
+    w.PAUSED.parent.mkdir(parents=True,exist_ok=True)
+    w.PAUSED.write_text(json.dumps({'trajectories':['A_1301','P_1302']}))
+    result=w.tick(run=FakeRun([ok('')]),R=owner)
+    for key in ('A_1301','P_1302'):
+        assert result['trajectories'][key]['detail']=='paused (V4-A3)'
+    assert result['trajectories']['B_1301']['detail']!='paused (V4-A3)'
+    assert not [c for c in owner.calls if c==('launch','A',1301)]
+
+
+def test_absent_pause_list_preserves_default_and_rejects_b1301(tmp_path):
+    import pytest
+    w=load(tmp_path)
+    assert w.paused_trajectories()==set()
+    w.PAUSED.parent.mkdir(parents=True,exist_ok=True)
+    w.PAUSED.write_text('{"trajectories":["B_1301"]}')
+    with pytest.raises(w.ProbeError):w.paused_trajectories()
+    w.PAUSED.write_text('broken')
+    with pytest.raises(w.ProbeError):w.paused_trajectories()

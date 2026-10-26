@@ -1,0 +1,467 @@
+"""TLDR: Pause only designated silent v3 pilots at a verified process/disk allocation boundary."""
+import argparse
+from copy import deepcopy
+from contextlib import contextmanager
+from datetime import datetime
+import fcntl
+import json
+import os
+from pathlib import Path
+import re
+import signal
+import subprocess
+import time
+from operational_pause import selection, admitted_config
+
+WORK = Path('/lfs/skampere1/0/brando9/rl4cv_e13v3')
+VETO_END = datetime.fromisoformat('2026-10-21T12:00:00-07:00').timestamp()
+IDENTITY = ('pid', 'ppid', 'pgid', 'start_ticks', 'uid', 'arguments')
+TRAJECTORIES = tuple(f'{arm}_{seed}' for arm in ('A', 'B', 'P') for seed in (1301, 1302))
+OBSERVATION_INTERVAL = 1.0
+MAX_STOP_SECONDS = 10.0
+
+
+class ProcessChanged(ValueError):
+    """An incomplete or changed process identity cannot authorize a signal."""
+
+
+class StopTimeout(TimeoutError):
+    """The bounded stopped observation must abort and resume the runner."""
+
+
+@contextmanager
+def stop_deadline():
+    """Interrupt blocking observations/writes; never replace an existing alarm."""
+    if signal.getitimer(signal.ITIMER_REAL) != (0.0, 0.0):
+        raise ValueError('pause requires an unused real-time timer')
+    def expired(*_):
+        raise StopTimeout('runner stop deadline exceeded')
+    previous = signal.signal(signal.SIGALRM, expired)
+    try:
+        signal.setitimer(signal.ITIMER_REAL, MAX_STOP_SECONDS)
+        yield
+    finally:
+        signal.setitimer(signal.ITIMER_REAL, 0)
+        signal.signal(signal.SIGALRM, previous)
+
+
+def proc_identity(pid):
+    """Read only identity fields, so cleanup never depends on children or descriptors."""
+    path = Path('/proc') / str(pid)
+    before = (path / 'stat').read_text().rsplit(')', 1)[1].split()
+    arguments = [x.decode() for x in (path / 'cmdline').read_bytes().split(b'\0') if x]
+    uid = path.stat().st_uid
+    after = (path / 'stat').read_text().rsplit(')', 1)[1].split()
+    if before[19] != after[19]:
+        raise ProcessChanged('PID reused during identity read')
+    return dict(pid=int(pid), ppid=int(after[1]), pgid=int(after[2]),
+                start_ticks=after[19], uid=uid, arguments=arguments)
+
+
+def proc(pid, evidence=None):
+    """Read identity twice so a recycled PID cannot form a mixed observation."""
+    path = Path('/proc') / str(pid)
+    evidence = {} if evidence is None else evidence
+    before = (path / 'stat').read_text().rsplit(')', 1)[1].split()
+    evidence.update(pid=int(pid), ppid=int(before[1]), pgid=int(before[2]))
+    arguments = [x.decode() for x in (path / 'cmdline').read_bytes().split(b'\0') if x]
+    evidence.update(arguments=arguments, command=' '.join(arguments), children=[], thread_ids=[])
+    for task in (path / 'task').iterdir():
+        evidence['thread_ids'].append(int(task.name))
+        evidence['children'].extend(int(child) for child in (task / 'children').read_text().split())
+    children = sorted(set(evidence['children']))
+    wchan = (path / 'wchan').read_text().strip()
+    after = (path / 'stat').read_text().rsplit(')', 1)[1].split()
+    if before[19] != after[19]:
+        raise ProcessChanged('PID reused during observation')
+    boot = int(next(line.split()[1] for line in Path('/proc/stat').read_text().splitlines()
+                    if line.startswith('btime ')))
+    return {'arguments': arguments, 'start_unix': boot + int(after[19]) / os.sysconf('SC_CLK_TCK'),
+            'pid': int(pid), 'pgid': int(after[2]), 'ppid': int(after[1]),
+            'start_ticks': after[19], 'state': after[0], 'wchan': wchan,
+            'children': children, 'thread_ids': evidence['thread_ids'],
+            'uid': path.stat().st_uid, 'command': ' '.join(arguments)}
+
+
+def is_runner(arguments, arm, seed):
+    # Shell command strings and the retired retry helper are not pilot_run.py runners.
+    if len(arguments) < 2 or not Path(arguments[0]).name.startswith('python'):
+        return False
+    if Path(arguments[1]).name != 'pilot_run.py':
+        return False
+    rest = arguments[2:]
+    try:
+        return (rest.count('--arm') == rest.count('--seed') == 1 and
+                rest[rest.index('--arm') + 1] == arm and rest[rest.index('--seed') + 1] == seed)
+    except (ValueError, IndexError):
+        return False
+
+
+def isolated_group(runner, pane_pid, members):
+    """Only the pane shell (group leader) and its direct Python child may be signalled."""
+    if len(members) != 2:
+        return False
+    shell = next((m for m in members if m['pid'] == pane_pid), None)
+    member = next((m for m in members if m['pid'] == runner['pid']), None)
+    return bool(member and all(member.get(k) == runner.get(k) for k in IDENTITY) and shell and runner['pid'] != pane_pid and runner['ppid'] == pane_pid and
+                runner['pgid'] == shell['pgid'] == pane_pid and shell['uid'] == runner['uid'] and
+                shell['arguments'] and Path(shell['arguments'][0]).name in ('sh', 'bash', 'dash', 'zsh') and
+                {m['pid'] for m in members} == {pane_pid, runner['pid']})
+
+
+def disk_state(pilot):
+    """Only the latest numbered opportunity may supply pre-allocation evidence."""
+    updates = sorted(p for p in pilot.iterdir() if p.is_dir() and re.fullmatch(r'update_[0-9]{5}', p.name))
+    if not updates:
+        return {'latest_update': None, 'files': {}, 'leases': [], 'lease_files': []}
+    latest = updates[-1]
+    names = ('plans.json', 'cells.json', 'generate_lease.json', 'score/groups.json',
+             'update_lease.json', 'summary.json')
+    leases = sorted(latest.rglob('*_lease.json'))
+    return {'latest_update': str(latest), 'files': {name: (latest / name).exists() for name in names},
+            'lease_files': [str(p) for p in leases],
+            'leases': [str(p) for p in leases if not p.with_name(p.stem + '_end.json').is_file()]}
+
+
+def argv_references(p, pilot):
+    """Retain an argv match even if a later process-field read fails."""
+    paths = {str(pilot), str(pilot.resolve())}
+    refs = []
+    for base in paths:
+        if re.search(re.escape(base) + r'(?=$|[/\s\'"])', p['command']):
+            refs.append('argv')
+    return refs
+
+
+def references(p, pilot):
+    """Retain positive references incrementally if a later link read fails."""
+    paths = {str(pilot), str(pilot.resolve())}
+    refs = p['references'] = argv_references(p, pilot)
+    root = Path('/proc') / str(p['pid'])
+    try:
+        descriptors = list((root / 'fd').iterdir())
+    except PermissionError:
+        descriptors = []
+        p.setdefault('reference_inspection_unavailable', []).append('fd')
+    for link in [root / 'cwd', *descriptors]:
+        try:
+            value = os.readlink(link).removesuffix(' (deleted)')
+        except FileNotFoundError:
+            # A descriptor may close normally; a vanished/recycled process may not
+            # silently disappear from the census. Zombies have no cwd/fd links.
+            current = proc_identity(p['pid'])
+            if any(k in p and current[k] != p[k] for k in IDENTITY):
+                raise ProcessChanged('process changed during reference inspection')
+            continue
+        except PermissionError:
+            p.setdefault('reference_inspection_unavailable', []).append(str(link.relative_to(root)))
+            continue
+        if any(value == base or value.startswith(base + '/') for base in paths):
+            refs.append(str(link.relative_to(root)))
+    return sorted(set(refs))
+
+
+def snapshot(key, work=WORK):
+    """One read-only process/disk observation; terminal text is context only."""
+    if key not in TRAJECTORIES:
+        raise ValueError('unknown v3 trajectory')
+    arm, seed = key.split('_')
+    work = Path(work)
+    panes = subprocess.check_output(['tmux', 'list-panes', '-a', '-F',
+                                    '#{session_name}\t#{pane_id}\t#{pane_pid}'], text=True)
+    matching = [line.split('\t') for line in panes.splitlines()
+                if line.split('\t')[0] == f'rl4cv-e13v3-pilot-{arm}-{seed}']
+    if len(matching) != 1:
+        raise ValueError('exactly one owned trajectory pane required')
+    session, pane, pane_pid = matching[0]
+    pane_pid = int(pane_pid)
+    text = subprocess.check_output(['tmux', 'capture-pane', '-p', '-S', '-30', '-t', pane], text=True)
+    pilot = work / 'phase2/pilot' / key
+    all_rows, errors, groups, census, failures = [], [], {}, [], []
+    for path in Path('/proc').iterdir():
+        if not path.name.isdigit():
+            continue
+        row = {'pid': int(path.name), 'command': ''}
+        census.append(row)
+        try:
+            stat = (path / 'stat').read_text().rsplit(')', 1)[1].split()
+            row.update(ppid=int(stat[1]), pgid=int(stat[2]))
+            groups.setdefault(int(stat[2]), []).append(int(path.name))
+            if path.stat().st_uid != os.getuid():
+                continue
+            row.update(proc(path.name, evidence=row))
+            row['references'] = references(row, pilot)
+            all_rows.append(row)
+        except (OSError, ValueError) as exc:
+            failures.append((row, type(exc).__name__))
+    runners = [p for p in all_rows if is_runner(p['arguments'], arm, seed)]
+    candidates = [p for p in census if is_runner(p.get('arguments', []), arm, seed)]
+    runner_ids = {p['pid'] for p in candidates}
+    thread_ids = runner_ids | {tid for p in candidates for tid in p.get('thread_ids', [])}
+    children = {pid for p in candidates for pid in p.get('children', [])}
+    group_ids = {pane_pid, *(p['pgid'] for p in candidates)}
+    allowed = {pane_pid, *(p['pid'] for p in runners)}
+    rows = [{**p, 'kind': 'stage'} for p in all_rows if p['pid'] not in allowed and p['references']]
+    for runner in runners:
+        # Check children of every thread as well as the census, regardless of their argv.
+        try:
+            fresh = proc(runner['pid'])
+            if any(fresh[k] != runner[k] for k in IDENTITY):
+                raise ProcessChanged('runner identity changed during observation')
+            thread_ids.update(fresh.get('thread_ids', []))
+            children.update(fresh['children'])
+            # Preserve the runner's own per-thread children from BOTH reads:
+            # a child may vanish before the refresh or before its census turn.
+            fresh['children'] = sorted(set(fresh['children']) | set(runner['children']) |
+                                       {p['pid'] for p in census if p.get('ppid') in thread_ids})
+            fresh['kind'] = 'runner'
+            fresh['process_group_members'] = [proc(pid) for pid in groups.get(fresh['pgid'], [])]
+            rows.append(fresh)
+        except (OSError, ValueError) as exc:
+            errors.append({'pid': runner['pid'], 'error': type(exc).__name__})
+    def relevant(p):
+        return (p['pid'] in runner_ids | children | {pane_pid} or
+                p.get('pgid') in group_ids or p.get('ppid') in thread_ids or
+                bool(p.get('references') or argv_references(p, pilot)))
+    ignored_vanished = 0
+    for row, error in failures:
+        if relevant(row):
+            errors.append({'pid': row['pid'], 'error': error})
+        else:
+            ignored_vanished += 1
+    for row in all_rows:
+        if row.get('reference_inspection_unavailable'):
+            if relevant(row):
+                errors.append({'pid': row['pid'], 'error': 'PermissionError'})
+            else:
+                ignored_vanished += 1
+    return {'completed_updates': len(list(pilot.glob('update_*/summary.json'))), 'planned_updates': 30,
+            'trajectory': key, 'pane': pane, 'pane_pid': pane_pid, 'session': session, 'pane_text': text,
+            'processes': rows, 'observation_errors': errors, 'ignored_vanished': ignored_vanished,
+            'reference_scope': 'same-user argv plus readable cwd/fd; process-group census includes all users',
+            'reference_inspection_unavailable': [
+                {'pid': p['pid'], 'links': p['reference_inspection_unavailable']}
+                for p in all_rows if relevant(p) and p.get('reference_inspection_unavailable')],
+            **disk_state(pilot),
+            'observed_unix': time.time(), 'observed_monotonic': time.monotonic()}
+
+
+def observation_status(snap, *, stopped=False):
+    if any(p['kind'] == 'stage' for p in snap['processes']):
+        return 'WAIT_STAGE_RUNNING'
+    if snap.get('observation_errors'):
+        return 'WAIT_OBSERVATION'
+    runners = [p for p in snap['processes'] if p['kind'] == 'runner']
+    if len(runners) != 1:
+        return 'WAIT_RUNNER_IDENTITY'
+    runner = runners[0]
+    arm, seed = snap['trajectory'].split('_')
+    if not is_runner(runner['arguments'], arm, seed) or not runner.get('start_ticks'):
+        return 'WAIT_RUNNER_IDENTITY'
+    if runner['children']:
+        return 'WAIT_STAGE_RUNNING'
+    if not isolated_group(runner, snap['pane_pid'], runner['process_group_members']):
+        return 'WAIT_RUNNER_IDENTITY'
+    if snap['leases']:
+        return 'WAIT_LEASE_HELD'
+    files = snap['files']
+    if files.get('summary.json'):
+        return 'WAIT_SUMMARY_PRESENT'
+    if not snap['latest_update'] or not (
+        files.get('plans.json') and files.get('cells.json') and not files.get('generate_lease.json') or
+        files.get('score/groups.json') and not files.get('update_lease.json')
+    ):
+        return 'WAIT_PREALLOCATION'
+    if stopped:
+        # SIGSTOP changes hrtimer_nanosleep to do_signal_stop on Linux. Retain and
+        # bind the pre-stop sleep evidence in boundary(..., frozen_from=...).
+        shell = next(p for p in runner['process_group_members'] if p['pid'] == snap['pane_pid'])
+        member = next(p for p in runner['process_group_members'] if p['pid'] == runner['pid'])
+        if shell['state'] != 'S' or shell['wchan'] != 'do_wait':
+            return 'WAIT_NOT_STOPPED'
+        if any(p['state'] != 'T' or p['wchan'] != 'do_signal_stop' or p['children']
+               for p in (runner, member)):
+            return 'WAIT_NOT_STOPPED'
+    elif runner['state'] != 'S' or runner['wchan'] != 'hrtimer_nanosleep':
+        return 'WAIT_WCHAN'
+    return 'READY'
+
+
+def identity(snap):
+    runner = next(p for p in snap['processes'] if p['kind'] == 'runner')
+    return (snap['trajectory'], snap['pane'], snap['pane_pid'], snap['session'],
+            tuple(runner[k] for k in IDENTITY),
+            sorted((p['pid'], tuple(p[k] for k in IDENTITY)) for p in runner['process_group_members']))
+
+
+def boundary(first, second, *, frozen_from=None):
+    """Require the whole rule twice and preserve identities/disk state across SIGSTOP."""
+    if frozen_from is not None and boundary(*frozen_from) != 'READY':
+        return 'WAIT_RACE'
+    for snap in (first, second):
+        status = observation_status(snap, stopped=frozen_from is not None)
+        if status != 'READY':
+            return status
+    if second['observed_monotonic'] - first['observed_monotonic'] < OBSERVATION_INTERVAL:
+        return 'WAIT_OBSERVATION_INTERVAL'
+    observations = [*(frozen_from or ()), first, second]
+    if any(identity(snap) != identity(first) for snap in observations):
+        return 'WAIT_RUNNER_IDENTITY'
+    if any(any(snap[k] != first[k] for k in ('latest_update', 'files', 'leases', 'lease_files'))
+           for snap in observations):
+        return 'WAIT_DISK_CHANGED'
+    return 'READY'
+
+
+def observe(key, work, probe, sleep):
+    def read():
+        try:
+            return deepcopy(probe(key, work))
+        except (FileNotFoundError, ProcessLookupError, ProcessChanged) as exc:
+            return {'trajectory': key, 'processes': [],
+                    'observation_errors': [{'error': type(exc).__name__}],
+                    'observed_monotonic': time.monotonic(), 'observed_unix': time.time()}
+    first = read()
+    sleep(OBSERVATION_INTERVAL)
+    return first, read()
+
+
+def boundary_probe(admission, *, trajectory=None, work=WORK, probe=snapshot, sleep=time.sleep):
+    """Read-only probes may inspect any declared v3 run; pause authority stays single-run."""
+    from admission import check_admission
+    record = check_admission(admission, require_launch=True)
+    designated = selection(admitted_config(record))
+    if trajectory is not None and trajectory not in TRAJECTORIES:
+        raise ValueError('unknown v3 trajectory')
+    report = {}
+    for key in ((trajectory,) if trajectory else designated):
+        observations = observe(key, work, probe, sleep)
+        report[key] = {'status': boundary(*observations), 'snapshot': observations[-1],
+                       'observations': observations, 'read_only': True,
+                       'designated_for_pause': key in designated}
+    return report
+
+
+def verify_identity(runner, inspect, *, runner_only=False):
+    try:
+        for original in ([runner] if runner_only else runner['process_group_members']):
+            current = inspect(original['pid'])
+            if any(current[k] != original[k] for k in IDENTITY):
+                raise ProcessChanged('PID reused or process identity changed')
+    except (FileNotFoundError, ProcessLookupError) as exc:
+        raise ProcessChanged('process vanished during identity check') from exc
+
+
+def pause(admission, *, trajectory=None, work=WORK, veto_not_issued=False, probe=snapshot,
+          kill=os.kill, kill_group=os.killpg, inspect=proc_identity, now=None, sleep=time.sleep):
+    from admission import check_admission
+    now = time.time() if now is None else now
+    if now < VETO_END or not veto_not_issued:
+        raise ValueError('V4-A3 veto window/absence of veto not satisfied')
+    record = check_admission(admission, require_launch=True)
+    designated = selection(admitted_config(record), trajectory)
+    work = Path(work)
+    path = work / 'phase2/autoresume_paused.json'
+    # Same lock as watchdog prevents a relaunch between stop and durable pause state.
+    with (work / 'phase2/autoresume.lock').open('a') as lock:
+        try:
+            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            return {key: 'WAIT_WATCHDOG_LOCK' for key in designated}
+        state = json.loads(path.read_text()) if path.exists() else {'amendment': 'V4-A3', 'trajectories': {}}
+        if not isinstance(state.get('trajectories'), dict) or set(state['trajectories']) - set(designated):
+            raise ValueError('pause list contains non-designated trajectories')
+        report = {}
+        for key in designated:
+            if key in state['trajectories']:
+                report[key] = 'ALREADY_PAUSED'
+                continue
+            observations = observe(key, work, probe, sleep)
+            snap = observations[-1]
+            status = boundary(*observations)
+            if status != 'READY':
+                report[key] = status
+                continue
+            runner = next(p for p in snap['processes'] if p['kind'] == 'runner')
+            pidfd = None
+            try:
+                verify_identity(runner, inspect)
+                if kill is os.kill:
+                    # Pin the checked process for exceptional cleanup even if /proc
+                    # becomes unreadable. A pidfd cannot refer to a recycled PID.
+                    try:
+                        pidfd = os.pidfd_open(runner['pid'])
+                    except ProcessLookupError as exc:
+                        raise ProcessChanged('runner vanished before pinning') from exc
+                    verify_identity(runner, inspect)
+                try:
+                    with stop_deadline():
+                        kill(runner['pid'], signal.SIGSTOP)
+                        sleep(0.05)  # Signal delivery is asynchronous.
+                        frozen = observe(key, work, probe, sleep)
+                        verify_identity(runner, inspect)
+                        if boundary(*frozen, frozen_from=observations) != 'READY':
+                            report[key] = 'WAIT_RACE'
+                            continue
+                        receipt = {**snap, 'operational_record': record['operational_pause'],
+                                   'boundary_rule': 'pilot-process-disk-runner-stop-v2',
+                                   'max_stop_seconds': MAX_STOP_SECONDS,
+                                   'observations': observations, 'stopped_observations': frozen,
+                                   'paused_unix': time.time(), 'pid': runner['pid'],
+                                   'start_ticks': runner['start_ticks'], 'start_unix': runner['start_unix'],
+                                   'pgid': runner['pgid']}
+                        state['trajectories'][key] = receipt
+                        tmp = path.with_name('.autoresume_paused.tmp')
+                        with tmp.open('w') as f:
+                            json.dump(state, f, sort_keys=True)
+                            f.flush()
+                            os.fsync(f.fileno())
+                        os.replace(tmp, path)
+                        directory = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
+                        try:
+                            os.fsync(directory)
+                        finally:
+                            os.close(directory)
+                        verify_identity(runner, inspect)
+                        kill_group(runner['pgid'], signal.SIGTERM)
+                        report[key] = 'PAUSED'
+                finally:
+                    # The shell may have exited after SIGTERM: only the runner
+                    # identity is relevant to this mandatory resume.
+                    try:
+                        verify_identity(runner, inspect, runner_only=True)
+                        kill(runner['pid'], signal.SIGCONT)
+                    except BaseException:
+                        if pidfd is not None:
+                            try:
+                                signal.pidfd_send_signal(pidfd, signal.SIGCONT)
+                            except ProcessLookupError:
+                                pass
+                        else:
+                            raise
+            except (ProcessChanged, ProcessLookupError):
+                report[key] = 'WAIT_PROCESS_CHANGED'
+            except StopTimeout:
+                report[key] = 'WAIT_STOP_TIMEOUT'
+            finally:
+                if pidfd is not None:
+                    os.close(pidfd)
+        return report
+
+
+if __name__ == '__main__':
+    p = argparse.ArgumentParser()
+    p.add_argument('--admission', required=True)
+    mode = p.add_mutually_exclusive_group()
+    mode.add_argument('--execute', action='store_true')
+    mode.add_argument('--probe', action='store_true')
+    p.add_argument('--trajectory')
+    p.add_argument('--veto-not-issued', action='store_true')
+    a = p.parse_args()
+    if a.probe:
+        print(json.dumps(boundary_probe(a.admission, trajectory=a.trajectory)))
+    elif a.execute:
+        print(json.dumps(pause(a.admission, trajectory=a.trajectory,
+            veto_not_issued=a.veto_not_issued or os.environ.get('E13V4_A3_NO_VETO') == '1')))
+    else:
+        raise SystemExit('No action; use --probe for read-only inspection or --execute after the veto window.')

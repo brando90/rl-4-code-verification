@@ -1,0 +1,28 @@
+{
+  "subject": "[RUN START] rl4cv expt20 post-stop Phase 0 CPU completion",
+  "body": "Post-stop completion of pre-registered Phase 0 (CPU only, dispatcher instruction 10-21-2026): score the saved 4,312 Qwen3-1.7B-Base Lean SFT generations on Sherlock normal CPU arrays, then fit IRT and gate G0 on skampere1.\nCommands: phase0_materialize.sbatch -> phase0_score.sbatch and phase0_partial.sbatch, frozen scorer59059a2 with D-109 logging; expected several hours including queue time and item-model fits. Trainer stays FAILED; no new GPU jobs, pilot or trainer/gate changes.\nOutputs: experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/results; PR https://github.com/brando90/rl-4-code-verification/pull/20. Prior GPU allocation remains7.8258h; API$0.\n\nBrando (drafted with Codex)\n-----\nBrando Miranda\nPh.D. Student\nComputer Science, Stanford University\nEDGE Scholar, Stanford University\nbrando9@stanford.edu\nwebsite: https://brando90.github.io/brandomiranda/\n",
+  "transport": "uutils.emailing.send_email_smtp; task-local envelope expansion for legacy comma-joined BCC handling",
+  "status": "SMTP accepted all explicit envelope recipients",
+  "started_at": "10-21-2026 15:51:23 PDT",
+  "envelope": [
+    {
+      "to": "brando.science@gmail.com",
+      "bcc": [
+        "brando.science@gmail.com",
+        "brando9@stanford.edu",
+        "brandojazz@gmail.com",
+        "brando@vals.ai"
+      ],
+      "smtp_recipients": [
+        "brando.science@gmail.com",
+        "brando.science@gmail.com",
+        "brando9@stanford.edu",
+        "brandojazz@gmail.com",
+        "brando@vals.ai"
+      ],
+      "message_id": "<179262308307.153109.9394567935169773777@rl4cv.e20.local>",
+      "refused": {}
+    }
+  ],
+  "sent_at": "10-21-2026 15:51:24 PDT"
+}

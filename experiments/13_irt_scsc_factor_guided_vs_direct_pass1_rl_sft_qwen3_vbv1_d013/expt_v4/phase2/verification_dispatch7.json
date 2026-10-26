@@ -1,0 +1,115 @@
+{
+  "tldr": "Relevant-only census blocks pass all CPU controls and every sampled waiting A_1302 call reaches READY.",
+  "created": "10-21-2026 17:17:37 PDT",
+  "status": "PASS",
+  "v4": {
+    "passed": 382,
+    "skipped": 0,
+    "warnings": 0,
+    "failed": 0
+  },
+  "v3_watchdog": {
+    "passed": 16,
+    "skipped": 0,
+    "warnings": 0,
+    "failed": 0
+  },
+  "root": {
+    "passed": 1405,
+    "skipped": 15,
+    "warnings": 6,
+    "failed": 0
+  },
+  "new_relevance": {
+    "passed": 70,
+    "skipped": 0,
+    "warnings": 0,
+    "failed": 0
+  },
+  "new_v4_tests": 70,
+  "initial_new_test_attempt": {
+    "passed": 36,
+    "failed": 2,
+    "cause": "fixture expected WAIT_OBSERVATION for a known live pilot reference with a denied descriptor; existing WAIT_STAGE_RUNNING takes precedence",
+    "fix": "correct expected status; production positive-check precedence unchanged"
+  },
+  "live_probe": {
+    "tldr": "Ten-minute read-only A_1302 census under Dispatch 7; timestamped descriptive counts.",
+    "command": [
+      "/lfs/skampere1/0/brando9/rl4cv_e08/nemo_rl/.venv/bin/python",
+      "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/pause_v3.py",
+      "--admission",
+      "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/admission_dispatch7_preseal.json",
+      "--trajectory",
+      "A_1302",
+      "--probe"
+    ],
+    "admission_sha256": "2faaa6e1c82e0fdb026b630245cdd66f7eb1e47b736371e88028d9d3ce2cf066",
+    "duration_seconds": 616.6114282460185,
+    "interval_seconds": 20,
+    "calls": 31,
+    "status_counts": {
+      "READY": 30,
+      "WAIT_STAGE_RUNNING": 1
+    },
+    "raw_output": "/lfs/skampere1/0/brando9/rl4cv_e13v4/live_probe_dispatch7_A_1302.jsonl",
+    "raw_sha256": "8eeb7068d17cac97d9d8da4022d3aa354c31ba6dc9d97135e737566d5f24670c",
+    "first_started": "2026-10-21T17:06:36.883938-07:00",
+    "last_started": "2026-10-21T17:16:36.883770-07:00",
+    "real_pause_list_absent_before_and_after": true,
+    "read_only": true,
+    "observations": 62,
+    "waiting_calls": 30,
+    "ready_waiting_calls": 30,
+    "waiting_without_ready": 0,
+    "ignored_vanished": {
+      "minimum": 5,
+      "maximum": 27,
+      "sum_across_observations": 613
+    },
+    "relevant_error_count": 0,
+    "uncertainty": "Exhaustive timestamped counts from this 10-minute sample only; temporally correlated observations, no general readiness-rate estimate or confidence interval; p-val=n/a.",
+    "raw_field_note": "The raw elapsed_start_seconds field was captured after subprocess completion; use started and observed_unix for start/observation times."
+  },
+  "live_probe_summary_sha256": "fd4a1f810d6645eecfec1d387542dc52deae80acdb0bb43e60a9910c2b55ea86",
+  "dummy_tmux": {
+    "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/rl-4-code-verification/experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v4/phase2/dummy_tmux_dispatch7.json",
+    "sha256": "3a3707d00932618e3b26627288f436a0d4596fdfdce8538ce6774cf8a77f53b5",
+    "verdict": "PASS",
+    "cleanup": {
+      "attempted": true,
+      "owned_processes_gone": true,
+      "server_gone": true,
+      "session_gone": true,
+      "socket_gone": true
+    }
+  },
+  "logs": [
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/v4_dispatch7_tests.log",
+      "sha256": "ffb9f01b64778c58b93bb8bf339c8f29aec5b9245e6409965f60fca4addc060f"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/watchdog_dispatch7_tests.log",
+      "sha256": "5c43ccb17d01d15e44fb57e7ee67d619e9ad4bc8ffd57457c1427152d78eb341"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/root_dispatch7_tests.log",
+      "sha256": "629a3a92842cbb1b1cf33023ca39bd60ab274a6624f108f1303b4dc74f17fd65"
+    },
+    {
+      "path": "/lfs/skampere1/0/brando9/rl4cv_e13v4/relevance_dispatch7_tests.log",
+      "sha256": "32b2bcb5cbead69914799273c3a6b898bf26c0049404f791af0cd9cd422e5039"
+    }
+  ],
+  "limits": {
+    "api_spend_usd": 0,
+    "gpu_use": 0,
+    "v3_signals": 0,
+    "real_pause_list_writes": 0,
+    "cron_installs": 0,
+    "shared_venv_edits": 0,
+    "frozen_protocol_amendment_operational_edits": 0
+  },
+  "uncertainty": "Deterministic test counts and descriptive process observations; confidence intervals and p-values do not apply."
+}
