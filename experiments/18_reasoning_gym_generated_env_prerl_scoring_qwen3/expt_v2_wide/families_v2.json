@@ -1,0 +1,789 @@
+{
+  "schema": "families_v2/v1",
+  "rg_version": "0.1.25",
+  "seed_rule": "V2_SEED_BASE + 10*k + level, k = index in sorted(CURRICULA)",
+  "rules": {
+    "time_limit_s": 60.0,
+    "kill_after_s": 120.0,
+    "min_unique_questions": 8,
+    "max_top_answer_share": 0.6,
+    "max_prompt_tokens": 4096,
+    "min_levels_per_family": 2
+  },
+  "probe_host": "agent-bf1193c2cobsq4.us-west1-b.c.ae-pool01.internal",
+  "probe_wall_s": null,
+  "n_curricula": 102,
+  "n_families": 75,
+  "n_envs": 243,
+  "families": [
+    {
+      "family": "ab",
+      "k": 0,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "advanced_geometry",
+      "k": 1,
+      "category": "geometry",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "aiw",
+      "k": 2,
+      "category": "logic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "arc_1d",
+      "k": 3,
+      "category": "arc",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "basic_arithmetic",
+      "k": 6,
+      "category": "arithmetic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "bf",
+      "k": 7,
+      "category": "code",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "binary_alternation",
+      "k": 8,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "binary_matrix",
+      "k": 9,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "bitwise_arithmetic",
+      "k": 10,
+      "category": "arithmetic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "caesar_cipher",
+      "k": 12,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "chain_sum",
+      "k": 14,
+      "category": "arithmetic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "coin_flip",
+      "k": 17,
+      "category": "probability",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "color_cube_rotation",
+      "k": 18,
+      "category": "cognition",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "complex_arithmetic",
+      "k": 19,
+      "category": "algebra",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "count_bits",
+      "k": 20,
+      "category": "arithmetic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "count_primes",
+      "k": 21,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "course_schedule",
+      "k": 23,
+      "category": "graphs",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "cryptarithm",
+      "k": 24,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "decimal_arithmetic",
+      "k": 25,
+      "category": "arithmetic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "decimal_chain_sum",
+      "k": 26,
+      "category": "arithmetic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "dice",
+      "k": 27,
+      "category": "arithmetic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "emoji_mystery",
+      "k": 28,
+      "category": "games",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "family_relationships",
+      "k": 29,
+      "category": "graphs",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "figlet_font",
+      "k": 30,
+      "category": "cognition",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "fraction_simplification",
+      "k": 31,
+      "category": "arithmetic",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "game_of_life_halting",
+      "k": 34,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "group_anagrams",
+      "k": 37,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "intermediate_integration",
+      "k": 38,
+      "category": "algebra",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "kakurasu",
+      "k": 41,
+      "category": "games",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "knights_knaves",
+      "k": 43,
+      "category": "logic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "largest_island",
+      "k": 44,
+      "category": "graphs",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "lcm",
+      "k": 45,
+      "category": "arithmetic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "leg_counting",
+      "k": 46,
+      "category": "arithmetic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "letter_counting",
+      "k": 47,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "letter_jumble",
+      "k": 48,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "mahjong_puzzle",
+      "k": 49,
+      "category": "games",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "manipulate_matrix",
+      "k": 50,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "maze",
+      "k": 51,
+      "category": "games",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "mini_sudoku",
+      "k": 52,
+      "category": "games",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "modulo_grid",
+      "k": 53,
+      "category": "cognition",
+      "levels": [
+        0,
+        2
+      ]
+    },
+    {
+      "family": "n_queens",
+      "k": 54,
+      "category": "games",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "needle_haystack",
+      "k": 55,
+      "category": "cognition",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "number_filtering",
+      "k": 56,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "number_format",
+      "k": 57,
+      "category": "arithmetic",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "number_sorting",
+      "k": 59,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "palindrome_generation",
+      "k": 60,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "palindrome_partitioning",
+      "k": 61,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "path_star",
+      "k": 62,
+      "category": "graphs",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "pool_matrix",
+      "k": 65,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "power_function",
+      "k": 66,
+      "category": "arithmetic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "prime_factorization",
+      "k": 67,
+      "category": "arithmetic",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "products",
+      "k": 68,
+      "category": "arithmetic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "quantum_lock",
+      "k": 71,
+      "category": "graphs",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "rectangle_count",
+      "k": 74,
+      "category": "cognition",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "rotate_matrix",
+      "k": 75,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "rotten_oranges",
+      "k": 76,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "self_reference",
+      "k": 79,
+      "category": "logic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "sentence_reordering",
+      "k": 80,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "shortest_path",
+      "k": 81,
+      "category": "graphs",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "simple_equations",
+      "k": 82,
+      "category": "algebra",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "simple_geometry",
+      "k": 83,
+      "category": "geometry",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "simple_integration",
+      "k": 84,
+      "category": "algebra",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "spell_backward",
+      "k": 86,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "spiral_matrix",
+      "k": 87,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "string_insertion",
+      "k": 88,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "string_manipulation",
+      "k": 89,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "string_splitting",
+      "k": 90,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "string_synthesis",
+      "k": 91,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "sudoku",
+      "k": 92,
+      "category": "games",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "survo",
+      "k": 93,
+      "category": "games",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "tower_of_hanoi",
+      "k": 96,
+      "category": "games",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "tsumego",
+      "k": 97,
+      "category": "games",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "family": "word_ladder",
+      "k": 98,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "family": "word_sequence_reversal",
+      "k": 99,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "family": "word_sorting",
+      "k": 100,
+      "category": "algorithmic",
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "probe_runs_note": "Resumed from a per-family row cache: full first pass ~56 min, re-probe of every killed level after a worker-stdout fix + the determinism pass ~27 min, on a 4-vCPU host with 4 families in parallel; the final call only re-applied the rules to cached rows."
+}
