@@ -2,7 +2,33 @@
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/ub9/e16-toy-env-generation/experiments/16_toy_env_generation_ginc_hmm_rho_h_law/results.md>
 
-Design: [README.md](README.md). Night 1 measurements are preserved below in `expt_v1/results/`; the Night 2 continuation uses `expt_v2/results/pilot_v3/`; the known-MDP runs use `expt_v3/results/mdp_v1/` (Night 2b) and `expt_v3/results/mdp_v2/` (Night 3); Night 4 uses `expt_v4/results/night4/`.
+Design: [README.md](README.md). Night 1 measurements are preserved below in `expt_v1/results/`; the Night 2 continuation uses `expt_v2/results/pilot_v3/`; the known-MDP runs use `expt_v3/results/mdp_v1/` (Night 2b) and `expt_v3/results/mdp_v2/` (Night 3); Night 4 uses `expt_v4/results/night4/`; Night 5 (replication) uses `expt_v5/results/night5/`.
+
+## Night 5: Night 4 replicated on independent start checkpoints (`expt_v5`) — POSITIVE again; all three pre-registered predictions hold
+
+**Status:** run complete, 10-26-2026 10:57–13:15 PDT, ultimate_brando9's 4-CPU machine (heavily shared, load ~12-17), CPU only, $0. Protocol, code and predictions frozen and pushed (16715b7) before any probe or RL; n1–n3 cells and the n4 forecast pushed (8b09301) before any n4 trajectory existed. [expt_v5/PROTOCOL.md](expt_v5/PROTOCOL.md), [night5.sh](expt_v5/night5.sh), full numbers in [expt_v5/results/night5/analysis.json](expt_v5/results/night5/analysis.json).
+
+**Takeaway.** With freshly pretrained start checkpoints at all four scales (new init, new pretraining-document draw, new batch order; same concept bank, steps, environments, S2 strength, seeds, budgets and rules as Night 4), law+alpha's n4 regret is 0.96 pts [0.56, 1.73] vs uniform random 2.23 [2.08, 2.72], so the frozen rule again says POSITIVE (paired difference [−1.72, −0.84]). The Night 4 reading also replicates: the plain law is just as good (0.93 [0.53, 1.66]; law+alpha minus law [−0.24, +0.32]), and "best environment on n3" (m02) has the lowest point regret (0.14 [0.00, 1.45]); law+alpha minus best-fixed [−0.16, +1.52] does not separate. So the changed law beats random because it avoids the disastrous environments, not because it finds the best one.
+
+| prediction (frozen before RL) | Night 4 | Night 5 | holds |
+|---|---|---|---|
+| P1 law+alpha interval below random's | 1.08 [0.55, 1.82] vs 2.22 [2.03, 2.63] | 0.96 [0.56, 1.73] vs 2.23 [2.08, 2.72] | yes |
+| P2 law+alpha not better than law | diff [−0.23, +0.51] | diff [−0.24, +0.32] | yes |
+| P3 best-on-n3 lowest point regret | 0.12 | 0.14 (m02 again) | yes |
+
+| choice rule at n4 (mean over 3 budgets) | picks (12.8k, 25.6k, 51.2k) | regret (pts) | 95% interval |
+|---|---|---|---|
+| law+alpha | m03, e08, e08 | 0.96 | [0.56, 1.73] |
+| ρ–H law (Eq. 7) | e08, e08, e08 | 0.93 | [0.53, 1.66] |
+| alpha alone | m03, m03, m03 | 0.48 | [0.26, 1.04] |
+| best fixed on n3 | m02, m02, m02 | 0.14 | [0.00, 1.45] |
+| uniform random | all 16 | 2.23 | [2.08, 2.72] |
+
+Other numbers: alpha ranks observed n4 utility at Spearman 0.72 (grad_cos 0.66, k-step NLL drop 0.65); the law's own predictions rank it at −0.21, law+alpha at 0.46 (Night 4: 0.63 / −0.10 / 0.45). alpha is nearly uncorrelated with log ρ (0.10) and H (0.01). Positive cells (of 144): n1 31, n2 30, n3 28, n4 12 (Night 4: 18, 46, 41, 17); mean final KL 0.12 / 0.19 / 0.22 / 0.27. At n4 only m01 and m02 gain at the largest budget (+0.27, +0.31 pts); e00 loses 11.3 pts. Denominators: 16 environments × 3 seeds × 3 budgets per scale, 4,000 target prompts, bootstrap 2,000 draws with every rule refit per draw.
+
+**Read.** The Night 4 result does not depend on its single start checkpoint: it replicates under an independent draw of the start policy at every scale. What it shows is limited: n4 is a forgetting regime (132 of 144 cells not positive), so beating random means avoiding a few bad environments; all learned rules and the n3 baseline do that; none beats "best on n3". Remaining caveats: still one start checkpoint per scale per night (two independent checkpoints now agree), three RL seeds, a single toy family, and utility measured on the same target as the probes.
+
+**Deviations (disclosed).** Python environment: venv `mrmr` (numpy 1.26.4, torch 2.14.1 CPU; versions in `n*_meta.json`), not Night 4's. `expt_v2/run.py` and `policy.py` gained an `E16_PRETRAIN_SEED` / `gen_seed` hook whose default reproduces Night 2/4 exactly. RL strength reused from Night 4's frozen receipt (no new pilot). No cell was rerun or dropped.
 
 ## Night 4: target-alignment term alpha added to the ρ–H law, GINC tiny transformers (`expt_v4`) — POSITIVE by the frozen rule, but alpha adds nothing over the law and the small-model baseline is best
 
