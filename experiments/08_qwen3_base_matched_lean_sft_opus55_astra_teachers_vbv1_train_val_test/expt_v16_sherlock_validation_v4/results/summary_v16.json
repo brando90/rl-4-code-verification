@@ -1,0 +1,229 @@
+{
+  "summary": {
+    "v16_v4_20260830": {
+      "declared_cells": 1080,
+      "scored_cells": 1080,
+      "successes": 52,
+      "success_rate": 0.04814814814814815,
+      "pass_at_8_tasks": 18,
+      "mixed_tasks_1_to_7": 18,
+      "target_tasks_2_to_6": 12,
+      "extracted": 900,
+      "compiles": 52,
+      "capped": 180,
+      "mean_generated_tokens": 5541.303703703704,
+      "mean_IC_tests": 0.04814814814814815,
+      "mean_IC_proofs": 0.04814814814814815,
+      "source_model_paths": [
+        "/scratch/users/brando9/rl4cv_sherlock/expt_v4/runs/20260830/hf"
+      ],
+      "pass_at_1": 0.04814814814814815,
+      "pass_at_1_ci95": [
+        0.025,
+        0.075
+      ],
+      "pass_at_8": 0.13333333333333333,
+      "pass_at_8_ci95": [
+        0.08148148148148149,
+        0.1925925925925926
+      ],
+      "extraction_counts": {
+        "file_blocks": 900,
+        "no_lean_block": 180
+      },
+      "finish_reason_length": 180
+    },
+    "v16_v4_20260831": {
+      "declared_cells": 1080,
+      "scored_cells": 1080,
+      "successes": 58,
+      "success_rate": 0.053703703703703705,
+      "pass_at_8_tasks": 24,
+      "mixed_tasks_1_to_7": 24,
+      "target_tasks_2_to_6": 13,
+      "extracted": 894,
+      "compiles": 58,
+      "capped": 189,
+      "mean_generated_tokens": 5492.917592592593,
+      "mean_IC_tests": 0.053703703703703705,
+      "mean_IC_proofs": 0.053703703703703705,
+      "source_model_paths": [
+        "/scratch/users/brando9/rl4cv_sherlock/expt_v4/runs/20260831/hf"
+      ],
+      "pass_at_1": 0.053703703703703705,
+      "pass_at_1_ci95": [
+        0.03148148148148148,
+        0.08055555555555556
+      ],
+      "pass_at_8": 0.17777777777777778,
+      "pass_at_8_ci95": [
+        0.11851851851851852,
+        0.24444444444444444
+      ],
+      "extraction_counts": {
+        "file_blocks": 894,
+        "no_lean_block": 186
+      },
+      "finish_reason_length": 189
+    },
+    "v16_base": {
+      "declared_cells": 1080,
+      "scored_cells": 1080,
+      "successes": 0,
+      "success_rate": 0.0,
+      "pass_at_8_tasks": 0,
+      "mixed_tasks_1_to_7": 0,
+      "target_tasks_2_to_6": 0,
+      "extracted": 587,
+      "compiles": 8,
+      "capped": 643,
+      "mean_generated_tokens": 7830.052777777778,
+      "mean_IC_tests": 0.0,
+      "mean_IC_proofs": 0.000925925925925926,
+      "source_model_paths": [
+        "/scratch/users/brando9/.huggingface/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+      ],
+      "pass_at_1": 0.0,
+      "pass_at_1_ci95": [
+        0.0,
+        0.0
+      ],
+      "pass_at_8": 0.0,
+      "pass_at_8_ci95": [
+        0.0,
+        0.0
+      ],
+      "extraction_counts": {
+        "no_lean_block": 493,
+        "longest_bare_block": 212,
+        "file_blocks": 102,
+        "single_bare_block": 273
+      },
+      "finish_reason_length": 643
+    },
+    "sft_1p7B_f1p0": {
+      "successes": 53,
+      "pass_at_1": 0.049074074074074076,
+      "pass_at_1_ci95": [
+        0.026851851851851852,
+        0.07592592592592592
+      ],
+      "pass_at_8_tasks": 20,
+      "pass_at_8": 0.14814814814814814,
+      "pass_at_8_ci95": [
+        0.08888888888888889,
+        0.21481481481481482
+      ],
+      "source": "expt_v1/results/ladder/sft_1p7B_f1p0_validation_cells.csv (kernel_binary)"
+    },
+    "base_1p7B_e05": {
+      "successes": 0,
+      "pass_at_1": 0.0,
+      "pass_at_1_ci95": [
+        0.0,
+        0.0
+      ],
+      "pass_at_8_tasks": 0,
+      "pass_at_8": 0.0,
+      "pass_at_8_ci95": [
+        0.0,
+        0.0
+      ],
+      "source": "expt_v1/results/ladder/base_1p7B_e05_validation_cells.csv (kernel_binary)"
+    },
+    "v4_two_seed_pool": {
+      "successes": 110,
+      "cells": 2160,
+      "pass_at_1": 0.05092592592592592,
+      "pass_at_1_ci95": [
+        0.029166666666666667,
+        0.07592592592592592
+      ],
+      "note": "16 samples per task (8 per seed); pass@8 not defined for the pool"
+    }
+  },
+  "paired_differences": {
+    "v16_v4_20260830 - sft_1p7B_f1p0": {
+      "pass_at_1_diff": -0.000925925925925926,
+      "pass_at_1_diff_ci95": [
+        -0.012962962962962963,
+        0.011111111111111112
+      ],
+      "pass_at_8_diff": -0.014814814814814815,
+      "pass_at_8_diff_ci95": [
+        -0.05925925925925926,
+        0.02962962962962963
+      ]
+    },
+    "v16_v4_20260831 - sft_1p7B_f1p0": {
+      "pass_at_1_diff": 0.004629629629629629,
+      "pass_at_1_diff_ci95": [
+        -0.009259259259259259,
+        0.019444444444444445
+      ],
+      "pass_at_8_diff": 0.02962962962962963,
+      "pass_at_8_diff_ci95": [
+        -0.022222222222222223,
+        0.08148148148148149
+      ]
+    },
+    "v16_v4_20260830 - v16_v4_20260831": {
+      "pass_at_1_diff": -0.005555555555555556,
+      "pass_at_1_diff_ci95": [
+        -0.022222222222222223,
+        0.011111111111111112
+      ],
+      "pass_at_8_diff": -0.044444444444444446,
+      "pass_at_8_diff_ci95": [
+        -0.08888888888888889,
+        0.0
+      ]
+    },
+    "v16_v4_20260830 - v16_base": {
+      "pass_at_1_diff": 0.04814814814814815,
+      "pass_at_1_diff_ci95": [
+        0.025,
+        0.075
+      ],
+      "pass_at_8_diff": 0.13333333333333333,
+      "pass_at_8_diff_ci95": [
+        0.08148148148148149,
+        0.1925925925925926
+      ]
+    },
+    "v16_v4_20260831 - v16_base": {
+      "pass_at_1_diff": 0.053703703703703705,
+      "pass_at_1_diff_ci95": [
+        0.03148148148148148,
+        0.08055555555555556
+      ],
+      "pass_at_8_diff": 0.17777777777777778,
+      "pass_at_8_diff_ci95": [
+        0.11851851851851852,
+        0.24444444444444444
+      ]
+    },
+    "v16_base - base_1p7B_e05": {
+      "pass_at_1_diff": 0.0,
+      "pass_at_1_diff_ci95": [
+        0.0,
+        0.0
+      ],
+      "pass_at_8_diff": 0.0,
+      "pass_at_8_diff_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "v4_two_seed_pool - sft_1p7B_f1p0": {
+      "pass_at_1_diff": 0.001851851851851852,
+      "pass_at_1_diff_ci95": [
+        -0.008796296296296297,
+        0.0125
+      ]
+    }
+  },
+  "bootstrap": "task resampling, 10,000 draws, numpy seed 0",
+  "metric": "per-attempt binary success: kernel_binary with the inherited non-vacuity gate (expt_v6/analyze.evaluate)",
+  "test_split_opened": false
+}
