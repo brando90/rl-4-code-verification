@@ -1,0 +1,133 @@
+{
+ "start_repo_in_plan": "laion/delphi-1e22-p33m67-32p07b-lr0_67-54770ae7-wc386k_lr1e5-sft",
+ "start_repo_sha_now": "511c4ea0e57973b890a542eb70f3b4429dea1d74",
+ "start_repo_snapshot_used_by_authors_log": "511c4ea0e57973b890a542eb70f3b4429dea1d74",
+ "D1rlvrmath-60": {
+  "MODEL_PATH_in_log": [
+   "laion/delphi-1e22-p33m67-32p07b-lr0_67-54770ae7-wc386k_lr1e5-sft"
+  ],
+  "DATASET": [
+   "rlvr_math"
+  ],
+  "ENV_CLASS": [
+   "aime"
+  ],
+  "lr": "1.0e-5",
+  "G_n_samples_per_prompt": "8",
+  "train_batch_size_prompts": "64",
+  "rollouts_per_step": 512,
+  "max_steps": "100",
+  "epochs": "20",
+  "temperature": "0.7",
+  "max_generate_length": "3584",
+  "max_prompt_length": "512",
+  "use_kl_loss": "false",
+  "entropy_coef": "0.01",
+  "ckpt_interval": "20",
+  "advantage_estimator": "grpo",
+  "train_data": "\\",
+  "n_train_steps_logged": 100,
+  "reward_step1": -0.89453125,
+  "reward_max": 0.30859375,
+  "reward_argmax_step": "58",
+  "reward_last": -0.99609375,
+  "mean_tokens_step1": 854.05078125,
+  "mean_tokens_last": 3432.44921875
+ },
+ "D2ifeval-60": {
+  "MODEL_PATH_in_log": [
+   "laion/delphi-1e22-p33m67-32p07b-lr0_67-54770ae7-wc386k_lr1e5-sft"
+  ],
+  "DATASET": [
+   "rlvr_ifeval"
+  ],
+  "ENV_CLASS": [
+   "ifeval"
+  ],
+  "lr": "1.0e-5",
+  "G_n_samples_per_prompt": "8",
+  "train_batch_size_prompts": "64",
+  "rollouts_per_step": 512,
+  "max_steps": "100",
+  "epochs": "20",
+  "temperature": "0.7",
+  "max_generate_length": "3584",
+  "max_prompt_length": "512",
+  "use_kl_loss": "false",
+  "entropy_coef": "0.01",
+  "ckpt_interval": "20",
+  "advantage_estimator": "grpo",
+  "train_data": "\\",
+  "n_train_steps_logged": 100,
+  "reward_step1": 0.3125,
+  "reward_max": 0.841796875,
+  "reward_argmax_step": "89",
+  "reward_last": 0.75390625,
+  "mean_tokens_step1": 456.513671875,
+  "mean_tokens_last": 932.732421875
+ },
+ "D3dapomath-20": {
+  "MODEL_PATH_in_log": [
+   "laion/delphi-1e22-p33m67-32p07b-lr0_67-54770ae7-wc386k_lr1e5-sft"
+  ],
+  "DATASET": [
+   "dapo_math"
+  ],
+  "ENV_CLASS": [
+   "aime"
+  ],
+  "lr": "1.0e-5",
+  "G_n_samples_per_prompt": "8",
+  "train_batch_size_prompts": "64",
+  "rollouts_per_step": 512,
+  "max_steps": "100",
+  "epochs": "20",
+  "temperature": "0.7",
+  "max_generate_length": "3584",
+  "max_prompt_length": "512",
+  "use_kl_loss": "false",
+  "entropy_coef": "0.01",
+  "ckpt_interval": "20",
+  "advantage_estimator": "grpo",
+  "train_data": "\\",
+  "n_train_steps_logged": 100,
+  "reward_step1": -0.98046875,
+  "reward_max": -0.8203125,
+  "reward_argmax_step": "8",
+  "reward_last": -1.0,
+  "mean_tokens_step1": 1290.427734375,
+  "mean_tokens_last": 3532.212890625
+ },
+ "D4math500-80": {
+  "MODEL_PATH_in_log": [
+   "laion/delphi-1e22-p33m67-32p07b-lr0_67-54770ae7-wc386k_lr1e5-sft"
+  ],
+  "DATASET": [
+   "math500"
+  ],
+  "ENV_CLASS": [
+   "aime"
+  ],
+  "lr": "1.0e-5",
+  "G_n_samples_per_prompt": "8",
+  "train_batch_size_prompts": "64",
+  "rollouts_per_step": 512,
+  "max_steps": "100",
+  "epochs": "20",
+  "temperature": "0.7",
+  "max_generate_length": "3584",
+  "max_prompt_length": "512",
+  "use_kl_loss": "false",
+  "entropy_coef": "0.01",
+  "ckpt_interval": "20",
+  "advantage_estimator": "grpo",
+  "train_data": "\\",
+  "n_train_steps_logged": 100,
+  "reward_step1": -0.78125,
+  "reward_max": 0.265625,
+  "reward_argmax_step": "73",
+  "reward_last": 0.0703125,
+  "mean_tokens_step1": 638.359375,
+  "mean_tokens_last": 702.87890625
+ }
+}
