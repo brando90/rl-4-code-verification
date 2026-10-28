@@ -183,3 +183,10 @@ Note on D-105 (09-30-2026):
 - **Decision:** retain raw stdout/stderr, source/compiler identity, exit and timeout status for each compiler/kernel invocation in durable run artifacts. Use experiment08 `expt_v24/future_logging/parallel_scoring_logged.py` for new run versions25+; its default command factory requires the logged scorer. Historical frozen scorers and verdicts stay immutable.
 - **Verification:** actual Lean success/error and kernel-policy equivalence, unchanged verifier bytecode, timeout partial-output parity, deleted-probe survival and controlled abrupt-stop log survival passed; the exact default worker command passed a frozen-CLI fixture. See `expt_v24/future_logging/results/`.
 - **Recovery:** version24 reused851 earlier diagnostic logs and recovered930+897 failed fresh-run diagnostics using96 parallel single-threaded Lean processes with20-second diagnostic limits. Official scores unchanged; full3,240-cell classification and limits are in `expt_v24/README.md`.
+
+### D-110 — Smooth-to-harsh is a named project line; every experiment uses the current public VeriBench — accepted — 10-28-2026 — Brando
+
+- **Authorization:** Brando, 10-28-2026 (voice): the smooth metric improving the harsh metric (Azalia's suggestion) is "worth still pursuing and putting in the important list of projects", run under RL for code verification, and "we also need an agent's config file, ClaudeMD file, so that we are always using the state-of-the-art VeriBench public for this."
+- **Decision 1:** [SMOOTH_TO_HARSH.md](SMOOTH_TO_HARSH.md) tracks the project line. He asked first to check what earlier experiments exist; they are listed there. No new run is admitted until he has seen that list and a plan has passed QA.
+- **Decision 2:** `CLAUDE.md` ("VeriBench public release") and `AGENTS.md` require every new experiment to use the current public VeriBench release and name it. The same rule is Trigger Rule 82 in agents-config. Locked protocols keep their recorded pins.
+

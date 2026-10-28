@@ -36,6 +36,7 @@ Details: [docs/PLAN.md](docs/PLAN.md).
 | [`docs/FACTS_veribench_baselines.md`](docs/FACTS_veribench_baselines.md) | Sourced VeriBench numbers: small-model gap, saturation, judge facts and cost |
 | [`docs/DATASETS.md`](docs/DATASETS.md) | Candidate pools (FVAPPS, Vericoding, VERINA, synthetic) and contamination screens |
 | [`docs/veribench_data_format/`](docs/veribench_data_format/README.md) | Contributor guide, browsable Python/Lean example pair, original archive, provenance, and validation receipt |
+| [`docs/SMOOTH_TO_HARSH.md`](docs/SMOOTH_TO_HARSH.md) | Project line: Azalia's suggestion that the smooth score should improve the harsh score. Source email, what experiments 04 to 24 already did, state, first-step sketch |
 | [`docs/meeting_notes/`](docs/meeting_notes/README.md) | Summaries plus the verbatim meeting notes |
 | [`docs/related_work/`](docs/related_work/README.md) | AlphaApollo and AlphaDiana (Zhanke Zhou's agent systems): summary, AlphaApollo PDF, links to our factorized-metric experiments |
 | [`experiments/`](experiments/README.md) | Three experiments for Brando's two goals (D-007): 01 the shared baseline (running), 02 Varun's question (ρ–H-guided Lean environment design, phases 02A–02D), 03 Allen's coverage question; plus deferred ideas. Each has a design README, and 01 has a locked protocol, run script and agent prompt |
