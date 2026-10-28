@@ -36,3 +36,6 @@ K = 4 tokens per response, all admitted, so rho_i is a constant multiple of mean
 
 ## Stop rules and execution
 (a) fewer than 1 n1 cell per hour at the chosen process count for 12 hours, or a stage over 36 hours wall: stop after the running stage and report the scales done. (c) No cell is rerun, dropped or replaced because of its outcome. Hardware: Stanford SNAP skampere2 CPU (venv with torch 2.14.1, numpy 1.26.4, scipy 1.16.3), nice 19, $0. Committed outputs: `results/*.json` (one per trajectory, per-checkpoint utility, packed per-prompt hits, rolling rho and H, lr fraction), `analysis.json`, `results.md`.
+
+## Amendments (before any outcome was read)
+1. 14:33 Oct 28: `night6.run_job` raised `RuntimeError` on the second job of a pool worker (`set_num_interop_threads` can be set once per process); wrapped in try/except. No outcome existed; no trajectory changed. The frozen forecast's `night6.py` hash is for the file before this fix.

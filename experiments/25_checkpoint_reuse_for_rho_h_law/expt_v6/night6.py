@@ -128,7 +128,10 @@ def rolling_rho_h(reward, window=EVAL_EVERY):
 
 def run_job(j, out_dir=RESULTS, log_dir=LOGS, ckpt_dir=CKPTS, save_ckpt=None):
     torch.set_num_threads(1)
-    torch.set_num_interop_threads(1)
+    try:
+        torch.set_num_interop_threads(1)      # raises when a pool worker runs its second job; the first call already set it
+    except RuntimeError:
+        pass
     name = job_name(j)
     dest = Path(out_dir) / f'{name}.json'
     if dest.exists():
