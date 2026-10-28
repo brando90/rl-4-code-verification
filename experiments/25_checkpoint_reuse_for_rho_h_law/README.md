@@ -14,4 +14,6 @@ See the plan §4 and §5. This folder tests R2 (prefix extrapolation, P2) and R4
 - Tests: `tests/test_e25_stage0.py`, run by `make test`.
 
 ## Status log (newest first)
-- 10-28-2026: folder created, PROTOCOL.md frozen and pushed before any 0b, 0c or R5 outcome was read.
+- 10-28-2026 (Stage 0 status): analyses 0a to 0e are done (results.md). The completion-mode generator in `expt_v2/` passed the 0e smoke on a free skampere1 GPU; Q1 (Delphi 3.4B, 9.7B replicas) is in progress, Q3 (P8) and the final results.md rewrite are pending; Q4 and Q2(c) are blocked by licence terms.
+- 10-28-2026: folder created; PROTOCOL.md was committed before any 0b, 0c or R5 outcome was read and was pushed together with the results (not before them). Addenda A and A.1 (R5 environments, exemplars, smoke bar) were committed before any R5 generation.
+- `expt_v6/` (Night 6, from another agent) is separate work and not part of this Stage 0 result.
