@@ -1,15 +1,26 @@
-# Experiment 25 (checkpoint reuse): Stage 0 results (0a inventory, 0b, 0c, 0d, 0e)
+# Experiment 25 (checkpoint reuse): Stage 0 results (0a to 0e) and R5 arms Q1 and Q3
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/25_checkpoint_reuse_for_rho_h_law/results.md>
 
-**TLDR:** Stage 0 is done on committed data and the public-checkpoint audit; protocol frozen first ([PROTOCOL.md](PROTOCOL.md), commit 4f3f8b2b). (0b) P2 HOLDS on the toy: a 50%-prefix fit (steps 25, 50) forecasts step 100 at the held-out scale n4 as well as the full fit (RMSE ratio 0.975 on Night 4 and 0.970 on Night 5, rank accuracy gap ≤ 0.02, 10 of 10 seed resamples), but this is weak evidence because Eq. 7 has no skill on the toy at n4 (RMSE 3.07 pp against the observed SD 2.96 pp, rank accuracy 0.46 where chance is 0.5). The Night 4 to Night 5 retrospective check shows the law is not transferable across pretraining draws any better than the environment mean, while simply reusing Night 4's measured utilities (persistence) has RMSE 0.2 to 0.4 pp. (0c) P4: ρ and H of the 1.7B SFT rungs match fresh runs: ΔH = +0.002 [−0.024, +0.027] EQUIVALENT within ±0.073; Δlog ρ = +0.174 [−0.170, +0.480] EQUIVALENT only at the coarse ±0.49 margin (not within ±0.244). (0d) The power note held (half-widths 0.325 and 0.0255). (0e) Q1, Q2(a), Q2(b) and Q3 pass the audit; Q2(c) and Q4 fail the license rule (`license: other` with no text; RL endpoints have no license); GPU arms were not run in this step (see the status line). No result here is evidence about Lean code verification.
+**TLDR:** Stage 0 and the first R5 arms (Q1, Q3) are done on committed data, public checkpoints and public logs, protocol frozen first ([PROTOCOL.md](PROTOCOL.md), addenda A and A.1 committed before any R5 generation). Verdicts, one line each:
+- **P2 (prefix fit vs full fit, toy): HOLDS, weakly.** RMSE ratio at held-out n4 0.975 (Night 4) and 0.970 (Night 5); Eq. 7 has no skill on the toy there (RMSE 3.07 pp vs observed SD 2.96 pp), so two equally poor fits agree.
+- **P4 (1.7B SFT rungs vs fresh runs): EQUIVALENT.** ΔH +0.002 [−0.024, +0.027] inside ±0.073; Δlog ρ +0.174 [−0.170, +0.480] inside ±0.49 only (coarse margin), not ±0.244.
+- **P6 (Q1, Delphi replicas): NOT TESTABLE as frozen.** Only 2 (3.4B) and 3 (9.7B) environments are measurable (q_mixed ≥ 0.2) in all three replicas; the protocol needs ≥ 4. Descriptive only: at 9.7B on the 3 common environments the pooled seed SD is 0.16 of the between-environment SD for log ρ and 0.31 for H; the lowest pairwise Spearman of the environment ranking is 1.0 (log ρ) and 0.5 (H), with 3 environments. Not a pass.
+- **P8 (Q3, sigmoid vs Eq. 7 on public RL reward curves): worked example, not tested (3 blend curves + 4 logs ≤ 7). Neither form beats a flat baseline.** Sigmoid MAE/range on the Snowball blend: 0.244 (5.7T), 0.132 (async), 0.381 (sync), all above the 0.10 bar; Eq. 7 gives 0.249, 0.134, 0.382; the flat "last 5 fit-window steps" baseline gives 0.265, 0.131, 0.373. Delphi D1 to D4 logs: sigmoid 0.121, 0.078, 0.212, 0.079 (2 of 4 under 0.10).
+- **Q4 and Q2(c): blocked by license** (`license: other` with no text; RL endpoints have no license). **Decision for Brando (not taken):** ask laion for a license, or relax the unclear-license rule.
+- **Smoke and generator:** completion-mode generator in `expt_v2/` passed the 0e smoke on a free skampere1 A100 (Delphi 3.4B, 400 of 400 samples, extraction non-empty 100%).
+- Q2(a) and Q2(b) were not run in this task (about 2 of the 20 GPU-hours used); no result here is evidence about Lean code verification.
 
 ## Deviations from the frozen protocol (none silent)
 0. Freeze timing: PROTOCOL.md was committed locally (before any 0b, 0c outcome was computed or read) but pushed to main together with the results, because a full `make test` had to pass before any push and the suite takes 20 minutes. The commit order, not the push order, is the evidence of the freeze. `make test`: 1,397 passed, 7 failed, 58 skipped; the 7 failures are in unrelated experiment 08 and 13 tests (missing cluster files and modules in a fresh clone), none in `tests/test_e25_stage0.py` (6 passed).
 1. 0e found the plan's Q4 recipe numbers wrong for the four D-endpoints (G = 8, 64 prompts per step, 100 steps, lr 1e-5; the plan's G = 16, batch 256, about 146 steps belong to other repos). Q4 is not run (license), so no measurement is affected.
 2. The 0c adapter check "`unparseable` False on every ladder row used" is enforced for the two 1.7B rungs P4 uses (0 rows each); four other files each contain one unparseable row and are reported but not used in P4 (`ladder/base_8B_e05`, `ladder/sft_14B_f0p125`, `ladder/sft_14B_f1p0`, `fresh/v16_v4_20260831`; in the last, P4 uses it as a fresh seed with that row kept as scored by the original run).
-3. The completion-mode generator and its smoke-checkpoint pass need a GPU and are not done in this step; they are the first item of the R5 follow-up (the audit itself ran).
+3. The completion-mode generator and its smoke pass were first reported as not done; a later run did them (smoke PASS, Q1 generated and scored, Q3 run on CPU). Q2(a) and Q2(b) remain not run (time; follow-up AT-1796).
 4. 14B rung size: the plan quotes 177 GB per rung; live `du` on skampere1 shows 56 GB per rung (`pytorch_model.bin`, 5 rungs = 280 GB). The plan figure is stale or counted something else.
+5. P6 precondition: the protocol asks for ≥ 4 measurable environments per scale; at 3.4B only 2 and at 9.7B only 3 are measurable in all three replicas, so P6 is reported as NOT TESTABLE and the SD and Spearman figures are descriptive. `rg/leg_counting/L0` has 103 distinct test questions (n recorded, per addendum A.1) and `coin_flip` L0 and L1 were NOT BUILT (0 and 2 distinct questions). The 9.7B base replica's GSM8K cell has q_mixed 0.196, just under the 0.2 bar.
+6. Q3 detail not in the frozen text: the Delphi D1 to D4 logs hold raw rewards in [−1, 1], so each D curve was shifted to its observed minimum before the sigmoid fit (the frozen A in [0, 1.5 × max] assumes non-negative rewards); the Snowball curves were not shifted. The blend average uses the domains present at each step (17.2 of 18 on average for sync and 5.7T, 12.8 for async). The flat last-5-steps baseline is an addition, reported beside the two frozen forms.
+7. Measurement note: the 8-shot direct-answer format makes the models answer in 5 to 60 tokens, so accuracies on GSM8K and MATH are low (0.02 to 0.08); this is the protocol, not a generator fault, and is the reason few environments clear the bar.
+8. Tests: after the R5 code, `tests/test_e25_stage0.py`, `tests/test_e25_completion.py` and `tests/test_e25_q3.py` give 15 passed, 1 skipped; the full `make test` was not rerun after the R5 code, so the 7 pre-existing experiment 08 and 13 failures in deviation 0 stand as last measured.
 
 ## 0a Inventory (what exists that could feed the law)
 Checked live on skampere1 (read-only, Kerberos keytab; Sherlock not checked: it needs a Duo passcode and the rule is no Duo pushes).
@@ -82,5 +93,53 @@ All 25 Marin and laion ids in the plan exist and are ungated; every repo has onl
 | Q4 | FAIL | start repo `license: other`; endpoints no license; D1 and D3 collapsed |
 To unblock Q2(c) and Q4: ask laion (the repo owner) to state a license, or the owner relaxes the default rule explicitly (a decision for Brando, not taken here).
 
+
+## R5 smoke, Q1 and Q3 (CPU scoring; GPU generation on skampere1 A100s, `expt_v2/`)
+**Smoke (0e, `expt_v2/results/0e_smoke_delphi_3p4b.json`): PASS.** `delphi-1e21-3.4Bparams-46.3Btokens`, bf16, vLLM 0.17.1, one A100, `rg/basic_arithmetic/L0` and `gsm8k/train500` × first 50 ids × G = 8: 400 of 400 samples returned in each environment, extraction non-empty 100%, correct samples present in both (accuracy 0.121 and 0.015), finite ρ and H, token counts well under the cap. Smoke numbers are not used in P6.
+**Q1 (P6): environments and measurability per replica.** 8 environments built (500 ids each except `math/prealgebra_L1L2_int` 334 and `leg_counting/L0` 103 distinct, `coin_flip` NOT BUILT), 8-shot direct-answer completion, T 1.0, G = 8, max 512 tokens, per-environment measures in `expt_v2/results/q1_*_measure.json`, raw samples in `expt_v2/results/raw_samples/`, ρ and H by `measure_environment`. Each cell: q_mixed / ρ / H; "·" marks a cell below the q_mixed ≥ 0.2 bar (listed, excluded from P6, never dropped). Replicas: the base repo and the `-seed42` and `-seed62746` repos. Measurable environments per replica: 3.4B 2 / 3 / 3; 9.7B 3 / 4 / 4; in all three replicas: 3.4B 2 (`rg/basic_arithmetic/L0`, `rg/leg_counting/L0`), 9.7B 3 (`math/prealgebra_L1L2_int`, the same two).
+
+
+**3.4B**
+
+| Environment | n | base | seed42 | seed62746 |
+|---|---|---|---|---|
+| gsm8k/train500 | 500 | 0.13 / 3550 / 0.125 · | 0.11 / 1873 / 0.101 · | 0.16 / 4788 / 0.153 · |
+| math/prealgebra_L1L2_int | 334 | 0.19 / 5901 / 0.177 · | 0.20 / 6281 / 0.181 | 0.22 / 5569 / 0.197 |
+| rg/basic_arithmetic/L0 | 500 | 0.63 / 5655 / 0.521 | 0.57 / 1823 / 0.462 | 0.61 / 3590 / 0.500 |
+| rg/basic_arithmetic/L1 | 500 | 0.09 / 1730 / 0.065 · | 0.08 / 224 / 0.049 · | 0.08 / 722 / 0.060 · |
+| rg/leg_counting/L0 | 103 | 0.70 / 9528 / 0.633 | 0.50 / 3804 / 0.440 | 0.54 / 32702 / 0.481 |
+| rg/leg_counting/L1 | 500 | 0.16 / 987 / 0.150 · | 0.13 / 407 / 0.126 · | 0.19 / 8539 / 0.172 · |
+| rg/simple_equations/L0 | 500 | 0.14 / 5555 / 0.114 · | 0.14 / 1064 / 0.116 · | 0.15 / 5645 / 0.116 · |
+| rg/simple_equations/L1 | 500 | 0.00 / 7 / 0.002 · | 0.01 / 61 / 0.005 · | 0.00 / 39 / 0.003 · |
+
+**9.7B**
+
+| Environment | n | base | seed42 | seed62746 |
+|---|---|---|---|---|
+| gsm8k/train500 | 500 | 0.20 / 9786 / 0.180 · | 0.23 / 8551 / 0.206 | 0.23 / 6812 / 0.213 |
+| math/prealgebra_L1L2_int | 334 | 0.31 / 19709 / 0.277 | 0.30 / 13796 / 0.266 | 0.31 / 19102 / 0.276 |
+| rg/basic_arithmetic/L0 | 500 | 0.57 / 2928 / 0.484 | 0.71 / 4072 / 0.592 | 0.68 / 3908 / 0.565 |
+| rg/basic_arithmetic/L1 | 500 | 0.09 / 946 / 0.060 · | 0.10 / 3482 / 0.076 · | 0.08 / 2230 / 0.054 · |
+| rg/leg_counting/L0 | 103 | 0.60 / 28451 / 0.520 | 0.53 / 35465 / 0.474 | 0.66 / 38696 / 0.593 |
+| rg/leg_counting/L1 | 500 | 0.15 / 1983 / 0.142 · | 0.17 / 2710 / 0.162 · | 0.16 / 5301 / 0.145 · |
+| rg/simple_equations/L0 | 500 | 0.13 / 1045 / 0.119 · | 0.16 / 730 / 0.112 · | 0.13 / 906 / 0.117 · |
+| rg/simple_equations/L1 | 500 | 0.00 / 0 / 0.000 · | 0.01 / 30 / 0.004 · | 0.01 / 62 / 0.005 · |
+
+**P6 verdict: NOT TESTABLE as frozen (needs ≥ 4 measurable environments in the comparison at each scale; there are 2 and 3).** Descriptive figures (`expt_v2/results/p6_q1.json`, not a verdict): at 9.7B on the 3 common measurable environments, pooled seed SD of log ρ 0.18 vs between-environment SD 1.15 (ratio 0.16, bar 0.25) and of H 0.048 vs 0.153 (ratio 0.31, bar 0.25); lowest pairwise Spearman of the environment ranking 1.0 (log ρ) and 0.5 (H), with only 3 environments. On the 7 environments with any mixed groups in all replicas (not protocol; includes cells below the bar): 3.4B log ρ ratio 1.04 and H ratio 0.22, lowest Spearman 0.29 and 0.93; 9.7B log ρ ratio 0.27 and H ratio 0.17, lowest Spearman 0.89 and 0.96. Reading: environment ordering by H is stable across the three pretraining replicas at both scales; log ρ is noisy at 3.4B (a single cell, `leg_counting/L0`, goes from ρ 3,804 to 32,702 between replicas) and steadier at 9.7B; with 2 degrees of freedom and a bar that is not met, this does not decide whether 02B needs a second warm start. The `max_tokens` cap is almost never hit (mean 5 to 61 tokens), so admission is 0.94 to 1.00 and ρ is driven by the short answers.
+**Why so few measurable environments.** GSM8K and MATH accuracy under direct-answer 8-shot is 0.02 to 0.08, q_mixed 0.11 to 0.31; Reasoning Gym L1 sets and `simple_equations` are at the floor. GSM8K clears the bar only at 9.7B (2 of 3 replicas); MATH prealgebra clears it in 3 of 3 replicas at 9.7B and 2 of 3 at 3.4B. This is the measurability risk flagged in 0e, confirmed.
+
+**Q3 (P8), `expt_v2/q3_p8.py`, `expt_v2/results/q3_p8.json`.** Sigmoid in log step (A ∈ [0, 1.5 max], log t_mid ∈ [0, log 2T], B ∈ [0.1, 5], multi-start least squares) and Eq. 7's saturating form a·t/(t + t0) fitted on 10% to 50% of the steps; MAE on 50% to 100% divided by the curve's observed range; bar 0.10. Snowball card license is `null` (aggregates only, source cited); the D1 to D4 repos fail the license rule, so only their training logs' numbers are used (flagged).
+| Curve | steps | range | Sigmoid MAE/range | Eq. 7 MAE/range | Flat last-5 baseline |
+|---|---|---|---|---|---|
+| Snowball blend, 5.7T start | 46 | 0.348 | 0.244 | 0.249 | 0.265 |
+| Snowball blend, Sept 11 async | 110 | 0.691 | 0.132 | 0.134 | 0.131 |
+| Snowball blend, Sept 11 sync | 110 | 0.351 | 0.381 | 0.382 | 0.373 |
+| Delphi D1 (rlvr_math) | 100 | 1.305 | 0.121 | 0.117 | 0.118 |
+| Delphi D2 (ifeval) | 100 | 0.529 | 0.078 | 0.070 | 0.074 |
+| Delphi D3 (dapo_math, collapsed) | 100 | 0.180 | 0.212 | 0.213 | 0.000 |
+| Delphi D4 (math500) | 100 | 1.047 | 0.079 | 0.082 | 0.082 |
+Per-domain Snowball curves with ≥ 40 steps: 52 curves, 49 evaluable; the sigmoid is under 0.10 on 12, median MAE/range 0.158; it beats Eq. 7 on 22 and the flat baseline on 14 of the 49. **P8 verdict: worked example, not tested (7 or fewer main curves).** The sigmoid does not meet the 0.10 bar on any of the 3 blend curves and does not beat a flat extrapolation; the two forms are indistinguishable, because the stitched and noisy curves are mostly flat after 50% of the steps (blend mean 0.24 to 0.27 in the fit window vs 0.19 to 0.28 after). This says the 50%-prefix fit has no demonstrated advantage on these public curves; it does not say the law fails on a Lean run.
+
 ## Status
-GPU arms (R5) were NOT RUN in this step: the first GPU task needs the completion-mode generator to pass the smoke checkpoint, the arms need a GPU host that does not need a Duo passcode (skampere1 A100s through the keytab, 98% full disk; Sherlock excluded by the no-Duo rule), and the combined time exceeds one sitting. Filed as a follow-up with the arm order Q1, Q2(b), Q2(a) (Q4 and Q2(c) dropped by the license rule), cap 20 GPU-hours.
+Done in this task: 0a to 0e, the smoke pass, Q1 at 3.4B and 9.7B (P6 not testable), Q3 (worked example). Not run: Q2(b) and Q2(a) (follow-up AT-1796 keeps them; cap 20 GPU-hours, about 2 used), Q2(c) and Q4 (license). The downloaded Delphi weights on skampere1 `~/e25/hf` were removed after generation; raw samples (6 tarballs) and per-environment measures are committed in `expt_v2/results/`.
+
