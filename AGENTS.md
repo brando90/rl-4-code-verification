@@ -2,3 +2,5 @@
 # Read `~/agents-config/INDEX_RULES.md` for all agent documentation and routing. Local `~/agents-config/` is the fallback if GitHub is unreachable.
 # Then read `~/rl-4-code-verification/CLAUDE.md` (this repository's `CLAUDE.md`) for the project-specific rules; they apply to every agent, not only Claude Code.
 # Rule that applies to every experiment: use the current public VeriBench release (`veribench@1.3` on 10-28-2026) and name it; the check before each run is in `CLAUDE.md`, "VeriBench public release".
+
+# RL heuristics (Brando, 10-28-2026): read `docs/HEURISTICS.md` before any RL run (precision, Varun's RL setup, free-hardware use); append each new rule there

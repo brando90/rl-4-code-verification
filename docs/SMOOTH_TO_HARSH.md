@@ -4,7 +4,7 @@
 
 **TLDR:** Azalia Mirhoseini's suggestion is that VeriBench's smooth score (SCSC, a geometric mean of factors) should be shown to improve the harsh score (strict pass@1: the all-or-nothing proved-and-compiled outcome), as a reward, a feedback loop or an environment-selection signal, not only as a correlate. Brando made it a named project line on 10-28-2026, run under RL for code verification. Earlier experiments 04, 06, 07, 09, 12, 13, 19 and 20 already touch it; none has yet measured a smooth reward raising held-out harsh pass@1. No new run is admitted until Brando has seen the history below and a plan has passed QA.
 
-Status (10-28-2026): **plan needed, no run admitted.**
+Status (10-28-2026 14:00): **plan written, QA in progress, no training run started.** The direct test is [Experiment 25](../experiments/25_smooth_vs_strict_reward_grpo_qwen3_1p7b_sft_vbv1_3_d013/README.md) (smooth versus strict reward, Qwen3-1.7B SFT, `veribench@1.3`, D-013 validation). Stage 0 (local Lean scoring wrapper, A4000 precision gate) is running; the plan Doc with decisions for Brando is <https://docs.google.com/document/d/171HnjJrze_FKKEGOVGCL7xMfEd50DVXnMyzbVRC_SFQ/edit>.
 
 ## Source of the suggestion
 
