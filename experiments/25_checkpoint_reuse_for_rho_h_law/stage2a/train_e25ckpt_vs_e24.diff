@@ -1,0 +1,85 @@
+1c1
+< """TLDR: Experiment 20's GRPO trainer for one arm x seed run on one Sherlock GPU: prompts from the frozen train pack through experiment 103's prompt builder, rollouts from colocated vLLM (TRL 1.16's VLLMGeneration helper: sleep mode, processed log-probabilities, weight sync) with the frozen v12 sampler, rewards from the frozen Lean scorer (strict) or experiment 13's declaration adapter (smooth), group-normalized advantages, the clipped token-normalized objective with the vLLM importance correction (loss_e20.py), one AdamW step per update on fp32 master weights, pluggable prompt samplers (samplers_e20.py: uniform, static filter, DAPO refill, IRT-online), resumable checkpoints, and a smoke mode that gates on the log-probability mismatch between vLLM and the trainer."""
+---
+> """TLDR: Stage 2a of experiment 25 (checkpoint reuse): experiment 24's fp16-capable trainer plus every-CKPT_STEPS checkpoints that are all kept, one steplog.jsonl record per update (group rewards, tokens, admitted flag, advantage, lr) for rolling rho/H, a constant or cosine lr with the lr fraction, and an optional abort on the 1% mismatch gate. Underlying trainer: Experiment 20's GRPO trainer for one arm x seed run on one Sherlock GPU: prompts from the frozen train pack through experiment 103's prompt builder, rollouts from colocated vLLM (TRL 1.16's VLLMGeneration helper: sleep mode, processed log-probabilities, weight sync) with the frozen v12 sampler, rewards from the frozen Lean scorer (strict) or experiment 13's declaration adapter (smooth), group-normalized advantages, the clipped token-normalized objective with the vLLM importance correction (loss_e20.py), one AdamW step per update on fp32 master weights, pluggable prompt samplers (samplers_e20.py: uniform, static filter, DAPO refill, IRT-online), resumable checkpoints, and a smoke mode that gates on the log-probability mismatch between vLLM and the trainer."""
+20a21
+> sys.path.insert(0, os.environ.get("E20_CODE", "/scratch/users/brando9/rl4cv_sherlock/e20/code"))  # loss_e20.py, samplers_e20.py
+24a26
+> from steplog import CKPT_STEPS, build_step_record, check_checkpoints, lr_at, lr_fraction_after  # noqa: E402
+34c36
+< GROUPS_PER_UPDATE, UPDATES = 16, 48
+---
+> GROUPS_PER_UPDATE, UPDATES = 16, 128  # Stage 2a: 128 updates, checkpoints at CKPT_STEPS
+62a65
+>         self.steplog_path = self.run / "steplog.jsonl"
+76c79
+<         self.opt = torch.optim.AdamW(self.master, lr=LR, betas=BETAS, eps=1e-8, weight_decay=WEIGHT_DECAY, foreach=True)
+---
+>         self.opt = torch.optim.AdamW(self.master, lr=args.lr, betas=BETAS, eps=1e-8, weight_decay=WEIGHT_DECAY, foreach=True)
+129c132,133
+<              "recipe": {"lr": LR, "betas": BETAS, "weight_decay": WEIGHT_DECAY, "grad_clip": GRAD_CLIP, "eps_low": EPS_LOW,
+---
+>              "recipe": {"lr": self.args.lr, "schedule": self.args.schedule, "horizon": self.args.horizon or self.args.updates, "lr_fraction_recorded": True,
+>                         "ckpt_steps": list(self.args.save_at), "keep_all_checkpoints": True, "betas": BETAS, "weight_decay": WEIGHT_DECAY, "grad_clip": GRAD_CLIP, "eps_low": EPS_LOW,
+341,342d344
+<             self._e24_n = getattr(self, "_e24_n", 0) + 1
+<             torch.save({"lt": lt[fin].half() if False else lt[fin], "lf": lf[fin], "sp": sp[fin], "ins": ins[fin]}, str(self.run / f"e24_tokens_u{self._e24_n:03d}.pt"))
+346a349
+>         """Kept checkpoint ckpt_uNNN (weights + ckpt_record.json + DONE) is written once and never overwritten; state_latest is the resume point."""
+348,350c351,362
+<         d.mkdir(parents=True, exist_ok=True)
+<         self.model.save_pretrained(d / "model", safe_serialization=True)
+<         self.tokenizer.save_pretrained(d / "model")
+---
+>         if not (d / "DONE").exists():
+>             d.mkdir(parents=True, exist_ok=True)
+>             self.model.save_pretrained(d / "model", safe_serialization=True)
+>             self.tokenizer.save_pretrained(d / "model")
+>             horizon = self.args.horizon or self.args.updates
+>             (d / "ckpt_record.json").write_text(json.dumps({
+>                 "update": update, "schedule": self.args.schedule, "horizon": horizon, "lr0": self.args.lr,
+>                 "lr_used_in_this_update": lr_at(update, self.args.lr, self.args.schedule, horizon),
+>                 "lr_fraction_after": lr_fraction_after(update, self.args.schedule, horizon),
+>                 "generated_rollouts": self.state["generated_rollouts"], "dtype": self.args.dtype,
+>                 "model_weights_sha256": {f.name: sha256_file(f) for f in sorted((d / "model").glob("*.safetensors"))}}, indent=1) + "\n")
+>             (d / "DONE").write_text(time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()) + "\n")
+357d368
+<         (d / "DONE").write_text(time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()) + "\n")
+422a434,443
+>             horizon = a.horizon or a.updates
+>             lr = lr_at(update, a.lr, a.schedule, horizon)
+>             for pg in self.opt.param_groups:
+>                 pg["lr"] = lr
+>             if groups:  # one record per update for rolling rho/H: the run's own rollouts, no extra sampling
+>                 jsonl_append(self.steplog_path, build_step_record(
+>                     update, [t for (_, _, t) in groups],
+>                     [[all_scores[(b, slot, k)]["strict"] for k in range(G)] for (b, slot, _) in groups], reward_mat,
+>                     [[by_key[(b, slot, k)]["generated_tokens"] for k in range(G)] for (b, slot, _) in groups],
+>                     lr=lr, lr_fraction=lr / a.lr if a.lr else 1.0))
+441a463
+>             entry.update(lr=lr, lr_fraction=lr / a.lr if a.lr else 1.0)
+442a465,469
+>             gate = (stats.get("mismatch_truncated_support") or {}).get("share_gt_tol")
+>             if a.abort_on_gate and gate is not None and not gate <= 0.01:
+>                 jsonl_append(self.log_path, {"update": update, "event": "ABORT: log-probability mismatch above the 1% gate", "share_gt_tol": gate})
+>                 (self.run / "ABORTED_GATE").write_text(json.dumps({"update": update, "share_gt_tol": gate}) + "\n")
+>                 return 3
+454a482
+>     global GROUPS_PER_UPDATE, MAX_NEW_TOKENS
+465,466c493,494
+<     ap.add_argument("--save-at", type=lambda s: [int(x) for x in s.split(",") if x], default=[16, 32, 48])
+<     ap.add_argument("--full-state-every", type=int, default=8)
+---
+>     ap.add_argument("--save-at", type=lambda s: [int(x) for x in s.split(",") if x], default=list(CKPT_STEPS))
+>     ap.add_argument("--full-state-every", type=int, default=16)
+473a502,507
+>     ap.add_argument("--lr", type=float, default=LR, help="base learning rate (frozen Exp 20 recipe: 1e-6)")
+>     ap.add_argument("--schedule", default="constant", choices=["constant", "cosine"])
+>     ap.add_argument("--horizon", type=int, default=None, help="cosine length T (default: --updates)")
+>     ap.add_argument("--groups-per-update", type=int, default=GROUPS_PER_UPDATE, help="dry-run only: the frozen value is 16")
+>     ap.add_argument("--max-new-tokens", type=int, default=MAX_NEW_TOKENS, help="dry-run only: the frozen value is 12288")
+>     ap.add_argument("--abort-on-gate", action="store_true", help="with --smoke: stop the run when an update's mismatch share exceeds 1%")
+475a510
+>     GROUPS_PER_UPDATE, MAX_NEW_TOKENS = args.groups_per_update, args.max_new_tokens
+477a513
+>     (runner.run / "checkpoints_check.json").write_text(json.dumps(check_checkpoints(runner.run, [u for u in args.save_at if u <= args.updates])) + "\n")
