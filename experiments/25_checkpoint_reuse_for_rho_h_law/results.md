@@ -1,26 +1,98 @@
-# Experiment 25 (checkpoint reuse): Stage 0 results (0a to 0e) and R5 arms Q1 and Q3
+# Experiment 25 (checkpoint reuse): Stage 0 results (0a to 0e) and R5 arms Q1, Q2(a), Q2(b) and Q3
 
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/25_checkpoint_reuse_for_rho_h_law/results.md>
 
-**TLDR:** Stage 0 and the first R5 arms (Q1, Q3) are done on committed data, public checkpoints and public logs, protocol frozen first ([PROTOCOL.md](PROTOCOL.md), addenda A and A.1 committed before any R5 generation). Verdicts, one line each:
+**TLDR:** Stage 0 and the R5 arms Q1, Q2(a), Q2(b) and Q3 are done on committed data, public checkpoints and public logs, protocol frozen first ([PROTOCOL.md](PROTOCOL.md), addenda A and A.1 committed before any R5 generation). Verdicts, one line each:
 - **P2 (prefix fit vs full fit, toy): HOLDS, weakly.** RMSE ratio at held-out n4 0.975 (Night 4) and 0.970 (Night 5); Eq. 7 has no skill on the toy there (RMSE 3.07 pp vs observed SD 2.96 pp), so two equally poor fits agree.
 - **P4 (1.7B SFT rungs vs fresh runs): EQUIVALENT.** ΔH +0.002 [−0.024, +0.027] inside ±0.073; Δlog ρ +0.174 [−0.170, +0.480] inside ±0.49 only (coarse margin), not ±0.244.
 - **P6 (Q1, Delphi replicas): NOT TESTABLE as frozen.** Only 2 (3.4B) and 3 (9.7B) environments are measurable (q_mixed ≥ 0.2) in all three replicas; the protocol needs ≥ 4. Descriptive only: at 9.7B on the 3 common environments the pooled seed SD is 0.16 of the between-environment SD for log ρ and 0.31 for H; the lowest pairwise Spearman of the environment ranking is 1.0 (log ρ) and 0.5 (H), with 3 environments. Not a pass.
 - **P8 (Q3, sigmoid vs Eq. 7 on public RL reward curves): worked example, not tested (3 blend curves + 4 logs ≤ 7). Neither form beats a flat baseline.** Sigmoid MAE/range on the Snowball blend: 0.244 (5.7T), 0.132 (async), 0.381 (sync), all above the 0.10 bar; Eq. 7 gives 0.249, 0.134, 0.382; the flat "last 5 fit-window steps" baseline gives 0.265, 0.131, 0.373. Delphi D1 to D4 logs: sigmoid 0.121, 0.078, 0.212, 0.079 (2 of 4 under 0.10).
+- **P7 (Q2, ρ and H against the ladder axis on public Delphi checkpoints): NOT SUPPORTED, on 2 measurable environments only.** D at fixed N (3.4B, 5 token budgets 1.4B to 46.3B; 2 of 8 environments measurable in all 5 cells: `rg/basic_arithmetic/L0`, `rg/leg_counting/L0`): |Spearman| against log tokens is 0.2 and 0.1 for log ρ and 0.6 and 0.6 for H, all under the 0.8 bar; the fit through the 4 smaller rungs predicts the 46.3B rung's log ρ within 0.25 nat for basic arithmetic (error 0.08) but not for leg counting (1.82 nat), and H within 0.073 in neither (errors 0.17 and 0.21). N ladder (3.4B, 9.7B, 25B at compute-optimal D; 3 cells per environment): 2 environments have all 3 cells measurable; Spearman for log ρ 0.5 and 1.0, for H −1.0 and 0.5; the 2-point extrapolation to 25B misses in all four cases (log ρ errors 1.40 and 0.36 nat, H errors 0.18 and 0.30). With 3 cells the Spearman can only take the values ±1, ±0.5, so this is descriptive. The other 6 environments are below the 0.2 bar at 3.4B or smaller in D (listed in the Q2 table, never fitted). The `laion` SFT ladder (Q2(c)) was not run (license). Details and the per-cell table are in the section "R5 Q2(a) and Q2(b)" below.
 - **Q4 and Q2(c): blocked by license** (`license: other` with no text; RL endpoints have no license). **Decision for Brando (not taken):** ask laion for a license, or relax the unclear-license rule.
 - **Smoke and generator:** completion-mode generator in `expt_v2/` passed the 0e smoke on a free skampere1 A100 (Delphi 3.4B, 400 of 400 samples, extraction non-empty 100%).
-- Q2(a) and Q2(b) were not run in this task (about 2 of the 20 GPU-hours used); no result here is evidence about Lean code verification.
+- Q2(a) and Q2(b) ran on a free skampere1 A100 (one GPU, about 3 of the 20 GPU-hours used in total, Q1 and smoke included); no result here is evidence about Lean code verification.
 
 ## Deviations from the frozen protocol (none silent)
 0. Freeze timing: PROTOCOL.md was committed locally (before any 0b, 0c outcome was computed or read) but pushed to main together with the results, because a full `make test` had to pass before any push and the suite takes 20 minutes. The commit order, not the push order, is the evidence of the freeze. `make test`: 1,397 passed, 7 failed, 58 skipped; the 7 failures are in unrelated experiment 08 and 13 tests (missing cluster files and modules in a fresh clone), none in `tests/test_e25_stage0.py` (6 passed).
 1. 0e found the plan's Q4 recipe numbers wrong for the four D-endpoints (G = 8, 64 prompts per step, 100 steps, lr 1e-5; the plan's G = 16, batch 256, about 146 steps belong to other repos). Q4 is not run (license), so no measurement is affected.
 2. The 0c adapter check "`unparseable` False on every ladder row used" is enforced for the two 1.7B rungs P4 uses (0 rows each); four other files each contain one unparseable row and are reported but not used in P4 (`ladder/base_8B_e05`, `ladder/sft_14B_f0p125`, `ladder/sft_14B_f1p0`, `fresh/v16_v4_20260831`; in the last, P4 uses it as a fresh seed with that row kept as scored by the original run).
-3. The completion-mode generator and its smoke pass were first reported as not done; a later run did them (smoke PASS, Q1 generated and scored, Q3 run on CPU). Q2(a) and Q2(b) remain not run (time; follow-up AT-1796).
+3. The completion-mode generator and its smoke pass were first reported as not done; a later run did them (smoke PASS, Q1 generated and scored, Q3 run on CPU). Q2(a) and Q2(b) were run afterwards by follow-up AT-1796 (see the section below).
 4. 14B rung size: the plan quotes 177 GB per rung; live `du` on skampere1 shows 56 GB per rung (`pytorch_model.bin`, 5 rungs = 280 GB). The plan figure is stale or counted something else.
 5. P6 precondition: the protocol asks for ≥ 4 measurable environments per scale; at 3.4B only 2 and at 9.7B only 3 are measurable in all three replicas, so P6 is reported as NOT TESTABLE and the SD and Spearman figures are descriptive. `rg/leg_counting/L0` has 103 distinct test questions (n recorded, per addendum A.1) and `coin_flip` L0 and L1 were NOT BUILT (0 and 2 distinct questions). The 9.7B base replica's GSM8K cell has q_mixed 0.196, just under the 0.2 bar.
 6. Q3 detail not in the frozen text: the Delphi D1 to D4 logs hold raw rewards in [−1, 1], so each D curve was shifted to its observed minimum before the sigmoid fit (the frozen A in [0, 1.5 × max] assumes non-negative rewards); the Snowball curves were not shifted. The blend average uses the domains present at each step (17.2 of 18 on average for sync and 5.7T, 12.8 for async). The flat last-5-steps baseline is an addition, reported beside the two frozen forms.
 7. Measurement note: the 8-shot direct-answer format makes the models answer in 5 to 60 tokens, so accuracies on GSM8K and MATH are low (0.02 to 0.08); this is the protocol, not a generator fault, and is the reason few environments clear the bar.
-8. Tests: after the R5 code, `tests/test_e25_stage0.py`, `tests/test_e25_completion.py` and `tests/test_e25_q3.py` give 15 passed, 1 skipped; the full `make test` was not rerun after the R5 code, so the 7 pre-existing experiment 08 and 13 failures in deviation 0 stand as last measured.
+8. Tests: after the R5 code, `tests/test_e25_stage0.py`, `tests/test_e25_completion.py` and `tests/test_e25_q3.py` give 15 passed, 1 skipped; the full `make test` was not rerun after the R5 code, so the 7 pre-existing experiment 08 and 13 failures in deviation 0 stand as last measured. After the Q2 code (`expt_v2/p7_stats.py`, `tests/test_e25_p7.py`: 3 tests) the full `make test` equivalent (`pytest -q`, venv mrmr) was run: 1,416 passed, 7 failed (the same 7, experiments 08 and 13, missing cluster files), 59 skipped, 22 min 40 s.
+
+## R5 Q2(a) and Q2(b), P7 (10-28-2026 16:30 to 17:08 PT; `expt_v2/results/q2*_measure.json`, `p7_q2.json`, `raw_samples/q2*.tgz`)
+Same generator and measure code as Q1 (8-shot Question:/Answer:, stop at `\n\nQuestion:`, max_tokens 512, T 1.0, G = 8, bf16, vLLM 0.17.1, one free skampere1 A100 each, 500 fixed ids per environment, 8 environments), run by `~/e25/r5_all.sh` one repo at a time (download fp32 with `HF_HUB_DISABLE_XET=1`, generate, delete own weights; 25B loaded in bf16 on one 80 GB GPU, 99.9 GB fp32 on disk). Cells: Q2(b) = 4 new 3.4B repos (3e19, 9e19, 2e20, 3e20); the 1e21 rung is the Q1 base replica, not rerun. Q2(a) = new 25B; the 3.4B and 9.7B points are the Q1 base replicas. 5 + 3 checkpoints, 8 environments each, 500 prompts × G = 8 per cell (103 distinct prompts for `leg_counting/L0`, 334 for MATH; n in the table). Seeds: each Delphi repo is one training run, so each cell is 1 trajectory; the intervals the protocol asks for (n_cells, n_trajectories, n_prompts) are n_cells = 8 per checkpoint, n_trajectories = 1, n_prompts as listed. Measurable = q_mixed ≥ 0.2.
+
+**Verdict P7: NOT SUPPORTED (descriptive, 2 environments).**
+- D at fixed N, 3.4B, axis log tokens (5 rungs): measurable in all five cells: `rg/basic_arithmetic/L0` and `rg/leg_counting/L0` only. Other 6 environments: 0 of 5 cells measurable (below bar at every rung, listed in the table, not fitted). |Spearman| log ρ: 0.2, 0.1; H: 0.6, 0.6 (bar 0.8). Leave-largest-out line: log ρ error 0.08 nat (within 0.25) on basic arithmetic, 1.82 nat on leg counting; H error 0.17 and 0.21 (bar 0.073).
+- N at compute-optimal D (3.4B, 9.7B, 25B): `rg/basic_arithmetic/L0` and `rg/leg_counting/L0` have 3 of 3 measurable cells; `math/prealgebra_L1L2_int` 2 of 3 (9.7B and 25B), `gsm8k/train500`, `rg/leg_counting/L1`, `rg/simple_equations/L0` 1 of 3 (25B only), `rg/basic_arithmetic/L1` and `rg/simple_equations/L1` 0 of 3. Spearman (3 cells): log ρ 0.5, 1.0; H −1.0, 0.5. Two-point extrapolation to 25B: log ρ error 1.40 and 0.36 nat, H error 0.18 and 0.30. Nothing passes; with 3 cells the Spearman is only a sign, so the N ladder is descriptive.
+- Honest reading: the coarse ρ/H of these 8-shot direct-answer measurements are noisy across D at fixed N (log ρ moves by about 2 nat between adjacent rungs on basic arithmetic), and most environments sit under the q_mixed bar until the model is large, so the ladder is mostly the floor. 25B changes the picture: 6 of 8 environments clear the bar at 25B (GSM8K 0.31, MATH 0.47). One run per checkpoint, so run-to-run noise (the Q1 replicas) is the yardstick: Q1 seed SD at 3.4B is in `p6_q1.json`.
+- Saturation: `rg/basic_arithmetic/L0` mean reward goes 0.16 (3.4B), 0.54 (9.7B), 0.83 (25B) while q_mixed falls 0.63, 0.57, 0.33 and H falls 0.52, 0.48, 0.27: along N this environment is saturating, so ρ and H move with the pass rate, not with a stable property of the checkpoint.
+
+Per-cell table (log ρ is the natural log of ρ; ρ and H as computed by `completion.measure`):
+| Checkpoint | Environment | n prompts | q_mixed | measurable | mean reward | log ρ | H | mean tokens | admission |
+|---|---|---|---|---|---|---|---|---|---|
+| 3.4B, 1.4B tok (3e19) | rg/basic_arithmetic/L0 | 500 | 0.444 | yes | 0.065 | 9.68 | 0.356 | 6 | 1.00 |
+| 3.4B, 1.4B tok (3e19) | rg/basic_arithmetic/L1 | 500 | 0.080 | NO (below bar) | 0.007 | 6.39 | 0.066 | 21 | 0.99 |
+| 3.4B, 1.4B tok (3e19) | rg/leg_counting/L0 | 103 | 0.350 | yes | 0.049 | 9.77 | 0.333 | 5 | 1.00 |
+| 3.4B, 1.4B tok (3e19) | rg/leg_counting/L1 | 500 | 0.068 | NO (below bar) | 0.008 | 8.08 | 0.064 | 5 | 1.00 |
+| 3.4B, 1.4B tok (3e19) | rg/simple_equations/L0 | 500 | 0.150 | NO (below bar) | 0.016 | 7.66 | 0.107 | 13 | 1.00 |
+| 3.4B, 1.4B tok (3e19) | rg/simple_equations/L1 | 500 | 0.004 | NO (below bar) | 0.000 | 2.95 | 0.003 | 23 | 0.99 |
+| 3.4B, 1.4B tok (3e19) | gsm8k/train500 | 500 | 0.064 | NO (below bar) | 0.009 | 7.79 | 0.062 | 7 | 1.00 |
+| 3.4B, 1.4B tok (3e19) | math/prealgebra_L1L2_int | 334 | 0.144 | NO (below bar) | 0.025 | 7.73 | 0.131 | 20 | 0.99 |
+| 3.4B, 4.2B tok (9e19) | rg/basic_arithmetic/L0 | 500 | 0.422 | yes | 0.066 | 9.19 | 0.348 | 10 | 1.00 |
+| 3.4B, 4.2B tok (9e19) | rg/basic_arithmetic/L1 | 500 | 0.068 | NO (below bar) | 0.007 | 7.58 | 0.060 | 5 | 1.00 |
+| 3.4B, 4.2B tok (9e19) | rg/leg_counting/L0 | 103 | 0.379 | yes | 0.053 | 9.90 | 0.346 | 5 | 1.00 |
+| 3.4B, 4.2B tok (9e19) | rg/leg_counting/L1 | 500 | 0.088 | NO (below bar) | 0.013 | 8.43 | 0.080 | 5 | 1.00 |
+| 3.4B, 4.2B tok (9e19) | rg/simple_equations/L0 | 500 | 0.138 | NO (below bar) | 0.016 | 8.55 | 0.108 | 5 | 1.00 |
+| 3.4B, 4.2B tok (9e19) | rg/simple_equations/L1 | 500 | 0.008 | NO (below bar) | 0.001 | 4.97 | 0.008 | 10 | 1.00 |
+| 3.4B, 4.2B tok (9e19) | gsm8k/train500 | 500 | 0.072 | NO (below bar) | 0.009 | 7.24 | 0.071 | 13 | 0.99 |
+| 3.4B, 4.2B tok (9e19) | math/prealgebra_L1L2_int | 334 | 0.156 | NO (below bar) | 0.024 | 8.20 | 0.145 | 12 | 0.99 |
+| 3.4B, 8.3B tok (2e20) | rg/basic_arithmetic/L0 | 500 | 0.398 | yes | 0.059 | 7.84 | 0.340 | 33 | 0.99 |
+| 3.4B, 8.3B tok (2e20) | rg/basic_arithmetic/L1 | 500 | 0.066 | NO (below bar) | 0.006 | 5.20 | 0.051 | 50 | 0.97 |
+| 3.4B, 8.3B tok (2e20) | rg/leg_counting/L0 | 103 | 0.709 | yes | 0.107 | 10.59 | 0.654 | 5 | 1.00 |
+| 3.4B, 8.3B tok (2e20) | rg/leg_counting/L1 | 500 | 0.100 | NO (below bar) | 0.014 | 7.94 | 0.090 | 9 | 1.00 |
+| 3.4B, 8.3B tok (2e20) | rg/simple_equations/L0 | 500 | 0.132 | NO (below bar) | 0.017 | 6.39 | 0.115 | 49 | 0.96 |
+| 3.4B, 8.3B tok (2e20) | rg/simple_equations/L1 | 500 | 0.006 | NO (below bar) | 0.000 | 3.15 | 0.005 | 25 | 0.99 |
+| 3.4B, 8.3B tok (2e20) | gsm8k/train500 | 500 | 0.084 | NO (below bar) | 0.011 | 7.26 | 0.081 | 15 | 0.99 |
+| 3.4B, 8.3B tok (2e20) | math/prealgebra_L1L2_int | 334 | 0.171 | NO (below bar) | 0.027 | 8.43 | 0.157 | 11 | 0.99 |
+| 3.4B, 13.9B tok (3e20) | rg/basic_arithmetic/L0 | 500 | 0.460 | yes | 0.075 | 9.90 | 0.364 | 5 | 1.00 |
+| 3.4B, 13.9B tok (3e20) | rg/basic_arithmetic/L1 | 500 | 0.070 | NO (below bar) | 0.006 | 7.47 | 0.055 | 6 | 1.00 |
+| 3.4B, 13.9B tok (3e20) | rg/leg_counting/L0 | 103 | 0.680 | yes | 0.093 | 10.47 | 0.641 | 5 | 1.00 |
+| 3.4B, 13.9B tok (3e20) | rg/leg_counting/L1 | 500 | 0.122 | NO (below bar) | 0.017 | 8.74 | 0.110 | 5 | 1.00 |
+| 3.4B, 13.9B tok (3e20) | rg/simple_equations/L0 | 500 | 0.132 | NO (below bar) | 0.017 | 8.73 | 0.117 | 5 | 1.00 |
+| 3.4B, 13.9B tok (3e20) | rg/simple_equations/L1 | 500 | 0.006 | NO (below bar) | 0.000 | 4.21 | 0.005 | 13 | 0.99 |
+| 3.4B, 13.9B tok (3e20) | gsm8k/train500 | 500 | 0.094 | NO (below bar) | 0.013 | 8.39 | 0.091 | 6 | 1.00 |
+| 3.4B, 13.9B tok (3e20) | math/prealgebra_L1L2_int | 334 | 0.168 | NO (below bar) | 0.028 | 8.65 | 0.154 | 9 | 1.00 |
+| 3.4B, 46.3B tok (1e21; Q1 base) | rg/basic_arithmetic/L0 | 500 | 0.632 | yes | 0.162 | 8.64 | 0.521 | 33 | 0.97 |
+| 3.4B, 46.3B tok (1e21; Q1 base) | rg/basic_arithmetic/L1 | 500 | 0.094 | NO (below bar) | 0.008 | 7.46 | 0.065 | 7 | 1.00 |
+| 3.4B, 46.3B tok (1e21; Q1 base) | rg/leg_counting/L0 | 103 | 0.699 | yes | 0.128 | 9.16 | 0.633 | 22 | 0.99 |
+| 3.4B, 46.3B tok (1e21; Q1 base) | rg/leg_counting/L1 | 500 | 0.162 | NO (below bar) | 0.023 | 6.89 | 0.150 | 42 | 0.97 |
+| 3.4B, 46.3B tok (1e21; Q1 base) | rg/simple_equations/L0 | 500 | 0.136 | NO (below bar) | 0.016 | 8.62 | 0.114 | 5 | 1.00 |
+| 3.4B, 46.3B tok (1e21; Q1 base) | rg/simple_equations/L1 | 500 | 0.002 | NO (below bar) | 0.000 | 1.89 | 0.002 | 38 | 0.97 |
+| 3.4B, 46.3B tok (1e21; Q1 base) | gsm8k/train500 | 500 | 0.130 | NO (below bar) | 0.018 | 8.17 | 0.125 | 10 | 0.99 |
+| 3.4B, 46.3B tok (1e21; Q1 base) | math/prealgebra_L1L2_int | 334 | 0.195 | NO (below bar) | 0.034 | 8.68 | 0.177 | 10 | 0.99 |
+| 9.7B, 160B tok (1e22; Q1 base) | rg/basic_arithmetic/L0 | 500 | 0.572 | yes | 0.539 | 7.98 | 0.484 | 61 | 0.94 |
+| 9.7B, 160B tok (1e22; Q1 base) | rg/basic_arithmetic/L1 | 500 | 0.086 | NO (below bar) | 0.011 | 6.85 | 0.060 | 17 | 0.99 |
+| 9.7B, 160B tok (1e22; Q1 base) | rg/leg_counting/L0 | 103 | 0.602 | yes | 0.143 | 10.26 | 0.520 | 7 | 1.00 |
+| 9.7B, 160B tok (1e22; Q1 base) | rg/leg_counting/L1 | 500 | 0.148 | NO (below bar) | 0.021 | 7.59 | 0.142 | 19 | 0.98 |
+| 9.7B, 160B tok (1e22; Q1 base) | rg/simple_equations/L0 | 500 | 0.134 | NO (below bar) | 0.018 | 6.95 | 0.119 | 30 | 0.99 |
+| 9.7B, 160B tok (1e22; Q1 base) | rg/simple_equations/L1 | 500 | 0.000 | NO (below bar) | 0.000 | -20.72 | 0.000 | 29 | 0.99 |
+| 9.7B, 160B tok (1e22; Q1 base) | gsm8k/train500 | 500 | 0.196 | NO (below bar) | 0.032 | 9.19 | 0.180 | 6 | 1.00 |
+| 9.7B, 160B tok (1e22; Q1 base) | math/prealgebra_L1L2_int | 334 | 0.308 | yes | 0.078 | 9.89 | 0.277 | 6 | 1.00 |
+| 25B, 628B tok (1e23) | rg/basic_arithmetic/L0 | 500 | 0.328 | yes | 0.825 | 8.78 | 0.266 | 14 | 0.99 |
+| 25B, 628B tok (1e23) | rg/basic_arithmetic/L1 | 500 | 0.114 | NO (below bar) | 0.023 | 8.53 | 0.091 | 6 | 1.00 |
+| 25B, 628B tok (1e23) | rg/leg_counting/L0 | 103 | 0.806 | yes | 0.220 | 10.89 | 0.713 | 5 | 1.00 |
+| 25B, 628B tok (1e23) | rg/leg_counting/L1 | 500 | 0.216 | yes | 0.029 | 9.29 | 0.209 | 5 | 1.00 |
+| 25B, 628B tok (1e23) | rg/simple_equations/L0 | 500 | 0.338 | yes | 0.104 | 9.66 | 0.289 | 7 | 1.00 |
+| 25B, 628B tok (1e23) | rg/simple_equations/L1 | 500 | 0.004 | NO (below bar) | 0.000 | 4.55 | 0.003 | 6 | 1.00 |
+| 25B, 628B tok (1e23) | gsm8k/train500 | 500 | 0.308 | yes | 0.066 | 9.85 | 0.276 | 5 | 1.00 |
+| 25B, 628B tok (1e23) | math/prealgebra_L1L2_int | 334 | 0.470 | yes | 0.146 | 10.54 | 0.421 | 5 | 1.00 |
+
+Run bookkeeping: GPU time about 0.7 GPU-h for these five checkpoints (generation 1 to 4 minutes each after loading; 25B load and generation 15 minutes; downloads dominate wall time); with smoke and Q1 the total is about 3 of the 20 GPU-hours. No Sherlock, no Duo, no paid API. Own weights deleted after each run (`~/e25/hf` is empty, `/lfs/skampere1/0` was 1.1 TB free before and after). vLLM logged "Error retrieving safetensors" for the local snapshot path (metadata lookup only); all 8 environments returned for every checkpoint.
 
 ## 0a Inventory (what exists that could feed the law)
 Checked live on skampere1 (read-only, Kerberos keytab; Sherlock not checked: it needs a Duo passcode and the rule is no Duo pushes).

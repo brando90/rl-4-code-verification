@@ -14,7 +14,7 @@ See the plan §4 and §5. This folder tests R2 (prefix extrapolation, P2) and R4
 - Tests: `tests/test_e25_stage0.py`, `tests/test_e25_completion.py`, `tests/test_e25_q3.py`, run by `make test`.
 
 ## Status log (newest first)
-- 10-28-2026 (R5 status): smoke PASS; Q1 done at 3.4B and 9.7B (P6 NOT TESTABLE: 2 and 3 measurable environments, bar is 4); Q3 done as a worked example (P8: neither form beats a flat baseline); Q2(a) and Q2(b) not run (AT-1796); Q4 and Q2(c) blocked by license. Details and the verdict list: results.md.
+- 10-28-2026 (R5 status): smoke PASS; Q1 done at 3.4B and 9.7B (P6 NOT TESTABLE: 2 and 3 measurable environments, bar is 4); Q3 done as a worked example (P8: neither form beats a flat baseline); Q2(a) and Q2(b) done (P7 NOT SUPPORTED, descriptive: 2 measurable environments on the D ladder, 2 on the N ladder; 25B clears the bar in 6 of 8 environments); Q4 and Q2(c) blocked by license. Details and the verdict list: results.md.
 - 10-28-2026 (Stage 0 status): analyses 0a to 0e are done (results.md); P2 HOLDS weakly, P4 EQUIVALENT.
 - 10-28-2026: folder created; PROTOCOL.md was committed (locally) before any 0b, 0c or R5 outcome was read, and pushed together with the results, not before them. Addenda A and A.1 (R5 environments, exemplars, smoke bar) were committed before any R5 generation.
 - `expt_v6/` (Night 6, from another agent) is separate work and not part of this Stage 0 result.
