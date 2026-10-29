@@ -1,0 +1,33 @@
+{
+ "updates": 1,
+ "gate_share_per_update": [
+  0.040873209635416664
+ ],
+ "max_gate_share": 0.040873209635416664,
+ "gate": 0.01,
+ "pass": false,
+ "dtype": "bfloat16",
+ "rc": 3,
+ "checks": [
+  {
+   "tokens": 49152,
+   "in_support": 49128,
+   "outside_support": 24,
+   "abs_delta_gt_tol": 1985,
+   "share_gt_tol": 0.040873209635416664,
+   "mean_abs_delta": 0.006825323216617107,
+   "max_abs_delta": 0.7392139434814453
+  }
+ ],
+ "full_softmax_checks": [
+  {
+   "tokens": 49152,
+   "in_support": 49152,
+   "outside_support": 0,
+   "abs_delta_gt_tol": 2428,
+   "share_gt_tol": 0.049397786458333336,
+   "mean_abs_delta": 0.010512217879295349,
+   "max_abs_delta": 0.7444353103637695
+  }
+ ]
+}

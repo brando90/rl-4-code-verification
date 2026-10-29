@@ -1,0 +1,52 @@
+{
+ "updates": 2,
+ "gate_share_per_update": [
+  0.00038719775919594676,
+  0.0006518598165384228
+ ],
+ "max_gate_share": 0.0006518598165384228,
+ "gate": 0.01,
+ "pass": true,
+ "dtype": "float16",
+ "rc": 0,
+ "checks": [
+  {
+   "tokens": 242770,
+   "in_support": 242767,
+   "outside_support": 3,
+   "abs_delta_gt_tol": 91,
+   "share_gt_tol": 0.00038719775919594676,
+   "mean_abs_delta": 0.0003965810174122453,
+   "max_abs_delta": 0.2597997188568115
+  },
+  {
+   "tokens": 297610,
+   "in_support": 297605,
+   "outside_support": 5,
+   "abs_delta_gt_tol": 189,
+   "share_gt_tol": 0.0006518598165384228,
+   "mean_abs_delta": 0.0004929678398184478,
+   "max_abs_delta": 0.17731833457946777
+  }
+ ],
+ "full_softmax_checks": [
+  {
+   "tokens": 242770,
+   "in_support": 242770,
+   "outside_support": 0,
+   "abs_delta_gt_tol": 2054,
+   "share_gt_tol": 0.00846068295094122,
+   "mean_abs_delta": 0.0023405011743307114,
+   "max_abs_delta": 0.33320116996765137
+  },
+  {
+   "tokens": 297610,
+   "in_support": 297610,
+   "outside_support": 0,
+   "abs_delta_gt_tol": 2833,
+   "share_gt_tol": 0.009519169382749236,
+   "mean_abs_delta": 0.0026331159751862288,
+   "max_abs_delta": 0.4510040283203125
+  }
+ ]
+}
