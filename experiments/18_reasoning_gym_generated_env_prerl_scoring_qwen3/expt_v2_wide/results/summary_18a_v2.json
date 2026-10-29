@@ -1,0 +1,561 @@
+{
+  "schema": "summary_18a_v2/v1",
+  "models": [
+    "qwen3_0p6b",
+    "qwen3_1p7b"
+  ],
+  "incomplete_cells": [],
+  "n_envs": 243,
+  "n_families": 75,
+  "analysis1_size_transfer": {
+    "pair": "qwen3_0p6b~qwen3_1p7b",
+    "n_envs": 243,
+    "spearman": 0.8554339207128405,
+    "ci95_family": [
+      0.7865603987561233,
+      0.9008908929304561
+    ],
+    "ci95_env": [
+      0.8106219071530167,
+      0.8909506310601476
+    ],
+    "verdict": "transfers",
+    "by_category": {
+      "algebra": {
+        "n_envs": 15,
+        "spearman": 0.5835162252546467
+      },
+      "algorithmic": {
+        "n_envs": 79,
+        "spearman": 0.8327306024089057
+      },
+      "arithmetic": {
+        "n_envs": 52,
+        "spearman": 0.8837409763931052
+      },
+      "cognition": {
+        "n_envs": 16,
+        "spearman": 0.8659575892583736
+      },
+      "games": {
+        "n_envs": 33,
+        "spearman": 0.8988985347721218
+      },
+      "graphs": {
+        "n_envs": 20,
+        "spearman": 0.9115669694421082
+      },
+      "logic": {
+        "n_envs": 12,
+        "spearman": 0.23117373455165427
+      }
+    }
+  },
+  "analysis2_within_family": {
+    "qwen3_0p6b": {
+      "n_monotone": 71,
+      "n_families": 75,
+      "share": 0.9466666666666667
+    },
+    "qwen3_1p7b": {
+      "n_monotone": 69,
+      "n_families": 75,
+      "share": 0.92
+    }
+  },
+  "analysis3_learnable_band": {
+    "definition": "0.1 <= pass_rate <= 0.9 and rho > 0",
+    "count": {
+      "qwen3_0p6b": 55,
+      "qwen3_1p7b": 80
+    },
+    "share": {
+      "qwen3_0p6b": 0.22633744855967078,
+      "qwen3_1p7b": 0.3292181069958848
+    },
+    "jaccard": 0.5517241379310345,
+    "envs": {
+      "qwen3_0p6b": [
+        "rg/basic_arithmetic/L0",
+        "rg/basic_arithmetic/L1",
+        "rg/binary_alternation/L0",
+        "rg/binary_alternation/L2",
+        "rg/chain_sum/L0",
+        "rg/chain_sum/L1",
+        "rg/chain_sum/L2",
+        "rg/chain_sum/L3",
+        "rg/coin_flip/L0",
+        "rg/coin_flip/L1",
+        "rg/coin_flip/L2",
+        "rg/coin_flip/L3",
+        "rg/color_cube_rotation/L0",
+        "rg/color_cube_rotation/L1",
+        "rg/color_cube_rotation/L2",
+        "rg/color_cube_rotation/L3",
+        "rg/complex_arithmetic/L0",
+        "rg/complex_arithmetic/L1",
+        "rg/count_bits/L0",
+        "rg/course_schedule/L0",
+        "rg/course_schedule/L1",
+        "rg/course_schedule/L2",
+        "rg/course_schedule/L3",
+        "rg/decimal_arithmetic/L0",
+        "rg/decimal_chain_sum/L0",
+        "rg/decimal_chain_sum/L1",
+        "rg/family_relationships/L0",
+        "rg/fraction_simplification/L0",
+        "rg/knights_knaves/L0",
+        "rg/knights_knaves/L1",
+        "rg/largest_island/L0",
+        "rg/leg_counting/L0",
+        "rg/leg_counting/L1",
+        "rg/letter_counting/L0",
+        "rg/letter_counting/L1",
+        "rg/letter_counting/L2",
+        "rg/letter_counting/L3",
+        "rg/mahjong_puzzle/L0",
+        "rg/mahjong_puzzle/L1",
+        "rg/mahjong_puzzle/L2",
+        "rg/needle_haystack/L0",
+        "rg/number_format/L0",
+        "rg/palindrome_partitioning/L0",
+        "rg/prime_factorization/L0",
+        "rg/prime_factorization/L1",
+        "rg/prime_factorization/L2",
+        "rg/rotate_matrix/L0",
+        "rg/rotten_oranges/L0",
+        "rg/rotten_oranges/L1",
+        "rg/self_reference/L0",
+        "rg/self_reference/L1",
+        "rg/self_reference/L2",
+        "rg/self_reference/L3",
+        "rg/string_insertion/L0",
+        "rg/string_insertion/L1"
+      ],
+      "qwen3_1p7b": [
+        "rg/aiw/L0",
+        "rg/aiw/L1",
+        "rg/arc_1d/L0",
+        "rg/basic_arithmetic/L0",
+        "rg/basic_arithmetic/L1",
+        "rg/basic_arithmetic/L2",
+        "rg/basic_arithmetic/L3",
+        "rg/binary_alternation/L0",
+        "rg/binary_alternation/L1",
+        "rg/binary_alternation/L2",
+        "rg/bitwise_arithmetic/L0",
+        "rg/chain_sum/L0",
+        "rg/chain_sum/L1",
+        "rg/coin_flip/L0",
+        "rg/coin_flip/L1",
+        "rg/coin_flip/L2",
+        "rg/coin_flip/L3",
+        "rg/color_cube_rotation/L0",
+        "rg/color_cube_rotation/L1",
+        "rg/color_cube_rotation/L2",
+        "rg/color_cube_rotation/L3",
+        "rg/complex_arithmetic/L0",
+        "rg/complex_arithmetic/L1",
+        "rg/count_bits/L0",
+        "rg/count_bits/L1",
+        "rg/count_primes/L0",
+        "rg/course_schedule/L0",
+        "rg/course_schedule/L1",
+        "rg/course_schedule/L2",
+        "rg/course_schedule/L3",
+        "rg/decimal_arithmetic/L0",
+        "rg/family_relationships/L0",
+        "rg/family_relationships/L1",
+        "rg/family_relationships/L2",
+        "rg/family_relationships/L3",
+        "rg/fraction_simplification/L0",
+        "rg/fraction_simplification/L1",
+        "rg/intermediate_integration/L2",
+        "rg/knights_knaves/L0",
+        "rg/knights_knaves/L1",
+        "rg/knights_knaves/L2",
+        "rg/knights_knaves/L3",
+        "rg/largest_island/L0",
+        "rg/lcm/L0",
+        "rg/leg_counting/L0",
+        "rg/leg_counting/L1",
+        "rg/leg_counting/L2",
+        "rg/leg_counting/L3",
+        "rg/letter_counting/L0",
+        "rg/letter_counting/L1",
+        "rg/letter_counting/L2",
+        "rg/letter_counting/L3",
+        "rg/mahjong_puzzle/L0",
+        "rg/mahjong_puzzle/L1",
+        "rg/mahjong_puzzle/L2",
+        "rg/mini_sudoku/L0",
+        "rg/mini_sudoku/L1",
+        "rg/needle_haystack/L0",
+        "rg/needle_haystack/L1",
+        "rg/number_format/L0",
+        "rg/number_format/L1",
+        "rg/prime_factorization/L0",
+        "rg/prime_factorization/L1",
+        "rg/prime_factorization/L2",
+        "rg/rotten_oranges/L0",
+        "rg/self_reference/L0",
+        "rg/self_reference/L1",
+        "rg/self_reference/L2",
+        "rg/self_reference/L3",
+        "rg/simple_equations/L0",
+        "rg/simple_integration/L0",
+        "rg/simple_integration/L1",
+        "rg/simple_integration/L2",
+        "rg/simple_integration/L3",
+        "rg/spell_backward/L0",
+        "rg/string_insertion/L0",
+        "rg/string_insertion/L1",
+        "rg/string_insertion/L2",
+        "rg/string_manipulation/L0",
+        "rg/tsumego/L0"
+      ]
+    },
+    "mean_level_in_band": {
+      "qwen3_0p6b": 0.9272727272727272,
+      "qwen3_1p7b": 1.025
+    }
+  },
+  "analysis4_coordinates": {
+    "qwen3_0p6b": {
+      "pass_rate~rho": 0.939459673288241,
+      "pass_rate~H": 0.966074446323026,
+      "pass_rate~alignment": 0.265717822773122,
+      "rho~H": 0.9512749323271613,
+      "rho~alignment": 0.2327490191761652,
+      "H~alignment": 0.30405958177188075
+    },
+    "qwen3_1p7b": {
+      "pass_rate~rho": 0.8876003922837766,
+      "pass_rate~H": 0.902250423629401,
+      "pass_rate~alignment": 0.3879549797680031,
+      "rho~H": 0.9185398656025185,
+      "rho~alignment": 0.3853766858528475,
+      "H~alignment": 0.4097911587916402
+    }
+  },
+  "analysis5_targets": {
+    "rg/gsm_symbolic|qwen3_0p6b": {
+      "pass_rate": 0.067138671875,
+      "pass_rate_ci95": [
+        0.05224609375,
+        0.083984375
+      ],
+      "rho": 2991.449826058402,
+      "H": 0.30669823846861494,
+      "answer_tag_rate": 0.927978515625,
+      "complete": true
+    },
+    "rg/calendar_arithmetic|qwen3_0p6b": {
+      "pass_rate": 0.12548828125,
+      "pass_rate_ci95": [
+        0.100341796875,
+        0.1533203125
+      ],
+      "rho": 1528.5229264327786,
+      "H": 0.42077973823886555,
+      "answer_tag_rate": 0.89599609375,
+      "complete": true
+    },
+    "rg/time_intervals|qwen3_0p6b": {
+      "pass_rate": 0.109130859375,
+      "pass_rate_ci95": [
+        0.08544921875,
+        0.134033203125
+      ],
+      "rho": 762.7032651151097,
+      "H": 0.29853534929927195,
+      "answer_tag_rate": 0.792724609375,
+      "complete": true
+    },
+    "rg/syllogism|qwen3_0p6b": {
+      "pass_rate": 0.688720703125,
+      "pass_rate_ci95": [
+        0.6337890625,
+        0.741455078125
+      ],
+      "rho": 4952.900558373471,
+      "H": 0.4212323467948036,
+      "answer_tag_rate": 0.97021484375,
+      "complete": true
+    },
+    "rg/base_conversion|qwen3_0p6b": {
+      "pass_rate": 0.034912109375,
+      "pass_rate_ci95": [
+        0.026123046875,
+        0.0458984375
+      ],
+      "rho": 1301.433156416319,
+      "H": 0.2620521176448569,
+      "answer_tag_rate": 0.98046875,
+      "complete": true
+    },
+    "gsm8k/test256|qwen3_0p6b": {
+      "pass_rate": 0.30517578125,
+      "pass_rate_ci95": [
+        0.271722412109375,
+        0.338623046875
+      ],
+      "rho": 1783.0087922541159,
+      "H": 0.6760919660791102,
+      "answer_tag_rate": 0.652099609375,
+      "complete": true
+    },
+    "rg/gsm_symbolic|qwen3_1p7b": {
+      "pass_rate": 0.2138671875,
+      "pass_rate_ci95": [
+        0.17724609375,
+        0.2514709472656249
+      ],
+      "rho": 2920.434697949928,
+      "H": 0.3905357913649183,
+      "answer_tag_rate": 0.7841796875,
+      "complete": true
+    },
+    "rg/calendar_arithmetic|qwen3_1p7b": {
+      "pass_rate": 0.284912109375,
+      "pass_rate_ci95": [
+        0.244873046875,
+        0.32568359375
+      ],
+      "rho": 1262.971914158868,
+      "H": 0.526328764848257,
+      "answer_tag_rate": 0.9931640625,
+      "complete": true
+    },
+    "rg/time_intervals|qwen3_1p7b": {
+      "pass_rate": 0.247802734375,
+      "pass_rate_ci95": [
+        0.197998046875,
+        0.29833984375
+      ],
+      "rho": 488.0013462106102,
+      "H": 0.14331515805439943,
+      "answer_tag_rate": 0.984375,
+      "complete": true
+    },
+    "rg/syllogism|qwen3_1p7b": {
+      "pass_rate": 0.393798828125,
+      "pass_rate_ci95": [
+        0.34228515625,
+        0.4460510253906249
+      ],
+      "rho": 2934.060649776095,
+      "H": 0.33287976565861765,
+      "answer_tag_rate": 0.9990234375,
+      "complete": true
+    },
+    "rg/base_conversion|qwen3_1p7b": {
+      "pass_rate": 0.30419921875,
+      "pass_rate_ci95": [
+        0.26416015625,
+        0.345458984375
+      ],
+      "rho": 1498.067332919429,
+      "H": 0.5498321670828521,
+      "answer_tag_rate": 0.97705078125,
+      "complete": true
+    },
+    "gsm8k/test256|qwen3_1p7b": {
+      "pass_rate": 0.67724609375,
+      "pass_rate_ci95": [
+        0.633056640625,
+        0.720703125
+      ],
+      "rho": 1086.0519129388354,
+      "H": 0.45100743499861684,
+      "answer_tag_rate": 0.947509765625,
+      "complete": true
+    }
+  },
+  "analysis6_eight_family_picture": {
+    "v1_families": {
+      "n_envs": 32,
+      "n_families": 8,
+      "size_transfer": {
+        "pair": "qwen3_0p6b~qwen3_1p7b",
+        "n_envs": 32,
+        "spearman": 0.6946284032376746,
+        "ci95_family": [
+          0.04856512141280352,
+          0.9559052701627236
+        ],
+        "ci95_env": [
+          0.3752291331030241,
+          0.887537548431352
+        ],
+        "verdict": "partial"
+      },
+      "monotone": {
+        "qwen3_0p6b": {
+          "n_monotone": 7,
+          "n_families": 8,
+          "share": 0.875
+        },
+        "qwen3_1p7b": {
+          "n_monotone": 6,
+          "n_families": 8,
+          "share": 0.75
+        }
+      },
+      "band": {
+        "qwen3_0p6b": {
+          "count": 13,
+          "n_envs": 32,
+          "share": 0.40625
+        },
+        "qwen3_1p7b": {
+          "count": 23,
+          "n_envs": 32,
+          "share": 0.71875
+        }
+      },
+      "coordinates": {
+        "qwen3_0p6b": {
+          "pass_rate~rho": 0.8259749816041206,
+          "pass_rate~H": 0.9481236203090507,
+          "pass_rate~alignment": 0.8189510684607602,
+          "rho~H": 0.7439293598233994,
+          "rho~alignment": 0.7381576895094745,
+          "H~alignment": 0.8046286058284867
+        },
+        "qwen3_1p7b": {
+          "pass_rate~rho": 0.7214863870493008,
+          "pass_rate~H": 0.9017660044150109,
+          "pass_rate~alignment": 0.6437763331891088,
+          "rho~H": 0.6188373804267843,
+          "rho~alignment": 0.7425646010886354,
+          "H~alignment": 0.5600450131850491
+        }
+      }
+    },
+    "other_families": {
+      "n_envs": 211,
+      "n_families": 67,
+      "size_transfer": {
+        "pair": "qwen3_0p6b~qwen3_1p7b",
+        "n_envs": 211,
+        "spearman": 0.8402109995146944,
+        "ci95_family": [
+          0.7509327061888205,
+          0.9000501208403039
+        ],
+        "ci95_env": [
+          0.7833600522494041,
+          0.8875447393802851
+        ],
+        "verdict": "transfers"
+      },
+      "monotone": {
+        "qwen3_0p6b": {
+          "n_monotone": 64,
+          "n_families": 67,
+          "share": 0.9552238805970149
+        },
+        "qwen3_1p7b": {
+          "n_monotone": 63,
+          "n_families": 67,
+          "share": 0.9402985074626866
+        }
+      },
+      "band": {
+        "qwen3_0p6b": {
+          "count": 42,
+          "n_envs": 211,
+          "share": 0.1990521327014218
+        },
+        "qwen3_1p7b": {
+          "count": 57,
+          "n_envs": 211,
+          "share": 0.27014218009478674
+        }
+      },
+      "coordinates": {
+        "qwen3_0p6b": {
+          "pass_rate~rho": 0.9461538065046493,
+          "pass_rate~H": 0.966743333819015,
+          "pass_rate~alignment": 0.15122503586697425,
+          "rho~H": 0.9633966741740105,
+          "rho~alignment": 0.12877302570818638,
+          "H~alignment": 0.18243797423364275
+        },
+        "qwen3_1p7b": {
+          "pass_rate~rho": 0.8852788736510417,
+          "pass_rate~H": 0.9019735515299346,
+          "pass_rate~alignment": 0.2657071273553682,
+          "rho~H": 0.933722467560746,
+          "rho~alignment": 0.26188167973121956,
+          "H~alignment": 0.30644717761778617
+        }
+      }
+    },
+    "checks": {
+      "a_same_transfer_verdict": false,
+      "b_monotone_share_within_0.25": true,
+      "c_band_share_within_0.20": false,
+      "d_coordinate_signs_agree": true
+    },
+    "verdict": "does_not_hold",
+    "v1_subset_typicality": {
+      "v1_subset_spearman": 0.6946284032376746,
+      "random_8_family_median": 0.8490135459458288,
+      "random_8_family_p05_p95": [
+        0.6043648265657062,
+        0.9506695650461948
+      ],
+      "v1_percentile": 0.1225,
+      "atypical": false,
+      "n_subsets": 10000
+    }
+  },
+  "analysis7_robustness": {
+    "eta2_family_pass_rate": {
+      "qwen3_0p6b": 0.71817662355288,
+      "qwen3_1p7b": 0.6683670356104953
+    },
+    "without_low_diversity": {
+      "pair": "qwen3_0p6b~qwen3_1p7b",
+      "n_envs": 235,
+      "spearman": 0.8503826655399352,
+      "ci95_family": [
+        0.7781907314010551,
+        0.900431810896521
+      ],
+      "ci95_env": [
+        0.8015916277527929,
+        0.8889700056217135
+      ],
+      "verdict": "transfers"
+    },
+    "without_format_dominated": {
+      "pair": "qwen3_0p6b~qwen3_1p7b",
+      "n_envs": 203,
+      "spearman": 0.8475533234806648,
+      "ci95_family": [
+        0.7603869781954449,
+        0.9061872703583493
+      ],
+      "ci95_env": [
+        0.7918991144325124,
+        0.8897503102397178
+      ],
+      "verdict": "transfers"
+    },
+    "v1_replication_new_seeds": {
+      "qwen3_0p6b": {
+        "n_cells": 32,
+        "spearman": 0.9890534491298366,
+        "mean_abs_diff": 0.011138916015625
+      },
+      "qwen3_1p7b": {
+        "n_cells": 32,
+        "spearman": 0.9805003679175864,
+        "mean_abs_diff": 0.0252227783203125
+      }
+    }
+  }
+}
