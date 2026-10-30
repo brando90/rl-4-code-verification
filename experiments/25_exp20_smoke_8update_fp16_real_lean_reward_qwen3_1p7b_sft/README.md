@@ -11,7 +11,7 @@ Exp 24's recipe unchanged: Exp 20 trainer, TRL 1.16.0 colocated vLLM 0.30.0 (App
 Hardware differs from Exp 24 (A100-SXM4-80GB on skampere1): H100 SXM5 80 GB on Sherlock, so generations are not bitwise comparable to Exp 24.
 
 ## Results
-Summary: gate passes in all 8 updates (max 0.0573%, 17x under 1%); training is finite throughout; the real Lean reward is far stricter than the stand-in: 50 of 1,024 rollouts (4.9%) pass strict, against 809 of 1,024 (79.0%) for the stand-in, so with real reward only 19 of 128 groups carried a learning signal (0 unresolved measurements).
+Summary: gate passes in all 8 updates (max 0.0573%, 17.5x under 1%); training is finite throughout; the real Lean reward is far stricter than the stand-in: 50 of 1,024 rollouts (4.9%) pass strict, against 809 of 1,024 (79.0%) for the stand-in, so with real reward only 19 of 128 groups carried a learning signal (0 unresolved measurements).
 
 ### Gate (truncated support), per update, vs 1%
 share = (in-support tokens with |delta| > 0.05 + sampled tokens outside the recomputed support) / generated tokens. Computed from `results/log.jsonl` (`train_mismatch_truncated_support`) by `code/analyze_e25.py`; the job's own check (`results/smoke_logprob_check.json`) gives the same max, 0.0573%, pass.
@@ -27,7 +27,7 @@ share = (in-support tokens with |delta| > 0.05 + sampled tokens outside the reco
 | 7 | 665,189 | 17 | 353 | 0.0556% | 0.00057 | 0.278 | pass |
 | 8 | 685,807 | 12 | 381 | 0.0573% | 0.00058 | 0.396 | pass |
 
-Gate value (max over updates) 0.0573%, 17.5x under 1%. Exp 24 (stand-in reward, A100): max 0.0783%; here 0.0460-0.0573%, no upward trend over 8 updates. Largest single |delta| 1.026 (update 5, one token); 0.940 at update 6.
+Gate value (max over updates) 0.0573%, 17.5x under 1%. Exp 24 (stand-in reward, A100): max 0.0783%; here 0.0460-0.0573%, no upward trend over 8 updates. Largest single |delta| 1.026 (update 5); 0.940 at update 6.
 
 ### Finiteness and drift (fp16 training)
 | update | seqs backprop | nonfinite seqs | nonfinite params | grad norm | max scaled grad | IS min/max/mean | loss | max abs (fp16 - master) |
@@ -71,7 +71,7 @@ All 1,024 rollouts have status `measured`; `unresolved_measurement`: **0** (none
 | 7 | 4/16 | 8 | 0.0625 | 665,189 | 21 | 21 | 0 | 182 | 700 | 921 |
 | 8 | 2/16 | 6 | 0.0469 | 685,807 | 23 | 23 | 0 | 192 | 688 | 911 |
 
-Totals over 8 updates: 5,812,554 generated tokens (mean 5,676 per rollout; 214 of 1,024 hit the 12,288 cap, 20.9%), 1,615 s generation, 4,125 s Lean scoring (CPU, inside the job; 128-763 s per update), 6,048 s summed update wall (generation + scoring + training; manifest `gpu_seconds` 6,047.6). Job wall 1:45:05 (train wall 6,274 s, incl. startup and checkpoint writes): about 1.75 H100 GPU-h. Scoring costs about as much as generation or more (update 1: 223 s generation, 763 s scoring).
+Totals over 8 updates: 5,812,554 generated tokens (mean 5,676 per rollout; 214 of 1,024 hit the 12,288 cap, 20.9%), 1,615 s generation, 4,125 s Lean scoring (CPU, inside the job; 128-763 s per update), 6,048 s summed update wall (generation + scoring + training; manifest `gpu_seconds` 6,047.6). Job wall 1:45:05 (train wall 6,274 s, incl. startup and checkpoint writes): about 1.75 H100 GPU-h. Scoring is 0.6-3.6x the generation time in 6 of 8 updates (update 1: 223 s generation, 763 s scoring) and shorter in updates 2 and 4.
 
 ## Caveats
 Eight updates, one seed, one start checkpoint (expt_v4 seed 20260831), lr 1e-6, so this is a numerics and reward-wiring smoke, not learning evidence: strict reward is 0.016-0.086 per update with no trend. H100 on Sherlock, not the A100 of Exp 24, so generations are not comparable bitwise. One strict/stand-in disagreement (strict 1, stand-in 0) is unexplained because the Lean text was not saved. Scoring time per update varies 128-763 s; the cause is not broken down. No bf16 lane. The Sherlock per-task score CSVs (64 cells, 34,496 rows, mostly `missing_output` rows for pack tasks not submitted) and the checkpoints stay on Sherlock. No gate changed; Exp 20 not resumed.
