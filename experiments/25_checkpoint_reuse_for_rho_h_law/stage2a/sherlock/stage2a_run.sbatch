@@ -4,7 +4,7 @@
 #SBATCH -G 1
 #SBATCH -C GPU_SKU:L40S|GPU_SKU:H100_SXM5
 #SBATCH -c 16
-#SBATCH --mem=96G
+#SBATCH --mem=128G
 #SBATCH -t 04:00:00
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=brandojazz@gmail.com,brando.science@gmail.com
