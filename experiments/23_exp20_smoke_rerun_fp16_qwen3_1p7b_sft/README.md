@@ -32,7 +32,7 @@ Gate value (max over updates): fp16 0.0648% (pass, 15x under the gate); bf16 bas
 | 2 | 96 | 0 | 0 | 0.1145 | 34.4 | 0.687 / 1.177 / 0.9974 | 0.377 |
 
 - No overflow, no NaN/inf in loss, gradients or weights; loss scale 16384 left more than 1000x headroom to the fp16 maximum (scaled max grad 50). The smallest nonzero scaled gradient is 6e-8 = fp16's smallest subnormal, so a few of the tiniest gradient entries are at the underflow floor; the scale could be raised about 100x if underflow of those entries mattered. Not tested here.
-- bf16 baseline importance ratios range 0.0002-2.0 (clipped at the cap 2); fp16 ratios stay within 0.68-1.18, so the importance correction is near-inert in fp16.
+- bf16 baseline importance ratios range 0.0001-2.0 (clipped at the cap 2); fp16 ratios stay within 0.68-1.18, so the importance correction is near-inert in fp16.
 - Wall time per update about 13 min in both lanes (generation about 10 min, train step about 3.3 min): fp16 costs no measurable time.
 
 ## Caveats
