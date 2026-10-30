@@ -1,6 +1,6 @@
 # Experiment 25 (checkpoint reuse for the rho-H law): outcome label, Oct 30 2026
 
-**Label (toy evidence only): ADOPT for dense-checkpoint curves (R1) and prefix extrapolation (R2); the rolling rho/H form (R3) is NOT supported; WRONG DOMAIN cannot be decided yet because the real Lean pilot (Stage 2b) has not run.**
+**Label: the toy supports ADOPT for dense-checkpoint curves (R1; P1 holds). Prefix extrapolation (R2) holds only for the primary law arm and only weakly (P2: rank accuracy 0.42-0.48, near chance; Eq. 7 has no skill on the toy; the per-cell saturating and sigmoid arms fail the 1.25 ratio, about 3.2 and 15). The rolling rho/H form (R3) is NOT supported. The formal label is pending the real Lean pilot (Stage 2b, not run): the plan defines ADOPT as P1 and P2 holding in the toy and the pilot not contradicting. WRONG DOMAIN cannot be decided yet.**
 
 ## Numbers (all committed; see results.md, expt_v6/results.md, stage2a/RESULTS_gate8.md)
 - P1 holds (Night 6 toy, 492 runs): dense reuse is not worse than independent runs at equal compute. Curve RMSE 0.00283 vs 0.00482 (A-B CI [-0.0022, 0.00003]); n3 forecast RMSE 0.0530 vs 0.0536. Both forecasts are about 5 pp off in absolute terms.
@@ -19,6 +19,6 @@ Keep every checkpoint, log every rollout, use a constant learning rate, count tr
 - Blocked on 02A Stage D (warm-start and probe outputs): the two environments with most different rho cannot be named. Not on main as of Oct 30.
 - Cost as the plan specified it (4 trajectories x 128 steps) at the measured 1720 s per update: about 245 GPU-h training alone, plus 38-77 GPU-h evaluation and about 180 CPU-h Lean scoring. The plan's own rule is to ask Brando above 160 GPU-h, so this needs his decision or a smaller pilot (for example 64 steps: about 122 GPU-h training) before launch.
 
-Caveats: toy only (K=4 tokens, KL 0.1 saturates U, n4 is a forgetting regime); 3 seeds so intervals are coarse; SFT-rung evidence is 1.7B only; 7 pre-existing pytest failures in experiments 08/13 are untouched by this work.
+Caveats: toy only (K=4 tokens, KL 0.1 saturates U, n4 is a forgetting regime); 3 seeds so intervals are coarse; SFT-rung evidence is 1.7B only; 7 pytest failures in experiments 08/13 are untouched by this work; a before/during check found the same failures in all three trees, so they predate it.
 
 Agent: cc opus 5.5 xhigh
