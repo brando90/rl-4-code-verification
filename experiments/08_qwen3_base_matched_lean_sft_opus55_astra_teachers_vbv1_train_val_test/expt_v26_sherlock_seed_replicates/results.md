@@ -1,10 +1,12 @@
 # V26 results: Sherlock seed replicates
 
-**TLDR:** The 1.7B v4 recipe has a three-seed noise bar of 0.30 pts SD (0.56 pts range) on validation pass@1 and 2.2 pts SD (4.4 pts range) on pass@8; the 4B checkpoints match SNAP's `sft_4B_f1p0` within noise and beat 1.7B by +3.8 pts pass@1 (CI [2.27, 5.62]). Seed noise is smaller than the task-sampling noise of 135 tasks (95% CI about +-2.4 pts pass@1), so single-seed differences under about 1 pt pass@1 or 5 pts pass@8 mean nothing. Validation split only; test unopened; $0 provider spend.
+**TLDR:** The 1.7B v4 recipe has a three-seed noise bar of 0.30 pts SD (0.56 pts range) on validation pass@1 (no DT) and 2.2 pts SD (4.4 pts range) on pass@8 (no DT); the 4B checkpoints match SNAP's `sft_4B_f1p0` within noise and beat 1.7B by +3.8 pts pass@1 (CI [2.27, 5.62]). Seed noise is smaller than the task-sampling noise of 135 tasks (95% CI about +-2.4 pts pass@1), so single-seed differences under about 1 pt pass@1 or 5 pts pass@8 mean nothing. Validation split only; test unopened; $0 provider spend.
+
+Metric tag: every number here is no DT. A pass is a Lean kernel check plus the non-vacuity gate, with no differential testing; DT was not run on these checkpoints. The SNAP and expt_v16 rows use the same criterion.
 
 ## Validation results (135 tasks x 8 samples = 1,080 cells per checkpoint)
 
-| System | Successes / cells | pass@1 [95% CI] | pass@8 tasks / 135 [95% CI] |
+| System | Successes / cells (no DT) | pass@1 (no DT) [95% CI] | pass@8 (no DT) tasks / 135 [95% CI] |
 |---|---|---|---|
 | 1.7B v4 seed 20260830 (expt_v16) | 52 / 1080 | 4.81% [2.50, 7.50] | 18 (13.33%) [8.15, 19.26] |
 | 1.7B v4 seed 20260831 (expt_v16) | 58 / 1080 | 5.37% [3.15, 8.06] | 24 (17.78%) [11.85, 24.44] |
@@ -18,14 +20,14 @@
 
 ## Seed spread
 
-| Size | Seeds | pass@1 mean (SD) [range] | pass@8 mean (SD) [range] |
+| Size | Seeds | pass@1 (no DT) mean (SD) [range] | pass@8 (no DT) mean (SD) [range] |
 |---|---|---|---|
 | 1.7B | 3 | 5.03% (0.30) [0.56] | 15.56% (2.22) [4.44] |
 | 4B | 2 | 8.84% (0.20) [0.28] | 22.59% (0.52) [0.74] |
 
 ## Paired differences (task bootstrap, 95% CI)
 
-| Comparison | pass@1 diff | pass@8 diff |
+| Comparison | pass@1 diff (no DT) | pass@8 diff (no DT) |
 |---|---|---|
 | 1.7B s20260832 - 1.7B s20260830 | +0.09 [-1.11, 1.30] | +2.22 [-1.48, 5.93] |
 | 1.7B s20260832 - 1.7B s20260831 | -0.46 [-1.94, 0.83] | -2.22 [-6.67, 2.22] |
@@ -51,6 +53,11 @@
 - Seed-to-seed SD at 1.7B is 0.30 pts pass@1 and 2.2 pts pass@8 (3 seeds); the largest gap between two seeds is 0.56 pts and 4.4 pts.
 - Every paired difference between Sherlock seeds, and between Sherlock seeds and SNAP, has a CI that contains 0. SNAP's single-seed 1.7B (4.91%) and 4B (9.26%) sit inside the Sherlock bands.
 - A SNAP single-seed gain below about 1 pt pass@1 (or 5 pts pass@8) is within seed noise at this validation size.
+
+## Criterion check
+
+- 1.7B/4B V26 rows and the two expt_v16 rows: `expt_v6/analyze.evaluate`, `kernel_binary` with the non-vacuity gate (`analyze_v26.py` header, `PROTOCOL.md`).
+- SNAP rows: read from `expt_v1/results/ladder/<label>_validation_cells.csv`, column `kernel_binary`. In those files no successful cell has a vacuous theorem or an unparseable file (0 of 53 for 1.7B, 0 of 100 for 4B), so the gate changes nothing and the counts equal the gated ones. No row uses `IC_tests` or `IC_proofs`.
 
 ## Deviations
 

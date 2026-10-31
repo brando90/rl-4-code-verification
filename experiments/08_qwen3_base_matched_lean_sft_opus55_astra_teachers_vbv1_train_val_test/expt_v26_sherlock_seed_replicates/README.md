@@ -1,6 +1,6 @@
 # V26: Sherlock seed replicates (third v4 1.7B seed; v4 recipe at Qwen3-4B-Base, 2 seeds)
 
-**TLDR:** One Slurm chain on Sherlock trains three checkpoints with the exact [expt_v4](../expt_v4/PROTOCOL.md) recipe and data (1.7B seed 20260832; 4B seeds 20260830 and 20260831), generates 135 validation tasks x 8 for each with the frozen v12 settings, and Lean-scores them. Result: 1.7B seed SD 0.30 pts pass@1 (range 0.56) over three seeds; 4B 8.98% and 8.70% pass@1, within noise of SNAP's `sft_4B_f1p0` (9.26%), pooled +3.81 pts over 1.7B. This is the fallback because the V20/V23/V25 training data is on SNAP only. Frozen design: [PROTOCOL.md](PROTOCOL.md). Status: done (results in [results.md](results.md)).
+**TLDR:** One Slurm chain on Sherlock trains three checkpoints with the exact [expt_v4](../expt_v4/PROTOCOL.md) recipe and data (1.7B seed 20260832; 4B seeds 20260830 and 20260831), generates 135 validation tasks x 8 for each with the frozen v12 settings, and Lean-scores them. Result (all metrics no DT: Lean kernel check plus non-vacuity gate, no differential testing): 1.7B seed SD 0.30 pts pass@1 (range 0.56) over three seeds; 4B 8.98% and 8.70% pass@1, within noise of SNAP's `sft_4B_f1p0` (9.26%), pooled +3.81 pts over 1.7B. This is the fallback because the V20/V23/V25 training data is on SNAP only. Frozen design: [PROTOCOL.md](PROTOCOL.md). Status: done (results in [results.md](results.md)).
 
 ## Files
 
