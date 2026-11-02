@@ -48,6 +48,14 @@ ARMS = {
                                "model-00002-of-00002.safetensors": "d3d22b1ab51a03678f95f7d5e60f703a50e6554e4c731c884fc0fbf05e6e3f47",
                                "tokenizer.json": "4667f2089529e8e7657cfb6d1c19910ae71ff5f28aa7ab2ff2763330affad795"}},
 }
+# Gemma smoke package (PROTOCOL.md, Gemma-3 smoke addendum): V28_ARMS=gemma1b,gemma4b enables exactly those arms; unset keeps the table above.
+if os.environ.get("V28_ARMS"):
+    CHOSEN = os.environ["V28_ARMS"].split(",")
+    assert all(a in ARMS for a in CHOSEN), f"unknown arm in V28_ARMS={CHOSEN}"
+    for _name, _spec in ARMS.items():
+        _spec["enabled"] = _name in CHOSEN
+ATTN = os.environ.get("V28_ATTN", "sdpa")  # Llama runs used sdpa; the Gemma smoke also tries eager (Gemma-3's recommended backend)
+assert ATTN in ("sdpa", "eager")
 # Prompt formats. The prefix is the chat template's output for (system, user) with the generation prompt, WITHOUT the BOS
 # text (the tokenizer adds BOS once, in training and in vLLM generation alike); the assistant ids are the content plus the
 # turn-end token plus the tokenizer's EOS. The same template string is saved with every checkpoint so vLLM generation uses it.
@@ -256,7 +264,7 @@ def train(arm, seed, smoke_steps=0, host_override=None):
     model_path = receipt["models"][arm]["model_path"]
     host = spec["host_optimizer"] if host_override is None else host_override
     model = AutoModelForCausalLM.from_pretrained(model_path, local_files_only=True,
-        torch_dtype=torch.float32, attn_implementation="sdpa").cuda()
+        torch_dtype=torch.float32, attn_implementation=ATTN).cuda()
     model.config.use_cache = False
     model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
     model.train()
@@ -272,7 +280,7 @@ def train(arm, seed, smoke_steps=0, host_override=None):
         "cuda_visible_devices": os.environ["CUDA_VISIBLE_DEVICES"], "data_sha256": DATA_SHA,
         "order_sha256": ids_digest(order), "code_sha256": digest(__file__), "declared_examples": len(order),
         "declared_steps": smoke_steps if smoke else STEPS, "declared_loss_tokens": None if smoke else loss_tokens,
-        "parameter_dtype": "float32", "autocast_dtype": "bfloat16", "backend": "transformers-sdpa", "smoke": smoke,
+        "parameter_dtype": "float32", "autocast_dtype": "bfloat16", "backend": f"transformers-{ATTN}", "smoke": smoke,
         "optimizer_device": "cpu (HostAdamW, float32 master + moments)" if host else "cuda",
         "n_parameters": sum(p.numel() for p in model.parameters())}
     write_json(out / "identity.json", identity)

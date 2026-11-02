@@ -63,3 +63,17 @@ Smoke before the full chain (Sherlock): prepare passed (1315 examples, tokenizer
 Jobs: 6 trainings, 6 generations, 6 score arrays and 1 collector, ids in `jobs_v28.tsv`. Mail flags BEGIN, END and FAIL go to the owner's two Gmail accounts. The collector job (50508663) runs after all others end, whatever their exit state.
 
 **TLDR-end:** [rl4cv: model families] `08_.../expt_v28_llama32_family` replicates the Qwen3 v4 recipe at Llama-3.2-1B and 3B (3 seeds each, Sherlock, no DT), with the Gemma-3 config prepared.
+
+## Results addendum (2026-11-02, no DT)
+
+Chain finished: 60 of 60 jobs COMPLETED, results and the check against the predictions above in [results.md](results.md). Result in one line: Llama-3.2-1B 2.96% and Llama-3.2-3B 7.35% pooled validation pass@1, 3B minus 1B +4.38 pts [2.62, 6.42]; the 3B pass@1 prediction (1% to 7%) was missed by 0.35 pts, every other prediction held. The protocol, predictions and stopping rule above were not edited.
+
+## Gemma-3 smoke addendum (2026-11-02, prepared, not submitted)
+
+The Llama result is in, so the Gemma chain may start; this addendum fixes its smoke. Nothing is submitted by writing it.
+
+- **Package.** A separate copy of this folder on Sherlock, `$SCRATCH/rl4cv_sherlock/expt_v28_gemma_smoke`, with `bash submit.sh gemma-smoke`. `V28_ARMS=gemma1b,gemma4b` enables only the two Gemma arms (the `enabled` flags in the table stay as committed), and `V28_ATTN` selects `sdpa` or `eager` and is recorded in each `result.json` as `backend`. Because `train_v28.py` changed (two env switches, Llama paths unchanged), its sha256 differs from the one pinned in the Llama chain's receipt; the Gemma package has its own receipt.
+- **Jobs (prepare + 6).** prepare (downloads `unsloth/gemma-3-1b-pt` and `gemma-3-4b-pt` at the pinned revisions, LFS hashes, token gate with the Gemma format); four 4-update smoke trainings on the four longest examples: gemma1b sdpa (seed 20260830), gemma1b eager (20260831), gemma4b sdpa and gemma4b eager (host optimizer, `auto`); two smoke generations (3 tasks x 2 samples) from the gemma1b and gemma4b sdpa exports. About 6 GPU-hours, `sanmi` account, mail to both of Brando's addresses, no paid API.
+- **Open items the smoke settles:** (1) whether the 4B multimodal checkpoint loads with `AutoModelForCausalLM` in transformers 4.57.3 and exports text weights that vLLM 0.30.0 loads; (2) SDPA against eager attention (finite, falling loss, peak memory); (3) the 4B memory plan with the host optimizer on an 80 GB card; (4) generation stops on `<end_of_turn>` or `<eos>`.
+- **Smoke passes when** prepare is PASS, every smoke run ends with finite loss that falls over the four updates, records peak GPU memory and exports files that load, and each smoke generation finishes cells with `finish_reason` `stop` for at least some samples and writes the extraction fields. A failed arm is diagnosed and fixed before any full Gemma chain; the full chain (seeds 20260830 to 20260832, same recipe, same 135 validation tasks, same predictions-before-results rule with its own dated protocol) is a separate decision.
+

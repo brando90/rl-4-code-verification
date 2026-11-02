@@ -3,6 +3,7 @@
 # -> 6x8 scoring -> collector); ids in jobs_v28.tsv (full) / jobs_v28_smoke.tsv (smoke).
 # usage: cd $SCRATCH/rl4cv_sherlock/expt_v28 && bash submit.sh smoke    # first; read the smoke logs
 #        cd $SCRATCH/rl4cv_sherlock/expt_v28 && bash submit.sh full     # after the smoke passed and prepare_receipt.json exists
+#        cd $SCRATCH/rl4cv_sherlock/expt_v28_gemma_smoke && bash submit.sh gemma-smoke   # Gemma-3 smoke only, in its own copy of this folder
 set -euo pipefail
 cd "$(dirname "$0")"
 MODE=${1:?smoke or full}
@@ -27,6 +28,29 @@ if [ "$MODE" = smoke ]; then
   G1=$(SMOKE=1 sb -t 01:00:00 --export=ALL,SMOKE=1 --dependency="afterok:$S1" "${DEP[@]}" -J rl4cv-v28-smokegen-llama1b \
     -o "$PWD/logs/%x_%j.out" gen_v28.sbatch llama1b_s20260830 v28smoke_llama1b_s20260830); rec smokegen_llama1b "$G1"
   cat $T; squeue -u "$USER" -o '%.10i %.34j %.9P %.8T %.20R' | grep -E 'JOBID|rl4cv-v28' || true
+  exit 0
+fi
+if [ "$MODE" = gemma-smoke ]; then
+  # Separate package directory (own prepare_receipt.json, data/, cache/): the Llama receipt is never touched. Arms: gemma1b, gemma4b only.
+  T=jobs_v28_gemma_smoke.tsv
+  test ! -e $T || { echo "Existing receipt $T" >&2; exit 2; }
+  rec() { printf '%s\t%s\n' "$1" "$2" >> $T; }
+  printf 'phase\tjob_id\n' > $T
+  export V28_ARMS=gemma1b,gemma4b   # sbatch passes the environment on (--export=ALL), so every job below sees it
+  PREP=$(sb -p normal -c 4 --mem=48G -t 03:00:00 -J rl4cv-v28g-prepare -o "$PWD/logs/%x_%j.out" run_job.sh prepare); rec prepare "$PREP"
+  # 4 updates on the 4 longest examples. 1B sdpa (as Llama) and 1B eager on another seed; 4B (multimodal checkpoint, text weights) with the
+  # host optimizer under sdpa and under eager. Each records peak GPU memory and exports; the smoke generations check the vLLM load of the export.
+  g() { V28_ATTN="$1" sb -p gpu --gres=gpu:1 --constraint='GPU_MEM:80GB' -c "$2" --mem="$3" -t 02:00:00 \
+        --dependency="afterok:$PREP" "${DEP[@]}" -J "rl4cv-v28g-smoke-$4" -o "$PWD/logs/%x_%j.out" run_job.sh smoke "$5" "$6" 4 auto; }
+  S1=$(g sdpa 4 64G g1b-sdpa gemma1b 20260830); rec smoke_gemma1b_sdpa "$S1"
+  S2=$(g eager 4 64G g1b-eager gemma1b 20260831); rec smoke_gemma1b_eager "$S2"
+  S3=$(g sdpa 16 128G g4b-sdpa gemma4b 20260830); rec smoke_gemma4b_sdpa "$S3"
+  S4=$(g eager 16 128G g4b-eager gemma4b 20260831); rec smoke_gemma4b_eager "$S4"
+  gg() { SMOKE=1 sb -t 01:00:00 --export=ALL,SMOKE=1 --dependency="afterok:$1" "${DEP[@]}" -J "rl4cv-v28g-smokegen-$2" \
+         -o "$PWD/logs/%x_%j.out" gen_v28.sbatch "$3" "v28smoke_$3"; }
+  G1=$(gg "$S1" g1b gemma1b_s20260830); rec smokegen_gemma1b_sdpa "$G1"
+  G4=$(gg "$S3" g4b gemma4b_s20260830); rec smokegen_gemma4b_sdpa "$G4"
+  cat $T; squeue -u "$USER" -o '%.10i %.34j %.9P %.8T %.20R' | grep -E 'JOBID|rl4cv-v28g' || true
   exit 0
 fi
 test "$MODE" = full

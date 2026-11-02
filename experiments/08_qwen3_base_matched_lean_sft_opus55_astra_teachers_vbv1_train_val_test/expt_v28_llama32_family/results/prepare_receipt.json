@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "examples": 1315,
+  "models": {
+    "llama1b": {
+      "model": "unsloth/Llama-3.2-1B",
+      "revision": "9535bd9b1d1dea6acafbdc4813b728796aeb28da",
+      "family": "llama3",
+      "model_path": "/scratch/users/brando9/.huggingface/models--unsloth--Llama-3.2-1B/snapshots/9535bd9b1d1dea6acafbdc4813b728796aeb28da",
+      "file_sha256": {
+        "config.json": "8f028e2cd88148fad38c7dece460947681adf6178e46e11ece9742aa49b378dd",
+        "generation_config.json": "282855859ac10d3ccc1ff79fde2f8bf1568734d5d4e0c06f6173121d79b76e56",
+        "model.safetensors": "68a2e4be76fa709455a60272fba8e512c02d81c46e6c671cc9449e374fd6809a",
+        "special_tokens_map.json": "32f404d626cf7b1b6eea36c241ae7cbd6ec29c777a8701ea48c0fe9ebb94c9b1",
+        "tokenizer.json": "6b9e4e7fb171f92fd137b777cc2714bf87d11576700a1dcd7a399e7bbe39537b",
+        "tokenizer_config.json": "8ca815f697b8f6953d9bad3130ddd6238b99d36c20fde052cf730207ac0926d4"
+      },
+      "token_gate": "PASS",
+      "longest_sequence_tokens": 16003,
+      "loss_tokens": 5643597
+    },
+    "llama3b": {
+      "model": "unsloth/Llama-3.2-3B",
+      "revision": "d4446454d87d51aa42e1fb174f25acc5f8762331",
+      "family": "llama3",
+      "model_path": "/scratch/users/brando9/.huggingface/models--unsloth--Llama-3.2-3B/snapshots/d4446454d87d51aa42e1fb174f25acc5f8762331",
+      "file_sha256": {
+        "config.json": "c0a6833b9da6e99a2a8920e879de7c1532c78883948327658cfdbd1eac6d5be6",
+        "generation_config.json": "282855859ac10d3ccc1ff79fde2f8bf1568734d5d4e0c06f6173121d79b76e56",
+        "model-00001-of-00002.safetensors": "584d8d3e3f82f7964955174dfe5e3b1cf117a9d859f022cfdf7fcb884856e002",
+        "model-00002-of-00002.safetensors": "4719a04514ec2f060240711b7c33ab21187cac730ecaba3040b7a0fd95a9cefb",
+        "model.safetensors.index.json": "0a57c30afc07c81610ae7fe013bea3b9d50365f9a8145ae98e8714220f3d7c7c",
+        "special_tokens_map.json": "32f404d626cf7b1b6eea36c241ae7cbd6ec29c777a8701ea48c0fe9ebb94c9b1",
+        "tokenizer.json": "6b9e4e7fb171f92fd137b777cc2714bf87d11576700a1dcd7a399e7bbe39537b",
+        "tokenizer_config.json": "8ca815f697b8f6953d9bad3130ddd6238b99d36c20fde052cf730207ac0926d4"
+      },
+      "token_gate": "PASS",
+      "longest_sequence_tokens": 16003,
+      "loss_tokens": 5643597
+    }
+  },
+  "families": {
+    "llama3": {
+      "tokens_sha256": "fd07d218f373529e3b043842d09627e300a8527fcefc68ce28b7e9eb1fd04848",
+      "manifest_sha256": "ee06572b666b03226e6b0bfcdcaa36a875b481d4abdad47687c68feceabeae5a",
+      "loss_tokens": 5643597
+    }
+  },
+  "data_sha256": "885d4ae2d6cf193bddc43df6ad6274cacfa8c98a5e5ecd63bd2519472f5e7354",
+  "code_sha256": "779092217c1ce74d26fd1148931da8804458cbbf30dd99346084a03af51e8b80",
+  "vllm_image_sha256": "5fec93bd16e75de87b5ff13137014080ab1a5373e3ae1aff2ed9ea6f7fae139b",
+  "chain_inputs_present": [
+    "/scratch/users/brando9/rl4cv_sherlock/v4_validation/rl4cv_gen/src/rl4cv/veribench/generate.py",
+    "/scratch/users/brando9/rl4cv_sherlock/v4_validation/run/validation_pack",
+    "/scratch/users/brando9/rl4cv_sherlock/v4_validation/rl4cv_gen/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/results/split/vbv1_validation_task_ids.txt",
+    "/scratch/users/brando9/rl4cv_sherlock/grading/READY",
+    "/scratch/users/brando9/rl4cv_sherlock/grading/score_sherlock.sh",
+    "/scratch/users/brando9/rl4cv_sherlock/grading/rl4cv/src/rl4cv/veribench/jobs.py"
+  ],
+  "host": "sh02-01n14.int",
+  "job_id": "50503501",
+  "torch": "2.9.1a0"
+}
