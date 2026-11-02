@@ -12,7 +12,7 @@ E20=$(ls -d "$REPO"/experiments/20_*/expt_v1/sherlock)
 mkdir -p "$ROOT/code"
 # Exp 20's verbatim scoring code + this experiment's local entry points
 for f in partial_credit_e20.py declaration_adapter.py DeclarationProbe.lean durable_capture.py logged_scorer_e20.py; do cp -f "$E20/$f" "$ROOT/code/$f"; done
-cp -f "$HERE"/code/*.sh "$ROOT/code/"; chmod +x "$ROOT"/code/*.sh
+cp -f "$HERE"/code/*.sh "$HERE"/code/partial_credit_fixedpath.py "$ROOT/code/"; chmod +x "$ROOT"/code/*.sh
 if [ "${1:-}" = "--from-tar" ]; then
   tar xf "$2" -C "$ROOT"
 else

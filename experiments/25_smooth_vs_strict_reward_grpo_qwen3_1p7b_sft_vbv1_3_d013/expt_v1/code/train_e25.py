@@ -231,7 +231,7 @@ class Runner:
                 out = self.run / "scores" / f"{name}c{c}_s{k}"
                 out.mkdir(parents=True, exist_ok=True)
                 if self.smooth:
-                    cmd = [sys.executable, str(E20 / "code/partial_credit_e20.py"), "--job-dir", str(job),
+                    cmd = [sys.executable, str(E20 / "code/partial_credit_fixedpath.py"), "--job-dir", str(job),
                            "--out", str(out / f"partial_{name}c{c}_s{k}.json"), "--evidence-root", str(out / "compiler_diagnostics")]
                 else:
                     cmd = ["bash", str(E20 / "code/score_e20.sh"), str(job), str(self.args.pack), str(out)]

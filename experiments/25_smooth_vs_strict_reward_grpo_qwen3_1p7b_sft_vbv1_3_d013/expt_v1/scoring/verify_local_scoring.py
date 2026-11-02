@@ -1,4 +1,4 @@
-"""TLDR: Check Exp 25's local scoring wrapper against saved scores: re-score N saved rollouts (strict via code/score_e20.sh and smooth via code/partial_credit_e20.py, exactly as train_e25.py calls them) and compare with the saved per-task rows.
+"""TLDR: Check Exp 25's local scoring wrapper against saved scores: re-score N saved rollouts (strict via code/score_e20.sh and smooth via code/partial_credit_fixedpath.py, exactly as train_e25.py calls them) and compare with the saved per-task rows.
 Use after setup_local_grading.sh, on skampere1 or mercury1/2. Needs only python3.12 (scorer is stdlib-only) and a grading tree.
 Example: python3 verify_local_scoring.py --root /lfs/skampere1/0/brando9/rl4cv_e25 --saved-job /lfs/skampere1/0/brando9/rl4cv_e08/jobs/opus55_s1_s0 --saved-scores /lfs/skampere1/0/brando9/rl4cv_e08/scores/opus55_s1_s0/scsc_opus55_s1_s0_opus55_s1_s0_per_task.csv --pack /lfs/skampere1/0/brando9/rl4cv_e08/pack_views/teachers/opus55_s1 --n 48 --workers 8 --out /lfs/skampere1/0/brando9/at1786/verify_skampere1
 """
@@ -23,7 +23,7 @@ def run_chunk(root: Path, job: Path, pack: Path, out: Path, mode: str, env: dict
     if mode == "strict":
         cmd = ["bash", str(root / "code/score_e20.sh"), str(job), str(pack), str(out)]
     else:
-        cmd = [sys.executable, str(root / "code/partial_credit_e20.py"), "--job-dir", str(job),
+        cmd = [sys.executable, str(root / "code/partial_credit_fixedpath.py"), "--job-dir", str(job),
                "--out", str(out / f"partial_{job.name}.json"), "--evidence-root", str(out / "compiler_diagnostics")]
     with open(out / "stdout.log", "w") as fh:
         rc = subprocess.call(cmd, stdout=fh, stderr=subprocess.STDOUT, env=env)
