@@ -116,7 +116,7 @@ def main():
     (a.out / "summary_v28.json").write_text(json.dumps(out, indent=2) + "\n")
     pct = lambda v: f"{100 * v:.2f}%"
     rng = lambda v: f"[{pct(v[0])}, {pct(v[1])}]"
-    lines = ["| System | Successes / cells | pass@1 [95% CI] | pass@8 tasks / 135 [95% CI] |", "|---|---|---|---|"]
+    lines = ["| System | Successes / samples | pass@1 [95% CI] | pass@8 tasks / 135 [95% CI] |", "|---|---|---|---|"]
     for k in list(NAMES) + [f"pool_{z}" for z in SIZES] + list(QWEN_ROWS):
         if k not in summary and k not in qwen:
             continue

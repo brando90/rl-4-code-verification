@@ -1,4 +1,4 @@
-| System | Successes / cells | pass@1 [95% CI] | pass@8 tasks / 135 [95% CI] |
+| System | Successes / samples | pass@1 [95% CI] | pass@8 tasks / 135 [95% CI] |
 |---|---|---|---|
 | Llama-3.2-1B seed 20260830 (V28) | 33 / 1080 | 3.06% [1.30%, 5.37%] | 13 (9.63%) [5.19%, 14.81%] |
 | Llama-3.2-1B seed 20260831 (V28) | 26 / 1080 | 2.41% [1.02%, 4.08%] | 12 (8.89%) [4.44%, 14.07%] |

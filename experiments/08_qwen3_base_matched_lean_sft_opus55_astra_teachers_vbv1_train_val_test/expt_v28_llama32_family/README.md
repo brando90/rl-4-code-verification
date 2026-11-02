@@ -6,7 +6,7 @@
 
 | File | What it does |
 |---|---|
-| `PROTOCOL.md` | Design, arms, deviations, predictions, Gemma addendum |
+| `PROTOCOL.md` | Design, models, deviations, predictions, Gemma addendum |
 | `train_v28.py` | `prepare` (corpus hash, model download + hashes, per-family token gate and manifest), `train` (expt_v4 loop, `HostAdamW` for 3B), `smoke` (4 updates on the longest examples, peak memory, export) |
 | `run_job.sh` | Slurm wrapper for prepare, train and smoke (Sherlock modules only) |
 | `gen_v28.sbatch` | vLLM generation for one checkpoint with the family's stop tokens; `SMOKE=1` for 3 tasks x 2 samples |
@@ -23,4 +23,4 @@ On Sherlock: copy this folder to `$SCRATCH/rl4cv_sherlock/expt_v28`, `bash submi
 
 ## Gemma-3 smoke (prepared 2026-11-02, not submitted)
 
-Copy this folder to `$SCRATCH/rl4cv_sherlock/expt_v28_gemma_smoke` on Sherlock and run `bash submit.sh gemma-smoke` there (own `prepare_receipt.json`, data and cache; the Llama receipt is untouched). `train_v28.py` gained two environment switches that default to the Llama behaviour: `V28_ARMS=gemma1b,gemma4b` (set by `submit.sh gemma-smoke`) enables exactly those arms, and `V28_ATTN=sdpa|eager` picks the attention backend. Details and pass rule: Gemma-3 smoke addendum in [PROTOCOL.md](PROTOCOL.md).
+Copy this folder to `$SCRATCH/rl4cv_sherlock/expt_v28_gemma_smoke` on Sherlock and run `bash submit.sh gemma-smoke` there (own `prepare_receipt.json`, data and cache; the Llama receipt is untouched). `train_v28.py` gained two environment switches that default to the Llama behaviour: `V28_ARMS=gemma1b,gemma4b` (set by `submit.sh gemma-smoke`) enables exactly those models, and `V28_ATTN=sdpa|eager` picks the attention backend. Details and pass rule: Gemma-3 smoke addendum in [PROTOCOL.md](PROTOCOL.md).

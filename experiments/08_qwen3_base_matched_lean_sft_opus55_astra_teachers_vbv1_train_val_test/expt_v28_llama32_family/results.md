@@ -1,16 +1,16 @@
 # V28 results: Llama-3.2-1B and 3B, expt_v4 Lean SFT recipe (Sherlock, no DT)
 
-**TLDR:** The Qwen3 result does not transfer one-to-one but the shape does. Llama-3.2-1B reaches 2.96% validation pass@1 (no DT, 3 seeds, SD 0.52 pts) and Llama-3.2-3B reaches 7.35% (3 seeds, SD 0.89 pts); 3B beats 1B by +4.38 pts pass@1 (CI [2.62, 6.42]). Both stay below the Qwen3 models at matched size (1.7B 5.03%, 4B 8.84%), as predicted, but the pooled CIs overlap, so no cross-family significance is claimed. Of the predictions locked on 2026-10-31, one did not hold: Llama-3B pooled pass@1 is 7.35%, just above the 1% to 7% range. Seed spread stays inside the predicted bound but is larger than Qwen3-1.7B's 0.30 pts SD.
+The Qwen3 result does not transfer one-to-one but the shape does. Llama-3.2-1B reaches 2.96% validation pass@1 (no DT, 3 seeds, SD 0.52 pts) and Llama-3.2-3B reaches 7.35% (3 seeds, SD 0.89 pts); 3B beats 1B by +4.38 pts pass@1 (CI [2.62, 6.42]). Both stay below the Qwen3 models at matched size (1.7B 5.03%, 4B 8.84%), as predicted, but the pooled CIs overlap, so no cross-family significance is claimed. Of the predictions locked on 2026-10-31, one did not hold: Llama-3B pooled pass@1 is 7.35%, just above the 1% to 7% range. Seed spread stays inside the predicted bound but is larger than Qwen3-1.7B's 0.30 pts SD.
 
-Metric tag: every number here is no DT. A pass is the Lean kernel check plus the non-vacuity gate (`expt_v6/analyze.evaluate`), with no differential testing; validation split only (135 tasks x 8 samples = 1,080 cells per checkpoint), test unopened. Spend: $0 provider spend, Sherlock only.
+Metric tag: every number here is no DT. A pass is the Lean kernel check plus the non-vacuity gate (`expt_v6/analyze.evaluate`), with no differential testing; validation split only (135 tasks x 8 samples = 1,080 samples per checkpoint), test unopened. Spend: $0 provider spend, Sherlock only.
 
 ## Jobs
 
-All 60 Slurm jobs of the chain ended COMPLETED with exit code 0: 6 trainings, 6 generations, 48 scoring array tasks (6 arrays x 8); the collector 50508663 also COMPLETED. Nothing failed, nothing was rerun, no seed substituted. Source: `results/sacct_v28.txt`, `results/jobs_v28.tsv`. The tarball `expt_v28_results.tgz` (sha256 `da8fa60b04af216f55126aa6e5ad876a92f6c580c23f57d1cf191b96cf4cfde7`) was fetched from Sherlock and its checksum matched the `.sha256` file. All 6 x 1,080 generation cells are present and scored; no system is missing.
+All 60 Slurm jobs of the chain ended COMPLETED with exit code 0: 6 trainings, 6 generations, 48 scoring array tasks (6 arrays x 8); the collector 50508663 also COMPLETED. Nothing failed, nothing was rerun, no seed substituted. Source: `results/sacct_v28.txt`, `results/jobs_v28.tsv`. The tarball `expt_v28_results.tgz` (sha256 `da8fa60b04af216f55126aa6e5ad876a92f6c580c23f57d1cf191b96cf4cfde7`) was fetched from Sherlock and its checksum matched the `.sha256` file. All 6 x 1,080 generated samples are present and scored; no system is missing.
 
 ## Validation results
 
-| System | Successes / cells (no DT) | pass@1 (no DT) [95% CI] | pass@8 (no DT) tasks / 135 [95% CI] |
+| System | Successes / samples (no DT) | pass@1 (no DT) [95% CI] | pass@8 (no DT) tasks / 135 [95% CI] |
 |---|---|---|---|
 | Llama-3.2-1B seed 20260830 (V28) | 33 / 1080 | 3.06% [1.30, 5.37] | 13 (9.63%) [5.19, 14.81] |
 | Llama-3.2-1B seed 20260831 (V28) | 26 / 1080 | 2.41% [1.02, 4.08] | 12 (8.89%) [4.44, 14.07] |
@@ -62,7 +62,7 @@ Qwen3 reference (V26): 1.7B 5.03% (0.30) [0.56] pass@1, 15.56% (2.22) [4.44] pas
 
 ## Notes and caveats
 
-- **Cap hits.** 19.7% to 21.3% of 1B cells and 11.6% to 11.7% of 3B cells ended at the 12,288-token generation cap (`finish_reason` length, no Lean block extracted); the other cells stopped on the stop token. These count as failures, as in V26. Source: `results/gen_timing/`.
+- **Cap hits.** 19.7% to 21.3% of 1B samples and 11.6% to 11.7% of 3B samples ended at the 12,288-token generation cap (`finish_reason` length, no Lean block extracted); the other samples stopped on the stop token. These count as failures, as in V26. Source: `results/gen_timing/`.
 - **Training.** All six runs finished 658 updates, `status` COMPLETE, final train loss 0.19 to 0.36 (1B) and 0.16 to 0.29 (3B), peak GPU 43 to 44 GiB (1B), 54 to 55 GiB (3B, host optimizer). Source: `results/runs/*/result.json`.
 - **Format deviation.** Llama sees the Llama-3 header format, with no thinking block (PROTOCOL.md); Qwen3 saw its chat markers with an empty think block. The family comparison is therefore recipe-matched and data-matched, not format-identical.
 - **Cross-family claim.** The Qwen3 rows are from V26's committed summary; no paired task-level test across families was run. The statement "Llama below Qwen3" is about point estimates only.
@@ -71,7 +71,7 @@ Qwen3 reference (V26): 1.7B 5.03% (0.30) [0.56] pass@1, 15.56% (2.22) [4.44] pas
 
 ## Files
 
-`results/summary_v28.json` (all numbers), `results/tables_v28.md` (tables as printed by `analyze_v28.py`), `results/analysis/` (per-system cell and task CSVs), `results/runs/` (per-run `result.json`, `steps.csv`, `identity.json`), `results/gen_timing/`, `results/sacct_v28.txt`, `results/jobs_v28.tsv`, `results/prepare_receipt.json`, `results/analyze_stdout.log`.
+`results/summary_v28.json` (all numbers), `results/tables_v28.md` (tables as printed by `analyze_v28.py`), `results/analysis/` (per-system sample and task CSVs), `results/runs/` (per-run `result.json`, `steps.csv`, `identity.json`), `results/gen_timing/`, `results/sacct_v28.txt`, `results/jobs_v28.tsv`, `results/prepare_receipt.json`, `results/analyze_stdout.log`.
 
 Reproduce: `python analyze_v28.py --v28-root <extracted expt_v28_results.tgz> --qwen-summary ../expt_v26_sherlock_seed_replicates/results/summary_v26.json --out results` (scorer pinned at `59059a20`).
 
