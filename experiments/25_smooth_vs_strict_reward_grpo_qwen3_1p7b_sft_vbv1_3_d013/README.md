@@ -10,7 +10,7 @@
 - Forecast, to be frozen with `rl4cv.forecast.freeze_forecast` before any outcome (D-004): P(supported) 25%, both flat within noise 55%, A better 20%.
 
 ## Design (built on Experiment 20 recipe)
-16 groups x 8 rollouts per update, 12,288 new tokens, lr 1e-6 (to be re-chosen by the pilot from arm A training reward only), TIS cap 2.0 on in both arms and dtypes, 48 updates, 2 seeds per arm, same prompt stream and seeds across arms, one named start checkpoint (Experiment 08 v1 step_658, validation strict 4.91%, SHA recorded); the lr pilot runs both arms; see PROTOCOL.md.
+16 groups x 8 rollouts per update, 12,288 new tokens, lr 5e-6 (chosen by the pilot, PROTOCOL section 10), TIS cap 2.0 on in both arms and dtypes, 48 updates, 2 seeds per arm, same prompt stream and seeds across arms, one named start checkpoint (Experiment 08 v1 step_658, validation strict 4.91%, SHA recorded); the lr pilot runs both arms; see PROTOCOL.md.
 
 ## Precision
 Decided by a measured gate, not by default: stage 0 re-measures bf16 and fp16 vLLM-versus-trainer mismatch on a mercury A4000 (gate at most 1% of tokens, Experiment 20). bf16 with importance-sampling correction if it passes; otherwise fp16 with fp32 master weights and loss scale 16384 (Experiments 22 to 24: bf16 6.1% to 6.4% mismatch, fp16 0.109%). Rationale and sources: [docs/HEURISTICS.md](../../docs/HEURISTICS.md) rules 1 to 3.
@@ -25,6 +25,7 @@ mercury1 and mercury2 (10 RTX A4000 16 GB each), skampere1 A100 80 GB when idle.
 Mismatch above 1%, NaN or inf, pilot reward not moving in either arm at either lr (report the null power result), Lean strict scores disagreeing with saved scores, another user needing the GPU.
 
 ## Status log (newest first)
+- 11-09-2026 06:00: stage 3 pilot done (4 lanes, 12 updates, A100, training reward only): lr 5e-6 chosen, fp16, gate max 0.10%; both arms move at 5e-6 (A +8.3, B +5.0 strict successes per 128, updates 7 to 12 minus 1 to 6), neither at 1e-6. PROTOCOL.md locked (section 10) and forecast frozen (`expt_v1/forecasts/e25_forecast.json`, sha256 `1d51975e...`) before the full run; stage 4 not started. Details `expt_v1/results/stage3_pilot_at1788/` (AT-1788).
 - 10-29-2026 00:15: stage 1 and 2 done (AT-1787). fp16 in-loop gate 0.104% on A4000, bf16 4.09% aborts; A4000 fits the 12,288-token step at 12.4 of 16 GB peak (about 10 s per sequence, synthetic-rollout probe); 2-update smokes of arms A and B pass on A100 (gate at most 0.07%, no NaN or inf); step_658 rescore 53/1080 reproduced exactly, fresh fp16 update-0 eval 46/1080. Record: [expt_v1/STAGE1_2_RECORD.md](expt_v1/STAGE1_2_RECORD.md), logs in expt_v1/results/stage1_2_at1787/. Pilot not started.
 - 10-28-2026 14:20: QA by a second model: PASS WITH FIXES, 13 defects, all applied in PROTOCOL.md; cost re-estimated at 60 to 75 A100-hours; AT-1786 builds the local scorer.
 - 10-28-2026 14:00: folder created; stage 0 precision probe started on mercury1 GPU 0 (`/lfs/mercury1/0/brando9/rl4cv_e25_stage0`); previous partial attempt to wire real Lean scoring (`train_e25.py`, `e25_scoring/` on skampere1, 10-26) never ran and is reused.

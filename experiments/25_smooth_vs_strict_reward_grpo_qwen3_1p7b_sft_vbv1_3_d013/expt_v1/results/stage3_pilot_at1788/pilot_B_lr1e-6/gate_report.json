@@ -1,0 +1,242 @@
+{
+ "updates": 12,
+ "gate_share_per_update": [
+  0.0006403149535036314,
+  0.0006423522678834552,
+  0.0006285684353884029,
+  0.0007014938318758189,
+  0.0006974577745406778,
+  0.0007502852576409024,
+  0.0007555129883045921,
+  0.0007057825705025293,
+  0.0006394438126300882,
+  0.0007198228128460686,
+  0.0007020805151909974,
+  0.0007631939667508523
+ ],
+ "max_gate_share": 0.0007631939667508523,
+ "gate": 0.01,
+ "pass": true,
+ "dtype": "float16",
+ "rc": 0,
+ "checks": [
+  {
+   "tokens": 883940,
+   "in_support": 883922,
+   "outside_support": 18,
+   "abs_delta_gt_tol": 548,
+   "share_gt_tol": 0.0006403149535036314,
+   "mean_abs_delta": 0.0005080389091745019,
+   "max_abs_delta": 0.25408148765563965
+  },
+  {
+   "tokens": 842217,
+   "in_support": 842192,
+   "outside_support": 25,
+   "abs_delta_gt_tol": 516,
+   "share_gt_tol": 0.0006423522678834552,
+   "mean_abs_delta": 0.0005449799355119467,
+   "max_abs_delta": 0.19214588403701782
+  },
+  {
+   "tokens": 706367,
+   "in_support": 706347,
+   "outside_support": 20,
+   "abs_delta_gt_tol": 424,
+   "share_gt_tol": 0.0006285684353884029,
+   "mean_abs_delta": 0.0005403008544817567,
+   "max_abs_delta": 0.1932147741317749
+  },
+  {
+   "tokens": 657169,
+   "in_support": 657150,
+   "outside_support": 19,
+   "abs_delta_gt_tol": 442,
+   "share_gt_tol": 0.0007014938318758189,
+   "mean_abs_delta": 0.0006025531329214573,
+   "max_abs_delta": 0.2909109592437744
+  },
+  {
+   "tokens": 615091,
+   "in_support": 615077,
+   "outside_support": 14,
+   "abs_delta_gt_tol": 415,
+   "share_gt_tol": 0.0006974577745406778,
+   "mean_abs_delta": 0.0006001692963764071,
+   "max_abs_delta": 0.11653077602386475
+  },
+  {
+   "tokens": 737053,
+   "in_support": 737030,
+   "outside_support": 23,
+   "abs_delta_gt_tol": 530,
+   "share_gt_tol": 0.0007502852576409024,
+   "mean_abs_delta": 0.0006142754573374987,
+   "max_abs_delta": 0.28112369775772095
+  },
+  {
+   "tokens": 598269,
+   "in_support": 598246,
+   "outside_support": 23,
+   "abs_delta_gt_tol": 429,
+   "share_gt_tol": 0.0007555129883045921,
+   "mean_abs_delta": 0.0006280627567321062,
+   "max_abs_delta": 0.16897928714752197
+  },
+  {
+   "tokens": 660260,
+   "in_support": 660244,
+   "outside_support": 16,
+   "abs_delta_gt_tol": 450,
+   "share_gt_tol": 0.0007057825705025293,
+   "mean_abs_delta": 0.0005827680579386652,
+   "max_abs_delta": 0.2501169443130493
+  },
+  {
+   "tokens": 699045,
+   "in_support": 699030,
+   "outside_support": 15,
+   "abs_delta_gt_tol": 432,
+   "share_gt_tol": 0.0006394438126300882,
+   "mean_abs_delta": 0.0005277941236272454,
+   "max_abs_delta": 0.2445056438446045
+  },
+  {
+   "tokens": 794640,
+   "in_support": 794616,
+   "outside_support": 24,
+   "abs_delta_gt_tol": 548,
+   "share_gt_tol": 0.0007198228128460686,
+   "mean_abs_delta": 0.0005385170807130635,
+   "max_abs_delta": 0.3054612874984741
+  },
+  {
+   "tokens": 602495,
+   "in_support": 602479,
+   "outside_support": 16,
+   "abs_delta_gt_tol": 407,
+   "share_gt_tol": 0.0007020805151909974,
+   "mean_abs_delta": 0.0005973819643259048,
+   "max_abs_delta": 0.17008423805236816
+  },
+  {
+   "tokens": 597489,
+   "in_support": 597470,
+   "outside_support": 19,
+   "abs_delta_gt_tol": 437,
+   "share_gt_tol": 0.0007631939667508523,
+   "mean_abs_delta": 0.0005941445124335587,
+   "max_abs_delta": 0.19116604328155518
+  }
+ ],
+ "full_softmax_checks": [
+  {
+   "tokens": 883940,
+   "in_support": 883940,
+   "outside_support": 0,
+   "abs_delta_gt_tol": 8752,
+   "share_gt_tol": 0.009901124510713398,
+   "mean_abs_delta": 0.002748536178842187,
+   "max_abs_delta": 0.3901216983795166
+  },
+  {
+   "tokens": 842217,
+   "in_support": 842217,
+   "outside_support": 0,
+   "abs_delta_gt_tol": 9715,
+   "share_gt_tol": 0.011535031945448738,
+   "mean_abs_delta": 0.0030834292992949486,
+   "max_abs_delta": 0.44735586643218994
+  },
+  {
+   "tokens": 706367,
+   "in_support": 706367,
+   "outside_support": 0,
+   "abs_delta_gt_tol": 7689,
+   "share_gt_tol": 0.010885276350678897,
+   "mean_abs_delta": 0.0029291759710758924,
+   "max_abs_delta": 0.3364677429199219
+  },
+  {
+   "tokens": 657169,
+   "in_support": 657169,
+   "outside_support": 0,
+   "abs_delta_gt_tol": 8782,
+   "share_gt_tol": 0.013363381413304645,
+   "mean_abs_delta": 0.0033757630735635757,
+   "max_abs_delta": 0.4548201560974121
+  },
+  {
+   "tokens": 615091,
+   "in_support": 615091,
+   "outside_support": 0,
+   "abs_delta_gt_tol": 7463,
+   "share_gt_tol": 0.012133164035890624,
+   "mean_abs_delta": 0.0032997631933540106,
+   "max_abs_delta": 0.33959484100341797
+  },
+  {
+   "tokens": 737053,
+   "in_support": 737053,
+   "outside_support": 0,
+   "abs_delta_gt_tol": 8900,
+   "share_gt_tol": 0.012075115358054306,
+   "mean_abs_delta": 0.0033040069974958897,
+   "max_abs_delta": 0.4155435562133789
+  },
+  {
+   "tokens": 598269,
+   "in_support": 598269,
+   "outside_support": 0,
+   "abs_delta_gt_tol": 7003,
+   "share_gt_tol": 0.011705436851984642,
+   "mean_abs_delta": 0.0033127055503427982,
+   "max_abs_delta": 0.4601624011993408
+  },
+  {
+   "tokens": 660260,
+   "in_support": 660260,
+   "outside_support": 0,
+   "abs_delta_gt_tol": 7783,
+   "share_gt_tol": 0.011787780571290098,
+   "mean_abs_delta": 0.003191631054505706,
+   "max_abs_delta": 0.6382731199264526
+  },
+  {
+   "tokens": 699045,
+   "in_support": 699045,
+   "outside_support": 0,
+   "abs_delta_gt_tol": 7156,
+   "share_gt_tol": 0.010236823094364455,
+   "mean_abs_delta": 0.0028478282038122416,
+   "max_abs_delta": 0.34716904163360596
+  },
+  {
+   "tokens": 794640,
+   "in_support": 794640,
+   "outside_support": 0,
+   "abs_delta_gt_tol": 8687,
+   "share_gt_tol": 0.01093199436222692,
+   "mean_abs_delta": 0.002919441554695368,
+   "max_abs_delta": 0.4556770324707031
+  },
+  {
+   "tokens": 602495,
+   "in_support": 602495,
+   "outside_support": 0,
+   "abs_delta_gt_tol": 7179,
+   "share_gt_tol": 0.01191545158051104,
+   "mean_abs_delta": 0.0032292555551975965,
+   "max_abs_delta": 0.33005261421203613
+  },
+  {
+   "tokens": 597489,
+   "in_support": 597489,
+   "outside_support": 0,
+   "abs_delta_gt_tol": 7435,
+   "share_gt_tol": 0.01244374373419427,
+   "mean_abs_delta": 0.0032363024074584246,
+   "max_abs_delta": 0.4059586524963379
+  }
+ ]
+}

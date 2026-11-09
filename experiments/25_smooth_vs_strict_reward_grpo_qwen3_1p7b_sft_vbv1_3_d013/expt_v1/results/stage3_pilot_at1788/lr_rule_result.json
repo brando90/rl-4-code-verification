@@ -1,0 +1,113 @@
+{
+ "lanes": {
+  "A_lr1e-6": {
+   "strict_successes_per_128_by_update": [
+    8,
+    9,
+    6,
+    17,
+    7,
+    5,
+    11,
+    8,
+    8,
+    5,
+    8,
+    17
+   ],
+   "mean_u1_6": 8.667,
+   "mean_u7_12": 9.5,
+   "diff": 0.833,
+   "max_gate_share": 0.000771766015726314,
+   "gate_pass": true,
+   "not_falling": true,
+   "moves_ge_2": false,
+   "n_updates": 12
+  },
+  "A_lr5e-6": {
+   "strict_successes_per_128_by_update": [
+    8,
+    10,
+    12,
+    19,
+    12,
+    10,
+    25,
+    15,
+    25,
+    9,
+    17,
+    30
+   ],
+   "mean_u1_6": 11.833,
+   "mean_u7_12": 20.167,
+   "diff": 8.333,
+   "max_gate_share": 0.0010151680233228347,
+   "gate_pass": true,
+   "not_falling": true,
+   "moves_ge_2": true,
+   "n_updates": 12
+  },
+  "B_lr1e-6": {
+   "strict_successes_per_128_by_update": [
+    8,
+    6,
+    10,
+    11,
+    6,
+    3,
+    10,
+    10,
+    13,
+    4,
+    5,
+    13
+   ],
+   "mean_u1_6": 7.333,
+   "mean_u7_12": 9.167,
+   "diff": 1.833,
+   "max_gate_share": 0.0007631939667508523,
+   "gate_pass": true,
+   "not_falling": true,
+   "moves_ge_2": false,
+   "n_updates": 12
+  },
+  "B_lr5e-6": {
+   "strict_successes_per_128_by_update": [
+    8,
+    11,
+    7,
+    13,
+    6,
+    5,
+    21,
+    11,
+    17,
+    7,
+    7,
+    17
+   ],
+   "mean_u1_6": 8.333,
+   "mean_u7_12": 13.333,
+   "diff": 5.0,
+   "max_gate_share": 0.0008677297802691264,
+   "gate_pass": true,
+   "not_falling": true,
+   "moves_ge_2": true,
+   "n_updates": 12
+  }
+ },
+ "rule_ok_by_lr": {
+  "1e-6": true,
+  "5e-6": true
+ },
+ "arms_that_move_by_lr": {
+  "1e-6": [],
+  "5e-6": [
+   "A",
+   "B"
+  ]
+ },
+ "chosen_lr": "5e-6",
+ "null_stop": false
+}
