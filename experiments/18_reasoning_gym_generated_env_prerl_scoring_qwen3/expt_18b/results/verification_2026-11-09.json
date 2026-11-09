@@ -1,0 +1,84 @@
+{
+  "archive_sha256": "9ab4e1498512738e2d9055f3ebd71a94ba44caf4372f954304167b82b04c31b1",
+  "forecast_sha256_without_final_newline": "31a533e3af16b76260cb8723d70c8e3e18cc27405daadbfe0bc0930f5ca704ce",
+  "training_runs": 32,
+  "post_evaluations": 32,
+  "updates_each": 40,
+  "rollouts_each": 10240,
+  "target_components": 6,
+  "items_per_component": 256,
+  "samples_per_item": 8,
+  "all_recorded_gains_match_source_evaluations": true,
+  "all_nine_top_pick_regrets_match_tie_average_rule": true,
+  "all_nine_spearman_point_estimates_match_independent_rank_recount": true,
+  "target_item_hashes_match_pre_and_post": true,
+  "all_component_pass_rates_match_per_item_sample_fractions": true,
+  "regret_check": {
+    "H_only": {
+      "tied_top_environments": [
+        "rg/simple_equations/L0"
+      ],
+      "regret": 0.0244140625
+    },
+    "alpha": {
+      "tied_top_environments": [
+        "rg/family_relationships/L0"
+      ],
+      "regret": 0.4524739583333333
+    },
+    "difficulty": {
+      "tied_top_environments": [
+        "rg/simple_equations/L0",
+        "rg/family_relationships/L0",
+        "rg/basic_arithmetic/L0",
+        "rg/mini_sudoku/L0",
+        "rg/word_sorting/L0"
+      ],
+      "regret": 0.3023763020833333
+    },
+    "law_alpha": {
+      "tied_top_environments": [
+        "rg/leg_counting/L2"
+      ],
+      "regret": 0.039957682291666685
+    },
+    "pass_band": {
+      "tied_top_environments": [
+        "rg/basic_arithmetic/L0"
+      ],
+      "regret": 0.4693603515625
+    },
+    "random": {
+      "tied_top_environments": [
+        "rg/family_relationships/L2"
+      ],
+      "regret": 0.24991861979166669
+    },
+    "rho_h": {
+      "tied_top_environments": [
+        "rg/mini_sudoku/L2"
+      ],
+      "regret": 0.3819986979166667
+    },
+    "rho_only": {
+      "tied_top_environments": [
+        "rg/basic_arithmetic/L0"
+      ],
+      "regret": 0.4693603515625
+    },
+    "smaller_model": {
+      "tied_top_environments": [
+        "rg/letter_counting/L1"
+      ],
+      "regret": 0.4692789713541667
+    }
+  },
+  "training_framework_versions": [
+    "5.17.0"
+  ],
+  "training_backends": [
+    "hf"
+  ],
+  "total_training_tokens": 98780367,
+  "bootstrap_intervals": "Read from the original frozen analysis output; not regenerated in this daily check."
+}

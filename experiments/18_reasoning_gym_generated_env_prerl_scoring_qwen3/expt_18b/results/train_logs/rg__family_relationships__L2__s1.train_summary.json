@@ -1,0 +1,42 @@
+{
+  "schema": "train_summary_18b/v1",
+  "steps": 40,
+  "rollouts": 10240,
+  "response_tokens": 2991962,
+  "seconds": 2908.1,
+  "mean_step_seconds": 72.7,
+  "items_sha256": "91f286b127aba2c49424cc88ac5d97fe93fc2dbb3fd249dd2f85ae16c2b8b587",
+  "hp": {
+    "steps": 40,
+    "prompts_per_step": 32,
+    "group_size": 8,
+    "max_new_tokens": 1024,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": 0,
+    "lr": 1e-05,
+    "warmup_steps": 3,
+    "adam_betas": [
+      0.9,
+      0.99
+    ],
+    "adam_eps": 1e-08,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "kl_coef": 0.0,
+    "advantage": "r - mean_group(r), no std normalisation (Dr. GRPO), token-level loss normalisation",
+    "micro_batch_seqs": 8,
+    "weights": "bf16 model, fp32 master copy in AdamW",
+    "grad_checkpointing": true
+  },
+  "seed": 1,
+  "env_id": "rg/family_relationships/L2",
+  "run_seed": 1,
+  "item_seed": 21262082,
+  "smoke": false,
+  "backend": "hf",
+  "torch": "2.13.0+cu130",
+  "device": "cuda",
+  "transformers": "5.17.0",
+  "ckpt": "/scratch/users/brando9/e18b/runs/rg__family_relationships__L2__s1/ckpt"
+}

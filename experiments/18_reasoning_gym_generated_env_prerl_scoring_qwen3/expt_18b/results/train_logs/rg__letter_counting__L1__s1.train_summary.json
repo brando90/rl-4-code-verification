@@ -1,0 +1,42 @@
+{
+  "schema": "train_summary_18b/v1",
+  "steps": 40,
+  "rollouts": 10240,
+  "response_tokens": 82490,
+  "seconds": 49.2,
+  "mean_step_seconds": 1.23,
+  "items_sha256": "8ec959ef50ee32bcb57cf077e5c5ed381e063e7b0ed48503b400e9ec48a57847",
+  "hp": {
+    "steps": 40,
+    "prompts_per_step": 32,
+    "group_size": 8,
+    "max_new_tokens": 1024,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": 0,
+    "lr": 1e-05,
+    "warmup_steps": 3,
+    "adam_betas": [
+      0.9,
+      0.99
+    ],
+    "adam_eps": 1e-08,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "kl_coef": 0.0,
+    "advantage": "r - mean_group(r), no std normalisation (Dr. GRPO), token-level loss normalisation",
+    "micro_batch_seqs": 8,
+    "weights": "bf16 model, fp32 master copy in AdamW",
+    "grad_checkpointing": true
+  },
+  "seed": 1,
+  "env_id": "rg/letter_counting/L1",
+  "run_seed": 1,
+  "item_seed": 21262061,
+  "smoke": false,
+  "backend": "hf",
+  "torch": "2.13.0+cu130",
+  "device": "cuda",
+  "transformers": "5.17.0",
+  "ckpt": "/scratch/users/brando9/e18b/runs/rg__letter_counting__L1__s1/ckpt"
+}

@@ -1,0 +1,42 @@
+{
+  "schema": "train_summary_18b/v1",
+  "steps": 40,
+  "rollouts": 10240,
+  "response_tokens": 6268140,
+  "seconds": 3635.3,
+  "mean_step_seconds": 90.7,
+  "items_sha256": "8da445057a9f2626be7a2180a0adbf0cabb8bfcc09d60718eeebdf5c5dda8f0b",
+  "hp": {
+    "steps": 40,
+    "prompts_per_step": 32,
+    "group_size": 8,
+    "max_new_tokens": 1024,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": 0,
+    "lr": 1e-05,
+    "warmup_steps": 3,
+    "adam_betas": [
+      0.9,
+      0.99
+    ],
+    "adam_eps": 1e-08,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "kl_coef": 0.0,
+    "advantage": "r - mean_group(r), no std normalisation (Dr. GRPO), token-level loss normalisation",
+    "micro_batch_seqs": 8,
+    "weights": "bf16 model, fp32 master copy in AdamW",
+    "grad_checkpointing": true
+  },
+  "seed": 0,
+  "env_id": "rg/basic_arithmetic/L3",
+  "run_seed": 0,
+  "item_seed": 21261023,
+  "smoke": false,
+  "backend": "hf",
+  "torch": "2.13.0+cu130",
+  "device": "cuda",
+  "transformers": "5.17.0",
+  "ckpt": "/scratch/users/brando9/e18b/runs/rg__basic_arithmetic__L3__s0/ckpt"
+}

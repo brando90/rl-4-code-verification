@@ -1,0 +1,42 @@
+{
+  "schema": "train_summary_18b/v1",
+  "steps": 40,
+  "rollouts": 10240,
+  "response_tokens": 7592719,
+  "seconds": 4009.7,
+  "mean_step_seconds": 100.24,
+  "items_sha256": "2f9a01fc1acb6c462199af52e1da80390ee6accf4a172b3bc88ab06893ebb6c3",
+  "hp": {
+    "steps": 40,
+    "prompts_per_step": 32,
+    "group_size": 8,
+    "max_new_tokens": 1024,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": 0,
+    "lr": 1e-05,
+    "warmup_steps": 3,
+    "adam_betas": [
+      0.9,
+      0.99
+    ],
+    "adam_eps": 1e-08,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "kl_coef": 0.0,
+    "advantage": "r - mean_group(r), no std normalisation (Dr. GRPO), token-level loss normalisation",
+    "micro_batch_seqs": 8,
+    "weights": "bf16 model, fp32 master copy in AdamW",
+    "grad_checkpointing": true
+  },
+  "seed": 1,
+  "env_id": "rg/mini_sudoku/L1",
+  "run_seed": 1,
+  "item_seed": 21262091,
+  "smoke": false,
+  "backend": "hf",
+  "torch": "2.13.0+cu130",
+  "device": "cuda",
+  "transformers": "5.17.0",
+  "ckpt": "/scratch/users/brando9/e18b/runs/rg__mini_sudoku__L1__s1/ckpt"
+}

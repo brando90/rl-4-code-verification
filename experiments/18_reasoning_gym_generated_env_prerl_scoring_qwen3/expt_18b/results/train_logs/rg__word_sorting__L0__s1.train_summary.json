@@ -1,0 +1,42 @@
+{
+  "schema": "train_summary_18b/v1",
+  "steps": 40,
+  "rollouts": 10240,
+  "response_tokens": 223654,
+  "seconds": 543.4,
+  "mean_step_seconds": 13.58,
+  "items_sha256": "301e51411e26d713e471a3401d472f90d4891588c3ae7469dc4bbcc7600e7076",
+  "hp": {
+    "steps": 40,
+    "prompts_per_step": 32,
+    "group_size": 8,
+    "max_new_tokens": 1024,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": 0,
+    "lr": 1e-05,
+    "warmup_steps": 3,
+    "adam_betas": [
+      0.9,
+      0.99
+    ],
+    "adam_eps": 1e-08,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "kl_coef": 0.0,
+    "advantage": "r - mean_group(r), no std normalisation (Dr. GRPO), token-level loss normalisation",
+    "micro_batch_seqs": 8,
+    "weights": "bf16 model, fp32 master copy in AdamW",
+    "grad_checkpointing": true
+  },
+  "seed": 1,
+  "env_id": "rg/word_sorting/L0",
+  "run_seed": 1,
+  "item_seed": 21262070,
+  "smoke": false,
+  "backend": "hf",
+  "torch": "2.13.0+cu130",
+  "device": "cuda",
+  "transformers": "5.17.0",
+  "ckpt": "/scratch/users/brando9/e18b/runs/rg__word_sorting__L0__s1/ckpt"
+}
