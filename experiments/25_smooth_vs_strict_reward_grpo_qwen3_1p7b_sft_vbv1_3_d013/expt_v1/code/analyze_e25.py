@@ -59,6 +59,9 @@ def load_eval(root: Path, name: str, tasks: list[str], nsamp: int, rewards):
     return out
 
 
+SEEDS = (0, 1)
+
+
 def task_mean(a):  # per-task mean over scored samples
     return np.nanmean(a, axis=1)
 
@@ -68,7 +71,10 @@ def main():
     ap.add_argument("--evals", required=True)
     ap.add_argument("--full", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--seeds", default="0,1", help="comma list of seeds; default 0,1 reproduces the 2-seed run")
     a = ap.parse_args()
+    global SEEDS
+    SEEDS = tuple(int(x) for x in a.seeds.split(","))
     sys.path.insert(0, RL4CV)
     from rl4cv.rewards import reward_kernel_binary
     from rl4cv.veribench.jobs import read_scorer_per_task, scored_response
@@ -87,7 +93,7 @@ def main():
     base = load_eval(Path(BASE), "eval_u0_fp16", tasks, 8, rewards)
     R["u0"] = base
     for arm in "AB":
-        for s in (0, 1):
+        for s in SEEDS:
             for u, ns in ((16, 8), (32, 8), (48, 32)):
                 nm = f"{arm}_s{s}_u{u:03d}"
                 R[nm] = load_eval(ev / nm, f"eval_{nm}", tasks, ns, rewards)
@@ -107,7 +113,7 @@ def main():
     res = {"draws": DRAWS, "seed": SEED, "groups": int(np.unique(groups).size), "tasks": len(tasks), "runs": runs}
     # primary: update 48, seeds pooled, per-task mean over seeds of per-task pass rate
     def pooled(arm, u, key="strict"):
-        return np.mean([task_mean(R[f"{arm}_s{s}_u{u:03d}"][key]) for s in (0, 1)], axis=0)
+        return np.mean([task_mean(R[f"{arm}_s{s}_u{u:03d}"][key]) for s in SEEDS], axis=0)
 
     prim = {}
     for u in (16, 32, 48):
@@ -132,13 +138,13 @@ def main():
             good[f"{arm}_{key}_minus_u0"] = paired_group_bootstrap(lambda i, p=p, b=task_mean(base[key]): (p[i] - b[i]).mean(), groups)
     res["goodhart_u48"] = good
     # per-seed pairs at 48 (points)
-    res["per_seed_u48_points"] = {f"{arm}_s{s}": runs[f"{arm}_s{s}_u048"]["pass_at_1"] * 100 for arm in "AB" for s in (0, 1)}
+    res["per_seed_u48_points"] = {f"{arm}_s{s}": runs[f"{arm}_s{s}_u048"]["pass_at_1"] * 100 for arm in "AB" for s in SEEDS}
     # strict pass@1 of seed-paired differences (A_s0 vs B_s0, A_s1 vs B_s1)
-    res["per_seed_pair_diff_u48_points"] = {f"s{s}": (runs[f"B_s{s}_u048"]["pass_at_1"] - runs[f"A_s{s}_u048"]["pass_at_1"]) * 100 for s in (0, 1)}
+    res["per_seed_pair_diff_u48_points"] = {f"s{s}": (runs[f"B_s{s}_u048"]["pass_at_1"] - runs[f"A_s{s}_u048"]["pass_at_1"]) * 100 for s in SEEDS}
     # training curves from log.jsonl (last entry per update)
     curves = {}
     for arm in "AB":
-        for s in (0, 1):
+        for s in SEEDS:
             f = Path(a.full) / f"{arm}_s{s}_lr5e-6" / f"{arm}_s{s}" / "log.jsonl"
             by = {}
             for line in f.read_text().splitlines():
