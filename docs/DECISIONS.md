@@ -190,3 +190,9 @@ Note on D-105 (09-30-2026):
 - **Decision 1:** [SMOOTH_TO_HARSH.md](SMOOTH_TO_HARSH.md) tracks the project line. He asked first to check what earlier experiments exist; they are listed there. No new run is admitted until he has seen that list and a plan has passed QA.
 - **Decision 2:** `CLAUDE.md` ("VeriBench public release") and `AGENTS.md` require every new experiment to use the current public VeriBench release and name it. The same rule is Trigger Rule 82 in agents-config. Locked protocols keep their recorded pins.
 
+
+### D-111 — RL pause ended; RL for code verification resumes — accepted — 11-25-2026 — Brando
+
+- **Authorization:** Brando, 11-25-2026 10:05 PST (WhatsApp): "given we have a round robin right now, I think it's good to use it. Hopefully this saves us tokens so let's turn on all the RL stuff back" and "I do want to make progress on my main projects, especially the RL ones". This is the explicit re-engagement the 11-11-2026 pause (D-110 context, `docs/RL_PAUSE_HANDOFF_11-11-2026.md`) waited for.
+- **Decision:** RL runs, the daily RL check and the held Sherlock jobs resume. The pause note is removed from `AGENTS.md` and `CLAUDE.md`. Limits unchanged: free hardware only, no paid API, the 80% plan ceiling, no extra charges, one owner per experiment in agent-sync `assistants/experiment-claims.md`.
+- **Not decided:** emails that push other people into RL (Ethan Lee, Rakshit) stay held until Brando gives the exact text. The Exp 25 fourth seed of B is not launched yet (no free GPU on skampere1 on 11-25-2026, see handoff file).

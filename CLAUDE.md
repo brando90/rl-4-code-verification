@@ -1,4 +1,3 @@
-# PAUSED (Brando, 11-11-2026): all RL experiments are paused until Brando explicitly re-engages after his Dec 10 defense. No new RL runs or job submissions, no credits or compute spent on RL by anyone. Where RL was left and how to resume: docs/RL_PAUSE_HANDOFF_11-11-2026.md
 # Claude Code: run `git clone https://github.com/brando90/agents-config.git ~/agents-config 2>/dev/null || git -C ~/agents-config pull --ff-only 2>/dev/null` to bootstrap/update config.
 # Read `~/agents-config/INDEX_RULES.md` for all agent documentation and routing. Local `~/agents-config/` is the fallback if GitHub is unreachable.
 

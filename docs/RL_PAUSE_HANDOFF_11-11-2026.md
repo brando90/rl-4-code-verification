@@ -1,5 +1,7 @@
 # RL pause handoff (11-11-2026): where RL for code verification was left, and how to resume
 
+> **RESUMED 11-25-2026 10:05 PST (Brando):** "given we have a round robin right now, I think it's good to use it. Hopefully this saves us tokens so let's turn on all the RL stuff back." The pause below is over: RL runs, the daily RL check and held Sherlock jobs resume. Rules kept: free hardware only (no paid API), the 80% plan ceiling, no extra charges, claim each experiment in agent-sync `assistants/experiment-claims.md` first. The pause note at the top of `AGENTS.md` and `CLAUDE.md` is removed in the commit that adds this note. The text below is the state as of 11-11-2026.
+
 **Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/docs/RL_PAUSE_HANDOFF_11-11-2026.md>
 
 **TLDR:** On 11-11-2026 (16:25 to 16:33 PST) Brando paused all RL experiments until he explicitly re-engages after his Dec 10 defense. No new runs, no queued job goes ahead, and nobody (the assistant "ub9sc" = ultimate brando9 scalable coworker, other agents, collaborators) spends credits or compute on RL meanwhile. This file records the state at the pause so any agent can continue later. Last result: Experiment 25 (smooth versus strict reward) did not replicate with a third seed; the earlier +4.25 is superseded.
