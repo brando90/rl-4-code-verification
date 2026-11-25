@@ -3,6 +3,8 @@
 # Then read `~/rl-4-code-verification/CLAUDE.md` (this repository's `CLAUDE.md`) for the project-specific rules; they apply to every agent, not only Claude Code.
 # Rule that applies to every experiment: use the current public VeriBench release (`veribench@1.3` on 10-28-2026) and name it; the check before each run is in `CLAUDE.md`, "VeriBench public release".
 
+# Rule that applies to every agent: research work goes straight to `main` in numbered experiment folders (`experiments/NN_<setup name>/expt_vN/`), no branches or pull requests (Brando, 11-25-2026; D-112, details in `CLAUDE.md`, "Work on `main`")
+
 # RL heuristics (Brando, 10-28-2026): read `docs/HEURISTICS.md` before any RL run (precision, Varun's RL setup, free-hardware use); append each new rule there
 
 ## Automatic Claude and Codex jobs (Brando, 11-03-2026)
