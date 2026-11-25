@@ -94,7 +94,7 @@ Qwen3-1.7B-Base's much higher mean token count (8,026 vs. 2,219–2,819) and cut
 | `gov_cert_set_synthetic` | 0.0078 | 6.32 | 0.063 |
 | `security_set` | 0.00027 | 0.30 | 0.0022 |
 
-These are the same splits (plus the single `kernel_binary` pass) driving Qwen3-4B-Base's nonzero but still far-sub-threshold headline numbers; every other split carries zero usable RL signal for every model.
+These are the same splits (plus the 5 `kernel_binary` passes of Qwen3-4B-Base, one per task; QA 11-25-2026 corrected "single") driving Qwen3-4B-Base's nonzero but still far-sub-threshold headline numbers; every other split carries zero usable RL signal for every model.
 
 ### Paired comparison with experiment 01's post-trained models (128-task probe subset)
 

@@ -64,6 +64,6 @@ The table below retains the larger phase design; completing candidate preparatio
 | Design | Done (09-30-2026) |
 | Protocols | Version-2 bounded preflight protocol exists; larger phase protocol remains pending its gates |
 | Pools, screens, panel | Version-2 source screening and candidate partitions published; accepted training references remain blocked |
-| Warm-start Lean data | [v3](expt_v3/README.md) done 10-09-2026: **PARTIAL**, 587 kernel-verified (task, teacher) pairs over 455 MBPP tasks (anthropic 55 / openai 382 / google 150; Fable 5.1 at max effort hit the 128k output ceiling on 893/970); SFT set on skampere1 ([results](expt_v3/results.md)) |
+| Warm-start Lean data | [v3](expt_v3/README.md) done 10-09-2026: **PARTIAL**, 587 kernel-verified (task, teacher) pairs over 455 MBPP tasks (anthropic 55 / openai 382 / google 150; Fable 5.1 at max effort hit the 128k output ceiling (`MaxOutputTokensExceededError`) on 870/970 cells, plus 26 incomplete completions; QA 11-25-2026 corrected 893, which is the `no_lean` count); SFT set on skampere1 ([results](expt_v3/results.md)) |
 | Warm start ×4 scales | TODO |
 | Probes and cells ×4 scales | TODO |

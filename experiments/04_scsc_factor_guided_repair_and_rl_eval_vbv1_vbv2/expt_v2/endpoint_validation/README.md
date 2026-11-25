@@ -4,6 +4,8 @@
 
 **TLDR:** This validates endpoint plumbing with authored controls and the pinned transitive-axiom checker. Python unit checks passed; actual Lean 4.22.0 validation is PENDING on the Stanford Network Analysis Project (SNAP) cluster.
 
+> **Stale (QA 11-25-2026):** the PENDING status in this README is out of date. The immutable-row reconciliation `results_2026-10-06T0734Z_reconciliation.json` in this folder shows all 24 authored controls measured and matching; the current numbers are in `../../results.md` and `experiments/README.md`.
+
 The home is `04_scsc_factor_guided_repair_and_rl_eval_vbv1_vbv2/expt_v2/endpoint_validation`. These fixtures are external engineering controls, not benchmark references, training examples, VeriBench successes or Smooth Conjunctive Score for Code verification (SCSC) measurements. They do not establish endpoint applicability to arbitrary benchmark files.
 
 ## Goal and decision criterion
