@@ -57,4 +57,4 @@ Live receipt status (10-21-2026 07:15 PDT): **PILOT_RUNNING**. Factored seed 130
 Training rows are fixed-run diagnostics (p-val=n/a), not an efficacy claim. Validation receipts retain grouped-task bootstrap intervals and missingness bounds. Coverage requiring a judge remains unmeasured; a known zero local factor can determine a zero composite.
 <!-- LIVE END -->
 
-**TLDR-end:** [rl-4-code-verification: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3] The paired pilot reached 19 factored updates on B / 1301 and 10 on replication B / 1302 with steady nonzero gradients; strict binary RL shows total gradient starvation across both seeds ($0 API spend).
+**TLDR-end:** [rl-4-code-verification: 13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v3] The paired pilot reached 19 factored updates on B / 1301 and 10 on replication B / 1302 with steady nonzero gradients; strict binary RL shows near-total gradient starvation across both seeds (QA 11-25-2026: one of nine saved A/1301 updates, update 4, has 1/32 active groups and a nonzero gradient norm 0.0038, so "total" was too strong) ($0 API spend).

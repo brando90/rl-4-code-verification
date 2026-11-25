@@ -52,7 +52,7 @@ Not a finding: the bf16 raw-logprob generation scored against the T=0.6 referenc
 Token counts per entropy bucket (bf16/bf16): 585k (<0.1), 124k (0.1-1), 67k (>1).
 
 ## Findings
-1. With fp32 on both sides, the mismatch disappears under the truncated-support definition (0.0092%, 22 of 786,413 tokens, p99 0.0078). Every pairing with a bf16 side is 6.4-8.3% (8.1% for fp32-generated tokens scored in bf16). This points to bf16 numerics as the source, but the evidence is one checkpoint, one seed and A4000 hardware only; whether the same holds on A100/H200, or with the trainer's own kernels (e.g. FSDP/flash-attn training forward), is untested.
+1. With fp32 on both sides, the mismatch disappears under the truncated-support definition (0.0092%, 72 of 786,413 tokens: 50 in-support violations plus 22 unsupported; QA 11-25-2026: the original said 22 of 786,413, which would be 0.0028%; p99 0.0078). Every pairing with a bf16 side is 6.4-8.3% (8.1% for fp32-generated tokens scored in bf16). This points to bf16 numerics as the source, but the evidence is one checkpoint, one seed and A4000 hardware only; whether the same holds on A100/H200, or with the trainer's own kernels (e.g. FSDP/flash-attn training forward), is untested.
 2. Making only lm_head fp32 does not help (6.4% -> 8.3%, slightly worse than bf16/bf16): the error does not come from the head alone.
 3. The mismatch is concentrated: entropy <0.1 tokens (about 75% of tokens) essentially never mismatch; entropy 0.1-1: 17-22%; entropy >1: 42-56%. By position, the first 1024 tokens carry 14-21% and later tokens 2-3%.
 4. Nothing here changes any frozen gate; these are numbers to design against, not a gate result.

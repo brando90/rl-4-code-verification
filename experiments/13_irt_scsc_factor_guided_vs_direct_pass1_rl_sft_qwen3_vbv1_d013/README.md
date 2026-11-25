@@ -4,7 +4,7 @@
 
 **TLDR:** This tests the crux of SCSC ↔ evals ↔ RL. At matched compute, does reinforcement learning (RL) guided by a factored, interpretable model of the evaluation improve held-out strict pass@1 more than RL on the strict reward itself? No experiment has tested this yet: experiment 09 failed its technical gate with zero optimizer updates.
 
-A new zero-call measurement shows a naive test would have been null by construction. On all 15 finished supervised fine-tuning (SFT) checkpoints of experiment 08, VeriBench's kernel-checked factors equal the strict pass/fail outcome, so a factored kernel reward adds no learning signal.
+A new zero-call measurement shows a naive test would have been null by construction. On 14 of the 15 finished supervised fine-tuning (SFT) checkpoints of experiment 08 (QA 11-25-2026: one exception, sft_8B_f0p125, one compiled-but-not-strict response; the original said all 15), VeriBench's kernel-checked factors equal the strict pass/fail outcome, so a factored kernel reward adds no learning signal.
 
 The plan has three phases:
 

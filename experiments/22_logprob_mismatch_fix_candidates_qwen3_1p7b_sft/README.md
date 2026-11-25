@@ -20,7 +20,7 @@ Gate = 1%. "Pass" only means below 1% on this measurement.
 | vLLM generation | HF scorer | tokens | unsupported | share mismatched | median abs | p99 abs | entropy >1 bucket |
 |---|---|---|---|---|---|---|---|
 | bf16 | bf16 (baseline, Exp 20-like) | 786,432 | 452 | **6.13%** | 0 | 0.247 | 42.2% |
-| bf16 | bf16, lm_head fp32 | 786,432 | 450 | 7.95% | 0 | 0.185 | 56.3% |
+| bf16 | bf16, lm_head fp32 | 786,432 | 450 | 7.95% | 0 | 0.185 | 56.2% |
 | bf16 | fp16 | 786,432 | 470 | 7.71% | 0 | 0.177 | 55.2% |
 | bf16 | fp32 | 786,432 | 464 | 7.68% | 0 | 0.176 | 54.9% |
 | fp16 | bf16 | 785,595 | 362 | 8.05% | 0 | 0.188 | 56.9% |
