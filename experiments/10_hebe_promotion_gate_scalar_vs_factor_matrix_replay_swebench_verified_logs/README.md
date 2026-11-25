@@ -78,7 +78,7 @@ Prior evidence that shapes the predictions:
 
 ## Status
 
-PHASE A PRIMARY DONE; SENSITIVITY BLOCKED; PHASE B WAITING (10-14-2026).
+PHASE A PRIMARY DONE; SENSITIVITY DONE in expt_v2 on 10-15-2026 (QA 11-25-2026 status update; was BLOCKED); PHASE B WAITING (10-14-2026).
 
 - **10-09-2026:** protocol revision 3 LOCKED (commit `55d1c53`, 16:43 PDT) after two GPT-6 Astra (effort ultra) reviews; forecast frozen with `rl4cv.forecast.freeze_forecast` (`expt_v1/forecasts/e10_forecast.json`, SHA-256 `e4eccd8b…3c23`). Claude Fable 5.1 review unavailable (no credits on any account; none bought).
 - **10-14-2026, phase A primary DONE** (skampere1, tmux `rl4cv-e10-phase-a-10-14`, 13:02–13:04:56 PDT, zero model calls; lock re-verified first: `verify_forecast` True, all pins match, 15/15 tests on the host). 164 × 424 reproduced; 1,000 splits (0 degenerate) × 1,000 dyadic system-bootstrap draws; median 2,382 near-gain pairs per split. Scored as frozen ([results.md](results.md)): H1 scalar-rule harmful promotion rate 0.2580 [0.2410, 0.2821] p-val=n/a; H2a 0.1265 [0.0840, 0.1675] p-val=n/a, supported but descriptive (null-sized); H3 **no recommendation** (`interval_includes_zero`): C_fac = R2 − R3 0.0046 [−0.0027, 0.0117], C_bin = R0 − R2 0.0163 [−0.0014, 0.0355], C_fac0 = R0 − R3 0.0210 [0.0017, 0.0403], all utility guards pass; "just be stricter" S0+ is safer than R3 by 0.0652 [0.0443, 0.0838] at the same rate. The factor-feedback question moves to experiment 11 without a gate claim.

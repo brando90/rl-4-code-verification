@@ -198,7 +198,7 @@ Frozen original-20-row prediction: HOLDS. Details: `{"helper_resolved_or_missing
 
 ## Twenty newly selected disagreements
 
-Selection is the frozen version-1 rule applied to version 2’s fully applicable, compiling, score-measured cohort: 10 highest-SCSC failures and 10 lowest-SCSC successes, with system/task tie breakers. The selected rows and per-test evidence are inspected in [the disagreement report](DISAGREEMENTS_v2.md).
+Selection is the frozen version-1 rule applied to version 2’s fully applicable, compiling, score-measured cohort: 10 highest-SCSC failures and 10 lowest-SCSC successes, with system/task tie breakers. The selected rows and per-test evidence are inspected in [the disagreement report](DISAGREEMENTS_v2.md) (file not committed; QA 11-25-2026).
 
 | Group | System | Task | SCSC | Tests pass / total | Mapping steps |
 | --- | --- | --- | --- | --- | --- |
@@ -225,7 +225,7 @@ Selection is the frozen version-1 rule applied to version 2’s fully applicable
 
 ## Reproducibility and limitations
 
-Outcome ledger SHA-256: `5ecab23e05ce1cd87262aadc016b598e044c332f21efb88ca2bdb1b28c66c438`. [All 9,856 per-cell records](results/cells_v2.jsonl); [analysis JSON](results/analysis_e12_v2.json); [completion receipt](results/evaluation_complete_v2.json); [frozen runtime manifest](results/evaluation_launch_v2.json); [preflight](results/preflight_v2.json).
+Outcome ledger SHA-256: `5ecab23e05ce1cd87262aadc016b598e044c332f21efb88ca2bdb1b28c66c438`. [All 9,856 per-cell records](results/cells_v2.jsonl) (file not committed; QA 11-25-2026); [analysis JSON](results/analysis_e12_v2.json); [completion receipt](results/evaluation_complete_v2.json); [frozen runtime manifest](results/evaluation_launch_v2.json); [preflight](results/preflight_v2.json).
 
 The run used Lean v4.22.0 with pinned Mathlib on skampere1, two low-priority CPU workers, the inherited 600-second Lean timeout, and at most one identical infrastructure retry per group. The complete receipt audit records module reuse and retries. No adapter tuning, candidate modification, gold-reference modification, new model scoring, or outcome-based sample selection occurred.
 

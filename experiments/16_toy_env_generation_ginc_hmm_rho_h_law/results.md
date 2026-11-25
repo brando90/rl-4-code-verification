@@ -93,7 +93,7 @@ Same chain, 22 candidates, 3 budgets (25.6k / 51.2k / 102.4k tokens), 5 seeds, G
 | exact-gradient oracle's ranking | 3.37 | [3.00, 3.98] | [+5.86, +8.70] |
 | best fixed from s1–s5 (b12_r3_sl0_sg0.0) | **1.47** | [0.18, 2.93] | [+8.68, +9.92] |
 
-Intervals: 2,000 bootstrap resamples of start-policy repeats (per scale) and seeds (per repeat), law and best-fixed label refit each time. The law has higher regret than every other rule in 100% of resamples. Bootstrap intervals on a max-minus-pick quantity lean high (resampling adds noise to the max), so the best-fixed interval sits partly above its point value.
+Intervals: 2,000 bootstrap resamples of start-policy repeats (per scale) and seeds (per repeat), law and best-fixed label refit each time. The law has higher regret than every other rule in 100% of resamples (QA 11-25-2026: not reproduced; rho-only ties the law in 100% of 2,000 recomputed draws, highest-start ties in 1,195 and is worse than the law in 804; the NO ADVANTAGE verdict stands). Bootstrap intervals on a max-minus-pick quantity lean high (resampling adds noise to the max), so the best-fixed interval sits partly above its point value.
 
 At s6, 102.4k tokens: the law's pick b15 gains −3.75 pts (repeat means −1.28 / −4.04 / −5.92); the observed best is b08_r2_sl0_sg0.0 at +8.20 (SD over 15 runs 1.19); law predictions span only +4.5 to +6.3 pts while observed gains span −3.75 to +8.20. Spearman at s6: law vs observed −0.02, law vs oracle 0.19, observed vs oracle 0.66.
 
@@ -175,7 +175,7 @@ A 16-state chain MDP in 4 regions (each region has its own hidden action map), w
 | T1: Eq. 7 beats budget+scale only at n4 | passes only formally: RMSE 3.51 vs 3.54 pts, rank accuracy 0.645 vs 0.500 |
 | T2: law regret below random and every baseline | beats random (0.98 vs 4.32 pts), **loses to best fixed candidate from n1–n3** (0.51) |
 
-| choice rule at n4, 102.4k tokens | regret (pts) |
+| choice rule at n4, mean over the three budgets (QA 11-25-2026: previously labelled 102.4k tokens; recomputed at 102.4k: law 0.88, best fixed 0.11, highest mixed share 4.06, random 4.18, oracle 3.82, H only 4.16, highest start 8.51, rho only 10.36) | regret (pts) |
 |---|---|
 | ρ–H law (picks b13_r3_sl0_sg0.5, +6.76 pts, seed SD 1.02) | 0.98 |
 | best fixed from n1–n3 (b12_r3_sl0_sg0.0) | 0.51 |

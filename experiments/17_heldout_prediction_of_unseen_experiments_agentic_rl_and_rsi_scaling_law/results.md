@@ -20,14 +20,14 @@ The law is fitted on the 15 observations of smaller models ($1.7\text{B}, 4\text
 | **$2.88\text{M}$ ($50\%$)** | `+9.44%` | `+8.24%` | `+8.51%` | `-1.20 pp` |
 | **$4.32\text{M}$ ($75\%$)** | `+8.52%` | `+9.33%` | `+9.78%` | `+0.81 pp` |
 | **$5.75\text{M}$ ($100\%$)** | `+11.20%` | `+10.15%` | `+10.64%` | `-1.05 pp` |
-| **Overall Metric** | — | **RMSE: `1.273 pp`**, **$r = 0.9595$** | RMSE: `1.120 pp`, $r = 0.9564$ | MAE: `1.199 pp` |
+| **Overall Metric** | — | **RMSE: `1.273 pp`**, **$r = 0.9595$** | RMSE: `1.120 pp`, $r = 0.9564$ | MAE: `1.201 pp` (QA 11-25-2026: was 1.199, rounding) |
 
 *Verdict:* **WITHDRAWN.** The budget-and-scale baseline has the lower error (1.120 versus 1.273 percentage points). The features in this table are also computed from the same pass counts as the utility. The corrected comparison, using only the base model's signal stats, still has the budget curve ahead (1.120 versus 1.194).
 
 ---
 
 ### Task 1B: Cross-Regime Transfer (Fit on Replay $R$ $\to$ Predict Unseen Expansion $E$)
-Can the law fitted on one training regime (Matched Replay $R$) predict the utility trajectory of a fundamentally different data regime (Diversity Expansion $E$) using Expansion's pre-training signal density $\rho$ and coverage $H$?
+Can the law fitted on one training regime (Matched Replay $R$) predict the utility trajectory of a fundamentally different data regime (Diversity Expansion $E$) using Expansion's signal density $\rho$ and coverage $H$ (QA 11-25-2026: the driver computes these from the Expansion target rung's own `k_kernel_binary` values, the same values used for its utility, so they are not pre-training features)?
 
 | Scale | Budget | True Expansion Utility | Predicted from Replay Model | Prediction Error ($\hat{U} - U_{\text{true}}$) |
 |---|---|---:|---:|---:|
@@ -52,9 +52,9 @@ In multi-round self-improvement, can we stop training early and accurately predi
 | **4.0B** | `+8.98%` | `+7.18%` | `+3.61%` | Law: `-1.80 pp` vs Last: `-5.37 pp` |
 | **8.0B** | `+9.63%` | `+9.08%` | `+7.13%` | Law: **`-0.55 pp`** vs Last: `-2.50 pp` |
 | **14.0B** | `+11.20%` | `+9.56%` | `+9.44%` | Law: **`-1.64 pp`** vs Last: `-1.76 pp` |
-| **Overall Metric** | — | **RMSE: `1.877 pp`** (MAE: `1.697 pp`) | **RMSE: `3.468 pp`** (MAE: `3.195 pp`) | **`45.88%` Error Reduction** |
+| **Overall Metric** | — | **RMSE: `1.877 pp`** (MAE: `1.699 pp`) | **RMSE: `3.468 pp`** (MAE: `3.194 pp`) | **`45.87%` Error Reduction** |
 
-*Verdict:* **WITHDRAWN as a law result.** The 45.88% figure uses the final rung's own pass counts as features. With features taken from the 50% rung only, the budget-and-scale curve has error 1.372 percentage points and the ρ–H fit has 1.790, against 3.468 for carrying the 50% gain forward. The curve succeeds. The ρ–H terms do not improve it.
+*Verdict:* **WITHDRAWN as a law result.** The 45.87% figure uses the final rung's own pass counts as features. With features taken from the 50% rung only, the budget-and-scale curve has error 1.372 percentage points and the ρ–H fit has 1.790, against 3.468 for carrying the 50% gain forward. The curve succeeds. The ρ–H terms do not improve it.
 
 ---
 
@@ -62,7 +62,7 @@ In multi-round self-improvement, can we stop training early and accurately predi
 
 On 164 agentic systems on SWE-bench Verified (varying models, harnesses, tools, and scaffolds):
 - **Rank Rule:** 2PL IRT ability estimated from a 50-task probe predicts held-out 374-task pass@1 with **`0.9574` median Spearman rank correlation**, outranking empirical pass@1 in **`81.15%` of 2,000 splits** (`1,623` positive splits, median gain `+0.0040 [-0.0030, +0.0166]`).
-- **Level Rule (MAE):** 2PL posterior-predictive pass@1 reduces MAE by **`+0.0210 [+0.0195, +0.0224]`** over raw empirical pass@1, and beats non-IRT linear regression controls from the same reference systems by **`+0.0052 [+0.0043, +0.0059] p = 0.0009995`** (`164/164` systems improved).
+- **Level Rule (MAE):** 2PL posterior-predictive pass@1 reduces MAE by **`+0.0210 [+0.0195, +0.0224]`** over raw empirical pass@1, and beats non-IRT linear regression controls from the same reference systems by **`+0.0022 [+0.0015, +0.0028]`** (`133/164` systems improved) and mean-equating by `+0.0052 [+0.0043, +0.0059] p = 0.0009995` (`146/164`). QA 11-25-2026: the original text gave the mean-equating numbers (+0.0052, 164/164) as the linear-regression result; the numbers above are the independent recomputation and match E14.
 - *Takeaway for Agentic Post-Training:* A small probe calibrated through latent item difficulty and discriminability provides a superior signal for system ranking and post-training selection than raw test scores.
 
 ---
@@ -75,13 +75,13 @@ Trained on 3 environment cells and evaluated on the 4th unseen environment cell 
 
 | Held-Out Unseen Environment | Unseen $14\text{B}$ Test RMSE | Unseen $14\text{B}$ Test MAE |
 |---|---:|---:|
-| **Held-Out `HH`** | `2.082 pp` | `1.705 pp` |
-| **Held-Out `HL` (Optimal Cell)** | `1.145 pp` | `0.941 pp` |
-| **Held-Out `LH`** | `0.837 pp` | `0.803 pp` |
-| **Held-Out `LL`** | `2.816 pp` | `2.709 pp` |
-| **Overall Across All 4 Unseen Cells** | **`1.889 pp`** | **`1.539 pp`** |
+| **Held-Out `HH`** | `2.082 pp` | `1.560 pp` |
+| **Held-Out `HL` (Optimal Cell)** | `1.145 pp` | `1.104 pp` |
+| **Held-Out `LH`** | `0.837 pp` | `0.743 pp` |
+| **Held-Out `LL`** | `2.816 pp` | `2.380 pp` |
+| **Overall Across All 4 Unseen Cells** | **`1.889 pp`** | **`1.447 pp`** |
 
-- **Allocation Regret:** The law selects `HL` at all three budgets, incurring an allocation regret of **`0.288 pp`**, compared to **`1.637 pp`** for a uniformly random candidate environment (a **`1.349 pp`** regret reduction).
+- **Allocation Regret:** The law selects `HL` at all three budgets, incurring an allocation regret of **`0.287 pp`**, compared to **`2.717 pp`** for a uniformly random candidate environment (a **`2.430 pp`** regret reduction). QA 11-25-2026: original text said 0.288 / 1.637 / 1.349 pp; the recomputation and `results/heldout_prediction_summary.json` give these values. The held-out MAE column above was corrected the same way (was 1.705; 0.941; 0.803; 2.709; overall 1.539).
 
 ---
 
@@ -93,7 +93,7 @@ To ensure scientific integrity and prevent reviewer overclaiming objections:
 2. **Zero-Signal Discontinuity ($\rho = 0$):**
    When an environment produces zero successful rollouts under the start policy ($p = 0 \implies \rho = 0$), $\log \rho \to -\infty$ and policy gradient updates suffer 100% gradient starvation (`grad_norm = 0.0`, as proven on the 256-rollout `Qwen3-4B` batch in Expt 13). Scaling laws predict zero progress in this regime; they cannot predict recovery unless dense/shaped rewards (like `factored_reward`) are introduced.
 3. **Seed Variance & Confidence Bounds:**
-   Point predictions must always be reported alongside empirical bootstrap intervals. In our experiments, 95% paired bootstrap intervals for 14B extrapolation spanned $\pm 1.2\text{--}1.5\text{ pp}$.
+   Point predictions must always be reported alongside empirical bootstrap intervals. In our experiments, 95% paired bootstrap intervals for 14B extrapolation spanned $\pm 1.2\text{--}1.5\text{ pp}$ (QA 11-25-2026: these intervals are not saved anywhere and the driver does not compute them; treat as unverified).
 
 ---
 

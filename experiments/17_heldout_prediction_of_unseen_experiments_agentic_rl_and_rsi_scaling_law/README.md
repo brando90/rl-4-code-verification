@@ -28,8 +28,8 @@ This experiment directly addresses review guidance from **Andrew (Zhanke) Zhou**
 
 ## Key Findings (Summary)
 
-- **Unseen Model Scale Extrapolation (14B):** The $\rho-H$ law fitted only on smaller models ($1.7\text{B}, 4\text{B}, 8\text{B}$) predicts the 5-rung trajectory of untouched $14\text{B}$ with **`1.273 pp` RMSE and Pearson $r = 0.9595$**.
+- **Unseen Model Scale Extrapolation (14B):** The $\rho-H$ law fitted only on smaller models ($1.7\text{B}, 4\text{B}, 8\text{B}$) predicts the 5-rung trajectory of untouched $14\text{B}$ with **`1.273 pp` RMSE and Pearson $r = 0.9595$** (QA 11-25-2026: withdrawn in results.md; the budget-and-scale curve has 1.120 pp).
 - **Cross-Regime Data Transfer (Replay $\to$ Expansion):** The law fitted on Replay ($R$) predicts the unseen Expansion ($E$) regime with **`2.992 pp` RMSE and Pearson $r = 0.9940$** (under `1.5 pp` error at 4B and 8B).
-- **RSI Horizon Extrapolation:** Predicting the final 100% budget outcome from early rungs ($\le 50\%$) achieves **`1.877 pp` RMSE**, cutting prediction error by **`45.88%`** over carrying the last observed checkpoint forward (`3.468 pp`).
+- **RSI Horizon Extrapolation:** Predicting the final 100% budget outcome from early rungs ($\le 50\%$) achieves **`1.877 pp` RMSE**, cutting prediction error by **`45.87%`** over carrying the last observed checkpoint forward (`3.468 pp`).
 - **Agentic Systems on SWE-bench Verified (164 systems):** A 50-task probe predicts full benchmark pass@1 with **`0.9574` median Spearman rank correlation**, outranking raw empirical pass@1 in **`81.15%` of 2,000 splits** and reducing level MAE by **`+0.0210 [+0.0195, +0.0224]`**.
-- **Leave-One-Environment-Out (LOEO):** Predicting completely unseen environment cells yields **`1.889 pp` overall RMSE** and cuts allocation regret by **`1.349 pp`** vs random selection.
+- **Leave-One-Environment-Out (LOEO):** Predicting completely unseen environment cells yields **`1.889 pp` overall RMSE** and cuts allocation regret by **`2.430 pp`** vs random selection (QA 11-25-2026: was 1.349; recomputed).

@@ -30,15 +30,15 @@ Intervals here and below are percentile bootstraps over validation task groups: 
 | Forecast (no start-policy outcome used) | AUC for a mixed group of 8 [95% CI] | Mixed share in the top quarter (34 of 135) [95% CI] |
 |---|---|---|
 | Random-intercept 2PL, primary | 0.862 [0.792, 0.925] | 0.706 [0.433, 0.853] |
-| Panel strict pass rate (heuristic) | 0.852 [0.781, 0.916] | 0.647 [0.424, 0.794] |
+| Panel strict pass rate (heuristic) | 0.851 [0.781, 0.916] | 0.647 [0.424, 0.794] |
 | Panel mean smooth SCSC (heuristic) | 0.857 [0.785, 0.922] | 0.676 [0.441, 0.824] |
 | Explanatory 2PL (panel + task features) | 0.883 [0.818, 0.939] | 0.706 [0.438, 0.875] |
 | Task features only (validation tasks unseen) | **0.954 [0.909, 0.987]** | 0.794 [0.531, 0.919] |
 | Uniform pool | 0.5 | 0.237 |
 
 - **Not IRT-specific.** IRT minus the panel strict rate: +0.011 [−0.004, +0.027] p-val=0.15. IRT minus the panel smooth score: +0.006 [−0.014, +0.025] p-val=0.58.
-- **Task content predicts better than other systems' outcomes (secondary, exploratory).** The features-only model beats the primary 2PL by 0.092 [0.023, 0.164] p-val=0.011. The explanatory 2PL also beats the primary, by 0.021 [0.008, 0.037] p-val=0.001. Features-only versus explanatory was not a pre-registered contrast. One plausible reason, not tested here: the single-call systems' failures are often Lean well-formedness problems that this SFT policy does not share.
-- **A selected pool triples learning signal per update.** Top-quarter mixed share 0.706 against 0.237 uniform: +0.469 [0.266, 0.562] p-val=0.0001. At G = 8 that is 22.6 against 7.6 mixed groups per 256-rollout update. Experiment 13's original arm-C prompt sequence (50% uniform + 50% item information) gives 0.312: +0.074 [0.050, 0.097] p-val=0.0001.
+- **Task content predicts better than other systems' outcomes (secondary, exploratory).** The features-only model beats the primary 2PL by 0.091 [0.023, 0.164] p-val=0.011. The explanatory 2PL also beats the primary, by 0.021 [0.008, 0.037] p-val=0.001. Features-only versus explanatory was not a pre-registered contrast. One plausible reason, not tested here: the single-call systems' failures are often Lean well-formedness problems that this SFT policy does not share.
+- **A selected pool triples learning signal per update.** Top-quarter mixed share 0.706 against 0.237 uniform: +0.469 [0.266, 0.562] p-val=0.0001. At G = 8 that is 22.6 against 7.6 mixed groups per 256-rollout update. Experiment 13's original arm-C prompt sequence (50% uniform + 50% item information) gives 0.311: +0.074 [0.050, 0.097] p-val=0.0001.
 - **Ranking is good, level is not.** Mean predicted mixed probability is 0.482 against 0.237 observed. Predicted per-task success rates spread less (SD 0.107) than observed k/8 (SD 0.204): the policy is more all-or-nothing than the model. Mean predicted strict rate is 0.111 against 0.093 observed (bias +0.018). Binomial log loss is 0.234, against 0.309 for a constant A6-rate forecast.
 - **Sensitivities (secondary).** The primary AUC stays at 0.862 or 0.863 with θ0 set at the A6 full-denominator bounds, at 0.846 with `zero_without_call` counted as failures, and at 0.820 with experiment 14/15's weak priors.
 - **Token-cap sensitivity (Amendment 01).** Dropping the 13 tasks with ≥ 4 of 8 samples at the 12,288-token cap (all 13 had zero successes) leaves 122 tasks (32 mixed, 90 not, 88 groups). There the primary AUC is 0.845 [0.768, 0.915], with 5/10,000 draws ≤ 0.70. The heuristics score 0.831 and 0.839, and IRT minus the panel strict rate is +0.014 [−0.003, +0.031] p-val=0.10. Same pattern.
