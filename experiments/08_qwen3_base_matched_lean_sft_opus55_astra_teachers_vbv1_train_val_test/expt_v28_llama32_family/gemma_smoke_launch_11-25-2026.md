@@ -1,0 +1,31 @@
+# V28 Gemma-3 smoke: launched on Sherlock (11-25-2026 11:39 PST)
+
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v28_llama32_family/gemma_smoke_launch_11-25-2026.md>
+
+**TLDR:** The Gemma-3 smoke addendum in `PROTOCOL.md` (2026-11-02, prepared, not submitted) was submitted on Sherlock (account sanmi) on 11-25-2026 at 11:39 PST with `bash submit.sh gemma-smoke`, after Brando's 11-25-2026 10:38 "do experiments too ... start these GO". Nothing has run yet: prepare is pending on `normal`, the five GPU jobs wait on it (`Dependency`). No result is claimed here.
+
+## What was launched
+- **Harness and model:** custom PyTorch + Hugging Face SFT trainer `train_v28.py` (transformers 4.57.3, py-pytorch 2.9.1), vLLM 0.30.0 in the Apptainer image for the two smoke generations; no agent harness, no model API, no paid spend (included Sherlock usage, account sanmi). Models: `unsloth/gemma-3-1b-pt` and `unsloth/gemma-3-4b-pt`, pinned revisions in `train_v28.py`. **No DT** (local training and generation; nothing is graded against a frozen DT label).
+- **Package:** this folder at main `fa1d4834` minus `results/` and `results.md`, extracted to `$SCRATCH/rl4cv_sherlock/expt_v28_gemma_smoke` (tarball sha256 `6b6e9e32143862719f88c6a5207d6b5463e074aa63eef3c6b0c6dff1013ea084`; `train_v28.py` sha256 `c666499a1dcf6bb87b44ba9ab724e9ead470b8a32397be2ffd3b6ca97ec7d1dc`). The Llama receipt in `$SCRATCH/rl4cv_sherlock/expt_v28` is untouched.
+- **Slurm job ids** (receipt `jobs_v28_gemma_smoke.tsv` on Sherlock):
+
+| phase | job id | resources |
+|---|---|---|
+| prepare | 53689003 | `normal`, 4 CPU, 48 GB, 3 h |
+| smoke gemma1b sdpa (seed 20260830) | 53689013 | `gpu`, 1 GPU with 80 GB, 2 h |
+| smoke gemma1b eager (seed 20260831) | 53689017 | same |
+| smoke gemma4b sdpa (seed 20260830, host optimizer) | 53689021 | 1 GPU 80 GB, 16 CPU, 128 GB |
+| smoke gemma4b eager (seed 20260831, host optimizer) | 53689024 | same |
+| smoke generation gemma1b (sdpa) | 53689030 | after 53689013 |
+| smoke generation gemma4b (sdpa) | 53689038 | after 53689021 |
+
+## Smoke passes when (from PROTOCOL.md, unchanged)
+Prepare is PASS; each smoke run ends with finite loss that falls over four updates, records peak GPU memory and exports files that load; each smoke generation finishes samples with `finish_reason` `stop` for at least some samples and writes the extraction fields. A failed model is diagnosed before any full Gemma chain; the full chain is a separate decision.
+
+## Where results will go
+`$SCRATCH/rl4cv_sherlock/expt_v28_gemma_smoke/{runs_smoke,gen,logs}`; I fetch them into this folder and write a dated results file when the jobs end. Slurm mail (BEGIN, END, FAIL) goes to Brando's two Gmail addresses.
+
+## Why not run it now on skampere2
+skampere2 had three idle H200s at 11:41 PST, but `train_v28.py` asserts a Slurm job id and the Sherlock-only chain inputs (vLLM image, grading directory), so the admitted smoke runs on Sherlock as the protocol says.
+
+**TLDR-end:** [rl4cv Gemma smoke] submitted 11-25-2026 11:39 PST on Sherlock, jobs 53689003 to 53689038; not started yet; no result.
