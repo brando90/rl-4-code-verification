@@ -6,6 +6,7 @@ export PY=/lfs/skampere2/0/brando9/rl4cv_e08_v3_gen/venv_gen/bin/python   # vllm
 export PYTHONPATH=$B/pylib:$B/code/src
 export HF_HUB_OFFLINE=1 TOKENIZERS_PARALLELISM=false OMP_NUM_THREADS=4 VLLM_WORKER_MULTIPROC_METHOD=spawn
 export XDG_CACHE_HOME=$B/cache VLLM_CACHE_ROOT=$B/cache/vllm TRITON_CACHE_DIR=$B/cache/triton HF_HOME=$B/cache/hf PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+export VLLM_USE_FLASHINFER_SAMPLER=0   # flashinfer JIT sampling kernel needs nvcc (absent on skampere2): pre-eval failed at engine start without this
 export MODELS_DIR=$B/models GSM8K=$B/gsm8k_test.parquet
 export RUNS=$B/runs RES=$B/results
 mkdir -p $B/logs $RUNS $RES/post $RES/train $B/claims
