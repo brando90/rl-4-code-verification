@@ -2,7 +2,7 @@
 
 **Doc link:** [prospective protocol](PROTOCOL.md)
 
-**TLDR:** Repeat the fresh1.85% run with the same3,568 example identities and original base initialization, restoring valid automation-heavy proof counterparts while retaining commentary. Pairing audit precedes data freeze; no production update is claimed yet.
+**TLDR:** Repeat the fresh1.85% run with the same3,568 example identities and original base initialization, restoring valid automation-heavy proof counterparts while retaining commentary. Pairing audit precedes data freeze; no production update was claimed at planning time (QA 11-25-2026: training later completed, 1,784 updates, 17/1,080 validation successes).
 
 ## Question
 

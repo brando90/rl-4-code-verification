@@ -2,7 +2,7 @@
 
 **Doc link:** [protocol](PROTOCOL.md)
 
-**TLDR:** Prepare the complete 1.7B training and evaluation pipeline on GX10, verify its longest sequence with a discarded optimizer update, and train the requested final cleanup condition after V18 finishes processing the remaining original-pool proofs.
+**Status (QA 11-25-2026): SUPERSEDED by expt_v20 (user stopped the full cleanup; V19 saw zero production updates).** **TLDR (earlier):** Prepare the complete 1.7B training and evaluation pipeline on GX10, verify its longest sequence with a discarded optimizer update, and train the requested final cleanup condition after V18 finishes processing the remaining original-pool proofs.
 
 **Status:** Preparing on 10-19-2026. The SNAP second-run watcher is fenced; no V19 production optimizer update has occurred.
 

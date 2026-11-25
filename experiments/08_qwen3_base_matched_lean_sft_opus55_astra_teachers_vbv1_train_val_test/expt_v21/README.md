@@ -10,4 +10,4 @@ Produce short explicit Lean proofs with header proof sketches and inline natural
 
 ## Status and evidence
 
-Preparation is underway; do not infer25running workers until actual launch/process receipts exist. Cleanup owner prepares workers and supervision, source owner prepares accepted-only finalization, and root publishes compact evidence. [Protocol](PROTOCOL.md) freezes the task-preservation, verification, budget and dataset-admission rules.
+QA 11-25-2026: DONE_WITH_EXCLUSIONS (470 accepted, 30 excluded, 500 accounted; 125/125 batches). Earlier text: preparation is underway; do not infer25running workers until actual launch/process receipts exist. Cleanup owner prepares workers and supervision, source owner prepares accepted-only finalization, and root publishes compact evidence. [Protocol](PROTOCOL.md) freezes the task-preservation, verification, budget and dataset-admission rules.

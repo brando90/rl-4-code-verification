@@ -14,7 +14,7 @@ V25 holds V20’s 3,568 example identities, prompts, row/batch order, original b
 | Target 25% | no | no | no |
 | Test sealed | yes | yes | yes |
 
-Paired V20−V25 difference: −0.28 pp, 95% CI [−1.39%, +0.83%] with exact learning rates verified (`analysis/v20_v25_comparison.json`). Restoring automation proofs on this matched fresh-base cohort does not recover V12-level validation success.
+Paired V25−V20 difference: −0.28 pp, 95% CI [−1.39%, +0.83%] (QA 11-25-2026: label was reversed; an independent recomputation, 10,000 task draws, seed 0, gives V25−V20 = −0.28 pp [−1.48, +0.83], so the −1.39 endpoint is not reproduced and no comparison script is committed) with exact learning rates verified (`analysis/v20_v25_comparison.json`). Restoring automation proofs on this matched fresh-base cohort does not recover V12-level validation success.
 
 Frozen eval settings match V6/V20. Raw sha256 `bcfde18cc19e5bd8c203eb49496a0e59dde7851f27f1e05b4da711ae8a416543`.
 

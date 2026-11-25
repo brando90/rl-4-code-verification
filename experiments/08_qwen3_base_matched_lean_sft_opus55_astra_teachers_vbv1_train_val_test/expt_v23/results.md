@@ -14,7 +14,7 @@ V23 retrains from official Qwen3-1.7B-Base with the V20-style explicit-comment c
 | Target 25% | no | no | no |
 | Test sealed | yes | yes | yes |
 
-Paired V20−V23 task bootstrap difference: −0.28 pp, 95% CI [−1.11%, +0.46%] (`analysis/v20_v23_comparison.json`). One seed each; cohort size and schedule differ, so this is descriptive, not a causal isolate of the repaired tiny set.
+Paired V23−V20 task bootstrap difference: −0.28 pp, 95% CI [−1.11%, +0.46%] (QA 11-25-2026: the label was reversed; V20 20/1,080, V23 17/1,080, so V20−V23 = +0.28 pp [−0.46, +1.11]) (`analysis/v20_v23_comparison.json`). One seed each; cohort size and schedule differ, so this is descriptive, not a causal isolate of the repaired tiny set.
 
 Frozen eval settings match V6/V20 (seed 91, T0.6, p0.95, k20, 12288 tokens, thinking on, `<|im_end|>`). Raw sha256 `65105968ff611438936880f9d4d9df8dd8b7207262b42e417e5e1dbb42efe7c0`.
 

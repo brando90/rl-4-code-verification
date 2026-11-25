@@ -2,7 +2,7 @@
 
 **Doc link:** [Protocol](PROTOCOL.md)
 
-**TLDR:** Twenty-five Terra/high worker sessions are repairing the 500 original tiny training examples. Each lane owns 20 cases. Existing V18 and V20 data remain unchanged. Live kernel-pass counts precede final format, commentary, protected-reference and duplicate admission.
+**Status (QA 11-25-2026): DONE_WITH_EXCLUSIONS, 470 accepted, 30 excluded, 125/125 batches.** **TLDR (earlier):** Twenty-five Terra/high worker sessions are repairing the 500 original tiny training examples. Each lane owns 20 cases. Existing V18 and V20 data remain unchanged. Live kernel-pass counts precede final format, commentary, protected-reference and duplicate admission.
 
 ## Execution evidence
 

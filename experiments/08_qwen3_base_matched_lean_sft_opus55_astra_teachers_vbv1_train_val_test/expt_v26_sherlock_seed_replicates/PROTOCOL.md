@@ -12,9 +12,9 @@ The request was to retrain the newest SNAP 1.7B exp-08 condition (V25, else V23,
 
 | Condition | Training file needed | Where it is | SHA-256 (receipt) |
 |---|---|---|---|
-| V25 | `corpus_training_v25/base/data/training.jsonl` | SNAP only: `/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v25/base/data/training.jsonl` | `0882a889…` |
+| V25 | `corpus_training_v25/base/data/training.jsonl` | SNAP only: `/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v25/base/data/training.jsonl` | `6dad28a9…` (QA 11-25-2026: swapped with V20) |
 | V23 | `corpus_training_v23/base/data/training.jsonl` | SNAP only: `/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v23/base/data/training.jsonl` | `215cd07d…` |
-| V20 | `corpus_training_v20/base/data/training.jsonl` | SNAP only: `/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v20/base/data/training.jsonl` | `6dad28a9…` |
+| V20 | `corpus_training_v20/base/data/training.jsonl` | SNAP only: `/lfs/skampere1/0/eth127/rl4cv_tiny_training/corpus_training_v20/base/data/training.jsonl` | `0882a889…` (QA 11-25-2026: swapped with V25) |
 
 None of the three hashes matches any blob on `main` (19ba81ff); only their `row_results.csv` decision tables are committed. SNAP is not reachable from this work. So the pre-agreed fallback runs: the expt_v4 corpus, which is on Sherlock with a verified hash, at a third 1.7B seed and at 4B.
 

@@ -1,6 +1,6 @@
 # V27: SFT data-size ablation with seeds (Qwen3-1.7B-Base, v4 recipe, 12.5 / 25 / 50% x 2 seeds)
 
-**TLDR:** One Slurm chain on Sherlock trains six Qwen3-1.7B-Base checkpoints with the exact [expt_v4](../expt_v4/PROTOCOL.md) recipe on the first 12.5%, 25% and 50% of S (the same nested examples experiment 08's ladder rungs had seen), two data-order seeds each, then generates 135 validation tasks x 8 per checkpoint with the frozen v12 settings and Lean-scores them like expt_v16. The 100% rung is the two existing v4 seeds. Readout: each data doubling's pass@1 / pass@8 gain vs seed noise (0.56 / 4.4 pts) and vs experiment 17's curve. Frozen design: [PROTOCOL.md](PROTOCOL.md). Status: package built, not yet submitted.
+**TLDR:** One Slurm chain on Sherlock trains six Qwen3-1.7B-Base checkpoints with the exact [expt_v4](../expt_v4/PROTOCOL.md) recipe on the first 12.5%, 25% and 50% of S (the same nested examples experiment 08's ladder rungs had seen), two data-order seeds each, then generates 135 validation tasks x 8 per checkpoint with the frozen v12 settings and Lean-scores them like expt_v16. The 100% rung is the two existing v4 seeds. Readout: each data doubling's pass@1 / pass@8 gain vs seed noise (0.56 / 4.4 pts) and vs experiment 17's curve. Frozen design: [PROTOCOL.md](PROTOCOL.md). Status: package built, COMPLETE: all six runs evaluated (6,480/6,480 cells; QA 11-25-2026 status update, see results.md).
 
 ## Files
 

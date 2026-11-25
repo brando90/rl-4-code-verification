@@ -8,7 +8,7 @@
 
 The user explicitly stopped paid proof generation and requested immediate training from available strict examples. The immutable snapshot is ready: **800 admitted** sources, all 2,585 originals accounted, and 1,785 exclusions. Of the 1,050 sources with current kernel evidence at cutoff, 250 lack requested commentary (227 lack the sketch header; 23 lack inline comments). Their proofs remain preserved outside training. The admitted pool contains 795 inherited Terra repairs, 1 new Terra repair and 4 CPU-only reflexivity repairs.
 
-All paid proof workers and the CPU prescreen are stopped. V18 total configured estimates are $3.337045 conservative and $1.689919 ordinary rate, with zero cleanup reservations. The first mixed-length sample failed 0/4; the shortest-four sample yielded one exact checked proof before the user stop. The prospective full-pass cost forecast was not supported and full cleanup is not claimed. No Lean recompilation or model call was used to freeze the available pool.
+All paid proof workers and the CPU prescreen are stopped. V18 total configured estimates are $3.337045 conservative and $1.689919 ordinary rate, with zero cleanup reservations. The first mixed-length sample verified 0/4 (all four failed; QA 11-25-2026 wording fix); the shortest-four sample yielded one exact checked proof before the user stop. The prospective full-pass cost forecast was not supported and full cleanup is not claimed. No Lean recompilation or model call was used to freeze the available pool.
 
 ## Components
 

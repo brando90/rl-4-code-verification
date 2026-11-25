@@ -2,7 +2,7 @@
 
 **Doc link:** [protocol](PROTOCOL.md)
 
-**Status:** RUNNING — artifact transfer and host-port preparation,10-19-2026.
+**Status (QA 11-25-2026): SUPERSEDED by expt_v20 (zero production updates).** Earlier status: RUNNING — artifact transfer and host-port preparation,10-19-2026.
 
 **Last updated:**10-19-2026.
 

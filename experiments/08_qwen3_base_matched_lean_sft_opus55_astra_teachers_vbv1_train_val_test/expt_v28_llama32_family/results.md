@@ -62,7 +62,7 @@ Qwen3 reference (V26): 1.7B 5.03% (0.30) [0.56] pass@1, 15.56% (2.22) [4.44] pas
 
 ## Notes and caveats
 
-- **Cap hits.** 19.7% to 21.3% of 1B samples and 11.6% to 11.7% of 3B samples ended at the 12,288-token generation cap (`finish_reason` length, no Lean block extracted); the other samples stopped on the stop token. These count as failures, as in V26. Source: `results/gen_timing/`.
+- **Cap hits.** 19.7% to 21.3% of 1B samples and 11.6% to 11.7% of 3B samples ended at the 12,288-token generation cap (`finish_reason` length, a Lean block was usually not extracted; QA 11-25-2026: 2 capped 1B samples did have one, in the s20260830 and s20260831 cell tables); the other samples stopped on the stop token. These count as failures, as in V26. Source: `results/gen_timing/`.
 - **Training.** All six runs finished 658 updates, `status` COMPLETE, final train loss 0.19 to 0.36 (1B) and 0.16 to 0.29 (3B), peak GPU 43 to 44 GiB (1B), 54 to 55 GiB (3B, host optimizer). Source: `results/runs/*/result.json`.
 - **Format deviation.** Llama sees the Llama-3 header format, with no thinking block (PROTOCOL.md); Qwen3 saw its chat markers with an empty think block. The family comparison is therefore recipe-matched and data-matched, not format-identical.
 - **Cross-family claim.** The Qwen3 rows are from V26's committed summary; no paired task-level test across families was run. The statement "Llama below Qwen3" is about point estimates only.
