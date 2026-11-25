@@ -4,6 +4,8 @@
 
 **TLDR:** RL project 2 asks whether a pre-RL law (ρ, H, plus a target-alignment term) can choose or generate RL environments that improve a new target. 18a measures 32 generated environments (8 Reasoning Gym families x 4 difficulty levels) on Qwen3-0.6B/1.7B/4B with no training: pass rate, ρ, H and alignment to a held-out target set (5 other Reasoning Gym families + GSM8K). It answers two questions: does generator difficulty rank environments the same way across model sizes, and which environments sit in the learnable band. 18b (AT-566) then trains short single-environment GRPO runs on ~16 of them and checks which frozen forecast predicts held-out gain. Status 10-20-2026: protocol frozen, code and Slurm package built and CPU-tested; no GPU job has run.
 
+**Update 11-25-2026 (AT-3570):** `expt_18c/` is the token-matched rerun of 18b (budget 2,000,000 generated response tokens per run instead of 40 updates, 3 seeds, same environments, trainer, forecasts). Protocol and forecasts frozen 11-25-2026 before any job: [expt_18c/PROTOCOL_18c.md](expt_18c/PROTOCOL_18c.md).
+
 ## Goal, hypotheses and decision criteria
 
 - **Question 1 (difficulty transfer).** Spearman of environment pass rate between each pair of sizes. Transfers if all three ≥ 0.7 with CI lower bound > 0.5; fails if any < 0.4; else partial (`PROTOCOL.md`, analysis 1).
