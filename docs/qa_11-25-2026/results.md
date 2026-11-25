@@ -1,5 +1,6 @@
 # rl-4-code-verification: issues, branch merges and full QA of experiments 01 to 25 (11-25-2026)
 
+**Google Doc:** https://docs.google.com/document/d/1rrVcvNsUQxoU871wfoMxb-IqC_zvCyAfFwupsa_wJ00/edit\
 **Dated:** 11-25-2026. **Asked by:** Brando Miranda (WhatsApp, 11-25-2026 10:35 to 10:38): solve the issues, merge all branches to main, mega QA with the Vals Codex account (GPT-6 Astra, ultra effort). **Done by:** ub9sc (ultimate brando9 scalable coworker), the assistant working for Brando.
 
 ## Bottom line
