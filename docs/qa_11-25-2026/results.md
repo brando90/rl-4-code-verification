@@ -60,7 +60,7 @@ Most important corrections (all in prose, original value kept beside the new one
 
 ## 4. Tests
 
-Fresh clone of main, run on the Mac-equivalent venv on this machine: 1,399 passed, 7 failed, 65 skipped, 1 error (24 min), plus per-experiment suites. Failures are host-bound (missing ultimate-utils, nemo_rl, SNAP paths, transformers version). They are not new and were not touched; for example exp 13 v4 (25 failed, 421 passed) and exp 08 v27/v28 (3 failed, 1 error).
+Fresh clone of main, run on this machine (Python venv): 1,399 passed, 7 failed, 65 skipped, 1 error (24 min), plus per-experiment suites. Failures are host-bound (missing ultimate-utils, nemo_rl, SNAP paths, transformers version). They are not new and were not touched; for example exp 13 v4 (25 failed, 421 passed) and exp 08 v27 (2 failed) and v28 (1 error).
 
 ## 5. Decisions for Brando (one question, with a pick)
 
