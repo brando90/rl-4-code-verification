@@ -4,7 +4,7 @@
 
 The broader supervised fine-tuning (SFT) effort already has completed validation results and nonzero reinforcement-learning (RL) signal. The two Sherlock replicas are a separate, still-unmeasured replication check; they are not needed to establish that SFT can produce signal.
 
-**Status:** Existing-data audit COMPLETE; Sherlock validation PENDING. **Last updated:** 10-19-2026 12:17 PDT.
+**Status:** Existing-data audit COMPLETE; Sherlock validation: superseded, completed in expt_v16_sherlock_validation_v4 (QA 11-25-2026). **Last updated:** 10-19-2026 12:17 PDT.
 
 ## Recomputed existing validation evidence
 

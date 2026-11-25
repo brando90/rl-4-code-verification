@@ -1,4 +1,4 @@
-# Workbook verification running; initial unresolved recovery complete
+# Workbook verification complete; initial unresolved recovery complete
 
 **Doc link:** https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v10/results.md
 

@@ -50,6 +50,6 @@ CLI usage gives an estimated $13.82 at the saved configured rates; this is not a
 
 ## Verification environment
 
-The dataset checks above ran on cluster CPUs with the pinned Lean/Mathlib environment. The existing repository-wide suite on macOS returned 1271 passed, 58 failed and 57 skipped; existing failures include Linux /proc/pidfd assumptions and missing locked-dependency fixtures. No preexisting source files were changed. The package has not been committed or pushed.
+The dataset checks above ran on cluster CPUs with the pinned Lean/Mathlib environment. The existing repository-wide suite on macOS returned 1271 passed, 58 failed and 57 skipped; existing failures include Linux /proc/pidfd assumptions and missing locked-dependency fixtures. No preexisting source files were changed. The package was later committed (it is tracked in main; QA 11-25-2026 stale-text fix).
 
 **TLDR-end:** [rl4cv: elementary Python to Lean curriculum] All 500 requested examples passed compilation, proof-axiom, Python comparison, formatting and global admission checks; the complete package is ready.

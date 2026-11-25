@@ -4,7 +4,7 @@
 
 **TLDR:** The locked supervised fine-tuning comparison continues the same starting weights with original-data replay or admitted expansion at matched loss-token budgets. Phase A is complete: four training runs, eight exports, 8,640 validation cells, four paired comparisons and eight namespace diagnostics. Phase B is running; the full 17,280-cell experiment remains incomplete. [Live results](results.md).
 
-**Status:** RUNNING (10-16-2026). [PROTOCOL.md](PROTOCOL.md) was locked and published before training on 10-15-2026. Expansion 8B training and both exports are verified after a retained zero-update infrastructure failure. Its half validation generation is complete, scoring is active and full generation/replay are queued or running; 14B waits for its frozen eight-device layout.
+**Status (QA 11-25-2026): INCOMPLETE; the recovery deadline was reached on 11-01-2026 with the four 14B validation rungs still missing (12,960 of 17,280 cells known); see results.md.** Earlier status: RUNNING (10-16-2026). [PROTOCOL.md](PROTOCOL.md) was locked and published before training on 10-15-2026. Expansion 8B training and both exports are verified after a retained zero-update infrastructure failure. Its half validation generation is complete, scoring is active and full generation/replay are queued or running; 14B waits for its frozen eight-device layout.
 **Execution owner:** recovery-02, the sole writer under Brando's continuation dispatch; [checkpoint and current identities](CKPT_e08_v3.md). The original Lethan/Rakshit assignments are historical. B denotes billion model parameters; MBPP means Mostly Basic Python Problems.
 
 ## Question and decision
@@ -33,6 +33,6 @@ The admitted expansion adds 5,429,531 rendered loss tokens but zero new VeriBenc
 
 ## Next execution boundary
 
-**[p 10/10] Complete Phase B:** preserve healthy jobs, finish both 8B/14B continuations and all remaining 8,640 validation cells, then check paired task bootstraps, namespace diagnostics and the immutable forecast. [Recovery and completion runbook](RUNBOOK_continuation_owner.md). Scientific caps and the original finite recovery deadline remain unchanged.
+**[p 10/10] Complete Phase B:** preserve healthy jobs, finish both 8B/14B continuations and all remaining validation cells (QA 11-25-2026 recount: 12,960 of 17,280 known, 4,320 missing, all four 14B rungs; the original text said 8,640), then check paired task bootstraps, namespace diagnostics and the immutable forecast. [Recovery and completion runbook](RUNBOOK_continuation_owner.md). Scientific caps and the original finite recovery deadline remain unchanged.
 
 The SCSC milestone remains deferred under this dispatch's zero-paid-call budget. The test split remains unopened for version 3. Final success requires checked publication and actual completion notification.

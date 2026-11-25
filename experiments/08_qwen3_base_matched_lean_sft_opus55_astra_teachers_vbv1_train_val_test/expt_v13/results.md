@@ -17,7 +17,7 @@
 | Running | 0 |
 | Pending | 0 |
 | Temporary budget holds | 0 |
-| Original fallback outcomes | 1481 |
+| Original fallback outcomes (status=FALLBACK only; 1767 rows keep the original in total, see `original_fallbacks`) | 1481 |
 | Calibration final FILE/template passes | 4 |
 | Calibration protected exact / near | 0 / 0 |
 | Settled ordinary-rate estimate USD | 237.3912 |
