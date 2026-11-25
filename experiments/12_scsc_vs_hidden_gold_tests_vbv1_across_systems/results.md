@@ -36,7 +36,7 @@ A non-compiling test-bearing candidate is a failure. A compiling candidate with 
 | C3 compiling mutant detection | 44/50 | 0.8800 | ≥0.6000 and ≥50 mutants | PASS |
 | C4 wrong-task rejection or failure | 49/50 | 0.9800 | ≥0.9500 | PASS |
 
-All 50 prescribed tasks completed before primary evaluation. [Per-task controls](results/controls_v2.json). The frozen adapter, forecasts, references and version-1 files remain unchanged.
+All 50 prescribed tasks completed before primary evaluation. [Per-task controls](expt_v2/results/controls_v2.json). The frozen adapter, forecasts, references and version-1 files remain unchanged.
 
 ## Frozen hypotheses and coverage gate
 
@@ -103,7 +103,7 @@ The graded and individual-factor rows are descriptive point estimates; their int
 | leanstral | 517 | 415 (0.8027) | 433 (0.8375) | 779 | 409/779 (0.5250) | 0.5295 | 0.4637 / 0.5805 | 0.4565 / 0.5871 |
 | qwen3.6-27b-thinking | 1 | 0 (0.0000) | 1 (1.0000) | 881 | 0/881 (0.0000) | 0.0000 | 0.0000 / 0.0011 | 0.0000 / 0.0167 |
 
-Each system has 896 declared cells and 14 no-test cells. Protocol bounds use 882 tasks; all-declared bounds use 896. The graded mean in this table is over binary-observed rows, preserving the version-1 table definition. [Machine-readable system table](results/systems_v2.json) also retains available-factor means and kernel-verification descriptives.
+Each system has 896 declared cells and 14 no-test cells. Protocol bounds use 882 tasks; all-declared bounds use 896. The graded mean in this table is over binary-observed rows, preserving the version-1 table definition. [Machine-readable system table](expt_v2/results/systems_v2.json) also retains available-factor means and kernel-verification descriptives.
 
 ## Prespecified sensitivities
 
@@ -130,7 +130,7 @@ S-V2d contains 3062 cells fully applicable in both versions. The same task resam
 | Core614 | 614 | 0.7909 [0.7727, 0.8000] | 2193 | 2159 / 34 | 0.7632 [0.6014, 0.8835] | 0.1917 [0.0762, 0.2933] |
 | IndustrySet282 | 282 | 0.9455 [0.9000, 0.9455] | 1017 | 1015 / 2 | 0.1855 [0.0417, 0.5729] | -0.0363 [-0.0711, -0.0074] |
 
-Per-system tables for each subset, individual-factor P2/P3 descriptives and every interval’s defined-draw count are retained in [the complete analysis receipt](results/analysis_e12_v2.json). Optional secondary panels were not evaluated in this primary-only dispatch.
+Per-system tables for each subset, individual-factor P2/P3 descriptives and every interval’s defined-draw count are retained in [the complete analysis receipt](expt_v2/results/analysis_e12_v2.json). Optional secondary panels were not evaluated in this primary-only dispatch.
 
 ## Every frozen forecast
 
@@ -169,7 +169,7 @@ Mapping counts describe symbols, so multiple symbols can belong to one cell. Sta
 | None | None | 28 |
 | None | True | 153 |
 
-All 379 post-amendment changed-entry-point rows are retained in [the paired table](results/paired_changed_entry_points_v2.json). None means missing. Version 1’s binary field treated partial applicability differently, so an outcome transition alone is not proof of a semantic correction.
+All 379 post-amendment changed-entry-point rows are retained in [the paired table](expt_v2/results/paired_changed_entry_points_v2.json). None means missing. Version 1’s binary field treated partial applicability differently, so an outcome transition alone is not proof of a semantic correction.
 
 | System | Originally inspected task | v1 category | v1 all-pass | v2 all-pass | v2 tests pass/evaluable | v2 fully applicable |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -194,7 +194,7 @@ All 379 post-amendment changed-entry-point rows are retained in [the paired tabl
 | leanstral | concurrent_set_synthetic__my_rcu_epoch_can_reclaim | zero_self_test_factor | 1 | True | 8/8 | True |
 | leanstral | concurrent_set_synthetic__my_vector_clock_merge_le_target | zero_self_test_factor | 1 | True | 8/8 | True |
 
-Frozen original-20-row prediction: HOLDS. Details: `{"helper_resolved_or_missing": 6, "holds": true, "low_still_passing": 10, "n_helper_rows": 6, "n_low_rows": 10, "n_partial_rows": 4, "partial_missing_and_evaluable_pass": 4, "remaining_helper_failures": 0}`. [Original 20 rows and mappings](results/paired_inspected_v1_rows_v2.json).
+Frozen original-20-row prediction: HOLDS. Details: `{"helper_resolved_or_missing": 6, "holds": true, "low_still_passing": 10, "n_helper_rows": 6, "n_low_rows": 10, "n_partial_rows": 4, "partial_missing_and_evaluable_pass": 4, "remaining_helper_failures": 0}`. [Original 20 rows and mappings](expt_v2/results/paired_inspected_v1_rows_v2.json).
 
 ## Twenty newly selected disagreements
 
@@ -225,7 +225,7 @@ Selection is the frozen version-1 rule applied to version 2’s fully applicable
 
 ## Reproducibility and limitations
 
-Outcome ledger SHA-256: `5ecab23e05ce1cd87262aadc016b598e044c332f21efb88ca2bdb1b28c66c438`. [All 9,856 per-cell records](results/cells_v2.jsonl); [analysis JSON](results/analysis_e12_v2.json); [completion receipt](results/evaluation_complete_v2.json); [frozen runtime manifest](results/evaluation_launch_v2.json); [preflight](results/preflight_v2.json).
+Outcome ledger SHA-256: `5ecab23e05ce1cd87262aadc016b598e044c332f21efb88ca2bdb1b28c66c438`. [All 9,856 per-cell records](results/cells_v2.jsonl); [analysis JSON](expt_v2/results/analysis_e12_v2.json); [completion receipt](expt_v2/results/evaluation_complete_v2.json); [frozen runtime manifest](expt_v2/results/evaluation_launch_v2.json); [preflight](expt_v2/results/preflight_v2.json).
 
 The run used Lean v4.22.0 with pinned Mathlib on skampere1, two low-priority CPU workers, the inherited 600-second Lean timeout, and at most one identical infrastructure retry per group. The complete receipt audit records module reuse and retries. No adapter tuning, candidate modification, gold-reference modification, new model scoring, or outcome-based sample selection occurred.
 
