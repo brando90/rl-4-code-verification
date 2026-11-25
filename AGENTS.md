@@ -5,6 +5,8 @@
 
 # Rule that applies to every agent: research work goes straight to `main` in numbered experiment folders (`experiments/NN_<setup name>/expt_vN/`), no branches or pull requests (Brando, 11-25-2026; D-112, details in `CLAUDE.md`, "Work on `main`")
 
+# Rule that applies to every agent: merge to main (Brando, 11-25-2026): work goes to `main`. If in doubt, try to merge it, followed by a light QA (re-read the merged files on a fresh clone, run the quick tests, check the numbers you touched). No branches or pull requests. (details in `CLAUDE.md`, "Repository conventions")
+
 # RL heuristics (Brando, 10-28-2026): read `docs/HEURISTICS.md` before any RL run (precision, Varun's RL setup, free-hardware use); append each new rule there
 
 ## Automatic Claude and Codex jobs (Brando, 11-03-2026)
