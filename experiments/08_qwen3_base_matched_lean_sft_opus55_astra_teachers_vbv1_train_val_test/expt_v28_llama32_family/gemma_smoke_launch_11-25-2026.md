@@ -36,4 +36,6 @@ skampere2 had three idle H200s at 11:41 PST, but `train_v28.py` asserts a Slurm 
 - **Not decided here:** for a full Gemma chain, whether to keep all 1315 rows at a higher limit or drop the 2 long rows is a separate choice (its own dated protocol); the smoke result on memory at 17221 tokens informs it.
 - **Attempt 2 job ids** (Sherlock `jobs_v28_gemma_smoke.tsv`, submitted 12:35 PST, `sanmi` account, no spend, no DT): prepare 53692824; smoke gemma1b sdpa 53692825; gemma1b eager 53692826; gemma4b sdpa 53692827; gemma4b eager 53692828; smoke generations gemma1b 53692830, gemma4b 53692831. At 12:37 prepare was pending on `normal`, the rest on `Dependency`.
 
+- **Prepare 53692824 PASSED** (receipt status PASS at about 12:45 PST: both Gemma models, longest 17221 tokens, 2 rows above 16384, gate 17408). The four GPU smokes (53692825 to 28) were then released and are pending for 80 GB GPUs; the two generations wait on them.
+
 **TLDR-end:** [rl4cv Gemma smoke] attempt 1 prepare failed on the 16384-token gate (2 Gemma-tokenized rows at up to 17221); gate raised to 17408 for the smoke only, resubmitted as jobs 53692824 to 53692831.
