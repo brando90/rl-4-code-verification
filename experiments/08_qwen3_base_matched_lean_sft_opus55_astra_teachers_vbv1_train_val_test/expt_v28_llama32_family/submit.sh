@@ -36,6 +36,7 @@ if [ "$MODE" = gemma-smoke ]; then
   test ! -e $T || { echo "Existing receipt $T" >&2; exit 2; }
   rec() { printf '%s\t%s\n' "$1" "$2" >> $T; }
   printf 'phase\tjob_id\n' > $T
+  export V28_MAX_SEQ=17408   # Gemma tokenizer: 2 of 1315 rows are 16385..17221 tokens (prepare 53689003 failed the 16384 gate); the smoke trains the longest rows first, so it measures that worst case
   export V28_ARMS=gemma1b,gemma4b   # sbatch passes the environment on (--export=ALL), so every job below sees it
   PREP=$(sb -p normal -c 4 --mem=48G -t 03:00:00 -J rl4cv-v28g-prepare -o "$PWD/logs/%x_%j.out" run_job.sh prepare); rec prepare "$PREP"
   # 4 updates on the 4 longest examples. 1B sdpa (as Llama) and 1B eager on another seed; 4B (multimodal checkpoint, text weights) with the

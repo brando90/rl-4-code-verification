@@ -29,3 +29,11 @@ Prepare is PASS; each smoke run ends with finite loss that falls over four updat
 skampere2 had three idle H200s at 11:41 PST, but `train_v28.py` asserts a Slurm job id and the Sherlock-only chain inputs (vLLM image, grading directory), so the admitted smoke runs on Sherlock as the protocol says.
 
 **TLDR-end:** [rl4cv Gemma smoke] submitted 11-25-2026 11:39 PST on Sherlock, jobs 53689003 to 53689038; not started yet; no result.
+
+## Attempt 1 failed, attempt 2 submitted (11-25-2026 12:35 PST, AT-3571)
+- **Attempt 1:** prepare 53689003 exited 1 after 1:13 at 11:45 PST, so the dependent jobs (53689013, 17, 21, 24, 30, 38) were cancelled. Cause (its log `logs/rl4cv-v28g-prepare_53689003.out` on Sherlock): the token gate `assert not over` in `train_v28.py` `prepare()`: with the Gemma-3 tokenizer 2 of the 1315 rows (index 1151 and 1249) are above `MAX_SEQ` 16384 tokens (longest 17221; Llama's longest was 16003). Download and hash checks had passed. Attempt 1's receipt is kept on Sherlock as `jobs_v28_gemma_smoke_attempt1_prepare_failed.tsv`.
+- **Fix (smoke package only):** `MAX_SEQ` now reads `V28_MAX_SEQ` (default 16384, so the Llama chain is unchanged); `submit.sh gemma-smoke` exports `V28_MAX_SEQ=17408`; prepare writes `max_seq_gate` and `sequences_above_16384` per model into the receipt. The smoke trains on the longest rows first, so it now measures GPU memory at the 17221-token worst case. No row is dropped and no corpus change. `train_v28.py` sha256 on Sherlock `400366da70ccdb0689a6b9d50c84285c1902f275ebc2c259e7a6625b6065778b`.
+- **Not decided here:** for a full Gemma chain, whether to keep all 1315 rows at a higher limit or drop the 2 long rows is a separate choice (its own dated protocol); the smoke result on memory at 17221 tokens informs it.
+- **Attempt 2 job ids** (Sherlock `jobs_v28_gemma_smoke.tsv`, submitted 12:35 PST, `sanmi` account, no spend, no DT): prepare 53692824; smoke gemma1b sdpa 53692825; gemma1b eager 53692826; gemma4b sdpa 53692827; gemma4b eager 53692828; smoke generations gemma1b 53692830, gemma4b 53692831. At 12:37 prepare was pending on `normal`, the rest on `Dependency`.
+
+**TLDR-end:** [rl4cv Gemma smoke] attempt 1 prepare failed on the 16384-token gate (2 Gemma-tokenized rows at up to 17221); gate raised to 17408 for the smoke only, resubmitted as jobs 53692824 to 53692831.

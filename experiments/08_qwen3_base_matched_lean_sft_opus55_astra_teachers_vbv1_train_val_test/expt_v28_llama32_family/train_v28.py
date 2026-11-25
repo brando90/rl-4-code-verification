@@ -21,7 +21,7 @@ import time
 ROOT = Path(__file__).resolve().parent
 DATA_SHA = "885d4ae2d6cf193bddc43df6ad6274cacfa8c98a5e5ecd63bd2519472f5e7354"
 STEPS = 658
-MAX_SEQ = 16384
+MAX_SEQ = int(os.environ.get("V28_MAX_SEQ", "16384"))  # Llama: 16384. The Gemma smoke raises it (its tokenizer makes 2 rows 17221 tokens at most); recorded in the receipt
 SCRATCH = Path(os.environ.get("SCRATCH", "/scratch/users/brando9"))
 DATA_SOURCES = [SCRATCH / "rl4cv_sherlock/expt_v4/data/s_v1.jsonl",
                 Path("/home/groups/sanmi/brando9/rl4cv_sherlock/expt_v4/data/s_v1.jsonl")]
@@ -217,7 +217,8 @@ def prepare():
             family_tokens[fam] = {"tokens": prepared, "manifest": manifest}
         models[arm] = {"model": spec["model"], "revision": spec["revision"], "family": fam, "model_path": model_path,
                        "file_sha256": files, "token_gate": "PASS", "longest_sequence_tokens": longest,
-                       "loss_tokens": sum(r["loss_tokens"] for r in prepared)}
+                       "loss_tokens": sum(r["loss_tokens"] for r in prepared),
+                       "max_seq_gate": MAX_SEQ, "sequences_above_16384": sum(m["n_total_tokens"] > 16384 for m in manifest)}
     receipt_tokens = {}
     for fam, t in family_tokens.items():
         torch.save(t["tokens"], ROOT / f"data/tokens_{fam}.pt")
