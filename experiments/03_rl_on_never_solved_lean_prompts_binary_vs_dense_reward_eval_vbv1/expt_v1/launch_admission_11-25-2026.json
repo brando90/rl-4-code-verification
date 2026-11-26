@@ -1,0 +1,27 @@
+{
+  "title": "11-25-2026 \u2014 Experiment 03 launch admission",
+  "date": "11-25-2026",
+  "experiment": "03 v1",
+  "status": "NOT_ADMITTED",
+  "authorization": "Brando approved GPU use with no cap on 11-25-2026; approval is not a remaining blocker",
+  "harness": "Codex CLI, GPT-6 Astra ultra (Vals account)",
+  "declared_trajectories": 18,
+  "optimizer_steps_per_trajectory": 128,
+  "training_entrypoint": null,
+  "blocking_reasons": [
+    "Experiment 03 PROTOCOL.md is absent; expt_v1/cc.md explicitly says to stop when it does not exist. No protocol was created or edited in this task.",
+    "No admitted experiment 02A external-only warm start, four-stage probe records, frozen zero-signal Z bucket or pre-RL per-reward forecast is available for this experiment.",
+    "No verified experiment 02B trainer configuration or real training entrypoint exists here; no math-only or VeriBench-trained replacement is assumed.",
+    "The proof_fraction_feedback1 reward implementation and trainer multi-turn contract remain unimplemented in the inspected repository."
+  ],
+  "placement_candidate": {
+    "host": "skampere2",
+    "gpu_indices": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "status": "physically idle at 19:54 PST; previous exp18c workers have exit 0; not allocated because scientific admission is incomplete"
+  }
+}

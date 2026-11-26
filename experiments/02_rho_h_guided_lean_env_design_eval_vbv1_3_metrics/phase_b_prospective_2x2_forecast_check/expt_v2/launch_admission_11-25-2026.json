@@ -1,0 +1,27 @@
+{
+  "title": "11-25-2026 \u2014 Experiment 02B launch admission",
+  "date": "11-25-2026",
+  "experiment": "02B v2",
+  "status": "NOT_ADMITTED",
+  "authorization": "Brando approved GPU use with no cap on 11-25-2026; approval is not a remaining blocker",
+  "harness": "Codex CLI, GPT-6 Astra ultra (Vals account)",
+  "declared_trajectories": 4,
+  "optimizer_steps_per_trajectory": 64,
+  "training_entrypoint": null,
+  "blocking_reasons": [
+    "A verified executable Lean training configuration and entrypoint for this locked external-only experiment are absent; the old math-specific placeholder cannot substitute.",
+    "The adapter engineering support gate is separate from accepted, screened, allowed-axiom, non-vacuous references in both required environments.",
+    "No measured pre-RL environment probes or hash-verifiable frozen numeric forecast for these environments are present. Numeric paper coefficients now exist in src/rl4cv/utility_model.py, but that does not supply the missing measurements or Lean-fold standardizers.",
+    "The exact-model, exact-dtype rollout/trainer mismatch and Lean-throughput baseline needed to estimate GPU-hours has not run. Experiment 08 checkpoints trained on VeriBench cannot replace the external-only initialization in this older protocol."
+  ],
+  "placement_candidate": {
+    "host": "skampere2",
+    "gpu_indices": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "status": "physically idle at 19:54 PST; previous exp18c workers have exit 0; not allocated because scientific admission is incomplete"
+  }
+}

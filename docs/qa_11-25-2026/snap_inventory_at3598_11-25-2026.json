@@ -1,0 +1,109 @@
+{
+  "title": "11-25-2026 \u2014 AT-3598 SNAP live inventory",
+  "date": "11-25-2026",
+  "observed_at": "2026-11-25T19:46:49.832361-08:00",
+  "harness": "Codex CLI, GPT-6 Astra ultra (Vals account)",
+  "inherited_CUDA_VISIBLE_DEVICES": "2",
+  "commands": {
+    "hostname": {
+      "argv": [
+        "hostname"
+      ],
+      "exit_code": 0,
+      "stdout": "skampere1.stanford.edu\n",
+      "stderr": ""
+    },
+    "uptime": {
+      "argv": [
+        "uptime"
+      ],
+      "exit_code": 0,
+      "stdout": " 19:46:49 up 14 days, 22:20, 8192 users,  load average: 345.80, 312.84, 281.21\n",
+      "stderr": ""
+    },
+    "gpu_inventory": {
+      "argv": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,name,memory.total,memory.free,memory.used,utilization.gpu",
+        "--format=csv"
+      ],
+      "exit_code": 0,
+      "stdout": "index, uuid, name, memory.total [MiB], memory.free [MiB], memory.used [MiB], utilization.gpu [%]\n0, GPU-4a898d48-860a-9abc-bda7-59057400018e, NVIDIA A100-SXM4-80GB, 81920 MiB, 22645 MiB, 58508 MiB, 76 %\n1, GPU-d0c5c290-bea0-6d04-1751-91ec2527da30, NVIDIA A100-SXM4-80GB, 81920 MiB, 9767 MiB, 71387 MiB, 35 %\n2, GPU-e98e645a-d860-3666-a80b-2cea81363c51, NVIDIA A100-SXM4-80GB, 81920 MiB, 48837 MiB, 32316 MiB, 48 %\n3, GPU-e84fe984-b611-073b-53b2-de8eb53ac36c, NVIDIA A100-SXM4-80GB, 81920 MiB, 35236 MiB, 45918 MiB, 94 %\n4, GPU-97f40e03-59dd-83e1-8de4-52f2fdb5839e, NVIDIA A100-SXM4-80GB, 81920 MiB, 26889 MiB, 54264 MiB, 86 %\n5, GPU-579425f1-a901-99fc-f0c8-f1100a713892, NVIDIA A100-SXM4-80GB, 81920 MiB, 20410 MiB, 60744 MiB, 99 %\n6, GPU-030a1de4-d323-e947-aaf2-804435744526, NVIDIA A100-SXM4-80GB, 81920 MiB, 28705 MiB, 52449 MiB, 64 %\n7, GPU-71a581cf-2704-6ea4-2c9e-423a07a674da, NVIDIA A100-SXM4-80GB, 81920 MiB, 32806 MiB, 48348 MiB, 99 %\n",
+      "stderr": ""
+    },
+    "gpu_processes": {
+      "argv": [
+        "nvidia-smi",
+        "--query-compute-apps=pid,gpu_uuid,used_memory,process_name",
+        "--format=csv"
+      ],
+      "exit_code": 0,
+      "stdout": "pid, gpu_uuid, used_gpu_memory [MiB], process_name\n100765, GPU-4a898d48-860a-9abc-bda7-59057400018e, 25058 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n67006, GPU-4a898d48-860a-9abc-bda7-59057400018e, 21866 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n247679, GPU-4a898d48-860a-9abc-bda7-59057400018e, 11564 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n4096655, GPU-d0c5c290-bea0-6d04-1751-91ec2527da30, 48018 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n67150, GPU-d0c5c290-bea0-6d04-1751-91ec2527da30, 23352 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n67622, GPU-e98e645a-d860-3666-a80b-2cea81363c51, 11558 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n121484, GPU-e98e645a-d860-3666-a80b-2cea81363c51, 9392 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n477552, GPU-e98e645a-d860-3666-a80b-2cea81363c51, 11346 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n3867047, GPU-e84fe984-b611-073b-53b2-de8eb53ac36c, 4666 MiB, /lfs/skampere1/0/brando9/rl4cv_e23_fp16_smoke/venv/bin/python\n3136916, GPU-e84fe984-b611-073b-53b2-de8eb53ac36c, 10326 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/x8_sedd/env/bin/python\n381688, GPU-e84fe984-b611-073b-53b2-de8eb53ac36c, 15450 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/x7_vcd/env/bin/python\n761128, GPU-e84fe984-b611-073b-53b2-de8eb53ac36c, 15450 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/x7_vcd/env/bin/python\n2232856, GPU-97f40e03-59dd-83e1-8de4-52f2fdb5839e, 31130 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n122108, GPU-97f40e03-59dd-83e1-8de4-52f2fdb5839e, 12038 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n1826851, GPU-97f40e03-59dd-83e1-8de4-52f2fdb5839e, 11076 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n1409933, GPU-579425f1-a901-99fc-f0c8-f1100a713892, 25446 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n251067, GPU-579425f1-a901-99fc-f0c8-f1100a713892, 10656 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n262148, GPU-579425f1-a901-99fc-f0c8-f1100a713892, 10854 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n297564, GPU-579425f1-a901-99fc-f0c8-f1100a713892, 13756 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n1028024, GPU-030a1de4-d323-e947-aaf2-804435744526, 24162 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n1371926, GPU-030a1de4-d323-e947-aaf2-804435744526, 28272 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n199098, GPU-71a581cf-2704-6ea4-2c9e-423a07a674da, 14416 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n3772869, GPU-71a581cf-2704-6ea4-2c9e-423a07a674da, 9252 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n3933823, GPU-71a581cf-2704-6ea4-2c9e-423a07a674da, 9204 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/envs/rws_official/bin/python\n4193228, GPU-71a581cf-2704-6ea4-2c9e-423a07a674da, 15450 MiB, /lfs/skampere1/0/rschaef/sampling_confounds/x7_vcd/env/bin/python\n",
+      "stderr": ""
+    },
+    "cpu_count": {
+      "argv": [
+        "nproc"
+      ],
+      "exit_code": 0,
+      "stdout": "128\n",
+      "stderr": ""
+    },
+    "memory": {
+      "argv": [
+        "free",
+        "-g"
+      ],
+      "exit_code": 0,
+      "stdout": "               total        used        free      shared  buff/cache   available\nMem:            2003         631          82         426        1729        1372\nSwap:              7           7           0\n",
+      "stderr": ""
+    },
+    "lfs_space": {
+      "argv": [
+        "df",
+        "-h",
+        "/lfs/skampere1/0"
+      ],
+      "exit_code": 0,
+      "stdout": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/md0p1       56T   46T  7.8T  86% /lfs/skampere1/0\n",
+      "stderr": ""
+    },
+    "gpu_process_owners": {
+      "exit_code": 0,
+      "stdout": "    PID    PPID USER         ELAPSED COMMAND\n  67006   66936 rschaef     01:50:47 python\n  67150   67093 rschaef     01:50:46 python\n  67622   67508 rschaef     01:50:37 python\n 100765       1 rschaef     15:07:46 python\n 121484   67768 rschaef     01:48:05 python\n 122108   67317 rschaef     01:48:05 python\n 199098  198776 rschaef     10:01:41 python\n 247679   66997 rschaef     01:34:10 python\n 251067   67358 rschaef     01:33:36 python\n 262148   67387 rschaef     01:31:04 python\n 297564   67982 rschaef     01:28:32 python\n 381688  381680 rschaef        08:20 python\n 477552  477404 rschaef     01:06:35 python\n 761128  761127 rschaef        04:30 python\n1028024       1 rschaef     13:17:39 python\n1371926       1 rschaef     12:19:27 python\n1409933       1 rschaef     12:13:23 python\n1826851   67235 rschaef        41:51 python\n2232856       1 rschaef     19:20:18 python\n3136916 3136909 rschaef        26:10 python\n3772869 2330168 rschaef        17:48 python\n3867047 3866700 brando9     06:44:47 python\n3933823 2330161 rschaef        16:17 python\n4096655       1 rschaef     18:45:12 python\n4193228 4193225 rschaef        12:41 python\n",
+      "stderr": ""
+    }
+  },
+  "remote_route": {
+    "recipe": "agent-sync/assistants/snap-ssh-recipe-11-25-2026.md",
+    "workspace_copy": "/lfs/skampere1/0/brando9/rl4cv_at3598/snap_access",
+    "status": "After required ten-minute backoff and workspace-only control-path shortening, recipe succeeded to skampere3/skampere2/mercury1/mercury2; persistent whale master reused, no direct route, no existing configuration changed."
+  },
+  "remote_hosts": {
+    "skampere3": {
+      "observed_at": "2026-11-25T19:54:30.751154-08:00",
+      "exit_code": 0,
+      "stdout": "skampere3.stanford.edu\n 19:54:30 up 9 days,  9:06, 31 users,  load average: 99.50, 112.27, 121.62\n0, GPU-d2b20a67-f975-dadf-d7fc-2e2d7d57a79d, NVIDIA B200, 183359 MiB, 159670 MiB, 22962 MiB, 79 %\n1, GPU-603974b5-3f52-99dd-44a8-321490694235, NVIDIA B200, 183359 MiB, 15352 MiB, 167280 MiB, 79 %\n2, GPU-d781dd11-80f3-8979-073a-4248052fe3f6, NVIDIA B200, 183359 MiB, 31726 MiB, 150906 MiB, 96 %\n3, GPU-367818bd-ffe9-1a17-7640-8f232ea2622e, NVIDIA B200, 183359 MiB, 169596 MiB, 13036 MiB, 81 %\n4, GPU-9b167139-7ecf-47bd-e09d-27a60c24783f, NVIDIA B200, 183359 MiB, 37602 MiB, 145030 MiB, 0 %\n5, GPU-e7551271-928d-689f-5095-a60da72fc720, NVIDIA B200, 183359 MiB, 56610 MiB, 126022 MiB, 98 %\n6, GPU-49ced701-4696-492c-dd56-ace9e3e4b67e, NVIDIA B200, 183359 MiB, 5474 MiB, 177158 MiB, 77 %\n7, GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5, NVIDIA B200, 183359 MiB, 168720 MiB, 13912 MiB, 100 %\n1545392, GPU-d2b20a67-f975-dadf-d7fc-2e2d7d57a79d, 154224 MiB\n269190, GPU-d2b20a67-f975-dadf-d7fc-2e2d7d57a79d, 5420 MiB\n633492, GPU-603974b5-3f52-99dd-44a8-321490694235, 15336 MiB\n693801, GPU-d781dd11-80f3-8979-073a-4248052fe3f6, 31712 MiB\n1545394, GPU-367818bd-ffe9-1a17-7640-8f232ea2622e, 154232 MiB\n269017, GPU-367818bd-ffe9-1a17-7640-8f232ea2622e, 15336 MiB\n358173, GPU-9b167139-7ecf-47bd-e09d-27a60c24783f, 7994 MiB\n702859, GPU-9b167139-7ecf-47bd-e09d-27a60c24783f, 18784 MiB\n194837, GPU-e7551271-928d-689f-5095-a60da72fc720, 44076 MiB\n692631, GPU-e7551271-928d-689f-5095-a60da72fc720, 12508 MiB\n4116929, GPU-49ced701-4696-492c-dd56-ace9e3e4b67e, 5460 MiB\n470546, GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5, 85392 MiB\n631402, GPU-a5c7f7bc-a809-c60f-64a9-cbe06d425df5, 83302 MiB\n    PID    PPID USER         ELAPSED COMMAND\n 194837  194833 alexspan    01:53:30 python\n 269017  268959 rschaef     01:33:45 main.py\n 269190  269019 rschaef     01:33:44 python3.12\n 358173  358172 alexspan       57:14 python\n 470546  469284 alexspan       40:02 VLLM::EngineCor\n 631402  630368 alexspan       12:19 VLLM::EngineCor\n 633492  633469 rschaef        11:50 main.py\n 692631  692630 alexspan       03:13 python\n 693801  693654 rschaef        02:41 python3.12\n 702859  698171 alexspan       00:23 python\n1545392 1544817 srivats+  1-02:08:55 VLLM::Worker_TP\n1545394 1544817 srivats+  1-02:08:55 VLLM::Worker_TP\n4116929 4116859 rschaef     03:09:53 python3.12\n288\n               total        used        free      shared  buff/cache   available\nMem:            3023         215          92           1        2731        2807\nSwap:              7           0           7\nFilesystem      Size  Used Avail Use% Mounted on\n/dev/md1p1       84T   77T  3.0T  97% /lfs/skampere3/0\n",
+      "stderr": "Could not chdir to home directory /afs/cs.stanford.edu/u/brando9: No such file or directory\n"
+    },
+    "skampere2": {
+      "observed_at": "2026-11-25T19:54:37.908044-08:00",
+      "exit_code": 0,
+      "stdout": "skampere2.stanford.edu\n 19:54:37 up 183 days,  8:27, 8192 users,  load average: 70.56, 68.62, 67.21\n0, GPU-8f1f5d5f-90e1-52c9-e4f5-5f597fd007cd, NVIDIA H200, 143771 MiB, 132441 MiB, 10716 MiB, 0 %\n1, GPU-67e360c9-5174-e4c6-e701-fc9f64ebf5ed, NVIDIA H200, 143771 MiB, 92227 MiB, 50930 MiB, 100 %\n2, GPU-eeb03279-21ec-4141-fc25-4ca2003a4eee, NVIDIA H200, 143771 MiB, 129097 MiB, 14060 MiB, 98 %\n3, GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1, NVIDIA H200, 143771 MiB, 131227 MiB, 11930 MiB, 0 %\n4, GPU-d040097c-ad5e-bd3b-6e43-8ec396c65c89, NVIDIA H200, 143771 MiB, 0 MiB, 143157 MiB, 0 %\n5, GPU-7cc58f63-1fda-ed17-3af3-a0c659675257, NVIDIA H200, 143771 MiB, 0 MiB, 143157 MiB, 0 %\n6, GPU-f51c6f9f-41de-ab1c-f252-1cdd03bb7be9, NVIDIA H200, 143771 MiB, 0 MiB, 143157 MiB, 0 %\n7, GPU-fad2ed61-7b71-aaf4-66cd-73329e45e28f, NVIDIA H200, 143771 MiB, 0 MiB, 143157 MiB, 0 %\n80601, GPU-8f1f5d5f-90e1-52c9-e4f5-5f597fd007cd, 124238 MiB\n965254, GPU-8f1f5d5f-90e1-52c9-e4f5-5f597fd007cd, 8188 MiB\n1198418, GPU-67e360c9-5174-e4c6-e701-fc9f64ebf5ed, 92216 MiB\n2484656, GPU-eeb03279-21ec-4141-fc25-4ca2003a4eee, 129088 MiB\n1213561, GPU-ebef7ee4-d6cc-6572-7e46-ebde1a8e4fb1, 131218 MiB\n    PID    PPID USER         ELAPSED COMMAND\n  80601   74036 ericc27     04:41:18 VLLM::EngineCor\n 965254       1 ericc27     03:31:08 python\n1198418 1196817 rschaef   4-16:43:03 python\n1213561 1208489 ericc27     03:29:13 VLLM::EngineCor\n2484656       1 ericc27     01:25:13 python\n224\n               total        used        free      shared  buff/cache   available\nMem:            3023         305          41         129        2829        2718\nSwap:              0           0           0\nFilesystem      Size  Used Avail Use% Mounted on\n/dev/md0p1       56T   41T   13T  78% /lfs/skampere2/0\n",
+      "stderr": "/afs/cs.stanford.edu/u/brando9/.bashrc: line 213: /lfs/skampere2/0/brando9/.cargo/env: No such file or directory\n"
+    },
+    "mercury1": {
+      "observed_at": "2026-11-25T19:54:44.498964-08:00",
+      "exit_code": 0,
+      "stdout": "mercury1.stanford.edu\n 19:54:43 up 237 days,  7:07, 31 users,  load average: 9.60, 9.47, 9.40\n0, GPU-0ec99cca-57d0-31e9-eb6a-c27a4061554a, NVIDIA RTX A4000, 16376 MiB, 11 MiB, 15975 MiB, 0 %\n1, GPU-6754ac63-c1b1-49b2-5647-4902049c5ca2, NVIDIA RTX A4000, 16376 MiB, 15211 MiB, 775 MiB, 0 %\n2, GPU-4edbe005-1b1e-d2d1-5aad-82692bd28370, NVIDIA RTX A4000, 16376 MiB, 15211 MiB, 775 MiB, 0 %\n3, GPU-f425b263-23a6-6996-8790-45b806a4f045, NVIDIA RTX A4000, 16376 MiB, 15211 MiB, 775 MiB, 0 %\n4, GPU-c768154a-2f29-89ed-6c1c-a556ab42538a, NVIDIA RTX A4000, 16376 MiB, 15211 MiB, 775 MiB, 0 %\n5, GPU-8eba9f88-15d0-03da-cee2-7497c816d3c2, NVIDIA RTX A4000, 16376 MiB, 15236 MiB, 750 MiB, 0 %\n6, GPU-fa3e7aff-16e8-d86c-9a48-500e6fc19bb8, NVIDIA RTX A4000, 16376 MiB, 15236 MiB, 750 MiB, 0 %\n7, GPU-83e3206f-ee77-9ce9-70b9-2c68798276d4, NVIDIA RTX A4000, 16376 MiB, 15236 MiB, 751 MiB, 0 %\n8, GPU-0c2d495b-53ed-5d8c-28b7-5d3785e90c0a, NVIDIA RTX A4000, 16376 MiB, 15236 MiB, 750 MiB, 0 %\n9, GPU-071c409d-a1bb-9fd7-1239-a271b8ce1889, NVIDIA RTX A4000, 16376 MiB, 2 MiB, 15984 MiB, 0 %\n3206291, GPU-6754ac63-c1b1-49b2-5647-4902049c5ca2, 15202 MiB\n3206292, GPU-4edbe005-1b1e-d2d1-5aad-82692bd28370, 15202 MiB\n3206293, GPU-f425b263-23a6-6996-8790-45b806a4f045, 15202 MiB\n3206294, GPU-c768154a-2f29-89ed-6c1c-a556ab42538a, 15202 MiB\n3275874, GPU-8eba9f88-15d0-03da-cee2-7497c816d3c2, 15226 MiB\n3275875, GPU-fa3e7aff-16e8-d86c-9a48-500e6fc19bb8, 15226 MiB\n3275876, GPU-83e3206f-ee77-9ce9-70b9-2c68798276d4, 15226 MiB\n3275877, GPU-0c2d495b-53ed-5d8c-28b7-5d3785e90c0a, 15226 MiB\n    PID    PPID USER         ELAPSED COMMAND\n3206291 3206115 brando9  27-07:49:11 VLLM::Worker_TP\n3206292 3206115 brando9  27-07:49:11 VLLM::Worker_TP\n3206293 3206115 brando9  27-07:49:11 VLLM::Worker_TP\n3206294 3206115 brando9  27-07:49:11 VLLM::Worker_TP\n3275874 3275689 brando9  27-06:31:28 VLLM::Worker_TP\n3275875 3275689 brando9  27-06:31:28 VLLM::Worker_TP\n3275876 3275689 brando9  27-06:31:28 VLLM::Worker_TP\n3275877 3275689 brando9  27-06:31:28 VLLM::Worker_TP\n96\n              total        used        free      shared  buff/cache   available\nMem:            487          26          28          50         432         408\nSwap:             1           1           0\nFilesystem      Size  Used Avail Use% Mounted on\n/dev/nvme0n1p1  7.0T  6.2T  466G  94% /lfs/mercury1/0\n",
+      "stderr": "/afs/cs.stanford.edu/u/brando9/.bashrc: line 213: /lfs/mercury1/0/brando9/.cargo/env: No such file or directory\n"
+    },
+    "mercury2": {
+      "observed_at": "2026-11-25T19:54:50.749168-08:00",
+      "exit_code": 0,
+      "stdout": "mercury2.stanford.edu\n 19:54:50 up 230 days,  8:36,  9 users,  load average: 6.29, 6.19, 6.17\n0, GPU-4cdf8223-cd3c-4c19-fe22-dd070b82e697, NVIDIA RTX A4000, 16376 MiB, 1 MiB, 15985 MiB, 0 %\n1, GPU-87a5b8eb-3e08-4391-6434-e73da2a03519, NVIDIA RTX A4000, 16376 MiB, 1 MiB, 15985 MiB, 0 %\n2, GPU-7bdfad44-6464-62f2-04e0-6c29a8291843, NVIDIA RTX A4000, 16376 MiB, 1 MiB, 15985 MiB, 0 %\n3, GPU-e31683e6-fc20-8f3b-2cf0-4d398d6047b6, NVIDIA RTX A4000, 16376 MiB, 1 MiB, 15985 MiB, 0 %\n4, GPU-bf3ee2ff-4e0d-ee15-2c3d-109d6b729f1c, NVIDIA RTX A4000, 16376 MiB, 1 MiB, 15985 MiB, 0 %\n5, GPU-57095f96-4e72-a693-4f6b-e6a64287a3aa, NVIDIA RTX A4000, 16376 MiB, 1 MiB, 15985 MiB, 0 %\n6, GPU-c1d20954-a0d3-0071-024a-722941972831, NVIDIA RTX A4000, 16376 MiB, 1 MiB, 15985 MiB, 0 %\n7, GPU-ad340bcc-5ba4-cf96-39ee-de2ff56866fe, NVIDIA RTX A4000, 16376 MiB, 1 MiB, 15985 MiB, 0 %\n8, GPU-6ca80fde-45a7-8f9b-3078-41832ab6982b, NVIDIA RTX A4000, 16376 MiB, 1 MiB, 15985 MiB, 0 %\n9, GPU-c5e6f79d-9f61-30d4-2216-c216ab782616, NVIDIA RTX A4000, 16376 MiB, 1 MiB, 15985 MiB, 0 %\n96\n              total        used        free      shared  buff/cache   available\nMem:            503         276          30          36         196         187\nSwap:             1           1           0\nFilesystem      Size  Used Avail Use% Mounted on\n/dev/nvme0n1p1  7.0T  6.6T   74G  99% /lfs/mercury2/0\n",
+      "stderr": "/afs/cs.stanford.edu/u/brando9/.bashrc: line 213: /lfs/mercury2/0/brando9/.cargo/env: No such file or directory\nerror: list of process IDs must follow -p\n\nUsage:\n ps [options]\n\n Try 'ps --help <simple|list|output|threads|misc|all>'\n  or 'ps --help <s|l|o|t|m|a>'\n for additional help text.\n\nFor more details see ps(1).\n"
+    }
+  },
+  "placement_decision": "skampere2 H200 GPUs4-7 are the compatible idle candidates; previous exp18c workers have exit0. No allocation/launch because scientific admission is incomplete. All B200s and local A100s occupied; idle mercury A4000s have only16GB and are outside these runbooks training hardware."
+}

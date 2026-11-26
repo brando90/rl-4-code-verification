@@ -1,0 +1,123 @@
+{
+  "title": "11-25-2026 \u2014 AT-3598 GPU launch wrapper checks",
+  "date": "11-25-2026",
+  "harness": "Codex CLI, GPT-6 Astra ultra (Vals account)",
+  "checks": [
+    {
+      "label": "02B syntax",
+      "argv": [
+        "bash",
+        "-n",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_b_prospective_2x2_forecast_check/expt_v2/launch_11-25-2026.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "03 syntax",
+      "argv": [
+        "bash",
+        "-n",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/03_rl_on_never_solved_lean_prompts_binary_vs_dense_reward_eval_vbv1/expt_v1/launch_11-25-2026.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "02B admission wrapper",
+      "argv": [
+        "bash",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_b_prospective_2x2_forecast_check/expt_v2/launch_11-25-2026.sh"
+      ],
+      "exit_code": 2,
+      "stdout": "NOT LAUNCHED: 02B v2 (11-25-2026)\n- No idle compatible GPU observed on skampere1; all eight have other users' processes and exceed the launcher's 10% utilization limit.\n- A verified executable Lean training configuration and entrypoint for this locked external-only experiment are absent; the old math-specific placeholder cannot substitute.\n- The adapter engineering support gate is separate from accepted, screened, allowed-axiom, non-vacuous references in both required environments.\n- No measured pre-RL environment probes or hash-verifiable frozen numeric forecast for these environments are present. Numeric paper coefficients now exist in src/rl4cv/utility_model.py, but that does not supply the missing measurements or Lean-fold standardizers.\n- The exact-model, exact-dtype rollout/trainer mismatch and Lean-throughput baseline needed to estimate GPU-hours has not run. Experiment 08 checkpoints trained on VeriBench cannot replace the external-only initialization in this older protocol.\n",
+      "stderr": ""
+    },
+    {
+      "label": "03 admission wrapper",
+      "argv": [
+        "bash",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/03_rl_on_never_solved_lean_prompts_binary_vs_dense_reward_eval_vbv1/expt_v1/launch_11-25-2026.sh"
+      ],
+      "exit_code": 2,
+      "stdout": "NOT LAUNCHED: 03 v1 (11-25-2026)\n- Experiment 03 PROTOCOL.md is absent; expt_v1/cc.md explicitly says to stop when it does not exist. No protocol was created or edited in this task.\n- No admitted experiment 02A external-only warm start, four-stage probe records, frozen zero-signal Z bucket or pre-RL per-reward forecast is available for this experiment.\n- No verified experiment 02B trainer configuration or real training entrypoint exists here; no math-only or VeriBench-trained replacement is assumed.\n- The proof_fraction_feedback1 reward implementation and trainer multi-turn contract remain unimplemented in the inspected repository.\n- No idle compatible GPU observed on skampere1; all eight have other users' processes and exceed the launcher's 10% utilization limit.\n",
+      "stderr": ""
+    },
+    {
+      "label": "02B pytest",
+      "argv": [
+        "python3",
+        "-m",
+        "pytest",
+        "-q",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_b_prospective_2x2_forecast_check/expt_v2"
+      ],
+      "exit_code": 0,
+      "stdout": "...                                                                      [100%]\n3 passed in 0.11s\n",
+      "stderr": ""
+    },
+    {
+      "label": "03 pytest",
+      "argv": [
+        "python3",
+        "-m",
+        "pytest",
+        "-q",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/03_rl_on_never_solved_lean_prompts_binary_vs_dense_reward_eval_vbv1/expt_v1"
+      ],
+      "exit_code": 5,
+      "stdout": "\nno tests ran in 0.03s\n",
+      "stderr": ""
+    },
+    {
+      "label": "02B final admission wrapper",
+      "argv": [
+        "bash",
+        "--noprofile",
+        "--norc",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_b_prospective_2x2_forecast_check/expt_v2/launch_11-25-2026.sh"
+      ],
+      "exit_code": 2,
+      "stdout": "NOT LAUNCHED: 02B v2 (11-25-2026)\n- A verified executable Lean training configuration and entrypoint for this locked external-only experiment are absent; the old math-specific placeholder cannot substitute.\n- The adapter engineering support gate is separate from accepted, screened, allowed-axiom, non-vacuous references in both required environments.\n- No measured pre-RL environment probes or hash-verifiable frozen numeric forecast for these environments are present. Numeric paper coefficients now exist in src/rl4cv/utility_model.py, but that does not supply the missing measurements or Lean-fold standardizers.\n- The exact-model, exact-dtype rollout/trainer mismatch and Lean-throughput baseline needed to estimate GPU-hours has not run. Experiment 08 checkpoints trained on VeriBench cannot replace the external-only initialization in this older protocol.\n",
+      "stderr": ""
+    },
+    {
+      "label": "03 final admission wrapper",
+      "argv": [
+        "bash",
+        "--noprofile",
+        "--norc",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/03_rl_on_never_solved_lean_prompts_binary_vs_dense_reward_eval_vbv1/expt_v1/launch_11-25-2026.sh"
+      ],
+      "exit_code": 2,
+      "stdout": "NOT LAUNCHED: 03 v1 (11-25-2026)\n- Experiment 03 PROTOCOL.md is absent; expt_v1/cc.md explicitly says to stop when it does not exist. No protocol was created or edited in this task.\n- No admitted experiment 02A external-only warm start, four-stage probe records, frozen zero-signal Z bucket or pre-RL per-reward forecast is available for this experiment.\n- No verified experiment 02B trainer configuration or real training entrypoint exists here; no math-only or VeriBench-trained replacement is assumed.\n- The proof_fraction_feedback1 reward implementation and trainer multi-turn contract remain unimplemented in the inspected repository.\n",
+      "stderr": ""
+    },
+    {
+      "label": "02B final pytest",
+      "argv": [
+        "python3",
+        "-m",
+        "pytest",
+        "-q",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_b_prospective_2x2_forecast_check/expt_v2"
+      ],
+      "exit_code": 0,
+      "stdout": "...                                                                      [100%]\n3 passed in 0.06s\n",
+      "stderr": ""
+    },
+    {
+      "label": "diff whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}
