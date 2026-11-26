@@ -1,0 +1,98 @@
+{
+  "date": "11-25-2026",
+  "task_id": "instance_internetarchive__openlibrary-6afdb09df692223c3a31df65cfa92f15e5614c01-v08d8e8889ec945ab821fb156c04c7d2e2810debb",
+  "repo": "internetarchive/openlibrary",
+  "base_commit": "1a3fab3f0b319e0df49dd742ce2ffa0d747d1b44",
+  "source_url": "https://raw.githubusercontent.com/internetarchive/openlibrary/1a3fab3f0b319e0df49dd742ce2ffa0d747d1b44/scripts/solr_builder/solr_builder/fn_to_cli.py",
+  "base_source_sha256": "5967ff7ffe5ba548f4af62ade0fcc2417a18abe9526c82ad09df11f153ff6f05",
+  "gold_source_sha256": "c3de3887086e87fd34276c298cdc49e1c01d45d912eead538375bff3f0ee2e78",
+  "gold_patch_sha256": "1706657372328a92e38a85a5fa8cdca8eb88eb4e5c2c8dbfa7f7242e46bdf2b3",
+  "input_sha256": "fe4f45369c776e7dccb2ea60fb53f500f8dcc39f26b4bb061d74fb672605e9aa",
+  "inputs": 256,
+  "python": "3.12.3",
+  "scope": "Full real stdlib FnToCLI module; property/fuzz controls only; no whole-repository gate or solver generation",
+  "controls": {
+    "status": "controls_passed",
+    "inputs": 256,
+    "gold_repeat_agreement": 1.0,
+    "base_disagreements": 256,
+    "controls_pass": true,
+    "candidate_measured": false,
+    "d_gold": null
+  },
+  "execution": {
+    "gold": {
+      "command": [
+        "/usr/bin/python3",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/07_scs4c_vs_pass1_swebench_across_models/followups_11-25-2026/run_real_fncli_controls.py",
+        "--worker",
+        "--module",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/07_scs4c_vs_pass1_swebench_across_models/followups_11-25-2026/raw_inputs/real_fncli_controls/gold/scripts/solr_builder/solr_builder/fn_to_cli.py",
+        "--inputs",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/07_scs4c_vs_pass1_swebench_across_models/followups_11-25-2026/raw_inputs/real_fncli_controls/inputs_11-25-2026.json",
+        "--out",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/07_scs4c_vs_pass1_swebench_across_models/followups_11-25-2026/raw_inputs/real_fncli_controls/gold_observations.json"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.6363887786865234
+    },
+    "gold_repeat": {
+      "command": [
+        "/usr/bin/python3",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/07_scs4c_vs_pass1_swebench_across_models/followups_11-25-2026/run_real_fncli_controls.py",
+        "--worker",
+        "--module",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/07_scs4c_vs_pass1_swebench_across_models/followups_11-25-2026/raw_inputs/real_fncli_controls/gold/scripts/solr_builder/solr_builder/fn_to_cli.py",
+        "--inputs",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/07_scs4c_vs_pass1_swebench_across_models/followups_11-25-2026/raw_inputs/real_fncli_controls/inputs_11-25-2026.json",
+        "--out",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/07_scs4c_vs_pass1_swebench_across_models/followups_11-25-2026/raw_inputs/real_fncli_controls/gold_repeat_observations.json"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.3460118770599365
+    },
+    "base": {
+      "command": [
+        "/usr/bin/python3",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/07_scs4c_vs_pass1_swebench_across_models/followups_11-25-2026/run_real_fncli_controls.py",
+        "--worker",
+        "--module",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/07_scs4c_vs_pass1_swebench_across_models/followups_11-25-2026/raw_inputs/real_fncli_controls/base/scripts/solr_builder/solr_builder/fn_to_cli.py",
+        "--inputs",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/07_scs4c_vs_pass1_swebench_across_models/followups_11-25-2026/raw_inputs/real_fncli_controls/inputs_11-25-2026.json",
+        "--out",
+        "/lfs/skampere1/0/brando9/rl4cv_at3598/repo/experiments/07_scs4c_vs_pass1_swebench_across_models/followups_11-25-2026/raw_inputs/real_fncli_controls/base_observations.json"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.4743161201477051
+    }
+  },
+  "observations": {
+    "gold": {
+      "sha256": "fbf3a27adf8eaad97af08d90289ca5df7627fac2ede7944682374948850934ed",
+      "values": 256,
+      "exceptions": 0
+    },
+    "gold_repeat": {
+      "sha256": "fbf3a27adf8eaad97af08d90289ca5df7627fac2ede7944682374948850934ed",
+      "values": 256,
+      "exceptions": 0
+    },
+    "base": {
+      "sha256": "01d088d47f2da3cb76ca5159ffa003d8fa75693410daa93c40c37ea5386888f5",
+      "values": 133,
+      "exceptions": 123
+    }
+  },
+  "cpu_only": true,
+  "gpu_jobs": [],
+  "model_calls": 0,
+  "whole_repository_install_import_gate": "unmeasured",
+  "phase_b_admitted": false
+}

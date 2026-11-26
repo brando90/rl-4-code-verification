@@ -1,0 +1,193 @@
+{
+  "out": "experiments/07_scs4c_vs_pass1_swebench_across_models/followups_11-25-2026/analysis_11-25-2026.json",
+  "systems": 164,
+  "tasks": 424,
+  "decomposition": {
+    "mean_pass1": 0.5739329268292683,
+    "mean_system_smooth": 0.7671916794871811,
+    "mean_per_artifact_smooth": 0.6398491106978939,
+    "mean_bias": 0.19325875265791295,
+    "aggregation_gap": 0.12734256878928735,
+    "per_artifact_credit_gap": 0.06591618386862556,
+    "unresolved_positive_credit": 0.06592652919171985,
+    "resolved_inconsistency_contribution": -1.0345323094289994e-05,
+    "mean_gated_t_fix": 0.6328535135279905,
+    "mean_gated_t_keep": 0.9427515883015244,
+    "task_variance_mean_per_system": {
+      "resolved": 0.21608255449600153,
+      "per_artifact_smooth": 0.19198253845220514,
+      "score_minus_resolved": 0.05087012974997453,
+      "twice_covariance": -0.0749701457937709,
+      "identity_max_abs_error": 1.457167719820518e-16
+    }
+  },
+  "posthoc_splits": {
+    "seed": 20261125,
+    "n_A": 50,
+    "n_B": 374,
+    "splits": 2000,
+    "interval_note": "5th\u201395th split-distribution percentiles, not population confidence intervals",
+    "calibration_note": "OLS pass1_A ~ intercept + system_smooth_A across the same systems; unbounded predictions; post-hoc task generalization only",
+    "calibration_slope": {
+      "defined": 2000,
+      "requested": 2000,
+      "median": 1.2070525507694208,
+      "p05_p95": [
+        1.107591763486932,
+        1.299457172582611
+      ]
+    },
+    "methods": {
+      "pass1": {
+        "spearman": {
+          "defined": 2000,
+          "requested": 2000,
+          "median": 0.9529870678161413,
+          "p05_p95": [
+            0.9306561960350935,
+            0.9651811175165699
+          ]
+        },
+        "mae": {
+          "defined": 2000,
+          "requested": 2000,
+          "median": 0.04939872179470458,
+          "p05_p95": [
+            0.03605373679405243,
+            0.09899400026085821
+          ]
+        },
+        "rank_delta_vs_pass1": {
+          "defined": 2000,
+          "requested": 2000,
+          "median": 0.0,
+          "p05_p95": [
+            0.0,
+            0.0
+          ]
+        },
+        "rank_delta_positive": 0
+      },
+      "system_smooth": {
+        "spearman": {
+          "defined": 2000,
+          "requested": 2000,
+          "median": 0.9405146365589672,
+          "p05_p95": [
+            0.9174904096794262,
+            0.9554309448812998
+          ]
+        },
+        "mae": {
+          "defined": 2000,
+          "requested": 2000,
+          "median": 0.19246515368966674,
+          "p05_p95": [
+            0.13820912226455526,
+            0.24315946349641715
+          ]
+        },
+        "rank_delta_vs_pass1": {
+          "defined": 2000,
+          "requested": 2000,
+          "median": -0.011736723680019823,
+          "p05_p95": [
+            -0.024246431690530944,
+            -0.00019348178045230558
+          ]
+        },
+        "rank_delta_positive": 97
+      },
+      "per_artifact_mean": {
+        "spearman": {
+          "defined": 2000,
+          "requested": 2000,
+          "median": 0.9480741570450842,
+          "p05_p95": [
+            0.9248408404184761,
+            0.9614422685607861
+          ]
+        },
+        "mae": {
+          "defined": 2000,
+          "requested": 2000,
+          "median": 0.0702246051314535,
+          "p05_p95": [
+            0.0383819467146676,
+            0.13721415277831894
+          ]
+        },
+        "rank_delta_vs_pass1": {
+          "defined": 2000,
+          "requested": 2000,
+          "median": -0.004944044089070121,
+          "p05_p95": [
+            -0.016095307948419384,
+            0.005297567135046088
+          ]
+        },
+        "rank_delta_positive": 406
+      },
+      "t_fix_mean": {
+        "spearman": {
+          "defined": 2000,
+          "requested": 2000,
+          "median": 0.9475842779694594,
+          "p05_p95": [
+            0.9234508760456018,
+            0.9611931471621357
+          ]
+        },
+        "mae": {
+          "defined": 2000,
+          "requested": 2000,
+          "median": 0.06511558271883579,
+          "p05_p95": [
+            0.03788336790346139,
+            0.1329263358244258
+          ]
+        },
+        "rank_delta_vs_pass1": {
+          "defined": 2000,
+          "requested": 2000,
+          "median": -0.0054770489060966265,
+          "p05_p95": [
+            -0.016447457818172133,
+            0.004355876440465915
+          ]
+        },
+        "rank_delta_positive": 344
+      },
+      "calibrated_system_smooth": {
+        "spearman": {
+          "defined": 2000,
+          "requested": 2000,
+          "median": 0.9405146365589672,
+          "p05_p95": [
+            0.9174904096794262,
+            0.9554309448812998
+          ]
+        },
+        "mae": {
+          "defined": 2000,
+          "requested": 2000,
+          "median": 0.05434102135664587,
+          "p05_p95": [
+            0.04014857112278798,
+            0.10188204910937866
+          ]
+        },
+        "rank_delta_vs_pass1": {
+          "defined": 2000,
+          "requested": 2000,
+          "median": -0.011732941634533145,
+          "p05_p95": [
+            -0.024246431690530944,
+            -0.00019348178045230558
+          ]
+        },
+        "rank_delta_positive": 97
+      }
+    }
+  }
+}

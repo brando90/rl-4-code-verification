@@ -1,0 +1,15 @@
+{
+  "date": "11-25-2026",
+  "host": "skampere1",
+  "harness": "Codex CLI, GPT-6 Astra ultra (Vals account)",
+  "checks": [
+    {"command": "docker info --format '{{.ServerVersion}}'", "exit_code": 0, "stdout": "28.1.1"},
+    {"command": "valkyrie whoami", "exit_code": 1, "output": "Error: Your Valkyrie login has expired. Run `valkyrie login` again."},
+    {"command": "valkyrie provider list", "exit_code": 1, "output": "Error: Your Valkyrie login has expired. Run `valkyrie login` again."},
+    {"command": "valkyrie benchmark service list", "exit_code": 1, "output": "Error: Your Valkyrie login has expired. Run `valkyrie login` again."}
+  ],
+  "model_calls": 0,
+  "gpu_jobs": [],
+  "provider_funding_verified": false,
+  "phase_b_service_verified": false
+}
