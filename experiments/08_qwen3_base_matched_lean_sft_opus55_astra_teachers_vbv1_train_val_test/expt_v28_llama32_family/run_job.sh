@@ -14,7 +14,7 @@ if [ "$MODE" = prepare ]; then
   python3 -u train_v28.py prepare
 elif [ "$MODE" = train ] || [ "$MODE" = smoke ]; then
   export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:?Slurm must assign one GPU}"
-  export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
+  export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True  # Gemma smoke: 18.5 GiB sat reserved-but-unallocated in the eager OOM
   nvidia-smi --query-gpu=index,name,memory.total,driver_version --format=csv
   free -g | head -2
   python3 -u train_v28.py "$MODE" --arm "${2:?arm}" --seed "${3:?seed}" ${4:+--steps "$4"} ${5:+--host-optimizer "$5"}
