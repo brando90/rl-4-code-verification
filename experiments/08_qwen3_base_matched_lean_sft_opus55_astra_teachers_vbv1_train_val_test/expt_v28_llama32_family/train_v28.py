@@ -54,6 +54,8 @@ if os.environ.get("V28_ARMS"):
     assert all(a in ARMS for a in CHOSEN), f"unknown arm in V28_ARMS={CHOSEN}"
     for _name, _spec in ARMS.items():
         _spec["enabled"] = _name in CHOSEN
+CHUNKED_LOSS_ENV = os.environ.get("V28_CHUNKED_LOSS", "auto")  # auto: on for the Gemma-3 family only (262k vocabulary); Llama code path unchanged
+assert CHUNKED_LOSS_ENV in ("auto", "on", "off")
 ATTN = os.environ.get("V28_ATTN", "sdpa")  # Llama runs used sdpa; the Gemma smoke also tries eager (Gemma-3's recommended backend)
 assert ATTN in ("sdpa", "eager")
 # Prompt formats. The prefix is the chat template's output for (system, user) with the generation prompt, WITHOUT the BOS
@@ -157,6 +159,27 @@ def make_scheduler(optimizer):
     return torch.optim.lr_scheduler.SequentialLR(optimizer, [
         torch.optim.lr_scheduler.LinearLR(optimizer, start_factor=0.05, total_iters=20),
         torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=638, eta_min=0.0)], milestones=[20])
+
+
+def chunked_lm_loss(model, ids, prompt, chunk=2048):
+    """Mean next-token cross-entropy over the assistant tokens (ids[prompt:]), identical to the HF labels loss, but the vocabulary
+    projection runs in checkpointed chunks. Gemma-3's 262,144-token vocabulary makes the full fp32 logits of a 17,221-token example
+    16.8 GiB (plus as much again in backward), which ran the 4B smoke out of 80 GB (Nov 26 2026 smoke jobs 53692827 and 53692828)."""
+    import torch
+    import torch.nn.functional as F
+    from torch.utils.checkpoint import checkpoint
+    hidden = model.model(input_ids=ids).last_hidden_state[0, prompt - 1:-1]
+    target = ids[0, prompt:]
+    cap = getattr(model.config.get_text_config(), "final_logit_softcapping", None)
+
+    def piece(h, t):
+        logits = model.lm_head(h).float()
+        if cap is not None:
+            logits = torch.tanh(logits / cap) * cap
+        return F.cross_entropy(logits, t, reduction="sum")
+    total = sum(checkpoint(piece, hidden[i:i + chunk], target[i:i + chunk], use_reentrant=False)
+                for i in range(0, hidden.shape[0], chunk))
+    return total / target.shape[0]
 
 
 def format_ids(tok, family, roles):
@@ -264,6 +287,7 @@ def train(arm, seed, smoke_steps=0, host_override=None):
     torch.backends.cuda.matmul.allow_tf32 = False
     model_path = receipt["models"][arm]["model_path"]
     host = spec["host_optimizer"] if host_override is None else host_override
+    CHUNKED_LOSS = CHUNKED_LOSS_ENV == "on" or (CHUNKED_LOSS_ENV == "auto" and fam == "gemma3")
     model = AutoModelForCausalLM.from_pretrained(model_path, local_files_only=True,
         torch_dtype=torch.float32, attn_implementation=ATTN).cuda()
     model.config.use_cache = False
@@ -281,7 +305,7 @@ def train(arm, seed, smoke_steps=0, host_override=None):
         "cuda_visible_devices": os.environ["CUDA_VISIBLE_DEVICES"], "data_sha256": DATA_SHA,
         "order_sha256": ids_digest(order), "code_sha256": digest(__file__), "declared_examples": len(order),
         "declared_steps": smoke_steps if smoke else STEPS, "declared_loss_tokens": None if smoke else loss_tokens,
-        "parameter_dtype": "float32", "autocast_dtype": "bfloat16", "backend": f"transformers-{ATTN}", "smoke": smoke,
+        "chunked_loss": CHUNKED_LOSS, "parameter_dtype": "float32", "autocast_dtype": "bfloat16", "backend": f"transformers-{ATTN}", "smoke": smoke,
         "optimizer_device": "cpu (HostAdamW, float32 master + moments)" if host else "cuda",
         "n_parameters": sum(p.numel() for p in model.parameters())}
     write_json(out / "identity.json", identity)
@@ -301,7 +325,8 @@ def train(arm, seed, smoke_steps=0, host_override=None):
                 labels = ids.clone()
                 labels[:, :row["prompt"]] = -100
                 with torch.autocast("cuda", dtype=torch.bfloat16):
-                    loss = model(input_ids=ids, labels=labels).loss
+                    loss = (chunked_lm_loss(model, ids, row["prompt"]) if CHUNKED_LOSS
+                            else model(input_ids=ids, labels=labels).loss)
                 assert bool(torch.isfinite(loss)), "nonfinite loss"
                 weight = row["loss_tokens"] / denominator
                 (loss * weight).backward()
