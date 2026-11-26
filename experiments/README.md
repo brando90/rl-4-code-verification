@@ -49,6 +49,8 @@ Background for 03: [notes/rl_new_skills_vs_base_model_coverage_09-30-2026.md](..
 
 **Date:** 11-25-2026. The historical status rows above are retained. Issue #7 closes incomplete at the November 1 deadline: 4,320/17,280 version-3 validation entries are missing, with only the four 14B rungs continued in [#34](https://github.com/brando90/rl-4-code-verification/issues/34); see the [dated closing note](08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v3/closing_note_11-25-2026.md). Issue #5 has [new CPU follow-ups](07_scs4c_vs_pass1_swebench_across_models/followups_11-25-2026.md) and remains open. The [new exp02 behavioral adapter](02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/adapter_11-25-2026/README.md) supports 24/24 real tasks (158/158 behavioral tests), but issues #6 and #3 retain unstarted 02B/03 training: GPU approval is given and skampere2 H200 capacity is available, while the locked scientific prerequisites remain unmet; see the [current SNAP evidence](../docs/qa_11-25-2026/snap_status_at3598_11-25-2026.md).
 
+**Update 11-26-2026 (D-113):** issues #3, #5, #6 and #34 were closed on 11-26-2026 at Brando's instruction, with state "not planned" because GitHub has no "tracked elsewhere" reason; no issue is open. Everything they tracked is carried as items R1 to R6 in [NEXT_STEPS_11-26-2026](../docs/NEXT_STEPS_11-26-2026.md): the 14B rungs are R1, experiments 02B to 02D and 03 are R2 and R3, experiment 07 phases B and C are R4. The sentences above that issue #5 "remains open" and that the 14B rungs continue in #34 describe 11-25-2026.
+
 ## Old → new numbering (09-30-2026, D-007)
 
 Commits, issue comments, earlier decision entries and experiment 01's own files written before this change use the old numbers.
