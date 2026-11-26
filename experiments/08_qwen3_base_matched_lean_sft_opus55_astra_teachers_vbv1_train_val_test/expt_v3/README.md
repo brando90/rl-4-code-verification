@@ -4,6 +4,8 @@
 
 **TLDR:** The locked supervised fine-tuning comparison continues the same starting weights with original-data replay or admitted expansion at matched loss-token budgets. Phase A is complete: four training runs, eight exports, 8,640 validation cells, four paired comparisons and eight namespace diagnostics. Phase B is running; the full 17,280-cell experiment remains incomplete. [Live results](results.md).
 
+**Closure 11-25-2026:** This version is closed **INCOMPLETE at the 11-01-2026 deadline**; 4,320 of 17,280 validation cells remain missing. The four 14B rungs continue only as [open measurement #34](https://github.com/brando90/rl-4-code-verification/issues/34). See the [dated closing note](closing_note_11-25-2026.md). Earlier running/recovery descriptions below are historical.
+
 **Status (QA 11-25-2026): INCOMPLETE; the recovery deadline was reached on 11-01-2026 with the four 14B validation rungs still missing (12,960 of 17,280 cells known); see results.md.** Earlier status: RUNNING (10-16-2026). [PROTOCOL.md](PROTOCOL.md) was locked and published before training on 10-15-2026. Expansion 8B training and both exports are verified after a retained zero-update infrastructure failure. Its half validation generation is complete, scoring is active and full generation/replay are queued or running; 14B waits for its frozen eight-device layout.
 **Execution owner:** recovery-02, the sole writer under Brando's continuation dispatch; [checkpoint and current identities](CKPT_e08_v3.md). The original Lethan/Rakshit assignments are historical. B denotes billion model parameters; MBPP means Mostly Basic Python Problems.
 

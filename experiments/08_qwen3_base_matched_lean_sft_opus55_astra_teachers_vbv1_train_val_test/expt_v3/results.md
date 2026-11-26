@@ -4,6 +4,8 @@
 
 **TLDR:** Phase A: DONE; Phase B: RECOVERING. 12,960/17,280 validation cells known. Expansion 14B died at step 183 of 335 on 10-17-2026 22:03 PDT (CUDA out of memory) and is waiting for its eight devices before restarting from the step-658 weights. [Execution events and verified training progress](results/runtime_progress.md).
 
+**Closure 11-25-2026:** This version is closed **INCOMPLETE at the 11-01-2026 deadline**; 4,320 of 17,280 validation cells remain missing. The four 14B rungs continue only as [open measurement #34](https://github.com/brando90/rl-4-code-verification/issues/34). See the [dated closing note](closing_note_11-25-2026.md). Earlier running/recovery descriptions below are historical.
+
 **Status (QA 11-25-2026): INCOMPLETE; recovery deadline reached 11-01-2026, 4,320 of 17,280 validation cells (four 14B rungs) never measured.** Earlier status: RECOVERING. **Last updated:** 10-18-2026 10:30 PDT.
 
 Known validation cells: **12960/17,280**; 12960 belong to complete rungs. [Every missing/failed cell](results/coverage) remains in the declared denominator; no paid model calls.
