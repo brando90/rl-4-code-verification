@@ -1,0 +1,7 @@
+Candidate.lean:32:13: warning: `Array.mkArray` has been deprecated: use `Array.replicate` instead
+Candidate.lean:27:46: warning: unused variable `h_precond`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+AdapterCandidate.arraySum (a b : Array Int) (h_precond : arraySum_precond a b) : Array Int
+'AdapterCandidate.arraySum' depends on axioms: [propext, Quot.sound]
+'AdapterCandidate.adapterInterface' depends on axioms: [propext, Quot.sound]
