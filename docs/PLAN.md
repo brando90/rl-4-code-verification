@@ -173,3 +173,7 @@ Decision D-017 applies: Lethan (@lethan3) owns 1.7B and 8B, Rakshit (@rakshit-ka
 ## 13. Smooth-to-harsh project line (10-28-2026)
 
 Azalia's suggestion (smooth score as a reward, feedback or environment signal that improves the harsh strict pass@1) is a named project line under this repository, tracked in [SMOOTH_TO_HARSH.md](SMOOTH_TO_HARSH.md) with the history of experiments 04, 06, 07, 09, 12, 13, 19 and 20. Status: plan needed; no new run admitted until Brando has seen the history and a plan has passed QA.
+
+## 14. Open work after the 11-26-2026 issue close-out
+
+The four open issues were closed on 11-26-2026 (D-113). The work they tracked (the 14B rungs of experiment 08, experiments 02B to 02D and 03, experiment 07 phases B and C, and the optional fourth seed of experiment 25) is carried, with owners, blockers and launch gates, in [NEXT_STEPS_11-26-2026.md](NEXT_STEPS_11-26-2026.md).

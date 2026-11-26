@@ -6,7 +6,9 @@ import math
 import sys
 from pathlib import Path
 
-import torch
+import pytest
+
+torch = pytest.importorskip("torch")
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "experiments/20_irt_ability_matched_prompt_selection_grpo_strict_vs_smooth_qwen3_1p7b_sft_vbv1_d013/expt_v1/loss_e20.py"

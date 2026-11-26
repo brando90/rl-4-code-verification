@@ -204,3 +204,12 @@ Note on D-105 (09-30-2026):
 - **Decision 1:** Of the 22 non-main remote branches, 20 were already contained in `main`; the two with unmerged commits (`e13v3-resume-missing-receipt-fix-10-22-2026`, 2 commits, and `wip/mac-snapshot-10-22-2026/rl4cv-sherlock-validation`, 1 commit) were merged into `main` on 11-25-2026 (merges 06389efc and 0656edc3, no conflicts). No open pull requests existed.
 - **Decision 2:** all branches stay in place. Deleting remote branches waits for Brando's word.
 - **Decision 3:** `CLAUDE.md` and `AGENTS.md` state the straight-to-`main` rule for research work.
+
+
+### D-113 — Open issues closed into a register, branches re-verified, QA of 11-26-2026 — accepted — 11-26-2026 — Brando
+
+- **Authorization:** Brando, 11-26-2026 10:48 PT (his weekly-updates note, "Do it!"): "do experiments too, close all issues merge all branches to main, suggest what to do next for this project and do it, mega qa opus 5.5 go!"
+- **Decision 1:** issues #3, #5, #6 and #34 are closed, one comment each, with GitHub's "not planned" reason (the closest to "tracked elsewhere"). None of their work is finished, so it is carried as items R1 to R6 in [NEXT_STEPS_11-26-2026.md](NEXT_STEPS_11-26-2026.md) with owners, blockers, evidence and launch gates. Owners are unchanged.
+- **Decision 2:** all 22 non-main remote branches were re-checked on 11-26-2026 with the GitHub compare API: every one is contained in `main` (`ahead_by` 0), so there was nothing to merge, and all branches stay in place. Two superseded branches hold files with no verbatim copy on `main` (`claude/admiring-heisenberg-eok3j4`, tip `b5e31259`: four files of the old experiment-01 folder; `ub9/valkyrie-hosted-migration`, tip `e9d69a38`: `src/rl4cv/valkyrie_hosted.py` and `tests/test_valkyrie_hosted.py`; successors exist for both). Tag them before any deletion; agent sessions cannot push tags through the proxy, so the exact commands are in NEXT_STEPS section 5.
+- **Decision 3:** independent QA by two Claude Opus 5.5 reviewers is recorded in [qa_11-26-2026](qa_11-26-2026/results.md). The verified corrections were applied to the experiment index, the experiment 13 and 18 READMEs and the experiment 10 v2 results, and a torch-less collection error was fixed (`tests/test_e20_loss.py` now skips without torch).
+- **Not decided (Brando only):** repository visibility and the scope of the privacy rule; whether `docs/anarres_11-25-2026/` stays; deleting remote branches; launching R1, R2 and R5; refreshing the Valkyrie login.

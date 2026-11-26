@@ -12,7 +12,7 @@ The plan has three phases:
 - **Phase 1:** fit and validate a conjunctive item response theory (IRT) model that predicts held-out pass@1 and pass@k.
 - **Phase 2:** run four RL arms from the Qwen3-4B SFT checkpoint: strict reward, SCSC-style factored reward, IRT-guided reward and prompt sampling, and a placebo dense reward.
 
-Status (10-16-2026 08:40 PDT): **v2-S2 STOPPED_AT_T2_FAIL.** One optimizer step completed with unchanged weights and zero nonzero-advantage slots; 256/256 train responses, 255 measured scores and one missing. Refit passes, but PLAN section 4 stops Phase 2. All 14 T2 leases released, 4.370285669/10.0 cumulative device-hours. [Final T2 report](expt_v2/RESULTS_T2_S2.md). Reward-arm comparisons and new held-out outcomes remain unmeasured.
+Status (10-16-2026 08:40 PDT): **v2-S2 STOPPED_AT_T2_FAIL.** One optimizer step completed with unchanged weights and zero nonzero-advantage slots; 256/256 train responses, 255 measured scores and one missing. Refit passes, but PLAN section 4 stops Phase 2. All 14 T2 leases released, 4.370285669/10.0 cumulative device-hours. [Final T2 report](expt_v2/RESULTS_T2_S2.md). Reward-arm comparisons and new held-out outcomes remain unmeasured. Later status (QA 11-26-2026): the v3 pilot is INCOMPLETE ([checkpoint](expt_v3/CKPT_factored_pilot.md)); v4 ([README](expt_v4/README.md)) records its own state.
 
 - **Created:** 10-09-2026 by Claude Code (`claude-opus-5-5`) for Brando.
 - **Owner:** fresh version 2 skampere1 owner `codex-rl4cv-e13v2-owner-g0`; the Mac master retains the parent experiment.

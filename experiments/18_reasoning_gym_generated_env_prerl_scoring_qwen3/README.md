@@ -47,3 +47,4 @@ Items: `reasoning-gym==0.1.25`, curriculum level L via `set_global_level(L)` wit
 ## Status
 
 - 10-20-2026: protocol frozen (commit before any job); code, tests (57 CPU tests pass) and the FarmShare/Sherlock package built. Next: AT-597 runs the smoke, then the full chain, and records job ids in `results.md`; AT-598 analyzes as frozen.
+- 11-26-2026 (QA): 18a COMPLETE (96 environment + 18 target cells), 18b COMPLETE (32 runs) and 18c COMPLETE 11-25-2026 (48 token-matched runs); see `results.md`, `expt_18b/results_18b.md` and `expt_18c/results_18c.md`. Nothing is queued.
