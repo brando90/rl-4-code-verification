@@ -1,0 +1,361 @@
+python -m pytest -q
+.........sssssss....................FF........FF...........ssssssssss..s [  4%]
+ss...................................................................... [  9%]
+........................................................................ [ 14%]
+.....F.....................................s...................... [ 18%]
+........................................................................ [ 23%]
+.........................................................s.............. [ 28%]
+........................................................................ [ 33%]
+..........................s.....s.......................s............... [ 38%]
+........................................................................ [ 43%]
+.....................F.................................................. [ 47%]
+........................................................................ [ 52%]
+...sssssss...........................................s.................. [ 57%]
+........................................................................ [ 62%]
+..................s..................................................... [ 67%]
+...................s......................s............................. [ 72%]
+............................F........................................... [ 76%]
+..........................s.......................s..................... [ 81%]
+........................................................................ [ 86%]
+...........................s............................................ [ 91%]
+........................................................................ [ 96%]
+..........................s.....................ss.....                  [100%]
+=================================== FAILURES ===================================
+______ test_finite_failover_uses_next_candidate_and_keeps_attempts[None] _______
+
+root = PosixPath('/lfs/skampere1/0/brando9/rl4cv_at3598/tmp/pytest-of-brando9/pytest-0/test_finite_failover_uses_next0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7a09a02faea0>
+completed_key = None
+
+    @pytest.mark.parametrize("completed_key", [None, "updated-owner-event"])
+    def test_finite_failover_uses_next_candidate_and_keeps_attempts(root, monkeypatch, completed_key):
+        store = root / "owner_recovery"
+        pipeline(root)
+        monkeypatch.setattr(m, "REPO", root)
+        monkeypatch.setattr(m, "account_probe", lambda *a: responses())
+        monkeypatch.setattr(m, "eligible", lambda *a: (True, "included"))
+        def prepare(config, state, directory, snapshot):
+            (directory / "prompt.md").write_text("fixed")
+            result = {"status": "COMPLETE", "incident_id": "fixture"}
+            if completed_key is not None:
+                result["serviced_event_key"] = completed_key
+            m.write(directory / "phase_result.json", result)
+            return "hash"
+        monkeypatch.setattr(m, "prepare_handoff", prepare)
+        monkeypatch.setattr(m, "receipt_valid", lambda attempt, directory, candidate: candidate["id"] == "vals_codex")
+        fail = root / "fail.py"
+        fail.write_text("import json\nprint(json.dumps({'type':'turn.failed','error':{'message':'usage limit'}}))\n")
+        success = root / "success.py"
+        success.write_text("print('harmless first useful action')\n")
+        candidates = [{"id": profile, "prefix": [sys.executable, str(script)],
+                       "model": "gpt-6-astra", "effort": "ultra", "file_sha256": {str(script): m.digest(script)}}
+                      for profile, script in [("personal_codex", fail), ("vals_codex", success)]]
+        state = {"incident": {"id": "fixture", "deadline_utc": (
+            dt.datetime.now(dt.timezone.utc) + dt.timedelta(seconds=40)).isoformat(), "attempts": []}}
+        incident = state["incident"]
+        # A long-lived monitor can still compute the old schema after its owner updates the source.
+        current = {"key": "event"}
+        monkeypatch.setattr(m, "event_snapshot", lambda *args: dict(current))
+>       m.drive({"candidates": candidates}, state, {"key": "event"}, store)
+
+tests/test_e08_coordinator_monitor.py:184: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py:504: in drive
+    child = subprocess.Popen(cmd, cwd=REPO, env=clean_env(), stdin=inp, stdout=out,
+                                                ^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def clean_env():
+        env = {k: v for k, v in os.environ.items() if k not in SECRET_ENV}
+        # Profile wrappers choose their own existing home; an inherited override is not silently changed.
+        if env.get("CODEX_HOME"):
+>           raise RuntimeError("unexpected inherited CODEX_HOME; profile identity unverified")
+E           RuntimeError: unexpected inherited CODEX_HOME; profile identity unverified
+
+experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py:199: RuntimeError
+_ test_finite_failover_uses_next_candidate_and_keeps_attempts[updated-owner-event] _
+
+root = PosixPath('/lfs/skampere1/0/brando9/rl4cv_at3598/tmp/pytest-of-brando9/pytest-0/test_finite_failover_uses_next1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7a09a04da090>
+completed_key = 'updated-owner-event'
+
+    @pytest.mark.parametrize("completed_key", [None, "updated-owner-event"])
+    def test_finite_failover_uses_next_candidate_and_keeps_attempts(root, monkeypatch, completed_key):
+        store = root / "owner_recovery"
+        pipeline(root)
+        monkeypatch.setattr(m, "REPO", root)
+        monkeypatch.setattr(m, "account_probe", lambda *a: responses())
+        monkeypatch.setattr(m, "eligible", lambda *a: (True, "included"))
+        def prepare(config, state, directory, snapshot):
+            (directory / "prompt.md").write_text("fixed")
+            result = {"status": "COMPLETE", "incident_id": "fixture"}
+            if completed_key is not None:
+                result["serviced_event_key"] = completed_key
+            m.write(directory / "phase_result.json", result)
+            return "hash"
+        monkeypatch.setattr(m, "prepare_handoff", prepare)
+        monkeypatch.setattr(m, "receipt_valid", lambda attempt, directory, candidate: candidate["id"] == "vals_codex")
+        fail = root / "fail.py"
+        fail.write_text("import json\nprint(json.dumps({'type':'turn.failed','error':{'message':'usage limit'}}))\n")
+        success = root / "success.py"
+        success.write_text("print('harmless first useful action')\n")
+        candidates = [{"id": profile, "prefix": [sys.executable, str(script)],
+                       "model": "gpt-6-astra", "effort": "ultra", "file_sha256": {str(script): m.digest(script)}}
+                      for profile, script in [("personal_codex", fail), ("vals_codex", success)]]
+        state = {"incident": {"id": "fixture", "deadline_utc": (
+            dt.datetime.now(dt.timezone.utc) + dt.timedelta(seconds=40)).isoformat(), "attempts": []}}
+        incident = state["incident"]
+        # A long-lived monitor can still compute the old schema after its owner updates the source.
+        current = {"key": "event"}
+        monkeypatch.setattr(m, "event_snapshot", lambda *args: dict(current))
+>       m.drive({"candidates": candidates}, state, {"key": "event"}, store)
+
+tests/test_e08_coordinator_monitor.py:184: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py:504: in drive
+    child = subprocess.Popen(cmd, cwd=REPO, env=clean_env(), stdin=inp, stdout=out,
+                                                ^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def clean_env():
+        env = {k: v for k, v in os.environ.items() if k not in SECRET_ENV}
+        # Profile wrappers choose their own existing home; an inherited override is not silently changed.
+        if env.get("CODEX_HOME"):
+>           raise RuntimeError("unexpected inherited CODEX_HOME; profile identity unverified")
+E           RuntimeError: unexpected inherited CODEX_HOME; profile identity unverified
+
+experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py:199: RuntimeError
+__________ test_handoff_failure_resumes_same_attempt_without_reprobe ___________
+
+root = PosixPath('/lfs/skampere1/0/brando9/rl4cv_at3598/tmp/pytest-of-brando9/pytest-0/test_handoff_failure_resumes_s0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7a09a02fb920>
+
+    def test_handoff_failure_resumes_same_attempt_without_reprobe(root, monkeypatch):
+        candidate, state, store = recovery_fixture(root)
+        probes, launches = [], []
+        monkeypatch.setattr(m, "account_probe", lambda *args: probes.append(args) or responses())
+        fake_completed_launch(root, monkeypatch, state, launches)
+        def broken(*args):
+            raise PermissionError("inaccessible policy repository")
+        monkeypatch.setattr(m, "prepare_handoff", broken)
+        deadline = state["incident"]["deadline_utc"]
+        m.drive({"candidates": [candidate]}, state, {"key": "event"}, store)
+        assert state["status"] == "HANDOFF_INFRASTRUCTURE_BLOCKED"
+        attempt = state["incident"]["attempts"][0]
+        assert attempt["status"] == "HANDOFF_FAILED"
+        assert len(probes) == 1 and not launches
+        started = attempt["started_utc"]
+        failure = dict(attempt["handoff_failures"][0])
+        def repaired(config, state, directory, snapshot):
+            (directory / "prompt.md").write_text("fixed handoff")
+            return m.digest(directory / "prompt.md")
+        monkeypatch.setattr(m, "prepare_handoff", repaired)
+>       m.drive({"candidates": [candidate]}, state, {"key": "event"}, store)
+
+tests/test_e08_coordinator_monitor.py:390: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py:504: in drive
+    child = subprocess.Popen(cmd, cwd=REPO, env=clean_env(), stdin=inp, stdout=out,
+                                                ^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def clean_env():
+        env = {k: v for k, v in os.environ.items() if k not in SECRET_ENV}
+        # Profile wrappers choose their own existing home; an inherited override is not silently changed.
+        if env.get("CODEX_HOME"):
+>           raise RuntimeError("unexpected inherited CODEX_HOME; profile identity unverified")
+E           RuntimeError: unexpected inherited CODEX_HOME; profile identity unverified
+
+experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py:199: RuntimeError
+________ test_legacy_probing_attempt_resumes_after_saved_eligible_read _________
+
+root = PosixPath('/lfs/skampere1/0/brando9/rl4cv_at3598/tmp/pytest-of-brando9/pytest-0/test_legacy_probing_attempt_re0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7a09a351b230>
+
+    def test_legacy_probing_attempt_resumes_after_saved_eligible_read(root, monkeypatch):
+        candidate, state, store = recovery_fixture(root)
+        spent = {"profile": "personal_codex", "number": 1, "status": "INELIGIBLE", "reason": "native read failed"}
+        directory = store / "incidents/fixture/2"
+        directory.mkdir(parents=True)
+        m.write(directory / "account_check.json", responses())
+        attempt = {"profile": candidate["id"], "number": 2, "incident_id": "fixture", "started_utc": m.now(),
+                   "receipt_directory": str(directory), "status": "PROBING"}
+        state["incident"]["attempts"] = [spent, attempt]
+        monkeypatch.setattr(m, "account_probe", lambda *args: pytest.fail("spent probe repeated"))
+        launches = []
+        fake_completed_launch(root, monkeypatch, state, launches)
+        def prepare(config, state, directory, snapshot):
+            (directory / "prompt.md").write_text("fixed")
+            return m.digest(directory / "prompt.md")
+        monkeypatch.setattr(m, "prepare_handoff", prepare)
+        original_spent = dict(spent)
+>       m.drive({"candidates": [dict(candidate, id="personal_codex"), candidate]}, state, {"key": "event"}, store)
+
+tests/test_e08_coordinator_monitor.py:416: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py:504: in drive
+    child = subprocess.Popen(cmd, cwd=REPO, env=clean_env(), stdin=inp, stdout=out,
+                                                ^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def clean_env():
+        env = {k: v for k, v in os.environ.items() if k not in SECRET_ENV}
+        # Profile wrappers choose their own existing home; an inherited override is not silently changed.
+        if env.get("CODEX_HOME"):
+>           raise RuntimeError("unexpected inherited CODEX_HOME; profile identity unverified")
+E           RuntimeError: unexpected inherited CODEX_HOME; profile identity unverified
+
+experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v1/scripts/coordinator_monitor_e08.py:199: RuntimeError
+______________________ test_locked_dependency_paths_exist ______________________
+
+    def test_locked_dependency_paths_exist():
+>       assert all((HERE / p).is_file() for p in native.REQUIRED_HASHES)
+E       assert False
+E        +  where False = all(<generator object test_locked_dependency_paths_exist.<locals>.<genexpr> at 0x7a099fc068e0>)
+
+tests/test_e08_v3_native_continuation.py:316: AssertionError
+______ test_real_frozen_prompt_builder_keeps_thinking_template_and_hashes ______
+
+    def test_real_frozen_prompt_builder_keeps_thinking_template_and_hashes():
+        from rl4cv.veribench.exp103 import build_prompt,veribench_root
+>       root=veribench_root(os.environ.get('VERIBENCH_ROOT'))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_e13_evaluation_contract.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+explicit = None
+
+    def veribench_root(explicit: str | os.PathLike | None = None) -> Path:
+        """Resolve the pinned VeriBench checkout: argument, then $VERIBENCH_ROOT, then external/veribench."""
+        for cand in (explicit, os.environ.get("VERIBENCH_ROOT"), Path(__file__).resolve().parents[3] / "external" / "veribench"):
+            if cand and (Path(cand) / SINGLE_CALL_REL).is_file():
+                return Path(cand)
+>       raise FileNotFoundError(
+            "VeriBench checkout not found; run scripts/setup_external.sh or set VERIBENCH_ROOT "
+            f"to a checkout containing {SINGLE_CALL_REL}"
+        )
+E       FileNotFoundError: VeriBench checkout not found; run scripts/setup_external.sh or set VERIBENCH_ROOT to a checkout containing experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/scripts/valkyrie_single_call_agent/single_call.py
+
+src/rl4cv/veribench/exp103.py:30: FileNotFoundError
+___ test_hosted_pack_uses_same_fixed_samples_and_never_needs_hidden_outcomes ___
+
+tmp_path = PosixPath('/lfs/skampere1/0/brando9/rl4cv_at3598/tmp/pytest-of-brando9/pytest-0/test_hosted_pack_uses_same_fix0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7a099fce4680>
+
+    def test_hosted_pack_uses_same_fixed_samples_and_never_needs_hidden_outcomes(tmp_path,monkeypatch):
+        import selected_coverage
+        plan,pack=fixture(tmp_path,monkeypatch);cpu=m.prepare_hidden(plan)
+        for folder in pack.iterdir():
+            (folder/'instruction.md').write_text('Authored\n```python\ndef authoredIdentity(n):\n    return n\n```\n')
+        bundle=tmp_path/'bundle';bundle.mkdir()
+        for name in ('judge_call.py','setup.sh','contract.yaml'):(bundle/name).write_text('authored '+name)
+        route=put(tmp_path/'route.json',{'verdict':'PASS'})
+        migration=put(tmp_path/'migration.json',{})
+        # Actual renderer, with every reference file confined to authored fixtures.
+        cache={};real_helper=selected_coverage.helper
+        def helper(config):
+            if not cache:
+                h=real_helper(config);h.PRIVATE=tmp_path/'judge';h.PACK=pack;h.relative=lambda p:str(p.resolve())
+                monkeypatch.syspath_prepend(str(h.judge_pack.E/'scripts/valkyrie_judge_agent'))
+                monkeypatch.setattr(h.judge_pack,'E',tmp_path)
+                monkeypatch.setattr(h.judge_run,'worst_cost',lambda model,length,tokens:.25)
+                cache['h']=h
+            return cache['h']
+        # Read only the already-installed scientific selector definitions.
+>       template=real_helper({'work':str(tmp_path/'unused'),'benchmark_prefix':'authored','private_namespace':'rl4cv_e13v2_authored_draft'})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_e13_selected_publication.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/selected_coverage.py:20: in helper
+    m=controls_helper(config)
+      ^^^^^^^^^^^^^^^^^^^^^^^
+experiments/13_irt_scsc_factor_guided_vs_direct_pass1_rl_sft_qwen3_vbv1_d013/expt_v2/phase2/coverage_controls.py:30: in helper
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap_external>:995: in exec_module
+    ???
+<frozen importlib._bootstrap>:488: in _call_with_frames_removed
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    #!/usr/bin/env python3
+    """TLDR: FSC judging for experiment 08's test evaluation (PROTOCOL § 10, D-102), adapted from experiment 01's `judge_rl4cv_e01.py`: experiment 103's frozen judge modules (`judge_pack`, experiment 100's `prompts`/`build_inputs`/`judge_run`) are imported from this clone's pinned checkout, never edited, and every path resolves inside this clone. Suites: `rl4cv-e08v2-controls` (oracle / vacuous / shuffled / halfdel / blank on TRAIN files, the D-108 route controls) and `rl4cv-e08v2:<system>` (every IC_tests = 1 test cell plus the fixed 60-file audit, keyed by system, task_id and sample_idx; three byte-identical repeats per cell and per ensemble member, i.e. six declared ratings per file). `fsc` combines member medians (mean of the two medians / 5) per cell. All model calls go through `valk run start --agent vb103_judge`."""
+    from __future__ import annotations
+    
+    import argparse
+    import base64
+    import csv
+    import fcntl
+    import hashlib
+    import json
+    import os
+    import re
+    import statistics
+    import subprocess
+    import sys
+    import urllib.parse
+    import urllib.request
+    from datetime import datetime, timezone
+    from pathlib import Path
+    
+    REPO = Path(__file__).resolve().parents[4]
+    sys.path.insert(0, str(REPO / "src"))
+    from rl4cv.valkyrie_transport import Transport
+    
+    EXP = Path(__file__).resolve().parents[1]
+    WORK = Path(os.environ.get("E08_WORK", "/lfs/skampere1/0/brando9/rl4cv_e08/v2"))
+    EXT = REPO / "external" / "veribench"
+    E103 = EXT / "experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge"
+    X100 = EXT / "experiments/100_karpathy_recipe_tc_judge_search_human_train_val_test"
+    PRIVATE = E103 / "private" / "judge" / "rl4cv_e08v2"          # inside THIS clone's git-ignored pinned checkout (the frozen pack builder resolves paths under E103)
+    RESULTS = EXP / "results" / "judge"
+    PACK = Path("/lfs/skampere1/0/brando9/veribench_vb103/experiments/103_single_call_baselines_all_models_vbv1_vbv2_valkyrie_validated_fsc_judge/private/packs/vbv1_896")
+    E05_OUT = Path("/lfs/skampere1/0/brando9/rl4cv_e05/out")
+    AGENT = "vb103_judge"
+    CONFIGS = ("H2_sol_high", "H2_opus55_max")
+    RUBRIC = "H2_human_mirror_conventions_demos"
+    REPEATS = (1, 2, 3)
+    STATE = RESULTS / "state.json"
+    CORE_SPLITS = ("easy_set", "cs_set", "humaneval_set", "realcode_set", "security_set")
+    CONTROL_KINDS = ["oracle", "vacuous", "shuffled", "halfdel", "blank"]
+    CONTROL_EXPECTATIONS = {"control_oracle": ("score_raw >= 4", 0.90), "control_vacuous": ("score_raw <= 1", 0.90), "control_blank": ("score_raw == 0", 0.90),
+                            "control_shuffled": ("score_raw <= 1", 0.90), "control_halfdel": ("1 <= score_raw <= 4", 0.80)}
+    PROVIDER_ENV = ("VALKYRIE_API_KEY", "TRACKER_SERVICE_URL", "ANTHROPIC_API_KEY", "OPENAI_API_KEY", "GEMINI_API_KEY", "GOOGLE_API_KEY", "MODEL_GATEWAY_API_KEY",
+                    "CLAUDE_CODE_OAUTH_TOKEN", "ANTHROPIC_AUTH_TOKEN", "PYTHONPATH", "PYTHONHOME")
+    UUID_RE = re.compile(r"[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}")
+    BENCH_PREFIX = "veribench-rl4cv-e08v2"
+    
+    sys.path[:0] = [str(X100 / "scripts"), str(E103 / "scripts")]
+>   import common                          # noqa: E402  frozen, imported not edited
+    ^^^^^^^^^^^^^
+E   ModuleNotFoundError: No module named 'common'
+
+experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v2/scripts/judge_rl4cv_e08v2.py:49: ModuleNotFoundError
+=============================== warnings summary ===============================
+tests/test_e13_worker_shutdown.py::test_real_zombie_environment_error_then_census_clear
+  /lfs/skampere1/0/brando9/rl4cv_at3598/repo/tests/test_e13_worker_shutdown.py:13: DeprecationWarning: This process (pid=2560922) is multi-threaded, use of fork() may lead to deadlocks in the child.
+    pid=os.fork()
+
+tests/test_e20_irt.py::test_prior_selection_and_gate_g0_on_synthetic_data
+tests/test_e20_irt.py::test_prior_selection_and_gate_g0_on_synthetic_data
+  /usr/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=2560922) is multi-threaded, use of fork() may lead to deadlocks in the child.
+    self.pid = os.fork()
+
+tests/test_e25_night6.py::test_logged_constant_schedule_is_bit_identical_to_policy_grpo
+  /lfs/skampere1/0/brando9/rl4cv_at3598/repo/tests/test_e25_night6.py:29: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+  Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+    ev = lambda m: {'w': float(m.head.weight.sum())}
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_e08_coordinator_monitor.py::test_finite_failover_uses_next_candidate_and_keeps_attempts[None]
+FAILED tests/test_e08_coordinator_monitor.py::test_finite_failover_uses_next_candidate_and_keeps_attempts[updated-owner-event]
+FAILED tests/test_e08_coordinator_monitor.py::test_handoff_failure_resumes_same_attempt_without_reprobe
+FAILED tests/test_e08_coordinator_monitor.py::test_legacy_probing_attempt_resumes_after_saved_eligible_read
+FAILED tests/test_e08_v3_native_continuation.py::test_locked_dependency_paths_exist
+FAILED tests/test_e13_evaluation_contract.py::test_real_frozen_prompt_builder_keeps_thinking_template_and_hashes
+FAILED tests/test_e13_selected_publication.py::test_hosted_pack_uses_same_fixed_samples_and_never_needs_hidden_outcomes
+7 failed, 1440 passed, 48 skipped, 4 warnings, 6 subtests passed in 726.14s (0:12:06)
+make: *** [Makefile:8: test] Error 1
