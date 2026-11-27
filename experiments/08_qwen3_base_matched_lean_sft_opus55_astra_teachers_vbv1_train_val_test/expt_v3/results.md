@@ -6,6 +6,8 @@
 
 **Closure 11-25-2026:** This version is closed **INCOMPLETE at the 11-01-2026 deadline**; 4,320 of 17,280 validation cells remain missing. The four 14B rungs continue only as [open measurement #34](https://github.com/brando90/rl-4-code-verification/issues/34). See the [dated closing note](closing_note_11-25-2026.md). Earlier running/recovery descriptions below are historical.
 
+**R1 plan 11-27-2026:** the memory-fix and launch plan is [r1_14b_oom_fix_launch_plan_11-27-2026.md](r1_14b_oom_fix_launch_plan_11-27-2026.md). It does not change this table, the coverage CSVs, the locked protocol, or the frozen forecast. The four 14B rows below stay 0/1,080.
+
 **Status (QA 11-25-2026): INCOMPLETE; recovery deadline reached 11-01-2026, 4,320 of 17,280 validation cells (four 14B rungs) never measured.** Earlier status: RECOVERING. **Last updated:** 10-18-2026 10:30 PDT.
 
 Known validation cells: **12960/17,280**; 12960 belong to complete rungs. [Every missing/failed cell](results/coverage) remains in the declared denominator; no paid model calls.
