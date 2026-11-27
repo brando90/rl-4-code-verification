@@ -1,6 +1,6 @@
 # Experiment 16: can the ρ–H law pick or generate reinforcement learning environments for a new target benchmark? (toy GINC-style hidden Markov model tasks, CPU only)
 
-**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/ub9/e16-toy-env-generation/experiments/16_toy_env_generation_ginc_hmm_rho_h_law/README.md>
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/16_toy_env_generation_ginc_hmm_rho_h_law/README.md>
 
 Created 10-15-2026 by ultimate_brando9 (Brando's assistant) as night 1 of a nightly series Brando asked for on 10-14-2026. Everything runs on one 4-CPU machine with no GPU (no SNAP cluster access yet). Live numbers: [results.md](results.md). Checkpoint: [CKPT_e16_toy_env_gen.md](CKPT_e16_toy_env_gen.md).
 
@@ -111,7 +111,7 @@ python run_mdp.py --stage start --out results/mdp_v1 && python analyze_mdp.py --
 
 Test: `pytest tests/test_e16_ginc_toy.py tests/test_e16_known_mdp.py` (forward algorithm against brute-force enumeration, sampler statistics, reward and ρ plumbing; numpy only).
 
-**TLDR-end:** [rl4cv: e16 toy env generation] This folder holds the design, CPU code and first pilot for testing whether the ρ–H law can pick training environments for a new target benchmark, on GINC-style HMM tasks with an exact verifier. Night 1 ran end to end, but every RL run lowered the target (a forgetting regime), and log ρ and H came out 0.995 correlated, so the law test is not yet meaningful; night 2 fixes the RL setup first.
+**TLDR-end:** [rl4cv: e16 toy env generation] Night 1 was a forgetting regime (refreshed 11-27-2026 from the committed ledger). Night 2 is a TIE: 384/384 cells, 224 positive (58.33%), law-selected gain +0.0375 [−0.3500, +0.4500] percentage points, p-val=0.500. Night 3 known-MDP is NO ADVANTAGE. Night 4 and Night 5 are POSITIVE by the frozen rule; Night 5 law+alpha regret is 0.96 [0.56, 1.73] versus random 2.23, and P1–P3 hold. Numbers are in [results.md](results.md). The snapshot under this line is the early v2 figure kept with the design notes.
 
 **Snapshot:**
 ```

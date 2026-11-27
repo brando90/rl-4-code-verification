@@ -2,7 +2,9 @@
 
 **Doc link:** https://github.com/brando90/rl-4-code-verification/blob/main/experiments/08_qwen3_base_matched_lean_sft_opus55_astra_teachers_vbv1_train_val_test/expt_v6/results.md
 
-**Status:** RUNNING. **Last updated:** 10-19-2026 04:55:13 PDT.
+**Status:** RUNNING in the last measurement. **Last updated:** 10-19-2026 04:55:13 PDT.
+
+**Status refresh 11-27-2026:** no committed file after this date records 4B completion, a terminal exit, or a live process. The RUNNING label is that last measurement. In the table below, 1.7B control is 664/664 with 99/1,080 validation successes and 1.7B mixed is 904/904 with 74/1,080. 4B mixed is 526/904 updates, 3,049,296 assistant tokens, and 0/1,080 validation cells. `results/fused_handoff/status.json` records `FUSED_TRAINING` and a resumed trainer labeled RUNNING at step 100; that file is a host snapshot, not evidence the job is alive on 11-27-2026.
 
 | Condition | Training progress | Assistant tokens consumed | Validation generated | Scoring jobs complete |
 |---|---:|---:|---:|---:|
@@ -36,4 +38,4 @@ Primary augmented-minus-control difference: -0.0231, 95% interval [-0.0388888888
 
 [Protocol](PROTOCOL.md) · [Checkpoint](CKPT_tiny_training.md) · [Runtime snapshot](results/runtime_snapshot.json)
 
-**TLDR-end:** [rl4cv: concise Lean training] RUNNING; the full declared evaluation has 3,240 cells.
+**TLDR-end:** [rl4cv: concise Lean training] Last measurement 10-19-2026 04:55 PDT: 1.7B rows complete (99/1,080 and 74/1,080), 4B at 526/904 with 0/1,080 validation cells. Declared evaluation 3,240 cells. Not a live job as of the 11-27-2026 refresh.

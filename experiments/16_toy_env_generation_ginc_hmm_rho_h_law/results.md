@@ -1,6 +1,6 @@
 # Experiment 16 results: ρ–H law for picking RL environments on toy GINC-style HMM tasks
 
-**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/ub9/e16-toy-env-generation/experiments/16_toy_env_generation_ginc_hmm_rho_h_law/results.md>
+**Doc link:** <https://github.com/brando90/rl-4-code-verification/blob/main/experiments/16_toy_env_generation_ginc_hmm_rho_h_law/results.md>
 
 Design: [README.md](README.md). Night 1 measurements are preserved below in `expt_v1/results/`; the Night 2 continuation uses `expt_v2/results/pilot_v3/`; the known-MDP runs use `expt_v3/results/mdp_v1/` (Night 2b) and `expt_v3/results/mdp_v2/` (Night 3); Night 4 uses `expt_v4/results/night4/`; Night 5 (replication) uses `expt_v5/results/night5/`.
 
@@ -286,7 +286,7 @@ n2 e04  kl=0.0  env 0.291->0.857  target 0.483->0.239
 n2 e04  kl=1.0  env 0.291->0.529  target 0.483->0.467
 ```
 
-**TLDR-end:** [rl4cv: 16_toy_env_generation_ginc_hmm_rho_h_law] Night 2 (GINC, Codex on skampere1) completed all 384 cells at $0 with a tie against baselines (law pick +0.0375 pp, interval includes zero). The known-MDP sanity family (expt_v3, same night, 4-CPU machine) finally gives clear positive transfer (20 of 22 candidates, mean +3.45 pts) and separates ρ from H (corr 0.82): the ρ–H law beats random (regret 0.98 vs 4.32 pts) but not the best fixed environment from small models (0.51), verdict CHOICE ONLY, and ρ mistakes reward noise on solved prompts for signal.
+**TLDR-end:** [rl4cv: 16_toy_env_generation_ginc_hmm_rho_h_law] Night 2 (GINC) completed all 384 cells at $0 with a tie against baselines (law pick +0.0375 pp, interval includes zero). The known-MDP sanity family (expt_v3) gives positive transfer (20 of 22 candidates, mean +3.45 pts) and separates ρ from H (corr 0.82): the ρ–H law beats random (regret 0.98 vs 4.32 pts) but not the best fixed environment from small models (0.51), verdict CHOICE ONLY on that night, and Night 3's repeat is NO ADVANTAGE. Night 4 and Night 5 (fresh start checkpoints) are POSITIVE by the frozen rule; Night 5 law+alpha regret is 0.96 [0.56, 1.73] versus random 2.23 [2.08, 2.72], and P1–P3 hold (refreshed 11-27-2026 from the sections above).
 
 **Snapshot:**
 ```text
