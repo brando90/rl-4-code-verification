@@ -1,0 +1,47 @@
+{
+  "title": "02B v2 production configuration prepared 11-27-2026",
+  "status": "PREPARED_NOT_ADMITTED",
+  "date": "11-27-2026",
+  "protocol": "experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_b_prospective_2x2_forecast_check/expt_v2/PROTOCOL.md",
+  "pin_source": "experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_b_prospective_2x2_forecast_check/expt_v2/results/training_readiness_manifest_2026-10-06.json",
+  "initialization_authorization": "db70b465: bounded 02B v2 permits a pinned public Qwen3 Base initialization",
+  "model": {
+    "id": "Qwen/Qwen3-1.7B-Base",
+    "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+    "weights_rehashed_this_commit": false,
+    "note": "Revision is the reachable local revision already recorded on 10-06-2026. A SNAP host must re-hash the snapshot before launch. Experiment 08 VeriBench SFT checkpoints are not this initialization."
+  },
+  "design": {
+    "environments": ["full_file", "theorem_completion"],
+    "seeds_per_environment": 2,
+    "seed_values": null,
+    "optimizer_steps_per_trajectory": 64,
+    "declared_trajectories": 4,
+    "declared_optimizer_steps_total": 256,
+    "reward": "kernel_binary",
+    "lean": "4.22.0",
+    "protected_corpus": "all_VeriBench",
+    "veribench_in_training": false,
+    "veribench_release_for_new_experiments": "veribench@1.3 (10-28-2026); this locked protocol still screens the older all-896 rule and is not retargeted here"
+  },
+  "unset_because_the_locked_protocol_does_not_name_them": {
+    "group_size": null,
+    "response_cap_tokens": null,
+    "rollout_token_cap": null,
+    "learning_rate": null,
+    "dtype": null,
+    "mismatch_baseline": null
+  },
+  "training_entrypoint": null,
+  "rollout_adapter": {
+    "path": "experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/adapter_11-25-2026/verina_adapter.py",
+    "status": "behavioral evaluator, 24/24 support, 158/158 fixed tests; not a GRPO rollout sandbox and not reference-proof acceptance"
+  },
+  "dtype_policy": "Unmeasured. Heuristics rule 1: bf16 is the default only after a vLLM-versus-trainer mismatch measurement on the target GPU. Do not copy the experiment 21-24 fp16 fallback onto this Base checkpoint without that measurement.",
+  "forecast": {
+    "status": "NOT_FROZEN",
+    "api": "rl4cv.forecast.freeze_forecast",
+    "command": "python3 experiments/02_rho_h_guided_lean_env_design_eval_vbv1_3_metrics/phase_b_prospective_2x2_forecast_check/expt_v2/prep_11-27-2026/forecast_freeze_11-27-2026.py",
+    "paper_openr1_coefficients_are_not_lean_standardizers": true
+  }
+}
